@@ -82,9 +82,13 @@ export default function AdminPanel() {
     setEditData({});
   };
 
-  const handleAddService = (type: 'vehicle' | 'guide' | 'addon' | 'city') => {
+  const handleAddService = (type: 'vehicle' | 'guide' | 'addon' | 'city' | 'route') => {
     setModalType(type);
     setShowAddModal(true);
+    toast({
+      title: "Add New Item",
+      description: `Opening form to add new ${type}`,
+    });
   };
 
   const handleDelete = (id: number, type: string) => {
