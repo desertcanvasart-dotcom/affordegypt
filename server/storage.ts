@@ -1,10 +1,13 @@
 import { 
-  users, cities, vehicleTypes, tourGuides, addOns, bookings, commissionTiers,
+  users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, quotes, bookings,
   type User, type InsertUser, type City, type InsertCity,
-  type VehicleType, type InsertVehicleType, type TourGuide, type InsertTourGuide,
-  type AddOn, type InsertAddOn, type Booking, type InsertBooking,
-  type CommissionTier, type InsertCommissionTier
+  type VehicleType, type InsertVehicleType, type LicenseClass, type InsertLicenseClass,
+  type Route, type InsertRoute, type TimeBlock, type InsertTimeBlock,
+  type GuideRate, type InsertGuideRate, type AddOn, type InsertAddOn,
+  type Quote, type InsertQuote, type Booking, type InsertBooking
 } from "@shared/schema";
+import { db } from "./db";
+import { eq, and } from "drizzle-orm";
 
 export interface IStorage {
   // Users

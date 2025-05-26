@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertBookingSchema } from "@shared/schema";
+import { storage } from "./database-storage";
+import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
@@ -28,19 +28,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get tour guides by city
-  app.get("/api/tour-guides", async (req, res) => {
+  // Get guide rates by city
+  app.get("/api/guide-rates", async (req, res) => {
     try {
       const { cityId } = req.query;
-      let guides;
-      
-      if (cityId) {
-        guides = await storage.getTourGuidesByCity(parseInt(cityId as string));
-      } else {
-        guides = await storage.getTourGuides();
-      }
+      const guides = cityId 
+        ? await storage.getGuideRates(parseInt(cityId as string))
+        : await storage.getGuideRates();
       
       res.json(guides);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get license classes
+  app.get("/api/license-classes", async (req, res) => {
+    try {
+      const licenseClasses = await storage.getLicenseClasses();
+      res.json(licenseClasses);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get routes
+  app.get("/api/routes", async (req, res) => {
+    try {
+      const { fromCityId, toCityId } = req.query;
+      if (fromCityId && toCityId) {
+        const route = await storage.getRoute(parseInt(fromCityId as string), parseInt(toCityId as string));
+        res.json(route);
+      } else {
+        const routes = await storage.getRoutes();
+        res.json(routes);
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get time blocks
+  app.get("/api/time-blocks", async (req, res) => {
+    try {
+      const { cityId } = req.query;
+      if (!cityId) {
+        return res.status(400).json({ message: "cityId is required" });
+      }
+      
+      const timeBlocks = await storage.getTimeBlocks(parseInt(cityId as string));
+      res.json(timeBlocks);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
