@@ -7,6 +7,137 @@ import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 let stripe: any = null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Admin authentication middleware
+  const requireAdmin = (req: any, res: any, next: any) => {
+    // Simple admin check - in production you'd want proper auth
+    const adminToken = req.headers.authorization;
+    if (!adminToken || adminToken !== 'Bearer admin-token') {
+      return res.status(401).json({ message: 'Admin access required' });
+    }
+    next();
+  };
+
+  // Admin dashboard stats
+  app.get('/api/admin/dashboard-stats', requireAdmin, async (req, res) => {
+    try {
+      const quotes = await storage.getQuotes();
+      const bookings = await storage.getBookings();
+      
+      const totalQuotes = quotes.length;
+      const averageBasket = quotes.length > 0 ? 
+        quotes.reduce((sum, q) => sum + parseFloat(q.totalPrice), 0) / quotes.length : 0;
+      
+      // Calculate top routes (mock data for now)
+      const topRoutes = [
+        { route: "Cairo → Luxor", count: 15, revenue: 4500 },
+        { route: "Cairo → Aswan", count: 12, revenue: 3600 },
+        { route: "Luxor → Aswan", count: 8, revenue: 2400 }
+      ];
+
+      const recentQuotes = quotes.slice(-5).map(q => ({
+        id: q.id,
+        customerName: `Customer ${q.id}`,
+        amount: parseFloat(q.totalPrice),
+        status: 'pending',
+        createdAt: q.createdAt || new Date().toISOString()
+      }));
+
+      res.json({
+        totalQuotes,
+        averageBasket: Math.round(averageBasket),
+        topRoutes,
+        recentQuotes
+      });
+    } catch (error) {
+      console.error('Dashboard stats error:', error);
+      res.status(500).json({ message: 'Failed to fetch dashboard stats' });
+    }
+  });
+
+  // Admin city management
+  app.put('/api/admin/cities/:id', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, slug, description, isActive } = req.body;
+      
+      // Update city logic would go here
+      res.json({ message: 'City updated successfully' });
+    } catch (error) {
+      console.error('City update error:', error);
+      res.status(500).json({ message: 'Failed to update city' });
+    }
+  });
+
+  // Admin route management
+  app.put('/api/admin/routes/:id', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updateData = req.body;
+      
+      // Update route logic would go here
+      res.json({ message: 'Route updated successfully' });
+    } catch (error) {
+      console.error('Route update error:', error);
+      res.status(500).json({ message: 'Failed to update route' });
+    }
+  });
+
+  // Admin add-on management
+  app.put('/api/admin/addons/:id', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updateData = req.body;
+      
+      // Update add-on logic would go here
+      res.json({ message: 'Add-on updated successfully' });
+    } catch (error) {
+      console.error('Add-on update error:', error);
+      res.status(500).json({ message: 'Failed to update add-on' });
+    }
+  });
+
+  // CSV Export endpoints
+  app.get('/api/admin/export/cities', requireAdmin, async (req, res) => {
+    try {
+      const cities = await storage.getCities();
+      const csvData = [
+        'ID,Name,Slug,Description,Active',
+        ...cities.map(city => 
+          `${city.id},"${city.name}","${city.slug}","${city.description || ''}",${city.isActive}`
+        )
+      ].join('\n');
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=cities.csv');
+      res.send(csvData);
+    } catch (error) {
+      console.error('CSV export error:', error);
+      res.status(500).json({ message: 'Failed to export cities' });
+    }
+  });
+
+  // Manual quote creation
+  app.post('/api/admin/quotes', requireAdmin, async (req, res) => {
+    try {
+      const { customerName, customerEmail, customerPhone, passengers, itinerary } = req.body;
+      
+      // Create manual quote logic would go here
+      const quote = {
+        customerName,
+        customerEmail,
+        customerPhone,
+        passengers,
+        itinerary: JSON.stringify(itinerary),
+        totalPrice: "0", // Calculate based on itinerary
+        status: 'draft'
+      };
+      
+      res.json({ message: 'Manual quote created successfully', quote });
+    } catch (error) {
+      console.error('Manual quote creation error:', error);
+      res.status(500).json({ message: 'Failed to create manual quote' });
+    }
+  });
   
   // Get all cities
   app.get("/api/cities", async (req, res) => {

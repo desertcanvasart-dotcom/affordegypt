@@ -40,6 +40,9 @@ export default function Navbar() {
               <Lightbulb className="w-4 h-4" />
               Travel Tips
             </a>
+            <a href="/admin" className="text-muted-foreground hover:text-primary transition-colors text-xs">
+              Admin
+            </a>
           </nav>
 
           {/* CTA Button */}
