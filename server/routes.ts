@@ -86,26 +86,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get add-ons by city
   app.get("/api/add-ons", async (req, res) => {
     try {
-      const { citySlug } = req.query;
-      let addOns;
-      
-      if (citySlug) {
-        addOns = await storage.getAddOnsByCity(citySlug as string);
-      } else {
-        addOns = await storage.getAddOns();
-      }
+      const { cityId } = req.query;
+      const addOns = cityId 
+        ? await storage.getAddOns(parseInt(cityId as string))
+        : await storage.getAddOns();
       
       res.json(addOns);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  // Get commission tiers
-  app.get("/api/commission-tiers", async (req, res) => {
-    try {
-      const tiers = await storage.getCommissionTiers();
-      res.json(tiers);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
