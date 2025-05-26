@@ -82,21 +82,25 @@ export default function AdminPanel() {
   const { data: stats } = useQuery<DashboardStats>({
     queryKey: ["/api/admin/dashboard-stats"],
     retry: false,
+    enabled: isAuthenticated,
   });
 
   // Fetch cities for editing
   const { data: cities = [] } = useQuery({
     queryKey: ["/api/cities"],
+    enabled: isAuthenticated,
   });
 
   // Fetch routes for editing
   const { data: routes = [] } = useQuery({
     queryKey: ["/api/routes"],
+    enabled: isAuthenticated,
   });
 
   // Fetch add-ons for editing
   const { data: addOns = [] } = useQuery({
     queryKey: ["/api/add-ons"],
+    enabled: isAuthenticated,
   });
 
   const handleEdit = (id: number, data: any) => {
