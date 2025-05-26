@@ -338,54 +338,303 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </Card>
           </TabsContent>
 
-          <TabsContent value="vehicles">
+          <TabsContent value="vehicles" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Vehicle Types</h2>
+              <Button className="bg-teal-600 hover:bg-teal-700">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Vehicle Type
+              </Button>
+            </div>
+            
             <Card>
-              <CardHeader>
-                <CardTitle>Vehicle Types</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center text-muted-foreground py-8">
-                  Vehicle management interface coming soon
-                </div>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Min Passengers</TableHead>
+                      <TableHead>Max Passengers</TableHead>
+                      <TableHead>Description</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Sedan</TableCell>
+                      <TableCell>1</TableCell>
+                      <TableCell>3</TableCell>
+                      <TableCell>Comfortable car for small groups</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Minivan</TableCell>
+                      <TableCell>4</TableCell>
+                      <TableCell>8</TableCell>
+                      <TableCell>Spacious vehicle for medium groups</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Van</TableCell>
+                      <TableCell>9</TableCell>
+                      <TableCell>15</TableCell>
+                      <TableCell>Large vehicle for big groups</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="guides">
+          <TabsContent value="guides" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Tour Guide Rates</h2>
+              <Button className="bg-teal-600 hover:bg-teal-700">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Guide Rate
+              </Button>
+            </div>
+            
             <Card>
-              <CardHeader>
-                <CardTitle>Tour Guides</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center text-muted-foreground py-8">
-                  Guide management interface coming soon
-                </div>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Language</TableHead>
+                      <TableHead>City</TableHead>
+                      <TableHead>Hourly Rate (USD)</TableHead>
+                      <TableHead>Daily Rate (USD)</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>English</TableCell>
+                      <TableCell>Cairo</TableCell>
+                      <TableCell>$25</TableCell>
+                      <TableCell>$180</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Spanish</TableCell>
+                      <TableCell>Cairo</TableCell>
+                      <TableCell>$30</TableCell>
+                      <TableCell>$220</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>French</TableCell>
+                      <TableCell>Luxor</TableCell>
+                      <TableCell>$28</TableCell>
+                      <TableCell>$200</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Arabic</TableCell>
+                      <TableCell>All Cities</TableCell>
+                      <TableCell>$20</TableCell>
+                      <TableCell>$150</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          <Edit2 className="w-3 h-3" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="addons">
+          <TabsContent value="addons" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Add-on Services</h2>
+              <Button className="bg-teal-600 hover:bg-teal-700">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Service
+              </Button>
+            </div>
+            
             <Card>
-              <CardHeader>
-                <CardTitle>Add-on Services</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center text-muted-foreground py-8">
-                  Add-on management interface coming soon
-                </div>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Price (USD)</TableHead>
+                      <TableHead>Type</TableHead>
+                      <TableHead>Category</TableHead>
+                      <TableHead>Description</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {Array.isArray(addOns) && addOns.map((addOn: any) => (
+                      <TableRow key={addOn.id}>
+                        <TableCell>
+                          {editingRow === addOn.id ? (
+                            <Input
+                              value={editData.name || addOn.name}
+                              onChange={(e) => setEditData({...editData, name: e.target.value})}
+                            />
+                          ) : addOn.name}
+                        </TableCell>
+                        <TableCell>
+                          {editingRow === addOn.id ? (
+                            <Input
+                              value={editData.price || addOn.price}
+                              onChange={(e) => setEditData({...editData, price: e.target.value})}
+                            />
+                          ) : `$${addOn.price}`}
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant={addOn.unitType === 'per_unit' ? 'default' : 'secondary'}>
+                            {addOn.unitType === 'per_unit' ? 'Per Unit' : 'Per Person'}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>{addOn.category}</TableCell>
+                        <TableCell>
+                          {editingRow === addOn.id ? (
+                            <Input
+                              value={editData.description || addOn.description || ''}
+                              onChange={(e) => setEditData({...editData, description: e.target.value})}
+                            />
+                          ) : (addOn.description || 'No description')}
+                        </TableCell>
+                        <TableCell>
+                          {editingRow === addOn.id ? (
+                            <div className="flex space-x-2">
+                              <Button size="sm" onClick={() => handleSave(addOn.id, 'add-ons')}>
+                                <Save className="w-3 h-3" />
+                              </Button>
+                              <Button size="sm" variant="outline" onClick={handleCancel}>
+                                <X className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              onClick={() => handleEdit(addOn.id, addOn)}
+                            >
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="bookings">
+          <TabsContent value="bookings" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Customer Bookings</h2>
+              <div className="flex space-x-2">
+                <Button variant="outline">
+                  <Download className="w-4 h-4 mr-2" />
+                  Export CSV
+                </Button>
+                <Button className="bg-teal-600 hover:bg-teal-700">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Manual Booking
+                </Button>
+              </div>
+            </div>
+            
             <Card>
-              <CardHeader>
-                <CardTitle>Customer Bookings</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center text-muted-foreground py-8">
-                  Booking management interface coming soon
-                </div>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Booking ID</TableHead>
+                      <TableHead>Customer</TableHead>
+                      <TableHead>Cities</TableHead>
+                      <TableHead>Travelers</TableHead>
+                      <TableHead>Total</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Date</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>#BK001</TableCell>
+                      <TableCell>Sarah Johnson</TableCell>
+                      <TableCell>Cairo → Luxor → Aswan</TableCell>
+                      <TableCell>4</TableCell>
+                      <TableCell>$1,850</TableCell>
+                      <TableCell>
+                        <Badge className="bg-green-100 text-green-800">Confirmed</Badge>
+                      </TableCell>
+                      <TableCell>2025-01-15</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          View Details
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>#BK002</TableCell>
+                      <TableCell>Ahmed Hassan</TableCell>
+                      <TableCell>Cairo → Alexandria</TableCell>
+                      <TableCell>2</TableCell>
+                      <TableCell>$720</TableCell>
+                      <TableCell>
+                        <Badge variant="secondary">Pending</Badge>
+                      </TableCell>
+                      <TableCell>2025-01-16</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          View Details
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>#BK003</TableCell>
+                      <TableCell>Maria García</TableCell>
+                      <TableCell>Cairo → Hurghada</TableCell>
+                      <TableCell>6</TableCell>
+                      <TableCell>$1,240</TableCell>
+                      <TableCell>
+                        <Badge className="bg-green-100 text-green-800">Confirmed</Badge>
+                      </TableCell>
+                      <TableCell>2025-01-14</TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="outline">
+                          View Details
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </TabsContent>
