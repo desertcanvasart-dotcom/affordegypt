@@ -116,8 +116,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Create quote endpoint
-  app.post("/api/quotes", async (req, res) => {
+  // Create quote endpoint - receives wizard payload, returns priced quote
+  app.post("/api/quote", async (req, res) => {
     try {
       const { itinerary, addons, passengers } = req.body;
       
@@ -129,7 +129,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         commissionPct: pricing.commissionPct.toString()
       });
       
-      res.json(quote);
+      res.json({
+        ...quote,
+        pricing: {
+          subtotal: pricing.subtotal,
+          commissionPct: pricing.commissionPct,
+          total: pricing.grandTotal,
+          breakdown: pricing.breakdown
+        }
+      });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
@@ -178,7 +186,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Stripe payment route for one-time payments
+  // Checkout endpoint - creates Stripe session, returns redirect URL
+  app.post("/api/checkout", async (req, res) => {
+    try {
+      if (!stripe) {
+        return res.status(500).json({ message: "Stripe not configured. Please provide STRIPE_SECRET_KEY." });
+      }
+      
+      const { quoteId, customerEmail } = req.body;
+      
+      // Get the quote
+      const quote = await storage.getQuote(quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      const amount = Math.round(parseFloat(quote.total) * 100); // Convert to cents
+      
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'Egypt Travel Package',
+              description: `Complete travel package for ${(quote.jsonBlob as any).passengers} passenger(s)`,
+            },
+            unit_amount: amount,
+          },
+          quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: `${req.protocol}://${req.get('host')}/booking-confirmation?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.protocol}://${req.get('host')}/checkout?quote=${quoteId}`,
+        customer_email: customerEmail,
+        metadata: {
+          quoteId: quoteId.toString(),
+        },
+      });
+      
+      res.json({ 
+        sessionId: session.id,
+        url: session.url 
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error creating checkout session: " + error.message });
+    }
+  });
+
+  // Stripe payment route for one-time payments (legacy)
   app.post("/api/create-payment-intent", async (req, res) => {
     try {
       if (!stripe) {
@@ -194,6 +250,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       res.status(500).json({ message: "Error creating payment intent: " + error.message });
     }
+  });
+
+  // Stripe webhook → mark quote paid
+  app.post("/webhooks/payment", express.raw({type: 'application/json'}), async (req, res) => {
+    if (!stripe) {
+      return res.status(500).json({ message: "Stripe not configured" });
+    }
+
+    const sig = req.headers['stripe-signature'] as string;
+    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+    let event;
+
+    try {
+      if (endpointSecret) {
+        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+      } else {
+        event = JSON.parse(req.body.toString());
+      }
+    } catch (err: any) {
+      console.log(`Webhook signature verification failed.`, err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    // Handle the event
+    switch (event.type) {
+      case 'checkout.session.completed':
+        const session = event.data.object;
+        const quoteId = parseInt(session.metadata.quoteId);
+        
+        try {
+          // Create booking from completed payment
+          const quote = await storage.getQuote(quoteId);
+          if (quote) {
+            const booking = await storage.createBooking({
+              quoteId: quoteId,
+              customerName: session.customer_details?.name || 'Unknown',
+              customerEmail: session.customer_details?.email || '',
+              customerPhone: session.customer_details?.phone || null,
+              stripePaymentIntentId: session.payment_intent as string,
+              paymentStatus: 'paid'
+            });
+            console.log(`Booking created successfully: ${booking.id}`);
+          }
+        } catch (error) {
+          console.error('Error creating booking:', error);
+        }
+        break;
+      
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    res.json({received: true});
   });
 
   // Update booking payment status
