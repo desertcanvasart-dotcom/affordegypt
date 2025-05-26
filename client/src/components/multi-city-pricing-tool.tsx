@@ -177,11 +177,10 @@ export default function MultiCityPricingTool() {
                   <TableHead className="min-w-[120px]">City</TableHead>
                   <TableHead className="min-w-[140px]">Date</TableHead>
                   <TableHead className="min-w-[120px]">Travelers No</TableHead>
-                  <TableHead className="min-w-[200px]">Inter-city Transfer</TableHead>
-                  <TableHead className="min-w-[180px]">Intra-city Transfer</TableHead>
+                  <TableHead className="min-w-[250px]">Transportation</TableHead>
                   <TableHead className="min-w-[140px]">Guide</TableHead>
                   <TableHead className="min-w-[160px]">Attractions</TableHead>
-                  <TableHead className="min-w-[140px]">Add Ons</TableHead>
+                  <TableHead className="min-w-[200px]">Add Ons</TableHead>
                   <TableHead className="min-w-[140px]">Total Per Person</TableHead>
                 </TableRow>
               </TableHeader>
@@ -225,33 +224,44 @@ export default function MultiCityPricingTool() {
                         />
                       </TableCell>
 
-                      {/* Inter-city Transfer */}
+                      {/* Transportation */}
                       <TableCell>
-                        <div className="space-y-2">
-                          {interCityRoutes.map(route => (
-                            <div key={route.id} className="flex items-center space-x-2">
-                              <Checkbox
-                                checked={cityService.selectedRoutes.includes(route.id)}
-                                onCheckedChange={() => toggleRoute(index, route.id)}
-                              />
-                              <span className="text-sm">{route.name}</span>
+                        <div className="space-y-3">
+                          {/* Inter-city routes */}
+                          {interCityRoutes.length > 0 && (
+                            <div>
+                              <div className="text-xs font-medium text-muted-foreground mb-1">Inter-city</div>
+                              <div className="space-y-1">
+                                {interCityRoutes.map(route => (
+                                  <div key={route.id} className="flex items-center space-x-2">
+                                    <Checkbox
+                                      checked={cityService.selectedRoutes.includes(route.id)}
+                                      onCheckedChange={() => toggleRoute(index, route.id)}
+                                    />
+                                    <span className="text-sm">{route.name}</span>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
-                          ))}
-                        </div>
-                      </TableCell>
-
-                      {/* Intra-city Transfer */}
-                      <TableCell>
-                        <div className="space-y-2">
-                          {intraCityRoutes.map(route => (
-                            <div key={route.id} className="flex items-center space-x-2">
-                              <Checkbox
-                                checked={cityService.selectedRoutes.includes(route.id)}
-                                onCheckedChange={() => toggleRoute(index, route.id)}
-                              />
-                              <span className="text-sm">{route.name}</span>
+                          )}
+                          
+                          {/* Intra-city routes */}
+                          {intraCityRoutes.length > 0 && (
+                            <div>
+                              <div className="text-xs font-medium text-muted-foreground mb-1">Local & Tours</div>
+                              <div className="space-y-1">
+                                {intraCityRoutes.map(route => (
+                                  <div key={route.id} className="flex items-center space-x-2">
+                                    <Checkbox
+                                      checked={cityService.selectedRoutes.includes(route.id)}
+                                      onCheckedChange={() => toggleRoute(index, route.id)}
+                                    />
+                                    <span className="text-sm">{route.name}</span>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
-                          ))}
+                          )}
                         </div>
                       </TableCell>
 
@@ -288,16 +298,54 @@ export default function MultiCityPricingTool() {
 
                       {/* Add Ons */}
                       <TableCell>
-                        <div className="space-y-2">
-                          {addOns.slice(0, 4).map(addOn => (
-                            <div key={addOn.id} className="flex items-center space-x-2">
-                              <Checkbox
-                                checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
-                                onCheckedChange={() => toggleAddOn(index, addOn)}
-                              />
-                              <span className="text-xs">{addOn.name}</span>
+                        <div className="space-y-3">
+                          {/* Meals */}
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Meals</div>
+                            <div className="space-y-1">
+                              {addOns.filter(a => a.category === 'meals').slice(0, 2).map(addOn => (
+                                <div key={addOn.id} className="flex items-center space-x-2">
+                                  <Checkbox
+                                    checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
+                                    onCheckedChange={() => toggleAddOn(index, addOn)}
+                                  />
+                                  <span className="text-sm">{addOn.name} (${addOn.price})</span>
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          </div>
+
+                          {/* Activities */}
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Activities</div>
+                            <div className="space-y-1">
+                              {addOns.filter(a => a.category === 'activities').slice(0, 2).map(addOn => (
+                                <div key={addOn.id} className="flex items-center space-x-2">
+                                  <Checkbox
+                                    checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
+                                    onCheckedChange={() => toggleAddOn(index, addOn)}
+                                  />
+                                  <span className="text-sm">{addOn.name} (${addOn.price})</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Transport */}
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Tickets</div>
+                            <div className="space-y-1">
+                              {addOns.filter(a => a.category === 'transport').slice(0, 2).map(addOn => (
+                                <div key={addOn.id} className="flex items-center space-x-2">
+                                  <Checkbox
+                                    checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
+                                    onCheckedChange={() => toggleAddOn(index, addOn)}
+                                  />
+                                  <span className="text-sm">{addOn.name} (${addOn.price})</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </TableCell>
 
