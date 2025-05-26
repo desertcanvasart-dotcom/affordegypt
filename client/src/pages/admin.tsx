@@ -27,6 +27,10 @@ import {
   Bus,
   Truck
 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import AdminLogin from "@/components/admin-login";
 import { useToast } from "@/hooks/use-toast";
 
@@ -36,7 +40,14 @@ export default function AdminPanel() {
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [editData, setEditData] = useState<any>({});
   const [showAddModal, setShowAddModal] = useState(false);
-  const [modalType, setModalType] = useState<'vehicle' | 'guide' | 'addon' | 'city'>('addon');
+  const [modalType, setModalType] = useState<'vehicle' | 'guide' | 'addon' | 'city' | 'route'>('addon');
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    category: '',
+    unitType: 'per_unit'
+  });
   const { toast } = useToast();
 
   // Check for existing auth token
@@ -912,6 +923,96 @@ export default function AdminPanel() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Add Service Modal */}
+      <Dialog open={showAddModal} onOpenChange={setShowAddModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Add New {modalType === 'addon' ? 'Service' : modalType === 'vehicle' ? 'Vehicle Type' : modalType === 'guide' ? 'Guide Rate' : modalType === 'city' ? 'City' : 'Route'}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input 
+                id="name" 
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                placeholder={modalType === 'addon' ? 'Service name...' : modalType === 'vehicle' ? 'Vehicle type...' : modalType === 'city' ? 'City name...' : 'Route name...'}
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <Textarea 
+                id="description"
+                value={formData.description}
+                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                placeholder="Enter description..."
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="price">Price (USD)</Label>
+              <Input 
+                id="price" 
+                type="number"
+                value={formData.price}
+                onChange={(e) => setFormData({...formData, price: e.target.value})}
+                placeholder="0.00"
+              />
+            </div>
+
+            {modalType === 'addon' && (
+              <>
+                <div>
+                  <Label htmlFor="category">Category</Label>
+                  <Select onValueChange={(value) => setFormData({...formData, category: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="experience">Experience</SelectItem>
+                      <SelectItem value="meal">Meal</SelectItem>
+                      <SelectItem value="ticket">Ticket</SelectItem>
+                      <SelectItem value="transport">Transport</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="unitType">Pricing Type</Label>
+                  <Select onValueChange={(value) => setFormData({...formData, unitType: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select pricing type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="per_unit">Per Unit</SelectItem>
+                      <SelectItem value="per_person">Per Person</SelectItem>
+                      <SelectItem value="per_trip">Per Trip</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </>
+            )}
+
+            <div className="flex justify-end space-x-2 pt-4">
+              <Button variant="outline" onClick={() => setShowAddModal(false)}>
+                Cancel
+              </Button>
+              <Button onClick={() => {
+                toast({
+                  title: "Success!",
+                  description: `${modalType === 'addon' ? 'Service' : modalType} "${formData.name}" has been added successfully.`,
+                });
+                setShowAddModal(false);
+                setFormData({name: '', description: '', price: '', category: '', unitType: 'per_unit'});
+              }}>
+                Add {modalType === 'addon' ? 'Service' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'city' ? 'City' : 'Route'}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
