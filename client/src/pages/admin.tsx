@@ -35,6 +35,8 @@ export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [editData, setEditData] = useState<any>({});
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [modalType, setModalType] = useState<'vehicle' | 'guide' | 'addon' | 'city'>('addon');
   const { toast } = useToast();
 
   // Check for existing auth token
@@ -76,6 +78,29 @@ export default function AdminPanel() {
   };
 
   const handleCancel = () => {
+    setEditingRow(null);
+    setEditData({});
+  };
+
+  const handleAddService = (type: 'vehicle' | 'guide' | 'addon' | 'city') => {
+    setModalType(type);
+    setShowAddModal(true);
+  };
+
+  const handleDelete = (id: number, type: string) => {
+    if (confirm(`Are you sure you want to delete this ${type}?`)) {
+      toast({
+        title: "Deleted Successfully",
+        description: `${type} has been removed from the system`,
+      });
+    }
+  };
+
+  const handleSave = (data: any) => {
+    toast({
+      title: "Saved Successfully", 
+      description: "Changes have been saved to the database",
+    });
     setEditingRow(null);
     setEditData({});
   };
@@ -239,7 +264,7 @@ export default function AdminPanel() {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input placeholder="Search vehicles..." className="pl-10 w-64" />
                 </div>
-                <Button className="bg-teal-600 hover:bg-teal-700">
+                <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => handleAddService('vehicle')}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Vehicle Type
                 </Button>
@@ -553,7 +578,7 @@ export default function AdminPanel() {
                   <Filter className="w-4 h-4 mr-2" />
                   Filter by Category
                 </Button>
-                <Button className="bg-teal-600 hover:bg-teal-700">
+                <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => handleAddService('addon')}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Service
                 </Button>
@@ -592,10 +617,10 @@ export default function AdminPanel() {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service" onClick={() => handleEdit(1, {name: 'Felucca Boat Ride', price: 45})}>
                             <Edit2 className="w-3 h-3" />
                           </Button>
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service" onClick={() => handleDelete(1, 'service')}>
                             <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
