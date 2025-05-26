@@ -211,7 +211,7 @@ export default function AdminPanel() {
           <TabsContent value="cities" className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold">Manage Cities</h2>
-              <Button className="bg-teal-600 hover:bg-teal-700">
+              <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => handleAddService('city')}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add City
               </Button>
@@ -241,9 +241,14 @@ export default function AdminPanel() {
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Button size="sm" variant="outline">
-                            <Edit2 className="w-3 h-3" />
-                          </Button>
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit City" onClick={() => handleEdit(city.id, city)}>
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete City" onClick={() => handleDelete(city.id, 'city')}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -297,10 +302,10 @@ export default function AdminPanel() {
                       <TableCell className="text-gray-600">Comfortable car for small groups</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(1, {name: 'Sedan', min: 1, max: 3})}>
                             <Edit2 className="w-3 h-3" />
                           </Button>
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle" onClick={() => handleDelete(1, 'vehicle')}>
                             <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
@@ -320,10 +325,10 @@ export default function AdminPanel() {
                       <TableCell className="text-gray-600">Spacious vehicle for medium groups</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(2, {name: 'Minivan', min: 4, max: 8})}>
                             <Edit2 className="w-3 h-3" />
                           </Button>
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle" onClick={() => handleDelete(2, 'vehicle')}>
                             <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
@@ -343,10 +348,10 @@ export default function AdminPanel() {
                       <TableCell className="text-gray-600">Large vehicle for big groups</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(3, {name: 'Van', min: 9, max: 15})}>
                             <Edit2 className="w-3 h-3" />
                           </Button>
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle" onClick={() => handleDelete(3, 'vehicle')}>
                             <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
