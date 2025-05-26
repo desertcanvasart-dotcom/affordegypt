@@ -253,7 +253,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Stripe webhook → mark quote paid
-  app.post("/webhooks/payment", express.raw({type: 'application/json'}), async (req, res) => {
+  app.post("/webhooks/payment", (req, res) => {
     if (!stripe) {
       return res.status(500).json({ message: "Stripe not configured" });
     }

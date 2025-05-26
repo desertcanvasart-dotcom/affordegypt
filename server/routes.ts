@@ -138,6 +138,171 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: 'Failed to create manual quote' });
     }
   });
+
+  // Multi-city pricing tool endpoints
+  app.get("/api/pricing/routes/:cityId", async (req, res) => {
+    try {
+      const { cityId } = req.params;
+      
+      // Available routes for each city based on your specification
+      const routesByCity = {
+        1: [ // Cairo
+          { id: 1, name: "Airport to Hotel or Vice Versa", type: "airport" },
+          { id: 2, name: "Cairo to Alexandria Over Day", type: "inter-city" },
+          { id: 3, name: "Cairo to Alexandria Over Night", type: "inter-city" },
+          { id: 4, name: "Cairo to El Fayoum Over Day", type: "inter-city" },
+          { id: 5, name: "Cairo to El Fayoum Over Night", type: "inter-city" },
+          { id: 6, name: "Day Tour in Cairo 8 Hours", type: "intra-city" },
+          { id: 7, name: "Day Tour in Cairo 12 Hours", type: "intra-city" },
+          { id: 8, name: "Sound & Light Show", type: "activity" }
+        ],
+        2: [ // Alexandria
+          { id: 9, name: "Alexandria to Cairo Over Day", type: "inter-city" },
+          { id: 10, name: "Alexandria City Tour", type: "intra-city" },
+          { id: 11, name: "Airport Transfer Alexandria", type: "airport" }
+        ],
+        3: [ // Luxor
+          { id: 12, name: "Luxor to Aswan Over Day", type: "inter-city" },
+          { id: 13, name: "East Bank Tour", type: "intra-city" },
+          { id: 14, name: "West Bank Tour", type: "intra-city" },
+          { id: 15, name: "Airport Transfer Luxor", type: "airport" }
+        ],
+        4: [ // Aswan
+          { id: 16, name: "Aswan to Abu Simbel", type: "inter-city" },
+          { id: 17, name: "Aswan City Tour", type: "intra-city" },
+          { id: 18, name: "Airport Transfer Aswan", type: "airport" }
+        ]
+      };
+
+      const routes = routesByCity[parseInt(cityId)] || [];
+      res.json(routes);
+    } catch (error) {
+      console.error('Routes fetch error:', error);
+      res.status(500).json({ message: 'Failed to fetch routes' });
+    }
+  });
+
+  app.get("/api/pricing/languages", async (req, res) => {
+    try {
+      const languages = [
+        "English", "Spanish", "French", "German", 
+        "Italian", "Japanese", "Chinese", "Arabic"
+      ];
+      res.json(languages);
+    } catch (error) {
+      console.error('Languages fetch error:', error);
+      res.status(500).json({ message: 'Failed to fetch languages' });
+    }
+  });
+
+  app.get("/api/pricing/addons", async (req, res) => {
+    try {
+      const addOns = [
+        { id: 1, name: "Lunch", price: 15, type: "per_unit", category: "meals" },
+        { id: 2, name: "Dinner", price: 20, type: "per_unit", category: "meals" },
+        { id: 3, name: "Felucca Ride", price: 25, type: "per_unit", category: "activities" },
+        { id: 4, name: "Horse Carriage", price: 20, type: "per_unit", category: "transport" },
+        { id: 5, name: "Skip-the-line Entrance", price: 10, type: "per_person", category: "tickets" },
+        { id: 6, name: "Seating Train Ticket", price: 45, type: "per_person", category: "transport" },
+        { id: 7, name: "Sleeping Train Ticket", price: 85, type: "per_person", category: "transport" },
+        { id: 8, name: "4-day Nile Cruise", price: 280, type: "per_trip", category: "cruise" },
+        { id: 9, name: "5-day Nile Cruise", price: 350, type: "per_trip", category: "cruise" },
+        { id: 10, name: "7-day Nile Cruise", price: 490, type: "per_trip", category: "cruise" }
+      ];
+      res.json(addOns);
+    } catch (error) {
+      console.error('Add-ons fetch error:', error);
+      res.status(500).json({ message: 'Failed to fetch add-ons' });
+    }
+  });
+
+  app.post("/api/pricing/calculate", async (req, res) => {
+    try {
+      const { cityServices } = req.body;
+      
+      // Calculate pricing based on your specification
+      let totalAmount = 0;
+      const breakdown = [];
+
+      for (const cityService of cityServices) {
+        let cityTotal = 0;
+        const travelers = cityService.travelers || 1;
+
+        // Vehicle category based on passenger count
+        const getVehiclePrice = (basePrice: number, passengers: number) => {
+          if (passengers <= 2) return basePrice; // Sedan
+          if (passengers <= 8) return basePrice * 1.6; // Minivan
+          return basePrice * 2.4; // Van
+        };
+
+        // Calculate routes
+        let routesTotal = 0;
+        if (cityService.selectedRoutes) {
+          cityService.selectedRoutes.forEach(routeId => {
+            // Base prices for different route types
+            const routePrices = {
+              1: 50, 2: 120, 3: 150, 4: 90, 5: 110, 6: 80, 7: 120, 8: 40,
+              9: 120, 10: 60, 11: 50, 12: 100, 13: 70, 14: 80, 15: 50,
+              16: 180, 17: 60, 18: 50
+            };
+            const basePrice = routePrices[routeId] || 50;
+            routesTotal += getVehiclePrice(basePrice, travelers);
+          });
+        }
+
+        // Calculate guide pricing
+        let guideTotal = 0;
+        if (cityService.selectedGuide) {
+          const guidePrices = {
+            "English": 40, "Spanish": 45, "French": 45, "German": 50,
+            "Italian": 45, "Japanese": 60, "Chinese": 55, "Arabic": 35
+          };
+          guideTotal = guidePrices[cityService.selectedGuide.language] || 40;
+        }
+
+        // Calculate add-ons
+        let addOnsTotal = 0;
+        if (cityService.selectedAddOns) {
+          cityService.selectedAddOns.forEach(addOn => {
+            const prices = { 1: 15, 2: 20, 3: 25, 4: 20, 5: 10, 6: 45, 7: 85, 8: 280, 9: 350, 10: 490 };
+            const types = { 1: "unit", 2: "unit", 3: "unit", 4: "unit", 5: "person", 6: "person", 7: "person", 8: "trip", 9: "trip", 10: "trip" };
+            
+            const basePrice = prices[addOn.id] || 0;
+            const pricingType = types[addOn.id] || "unit";
+            
+            if (pricingType === "person") {
+              addOnsTotal += basePrice * addOn.quantity * travelers;
+            } else {
+              addOnsTotal += basePrice * addOn.quantity;
+            }
+          });
+        }
+
+        cityTotal = routesTotal + guideTotal + addOnsTotal;
+        totalAmount += cityTotal;
+
+        breakdown.push({
+          cityName: cityService.cityName,
+          amount: cityTotal,
+          details: { routes: routesTotal, guide: guideTotal, addOns: addOnsTotal }
+        });
+      }
+
+      const firstService = cityServices[0];
+      const travelers = firstService?.travelers || 1;
+      const perPersonAmount = Math.round((totalAmount / travelers) * 100) / 100;
+
+      res.json({
+        totalAmount,
+        perPersonAmount,
+        breakdown,
+        travelers
+      });
+    } catch (error) {
+      console.error('Pricing calculation error:', error);
+      res.status(500).json({ message: 'Failed to calculate pricing' });
+    }
+  });
   
   // Get all cities
   app.get("/api/cities", async (req, res) => {

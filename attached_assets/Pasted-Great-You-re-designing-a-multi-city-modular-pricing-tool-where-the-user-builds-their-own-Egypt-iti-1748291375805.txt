@@ -1,0 +1,110 @@
+Great! You're designing a multi-city, modular pricing tool where the user builds their own Egypt itinerary step by step. Here’s how your tool should work in detail:
+
+🧮 Pricing Tool Functional Description
+🎯 Goal
+To allow users to:
+
+Select services city by city (starting with Cairo, then moving on to other cities),
+
+Get instant prices based on the number of travelers and service selections,
+
+See a total price per person at the end.
+
+🛠️ How It Works Step-by-Step
+1. City Selection Flow
+User goes through each destination (in this order or user-defined):
+
+Cairo → El Fayoum → Alexandria → Luxor → Aswan → Abu Simbel → Hurghada → Sharm El Sheikh
+
+For each city, they’ll choose:
+
+Date
+
+Number of travelers
+
+Inter-city Transfer(s)
+
+Intra-city Transfer(s)
+
+Guide Language
+
+Attractions (text or dropdown)
+
+Add-ons (either unit-based or per-person trip-based)
+
+Total Per Person (automatically calculated)
+
+🚗 Transfers: Pricing Logic
+🔹 Vehicle Size Selection (Automated)
+Sedan: 1–2 passengers
+
+Minivan: 3–8 passengers
+
+Van: 9–15 passengers
+
+The tool should auto-assign vehicle category based on number of travelers.
+
+🔹 Transfer Pricing Source
+Each dropdown (like “Cairo to Alexandria Over Day”) pulls price based on:
+
+Route name
+
+Vehicle type (auto-selected)
+
+Car type (Normal or Licensed Tourism Car — may be set by admin or toggle)
+
+You’ll need a backend pricing table for every route × car type × vehicle size.
+
+👨‍🏫 Guide Selection
+Dropdown list of languages
+
+Each language has a fixed price per day or per hour
+
+Optional but should affect price
+
+➕ Add-Ons
+1. Per Unit Add-Ons
+Lunch
+
+Dinner
+
+Felucca (Cairo or Aswan)
+
+Horse Carriage (Luxor or Aswan)
+
+Skip-the-line (Entrance Fee + 10 LE)
+
+Seating Train Ticket
+
+Sleeping Train Ticket
+
+Prices added per selection (not multiplied by person unless specified).
+
+2. Per Person, Per Trip Add-Ons
+4-day, 5-day, or 7-day Nile cruise (no sightseeing)
+
+Added only once per person, not per day
+
+📊 Display & Calculation
+City	Date	Travelers No	Transfers	Guide	Attractions	Add-ons	Price Per Person
+Cairo	29/10/2025	2	Selected routes	Lang	AL Muizz	Dinner, Cruise, etc.	Auto-summed
+
+Once all cities are completed → Final Total Per Person is displayed.
+
+🧩 Optional Enhancements
+"Next City" button after completing one city block
+
+Summary sheet at the end with itemised costs
+
+Save/Export to PDF or Booking Request Form
+
+Admin backend to manage:
+
+Route prices
+
+Add-on prices
+
+Guide rates
+
+Car type multipliers
+
