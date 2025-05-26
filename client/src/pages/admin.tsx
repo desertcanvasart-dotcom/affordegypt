@@ -261,8 +261,8 @@ export default function AdminPanel() {
           <TabsContent value="vehicles" className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-semibold">Vehicle Types</h2>
-                <p className="text-sm text-gray-600 mt-1">Manage your vehicle fleet and passenger capacities</p>
+                <h2 className="text-xl font-semibold">Vehicle Types & Route Pricing</h2>
+                <p className="text-sm text-gray-600 mt-1">Manage vehicle fleet, capacities, and route pricing</p>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="relative">
@@ -272,6 +272,10 @@ export default function AdminPanel() {
                 <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => handleAddService('vehicle')}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Vehicle Type
+                </Button>
+                <Button variant="outline" onClick={() => handleAddService('route')}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Route Price
                 </Button>
               </div>
             </div>
@@ -361,6 +365,118 @@ export default function AdminPanel() {
                 </Table>
               </CardContent>
             </Card>
+
+            {/* Route Pricing Section */}
+            <div className="mt-8">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold">Inter-City Route Pricing</h3>
+                  <p className="text-sm text-gray-600">Manage pricing for routes between cities</p>
+                </div>
+              </div>
+
+              <Card>
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Route</TableHead>
+                        <TableHead className="text-center">🚗 Sedan</TableHead>
+                        <TableHead className="text-center">🚐 Minivan</TableHead>
+                        <TableHead className="text-center">🚌 Van</TableHead>
+                        <TableHead className="text-right w-32">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium">Cairo → Alexandria</span>
+                            <Badge variant="outline" className="text-xs">220km</Badge>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-center font-mono">$45</TableCell>
+                        <TableCell className="text-center font-mono">$65</TableCell>
+                        <TableCell className="text-center font-mono">$85</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Route Pricing" onClick={() => handleEdit(1, {route: 'Cairo-Alexandria', prices: {sedan: 45, minivan: 65, van: 85}})}>
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Route" onClick={() => handleDelete(1, 'route')}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium">Cairo → Luxor</span>
+                            <Badge variant="outline" className="text-xs">670km</Badge>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-center font-mono">$120</TableCell>
+                        <TableCell className="text-center font-mono">$160</TableCell>
+                        <TableCell className="text-center font-mono">$200</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Route Pricing" onClick={() => handleEdit(2, {route: 'Cairo-Luxor', prices: {sedan: 120, minivan: 160, van: 200}})}>
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Route" onClick={() => handleDelete(2, 'route')}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium">Alexandria → Aswan</span>
+                            <Badge variant="outline" className="text-xs">890km</Badge>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-center font-mono">$150</TableCell>
+                        <TableCell className="text-center font-mono">$190</TableCell>
+                        <TableCell className="text-center font-mono">$240</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Route Pricing" onClick={() => handleEdit(3, {route: 'Alexandria-Aswan', prices: {sedan: 150, minivan: 190, van: 240}})}>
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Route" onClick={() => handleDelete(3, 'route')}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium">Luxor → Aswan</span>
+                            <Badge variant="outline" className="text-xs">215km</Badge>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-center font-mono">$50</TableCell>
+                        <TableCell className="text-center font-mono">$70</TableCell>
+                        <TableCell className="text-center font-mono">$90</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Route Pricing" onClick={() => handleEdit(4, {route: 'Luxor-Aswan', prices: {sedan: 50, minivan: 70, van: 90}})}>
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Route" onClick={() => handleDelete(4, 'route')}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="guides" className="space-y-4">
