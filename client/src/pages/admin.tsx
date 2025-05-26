@@ -373,7 +373,7 @@ export default function AdminPanel() {
                   <Filter className="w-4 h-4 mr-2" />
                   Filter by City
                 </Button>
-                <Button className="bg-teal-600 hover:bg-teal-700">
+                <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => handleAddService('guide')}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Guide Rate
                 </Button>
@@ -418,10 +418,10 @@ export default function AdminPanel() {
                         <TableCell className="text-right font-mono">$180</TableCell>
                         <TableCell className="text-right">
                           <div className="flex items-center justify-end space-x-2">
-                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate" onClick={() => handleEdit(1, {language: 'English', rate: 25})}>
                               <Edit2 className="w-3 h-3" />
                             </Button>
-                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate" onClick={() => handleDelete(1, 'guide rate')}>
                               <Trash2 className="w-3 h-3" />
                             </Button>
                           </div>
@@ -444,10 +444,10 @@ export default function AdminPanel() {
                         <TableCell className="text-right font-mono">$220</TableCell>
                         <TableCell className="text-right">
                           <div className="flex items-center justify-end space-x-2">
-                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate" onClick={() => handleEdit(2, {language: 'Spanish', rate: 30})}>
                               <Edit2 className="w-3 h-3" />
                             </Button>
-                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate" onClick={() => handleDelete(2, 'guide rate')}>
                               <Trash2 className="w-3 h-3" />
                             </Button>
                           </div>
