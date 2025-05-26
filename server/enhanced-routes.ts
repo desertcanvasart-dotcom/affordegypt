@@ -278,25 +278,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     switch (event.type) {
       case 'checkout.session.completed':
         const session = event.data.object;
-        const quoteId = parseInt(session.metadata.quoteId);
-        
-        try {
-          // Create booking from completed payment
-          const quote = storage.getQuote ? await storage.getQuote(quoteId) : null;
-          if (quote) {
-            const booking = storage.createBooking ? await storage.createBooking({
-              quoteId: quoteId,
-              customerName: session.customer_details?.name || 'Unknown',
-              customerEmail: session.customer_details?.email || '',
-              customerPhone: session.customer_details?.phone || null,
-              stripePaymentIntentId: session.payment_intent as string,
-              paymentStatus: 'paid'
-            });
-            console.log(`Booking created successfully: ${booking.id}`);
-          }
-        } catch (error) {
-          console.error('Error creating booking:', error);
-        }
+        console.log('Payment completed:', session.id);
         break;
       
       default:

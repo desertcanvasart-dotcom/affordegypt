@@ -258,10 +258,10 @@ export default function MultiCityPricingTool() {
                       {/* Guide */}
                       <TableCell>
                         <Select
-                          value={cityService.selectedGuide?.language || ""}
+                          value={cityService.selectedGuide?.language || "none"}
                           onValueChange={(language) => 
                             updateCityService(index, {
-                              selectedGuide: language ? { language, duration: 8 } : undefined
+                              selectedGuide: language && language !== "none" ? { language, duration: 8 } : undefined
                             })
                           }
                         >
@@ -269,7 +269,7 @@ export default function MultiCityPricingTool() {
                             <SelectValue placeholder="Select Language" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="">No Guide</SelectItem>
+                            <SelectItem value="none">No Guide</SelectItem>
                             {languages.map(lang => (
                               <SelectItem key={lang} value={lang}>{lang}</SelectItem>
                             ))}
