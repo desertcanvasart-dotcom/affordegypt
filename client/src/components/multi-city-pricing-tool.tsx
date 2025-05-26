@@ -174,14 +174,15 @@ export default function MultiCityPricingTool() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[120px]">City</TableHead>
-                  <TableHead className="min-w-[140px]">Date</TableHead>
-                  <TableHead className="min-w-[120px]">Travelers No</TableHead>
-                  <TableHead className="min-w-[250px]">Transportation</TableHead>
-                  <TableHead className="min-w-[140px]">Guide</TableHead>
-                  <TableHead className="min-w-[160px]">Attractions</TableHead>
-                  <TableHead className="min-w-[200px]">Add Ons</TableHead>
-                  <TableHead className="min-w-[140px]">Total Per Person</TableHead>
+                  <TableHead className="min-w-[100px]">City</TableHead>
+                  <TableHead className="min-w-[120px]">Date</TableHead>
+                  <TableHead className="min-w-[80px]">Travelers</TableHead>
+                  <TableHead className="min-w-[180px]">Transportation</TableHead>
+                  <TableHead className="min-w-[120px]">Guide</TableHead>
+                  <TableHead className="min-w-[140px]">Attractions</TableHead>
+                  <TableHead className="min-w-[120px]">Per Unit Add-ons</TableHead>
+                  <TableHead className="min-w-[120px]">Per Person Add-ons</TableHead>
+                  <TableHead className="min-w-[100px]">Total/Person</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -214,55 +215,45 @@ export default function MultiCityPricingTool() {
 
                       {/* Travelers */}
                       <TableCell>
-                        <Input
-                          type="number"
-                          min="1"
-                          max="15"
-                          value={cityService.travelers}
-                          onChange={(e) => updateCityService(index, { travelers: parseInt(e.target.value) || 1 })}
-                          className="w-20"
-                        />
+                        <Select
+                          value={cityService.travelers.toString()}
+                          onValueChange={(value) => updateCityService(index, { travelers: parseInt(value) })}
+                        >
+                          <SelectTrigger className="w-16">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(num => (
+                              <SelectItem key={num} value={num.toString()}>{num}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </TableCell>
 
                       {/* Transportation */}
                       <TableCell>
-                        <div className="space-y-3">
-                          {/* Inter-city routes */}
-                          {interCityRoutes.length > 0 && (
-                            <div>
-                              <div className="text-xs font-medium text-muted-foreground mb-1">Inter-city</div>
-                              <div className="space-y-1">
-                                {interCityRoutes.map(route => (
-                                  <div key={route.id} className="flex items-center space-x-2">
-                                    <Checkbox
-                                      checked={cityService.selectedRoutes.includes(route.id)}
-                                      onCheckedChange={() => toggleRoute(index, route.id)}
-                                    />
-                                    <span className="text-sm">{route.name}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          
-                          {/* Intra-city routes */}
-                          {intraCityRoutes.length > 0 && (
-                            <div>
-                              <div className="text-xs font-medium text-muted-foreground mb-1">Local & Tours</div>
-                              <div className="space-y-1">
-                                {intraCityRoutes.map(route => (
-                                  <div key={route.id} className="flex items-center space-x-2">
-                                    <Checkbox
-                                      checked={cityService.selectedRoutes.includes(route.id)}
-                                      onCheckedChange={() => toggleRoute(index, route.id)}
-                                    />
-                                    <span className="text-sm">{route.name}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        </div>
+                        <Select
+                          value={cityService.selectedRoutes[0]?.toString() || ""}
+                          onValueChange={(value) => {
+                            if (value) {
+                              updateCityService(index, { selectedRoutes: [parseInt(value)] });
+                            } else {
+                              updateCityService(index, { selectedRoutes: [] });
+                            }
+                          }}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Transport" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="none">No Transport</SelectItem>
+                            {cityRoutes.map(route => (
+                              <SelectItem key={route.id} value={route.id.toString()}>
+                                {route.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </TableCell>
 
                       {/* Guide */}
@@ -289,64 +280,121 @@ export default function MultiCityPricingTool() {
 
                       {/* Attractions */}
                       <TableCell>
-                        <Input
-                          placeholder="e.g., Al Muizz Street"
-                          value={cityService.attractions}
-                          onChange={(e) => updateCityService(index, { attractions: e.target.value })}
-                        />
+                        <Select
+                          value={cityService.attractions || ""}
+                          onValueChange={(value) => updateCityService(index, { attractions: value })}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Attraction" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="none">No Attraction</SelectItem>
+                            <SelectItem value="pyramids">Pyramids of Giza</SelectItem>
+                            <SelectItem value="khan_khalili">Khan El Khalili</SelectItem>
+                            <SelectItem value="al_muizz">Al Muizz Street</SelectItem>
+                            <SelectItem value="citadel">Citadel of Saladin</SelectItem>
+                            <SelectItem value="coptic">Coptic Cairo</SelectItem>
+                            <SelectItem value="alexandria_library">Alexandria Library</SelectItem>
+                            <SelectItem value="luxor_temple">Luxor Temple</SelectItem>
+                            <SelectItem value="valley_kings">Valley of the Kings</SelectItem>
+                            <SelectItem value="abu_simbel">Abu Simbel</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </TableCell>
 
-                      {/* Add Ons */}
+                      {/* Per Unit Add-ons */}
                       <TableCell>
-                        <div className="space-y-3">
-                          {/* Meals */}
-                          <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Meals</div>
-                            <div className="space-y-1">
-                              {addOns.filter(a => a.category === 'meals').slice(0, 2).map(addOn => (
-                                <div key={addOn.id} className="flex items-center space-x-2">
-                                  <Checkbox
-                                    checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
-                                    onCheckedChange={() => toggleAddOn(index, addOn)}
-                                  />
-                                  <span className="text-sm">{addOn.name} (${addOn.price})</span>
-                                </div>
+                        <div className="space-y-2">
+                          <Select
+                            value={cityService.selectedAddOns.find(a => 
+                              addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
+                            )?.id.toString() || ""}
+                            onValueChange={(value) => {
+                              const addOn = addOns.find(a => a.id === parseInt(value) && a.type === 'per_unit');
+                              if (addOn) {
+                                const newAddOns = cityService.selectedAddOns.filter(a => 
+                                  !addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
+                                );
+                                newAddOns.push({ id: addOn.id, name: addOn.name, quantity: 1 });
+                                updateCityService(index, { selectedAddOns: newAddOns });
+                              }
+                            }}
+                          >
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select Add-on" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="none">None</SelectItem>
+                              {addOns.filter(a => a.type === 'per_unit').map(addOn => (
+                                <SelectItem key={addOn.id} value={addOn.id.toString()}>
+                                  {addOn.name} (${addOn.price})
+                                </SelectItem>
                               ))}
-                            </div>
-                          </div>
-
-                          {/* Activities */}
-                          <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Activities</div>
-                            <div className="space-y-1">
-                              {addOns.filter(a => a.category === 'activities').slice(0, 2).map(addOn => (
-                                <div key={addOn.id} className="flex items-center space-x-2">
-                                  <Checkbox
-                                    checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
-                                    onCheckedChange={() => toggleAddOn(index, addOn)}
-                                  />
-                                  <span className="text-sm">{addOn.name} (${addOn.price})</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Transport */}
-                          <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Tickets</div>
-                            <div className="space-y-1">
-                              {addOns.filter(a => a.category === 'transport').slice(0, 2).map(addOn => (
-                                <div key={addOn.id} className="flex items-center space-x-2">
-                                  <Checkbox
-                                    checked={cityService.selectedAddOns.some(a => a.id === addOn.id)}
-                                    onCheckedChange={() => toggleAddOn(index, addOn)}
-                                  />
-                                  <span className="text-sm">{addOn.name} (${addOn.price})</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+                            </SelectContent>
+                          </Select>
+                          
+                          {/* Quantity selector for per-unit items */}
+                          {cityService.selectedAddOns.find(a => 
+                            addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
+                          ) && (
+                            <Select
+                              value={cityService.selectedAddOns.find(a => 
+                                addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
+                              )?.quantity.toString() || "1"}
+                              onValueChange={(value) => {
+                                const selectedPerUnit = cityService.selectedAddOns.find(a => 
+                                  addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
+                                );
+                                if (selectedPerUnit) {
+                                  const newAddOns = cityService.selectedAddOns.map(a => 
+                                    a.id === selectedPerUnit.id ? { ...a, quantity: parseInt(value) } : a
+                                  );
+                                  updateCityService(index, { selectedAddOns: newAddOns });
+                                }
+                              }}
+                            >
+                              <SelectTrigger className="w-full">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {[1,2,3,4,5].map(num => (
+                                  <SelectItem key={num} value={num.toString()}>Qty: {num}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          )}
                         </div>
+                      </TableCell>
+
+                      {/* Per Person Add-ons */}
+                      <TableCell>
+                        <Select
+                          value={cityService.selectedAddOns.find(a => 
+                            addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
+                          )?.id.toString() || ""}
+                          onValueChange={(value) => {
+                            const addOn = addOns.find(a => a.id === parseInt(value) && (a.type === 'per_person' || a.type === 'per_trip'));
+                            if (addOn) {
+                              const newAddOns = cityService.selectedAddOns.filter(a => 
+                                !addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
+                              );
+                              newAddOns.push({ id: addOn.id, name: addOn.name, quantity: 1 });
+                              updateCityService(index, { selectedAddOns: newAddOns });
+                            }
+                          }}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Add-on" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="none">None</SelectItem>
+                            {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => (
+                              <SelectItem key={addOn.id} value={addOn.id.toString()}>
+                                {addOn.name} (${addOn.price})
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </TableCell>
 
                       {/* Total Per Person */}
