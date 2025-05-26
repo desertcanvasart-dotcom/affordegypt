@@ -2,26 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 :root {
-  --background: 0 0% 100%; /* #FFFFFF */
-  --foreground: 210 40% 20%; /* #2D3748 - slate-dark */
-  --muted: 210 40% 96%; /* #F5F7FA */
-  --muted-foreground: 215 16% 47%; /* #64748B */
+  --background: 0 0% 98%; /* #fafafa neutral base */
+  --foreground: 220 13% 13%; /* #1f2937 */
+  --muted: 220 14% 96%; /* #f1f5f9 */
+  --muted-foreground: 220 9% 46%; /* #64748b */
   --popover: 0 0% 100%; /* #FFFFFF */
-  --popover-foreground: 210 40% 20%; /* #2D3748 */
+  --popover-foreground: 220 13% 13%; /* #1f2937 */
   --card: 0 0% 100%; /* #FFFFFF */
-  --card-foreground: 210 40% 20%; /* #2D3748 */
-  --border: 220 13% 91%; /* #E2E8F0 */
-  --input: 220 13% 91%; /* #E2E8F0 */
-  --primary: 43 74% 66%; /* #D4A574 - egyptian-gold */
-  --primary-foreground: 210 40% 20%; /* #2D3748 */
-  --secondary: 210 40% 96%; /* #F5F7FA */
-  --secondary-foreground: 210 40% 20%; /* #2D3748 */
-  --accent: 210 40% 96%; /* #F5F7FA */
-  --accent-foreground: 210 40% 20%; /* #2D3748 */
-  --destructive: 0 84% 60%; /* #E53E3E - pricing-red */
-  --destructive-foreground: 0 0% 98%; /* #FAFAFA */
-  --ring: 43 74% 66%; /* #D4A574 - egyptian-gold */
+  --card-foreground: 220 13% 13%; /* #1f2937 */
+  --border: 220 13% 91%; /* #e2e8f0 */
+  --input: 220 13% 91%; /* #e2e8f0 */
+  --primary: 158 64% 38%; /* #19A974 teal accent */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --secondary: 220 14% 96%; /* #f1f5f9 */
+  --secondary-foreground: 220 13% 13%; /* #1f2937 */
+  --accent: 158 64% 38%; /* #19A974 teal accent */
+  --accent-foreground: 0 0% 100%; /* #FFFFFF */
+  --destructive: 0 84% 60%; /* #dc2626 */
+  --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+  --ring: 158 64% 38%; /* #19A974 teal accent */
   --radius: 0.5rem;
 }
 
@@ -64,16 +66,12 @@
 }
 
 @layer components {
-  .egyptian-gold {
-    @apply text-primary;
+  .price-chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-mono font-medium bg-primary/10 text-primary border border-primary/20;
   }
   
-  .slate-dark {
-    @apply text-foreground;
-  }
-  
-  .pricing-red {
-    @apply text-destructive;
+  .step-number {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-mono font-semibold text-lg;
   }
 
   .btn-primary {
@@ -85,7 +83,7 @@
   }
 
   .hero-bg {
-    background-image: linear-gradient(rgba(45, 55, 72, 0.6), rgba(45, 55, 72, 0.6)), 
+    background-image: linear-gradient(rgba(31, 41, 55, 0.6), rgba(31, 41, 55, 0.6)), 
                       url('https://pixabay.com/get/gc3907a47ada5ea4d33214a9ca2f30dde8c33dd84992fa0e86609a7ed683a54adf6504d33277b05593855b5ba07cde8e8bfc9c5f7ea6d7edf8271cac45f4ee0fe_1280.jpg');
     background-size: cover;
     background-position: center;
