@@ -18,7 +18,14 @@ import {
   Edit2,
   Save,
   X,
-  LogOut
+  LogOut,
+  Download,
+  Search,
+  Filter,
+  Trash2,
+  User,
+  Bus,
+  Truck
 } from "lucide-react";
 import AdminLogin from "@/components/admin-login";
 import { useToast } from "@/hooks/use-toast";
@@ -79,49 +86,55 @@ export default function AdminPanel() {
 
   return (
     <div className="min-h-screen bg-gray-50" key={Date.now()}>
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-gray-900">Egypt Travel Admin v2.0</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Egypt Travel Admin</h1>
             <Badge variant="secondary" className="bg-teal-100 text-teal-800">
               Administrator
             </Badge>
           </div>
-          <Button variant="outline" onClick={handleLogout} className="flex items-center space-x-2">
-            <LogOut className="w-4 h-4" />
-            <span>Logout</span>
-          </Button>
+          <div className="flex items-center space-x-4">
+            <Button variant="outline" size="sm" className="text-gray-600 hover:text-gray-900">
+              <Download className="w-4 h-4 mr-2" />
+              Export Data
+            </Button>
+            <Button variant="outline" onClick={handleLogout} className="flex items-center space-x-2">
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 bg-white border">
-            <TabsTrigger value="dashboard" className="flex items-center space-x-2">
+          <TabsList className="grid w-full grid-cols-6 bg-white border shadow-sm">
+            <TabsTrigger value="dashboard" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <BarChart3 className="w-4 h-4" />
-              <span>Dashboard</span>
+              <span>📊 Dashboard</span>
             </TabsTrigger>
-            <TabsTrigger value="cities" className="flex items-center space-x-2">
+            <TabsTrigger value="cities" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <MapPin className="w-4 h-4" />
-              <span>Cities</span>
+              <span>📍 Cities</span>
             </TabsTrigger>
-            <TabsTrigger value="vehicles" className="flex items-center space-x-2">
+            <TabsTrigger value="vehicles" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <Car className="w-4 h-4" />
-              <span>Vehicles</span>
+              <span>🚐 Vehicles</span>
             </TabsTrigger>
-            <TabsTrigger value="guides" className="flex items-center space-x-2">
+            <TabsTrigger value="guides" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <UserCheck className="w-4 h-4" />
-              <span>Guides</span>
+              <span>🧑‍✈️ Guides</span>
             </TabsTrigger>
-            <TabsTrigger value="addons" className="flex items-center space-x-2">
+            <TabsTrigger value="addons" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <Plus className="w-4 h-4" />
-              <span>Add-ons</span>
+              <span>➕ Add-ons</span>
             </TabsTrigger>
-            <TabsTrigger value="bookings" className="flex items-center space-x-2">
+            <TabsTrigger value="bookings" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <Users className="w-4 h-4" />
-              <span>Bookings</span>
+              <span>📚 Bookings</span>
             </TabsTrigger>
           </TabsList>
 
@@ -217,11 +230,20 @@ export default function AdminPanel() {
 
           <TabsContent value="vehicles" className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Vehicle Types</h2>
-              <Button className="bg-teal-600 hover:bg-teal-700">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Vehicle Type
-              </Button>
+              <div>
+                <h2 className="text-xl font-semibold">Vehicle Types</h2>
+                <p className="text-sm text-gray-600 mt-1">Manage your vehicle fleet and passenger capacities</p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input placeholder="Search vehicles..." className="pl-10 w-64" />
+                </div>
+                <Button className="bg-teal-600 hover:bg-teal-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Vehicle Type
+                </Button>
+              </div>
             </div>
             
             <Card>
@@ -229,45 +251,80 @@ export default function AdminPanel() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Min Passengers</TableHead>
-                      <TableHead>Max Passengers</TableHead>
+                      <TableHead>Vehicle Type</TableHead>
+                      <TableHead className="text-center">👤 Passenger Range</TableHead>
                       <TableHead>Description</TableHead>
-                      <TableHead>Actions</TableHead>
+                      <TableHead className="text-right w-32">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow>
-                      <TableCell>Sedan</TableCell>
-                      <TableCell>1</TableCell>
-                      <TableCell>3</TableCell>
-                      <TableCell>Comfortable car for small groups</TableCell>
+                    <TableRow className="hover:bg-gray-50">
                       <TableCell>
-                        <Button size="sm" variant="outline">
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🚗</div>
+                          <div>
+                            <div className="font-medium">Sedan</div>
+                            <Badge variant="outline" className="text-xs">Compact</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center font-mono">1–3</TableCell>
+                      <TableCell className="text-gray-600">Comfortable car for small groups</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
-                    <TableRow>
-                      <TableCell>Minivan</TableCell>
-                      <TableCell>4</TableCell>
-                      <TableCell>8</TableCell>
-                      <TableCell>Spacious vehicle for medium groups</TableCell>
+                    <TableRow className="hover:bg-gray-50">
                       <TableCell>
-                        <Button size="sm" variant="outline">
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🚐</div>
+                          <div>
+                            <div className="font-medium">Minivan</div>
+                            <Badge variant="outline" className="text-xs">Medium</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center font-mono">4–8</TableCell>
+                      <TableCell className="text-gray-600">Spacious vehicle for medium groups</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
-                    <TableRow>
-                      <TableCell>Van</TableCell>
-                      <TableCell>9</TableCell>
-                      <TableCell>15</TableCell>
-                      <TableCell>Large vehicle for big groups</TableCell>
+                    <TableRow className="hover:bg-gray-50">
                       <TableCell>
-                        <Button size="sm" variant="outline">
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🚌</div>
+                          <div>
+                            <div className="font-medium">Van</div>
+                            <Badge variant="outline" className="text-xs">Large</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center font-mono">9–15</TableCell>
+                      <TableCell className="text-gray-600">Large vehicle for big groups</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   </TableBody>
@@ -278,72 +335,229 @@ export default function AdminPanel() {
 
           <TabsContent value="guides" className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Tour Guide Rates</h2>
-              <Button className="bg-teal-600 hover:bg-teal-700">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Guide Rate
-              </Button>
+              <div>
+                <h2 className="text-xl font-semibold">Tour Guide Rates</h2>
+                <p className="text-sm text-gray-600 mt-1">Manage guide pricing by language and city</p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input placeholder="Search guides..." className="pl-10 w-64" />
+                </div>
+                <Button variant="outline" size="sm">
+                  <Filter className="w-4 h-4 mr-2" />
+                  Filter by City
+                </Button>
+                <Button className="bg-teal-600 hover:bg-teal-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Guide Rate
+                </Button>
+              </div>
             </div>
             
-            <Card>
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Language</TableHead>
-                      <TableHead>City</TableHead>
-                      <TableHead>Hourly Rate (USD)</TableHead>
-                      <TableHead>Daily Rate (USD)</TableHead>
-                      <TableHead>Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>English</TableCell>
-                      <TableCell>Cairo</TableCell>
-                      <TableCell>$25</TableCell>
-                      <TableCell>$180</TableCell>
-                      <TableCell>
-                        <Button size="sm" variant="outline">
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Spanish</TableCell>
-                      <TableCell>Cairo</TableCell>
-                      <TableCell>$30</TableCell>
-                      <TableCell>$220</TableCell>
-                      <TableCell>
-                        <Button size="sm" variant="outline">
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>French</TableCell>
-                      <TableCell>Luxor</TableCell>
-                      <TableCell>$28</TableCell>
-                      <TableCell>$200</TableCell>
-                      <TableCell>
-                        <Button size="sm" variant="outline">
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+            <div className="space-y-4">
+              {/* Cairo Section */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center space-x-2">
+                    <Badge variant="outline" className="bg-blue-50 text-blue-700">📍 Cairo</Badge>
+                    <span className="text-sm text-gray-600">3 languages available</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Language</TableHead>
+                        <TableHead>Guide Status</TableHead>
+                        <TableHead className="text-right">Hourly Rate</TableHead>
+                        <TableHead className="text-right">Daily Rate</TableHead>
+                        <TableHead className="text-right w-32">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span>🇺🇸</span>
+                            <span className="font-medium">English</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-green-700">Available</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-right font-mono">$25</TableCell>
+                        <TableCell className="text-right font-mono">$180</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span>🇪🇸</span>
+                            <span className="font-medium">Spanish</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-green-700">Available</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-right font-mono">$30</TableCell>
+                        <TableCell className="text-right font-mono">$220</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span>🇫🇷</span>
+                            <span className="font-medium">French</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <span className="text-sm text-red-700">Booked</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-right font-mono">$28</TableCell>
+                        <TableCell className="text-right font-mono">$200</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+
+              {/* Luxor Section */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center space-x-2">
+                    <Badge variant="outline" className="bg-orange-50 text-orange-700">📍 Luxor</Badge>
+                    <span className="text-sm text-gray-600">2 languages available</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Language</TableHead>
+                        <TableHead>Guide Status</TableHead>
+                        <TableHead className="text-right">Hourly Rate</TableHead>
+                        <TableHead className="text-right">Daily Rate</TableHead>
+                        <TableHead className="text-right w-32">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span>🇺🇸</span>
+                            <span className="font-medium">English</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-green-700">Available</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-right font-mono">$22</TableCell>
+                        <TableCell className="text-right font-mono">$160</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-gray-50">
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <span>🇩🇪</span>
+                            <span className="font-medium">German</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-green-700">Available</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-right font-mono">$26</TableCell>
+                        <TableCell className="text-right font-mono">$190</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Rate">
+                              <Edit2 className="w-3 h-3" />
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Rate">
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="addons" className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Add-on Services</h2>
-              <Button className="bg-teal-600 hover:bg-teal-700">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Service
-              </Button>
+              <div>
+                <h2 className="text-xl font-semibold">Add-on Services</h2>
+                <p className="text-sm text-gray-600 mt-1">Manage experiences, meals, and tickets</p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input placeholder="Search add-ons..." className="pl-10 w-64" />
+                </div>
+                <Button variant="outline" size="sm">
+                  <Filter className="w-4 h-4 mr-2" />
+                  Filter by Category
+                </Button>
+                <Button className="bg-teal-600 hover:bg-teal-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Service
+                </Button>
+              </div>
             </div>
             
             <Card>
@@ -351,31 +565,154 @@ export default function AdminPanel() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Price (USD)</TableHead>
-                      <TableHead>Type</TableHead>
+                      <TableHead>Service</TableHead>
+                      <TableHead className="text-right">Price (USD)</TableHead>
+                      <TableHead className="text-center">Pricing Type</TableHead>
                       <TableHead>Category</TableHead>
-                      <TableHead>Actions</TableHead>
+                      <TableHead className="text-right w-32">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {Array.isArray(addOns) && addOns.map((addOn: any) => (
-                      <TableRow key={addOn.id}>
-                        <TableCell>{addOn.name}</TableCell>
-                        <TableCell>${addOn.price}</TableCell>
-                        <TableCell>
-                          <Badge variant={addOn.unitType === 'per_unit' ? 'default' : 'secondary'}>
-                            {addOn.unitType === 'per_unit' ? 'Per Unit' : 'Per Person'}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>{addOn.category}</TableCell>
-                        <TableCell>
-                          <Button size="sm" variant="outline">
+                    <TableRow className="hover:bg-gray-50">
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🐎</div>
+                          <div>
+                            <div className="font-medium">Felucca Boat Ride</div>
+                            <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700">🎟️ Experience</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right font-mono">$45</TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant="default" className="bg-green-100 text-green-800">Per Unit</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-blue-50 text-blue-700">Experience</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service">
                             <Edit2 className="w-3 h-3" />
                           </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow className="hover:bg-gray-50">
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🐪</div>
+                          <div>
+                            <div className="font-medium">Horse Carriage Tour</div>
+                            <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700">🎟️ Experience</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right font-mono">$25</TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant="default" className="bg-green-100 text-green-800">Per Unit</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-blue-50 text-blue-700">Experience</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow className="hover:bg-gray-50">
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🚢</div>
+                          <div>
+                            <div className="font-medium">Nile River Cruise</div>
+                            <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700">🎟️ Experience</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right font-mono">$120</TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant="secondary" className="bg-purple-100 text-purple-800">Per Person</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-blue-50 text-blue-700">Experience</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow className="hover:bg-gray-50">
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🍽️</div>
+                          <div>
+                            <div className="font-medium">Traditional Egyptian Lunch</div>
+                            <Badge variant="outline" className="text-xs bg-orange-50 text-orange-700">🍽️ Meal</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right font-mono">$18</TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant="secondary" className="bg-purple-100 text-purple-800">Per Person</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-orange-50 text-orange-700">Meal</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow className="hover:bg-gray-50">
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🎫</div>
+                          <div>
+                            <div className="font-medium">Museum Entry Ticket</div>
+                            <Badge variant="outline" className="text-xs bg-green-50 text-green-700">🎫 Ticket</Badge>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right font-mono">$15</TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant="secondary" className="bg-purple-100 text-purple-800">Per Person</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-green-50 text-green-700">Ticket</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Service">
+                            <Edit2 className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Service">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
                   </TableBody>
                 </Table>
               </CardContent>

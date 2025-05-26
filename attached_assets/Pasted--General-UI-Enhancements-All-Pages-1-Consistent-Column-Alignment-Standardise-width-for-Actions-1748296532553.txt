@@ -1,0 +1,78 @@
+🔧 General UI Enhancements (All Pages)
+1. Consistent Column Alignment
+Standardise width for "Actions" column (right-aligned with icons).
+
+Ensure all columns (like “Price”, “Hourly Rate”) align numerically to the right for better readability.
+
+2. Badges for Visual Hierarchy
+Use colour-coded badges consistently:
+
+Type: Use light-blue (experience), light-orange (meal), and light-green (ticket)
+
+City or Category: Add small grey tags to guide/city names for quick filtering.
+
+3. Improve Top Navbar UX
+Sticky header: Keep navbar fixed on scroll.
+
+Add subtle hover states for Dashboard, Cities, Vehicles, etc.
+
+Optionally include icons beside each tab (📍 Cities, 🚐 Vehicles, 🧑‍✈️ Guides, etc.).
+
+🚐 Vehicles Tab
+1. Add Icons to Vehicle Types
+Use car icons to visually distinguish:
+
+🚗 Sedan
+
+🚐 Minivan
+
+🚌 Van
+
+2. Add Visual Highlights for Range
+Replace Min/Max Passengers columns with a unified “Passenger Range” (e.g. 1–3, 4–8) with a passenger icon (👤).
+
+👨‍🏫 Guides Tab
+1. Group by City
+Add city filters or collapsible sections (e.g. "Cairo", "Luxor") to manage long lists better.
+
+This makes it scalable as you add more cities.
+
+2. Include Availability
+Optionally display if guide is “Available” / “Booked” with a status dot (green/red).
+
+➕ Add-ons Tab
+1. Categorise Add-ons with Icons
+Use icons or emojis for category:
+
+🍽️ Meal
+
+🐎 Experience
+
+🎟️ Ticket
+
+2. Action Column Improvements
+Add a trash icon next to the pencil (edit) icon for faster deletions.
+
+Use tooltips on hover: e.g. “Edit Service”, “Delete Service”
+
+📊 Dashboard Tab
+1. Make Data Cards Clickable
+Allow clicking on "Total Quotes", "Average Basket", etc., to drill down into that data.
+
+2. Add Graphs or Trend Lines
+Include a simple bar chart or sparkline for each metric to show visual trends (use Chart.js or Recharts).
+
+💡 Feature Suggestions
+✅ Add Search + Filter Bars
+Filter by city, category, language, vehicle type across all tabs.
+
+Quick search improves usability when datasets grow.
+
+📥 Export/Import Buttons
+Allow admin to download CSV of guides, vehicles, add-ons.
+
+Useful for offline editing or backups.
+
+🔁 Inline Editing (optional enhancement)
+Instead of opening a modal, allow quick inline editing (e.g., click on price, update, press Enter).
+
