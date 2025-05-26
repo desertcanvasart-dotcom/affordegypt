@@ -282,9 +282,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         try {
           // Create booking from completed payment
-          const quote = await storage.getQuote(quoteId);
+          const quote = storage.getQuote ? await storage.getQuote(quoteId) : null;
           if (quote) {
-            const booking = await storage.createBooking({
+            const booking = storage.createBooking ? await storage.createBooking({
               quoteId: quoteId,
               customerName: session.customer_details?.name || 'Unknown',
               customerEmail: session.customer_details?.email || '',
