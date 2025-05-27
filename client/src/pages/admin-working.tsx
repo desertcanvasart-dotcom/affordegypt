@@ -60,6 +60,21 @@ export default function AdminWorking() {
     enabled: isAuthenticated,
   });
 
+  // Fetch vehicles (mock data for now)
+  const vehicles = [
+    { id: 1, name: "Sedan", paxMin: 1, paxMax: 3, description: "Comfortable car for small groups" },
+    { id: 2, name: "Minivan", paxMin: 4, paxMax: 8, description: "Mid-size vehicle for medium groups" },
+    { id: 3, name: "Van", paxMin: 9, paxMax: 15, description: "Large vehicle for big groups" }
+  ];
+
+  // Fetch guides (mock data for now)
+  const guides = [
+    { id: 1, language: "English", pricePerDay: 50, availability: "Available" },
+    { id: 2, language: "Spanish", pricePerDay: 45, availability: "Available" },
+    { id: 3, language: "French", pricePerDay: 48, availability: "Available" },
+    { id: 4, language: "German", pricePerDay: 52, availability: "Available" }
+  ];
+
   // Create city mutation
   const createCityMutation = useMutation({
     mutationFn: async (newCity: any) => {
@@ -352,6 +367,152 @@ export default function AdminWorking() {
               </DialogContent>
             </Dialog>
           )}
+
+          {/* Vehicle Types Management */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Vehicle Types</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Vehicle</TableHead>
+                    <TableHead>Passenger Range</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {vehicles.map((vehicle: any) => (
+                    <TableRow key={vehicle.id}>
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">
+                            {vehicle.name === 'Sedan' ? '🚗' : vehicle.name === 'Minivan' ? '🚐' : '🚌'}
+                          </div>
+                          <div className="font-medium">{vehicle.name}</div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center font-mono">{vehicle.paxMin}–{vehicle.paxMax}</TableCell>
+                      <TableCell className="text-gray-600">{vehicle.description}</TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline">
+                            <Edit2 className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="text-red-600">
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          {/* Tour Guides Management */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Tour Guide Languages</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Language</TableHead>
+                    <TableHead>Price per Day</TableHead>
+                    <TableHead>Availability</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {guides.map((guide: any) => (
+                    <TableRow key={guide.id}>
+                      <TableCell>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-lg">
+                            {guide.language === 'English' ? '🇺🇸' : 
+                             guide.language === 'Spanish' ? '🇪🇸' :
+                             guide.language === 'French' ? '🇫🇷' : '🇩🇪'}
+                          </span>
+                          <span className="font-medium">{guide.language}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="font-mono">${guide.pricePerDay}</TableCell>
+                      <TableCell>
+                        <Badge className="bg-green-100 text-green-800">{guide.availability}</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline">
+                            <Edit2 className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="text-red-600">
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          {/* Add-ons Management */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Add-ons & Services</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Service</TableHead>
+                    <TableHead>Price</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {addOns.map((addon: any) => (
+                    <TableRow key={addon.id}>
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="text-2xl">🎟️</div>
+                          <div>
+                            <div className="font-medium">{addon.name}</div>
+                            <div className="text-sm text-gray-500">{addon.description}</div>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="font-mono">${addon.price}</TableCell>
+                      <TableCell>
+                        <Badge variant="default" className="bg-green-100 text-green-800">{addon.unitType}</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-blue-50 text-blue-700">{addon.category}</Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button size="sm" variant="outline">
+                            <Edit2 className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="outline" className="text-red-600">
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
