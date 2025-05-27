@@ -7,6 +7,117 @@ import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 let stripe: any = null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // Cities CRUD endpoints
+  app.get("/api/cities", async (req, res) => {
+    try {
+      const cities = await storage.getCities();
+      res.json(cities);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/cities", async (req, res) => {
+    try {
+      const city = await storage.createCity(req.body);
+      res.json(city);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/cities/:id", async (req, res) => {
+    try {
+      const city = await storage.updateCity(parseInt(req.params.id), req.body);
+      res.json(city);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/cities/:id", async (req, res) => {
+    try {
+      await storage.deleteCity(parseInt(req.params.id));
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Add-ons CRUD endpoints
+  app.get("/api/addons", async (req, res) => {
+    try {
+      const addOns = await storage.getAddOns();
+      res.json(addOns);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/addons", async (req, res) => {
+    try {
+      const addOn = await storage.createAddOn(req.body);
+      res.json(addOn);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/addons/:id", async (req, res) => {
+    try {
+      const addOn = await storage.updateAddOn(parseInt(req.params.id), req.body);
+      res.json(addOn);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/addons/:id", async (req, res) => {
+    try {
+      await storage.deleteAddOn(parseInt(req.params.id));
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Attractions CRUD endpoints
+  app.get("/api/attractions", async (req, res) => {
+    try {
+      const attractions = await storage.getAttractions();
+      res.json(attractions);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/attractions", async (req, res) => {
+    try {
+      const attraction = await storage.createAttraction(req.body);
+      res.json(attraction);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/attractions/:id", async (req, res) => {
+    try {
+      const attraction = await storage.updateAttraction(parseInt(req.params.id), req.body);
+      res.json(attraction);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/attractions/:id", async (req, res) => {
+    try {
+      await storage.deleteAttraction(parseInt(req.params.id));
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
   // Admin authentication middleware
   const requireAdmin = (req: any, res: any, next: any) => {
     // Simple admin check - in production you'd want proper auth

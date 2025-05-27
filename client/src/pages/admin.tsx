@@ -94,7 +94,8 @@ export default function AdminPanel() {
   const handleDelete = async (id: number, type: string) => {
     if (confirm(`Are you sure you want to delete this ${type}?`)) {
       try {
-        const response = await fetch(`/api/${type}s/${id}`, {
+        const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+        const response = await fetch(`/api/${endpoint}/${id}`, {
           method: 'DELETE'
         });
         
@@ -119,7 +120,8 @@ export default function AdminPanel() {
 
   const handleSave = async (id: number, type: string) => {
     try {
-      const response = await fetch(`/api/${type}s/${id}`, {
+      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const response = await fetch(`/api/${endpoint}/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editData)

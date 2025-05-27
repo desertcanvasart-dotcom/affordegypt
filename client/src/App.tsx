@@ -7,7 +7,7 @@ import Home from "@/pages/home";
 import Checkout from "@/pages/checkout";
 import Admin from "@/pages/admin";
 import Routes from "@/pages/routes";
-import Attractions from "@/pages/attractions";
+import AttractionsSimple from "@/pages/attractions-simple";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,7 +17,7 @@ function Router() {
       <Route path="/checkout/:bookingId" component={Checkout} />
       <Route path="/admin" component={Admin} />
       <Route path="/routes" component={Routes} />
-      <Route path="/attractions" component={Attractions} />
+      <Route path="/attractions" component={AttractionsSimple} />
       <Route component={NotFound} />
     </Switch>
   );
