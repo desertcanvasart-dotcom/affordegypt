@@ -54,6 +54,13 @@ export interface IStorage {
   getAddOn(id: number): Promise<AddOn | undefined>;
   createAddOn(addOn: InsertAddOn): Promise<AddOn>;
 
+  // Attractions
+  getAttractions(cityId?: number): Promise<Attraction[]>;
+  getAttraction(id: number): Promise<Attraction | undefined>;
+  createAttraction(attraction: InsertAttraction): Promise<Attraction>;
+  updateAttraction(id: number, attraction: Partial<InsertAttraction>): Promise<Attraction>;
+  deleteAttraction(id: number): Promise<void>;
+
   // Quotes
   getQuotes(): Promise<Quote[]>;
   getQuote(id: number): Promise<Quote | undefined>;
@@ -351,6 +358,37 @@ export class DatabaseStorage implements IStorage {
   async createAddOn(insertAddOn: InsertAddOn): Promise<AddOn> {
     const [addOn] = await db.insert(addOns).values(insertAddOn).returning();
     return addOn;
+  }
+
+  // Attraction methods
+  async getAttractions(cityId?: number): Promise<Attraction[]> {
+    if (cityId) {
+      return await db.select().from(attractions)
+        .where(and(eq(attractions.isActive, true), eq(attractions.cityId, cityId)));
+    }
+    return await db.select().from(attractions).where(eq(attractions.isActive, true));
+  }
+
+  async getAttraction(id: number): Promise<Attraction | undefined> {
+    const [attraction] = await db.select().from(attractions).where(eq(attractions.id, id));
+    return attraction;
+  }
+
+  async createAttraction(insertAttraction: InsertAttraction): Promise<Attraction> {
+    const [attraction] = await db.insert(attractions).values(insertAttraction).returning();
+    return attraction;
+  }
+
+  async updateAttraction(id: number, updateData: Partial<InsertAttraction>): Promise<Attraction> {
+    const [attraction] = await db.update(attractions)
+      .set({ ...updateData, updatedAt: new Date() })
+      .where(eq(attractions.id, id))
+      .returning();
+    return attraction;
+  }
+
+  async deleteAttraction(id: number): Promise<void> {
+    await db.delete(attractions).where(eq(attractions.id, id));
   }
 
   // Quote methods

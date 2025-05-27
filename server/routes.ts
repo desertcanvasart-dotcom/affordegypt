@@ -614,6 +614,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Attractions CRUD operations
+  app.get("/api/attractions", async (req, res) => {
+    try {
+      const { cityId } = req.query;
+      let attractions;
+      if (cityId) {
+        attractions = await storage.getAttractions(parseInt(cityId as string));
+      } else {
+        attractions = await storage.getAttractions();
+      }
+      res.json(attractions);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/attractions/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const attraction = await storage.getAttraction(parseInt(id));
+      if (!attraction) {
+        return res.status(404).json({ message: "Attraction not found" });
+      }
+      res.json(attraction);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/attractions", async (req, res) => {
+    try {
+      const attraction = await storage.createAttraction(req.body);
+      res.json(attraction);
+    } catch (error: any) {
+      console.error('Attraction creation error:', error);
+      res.status(500).json({ message: "Failed to create attraction" });
+    }
+  });
+
+  app.put("/api/attractions/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const attraction = await storage.updateAttraction(parseInt(id), req.body);
+      res.json(attraction);
+    } catch (error: any) {
+      console.error('Attraction update error:', error);
+      res.status(500).json({ message: "Failed to update attraction" });
+    }
+  });
+
+  app.delete("/api/attractions/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteAttraction(parseInt(id));
+      res.json({ message: "Attraction deleted successfully" });
+    } catch (error: any) {
+      console.error('Attraction deletion error:', error);
+      res.status(500).json({ message: "Failed to delete attraction" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
