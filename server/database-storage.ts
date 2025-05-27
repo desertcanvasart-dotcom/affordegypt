@@ -313,6 +313,18 @@ export class DatabaseStorage implements IStorage {
     return licenseClass;
   }
 
+  async updateLicenseClass(id: number, updateData: Partial<InsertLicenseClass>): Promise<LicenseClass> {
+    const [licenseClass] = await db.update(licenseClasses)
+      .set(updateData)
+      .where(eq(licenseClasses.id, id))
+      .returning();
+    return licenseClass;
+  }
+
+  async deleteLicenseClass(id: number): Promise<void> {
+    await db.delete(licenseClasses).where(eq(licenseClasses.id, id));
+  }
+
   // Route methods
   async getRoutes(): Promise<Route[]> {
     return await db.select().from(routes);
@@ -360,6 +372,18 @@ export class DatabaseStorage implements IStorage {
     return timeBlock;
   }
 
+  async updateTimeBlock(id: number, updateData: Partial<InsertTimeBlock>): Promise<TimeBlock> {
+    const [timeBlock] = await db.update(timeBlocks)
+      .set(updateData)
+      .where(eq(timeBlocks.id, id))
+      .returning();
+    return timeBlock;
+  }
+
+  async deleteTimeBlock(id: number): Promise<void> {
+    await db.delete(timeBlocks).where(eq(timeBlocks.id, id));
+  }
+
   // Guide rate methods
   async getGuideRates(cityId?: number): Promise<GuideRate[]> {
     if (cityId) {
@@ -376,6 +400,18 @@ export class DatabaseStorage implements IStorage {
   async createGuideRate(insertGuideRate: InsertGuideRate): Promise<GuideRate> {
     const [guideRate] = await db.insert(guideRates).values(insertGuideRate).returning();
     return guideRate;
+  }
+
+  async updateGuideRate(id: number, updateData: Partial<InsertGuideRate>): Promise<GuideRate> {
+    const [guideRate] = await db.update(guideRates)
+      .set(updateData)
+      .where(eq(guideRates.id, id))
+      .returning();
+    return guideRate;
+  }
+
+  async deleteGuideRate(id: number): Promise<void> {
+    await db.delete(guideRates).where(eq(guideRates.id, id));
   }
 
   // Add-on methods
@@ -395,6 +431,18 @@ export class DatabaseStorage implements IStorage {
   async createAddOn(insertAddOn: InsertAddOn): Promise<AddOn> {
     const [addOn] = await db.insert(addOns).values(insertAddOn).returning();
     return addOn;
+  }
+
+  async updateAddOn(id: number, updateData: Partial<InsertAddOn>): Promise<AddOn> {
+    const [addOn] = await db.update(addOns)
+      .set(updateData)
+      .where(eq(addOns.id, id))
+      .returning();
+    return addOn;
+  }
+
+  async deleteAddOn(id: number): Promise<void> {
+    await db.delete(addOns).where(eq(addOns.id, id));
   }
 
   // Attraction methods
