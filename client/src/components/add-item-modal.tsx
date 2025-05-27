@@ -19,7 +19,11 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
     description: '',
     price: '',
     category: '',
-    unitType: 'per_unit'
+    unitType: 'per_unit',
+    fromCityId: '',
+    toCityId: '',
+    distance: '',
+    duration: ''
   });
   const { toast } = useToast();
 

@@ -143,33 +143,33 @@ export default function RoutesPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {routes.map((route) => (
+                {(routes as any[]).map((route: any) => (
                   <TableRow key={route.id} className="hover:bg-gray-50">
                     <TableCell>
                       <div className="flex items-center space-x-2">
-                        <span className="font-medium">{route.fromCity}</span>
+                        <span className="font-medium">{getCityName(route.fromCityId)}</span>
                         <ArrowRight className="w-4 h-4 text-gray-400" />
-                        <span className="font-medium">{route.toCity}</span>
+                        <span className="font-medium">{getCityName(route.toCityId)}</span>
                       </div>
                     </TableCell>
                     <TableCell className="text-center">
                       <Badge variant="outline" className="text-xs">
-                        {route.distance}
+                        {route.distance || "N/A"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-center">
                       <Badge variant="outline" className="text-xs">
-                        {route.duration}
+                        {route.duration || "N/A"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-center font-mono font-semibold">
-                      ${route.sedanPrice}
+                      ${route.basePrice || 0}
                     </TableCell>
                     <TableCell className="text-center font-mono font-semibold">
-                      ${route.minivanPrice}
+                      ${route.basePrice ? Math.round(route.basePrice * 1.4) : 0}
                     </TableCell>
                     <TableCell className="text-center font-mono font-semibold">
-                      ${route.vanPrice}
+                      ${route.basePrice ? Math.round(route.basePrice * 1.8) : 0}
                     </TableCell>
                     <TableCell className="text-center">
                       <Badge variant={route.isActive ? 'default' : 'secondary'}>
@@ -192,7 +192,7 @@ export default function RoutesPage() {
                           variant="outline" 
                           className="h-8 w-8 p-0 text-red-600 hover:text-red-700" 
                           title="Delete Route"
-                          onClick={() => handleDelete(route.id, `${route.fromCity} → ${route.toCity}`)}
+                          onClick={() => handleDelete(route.id, route)}
                         >
                           <Trash2 className="w-3 h-3" />
                         </Button>
@@ -212,7 +212,7 @@ export default function RoutesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Total Routes</p>
-                  <p className="text-2xl font-bold">{routes.length}</p>
+                  <p className="text-2xl font-bold">{(routes as any[]).length}</p>
                 </div>
                 <MapPin className="w-8 h-8 text-teal-600" />
               </div>
@@ -223,7 +223,7 @@ export default function RoutesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Avg Price Range</p>
-                  <p className="text-2xl font-bold">$45-$240</p>
+                  <p className="text-2xl font-bold">Database Connected</p>
                 </div>
                 <Calculator className="w-8 h-8 text-teal-600" />
               </div>
@@ -234,7 +234,7 @@ export default function RoutesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Active Routes</p>
-                  <p className="text-2xl font-bold">{routes.filter(r => r.isActive).length}</p>
+                  <p className="text-2xl font-bold">{(routes as any[]).filter((r: any) => r.isActive).length}</p>
                 </div>
                 <Badge className="bg-green-100 text-green-800">Live</Badge>
               </div>
