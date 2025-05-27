@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { queryClient } from "@/lib/queryClient";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -22,53 +24,43 @@ export default function RoutesPage() {
   const [modalType, setModalType] = useState<'route'>('route');
   const { toast } = useToast();
 
-  // Mock route data - replace with actual API calls
-  const routes = [
-    {
-      id: 1,
-      fromCity: "Cairo",
-      toCity: "Alexandria", 
-      distance: "220km",
-      duration: "3h",
-      sedanPrice: 45,
-      minivanPrice: 65,
-      vanPrice: 85,
-      isActive: true
+  // Fetch routes from API
+  const { data: routes = [], isLoading } = useQuery({
+    queryKey: ['/api/routes'],
+    retry: false,
+  });
+
+  // Fetch cities for displaying names
+  const { data: cities = [] } = useQuery({
+    queryKey: ['/api/cities'],
+    retry: false,
+  });
+
+  const getCityName = (cityId: number) => {
+    const city = (cities as any[]).find((c: any) => c.id === cityId);
+    return city ? city.name : `City ${cityId}`;
+  };
+
+  // Delete mutation
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      return apiRequest("DELETE", `/api/routes/${id}`);
     },
-    {
-      id: 2,
-      fromCity: "Cairo",
-      toCity: "Luxor",
-      distance: "670km", 
-      duration: "8h",
-      sedanPrice: 120,
-      minivanPrice: 160,
-      vanPrice: 200,
-      isActive: true
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      toast({
+        title: "Success!",
+        description: "Route deleted successfully.",
+      });
     },
-    {
-      id: 3,
-      fromCity: "Alexandria",
-      toCity: "Aswan",
-      distance: "890km",
-      duration: "10h", 
-      sedanPrice: 150,
-      minivanPrice: 190,
-      vanPrice: 240,
-      isActive: true
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete route.",
+        variant: "destructive",
+      });
     },
-    {
-      id: 4,
-      fromCity: "Luxor",
-      toCity: "Aswan",
-      distance: "215km",
-      duration: "3h",
-      sedanPrice: 50,
-      minivanPrice: 70,
-      vanPrice: 90,
-      isActive: true
-    }
-  ];
+  });
 
   const handleAddRoute = () => {
     setModalType('route');
@@ -78,16 +70,14 @@ export default function RoutesPage() {
   const handleEdit = (id: number, route: any) => {
     toast({
       title: "Edit Route",
-      description: `Editing route ${route.fromCity} → ${route.toCity}`,
+      description: `Editing route ${getCityName(route.fromCityId)} → ${getCityName(route.toCityId)}`,
     });
   };
 
-  const handleDelete = (id: number, routeName: string) => {
+  const handleDelete = (id: number, route: any) => {
+    const routeName = `${getCityName(route.fromCityId)} → ${getCityName(route.toCityId)}`;
     if (confirm(`Are you sure you want to delete route ${routeName}?`)) {
-      toast({
-        title: "Route Deleted",
-        description: `${routeName} has been removed successfully.`,
-      });
+      deleteMutation.mutate(id);
     }
   };
 
@@ -124,7 +114,7 @@ export default function RoutesPage() {
                 </Button>
               </div>
               <div className="text-sm text-gray-600">
-                {routes.length} routes configured
+                {(routes as any[]).length} routes configured
               </div>
             </div>
           </CardContent>
