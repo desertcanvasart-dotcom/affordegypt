@@ -25,8 +25,10 @@ import {
   Trash2,
   User,
   Bus,
-  Truck
+  Truck,
+  Route
 } from "lucide-react";
+import { Link } from "wouter";
 import AddItemModal from "@/components/add-item-modal";
 import AdminLogin from "@/components/admin-login";
 import { useToast } from "@/hooks/use-toast";
@@ -123,6 +125,12 @@ export default function AdminPanel() {
             </Badge>
           </div>
           <div className="flex items-center space-x-4">
+            <Link href="/routes">
+              <Button className="bg-teal-600 hover:bg-teal-700 flex items-center space-x-2">
+                <Route className="w-4 h-4" />
+                <span>Routes & Pricing</span>
+              </Button>
+            </Link>
             <Button variant="outline" size="sm" className="text-gray-600 hover:text-gray-900">
               <Download className="w-4 h-4 mr-2" />
               Export Data
