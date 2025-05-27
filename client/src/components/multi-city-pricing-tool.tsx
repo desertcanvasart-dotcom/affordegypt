@@ -9,8 +9,114 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { apiRequest } from "@/lib/queryClient";
+
+// Attractions Multi-Select Component
+interface AttractionsMultiSelectProps {
+  selectedAttractions: string[];
+  onAttractionsChange: (attractions: string[]) => void;
+  cityName: string;
+}
+
+function AttractionsMultiSelect({ selectedAttractions, onAttractionsChange, cityName }: AttractionsMultiSelectProps) {
+  const attractions = {
+    "Cairo": [
+      { value: "pyramids", label: "Pyramids of Giza" },
+      { value: "khan_khalili", label: "Khan El Khalili" },
+      { value: "al_muizz", label: "Al Muizz Street" },
+      { value: "citadel", label: "Citadel of Saladin" },
+      { value: "coptic", label: "Coptic Cairo" },
+      { value: "egyptian_museum", label: "Egyptian Museum" },
+      { value: "cairo_tower", label: "Cairo Tower" }
+    ],
+    "Alexandria": [
+      { value: "alexandria_library", label: "Alexandria Library" },
+      { value: "qaitbay_citadel", label: "Qaitbay Citadel" },
+      { value: "montaza_palace", label: "Montaza Palace" },
+      { value: "catacombs", label: "Catacombs of Kom el Shoqafa" }
+    ],
+    "Luxor": [
+      { value: "luxor_temple", label: "Luxor Temple" },
+      { value: "valley_kings", label: "Valley of the Kings" },
+      { value: "karnak_temple", label: "Karnak Temple" },
+      { value: "hatshepsut_temple", label: "Hatshepsut Temple" }
+    ],
+    "Aswan": [
+      { value: "abu_simbel", label: "Abu Simbel" },
+      { value: "philae_temple", label: "Philae Temple" },
+      { value: "high_dam", label: "Aswan High Dam" },
+      { value: "unfinished_obelisk", label: "Unfinished Obelisk" }
+    ]
+  };
+
+  const cityAttractions = attractions[cityName as keyof typeof attractions] || [];
+
+  const toggleAttraction = (attractionValue: string) => {
+    const updated = selectedAttractions.includes(attractionValue)
+      ? selectedAttractions.filter(a => a !== attractionValue)
+      : [...selectedAttractions, attractionValue];
+    onAttractionsChange(updated);
+  };
+
+  const getDisplayText = () => {
+    if (selectedAttractions.length === 0) return "Select attractions...";
+    if (selectedAttractions.length === 1) {
+      const attraction = cityAttractions.find(a => a.value === selectedAttractions[0]);
+      return attraction?.label || selectedAttractions[0];
+    }
+    return `${selectedAttractions.length} attractions selected`;
+  };
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          className="w-full justify-between text-left font-normal"
+        >
+          <span className="truncate">{getDisplayText()}</span>
+          <ChevronDown className="h-4 w-4 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-64 p-2">
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-700 px-2 py-1">
+            {cityName} Attractions
+          </div>
+          {cityAttractions.map((attraction) => (
+            <div key={attraction.value} className="flex items-center space-x-2 px-2 py-1 hover:bg-gray-50 rounded">
+              <Checkbox
+                id={attraction.value}
+                checked={selectedAttractions.includes(attraction.value)}
+                onCheckedChange={() => toggleAttraction(attraction.value)}
+              />
+              <label 
+                htmlFor={attraction.value}
+                className="text-sm cursor-pointer flex-1"
+              >
+                {attraction.label}
+              </label>
+            </div>
+          ))}
+          {selectedAttractions.length > 0 && (
+            <div className="border-t pt-2 mt-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => onAttractionsChange([])}
+                className="w-full text-xs text-gray-500"
+              >
+                Clear all
+              </Button>
+            </div>
+          )}
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
 
 interface CityService {
   cityId: number;
@@ -23,6 +129,7 @@ interface CityService {
     duration: number;
   };
   attractions: string;
+  selectedAttractions: string[];
   selectedAddOns: Array<{
     id: number;
     name: string;
@@ -277,26 +384,11 @@ export default function MultiCityPricingTool() {
 
                       {/* Attractions */}
                       <TableCell>
-                        <Select
-                          value={cityService.attractions || ""}
-                          onValueChange={(value) => updateCityService(index, { attractions: value })}
-                        >
-                          <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Attraction" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="none">No Attraction</SelectItem>
-                            <SelectItem value="pyramids">Pyramids of Giza</SelectItem>
-                            <SelectItem value="khan_khalili">Khan El Khalili</SelectItem>
-                            <SelectItem value="al_muizz">Al Muizz Street</SelectItem>
-                            <SelectItem value="citadel">Citadel of Saladin</SelectItem>
-                            <SelectItem value="coptic">Coptic Cairo</SelectItem>
-                            <SelectItem value="alexandria_library">Alexandria Library</SelectItem>
-                            <SelectItem value="luxor_temple">Luxor Temple</SelectItem>
-                            <SelectItem value="valley_kings">Valley of the Kings</SelectItem>
-                            <SelectItem value="abu_simbel">Abu Simbel</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <AttractionsMultiSelect
+                          selectedAttractions={cityService.selectedAttractions || []}
+                          onAttractionsChange={(attractions) => updateCityService(index, { selectedAttractions: attractions })}
+                          cityName={cityService.cityName}
+                        />
                       </TableCell>
 
                       {/* Per Unit Add-ons */}
