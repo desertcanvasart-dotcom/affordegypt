@@ -11,9 +11,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Edit2, Trash2, MapPin, Camera, Clock, Users, Star } from "lucide-react";
+import { Plus, Edit2, Trash2, MapPin, Camera, Clock, Users, Star, ArrowLeft } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 
 interface Attraction {
   id: number;
@@ -189,15 +190,33 @@ export default function AttractionsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Attractions Management</h1>
-            <p className="text-gray-600 mt-1">Manage attractions and link them to specific cities</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header with navigation */}
+      <div className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Link href="/admin">
+              <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back to Dashboard</span>
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Attractions Management</h1>
+              <p className="text-sm text-gray-600">Manage attractions and link them to specific cities</p>
+            </div>
           </div>
-          <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+        </div>
+      </div>
+
+      <div className="p-6">
+        <div className="max-w-7xl mx-auto space-y-6">
+          {/* Stats and Controls */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Manage Attractions</h2>
+            </div>
+            <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
             <DialogTrigger asChild>
               <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => {
                 resetForm();
@@ -549,6 +568,7 @@ export default function AttractionsPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
         </div>
       </div>
     </div>

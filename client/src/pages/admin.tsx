@@ -91,22 +91,58 @@ export default function AdminPanel() {
     setShowAddModal(true);
   }, []);
 
-  const handleDelete = (id: number, type: string) => {
+  const handleDelete = async (id: number, type: string) => {
     if (confirm(`Are you sure you want to delete this ${type}?`)) {
-      toast({
-        title: "Deleted Successfully",
-        description: `${type} has been removed from the system`,
-      });
+      try {
+        const response = await fetch(`/api/${type}s/${id}`, {
+          method: 'DELETE'
+        });
+        
+        if (!response.ok) throw new Error('Failed to delete');
+        
+        toast({
+          title: "Deleted Successfully",
+          description: `${type} has been removed from the system`,
+        });
+        
+        // Refresh the data
+        window.location.reload();
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: `Failed to delete ${type}`,
+          variant: "destructive",
+        });
+      }
     }
   };
 
-  const handleSave = (data: any) => {
-    toast({
-      title: "Saved Successfully", 
-      description: "Changes have been saved to the database",
-    });
-    setEditingRow(null);
-    setEditData({});
+  const handleSave = async (id: number, type: string) => {
+    try {
+      const response = await fetch(`/api/${type}s/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editData)
+      });
+      
+      if (!response.ok) throw new Error('Failed to update');
+      
+      toast({
+        title: "Saved Successfully", 
+        description: "Changes have been saved to the database",
+      });
+      setEditingRow(null);
+      setEditData({});
+      
+      // Refresh the data
+      window.location.reload();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save changes",
+        variant: "destructive",
+      });
+    }
   };
 
   if (!isAuthenticated) {
