@@ -83,6 +83,23 @@ export const addOns = pgTable("add_ons", {
   isActive: boolean("is_active").default(true),
 });
 
+export const attractions = pgTable("attractions", {
+  id: serial("id").primaryKey(),
+  cityId: integer("city_id").references(() => cities.id).notNull(),
+  name: text("name").notNull(),
+  description: text("description"),
+  category: text("category").notNull(),
+  duration: integer("duration").default(2), // hours
+  ticketPrice: decimal("ticket_price", { precision: 10, scale: 2 }).default("0"),
+  isActive: boolean("is_active").default(true),
+  image: text("image"),
+  coordinates: text("coordinates"),
+  bestTimeToVisit: text("best_time_to_visit"),
+  capacity: integer("capacity"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 export const quotes = pgTable("quotes", {
   id: serial("id").primaryKey(),
   jsonBlob: jsonb("json_blob").notNull(), // Complete quote data
@@ -121,6 +138,7 @@ export const insertRouteSchema = createInsertSchema(routes).omit({ id: true });
 export const insertTimeBlockSchema = createInsertSchema(timeBlocks).omit({ id: true });
 export const insertGuideRateSchema = createInsertSchema(guideRates).omit({ id: true });
 export const insertAddOnSchema = createInsertSchema(addOns).omit({ id: true });
+export const insertAttractionSchema = createInsertSchema(attractions).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertQuoteSchema = createInsertSchema(quotes).omit({ id: true, createdAt: true });
 export const insertBookingSchema = createInsertSchema(bookings).omit({ 
   id: true, 
@@ -153,6 +171,9 @@ export type InsertGuideRate = z.infer<typeof insertGuideRateSchema>;
 
 export type AddOn = typeof addOns.$inferSelect;
 export type InsertAddOn = z.infer<typeof insertAddOnSchema>;
+
+export type Attraction = typeof attractions.$inferSelect;
+export type InsertAttraction = z.infer<typeof insertAttractionSchema>;
 
 export type Quote = typeof quotes.$inferSelect;
 export type InsertQuote = z.infer<typeof insertQuoteSchema>;
