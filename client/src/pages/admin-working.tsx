@@ -297,10 +297,48 @@ export default function AdminWorking() {
   };
 
   const handleSave = () => {
+    const data = prepareFormData(modalType, formData);
+    
     if (editingItem) {
-      updateCityMutation.mutate({ id: editingItem.id, data: formData });
+      updateMutation.mutate({ type: modalType, id: editingItem.id, data });
     } else {
-      createCityMutation.mutate(formData);
+      createMutation.mutate({ type: modalType, data });
+    }
+  };
+
+  const prepareFormData = (type: string, formData: any) => {
+    switch (type) {
+      case 'vehicle':
+        return {
+          name: formData.name,
+          description: formData.description,
+          paxMin: parseInt(formData.paxMin),
+          paxMax: parseInt(formData.paxMax)
+        };
+      case 'guide':
+        return {
+          language: formData.language,
+          pricePerDay: parseFloat(formData.pricePerDay),
+          pricePerHour: parseFloat(formData.pricePerHour),
+          cityId: formData.cityId ? parseInt(formData.cityId) : null
+        };
+      case 'addon':
+        return {
+          name: formData.name,
+          description: formData.description,
+          price: parseFloat(formData.price),
+          unitType: formData.unitType,
+          category: formData.category,
+          cityId: formData.cityId ? parseInt(formData.cityId) : null,
+          isActive: formData.isActive
+        };
+      default: // city
+        return {
+          name: formData.name,
+          description: formData.description,
+          slug: formData.slug,
+          isActive: formData.isActive
+        };
     }
   };
 
@@ -549,7 +587,20 @@ export default function AdminWorking() {
           {/* Tour Guides Management */}
           <Card>
             <CardHeader>
-              <CardTitle>Tour Guide Languages</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle>Tour Guide Languages</CardTitle>
+                <Button 
+                  className="bg-teal-600 hover:bg-teal-700"
+                  onClick={() => {
+                    setModalType('guide');
+                    setIsAddModalOpen(true);
+                    resetForm();
+                  }}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Guide
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <Table>
@@ -598,7 +649,20 @@ export default function AdminWorking() {
           {/* Add-ons Management */}
           <Card>
             <CardHeader>
-              <CardTitle>Add-ons & Services</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle>Add-ons & Services</CardTitle>
+                <Button 
+                  className="bg-teal-600 hover:bg-teal-700"
+                  onClick={() => {
+                    setModalType('addon');
+                    setIsAddModalOpen(true);
+                    resetForm();
+                  }}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Service
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <Table>
