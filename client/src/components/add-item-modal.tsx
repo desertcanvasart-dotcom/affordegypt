@@ -25,7 +25,12 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
     fromCityId: '',
     toCityId: '',
     distance: '',
-    duration: ''
+    duration: '',
+    vehicleCategory: 'all', // all, sedan, minivan, van
+    routeType: 'inter-city', // inter-city, intra-city, airport
+    sedanPrice: '',
+    minivanPrice: '',
+    vanPrice: ''
   });
   const { toast } = useToast();
 
@@ -60,18 +65,22 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
 
   const handleSubmit = () => {
     if (modalType === 'route') {
-      if (formData.fromCityId && formData.toCityId && formData.price) {
+      if (formData.fromCityId && formData.toCityId && formData.sedanPrice) {
         createMutation.mutate({
           fromCityId: parseInt(formData.fromCityId),
           toCityId: parseInt(formData.toCityId),
           km: formData.distance,
-          basePrice: parseFloat(formData.price),
+          routeType: formData.routeType,
+          sedanPrice: parseFloat(formData.sedanPrice),
+          minivanPrice: parseFloat(formData.minivanPrice) || parseFloat(formData.sedanPrice) * 1.4,
+          vanPrice: parseFloat(formData.vanPrice) || parseFloat(formData.sedanPrice) * 1.8,
+          basePrice: parseFloat(formData.sedanPrice), // Use sedan as base price
           isActive: true
         });
       } else {
         toast({
           title: "Error",
-          description: "Please fill in all required fields for the route.",
+          description: "Please select cities and enter at least the sedan price.",
           variant: "destructive",
         });
       }
@@ -98,7 +107,12 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
       fromCityId: '',
       toCityId: '',
       distance: '',
-      duration: ''
+      duration: '',
+      vehicleCategory: 'all',
+      routeType: 'inter-city',
+      sedanPrice: '',
+      minivanPrice: '',
+      vanPrice: ''
     });
     onClose();
   };
@@ -157,13 +171,49 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
               </div>
 
               <div>
-                <Label htmlFor="modal-price">Base Price (USD)</Label>
+                <Label htmlFor="modal-route-type">Route Type</Label>
+                <Select onValueChange={(value) => setFormData(prev => ({...prev, routeType: value}))}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select route type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="inter-city">Inter-City Route</SelectItem>
+                    <SelectItem value="intra-city">Intra-City Tour</SelectItem>
+                    <SelectItem value="airport">Airport Transfer</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="modal-sedan-price">🚗 Sedan Price (USD)</Label>
                 <Input 
-                  id="modal-price"
+                  id="modal-sedan-price"
                   type="number"
-                  value={formData.price}
-                  onChange={(e) => setFormData(prev => ({...prev, price: e.target.value}))}
+                  value={formData.sedanPrice}
+                  onChange={(e) => setFormData(prev => ({...prev, sedanPrice: e.target.value}))}
                   placeholder="e.g., 50"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="modal-minivan-price">🚐 Minivan Price (USD)</Label>
+                <Input 
+                  id="modal-minivan-price"
+                  type="number"
+                  value={formData.minivanPrice}
+                  onChange={(e) => setFormData(prev => ({...prev, minivanPrice: e.target.value}))}
+                  placeholder="e.g., 70"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="modal-van-price">🚌 Van Price (USD)</Label>
+                <Input 
+                  id="modal-van-price"
+                  type="number"
+                  value={formData.vanPrice}
+                  onChange={(e) => setFormData(prev => ({...prev, vanPrice: e.target.value}))}
+                  placeholder="e.g., 90"
                 />
               </div>
             </>

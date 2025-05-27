@@ -163,13 +163,13 @@ export default function RoutesPage() {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-center font-mono font-semibold">
-                      ${route.basePrice || 0}
+                      ${route.sedanPrice || route.basePrice || 0}
                     </TableCell>
                     <TableCell className="text-center font-mono font-semibold">
-                      ${route.basePrice ? Math.round(route.basePrice * 1.4) : 0}
+                      ${route.minivanPrice || (route.basePrice ? Math.round(route.basePrice * 1.4) : 0)}
                     </TableCell>
                     <TableCell className="text-center font-mono font-semibold">
-                      ${route.basePrice ? Math.round(route.basePrice * 1.8) : 0}
+                      ${route.vanPrice || (route.basePrice ? Math.round(route.basePrice * 1.8) : 0)}
                     </TableCell>
                     <TableCell className="text-center">
                       <Badge variant={route.isActive ? 'default' : 'secondary'}>
