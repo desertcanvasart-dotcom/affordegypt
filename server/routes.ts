@@ -364,6 +364,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create route
+  app.post("/api/routes", async (req, res) => {
+    try {
+      const routeData = {
+        fromCityId: req.body.fromCityId,
+        toCityId: req.body.toCityId,
+        km: req.body.km || req.body.distance || "0",
+        basePriceByVehicle: {
+          sedan: req.body.sedanPrice || req.body.basePrice || 0,
+          minivan: req.body.minivanPrice || (req.body.basePrice ? req.body.basePrice * 1.4 : 0),
+          van: req.body.vanPrice || (req.body.basePrice ? req.body.basePrice * 1.8 : 0)
+        }
+      };
+      const route = await storage.createRoute(routeData);
+      res.json(route);
+    } catch (error: any) {
+      console.error('Route creation error:', error);
+      res.status(500).json({ message: "Failed to create route" });
+    }
+  });
+
+  // Update route
+  app.put("/api/routes/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedRoute = await storage.updateRoute(parseInt(id), req.body);
+      res.json(updatedRoute);
+    } catch (error: any) {
+      console.error('Route update error:', error);
+      res.status(500).json({ message: "Failed to update route" });
+    }
+  });
+
+  // Delete route
+  app.delete("/api/routes/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteRoute(parseInt(id));
+      res.json({ message: "Route deleted successfully" });
+    } catch (error: any) {
+      console.error('Route deletion error:', error);
+      res.status(500).json({ message: "Failed to delete route" });
+    }
+  });
+
   // Get time blocks
   app.get("/api/time-blocks", async (req, res) => {
     try {

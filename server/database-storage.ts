@@ -36,6 +36,8 @@ export interface IStorage {
   getRoutes(): Promise<Route[]>;
   getRoute(fromCityId: number, toCityId: number): Promise<Route | undefined>;
   createRoute(route: InsertRoute): Promise<Route>;
+  updateRoute(id: number, route: Partial<InsertRoute>): Promise<Route>;
+  deleteRoute(id: number): Promise<void>;
 
   // Time Blocks
   getTimeBlocks(cityId: number): Promise<TimeBlock[]>;
@@ -281,6 +283,21 @@ export class DatabaseStorage implements IStorage {
   async createRoute(insertRoute: InsertRoute): Promise<Route> {
     const [route] = await db.insert(routes).values(insertRoute).returning();
     return route;
+  }
+
+  async updateRoute(id: number, updateData: Partial<InsertRoute>): Promise<Route> {
+    const [route] = await db
+      .update(routes)
+      .set(updateData)
+      .where(eq(routes.id, id))
+      .returning();
+    return route;
+  }
+
+  async deleteRoute(id: number): Promise<void> {
+    await db
+      .delete(routes)
+      .where(eq(routes.id, id));
   }
 
   // Time block methods
