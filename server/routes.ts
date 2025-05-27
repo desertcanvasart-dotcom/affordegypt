@@ -118,6 +118,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: error.message });
     }
   });
+
+  // Vehicle Types CRUD endpoints
+  app.get("/api/vehicle-types", async (req, res) => {
+    try {
+      const vehicles = await storage.getVehicleTypes();
+      res.json(vehicles);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/vehicle-types", async (req, res) => {
+    try {
+      const vehicle = await storage.createVehicleType(req.body);
+      res.json(vehicle);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/vehicle-types/:id", async (req, res) => {
+    try {
+      const vehicle = await storage.updateVehicleType(parseInt(req.params.id), req.body);
+      res.json(vehicle);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/vehicle-types/:id", async (req, res) => {
+    try {
+      await storage.deleteVehicleType(parseInt(req.params.id));
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Guide Rates CRUD endpoints
+  app.get("/api/guide-rates", async (req, res) => {
+    try {
+      const guides = await storage.getGuideRates();
+      res.json(guides);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/guide-rates", async (req, res) => {
+    try {
+      const guide = await storage.createGuideRate(req.body);
+      res.json(guide);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/guide-rates/:id", async (req, res) => {
+    try {
+      const guide = await storage.updateGuideRate(parseInt(req.params.id), req.body);
+      res.json(guide);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/guide-rates/:id", async (req, res) => {
+    try {
+      await storage.deleteGuideRate(parseInt(req.params.id));
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
   // Admin authentication middleware
   const requireAdmin = (req: any, res: any, next: any) => {
     // Simple admin check - in production you'd want proper auth

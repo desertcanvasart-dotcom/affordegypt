@@ -16,11 +16,21 @@ export default function AdminWorking() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon'>('city');
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     slug: "",
-    isActive: true
+    isActive: true,
+    paxMin: "",
+    paxMax: "",
+    language: "",
+    pricePerDay: "",
+    pricePerHour: "",
+    cityId: "",
+    price: "",
+    unitType: "",
+    category: ""
   });
 
   const { toast } = useToast();
@@ -60,20 +70,17 @@ export default function AdminWorking() {
     enabled: isAuthenticated,
   });
 
-  // Fetch vehicles (mock data for now)
-  const vehicles = [
-    { id: 1, name: "Sedan", paxMin: 1, paxMax: 3, description: "Comfortable car for small groups" },
-    { id: 2, name: "Minivan", paxMin: 4, paxMax: 8, description: "Mid-size vehicle for medium groups" },
-    { id: 3, name: "Van", paxMin: 9, paxMax: 15, description: "Large vehicle for big groups" }
-  ];
+  // Fetch vehicles from database
+  const { data: vehicles = [] } = useQuery({
+    queryKey: ["/api/vehicle-types"],
+    enabled: isAuthenticated,
+  });
 
-  // Fetch guides (mock data for now)
-  const guides = [
-    { id: 1, language: "English", pricePerDay: 50, availability: "Available" },
-    { id: 2, language: "Spanish", pricePerDay: 45, availability: "Available" },
-    { id: 3, language: "French", pricePerDay: 48, availability: "Available" },
-    { id: 4, language: "German", pricePerDay: 52, availability: "Available" }
-  ];
+  // Fetch guides from database  
+  const { data: guides = [] } = useQuery({
+    queryKey: ["/api/guide-rates"],
+    enabled: isAuthenticated,
+  });
 
   // Create city mutation
   const createCityMutation = useMutation({
@@ -161,22 +168,131 @@ export default function AdminWorking() {
     },
   });
 
+  // Generic mutations for all entity types
+  const createMutation = useMutation({
+    mutationFn: async ({ type, data }: { type: string; data: any }) => {
+      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const response = await fetch(`/api/${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error(`Failed to create ${type}`);
+      return response.json();
+    },
+    onSuccess: (data, variables) => {
+      const endpoint = variables.type === 'addon' ? 'addons' : `${variables.type}s`;
+      queryClient.invalidateQueries({ queryKey: [`/api/${endpoint}`] });
+      setIsAddModalOpen(false);
+      resetForm();
+      toast({
+        title: "Success",
+        description: `${variables.type} created successfully`,
+      });
+    },
+    onError: (error: any, variables) => {
+      toast({
+        title: "Error",
+        description: `Failed to create ${variables.type}`,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async ({ type, id, data }: { type: string; id: number; data: any }) => {
+      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const response = await fetch(`/api/${endpoint}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error(`Failed to update ${type}`);
+      return response.json();
+    },
+    onSuccess: (data, variables) => {
+      const endpoint = variables.type === 'addon' ? 'addons' : `${variables.type}s`;
+      queryClient.invalidateQueries({ queryKey: [`/api/${endpoint}`] });
+      setEditingItem(null);
+      toast({
+        title: "Success",
+        description: `${variables.type} updated successfully`,
+      });
+    },
+    onError: (error: any, variables) => {
+      toast({
+        title: "Error",
+        description: `Failed to update ${variables.type}`,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: async ({ type, id }: { type: string; id: number }) => {
+      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const response = await fetch(`/api/${endpoint}/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error(`Failed to delete ${type}`);
+      return response.json();
+    },
+    onSuccess: (data, variables) => {
+      const endpoint = variables.type === 'addon' ? 'addons' : `${variables.type}s`;
+      queryClient.invalidateQueries({ queryKey: [`/api/${endpoint}`] });
+      toast({
+        title: "Success",
+        description: `${variables.type} deleted successfully`,
+      });
+    },
+    onError: (error: any, variables) => {
+      const errorMessage = error.message?.includes('violates foreign key constraint') 
+        ? `Cannot delete ${variables.type} - it has related records. Please remove them first.`
+        : error.message || `Failed to delete ${variables.type}`;
+      
+      toast({
+        title: `Cannot Delete ${variables.type}`,
+        description: errorMessage,
+        variant: "destructive",
+      });
+    },
+  });
+
   const resetForm = () => {
     setFormData({
       name: "",
       description: "",
       slug: "",
-      isActive: true
+      isActive: true,
+      paxMin: "",
+      paxMax: "",
+      language: "",
+      pricePerDay: "",
+      pricePerHour: "",
+      cityId: "",
+      price: "",
+      unitType: "",
+      category: ""
     });
   };
 
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: any, type: 'city' | 'vehicle' | 'guide' | 'addon') => {
     setEditingItem(item);
+    setModalType(type);
     setFormData({
-      name: item.name,
+      name: item.name || "",
       description: item.description || "",
       slug: item.slug || "",
-      isActive: item.isActive
+      isActive: item.isActive ?? true,
+      paxMin: item.paxMin?.toString() || "",
+      paxMax: item.paxMax?.toString() || "",
+      language: item.language || "",
+      pricePerDay: item.pricePerDay?.toString() || "",
+      pricePerHour: item.pricePerHour?.toString() || "",
+      cityId: item.cityId?.toString() || "",
+      price: item.price?.toString() || "",
+      unitType: item.unitType || "",
+      category: item.category || ""
     });
   };
 
@@ -375,7 +491,20 @@ export default function AdminWorking() {
           {/* Vehicle Types Management */}
           <Card>
             <CardHeader>
-              <CardTitle>Vehicle Types</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle>Vehicle Types</CardTitle>
+                <Button 
+                  className="bg-teal-600 hover:bg-teal-700"
+                  onClick={() => {
+                    setModalType('vehicle');
+                    setIsAddModalOpen(true);
+                    resetForm();
+                  }}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Vehicle
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <Table>
