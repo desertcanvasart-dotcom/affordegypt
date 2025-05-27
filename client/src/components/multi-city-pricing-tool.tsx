@@ -48,18 +48,12 @@ export default function MultiCityPricingTool() {
   const [cityServices, setCityServices] = useState<CityService[]>([]);
   const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [totalPricing, setTotalPricing] = useState<any>(null);
+  const [showCityPicker, setShowCityPicker] = useState(false);
 
-  // Egyptian cities in order as per your specification
-  const cities = [
-    { id: 1, name: "Cairo" },
-    { id: 2, name: "El Fayoum" },
-    { id: 3, name: "Alexandria" },
-    { id: 4, name: "Luxor" },
-    { id: 5, name: "Aswan" },
-    { id: 6, name: "Abu Simbel" },
-    { id: 7, name: "Hurghada" },
-    { id: 8, name: "Sharm El Sheikh" }
-  ];
+  // Fetch available cities from the database
+  const { data: cities = [] } = useQuery<{id: number, name: string}[]>({
+    queryKey: ["/api/cities"],
+  });
 
   // Fetch available routes for current city
   const { data: routes = [] } = useQuery<Route[]>({
@@ -104,10 +98,13 @@ export default function MultiCityPricingTool() {
     }
   }, [cityServices]);
 
-  const addNewCity = () => {
+  const addNewCity = (selectedCityId?: number) => {
+    const selectedCity = selectedCityId ? cities.find(c => c.id === selectedCityId) : cities[0];
+    if (!selectedCity) return;
+    
     const newCityService: CityService = {
-      cityId: cities[cityServices.length]?.id || 1,
-      cityName: cities[cityServices.length]?.name || "Cairo",
+      cityId: selectedCity.id,
+      cityName: selectedCity.name,
       date: new Date().toISOString().split('T')[0],
       travelers: 2,
       selectedRoutes: [],
@@ -412,15 +409,56 @@ export default function MultiCityPricingTool() {
 
           {/* Action Buttons */}
           <div className="flex justify-between items-center mt-6">
-            <Button
-              variant="outline"
-              onClick={addNewCity}
-              disabled={cityServices.length >= cities.length}
-              className="flex items-center gap-2"
-            >
-              <Plus className="w-4 h-4" />
-              Add Next City
-            </Button>
+            <div className="flex items-center gap-3">
+              {!showCityPicker ? (
+                <Button
+                  variant="outline"
+                  onClick={() => setShowCityPicker(true)}
+                  className="flex items-center gap-2"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add City
+                </Button>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Select onValueChange={(value) => {
+                    const cityId = parseInt(value);
+                    const selectedCity = cities.find((c: any) => c.id === cityId);
+                    if (selectedCity && !cityServices.find(cs => cs.cityId === cityId)) {
+                      const newCityService: CityService = {
+                        cityId: selectedCity.id,
+                        cityName: selectedCity.name,
+                        date: new Date().toISOString().split('T')[0],
+                        travelers: 2,
+                        selectedRoutes: [],
+                        attractions: "",
+                        selectedAddOns: []
+                      };
+                      setCityServices(prev => [...prev, newCityService]);
+                    }
+                    setShowCityPicker(false);
+                  }}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue placeholder="Choose a city to visit" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {cities.filter((city: any) => !cityServices.find(cs => cs.cityId === city.id)).map((city: any) => (
+                        <SelectItem key={city.id} value={city.id.toString()}>
+                          📍 {city.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowCityPicker(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              )}
+            </div>
 
             <div className="flex items-center gap-4">
               {totalPricing && (
