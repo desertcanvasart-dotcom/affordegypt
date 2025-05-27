@@ -95,6 +95,14 @@ export default function AdminPanel() {
 
   const handleAddService = (type: 'vehicle' | 'guide' | 'addon' | 'city' | 'route') => {
     setModalType(type);
+    // Clear form data when opening modal
+    setFormData({
+      name: '',
+      description: '',
+      price: '',
+      category: '',
+      unitType: 'per_unit'
+    });
     setShowAddModal(true);
     toast({
       title: "Add New Item",
@@ -925,7 +933,13 @@ export default function AdminPanel() {
       </div>
 
       {/* Add Service Modal */}
-      <Dialog open={showAddModal} onOpenChange={setShowAddModal}>
+      <Dialog open={showAddModal} onOpenChange={(open) => {
+        setShowAddModal(open);
+        if (!open) {
+          // Reset form when closing modal
+          setFormData({name: '', description: '', price: '', category: '', unitType: 'per_unit'});
+        }
+      }}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Add New {modalType === 'addon' ? 'Service' : modalType === 'vehicle' ? 'Vehicle Type' : modalType === 'guide' ? 'Guide Rate' : modalType === 'city' ? 'City' : 'Route'}</DialogTitle>
@@ -1000,12 +1014,20 @@ export default function AdminPanel() {
                 Cancel
               </Button>
               <Button onClick={() => {
-                toast({
-                  title: "Success!",
-                  description: `${modalType === 'addon' ? 'Service' : modalType} "${formData.name}" has been added successfully.`,
-                });
-                setShowAddModal(false);
-                setFormData({name: '', description: '', price: '', category: '', unitType: 'per_unit'});
+                if (formData.name.trim()) {
+                  toast({
+                    title: "Success!",
+                    description: `${modalType === 'addon' ? 'Service' : modalType} "${formData.name}" has been added successfully.`,
+                  });
+                  setShowAddModal(false);
+                  setFormData({name: '', description: '', price: '', category: '', unitType: 'per_unit'});
+                } else {
+                  toast({
+                    title: "Error",
+                    description: "Please enter a name for the item.",
+                    variant: "destructive",
+                  });
+                }
               }}>
                 Add {modalType === 'addon' ? 'Service' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'city' ? 'City' : 'Route'}
               </Button>
