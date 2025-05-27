@@ -1,9 +1,10 @@
 import { 
-  users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, quotes, bookings,
+  users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, attractions, quotes, bookings,
   type User, type InsertUser, type City, type InsertCity,
   type VehicleType, type InsertVehicleType, type LicenseClass, type InsertLicenseClass,
   type Route, type InsertRoute, type TimeBlock, type InsertTimeBlock,
   type GuideRate, type InsertGuideRate, type AddOn, type InsertAddOn,
+  type Attraction, type InsertAttraction,
   type Quote, type InsertQuote, type Booking, type InsertBooking
 } from "@shared/schema";
 import { db } from "./db";
@@ -21,16 +22,22 @@ export interface IStorage {
   getCity(id: number): Promise<City | undefined>;
   getCityBySlug(slug: string): Promise<City | undefined>;
   createCity(city: InsertCity): Promise<City>;
+  updateCity(id: number, city: Partial<InsertCity>): Promise<City>;
+  deleteCity(id: number): Promise<void>;
 
   // Vehicle Types
   getVehicleTypes(): Promise<VehicleType[]>;
   getVehicleType(id: number): Promise<VehicleType | undefined>;
   createVehicleType(vehicleType: InsertVehicleType): Promise<VehicleType>;
+  updateVehicleType(id: number, vehicleType: Partial<InsertVehicleType>): Promise<VehicleType>;
+  deleteVehicleType(id: number): Promise<void>;
 
   // License Classes
   getLicenseClasses(): Promise<LicenseClass[]>;
   getLicenseClass(id: number): Promise<LicenseClass | undefined>;
   createLicenseClass(licenseClass: InsertLicenseClass): Promise<LicenseClass>;
+  updateLicenseClass(id: number, licenseClass: Partial<InsertLicenseClass>): Promise<LicenseClass>;
+  deleteLicenseClass(id: number): Promise<void>;
 
   // Routes
   getRoutes(): Promise<Route[]>;
@@ -43,16 +50,22 @@ export interface IStorage {
   getTimeBlocks(cityId: number): Promise<TimeBlock[]>;
   getTimeBlock(cityId: number, hours: number): Promise<TimeBlock | undefined>;
   createTimeBlock(timeBlock: InsertTimeBlock): Promise<TimeBlock>;
+  updateTimeBlock(id: number, timeBlock: Partial<InsertTimeBlock>): Promise<TimeBlock>;
+  deleteTimeBlock(id: number): Promise<void>;
 
   // Guide Rates
   getGuideRates(cityId?: number): Promise<GuideRate[]>;
   getGuideRate(id: number): Promise<GuideRate | undefined>;
   createGuideRate(guideRate: InsertGuideRate): Promise<GuideRate>;
+  updateGuideRate(id: number, guideRate: Partial<InsertGuideRate>): Promise<GuideRate>;
+  deleteGuideRate(id: number): Promise<void>;
 
   // Add-ons
   getAddOns(cityId?: number): Promise<AddOn[]>;
   getAddOn(id: number): Promise<AddOn | undefined>;
   createAddOn(addOn: InsertAddOn): Promise<AddOn>;
+  updateAddOn(id: number, addOn: Partial<InsertAddOn>): Promise<AddOn>;
+  deleteAddOn(id: number): Promise<void>;
 
   // Attractions
   getAttractions(cityId?: number): Promise<Attraction[]>;
@@ -246,6 +259,18 @@ export class DatabaseStorage implements IStorage {
     return city;
   }
 
+  async updateCity(id: number, updateData: Partial<InsertCity>): Promise<City> {
+    const [city] = await db.update(cities)
+      .set(updateData)
+      .where(eq(cities.id, id))
+      .returning();
+    return city;
+  }
+
+  async deleteCity(id: number): Promise<void> {
+    await db.delete(cities).where(eq(cities.id, id));
+  }
+
   // Vehicle type methods
   async getVehicleTypes(): Promise<VehicleType[]> {
     return await db.select().from(vehicleTypes);
@@ -259,6 +284,18 @@ export class DatabaseStorage implements IStorage {
   async createVehicleType(insertVehicleType: InsertVehicleType): Promise<VehicleType> {
     const [vehicleType] = await db.insert(vehicleTypes).values(insertVehicleType).returning();
     return vehicleType;
+  }
+
+  async updateVehicleType(id: number, updateData: Partial<InsertVehicleType>): Promise<VehicleType> {
+    const [vehicleType] = await db.update(vehicleTypes)
+      .set(updateData)
+      .where(eq(vehicleTypes.id, id))
+      .returning();
+    return vehicleType;
+  }
+
+  async deleteVehicleType(id: number): Promise<void> {
+    await db.delete(vehicleTypes).where(eq(vehicleTypes.id, id));
   }
 
   // License class methods
