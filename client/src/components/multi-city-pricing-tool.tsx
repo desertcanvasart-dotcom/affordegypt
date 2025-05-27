@@ -216,6 +216,7 @@ export default function MultiCityPricingTool() {
       travelers: 2,
       selectedRoutes: [],
       attractions: "",
+      selectedAttractions: [],
       selectedAddOns: []
     };
     setCityServices(prev => [...prev, newCityService]);
@@ -524,6 +525,7 @@ export default function MultiCityPricingTool() {
                         travelers: 2,
                         selectedRoutes: [],
                         attractions: "",
+                        selectedAttractions: [],
                         selectedAddOns: []
                       };
                       setCityServices(prev => [...prev, newCityService]);
