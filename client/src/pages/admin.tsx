@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -93,7 +93,7 @@ export default function AdminPanel() {
     setEditData({});
   };
 
-  const handleAddService = (type: 'vehicle' | 'guide' | 'addon' | 'city' | 'route') => {
+  const handleAddService = useCallback((type: 'vehicle' | 'guide' | 'addon' | 'city' | 'route') => {
     setModalType(type);
     // Clear form data when opening modal
     setFormData({
@@ -108,7 +108,11 @@ export default function AdminPanel() {
       title: "Add New Item",
       description: `Opening form to add new ${type}`,
     });
-  };
+  }, [toast]);
+
+  const handleFormChange = useCallback((field: string, value: string) => {
+    setFormData(prev => ({...prev, [field]: value}));
+  }, []);
 
   const handleDelete = (id: number, type: string) => {
     if (confirm(`Are you sure you want to delete this ${type}?`)) {
@@ -948,9 +952,10 @@ export default function AdminPanel() {
             <div>
               <Label htmlFor="name">Name</Label>
               <Input 
+                key={`name-${modalType}`}
                 id="name" 
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => handleFormChange('name', e.target.value)}
                 placeholder={modalType === 'addon' ? 'Service name...' : modalType === 'vehicle' ? 'Vehicle type...' : modalType === 'city' ? 'City name...' : 'Route name...'}
               />
             </div>
@@ -958,9 +963,10 @@ export default function AdminPanel() {
             <div>
               <Label htmlFor="description">Description</Label>
               <Textarea 
+                key={`description-${modalType}`}
                 id="description"
                 value={formData.description}
-                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                onChange={(e) => handleFormChange('description', e.target.value)}
                 placeholder="Enter description..."
               />
             </div>
@@ -968,10 +974,11 @@ export default function AdminPanel() {
             <div>
               <Label htmlFor="price">Price (USD)</Label>
               <Input 
+                key={`price-${modalType}`}
                 id="price" 
                 type="number"
                 value={formData.price}
-                onChange={(e) => setFormData({...formData, price: e.target.value})}
+                onChange={(e) => handleFormChange('price', e.target.value)}
                 placeholder="0.00"
               />
             </div>
