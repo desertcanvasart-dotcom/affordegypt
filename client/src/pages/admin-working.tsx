@@ -149,9 +149,13 @@ export default function AdminWorking() {
       });
     },
     onError: (error: any) => {
+      const errorMessage = error.message?.includes('violates foreign key constraint') 
+        ? "Cannot delete city - it has related add-ons or attractions. Please remove them first."
+        : error.message || "Failed to delete city";
+      
       toast({
-        title: "Error",
-        description: error.message || "Failed to delete city",
+        title: "Cannot Delete City",
+        description: errorMessage,
         variant: "destructive",
       });
     },
