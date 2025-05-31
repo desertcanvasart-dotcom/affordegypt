@@ -171,18 +171,27 @@ export default function AdminWorking() {
   // Generic mutations for all entity types
   const createMutation = useMutation({
     mutationFn: async ({ type, data }: { type: string; data: any }) => {
-      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const endpoint = type === 'addon' ? 'addons' : 
+                     type === 'city' ? 'cities' :
+                     type === 'vehicle' ? 'vehicle-types' :
+                     type === 'guide' ? 'guide-rates' : 'addons';
       const response = await fetch(`/api/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error(`Failed to create ${type}`);
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error);
+      }
       return response.json();
     },
     onSuccess: (data, variables) => {
-      const endpoint = variables.type === 'addon' ? 'addons' : `${variables.type}s`;
-      queryClient.invalidateQueries({ queryKey: [`/api/${endpoint}`] });
+      const endpoint = variables.type === 'addon' ? '/api/addons' : 
+                     variables.type === 'city' ? '/api/cities' :
+                     variables.type === 'vehicle' ? '/api/vehicle-types' :
+                     variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
+      queryClient.invalidateQueries({ queryKey: [endpoint] });
       setIsAddModalOpen(false);
       resetForm();
       toast({
@@ -201,18 +210,27 @@ export default function AdminWorking() {
 
   const updateMutation = useMutation({
     mutationFn: async ({ type, id, data }: { type: string; id: number; data: any }) => {
-      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const endpoint = type === 'addon' ? 'addons' : 
+                     type === 'city' ? 'cities' :
+                     type === 'vehicle' ? 'vehicle-types' :
+                     type === 'guide' ? 'guide-rates' : 'addons';
       const response = await fetch(`/api/${endpoint}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error(`Failed to update ${type}`);
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error);
+      }
       return response.json();
     },
     onSuccess: (data, variables) => {
-      const endpoint = variables.type === 'addon' ? 'addons' : `${variables.type}s`;
-      queryClient.invalidateQueries({ queryKey: [`/api/${endpoint}`] });
+      const endpoint = variables.type === 'addon' ? '/api/addons' : 
+                     variables.type === 'city' ? '/api/cities' :
+                     variables.type === 'vehicle' ? '/api/vehicle-types' :
+                     variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
+      queryClient.invalidateQueries({ queryKey: [endpoint] });
       setEditingItem(null);
       toast({
         title: "Success",
@@ -310,34 +328,34 @@ export default function AdminWorking() {
     switch (type) {
       case 'vehicle':
         return {
-          name: formData.name,
-          description: formData.description,
-          paxMin: parseInt(formData.paxMin),
-          paxMax: parseInt(formData.paxMax)
+          name: formData.name || '',
+          description: formData.description || '',
+          paxMin: parseInt(formData.paxMin) || 1,
+          paxMax: parseInt(formData.paxMax) || 4
         };
       case 'guide':
         return {
-          language: formData.language,
-          pricePerDay: parseFloat(formData.pricePerDay),
-          pricePerHour: parseFloat(formData.pricePerHour),
+          language: formData.name || formData.language || '',
+          pricePerDay: parseFloat(formData.pricePerDay) || 50,
+          pricePerHour: parseFloat(formData.pricePerHour) || 8,
           cityId: formData.cityId ? parseInt(formData.cityId) : null
         };
       case 'addon':
         return {
-          name: formData.name,
-          description: formData.description,
-          price: parseFloat(formData.price),
-          unitType: formData.unitType,
-          category: formData.category,
+          name: formData.name || '',
+          description: formData.description || '',
+          price: formData.price ? parseFloat(formData.price).toString() : '25.00',
+          unitType: formData.unitType || 'per_person',
+          category: formData.category || 'experience',
           cityId: formData.cityId ? parseInt(formData.cityId) : null,
-          isActive: formData.isActive
+          isActive: formData.isActive !== undefined ? formData.isActive : true
         };
       default: // city
         return {
-          name: formData.name,
-          description: formData.description,
-          slug: formData.slug,
-          isActive: formData.isActive
+          name: formData.name || '',
+          description: formData.description || '',
+          slug: formData.slug || formData.name?.toLowerCase().replace(/\s+/g, '-') || '',
+          isActive: formData.isActive !== undefined ? formData.isActive : true
         };
     }
   };
