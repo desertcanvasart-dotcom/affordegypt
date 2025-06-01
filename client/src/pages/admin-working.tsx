@@ -343,8 +343,8 @@ export default function AdminWorking() {
       case 'guide':
         return {
           language: formData.name || '',
-          pricePerDay: parseFloat(formData.pricePerDay) || 50,
-          pricePerHour: parseFloat(formData.pricePerHour) || 8,
+          hourlyPrice: parseFloat(formData.pricePerHour) || 8,
+          name: formData.description || 'Guide Name',
           cityId: formData.cityId ? parseInt(formData.cityId) : 1
         };
       case 'addon':
@@ -816,6 +816,14 @@ export default function AdminWorking() {
                   {modalType === 'guide' && (
                     <>
                       <div>
+                        <label className="block text-sm font-medium mb-1">Guide Name</label>
+                        <Input
+                          value={formData.description}
+                          onChange={(e) => setFormData({...formData, description: e.target.value})}
+                          placeholder="Ahmed Hassan"
+                        />
+                      </div>
+                      <div>
                         <label className="block text-sm font-medium mb-1">City</label>
                         <select
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
@@ -828,27 +836,15 @@ export default function AdminWorking() {
                           ))}
                         </select>
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Price per Day</label>
-                          <Input
-                            type="number"
-                            step="0.01"
-                            value={formData.pricePerDay}
-                            onChange={(e) => setFormData({...formData, pricePerDay: e.target.value})}
-                            placeholder="50.00"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Price per Hour</label>
-                          <Input
-                            type="number"
-                            step="0.01"
-                            value={formData.pricePerHour}
-                            onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
-                            placeholder="8.00"
-                          />
-                        </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Price per Hour</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.pricePerHour}
+                          onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                          placeholder="8.00"
+                        />
                       </div>
                     </>
                   )}
