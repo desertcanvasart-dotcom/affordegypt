@@ -342,10 +342,10 @@ export default function AdminWorking() {
         };
       case 'guide':
         return {
-          language: formData.name || formData.language || '',
+          language: formData.name || '',
           pricePerDay: parseFloat(formData.pricePerDay) || 50,
           pricePerHour: parseFloat(formData.pricePerHour) || 8,
-          cityId: formData.cityId ? parseInt(formData.cityId) : null
+          cityId: formData.cityId ? parseInt(formData.cityId) : 1
         };
       case 'addon':
         return {
@@ -814,28 +814,43 @@ export default function AdminWorking() {
 
                   {/* Guide-specific fields */}
                   {modalType === 'guide' && (
-                    <div className="grid grid-cols-2 gap-4">
+                    <>
                       <div>
-                        <label className="block text-sm font-medium mb-1">Price per Day</label>
-                        <Input
-                          type="number"
-                          step="0.01"
-                          value={formData.pricePerDay}
-                          onChange={(e) => setFormData({...formData, pricePerDay: e.target.value})}
-                          placeholder="50.00"
-                        />
+                        <label className="block text-sm font-medium mb-1">City</label>
+                        <select
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                          value={formData.cityId}
+                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                        >
+                          <option value="">Select City</option>
+                          {cities.map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-1">Price per Hour</label>
-                        <Input
-                          type="number"
-                          step="0.01"
-                          value={formData.pricePerHour}
-                          onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
-                          placeholder="8.00"
-                        />
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Price per Day</label>
+                          <Input
+                            type="number"
+                            step="0.01"
+                            value={formData.pricePerDay}
+                            onChange={(e) => setFormData({...formData, pricePerDay: e.target.value})}
+                            placeholder="50.00"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Price per Hour</label>
+                          <Input
+                            type="number"
+                            step="0.01"
+                            value={formData.pricePerHour}
+                            onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                            placeholder="8.00"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </>
                   )}
 
                   {/* Add-on specific fields */}
