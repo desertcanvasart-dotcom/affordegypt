@@ -303,6 +303,7 @@ export default function AdminWorking() {
   const handleEdit = (item: any, type: 'city' | 'vehicle' | 'guide' | 'addon') => {
     setEditingItem(item);
     setModalType(type);
+    setIsAddModalOpen(true);
     setFormData({
       name: item.name || "",
       description: item.description || "",
