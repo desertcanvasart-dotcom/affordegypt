@@ -554,10 +554,19 @@ export default function AdminWorking() {
                       <TableCell className="text-gray-600">{vehicle.description}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleEdit(vehicle, 'vehicle')}
+                          >
                             <Edit2 className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" variant="outline" className="text-red-600">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-red-600"
+                            onClick={() => deleteMutation.mutate({ type: 'vehicle', id: vehicle.id })}
+                          >
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -616,10 +625,19 @@ export default function AdminWorking() {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleEdit(guide, 'guide')}
+                          >
                             <Edit2 className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" variant="outline" className="text-red-600">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-red-600"
+                            onClick={() => deleteMutation.mutate({ type: 'guide', id: guide.id })}
+                          >
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -681,10 +699,19 @@ export default function AdminWorking() {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleEdit(addon, 'addon')}
+                          >
                             <Edit2 className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" variant="outline" className="text-red-600">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-red-600"
+                            onClick={() => deleteMutation.mutate({ type: 'addon', id: addon.id })}
+                          >
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
