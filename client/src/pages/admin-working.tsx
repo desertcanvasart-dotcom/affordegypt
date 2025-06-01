@@ -248,7 +248,10 @@ export default function AdminWorking() {
 
   const deleteMutation = useMutation({
     mutationFn: async ({ type, id }: { type: string; id: number }) => {
-      const endpoint = type === 'addon' ? 'addons' : `${type}s`;
+      const endpoint = type === 'addon' ? 'addons' : 
+                     type === 'city' ? 'cities' :
+                     type === 'vehicle' ? 'vehicle-types' :
+                     type === 'guide' ? 'guide-rates' : 'addons';
       const response = await fetch(`/api/${endpoint}/${id}`, {
         method: "DELETE",
       });
@@ -256,8 +259,11 @@ export default function AdminWorking() {
       return response.json();
     },
     onSuccess: (data, variables) => {
-      const endpoint = variables.type === 'addon' ? 'addons' : `${variables.type}s`;
-      queryClient.invalidateQueries({ queryKey: [`/api/${endpoint}`] });
+      const endpoint = variables.type === 'addon' ? '/api/addons' : 
+                     variables.type === 'city' ? '/api/cities' :
+                     variables.type === 'vehicle' ? '/api/vehicle-types' :
+                     variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
+      queryClient.invalidateQueries({ queryKey: [endpoint] });
       toast({
         title: "Success",
         description: `${variables.type} deleted successfully`,
