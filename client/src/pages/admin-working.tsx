@@ -403,51 +403,18 @@ export default function AdminWorking() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Cities Management</CardTitle>
-                <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-                  <DialogTrigger asChild>
-                    <Button className="bg-teal-600 hover:bg-teal-700" onClick={resetForm}>
-                      <Plus className="w-4 h-4 mr-2" />
-                      Add City
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Add New City</DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                      <div>
-                        <Label htmlFor="name">City Name</Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="Enter city name"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="slug">Slug</Label>
-                        <Input
-                          id="slug"
-                          value={formData.slug}
-                          onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                          placeholder="Enter city slug"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="description">Description</Label>
-                        <Input
-                          id="description"
-                          value={formData.description}
-                          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                          placeholder="Enter description"
-                        />
-                      </div>
-                      <Button onClick={handleSave} className="w-full bg-teal-600 hover:bg-teal-700">
-                        Create City
-                      </Button>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <Button 
+                  className="bg-teal-600 hover:bg-teal-700"
+                  onClick={() => {
+                    setModalType('city');
+                    setEditingItem(null);
+                    setIsAddModalOpen(true);
+                    resetForm();
+                  }}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add City
+                </Button>
               </div>
             </CardHeader>
             <CardContent>
@@ -483,7 +450,7 @@ export default function AdminWorking() {
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            onClick={() => handleEdit(city)}
+                            onClick={() => handleEdit(city, 'city')}
                           >
                             <Edit2 className="w-4 h-4" />
                           </Button>
@@ -491,7 +458,7 @@ export default function AdminWorking() {
                             size="sm" 
                             variant="outline" 
                             className="text-red-600"
-                            onClick={() => handleDelete(city.id)}
+                            onClick={() => deleteMutation.mutate({ type: 'city', id: city.id })}
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>
@@ -728,6 +695,180 @@ export default function AdminWorking() {
               </Table>
             </CardContent>
           </Card>
+
+          {/* Universal Modal for Add/Edit Operations */}
+          {isAddModalOpen && (
+            <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>
+                    {editingItem ? 'Edit' : 'Add New'} {
+                      modalType === 'city' ? 'City' :
+                      modalType === 'vehicle' ? 'Vehicle' :
+                      modalType === 'guide' ? 'Guide' : 'Service'
+                    }
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  {/* Common Name field */}
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      {modalType === 'guide' ? 'Language' : 'Name'}
+                    </label>
+                    <Input
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      placeholder={modalType === 'guide' ? 'English' : 'Enter name'}
+                    />
+                  </div>
+
+                  {/* City-specific fields */}
+                  {modalType === 'city' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Description</label>
+                        <Input
+                          value={formData.description}
+                          onChange={(e) => setFormData({...formData, description: e.target.value})}
+                          placeholder="City description"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Slug</label>
+                        <Input
+                          value={formData.slug}
+                          onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                          placeholder="city-name"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {/* Vehicle-specific fields */}
+                  {modalType === 'vehicle' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Description</label>
+                        <Input
+                          value={formData.description}
+                          onChange={(e) => setFormData({...formData, description: e.target.value})}
+                          placeholder="Vehicle description"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Min Passengers</label>
+                          <Input
+                            type="number"
+                            value={formData.paxMin}
+                            onChange={(e) => setFormData({...formData, paxMin: e.target.value})}
+                            placeholder="1"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Max Passengers</label>
+                          <Input
+                            type="number"
+                            value={formData.paxMax}
+                            onChange={(e) => setFormData({...formData, paxMax: e.target.value})}
+                            placeholder="4"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Guide-specific fields */}
+                  {modalType === 'guide' && (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Price per Day</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.pricePerDay}
+                          onChange={(e) => setFormData({...formData, pricePerDay: e.target.value})}
+                          placeholder="50.00"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Price per Hour</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.pricePerHour}
+                          onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                          placeholder="8.00"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Add-on specific fields */}
+                  {modalType === 'addon' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Description</label>
+                        <Input
+                          value={formData.description}
+                          onChange={(e) => setFormData({...formData, description: e.target.value})}
+                          placeholder="Service description"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Price</label>
+                          <Input
+                            type="number"
+                            step="0.01"
+                            value={formData.price}
+                            onChange={(e) => setFormData({...formData, price: e.target.value})}
+                            placeholder="25.00"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Unit Type</label>
+                          <Input
+                            value={formData.unitType}
+                            onChange={(e) => setFormData({...formData, unitType: e.target.value})}
+                            placeholder="per_person"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Category</label>
+                        <Input
+                          value={formData.category}
+                          onChange={(e) => setFormData({...formData, category: e.target.value})}
+                          placeholder="experience"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {/* Active checkbox for applicable types */}
+                  {(modalType === 'city' || modalType === 'addon') && (
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.isActive}
+                        onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+                      />
+                      <label className="text-sm">Active</label>
+                    </div>
+                  )}
+                </div>
+                <div className="flex justify-end space-x-2 mt-6">
+                  <Button variant="outline" onClick={() => setIsAddModalOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button onClick={handleSave} className="bg-teal-600 hover:bg-teal-700">
+                    {editingItem ? 'Update' : 'Create'}
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
       </div>
     </div>
