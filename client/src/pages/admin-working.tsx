@@ -16,7 +16,7 @@ export default function AdminWorking() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon'>('city');
+  const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon' | 'attraction'>('city');
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -30,7 +30,11 @@ export default function AdminWorking() {
     cityId: "",
     price: "",
     unitType: "",
-    category: ""
+    category: "",
+    duration: "",
+    ticketPrice: "",
+    openingHours: "",
+    location: ""
   });
 
   const { toast } = useToast();
@@ -79,6 +83,12 @@ export default function AdminWorking() {
   // Fetch guides from database  
   const { data: guides = [] } = useQuery({
     queryKey: ["/api/guide-rates"],
+    enabled: isAuthenticated,
+  });
+
+  // Fetch attractions from database  
+  const { data: attractions = [] } = useQuery({
+    queryKey: ["/api/attractions"],
     enabled: isAuthenticated,
   });
 
@@ -300,11 +310,15 @@ export default function AdminWorking() {
       cityId: "",
       price: "",
       unitType: "",
-      category: ""
+      category: "",
+      duration: "",
+      ticketPrice: "",
+      openingHours: "",
+      location: ""
     });
   };
 
-  const handleEdit = (item: any, type: 'city' | 'vehicle' | 'guide' | 'addon') => {
+  const handleEdit = (item: any, type: 'city' | 'vehicle' | 'guide' | 'addon' | 'attraction') => {
     setEditingItem(item);
     setModalType(type);
     setIsAddModalOpen(true);
@@ -323,7 +337,11 @@ export default function AdminWorking() {
         cityId: item.cityId?.toString() || "",
         price: "",
         unitType: "",
-        category: ""
+        category: "",
+        duration: "",
+        ticketPrice: "",
+        openingHours: "",
+        location: ""
       });
     } else {
       setFormData({
@@ -339,7 +357,11 @@ export default function AdminWorking() {
         cityId: item.cityId?.toString() || "",
         price: item.price?.toString() || "",
         unitType: item.unitType || "",
-        category: item.category || ""
+        category: item.category || "",
+        duration: item.duration || "",
+        ticketPrice: item.ticketPrice?.toString() || "",
+        openingHours: item.openingHours || "",
+        location: item.location || ""
       });
     }
   };
