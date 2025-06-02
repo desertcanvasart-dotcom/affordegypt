@@ -233,6 +233,8 @@ export default function AdminWorking() {
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       setEditingItem(null);
       setIsAddModalOpen(false);
+      setModalType('city');
+      resetForm();
       toast({
         title: "Success",
         description: `${variables.type} updated successfully`,
@@ -316,7 +318,7 @@ export default function AdminWorking() {
         paxMax: "",
         language: item.language || "",
         pricePerDay: "",
-        pricePerHour: item.hourlyPrice?.toString() || "",
+        pricePerHour: (parseFloat(item.hourlyPrice) * 8).toFixed(2) || "",
         cityId: item.cityId?.toString() || "",
         price: "",
         unitType: "",
@@ -363,7 +365,7 @@ export default function AdminWorking() {
       case 'guide':
         return {
           language: formData.name || '',
-          hourlyPrice: parseFloat(formData.pricePerHour) || 8,
+          hourlyPrice: (parseFloat(formData.pricePerHour) / 8) || 8,
           name: formData.description || 'Guide Name',
           cityId: formData.cityId ? parseInt(formData.cityId) : 1
         };
