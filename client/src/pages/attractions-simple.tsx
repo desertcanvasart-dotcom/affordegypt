@@ -80,10 +80,8 @@ export default function AttractionsPage() {
       description: formData.description,
       cityId: parseInt(formData.cityId),
       category: formData.category,
-      duration: formData.duration,
+      duration: parseInt(formData.duration) || 2, // Convert to integer hours
       ticketPrice: parseFloat(formData.ticketPrice) || 0,
-      openingHours: formData.openingHours,
-      location: formData.location,
       isActive: true
     };
     createMutation.mutate(data);
@@ -184,12 +182,13 @@ export default function AttractionsPage() {
                       </div>
 
                       <div>
-                        <Label htmlFor="duration">Duration</Label>
+                        <Label htmlFor="duration">Duration (hours)</Label>
                         <Input
                           id="duration"
+                          type="number"
                           value={formData.duration}
                           onChange={(e) => setFormData({...formData, duration: e.target.value})}
-                          placeholder="2 hours"
+                          placeholder="2"
                         />
                       </div>
 
@@ -202,26 +201,6 @@ export default function AttractionsPage() {
                           value={formData.ticketPrice}
                           onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
                           placeholder="25.00"
-                        />
-                      </div>
-
-                      <div>
-                        <Label htmlFor="openingHours">Opening Hours</Label>
-                        <Input
-                          id="openingHours"
-                          value={formData.openingHours}
-                          onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
-                          placeholder="9:00 AM - 5:00 PM"
-                        />
-                      </div>
-
-                      <div>
-                        <Label htmlFor="location">Location</Label>
-                        <Input
-                          id="location"
-                          value={formData.location}
-                          onChange={(e) => setFormData({...formData, location: e.target.value})}
-                          placeholder="Giza Plateau"
                         />
                       </div>
 
