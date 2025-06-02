@@ -193,6 +193,7 @@ export default function AdminWorking() {
                      variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       setIsAddModalOpen(false);
+      setModalType('city');
       resetForm();
       toast({
         title: "Success",
@@ -762,7 +763,14 @@ export default function AdminWorking() {
 
           {/* Universal Modal for Add/Edit Operations */}
           {isAddModalOpen && (
-            <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+            <Dialog open={isAddModalOpen} onOpenChange={(open) => {
+              setIsAddModalOpen(open);
+              if (!open) {
+                setModalType('city');
+                setEditingItem(null);
+                resetForm();
+              }
+            }}>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>
