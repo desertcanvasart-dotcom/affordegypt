@@ -783,6 +783,84 @@ export default function AdminWorking() {
             </CardContent>
           </Card>
 
+          {/* Attractions Management */}
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-lg font-semibold">Attractions</CardTitle>
+              <Button 
+                onClick={() => {
+                  setModalType('attraction');
+                  setEditingItem(null);
+                  setIsAddModalOpen(true);
+                  resetForm();
+                }}
+                className="bg-teal-600 hover:bg-teal-700"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Attraction
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>City</TableHead>
+                    <TableHead>Duration</TableHead>
+                    <TableHead>Ticket Price</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(attractions as any[]).map((attraction: any) => (
+                    <TableRow key={attraction.id}>
+                      <TableCell>
+                        <div>
+                          <div className="font-medium">{attraction.name}</div>
+                          {attraction.description && (
+                            <div className="text-sm text-gray-500 max-w-xs truncate">
+                              {attraction.description}
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {(cities as any[]).find((c: any) => c.id === attraction.cityId)?.name || 'Unknown'}
+                      </TableCell>
+                      <TableCell>{attraction.duration || 'N/A'}</TableCell>
+                      <TableCell className="font-mono">${attraction.ticketPrice || 0}</TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="bg-purple-50 text-purple-700">
+                          {attraction.category || 'General'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleEdit(attraction, 'attraction')}
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-red-600"
+                            onClick={() => deleteMutation.mutate({ type: 'attraction', id: attraction.id })}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
           {/* Universal Modal for Add/Edit Operations */}
           {isAddModalOpen && (
             <Dialog open={isAddModalOpen} onOpenChange={(open) => {
@@ -799,7 +877,8 @@ export default function AdminWorking() {
                     {editingItem ? 'Edit' : 'Add New'} {
                       modalType === 'city' ? 'City' :
                       modalType === 'vehicle' ? 'Vehicle' :
-                      modalType === 'guide' ? 'Guide' : 'Service'
+                      modalType === 'guide' ? 'Guide' :
+                      modalType === 'attraction' ? 'Attraction' : 'Service'
                     }
                   </DialogTitle>
                 </DialogHeader>
@@ -904,6 +983,67 @@ export default function AdminWorking() {
                           value={formData.pricePerHour}
                           onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
                           placeholder="64.00"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {/* Attraction-specific fields */}
+                  {modalType === 'attraction' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">City</label>
+                        <select
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                          value={formData.cityId}
+                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                        >
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Category</label>
+                        <Input
+                          value={formData.category}
+                          onChange={(e) => setFormData({...formData, category: e.target.value})}
+                          placeholder="Historical, Cultural, Adventure"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Duration</label>
+                        <Input
+                          value={formData.duration}
+                          onChange={(e) => setFormData({...formData, duration: e.target.value})}
+                          placeholder="2 hours"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Ticket Price ($)</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.ticketPrice}
+                          onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
+                          placeholder="25.00"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Opening Hours</label>
+                        <Input
+                          value={formData.openingHours}
+                          onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
+                          placeholder="9:00 AM - 5:00 PM"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Location</label>
+                        <Input
+                          value={formData.location}
+                          onChange={(e) => setFormData({...formData, location: e.target.value})}
+                          placeholder="Giza Plateau"
                         />
                       </div>
                     </>
