@@ -1091,20 +1091,31 @@ export default function AdminWorking() {
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-1">Unit Type</label>
-                          <Input
+                          <select
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                             value={formData.unitType}
                             onChange={(e) => setFormData({...formData, unitType: e.target.value})}
-                            placeholder="per_person"
-                          />
+                          >
+                            <option value="">Select Unit Type</option>
+                            <option value="per_person">Per Person</option>
+                            <option value="per_unit">Per Unit</option>
+                            <option value="per_trip">Per Trip</option>
+                          </select>
                         </div>
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-1">Category</label>
-                        <Input
+                        <select
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                           value={formData.category}
                           onChange={(e) => setFormData({...formData, category: e.target.value})}
-                          placeholder="experience"
-                        />
+                        >
+                          <option value="">Select Category</option>
+                          <option value="transport">Transport</option>
+                          <option value="experience">Experience</option>
+                          <option value="meal">Meal</option>
+                          <option value="ticket">Ticket</option>
+                        </select>
                       </div>
                     </>
                   )}
