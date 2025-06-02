@@ -304,21 +304,40 @@ export default function AdminWorking() {
     setEditingItem(item);
     setModalType(type);
     setIsAddModalOpen(true);
-    setFormData({
-      name: item.name || "",
-      description: item.description || "",
-      slug: item.slug || "",
-      isActive: item.isActive ?? true,
-      paxMin: item.paxMin?.toString() || "",
-      paxMax: item.paxMax?.toString() || "",
-      language: item.language || "",
-      pricePerDay: item.pricePerDay?.toString() || "",
-      pricePerHour: item.pricePerHour?.toString() || "",
-      cityId: item.cityId?.toString() || "",
-      price: item.price?.toString() || "",
-      unitType: item.unitType || "",
-      category: item.category || ""
-    });
+    
+    if (type === 'guide') {
+      setFormData({
+        name: item.language || "",
+        description: item.name || "",
+        slug: "",
+        isActive: true,
+        paxMin: "",
+        paxMax: "",
+        language: item.language || "",
+        pricePerDay: "",
+        pricePerHour: item.hourlyPrice?.toString() || "",
+        cityId: item.cityId?.toString() || "",
+        price: "",
+        unitType: "",
+        category: ""
+      });
+    } else {
+      setFormData({
+        name: item.name || "",
+        description: item.description || "",
+        slug: item.slug || "",
+        isActive: item.isActive ?? true,
+        paxMin: item.paxMin?.toString() || "",
+        paxMax: item.paxMax?.toString() || "",
+        language: item.language || "",
+        pricePerDay: item.pricePerDay?.toString() || "",
+        pricePerHour: item.pricePerHour?.toString() || "",
+        cityId: item.cityId?.toString() || "",
+        price: item.price?.toString() || "",
+        unitType: item.unitType || "",
+        category: item.category || ""
+      });
+    }
   };
 
   const handleSave = () => {
@@ -608,8 +627,9 @@ export default function AdminWorking() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Language</TableHead>
-                    <TableHead>Price per Day</TableHead>
-                    <TableHead>Availability</TableHead>
+                    <TableHead>Guide Name</TableHead>
+                    <TableHead>Price per Hour</TableHead>
+                    <TableHead>City</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -626,9 +646,12 @@ export default function AdminWorking() {
                           <span className="font-medium">{guide.language}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="font-mono">${guide.pricePerDay}</TableCell>
+                      <TableCell>{guide.name}</TableCell>
+                      <TableCell className="font-mono">${guide.hourlyPrice}</TableCell>
                       <TableCell>
-                        <Badge className="bg-green-100 text-green-800">{guide.availability}</Badge>
+                        <Badge className="bg-blue-100 text-blue-800">
+                          {cities.find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}
+                        </Badge>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
