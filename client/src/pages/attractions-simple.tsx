@@ -3,13 +3,26 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ArrowLeft, Plus } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 
 export default function AttractionsPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    cityId: "",
+    category: "",
+    duration: "",
+    ticketPrice: "",
+    openingHours: "",
+    location: ""
+  });
   
   const { data: attractions = [] } = useQuery({
     queryKey: ["/api/attractions"],
@@ -18,6 +31,63 @@ export default function AttractionsPage() {
   const { data: cities = [] } = useQuery({
     queryKey: ["/api/cities"],
   });
+
+  const createMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await fetch("/api/attractions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error("Failed to create attraction");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/attractions"] });
+      setIsModalOpen(false);
+      resetForm();
+      toast({
+        title: "Success",
+        description: "Attraction created successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to create attraction",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      description: "",
+      cityId: "",
+      category: "",
+      duration: "",
+      ticketPrice: "",
+      openingHours: "",
+      location: ""
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const data = {
+      name: formData.name,
+      description: formData.description,
+      cityId: parseInt(formData.cityId),
+      category: formData.category,
+      duration: formData.duration,
+      ticketPrice: parseFloat(formData.ticketPrice) || 0,
+      openingHours: formData.openingHours,
+      location: formData.location,
+      isActive: true
+    };
+    createMutation.mutate(data);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,9 +119,123 @@ export default function AttractionsPage() {
               <div className="space-y-4">
                 <p>Total Attractions: {Array.isArray(attractions) ? attractions.length : 0}</p>
                 <p>Total Cities: {Array.isArray(cities) ? cities.length : 0}</p>
-                <Button className="bg-teal-600 hover:bg-teal-700">
-                  Add New Attraction
-                </Button>
+                
+                <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => {
+                      resetForm();
+                      setIsModalOpen(true);
+                    }}>
+                      <Plus className="w-4 h-4 mr-2" />
+                      Add New Attraction
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md">
+                    <DialogHeader>
+                      <DialogTitle>Add New Attraction</DialogTitle>
+                    </DialogHeader>
+                    
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                          id="name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          placeholder="Pyramids of Giza"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="description">Description</Label>
+                        <Input
+                          id="description"
+                          value={formData.description}
+                          onChange={(e) => setFormData({...formData, description: e.target.value})}
+                          placeholder="Ancient pyramids complex"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="cityId">City</Label>
+                        <select
+                          id="cityId"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                          value={formData.cityId}
+                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                          required
+                        >
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="category">Category</Label>
+                        <Input
+                          id="category"
+                          value={formData.category}
+                          onChange={(e) => setFormData({...formData, category: e.target.value})}
+                          placeholder="Historical"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="duration">Duration</Label>
+                        <Input
+                          id="duration"
+                          value={formData.duration}
+                          onChange={(e) => setFormData({...formData, duration: e.target.value})}
+                          placeholder="2 hours"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="ticketPrice">Ticket Price ($)</Label>
+                        <Input
+                          id="ticketPrice"
+                          type="number"
+                          step="0.01"
+                          value={formData.ticketPrice}
+                          onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
+                          placeholder="25.00"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="openingHours">Opening Hours</Label>
+                        <Input
+                          id="openingHours"
+                          value={formData.openingHours}
+                          onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
+                          placeholder="9:00 AM - 5:00 PM"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="location">Location</Label>
+                        <Input
+                          id="location"
+                          value={formData.location}
+                          onChange={(e) => setFormData({...formData, location: e.target.value})}
+                          placeholder="Giza Plateau"
+                        />
+                      </div>
+
+                      <div className="flex justify-end space-x-2 pt-4">
+                        <Button type="button" variant="outline" onClick={() => setIsModalOpen(false)}>
+                          Cancel
+                        </Button>
+                        <Button type="submit" className="bg-teal-600 hover:bg-teal-700" disabled={createMutation.isPending}>
+                          {createMutation.isPending ? "Creating..." : "Create Attraction"}
+                        </Button>
+                      </div>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               </div>
             </CardContent>
           </Card>
