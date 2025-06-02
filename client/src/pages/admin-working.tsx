@@ -408,6 +408,18 @@ export default function AdminWorking() {
           cityId: formData.cityId ? parseInt(formData.cityId) : null,
           isActive: formData.isActive !== undefined ? formData.isActive : true
         };
+      case 'attraction':
+        return {
+          name: formData.name || '',
+          description: formData.description || '',
+          cityId: formData.cityId ? parseInt(formData.cityId) : 1,
+          category: formData.category || 'Historical',
+          duration: formData.duration || '',
+          ticketPrice: formData.ticketPrice ? parseFloat(formData.ticketPrice) : 0,
+          openingHours: formData.openingHours || '',
+          location: formData.location || '',
+          isActive: formData.isActive !== undefined ? formData.isActive : true
+        };
       default: // city
         return {
           name: formData.name || '',
