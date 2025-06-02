@@ -184,7 +184,8 @@ export default function AdminWorking() {
       const endpoint = type === 'addon' ? 'addons' : 
                      type === 'city' ? 'cities' :
                      type === 'vehicle' ? 'vehicle-types' :
-                     type === 'guide' ? 'guide-rates' : 'addons';
+                     type === 'guide' ? 'guide-rates' :
+                     type === 'attraction' ? 'attractions' : 'addons';
       const response = await fetch(`/api/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -200,7 +201,8 @@ export default function AdminWorking() {
       const endpoint = variables.type === 'addon' ? '/api/addons' : 
                      variables.type === 'city' ? '/api/cities' :
                      variables.type === 'vehicle' ? '/api/vehicle-types' :
-                     variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
+                     variables.type === 'guide' ? '/api/guide-rates' :
+                     variables.type === 'attraction' ? '/api/attractions' : '/api/addons';
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       setIsAddModalOpen(false);
       setModalType('city');
@@ -224,7 +226,8 @@ export default function AdminWorking() {
       const endpoint = type === 'addon' ? 'addons' : 
                      type === 'city' ? 'cities' :
                      type === 'vehicle' ? 'vehicle-types' :
-                     type === 'guide' ? 'guide-rates' : 'addons';
+                     type === 'guide' ? 'guide-rates' :
+                     type === 'attraction' ? 'attractions' : 'addons';
       const response = await fetch(`/api/${endpoint}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -240,7 +243,8 @@ export default function AdminWorking() {
       const endpoint = variables.type === 'addon' ? '/api/addons' : 
                      variables.type === 'city' ? '/api/cities' :
                      variables.type === 'vehicle' ? '/api/vehicle-types' :
-                     variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
+                     variables.type === 'guide' ? '/api/guide-rates' :
+                     variables.type === 'attraction' ? '/api/attractions' : '/api/addons';
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       setEditingItem(null);
       setIsAddModalOpen(false);
@@ -265,7 +269,8 @@ export default function AdminWorking() {
       const endpoint = type === 'addon' ? 'addons' : 
                      type === 'city' ? 'cities' :
                      type === 'vehicle' ? 'vehicle-types' :
-                     type === 'guide' ? 'guide-rates' : 'addons';
+                     type === 'guide' ? 'guide-rates' :
+                     type === 'attraction' ? 'attractions' : 'addons';
       const response = await fetch(`/api/${endpoint}/${id}`, {
         method: "DELETE",
       });
@@ -276,7 +281,8 @@ export default function AdminWorking() {
       const endpoint = variables.type === 'addon' ? '/api/addons' : 
                      variables.type === 'city' ? '/api/cities' :
                      variables.type === 'vehicle' ? '/api/vehicle-types' :
-                     variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
+                     variables.type === 'guide' ? '/api/guide-rates' :
+                     variables.type === 'attraction' ? '/api/attractions' : '/api/addons';
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       toast({
         title: "Success",
