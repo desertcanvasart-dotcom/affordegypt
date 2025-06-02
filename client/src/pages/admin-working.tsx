@@ -232,6 +232,7 @@ export default function AdminWorking() {
                      variables.type === 'guide' ? '/api/guide-rates' : '/api/addons';
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       setEditingItem(null);
+      setIsAddModalOpen(false);
       toast({
         title: "Success",
         description: `${variables.type} updated successfully`,
@@ -628,7 +629,7 @@ export default function AdminWorking() {
                   <TableRow>
                     <TableHead>Language</TableHead>
                     <TableHead>Guide Name</TableHead>
-                    <TableHead>Price per Hour</TableHead>
+                    <TableHead>Price per Day</TableHead>
                     <TableHead>City</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
@@ -647,7 +648,7 @@ export default function AdminWorking() {
                         </div>
                       </TableCell>
                       <TableCell>{guide.name}</TableCell>
-                      <TableCell className="font-mono">${guide.hourlyPrice}</TableCell>
+                      <TableCell className="font-mono">${(parseFloat(guide.hourlyPrice) * 8).toFixed(2)}</TableCell>
                       <TableCell>
                         <Badge className="bg-blue-100 text-blue-800">
                           {cities.find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}
@@ -666,7 +667,11 @@ export default function AdminWorking() {
                             size="sm" 
                             variant="outline" 
                             className="text-red-600"
-                            onClick={() => deleteMutation.mutate({ type: 'guide', id: guide.id })}
+                            onClick={() => {
+                              if (confirm(`Are you sure you want to delete this ${guide.language} guide (${guide.name})?`)) {
+                                deleteMutation.mutate({ type: 'guide', id: guide.id });
+                              }
+                            }}
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>
@@ -860,13 +865,13 @@ export default function AdminWorking() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">Price per Hour</label>
+                        <label className="block text-sm font-medium mb-1">Price per Day</label>
                         <Input
                           type="number"
                           step="0.01"
                           value={formData.pricePerHour}
                           onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
-                          placeholder="8.00"
+                          placeholder="64.00"
                         />
                       </div>
                     </>
