@@ -325,6 +325,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Multi-city pricing tool endpoints
+  app.get("/api/pricing/routes", async (req, res) => {
+    try {
+      // Return all available routes from database
+      const routes = await storage.getRoutes();
+      res.json(routes);
+    } catch (error) {
+      console.error('Routes fetch error:', error);
+      res.status(500).json({ message: 'Failed to fetch routes' });
+    }
+  });
+
   app.get("/api/pricing/routes/:cityId", async (req, res) => {
     try {
       const { cityId } = req.params;
