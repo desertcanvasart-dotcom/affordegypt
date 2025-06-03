@@ -122,32 +122,34 @@ export default function AdminSidebar() {
 
   const handleEdit = (item: any, type: string) => {
     setEditingItem(item);
+    setModalType(type as any);
     setFormData({
       name: item.name || "",
       description: item.description || "",
       slug: item.slug || "",
       isActive: item.isActive !== undefined ? item.isActive : true,
-      paxMin: item.paxMin || "",
-      paxMax: item.paxMax || "",
+      paxMin: item.paxMin?.toString() || "",
+      paxMax: item.paxMax?.toString() || "",
       language: item.language || "",
-      pricePerDay: item.pricePerDay || "",
-      pricePerHour: item.pricePerHour || "",
-      cityId: item.cityId || "",
-      price: item.price || "",
+      pricePerDay: item.pricePerDay?.toString() || "",
+      pricePerHour: item.hourlyPrice?.toString() || "",
+      cityId: item.cityId?.toString() || "",
+      price: item.price?.toString() || "",
       unitType: item.unitType || "",
       category: item.category || "",
       duration: item.duration || "",
-      ticketPrice: item.ticketPrice || "",
+      ticketPrice: item.ticketPrice?.toString() || "",
       openingHours: item.openingHours || "",
       location: item.location || "",
       routeType: item.routeType || "",
-      fromCityId: item.fromCityId || "",
-      toCityId: item.toCityId || "",
+      fromCityId: item.fromCityId?.toString() || "",
+      toCityId: item.toCityId?.toString() || "",
       fromLocation: item.fromLocation || "",
       toLocation: item.toLocation || "",
-      km: item.km || "",
-      basePriceByVehicle: item.basePriceByVehicle || ""
+      km: item.km?.toString() || "",
+      basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {})
     });
+    setIsAddModalOpen(true);
   };
 
   const handleSave = async () => {
@@ -200,15 +202,20 @@ export default function AdminSidebar() {
         openingHours: formData.openingHours || '9:00 AM - 5:00 PM'
       };
 
-      const response = await fetch(endpoints[modalType as keyof typeof endpoints], {
-        method: 'POST',
+      const method = editingItem ? 'PUT' : 'POST';
+      const url = editingItem 
+        ? `${endpoints[modalType as keyof typeof endpoints]}/${editingItem.id}`
+        : endpoints[modalType as keyof typeof endpoints];
+
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) throw new Error('Failed to create');
+      if (!response.ok) throw new Error(editingItem ? 'Failed to update' : 'Failed to create');
 
       // Invalidate queries to refresh data
       queryClient.invalidateQueries({ queryKey: ['/api/cities'] });
@@ -218,12 +225,12 @@ export default function AdminSidebar() {
       queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
       queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
 
-      toast({ title: "Created successfully" });
+      toast({ title: editingItem ? "Updated successfully" : "Created successfully" });
       setIsAddModalOpen(false);
       setEditingItem(null);
       resetForm();
     } catch (error) {
-      toast({ title: "Failed to create", variant: "destructive" });
+      toast({ title: editingItem ? "Failed to update" : "Failed to create", variant: "destructive" });
     }
   };
 
@@ -730,6 +737,7 @@ export default function AdminSidebar() {
               <DialogTitle>Add {modalType === 'city' ? 'City' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'addon' ? 'Add-on' : modalType === 'route' ? 'Route' : 'Attraction'}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
+              {/* Common fields */}
               <div>
                 <label className="block text-sm font-medium mb-1">Name</label>
                 <Input
@@ -748,12 +756,248 @@ export default function AdminSidebar() {
                 />
               </div>
 
+              {/* City specific fields */}
+              {modalType === 'city' && (
+                <div>
+                  <label className="block text-sm font-medium mb-1">Slug</label>
+                  <Input
+                    value={formData.slug}
+                    onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                    placeholder="cairo"
+                  />
+                </div>
+              )}
+
+              {/* Vehicle specific fields */}
+              {modalType === 'vehicle' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Min Passengers</label>
+                    <Input
+                      type="number"
+                      value={formData.paxMin}
+                      onChange={(e) => setFormData({...formData, paxMin: e.target.value})}
+                      placeholder="1"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Max Passengers</label>
+                    <Input
+                      type="number"
+                      value={formData.paxMax}
+                      onChange={(e) => setFormData({...formData, paxMax: e.target.value})}
+                      placeholder="4"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Guide specific fields */}
+              {modalType === 'guide' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Language</label>
+                    <Input
+                      value={formData.language}
+                      onChange={(e) => setFormData({...formData, language: e.target.value})}
+                      placeholder="English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Hourly Price</label>
+                    <Input
+                      type="number"
+                      value={formData.pricePerHour}
+                      onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                      placeholder="25"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">City</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.cityId}
+                      onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                    >
+                      <option value="">Select City</option>
+                      {(cities as any[]).map((city: any) => (
+                        <option key={city.id} value={city.id}>{city.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Add-on specific fields */}
+              {modalType === 'addon' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Price</label>
+                    <Input
+                      type="number"
+                      value={formData.price}
+                      onChange={(e) => setFormData({...formData, price: e.target.value})}
+                      placeholder="15"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Unit Type</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.unitType}
+                      onChange={(e) => setFormData({...formData, unitType: e.target.value})}
+                    >
+                      <option value="per_unit">Per Unit</option>
+                      <option value="per_person">Per Person</option>
+                      <option value="per_trip">Per Trip</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Category</label>
+                    <Input
+                      value={formData.category}
+                      onChange={(e) => setFormData({...formData, category: e.target.value})}
+                      placeholder="service"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Attraction specific fields */}
+              {modalType === 'attraction' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">City</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.cityId}
+                      onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                    >
+                      <option value="">Select City</option>
+                      {(cities as any[]).map((city: any) => (
+                        <option key={city.id} value={city.id}>{city.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Ticket Price</label>
+                    <Input
+                      type="number"
+                      value={formData.ticketPrice}
+                      onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
+                      placeholder="20"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Duration</label>
+                    <Input
+                      value={formData.duration}
+                      onChange={(e) => setFormData({...formData, duration: e.target.value})}
+                      placeholder="2 hours"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Location</label>
+                    <Input
+                      value={formData.location}
+                      onChange={(e) => setFormData({...formData, location: e.target.value})}
+                      placeholder="Giza Plateau"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Opening Hours</label>
+                    <Input
+                      value={formData.openingHours}
+                      onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
+                      placeholder="9:00 AM - 5:00 PM"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Route specific fields */}
+              {modalType === 'route' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Route Type</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.routeType}
+                      onChange={(e) => setFormData({...formData, routeType: e.target.value})}
+                    >
+                      <option value="inter-city">Inter-city</option>
+                      <option value="intra-city">Intra-city</option>
+                    </select>
+                  </div>
+                  
+                  {formData.routeType === 'inter-city' ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-1">From City</label>
+                        <select
+                          className="w-full px-3 py-2 border rounded-md"
+                          value={formData.fromCityId}
+                          onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                        >
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">To City</label>
+                        <select
+                          className="w-full px-3 py-2 border rounded-md"
+                          value={formData.toCityId}
+                          onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                        >
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-1">From Location</label>
+                        <Input
+                          value={formData.fromLocation}
+                          onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
+                          placeholder="Hotel District"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">To Location</label>
+                        <Input
+                          value={formData.toLocation}
+                          onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
+                          placeholder="Airport"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Distance (km)</label>
+                    <Input
+                      type="number"
+                      value={formData.km}
+                      onChange={(e) => setFormData({...formData, km: e.target.value})}
+                      placeholder="302"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="flex justify-end space-x-2 mt-6">
-                <Button variant="outline" onClick={() => setIsAddModalOpen(false)}>
+                <Button variant="outline" onClick={() => { setIsAddModalOpen(false); setEditingItem(null); resetForm(); }}>
                   Cancel
                 </Button>
                 <Button onClick={handleSave} className="bg-teal-600 hover:bg-teal-700">
-                  Create
+                  {editingItem ? 'Update' : 'Create'}
                 </Button>
               </div>
             </div>
