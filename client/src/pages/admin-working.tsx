@@ -1091,17 +1091,19 @@ export default function AdminWorking() {
                   </DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4">
-                  {/* Common Name field */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1">
-                      {modalType === 'guide' ? 'Language' : 'Name'}
-                    </label>
-                    <Input
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      placeholder={modalType === 'guide' ? 'English' : 'Enter name'}
-                    />
-                  </div>
+                  {/* Common Name field - hidden for routes */}
+                  {modalType !== 'route' && (
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        {modalType === 'guide' ? 'Language' : 'Name'}
+                      </label>
+                      <Input
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        placeholder={modalType === 'guide' ? 'English' : 'Enter name'}
+                      />
+                    </div>
+                  )}
 
                   {/* City-specific fields */}
                   {modalType === 'city' && (
@@ -1315,7 +1317,7 @@ export default function AdminWorking() {
                         <select
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                           value={formData.routeType}
-                          onChange={(e) => setFormData({...formData, routeType: e.target.value, fromCityId: '', toCityId: ''})}
+                          onChange={(e) => setFormData({...formData, routeType: e.target.value, fromCityId: '', toCityId: '', fromLocation: '', toLocation: '', km: ''})}
                         >
                           <option value="">Select Route Type</option>
                           <option value="inter-city">Inter-City (Between Cities)</option>
@@ -1324,34 +1326,46 @@ export default function AdminWorking() {
                       </div>
 
                       {formData.routeType === 'inter-city' && (
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium mb-1">From City</label>
-                            <select
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                              value={formData.fromCityId}
-                              onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
-                            >
-                              <option value="">Select From City</option>
-                              {(cities as any[])?.map((city: any) => (
-                                <option key={city.id} value={city.id}>{city.name}</option>
-                              ))}
-                            </select>
+                        <>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-1">From City</label>
+                              <select
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                value={formData.fromCityId}
+                                onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                              >
+                                <option value="">Select From City</option>
+                                {(cities as any[])?.map((city: any) => (
+                                  <option key={city.id} value={city.id}>{city.name}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">To City</label>
+                              <select
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                value={formData.toCityId}
+                                onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                              >
+                                <option value="">Select To City</option>
+                                {(cities as any[])?.map((city: any) => (
+                                  <option key={city.id} value={city.id}>{city.name}</option>
+                                ))}
+                              </select>
+                            </div>
                           </div>
                           <div>
-                            <label className="block text-sm font-medium mb-1">To City</label>
-                            <select
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                              value={formData.toCityId}
-                              onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
-                            >
-                              <option value="">Select To City</option>
-                              {(cities as any[])?.map((city: any) => (
-                                <option key={city.id} value={city.id}>{city.name}</option>
-                              ))}
-                            </select>
+                            <label className="block text-sm font-medium mb-1">Distance (KM)</label>
+                            <Input
+                              type="number"
+                              step="0.1"
+                              value={formData.km}
+                              onChange={(e) => setFormData({...formData, km: e.target.value})}
+                              placeholder="302.5"
+                            />
                           </div>
-                        </div>
+                        </>
                       )}
 
                       {formData.routeType === 'intra-city' && (
@@ -1387,20 +1401,17 @@ export default function AdminWorking() {
                               />
                             </div>
                           </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Distance (KM)</label>
+                            <Input
+                              type="number"
+                              step="0.1"
+                              value={formData.km}
+                              onChange={(e) => setFormData({...formData, km: e.target.value})}
+                              placeholder="25.0"
+                            />
+                          </div>
                         </>
-                      )}
-
-                      {formData.routeType && (
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Distance (KM)</label>
-                          <Input
-                            type="number"
-                            step="0.1"
-                            value={formData.km}
-                            onChange={(e) => setFormData({...formData, km: e.target.value})}
-                            placeholder={formData.routeType === 'inter-city' ? '302.5' : '25.0'}
-                          />
-                        </div>
                       )}
                     </>
                   )}
