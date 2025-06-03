@@ -417,7 +417,7 @@ export default function AdminWorking() {
   };
 
   const handleSave = () => {
-    const data = prepareFormData(modalType, formData);
+    const data = getFormDataForType();
     
     if (editingItem) {
       updateMutation.mutate({ type: modalType, id: editingItem.id, data });
@@ -458,11 +458,34 @@ export default function AdminWorking() {
           description: formData.description || '',
           cityId: formData.cityId ? parseInt(formData.cityId) : 1,
           category: formData.category || 'Historical',
-          duration: formData.duration || '',
+          duration: parseInt(formData.duration) || 2,
           ticketPrice: formData.ticketPrice ? parseFloat(formData.ticketPrice) : 0,
-          openingHours: formData.openingHours || '',
-          location: formData.location || '',
           isActive: formData.isActive !== undefined ? formData.isActive : true
+        };
+      case 'route':
+        // Calculate base pricing based on distance and vehicle types
+        const distance = parseFloat(formData.km) || 0;
+        const basePricing: any = {};
+        
+        // Generate pricing for all vehicle and license combinations
+        // Vehicle IDs: 1=Sedan, 2=Minivan, 3=Van
+        // License IDs: 1=Normal, 2=Tourism
+        const pricePerKm = 0.5; // Base rate per kilometer
+        
+        [1, 2, 3].forEach(vehicleId => {
+          basePricing[vehicleId] = {};
+          [1, 2].forEach(licenseId => {
+            const multiplier = vehicleId === 1 ? 1 : vehicleId === 2 ? 1.4 : 1.8;
+            const licenseMultiplier = licenseId === 2 ? 1.2 : 1;
+            basePricing[vehicleId][licenseId] = (distance * pricePerKm * multiplier * licenseMultiplier).toFixed(2);
+          });
+        });
+        
+        return {
+          fromCityId: parseInt(formData.fromCityId),
+          toCityId: parseInt(formData.toCityId), 
+          km: distance.toFixed(2),
+          basePriceByVehicle: basePricing
         };
       default: // city
         return {
@@ -479,6 +502,8 @@ export default function AdminWorking() {
       deleteCityMutation.mutate(id);
     }
   };
+
+
 
   if (!isAuthenticated) {
     return <AdminLogin onLogin={handleLogin} />;
@@ -923,6 +948,83 @@ export default function AdminWorking() {
             </CardContent>
           </Card>
 
+          {/* Routes Management Section */}
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-lg font-semibold">Routes Management</CardTitle>
+              <Button 
+                onClick={() => {
+                  setModalType('route');
+                  setEditingItem(null);
+                  setIsAddModalOpen(true);
+                  resetForm();
+                }}
+                className="bg-teal-600 hover:bg-teal-700"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Route
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>From City</TableHead>
+                    <TableHead>To City</TableHead>
+                    <TableHead>Distance (KM)</TableHead>
+                    <TableHead>Base Price</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(routes as any[]).map((route: any) => {
+                    const fromCity = (cities as any[]).find((c: any) => c.id === route.fromCityId);
+                    const toCity = (cities as any[]).find((c: any) => c.id === route.toCityId);
+                    const basePricing = typeof route.basePriceByVehicle === 'object' ? route.basePriceByVehicle : {};
+                    const firstVehiclePrice = Object.values(basePricing)[0] as any;
+                    const basePrice = firstVehiclePrice ? Object.values(firstVehiclePrice)[0] : 'N/A';
+                    
+                    return (
+                      <TableRow key={route.id}>
+                        <TableCell>
+                          <div className="font-medium">{fromCity?.name || 'Unknown'}</div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-medium">{toCity?.name || 'Unknown'}</div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-mono">{route.km}</div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-mono">${basePrice}</div>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end space-x-2">
+                            <Button 
+                              size="sm" 
+                              variant="outline"
+                              onClick={() => handleEdit(route, 'route')}
+                            >
+                              <Edit2 className="w-4 h-4" />
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              className="text-red-600"
+                              onClick={() => deleteMutation.mutate({ type: 'route', id: route.id })}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
           {/* Universal Modal for Add/Edit Operations */}
           {isAddModalOpen && (
             <Dialog open={isAddModalOpen} onOpenChange={(open) => {
@@ -940,7 +1042,8 @@ export default function AdminWorking() {
                       modalType === 'city' ? 'City' :
                       modalType === 'vehicle' ? 'Vehicle' :
                       modalType === 'guide' ? 'Guide' :
-                      modalType === 'attraction' ? 'Attraction' : 'Service'
+                      modalType === 'attraction' ? 'Attraction' :
+                      modalType === 'route' ? 'Route' : 'Service'
                     }
                   </DialogTitle>
                 </DialogHeader>
