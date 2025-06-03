@@ -417,7 +417,7 @@ export default function AdminWorking() {
   };
 
   const handleSave = () => {
-    const data = getFormDataForType();
+    const data = prepareFormData(modalType, formData);
     
     if (editingItem) {
       updateMutation.mutate({ type: modalType, id: editingItem.id, data });
@@ -1259,6 +1259,50 @@ export default function AdminWorking() {
                           value={formData.location}
                           onChange={(e) => setFormData({...formData, location: e.target.value})}
                           placeholder="Giza Plateau"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {/* Route specific fields */}
+                  {modalType === 'route' && (
+                    <>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">From City</label>
+                          <select
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                            value={formData.fromCityId}
+                            onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                          >
+                            <option value="">Select From City</option>
+                            {(cities as any[])?.map((city: any) => (
+                              <option key={city.id} value={city.id}>{city.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">To City</label>
+                          <select
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                            value={formData.toCityId}
+                            onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                          >
+                            <option value="">Select To City</option>
+                            {(cities as any[])?.map((city: any) => (
+                              <option key={city.id} value={city.id}>{city.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Distance (KM)</label>
+                        <Input
+                          type="number"
+                          step="0.1"
+                          value={formData.km}
+                          onChange={(e) => setFormData({...formData, km: e.target.value})}
+                          placeholder="302.5"
                         />
                       </div>
                     </>
