@@ -150,11 +150,81 @@ export default function AdminSidebar() {
     });
   };
 
-  const handleSave = () => {
-    // Implement save logic here
-    setIsAddModalOpen(false);
-    setEditingItem(null);
-    resetForm();
+  const handleSave = async () => {
+    try {
+      const endpoints = {
+        city: '/api/cities',
+        vehicle: '/api/vehicle-types',
+        guide: '/api/guide-rates',
+        addon: '/api/addons',
+        route: '/api/routes',
+        attraction: '/api/attractions'
+      };
+
+      const payload = modalType === 'city' ? {
+        name: formData.name,
+        description: formData.description,
+        slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, '-'),
+        isActive: formData.isActive
+      } : modalType === 'vehicle' ? {
+        name: formData.name,
+        description: formData.description,
+        paxMin: parseInt(formData.paxMin) || 1,
+        paxMax: parseInt(formData.paxMax) || 4
+      } : modalType === 'guide' ? {
+        language: formData.language,
+        hourlyPrice: parseFloat(formData.pricePerHour) || 0,
+        cityId: parseInt(formData.cityId) || 1
+      } : modalType === 'addon' ? {
+        name: formData.name,
+        description: formData.description,
+        price: parseFloat(formData.price) || 0,
+        unitType: formData.unitType || 'per_unit',
+        category: formData.category || 'service'
+      } : modalType === 'route' ? {
+        routeType: formData.routeType || 'inter-city',
+        fromCityId: formData.routeType === 'inter-city' ? parseInt(formData.fromCityId) : parseInt(formData.fromCityId),
+        toCityId: formData.routeType === 'inter-city' ? parseInt(formData.toCityId) : parseInt(formData.fromCityId),
+        fromLocation: formData.fromLocation || null,
+        toLocation: formData.toLocation || null,
+        km: parseFloat(formData.km) || 0,
+        basePriceByVehicle: formData.basePriceByVehicle || '{}'
+      } : {
+        name: formData.name,
+        description: formData.description,
+        cityId: parseInt(formData.cityId) || 1,
+        ticketPrice: parseFloat(formData.ticketPrice) || 0,
+        duration: formData.duration || '2 hours',
+        location: formData.location || '',
+        category: formData.category || 'historical',
+        openingHours: formData.openingHours || '9:00 AM - 5:00 PM'
+      };
+
+      const response = await fetch(endpoints[modalType as keyof typeof endpoints], {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) throw new Error('Failed to create');
+
+      // Invalidate queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ['/api/cities'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/vehicle-types'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/guide-rates'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/addons'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
+
+      toast({ title: "Created successfully" });
+      setIsAddModalOpen(false);
+      setEditingItem(null);
+      resetForm();
+    } catch (error) {
+      toast({ title: "Failed to create", variant: "destructive" });
+    }
   };
 
   if (!isAuthenticated) {
