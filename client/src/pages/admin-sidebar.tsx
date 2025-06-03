@@ -18,6 +18,7 @@ export default function AdminSidebar() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon' | 'attraction' | 'route'>('city');
   const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions'>('cities');
+  const [deleteConfirm, setDeleteConfirm] = useState<{type: string, id: number, name: string} | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -80,8 +81,23 @@ export default function AdminSidebar() {
       queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
       queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
       toast({ title: "Deleted successfully" });
+      setDeleteConfirm(null);
     }
   });
+
+  const handleDeleteClick = (item: any, type: string) => {
+    setDeleteConfirm({
+      type,
+      id: item.id,
+      name: item.name || item.language || `${type} #${item.id}`
+    });
+  };
+
+  const confirmDelete = () => {
+    if (deleteConfirm) {
+      deleteMutation.mutate({ type: deleteConfirm.type, id: deleteConfirm.id });
+    }
+  };
 
   const handleLogin = () => {
     setIsAuthenticated(true);
@@ -174,6 +190,7 @@ export default function AdminSidebar() {
         paxMin: parseInt(formData.paxMin) || 1,
         paxMax: parseInt(formData.paxMax) || 4
       } : modalType === 'guide' ? {
+        name: formData.name,
         language: formData.language,
         hourlyPrice: parseFloat(formData.pricePerHour) || 0,
         cityId: parseInt(formData.cityId) || 1
@@ -416,7 +433,7 @@ export default function AdminSidebar() {
                                 size="sm" 
                                 variant="outline" 
                                 className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => deleteMutation.mutate({ type: 'city', id: city.id })}
+                                onClick={() => handleDeleteClick(city, 'city')}
                                 title="Delete city"
                               >
                                 <Trash2 className="w-3 h-3" />
@@ -471,7 +488,7 @@ export default function AdminSidebar() {
                                 size="sm" 
                                 variant="outline" 
                                 className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => deleteMutation.mutate({ type: 'vehicle', id: vehicle.id })}
+                                onClick={() => handleDeleteClick(vehicle, 'vehicle')}
                                 title="Delete vehicle"
                               >
                                 <Trash2 className="w-3 h-3" />
@@ -534,7 +551,7 @@ export default function AdminSidebar() {
                                 size="sm" 
                                 variant="outline" 
                                 className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => deleteMutation.mutate({ type: 'guide', id: guide.id })}
+                                onClick={() => handleDeleteClick(guide, 'guide')}
                                 title="Delete guide"
                               >
                                 <Trash2 className="w-3 h-3" />
@@ -591,7 +608,7 @@ export default function AdminSidebar() {
                                 size="sm" 
                                 variant="outline" 
                                 className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => deleteMutation.mutate({ type: 'addon', id: addon.id })}
+                                onClick={() => handleDeleteClick(addon, 'addon')}
                                 title="Delete add-on"
                               >
                                 <Trash2 className="w-3 h-3" />
@@ -654,7 +671,7 @@ export default function AdminSidebar() {
                                 size="sm" 
                                 variant="outline" 
                                 className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => deleteMutation.mutate({ type: 'route', id: route.id })}
+                                onClick={() => handleDeleteClick(route, 'route')}
                                 title="Delete route"
                               >
                                 <Trash2 className="w-3 h-3" />
@@ -711,7 +728,7 @@ export default function AdminSidebar() {
                                 size="sm" 
                                 variant="outline" 
                                 className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => deleteMutation.mutate({ type: 'attraction', id: attraction.id })}
+                                onClick={() => handleDeleteClick(attraction, 'attraction')}
                                 title="Delete attraction"
                               >
                                 <Trash2 className="w-3 h-3" />
