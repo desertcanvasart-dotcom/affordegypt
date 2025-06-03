@@ -751,7 +751,7 @@ export default function AdminSidebar() {
         <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>Add {modalType === 'city' ? 'City' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'addon' ? 'Add-on' : modalType === 'route' ? 'Route' : 'Attraction'}</DialogTitle>
+              <DialogTitle>{editingItem ? 'Edit' : 'Add'} {modalType === 'city' ? 'City' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'addon' ? 'Add-on' : modalType === 'route' ? 'Route' : 'Attraction'}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               {/* Common fields */}
@@ -1017,6 +1017,33 @@ export default function AdminSidebar() {
                   {editingItem ? 'Update' : 'Create'}
                 </Button>
               </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* Delete Confirmation Dialog */}
+      {deleteConfirm && (
+        <Dialog open={!!deleteConfirm} onOpenChange={() => setDeleteConfirm(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Confirm Delete</DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <p>Are you sure you want to delete <strong>{deleteConfirm.name}</strong>?</p>
+              <p className="text-sm text-gray-600 mt-2">This action cannot be undone.</p>
+            </div>
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={() => setDeleteConfirm(null)}>
+                Cancel
+              </Button>
+              <Button 
+                variant="destructive" 
+                onClick={confirmDelete}
+                disabled={deleteMutation.isPending}
+              >
+                {deleteMutation.isPending ? 'Deleting...' : 'Delete'}
+              </Button>
             </div>
           </DialogContent>
         </Dialog>
