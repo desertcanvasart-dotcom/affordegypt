@@ -408,6 +408,246 @@ export default function AdminSidebar() {
                 </CardContent>
               </Card>
             )}
+
+            {activeSection === 'guides' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Language</TableHead>
+                        <TableHead>Guide Name</TableHead>
+                        <TableHead>Price per Day</TableHead>
+                        <TableHead>City</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(guides as any[]).map((guide: any) => (
+                        <TableRow key={guide.id} className="h-12">
+                          <TableCell>
+                            <div className="flex items-center space-x-2">
+                              <span className="text-sm">
+                                {guide.language === 'English' ? '🇺🇸' : 
+                                 guide.language === 'Spanish' ? '🇪🇸' :
+                                 guide.language === 'French' ? '🇫🇷' : '🇩🇪'}
+                              </span>
+                              <span className="font-medium text-sm">{guide.language}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-sm">{guide.name || 'Professional Guide'}</TableCell>
+                          <TableCell className="font-mono text-sm">${(parseFloat(guide.hourlyPrice || '0') * 8).toFixed(2)}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-blue-100 text-blue-700 text-xs">
+                              {(cities as any[]).find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(guide, 'guide')}
+                                className="h-8 w-8 p-0"
+                                title="Edit guide"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => deleteMutation.mutate({ type: 'guide', id: guide.id })}
+                                title="Delete guide"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'addons' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Service</TableHead>
+                        <TableHead>Category</TableHead>
+                        <TableHead>Price</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(addOns as any[]).map((addon: any) => (
+                        <TableRow key={addon.id} className="h-12">
+                          <TableCell>
+                            <div className="font-medium text-sm">{addon.name}</div>
+                            <div className="text-xs text-gray-500">{addon.description}</div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="text-xs">
+                              {addon.category}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="font-mono text-sm">${addon.price}</TableCell>
+                          <TableCell className="text-xs text-gray-600">{addon.unitType}</TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(addon, 'addon')}
+                                className="h-8 w-8 p-0"
+                                title="Edit add-on"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => deleteMutation.mutate({ type: 'addon', id: addon.id })}
+                                title="Delete add-on"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'routes' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Route</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead>Distance</TableHead>
+                        <TableHead>Pricing</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(routes as any[]).map((route: any) => (
+                        <TableRow key={route.id} className="h-12">
+                          <TableCell>
+                            <div className="text-sm">
+                              {route.routeType === 'inter-city' 
+                                ? `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
+                                : `${route.fromLocation || 'Location A'} → ${route.toLocation || 'Location B'}`
+                              }
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="text-xs">
+                              {route.routeType || 'inter-city'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="font-mono text-sm">{route.km} km</TableCell>
+                          <TableCell className="text-xs text-gray-600">
+                            {route.basePriceByVehicle ? 'Variable' : 'Fixed'}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(route, 'route')}
+                                className="h-8 w-8 p-0"
+                                title="Edit route"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => deleteMutation.mutate({ type: 'route', id: route.id })}
+                                title="Delete route"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'attractions' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Attraction</TableHead>
+                        <TableHead>City</TableHead>
+                        <TableHead>Ticket Price</TableHead>
+                        <TableHead>Duration</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(attractions as any[]).map((attraction: any) => (
+                        <TableRow key={attraction.id} className="h-12">
+                          <TableCell>
+                            <div className="font-medium text-sm">{attraction.name}</div>
+                            <div className="text-xs text-gray-500">{attraction.location}</div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge className="bg-blue-100 text-blue-700 text-xs">
+                              {(cities as any[]).find((city: any) => city.id === attraction.cityId)?.name || 'Unknown'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="font-mono text-sm">${attraction.ticketPrice}</TableCell>
+                          <TableCell className="text-xs text-gray-600">{attraction.duration}</TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(attraction, 'attraction')}
+                                className="h-8 w-8 p-0"
+                                title="Edit attraction"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => deleteMutation.mutate({ type: 'attraction', id: attraction.id })}
+                                title="Delete attraction"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </div>
