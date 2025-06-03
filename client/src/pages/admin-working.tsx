@@ -16,7 +16,7 @@ export default function AdminWorking() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon' | 'attraction'>('city');
+  const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon' | 'attraction' | 'route'>('city');
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -34,7 +34,11 @@ export default function AdminWorking() {
     duration: "",
     ticketPrice: "",
     openingHours: "",
-    location: ""
+    location: "",
+    fromCityId: "",
+    toCityId: "",
+    km: "",
+    basePriceByVehicle: {}
   });
 
   const { toast } = useToast();
@@ -89,6 +93,12 @@ export default function AdminWorking() {
   // Fetch attractions from database  
   const { data: attractions = [] } = useQuery({
     queryKey: ["/api/attractions"],
+    enabled: isAuthenticated,
+  });
+
+  // Fetch routes from database  
+  const { data: routes = [] } = useQuery({
+    queryKey: ["/api/routes"],
     enabled: isAuthenticated,
   });
 
@@ -264,13 +274,43 @@ export default function AdminWorking() {
     },
   });
 
+  // Create route mutation
+  const createRouteMutation = useMutation({
+    mutationFn: async (newRoute: any) => {
+      const response = await fetch("/api/routes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRoute),
+      });
+      if (!response.ok) throw new Error("Failed to create route");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/routes"] });
+      setIsAddModalOpen(false);
+      resetForm();
+      toast({
+        title: "Success",
+        description: "Route created successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to create route",
+        variant: "destructive",
+      });
+    },
+  });
+
   const deleteMutation = useMutation({
     mutationFn: async ({ type, id }: { type: string; id: number }) => {
       const endpoint = type === 'addon' ? 'addons' : 
                      type === 'city' ? 'cities' :
                      type === 'vehicle' ? 'vehicle-types' :
                      type === 'guide' ? 'guide-rates' :
-                     type === 'attraction' ? 'attractions' : 'addons';
+                     type === 'attraction' ? 'attractions' :
+                     type === 'route' ? 'routes' : 'addons';
       const response = await fetch(`/api/${endpoint}/${id}`, {
         method: "DELETE",
       });
@@ -320,7 +360,11 @@ export default function AdminWorking() {
       duration: "",
       ticketPrice: "",
       openingHours: "",
-      location: ""
+      location: "",
+      fromCityId: "",
+      toCityId: "",
+      km: "",
+      basePriceByVehicle: {}
     });
   };
 
@@ -1002,6 +1046,56 @@ export default function AdminWorking() {
                           onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
                           placeholder="64.00"
                         />
+                      </div>
+                    </>
+                  )}
+
+                  {/* Route-specific fields */}
+                  {modalType === 'route' && (
+                    <>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">From City</label>
+                          <select
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                            value={formData.fromCityId}
+                            onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                          >
+                            <option value="">Select From City</option>
+                            {(cities as any[]).map((city: any) => (
+                              <option key={city.id} value={city.id}>{city.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">To City</label>
+                          <select
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                            value={formData.toCityId}
+                            onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                          >
+                            <option value="">Select To City</option>
+                            {(cities as any[]).map((city: any) => (
+                              <option key={city.id} value={city.id}>{city.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Distance (KM)</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.km}
+                          onChange={(e) => setFormData({...formData, km: e.target.value})}
+                          placeholder="450.5"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Base Pricing Information</label>
+                        <div className="text-sm text-gray-500 mb-2">
+                          Pricing will be automatically calculated based on distance and vehicle types
+                        </div>
                       </div>
                     </>
                   )}
