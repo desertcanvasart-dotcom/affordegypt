@@ -38,7 +38,10 @@ export default function AdminWorking() {
     fromCityId: "",
     toCityId: "",
     km: "",
-    basePriceByVehicle: {}
+    basePriceByVehicle: {},
+    routeType: "",
+    fromLocation: "",
+    toLocation: ""
   });
 
   const { toast } = useToast();
@@ -364,7 +367,10 @@ export default function AdminWorking() {
       fromCityId: "",
       toCityId: "",
       km: "",
-      basePriceByVehicle: {}
+      basePriceByVehicle: {},
+      routeType: "",
+      fromLocation: "",
+      toLocation: ""
     });
   };
 
@@ -470,7 +476,7 @@ export default function AdminWorking() {
         // Generate pricing for all vehicle and license combinations
         // Vehicle IDs: 1=Sedan, 2=Minivan, 3=Van
         // License IDs: 1=Normal, 2=Tourism
-        const pricePerKm = 0.5; // Base rate per kilometer
+        const pricePerKm = formData.routeType === 'intra-city' ? 1.5 : 0.5; // Higher rate for city routes
         
         [1, 2, 3].forEach(vehicleId => {
           basePricing[vehicleId] = {};
@@ -481,12 +487,23 @@ export default function AdminWorking() {
           });
         });
         
-        return {
+        const routeData: any = {
           fromCityId: parseInt(formData.fromCityId),
           toCityId: parseInt(formData.toCityId), 
           km: distance.toFixed(2),
           basePriceByVehicle: basePricing
         };
+
+        // Add location details for intra-city routes
+        if (formData.routeType === 'intra-city') {
+          routeData.fromLocation = formData.fromLocation || '';
+          routeData.toLocation = formData.toLocation || '';
+          routeData.routeType = 'intra-city';
+        } else {
+          routeData.routeType = 'inter-city';
+        }
+        
+        return routeData;
       default: // city
         return {
           name: formData.name || '',
@@ -969,8 +986,9 @@ export default function AdminWorking() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>From City</TableHead>
-                    <TableHead>To City</TableHead>
+                    <TableHead>Route Type</TableHead>
+                    <TableHead>From</TableHead>
+                    <TableHead>To</TableHead>
                     <TableHead>Distance (KM)</TableHead>
                     <TableHead>Base Price</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
@@ -984,13 +1002,38 @@ export default function AdminWorking() {
                     const firstVehiclePrice = Object.values(basePricing)[0] as any;
                     const basePrice = firstVehiclePrice ? Object.values(firstVehiclePrice)[0] : 'N/A';
                     
+                    const isIntraCity = route.routeType === 'intra-city' || route.fromCityId === route.toCityId;
+                    
                     return (
                       <TableRow key={route.id}>
                         <TableCell>
-                          <div className="font-medium">{fromCity?.name || 'Unknown'}</div>
+                          <Badge variant={isIntraCity ? "secondary" : "default"} className={isIntraCity ? "bg-blue-100 text-blue-700" : "bg-green-100 text-green-700"}>
+                            {isIntraCity ? 'Intra-City' : 'Inter-City'}
+                          </Badge>
                         </TableCell>
                         <TableCell>
-                          <div className="font-medium">{toCity?.name || 'Unknown'}</div>
+                          <div className="font-medium">
+                            {isIntraCity ? (
+                              <div>
+                                <div>{fromCity?.name || 'Unknown'}</div>
+                                {route.fromLocation && <div className="text-sm text-gray-500">{route.fromLocation}</div>}
+                              </div>
+                            ) : (
+                              fromCity?.name || 'Unknown'
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-medium">
+                            {isIntraCity ? (
+                              <div>
+                                <div>{fromCity?.name || 'Unknown'}</div>
+                                {route.toLocation && <div className="text-sm text-gray-500">{route.toLocation}</div>}
+                              </div>
+                            ) : (
+                              toCity?.name || 'Unknown'
+                            )}
+                          </div>
                         </TableCell>
                         <TableCell>
                           <div className="font-mono">{route.km}</div>
@@ -1267,44 +1310,98 @@ export default function AdminWorking() {
                   {/* Route specific fields */}
                   {modalType === 'route' && (
                     <>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium mb-1">From City</label>
-                          <select
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                            value={formData.fromCityId}
-                            onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
-                          >
-                            <option value="">Select From City</option>
-                            {(cities as any[])?.map((city: any) => (
-                              <option key={city.id} value={city.id}>{city.name}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">To City</label>
-                          <select
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                            value={formData.toCityId}
-                            onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
-                          >
-                            <option value="">Select To City</option>
-                            {(cities as any[])?.map((city: any) => (
-                              <option key={city.id} value={city.id}>{city.name}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">Distance (KM)</label>
-                        <Input
-                          type="number"
-                          step="0.1"
-                          value={formData.km}
-                          onChange={(e) => setFormData({...formData, km: e.target.value})}
-                          placeholder="302.5"
-                        />
+                        <label className="block text-sm font-medium mb-1">Route Type</label>
+                        <select
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                          value={formData.routeType}
+                          onChange={(e) => setFormData({...formData, routeType: e.target.value, fromCityId: '', toCityId: ''})}
+                        >
+                          <option value="">Select Route Type</option>
+                          <option value="inter-city">Inter-City (Between Cities)</option>
+                          <option value="intra-city">Intra-City (Within City)</option>
+                        </select>
                       </div>
+
+                      {formData.routeType === 'inter-city' && (
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium mb-1">From City</label>
+                            <select
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              value={formData.fromCityId}
+                              onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                            >
+                              <option value="">Select From City</option>
+                              {(cities as any[])?.map((city: any) => (
+                                <option key={city.id} value={city.id}>{city.name}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">To City</label>
+                            <select
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              value={formData.toCityId}
+                              onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                            >
+                              <option value="">Select To City</option>
+                              {(cities as any[])?.map((city: any) => (
+                                <option key={city.id} value={city.id}>{city.name}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+
+                      {formData.routeType === 'intra-city' && (
+                        <>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">City</label>
+                            <select
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              value={formData.fromCityId}
+                              onChange={(e) => setFormData({...formData, fromCityId: e.target.value, toCityId: e.target.value})}
+                            >
+                              <option value="">Select City</option>
+                              {(cities as any[])?.map((city: any) => (
+                                <option key={city.id} value={city.id}>{city.name}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-1">From Location</label>
+                              <Input
+                                value={formData.fromLocation}
+                                onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
+                                placeholder="e.g., Airport, Downtown, Hotel District"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium mb-1">To Location</label>
+                              <Input
+                                value={formData.toLocation}
+                                onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
+                                placeholder="e.g., Pyramids, City Center, Museum"
+                              />
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                      {formData.routeType && (
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Distance (KM)</label>
+                          <Input
+                            type="number"
+                            step="0.1"
+                            value={formData.km}
+                            onChange={(e) => setFormData({...formData, km: e.target.value})}
+                            placeholder={formData.routeType === 'inter-city' ? '302.5' : '25.0'}
+                          />
+                        </div>
+                      )}
                     </>
                   )}
 
