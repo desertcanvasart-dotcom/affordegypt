@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Checkout from "@/pages/checkout";
-import AdminWorking from "@/pages/admin-working";
+import AdminSidebar from "@/pages/admin-sidebar";
 import Routes from "@/pages/routes";
 import AttractionsSimple from "@/pages/attractions-simple";
 import NotFound from "@/pages/not-found";
@@ -15,7 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/checkout/:bookingId" component={Checkout} />
-      <Route path="/admin" component={AdminWorking} />
+      <Route path="/admin" component={AdminSidebar} />
       <Route path="/routes" component={Routes} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route component={NotFound} />
