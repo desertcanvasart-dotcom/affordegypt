@@ -528,11 +528,14 @@ export default function AdminWorking() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+      {/* Header - Sticky */}
+      <div className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-50">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-gray-900">Egypt Travel Admin</h1>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Egypt Travel Admin</h1>
+              <p className="text-sm text-gray-500 hidden md:block">Back-Office — crafted for flawless journeys</p>
+            </div>
             <Badge variant="secondary" className="bg-teal-100 text-teal-800">
               Administrator
             </Badge>
@@ -575,7 +578,7 @@ export default function AdminWorking() {
             </CardHeader>
             <CardContent>
               <Table>
-                <TableHeader>
+                <TableHeader className="sticky top-16 bg-white z-10">
                   <TableRow>
                     <TableHead>City</TableHead>
                     <TableHead>Description</TableHead>
@@ -585,38 +588,41 @@ export default function AdminWorking() {
                 </TableHeader>
                 <TableBody>
                   {cities.map((city: any) => (
-                    <TableRow key={city.id}>
+                    <TableRow key={city.id} className="h-12">
                       <TableCell>
                         <div>
-                          <div className="font-medium">{city.name}</div>
-                          <Badge variant="outline" className="text-xs">{city.slug}</Badge>
+                          <div className="font-medium text-sm">{city.name}</div>
+                          <Badge variant="outline" className="text-xs mt-1">{city.slug}</Badge>
                         </div>
                       </TableCell>
-                      <TableCell>{city.description || 'No description'}</TableCell>
+                      <TableCell className="text-sm">{city.description || 'No description'}</TableCell>
                       <TableCell>
                         <Badge 
                           variant="default" 
-                          className={city.isActive ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}
+                          className={city.isActive ? "bg-green-100 text-green-700 border-green-200" : "bg-gray-100 text-gray-700 border-gray-200"}
                         >
                           {city.isActive ? 'Active' : 'Inactive'}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
-                        <div className="flex items-center justify-end space-x-2">
+                        <div className="flex items-center justify-end space-x-1">
                           <Button 
                             size="sm" 
                             variant="outline" 
                             onClick={() => handleEdit(city, 'city')}
+                            className="h-8 w-8 p-0"
+                            title="Edit city"
                           >
-                            <Edit2 className="w-4 h-4" />
+                            <Edit2 className="w-3 h-3" />
                           </Button>
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="text-red-600"
+                            className="text-red-600 h-8 w-8 p-0"
                             onClick={() => deleteMutation.mutate({ type: 'city', id: city.id })}
+                            title="Delete city"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
                       </TableCell>
@@ -687,7 +693,7 @@ export default function AdminWorking() {
             </CardHeader>
             <CardContent>
               <Table>
-                <TableHeader>
+                <TableHeader className="sticky top-16 bg-white z-10">
                   <TableRow>
                     <TableHead>Vehicle</TableHead>
                     <TableHead>Passenger Range</TableHead>
@@ -697,33 +703,36 @@ export default function AdminWorking() {
                 </TableHeader>
                 <TableBody>
                   {vehicles.map((vehicle: any) => (
-                    <TableRow key={vehicle.id}>
+                    <TableRow key={vehicle.id} className="h-12">
                       <TableCell>
                         <div className="flex items-center space-x-3">
-                          <div className="text-2xl">
+                          <div className="text-xl">
                             {vehicle.name === 'Sedan' ? '🚗' : vehicle.name === 'Minivan' ? '🚐' : '🚌'}
                           </div>
-                          <div className="font-medium">{vehicle.name}</div>
+                          <div className="font-medium text-sm">{vehicle.name}</div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center font-mono">{vehicle.paxMin}–{vehicle.paxMax}</TableCell>
-                      <TableCell className="text-gray-600">{vehicle.description}</TableCell>
+                      <TableCell className="text-center font-mono text-sm">{vehicle.paxMin}–{vehicle.paxMax}</TableCell>
+                      <TableCell className="text-gray-600 text-sm">{vehicle.description}</TableCell>
                       <TableCell className="text-right">
-                        <div className="flex items-center justify-end space-x-2">
+                        <div className="flex items-center justify-end space-x-1">
                           <Button 
                             size="sm" 
                             variant="outline"
                             onClick={() => handleEdit(vehicle, 'vehicle')}
+                            className="h-8 w-8 p-0"
+                            title="Edit vehicle"
                           >
-                            <Edit2 className="w-4 h-4" />
+                            <Edit2 className="w-3 h-3" />
                           </Button>
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="text-red-600"
+                            className="text-red-600 h-8 w-8 p-0"
                             onClick={() => deleteMutation.mutate({ type: 'vehicle', id: vehicle.id })}
+                            title="Delete vehicle"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3 h-3" />
                           </Button>
                         </div>
                       </TableCell>
