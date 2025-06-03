@@ -523,7 +523,7 @@ export default function AdminSidebar() {
                       <TableRow>
                         <TableHead>Language</TableHead>
                         <TableHead>Guide Name</TableHead>
-                        <TableHead>Price per Day</TableHead>
+                        <TableHead>Daily Price</TableHead>
                         <TableHead>City</TableHead>
                         <TableHead className="text-right">Actions</TableHead>
                       </TableRow>
@@ -542,7 +542,7 @@ export default function AdminSidebar() {
                             </div>
                           </TableCell>
                           <TableCell className="text-sm">{guide.name || 'Professional Guide'}</TableCell>
-                          <TableCell className="font-mono text-sm">${(parseFloat(guide.hourlyPrice || '0') * 8).toFixed(2)}</TableCell>
+                          <TableCell className="font-mono text-sm">${parseFloat(guide.hourlyPrice || '0').toFixed(2)}</TableCell>
                           <TableCell>
                             <Badge className="bg-blue-100 text-blue-700 text-xs">
                               {(cities as any[]).find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}
@@ -833,12 +833,12 @@ export default function AdminSidebar() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Hourly Price</label>
+                    <label className="block text-sm font-medium mb-1">Daily Price</label>
                     <Input
                       type="number"
                       value={formData.pricePerHour}
                       onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
-                      placeholder="25"
+                      placeholder="200"
                     />
                   </div>
                   <div>
