@@ -19,6 +19,7 @@ export default function AdminSidebar() {
   const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon' | 'attraction' | 'route'>('city');
   const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions'>('cities');
   const [deleteConfirm, setDeleteConfirm] = useState<{type: string, id: number, name: string} | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -169,6 +170,9 @@ export default function AdminSidebar() {
   };
 
   const handleSave = async () => {
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
     try {
       const endpoints = {
         city: '/api/cities',
@@ -247,7 +251,15 @@ export default function AdminSidebar() {
       setEditingItem(null);
       resetForm();
     } catch (error) {
-      toast({ title: editingItem ? "Failed to update" : "Failed to create", variant: "destructive" });
+      console.error('Save error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      if (errorMessage.includes('duplicate key')) {
+        toast({ title: "Item already exists", description: "An item with this name or slug already exists", variant: "destructive" });
+      } else {
+        toast({ title: editingItem ? "Failed to update" : "Failed to create", variant: "destructive" });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -1013,8 +1025,12 @@ export default function AdminSidebar() {
                 <Button variant="outline" onClick={() => { setIsAddModalOpen(false); setEditingItem(null); resetForm(); }}>
                   Cancel
                 </Button>
-                <Button onClick={handleSave} className="bg-teal-600 hover:bg-teal-700">
-                  {editingItem ? 'Update' : 'Create'}
+                <Button 
+                  onClick={handleSave} 
+                  className="bg-teal-600 hover:bg-teal-700"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Saving...' : editingItem ? 'Update' : 'Create'}
                 </Button>
               </div>
             </div>
