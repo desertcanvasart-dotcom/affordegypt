@@ -861,7 +861,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/attractions", async (req, res) => {
     try {
-      const attraction = await storage.createAttraction(req.body);
+      // Validate and clean the incoming data
+      const attractionData = {
+        cityId: parseInt(req.body.cityId),
+        name: req.body.name,
+        description: req.body.description || null,
+        category: req.body.category || 'General',
+        duration: parseInt(req.body.duration) || 2,
+        ticketPrice: parseFloat(req.body.ticketPrice) || 0,
+        isActive: req.body.isActive !== false,
+        image: req.body.image || null,
+        coordinates: req.body.coordinates || null,
+        bestTimeToVisit: req.body.bestTimeToVisit || null,
+        capacity: req.body.capacity ? parseInt(req.body.capacity) : null
+      };
+
+      const attraction = await storage.createAttraction(attractionData);
       res.json(attraction);
     } catch (error: any) {
       console.error('Attraction creation error:', error);
