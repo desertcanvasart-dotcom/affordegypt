@@ -456,6 +456,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
           guideTotal = guidePrices[cityService.selectedGuide.language] || 40;
         }
 
+        // Calculate attractions
+        let attractionsTotal = 0;
+        if (cityService.selectedAttractions) {
+          // Define attraction prices per person based on city
+          const attractionPrices = {
+            "pyramids": 15, "khan_khalili": 8, "al_muizz": 5, "citadel": 12, 
+            "coptic": 8, "egyptian_museum": 18, "cairo_tower": 10,
+            "alexandria_library": 12, "qaitbay_citadel": 8, "montaza_palace": 10, "catacombs": 15,
+            "luxor_temple": 12, "valley_kings": 20, "karnak_temple": 15, "hatshepsut_temple": 12,
+            "abu_simbel": 35, "philae_temple": 15, "high_dam": 8, "unfinished_obelisk": 5,
+            "hurghada_marina": 10, "desert_safari": 45, "snorkeling": 35,
+            "sharm_old_market": 8, "ras_mohammed": 25, "colored_canyon": 30
+          };
+          
+          cityService.selectedAttractions.forEach(attraction => {
+            const price = attractionPrices[attraction] || 10; // Default $10 per person
+            attractionsTotal += price * travelers;
+          });
+        }
+
         // Calculate add-ons
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
@@ -474,13 +494,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
         }
 
-        cityTotal = routesTotal + guideTotal + addOnsTotal;
+        cityTotal = routesTotal + guideTotal + attractionsTotal + addOnsTotal;
         totalAmount += cityTotal;
 
         breakdown.push({
           cityName: cityService.cityName,
           amount: cityTotal,
-          details: { routes: routesTotal, guide: guideTotal, addOns: addOnsTotal }
+          details: { routes: routesTotal, guide: guideTotal, attractions: attractionsTotal, addOns: addOnsTotal }
         });
       }
 
