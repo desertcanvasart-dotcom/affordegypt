@@ -163,7 +163,7 @@ export default function MultiCityPricingTool() {
   });
 
   // Fetch routes for all cities that have been added
-  const cityIds = cityServices.map(service => service.cityId).filter(Boolean);
+  const cityIds = (cityServices || []).map(service => service.cityId).filter(Boolean);
   const routeQueries = cityIds.map(cityId => 
     useQuery<Route[]>({
       queryKey: ["/api/pricing/routes", cityId],
