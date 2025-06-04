@@ -592,7 +592,7 @@ export default function MultiCityPricingTool() {
               <Separator className="mb-4" />
               <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {totalPricing.breakdown.map((city, index) => (
+                {totalPricing.breakdown.map((city: any, index: number) => (
                   <Card key={index} className="p-4">
                     <h4 className="font-medium mb-2">{city.cityName}</h4>
                     <div className="space-y-1 text-sm">
