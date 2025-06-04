@@ -162,21 +162,6 @@ export default function MultiCityPricingTool() {
     queryKey: ["/api/cities"],
   });
 
-  // Fetch routes for all cities that have been added
-  const cityIds = (cityServices || []).map(service => service.cityId).filter(Boolean);
-  const routeQueries = cityIds.map(cityId => 
-    useQuery<Route[]>({
-      queryKey: ["/api/pricing/routes", cityId],
-      enabled: !!cityId,
-    })
-  );
-  
-  // Create a map of cityId to routes for easy lookup
-  const routesByCity = cityIds.reduce((acc, cityId, index) => {
-    acc[cityId] = routeQueries[index]?.data || [];
-    return acc;
-  }, {} as Record<number, Route[]>);
-
   // Fetch available languages
   const { data: languages = [] } = useQuery<string[]>({
     queryKey: ["/api/pricing/languages"],
@@ -266,6 +251,47 @@ export default function MultiCityPricingTool() {
   };
 
   const getCurrentCityRoutes = (cityId: number) => {
+    // Define routes for each city based on the API specification
+    const routesByCity: Record<number, Route[]> = {
+      1: [ // Cairo
+        { id: 1, name: "Airport to Hotel or Vice Versa", type: "airport" },
+        { id: 2, name: "Cairo to Alexandria Over Day", type: "inter-city" },
+        { id: 3, name: "Cairo to Alexandria Over Night", type: "inter-city" },
+        { id: 4, name: "Cairo to El Fayoum Over Day", type: "inter-city" },
+        { id: 5, name: "Cairo to El Fayoum Over Night", type: "inter-city" },
+        { id: 6, name: "Day Tour in Cairo 8 Hours", type: "intra-city" },
+        { id: 7, name: "Day Tour in Cairo 12 Hours", type: "intra-city" },
+        { id: 8, name: "Sound & Light Show", type: "activity" }
+      ],
+      2: [ // Alexandria
+        { id: 9, name: "Alexandria to Cairo Over Day", type: "inter-city" },
+        { id: 10, name: "Alexandria City Tour", type: "intra-city" },
+        { id: 11, name: "Airport Transfer Alexandria", type: "airport" }
+      ],
+      3: [ // Luxor
+        { id: 12, name: "Luxor to Aswan Over Day", type: "inter-city" },
+        { id: 13, name: "East Bank Tour", type: "intra-city" },
+        { id: 14, name: "West Bank Tour", type: "intra-city" },
+        { id: 15, name: "Airport Transfer Luxor", type: "airport" }
+      ],
+      4: [ // Aswan
+        { id: 16, name: "Aswan to Abu Simbel", type: "inter-city" },
+        { id: 17, name: "Philae Temple Tour", type: "intra-city" },
+        { id: 18, name: "Nubian Village Visit", type: "intra-city" },
+        { id: 19, name: "Airport Transfer Aswan", type: "airport" }
+      ],
+      5: [ // Hurghada
+        { id: 20, name: "Airport Transfer Hurghada", type: "airport" },
+        { id: 21, name: "Hurghada City Tour", type: "intra-city" },
+        { id: 22, name: "Desert Safari", type: "activity" }
+      ],
+      6: [ // Sharm El Sheikh
+        { id: 23, name: "Airport Transfer Sharm", type: "airport" },
+        { id: 24, name: "Sharm City Tour", type: "intra-city" },
+        { id: 25, name: "St. Catherine Monastery", type: "inter-city" }
+      ]
+    };
+    
     return routesByCity[cityId] || [];
   };
 
