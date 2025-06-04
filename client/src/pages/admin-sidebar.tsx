@@ -1042,7 +1042,12 @@ export default function AdminSidebar() {
                     <div className="border-t pt-4">
                       <h4 className="text-sm font-medium mb-3">Vehicle Pricing (USD)</h4>
                       <div className="grid grid-cols-1 gap-3">
-                        {(vehicles as any[]).map((vehicle: any) => (
+                        {(vehicles as any[])
+                          .sort((a, b) => {
+                            const order = ['Sedan', 'Minivan', 'Coach', 'Van'];
+                            return order.indexOf(a.name) - order.indexOf(b.name);
+                          })
+                          .map((vehicle: any) => (
                           <div key={vehicle.id} className="grid grid-cols-3 gap-2 items-center">
                             <div className="text-sm font-medium">{vehicle.name}</div>
                             <div>
