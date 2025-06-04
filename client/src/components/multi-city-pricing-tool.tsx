@@ -162,11 +162,20 @@ export default function MultiCityPricingTool() {
     queryKey: ["/api/cities"],
   });
 
-  // Fetch available routes for current city
-  const { data: routes = [] } = useQuery<Route[]>({
-    queryKey: ["/api/pricing/routes", cities[currentCityIndex]?.id],
-    enabled: !!cities[currentCityIndex]?.id,
-  });
+  // Fetch routes for all cities that have been added
+  const cityIds = cityServices.map(service => service.cityId).filter(Boolean);
+  const routeQueries = cityIds.map(cityId => 
+    useQuery<Route[]>({
+      queryKey: ["/api/pricing/routes", cityId],
+      enabled: !!cityId,
+    })
+  );
+  
+  // Create a map of cityId to routes for easy lookup
+  const routesByCity = cityIds.reduce((acc, cityId, index) => {
+    acc[cityId] = routeQueries[index]?.data || [];
+    return acc;
+  }, {} as Record<number, Route[]>);
 
   // Fetch available languages
   const { data: languages = [] } = useQuery<string[]>({
@@ -257,8 +266,7 @@ export default function MultiCityPricingTool() {
   };
 
   const getCurrentCityRoutes = (cityId: number) => {
-    // This would normally fetch from the API, but for now using the routes from current query
-    return routes;
+    return routesByCity[cityId] || [];
   };
 
   return (
@@ -293,9 +301,9 @@ export default function MultiCityPricingTool() {
               <TableBody>
                 {cityServices.map((cityService, index) => {
                   const cityRoutes = getCurrentCityRoutes(cityService.cityId);
-                  const interCityRoutes = cityRoutes.filter(r => r.type === 'inter-city');
-                  const intraCityRoutes = cityRoutes.filter(r => r.type === 'intra-city' || r.type === 'airport' || r.type === 'activity');
-                  const cityBreakdown = totalPricing?.breakdown?.find(b => b.cityName === cityService.cityName);
+                  const interCityRoutes = cityRoutes.filter((r: Route) => r.type === 'inter-city');
+                  const intraCityRoutes = cityRoutes.filter((r: Route) => r.type === 'intra-city' || r.type === 'airport' || r.type === 'activity');
+                  const cityBreakdown = totalPricing?.breakdown?.find((b: any) => b.cityName === cityService.cityName);
                   const cityTotal = cityBreakdown ? Math.round(cityBreakdown.amount / cityService.travelers) : 0;
 
                   return (
@@ -352,7 +360,7 @@ export default function MultiCityPricingTool() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="none">No Transport</SelectItem>
-                            {cityRoutes.map(route => (
+                            {cityRoutes.map((route: Route) => (
                               <SelectItem key={route.id} value={route.id.toString()}>
                                 {route.name}
                               </SelectItem>
