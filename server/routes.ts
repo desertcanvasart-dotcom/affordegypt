@@ -868,7 +868,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name: req.body.name,
         description: req.body.description || null,
         category: req.body.category || 'General',
-        duration: parseInt(req.body.duration) || 2,
+        duration: req.body.duration ? parseInt(req.body.duration.toString().replace(/[^\d]/g, '')) || 2 : 2,
         ticketPrice: req.body.ticketPrice ? parseFloat(req.body.ticketPrice).toString() : "0",
         isActive: req.body.isActive !== false,
         image: req.body.image || null,
