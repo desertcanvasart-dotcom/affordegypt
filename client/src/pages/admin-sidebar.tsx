@@ -20,7 +20,7 @@ export default function AdminSidebar() {
   const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions'>('cities');
   const [deleteConfirm, setDeleteConfirm] = useState<{type: string, id: number, name: string} | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     name: "",
     description: "",
     slug: "",
@@ -44,7 +44,8 @@ export default function AdminSidebar() {
     fromLocation: "",
     toLocation: "",
     km: "",
-    basePriceByVehicle: ""
+    basePriceByVehicle: "",
+    vehiclePricing: {}
   });
 
   const { toast } = useToast();
@@ -133,7 +134,8 @@ export default function AdminSidebar() {
       fromLocation: "",
       toLocation: "",
       km: "",
-      basePriceByVehicle: ""
+      basePriceByVehicle: "",
+      vehiclePricing: {}
     });
   };
 
@@ -164,7 +166,8 @@ export default function AdminSidebar() {
       fromLocation: item.fromLocation || "",
       toLocation: item.toLocation || "",
       km: item.km?.toString() || "",
-      basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {})
+      basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {}),
+      vehiclePricing: item.basePriceByVehicle || {}
     });
     setIsAddModalOpen(true);
   };
@@ -211,7 +214,9 @@ export default function AdminSidebar() {
         fromLocation: formData.fromLocation || null,
         toLocation: formData.toLocation || null,
         km: parseFloat(formData.km) || 0,
-        basePriceByVehicle: formData.basePriceByVehicle || '{}'
+        basePriceByVehicle: formData.vehiclePricing && Object.keys(formData.vehiclePricing).length > 0 
+          ? formData.vehiclePricing 
+          : (formData.basePriceByVehicle ? JSON.parse(formData.basePriceByVehicle) : {})
       } : {
         name: formData.name,
         description: formData.description,
@@ -1030,6 +1035,53 @@ export default function AdminSidebar() {
                       onChange={(e) => setFormData({...formData, km: e.target.value})}
                       placeholder="302"
                     />
+                  </div>
+                  
+                  {/* Vehicle Pricing Section */}
+                  <div className="space-y-4">
+                    <div className="border-t pt-4">
+                      <h4 className="text-sm font-medium mb-3">Vehicle Pricing (USD)</h4>
+                      <div className="grid grid-cols-1 gap-3">
+                        {(vehicles as any[]).map((vehicle: any) => (
+                          <div key={vehicle.id} className="grid grid-cols-3 gap-2 items-center">
+                            <div className="text-sm font-medium">{vehicle.name}</div>
+                            <div>
+                              <Input
+                                type="number"
+                                step="0.01"
+                                placeholder="Normal"
+                                value={formData.vehiclePricing?.[vehicle.id]?.normal || ''}
+                                onChange={(e) => {
+                                  const newPricing = { ...formData.vehiclePricing };
+                                  if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
+                                  newPricing[vehicle.id].normal = e.target.value;
+                                  setFormData({...formData, vehiclePricing: newPricing});
+                                }}
+                                className="text-xs"
+                              />
+                            </div>
+                            <div>
+                              <Input
+                                type="number"
+                                step="0.01"
+                                placeholder="Tourism (+20%)"
+                                value={formData.vehiclePricing?.[vehicle.id]?.tourism || ''}
+                                onChange={(e) => {
+                                  const newPricing = { ...formData.vehiclePricing };
+                                  if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
+                                  newPricing[vehicle.id].tourism = e.target.value;
+                                  setFormData({...formData, vehiclePricing: newPricing});
+                                }}
+                                className="text-xs"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="text-xs text-gray-500 mt-2">
+                        Set pricing for each vehicle type. Tourism license includes 20% surcharge.
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
