@@ -460,8 +460,14 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createAttraction(insertAttraction: InsertAttraction): Promise<Attraction> {
-    const [attraction] = await db.insert(attractions).values(insertAttraction).returning();
-    return attraction;
+    console.log('Creating attraction with data:', insertAttraction);
+    try {
+      const [attraction] = await db.insert(attractions).values(insertAttraction).returning();
+      return attraction;
+    } catch (error: any) {
+      console.error('Database error creating attraction:', error);
+      throw error;
+    }
   }
 
   async updateAttraction(id: number, updateData: Partial<InsertAttraction>): Promise<Attraction> {

@@ -860,9 +860,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/attractions", async (req, res) => {
+    let attractionData;
     try {
       // Validate and clean the incoming data
-      const attractionData = {
+      attractionData = {
         cityId: parseInt(req.body.cityId),
         name: req.body.name,
         description: req.body.description || null,
@@ -885,6 +886,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(attraction);
     } catch (error: any) {
       console.error('Attraction creation error:', error);
+      console.error('Request body:', req.body);
+      if (attractionData) {
+        console.error('Processed data:', attractionData);
+      }
       res.status(500).json({ message: error.message || "Failed to create attraction" });
     }
   });
