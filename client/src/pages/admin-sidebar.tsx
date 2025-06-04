@@ -653,9 +653,9 @@ export default function AdminSidebar() {
                         <TableRow key={route.id} className="h-12">
                           <TableCell>
                             <div className="text-sm">
-                              {route.routeType === 'inter-city' 
-                                ? `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
-                                : `${route.fromLocation || 'Location A'} → ${route.toLocation || 'Location B'}`
+                              {route.fromLocation && route.toLocation
+                                ? `${route.fromLocation} → ${route.toLocation}`
+                                : `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
                               }
                             </div>
                           </TableCell>
