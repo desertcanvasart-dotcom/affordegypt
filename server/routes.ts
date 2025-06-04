@@ -868,7 +868,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         description: req.body.description || null,
         category: req.body.category || 'General',
         duration: parseInt(req.body.duration) || 2,
-        ticketPrice: parseFloat(req.body.ticketPrice) || 0,
+        ticketPrice: req.body.ticketPrice ? parseFloat(req.body.ticketPrice).toString() : "0",
         isActive: req.body.isActive !== false,
         image: req.body.image || null,
         coordinates: req.body.coordinates || null,
@@ -876,11 +876,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         capacity: req.body.capacity ? parseInt(req.body.capacity) : null
       };
 
+      // Validate required fields
+      if (!attractionData.name || !attractionData.cityId) {
+        return res.status(400).json({ message: "Name and city are required" });
+      }
+
       const attraction = await storage.createAttraction(attractionData);
       res.json(attraction);
     } catch (error: any) {
       console.error('Attraction creation error:', error);
-      res.status(500).json({ message: "Failed to create attraction" });
+      res.status(500).json({ message: error.message || "Failed to create attraction" });
     }
   });
 
