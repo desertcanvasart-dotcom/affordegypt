@@ -160,7 +160,7 @@ export default function AdminSidebar() {
       ticketPrice: item.ticketPrice?.toString() || "",
       openingHours: item.openingHours || "",
       location: item.location || "",
-      routeType: item.routeType || "",
+      routeType: item.routeType || (item.fromCityId && item.toCityId ? 'inter-city' : 'intra-city'),
       fromCityId: item.fromCityId?.toString() || "",
       toCityId: item.toCityId?.toString() || "",
       fromLocation: item.fromLocation || "",
@@ -1050,11 +1050,11 @@ export default function AdminSidebar() {
                                 type="number"
                                 step="0.01"
                                 placeholder="Normal"
-                                value={formData.vehiclePricing?.[vehicle.id]?.normal || ''}
+                                value={formData.vehiclePricing?.[vehicle.id]?.['1'] || ''}
                                 onChange={(e) => {
                                   const newPricing = { ...formData.vehiclePricing };
                                   if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
-                                  newPricing[vehicle.id].normal = e.target.value;
+                                  newPricing[vehicle.id]['1'] = e.target.value;
                                   setFormData({...formData, vehiclePricing: newPricing});
                                 }}
                                 className="text-xs"
@@ -1065,11 +1065,11 @@ export default function AdminSidebar() {
                                 type="number"
                                 step="0.01"
                                 placeholder="Tourism (+20%)"
-                                value={formData.vehiclePricing?.[vehicle.id]?.tourism || ''}
+                                value={formData.vehiclePricing?.[vehicle.id]?.['2'] || ''}
                                 onChange={(e) => {
                                   const newPricing = { ...formData.vehiclePricing };
                                   if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
-                                  newPricing[vehicle.id].tourism = e.target.value;
+                                  newPricing[vehicle.id]['2'] = e.target.value;
                                   setFormData({...formData, vehiclePricing: newPricing});
                                 }}
                                 className="text-xs"
