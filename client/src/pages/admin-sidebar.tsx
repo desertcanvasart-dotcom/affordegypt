@@ -1044,7 +1044,7 @@ export default function AdminSidebar() {
                       <div className="grid grid-cols-1 gap-3">
                         {(vehicles as any[])
                           .sort((a, b) => {
-                            const order = ['Sedan', 'Minivan', 'Coach', 'Van'];
+                            const order = ['Sedan', 'Minivan', 'Van', 'Coach'];
                             return order.indexOf(a.name) - order.indexOf(b.name);
                           })
                           .map((vehicle: any) => (
