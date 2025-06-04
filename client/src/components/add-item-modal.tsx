@@ -40,6 +40,12 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
     retry: false,
   });
 
+  // Fetch vehicle types for route pricing
+  const { data: vehicleTypes = [] } = useQuery({
+    queryKey: ['/api/vehicle-types'],
+    retry: false,
+  });
+
   // Create route mutation
   const createMutation = useMutation({
     mutationFn: async (data: any) => {

@@ -644,6 +644,7 @@ export default function AdminSidebar() {
                         <TableHead>Route</TableHead>
                         <TableHead>Type</TableHead>
                         <TableHead>Distance</TableHead>
+                        <TableHead>Vehicle Types</TableHead>
                         <TableHead>Pricing</TableHead>
                         <TableHead className="text-right">Actions</TableHead>
                       </TableRow>
@@ -665,6 +666,18 @@ export default function AdminSidebar() {
                             </Badge>
                           </TableCell>
                           <TableCell className="font-mono text-sm">{route.km} km</TableCell>
+                          <TableCell>
+                            <div className="flex flex-wrap gap-1">
+                              {route.basePriceByVehicle && Object.keys(route.basePriceByVehicle).map((vehicleId: string) => {
+                                const vehicle = (vehicles as any[]).find((v: any) => v.id.toString() === vehicleId);
+                                return vehicle ? (
+                                  <Badge key={vehicleId} variant="secondary" className="text-xs">
+                                    {vehicle.name}
+                                  </Badge>
+                                ) : null;
+                              })}
+                            </div>
+                          </TableCell>
                           <TableCell className="text-xs text-gray-600">
                             {route.basePriceByVehicle ? 'Variable' : 'Fixed'}
                           </TableCell>
