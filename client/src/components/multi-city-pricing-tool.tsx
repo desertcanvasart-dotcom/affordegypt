@@ -17,41 +17,17 @@ import { apiRequest } from "@/lib/queryClient";
 interface AttractionsMultiSelectProps {
   selectedAttractions: string[];
   onAttractionsChange: (attractions: string[]) => void;
+  cityId: number;
   cityName: string;
+  attractions: any[];
 }
 
-function AttractionsMultiSelect({ selectedAttractions, onAttractionsChange, cityName }: AttractionsMultiSelectProps) {
-  const attractions = {
-    "Cairo": [
-      { value: "pyramids", label: "Pyramids of Giza" },
-      { value: "khan_khalili", label: "Khan El Khalili" },
-      { value: "al_muizz", label: "Al Muizz Street" },
-      { value: "citadel", label: "Citadel of Saladin" },
-      { value: "coptic", label: "Coptic Cairo" },
-      { value: "egyptian_museum", label: "Egyptian Museum" },
-      { value: "cairo_tower", label: "Cairo Tower" }
-    ],
-    "Alexandria": [
-      { value: "alexandria_library", label: "Alexandria Library" },
-      { value: "qaitbay_citadel", label: "Qaitbay Citadel" },
-      { value: "montaza_palace", label: "Montaza Palace" },
-      { value: "catacombs", label: "Catacombs of Kom el Shoqafa" }
-    ],
-    "Luxor": [
-      { value: "luxor_temple", label: "Luxor Temple" },
-      { value: "valley_kings", label: "Valley of the Kings" },
-      { value: "karnak_temple", label: "Karnak Temple" },
-      { value: "hatshepsut_temple", label: "Hatshepsut Temple" }
-    ],
-    "Aswan": [
-      { value: "abu_simbel", label: "Abu Simbel" },
-      { value: "philae_temple", label: "Philae Temple" },
-      { value: "high_dam", label: "Aswan High Dam" },
-      { value: "unfinished_obelisk", label: "Unfinished Obelisk" }
-    ]
-  };
-
-  const cityAttractions = attractions[cityName as keyof typeof attractions] || [];
+function AttractionsMultiSelect({ selectedAttractions, onAttractionsChange, cityId, cityName, attractions }: AttractionsMultiSelectProps) {
+  // Filter attractions for the current city
+  const cityAttractions = (attractions || []).filter(attraction => attraction.cityId === cityId).map(attraction => ({
+    value: attraction.id.toString(),
+    label: attraction.name
+  }));
 
   const toggleAttraction = (attractionValue: string) => {
     const updated = selectedAttractions.includes(attractionValue)
@@ -175,6 +151,11 @@ export default function MultiCityPricingTool() {
   // Fetch available routes
   const { data: routes = [] } = useQuery<any[]>({
     queryKey: ["/api/routes"],
+  });
+
+  // Fetch available attractions
+  const { data: attractions = [] } = useQuery<any[]>({
+    queryKey: ["/api/attractions"],
   });
 
   // Calculate pricing mutation
@@ -417,7 +398,9 @@ export default function MultiCityPricingTool() {
                         <AttractionsMultiSelect
                           selectedAttractions={cityService.selectedAttractions || []}
                           onAttractionsChange={(attractions) => updateCityService(index, { selectedAttractions: attractions })}
+                          cityId={cityService.cityId}
                           cityName={cityService.cityName}
+                          attractions={attractions || []}
                         />
                       </TableCell>
 
