@@ -23,7 +23,7 @@ const blogPosts: BlogPost[] = [
     category: "Destinations",
     readTime: "5 min read",
     publishDate: "2024-03-15",
-    image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/sinai-penensula.jpg",
     slug: "sinai-peninsula-travel-guide"
   },
   {
