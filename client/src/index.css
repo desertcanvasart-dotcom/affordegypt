@@ -144,6 +144,7 @@ html {
 
 /* Force green text color */
 .text-green-primary {
-  color: #10B981 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  color: #00FF88 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 700 !important;
 }
