@@ -18,13 +18,13 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "Ultimate Guide to Egyptian Pyramid Tours",
-    excerpt: "Discover the best ways to explore the ancient pyramids of Giza, from sunrise tours to camel rides around the complex.",
+    title: "Sinai Peninsula Travel Guide",
+    excerpt: "Sinai Peninsula Travel Guide: Best Places to Visit, Dive & Hike in Egypt",
     category: "Destinations",
     readTime: "5 min read",
     publishDate: "2024-03-15",
     image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e",
-    slug: "ultimate-guide-egyptian-pyramid-tours"
+    slug: "sinai-peninsula-travel-guide"
   },
   {
     id: 2,
