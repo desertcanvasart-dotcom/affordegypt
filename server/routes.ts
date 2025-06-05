@@ -583,9 +583,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create route
   app.post("/api/routes", async (req, res) => {
     try {
+      // Validate required fields
+      if (!req.body.fromCityId || !req.body.toCityId) {
+        console.error('Missing required fields:', { fromCityId: req.body.fromCityId, toCityId: req.body.toCityId });
+        return res.status(400).json({ message: "fromCityId and toCityId are required" });
+      }
+
       const routeData = {
-        fromCityId: req.body.fromCityId,
-        toCityId: req.body.toCityId,
+        fromCityId: parseInt(req.body.fromCityId),
+        toCityId: parseInt(req.body.toCityId),
         km: req.body.km || req.body.distance || "0",
         basePriceByVehicle: {
           sedan: req.body.sedanPrice || req.body.basePrice || 0,
@@ -593,6 +599,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           van: req.body.vanPrice || (req.body.basePrice ? req.body.basePrice * 1.8 : 0)
         }
       };
+
+      console.log('Creating route with data:', routeData);
       const route = await storage.createRoute(routeData);
       res.json(route);
     } catch (error: any) {

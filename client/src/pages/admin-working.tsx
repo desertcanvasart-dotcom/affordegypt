@@ -488,6 +488,11 @@ export default function AdminWorking() {
           });
         });
         
+        // Validate required fields
+        if (!formData.fromCityId || !formData.toCityId) {
+          throw new Error('From City and To City are required');
+        }
+
         const routeData: any = {
           fromCityId: parseInt(formData.fromCityId),
           toCityId: parseInt(formData.toCityId), 
