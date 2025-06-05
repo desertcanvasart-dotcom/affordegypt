@@ -212,8 +212,10 @@ export default function AdminSidebar() {
         category: formData.category || 'service'
       } : modalType === 'route' ? {
         routeType: formData.routeType || 'inter-city',
-        fromCityId: parseInt(formData.fromCityId) || null,
-        toCityId: formData.routeType === 'inter-city' ? parseInt(formData.toCityId) : parseInt(formData.fromCityId),
+        fromCityId: formData.fromCityId ? parseInt(formData.fromCityId) : null,
+        toCityId: formData.routeType === 'inter-city' 
+          ? (formData.toCityId ? parseInt(formData.toCityId) : null)
+          : (formData.fromCityId ? parseInt(formData.fromCityId) : null),
         fromLocation: formData.fromLocation || null,
         toLocation: formData.toLocation || null,
         km: parseFloat(formData.km) || 0,
