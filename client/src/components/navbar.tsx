@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, BookOpen, Lightbulb } from "lucide-react";
+import { Menu, X, MapPin, User, Mail, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
@@ -33,9 +33,13 @@ export default function Navbar() {
             >
               Get Quote
             </button>
-            <a href="#blog" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
-              <BookOpen className="w-4 h-4" />
-              Blog
+            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+              <User className="w-4 h-4" />
+              About
+            </a>
+            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+              <Mail className="w-4 h-4" />
+              Contact
             </a>
             <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
               <Lightbulb className="w-4 h-4" />
@@ -77,9 +81,13 @@ export default function Navbar() {
               >
                 Get Quote
               </button>
-              <a href="#blog" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                <BookOpen className="w-4 h-4" />
-                Blog
+              <a href="#about" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <User className="w-4 h-4" />
+                About
+              </a>
+              <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                Contact
               </a>
               <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                 <Lightbulb className="w-4 h-4" />
