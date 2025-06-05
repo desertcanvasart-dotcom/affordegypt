@@ -860,27 +860,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/attractions", async (req, res) => {
-    let attractionData;
     try {
-      console.log('Raw request body:', req.body);
-      
-      // Parse duration properly
-      let parsedDuration = 2;
-      if (req.body.duration) {
-        const durationStr = req.body.duration.toString();
-        console.log('Duration string:', durationStr);
-        const numericMatch = durationStr.match(/\d+/);
-        parsedDuration = numericMatch ? parseInt(numericMatch[0]) : 2;
-        console.log('Parsed duration:', parsedDuration);
-      }
-      
       // Validate and clean the incoming data
-      attractionData = {
+      const attractionData = {
         cityId: parseInt(req.body.cityId),
         name: req.body.name,
         description: req.body.description || null,
         category: req.body.category || 'General',
-        duration: parsedDuration,
+        duration: parseInt(req.body.duration) || 2,
         ticketPrice: req.body.ticketPrice ? parseFloat(req.body.ticketPrice).toString() : "0",
         isActive: req.body.isActive !== false,
         image: req.body.image || null,
@@ -888,8 +875,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         bestTimeToVisit: req.body.bestTimeToVisit || null,
         capacity: req.body.capacity ? parseInt(req.body.capacity) : null
       };
-      
-      console.log('Final processed data:', attractionData);
 
       // Validate required fields
       if (!attractionData.name || !attractionData.cityId) {
@@ -900,11 +885,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(attraction);
     } catch (error: any) {
       console.error('Attraction creation error:', error);
-      console.error('Request body:', req.body);
-      if (attractionData) {
-        console.error('Processed data:', attractionData);
-      }
-      res.status(500).json({ message: error.message || "Failed to create attraction" });
+      res.status(500).json({ message: "Failed to create attraction" });
     }
   });
 
