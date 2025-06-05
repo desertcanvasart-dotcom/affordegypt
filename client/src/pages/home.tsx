@@ -4,6 +4,7 @@ import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 import BlogGrid from "@/components/blog-grid";
 import AboutSection from "@/components/about-section";
 import ContactSection from "@/components/contact-section";
+import WhatsAppWidget from "@/components/whatsapp-widget";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <BlogGrid />
       <AboutSection />
       <ContactSection />
+      <WhatsAppWidget />
       <Footer />
     </div>
   );
