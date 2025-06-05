@@ -172,6 +172,11 @@ export default function MultiCityPricingTool() {
     queryKey: ["/api/pricing/addons"],
   });
 
+  // Fetch available routes
+  const { data: routes = [] } = useQuery<any[]>({
+    queryKey: ["/api/routes"],
+  });
+
   // Calculate pricing mutation
   const pricingMutation = useMutation({
     mutationFn: async (services: CityService[]) => {
@@ -251,48 +256,49 @@ export default function MultiCityPricingTool() {
   };
 
   const getCurrentCityRoutes = (cityId: number) => {
-    // Define routes for each city based on the API specification
-    const routesByCity: Record<number, Route[]> = {
-      1: [ // Cairo
-        { id: 1, name: "Airport to Hotel or Vice Versa", type: "airport" },
-        { id: 2, name: "Cairo to Alexandria Over Day", type: "inter-city" },
-        { id: 3, name: "Cairo to Alexandria Over Night", type: "inter-city" },
-        { id: 4, name: "Cairo to El Fayoum Over Day", type: "inter-city" },
-        { id: 5, name: "Cairo to El Fayoum Over Night", type: "inter-city" },
-        { id: 6, name: "Day Tour in Cairo 8 Hours", type: "intra-city" },
-        { id: 7, name: "Day Tour in Cairo 12 Hours", type: "intra-city" },
-        { id: 8, name: "Sound & Light Show", type: "activity" }
-      ],
-      2: [ // Alexandria
-        { id: 9, name: "Alexandria to Cairo Over Day", type: "inter-city" },
-        { id: 10, name: "Alexandria City Tour", type: "intra-city" },
-        { id: 11, name: "Airport Transfer Alexandria", type: "airport" }
-      ],
-      3: [ // Luxor
-        { id: 12, name: "Luxor to Aswan Over Day", type: "inter-city" },
-        { id: 13, name: "East Bank Tour", type: "intra-city" },
-        { id: 14, name: "West Bank Tour", type: "intra-city" },
-        { id: 15, name: "Airport Transfer Luxor", type: "airport" }
-      ],
-      4: [ // Aswan
-        { id: 16, name: "Aswan to Abu Simbel", type: "inter-city" },
-        { id: 17, name: "Philae Temple Tour", type: "intra-city" },
-        { id: 18, name: "Nubian Village Visit", type: "intra-city" },
-        { id: 19, name: "Airport Transfer Aswan", type: "airport" }
-      ],
-      5: [ // Hurghada
-        { id: 20, name: "Airport Transfer Hurghada", type: "airport" },
-        { id: 21, name: "Hurghada City Tour", type: "intra-city" },
-        { id: 22, name: "Desert Safari", type: "activity" }
-      ],
-      6: [ // Sharm El Sheikh
-        { id: 23, name: "Airport Transfer Sharm", type: "airport" },
-        { id: 24, name: "Sharm City Tour", type: "intra-city" },
-        { id: 25, name: "St. Catherine Monastery", type: "inter-city" }
-      ]
-    };
+    if (!routes || routes.length === 0) return [];
     
-    return routesByCity[cityId] || [];
+    // Filter routes that start from this city or are intra-city routes for this city
+    return routes.filter((route: any) => {
+      // Inter-city routes starting from this city
+      if (route.routeType === 'inter-city' && route.fromCityId === cityId) {
+        return true;
+      }
+      // Intra-city routes for this city (both from and to city are the same)
+      if (route.routeType === 'intra-city' && route.fromCityId === cityId) {
+        return true;
+      }
+      return false;
+    }).map((route: any) => {
+      // Generate route name based on available data
+      let routeName = '';
+      
+      if (route.routeType === 'inter-city') {
+        // For inter-city, try to get city names from the cities data
+        const fromCityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
+        const toCityName = cities.find(c => c.id === route.toCityId)?.name || 'City';
+        routeName = `${fromCityName} to ${toCityName}`;
+        if (route.km) {
+          routeName += ` (${route.km}km)`;
+        }
+      } else if (route.routeType === 'intra-city') {
+        // For intra-city, use location names if available
+        if (route.fromLocation && route.toLocation) {
+          routeName = `${route.fromLocation} to ${route.toLocation}`;
+        } else {
+          const cityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
+          routeName = `${cityName} Tour`;
+        }
+      } else {
+        routeName = `Route ${route.id}`;
+      }
+      
+      return {
+        id: route.id,
+        name: routeName,
+        type: route.routeType || 'inter-city'
+      };
+    });
   };
 
   return (
