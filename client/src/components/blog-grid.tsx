@@ -68,13 +68,13 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 6,
-    title: "Nile River Cruises: Choosing the Right Journey",
-    excerpt: "Compare different Nile cruise options from luxury vessels to traditional feluccas for your perfect river adventure.",
+    title: "Eastern & Western Deserts Travel Guide",
+    excerpt: "Egypt Desert Travel Guide: Explore Siwa, White Desert & Eastern Trails",
     category: "Destinations",
     readTime: "8 min read",
     publishDate: "2024-03-01",
     image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce",
-    slug: "nile-river-cruises-guide"
+    slug: "eastern-western-deserts-travel-guide"
   }
 ];
 
