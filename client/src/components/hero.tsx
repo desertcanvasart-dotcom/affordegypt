@@ -45,13 +45,13 @@ export default function Hero() {
             
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 text-center">
               <div className="step-number mx-auto mb-4">2</div>
-              <h3 className="text-lg font-semibold mb-2">Add Guides & Extras</h3>
+              <h3 className="text-lg font-semibold mb-2 text-green-primary">Add Guides & Extras</h3>
               <p className="text-white/80 text-sm">Pick local guides and experiences</p>
             </Card>
             
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 text-center">
               <div className="step-number mx-auto mb-4">3</div>
-              <h3 className="text-lg font-semibold mb-2">Get Instant Quote</h3>
+              <h3 className="text-lg font-semibold mb-2 text-green-primary">Get Instant Quote</h3>
               <p className="text-white/80 text-sm">See total price with all fees included</p>
             </Card>
           </div>
