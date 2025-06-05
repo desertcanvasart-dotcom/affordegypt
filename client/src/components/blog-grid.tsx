@@ -38,13 +38,13 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
-    title: "Hidden Gems: Off-the-Beaten-Path Destinations in Upper Egypt",
-    excerpt: "Explore lesser-known archaeological sites and traditional villages away from the crowds in southern Egypt.",
+    title: "Nile Valley Travel Guide",
+    excerpt: "Nile Valley Egypt: Top Destinations, Nile Cruises & Ancient Sites Guide",
     category: "Destinations",
     readTime: "7 min read",
     publishDate: "2024-03-10",
     image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb",
-    slug: "hidden-gems-upper-egypt"
+    slug: "nile-valley-travel-guide"
   },
   {
     id: 4,
