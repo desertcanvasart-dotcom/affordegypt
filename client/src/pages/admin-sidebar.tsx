@@ -177,6 +177,9 @@ export default function AdminSidebar() {
     
     setIsSubmitting(true);
     try {
+      console.log('handleSave called - modalType:', modalType);
+      console.log('Current formData:', formData);
+      
       const endpoints = {
         city: '/api/cities',
         vehicle: '/api/vehicle-types',
@@ -209,7 +212,7 @@ export default function AdminSidebar() {
         category: formData.category || 'service'
       } : modalType === 'route' ? {
         routeType: formData.routeType || 'inter-city',
-        fromCityId: formData.routeType === 'inter-city' ? parseInt(formData.fromCityId) : parseInt(formData.fromCityId),
+        fromCityId: parseInt(formData.fromCityId) || null,
         toCityId: formData.routeType === 'inter-city' ? parseInt(formData.toCityId) : parseInt(formData.fromCityId),
         fromLocation: formData.fromLocation || null,
         toLocation: formData.toLocation || null,
@@ -228,10 +231,14 @@ export default function AdminSidebar() {
         openingHours: formData.openingHours || '9:00 AM - 5:00 PM'
       };
 
+      console.log('Prepared payload for', modalType, ':', payload);
+
       const method = editingItem ? 'PUT' : 'POST';
       const url = editingItem 
         ? `${endpoints[modalType as keyof typeof endpoints]}/${editingItem.id}`
         : endpoints[modalType as keyof typeof endpoints];
+
+      console.log('Making request to:', url, 'with method:', method);
 
       const response = await fetch(url, {
         method,
