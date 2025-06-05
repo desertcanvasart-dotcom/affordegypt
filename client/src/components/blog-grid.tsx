@@ -43,7 +43,7 @@ const blogPosts: BlogPost[] = [
     category: "Destinations",
     readTime: "7 min read",
     publishDate: "2024-03-10",
-    image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley.jpg",
     slug: "nile-valley-travel-guide"
   },
   {
