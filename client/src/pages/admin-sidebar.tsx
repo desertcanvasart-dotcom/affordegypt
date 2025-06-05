@@ -222,7 +222,7 @@ export default function AdminSidebar() {
         description: formData.description,
         cityId: parseInt(formData.cityId) || 1,
         ticketPrice: parseFloat(formData.ticketPrice) || 0,
-        duration: formData.duration || '2 hours',
+        duration: parseInt((formData.duration || '2').toString().replace(/[^\d]/g, '')) || 2,
         location: formData.location || '',
         category: formData.category || 'historical',
         openingHours: formData.openingHours || '9:00 AM - 5:00 PM'
