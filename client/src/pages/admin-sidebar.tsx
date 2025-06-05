@@ -993,7 +993,10 @@ export default function AdminSidebar() {
                         <select
                           className="w-full px-3 py-2 border rounded-md"
                           value={formData.fromCityId}
-                          onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                          onChange={(e) => {
+                            console.log('From City selected:', e.target.value);
+                            setFormData({...formData, fromCityId: e.target.value});
+                          }}
                         >
                           <option value="">Select City</option>
                           {(cities as any[]).map((city: any) => (
@@ -1006,7 +1009,10 @@ export default function AdminSidebar() {
                         <select
                           className="w-full px-3 py-2 border rounded-md"
                           value={formData.toCityId}
-                          onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                          onChange={(e) => {
+                            console.log('To City selected:', e.target.value);
+                            setFormData({...formData, toCityId: e.target.value});
+                          }}
                         >
                           <option value="">Select City</option>
                           {(cities as any[]).map((city: any) => (
