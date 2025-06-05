@@ -274,7 +274,7 @@ export default function MultiCityPricingTool() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div id="quote-builder" className="max-w-7xl mx-auto px-4 py-8">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-2xl">
