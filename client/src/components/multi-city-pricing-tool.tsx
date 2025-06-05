@@ -258,45 +258,34 @@ export default function MultiCityPricingTool() {
   const getCurrentCityRoutes = (cityId: number) => {
     if (!routes || routes.length === 0) return [];
     
-    // Filter routes that start from this city or are intra-city routes for this city
+    // Filter routes that start from this city
     return routes.filter((route: any) => {
-      // Inter-city routes starting from this city
-      if (route.routeType === 'inter-city' && route.fromCityId === cityId) {
-        return true;
-      }
-      // Intra-city routes for this city (both from and to city are the same)
-      if (route.routeType === 'intra-city' && route.fromCityId === cityId) {
-        return true;
-      }
-      return false;
+      return route.fromCityId === cityId;
     }).map((route: any) => {
       // Generate route name based on available data
       let routeName = '';
+      let routeType = 'inter-city';
       
-      if (route.routeType === 'inter-city') {
-        // For inter-city, try to get city names from the cities data
+      if (route.fromCityId === route.toCityId) {
+        // Intra-city route (same start and end city)
+        const cityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
+        routeName = `${cityName} City Tour`;
+        routeType = 'intra-city';
+      } else {
+        // Inter-city route
         const fromCityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
         const toCityName = cities.find(c => c.id === route.toCityId)?.name || 'City';
         routeName = `${fromCityName} to ${toCityName}`;
         if (route.km) {
-          routeName += ` (${route.km}km)`;
+          routeName += ` (${parseFloat(route.km).toFixed(0)}km)`;
         }
-      } else if (route.routeType === 'intra-city') {
-        // For intra-city, use location names if available
-        if (route.fromLocation && route.toLocation) {
-          routeName = `${route.fromLocation} to ${route.toLocation}`;
-        } else {
-          const cityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
-          routeName = `${cityName} Tour`;
-        }
-      } else {
-        routeName = `Route ${route.id}`;
+        routeType = 'inter-city';
       }
       
       return {
         id: route.id,
         name: routeName,
-        type: route.routeType || 'inter-city'
+        type: routeType
       };
     });
   };
