@@ -211,6 +211,8 @@ export default function AdminSidebar() {
         unitType: formData.unitType || 'per_unit',
         category: formData.category || 'service'
       } : modalType === 'route' ? {
+        name: formData.name,
+        description: formData.description,
         routeType: formData.routeType || 'inter-city',
         fromCityId: formData.fromCityId ? parseInt(formData.fromCityId) : null,
         toCityId: formData.routeType === 'inter-city' 
@@ -668,11 +670,19 @@ export default function AdminSidebar() {
                         <TableRow key={route.id} className="h-12">
                           <TableCell>
                             <div className="text-sm">
-                              {route.fromLocation && route.toLocation
+                              {route.name || (route.fromLocation && route.toLocation
                                 ? `${route.fromLocation} → ${route.toLocation}`
                                 : `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
-                              }
+                              )}
                             </div>
+                            {route.name && (route.fromLocation || route.fromCityId) && (
+                              <div className="text-xs text-gray-500 mt-1">
+                                {route.fromLocation && route.toLocation
+                                  ? `${route.fromLocation} → ${route.toLocation}`
+                                  : `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
+                                }
+                              </div>
+                            )}
                           </TableCell>
                           <TableCell>
                             <Badge variant="outline" className="text-xs">
