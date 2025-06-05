@@ -61,21 +61,23 @@ function AttractionsMultiSelect({ selectedAttractions, onAttractionsChange, city
           <div className="text-sm font-medium text-gray-700 px-2 py-1">
             {cityName} Attractions
           </div>
-          {cityAttractions.map((attraction) => (
-            <div key={attraction.value} className="flex items-center space-x-2 px-2 py-1 hover:bg-gray-50 rounded">
-              <Checkbox
-                id={attraction.value}
-                checked={selectedAttractions.includes(attraction.value)}
-                onCheckedChange={() => toggleAttraction(attraction.value)}
-              />
-              <label 
-                htmlFor={attraction.value}
-                className="text-sm cursor-pointer flex-1"
-              >
-                {attraction.label}
-              </label>
-            </div>
-          ))}
+          <div className="max-h-60 overflow-y-auto space-y-1">
+            {cityAttractions.map((attraction) => (
+              <div key={attraction.value} className="flex items-center space-x-2 px-2 py-1 hover:bg-gray-50 rounded">
+                <Checkbox
+                  id={attraction.value}
+                  checked={selectedAttractions.includes(attraction.value)}
+                  onCheckedChange={() => toggleAttraction(attraction.value)}
+                />
+                <label 
+                  htmlFor={attraction.value}
+                  className="text-sm cursor-pointer flex-1"
+                >
+                  {attraction.label}
+                </label>
+              </div>
+            ))}
+          </div>
           {selectedAttractions.length > 0 && (
             <div className="border-t pt-2 mt-2">
               <Button
@@ -360,7 +362,7 @@ export default function MultiCityPricingTool() {
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select Transport" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="max-h-60 overflow-y-auto">
                             <SelectItem value="none">No Transport</SelectItem>
                             {cityRoutes.map((route: Route) => (
                               <SelectItem key={route.id} value={route.id.toString()}>
@@ -384,7 +386,7 @@ export default function MultiCityPricingTool() {
                           <SelectTrigger>
                             <SelectValue placeholder="Select Language" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="max-h-60 overflow-y-auto">
                             <SelectItem value="none">No Guide</SelectItem>
                             {languages.map(lang => (
                               <SelectItem key={lang} value={lang}>{lang}</SelectItem>
@@ -425,7 +427,7 @@ export default function MultiCityPricingTool() {
                             <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select Add-on" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="max-h-60 overflow-y-auto">
                               <SelectItem value="none">None</SelectItem>
                               {addOns.filter(a => a.type === 'per_unit').map(addOn => (
                                 <SelectItem key={addOn.id} value={addOn.id.toString()}>
@@ -488,7 +490,7 @@ export default function MultiCityPricingTool() {
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select Add-on" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="max-h-60 overflow-y-auto">
                             <SelectItem value="none">None</SelectItem>
                             {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => (
                               <SelectItem key={addOn.id} value={addOn.id.toString()}>
