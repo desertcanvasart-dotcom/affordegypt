@@ -73,7 +73,7 @@ const blogPosts: BlogPost[] = [
     category: "Destinations",
     readTime: "8 min read",
     publishDate: "2024-03-01",
-    image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/eastern-desert.jpg",
     slug: "eastern-western-deserts-travel-guide"
   }
 ];
