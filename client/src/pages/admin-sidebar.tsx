@@ -128,7 +128,7 @@ export default function AdminSidebar() {
       ticketPrice: "",
       openingHours: "",
       location: "",
-      routeType: "",
+      routeType: "inter-city",
       fromCityId: "",
       toCityId: "",
       fromLocation: "",
@@ -1022,22 +1022,40 @@ export default function AdminSidebar() {
                       </div>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1">From Location</label>
-                        <Input
-                          value={formData.fromLocation}
-                          onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
-                          placeholder="Hotel District"
-                        />
+                        <label className="block text-sm font-medium mb-1">City</label>
+                        <select
+                          className="w-full px-3 py-2 border rounded-md"
+                          value={formData.fromCityId}
+                          onChange={(e) => {
+                            console.log('Intra-city City selected:', e.target.value);
+                            setFormData({...formData, fromCityId: e.target.value, toCityId: e.target.value});
+                          }}
+                        >
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-1">To Location</label>
-                        <Input
-                          value={formData.toLocation}
-                          onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
-                          placeholder="Airport"
-                        />
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">From Location</label>
+                          <Input
+                            value={formData.fromLocation}
+                            onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
+                            placeholder="Hotel District"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">To Location</label>
+                          <Input
+                            value={formData.toLocation}
+                            onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
+                            placeholder="Airport"
+                          />
+                        </div>
                       </div>
                     </div>
                   )}
