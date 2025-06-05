@@ -38,7 +38,7 @@ export default function AdminSidebar() {
     ticketPrice: "",
     openingHours: "",
     location: "",
-    routeType: "",
+    routeType: "inter-city",
     fromCityId: "",
     toCityId: "",
     fromLocation: "",
