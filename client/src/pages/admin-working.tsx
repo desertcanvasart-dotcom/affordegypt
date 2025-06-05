@@ -430,7 +430,11 @@ export default function AdminWorking() {
   };
 
   const handleSave = () => {
+    console.log('handleSave called with modalType:', modalType);
+    console.log('Current formData:', formData);
+    
     const data = prepareFormData(modalType, formData);
+    console.log('Prepared data for submission:', data);
     
     if (editingItem) {
       updateMutation.mutate({ type: modalType, id: editingItem.id, data });
