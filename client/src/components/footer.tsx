@@ -9,8 +9,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-6">
-              <Crown className="text-primary text-2xl mr-2" />
-              <span className="text-2xl font-bold">EGH</span>
+              <img 
+                src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
+                alt="Afford Egypt Logo" 
+                className="h-8 w-auto"
+              />
             </div>
             <p className="text-gray-300 mb-4">
               Budget-friendly Egypt travel with transparent pricing and expert local guides.
