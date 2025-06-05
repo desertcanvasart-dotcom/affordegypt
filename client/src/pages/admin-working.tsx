@@ -199,7 +199,11 @@ export default function AdminWorking() {
                      type === 'city' ? 'cities' :
                      type === 'vehicle' ? 'vehicle-types' :
                      type === 'guide' ? 'guide-rates' :
-                     type === 'attraction' ? 'attractions' : 'addons';
+                     type === 'attraction' ? 'attractions' :
+                     type === 'route' ? 'routes' : 'addons';
+      
+      console.log(`Creating ${type} with data:`, data);
+      
       const response = await fetch(`/api/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -216,7 +220,8 @@ export default function AdminWorking() {
                      variables.type === 'city' ? '/api/cities' :
                      variables.type === 'vehicle' ? '/api/vehicle-types' :
                      variables.type === 'guide' ? '/api/guide-rates' :
-                     variables.type === 'attraction' ? '/api/attractions' : '/api/addons';
+                     variables.type === 'attraction' ? '/api/attractions' :
+                     variables.type === 'route' ? '/api/routes' : '/api/addons';
       queryClient.invalidateQueries({ queryKey: [endpoint] });
       setIsAddModalOpen(false);
       setModalType('city');
@@ -227,9 +232,10 @@ export default function AdminWorking() {
       });
     },
     onError: (error: any, variables) => {
+      console.error(`Create ${variables.type} error:`, error);
       toast({
         title: "Error",
-        description: `Failed to create ${variables.type}`,
+        description: `Failed to create ${variables.type}: ${error.message}`,
         variant: "destructive",
       });
     },
