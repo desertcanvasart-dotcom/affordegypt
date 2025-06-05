@@ -39,7 +39,7 @@ export default function Hero() {
           <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 text-center">
               <div className="step-number mx-auto mb-4">1</div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#19A974' }}>Select Your Journey</h3>
+              <h3 className="text-lg font-semibold mb-2 text-green-primary">Select Your Journey</h3>
               <p className="text-white/80 text-sm">Choose cities, transport, and group size</p>
             </Card>
             

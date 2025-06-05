@@ -141,3 +141,8 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary;
 }
+
+/* Force green text color */
+.text-green-primary {
+  color: #19A974 !important;
+}
