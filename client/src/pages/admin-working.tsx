@@ -488,8 +488,20 @@ export default function AdminWorking() {
           });
         });
         
+        // Debug logging
+        console.log('Route form data:', {
+          fromCityId: formData.fromCityId,
+          toCityId: formData.toCityId,
+          routeType: formData.routeType,
+          km: formData.km
+        });
+
         // Validate required fields
         if (!formData.fromCityId || !formData.toCityId) {
+          console.error('Validation failed - missing city IDs:', {
+            fromCityId: formData.fromCityId,
+            toCityId: formData.toCityId
+          });
           throw new Error('From City and To City are required');
         }
 
