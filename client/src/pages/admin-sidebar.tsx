@@ -20,9 +20,6 @@ export default function AdminSidebar() {
   const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions'>('cities');
   const [deleteConfirm, setDeleteConfirm] = useState<{type: string, id: number, name: string} | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10);
-  const [searchTerm, setSearchTerm] = useState("");
   const [formData, setFormData] = useState<any>({
     name: "",
     description: "",
@@ -55,50 +52,61 @@ export default function AdminSidebar() {
   const queryClient = useQueryClient();
 
   // Data queries
-  const { data: cities } = useQuery({ queryKey: ['/api/cities'] });
-  const { data: vehicles } = useQuery({ queryKey: ['/api/vehicle-types'] });
-  const { data: guides } = useQuery({ queryKey: ['/api/guide-rates'] });
-  const { data: addOns } = useQuery({ queryKey: ['/api/addons'] });
-  const { data: routes } = useQuery({ queryKey: ['/api/routes'] });
-  const { data: attractions } = useQuery({ queryKey: ['/api/attractions'] });
+  const { data: cities = [] } = useQuery({ queryKey: ['/api/cities'] });
+  const { data: vehicles = [] } = useQuery({ queryKey: ['/api/vehicle-types'] });
+  const { data: guides = [] } = useQuery({ queryKey: ['/api/guide-rates'] });
+  const { data: addOns = [] } = useQuery({ queryKey: ['/api/addons'] });
+  const { data: routes = [] } = useQuery({ queryKey: ['/api/routes'] });
+  const { data: attractions = [] } = useQuery({ queryKey: ['/api/attractions'] });
 
-  // Check if user is authenticated
-  useEffect(() => {
-    const checkAuth = () => {
-      const sessionAuth = sessionStorage.getItem('adminAuthenticated');
-      const localAuth = localStorage.getItem('adminAuthenticated');
-      if (sessionAuth === 'true' || localAuth === 'true') {
-        setIsAuthenticated(true);
-      }
-    };
-    checkAuth();
-  }, []);
+  // Delete mutation
+  const deleteMutation = useMutation({
+    mutationFn: async ({ type, id }: { type: string; id: number }) => {
+      const endpoints = {
+        city: '/api/cities',
+        vehicle: '/api/vehicle-types',
+        guide: '/api/guide-rates',
+        addon: '/api/addons',
+        route: '/api/routes',
+        attraction: '/api/attractions'
+      };
+      const response = await fetch(`${endpoints[type as keyof typeof endpoints]}/${id}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) throw new Error('Failed to delete');
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/cities'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/vehicle-types'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/guide-rates'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/addons'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
+      toast({ title: "Deleted successfully" });
+      setDeleteConfirm(null);
+    }
+  });
 
-  const handleLogin = (token: string) => {
+  const handleDeleteClick = (item: any, type: string) => {
+    setDeleteConfirm({
+      type,
+      id: item.id,
+      name: item.name || item.language || `${type} #${item.id}`
+    });
+  };
+
+  const confirmDelete = () => {
+    if (deleteConfirm) {
+      deleteMutation.mutate({ type: deleteConfirm.type, id: deleteConfirm.id });
+    }
+  };
+
+  const handleLogin = () => {
     setIsAuthenticated(true);
-    localStorage.setItem('adminAuthenticated', 'true');
-    localStorage.setItem('admin-token', token);
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    sessionStorage.removeItem('adminAuthenticated');
-    localStorage.removeItem('adminAuthenticated');
-  };
-
-  // Reset pagination when section changes
-  useEffect(() => {
-    setCurrentPage(1);
-    setSearchTerm("");
-  }, [activeSection]);
-
-  const endpoints = {
-    city: '/api/cities',
-    vehicle: '/api/vehicle-types',
-    guide: '/api/guide-rates',
-    addon: '/api/addons',
-    route: '/api/routes',
-    attraction: '/api/attractions'
   };
 
   const resetForm = () => {
@@ -129,45 +137,63 @@ export default function AdminSidebar() {
       basePriceByVehicle: "",
       vehiclePricing: {}
     });
-    setEditingItem(null);
   };
 
   const handleEdit = (item: any, type: string) => {
     setEditingItem(item);
     setModalType(type as any);
-    if (type === 'route') {
-      setFormData({
-        ...item,
-        routeType: item.fromCityId === item.toCityId ? 'intra-city' : 'inter-city',
-        vehiclePricing: item.basePriceByVehicle || {},
-        basePriceByVehicle: JSON.stringify(item.basePriceByVehicle || {})
-      });
-    } else {
-      setFormData(item);
-    }
+    setFormData({
+      name: item.name || "",
+      description: item.description || "",
+      slug: item.slug || "",
+      isActive: item.isActive !== undefined ? item.isActive : true,
+      paxMin: item.paxMin?.toString() || "",
+      paxMax: item.paxMax?.toString() || "",
+      language: item.language || "",
+      pricePerDay: item.pricePerDay?.toString() || "",
+      pricePerHour: item.hourlyPrice?.toString() || "",
+      cityId: item.cityId?.toString() || "",
+      price: item.price?.toString() || "",
+      unitType: item.unitType || "",
+      category: item.category || "",
+      duration: item.duration || "",
+      ticketPrice: item.ticketPrice?.toString() || "",
+      openingHours: item.openingHours || "",
+      location: item.location || "",
+      routeType: item.routeType || (item.fromCityId && item.toCityId ? 'inter-city' : 'intra-city'),
+      fromCityId: item.fromCityId?.toString() || "",
+      toCityId: item.toCityId?.toString() || "",
+      fromLocation: item.fromLocation || "",
+      toLocation: item.toLocation || "",
+      km: item.km?.toString() || "",
+      basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {}),
+      vehiclePricing: item.basePriceByVehicle || {}
+    });
     setIsAddModalOpen(true);
   };
 
-  const handleAdd = (type: string) => {
-    resetForm();
-    setModalType(type as any);
-    setIsAddModalOpen(true);
-  };
-
-  const handleDeleteClick = (item: any, type: string) => {
-    setDeleteConfirm({ type, id: item.id, name: item.name });
-  };
-
-  const mutation = useMutation({
-    mutationFn: async () => {
-      setIsSubmitting(true);
+  const handleSave = async () => {
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    try {
+      console.log('handleSave called - modalType:', modalType);
+      console.log('Current formData:', formData);
       
-      // Prepare payload based on the modal type
+      const endpoints = {
+        city: '/api/cities',
+        vehicle: '/api/vehicle-types',
+        guide: '/api/guide-rates',
+        addon: '/api/addons',
+        route: '/api/routes',
+        attraction: '/api/attractions'
+      };
+
       const payload = modalType === 'city' ? {
         name: formData.name,
-        slug: formData.slug,
         description: formData.description,
-        isActive: true
+        slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, '-'),
+        isActive: formData.isActive
       } : modalType === 'vehicle' ? {
         name: formData.name,
         description: formData.description,
@@ -220,75 +246,37 @@ export default function AdminSidebar() {
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to ${editingItem ? 'update' : 'create'} ${modalType}: ${errorText}`);
-      }
+      if (!response.ok) throw new Error(editingItem ? 'Failed to update' : 'Failed to create');
 
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [endpoints[modalType as keyof typeof endpoints]] });
+      // Invalidate queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ['/api/cities'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/vehicle-types'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/guide-rates'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/addons'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
+
+      toast({ title: editingItem ? "Updated successfully" : "Created successfully" });
       setIsAddModalOpen(false);
+      setEditingItem(null);
       resetForm();
-      toast({
-        title: `${modalType.charAt(0).toUpperCase() + modalType.slice(1)} ${editingItem ? 'updated' : 'created'} successfully`,
-      });
-    },
-    onError: (error) => {
-      console.error('Mutation error:', error);
-      toast({
-        title: `Failed to ${editingItem ? 'update' : 'create'} ${modalType}`,
-        description: error instanceof Error ? error.message : 'Unknown error occurred',
-        variant: "destructive",
-      });
-    },
-    onSettled: () => {
+    } catch (error) {
+      console.error('Save error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      if (errorMessage.includes('duplicate key')) {
+        toast({ title: "Item already exists", description: "An item with this name or slug already exists", variant: "destructive" });
+      } else {
+        toast({ title: editingItem ? "Failed to update" : "Failed to create", variant: "destructive" });
+      }
+    } finally {
       setIsSubmitting(false);
     }
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: async () => {
-      if (!deleteConfirm) return;
-      
-      const response = await fetch(`${endpoints[deleteConfirm.type as keyof typeof endpoints]}/${deleteConfirm.id}`, {
-        method: 'DELETE'
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to delete ${deleteConfirm.type}: ${errorText}`);
-      }
-    },
-    onSuccess: () => {
-      if (deleteConfirm) {
-        queryClient.invalidateQueries({ queryKey: [endpoints[deleteConfirm.type as keyof typeof endpoints]] });
-        toast({
-          title: `${deleteConfirm.type.charAt(0).toUpperCase() + deleteConfirm.type.slice(1)} deleted successfully`,
-        });
-        setDeleteConfirm(null);
-      }
-    },
-    onError: (error) => {
-      toast({
-        title: `Failed to delete ${deleteConfirm?.type}`,
-        description: error instanceof Error ? error.message : 'Unknown error occurred',
-        variant: "destructive",
-      });
-    }
-  });
-
-  const handleSubmit = () => {
-    mutation.mutate();
-  };
-
-  const handleDeleteConfirm = () => {
-    deleteMutation.mutate();
   };
 
   if (!isAuthenticated) {
@@ -297,147 +285,409 @@ export default function AdminSidebar() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className="w-64 bg-white shadow-sm border-r border-gray-200">
-        <div className="p-6">
-          <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
-          <p className="text-sm text-gray-600 mt-1">Manage your travel platform</p>
+      {/* Sidebar Navigation */}
+      <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+        {/* Sidebar Header */}
+        <div className="px-6 py-4 border-b border-gray-200">
+          <div>
+            <h1 className="text-xl font-bold text-gray-900">Egypt Travel Admin</h1>
+            <p className="text-xs text-gray-500">Back-Office — crafted for flawless journeys</p>
+          </div>
+          <Badge variant="secondary" className="bg-teal-100 text-teal-800 mt-2">
+            Administrator
+          </Badge>
         </div>
-        
-        <nav className="mt-6">
-          {[
-            { key: 'cities', label: 'Cities', icon: MapPin },
-            { key: 'vehicles', label: 'Vehicles', icon: Car },
-            { key: 'routes', label: 'Routes', icon: Map },
-            { key: 'guides', label: 'Guides', icon: Users },
-            { key: 'addons', label: 'Add-ons', icon: Package },
-            { key: 'attractions', label: 'Attractions', icon: Building2 }
-          ].map(({ key, label, icon: Icon }) => (
-            <button
-              key={key}
-              onClick={() => setActiveSection(key as any)}
-              className={`w-full flex items-center px-6 py-3 text-left text-sm font-medium transition-colors ${
-                activeSection === key
-                  ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-600'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-              }`}
-            >
-              <Icon className="w-5 h-5 mr-3" />
-              {label}
-            </button>
-          ))}
+
+        {/* Navigation Menu */}
+        <nav className="flex-1 px-4 py-4 space-y-2">
+          <button
+            onClick={() => setActiveSection('cities')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'cities' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Building2 className="w-4 h-4" />
+            <span>Cities</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('vehicles')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'vehicles' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Car className="w-4 h-4" />
+            <span>Vehicles</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('guides')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'guides' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            <span>Tour Guides</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('addons')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'addons' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Package className="w-4 h-4" />
+            <span>Add-ons</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('routes')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'routes' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Map className="w-4 h-4" />
+            <span>Routes</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('attractions')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'attractions' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <MapPin className="w-4 h-4" />
+            <span>Attractions</span>
+          </button>
         </nav>
 
-        <div className="absolute bottom-6 left-6 right-6">
-          <div className="flex items-center justify-between">
-            <Link href="/">
-              <Button variant="outline" size="sm" className="flex-1 mr-2">
-                View Site
-              </Button>
-            </Link>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={handleLogout}
-              className="p-2"
-              title="Logout"
-            >
-              <LogOut className="w-4 h-4" />
+        {/* Sidebar Footer */}
+        <div className="px-4 py-4 border-t border-gray-200">
+          <Link href="/attractions">
+            <Button variant="outline" size="sm" className="w-full mb-2">
+              <MapPin className="w-4 h-4 mr-2" />
+              Attractions Portal
             </Button>
-          </div>
+          </Link>
+          <Button variant="outline" onClick={handleLogout} className="w-full">
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 capitalize">{activeSection}</h2>
-              <p className="text-gray-600 mt-1">Manage your {activeSection}</p>
-            </div>
-            <Button onClick={() => handleAdd(activeSection.slice(0, -1))}>
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Main Header */}
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-gray-900 capitalize">{activeSection}</h2>
+            <Button 
+              className="bg-teal-600 hover:bg-teal-700"
+              onClick={() => {
+                setModalType(activeSection === 'cities' ? 'city' : 
+                           activeSection === 'vehicles' ? 'vehicle' :
+                           activeSection === 'guides' ? 'guide' :
+                           activeSection === 'addons' ? 'addon' :
+                           activeSection === 'routes' ? 'route' : 'attraction');
+                setEditingItem(null);
+                setIsAddModalOpen(true);
+                resetForm();
+              }}
+            >
               <Plus className="w-4 h-4 mr-2" />
-              Add {activeSection.slice(0, -1).charAt(0).toUpperCase() + activeSection.slice(0, -1).slice(1)}
+              Add {activeSection.slice(0, -1)}
             </Button>
           </div>
+        </div>
 
-          {/* Routes Section with Pagination */}
-          {activeSection === 'routes' && (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>Routes Management</CardTitle>
-                  <div className="flex items-center space-x-2">
-                    <Input
-                      placeholder="Search routes..."
-                      value={searchTerm}
-                      onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                        setCurrentPage(1);
-                      }}
-                      className="w-64"
-                    />
-                    <span className="text-sm text-gray-500">
-                      {(() => {
-                        const filteredRoutes = (routes as any[])?.filter((route: any) => {
-                          if (!searchTerm) return true;
-                          const routeName = route.name || 
-                            (route.fromLocation && route.toLocation ? `${route.fromLocation} → ${route.toLocation}` : 
-                             `${(cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[])?.find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`);
-                          return routeName.toLowerCase().includes(searchTerm.toLowerCase());
-                        }) || [];
-                        return `${filteredRoutes.length} routes`;
-                      })()}
-                    </span>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader className="sticky top-0 bg-white z-10">
-                    <TableRow>
-                      <TableHead>Route</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Distance</TableHead>
-                      <TableHead>Vehicle Types</TableHead>
-                      <TableHead>Pricing</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(() => {
-                      const filteredRoutes = (routes as any[])?.filter((route: any) => {
-                        if (!searchTerm) return true;
-                        const routeName = route.name || 
-                          (route.fromLocation && route.toLocation ? `${route.fromLocation} → ${route.toLocation}` : 
-                           `${(cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[])?.find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`);
-                        return routeName.toLowerCase().includes(searchTerm.toLowerCase());
-                      }) || [];
-                      
-                      const startIndex = (currentPage - 1) * pageSize;
-                      const endIndex = startIndex + pageSize;
-                      const paginatedRoutes = filteredRoutes.slice(startIndex, endIndex);
-                      
-                      return paginatedRoutes.map((route: any) => (
+        {/* Content Area */}
+        <div className="flex-1 p-6 overflow-auto">
+          <div className="max-w-7xl mx-auto">
+            {activeSection === 'cities' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>City</TableHead>
+                        <TableHead>Description</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(cities as any[]).map((city: any) => (
+                        <TableRow key={city.id} className="h-12">
+                          <TableCell>
+                            <div>
+                              <div className="font-medium text-sm">{city.name}</div>
+                              <Badge variant="outline" className="text-xs mt-1">{city.slug}</Badge>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-sm">{city.description || 'No description'}</TableCell>
+                          <TableCell>
+                            <Badge 
+                              variant="default" 
+                              className={city.isActive ? "bg-green-100 text-green-700 border-green-200" : "bg-gray-100 text-gray-700 border-gray-200"}
+                            >
+                              {city.isActive ? 'Active' : 'Inactive'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                onClick={() => handleEdit(city, 'city')}
+                                className="h-8 w-8 p-0"
+                                title="Edit city"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => handleDeleteClick(city, 'city')}
+                                title="Delete city"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'vehicles' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Vehicle</TableHead>
+                        <TableHead>Passenger Range</TableHead>
+                        <TableHead>Description</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(vehicles as any[]).map((vehicle: any) => (
+                        <TableRow key={vehicle.id} className="h-12">
+                          <TableCell>
+                            <div className="flex items-center space-x-3">
+                              <div className="text-xl">
+                                {vehicle.name === 'Sedan' ? '🚗' : vehicle.name === 'Minivan' ? '🚐' : '🚌'}
+                              </div>
+                              <div className="font-medium text-sm">{vehicle.name}</div>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-center font-mono text-sm">{vehicle.paxMin}–{vehicle.paxMax}</TableCell>
+                          <TableCell className="text-gray-600 text-sm">{vehicle.description}</TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(vehicle, 'vehicle')}
+                                className="h-8 w-8 p-0"
+                                title="Edit vehicle"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => handleDeleteClick(vehicle, 'vehicle')}
+                                title="Delete vehicle"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'guides' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Language</TableHead>
+                        <TableHead>Guide Name</TableHead>
+                        <TableHead>Daily Price</TableHead>
+                        <TableHead>City</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(guides as any[]).map((guide: any) => (
+                        <TableRow key={guide.id} className="h-12">
+                          <TableCell>
+                            <div className="flex items-center space-x-2">
+                              <span className="text-sm">
+                                {guide.language === 'English' ? '🇺🇸' : 
+                                 guide.language === 'Spanish' ? '🇪🇸' :
+                                 guide.language === 'French' ? '🇫🇷' : '🇩🇪'}
+                              </span>
+                              <span className="font-medium text-sm">{guide.language}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-sm">{guide.name || 'Professional Guide'}</TableCell>
+                          <TableCell className="font-mono text-sm">${parseFloat(guide.hourlyPrice || '0').toFixed(2)}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-blue-100 text-blue-700 text-xs">
+                              {(cities as any[]).find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(guide, 'guide')}
+                                className="h-8 w-8 p-0"
+                                title="Edit guide"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => handleDeleteClick(guide, 'guide')}
+                                title="Delete guide"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'addons' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Service</TableHead>
+                        <TableHead>Category</TableHead>
+                        <TableHead>Price</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(addOns as any[]).map((addon: any) => (
+                        <TableRow key={addon.id} className="h-12">
+                          <TableCell>
+                            <div className="font-medium text-sm">{addon.name}</div>
+                            <div className="text-xs text-gray-500">{addon.description}</div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="text-xs">
+                              {addon.category}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="font-mono text-sm">${addon.price}</TableCell>
+                          <TableCell className="text-xs text-gray-600">{addon.unitType}</TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(addon, 'addon')}
+                                className="h-8 w-8 p-0"
+                                title="Edit add-on"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => handleDeleteClick(addon, 'addon')}
+                                title="Delete add-on"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {activeSection === 'routes' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Route</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead>Distance</TableHead>
+                        <TableHead>Vehicle Types</TableHead>
+                        <TableHead>Pricing</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(routes as any[]).map((route: any) => (
                         <TableRow key={route.id} className="h-12">
                           <TableCell>
                             <div className="text-sm">
                               {(() => {
+                                // Priority: 1. Custom name, 2. Location names for intra-city, 3. City names for inter-city
                                 if (route.name) {
                                   return route.name;
                                 }
                                 
                                 if (route.fromCityId === route.toCityId) {
+                                  // Intra-city route
                                   if (route.fromLocation && route.toLocation) {
                                     return `${route.fromLocation} → ${route.toLocation}`;
                                   } else {
-                                    const cityName = (cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
+                                    const cityName = (cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
                                     return `${cityName} City Tour`;
                                   }
                                 } else {
-                                  const fromCity = (cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
-                                  const toCity = (cities as any[])?.find((c: any) => c.id === route.toCityId)?.name || 'Unknown';
+                                  // Inter-city route
+                                  const fromCity = (cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
+                                  const toCity = (cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown';
                                   return `${fromCity} → ${toCity}`;
                                 }
                               })()}
@@ -446,7 +696,7 @@ export default function AdminSidebar() {
                               <div className="text-xs text-gray-500 mt-1">
                                 {route.fromLocation && route.toLocation
                                   ? `${route.fromLocation} → ${route.toLocation}`
-                                  : ''
+                                  : `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
                                 }
                               </div>
                             )}
@@ -460,7 +710,7 @@ export default function AdminSidebar() {
                           <TableCell>
                             <div className="flex flex-wrap gap-1">
                               {route.basePriceByVehicle && Object.keys(route.basePriceByVehicle).map((vehicleId: string) => {
-                                const vehicle = (vehicles as any[])?.find((v: any) => v.id.toString() === vehicleId);
+                                const vehicle = (vehicles as any[]).find((v: any) => v.id.toString() === vehicleId);
                                 return vehicle ? (
                                   <Badge key={vehicleId} variant="secondary" className="text-xs">
                                     {vehicle.name}
@@ -495,726 +745,455 @@ export default function AdminSidebar() {
                             </div>
                           </TableCell>
                         </TableRow>
-                      ));
-                    })()}
-                  </TableBody>
-                </Table>
-                
-                {/* Pagination Controls */}
-                {(() => {
-                  const filteredRoutes = (routes as any[])?.filter((route: any) => {
-                    if (!searchTerm) return true;
-                    const routeName = route.name || 
-                      (route.fromLocation && route.toLocation ? `${route.fromLocation} → ${route.toLocation}` : 
-                       `${(cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[])?.find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`);
-                    return routeName.toLowerCase().includes(searchTerm.toLowerCase());
-                  }) || [];
-                  
-                  const totalPages = Math.ceil(filteredRoutes.length / pageSize);
-                  
-                  if (totalPages <= 1) return null;
-                  
-                  return (
-                    <div className="flex items-center justify-between mt-4">
-                      <div className="text-sm text-gray-500">
-                        Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, filteredRoutes.length)} of {filteredRoutes.length} routes
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setCurrentPage(currentPage - 1)}
-                          disabled={currentPage === 1}
-                        >
-                          Previous
-                        </Button>
-                        
-                        <div className="flex items-center space-x-1">
-                          {Array.from({ length: totalPages }, (_, i) => i + 1)
-                            .filter(page => {
-                              const distance = Math.abs(page - currentPage);
-                              return distance === 0 || distance === 1 || page === 1 || page === totalPages;
-                            })
-                            .map((page, index, array) => {
-                              const prevPage = array[index - 1];
-                              const showEllipsis = prevPage && page - prevPage > 1;
-                              
-                              return (
-                                <div key={page} className="flex items-center">
-                                  {showEllipsis && <span className="px-2 text-gray-400">...</span>}
-                                  <Button
-                                    variant={currentPage === page ? "default" : "outline"}
-                                    size="sm"
-                                    onClick={() => setCurrentPage(page)}
-                                    className="w-8 h-8 p-0"
-                                  >
-                                    {page}
-                                  </Button>
-                                </div>
-                              );
-                            })}
-                        </div>
-                        
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setCurrentPage(currentPage + 1)}
-                          disabled={currentPage === totalPages}
-                        >
-                          Next
-                        </Button>
-                      </div>
-                    </div>
-                  );
-                })()}
-              </CardContent>
-            </Card>
-          )}
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
 
-          {/* Cities Section */}
-          {activeSection === 'cities' && (
-            <Card>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Slug</TableHead>
-                      <TableHead>Description</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(cities as any[])?.map((city: any) => (
-                      <TableRow key={city.id}>
-                        <TableCell className="font-medium">{city.name}</TableCell>
-                        <TableCell className="font-mono text-sm">{city.slug}</TableCell>
-                        <TableCell className="text-sm text-gray-600">{city.description}</TableCell>
-                        <TableCell>
-                          <Badge variant={city.isActive ? "default" : "secondary"}>
-                            {city.isActive ? "Active" : "Inactive"}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => handleEdit(city, 'city')}
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="text-red-600"
-                              onClick={() => handleDeleteClick(city, 'city')}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
+            {activeSection === 'attractions' && (
+              <Card>
+                <CardContent>
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-white z-10">
+                      <TableRow>
+                        <TableHead>Attraction</TableHead>
+                        <TableHead>City</TableHead>
+                        <TableHead>Ticket Price</TableHead>
+                        <TableHead>Duration</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          )}
+                    </TableHeader>
+                    <TableBody>
+                      {(attractions as any[]).map((attraction: any) => (
+                        <TableRow key={attraction.id} className="h-12">
+                          <TableCell>
+                            <div className="font-medium text-sm">{attraction.name}</div>
+                            <div className="text-xs text-gray-500">{attraction.location}</div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge className="bg-blue-100 text-blue-700 text-xs">
+                              {(cities as any[]).find((city: any) => city.id === attraction.cityId)?.name || 'Unknown'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="font-mono text-sm">${attraction.ticketPrice}</TableCell>
+                          <TableCell className="text-xs text-gray-600">{attraction.duration}</TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end space-x-1">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => handleEdit(attraction, 'attraction')}
+                                className="h-8 w-8 p-0"
+                                title="Edit attraction"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="text-red-600 h-8 w-8 p-0"
+                                onClick={() => handleDeleteClick(attraction, 'attraction')}
+                                title="Delete attraction"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
+      </div>
 
-          {/* Vehicles Section */}
-          {activeSection === 'vehicles' && (
-            <Card>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Description</TableHead>
-                      <TableHead>Capacity</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(vehicles as any[])?.map((vehicle: any) => (
-                      <TableRow key={vehicle.id}>
-                        <TableCell className="font-medium">{vehicle.name}</TableCell>
-                        <TableCell className="text-sm text-gray-600">{vehicle.description}</TableCell>
-                        <TableCell>
-                          <Badge variant="outline">
-                            {vehicle.paxMin}-{vehicle.paxMax} passengers
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => handleEdit(vehicle, 'vehicle')}
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="text-red-600"
-                              onClick={() => handleDeleteClick(vehicle, 'vehicle')}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Guides Section */}
-          {activeSection === 'guides' && (
-            <Card>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Language</TableHead>
-                      <TableHead>City</TableHead>
-                      <TableHead>Hourly Rate</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(guides as any[])?.map((guide: any) => (
-                      <TableRow key={guide.id}>
-                        <TableCell className="font-medium">{guide.name}</TableCell>
-                        <TableCell>
-                          <Badge variant="outline">{guide.language}</Badge>
-                        </TableCell>
-                        <TableCell className="text-sm text-gray-600">
-                          {(cities as any[])?.find((c: any) => c.id === guide.cityId)?.name || 'Unknown'}
-                        </TableCell>
-                        <TableCell className="font-mono">${guide.hourlyPrice}/hr</TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => handleEdit(guide, 'guide')}
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="text-red-600"
-                              onClick={() => handleDeleteClick(guide, 'guide')}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Add-ons Section */}
-          {activeSection === 'addons' && (
-            <Card>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Description</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead>Unit Type</TableHead>
-                      <TableHead>Category</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(addOns as any[])?.map((addon: any) => (
-                      <TableRow key={addon.id}>
-                        <TableCell className="font-medium">{addon.name}</TableCell>
-                        <TableCell className="text-sm text-gray-600">{addon.description}</TableCell>
-                        <TableCell className="font-mono">${addon.price}</TableCell>
-                        <TableCell>
-                          <Badge variant="outline">{addon.unitType}</Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="secondary">{addon.category}</Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => handleEdit(addon, 'addon')}
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="text-red-600"
-                              onClick={() => handleDeleteClick(addon, 'addon')}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Attractions Section */}
-          {activeSection === 'attractions' && (
-            <Card>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>City</TableHead>
-                      <TableHead>Category</TableHead>
-                      <TableHead>Ticket Price</TableHead>
-                      <TableHead>Duration</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(attractions as any[])?.map((attraction: any) => (
-                      <TableRow key={attraction.id}>
-                        <TableCell className="font-medium">{attraction.name}</TableCell>
-                        <TableCell className="text-sm text-gray-600">
-                          {(cities as any[])?.find((c: any) => c.id === attraction.cityId)?.name || 'Unknown'}
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline">{attraction.category}</Badge>
-                        </TableCell>
-                        <TableCell className="font-mono">${attraction.ticketPrice}</TableCell>
-                        <TableCell>{attraction.duration} hours</TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => handleEdit(attraction, 'attraction')}
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="text-red-600"
-                              onClick={() => handleDeleteClick(attraction, 'attraction')}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          )}
-          
-          {/* Add/Edit Modal */}
-          <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle>
-                  {editingItem ? 'Edit' : 'Add'} {modalType.charAt(0).toUpperCase() + modalType.slice(1)}
-                </DialogTitle>
-              </DialogHeader>
+      {/* Add Modal */}
+      {isAddModalOpen && (
+        <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{editingItem ? 'Edit' : 'Add'} {modalType === 'city' ? 'City' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'addon' ? 'Add-on' : modalType === 'route' ? 'Route' : 'Attraction'}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              {/* Common fields */}
+              <div>
+                <label className="block text-sm font-medium mb-1">Name</label>
+                <Input
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  placeholder={modalType === 'city' ? 'Cairo' : modalType === 'vehicle' ? 'Sedan' : modalType === 'guide' ? 'Ahmed Hassan' : 'Service name'}
+                />
+              </div>
               
-              <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Description</label>
+                <Input
+                  value={formData.description}
+                  onChange={(e) => setFormData({...formData, description: e.target.value})}
+                  placeholder="Description"
+                />
+              </div>
+
+              {/* City specific fields */}
+              {modalType === 'city' && (
                 <div>
-                  <Label htmlFor="name">Name</Label>
+                  <label className="block text-sm font-medium mb-1">Slug</label>
                   <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder={`Enter ${modalType} name`}
+                    value={formData.slug}
+                    onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                    placeholder="cairo"
                   />
                 </div>
+              )}
 
-                {modalType === 'city' && (
+              {/* Vehicle specific fields */}
+              {modalType === 'vehicle' && (
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="slug">Slug</Label>
+                    <label className="block text-sm font-medium mb-1">Min Passengers</label>
                     <Input
-                      id="slug"
-                      value={formData.slug}
-                      onChange={(e) => setFormData({...formData, slug: e.target.value})}
-                      placeholder="Enter URL slug"
+                      type="number"
+                      value={formData.paxMin}
+                      onChange={(e) => setFormData({...formData, paxMin: e.target.value})}
+                      placeholder="1"
                     />
                   </div>
-                )}
-
-                <div>
-                  <Label htmlFor="description">Description</Label>
-                  <Input
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
-                    placeholder="Enter description"
-                  />
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Max Passengers</label>
+                    <Input
+                      type="number"
+                      value={formData.paxMax}
+                      onChange={(e) => setFormData({...formData, paxMax: e.target.value})}
+                      placeholder="4"
+                    />
+                  </div>
                 </div>
+              )}
 
-                {/* Route-specific fields */}
-                {modalType === 'route' && (
-                  <>
-                    <div>
-                      <Label htmlFor="routeType">Route Type</Label>
-                      <select
-                        id="routeType"
-                        value={formData.routeType}
-                        onChange={(e) => setFormData({...formData, routeType: e.target.value})}
-                        className="w-full p-2 border border-gray-300 rounded-md"
-                      >
-                        <option value="inter-city">Inter-city</option>
-                        <option value="intra-city">Intra-city</option>
-                      </select>
-                    </div>
+              {/* Guide specific fields */}
+              {modalType === 'guide' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Language</label>
+                    <Input
+                      value={formData.language}
+                      onChange={(e) => setFormData({...formData, language: e.target.value})}
+                      placeholder="English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Daily Price</label>
+                    <Input
+                      type="number"
+                      value={formData.pricePerHour}
+                      onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                      placeholder="200"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">City</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.cityId}
+                      onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                    >
+                      <option value="">Select City</option>
+                      {(cities as any[]).map((city: any) => (
+                        <option key={city.id} value={city.id}>{city.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
 
+              {/* Add-on specific fields */}
+              {modalType === 'addon' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Price</label>
+                    <Input
+                      type="number"
+                      value={formData.price}
+                      onChange={(e) => setFormData({...formData, price: e.target.value})}
+                      placeholder="15"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Unit Type</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.unitType}
+                      onChange={(e) => setFormData({...formData, unitType: e.target.value})}
+                    >
+                      <option value="per_unit">Per Unit</option>
+                      <option value="per_person">Per Person</option>
+                      <option value="per_trip">Per Trip</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Category</label>
+                    <Input
+                      value={formData.category}
+                      onChange={(e) => setFormData({...formData, category: e.target.value})}
+                      placeholder="service"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Attraction specific fields */}
+              {modalType === 'attraction' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">City</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.cityId}
+                      onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                    >
+                      <option value="">Select City</option>
+                      {(cities as any[]).map((city: any) => (
+                        <option key={city.id} value={city.id}>{city.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Ticket Price</label>
+                    <Input
+                      type="number"
+                      value={formData.ticketPrice}
+                      onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
+                      placeholder="20"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Duration</label>
+                    <Input
+                      value={formData.duration}
+                      onChange={(e) => setFormData({...formData, duration: e.target.value})}
+                      placeholder="2 hours"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Location</label>
+                    <Input
+                      value={formData.location}
+                      onChange={(e) => setFormData({...formData, location: e.target.value})}
+                      placeholder="Giza Plateau"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Opening Hours</label>
+                    <Input
+                      value={formData.openingHours}
+                      onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
+                      placeholder="9:00 AM - 5:00 PM"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Route specific fields */}
+              {modalType === 'route' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Route Type</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.routeType}
+                      onChange={(e) => setFormData({...formData, routeType: e.target.value})}
+                    >
+                      <option value="inter-city">Inter-city</option>
+                      <option value="intra-city">Intra-city</option>
+                    </select>
+                  </div>
+                  
+                  {formData.routeType === 'inter-city' ? (
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="fromCityId">From City</Label>
+                        <label className="block text-sm font-medium mb-1">From City</label>
                         <select
-                          id="fromCityId"
+                          className="w-full px-3 py-2 border rounded-md"
                           value={formData.fromCityId}
-                          onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
-                          className="w-full p-2 border border-gray-300 rounded-md"
+                          onChange={(e) => {
+                            console.log('From City selected:', e.target.value);
+                            setFormData({...formData, fromCityId: e.target.value});
+                          }}
                         >
-                          <option value="">Select city</option>
-                          {(cities as any[])?.map((city: any) => (
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
                             <option key={city.id} value={city.id}>{city.name}</option>
                           ))}
                         </select>
                       </div>
-
                       <div>
-                        <Label htmlFor="toCityId">To City</Label>
+                        <label className="block text-sm font-medium mb-1">To City</label>
                         <select
-                          id="toCityId"
+                          className="w-full px-3 py-2 border rounded-md"
                           value={formData.toCityId}
-                          onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
-                          className="w-full p-2 border border-gray-300 rounded-md"
-                          disabled={formData.routeType === 'intra-city'}
+                          onChange={(e) => {
+                            console.log('To City selected:', e.target.value);
+                            setFormData({...formData, toCityId: e.target.value});
+                          }}
                         >
-                          <option value="">Select city</option>
-                          {(cities as any[])?.map((city: any) => (
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
                             <option key={city.id} value={city.id}>{city.name}</option>
                           ))}
                         </select>
                       </div>
                     </div>
-
-                    <div className="grid grid-cols-2 gap-4">
+                  ) : (
+                    <div className="space-y-4">
                       <div>
-                        <Label htmlFor="fromLocation">From Location</Label>
-                        <Input
-                          id="fromLocation"
-                          value={formData.fromLocation}
-                          onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
-                          placeholder="e.g., Airport, Hotel"
-                        />
+                        <label className="block text-sm font-medium mb-1">City</label>
+                        <select
+                          className="w-full px-3 py-2 border rounded-md"
+                          value={formData.fromCityId}
+                          onChange={(e) => {
+                            console.log('Intra-city City selected:', e.target.value);
+                            setFormData({...formData, fromCityId: e.target.value, toCityId: e.target.value});
+                          }}
+                        >
+                          <option value="">Select City</option>
+                          {(cities as any[]).map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
                       </div>
-
-                      <div>
-                        <Label htmlFor="toLocation">To Location</Label>
-                        <Input
-                          id="toLocation"
-                          value={formData.toLocation}
-                          onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
-                          placeholder="e.g., City Center, Hotel"
-                        />
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-1">From Location</label>
+                          <Input
+                            value={formData.fromLocation}
+                            onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
+                            placeholder="Hotel District"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium mb-1">To Location</label>
+                          <Input
+                            value={formData.toLocation}
+                            onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
+                            placeholder="Airport"
+                          />
+                        </div>
                       </div>
                     </div>
-
-                    <div>
-                      <Label htmlFor="km">Distance (km)</Label>
-                      <Input
-                        id="km"
-                        type="number"
-                        value={formData.km}
-                        onChange={(e) => setFormData({...formData, km: e.target.value})}
-                        placeholder="Enter distance in kilometers"
-                      />
-                    </div>
-
-                    <div>
-                      <Label>Vehicle Pricing</Label>
-                      <div className="space-y-2 mt-2">
-                        {(vehicles as any[])?.map((vehicle: any) => (
-                          <div key={vehicle.id} className="flex items-center space-x-2">
-                            <span className="w-20 text-sm">{vehicle.name}:</span>
-                            <Input
-                              type="number"
-                              placeholder="Price"
-                              value={formData.vehiclePricing?.[vehicle.id] || ''}
-                              onChange={(e) => setFormData({
-                                ...formData,
-                                vehiclePricing: {
-                                  ...formData.vehiclePricing,
-                                  [vehicle.id]: e.target.value
-                                }
-                              })}
-                              className="flex-1"
-                            />
+                  )}
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Distance (km)</label>
+                    <Input
+                      type="number"
+                      value={formData.km}
+                      onChange={(e) => setFormData({...formData, km: e.target.value})}
+                      placeholder="302"
+                    />
+                  </div>
+                  
+                  {/* Vehicle Pricing Section */}
+                  <div className="space-y-4">
+                    <div className="border-t pt-4">
+                      <h4 className="text-sm font-medium mb-3">Vehicle Pricing (USD)</h4>
+                      <div className="grid grid-cols-1 gap-3">
+                        {(vehicles as any[])
+                          .sort((a, b) => {
+                            const order = ['Sedan', 'Minivan', 'Van', 'Coach'];
+                            return order.indexOf(a.name) - order.indexOf(b.name);
+                          })
+                          .map((vehicle: any) => (
+                          <div key={vehicle.id} className="grid grid-cols-3 gap-2 items-center">
+                            <div className="text-sm font-medium">{vehicle.name}</div>
+                            <div>
+                              <Input
+                                type="number"
+                                step="0.01"
+                                placeholder="Normal"
+                                value={formData.vehiclePricing?.[vehicle.id]?.['1'] || ''}
+                                onChange={(e) => {
+                                  const newPricing = { ...formData.vehiclePricing };
+                                  if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
+                                  newPricing[vehicle.id]['1'] = e.target.value;
+                                  setFormData({...formData, vehiclePricing: newPricing});
+                                }}
+                                className="text-xs"
+                              />
+                            </div>
+                            <div>
+                              <Input
+                                type="number"
+                                step="0.01"
+                                placeholder="Tourism (+20%)"
+                                value={formData.vehiclePricing?.[vehicle.id]?.['2'] || ''}
+                                onChange={(e) => {
+                                  const newPricing = { ...formData.vehiclePricing };
+                                  if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
+                                  newPricing[vehicle.id]['2'] = e.target.value;
+                                  setFormData({...formData, vehiclePricing: newPricing});
+                                }}
+                                className="text-xs"
+                              />
+                            </div>
                           </div>
                         ))}
                       </div>
-                    </div>
-                  </>
-                )}
-
-                {/* Vehicle-specific fields */}
-                {modalType === 'vehicle' && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="paxMin">Min Passengers</Label>
-                      <Input
-                        id="paxMin"
-                        type="number"
-                        value={formData.paxMin}
-                        onChange={(e) => setFormData({...formData, paxMin: e.target.value})}
-                        placeholder="Minimum passengers"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="paxMax">Max Passengers</Label>
-                      <Input
-                        id="paxMax"
-                        type="number"
-                        value={formData.paxMax}
-                        onChange={(e) => setFormData({...formData, paxMax: e.target.value})}
-                        placeholder="Maximum passengers"
-                      />
+                      <div className="text-xs text-gray-500 mt-2">
+                        Set pricing for each vehicle type. Tourism license includes 20% surcharge.
+                      </div>
                     </div>
                   </div>
-                )}
-
-                {/* Guide-specific fields */}
-                {modalType === 'guide' && (
-                  <>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="language">Language</Label>
-                        <Input
-                          id="language"
-                          value={formData.language}
-                          onChange={(e) => setFormData({...formData, language: e.target.value})}
-                          placeholder="Language spoken"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="cityId">City</Label>
-                        <select
-                          id="cityId"
-                          value={formData.cityId}
-                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
-                          className="w-full p-2 border border-gray-300 rounded-md"
-                        >
-                          <option value="">Select city</option>
-                          {(cities as any[])?.map((city: any) => (
-                            <option key={city.id} value={city.id}>{city.name}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="pricePerHour">Hourly Rate ($)</Label>
-                      <Input
-                        id="pricePerHour"
-                        type="number"
-                        value={formData.pricePerHour}
-                        onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
-                        placeholder="Price per hour"
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* Add-on specific fields */}
-                {modalType === 'addon' && (
-                  <>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="price">Price ($)</Label>
-                        <Input
-                          id="price"
-                          type="number"
-                          value={formData.price}
-                          onChange={(e) => setFormData({...formData, price: e.target.value})}
-                          placeholder="Price"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="unitType">Unit Type</Label>
-                        <select
-                          id="unitType"
-                          value={formData.unitType}
-                          onChange={(e) => setFormData({...formData, unitType: e.target.value})}
-                          className="w-full p-2 border border-gray-300 rounded-md"
-                        >
-                          <option value="per_unit">Per Unit</option>
-                          <option value="per_person">Per Person</option>
-                          <option value="per_trip">Per Trip</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="category">Category</Label>
-                      <Input
-                        id="category"
-                        value={formData.category}
-                        onChange={(e) => setFormData({...formData, category: e.target.value})}
-                        placeholder="Category"
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* Attraction-specific fields */}
-                {modalType === 'attraction' && (
-                  <>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="cityId">City</Label>
-                        <select
-                          id="cityId"
-                          value={formData.cityId}
-                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
-                          className="w-full p-2 border border-gray-300 rounded-md"
-                        >
-                          <option value="">Select city</option>
-                          {(cities as any[])?.map((city: any) => (
-                            <option key={city.id} value={city.id}>{city.name}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <Label htmlFor="category">Category</Label>
-                        <Input
-                          id="category"
-                          value={formData.category}
-                          onChange={(e) => setFormData({...formData, category: e.target.value})}
-                          placeholder="Category"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div>
-                        <Label htmlFor="ticketPrice">Ticket Price ($)</Label>
-                        <Input
-                          id="ticketPrice"
-                          type="number"
-                          value={formData.ticketPrice}
-                          onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
-                          placeholder="Ticket price"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="duration">Duration (hours)</Label>
-                        <Input
-                          id="duration"
-                          type="number"
-                          value={formData.duration}
-                          onChange={(e) => setFormData({...formData, duration: e.target.value})}
-                          placeholder="Duration"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="location">Location</Label>
-                        <Input
-                          id="location"
-                          value={formData.location}
-                          onChange={(e) => setFormData({...formData, location: e.target.value})}
-                          placeholder="Location"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="openingHours">Opening Hours</Label>
-                      <Input
-                        id="openingHours"
-                        value={formData.openingHours}
-                        onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
-                        placeholder="Opening hours"
-                      />
-                    </div>
-                  </>
-                )}
-
-                <div className="flex gap-4 mt-6">
-                  <Button 
-                    onClick={() => setIsAddModalOpen(false)} 
-                    variant="outline" 
-                    className="flex-1"
-                    disabled={isSubmitting}
-                  >
-                    Cancel
-                  </Button>
-                  <Button 
-                    onClick={handleSubmit} 
-                    className="flex-1"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Saving...' : (editingItem ? 'Update' : 'Create')}
-                  </Button>
                 </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              )}
 
-          {/* Delete Confirmation Dialog */}
-          <Dialog open={!!deleteConfirm} onOpenChange={() => setDeleteConfirm(null)}>
-            <DialogContent className="max-w-md">
-              <DialogHeader>
-                <DialogTitle>Confirm Deletion</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <p>Are you sure you want to delete "{deleteConfirm?.name}"?</p>
-                <p className="text-sm text-gray-600">This action cannot be undone.</p>
-                
-                <div className="flex gap-4 mt-6">
-                  <Button 
-                    onClick={() => setDeleteConfirm(null)} 
-                    variant="outline" 
-                    className="flex-1"
-                    disabled={deleteMutation.isPending}
-                  >
-                    Cancel
-                  </Button>
-                  <Button 
-                    onClick={handleDeleteConfirm} 
-                    variant="destructive" 
-                    className="flex-1"
-                    disabled={deleteMutation.isPending}
-                  >
-                    {deleteMutation.isPending ? 'Deleting...' : 'Delete'}
-                  </Button>
-                </div>
+              <div className="flex justify-end space-x-2 mt-6">
+                <Button variant="outline" onClick={() => { setIsAddModalOpen(false); setEditingItem(null); resetForm(); }}>
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={handleSave} 
+                  className="bg-teal-600 hover:bg-teal-700"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Saving...' : editingItem ? 'Update' : 'Create'}
+                </Button>
               </div>
-            </DialogContent>
-          </Dialog>
-        </div>
-      </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* Delete Confirmation Dialog */}
+      {deleteConfirm && (
+        <Dialog open={!!deleteConfirm} onOpenChange={() => setDeleteConfirm(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Confirm Delete</DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <p>Are you sure you want to delete <strong>{deleteConfirm.name}</strong>?</p>
+              <p className="text-sm text-gray-600 mt-2">This action cannot be undone.</p>
+            </div>
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={() => setDeleteConfirm(null)}>
+                Cancel
+              </Button>
+              <Button 
+                variant="destructive" 
+                onClick={confirmDelete}
+                disabled={deleteMutation.isPending}
+              >
+                {deleteMutation.isPending ? 'Deleting...' : 'Delete'}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 }
