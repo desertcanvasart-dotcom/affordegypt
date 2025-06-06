@@ -33,6 +33,10 @@ export default function Navbar() {
             >
               Get Quote
             </button>
+            <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+              <Lightbulb className="w-4 h-4" />
+              Travel Tips
+            </a>
             <a href="#about" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
               <User className="w-4 h-4" />
               About
@@ -40,10 +44,6 @@ export default function Navbar() {
             <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
               <Mail className="w-4 h-4" />
               Contact
-            </a>
-            <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
-              <Lightbulb className="w-4 h-4" />
-              Travel Tips
             </a>
             <a href="/admin" className="text-muted-foreground hover:text-primary transition-colors text-xs">
               Admin
@@ -81,6 +81,10 @@ export default function Navbar() {
               >
                 Get Quote
               </button>
+              <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <Lightbulb className="w-4 h-4" />
+                Travel Tips
+              </a>
               <a href="#about" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                 <User className="w-4 h-4" />
                 About
@@ -88,10 +92,6 @@ export default function Navbar() {
               <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 Contact
-              </a>
-              <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                <Lightbulb className="w-4 h-4" />
-                Travel Tips
               </a>
               <Button 
                 onClick={() => { scrollToQuote(); setIsMenuOpen(false); }}
