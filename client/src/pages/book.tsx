@@ -244,7 +244,9 @@ export default function BookPage() {
                   Travel Date
                 </span>
                 <span className="text-sm text-muted-foreground">
-                  {quoteTravelDate || fallbackQuote.travelDate || 'Date selected in pricing tool'}
+                  {quoteTravelDate ? new Date(quoteTravelDate).toLocaleDateString() : 
+                   fallbackQuote.travelDate ? new Date(fallbackQuote.travelDate).toLocaleDateString() : 
+                   'Please set date in pricing tool'}
                 </span>
               </div>
 

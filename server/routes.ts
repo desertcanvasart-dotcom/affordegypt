@@ -393,19 +393,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/pricing/addons", async (req, res) => {
     try {
-      const addOns = [
-        { id: 1, name: "Lunch", price: 15, type: "per_unit", category: "meals" },
-        { id: 2, name: "Dinner", price: 20, type: "per_unit", category: "meals" },
-        { id: 3, name: "Felucca Ride", price: 25, type: "per_unit", category: "activities" },
-        { id: 4, name: "Horse Carriage", price: 20, type: "per_unit", category: "transport" },
-        { id: 5, name: "Skip-the-line Entrance", price: 10, type: "per_person", category: "tickets" },
-        { id: 6, name: "Seating Train Ticket", price: 45, type: "per_person", category: "transport" },
-        { id: 7, name: "Sleeping Train Ticket", price: 85, type: "per_person", category: "transport" },
-        { id: 8, name: "4-day Nile Cruise", price: 280, type: "per_trip", category: "cruise" },
-        { id: 9, name: "5-day Nile Cruise", price: 350, type: "per_trip", category: "cruise" },
-        { id: 10, name: "7-day Nile Cruise", price: 490, type: "per_trip", category: "cruise" }
-      ];
-      res.json(addOns);
+      const addOns = await storage.getAddOns();
+      // Map database fields to expected frontend format
+      const formattedAddOns = addOns.map(addon => ({
+        id: addon.id,
+        name: addon.name,
+        price: parseFloat(addon.price),
+        type: addon.unitType, // Use the correct unitType from database
+        category: addon.category
+      }));
+      res.json(formattedAddOns);
     } catch (error) {
       console.error('Add-ons fetch error:', error);
       res.status(500).json({ message: 'Failed to fetch add-ons' });
