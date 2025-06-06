@@ -84,12 +84,10 @@ export default function BookPage() {
   const onSubmit = async (data: BookingFormData) => {
     setIsProcessing(true);
     try {
-      const travelDate = quote?.jsonBlob?.travelDate || fallbackQuote.travelDate;
       await bookingMutation.mutateAsync({
         ...data,
         quoteId: quote?.id || undefined,
-        travelDate: travelDate,
-        totalAmount: totalAmount,
+        travelDate: quoteTravelDate || data.travelDate,
       });
     } catch (error) {
       console.error('Booking submission error:', error);
