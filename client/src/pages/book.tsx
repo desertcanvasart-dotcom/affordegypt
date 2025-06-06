@@ -37,7 +37,9 @@ export default function BookPage() {
   const fallbackQuote = {
     total: urlParams.get('total') || '0',
     travelers: parseInt(urlParams.get('travelers') || '1'),
-    cities: urlParams.get('cities')?.split(',') || []
+    cities: urlParams.get('cities')?.split(',') || [],
+    travelDate: urlParams.get('travelDate') || '',
+    itinerary: urlParams.get('itinerary') ? JSON.parse(decodeURIComponent(urlParams.get('itinerary')!)) : []
   };
 
   // Fetch quote if ID is provided
@@ -82,10 +84,15 @@ export default function BookPage() {
   const onSubmit = async (data: BookingFormData) => {
     setIsProcessing(true);
     try {
+      const travelDate = quote?.jsonBlob?.travelDate || fallbackQuote.travelDate;
       await bookingMutation.mutateAsync({
         ...data,
         quoteId: quote?.id || undefined,
+        travelDate: travelDate,
+        totalAmount: totalAmount,
       });
+    } catch (error) {
+      console.error('Booking submission error:', error);
     } finally {
       setIsProcessing(false);
     }
@@ -103,8 +110,10 @@ export default function BookPage() {
   }
 
   const displayQuote = quote || fallbackQuote;
-  const totalAmount = quote?.total || fallbackQuote.total;
-  const travelers = quote?.passengers || fallbackQuote.travelers;
+  const totalAmount = (quote as any)?.total || fallbackQuote.total;
+  const travelers = (quote as any)?.passengers || fallbackQuote.travelers;
+  const quoteTravelDate = (quote as any)?.jsonBlob?.travelDate;
+  const quoteItinerary = (quote as any)?.jsonBlob?.itinerary;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -230,13 +239,24 @@ export default function BookPage() {
                 <Badge variant="secondary">{travelers}</Badge>
               </div>
 
+              {/* Travel Date Display */}
+              <div className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Travel Date
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {quoteTravelDate || fallbackQuote.travelDate || 'Date selected in pricing tool'}
+                </span>
+              </div>
+
               {/* Booking Items Display */}
               <div className="space-y-3">
                 <h4 className="font-medium">Your Booking</h4>
                 
-                {quote && quote.itinerary && (
+                {quoteItinerary && (
                   <div className="space-y-3">
-                    {JSON.parse(quote.itinerary).map((city: any, index: number) => (
+                    {quoteItinerary.map((city: any, index: number) => (
                       <div key={index} className="border rounded-md p-3 space-y-2">
                         <div className="font-medium text-sm">{city.cityName}</div>
                         
