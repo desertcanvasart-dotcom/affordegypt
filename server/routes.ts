@@ -802,6 +802,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get booking by reference (public endpoint)
+  app.get("/api/bookings/reference/:reference", async (req, res) => {
+    try {
+      const booking = await storage.getBookingByReference(req.params.reference);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      // Get associated quote data
+      let quote = null;
+      if (booking.quoteId) {
+        quote = await storage.getQuote(booking.quoteId);
+      }
+      
+      res.json({ 
+        booking,
+        quote: quote ? {
+          id: quote.id,
+          jsonBlob: quote.jsonBlob,
+          total: quote.total,
+          commissionPct: quote.commissionPct
+        } : null
+      });
+    } catch (error: any) {
+      console.error('Booking reference lookup error:', error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Stripe payment route for one-time payments
   app.post("/api/create-payment-intent", async (req, res) => {
     if (!stripe) {
