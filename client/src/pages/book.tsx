@@ -110,10 +110,10 @@ export default function BookPage() {
   }
 
   const displayQuote = quote || fallbackQuote;
-  const totalAmount = (quote as any)?.total || fallbackQuote.total;
-  const travelers = (quote as any)?.passengers || fallbackQuote.travelers;
-  const quoteTravelDate = (quote as any)?.jsonBlob?.travelDate;
-  const quoteItinerary = (quote as any)?.jsonBlob?.itinerary;
+  const totalAmount = quote?.total || fallbackQuote.total;
+  const travelers = quote?.jsonBlob?.passengers || fallbackQuote.travelers;
+  const quoteTravelDate = quote?.jsonBlob?.travelDate || fallbackQuote.travelDate;
+  const quoteItinerary = quote?.jsonBlob?.itinerary || fallbackQuote.itinerary;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">

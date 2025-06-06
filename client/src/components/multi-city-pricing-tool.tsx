@@ -135,6 +135,7 @@ export default function MultiCityPricingTool() {
   const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [totalPricing, setTotalPricing] = useState<any>(null);
   const [showCityPicker, setShowCityPicker] = useState(false);
+  const [travelDate, setTravelDate] = useState<string>('');
   const [, setLocation] = useLocation();
 
   // Fetch available cities from the database
@@ -244,15 +245,17 @@ export default function MultiCityPricingTool() {
     if (!totalPricing || cityServices.length === 0) return;
     
     try {
-      // Create a quote in the database
+      // Create a quote in the database with proper structure
       const quoteData = {
-        customerName: '',
-        customerEmail: '',
-        customerPhone: '',
-        passengers: totalPricing.travelers,
-        itinerary: cityServices,
-        totalPrice: totalPricing.totalAmount.toString(),
-        status: 'draft'
+        total: totalPricing.totalAmount.toString(),
+        commissionPct: "15", // Default commission percentage
+        jsonBlob: {
+          passengers: totalPricing.travelers,
+          itinerary: cityServices,
+          travelDate: travelDate,
+          totalAmount: totalPricing.totalAmount,
+          breakdown: totalPricing.breakdown || []
+        }
       };
 
       const response = await apiRequest("POST", "/api/quotes", quoteData);
@@ -266,7 +269,9 @@ export default function MultiCityPricingTool() {
       const queryParams = new URLSearchParams({
         total: totalPricing.totalAmount.toString(),
         travelers: totalPricing.travelers.toString(),
-        cities: cityServices.map(c => c.cityName).join(',')
+        cities: cityServices.map(c => c.cityName).join(','),
+        travelDate: travelDate,
+        itinerary: encodeURIComponent(JSON.stringify(cityServices))
       });
       setLocation(`/book?${queryParams.toString()}`);
     }
@@ -327,6 +332,27 @@ export default function MultiCityPricingTool() {
           <p className="text-muted-foreground">
             Build your complete Egypt itinerary city by city with instant pricing
           </p>
+          
+          {/* Main Travel Date */}
+          <div className="flex items-center gap-4 mt-4 p-4 bg-muted rounded-lg">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-primary" />
+              <Label htmlFor="travel-date" className="font-medium">Trip Start Date:</Label>
+            </div>
+            <Input
+              id="travel-date"
+              type="date"
+              value={travelDate}
+              onChange={(e) => setTravelDate(e.target.value)}
+              className="w-40"
+            />
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-primary" />
+              <span className="text-sm text-muted-foreground">
+                Total Travelers: {cityServices.reduce((sum, city) => Math.max(sum, city.travelers), 0)}
+              </span>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {/* Horizontal Layout Table */}
