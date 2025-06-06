@@ -251,8 +251,17 @@ export default function MultiCityPricingTool() {
       
       if (route.fromCityId === route.toCityId) {
         // Intra-city route (same start and end city)
-        const cityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
-        routeName = `${cityName} City Tour`;
+        if (route.name) {
+          // Use custom route name if available
+          routeName = route.name;
+        } else if (route.fromLocation && route.toLocation) {
+          // Use specific locations if available
+          routeName = `${route.fromLocation} to ${route.toLocation}`;
+        } else {
+          // Fallback to city tour
+          const cityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
+          routeName = `${cityName} City Tour`;
+        }
         routeType = 'intra-city';
       } else {
         // Inter-city route

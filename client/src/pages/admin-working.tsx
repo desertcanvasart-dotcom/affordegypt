@@ -977,10 +977,26 @@ export default function AdminWorking() {
                         <TableRow key={route.id} className="h-12">
                           <TableCell>
                             <div className="text-sm">
-                              {route.routeType === 'inter-city' 
-                                ? `${cities.find((c: any) => c.id === route.fromCityId)?.name} → ${cities.find((c: any) => c.id === route.toCityId)?.name}`
-                                : `${route.fromLocation} → ${route.toLocation}`
-                              }
+                              {(() => {
+                                if (route.name) {
+                                  return route.name;
+                                }
+                                
+                                if (route.fromCityId === route.toCityId) {
+                                  // Intra-city route
+                                  if (route.fromLocation && route.toLocation) {
+                                    return `${route.fromLocation} → ${route.toLocation}`;
+                                  } else {
+                                    const cityName = cities.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
+                                    return `${cityName} City Tour`;
+                                  }
+                                } else {
+                                  // Inter-city route
+                                  const fromCity = cities.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
+                                  const toCity = cities.find((c: any) => c.id === route.toCityId)?.name || 'Unknown';
+                                  return `${fromCity} → ${toCity}`;
+                                }
+                              })()}
                             </div>
                           </TableCell>
                           <TableCell>

@@ -670,12 +670,29 @@ export default function AdminSidebar() {
                         <TableRow key={route.id} className="h-12">
                           <TableCell>
                             <div className="text-sm">
-                              {route.name || (route.fromLocation && route.toLocation
-                                ? `${route.fromLocation} → ${route.toLocation}`
-                                : `${(cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`
-                              )}
+                              {(() => {
+                                // Priority: 1. Custom name, 2. Location names for intra-city, 3. City names for inter-city
+                                if (route.name) {
+                                  return route.name;
+                                }
+                                
+                                if (route.fromCityId === route.toCityId) {
+                                  // Intra-city route
+                                  if (route.fromLocation && route.toLocation) {
+                                    return `${route.fromLocation} → ${route.toLocation}`;
+                                  } else {
+                                    const cityName = (cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
+                                    return `${cityName} City Tour`;
+                                  }
+                                } else {
+                                  // Inter-city route
+                                  const fromCity = (cities as any[]).find((c: any) => c.id === route.fromCityId)?.name || 'Unknown';
+                                  const toCity = (cities as any[]).find((c: any) => c.id === route.toCityId)?.name || 'Unknown';
+                                  return `${fromCity} → ${toCity}`;
+                                }
+                              })()}
                             </div>
-                            {route.name && (route.fromLocation || route.fromCityId) && (
+                            {route.fromLocation && route.toLocation && (
                               <div className="text-xs text-gray-500 mt-1">
                                 {route.fromLocation && route.toLocation
                                   ? `${route.fromLocation} → ${route.toLocation}`

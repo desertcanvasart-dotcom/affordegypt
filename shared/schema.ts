@@ -50,6 +50,9 @@ export const routes = pgTable("routes", {
   id: serial("id").primaryKey(),
   fromCityId: integer("from_city_id").references(() => cities.id).notNull(),
   toCityId: integer("to_city_id").references(() => cities.id).notNull(),
+  fromLocation: text("from_location"), // For intra-city routes: "Airport", "Downtown", etc.
+  toLocation: text("to_location"), // For intra-city routes: "Hotel", "Train Station", etc.
+  name: text("name"), // Custom route name: "Cairo City Tour", "Airport Transfer", etc.
   km: decimal("km", { precision: 8, scale: 2 }).notNull(),
   basePriceByVehicle: jsonb("base_price_by_vehicle").notNull(), // JSON: {vehicle_id: {license_class_id: price}}
 });
