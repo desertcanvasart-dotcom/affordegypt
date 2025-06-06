@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { apiRequest } from "@/lib/queryClient";
+import { useLocation } from "wouter";
 
 // Attractions Multi-Select Component
 interface AttractionsMultiSelectProps {
@@ -134,6 +135,7 @@ export default function MultiCityPricingTool() {
   const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [totalPricing, setTotalPricing] = useState<any>(null);
   const [showCityPicker, setShowCityPicker] = useState(false);
+  const [, setLocation] = useLocation();
 
   // Fetch available cities from the database
   const { data: cities = [] } = useQuery<{id: number, name: string}[]>({
@@ -235,6 +237,38 @@ export default function MultiCityPricingTool() {
         quantity: 1
       }];
       updateCityService(cityIndex, { selectedAddOns: newAddOns });
+    }
+  };
+
+  const handleContinueBooking = async () => {
+    if (!totalPricing || cityServices.length === 0) return;
+    
+    try {
+      // Create a quote in the database
+      const quoteData = {
+        customerName: '',
+        customerEmail: '',
+        customerPhone: '',
+        passengers: totalPricing.travelers,
+        itinerary: cityServices,
+        totalPrice: totalPricing.totalAmount.toString(),
+        status: 'draft'
+      };
+
+      const response = await apiRequest("POST", "/api/quotes", quoteData);
+      const quote = await response.json();
+      
+      // Navigate to booking form with quote ID
+      setLocation(`/book/${quote.id}`);
+    } catch (error) {
+      console.error('Error creating quote:', error);
+      // Fallback: navigate to booking form with quote data in URL params
+      const queryParams = new URLSearchParams({
+        total: totalPricing.totalAmount.toString(),
+        travelers: totalPricing.travelers.toString(),
+        cities: cityServices.map(c => c.cityName).join(',')
+      });
+      setLocation(`/book?${queryParams.toString()}`);
     }
   };
 
@@ -610,7 +644,8 @@ export default function MultiCityPricingTool() {
               <Button 
                 size="lg"
                 className="flex items-center gap-2"
-                disabled={cityServices.length === 0}
+                disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
+                onClick={handleContinueBooking}
               >
                 Continue to Booking
                 <ArrowRight className="w-4 h-4" />
