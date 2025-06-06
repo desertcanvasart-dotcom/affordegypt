@@ -74,13 +74,10 @@ export default function AdminSidebar() {
     checkAuth();
   }, []);
 
-  const handleLogin = (rememberMe: boolean) => {
+  const handleLogin = (token: string) => {
     setIsAuthenticated(true);
-    if (rememberMe) {
-      localStorage.setItem('adminAuthenticated', 'true');
-    } else {
-      sessionStorage.setItem('adminAuthenticated', 'true');
-    }
+    localStorage.setItem('adminAuthenticated', 'true');
+    localStorage.setItem('admin-token', token);
   };
 
   const handleLogout = () => {
@@ -838,7 +835,7 @@ export default function AdminSidebar() {
           
           {/* Add/Edit Modal */}
           <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-            <DialogContent className="max-w-md">
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>
                   {editingItem ? 'Edit' : 'Add'} {modalType.charAt(0).toUpperCase() + modalType.slice(1)}
@@ -877,6 +874,292 @@ export default function AdminSidebar() {
                     placeholder="Enter description"
                   />
                 </div>
+
+                {/* Route-specific fields */}
+                {modalType === 'route' && (
+                  <>
+                    <div>
+                      <Label htmlFor="routeType">Route Type</Label>
+                      <select
+                        id="routeType"
+                        value={formData.routeType}
+                        onChange={(e) => setFormData({...formData, routeType: e.target.value})}
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                      >
+                        <option value="inter-city">Inter-city</option>
+                        <option value="intra-city">Intra-city</option>
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="fromCityId">From City</Label>
+                        <select
+                          id="fromCityId"
+                          value={formData.fromCityId}
+                          onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
+                          className="w-full p-2 border border-gray-300 rounded-md"
+                        >
+                          <option value="">Select city</option>
+                          {(cities as any[])?.map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="toCityId">To City</Label>
+                        <select
+                          id="toCityId"
+                          value={formData.toCityId}
+                          onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
+                          className="w-full p-2 border border-gray-300 rounded-md"
+                          disabled={formData.routeType === 'intra-city'}
+                        >
+                          <option value="">Select city</option>
+                          {(cities as any[])?.map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="fromLocation">From Location</Label>
+                        <Input
+                          id="fromLocation"
+                          value={formData.fromLocation}
+                          onChange={(e) => setFormData({...formData, fromLocation: e.target.value})}
+                          placeholder="e.g., Airport, Hotel"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="toLocation">To Location</Label>
+                        <Input
+                          id="toLocation"
+                          value={formData.toLocation}
+                          onChange={(e) => setFormData({...formData, toLocation: e.target.value})}
+                          placeholder="e.g., City Center, Hotel"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="km">Distance (km)</Label>
+                      <Input
+                        id="km"
+                        type="number"
+                        value={formData.km}
+                        onChange={(e) => setFormData({...formData, km: e.target.value})}
+                        placeholder="Enter distance in kilometers"
+                      />
+                    </div>
+
+                    <div>
+                      <Label>Vehicle Pricing</Label>
+                      <div className="space-y-2 mt-2">
+                        {(vehicles as any[])?.map((vehicle: any) => (
+                          <div key={vehicle.id} className="flex items-center space-x-2">
+                            <span className="w-20 text-sm">{vehicle.name}:</span>
+                            <Input
+                              type="number"
+                              placeholder="Price"
+                              value={formData.vehiclePricing?.[vehicle.id] || ''}
+                              onChange={(e) => setFormData({
+                                ...formData,
+                                vehiclePricing: {
+                                  ...formData.vehiclePricing,
+                                  [vehicle.id]: e.target.value
+                                }
+                              })}
+                              className="flex-1"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Vehicle-specific fields */}
+                {modalType === 'vehicle' && (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="paxMin">Min Passengers</Label>
+                      <Input
+                        id="paxMin"
+                        type="number"
+                        value={formData.paxMin}
+                        onChange={(e) => setFormData({...formData, paxMin: e.target.value})}
+                        placeholder="Minimum passengers"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="paxMax">Max Passengers</Label>
+                      <Input
+                        id="paxMax"
+                        type="number"
+                        value={formData.paxMax}
+                        onChange={(e) => setFormData({...formData, paxMax: e.target.value})}
+                        placeholder="Maximum passengers"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Guide-specific fields */}
+                {modalType === 'guide' && (
+                  <>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="language">Language</Label>
+                        <Input
+                          id="language"
+                          value={formData.language}
+                          onChange={(e) => setFormData({...formData, language: e.target.value})}
+                          placeholder="Language spoken"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="cityId">City</Label>
+                        <select
+                          id="cityId"
+                          value={formData.cityId}
+                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                          className="w-full p-2 border border-gray-300 rounded-md"
+                        >
+                          <option value="">Select city</option>
+                          {(cities as any[])?.map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="pricePerHour">Hourly Rate ($)</Label>
+                      <Input
+                        id="pricePerHour"
+                        type="number"
+                        value={formData.pricePerHour}
+                        onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                        placeholder="Price per hour"
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* Add-on specific fields */}
+                {modalType === 'addon' && (
+                  <>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="price">Price ($)</Label>
+                        <Input
+                          id="price"
+                          type="number"
+                          value={formData.price}
+                          onChange={(e) => setFormData({...formData, price: e.target.value})}
+                          placeholder="Price"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="unitType">Unit Type</Label>
+                        <select
+                          id="unitType"
+                          value={formData.unitType}
+                          onChange={(e) => setFormData({...formData, unitType: e.target.value})}
+                          className="w-full p-2 border border-gray-300 rounded-md"
+                        >
+                          <option value="per_unit">Per Unit</option>
+                          <option value="per_person">Per Person</option>
+                          <option value="per_trip">Per Trip</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="category">Category</Label>
+                      <Input
+                        id="category"
+                        value={formData.category}
+                        onChange={(e) => setFormData({...formData, category: e.target.value})}
+                        placeholder="Category"
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* Attraction-specific fields */}
+                {modalType === 'attraction' && (
+                  <>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="cityId">City</Label>
+                        <select
+                          id="cityId"
+                          value={formData.cityId}
+                          onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                          className="w-full p-2 border border-gray-300 rounded-md"
+                        >
+                          <option value="">Select city</option>
+                          {(cities as any[])?.map((city: any) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <Label htmlFor="category">Category</Label>
+                        <Input
+                          id="category"
+                          value={formData.category}
+                          onChange={(e) => setFormData({...formData, category: e.target.value})}
+                          placeholder="Category"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="ticketPrice">Ticket Price ($)</Label>
+                        <Input
+                          id="ticketPrice"
+                          type="number"
+                          value={formData.ticketPrice}
+                          onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
+                          placeholder="Ticket price"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="duration">Duration (hours)</Label>
+                        <Input
+                          id="duration"
+                          type="number"
+                          value={formData.duration}
+                          onChange={(e) => setFormData({...formData, duration: e.target.value})}
+                          placeholder="Duration"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="location">Location</Label>
+                        <Input
+                          id="location"
+                          value={formData.location}
+                          onChange={(e) => setFormData({...formData, location: e.target.value})}
+                          placeholder="Location"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="openingHours">Opening Hours</Label>
+                      <Input
+                        id="openingHours"
+                        value={formData.openingHours}
+                        onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
+                        placeholder="Opening hours"
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div className="flex gap-4 mt-6">
                   <Button 
