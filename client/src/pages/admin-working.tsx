@@ -1001,7 +1001,7 @@ export default function AdminWorking() {
                           </TableCell>
                           <TableCell>
                             <Badge variant="outline" className="text-xs">
-                              {route.routeType}
+                              {route.fromCityId === route.toCityId ? 'intra-city' : 'inter-city'}
                             </Badge>
                           </TableCell>
                           <TableCell className="font-mono text-sm">{route.km} km</TableCell>

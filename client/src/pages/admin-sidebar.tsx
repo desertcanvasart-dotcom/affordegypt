@@ -703,7 +703,7 @@ export default function AdminSidebar() {
                           </TableCell>
                           <TableCell>
                             <Badge variant="outline" className="text-xs">
-                              {route.routeType || 'inter-city'}
+                              {route.fromCityId === route.toCityId ? 'intra-city' : 'inter-city'}
                             </Badge>
                           </TableCell>
                           <TableCell className="font-mono text-sm">{route.km} km</TableCell>
