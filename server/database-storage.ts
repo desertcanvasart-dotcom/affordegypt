@@ -8,7 +8,7 @@ import {
   type Quote, type InsertQuote, type Booking, type InsertBooking
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and } from "drizzle-orm";
+import { eq, and, desc } from "drizzle-orm";
 
 export interface IStorage {
   // Users
@@ -82,8 +82,13 @@ export interface IStorage {
   // Bookings
   getBookings(): Promise<Booking[]>;
   getBooking(id: number): Promise<Booking | undefined>;
+  getBookingByReference(reference: string): Promise<Booking | undefined>;
+  getUserBookings(userId: number): Promise<Booking[]>;
   createBooking(booking: InsertBooking): Promise<Booking>;
   updateBookingPaymentStatus(id: number, status: string, paymentIntentId?: string): Promise<Booking>;
+  updateBookingStatus(id: number, status: string): Promise<Booking>;
+  markEmailSent(id: number, emailType: 'confirmation' | 'reminder'): Promise<Booking>;
+  generateBookingReference(): string;
 
   // Pricing Engine
   calculateQuotePrice(itinerary: any[], addons: any[], passengers: number): Promise<{
@@ -501,13 +506,31 @@ export class DatabaseStorage implements IStorage {
     return booking;
   }
 
+  async getBookingByReference(reference: string): Promise<Booking | undefined> {
+    const [booking] = await db.select().from(bookings).where(eq(bookings.bookingReference, reference));
+    return booking;
+  }
+
+  async getUserBookings(userId: number): Promise<Booking[]> {
+    return await db.select().from(bookings)
+      .where(eq(bookings.userId, userId))
+      .orderBy(desc(bookings.createdAt));
+  }
+
   async createBooking(insertBooking: InsertBooking): Promise<Booking> {
-    const [booking] = await db.insert(bookings).values(insertBooking).returning();
+    const bookingData = {
+      ...insertBooking,
+      bookingReference: this.generateBookingReference()
+    };
+    const [booking] = await db.insert(bookings).values(bookingData).returning();
     return booking;
   }
 
   async updateBookingPaymentStatus(id: number, status: string, paymentIntentId?: string): Promise<Booking> {
-    const updateData: any = { paymentStatus: status };
+    const updateData: any = { 
+      paymentStatus: status,
+      updatedAt: new Date()
+    };
     if (paymentIntentId) updateData.stripePaymentIntentId = paymentIntentId;
     
     const [booking] = await db
@@ -516,6 +539,41 @@ export class DatabaseStorage implements IStorage {
       .where(eq(bookings.id, id))
       .returning();
     return booking;
+  }
+
+  async updateBookingStatus(id: number, status: string): Promise<Booking> {
+    const [booking] = await db
+      .update(bookings)
+      .set({ 
+        bookingStatus: status,
+        updatedAt: new Date()
+      })
+      .where(eq(bookings.id, id))
+      .returning();
+    return booking;
+  }
+
+  async markEmailSent(id: number, emailType: 'confirmation' | 'reminder'): Promise<Booking> {
+    const updateField = emailType === 'confirmation' ? 
+      { confirmationEmailSent: true } : 
+      { reminderEmailSent: true };
+    
+    const [booking] = await db
+      .update(bookings)
+      .set({
+        ...updateField,
+        updatedAt: new Date()
+      })
+      .where(eq(bookings.id, id))
+      .returning();
+    return booking;
+  }
+
+  generateBookingReference(): string {
+    const prefix = 'AE';
+    const timestamp = Date.now().toString().slice(-6);
+    const random = Math.random().toString(36).substring(2, 5).toUpperCase();
+    return `${prefix}${timestamp}${random}`;
   }
 
   // Enhanced pricing engine following your pseudo-code

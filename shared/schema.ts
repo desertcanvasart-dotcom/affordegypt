@@ -121,7 +121,20 @@ export const bookings = pgTable("bookings", {
   
   // Payment
   stripePaymentIntentId: text("stripe_payment_intent_id"),
-  paymentStatus: text("payment_status").default("pending"), // 'pending', 'paid', 'failed'
+  paymentStatus: text("payment_status").default("pending"), // 'pending', 'paid', 'failed', 'refunded'
+  
+  // Booking Status
+  bookingStatus: text("booking_status").default("confirmed"), // 'confirmed', 'in_progress', 'completed', 'cancelled'
+  bookingReference: text("booking_reference").notNull(), // Unique booking reference
+  
+  // Trip Details
+  startDate: timestamp("start_date"),
+  endDate: timestamp("end_date"),
+  totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
+  
+  // Communication
+  confirmationEmailSent: boolean("confirmation_email_sent").default(false),
+  reminderEmailSent: boolean("reminder_email_sent").default(false),
   
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
@@ -147,7 +160,9 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   id: true, 
   userId: true,
   createdAt: true, 
-  updatedAt: true 
+  updatedAt: true,
+  confirmationEmailSent: true,
+  reminderEmailSent: true
 });
 
 // Types
