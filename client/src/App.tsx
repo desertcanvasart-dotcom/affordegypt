@@ -8,6 +8,8 @@ import Checkout from "@/pages/checkout";
 import AdminSidebar from "@/pages/admin-sidebar";
 import Routes from "@/pages/routes";
 import AttractionsSimple from "@/pages/attractions-simple";
+import BookingConfirmation from "@/pages/booking-confirmation";
+import UserDashboard from "@/pages/user-dashboard";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -15,6 +17,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/checkout/:bookingId" component={Checkout} />
+      <Route path="/booking/:reference" component={BookingConfirmation} />
+      <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin" component={AdminSidebar} />
       <Route path="/routes" component={Routes} />
       <Route path="/attractions" component={AttractionsSimple} />

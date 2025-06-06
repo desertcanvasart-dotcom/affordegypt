@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./database-storage";
 import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
+import { emailService } from "./email-service";
 
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
@@ -296,6 +297,233 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const booking = await storage.updateBookingPaymentStatus(id, status, paymentIntentId);
       res.json(booking);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Enhanced Booking System Routes
+
+  // Create booking with payment intent
+  app.post("/api/bookings", async (req, res) => {
+    try {
+      const bookingData = insertBookingSchema.parse(req.body);
+      
+      // Create booking
+      const booking = await storage.createBooking(bookingData);
+      
+      // Create Stripe payment intent if Stripe is configured
+      let paymentIntent = null;
+      if (stripe && bookingData.totalAmount) {
+        try {
+          paymentIntent = await stripe.paymentIntents.create({
+            amount: Math.round(parseFloat(bookingData.totalAmount) * 100), // Convert to cents
+            currency: "usd",
+            metadata: {
+              bookingId: booking.id.toString(),
+              bookingReference: booking.bookingReference
+            }
+          });
+          
+          // Update booking with payment intent ID
+          await storage.updateBookingPaymentStatus(booking.id, 'pending', paymentIntent.id);
+        } catch (stripeError) {
+          console.error("Stripe payment intent creation failed:", stripeError);
+        }
+      }
+      
+      res.json({
+        booking,
+        clientSecret: paymentIntent?.client_secret,
+        paymentIntentId: paymentIntent?.id
+      });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Confirm payment and send confirmation email
+  app.post("/api/bookings/:id/confirm-payment", async (req, res) => {
+    try {
+      const bookingId = parseInt(req.params.id);
+      const { paymentIntentId } = req.body;
+      
+      // Get booking and quote details
+      const booking = await storage.getBooking(bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      const quote = await storage.getQuote(booking.quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      // Verify payment with Stripe
+      let paymentSuccessful = false;
+      if (stripe && paymentIntentId) {
+        try {
+          const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+          paymentSuccessful = paymentIntent.status === 'succeeded';
+        } catch (stripeError) {
+          console.error("Payment verification failed:", stripeError);
+        }
+      }
+      
+      // Update booking payment status
+      const paymentStatus = paymentSuccessful ? 'paid' : 'failed';
+      const updatedBooking = await storage.updateBookingPaymentStatus(bookingId, paymentStatus, paymentIntentId);
+      
+      // Send confirmation email if payment successful and not already sent
+      if (paymentSuccessful && !updatedBooking.confirmationEmailSent) {
+        const emailSent = await emailService.sendBookingConfirmation(updatedBooking, quote);
+        if (emailSent) {
+          await storage.markEmailSent(bookingId, 'confirmation');
+        }
+      }
+      
+      res.json({ 
+        booking: updatedBooking, 
+        paymentSuccessful,
+        emailSent: paymentSuccessful && !booking.confirmationEmailSent
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get booking by reference (public endpoint)
+  app.get("/api/bookings/reference/:reference", async (req, res) => {
+    try {
+      const booking = await storage.getBookingByReference(req.params.reference);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      // Get associated quote data
+      const quote = await storage.getQuote(booking.quoteId);
+      
+      res.json({ 
+        booking,
+        quote: quote ? {
+          id: quote.id,
+          jsonBlob: quote.jsonBlob,
+          total: quote.total,
+          commissionPct: quote.commissionPct
+        } : null
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get user bookings (requires authentication)
+  app.get("/api/user/:userId/bookings", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const bookings = await storage.getUserBookings(userId);
+      
+      // Get quote data for each booking
+      const bookingsWithQuotes = await Promise.all(
+        bookings.map(async (booking) => {
+          const quote = await storage.getQuote(booking.quoteId);
+          return {
+            ...booking,
+            quote: quote ? {
+              id: quote.id,
+              jsonBlob: quote.jsonBlob,
+              total: quote.total,
+              commissionPct: quote.commissionPct
+            } : null
+          };
+        })
+      );
+      
+      res.json(bookingsWithQuotes);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Update booking status (admin endpoint)
+  app.put("/api/bookings/:id/status", async (req, res) => {
+    try {
+      const bookingId = parseInt(req.params.id);
+      const { status } = req.body;
+      
+      const booking = await storage.getBooking(bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      // Update booking status
+      const updatedBooking = await storage.updateBookingStatus(bookingId, status);
+      
+      // Send status update email
+      const emailSent = await emailService.sendBookingStatusUpdate(updatedBooking, status);
+      
+      res.json({ 
+        booking: updatedBooking,
+        emailSent 
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Send booking reminder (admin endpoint)
+  app.post("/api/bookings/:id/send-reminder", async (req, res) => {
+    try {
+      const bookingId = parseInt(req.params.id);
+      
+      const booking = await storage.getBooking(bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      const quote = await storage.getQuote(booking.quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      // Send reminder email
+      const emailSent = await emailService.sendBookingReminder(booking, quote);
+      
+      if (emailSent) {
+        await storage.markEmailSent(bookingId, 'reminder');
+      }
+      
+      res.json({ 
+        emailSent,
+        booking: await storage.getBooking(bookingId)
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get all bookings (admin endpoint)
+  app.get("/api/admin/bookings", async (req, res) => {
+    try {
+      const bookings = await storage.getBookings();
+      
+      // Get quote data for each booking
+      const bookingsWithQuotes = await Promise.all(
+        bookings.map(async (booking) => {
+          const quote = await storage.getQuote(booking.quoteId);
+          return {
+            ...booking,
+            quote: quote ? {
+              id: quote.id,
+              jsonBlob: quote.jsonBlob,
+              total: quote.total,
+              commissionPct: quote.commissionPct
+            } : null
+          };
+        })
+      );
+      
+      res.json(bookingsWithQuotes);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
