@@ -20,6 +20,9 @@ export default function AdminSidebar() {
   const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions'>('cities');
   const [deleteConfirm, setDeleteConfirm] = useState<{type: string, id: number, name: string} | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
   const [formData, setFormData] = useState<any>({
     name: "",
     description: "",
@@ -653,6 +656,34 @@ export default function AdminSidebar() {
 
             {activeSection === 'routes' && (
               <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle>Routes Management</CardTitle>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        placeholder="Search routes..."
+                        value={searchTerm}
+                        onChange={(e) => {
+                          setSearchTerm(e.target.value);
+                          setCurrentPage(1);
+                        }}
+                        className="w-64"
+                      />
+                      <span className="text-sm text-gray-500">
+                        {(() => {
+                          const filteredRoutes = (routes as any[])?.filter((route: any) => {
+                            if (!searchTerm) return true;
+                            const routeName = route.name || 
+                              (route.fromLocation && route.toLocation ? `${route.fromLocation} → ${route.toLocation}` : 
+                               `${(cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[])?.find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`);
+                            return routeName.toLowerCase().includes(searchTerm.toLowerCase());
+                          }) || [];
+                          return `${filteredRoutes.length} routes`;
+                        })()}
+                      </span>
+                    </div>
+                  </div>
+                </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader className="sticky top-0 bg-white z-10">
@@ -666,7 +697,20 @@ export default function AdminSidebar() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {(routes as any[]).map((route: any) => (
+                      {(() => {
+                        const filteredRoutes = (routes as any[])?.filter((route: any) => {
+                          if (!searchTerm) return true;
+                          const routeName = route.name || 
+                            (route.fromLocation && route.toLocation ? `${route.fromLocation} → ${route.toLocation}` : 
+                             `${(cities as any[])?.find((c: any) => c.id === route.fromCityId)?.name || 'Unknown'} → ${(cities as any[])?.find((c: any) => c.id === route.toCityId)?.name || 'Unknown'}`);
+                          return routeName.toLowerCase().includes(searchTerm.toLowerCase());
+                        }) || [];
+                        
+                        const startIndex = (currentPage - 1) * pageSize;
+                        const endIndex = startIndex + pageSize;
+                        const paginatedRoutes = filteredRoutes.slice(startIndex, endIndex);
+                        
+                        return paginatedRoutes.map((route: any) => (
                         <TableRow key={route.id} className="h-12">
                           <TableCell>
                             <div className="text-sm">
