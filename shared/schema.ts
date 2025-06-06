@@ -114,7 +114,7 @@ export const quotes = pgTable("quotes", {
 export const bookings = pgTable("bookings", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id),
-  quoteId: integer("quote_id").references(() => quotes.id).notNull(),
+  quoteId: integer("quote_id").references(() => quotes.id),
   customerName: text("customer_name").notNull(),
   customerEmail: text("customer_email").notNull(),
   customerPhone: text("customer_phone"),
@@ -163,6 +163,16 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   updatedAt: true,
   confirmationEmailSent: true,
   reminderEmailSent: true
+}).extend({
+  quoteId: z.number().nullable().optional(),
+  bookingReference: z.string().optional(),
+  totalAmount: z.string().optional(),
+  customerPhone: z.string().nullable().optional(),
+  stripePaymentIntentId: z.string().nullable().optional(),
+  paymentStatus: z.string().optional(),
+  bookingStatus: z.string().optional(),
+  startDate: z.date().nullable().optional(),
+  endDate: z.date().nullable().optional()
 });
 
 // Types

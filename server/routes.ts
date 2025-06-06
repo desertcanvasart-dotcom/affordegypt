@@ -766,10 +766,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create booking
   app.post("/api/bookings", async (req, res) => {
     try {
-      const validatedData = insertBookingSchema.parse(req.body);
+      // Generate booking reference if not provided
+      const bookingReference = req.body.bookingReference || storage.generateBookingReference();
+      
+      // Prepare booking data with required fields
+      const bookingData = {
+        ...req.body,
+        bookingReference,
+        totalAmount: req.body.totalAmount || "0",
+        quoteId: req.body.quoteId || null,
+        startDate: req.body.travelDate ? new Date(req.body.travelDate) : null,
+        paymentStatus: "pending",
+        bookingStatus: "confirmed"
+      };
+
+      const validatedData = insertBookingSchema.parse(bookingData);
       const booking = await storage.createBooking(validatedData);
       res.json(booking);
     } catch (error: any) {
+      console.error('Booking creation error:', error);
       res.status(400).json({ message: error.message });
     }
   });

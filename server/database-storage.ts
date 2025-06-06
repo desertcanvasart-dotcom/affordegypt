@@ -519,7 +519,8 @@ export class DatabaseStorage implements IStorage {
   async createBooking(insertBooking: InsertBooking): Promise<Booking> {
     const bookingData = {
       ...insertBooking,
-      bookingReference: this.generateBookingReference()
+      bookingReference: insertBooking.bookingReference || this.generateBookingReference(),
+      quoteId: insertBooking.quoteId || null
     };
     const [booking] = await db.insert(bookings).values(bookingData).returning();
     return booking;
