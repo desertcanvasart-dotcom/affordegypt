@@ -672,6 +672,10 @@ export default function MultiCityPricingTool() {
                         <span className="font-mono">${city.details.guide}</span>
                       </div>
                       <div className="flex justify-between">
+                        <span>Attractions:</span>
+                        <span className="font-mono">${city.details.attractions || 0}</span>
+                      </div>
+                      <div className="flex justify-between">
                         <span>Add-ons:</span>
                         <span className="font-mono">${city.details.addOns}</span>
                       </div>

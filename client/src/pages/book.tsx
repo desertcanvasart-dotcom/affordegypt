@@ -66,9 +66,9 @@ export default function BookPage() {
     onSuccess: (booking) => {
       toast({
         title: "Booking Created Successfully",
-        description: `Your booking reference is ${booking.reference}`,
+        description: `Your booking reference is ${booking.bookingReference}`,
       });
-      setLocation(`/booking/${booking.reference}`);
+      setLocation(`/booking/${booking.bookingReference}`);
     },
     onError: (error) => {
       toast({
