@@ -7,17 +7,18 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map } from "lucide-react";
+import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import AdminLogin from "@/components/admin-login";
+import AdminBookings from "@/components/admin-bookings";
 
 export default function AdminSidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'city' | 'vehicle' | 'guide' | 'addon' | 'attraction' | 'route'>('city');
-  const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions'>('cities');
+  const [activeSection, setActiveSection] = useState<'cities' | 'vehicles' | 'guides' | 'addons' | 'routes' | 'attractions' | 'bookings'>('cities');
   const [deleteConfirm, setDeleteConfirm] = useState<{type: string, id: number, name: string} | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<any>({
@@ -346,6 +347,18 @@ export default function AdminSidebar() {
           >
             <Package className="w-4 h-4" />
             <span>Add-ons</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('bookings')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              activeSection === 'bookings' 
+                ? 'bg-teal-100 text-teal-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            }`}
+          >
+            <Calendar className="w-4 h-4" />
+            <span>Bookings</span>
           </button>
 
           <button
@@ -807,6 +820,10 @@ export default function AdminSidebar() {
                   </Table>
                 </CardContent>
               </Card>
+            )}
+
+            {activeSection === 'bookings' && (
+              <AdminBookings />
             )}
           </div>
         </div>
