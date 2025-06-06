@@ -170,19 +170,7 @@ export default function BookPage() {
                     )}
                   />
 
-                  <FormField
-                    control={form.control}
-                    name="travelDate"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Preferred Travel Date</FormLabel>
-                        <FormControl>
-                          <Input type="date" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+
 
                   <FormField
                     control={form.control}
@@ -242,31 +230,74 @@ export default function BookPage() {
                 <Badge variant="secondary">{travelers}</Badge>
               </div>
 
-              {quote && quote.itinerary && (
-                <div>
-                  <h4 className="font-medium mb-2">Cities</h4>
-                  <div className="space-y-1">
+              {/* Booking Items Display */}
+              <div className="space-y-3">
+                <h4 className="font-medium">Your Booking</h4>
+                
+                {quote && quote.itinerary && (
+                  <div className="space-y-3">
                     {JSON.parse(quote.itinerary).map((city: any, index: number) => (
-                      <div key={index} className="text-sm text-muted-foreground">
-                        {city.cityName}
+                      <div key={index} className="border rounded-md p-3 space-y-2">
+                        <div className="font-medium text-sm">{city.cityName}</div>
+                        
+                        {city.selectedRoutes && city.selectedRoutes.length > 0 && (
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Transportation</div>
+                            {city.selectedRoutes.map((route: any, rIndex: number) => (
+                              <div key={rIndex} className="text-xs text-muted-foreground">
+                                {route.fromLocation} → {route.toLocation}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {city.selectedGuide && (
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Guide Service</div>
+                            <div className="text-xs text-muted-foreground">
+                              {city.selectedGuide.language} guide - {city.selectedGuide.duration} hours
+                            </div>
+                          </div>
+                        )}
+                        
+                        {city.attractions && city.attractions.length > 0 && (
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Attractions</div>
+                            {city.attractions.map((attraction: string, aIndex: number) => (
+                              <div key={aIndex} className="text-xs text-muted-foreground">
+                                {attraction}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {city.selectedAddOns && city.selectedAddOns.length > 0 && (
+                          <div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
+                            {city.selectedAddOns.map((addOn: any, aoIndex: number) => (
+                              <div key={aoIndex} className="text-xs text-muted-foreground">
+                                {addOn.name} x{addOn.quantity}
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
+                )}
 
-              {fallbackQuote.cities.length > 0 && !quote && (
-                <div>
-                  <h4 className="font-medium mb-2">Cities</h4>
-                  <div className="space-y-1">
-                    {fallbackQuote.cities.map((city, index) => (
-                      <div key={index} className="text-sm text-muted-foreground">
-                        {city}
-                      </div>
-                    ))}
+                {fallbackQuote.cities.length > 0 && !quote && (
+                  <div>
+                    <div className="space-y-1">
+                      {fallbackQuote.cities.map((city, index) => (
+                        <div key={index} className="text-sm text-muted-foreground">
+                          {city}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
 
               <Separator />
 

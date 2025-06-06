@@ -194,45 +194,73 @@ export default function BookingConfirmation() {
               </CardContent>
             </Card>
 
-            {/* Trip Details */}
-            {quote && (
+            {/* Booking Items Details */}
+            {quote && quote.jsonBlob && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Trip Details</CardTitle>
+                  <CardTitle>Your Booking Details</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {quote.jsonBlob?.itinerary && (
-                      <div>
-                        <h4 className="font-medium mb-2">Itinerary</h4>
-                        <div className="space-y-2">
-                          {quote.jsonBlob.itinerary.map((item: any, index: number) => (
-                            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <span>{item.city || item.route || 'City Service'}</span>
-                              <span className="text-sm text-muted-foreground">
-                                {item.date || `Day ${index + 1}`}
-                              </span>
-                            </div>
-                          ))}
+                    {quote.jsonBlob.itinerary && quote.jsonBlob.itinerary.map((city: any, index: number) => (
+                      <div key={index} className="border rounded-lg p-4 space-y-3">
+                        <div className="font-semibold text-lg">{city.cityName}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {city.date} • {city.travelers} travelers
                         </div>
-                      </div>
-                    )}
-                    
-                    {quote.jsonBlob?.addons && quote.jsonBlob.addons.length > 0 && (
-                      <div>
-                        <h4 className="font-medium mb-2">Add-ons</h4>
-                        <div className="space-y-1">
-                          {quote.jsonBlob.addons.map((addon: any, index: number) => (
-                            <div key={index} className="flex items-center justify-between">
-                              <span>{addon.name}</span>
-                              <span className="text-sm text-muted-foreground">
-                                ${addon.price}
-                              </span>
+                        
+                        {city.selectedRoutes && city.selectedRoutes.length > 0 && (
+                          <div>
+                            <div className="font-medium text-sm mb-2">Transportation</div>
+                            <div className="space-y-1">
+                              {city.selectedRoutes.map((route: any, rIndex: number) => (
+                                <div key={rIndex} className="flex items-center justify-between text-sm">
+                                  <span>{route.fromLocation} → {route.toLocation}</span>
+                                  <span className="text-muted-foreground">{route.km} km</span>
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
+                          </div>
+                        )}
+                        
+                        {city.selectedGuide && (
+                          <div>
+                            <div className="font-medium text-sm mb-2">Guide Service</div>
+                            <div className="text-sm">
+                              {city.selectedGuide.language} speaking guide - {city.selectedGuide.duration} hours
+                            </div>
+                          </div>
+                        )}
+                        
+                        {city.attractions && city.attractions.length > 0 && (
+                          <div>
+                            <div className="font-medium text-sm mb-2">Attractions</div>
+                            <div className="grid grid-cols-1 gap-1">
+                              {city.attractions.map((attraction: string, aIndex: number) => (
+                                <div key={aIndex} className="text-sm flex items-center">
+                                  <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                                  {attraction}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {city.selectedAddOns && city.selectedAddOns.length > 0 && (
+                          <div>
+                            <div className="font-medium text-sm mb-2">Add-ons</div>
+                            <div className="space-y-1">
+                              {city.selectedAddOns.map((addOn: any, aoIndex: number) => (
+                                <div key={aoIndex} className="flex items-center justify-between text-sm">
+                                  <span>{addOn.name}</span>
+                                  <span className="text-muted-foreground">x{addOn.quantity}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
+                    ))}
                   </div>
                 </CardContent>
               </Card>
