@@ -13,7 +13,7 @@ export default function Navbar() {
   };
 
   const scrollToTips = () => {
-    const element = document.getElementById('tips');
+    const element = document.getElementById('blog');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
