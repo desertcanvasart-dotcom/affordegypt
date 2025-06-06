@@ -431,19 +431,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
           return basePrice * 2.4; // Van
         };
 
-        // Calculate routes
+        // Calculate routes using database pricing
         let routesTotal = 0;
-        if (cityService.selectedRoutes) {
-          cityService.selectedRoutes.forEach(routeId => {
-            // Base prices for different route types
-            const routePrices = {
-              1: 50, 2: 120, 3: 150, 4: 90, 5: 110, 6: 80, 7: 120, 8: 40,
-              9: 120, 10: 60, 11: 50, 12: 100, 13: 70, 14: 80, 15: 50,
-              16: 180, 17: 60, 18: 50
-            };
-            const basePrice = routePrices[routeId] || 50;
-            routesTotal += getVehiclePrice(basePrice, travelers);
-          });
+        if (cityService.selectedRoutes && cityService.selectedRoutes.length > 0) {
+          for (const routeId of cityService.selectedRoutes) {
+            try {
+              // Get route from database
+              const routes = await storage.getRoutes();
+              const route = routes.find(r => r.id === routeId);
+              
+              if (route && route.pricing) {
+                // Parse the JSON pricing data
+                const pricing = typeof route.pricing === 'string' 
+                  ? JSON.parse(route.pricing) 
+                  : route.pricing;
+                
+                // Determine vehicle type based on passenger count
+                let vehicleType = 1; // Default to sedan
+                if (travelers > 8) vehicleType = 3; // Van
+                else if (travelers > 2) vehicleType = 2; // Minivan
+                
+                // Get pricing for the appropriate vehicle and license type
+                const vehiclePricing = pricing[vehicleType] || pricing[1]; // Fallback to sedan
+                const routePrice = vehiclePricing && vehiclePricing[1] 
+                  ? parseFloat(vehiclePricing[1]) 
+                  : 50; // Default price
+                
+                routesTotal += routePrice;
+              } else {
+                // Fallback pricing if route not found
+                routesTotal += 50;
+              }
+            } catch (error) {
+              console.error('Error calculating route price:', error);
+              routesTotal += 50; // Fallback price
+            }
+          }
         }
 
         // Calculate guide pricing
