@@ -499,19 +499,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Calculate add-ons
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
-          cityService.selectedAddOns.forEach(addOn => {
-            const prices = { 1: 15, 2: 20, 3: 25, 4: 20, 5: 10, 6: 45, 7: 85, 8: 280, 9: 350, 10: 490 };
-            const types = { 1: "unit", 2: "unit", 3: "unit", 4: "unit", 5: "person", 6: "person", 7: "person", 8: "trip", 9: "trip", 10: "trip" };
-            
-            const basePrice = prices[addOn.id] || 0;
-            const pricingType = types[addOn.id] || "unit";
-            
-            if (pricingType === "person") {
-              addOnsTotal += basePrice * addOn.quantity * travelers;
-            } else {
-              addOnsTotal += basePrice * addOn.quantity;
+          for (const addOn of cityService.selectedAddOns) {
+            const addOnItem = await storage.getAddOn(addOn.id);
+            if (addOnItem) {
+              const basePrice = parseFloat(addOnItem.price);
+              const pricingType = addOnItem.unitType;
+              
+              if (pricingType === "per_person") {
+                addOnsTotal += basePrice * addOn.quantity * travelers;
+              } else {
+                addOnsTotal += basePrice * addOn.quantity;
+              }
             }
-          });
+          }
         }
 
         cityTotal = routesTotal + guideTotal + attractionsTotal + addOnsTotal;

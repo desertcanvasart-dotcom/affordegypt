@@ -61,11 +61,18 @@ export default function BookPage() {
   });
 
   const bookingMutation = useMutation({
-    mutationFn: async (data: BookingFormData & { quoteId?: number }) => {
-      const response = await apiRequest("POST", "/api/bookings", data);
+    mutationFn: async (bookingData: any) => {
+      console.log('Submitting booking with data:', bookingData);
+      const response = await apiRequest("POST", "/api/bookings", bookingData);
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error('Booking API error:', errorData);
+        throw new Error(`Booking failed: ${response.status}`);
+      }
       return response.json();
     },
     onSuccess: (booking) => {
+      console.log('Booking created successfully:', booking);
       toast({
         title: "Booking Created Successfully",
         description: `Your booking reference is ${booking.bookingReference}`,
@@ -73,25 +80,39 @@ export default function BookPage() {
       setLocation(`/booking/${booking.bookingReference}`);
     },
     onError: (error) => {
+      console.error('Booking mutation error:', error);
       toast({
         title: "Booking Failed",
-        description: "Please try again or contact support",
+        description: error.message || "Please try again or contact support",
         variant: "destructive",
       });
+      setIsProcessing(false);
     },
   });
 
   const onSubmit = async (data: BookingFormData) => {
+    console.log('Form submitted with data:', data);
+    console.log('Form validation errors:', form.formState.errors);
+    
     setIsProcessing(true);
+    
     try {
-      await bookingMutation.mutateAsync({
-        ...data,
-        quoteId: quote?.id || undefined,
+      // Prepare booking data with proper structure
+      const bookingData = {
+        customerName: data.customerName,
+        customerEmail: data.customerEmail,
+        customerPhone: data.customerPhone,
         travelDate: quoteTravelDate || data.travelDate,
-      });
+        specialRequests: data.specialRequests || '',
+        quoteId: quote?.id || null,
+        totalAmount: totalAmount,
+        travelers: travelers
+      };
+      
+      console.log('Prepared booking data:', bookingData);
+      await bookingMutation.mutateAsync(bookingData);
     } catch (error) {
       console.error('Booking submission error:', error);
-    } finally {
       setIsProcessing(false);
     }
   };
