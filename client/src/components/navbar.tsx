@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Mail, Lightbulb } from "lucide-react";
+import { Menu, X, MapPin, User, Mail, Lightbulb, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
@@ -7,6 +7,27 @@ export default function Navbar() {
 
   const scrollToQuote = () => {
     const element = document.getElementById('quote-builder');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToTips = () => {
+    const element = document.getElementById('tips');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToAbout = () => {
+    const element = document.getElementById('about');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -29,22 +50,32 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center space-x-8">
             <button 
               onClick={scrollToQuote}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
+              <Calculator className="w-4 h-4" />
               Get Quote
             </button>
-            <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+            <button 
+              onClick={scrollToTips}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
               <Lightbulb className="w-4 h-4" />
               Travel Tips
-            </a>
-            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+            </button>
+            <button 
+              onClick={scrollToAbout}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
               <User className="w-4 h-4" />
               About
-            </a>
-            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+            </button>
+            <button 
+              onClick={scrollToContact}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
               <Mail className="w-4 h-4" />
               Contact
-            </a>
+            </button>
             <a href="/admin" className="text-muted-foreground hover:text-primary transition-colors text-xs">
               Admin
             </a>
@@ -77,22 +108,32 @@ export default function Navbar() {
             <div className="flex flex-col space-y-4">
               <button 
                 onClick={() => { scrollToQuote(); setIsMenuOpen(false); }}
-                className="text-muted-foreground hover:text-primary transition-colors text-left"
+                className="text-muted-foreground hover:text-primary transition-colors text-left flex items-center gap-2"
               >
+                <Calculator className="w-4 h-4" />
                 Get Quote
               </button>
-              <a href="#tips" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+              <button 
+                onClick={() => { scrollToTips(); setIsMenuOpen(false); }}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
                 <Lightbulb className="w-4 h-4" />
                 Travel Tips
-              </a>
-              <a href="#about" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+              </button>
+              <button 
+                onClick={() => { scrollToAbout(); setIsMenuOpen(false); }}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
                 <User className="w-4 h-4" />
                 About
-              </a>
-              <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+              </button>
+              <button 
+                onClick={() => { scrollToContact(); setIsMenuOpen(false); }}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
                 <Mail className="w-4 h-4" />
                 Contact
-              </a>
+              </button>
               <Button 
                 onClick={() => { scrollToQuote(); setIsMenuOpen(false); }}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full"
