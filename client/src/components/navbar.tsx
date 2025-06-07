@@ -40,11 +40,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
-              alt="Afford Egypt Logo" 
-              className="h-10 w-auto"
-            />
+            <Link href="/">
+              <img 
+                src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
+                alt="Afford Egypt Logo" 
+                className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
