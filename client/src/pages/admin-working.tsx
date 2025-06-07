@@ -484,18 +484,14 @@ export default function AdminWorking() {
         const distance = parseFloat(formData.km) || 0;
         const basePricing: any = {};
         
-        // Generate pricing for all vehicle and license combinations
+        // Generate pricing for all vehicle types
         // Vehicle IDs: 1=Sedan, 2=Minivan, 3=Van
-        // License IDs: 1=Normal, 2=Tourism
         const pricePerKm = formData.routeType === 'intra-city' ? 1.5 : 0.5; // Higher rate for city routes
         
         [1, 2, 3].forEach(vehicleId => {
           basePricing[vehicleId] = {};
-          [1, 2].forEach(licenseId => {
-            const multiplier = vehicleId === 1 ? 1 : vehicleId === 2 ? 1.4 : 1.8;
-            const licenseMultiplier = licenseId === 2 ? 1.2 : 1;
-            basePricing[vehicleId][licenseId] = (distance * pricePerKm * multiplier * licenseMultiplier).toFixed(2);
-          });
+          const multiplier = vehicleId === 1 ? 1 : vehicleId === 2 ? 1.4 : 1.8;
+          basePricing[vehicleId][1] = (distance * pricePerKm * multiplier).toFixed(2);
         });
         
         // Debug logging
