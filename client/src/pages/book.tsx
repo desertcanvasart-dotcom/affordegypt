@@ -55,10 +55,17 @@ export default function BookPage() {
       customerName: "",
       customerEmail: "",
       customerPhone: "",
-      travelDate: "",
+      travelDate: fallbackQuote.travelDate || "",
       specialRequests: "",
     },
   });
+
+  // Update form when quote data loads
+  useEffect(() => {
+    if (quote?.jsonBlob?.travelDate && !form.getValues('travelDate')) {
+      form.setValue('travelDate', quote.jsonBlob.travelDate);
+    }
+  }, [quote, form]);
 
   const bookingMutation = useMutation({
     mutationFn: async (bookingData: any) => {
@@ -198,7 +205,23 @@ export default function BookPage() {
                     )}
                   />
 
-
+                  <FormField
+                    control={form.control}
+                    name="travelDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Travel Date</FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="date" 
+                            {...field} 
+                            value={field.value || quoteTravelDate || fallbackQuote.travelDate || ''}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
                   <FormField
                     control={form.control}
@@ -317,7 +340,7 @@ export default function BookPage() {
                             <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
                             {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
                               // Calculate display quantity based on pricing type
-                              const displayQuantity = addOn.type === 'per_person' 
+                              const displayQuantity = addOn.unitType === 'per_person' 
                                 ? addOn.quantity * travelers 
                                 : addOn.quantity;
                               

@@ -239,7 +239,9 @@ export default function MultiCityPricingTool() {
       const newAddOns = [...cityService.selectedAddOns, {
         id: addOn.id,
         name: addOn.name,
-        quantity: 1
+        quantity: 1,
+        unitType: addOn.unitType,
+        price: addOn.price
       }];
       updateCityService(cityIndex, { selectedAddOns: newAddOns });
     }
