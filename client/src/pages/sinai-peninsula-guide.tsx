@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, Star, Camera, Mountain, Waves, Sun, Compass, AlertTriangle, Thermometer } from "lucide-react";
 import { Link } from "wouter";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function SinaiPeninsulaGuide() {
   const destinations = [
@@ -138,6 +140,7 @@ export default function SinaiPeninsulaGuide() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50">
+      <Navbar />
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-teal-600 via-teal-700 to-cyan-800 text-white min-h-screen flex items-center">
         <div className="absolute inset-0 bg-black/30" />
@@ -350,6 +353,7 @@ export default function SinaiPeninsulaGuide() {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }
