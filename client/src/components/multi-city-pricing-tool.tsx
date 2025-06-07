@@ -509,7 +509,7 @@ export default function MultiCityPricingTool() {
                             <Button variant="outline" className="w-full justify-between">
                               {(() => {
                                 const perPersonAddOns = cityService.selectedAddOns.filter(a => 
-                                  addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
+                                  addOns.find(addon => addon.id === a.id && (addon.unitType === 'per_person' || addon.unitType === 'per_trip'))
                                 );
                                 return perPersonAddOns.length === 0 
                                   ? "Select Add-ons" 
@@ -521,14 +521,14 @@ export default function MultiCityPricingTool() {
                           <PopoverContent className="w-80 p-0">
                             <div className="max-h-60 overflow-y-auto p-4 space-y-3">
                               {addOns.filter(a => 
-                                ((a as any).unitType === 'per_person' || (a as any).unitType === 'per_trip') && 
-                                ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                                (a.unitType === 'per_person' || a.unitType === 'per_trip') && 
+                                (a.cityId === null || a.cityId === cityService.cityId)
                               ).length === 0 ? (
                                 <p className="text-sm text-muted-foreground">No per-person add-ons available</p>
                               ) : (
                                 addOns.filter(a => 
-                                  ((a as any).unitType === 'per_person' || (a as any).unitType === 'per_trip') && 
-                                  ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                                  (a.unitType === 'per_person' || a.unitType === 'per_trip') && 
+                                  (a.cityId === null || a.cityId === cityService.cityId)
                                 ).map(addOn => {
                                   const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
                                   const isSelected = !!selectedAddOn;
@@ -567,7 +567,7 @@ export default function MultiCityPricingTool() {
                             <Button variant="outline" className="w-full justify-between">
                               {(() => {
                                 const perUnitAddOns = cityService.selectedAddOns.filter(a => 
-                                  addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
+                                  addOns.find(addon => addon.id === a.id && addon.unitType === 'per_unit')
                                 );
                                 return perUnitAddOns.length === 0 
                                   ? "Select Add-ons" 
@@ -579,14 +579,14 @@ export default function MultiCityPricingTool() {
                           <PopoverContent className="w-80 p-0">
                             <div className="max-h-60 overflow-y-auto p-4 space-y-3">
                               {addOns.filter(a => 
-                                (a as any).unitType === 'per_unit' && 
-                                ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                                a.unitType === 'per_unit' && 
+                                (a.cityId === null || a.cityId === cityService.cityId)
                               ).length === 0 ? (
                                 <p className="text-sm text-muted-foreground">No per-unit add-ons available</p>
                               ) : (
                                 addOns.filter(a => 
-                                  (a as any).unitType === 'per_unit' && 
-                                  ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                                  a.unitType === 'per_unit' && 
+                                  (a.cityId === null || a.cityId === cityService.cityId)
                                 ).map(addOn => {
                                   const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
                                   const isSelected = !!selectedAddOn;
