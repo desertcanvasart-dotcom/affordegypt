@@ -38,18 +38,18 @@ export default function TravelTips() {
             <div className="flex flex-wrap justify-center gap-4 mt-12 mb-8">
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
-                <h4 className="font-semibold mb-2">Plan & Prepare</h4>
-                <p className="text-sm opacity-90">Visas, timing, and essential checklists.</p>
+                <h4 className="font-semibold mb-2 text-green-primary">Plan & Prepare</h4>
+                <p className="text-sm text-white/80">Visas, timing, and essential checklists.</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
-                <h4 className="font-semibold mb-2">Budget & Book</h4>
-                <p className="text-sm opacity-90">Master your spending and find great deals.</p>
+                <h4 className="font-semibold mb-2 text-green-primary">Budget & Book</h4>
+                <p className="text-sm text-white/80">Master your spending and find great deals.</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
-                <h4 className="font-semibold mb-2">Explore Smartly</h4>
-                <p className="text-sm opacity-90">Navigate like a local and see the best sights.</p>
+                <h4 className="font-semibold mb-2 text-green-primary">Explore Smartly</h4>
+                <p className="text-sm text-white/80">Navigate like a local and see the best sights.</p>
               </div>
             </div>
             
