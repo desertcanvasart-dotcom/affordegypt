@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, ChevronDown } from "lucide-react";
+import { Link } from "wouter";
 
 interface BlogPost {
   id: number;
@@ -164,10 +165,19 @@ export default function BlogGrid() {
                 <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                   {post.excerpt}
                 </p>
-                <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                  Read More
-                  <ArrowRight className="ml-1 w-3 h-3" />
-                </Button>
+                {post.slug === "nile-valley-travel-guide" ? (
+                  <Link href="/nile-valley-guide">
+                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
+                      Read More
+                      <ArrowRight className="ml-1 w-3 h-3" />
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
+                    Read More
+                    <ArrowRight className="ml-1 w-3 h-3" />
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}
