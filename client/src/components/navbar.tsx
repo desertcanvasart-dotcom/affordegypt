@@ -1,38 +1,28 @@
 import { useState } from "react";
 import { Menu, X, MapPin, User, Mail, Lightbulb, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [location] = useLocation();
 
-  const scrollToQuote = () => {
-    const element = document.getElementById('quote-builder');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const navigateToSection = (sectionId: string) => {
+    // If we're on the homepage, scroll to the section
+    if (location === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, navigate to homepage with hash
+      window.location.href = `/#${sectionId}`;
     }
   };
 
-  const scrollToTips = () => {
-    const element = document.getElementById('blog');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToAbout = () => {
-    const element = document.getElementById('about');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const scrollToQuote = () => navigateToSection('quote-builder');
+  const scrollToAbout = () => navigateToSection('about');
+  const scrollToContact = () => navigateToSection('contact');
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
