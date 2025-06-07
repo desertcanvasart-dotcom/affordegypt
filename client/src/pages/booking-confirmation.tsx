@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRoute } from "wouter";
 import { CheckCircle, Clock, AlertCircle, Download, Mail, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
