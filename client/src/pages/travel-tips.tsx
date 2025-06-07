@@ -29,7 +29,7 @@ export default function TravelTips() {
                 Made Simple
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
+            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance text-center">
               Your ultimate 2025 guide to exploring the wonders of Egypt without breaking the bank. 
               Get insider tips on transport, food, accommodation, and attractions.
             </p>
