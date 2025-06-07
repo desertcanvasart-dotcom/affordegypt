@@ -276,9 +276,9 @@ export default function SinaiPeninsulaGuide() {
             {itineraries.map((itinerary, index) => (
               <Card key={index} className="border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
                 <CardHeader>
-                  <CardTitle className="text-xl text-center text-gray-800">{itinerary.title}</CardTitle>
+                  <CardTitle className="text-xl text-center text-teal-900">{itinerary.title}</CardTitle>
                   <div className="text-center">
-                    <Badge variant="outline" className="border-orange-300 text-orange-700 font-semibold">
+                    <Badge variant="outline" className="border-teal-300 text-teal-700 font-semibold">
                       {itinerary.price}
                     </Badge>
                   </div>
@@ -287,10 +287,10 @@ export default function SinaiPeninsulaGuide() {
                   <div className="space-y-3">
                     {itinerary.days.map((day, idx) => (
                       <div key={idx} className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-                          <span className="text-xs font-semibold text-orange-700">{idx + 1}</span>
+                        <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+                          <span className="text-xs font-semibold text-teal-700">{idx + 1}</span>
                         </div>
-                        <p className="text-sm text-gray-700">{day}</p>
+                        <p className="text-sm text-slate-700">{day}</p>
                       </div>
                     ))}
                   </div>
@@ -303,23 +303,23 @@ export default function SinaiPeninsulaGuide() {
         {/* Practical Information */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Essential Travel Information</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">Essential Travel Information</h2>
+            <p className="text-xl text-slate-600">
               Everything you need to know for your Sinai Peninsula adventure
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {practicalInfo.map((info, index) => (
-              <Card key={index} className="border-0 bg-white shadow-md">
+              <Card key={index} className="border-0 bg-white shadow-md border-l-4 border-l-teal-500">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg">
+                  <CardTitle className="flex items-center gap-3 text-lg text-teal-900">
                     {info.icon}
                     {info.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed">{info.content}</p>
+                  <p className="text-slate-700 leading-relaxed">{info.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -327,15 +327,15 @@ export default function SinaiPeninsulaGuide() {
         </section>
 
         {/* Call to Action */}
-        <section className="text-center py-16 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 rounded-2xl text-white">
+        <section className="text-center py-16 bg-gradient-to-r from-teal-600 via-teal-700 to-cyan-800 rounded-2xl text-white">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-6">Ready to Explore Sinai?</h2>
-            <p className="text-xl mb-8 text-orange-100">
-              Plan your perfect Sinai Peninsula adventure with our expert local guides and transparent pricing
+            <h2 className="text-4xl font-bold mb-6">Ready to Explore the Sinai Peninsula?</h2>
+            <p className="text-xl mb-8 text-teal-100">
+              Create your perfect Sinai adventure with our multi-city pricing tool and expert local guides. Get transparent pricing and build your custom itinerary in minutes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/pricing-tool">
-                <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 min-w-48">
+              <Link href="/#pricing">
+                <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50 min-w-48">
                   <MapPin className="w-5 h-5 mr-2" />
                   Start Planning Your Trip
                 </Button>
