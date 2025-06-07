@@ -315,11 +315,18 @@ export default function BookPage() {
                         {city.selectedAddOns && city.selectedAddOns.length > 0 && (
                           <div>
                             <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
-                            {city.selectedAddOns.map((addOn: any, aoIndex: number) => (
-                              <div key={aoIndex} className="text-xs text-muted-foreground">
-                                {addOn.name} x{addOn.quantity}
-                              </div>
-                            ))}
+                            {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
+                              // Calculate display quantity based on pricing type
+                              const displayQuantity = addOn.type === 'per_person' 
+                                ? addOn.quantity * travelers 
+                                : addOn.quantity;
+                              
+                              return (
+                                <div key={aoIndex} className="text-xs text-muted-foreground">
+                                  {addOn.name} x{displayQuantity}
+                                </div>
+                              );
+                            })}
                           </div>
                         )}
                       </div>
