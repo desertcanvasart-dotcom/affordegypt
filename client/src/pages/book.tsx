@@ -113,7 +113,8 @@ export default function BookPage() {
         specialRequests: data.specialRequests || '',
         quoteId: quote?.id || null,
         totalAmount: totalAmount,
-        travelers: travelers
+        travelers: travelers,
+        itinerary: quoteItinerary || fallbackQuote.itinerary || []
       };
       
       console.log('Prepared booking data:', bookingData);
@@ -339,12 +340,12 @@ export default function BookPage() {
                           <div>
                             <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
                             {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
-                              // Calculate display quantity based on pricing type
-                              // Check for both unitType (new) and type (legacy) properties
-                              const isPerPerson = addOn.unitType === 'per_person' || addOn.type === 'per_person';
+                              // Fetch the full add-on data to get unitType
+                              const fullAddOn = addOns?.find((a: any) => a.id === addOn.id);
+                              const isPerPerson = fullAddOn?.unitType === 'per_person' || addOn.unitType === 'per_person' || addOn.type === 'per_person';
                               const displayQuantity = isPerPerson 
-                                ? addOn.quantity * travelers 
-                                : addOn.quantity;
+                                ? travelers // For per-person add-ons, show traveler count
+                                : addOn.quantity; // For per-unit add-ons, show actual quantity
                               
                               return (
                                 <div key={aoIndex} className="text-xs text-muted-foreground">

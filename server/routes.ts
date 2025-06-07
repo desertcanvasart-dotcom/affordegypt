@@ -766,12 +766,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Generate booking reference if not provided
       const bookingReference = req.body.bookingReference || storage.generateBookingReference();
       
+      // Create quote first if itinerary data is provided
+      let quoteId = req.body.quoteId;
+      if (!quoteId && req.body.itinerary) {
+        const quoteData = {
+          jsonBlob: {
+            itinerary: req.body.itinerary,
+            travelers: req.body.travelers || 1,
+            travelDate: req.body.travelDate
+          },
+          total: req.body.totalAmount || "0",
+          commissionPct: "0.15"
+        };
+        const quote = await storage.createQuote(quoteData);
+        quoteId = quote.id;
+      }
+      
       // Prepare booking data with required fields
       const bookingData = {
         ...req.body,
         bookingReference,
         totalAmount: req.body.totalAmount || "0",
-        quoteId: req.body.quoteId || null,
+        quoteId: quoteId,
         startDate: req.body.travelDate ? new Date(req.body.travelDate) : null,
         paymentStatus: "pending",
         bookingStatus: "confirmed"
