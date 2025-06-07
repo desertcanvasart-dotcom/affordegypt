@@ -35,7 +35,7 @@ export default function BookingConfirmation() {
   const reference = params?.reference;
 
   const { data: bookingData, isLoading, error } = useQuery({
-    queryKey: ["/api/bookings/reference", reference],
+    queryKey: [`/api/bookings/reference/${reference}`],
     enabled: !!reference,
   });
 
