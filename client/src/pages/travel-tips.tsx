@@ -23,7 +23,7 @@ export default function TravelTips() {
           }}
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
               Egypt Budget Travel{" "}
               <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
                 Made Simple
