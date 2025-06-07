@@ -110,9 +110,8 @@ export default function BookingConfirmation() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Booking Details */}
-          <div className="lg:col-span-2 space-y-6">
+        {/* Main Booking Details - Full Width */}
+        <div className="space-y-6">
             {/* Booking Information */}
             <Card>
               <CardHeader>
@@ -276,82 +275,19 @@ export default function BookingConfirmation() {
                 </CardContent>
               </Card>
             )}
-          </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button variant="outline" className="w-full" onClick={() => window.print()}>
-                  <Download className="w-4 h-4 mr-2" />
-                  Download PDF
-                </Button>
-                <Button variant="outline" className="w-full">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Email Details
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Important Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Important Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm">
-                <div className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                  <div>
-                    <p className="font-medium">Confirmation Email</p>
-                    <p className="text-muted-foreground">
-                      {booking.confirmationEmailSent 
-                        ? 'Sent to your email address'
-                        : 'Will be sent shortly'
-                      }
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 text-blue-500 mt-0.5" />
-                  <div>
-                    <p className="font-medium">Trip Preparation</p>
-                    <p className="text-muted-foreground">
-                      We'll contact you with final arrangements 48 hours before your trip.
-                    </p>
-                  </div>
+            {/* Booking Success Notice */}
+            <Card className="bg-green-50 border-green-200">
+              <CardContent className="pt-6">
+                <div className="text-center space-y-2">
+                  <CheckCircle className="w-8 h-8 text-green-500 mx-auto" />
+                  <h3 className="font-semibold text-green-900">Booking Created Successfully</h3>
+                  <p className="text-sm text-green-700">
+                    Your booking reference is <strong>{booking.bookingReference}</strong>
+                  </p>
                 </div>
               </CardContent>
             </Card>
-
-            {/* Contact Support */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Need Help?</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm">
-                <p className="text-muted-foreground">
-                  Have questions about your booking? Contact our support team.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-4 h-4" />
-                    <span>support@affordegypt.com</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
-                    <span>+20 123 456 7890</span>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Please include your booking reference: {booking.bookingReference}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </div>
     </div>
