@@ -49,6 +49,11 @@ export default function BookPage() {
     retry: false,
   });
 
+  // Fetch add-ons data for proper quantity display
+  const { data: addOns } = useQuery({
+    queryKey: ["/api/addons"],
+  });
+
   const form = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
