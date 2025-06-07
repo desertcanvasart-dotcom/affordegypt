@@ -20,8 +20,8 @@ export default function TravelTips() {
           }}
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Egypt Budget Travel <span className="text-teal-400">Made Simple</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 font-inter">
+              Egypt Budget Travel <span className="text-primary">Made Simple</span>
             </h1>
             <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
               Your ultimate 2025 guide to exploring the wonders of Egypt without breaking the bank. 
@@ -31,23 +31,23 @@ export default function TravelTips() {
             {/* Process Steps */}
             <div className="flex flex-wrap justify-center gap-4 mt-12 mb-8">
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
-                <div className="bg-teal-500 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
+                <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
                 <h4 className="font-semibold mb-2">Plan & Prepare</h4>
                 <p className="text-sm opacity-90">Visas, timing, and essential checklists.</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
-                <div className="bg-teal-500 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
+                <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
                 <h4 className="font-semibold mb-2">Budget & Book</h4>
                 <p className="text-sm opacity-90">Master your spending and find great deals.</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
-                <div className="bg-teal-500 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
+                <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
                 <h4 className="font-semibold mb-2">Explore Smartly</h4>
                 <p className="text-sm opacity-90">Navigate like a local and see the best sights.</p>
               </div>
             </div>
             
-            <a href="#itinerary" className="inline-block bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
+            <a href="#itinerary" className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
               See Sample Itinerary ↓
             </a>
           </div>
@@ -57,7 +57,7 @@ export default function TravelTips() {
           
           {/* Introduction */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+            <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
               Why Egypt in 2025 Is a Budget Traveler's Dream
             </h2>
             <p className="text-lg leading-relaxed mb-6">
@@ -76,20 +76,20 @@ export default function TravelTips() {
           {/* Best Times to Visit */}
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+              <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
                 Best Times to Visit on a Budget
               </h2>
               <p className="text-lg leading-relaxed mb-8">
                 When it comes to visiting Egypt, timing really is everything—especially if you're trying to stretch your budget without compromising comfort or adventure. Choosing the right season can make all the difference.
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                  <div className="text-2xl text-teal-500 mb-4">🌿</div>
+                <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                  <div className="text-2xl text-primary mb-4">🌿</div>
                   <h4 className="text-xl font-semibold mb-2">Spring & Autumn: The Sweet Spot</h4>
                   <p><strong>(Mar–May & Sep–Nov)</strong> The perfect mix of decent weather, manageable crowds, and affordable prices. Airlines and hotels are often more generous with their deals. This is the best value for money.</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                  <div className="text-2xl text-teal-500 mb-4">☀️</div>
+                <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                  <div className="text-2xl text-primary mb-4">☀️</div>
                   <h4 className="text-xl font-semibold mb-2">Summer: Low Prices, High Heat</h4>
                   <p><strong>(Jun–Aug)</strong> If you don't mind serious heat, this could be your budget jackpot. Tailor your itinerary wisely with coastal time in Alexandria or Dahab. You'll find some of the lowest prices of the year.</p>
                 </div>
