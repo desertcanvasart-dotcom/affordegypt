@@ -198,6 +198,13 @@ export default function BlogGrid() {
                       <ArrowRight className="ml-1 w-3 h-3" />
                     </Button>
                   </Link>
+                ) : post.slug === "budget-travel-egypt" ? (
+                  <Link href="/budget-travel-egypt">
+                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
+                      Read More
+                      <ArrowRight className="ml-1 w-3 h-3" />
+                    </Button>
+                  </Link>
                 ) : (
                   <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
                     Read More
