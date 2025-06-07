@@ -210,12 +210,12 @@ export default function EasternWesternDesertsGuide() {
             {destinations.map((destination, index) => (
               <Card key={index} className="border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg text-amber-900">
+                  <CardTitle className="flex items-center gap-3 text-lg text-primary">
                     {destination.icon}
                     {destination.name}
                   </CardTitle>
                   <p className="text-sm text-slate-600">{destination.location}</p>
-                  <Badge variant="outline" className="border-amber-300 text-amber-700 w-fit">
+                  <Badge variant="outline" className="border-primary text-primary w-fit">
                     {destination.budget}
                   </Badge>
                 </CardHeader>
@@ -223,7 +223,7 @@ export default function EasternWesternDesertsGuide() {
                   <div className="space-y-2">
                     {destination.highlights.map((highlight, idx) => (
                       <div key={idx} className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-amber-500" />
+                        <div className="w-2 h-2 rounded-full bg-primary" />
                         <span className="text-sm text-slate-700">{highlight}</span>
                       </div>
                     ))}
@@ -235,10 +235,10 @@ export default function EasternWesternDesertsGuide() {
         </section>
 
         {/* Budget Tips */}
-        <section className="bg-amber-50 -mx-4 px-4 py-16 rounded-2xl">
+        <section className="bg-teal-50 -mx-4 px-4 py-16 rounded-2xl">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-amber-900 mb-4">Smart Budget Travel Tips</h2>
+              <h2 className="text-4xl font-bold text-primary mb-4">Smart Budget Travel Tips</h2>
               <p className="text-xl text-slate-600">
                 How to explore Egypt's deserts affordably without compromising the experience
               </p>
@@ -249,8 +249,8 @@ export default function EasternWesternDesertsGuide() {
                 <Card key={index} className="border-0 bg-white shadow-md">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                        <DollarSign className="w-4 h-4 text-amber-600" />
+                      <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 text-primary" />
                       </div>
                       <p className="text-slate-700">{tip}</p>
                     </div>
@@ -264,11 +264,11 @@ export default function EasternWesternDesertsGuide() {
         {/* 5-Day Budget Itinerary */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-amber-900 mb-4">5-Day Budget Desert Adventure</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">5-Day Budget Desert Adventure</h2>
             <p className="text-xl text-slate-600 mb-4">
               Complete desert experience for under $250 USD
             </p>
-            <Badge className="bg-amber-600 text-white text-lg px-4 py-2">
+            <Badge className="bg-primary text-white text-lg px-4 py-2">
               Total: ~2200 EGP (~$140 USD)
             </Badge>
           </div>
@@ -279,15 +279,15 @@ export default function EasternWesternDesertsGuide() {
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
-                        <span className="font-bold text-amber-600">{index + 1}</span>
+                      <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
+                        <span className="font-bold text-primary">{index + 1}</span>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-amber-900">{day.day}: {day.location}</h3>
+                        <h3 className="font-semibold text-primary">{day.day}: {day.location}</h3>
                         <p className="text-slate-600">{day.activities}</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="border-amber-300 text-amber-700 w-fit">
+                    <Badge variant="outline" className="border-primary text-primary w-fit">
                       {day.cost}
                     </Badge>
                   </div>
@@ -301,7 +301,7 @@ export default function EasternWesternDesertsGuide() {
         <section className="bg-slate-50 -mx-4 px-4 py-16 rounded-2xl">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-amber-900 mb-4">Desert Packing Essentials</h2>
+              <h2 className="text-4xl font-bold text-primary mb-4">Desert Packing Essentials</h2>
               <p className="text-xl text-slate-600">
                 What to pack for comfortable and safe budget desert travel
               </p>
@@ -312,11 +312,11 @@ export default function EasternWesternDesertsGuide() {
                 <Card key={index} className="border-0 bg-white shadow-md">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                        <span className="text-xs font-bold text-amber-600">✓</span>
+                      <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-bold text-primary">✓</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-amber-900 mb-1">{item.item}</h4>
+                        <h4 className="font-semibold text-primary mb-1">{item.item}</h4>
                         <p className="text-sm text-slate-600">{item.reason}</p>
                       </div>
                     </div>
