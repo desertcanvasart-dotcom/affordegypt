@@ -340,7 +340,9 @@ export default function BookPage() {
                             <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
                             {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
                               // Calculate display quantity based on pricing type
-                              const displayQuantity = addOn.unitType === 'per_person' 
+                              // Check for both unitType (new) and type (legacy) properties
+                              const isPerPerson = addOn.unitType === 'per_person' || addOn.type === 'per_person';
+                              const displayQuantity = isPerPerson 
                                 ? addOn.quantity * travelers 
                                 : addOn.quantity;
                               
