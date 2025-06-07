@@ -634,48 +634,63 @@ export default function AdminSidebar() {
                       <TableHeader className="sticky top-0 bg-white z-10">
                         <TableRow>
                           <TableHead>Service</TableHead>
+                          <TableHead>City</TableHead>
                           <TableHead>Category</TableHead>
                           <TableHead>Price</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {(addOns as any[]).filter((addon: any) => addon.unitType === 'per_person' || addon.unitType === 'per_trip').map((addon: any) => (
-                          <TableRow key={addon.id} className="h-12">
-                            <TableCell>
-                              <div className="font-medium text-sm">{addon.name}</div>
-                              <div className="text-xs text-gray-500">{addon.description}</div>
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline" className="text-xs">
-                                {addon.category}
-                              </Badge>
-                            </TableCell>
-                            <TableCell className="font-mono text-sm">${addon.price}</TableCell>
-                            <TableCell className="text-right">
-                              <div className="flex items-center justify-end space-x-1">
-                                <Button 
-                                  size="sm" 
-                                  variant="outline"
-                                  onClick={() => handleEdit(addon, 'addon')}
-                                  className="h-8 w-8 p-0"
-                                  title="Edit add-on"
-                                >
-                                  <Edit2 className="w-3 h-3" />
-                                </Button>
-                                <Button 
-                                  size="sm" 
-                                  variant="outline" 
-                                  className="text-red-600 h-8 w-8 p-0"
-                                  onClick={() => handleDeleteClick(addon, 'addon')}
-                                  title="Delete add-on"
-                                >
-                                  <Trash2 className="w-3 h-3" />
-                                </Button>
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                        {(addOns as any[]).filter((addon: any) => addon.unitType === 'per_person' || addon.unitType === 'per_trip').map((addon: any) => {
+                          const city = (cities as any[]).find((c: any) => c.id === addon.cityId);
+                          return (
+                            <TableRow key={addon.id} className="h-12">
+                              <TableCell>
+                                <div className="font-medium text-sm">{addon.name}</div>
+                                <div className="text-xs text-gray-500">{addon.description}</div>
+                              </TableCell>
+                              <TableCell>
+                                {city ? (
+                                  <Badge variant="secondary" className="text-xs">
+                                    {city.name}
+                                  </Badge>
+                                ) : (
+                                  <Badge variant="outline" className="text-xs text-gray-500">
+                                    All Cities
+                                  </Badge>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="outline" className="text-xs">
+                                  {addon.category}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="font-mono text-sm">${addon.price}</TableCell>
+                              <TableCell className="text-right">
+                                <div className="flex items-center justify-end space-x-1">
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline"
+                                    onClick={() => handleEdit(addon, 'addon')}
+                                    className="h-8 w-8 p-0"
+                                    title="Edit add-on"
+                                  >
+                                    <Edit2 className="w-3 h-3" />
+                                  </Button>
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline" 
+                                    className="text-red-600 h-8 w-8 p-0"
+                                    onClick={() => handleDeleteClick(addon, 'addon')}
+                                    title="Delete add-on"
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
                       </TableBody>
                     </Table>
                   </CardContent>
@@ -705,48 +720,63 @@ export default function AdminSidebar() {
                       <TableHeader className="sticky top-0 bg-white z-10">
                         <TableRow>
                           <TableHead>Service</TableHead>
+                          <TableHead>City</TableHead>
                           <TableHead>Category</TableHead>
                           <TableHead>Price</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {(addOns as any[]).filter((addon: any) => addon.unitType === 'per_unit').map((addon: any) => (
-                          <TableRow key={addon.id} className="h-12">
-                            <TableCell>
-                              <div className="font-medium text-sm">{addon.name}</div>
-                              <div className="text-xs text-gray-500">{addon.description}</div>
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline" className="text-xs">
-                                {addon.category}
-                              </Badge>
-                            </TableCell>
-                            <TableCell className="font-mono text-sm">${addon.price}</TableCell>
-                            <TableCell className="text-right">
-                              <div className="flex items-center justify-end space-x-1">
-                                <Button 
-                                  size="sm" 
-                                  variant="outline"
-                                  onClick={() => handleEdit(addon, 'addon')}
-                                  className="h-8 w-8 p-0"
-                                  title="Edit add-on"
-                                >
-                                  <Edit2 className="w-3 h-3" />
-                                </Button>
-                                <Button 
-                                  size="sm" 
-                                  variant="outline" 
-                                  className="text-red-600 h-8 w-8 p-0"
-                                  onClick={() => handleDeleteClick(addon, 'addon')}
-                                  title="Delete add-on"
-                                >
-                                  <Trash2 className="w-3 h-3" />
-                                </Button>
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                        {(addOns as any[]).filter((addon: any) => addon.unitType === 'per_unit').map((addon: any) => {
+                          const city = (cities as any[]).find((c: any) => c.id === addon.cityId);
+                          return (
+                            <TableRow key={addon.id} className="h-12">
+                              <TableCell>
+                                <div className="font-medium text-sm">{addon.name}</div>
+                                <div className="text-xs text-gray-500">{addon.description}</div>
+                              </TableCell>
+                              <TableCell>
+                                {city ? (
+                                  <Badge variant="secondary" className="text-xs">
+                                    {city.name}
+                                  </Badge>
+                                ) : (
+                                  <Badge variant="outline" className="text-xs text-gray-500">
+                                    All Cities
+                                  </Badge>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="outline" className="text-xs">
+                                  {addon.category}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="font-mono text-sm">${addon.price}</TableCell>
+                              <TableCell className="text-right">
+                                <div className="flex items-center justify-end space-x-1">
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline"
+                                    onClick={() => handleEdit(addon, 'addon')}
+                                    className="h-8 w-8 p-0"
+                                    title="Edit add-on"
+                                  >
+                                    <Edit2 className="w-3 h-3" />
+                                  </Button>
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline" 
+                                    className="text-red-600 h-8 w-8 p-0"
+                                    onClick={() => handleDeleteClick(addon, 'addon')}
+                                    title="Delete add-on"
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
                       </TableBody>
                     </Table>
                   </CardContent>
