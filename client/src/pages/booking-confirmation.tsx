@@ -7,49 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useQuery } from "@tanstack/react-query";
 
-const printStyles = `
-  @media print {
-    body { -webkit-print-color-adjust: exact; }
-    .no-print { display: none !important; }
-    .print-only { display: block !important; }
-    .min-h-screen { min-height: auto; }
-    .bg-gray-50 { background: white !important; }
-    .shadow-lg, .shadow-md, .shadow-sm { box-shadow: none !important; }
-    .border { border: 1px solid #e5e7eb !important; }
-    .rounded-lg, .rounded-md { border-radius: 0 !important; }
-    .grid { break-inside: avoid; }
-    .space-y-6 > * + * { margin-top: 1rem !important; }
-    .text-muted-foreground { color: #6b7280 !important; }
-    .text-primary { color: #0ea5e9 !important; }
-    .bg-green-100 { background: #dcfce7 !important; }
-    .text-green-800 { color: #166534 !important; }
-    .bg-yellow-100 { background: #fef3c7 !important; }
-    .text-yellow-800 { color: #92400e !important; }
-    .bg-red-100 { background: #fee2e2 !important; }
-    .text-red-800 { color: #991b1b !important; }
-    .print-header {
-      display: block !important;
-      text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #e5e7eb;
-    }
-    .print-footer {
-      display: block !important;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 12px;
-      color: #6b7280;
-      padding: 1rem;
-      border-top: 1px solid #e5e7eb;
-    }
-  }
-  .print-only { display: none; }
-`;
-
 interface BookingDetails {
   booking: {
     id: number;
