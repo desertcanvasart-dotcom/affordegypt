@@ -86,12 +86,12 @@ export default function ContactSection() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-2">Egypt office</p>
-                <a href="tel:+201234567890" className="text-primary hover:underline">
-                  +20 123 456 7890
+                <a href="tel:+201100765283" className="text-primary hover:underline">
+                  +20 110 076 5283
                 </a>
                 <p className="text-muted-foreground mt-3 mb-2">WhatsApp</p>
-                <a href="https://wa.me/201234567890" className="text-primary hover:underline">
-                  +20 123 456 7890
+                <a href="https://wa.me/201100765283" className="text-primary hover:underline">
+                  +20 110 076 5283
                 </a>
               </CardContent>
             </Card>

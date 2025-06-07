@@ -7,7 +7,7 @@ export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
   
   // WhatsApp business number - you'll need to replace this with your actual number
-  const whatsappNumber = "+201234567890"; // Replace with your WhatsApp Business number
+  const whatsappNumber = "+201100765283"; // Replace with your WhatsApp Business number
   
   const openWhatsApp = (message: string) => {
     const encodedMessage = encodeURIComponent(message);

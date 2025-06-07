@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { CreditCard, User, Mail, Phone, Calendar, Users, MapPin } from "lucide-react";
+import logoPath from "../../generated-icon.png";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -149,7 +150,8 @@ export default function BookPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="mb-8">
+      <div className="mb-8 text-center">
+        <img src={logoPath} alt="AffordEgypt Logo" className="w-16 h-16 mx-auto mb-4" />
         <h1 className="text-3xl font-bold mb-2">Complete Your Booking</h1>
         <p className="text-muted-foreground">
           Please provide your details to confirm your Egypt travel booking

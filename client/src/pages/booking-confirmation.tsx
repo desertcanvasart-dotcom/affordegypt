@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRoute } from "wouter";
 import { CheckCircle, Clock, AlertCircle, Download, Mail, Phone } from "lucide-react";
+import logoPath from "../../generated-icon.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -101,6 +102,7 @@ export default function BookingConfirmation() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
+          <img src={logoPath} alt="AffordEgypt Logo" className="w-16 h-16 mx-auto mb-4" />
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Booking Confirmed!
