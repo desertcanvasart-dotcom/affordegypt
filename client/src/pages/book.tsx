@@ -151,7 +151,7 @@ export default function BookPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="mb-8 text-center">
-        <img src="/logo.png" alt="AffordEgypt Logo" className="w-16 h-16 mx-auto mb-4" />
+        <img src="/logo.png" alt="AffordEgypt Logo" className="h-12 mx-auto mb-4" />
         <h1 className="text-3xl font-bold mb-2">Complete Your Booking</h1>
         <p className="text-muted-foreground">
           Please provide your details to confirm your Egypt travel booking
