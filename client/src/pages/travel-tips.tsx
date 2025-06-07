@@ -94,9 +94,9 @@ export default function TravelTips() {
                   <p><strong>(Jun–Aug)</strong> If you don't mind serious heat, this could be your budget jackpot. Tailor your itinerary wisely with coastal time in Alexandria or Dahab. You'll find some of the lowest prices of the year.</p>
                 </div>
               </div>
-              <div className="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg">
+              <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg">
                 <p className="mb-0">
-                  <strong className="text-gray-800">Quick Tip:</strong> Winter (Dec–Feb) has gorgeous weather but comes with a heavier price tag as it's peak tourist season. If your budget is tight, aim for the shoulder seasons.
+                  <strong className="text-foreground">Quick Tip:</strong> Winter (Dec–Feb) has gorgeous weather but comes with a heavier price tag as it's peak tourist season. If your budget is tight, aim for the shoulder seasons.
                 </p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function TravelTips() {
 
           {/* Pre-Travel Checklist */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+            <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
               Essential Pre-Travel Checklist
             </h2>
             <p className="text-lg leading-relaxed mb-8">
@@ -112,18 +112,18 @@ export default function TravelTips() {
             </p>
             
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">📖</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">📖</div>
                 <h4 className="text-xl font-semibold mb-2">1. Passport & Visa</h4>
                 <p>Ensure your passport is valid for at least six months past your arrival. Most travelers need a visa. The <strong>e-Visa ($25 USD)</strong> is highly recommended and can be applied for online. Visa on Arrival is an option for some, but check rules as they can change.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">🛡️</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">🛡️</div>
                 <h4 className="text-xl font-semibold mb-2">2. Travel Insurance</h4>
                 <p>Non-negotiable. It's your safety net for medical emergencies, trip cancellations, or lost baggage. Make sure your policy covers adventure activities like diving or hot air ballooning if they are on your itinerary.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">💉</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">💉</div>
                 <h4 className="text-xl font-semibold mb-2">3. Health & Vaccinations</h4>
                 <p>No vaccines are mandatory for most, but Hepatitis A, Typhoid, and Tetanus are strongly recommended. Always drink bottled water and be mindful of food safety. Pack a small first-aid kit with essentials.</p>
               </div>
@@ -133,7 +133,7 @@ export default function TravelTips() {
           {/* Budget Section */}
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+              <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
                 Crafting Your Budget: What to Expect in 2025 💰
               </h2>
               <p className="text-lg leading-relaxed mb-6">
@@ -154,23 +154,23 @@ export default function TravelTips() {
               <h3 className="text-2xl font-semibold mb-4">Top Money-Saving Hacks 💡</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Eat Like a Local:</strong> A delicious meal of Koshary or a Falafel sandwich can cost as little as $1.</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Use Public Transport:</strong> The Cairo Metro is efficient, safe, and incredibly cheap (under $0.50 per ride).</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Get an ISIC Card:</strong> If you're a student under 30, this card can get you 50% off at most historical sites.</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Haggle with a Smile:</strong> In local markets (souks), friendly bargaining is part of the culture.</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Buy Water in Bulk:</strong> Purchase 1.5L bottles from supermarkets, not small ones from tourist stalls.</span>
                 </li>
               </ul>
@@ -179,22 +179,22 @@ export default function TravelTips() {
 
           {/* Accommodation */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+            <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
               Affordable Accommodation 🛏️
             </h2>
             <p className="text-lg leading-relaxed mb-8">
               Finding the right place to rest your head in Egypt doesn't have to drain your wallet. From social hostels to private guesthouses, you have great options.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <h4 className="text-xl font-semibold mb-2">Hostels</h4>
                 <p>The budget traveler's basecamp. Perfect for meeting others. Dorm beds start at <strong>$6–$12 USD</strong> per night in Cairo, Luxor, and Dahab.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <h4 className="text-xl font-semibold mb-2">Budget Hotels</h4>
                 <p>For more privacy. You can find clean, private rooms for <strong>$15–$30 USD</strong> per night, often with an en-suite bathroom and A/C.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <h4 className="text-xl font-semibold mb-2">Nubian Stays</h4>
                 <p>In Aswan, stay in a colorful, family-run Nubian guesthouse for a unique cultural experience. Rates are modest and the memories are priceless.</p>
               </div>
@@ -204,7 +204,7 @@ export default function TravelTips() {
           {/* Food */}
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+              <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
                 Economical Eating: Savoring Egypt 🍲
               </h2>
               <p className="text-lg leading-relaxed mb-6">
