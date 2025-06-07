@@ -721,7 +721,7 @@ export default function MultiCityPricingTool() {
           </div>
 
           {/* Pricing Breakdown */}
-          {totalPricing && totalPricing.breakdown && (
+          {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
             <div className="mt-8">
               <Separator className="mb-4" />
               <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
