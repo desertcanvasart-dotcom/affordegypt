@@ -161,7 +161,7 @@ export default function AdminSidebar() {
       ticketPrice: item.ticketPrice?.toString() || "",
       openingHours: item.openingHours || "",
       location: item.location || "",
-      routeType: item.routeType || (item.fromCityId && item.toCityId ? 'inter-city' : 'intra-city'),
+      routeType: item.routeType || (item.fromCityId && item.toCityId && item.fromCityId !== item.toCityId ? 'inter-city' : 'intra-city'),
       fromCityId: item.fromCityId?.toString() || "",
       toCityId: item.toCityId?.toString() || "",
       fromLocation: item.fromLocation || "",
