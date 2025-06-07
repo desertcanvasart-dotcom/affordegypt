@@ -114,13 +114,14 @@ export default function Navbar() {
                 <Calculator className="w-4 h-4" />
                 Get Quote
               </button>
-              <button 
-                onClick={() => { scrollToTips(); setIsMenuOpen(false); }}
+              <Link 
+                href="/travel-tips"
+                onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
                 <Lightbulb className="w-4 h-4" />
                 Travel Tips
-              </button>
+              </Link>
               <button 
                 onClick={() => { scrollToAbout(); setIsMenuOpen(false); }}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
