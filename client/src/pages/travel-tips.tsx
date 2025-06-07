@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet-async";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function TravelTips() {
   return (
@@ -9,6 +11,7 @@ export default function TravelTips() {
       </Helmet>
       
       <div className="min-h-screen bg-white">
+        <Navbar />
         {/* Hero Section */}
         <header 
           className="relative bg-cover bg-center text-white text-center py-24"
@@ -362,6 +365,7 @@ export default function TravelTips() {
           </section>
 
         </main>
+        <Footer />
       </div>
     </>
   );
