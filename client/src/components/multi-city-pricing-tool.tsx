@@ -373,54 +373,55 @@ export default function MultiCityPricingTool() {
                 <Calculator className="w-6 h-6 text-primary" />
                 Multi-City Egypt Travel Pricing Tool
               </CardTitle>
-          <p className="text-muted-foreground">
-            Build your complete Egypt itinerary city by city with instant pricing
-          </p>
-          
-          {/* Main Travel Date and Travelers */}
-          <div className="flex items-center gap-6 mt-4 p-4 bg-muted rounded-lg">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-primary" />
-              <Label htmlFor="travel-date" className="font-medium">Trip Start Date:</Label>
-              <Input
-                id="travel-date"
-                type="date"
-                value={travelDate}
-                onChange={(e) => {
-                  setTravelDate(e.target.value);
-                  // Update all city services with the new date
-                  setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
-                }}
-                className="w-40"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-primary" />
-              <Label htmlFor="total-travelers" className="font-medium">Total Travelers:</Label>
-              <Select
-                value={globalTravelers.toString()}
-                onValueChange={(value) => {
-                  const travelers = parseInt(value);
-                  setGlobalTravelers(travelers);
-                  // Update all city services with the new traveler count
-                  setCityServices(prev => prev.map(city => ({ ...city, travelers })));
-                }}
-              >
-                <SelectTrigger className="w-16">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(num => (
-                    <SelectItem key={num} value={num.toString()}>{num}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          {/* Horizontal Layout Table */}
-          <div className="overflow-x-auto">
+              <p className="text-muted-foreground">
+                Build your complete Egypt itinerary city by city with instant pricing
+              </p>
+            </CardHeader>
+            
+            <CardContent>
+              {/* Main Travel Date and Travelers */}
+              <div className="flex items-center gap-6 mt-4 p-4 bg-muted rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary" />
+                  <Label htmlFor="travel-date" className="font-medium">Trip Start Date:</Label>
+                  <Input
+                    id="travel-date"
+                    type="date"
+                    value={travelDate}
+                    onChange={(e) => {
+                      setTravelDate(e.target.value);
+                      // Update all city services with the new date
+                      setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
+                    }}
+                    className="w-40"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  <Label htmlFor="total-travelers" className="font-medium">Total Travelers:</Label>
+                  <Select
+                    value={globalTravelers.toString()}
+                    onValueChange={(value) => {
+                      const travelers = parseInt(value);
+                      setGlobalTravelers(travelers);
+                      // Update all city services with the new traveler count
+                      setCityServices(prev => prev.map(city => ({ ...city, travelers })));
+                    }}
+                  >
+                    <SelectTrigger className="w-16">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(num => (
+                        <SelectItem key={num} value={num.toString()}>{num}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              
+              {/* Horizontal Layout Table */}
+              <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
