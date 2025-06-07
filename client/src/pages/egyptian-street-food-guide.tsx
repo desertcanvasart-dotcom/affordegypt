@@ -150,7 +150,7 @@ export default function EgyptianStreetFoodGuide() {
         <section 
           className="relative text-white min-h-[80vh] flex items-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1567337712816-090a14c1b9b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80')`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed'

@@ -74,7 +74,7 @@ const blogPosts: BlogPost[] = [
     category: "Food & Culture",
     readTime: "4 min read",
     publishDate: "2024-03-05",
-    image: "https://images.unsplash.com/photo-1567337712816-090a14c1b9b5",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg",
     slug: "egyptian-street-food-guide"
   },
   {
