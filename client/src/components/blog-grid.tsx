@@ -44,7 +44,7 @@ const blogPosts: BlogPost[] = [
     category: "Destinations",
     readTime: "8 min read",
     publishDate: "2024-03-01",
-    image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73fdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg",
     slug: "eastern-western-deserts-travel-guide"
   },
   {
