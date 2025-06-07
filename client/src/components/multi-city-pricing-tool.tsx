@@ -383,8 +383,8 @@ export default function MultiCityPricingTool() {
                   <TableHead className="min-w-[200px]">Transportation</TableHead>
                   <TableHead className="min-w-[140px]">Guide</TableHead>
                   <TableHead className="min-w-[160px]">Attractions</TableHead>
-                  <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
                   <TableHead className="min-w-[140px]">Per Person Add-ons</TableHead>
+                  <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
                   <TableHead className="min-w-[100px]">Total/Person</TableHead>
                 </TableRow>
               </TableHeader>
@@ -498,6 +498,58 @@ export default function MultiCityPricingTool() {
                         />
                       </TableCell>
 
+                      {/* Per Person Add-ons */}
+                      <TableCell>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" className="w-full justify-between">
+                              {(() => {
+                                const perPersonAddOns = cityService.selectedAddOns.filter(a => 
+                                  addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
+                                );
+                                return perPersonAddOns.length === 0 
+                                  ? "Select Add-ons" 
+                                  : `${perPersonAddOns.length} add-on${perPersonAddOns.length > 1 ? 's' : ''} selected`;
+                              })()}
+                              <ChevronDown className="h-4 w-4 opacity-50" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-80 p-0">
+                            <div className="max-h-60 overflow-y-auto p-4 space-y-3">
+                              {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').length === 0 ? (
+                                <p className="text-sm text-muted-foreground">No per-person add-ons available</p>
+                              ) : (
+                                addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => {
+                                  const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
+                                  const isSelected = !!selectedAddOn;
+                                  
+                                  return (
+                                    <div key={addOn.id} className="flex items-center space-x-2">
+                                      <Checkbox
+                                        id={`per-person-addon-${addOn.id}-${index}`}
+                                        checked={isSelected}
+                                        onCheckedChange={(checked) => {
+                                          const updatedAddOns = checked
+                                            ? [...cityService.selectedAddOns, { id: addOn.id, name: addOn.name, quantity: 1 }]
+                                            : cityService.selectedAddOns.filter(a => a.id !== addOn.id);
+                                          updateCityService(index, { selectedAddOns: updatedAddOns });
+                                        }}
+                                      />
+                                      <Label 
+                                        htmlFor={`per-person-addon-${addOn.id}-${index}`} 
+                                        className="text-sm font-normal cursor-pointer flex-1"
+                                      >
+                                        {addOn.name} (${addOn.price})
+                                      </Label>
+                                    </div>
+                                  );
+                                })
+                              )}
+                            </div>
+                          </PopoverContent>
+                        </Popover>
+                      </TableCell>
+
                       {/* Per Unit Add-ons */}
                       <TableCell>
                         <Popover>
@@ -567,58 +619,6 @@ export default function MultiCityPricingTool() {
                                           </Select>
                                         </div>
                                       )}
-                                    </div>
-                                  );
-                                })
-                              )}
-                            </div>
-                          </PopoverContent>
-                        </Popover>
-                      </TableCell>
-
-                      {/* Per Person Add-ons */}
-                      <TableCell>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button variant="outline" className="w-full justify-between">
-                              {(() => {
-                                const perPersonAddOns = cityService.selectedAddOns.filter(a => 
-                                  addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
-                                );
-                                return perPersonAddOns.length === 0 
-                                  ? "Select Add-ons" 
-                                  : `${perPersonAddOns.length} add-on${perPersonAddOns.length > 1 ? 's' : ''} selected`;
-                              })()}
-                              <ChevronDown className="h-4 w-4 opacity-50" />
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-80 p-0">
-                            <div className="max-h-60 overflow-y-auto p-4 space-y-3">
-                              {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').length === 0 ? (
-                                <p className="text-sm text-muted-foreground">No per-person add-ons available</p>
-                              ) : (
-                                addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => {
-                                  const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
-                                  const isSelected = !!selectedAddOn;
-                                  
-                                  return (
-                                    <div key={addOn.id} className="flex items-center space-x-2">
-                                      <Checkbox
-                                        id={`per-person-addon-${addOn.id}-${index}`}
-                                        checked={isSelected}
-                                        onCheckedChange={(checked) => {
-                                          const updatedAddOns = checked
-                                            ? [...cityService.selectedAddOns, { id: addOn.id, name: addOn.name, quantity: 1 }]
-                                            : cityService.selectedAddOns.filter(a => a.id !== addOn.id);
-                                          updateCityService(index, { selectedAddOns: updatedAddOns });
-                                        }}
-                                      />
-                                      <Label 
-                                        htmlFor={`per-person-addon-${addOn.id}-${index}`} 
-                                        className="text-sm font-normal cursor-pointer flex-1"
-                                      >
-                                        {addOn.name} (${addOn.price})
-                                      </Label>
                                     </div>
                                   );
                                 })
