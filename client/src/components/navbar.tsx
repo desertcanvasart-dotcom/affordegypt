@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, MapPin, User, Mail, Lightbulb, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,13 +56,13 @@ export default function Navbar() {
               <Calculator className="w-4 h-4" />
               Get Quote
             </button>
-            <button 
-              onClick={scrollToTips}
+            <Link 
+              href="/travel-tips"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
               <Lightbulb className="w-4 h-4" />
               Travel Tips
-            </button>
+            </Link>
             <button 
               onClick={scrollToAbout}
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
