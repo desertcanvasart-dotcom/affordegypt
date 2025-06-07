@@ -93,11 +93,13 @@ export default function BlogGrid() {
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Destinations", "Travel Tips", "Budget Travel", "Food & Culture"];
+  const categories = ["All", "Destinations", "Budget Travel", "Food & Culture"];
 
+  // Filter out Travel Tips posts and apply category filter
+  const availablePosts = blogPosts.filter(post => post.category !== "Travel Tips");
   const filteredPosts = selectedCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === selectedCategory);
+    ? availablePosts 
+    : availablePosts.filter(post => post.category === selectedCategory);
 
   const loadMore = () => {
     setVisiblePosts(prev => Math.min(prev + 3, filteredPosts.length));
