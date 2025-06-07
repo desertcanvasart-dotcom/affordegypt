@@ -38,7 +38,7 @@ export default function TransportationSearch({
   // Filter routes for the current city
   const cityRoutes = useMemo(() => {
     return routes.filter(route => 
-      route.name.toLowerCase().includes(cityName.toLowerCase()) ||
+      route.name?.toLowerCase().includes(cityName.toLowerCase()) ||
       route.fromLocation?.toLowerCase().includes(cityName.toLowerCase()) ||
       route.toLocation?.toLowerCase().includes(cityName.toLowerCase())
     );
@@ -46,15 +46,15 @@ export default function TransportationSearch({
 
   // Get unique route types
   const routeTypes = useMemo(() => {
-    const types = Array.from(new Set(cityRoutes.map(r => r.type)));
-    return types.filter(Boolean);
+    const types = Array.from(new Set(cityRoutes.map(r => r.type).filter(Boolean)));
+    return types;
   }, [cityRoutes]);
 
   // Apply filters
   const filteredRoutes = useMemo(() => {
     return cityRoutes.filter(route => {
       const matchesSearch = !searchTerm || 
-        route.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        route.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         route.fromLocation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         route.toLocation?.toLowerCase().includes(searchTerm.toLowerCase());
       
@@ -103,7 +103,7 @@ export default function TransportationSearch({
     if (selectedRoutes.length === 0) return "Select transportation...";
     if (selectedRoutes.length === 1) {
       const route = cityRoutes.find(r => r.id === selectedRoutes[0]);
-      return route?.name || `Route ${selectedRoutes[0]}`;
+      return route?.name || "1 route selected";
     }
     return `${selectedRoutes.length} routes selected`;
   };
