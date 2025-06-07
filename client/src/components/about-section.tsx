@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Users, MapPin, Clock, Shield } from "lucide-react";
+import { Link } from "wouter";
 
 export default function AboutSection() {
   return (
@@ -51,16 +52,14 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <Button 
-            variant="outline" 
-            size="lg"
-            onClick={() => {
-              // This will be handled by routing when full about page is created
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            Learn More About Our Story
-          </Button>
+          <Link href="/about">
+            <Button 
+              variant="outline" 
+              size="lg"
+            >
+              Learn More About Our Story
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
