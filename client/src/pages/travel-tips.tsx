@@ -23,10 +23,13 @@ export default function TravelTips() {
           }}
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 font-inter">
-              Egypt Budget Travel <span className="text-primary">Made Simple</span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">
+              Egypt Budget Travel{" "}
+              <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
+                Made Simple
+              </span>
             </h1>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
               Your ultimate 2025 guide to exploring the wonders of Egypt without breaking the bank. 
               Get insider tips on transport, food, accommodation, and attractions.
             </p>
