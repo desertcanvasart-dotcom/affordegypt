@@ -9,39 +9,43 @@ export default function SinaiPeninsulaGuide() {
   const destinations = [
     {
       name: "Sharm El Sheikh",
-      description: "World-class Red Sea resort destination with pristine coral reefs",
-      highlights: ["Naama Bay", "Ras Mohammed National Park", "Diving & Snorkeling", "Luxury Resorts"],
+      description: "The Red Sea's crown jewel, evolved from a Bedouin fishing settlement into one of the world's most celebrated diving destinations",
+      highlights: ["Ras Muhammad National Park", "SS Thistlegorm Wreck", "Naama Bay Marina", "Soho Square"],
       bestTime: "Oct-Apr",
       duration: "3-7 days",
       difficulty: "Easy",
-      image: "🏖️"
+      image: "🏖️",
+      details: "Perched on the southern tip of Sinai, this resort town offers world-class coral reefs, luxury accommodations, and vibrant nightlife. Experience night-time plankton snorkeling in Nabq Bay where bioluminescent organisms create trails of glowing light."
     },
     {
       name: "Dahab",
-      description: "Laid-back coastal town famous for diving and desert adventures",
-      highlights: ["Blue Hole", "Mount Sinai Trek", "Bedouin Culture", "Wind Surfing"],
+      description: "A bohemian coastal town where the name 'gold' reflects both desert sands and sunset hues, beloved by divers and free spirits",
+      highlights: ["Blue Hole Diving", "Three Pools", "Masbat Beach", "The Lagoon"],
       bestTime: "Oct-Apr",
       duration: "2-5 days", 
       difficulty: "Moderate",
-      image: "🤿"
-    },
-    {
-      name: "Mount Sinai",
-      description: "Sacred biblical mountain with spectacular sunrise views",
-      highlights: ["Sunrise Trek", "St. Catherine's Monastery", "Moses' Well", "Desert Views"],
-      bestTime: "Oct-Mar",
-      duration: "1-2 days",
-      difficulty: "Challenging",
-      image: "⛰️"
+      image: "🤿",
+      details: "Once a modest Bedouin fishing camp, Dahab's laid-back atmosphere attracts adventurers worldwide. The Blue Hole's vertical walls and the Canyon's dramatic drop-offs showcase vibrant marine life, while steady winds make it perfect for windsurfing."
     },
     {
       name: "Nuweiba",
-      description: "Quiet coastal town perfect for relaxation and Bedouin experiences",
-      highlights: ["Colored Canyon", "Tarabin Beach", "Bedouin Camps", "Ferry to Jordan"],
+      description: "A tranquil gateway where ancient trade routes meet pristine coastline, offering authentic Bedouin culture and unspoiled beaches",
+      highlights: ["Colored Canyon", "Aya Bay", "Pharaoh's Island", "Bedouin Camps"],
       bestTime: "Oct-Apr",
       duration: "2-3 days",
       difficulty: "Easy",
-      image: "🏕️"
+      image: "🏕️",
+      details: "Nuweiba's shores have witnessed millennia of passage from Nabatean caravans to modern travelers. Enjoy sunset Bedouin tea rituals on Aya Bay's dunes and explore the nearby Colored Canyon's sandstone walls glowing in bands of ochre and crimson."
+    },
+    {
+      name: "Taba",
+      description: "The northern gateway of Sinai, where strategic crossroads meet luxury resorts overlooking the Gulf of Aqaba",
+      highlights: ["Taba Heights", "Border Crossing", "Cliff Resorts", "Pharaoh's Island"],
+      bestTime: "Oct-Mar",
+      duration: "2-4 days",
+      difficulty: "Easy",
+      image: "🏰",
+      details: "Long serving as the crossroads between Egypt and the Levant, Taba combines historical significance with modern luxury. Elegant cliff-top resorts offer panoramic gulf views while maintaining traditional Bedouin architectural motifs."
     }
   ];
 
@@ -133,30 +137,36 @@ export default function SinaiPeninsulaGuide() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative max-w-7xl mx-auto px-4 py-24">
-          <div className="text-center space-y-6">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              Sinai Peninsula
-            </h1>
-            <p className="text-xl md:text-2xl text-orange-100 max-w-3xl mx-auto">
-              Where Desert Meets Sea: Discover pristine coral reefs, sacred mountains, and timeless Bedouin culture in Egypt's adventure playground
+      <div className="relative bg-gradient-to-r from-teal-600 via-teal-700 to-cyan-800 text-white min-h-screen flex items-center">
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 py-32 text-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
+                Sinai Peninsula
+              </h1>
+              <p className="text-2xl md:text-3xl text-teal-100 font-light">
+                Where Desert Grandeur Meets Crystalline Seas
+              </p>
+            </div>
+            <p className="text-lg md:text-xl text-teal-200 max-w-4xl mx-auto leading-relaxed">
+              Discover the world's most celebrated coral reefs, ascend sacred Mount Sinai at sunrise, and journey through windswept dunes with Bedouin guides. The Sinai Peninsula offers an extraordinary tapestry of rugged mountains, pristine beaches, and timeless desert culture.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2">
-                <Waves className="w-4 h-4 mr-2" />
-                World-Class Diving
+            <div className="flex flex-wrap justify-center gap-4 pt-6">
+              <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
+                <Waves className="w-5 h-5 mr-3" />
+                Red Sea Diving Paradise
               </Badge>
-              <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2">
-                <Mountain className="w-4 h-4 mr-2" />
-                Sacred Mountains  
+              <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
+                <Mountain className="w-5 h-5 mr-3" />
+                Biblical Mount Sinai  
               </Badge>
-              <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-4 py-2">
-                <Sun className="w-4 h-4 mr-2" />
-                Desert Adventures
+              <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
+                <Sun className="w-5 h-5 mr-3" />
+                Bedouin Desert Culture
               </Badge>
             </div>
           </div>
@@ -167,8 +177,8 @@ export default function SinaiPeninsulaGuide() {
         {/* Destinations Grid */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Sinai Destinations</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">Sinai Destinations</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               From world-renowned diving spots to sacred biblical sites, explore the diverse wonders of the Sinai Peninsula
             </p>
           </div>
@@ -179,11 +189,12 @@ export default function SinaiPeninsulaGuide() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle className="text-2xl flex items-center gap-3">
+                      <CardTitle className="text-2xl flex items-center gap-3 text-teal-900">
                         <span className="text-3xl">{destination.image}</span>
                         {destination.name}
                       </CardTitle>
-                      <p className="text-gray-600 mt-2">{destination.description}</p>
+                      <p className="text-slate-600 mt-2">{destination.description}</p>
+                      <p className="text-slate-700 mt-3 text-sm leading-relaxed">{destination.details}</p>
                     </div>
                     <Badge variant={destination.difficulty === 'Easy' ? 'default' : destination.difficulty === 'Moderate' ? 'secondary' : 'destructive'}>
                       {destination.difficulty}
@@ -194,7 +205,7 @@ export default function SinaiPeninsulaGuide() {
                   <div className="space-y-4">
                     <div className="flex flex-wrap gap-2">
                       {destination.highlights.map((highlight, idx) => (
-                        <Badge key={idx} variant="outline" className="border-orange-200 text-orange-700">
+                        <Badge key={idx} variant="outline" className="border-teal-200 text-teal-700">
                           {highlight}
                         </Badge>
                       ))}
@@ -220,29 +231,29 @@ export default function SinaiPeninsulaGuide() {
         {/* Activities Section */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Adventures & Activities</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">Adventures & Activities</h2>
+            <p className="text-xl text-slate-600">
               From underwater explorations to desert expeditions and spiritual journeys
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {activities.map((category, index) => (
-              <Card key={index} className="border-0 bg-gradient-to-br from-white to-gray-50 shadow-lg">
+              <Card key={index} className="border-0 bg-gradient-to-br from-white to-teal-50 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-xl text-center text-gray-800">{category.category}</CardTitle>
+                  <CardTitle className="text-xl text-center text-teal-900">{category.category}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     {category.items.map((item, idx) => (
-                      <div key={idx} className="border-l-4 border-orange-400 pl-4 py-2">
+                      <div key={idx} className="border-l-4 border-teal-400 pl-4 py-2">
                         <div className="flex justify-between items-start mb-1">
-                          <h4 className="font-semibold text-gray-800">{item.name}</h4>
-                          <Badge variant="secondary" className="bg-orange-100 text-orange-700">
+                          <h4 className="font-semibold text-slate-800">{item.name}</h4>
+                          <Badge variant="secondary" className="bg-teal-100 text-teal-700">
                             {item.price}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600">{item.description}</p>
+                        <p className="text-sm text-slate-600">{item.description}</p>
                       </div>
                     ))}
                   </div>
@@ -255,8 +266,8 @@ export default function SinaiPeninsulaGuide() {
         {/* Sample Itineraries */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Sample Itineraries</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">Sample Itineraries</h2>
+            <p className="text-xl text-slate-600">
               Carefully crafted journeys combining adventure, culture, and relaxation
             </p>
           </div>
