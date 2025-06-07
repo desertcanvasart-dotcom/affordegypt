@@ -14,6 +14,7 @@ import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
 import TravelTips from "@/pages/travel-tips";
+import NileValleyGuide from "@/pages/nile-valley-guide";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/routes" component={Routes} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/travel-tips" component={TravelTips} />
+      <Route path="/nile-valley-guide" component={NileValleyGuide} />
       <Route component={NotFound} />
     </Switch>
   );
