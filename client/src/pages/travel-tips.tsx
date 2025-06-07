@@ -16,7 +16,7 @@ export default function TravelTips() {
         <header 
           className="relative bg-cover bg-center text-white text-center py-24"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1572099200398-6b6375a363b7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600')`
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/west-bank-of-luxor.jpg')`
           }}
         >
           <div className="container mx-auto px-4">
