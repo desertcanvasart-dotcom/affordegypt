@@ -5,7 +5,7 @@ import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   const navigateToSection = (sectionId: string) => {
     // If we're on the homepage, scroll to the section
@@ -15,8 +15,15 @@ export default function Navbar() {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // If we're on another page, navigate to homepage with hash
-      window.location.href = `/#${sectionId}`;
+      // If we're on another page, navigate smoothly to homepage
+      setLocation('/');
+      // Use a longer delay to ensure the page transition is complete
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
     }
   };
 
