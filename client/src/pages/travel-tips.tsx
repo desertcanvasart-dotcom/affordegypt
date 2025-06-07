@@ -353,13 +353,13 @@ export default function TravelTips() {
 
           {/* Conclusion */}
           <section className="text-center py-12">
-            <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6 inline-block">
+            <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6 inline-block">
               Your Egyptian Dream Awaits!
             </h2>
             <p className="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
               Traveling to Egypt in 2025 on a budget is not only feasible but incredibly rewarding. With careful planning, an adventurous spirit, and a willingness to embrace the local culture, the timeless wonders of this ancient land are well within your reach.
             </p>
-            <a href="#" onClick={() => window.scrollTo(0, 0)} className="inline-block bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
+            <a href="#" onClick={() => window.scrollTo(0, 0)} className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
               Back to Top ↑
             </a>
           </section>
