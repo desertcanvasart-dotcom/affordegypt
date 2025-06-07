@@ -421,12 +421,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         let cityTotal = 0;
         const travelers = cityService.travelers || 1;
 
-        // Vehicle category based on passenger count
-        const getVehiclePrice = (basePrice: number, passengers: number) => {
-          if (passengers <= 2) return basePrice; // Sedan
-          if (passengers <= 8) return basePrice * 1.6; // Minivan
-          return basePrice * 2.4; // Van
-        };
+        // Vehicle pricing is already handled by selecting the correct vehicle type in the database
 
         // Calculate routes using database pricing
         let routesTotal = 0;
@@ -437,18 +432,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
               const routes = await storage.getRoutes();
               const route = routes.find(r => r.id === routeId);
               
-              if (route && route.pricing) {
+              if (route && route.basePriceByVehicle) {
                 // Parse the JSON pricing data
-                const pricing = typeof route.pricing === 'string' 
-                  ? JSON.parse(route.pricing) 
-                  : route.pricing;
+                const pricing = typeof route.basePriceByVehicle === 'string' 
+                  ? JSON.parse(route.basePriceByVehicle) 
+                  : route.basePriceByVehicle;
                 
                 // Determine vehicle type based on passenger count
                 let vehicleType = 1; // Default to sedan
                 if (travelers > 8) vehicleType = 3; // Van
                 else if (travelers > 2) vehicleType = 2; // Minivan
                 
-                // Get pricing for the appropriate vehicle and license type
+                // Get pricing for the appropriate vehicle (only normal pricing)
                 const vehiclePricing = pricing[vehicleType] || pricing[1]; // Fallback to sedan
                 const routePrice = vehiclePricing && vehiclePricing[1] 
                   ? parseFloat(vehiclePricing[1]) 
