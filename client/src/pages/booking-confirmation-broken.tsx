@@ -6,45 +6,54 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
 import { useQuery } from "@tanstack/react-query";
 
-type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
-
-interface BookingData {
+interface BookingDetails {
   booking: {
     id: number;
     bookingReference: string;
-    bookingStatus: BookingStatus;
-    totalAmount: string;
     customerName: string;
     customerEmail: string;
-    customerPhone: string;
-    customerNotes?: string;
+    customerPhone?: string;
+    paymentStatus: string;
+    bookingStatus: string;
+    totalAmount: string;
     startDate?: string;
     endDate?: string;
+    confirmationEmailSent: boolean;
+    createdAt: string;
   };
-  quote: {
+  quote?: {
     id: number;
     jsonBlob: any;
+    total: string;
+    commissionPct: string;
   };
 }
 
 export default function BookingConfirmation() {
-  const [, params] = useRoute("/booking-confirmation/:reference");
+  const [, params] = useRoute("/booking/:reference");
   const reference = params?.reference;
 
-  const { data: bookingData, isLoading, error } = useQuery({
-    queryKey: ["/api/bookings/reference", reference],
-    enabled: !!reference,
+  const { data: bookingData, isLoading, error } = useQuery<BookingDetails>({
+    queryKey: [`/api/bookings/reference/${reference}`],
+    enabled: !!reference
   });
 
-  const getStatusIcon = (status: BookingStatus) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
-      case 'confirmed': return <CheckCircle className="w-4 h-4 text-green-500" />;
-      case 'pending': return <Clock className="w-4 h-4 text-yellow-500" />;
-      case 'cancelled': return <AlertCircle className="w-4 h-4 text-red-500" />;
-      case 'completed': return <CheckCircle className="w-4 h-4 text-blue-500" />;
+      case 'paid': return 'bg-green-100 text-green-800';
+      case 'pending': return 'bg-yellow-100 text-yellow-800';
+      case 'failed': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'paid': return <CheckCircle className="w-4 h-4" />;
+      case 'pending': return <Clock className="w-4 h-4" />;
+      case 'failed': return <AlertCircle className="w-4 h-4" />;
       default: return <Clock className="w-4 h-4" />;
     }
   };
@@ -55,6 +64,98 @@ export default function BookingConfirmation() {
       month: 'long',
       day: 'numeric'
     });
+  };
+
+  const generateBookingDetailsText = (booking: any, quote: any) => {
+    const quoteData = quote.jsonBlob || {};
+    const cities = quoteData.cities || [];
+    
+    let details = `AFFORDEGYPT - BOOKING CONFIRMATION
+${'='.repeat(50)}
+
+BOOKING INFORMATION
+Booking Reference: ${booking.bookingReference}
+Status: ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
+Total Amount: $${booking.totalAmount}
+`;
+
+    if (booking.startDate) {
+      details += `Trip Start Date: ${formatDate(booking.startDate)}\n`;
+    }
+    if (booking.endDate) {
+      details += `Trip End Date: ${formatDate(booking.endDate)}\n`;
+    }
+
+    details += `
+CUSTOMER INFORMATION
+Name: ${booking.customerName}
+Email: ${booking.customerEmail}
+Phone: ${booking.customerPhone}
+`;
+
+    if (booking.customerNotes) {
+      details += `Special Requests: ${booking.customerNotes}\n`;
+    }
+
+    details += `
+ITINERARY DETAILS
+${'='.repeat(30)}
+`;
+
+    cities.forEach((city: any, index: number) => {
+      details += `
+${index + 1}. ${city.cityName}
+   Date: ${city.date}
+   Travelers: ${city.travelers}
+`;
+
+      if (city.selectedRoutes && city.selectedRoutes.length > 0) {
+        details += `   Transportation:\n`;
+        city.selectedRoutes.forEach((route: any) => {
+          details += `   - ${route.name || `Route ${route.id}`}\n`;
+        });
+      }
+
+      if (city.selectedGuide) {
+        details += `   Guide Service: ${city.selectedGuide.language} guide - ${city.selectedGuide.duration} hours\n`;
+      }
+
+      if (city.attractions && city.attractions.length > 0) {
+        details += `   Attractions:\n`;
+        city.attractions.forEach((attraction: string) => {
+          details += `   - ${attraction}\n`;
+        });
+      }
+
+      if (city.selectedAddOns && city.selectedAddOns.length > 0) {
+        details += `   Add-ons:\n`;
+        city.selectedAddOns.forEach((addOn: any) => {
+          const isPerPerson = addOn.unitType === 'per_person' || addOn.type === 'per_person';
+          const displayQuantity = isPerPerson 
+            ? addOn.quantity * city.travelers 
+            : addOn.quantity;
+          details += `   - ${addOn.name} x${displayQuantity}${isPerPerson ? ` (${addOn.quantity} per person)` : ''}\n`;
+        });
+      }
+    });
+
+    details += `
+PAYMENT INFORMATION
+${'='.repeat(30)}
+10% deposit required
+Our team will contact you to collect it and confirm your booking.
+Pay the rest in cash to your guide after the tour.
+
+CONTACT INFORMATION
+${'='.repeat(30)}
+Phone: +20 110 076 5283
+WhatsApp: +20 110 076 5283
+Email: info@affordegypt.com
+
+Thank you for choosing AffordEgypt for your Egypt adventure!
+`;
+
+    return details;
   };
 
   if (isLoading) {
@@ -91,8 +192,10 @@ export default function BookingConfirmation() {
   const downloadBookingDetails = () => {
     if (!booking || !quote) return;
 
+    // Create a comprehensive text document with all booking details
     const bookingDetails = generateBookingDetailsText(booking, quote);
     
+    // Create and download the file
     const blob = new Blob([bookingDetails], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -228,17 +331,25 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  <span>Booking Information</span>
-                  <div className="flex items-center">
-                    {getStatusIcon(booking.bookingStatus)}
-                    <span className="ml-2 text-sm">
-                      Reference: {booking.bookingReference}
+                  Booking Information
+                  <Badge className={getStatusColor(booking.paymentStatus)} variant="secondary">
+                    <span className="flex items-center gap-1">
+                      {getStatusIcon(booking.paymentStatus)}
+                      {booking.paymentStatus.toUpperCase()}
                     </span>
-                  </div>
+                  </Badge>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-muted-foreground">
+                      Booking Reference
+                    </label>
+                    <p className="text-lg font-semibold text-primary">
+                      {booking.bookingReference}
+                    </p>
+                  </div>
                   <div>
                     <label className="text-sm font-medium text-muted-foreground">
                       Total Amount
@@ -283,49 +394,33 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
               <CardHeader>
                 <CardTitle>Customer Information</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm font-medium text-muted-foreground">Name</label>
-                      <p className="text-lg">{booking.customerName}</p>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-muted-foreground">Email</label>
-                      <p className="text-lg">{booking.customerEmail}</p>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm font-medium text-muted-foreground">Phone</label>
-                      <p className="text-lg">{booking.customerPhone}</p>
-                    </div>
-                    {booking.customerNotes && (
-                      <div>
-                        <label className="text-sm font-medium text-muted-foreground">Special Requests</label>
-                        <p className="text-lg">{booking.customerNotes}</p>
-                      </div>
-                    )}
-                  </div>
+              <CardContent className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-muted-foreground" />
+                  <span>{booking.customerEmail}</span>
                 </div>
+                {booking.customerPhone && (
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-muted-foreground" />
+                    <span>{booking.customerPhone}</span>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
-            {/* Trip Itinerary */}
-            {quote.jsonBlob && quote.jsonBlob.cities && (
+            {/* Booking Items Details */}
+            {quote && quote.jsonBlob && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Trip Itinerary</CardTitle>
+                  <CardTitle>Your Booking Details</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-6">
-                    {quote.jsonBlob.cities.map((city: any, index: number) => (
-                      <div key={index} className="border-l-4 border-teal-500 pl-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-lg">{city.cityName}</h3>
-                          <div className="text-sm text-muted-foreground">
-                            {city.date} • {city.travelers} travelers
-                          </div>
+                  <div className="space-y-4">
+                    {quote.jsonBlob.itinerary && quote.jsonBlob.itinerary.map((city: any, index: number) => (
+                      <div key={index} className="border rounded-lg p-4 space-y-3">
+                        <div className="font-semibold text-lg">{city.cityName}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {city.date} • {city.travelers} travelers
                         </div>
                         
                         {city.selectedRoutes && city.selectedRoutes.length > 0 && (
@@ -333,8 +428,9 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                             <div className="font-medium text-sm mb-2">Transportation</div>
                             <div className="space-y-1">
                               {city.selectedRoutes.map((route: any, rIndex: number) => (
-                                <div key={rIndex} className="text-sm text-muted-foreground">
-                                  {route.name || `Route ${route.id}`}
+                                <div key={rIndex} className="flex items-center justify-between text-sm">
+                                  <span>{route.fromLocation} → {route.toLocation}</span>
+                                  <span className="text-muted-foreground">{route.km} km</span>
                                 </div>
                               ))}
                             </div>
@@ -344,8 +440,8 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                         {city.selectedGuide && (
                           <div>
                             <div className="font-medium text-sm mb-2">Guide Service</div>
-                            <div className="text-sm text-muted-foreground">
-                              {city.selectedGuide.language} guide - {city.selectedGuide.duration} hours
+                            <div className="text-sm">
+                              {city.selectedGuide.language} speaking guide - {city.selectedGuide.duration} hours
                             </div>
                           </div>
                         )}
@@ -353,9 +449,10 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                         {city.attractions && city.attractions.length > 0 && (
                           <div>
                             <div className="font-medium text-sm mb-2">Attractions</div>
-                            <div className="space-y-1">
+                            <div className="grid grid-cols-1 gap-1">
                               {city.attractions.map((attraction: string, aIndex: number) => (
-                                <div key={aIndex} className="text-sm text-muted-foreground">
+                                <div key={aIndex} className="text-sm flex items-center">
+                                  <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
                                   {attraction}
                                 </div>
                               ))}
