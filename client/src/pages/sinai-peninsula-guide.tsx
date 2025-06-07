@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,11 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function SinaiPeninsulaGuide() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const destinations = [
     {
       name: "Sharm El Sheikh",
