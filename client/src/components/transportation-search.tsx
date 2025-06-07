@@ -72,6 +72,7 @@ export default function TransportationSearch({
   };
 
   const getRouteIcon = (type: string) => {
+    if (!type) return <Car className="h-4 w-4" />;
     switch (type.toLowerCase()) {
       case 'inter-city':
         return <Car className="h-4 w-4" />;
@@ -85,6 +86,7 @@ export default function TransportationSearch({
   };
 
   const getTypeColor = (type: string) => {
+    if (!type) return 'bg-gray-100 text-gray-800';
     switch (type.toLowerCase()) {
       case 'inter-city':
         return 'bg-blue-100 text-blue-800';
