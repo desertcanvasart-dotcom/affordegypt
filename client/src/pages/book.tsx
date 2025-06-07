@@ -399,8 +399,9 @@ export default function BookPage() {
               </div>
 
               <div className="bg-muted p-3 rounded-md text-xs text-muted-foreground">
-                <p className="mb-1">💰 No payment required now</p>
-                <p>Pay directly to your guide upon service completion</p>
+                <p className="mb-1">💵 10% deposit required</p>
+                <p>Our team will contact you to collect it and confirm your booking.</p>
+                <p>Pay the rest in cash to your guide after the tour.</p>
               </div>
             </CardContent>
           </Card>
