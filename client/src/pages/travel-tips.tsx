@@ -213,25 +213,25 @@ export default function TravelTips() {
               <h4 className="text-xl font-semibold mb-4">Must-Try Budget Eats:</h4>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Koshari:</strong> The national dish. A hearty mix of rice, lentils, pasta, and spicy tomato sauce. <strong>Cost: &lt; $1 USD.</strong></span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Ta'ameya (Falafel):</strong> Made from fava beans, served in fresh pita bread. <strong>Cost: ~ $0.50 USD.</strong></span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Ful Medames:</strong> Slow-cooked fava beans, the breakfast of champions. <strong>Cost: &lt; $1 USD.</strong></span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Shawarma:</strong> Juicy, garlicky, and craveable chicken or beef wraps. <strong>Cost: ~ $1.50 USD.</strong></span>
                 </li>
               </ul>
-              <div className="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg">
+              <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg">
                 <p className="mb-0">
-                  <strong className="text-gray-800">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~$1.41, a loaf of bread is ~$0.58, and fresh produce is incredibly cheap. This is a great way to save on breakfasts and lunches.
+                  <strong className="text-foreground">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~$1.41, a loaf of bread is ~$0.58, and fresh produce is incredibly cheap. This is a great way to save on breakfasts and lunches.
                 </p>
               </div>
             </div>
@@ -239,30 +239,30 @@ export default function TravelTips() {
 
           {/* Transportation */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+            <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
               Getting Around Egypt Affordably 🚍
             </h2>
             <p className="text-lg leading-relaxed mb-8">
               Egypt is a large country, but its network of trains, buses, and local transport makes it easy to explore on a budget.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">🚂</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">🚂</div>
                 <h4 className="text-xl font-semibold mb-2">Trains</h4>
                 <p>Scenic and economical for long distances. A 2nd Class AC seat from <strong>Cairo to Luxor costs foreigners ~$31 USD</strong>. It's a comfortable and classic way to travel.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">🚌</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">🚌</div>
                 <h4 className="text-xl font-semibold mb-2">Buses</h4>
                 <p>The cheapest way to go. A bus from <strong>Cairo to Luxor can be as low as $8-$11 USD</strong>. Use companies like Go Bus or Blue Bus for reliable service.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">🚇</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">🚇</div>
                 <h4 className="text-xl font-semibold mb-2">Local Transport</h4>
                 <p>In Cairo, the <strong>Metro</strong> is your best friend. For taxis, use ride-hailing apps like <strong>Uber or Careem</strong> to get fair, transparent pricing and avoid haggling.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">🚐</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">🚐</div>
                 <h4 className="text-xl font-semibold mb-2">Microbuses</h4>
                 <p>For the truly adventurous. These are super cheap but challenging to navigate without Arabic. Best for short, common routes where you can follow the locals' lead.</p>
               </div>
@@ -272,7 +272,7 @@ export default function TravelTips() {
           {/* Attractions */}
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+              <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
                 Experiencing Egypt's Wonders on a Budget 🏛️
               </h2>
               <p className="text-lg leading-relaxed mb-8">
@@ -282,41 +282,41 @@ export default function TravelTips() {
               <h3 className="text-2xl font-semibold mb-4">Free and Low-Cost Activities</h3>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Wander the Souks:</strong> Get lost in the sights and sounds of Khan el-Khalili in Cairo or the Aswan Old Souk. Window shopping is free!</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Stroll the Corniche:</strong> Walk along the Nile promenade in Cairo, Luxor, or Aswan for beautiful sunset views.</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Explore Coptic & Islamic Cairo:</strong> Many of Cairo's oldest churches and mosques can be visited for free or a small donation.</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 font-bold mr-3">✓</span>
+                  <span className="text-primary font-bold mr-3">✓</span>
                   <span><strong>Visit Elephantine Island:</strong> Take the cheap public ferry in Aswan to wander through colourful Nubian villages.</span>
                 </li>
               </ul>
 
-              <div className="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg" id="itinerary">
+              <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg" id="itinerary">
                 <h3 className="text-2xl font-semibold mb-4">Sample 10-Day Budget Itinerary</h3>
                 <p className="mb-4">This classic "Golden Triangle" route maximizes sights and minimizes costs.</p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
-                    <span className="text-teal-500 font-bold mr-3">✓</span>
+                    <span className="text-primary font-bold mr-3">✓</span>
                     <span><strong>Days 1-3: Cairo.</strong> See the Pyramids, Egyptian Museum, and Khan el-Khalili. Take overnight bus/train to Luxor.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-teal-500 font-bold mr-3">✓</span>
+                    <span className="text-primary font-bold mr-3">✓</span>
                     <span><strong>Days 4-6: Luxor.</strong> Explore Karnak and Luxor Temples on the East Bank; Valley of the Kings and Hatshepsut Temple on the West Bank.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-teal-500 font-bold mr-3">✓</span>
+                    <span className="text-primary font-bold mr-3">✓</span>
                     <span><strong>Days 7-8: Aswan.</strong> Visit Philae Temple, explore Nubian villages, and take a sunset felucca ride. Consider a budget tour to Abu Simbel.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-teal-500 font-bold mr-3">✓</span>
+                    <span className="text-primary font-bold mr-3">✓</span>
                     <span><strong>Days 9-10:</strong> Return to Cairo for departure or extend your trip to Alexandria or the Red Sea.</span>
                   </li>
                 </ul>
@@ -326,25 +326,25 @@ export default function TravelTips() {
 
           {/* Safety */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-teal-500 pb-2 mb-6">
+            <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
               Staying Safe, Healthy & Culturally Aware
             </h2>
             <p className="text-lg leading-relaxed mb-8">
               A little preparation and respect go a long way in making your trip smooth and memorable.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">👗</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">👗</div>
                 <h4 className="text-xl font-semibold mb-2">Respect Local Customs</h4>
                 <p>Dress modestly, especially when visiting religious sites. A simple "Salam Alaikum" (hello) is always appreciated. Be respectful when taking photos of people.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">💵</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">💵</div>
                 <h4 className="text-xl font-semibold mb-2">Understand Tipping</h4>
                 <p>Tipping (baksheesh) is a part of life. Carry small notes (5, 10, 20 EGP) for tour guides, hotel staff, and bathroom attendants. A good tip for a full-day guide is 80-100 EGP.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-teal-500">
-                <div className="text-2xl text-teal-500 mb-4">💡</div>
+              <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
+                <div className="text-2xl text-primary mb-4">💡</div>
                 <h4 className="text-xl font-semibold mb-2">General Safety</h4>
                 <p>Stay aware in crowded areas, avoid demonstrations, and use ride-hailing apps at night. For women's safety, dressing modestly and joining group tours can help minimize unwanted attention.</p>
               </div>
