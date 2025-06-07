@@ -9,10 +9,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
+import QuoteManager from "@/components/quote-manager";
 
 // Attractions Multi-Select Component
 interface AttractionsMultiSelectProps {
@@ -328,14 +330,49 @@ export default function MultiCityPricingTool() {
     });
   };
 
+  const loadQuoteData = (quoteData: any) => {
+    if (quoteData.cityServices) {
+      setCityServices(quoteData.cityServices);
+    }
+    if (quoteData.travelDate) {
+      setTravelDate(quoteData.travelDate);
+    }
+    if (quoteData.totalTravelers || quoteData.travelers) {
+      setGlobalTravelers(quoteData.totalTravelers || quoteData.travelers);
+    }
+  };
+
+  const getCurrentQuoteData = () => {
+    return {
+      cityServices,
+      travelDate,
+      totalTravelers: globalTravelers,
+      travelers: globalTravelers,
+      totalPricing
+    };
+  };
+
   return (
     <div id="quote-builder" className="max-w-7xl mx-auto px-4 py-8">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-2xl">
-            <Calculator className="w-6 h-6 text-primary" />
-            Multi-City Egypt Travel Pricing Tool
-          </CardTitle>
+      <Tabs defaultValue="pricing" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 mb-6">
+          <TabsTrigger value="pricing" className="flex items-center gap-2">
+            <Calculator className="w-4 h-4" />
+            Build Quote
+          </TabsTrigger>
+          <TabsTrigger value="saved" className="flex items-center gap-2">
+            <BookOpen className="w-4 h-4" />
+            Saved Quotes
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="pricing">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <Calculator className="w-6 h-6 text-primary" />
+                Multi-City Egypt Travel Pricing Tool
+              </CardTitle>
           <p className="text-muted-foreground">
             Build your complete Egypt itinerary city by city with instant pricing
           </p>
@@ -779,6 +816,15 @@ export default function MultiCityPricingTool() {
           )}
         </CardContent>
       </Card>
+        </TabsContent>
+
+        <TabsContent value="saved">
+          <QuoteManager 
+            currentQuote={getCurrentQuoteData()}
+            onLoadQuote={loadQuoteData}
+          />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
