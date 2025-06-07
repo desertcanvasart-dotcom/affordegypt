@@ -125,9 +125,13 @@ interface Route {
 interface AddOn {
   id: number;
   name: string;
-  price: number;
-  type: string;
+  description: string;
+  price: string;
+  unitType: string;
+  cityId: number | null;
   category: string;
+  image: string | null;
+  isActive: boolean;
 }
 
 export default function MultiCityPricingTool() {
@@ -150,7 +154,7 @@ export default function MultiCityPricingTool() {
 
   // Fetch available add-ons
   const { data: addOns = [] } = useQuery<AddOn[]>({
-    queryKey: ["/api/pricing/addons"],
+    queryKey: ["/api/addons"],
   });
 
   // Fetch available routes
@@ -517,13 +521,13 @@ export default function MultiCityPricingTool() {
                           <PopoverContent className="w-80 p-0">
                             <div className="max-h-60 overflow-y-auto p-4 space-y-3">
                               {addOns.filter(a => 
-                                (a.type === 'per_person' || a.type === 'per_trip') && 
+                                ((a as any).unitType === 'per_person' || (a as any).unitType === 'per_trip') && 
                                 ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
                               ).length === 0 ? (
                                 <p className="text-sm text-muted-foreground">No per-person add-ons available</p>
                               ) : (
                                 addOns.filter(a => 
-                                  (a.type === 'per_person' || a.type === 'per_trip') && 
+                                  ((a as any).unitType === 'per_person' || (a as any).unitType === 'per_trip') && 
                                   ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
                                 ).map(addOn => {
                                   const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
@@ -575,13 +579,13 @@ export default function MultiCityPricingTool() {
                           <PopoverContent className="w-80 p-0">
                             <div className="max-h-60 overflow-y-auto p-4 space-y-3">
                               {addOns.filter(a => 
-                                a.type === 'per_unit' && 
+                                (a as any).unitType === 'per_unit' && 
                                 ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
                               ).length === 0 ? (
                                 <p className="text-sm text-muted-foreground">No per-unit add-ons available</p>
                               ) : (
                                 addOns.filter(a => 
-                                  a.type === 'per_unit' && 
+                                  (a as any).unitType === 'per_unit' && 
                                   ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
                                 ).map(addOn => {
                                   const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
