@@ -62,13 +62,13 @@ export default function Navbar() {
               <Lightbulb className="w-4 h-4" />
               Travel Tips
             </Link>
-            <button 
-              onClick={scrollToAbout}
+            <Link 
+              href="/about"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
               <User className="w-4 h-4" />
               About
-            </button>
+            </Link>
             <button 
               onClick={scrollToContact}
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
@@ -121,13 +121,14 @@ export default function Navbar() {
                 <Lightbulb className="w-4 h-4" />
                 Travel Tips
               </Link>
-              <button 
-                onClick={() => { scrollToAbout(); setIsMenuOpen(false); }}
+              <Link 
+                href="/about"
+                onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
                 <User className="w-4 h-4" />
                 About
-              </button>
+              </Link>
               <button 
                 onClick={() => { scrollToContact(); setIsMenuOpen(false); }}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
