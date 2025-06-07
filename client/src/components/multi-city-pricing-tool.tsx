@@ -356,22 +356,23 @@ export default function MultiCityPricingTool() {
         </CardHeader>
         <CardContent>
           {/* Horizontal Layout Table */}
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="min-w-[140px]">City</TableHead>
-                  <TableHead className="min-w-[120px]">Date</TableHead>
-                  <TableHead className="min-w-[80px]">Travelers</TableHead>
-                  <TableHead className="min-w-[180px]">Transportation</TableHead>
-                  <TableHead className="min-w-[120px]">Guide</TableHead>
-                  <TableHead className="min-w-[140px]">Attractions</TableHead>
-                  <TableHead className="min-w-[120px]">Per Unit Add-ons</TableHead>
-                  <TableHead className="min-w-[120px]">Per Person Add-ons</TableHead>
-                  <TableHead className="min-w-[100px]">Total/Person</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+          {cityServices.length > 0 ? (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="min-w-[140px]">City</TableHead>
+                    <TableHead className="min-w-[120px]">Date</TableHead>
+                    <TableHead className="min-w-[80px]">Travelers</TableHead>
+                    <TableHead className="min-w-[180px]">Transportation</TableHead>
+                    <TableHead className="min-w-[120px]">Guide</TableHead>
+                    <TableHead className="min-w-[140px]">Attractions</TableHead>
+                    <TableHead className="min-w-[120px]">Per Unit Add-ons</TableHead>
+                    <TableHead className="min-w-[120px]">Per Person Add-ons</TableHead>
+                    <TableHead className="min-w-[100px]">Total/Person</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                 {cityServices.map((cityService, index) => {
                   const cityRoutes = getCurrentCityRoutes(cityService.cityId);
                   const interCityRoutes = cityRoutes.filter((r: Route) => r.type === 'inter-city');
@@ -396,6 +397,11 @@ export default function MultiCityPricingTool() {
                             onClick={() => {
                               const newCityServices = cityServices.filter((_, i) => i !== index);
                               setCityServices(newCityServices);
+                              
+                              // If this was the last city, show city picker
+                              if (newCityServices.length === 0) {
+                                setShowCityPicker(true);
+                              }
                             }}
                             className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
                             title="Remove city"
@@ -612,23 +618,37 @@ export default function MultiCityPricingTool() {
                     </TableRow>
                   );
                 })}
-              </TableBody>
-            </Table>
-          </div>
+                </TableBody>
+              </Table>
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground mb-4">No cities selected yet</p>
+              <Button
+                variant="outline"
+                onClick={() => setShowCityPicker(true)}
+                className="flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                Add Your First City
+              </Button>
+            </div>
+          )}
 
           {/* Action Buttons */}
-          <div className="flex justify-between items-center mt-6">
-            <div className="flex items-center gap-3">
-              {!showCityPicker ? (
-                <Button
-                  variant="outline"
-                  onClick={() => setShowCityPicker(true)}
-                  className="flex items-center gap-2"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add City
-                </Button>
-              ) : (
+          {cityServices.length > 0 && (
+            <div className="flex justify-between items-center mt-6">
+              <div className="flex items-center gap-3">
+                {!showCityPicker ? (
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowCityPicker(true)}
+                    className="flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add City
+                  </Button>
+                ) : (
                 <div className="flex items-center gap-2">
                   <Select onValueChange={(value) => {
                     const cityId = parseInt(value);
@@ -667,10 +687,10 @@ export default function MultiCityPricingTool() {
                     Cancel
                   </Button>
                 </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
               {totalPricing && (
                 <div className="text-right">
                   <div className="text-sm text-muted-foreground">Final Total Per Person</div>
@@ -694,6 +714,7 @@ export default function MultiCityPricingTool() {
               </Button>
             </div>
           </div>
+          )}
 
           {/* Pricing Breakdown */}
           {totalPricing && totalPricing.breakdown && (
