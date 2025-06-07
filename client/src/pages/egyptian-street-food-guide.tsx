@@ -156,7 +156,7 @@ export default function EgyptianStreetFoodGuide() {
             backgroundAttachment: 'fixed'
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="relative max-w-7xl mx-auto px-4 py-32">
             <div className="max-w-4xl">
               <Badge className="bg-teal-600 text-white mb-6 text-sm px-4 py-2">
@@ -498,8 +498,8 @@ export default function EgyptianStreetFoodGuide() {
           {/* Final CTA */}
           <section className="bg-teal-600 text-white -mx-4 px-4 py-16 rounded-2xl">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6 text-white">Your Culinary Adventure Awaits</h2>
-              <p className="text-xl text-white mb-8 leading-relaxed font-semibold drop-shadow-lg">
+              <h2 className="text-4xl font-bold mb-6" style={{ color: '#ffffff' }}>Your Culinary Adventure Awaits</h2>
+              <p className="text-xl mb-8 leading-relaxed font-semibold" style={{ color: '#ffffff' }}>
                 Egypt's street food is more than cheap eats—it's a window into the soul of the country. 
                 Every sandwich passed through a tuk-tuk window, every spicy bite eaten standing on a sidewalk, 
                 brings you closer to the people and their heritage.
