@@ -330,7 +330,7 @@ export default function EasternWesternDesertsGuide() {
         {/* Best Time to Visit */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-amber-900 mb-4">When to Visit for Best Value</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">When to Visit for Best Value</h2>
             <p className="text-xl text-slate-600">
               Timing your desert adventure for optimal weather and budget savings
             </p>
@@ -350,15 +350,15 @@ export default function EasternWesternDesertsGuide() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 bg-white shadow-lg border-t-4 border-t-amber-500">
+            <Card className="border-0 bg-white shadow-lg border-t-4 border-t-primary">
               <CardHeader>
-                <CardTitle className="text-center text-amber-700">
+                <CardTitle className="text-center text-primary">
                   <DollarSign className="w-8 h-8 mx-auto mb-2" />
                   Budget Sweet Spot
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-2xl font-bold text-amber-700 mb-2">Nov & Mar</p>
+                <p className="text-2xl font-bold text-primary mb-2">Nov & Mar</p>
                 <p className="text-slate-600">Shoulder months with lower prices, fewer crowds, and mild weather</p>
               </CardContent>
             </Card>
@@ -379,15 +379,15 @@ export default function EasternWesternDesertsGuide() {
         </section>
 
         {/* Call to Action */}
-        <section className="text-center py-16 bg-gradient-to-r from-amber-600 via-orange-600 to-yellow-600 rounded-2xl text-white">
+        <section className="text-center py-16 bg-gradient-to-r from-teal-600 via-primary to-teal-800 rounded-2xl text-white">
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-4xl font-bold mb-6">Ready to Explore Egypt's Desert Wilderness?</h2>
-            <p className="text-xl mb-8 text-amber-100">
+            <p className="text-xl mb-8 text-teal-100">
               Start planning your budget desert adventure with our multi-city pricing tool. Get transparent costs for transport, guides, and accommodations across all desert destinations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/#pricing">
-                <Button size="lg" className="bg-white text-amber-700 hover:bg-amber-50 min-w-48">
+                <Button size="lg" className="bg-white text-primary hover:bg-teal-50 min-w-48">
                   <MapPin className="w-5 h-5 mr-2" />
                   Start Planning Your Trip
                 </Button>
