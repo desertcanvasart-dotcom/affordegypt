@@ -210,7 +210,8 @@ export default function AdminSidebar() {
         description: formData.description,
         price: parseFloat(formData.price) || 0,
         unitType: formData.unitType || 'per_unit',
-        category: formData.category || 'service'
+        category: formData.category || 'service',
+        cityId: formData.cityId ? parseInt(formData.cityId) : null
       } : modalType === 'route' ? {
         name: formData.name,
         description: formData.description,
