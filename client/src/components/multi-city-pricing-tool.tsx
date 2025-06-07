@@ -333,24 +333,43 @@ export default function MultiCityPricingTool() {
             Build your complete Egypt itinerary city by city with instant pricing
           </p>
           
-          {/* Main Travel Date */}
-          <div className="flex items-center gap-4 mt-4 p-4 bg-muted rounded-lg">
+          {/* Main Travel Date and Travelers */}
+          <div className="flex items-center gap-6 mt-4 p-4 bg-muted rounded-lg">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-primary" />
               <Label htmlFor="travel-date" className="font-medium">Trip Start Date:</Label>
+              <Input
+                id="travel-date"
+                type="date"
+                value={travelDate}
+                onChange={(e) => {
+                  setTravelDate(e.target.value);
+                  // Update all city services with the new date
+                  setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
+                }}
+                className="w-40"
+              />
             </div>
-            <Input
-              id="travel-date"
-              type="date"
-              value={travelDate}
-              onChange={(e) => setTravelDate(e.target.value)}
-              className="w-40"
-            />
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">
-                Total Travelers: {cityServices.reduce((sum, city) => Math.max(sum, city.travelers), 0)}
-              </span>
+              <Label htmlFor="total-travelers" className="font-medium">Total Travelers:</Label>
+              <Select
+                value={cityServices.length > 0 ? cityServices[0].travelers.toString() : "2"}
+                onValueChange={(value) => {
+                  const travelers = parseInt(value);
+                  // Update all city services with the new traveler count
+                  setCityServices(prev => prev.map(city => ({ ...city, travelers })));
+                }}
+              >
+                <SelectTrigger className="w-16">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(num => (
+                    <SelectItem key={num} value={num.toString()}>{num}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </CardHeader>
@@ -361,13 +380,11 @@ export default function MultiCityPricingTool() {
               <TableHeader>
                 <TableRow>
                   <TableHead className="min-w-[140px]">City</TableHead>
-                  <TableHead className="min-w-[120px]">Date</TableHead>
-                  <TableHead className="min-w-[80px]">Travelers</TableHead>
-                  <TableHead className="min-w-[180px]">Transportation</TableHead>
-                  <TableHead className="min-w-[120px]">Guide</TableHead>
-                  <TableHead className="min-w-[140px]">Attractions</TableHead>
-                  <TableHead className="min-w-[120px]">Per Unit Add-ons</TableHead>
-                  <TableHead className="min-w-[120px]">Per Person Add-ons</TableHead>
+                  <TableHead className="min-w-[200px]">Transportation</TableHead>
+                  <TableHead className="min-w-[140px]">Guide</TableHead>
+                  <TableHead className="min-w-[160px]">Attractions</TableHead>
+                  <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
+                  <TableHead className="min-w-[140px]">Per Person Add-ons</TableHead>
                   <TableHead className="min-w-[100px]">Total/Person</TableHead>
                 </TableRow>
               </TableHeader>
@@ -403,33 +420,6 @@ export default function MultiCityPricingTool() {
                             <X className="w-3 h-3" />
                           </Button>
                         </div>
-                      </TableCell>
-
-                      {/* Date */}
-                      <TableCell>
-                        <Input
-                          type="date"
-                          value={cityService.date}
-                          onChange={(e) => updateCityService(index, { date: e.target.value })}
-                          className="w-full"
-                        />
-                      </TableCell>
-
-                      {/* Travelers */}
-                      <TableCell>
-                        <Select
-                          value={cityService.travelers.toString()}
-                          onValueChange={(value) => updateCityService(index, { travelers: parseInt(value) })}
-                        >
-                          <SelectTrigger className="w-16">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(num => (
-                              <SelectItem key={num} value={num.toString()}>{num}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
                       </TableCell>
 
                       {/* Transportation */}
