@@ -112,7 +112,7 @@ export default function EasternWesternDesertsGuide() {
       <div 
         className="relative text-white min-h-screen flex items-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1539650116574-75c0c6d73fdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
