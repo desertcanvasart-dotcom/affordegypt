@@ -90,7 +90,7 @@ export default function BookPage() {
         title: "Booking Created Successfully",
         description: `Your booking reference is ${booking.bookingReference}`,
       });
-      setLocation(`/booking/${booking.bookingReference}`);
+      setLocation(`/booking-confirmation/${booking.bookingReference}`);
     },
     onError: (error) => {
       console.error('Booking mutation error:', error);
