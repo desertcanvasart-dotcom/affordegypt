@@ -14,42 +14,42 @@ export default function EasternWesternDesertsGuide() {
       location: "Bawiti",
       highlights: ["White Desert tours", "Crystal Mountain", "Hot springs"],
       budget: "300-500 EGP/night",
-      icon: <Mountain className="w-6 h-6 text-amber-600" />
+      icon: <Mountain className="w-6 h-6 text-primary" />
     },
     {
       name: "Black & White Desert", 
       location: "From Bahariya",
       highlights: ["Mushroom rock formations", "Fossilized seashells", "Volcanic hills"],
       budget: "900 EGP pp (group tour)",
-      icon: <Compass className="w-6 h-6 text-amber-600" />
+      icon: <Compass className="w-6 h-6 text-primary" />
     },
     {
       name: "Farafra Oasis",
       location: "Central Western Desert",
       highlights: ["Art Centre", "Bir Sitta hot spring", "Quiet atmosphere"],
       budget: "400-600 EGP/night",
-      icon: <Sun className="w-6 h-6 text-amber-600" />
+      icon: <Sun className="w-6 h-6 text-primary" />
     },
     {
       name: "Dakhla Oasis",
       location: "Southern Western Desert",
       highlights: ["Al-Qasr mudbrick town", "Desert farms", "Mut hot springs"],
       budget: "450 EGP/night",
-      icon: <Camera className="w-6 h-6 text-amber-600" />
+      icon: <Camera className="w-6 h-6 text-primary" />
     },
     {
       name: "Kharga Oasis",
       location: "New Valley",
       highlights: ["Temple of Hibis", "Christian cemeteries", "Ancient forts"],
       budget: "300-500 EGP/night",
-      icon: <Star className="w-6 h-6 text-amber-600" />
+      icon: <Star className="w-6 h-6 text-primary" />
     },
     {
       name: "Siwa Oasis",
       location: "Near Libyan border",
       highlights: ["Salt lakes", "Mountain of the Dead", "Great Sand Sea"],
       budget: "300-500 EGP/night",
-      icon: <MapPin className="w-6 h-6 text-amber-600" />
+      icon: <MapPin className="w-6 h-6 text-primary" />
     }
   ];
 
@@ -125,15 +125,15 @@ export default function EasternWesternDesertsGuide() {
               <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
                 Eastern & Western Deserts
               </h1>
-              <p className="text-2xl md:text-3xl text-amber-100 font-light">
+              <p className="text-2xl md:text-3xl text-teal-100 font-light">
                 A Budget Explorer's Gateway to Egypt's Untamed Beauty
               </p>
             </div>
-            <p className="text-lg md:text-xl text-amber-200 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-teal-200 max-w-4xl mx-auto leading-relaxed">
               Egypt's deserts offer ancient mysteries, Martian landscapes, spiritual solitude, and local hospitality—all at a fraction of typical tourist hotspot costs. Perfect for budget-conscious adventurers seeking authentic experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-3">
                 <Tent className="w-5 h-5 mr-2" />
                 Plan Your Desert Adventure
               </Button>
@@ -152,16 +152,16 @@ export default function EasternWesternDesertsGuide() {
         {/* Desert Comparison */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-amber-900 mb-4">Understanding Egypt's Two Great Deserts</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">Understanding Egypt's Two Great Deserts</h2>
             <p className="text-xl text-slate-600">
               Each desert offers unique landscapes and experiences for budget travelers
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="border-0 bg-white shadow-lg border-l-4 border-l-amber-500">
+            <Card className="border-0 bg-white shadow-lg border-l-4 border-l-primary">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl text-amber-900">
+                <CardTitle className="flex items-center gap-3 text-xl text-primary">
                   <Mountain className="w-6 h-6" />
                   Eastern Desert
                 </CardTitle>
@@ -177,9 +177,9 @@ export default function EasternWesternDesertsGuide() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 bg-white shadow-lg border-l-4 border-l-amber-500">
+            <Card className="border-0 bg-white shadow-lg border-l-4 border-l-primary">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl text-amber-900">
+                <CardTitle className="flex items-center gap-3 text-xl text-primary">
                   <Sun className="w-6 h-6" />
                   Western Desert
                 </CardTitle>
@@ -200,7 +200,7 @@ export default function EasternWesternDesertsGuide() {
         {/* Top Destinations */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-amber-900 mb-4">Budget-Friendly Desert Destinations</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">Budget-Friendly Desert Destinations</h2>
             <p className="text-xl text-slate-600">
               Explore these incredible oases and landscapes without breaking the bank
             </p>
