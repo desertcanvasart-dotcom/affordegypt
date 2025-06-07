@@ -16,6 +16,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
 import QuoteManager from "@/components/quote-manager";
 import AttractionsSearch from "@/components/attractions-search";
+import TransportationSearch from "@/components/transportation-search";
 
 interface CityService {
   cityId: number;
@@ -388,45 +389,13 @@ export default function MultiCityPricingTool() {
 
                       {/* Transportation */}
                       <TableCell>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button variant="outline" className="w-full justify-between">
-                              {cityService.selectedRoutes.length === 0 
-                                ? "Select Routes" 
-                                : `${cityService.selectedRoutes.length} route${cityService.selectedRoutes.length > 1 ? 's' : ''} selected`
-                              }
-                              <ChevronDown className="h-4 w-4 opacity-50" />
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-80 p-0">
-                            <div className="max-h-60 overflow-y-auto p-4 space-y-2">
-                              {cityRoutes.length === 0 ? (
-                                <p className="text-sm text-muted-foreground">No routes available for this city</p>
-                              ) : (
-                                cityRoutes.map((route: Route) => (
-                                  <div key={route.id} className="flex items-center space-x-2">
-                                    <Checkbox
-                                      id={`route-${route.id}-${index}`}
-                                      checked={cityService.selectedRoutes.includes(route.id)}
-                                      onCheckedChange={(checked) => {
-                                        const updatedRoutes = checked
-                                          ? [...cityService.selectedRoutes, route.id]
-                                          : cityService.selectedRoutes.filter(id => id !== route.id);
-                                        updateCityService(index, { selectedRoutes: updatedRoutes });
-                                      }}
-                                    />
-                                    <Label 
-                                      htmlFor={`route-${route.id}-${index}`} 
-                                      className="text-sm font-normal cursor-pointer flex-1"
-                                    >
-                                      {route.name}
-                                    </Label>
-                                  </div>
-                                ))
-                              )}
-                            </div>
-                          </PopoverContent>
-                        </Popover>
+                        <TransportationSearch
+                          routes={routes || []}
+                          selectedRoutes={cityService.selectedRoutes}
+                          onRoutesChange={(routes) => updateCityService(index, { selectedRoutes: routes })}
+                          cityId={cityService.cityId}
+                          cityName={cityService.cityName}
+                        />
                       </TableCell>
 
                       {/* Guide */}
