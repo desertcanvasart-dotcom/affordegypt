@@ -19,7 +19,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/book/:id?" component={BookPage} />
       <Route path="/checkout/:bookingId" component={Checkout} />
-      <Route path="/booking/:reference" component={BookingConfirmation} />
+      <Route path="/booking-confirmation/:reference" component={BookingConfirmation} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin" component={AdminSidebar} />
       <Route path="/routes" component={Routes} />
