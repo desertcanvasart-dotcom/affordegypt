@@ -211,7 +211,7 @@ export default function TransportationSearch({
                         variant="secondary" 
                         className={`text-xs ${getTypeColor(route.type)}`}
                       >
-                        {route.type.replace('-', ' ')}
+                        {route.type?.replace('-', ' ') || 'General'}
                       </Badge>
                     </div>
 
