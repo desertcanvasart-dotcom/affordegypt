@@ -360,7 +360,7 @@ export default function MultiCityPricingTool() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[100px]">City</TableHead>
+                  <TableHead className="min-w-[140px]">City</TableHead>
                   <TableHead className="min-w-[120px]">Date</TableHead>
                   <TableHead className="min-w-[80px]">Travelers</TableHead>
                   <TableHead className="min-w-[180px]">Transportation</TableHead>
@@ -369,7 +369,6 @@ export default function MultiCityPricingTool() {
                   <TableHead className="min-w-[120px]">Per Unit Add-ons</TableHead>
                   <TableHead className="min-w-[120px]">Per Person Add-ons</TableHead>
                   <TableHead className="min-w-[100px]">Total/Person</TableHead>
-                  <TableHead className="min-w-[80px]">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -384,10 +383,26 @@ export default function MultiCityPricingTool() {
                     <TableRow key={index} className="border-b">
                       {/* City */}
                       <TableCell className="font-medium">
-                        {cityService.cityName}
-                        {index === cityServices.length - 1 && (
-                          <Badge variant="secondary" className="ml-2 text-xs">Current</Badge>
-                        )}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            {cityService.cityName}
+                            {index === cityServices.length - 1 && (
+                              <Badge variant="secondary" className="text-xs">Current</Badge>
+                            )}
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              const newCityServices = cityServices.filter((_, i) => i !== index);
+                              setCityServices(newCityServices);
+                            }}
+                            className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                            title="Remove city"
+                          >
+                            <X className="w-3 h-3" />
+                          </Button>
+                        </div>
                       </TableCell>
 
                       {/* Date */}
@@ -593,22 +608,6 @@ export default function MultiCityPricingTool() {
                         <div className="price-chip text-lg font-bold">
                           ${cityTotal}
                         </div>
-                      </TableCell>
-
-                      {/* Actions */}
-                      <TableCell>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            const newCityServices = cityServices.filter((_, i) => i !== index);
-                            setCityServices(newCityServices);
-                          }}
-                          className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                          title="Remove city"
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
                       </TableCell>
                     </TableRow>
                   );
