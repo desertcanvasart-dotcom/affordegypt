@@ -39,6 +39,16 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
+    title: "Eastern & Western Deserts Travel Guide",
+    excerpt: "Egypt Desert Travel Guide: Explore Siwa, White Desert & Eastern Trails",
+    category: "Destinations",
+    readTime: "8 min read",
+    publishDate: "2024-03-01",
+    image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73fdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
+    slug: "eastern-western-deserts-travel-guide"
+  },
+  {
+    id: 4,
     title: "Nile Valley Travel Guide",
     excerpt: "Nile Valley Egypt: Top Destinations, Nile Cruises & Ancient Sites Guide",
     category: "Destinations",
@@ -48,7 +58,7 @@ const blogPosts: BlogPost[] = [
     slug: "nile-valley-travel-guide"
   },
   {
-    id: 4,
+    id: 5,
     title: "Budget Travel in Egypt: How to See More for Less",
     excerpt: "Smart strategies for experiencing Egypt's wonders without breaking the bank, including accommodation and dining tips.",
     category: "Budget Travel",
@@ -174,6 +184,13 @@ export default function BlogGrid() {
                   </Link>
                 ) : post.slug === "sinai-peninsula-travel-guide" ? (
                   <Link href="/sinai-peninsula-guide">
+                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
+                      Read More
+                      <ArrowRight className="ml-1 w-3 h-3" />
+                    </Button>
+                  </Link>
+                ) : post.slug === "eastern-western-deserts-travel-guide" ? (
+                  <Link href="/eastern-western-deserts-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
                       Read More
                       <ArrowRight className="ml-1 w-3 h-3" />
