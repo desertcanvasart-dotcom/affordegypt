@@ -516,10 +516,16 @@ export default function MultiCityPricingTool() {
                           </PopoverTrigger>
                           <PopoverContent className="w-80 p-0">
                             <div className="max-h-60 overflow-y-auto p-4 space-y-3">
-                              {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').length === 0 ? (
+                              {addOns.filter(a => 
+                                (a.type === 'per_person' || a.type === 'per_trip') && 
+                                ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                              ).length === 0 ? (
                                 <p className="text-sm text-muted-foreground">No per-person add-ons available</p>
                               ) : (
-                                addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => {
+                                addOns.filter(a => 
+                                  (a.type === 'per_person' || a.type === 'per_trip') && 
+                                  ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                                ).map(addOn => {
                                   const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
                                   const isSelected = !!selectedAddOn;
                                   
@@ -568,10 +574,16 @@ export default function MultiCityPricingTool() {
                           </PopoverTrigger>
                           <PopoverContent className="w-80 p-0">
                             <div className="max-h-60 overflow-y-auto p-4 space-y-3">
-                              {addOns.filter(a => a.type === 'per_unit').length === 0 ? (
+                              {addOns.filter(a => 
+                                a.type === 'per_unit' && 
+                                ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                              ).length === 0 ? (
                                 <p className="text-sm text-muted-foreground">No per-unit add-ons available</p>
                               ) : (
-                                addOns.filter(a => a.type === 'per_unit').map(addOn => {
+                                addOns.filter(a => 
+                                  a.type === 'per_unit' && 
+                                  ((a as any).cityId === null || (a as any).cityId === cityService.cityId)
+                                ).map(addOn => {
                                   const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
                                   const isSelected = !!selectedAddOn;
                                   
