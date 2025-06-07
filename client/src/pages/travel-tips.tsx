@@ -14,9 +14,12 @@ export default function TravelTips() {
         <Navbar />
         {/* Hero Section */}
         <header 
-          className="relative bg-cover bg-center text-white text-center py-24"
+          className="min-h-[90vh] flex items-center justify-center relative"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg')`
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
           }}
         >
           <div className="container mx-auto px-4">
