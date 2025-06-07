@@ -167,7 +167,7 @@ export default function EgyptianStreetFoodGuide() {
                 Egyptian Street Food
                 <span className="block text-teal-400">A Culinary Adventure</span>
               </h1>
-              <p className="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl font-medium">
+              <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl font-semibold drop-shadow-lg">
                 Egypt's street food scene is a symphony of flavors, combining ancient culinary traditions 
                 with quick, modern-day indulgence. Your most delicious—and budget-friendly—passport to understanding Egypt.
               </p>
@@ -499,7 +499,7 @@ export default function EgyptianStreetFoodGuide() {
           <section className="bg-teal-600 text-white -mx-4 px-4 py-16 rounded-2xl">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl font-bold mb-6 text-white">Your Culinary Adventure Awaits</h2>
-              <p className="text-xl text-white mb-8 leading-relaxed font-medium">
+              <p className="text-xl text-white mb-8 leading-relaxed font-semibold drop-shadow-lg">
                 Egypt's street food is more than cheap eats—it's a window into the soul of the country. 
                 Every sandwich passed through a tuk-tuk window, every spicy bite eaten standing on a sidewalk, 
                 brings you closer to the people and their heritage.
