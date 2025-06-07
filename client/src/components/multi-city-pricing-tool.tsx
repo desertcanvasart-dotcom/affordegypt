@@ -500,97 +500,132 @@ export default function MultiCityPricingTool() {
 
                       {/* Per Unit Add-ons */}
                       <TableCell>
-                        <div className="space-y-2">
-                          <Select
-                            value={cityService.selectedAddOns.find(a => 
-                              addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
-                            )?.id.toString() || ""}
-                            onValueChange={(value) => {
-                              const addOn = addOns.find(a => a.id === parseInt(value) && a.type === 'per_unit');
-                              if (addOn) {
-                                const newAddOns = cityService.selectedAddOns.filter(a => 
-                                  !addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
-                                );
-                                newAddOns.push({ id: addOn.id, name: addOn.name, quantity: 1 });
-                                updateCityService(index, { selectedAddOns: newAddOns });
-                              }
-                            }}
-                          >
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="Select Add-on" />
-                            </SelectTrigger>
-                            <SelectContent className="max-h-60 overflow-y-auto">
-                              <SelectItem value="none">None</SelectItem>
-                              {addOns.filter(a => a.type === 'per_unit').map(addOn => (
-                                <SelectItem key={addOn.id} value={addOn.id.toString()}>
-                                  {addOn.name} (${addOn.price})
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          
-                          {/* Quantity selector for per-unit items */}
-                          {cityService.selectedAddOns.find(a => 
-                            addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
-                          ) && (
-                            <Select
-                              value={cityService.selectedAddOns.find(a => 
-                                addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
-                              )?.quantity.toString() || "1"}
-                              onValueChange={(value) => {
-                                const selectedPerUnit = cityService.selectedAddOns.find(a => 
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" className="w-full justify-between">
+                              {(() => {
+                                const perUnitAddOns = cityService.selectedAddOns.filter(a => 
                                   addOns.find(addon => addon.id === a.id && addon.type === 'per_unit')
                                 );
-                                if (selectedPerUnit) {
-                                  const newAddOns = cityService.selectedAddOns.map(a => 
-                                    a.id === selectedPerUnit.id ? { ...a, quantity: parseInt(value) } : a
+                                return perUnitAddOns.length === 0 
+                                  ? "Select Add-ons" 
+                                  : `${perUnitAddOns.length} add-on${perUnitAddOns.length > 1 ? 's' : ''} selected`;
+                              })()}
+                              <ChevronDown className="h-4 w-4 opacity-50" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-80 p-0">
+                            <div className="max-h-60 overflow-y-auto p-4 space-y-3">
+                              {addOns.filter(a => a.type === 'per_unit').length === 0 ? (
+                                <p className="text-sm text-muted-foreground">No per-unit add-ons available</p>
+                              ) : (
+                                addOns.filter(a => a.type === 'per_unit').map(addOn => {
+                                  const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
+                                  const isSelected = !!selectedAddOn;
+                                  
+                                  return (
+                                    <div key={addOn.id} className="space-y-2">
+                                      <div className="flex items-center space-x-2">
+                                        <Checkbox
+                                          id={`per-unit-addon-${addOn.id}-${index}`}
+                                          checked={isSelected}
+                                          onCheckedChange={(checked) => {
+                                            const updatedAddOns = checked
+                                              ? [...cityService.selectedAddOns, { id: addOn.id, name: addOn.name, quantity: 1 }]
+                                              : cityService.selectedAddOns.filter(a => a.id !== addOn.id);
+                                            updateCityService(index, { selectedAddOns: updatedAddOns });
+                                          }}
+                                        />
+                                        <Label 
+                                          htmlFor={`per-unit-addon-${addOn.id}-${index}`} 
+                                          className="text-sm font-normal cursor-pointer flex-1"
+                                        >
+                                          {addOn.name} (${addOn.price})
+                                        </Label>
+                                      </div>
+                                      
+                                      {/* Quantity selector when selected */}
+                                      {isSelected && (
+                                        <div className="ml-6">
+                                          <Select
+                                            value={selectedAddOn?.quantity.toString() || "1"}
+                                            onValueChange={(value) => {
+                                              const newAddOns = cityService.selectedAddOns.map(a => 
+                                                a.id === addOn.id ? { ...a, quantity: parseInt(value) } : a
+                                              );
+                                              updateCityService(index, { selectedAddOns: newAddOns });
+                                            }}
+                                          >
+                                            <SelectTrigger className="w-24">
+                                              <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                              {[1,2,3,4,5].map(num => (
+                                                <SelectItem key={num} value={num.toString()}>Qty: {num}</SelectItem>
+                                              ))}
+                                            </SelectContent>
+                                          </Select>
+                                        </div>
+                                      )}
+                                    </div>
                                   );
-                                  updateCityService(index, { selectedAddOns: newAddOns });
-                                }
-                              }}
-                            >
-                              <SelectTrigger className="w-full">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {[1,2,3,4,5].map(num => (
-                                  <SelectItem key={num} value={num.toString()}>Qty: {num}</SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          )}
-                        </div>
+                                })
+                              )}
+                            </div>
+                          </PopoverContent>
+                        </Popover>
                       </TableCell>
 
                       {/* Per Person Add-ons */}
                       <TableCell>
-                        <Select
-                          value={cityService.selectedAddOns.find(a => 
-                            addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
-                          )?.id.toString() || ""}
-                          onValueChange={(value) => {
-                            const addOn = addOns.find(a => a.id === parseInt(value) && (a.type === 'per_person' || a.type === 'per_trip'));
-                            if (addOn) {
-                              const newAddOns = cityService.selectedAddOns.filter(a => 
-                                !addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
-                              );
-                              newAddOns.push({ id: addOn.id, name: addOn.name, quantity: 1 });
-                              updateCityService(index, { selectedAddOns: newAddOns });
-                            }
-                          }}
-                        >
-                          <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Add-on" />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-60 overflow-y-auto">
-                            <SelectItem value="none">None</SelectItem>
-                            {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => (
-                              <SelectItem key={addOn.id} value={addOn.id.toString()}>
-                                {addOn.name} (${addOn.price})
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" className="w-full justify-between">
+                              {(() => {
+                                const perPersonAddOns = cityService.selectedAddOns.filter(a => 
+                                  addOns.find(addon => addon.id === a.id && (addon.type === 'per_person' || addon.type === 'per_trip'))
+                                );
+                                return perPersonAddOns.length === 0 
+                                  ? "Select Add-ons" 
+                                  : `${perPersonAddOns.length} add-on${perPersonAddOns.length > 1 ? 's' : ''} selected`;
+                              })()}
+                              <ChevronDown className="h-4 w-4 opacity-50" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-80 p-0">
+                            <div className="max-h-60 overflow-y-auto p-4 space-y-3">
+                              {addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').length === 0 ? (
+                                <p className="text-sm text-muted-foreground">No per-person add-ons available</p>
+                              ) : (
+                                addOns.filter(a => a.type === 'per_person' || a.type === 'per_trip').map(addOn => {
+                                  const selectedAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
+                                  const isSelected = !!selectedAddOn;
+                                  
+                                  return (
+                                    <div key={addOn.id} className="flex items-center space-x-2">
+                                      <Checkbox
+                                        id={`per-person-addon-${addOn.id}-${index}`}
+                                        checked={isSelected}
+                                        onCheckedChange={(checked) => {
+                                          const updatedAddOns = checked
+                                            ? [...cityService.selectedAddOns, { id: addOn.id, name: addOn.name, quantity: 1 }]
+                                            : cityService.selectedAddOns.filter(a => a.id !== addOn.id);
+                                          updateCityService(index, { selectedAddOns: updatedAddOns });
+                                        }}
+                                      />
+                                      <Label 
+                                        htmlFor={`per-person-addon-${addOn.id}-${index}`} 
+                                        className="text-sm font-normal cursor-pointer flex-1"
+                                      >
+                                        {addOn.name} (${addOn.price})
+                                      </Label>
+                                    </div>
+                                  );
+                                })
+                              )}
+                            </div>
+                          </PopoverContent>
+                        </Popover>
                       </TableCell>
 
                       {/* Total Per Person */}
