@@ -15,6 +15,7 @@ import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
 import TravelTips from "@/pages/travel-tips";
 import BudgetTravelEgypt from "@/pages/budget-travel-egypt";
+import EgyptianStreetFoodGuide from "@/pages/egyptian-street-food-guide";
 import NileValleyGuide from "@/pages/nile-valley-guide";
 import SinaiPeninsulaGuide from "@/pages/sinai-peninsula-guide";
 import EasternWesternDesertsGuide from "@/pages/eastern-western-deserts-guide";
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/travel-tips" component={TravelTips} />
       <Route path="/budget-travel-egypt" component={BudgetTravelEgypt} />
+      <Route path="/egyptian-street-food-guide" component={EgyptianStreetFoodGuide} />
       <Route path="/nile-valley-guide" component={NileValleyGuide} />
       <Route path="/sinai-peninsula-guide" component={SinaiPeninsulaGuide} />
       <Route path="/eastern-western-deserts-guide" component={EasternWesternDesertsGuide} />
