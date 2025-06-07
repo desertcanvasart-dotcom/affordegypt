@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
@@ -369,6 +369,7 @@ export default function MultiCityPricingTool() {
                   <TableHead className="min-w-[120px]">Per Unit Add-ons</TableHead>
                   <TableHead className="min-w-[120px]">Per Person Add-ons</TableHead>
                   <TableHead className="min-w-[100px]">Total/Person</TableHead>
+                  <TableHead className="min-w-[80px]">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -592,6 +593,22 @@ export default function MultiCityPricingTool() {
                         <div className="price-chip text-lg font-bold">
                           ${cityTotal}
                         </div>
+                      </TableCell>
+
+                      {/* Actions */}
+                      <TableCell>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            const newCityServices = cityServices.filter((_, i) => i !== index);
+                            setCityServices(newCityServices);
+                          }}
+                          className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                          title="Remove city"
+                        >
+                          <X className="w-4 h-4" />
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );
