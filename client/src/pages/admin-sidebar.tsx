@@ -1080,6 +1080,19 @@ export default function AdminSidebar() {
                       placeholder="service"
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">City</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.cityId}
+                      onChange={(e) => setFormData({...formData, cityId: e.target.value})}
+                    >
+                      <option value="">All Cities</option>
+                      {(cities as any[]).map((city: any) => (
+                        <option key={city.id} value={city.id}>{city.name}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               )}
 
