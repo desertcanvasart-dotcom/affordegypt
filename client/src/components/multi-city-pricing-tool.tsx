@@ -17,89 +17,6 @@ import { useLocation } from "wouter";
 import QuoteManager from "@/components/quote-manager";
 import AttractionsSearch from "@/components/attractions-search";
 
-// Attractions Multi-Select Component
-interface AttractionsMultiSelectProps {
-  selectedAttractions: string[];
-  onAttractionsChange: (attractions: string[]) => void;
-  cityId: number;
-  cityName: string;
-  attractions: any[];
-}
-
-function AttractionsMultiSelect({ selectedAttractions, onAttractionsChange, cityId, cityName, attractions }: AttractionsMultiSelectProps) {
-  // Filter attractions for the current city
-  const cityAttractions = (attractions || []).filter(attraction => attraction.cityId === cityId).map(attraction => ({
-    value: attraction.name,
-    label: attraction.name
-  }));
-
-  const toggleAttraction = (attractionValue: string) => {
-    const updated = selectedAttractions.includes(attractionValue)
-      ? selectedAttractions.filter(a => a !== attractionValue)
-      : [...selectedAttractions, attractionValue];
-    onAttractionsChange(updated);
-  };
-
-  const getDisplayText = () => {
-    if (selectedAttractions.length === 0) return "Select attractions...";
-    if (selectedAttractions.length === 1) {
-      const attraction = cityAttractions.find(a => a.value === selectedAttractions[0]);
-      return attraction?.label || selectedAttractions[0];
-    }
-    return `${selectedAttractions.length} attractions selected`;
-  };
-
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className="w-full justify-between text-left font-normal"
-        >
-          <span className="truncate">{getDisplayText()}</span>
-          <ChevronDown className="h-4 w-4 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-64 p-2">
-        <div className="space-y-2">
-          <div className="text-sm font-medium text-gray-700 px-2 py-1">
-            {cityName} Attractions
-          </div>
-          <div className="max-h-60 overflow-y-auto space-y-1">
-            {cityAttractions.map((attraction) => (
-              <div key={attraction.value} className="flex items-center space-x-2 px-2 py-1 hover:bg-gray-50 rounded">
-                <Checkbox
-                  id={attraction.value}
-                  checked={selectedAttractions.includes(attraction.value)}
-                  onCheckedChange={() => toggleAttraction(attraction.value)}
-                />
-                <label 
-                  htmlFor={attraction.value}
-                  className="text-sm cursor-pointer flex-1"
-                >
-                  {attraction.label}
-                </label>
-              </div>
-            ))}
-          </div>
-          {selectedAttractions.length > 0 && (
-            <div className="border-t pt-2 mt-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onAttractionsChange([])}
-                className="w-full text-xs text-gray-500"
-              >
-                Clear all
-              </Button>
-            </div>
-          )}
-        </div>
-      </PopoverContent>
-    </Popover>
-  );
-}
-
 interface CityService {
   cityId: number;
   cityName: string;
@@ -536,12 +453,12 @@ export default function MultiCityPricingTool() {
 
                       {/* Attractions */}
                       <TableCell>
-                        <AttractionsMultiSelect
+                        <AttractionsSearch
+                          attractions={attractions || []}
                           selectedAttractions={cityService.selectedAttractions || []}
                           onAttractionsChange={(attractions) => updateCityService(index, { selectedAttractions: attractions })}
                           cityId={cityService.cityId}
                           cityName={cityService.cityName}
-                          attractions={attractions || []}
                         />
                       </TableCell>
 

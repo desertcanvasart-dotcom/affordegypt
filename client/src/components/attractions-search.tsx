@@ -272,7 +272,8 @@ export default function AttractionsSearch({
             size="sm"
             onClick={() => {
               const allNames = filteredAttractions.map(a => a.name);
-              onAttractionsChange([...new Set([...selectedAttractions, ...allNames])]);
+              const combined = [...selectedAttractions, ...allNames];
+              onAttractionsChange(Array.from(new Set(combined)));
             }}
           >
             Select All Visible
