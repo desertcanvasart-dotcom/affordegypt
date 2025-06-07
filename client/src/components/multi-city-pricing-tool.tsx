@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
 import QuoteManager from "@/components/quote-manager";
+import AttractionsSearch from "@/components/attractions-search";
 
 // Attractions Multi-Select Component
 interface AttractionsMultiSelectProps {
@@ -28,7 +29,7 @@ interface AttractionsMultiSelectProps {
 function AttractionsMultiSelect({ selectedAttractions, onAttractionsChange, cityId, cityName, attractions }: AttractionsMultiSelectProps) {
   // Filter attractions for the current city
   const cityAttractions = (attractions || []).filter(attraction => attraction.cityId === cityId).map(attraction => ({
-    value: attraction.id.toString(),
+    value: attraction.name,
     label: attraction.name
   }));
 
@@ -737,7 +738,13 @@ export default function MultiCityPricingTool() {
                     <SelectContent>
                       {cities.filter((city: any) => !cityServices.find(cs => cs.cityId === city.id)).map((city: any) => (
                         <SelectItem key={city.id} value={city.id.toString()}>
-                          📍 {city.name}
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-primary rounded-full"></div>
+                            {city.name}
+                            <span className="text-xs text-muted-foreground ml-auto">
+                              {city.description?.split('.')[0]?.substring(0, 30)}...
+                            </span>
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -766,15 +773,22 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
-              <Button 
-                size="lg"
-                className="flex items-center gap-2"
-                disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
-                onClick={handleContinueBooking}
-              >
-                Continue to Booking
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              {pricingMutation.isPending ? (
+                <Button size="lg" disabled className="flex items-center gap-2">
+                  <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
+                  Calculating...
+                </Button>
+              ) : (
+                <Button 
+                  size="lg"
+                  className="flex items-center gap-2"
+                  disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
+                  onClick={handleContinueBooking}
+                >
+                  Continue to Booking
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              )}
             </div>
           </div>
 
