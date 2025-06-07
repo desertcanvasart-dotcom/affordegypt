@@ -140,6 +140,7 @@ export default function MultiCityPricingTool() {
   const [totalPricing, setTotalPricing] = useState<any>(null);
   const [showCityPicker, setShowCityPicker] = useState(false);
   const [travelDate, setTravelDate] = useState<string>('');
+  const [globalTravelers, setGlobalTravelers] = useState<number>(1);
   const [, setLocation] = useLocation();
 
   // Fetch available cities from the database
@@ -201,8 +202,8 @@ export default function MultiCityPricingTool() {
     const newCityService: CityService = {
       cityId: selectedCity.id,
       cityName: selectedCity.name,
-      date: new Date().toISOString().split('T')[0],
-      travelers: 2,
+      date: travelDate || new Date().toISOString().split('T')[0],
+      travelers: globalTravelers,
       selectedRoutes: [],
       attractions: "",
       selectedAttractions: [],
@@ -360,9 +361,10 @@ export default function MultiCityPricingTool() {
               <Users className="w-4 h-4 text-primary" />
               <Label htmlFor="total-travelers" className="font-medium">Total Travelers:</Label>
               <Select
-                value={cityServices.length > 0 ? cityServices[0].travelers.toString() : "2"}
+                value={globalTravelers.toString()}
                 onValueChange={(value) => {
                   const travelers = parseInt(value);
+                  setGlobalTravelers(travelers);
                   // Update all city services with the new traveler count
                   setCityServices(prev => prev.map(city => ({ ...city, travelers })));
                 }}
@@ -680,8 +682,8 @@ export default function MultiCityPricingTool() {
                       const newCityService: CityService = {
                         cityId: selectedCity.id,
                         cityName: selectedCity.name,
-                        date: new Date().toISOString().split('T')[0],
-                        travelers: 2,
+                        date: travelDate || new Date().toISOString().split('T')[0],
+                        travelers: globalTravelers,
                         selectedRoutes: [],
                         attractions: "",
                         selectedAttractions: [],
