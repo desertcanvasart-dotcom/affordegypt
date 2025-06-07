@@ -1259,13 +1259,13 @@ export default function AdminSidebar() {
                             return order.indexOf(a.name) - order.indexOf(b.name);
                           })
                           .map((vehicle: any) => (
-                          <div key={vehicle.id} className="grid grid-cols-3 gap-2 items-center">
+                          <div key={vehicle.id} className="grid grid-cols-2 gap-2 items-center">
                             <div className="text-sm font-medium">{vehicle.name}</div>
                             <div>
                               <Input
                                 type="number"
                                 step="0.01"
-                                placeholder="Normal"
+                                placeholder="Price (USD)"
                                 value={formData.vehiclePricing?.[vehicle.id]?.['1'] || ''}
                                 onChange={(e) => {
                                   const newPricing = { ...formData.vehiclePricing };
@@ -1276,26 +1276,11 @@ export default function AdminSidebar() {
                                 className="text-xs"
                               />
                             </div>
-                            <div>
-                              <Input
-                                type="number"
-                                step="0.01"
-                                placeholder="Tourism (+20%)"
-                                value={formData.vehiclePricing?.[vehicle.id]?.['2'] || ''}
-                                onChange={(e) => {
-                                  const newPricing = { ...formData.vehiclePricing };
-                                  if (!newPricing[vehicle.id]) newPricing[vehicle.id] = {};
-                                  newPricing[vehicle.id]['2'] = e.target.value;
-                                  setFormData({...formData, vehiclePricing: newPricing});
-                                }}
-                                className="text-xs"
-                              />
-                            </div>
                           </div>
                         ))}
                       </div>
                       <div className="text-xs text-gray-500 mt-2">
-                        Set pricing for each vehicle type. Tourism license includes 20% surcharge.
+                        Set pricing for each vehicle type in USD.
                       </div>
                     </div>
                   </div>

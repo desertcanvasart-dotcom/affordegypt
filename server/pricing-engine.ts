@@ -11,7 +11,7 @@ export function getVehicleCategory(passengers: number): string {
 interface RoutePrice {
   routeId: number;
   vehicleCategory: string;
-  carType: "normal" | "licensed_tourism";
+  carType: "normal";
   basePrice: number;
   pricePerPerson?: number;
 }
@@ -31,31 +31,22 @@ interface AddOnPrice {
   category: string;
 }
 
-// Mock pricing data that matches your specification
+// Pricing data for normal vehicles only
 const ROUTE_PRICES: RoutePrice[] = [
   // Cairo Routes
   { routeId: 1, vehicleCategory: "sedan", carType: "normal", basePrice: 50 },
-  { routeId: 1, vehicleCategory: "sedan", carType: "licensed_tourism", basePrice: 65 },
   { routeId: 1, vehicleCategory: "minivan", carType: "normal", basePrice: 80 },
-  { routeId: 1, vehicleCategory: "minivan", carType: "licensed_tourism", basePrice: 100 },
   { routeId: 1, vehicleCategory: "van", carType: "normal", basePrice: 120 },
-  { routeId: 1, vehicleCategory: "van", carType: "licensed_tourism", basePrice: 150 },
   
   // Cairo to Alexandria Over Day
   { routeId: 2, vehicleCategory: "sedan", carType: "normal", basePrice: 120 },
-  { routeId: 2, vehicleCategory: "sedan", carType: "licensed_tourism", basePrice: 150 },
   { routeId: 2, vehicleCategory: "minivan", carType: "normal", basePrice: 180 },
-  { routeId: 2, vehicleCategory: "minivan", carType: "licensed_tourism", basePrice: 220 },
   { routeId: 2, vehicleCategory: "van", carType: "normal", basePrice: 280 },
-  { routeId: 2, vehicleCategory: "van", carType: "licensed_tourism", basePrice: 350 },
   
   // Cairo to El Fayoum Over Day
   { routeId: 3, vehicleCategory: "sedan", carType: "normal", basePrice: 90 },
-  { routeId: 3, vehicleCategory: "sedan", carType: "licensed_tourism", basePrice: 110 },
   { routeId: 3, vehicleCategory: "minivan", carType: "normal", basePrice: 140 },
-  { routeId: 3, vehicleCategory: "minivan", carType: "licensed_tourism", basePrice: 170 },
   { routeId: 3, vehicleCategory: "van", carType: "normal", basePrice: 220 },
-  { routeId: 3, vehicleCategory: "van", carType: "licensed_tourism", basePrice: 270 },
 ];
 
 const GUIDE_PRICES: GuidePrice[] = [
@@ -114,7 +105,7 @@ export class PricingEngine {
   static calculateRoutePrice(
     routeId: number, 
     passengers: number, 
-    carType: "normal" | "licensed_tourism" = "normal"
+    carType: "normal" = "normal"
   ): number {
     const vehicleCategory = getVehicleCategory(passengers);
     const routePrice = ROUTE_PRICES.find(
