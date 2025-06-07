@@ -65,7 +65,7 @@ const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     publishDate: "2024-03-08",
     image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7",
-    slug: "budget-travel-egypt-guide"
+    slug: "budget-travel-egypt"
   },
   {
     id: 5,
