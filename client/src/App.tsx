@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FaWhatsapp } from "react-icons/fa";
+import { AuthProvider } from "@/hooks/useAuth";
 import Home from "@/pages/home";
 import Checkout from "@/pages/checkout";
 import BookPage from "@/pages/book";
@@ -25,6 +26,8 @@ import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import CookiePolicy from "@/pages/cookie-policy";
+import Login from "@/pages/login";
+import Register from "@/pages/register";
 
 import NotFound from "@/pages/not-found";
 
@@ -51,6 +54,8 @@ function Router() {
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/cookie-policy" component={CookiePolicy} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
 
       <Route component={NotFound} />
     </Switch>
@@ -61,24 +66,26 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-          
-          {/* Floating WhatsApp Button */}
-          <div className="fixed bottom-6 right-6 z-50">
-            <a 
-              href="https://wa.me/201100765283" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
-              title="WhatsApp Us"
-            >
-              <FaWhatsapp className="w-5 h-5" />
-              <span className="text-sm font-medium">WhatsApp Us</span>
-            </a>
-          </div>
-        </TooltipProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+            
+            {/* Floating WhatsApp Button */}
+            <div className="fixed bottom-6 right-6 z-50">
+              <a 
+                href="https://wa.me/201100765283" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
+                title="WhatsApp Us"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+                <span className="text-sm font-medium">WhatsApp Us</span>
+              </a>
+            </div>
+          </TooltipProvider>
+        </AuthProvider>
       </HelmetProvider>
     </QueryClientProvider>
   );
