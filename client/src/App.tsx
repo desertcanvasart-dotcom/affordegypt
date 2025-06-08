@@ -24,7 +24,7 @@ import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import CookiePolicy from "@/pages/cookie-policy";
-import BookingFlow from "@/pages/booking-flow";
+
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -49,7 +49,7 @@ function Router() {
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/cookie-policy" component={CookiePolicy} />
-      <Route path="/booking/:quoteId" component={BookingFlow} />
+
       <Route component={NotFound} />
     </Switch>
   );
