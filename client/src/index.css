@@ -148,3 +148,26 @@ html {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 700 !important;
 }
+
+/* Light sweep animation */
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-light-sweep {
+  animation: light-sweep 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
