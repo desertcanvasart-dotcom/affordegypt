@@ -350,18 +350,34 @@ export default function SinaiPeninsulaGuide() {
               Create your perfect Sinai adventure with our multi-city pricing tool and expert local guides. Get transparent pricing and build your custom itinerary in minutes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/#pricing">
-                <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50 min-w-48">
-                  <MapPin className="w-5 h-5 mr-2" />
-                  Start Planning Your Trip
-                </Button>
-              </Link>
-              <Link href="/guides">
-                <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50 min-w-48">
-                  <Star className="w-5 h-5 mr-2" />
-                  Browse Expert Guides
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="bg-white text-teal-700 hover:bg-teal-50 min-w-48"
+                onClick={() => {
+                  window.location.href = '/';
+                  setTimeout(() => {
+                    const element = document.getElementById('quote-builder');
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                      });
+                    }
+                  }, 500);
+                }}
+              >
+                <MapPin className="w-5 h-5 mr-2" />
+                Start Planning Your Trip
+              </Button>
+              <Button 
+                size="lg" 
+                className="bg-gray-300 text-gray-500 cursor-not-allowed min-w-48" 
+                disabled
+              >
+                <Star className="w-5 h-5 mr-2" />
+                Browse Expert Guides
+              </Button>
             </div>
           </div>
         </section>
