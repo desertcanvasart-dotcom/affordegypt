@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Afford Egypt. All rights reserved. | Powered and Polished by <a href="https://traveldigitalera.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Travel Digital Era</a></p>
+          <p>&copy; 2025 Afford Egypt. All rights reserved. | Powered and Polished by <a href="https://traveldigitalera.com/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 transition-all duration-300 hover:underline decoration-primary underline-offset-4">Travel Digital Era</a></p>
         </div>
       </div>
     </footer>
