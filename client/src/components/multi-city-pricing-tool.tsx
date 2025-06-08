@@ -201,8 +201,12 @@ export default function MultiCityPricingTool() {
       const response = await apiRequest("POST", "/api/quotes", quoteData);
       const quote = await response.json();
       
-      // Navigate to booking form with quote ID
+      // Navigate to booking form with quote ID and scroll to top
       setLocation(`/book/${quote.id}`);
+      // Smooth scroll to top after navigation
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } catch (error) {
       console.error('Error creating quote:', error);
       // Fallback: navigate to booking form with quote data in URL params
@@ -214,6 +218,10 @@ export default function MultiCityPricingTool() {
         itinerary: encodeURIComponent(JSON.stringify(cityServices))
       });
       setLocation(`/book?${queryParams.toString()}`);
+      // Smooth scroll to top after navigation
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   };
 
@@ -986,7 +994,7 @@ export default function MultiCityPricingTool() {
               ) : (
                 <Button 
                   size="lg"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 transition-all duration-200"
                   disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
                   onClick={handleContinueBooking}
                 >

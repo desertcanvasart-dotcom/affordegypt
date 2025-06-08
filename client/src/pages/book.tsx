@@ -78,6 +78,11 @@ export default function BookPage() {
     }
   }, [quote, form]);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const bookingMutation = useMutation({
     mutationFn: async (bookingData: any) => {
       console.log('Submitting booking with data:', bookingData);
@@ -154,7 +159,7 @@ export default function BookPage() {
   const quoteItinerary = quote?.jsonBlob?.itinerary || fallbackQuote.itinerary;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 animate-in fade-in duration-300">
       <div className="mb-8 text-center">
         <img src="/logo.png" alt="AffordEgypt Logo" className="h-12 mx-auto mb-4" />
         <h1 className="text-3xl font-bold mb-2">Complete Your Booking</h1>
