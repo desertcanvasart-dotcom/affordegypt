@@ -452,13 +452,13 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Great Temple of Ramesses II",
         description: "Massive rock-cut temple relocated to save from flooding",
-        entryFee: "240 EGP",
+        entryFee: "875 EGP",
         hours: "6:00 AM - 5:00 PM"
       },
       {
         name: "Temple of Nefertari",
         description: "Smaller temple dedicated to Ramesses II's beloved queen",
-        entryFee: "240 EGP",
+        entryFee: "Free",
         hours: "6:00 AM - 5:00 PM"
       }
     ],
