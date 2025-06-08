@@ -126,19 +126,19 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Tell el-Amarna",
         description: "Akhenaten's capital city with unique Amarna Period art",
-        entryFee: "120 EGP",
+        entryFee: "200 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
         name: "Beni Hassan",
         description: "Middle Kingdom tombs with well-preserved wall paintings",
-        entryFee: "80 EGP",
+        entryFee: "200 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
         name: "Tuna el-Gebel",
         description: "Greco-Roman necropolis and ibis mummy catacombs",
-        entryFee: "60 EGP",
+        entryFee: "200 EGP",
         hours: "8:00 AM - 4:00 PM"
       }
     ],
