@@ -403,19 +403,19 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Philae Temple",
         description: "Beautiful temple complex on an island, dedicated to Isis",
-        entryFee: "140 EGP + boat",
+        entryFee: "550 EGP + boat fees",
         hours: "8:00 AM - 4:00 PM"
       },
       {
         name: "High Dam",
         description: "Engineering marvel that created Lake Nasser",
-        entryFee: "30 EGP",
+        entryFee: "200 EGP",
         hours: "8:00 AM - 5:00 PM"
       },
       {
         name: "Unfinished Obelisk",
         description: "Ancient granite quarry showing obelisk carving techniques",
-        entryFee: "80 EGP",
+        entryFee: "220 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
