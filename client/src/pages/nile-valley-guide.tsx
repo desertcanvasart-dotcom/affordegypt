@@ -314,7 +314,7 @@ const nileValleyCities: NileCity[] = [
       "Eat at local restaurants away from tourist areas",
       "Buy combination tickets for multiple sites"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg"
   },
   {
     id: 8,
