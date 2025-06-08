@@ -109,7 +109,7 @@ const nileValleyCities: NileCity[] = [
       "Basic accommodation available (200-400 EGP/night)",
       "Bargain at local markets"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/meidum-pyramid.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg"
   },
   {
     id: 3,
