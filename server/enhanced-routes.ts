@@ -305,7 +305,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             const booking = await storage.updateBookingPaymentStatus(bookingId, 'paid', session.payment_intent);
             
             // Send payment confirmation email if quote exists
-            if (booking.quoteId) {
+            if (booking.quoteId !== null) {
               const quote = await storage.getQuote(booking.quoteId);
               if (quote) {
                 await emailService.sendBookingStatusUpdate(booking, 'Payment Confirmed');
@@ -349,7 +349,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Booking not found" });
       }
       
-      if (!booking.quoteId) {
+      if (booking.quoteId === null) {
         return res.status(400).json({ message: "Booking has no associated quote" });
       }
       
@@ -380,7 +380,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Booking not found" });
       }
       
-      if (!booking.quoteId) {
+      if (booking.quoteId === null) {
         return res.status(400).json({ message: "Booking has no associated quote" });
       }
       
@@ -437,6 +437,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const booking = await storage.getBooking(bookingId);
       if (!booking) {
         return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      if (booking.quoteId === null) {
+        return res.status(400).json({ message: "Booking has no associated quote" });
       }
       
       const quote = await storage.getQuote(booking.quoteId);
