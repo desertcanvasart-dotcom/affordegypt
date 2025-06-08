@@ -187,7 +187,7 @@ const nileValleyCities: NileCity[] = [
       "Traditional workshops for handicrafts",
       "Cheap Nile boat rides"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut-barrage.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg"
   },
   {
     id: 5,
