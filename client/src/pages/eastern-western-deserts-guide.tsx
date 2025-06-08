@@ -392,18 +392,34 @@ export default function EasternWesternDesertsGuide() {
               Start planning your budget desert adventure with our multi-city pricing tool. Get transparent costs for transport, guides, and accommodations across all desert destinations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/#pricing">
-                <Button size="lg" className="bg-white text-primary hover:bg-teal-50 min-w-48">
-                  <MapPin className="w-5 h-5 mr-2" />
-                  Start Planning Your Trip
-                </Button>
-              </Link>
-              <Link href="/guides">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 min-w-48">
-                  <Users className="w-5 h-5 mr-2" />
-                  Find Desert Guides
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="bg-white text-teal-700 hover:bg-teal-50 min-w-48"
+                onClick={() => {
+                  window.location.href = '/';
+                  setTimeout(() => {
+                    const element = document.getElementById('quote-builder');
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                      });
+                    }
+                  }, 500);
+                }}
+              >
+                <MapPin className="w-5 h-5 mr-2" />
+                Start Planning Your Trip
+              </Button>
+              <Button 
+                size="lg" 
+                className="bg-gray-300 text-gray-500 cursor-not-allowed min-w-48" 
+                disabled
+              >
+                <Users className="w-5 h-5 mr-2" />
+                Find Desert Guides
+              </Button>
             </div>
           </div>
         </section>
