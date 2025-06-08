@@ -573,9 +573,9 @@ export default function NileValleyGuide() {
               ))}
             </div>
             
-            <div className="relative bg-blue-50 rounded-lg p-8 min-h-[500px]">
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg border">
-                <p className="text-sm font-medium text-gray-700">📍 Click cities to explore</p>
+            <div className="relative bg-blue-50 rounded-lg p-4 sm:p-8 min-h-[400px] sm:min-h-[500px]">
+              <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-2 rounded-lg border">
+                <p className="text-xs sm:text-sm font-medium text-gray-700">📍 Click cities to explore</p>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 {/* Simplified Nile River visualization */}
@@ -596,15 +596,15 @@ export default function NileValleyGuide() {
                       onClick={() => setSelectedCity(city)}
                     >
                       <div className={`
-                        flex items-center gap-2 p-3 rounded-lg border-2 transition-all duration-300 shadow-lg
+                        flex items-center gap-1 sm:gap-2 p-2 sm:p-3 rounded-lg border-2 transition-all duration-300 shadow-lg
                         ${selectedCity?.id === city.id 
                           ? 'bg-primary text-white border-primary scale-110 shadow-xl' 
                           : 'bg-white border-gray-300 hover:border-primary hover:scale-105 hover:shadow-xl hover:bg-primary/5'
                         }
                       `}>
-                        <MapPin className={`w-4 h-4 ${selectedCity?.id === city.id ? 'animate-pulse' : ''}`} />
-                        <span className="font-medium text-sm">{city.name}</span>
-                        <Badge variant={selectedCity?.id === city.id ? "outline" : "secondary"} className="text-xs">
+                        <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${selectedCity?.id === city.id ? 'animate-pulse' : ''}`} />
+                        <span className="font-medium text-xs sm:text-sm">{city.name}</span>
+                        <Badge variant={selectedCity?.id === city.id ? "outline" : "secondary"} className="text-xs hidden sm:block">
                           {city.region}
                         </Badge>
                       </div>

@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-foreground text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-6">
               <Link href="/">
@@ -84,13 +84,13 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
             <p className="text-gray-300 mb-4">Get travel tips and special offers</p>
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
               <Input 
                 type="email" 
                 placeholder="Your email" 
-                className="flex-1 bg-gray-700 text-white border-gray-600 rounded-r-none focus:border-primary" 
+                className="flex-1 bg-gray-700 text-white border-gray-600 sm:rounded-r-none focus:border-primary" 
               />
-              <Button className="btn-primary rounded-l-none">
+              <Button className="btn-primary sm:rounded-l-none">
                 Subscribe
               </Button>
             </div>
@@ -98,10 +98,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Afford Egypt. All rights reserved. | Powered and Polished by <a href="https://traveldigitalera.com/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 transition-all duration-300 hover:underline decoration-primary underline-offset-4 relative inline-block overflow-hidden">
+          <p className="text-sm sm:text-base">&copy; 2025 Afford Egypt. All rights reserved. <span className="block sm:inline">| Powered and Polished by <a href="https://traveldigitalera.com/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 transition-all duration-300 hover:underline decoration-primary underline-offset-4 relative inline-block overflow-hidden">
             <span className="relative z-10">Travel Digital Era</span>
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full h-full animate-light-sweep"></span>
-          </a></p>
+          </a></span></p>
         </div>
       </div>
     </footer>
