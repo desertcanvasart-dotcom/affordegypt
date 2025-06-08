@@ -3,11 +3,16 @@ import { createServer, type Server } from "http";
 import { storage } from "./database-storage";
 import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 import { emailService } from "./email-service";
+import { setupAuthRoutes } from "./auth-routes";
+import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication routes
+  setupAuthRoutes(app);
+
   // Get cities
   app.get("/api/cities", async (req, res) => {
     try {
