@@ -14,8 +14,13 @@ export interface IStorage {
   // Users
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUser(id: number, updates: Partial<InsertUser>): Promise<User>;
   updateUserStripeInfo(id: number, customerId: string, subscriptionId: string): Promise<User>;
+  getAllUsers(): Promise<User[]>;
+  deactivateUser(id: number): Promise<User>;
+  activateUser(id: number): Promise<User>;
 
   // Cities
   getCities(): Promise<City[]>;
@@ -235,10 +240,46 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async updateUser(id: number, updates: Partial<InsertUser>): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(users.id, id))
+      .returning();
+    return user;
+  }
+
   async updateUserStripeInfo(id: number, customerId: string, subscriptionId: string): Promise<User> {
     const [user] = await db
       .update(users)
       .set({ stripeCustomerId: customerId, stripeSubscriptionId: subscriptionId })
+      .where(eq(users.id, id))
+      .returning();
+    return user;
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return await db.select().from(users).orderBy(desc(users.createdAt));
+  }
+
+  async deactivateUser(id: number): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set({ isActive: false, updatedAt: new Date() })
+      .where(eq(users.id, id))
+      .returning();
+    return user;
+  }
+
+  async activateUser(id: number): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set({ isActive: true, updatedAt: new Date() })
       .where(eq(users.id, id))
       .returning();
     return user;

@@ -17,9 +17,16 @@ export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
-  email: text("email"),
+  email: text("email").notNull().unique(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  role: text("role").notNull().default("user"), // 'user', 'admin', 'staff'
+  isActive: boolean("is_active").default(true),
+  emailVerified: boolean("email_verified").default(false),
   stripeCustomerId: text("stripe_customer_id"),
   stripeSubscriptionId: text("stripe_subscription_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const cities = pgTable("cities", {
