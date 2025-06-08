@@ -367,13 +367,13 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Temple of Kom Ombo",
         description: "Unique double temple dedicated to Sobek and Haroeris",
-        entryFee: "100 EGP",
+        entryFee: "450 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
         name: "Crocodile Museum",
         description: "Mummified crocodiles and artifacts related to Sobek worship",
-        entryFee: "80 EGP",
+        entryFee: "Free",
         hours: "8:00 AM - 4:00 PM"
       }
     ],
