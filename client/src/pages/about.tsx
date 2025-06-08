@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, Shield, Users, MapPin, Clock, Star } from "lucide-react";
 
 export default function About() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Helmet>
