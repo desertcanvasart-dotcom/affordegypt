@@ -165,6 +165,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const bookingData = insertBookingSchema.parse(req.body);
       const booking = await storage.createBooking(bookingData);
+      
+      // Send booking confirmation email
+      if (booking.quoteId) {
+        try {
+          const quote = await storage.getQuote(booking.quoteId);
+          if (quote) {
+            const emailSent = await emailService.sendBookingConfirmation(booking, quote);
+            if (emailSent) {
+              await storage.markEmailSent(booking.id, 'confirmation');
+            }
+          }
+        } catch (emailError) {
+          console.error('Failed to send booking confirmation email:', emailError);
+          // Don't fail the booking creation if email fails
+        }
+      }
+      
       res.json(booking);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
@@ -254,7 +271,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Stripe webhook → mark quote paid
-  app.post("/webhooks/payment", (req, res) => {
+  app.post("/webhooks/payment", async (req, res) => {
     if (!stripe) {
       return res.status(500).json({ message: "Stripe not configured" });
     }
@@ -280,6 +297,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       case 'checkout.session.completed':
         const session = event.data.object;
         console.log('Payment completed:', session.id);
+        
+        // Update booking payment status and send confirmation email
+        if (session.metadata?.bookingId) {
+          const bookingId = parseInt(session.metadata.bookingId);
+          try {
+            const booking = await storage.updateBookingPaymentStatus(bookingId, 'paid', session.payment_intent);
+            
+            // Send payment confirmation email if quote exists
+            if (booking.quoteId) {
+              const quote = await storage.getQuote(booking.quoteId);
+              if (quote) {
+                await emailService.sendBookingStatusUpdate(booking, 'Payment Confirmed');
+              }
+            }
+          } catch (error) {
+            console.error('Error updating booking after payment:', error);
+          }
+        }
         break;
       
       default:
@@ -302,43 +337,93 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Enhanced Booking System Routes
-
-  // Create booking with payment intent
-  app.post("/api/bookings", async (req, res) => {
+  // Email notification endpoints
+  
+  // Send booking confirmation email manually (admin)
+  app.post("/api/bookings/:id/send-confirmation", async (req, res) => {
     try {
-      const bookingData = insertBookingSchema.parse(req.body);
+      const id = parseInt(req.params.id);
+      const booking = await storage.getBooking(id);
       
-      // Create booking
-      const booking = await storage.createBooking(bookingData);
-      
-      // Create Stripe payment intent if Stripe is configured
-      let paymentIntent = null;
-      if (stripe && bookingData.totalAmount) {
-        try {
-          paymentIntent = await stripe.paymentIntents.create({
-            amount: Math.round(parseFloat(bookingData.totalAmount) * 100), // Convert to cents
-            currency: "usd",
-            metadata: {
-              bookingId: booking.id.toString(),
-              bookingReference: booking.bookingReference
-            }
-          });
-          
-          // Update booking with payment intent ID
-          await storage.updateBookingPaymentStatus(booking.id, 'pending', paymentIntent.id);
-        } catch (stripeError) {
-          console.error("Stripe payment intent creation failed:", stripeError);
-        }
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
       }
       
-      res.json({
-        booking,
-        clientSecret: paymentIntent?.client_secret,
-        paymentIntentId: paymentIntent?.id
-      });
+      if (!booking.quoteId) {
+        return res.status(400).json({ message: "Booking has no associated quote" });
+      }
+      
+      const quote = await storage.getQuote(booking.quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      const emailSent = await emailService.sendBookingConfirmation(booking, quote);
+      if (emailSent) {
+        await storage.markEmailSent(booking.id, 'confirmation');
+        res.json({ message: "Confirmation email sent successfully" });
+      } else {
+        res.status(500).json({ message: "Failed to send confirmation email" });
+      }
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
+  // Send booking reminder email (admin)
+  app.post("/api/bookings/:id/send-reminder", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const booking = await storage.getBooking(id);
+      
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      if (!booking.quoteId) {
+        return res.status(400).json({ message: "Booking has no associated quote" });
+      }
+      
+      const quote = await storage.getQuote(booking.quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      const emailSent = await emailService.sendBookingReminder(booking, quote);
+      if (emailSent) {
+        await storage.markEmailSent(booking.id, 'reminder');
+        res.json({ message: "Reminder email sent successfully" });
+      } else {
+        res.status(500).json({ message: "Failed to send reminder email" });
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
+  // Send booking status update email (admin)
+  app.post("/api/bookings/:id/send-status-update", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+      
+      if (!status) {
+        return res.status(400).json({ message: "Status is required" });
+      }
+      
+      const booking = await storage.getBooking(id);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      const emailSent = await emailService.sendBookingStatusUpdate(booking, status);
+      if (emailSent) {
+        res.json({ message: "Status update email sent successfully" });
+      } else {
+        res.status(500).json({ message: "Failed to send status update email" });
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
     }
   });
 
