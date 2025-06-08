@@ -151,7 +151,7 @@ const nileValleyCities: NileCity[] = [
       "Take shared taxis between sites",
       "Local restaurants very affordable (30-70 EGP)"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/tell-el-amarna.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
   },
   {
     id: 4,
