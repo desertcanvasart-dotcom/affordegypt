@@ -21,6 +21,7 @@ import SinaiPeninsulaGuide from "@/pages/sinai-peninsula-guide";
 import EasternWesternDesertsGuide from "@/pages/eastern-western-deserts-guide";
 import About from "@/pages/about";
 import BookingAgreement from "@/pages/booking-agreement";
+import TermsOfService from "@/pages/terms-of-service";
 import BookingFlow from "@/pages/booking-flow";
 import NotFound from "@/pages/not-found";
 
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/sinai-peninsula-guide" component={SinaiPeninsulaGuide} />
       <Route path="/eastern-western-deserts-guide" component={EasternWesternDesertsGuide} />
       <Route path="/booking-agreement" component={BookingAgreement} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/booking/:quoteId" component={BookingFlow} />
       <Route component={NotFound} />
     </Switch>
