@@ -229,7 +229,7 @@ const nileValleyCities: NileCity[] = [
       "Visit textile workshops for authentic souvenirs",
       "Extremely affordable local food"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/red-monastery.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/abydos-temple.jpg"
   },
   {
     id: 6,
