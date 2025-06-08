@@ -477,7 +477,7 @@ const nileValleyCities: NileCity[] = [
 ];
 
 export default function NileValleyGuide() {
-  const [selectedCity, setSelectedCity] = useState<NileCity | null>(null);
+  const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Cairo
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
 
   const regions = ["All", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
@@ -574,6 +574,9 @@ export default function NileValleyGuide() {
             </div>
             
             <div className="relative bg-blue-50 rounded-lg p-8 min-h-[500px]">
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg border">
+                <p className="text-sm font-medium text-gray-700">📍 Click cities to explore</p>
+              </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 {/* Simplified Nile River visualization */}
                 <div className="w-2 bg-blue-400 h-full absolute left-1/2 transform -translate-x-1/2 rounded-full opacity-30"></div>
@@ -583,7 +586,7 @@ export default function NileValleyGuide() {
                   {filteredCities.map((city, index) => (
                     <div
                       key={city.id}
-                      className={`absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 ${
+                      className={`absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
                         selectedCity?.id === city.id ? 'z-10' : 'z-0'
                       }`}
                       style={{
@@ -593,18 +596,21 @@ export default function NileValleyGuide() {
                       onClick={() => setSelectedCity(city)}
                     >
                       <div className={`
-                        flex items-center gap-2 p-2 rounded-lg border-2 transition-all
+                        flex items-center gap-2 p-3 rounded-lg border-2 transition-all duration-300 shadow-lg
                         ${selectedCity?.id === city.id 
-                          ? 'bg-primary text-white border-primary scale-110' 
-                          : 'bg-white border-gray-300 hover:border-primary hover:scale-105'
+                          ? 'bg-primary text-white border-primary scale-110 shadow-xl' 
+                          : 'bg-white border-gray-300 hover:border-primary hover:scale-105 hover:shadow-xl hover:bg-primary/5'
                         }
                       `}>
-                        <MapPin className="w-4 h-4" />
+                        <MapPin className={`w-4 h-4 ${selectedCity?.id === city.id ? 'animate-pulse' : ''}`} />
                         <span className="font-medium text-sm">{city.name}</span>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant={selectedCity?.id === city.id ? "outline" : "secondary"} className="text-xs">
                           {city.region}
                         </Badge>
                       </div>
+                      {selectedCity?.id === city.id && (
+                        <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full animate-ping"></div>
+                      )}
                     </div>
                   ))}
                 </div>
