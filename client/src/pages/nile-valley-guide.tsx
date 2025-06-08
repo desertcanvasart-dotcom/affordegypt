@@ -47,19 +47,19 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Pyramids of Giza",
         description: "The last surviving Wonder of the Ancient World, including the Great Pyramid and Sphinx",
-        entryFee: "540 EGP",
+        entryFee: "700 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
         name: "Egyptian Museum",
         description: "World's finest collection of ancient Egyptian artifacts including Tutankhamun's treasures",
-        entryFee: "450 EGP",
+        entryFee: "550 EGP",
         hours: "9:00 AM - 5:00 PM"
       },
       {
         name: "Citadel of Saladin",
         description: "Medieval Islamic fortification with stunning views of Cairo",
-        entryFee: "180 EGP",
+        entryFee: "550 EGP",
         hours: "8:00 AM - 5:00 PM"
       }
     ],
