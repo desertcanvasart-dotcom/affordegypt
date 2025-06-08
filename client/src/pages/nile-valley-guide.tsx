@@ -246,7 +246,7 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Dendera Temple Complex",
         description: "Best-preserved temple complex dedicated to goddess Hathor",
-        entryFee: "140 EGP",
+        entryFee: "300 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
