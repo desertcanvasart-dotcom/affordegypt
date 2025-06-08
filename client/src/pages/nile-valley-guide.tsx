@@ -350,7 +350,7 @@ const nileValleyCities: NileCity[] = [
       "Horse cart ride to temple is authentic experience",
       "Local food very affordable"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/temple-of-horus-edfu.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/edfu.jpg"
   },
   {
     id: 9,
