@@ -90,13 +90,13 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Meidum Pyramid",
         description: "Unique collapsed pyramid showing ancient construction techniques",
-        entryFee: "80 EGP",
+        entryFee: "180 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
         name: "Beni Suef Museum",
         description: "Local artifacts and Pharaonic remains from the region",
-        entryFee: "30 EGP",
+        entryFee: "120 EGP",
         hours: "9:00 AM - 4:00 PM"
       }
     ],
