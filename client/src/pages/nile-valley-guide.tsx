@@ -282,19 +282,19 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Valley of the Kings",
         description: "Royal burial ground with elaborately decorated tombs",
-        entryFee: "240 EGP + tomb fees",
+        entryFee: "750 EGP for 3 tombs",
         hours: "6:00 AM - 4:00 PM"
       },
       {
         name: "Karnak Temple",
         description: "Massive temple complex dedicated to Amun-Ra",
-        entryFee: "220 EGP",
+        entryFee: "600 EGP",
         hours: "6:00 AM - 5:30 PM"
       },
       {
         name: "Luxor Temple",
         description: "Beautiful temple in the heart of modern Luxor",
-        entryFee: "140 EGP",
+        entryFee: "500 EGP",
         hours: "6:00 AM - 9:00 PM"
       },
       {
