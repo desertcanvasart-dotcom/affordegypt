@@ -39,18 +39,17 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">About Us</a></li>
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Reviews</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Terms of Service</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Transportation</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Tour Guides</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Add-ons</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Group Tours</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Cookie Policy</a></li>
             </ul>
           </div>
 
