@@ -35,7 +35,38 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/eastern-western-deserts-guide" className="text-gray-300 hover:text-primary transition-colors">
+                  Eastern & Western Deserts Travel Guide
+                </Link>
+              </li>
+              <li>
+                <Link href="/sinai-peninsula-guide" className="text-gray-300 hover:text-primary transition-colors">
+                  Sinai Peninsula Travel Guide
+                </Link>
+              </li>
+              <li>
+                <Link href="/nile-valley-guide" className="text-gray-300 hover:text-primary transition-colors">
+                  Nile Valley Travel Guide
+                </Link>
+              </li>
+              <li>
+                <Link href="/budget-travel-in-egypt" className="text-gray-300 hover:text-primary transition-colors">
+                  Budget Travel in Egypt
+                </Link>
+              </li>
+              <li>
+                <Link href="/egyptian-street-food" className="text-gray-300 hover:text-primary transition-colors">
+                  Egyptian Street Food
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-gray-300 hover:text-primary transition-colors">
@@ -43,12 +74,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li><span className="text-gray-500 cursor-default">Contact</span></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
               <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">Terms of Service</Link></li>
               <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">Cookie Policy</Link></li>
