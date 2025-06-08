@@ -14,7 +14,7 @@ export default function Hero() {
     <section 
       className="min-h-[90vh] flex items-center justify-center relative"
       style={{
-        backgroundImage: `linear-gradient(rgba(25, 169, 116, 0.3), rgba(31, 41, 55, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/the-temple-of-queen-hatshepsut.jpg')`,
+        backgroundImage: `linear-gradient(rgba(25, 169, 116, 0.3), rgba(31, 41, 55, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
