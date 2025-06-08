@@ -4,6 +4,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Shield, Users, MapPin, Clock, Star } from "lucide-react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function About() {
   // Scroll to top when component mounts
@@ -20,6 +22,7 @@ export default function About() {
         <meta property="og:description" content="Discover how Afford Egypt revolutionizes budget travel in Egypt with transparent pricing, safety standards, and authentic local experiences." />
       </Helmet>
 
+      <Navbar />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section className="relative bg-teal-600 text-white py-24">
@@ -183,6 +186,7 @@ export default function About() {
           </div>
         </section>
       </div>
+      <Footer />
     </>
   );
 }
