@@ -102,9 +102,6 @@ export default function Navbar() {
               <Mail className="w-4 h-4" />
               Contact
             </button>
-            <a href="/admin" className="text-muted-foreground hover:text-primary transition-colors text-xs">
-              Admin
-            </a>
           </nav>
 
           {/* CTA Button */}
