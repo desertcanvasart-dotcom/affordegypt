@@ -39,19 +39,37 @@ export default function Navbar() {
   const scrollToAbout = () => navigateToSection('about');
   const scrollToContact = () => navigateToSection('contact');
 
+  const navigateToHome = () => {
+    if (location === '/') {
+      // If already on homepage, scroll to top smoothly
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    } else {
+      // Navigate to homepage and then scroll to top
+      setLocation('/');
+      setTimeout(() => {
+        window.scrollTo({ 
+          top: 0, 
+          behavior: 'smooth' 
+        });
+      }, 100);
+    }
+  };
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/">
-              <img 
-                src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
-                alt="Afford Egypt Logo" 
-                className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity"
-              />
-            </Link>
+            <img 
+              src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
+              alt="Afford Egypt Logo" 
+              className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity"
+              onClick={navigateToHome}
+            />
           </div>
 
           {/* Desktop Navigation */}
