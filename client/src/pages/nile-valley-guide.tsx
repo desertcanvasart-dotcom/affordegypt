@@ -331,7 +331,7 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Temple of Horus",
         description: "Best-preserved ancient Egyptian temple",
-        entryFee: "140 EGP",
+        entryFee: "550 EGP",
         hours: "8:00 AM - 4:00 PM"
       },
       {
