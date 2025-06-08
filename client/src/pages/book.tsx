@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { CreditCard, User, Mail, Phone, Calendar, Users, MapPin } from "lucide-react";
 
 import { useForm } from "react-hook-form";
@@ -22,6 +23,9 @@ const bookingSchema = z.object({
   customerPhone: z.string().min(10, "Please enter a valid phone number"),
   travelDate: z.string().min(1, "Please select a travel date"),
   specialRequests: z.string().optional(),
+  acceptTerms: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions to proceed"
+  }),
 });
 
 type BookingFormData = z.infer<typeof bookingSchema>;
@@ -63,6 +67,7 @@ export default function BookPage() {
       customerPhone: "",
       travelDate: fallbackQuote.travelDate || "",
       specialRequests: "",
+      acceptTerms: false,
     },
   });
 
@@ -250,11 +255,47 @@ export default function BookPage() {
                     )}
                   />
 
+                  <FormField
+                    control={form.control}
+                    name="acceptTerms"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel className="text-sm">
+                            I have reviewed and accept the{" "}
+                            <a 
+                              href="/terms-of-service" 
+                              target="_blank" 
+                              className="text-primary hover:underline"
+                            >
+                              Terms of Service
+                            </a>{" "}
+                            and{" "}
+                            <a 
+                              href="/booking-agreement" 
+                              target="_blank" 
+                              className="text-primary hover:underline"
+                            >
+                              Booking Agreement
+                            </a>
+                          </FormLabel>
+                          <FormMessage />
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+
                   <Button 
                     type="submit" 
                     size="lg" 
                     className="w-full"
-                    disabled={isProcessing || bookingMutation.isPending}
+                    disabled={isProcessing || bookingMutation.isPending || !form.watch('acceptTerms')}
                   >
                     {isProcessing ? (
                       "Processing..."
