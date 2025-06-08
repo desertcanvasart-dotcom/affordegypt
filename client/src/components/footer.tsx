@@ -48,6 +48,7 @@ export default function Footer() {
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Terms of Service</a></li>
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Cookie Policy</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Booking Agreement</a></li>
             </ul>
           </div>
 
