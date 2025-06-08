@@ -705,7 +705,7 @@ export default function NileValleyGuide() {
                     <img 
                       src={city.image} 
                       alt={city.name}
-                      className="w-full h-48 object-cover rounded-lg"
+                      className="w-full h-64 object-cover rounded-lg"
                     />
                   </div>
                   
