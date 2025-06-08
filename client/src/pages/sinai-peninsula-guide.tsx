@@ -354,17 +354,7 @@ export default function SinaiPeninsulaGuide() {
                 size="lg" 
                 className="bg-white text-teal-700 hover:bg-teal-50 min-w-48"
                 onClick={() => {
-                  window.location.href = '/';
-                  setTimeout(() => {
-                    const element = document.getElementById('quote-builder');
-                    if (element) {
-                      element.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start',
-                        inline: 'nearest'
-                      });
-                    }
-                  }, 500);
+                  window.location.href = '/#quote-builder';
                 }}
               >
                 <MapPin className="w-5 h-5 mr-2" />
