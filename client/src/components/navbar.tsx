@@ -12,18 +12,26 @@ export default function Navbar() {
     if (location === '/') {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
       }
     } else {
       // If we're on another page, navigate smoothly to homepage
       setLocation('/');
-      // Use a longer delay to ensure the page transition is complete
+      // Use a longer delay to ensure the page transition and DOM are ready
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
         }
-      }, 300);
+      }, 500);
     }
   };
 
