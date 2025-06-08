@@ -9,6 +9,7 @@ import Home from "@/pages/home";
 import Checkout from "@/pages/checkout";
 import BookPage from "@/pages/book";
 import AdminSidebar from "@/pages/admin-sidebar";
+import AdminBookings from "@/pages/admin-bookings";
 import Routes from "@/pages/routes";
 import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/booking-confirmation/:reference" component={BookingConfirmation} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin" component={AdminSidebar} />
+      <Route path="/admin/bookings" component={AdminBookings} />
       <Route path="/routes" component={Routes} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/travel-tips" component={TravelTips} />
