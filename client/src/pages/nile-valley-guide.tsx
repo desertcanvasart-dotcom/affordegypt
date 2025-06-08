@@ -386,7 +386,7 @@ const nileValleyCities: NileCity[] = [
       "Beautiful sunset views from temple",
       "Small town with basic amenities"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/kom-ombo-temple.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/ko-mombo-temple.jpg"
   },
   {
     id: 10,
