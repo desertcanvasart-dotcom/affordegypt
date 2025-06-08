@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, Users, MapPin, CreditCard, Check, ArrowLeft, AlertCircle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
@@ -37,6 +38,7 @@ export default function BookingFlow() {
     startDate: "",
     totalTravelers: 1
   });
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -327,13 +329,48 @@ export default function BookingFlow() {
                     </div>
                   </div>
 
+                  <Separator />
+
+                  {/* Terms and Conditions Agreement */}
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <Checkbox 
+                        id="terms"
+                        checked={termsAccepted}
+                        onCheckedChange={(checked) => setTermsAccepted(!!checked)}
+                        className="mt-1"
+                      />
+                      <Label htmlFor="terms" className="text-sm leading-relaxed cursor-pointer">
+                        I have reviewed and agree to the{" "}
+                        <a 
+                          href="/terms-of-service" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline font-medium"
+                        >
+                          Terms of Service
+                        </a>{" "}
+                        and{" "}
+                        <a 
+                          href="/booking-agreement" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline font-medium"
+                        >
+                          Booking Agreement
+                        </a>{" "}
+                        before confirming my booking.
+                      </Label>
+                    </div>
+                  </div>
+
                   <div className="flex justify-between">
                     <Button variant="outline" onClick={() => setCurrentStep(2)}>
                       Back
                     </Button>
                     <Button 
                       onClick={handleSubmitBooking}
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !termsAccepted}
                       className="flex items-center gap-2"
                     >
                       {isSubmitting ? (
