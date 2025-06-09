@@ -147,6 +147,20 @@ export const bookings = pgTable("bookings", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const reviews = pgTable("reviews", {
+  id: serial("id").primaryKey(),
+  customerName: text("customer_name").notNull(),
+  customerLocation: text("customer_location"), // e.g., "London, UK"
+  rating: integer("rating").notNull(), // 1-5 stars
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  tripDate: timestamp("trip_date"),
+  isVerified: boolean("is_verified").default(false),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -182,6 +196,17 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   endDate: z.date().nullable().optional()
 });
 
+export const insertReviewSchema = createInsertSchema(reviews).omit({ 
+  id: true, 
+  createdAt: true, 
+  updatedAt: true 
+}).extend({
+  rating: z.number().min(1).max(5),
+  tripDate: z.date().nullable().optional(),
+  isVerified: z.boolean().optional(),
+  isActive: z.boolean().optional()
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -215,3 +240,6 @@ export type InsertQuote = z.infer<typeof insertQuoteSchema>;
 
 export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
+
+export type Review = typeof reviews.$inferSelect;
+export type InsertReview = z.infer<typeof insertReviewSchema>;

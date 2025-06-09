@@ -1,11 +1,12 @@
 import { 
-  users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, attractions, quotes, bookings,
+  users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, attractions, quotes, bookings, reviews,
   type User, type InsertUser, type City, type InsertCity,
   type VehicleType, type InsertVehicleType, type LicenseClass, type InsertLicenseClass,
   type Route, type InsertRoute, type TimeBlock, type InsertTimeBlock,
   type GuideRate, type InsertGuideRate, type AddOn, type InsertAddOn,
   type Attraction, type InsertAttraction,
-  type Quote, type InsertQuote, type Booking, type InsertBooking
+  type Quote, type InsertQuote, type Booking, type InsertBooking,
+  type Review, type InsertReview
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
