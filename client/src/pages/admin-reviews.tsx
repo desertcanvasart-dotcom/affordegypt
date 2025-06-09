@@ -39,7 +39,6 @@ export default function AdminReviews() {
 
   const { data: reviews, isLoading } = useQuery<Review[]>({
     queryKey: ["/api/reviews", "admin"],
-    queryFn: () => apiRequest("GET", "/api/reviews/admin"),
   });
 
   const form = useForm<ReviewFormData>({
@@ -143,8 +142,8 @@ export default function AdminReviews() {
       title: review.title,
       content: review.content,
       tripDate: review.tripDate ? format(new Date(review.tripDate), "yyyy-MM-dd") : "",
-      isVerified: review.isVerified,
-      isActive: review.isActive,
+      isVerified: review.isVerified || false,
+      isActive: review.isActive || true,
     });
     setIsDialogOpen(true);
   };
