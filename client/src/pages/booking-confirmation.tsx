@@ -87,7 +87,8 @@ export default function BookingConfirmation() {
     );
   }
 
-  const { booking, quote } = bookingData;
+  const booking = bookingData?.booking;
+  const quote = bookingData?.quote;
 
   const downloadBookingDetails = () => {
     if (!booking || !quote) return;
@@ -313,14 +314,14 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             </Card>
 
             {/* Trip Itinerary */}
-            {quote && quote.jsonBlob && quote.jsonBlob.cities && (
+            {quote && quote.jsonBlob && (quote.jsonBlob.cities || quote.jsonBlob.itinerary) && (
               <Card>
                 <CardHeader>
                   <CardTitle>Trip Itinerary</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
-                    {quote.jsonBlob.cities.map((city: any, index: number) => (
+                    {(quote.jsonBlob.cities || []).map((city: any, index: number) => (
                       <div key={index} className="border-l-4 border-teal-500 pl-4">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="font-semibold text-lg">{city.cityName}</h3>
@@ -390,6 +391,32 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                         )}
                       </div>
                     ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Simple booking details when quote data is not available */}
+            {!quote && booking && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Booking Details</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Total Amount</label>
+                        <p className="text-2xl font-bold text-primary">${booking.totalAmount}</p>
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Status</label>
+                        <p className="text-lg capitalize">{booking.bookingStatus?.replace('_', ' ')}</p>
+                      </div>
+                    </div>
+                    <div className="text-center text-muted-foreground">
+                      <p>Detailed itinerary information will be provided separately.</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

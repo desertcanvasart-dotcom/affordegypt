@@ -339,7 +339,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create booking
   app.post("/api/bookings", async (req, res) => {
     try {
-      const bookingData = insertBookingSchema.parse(req.body);
+      // Store original request data before schema parsing
+      const originalData = req.body;
+      let bookingData = insertBookingSchema.parse(req.body);
+      
+      // Create quote first if itinerary data is provided and no quoteId exists
+      if (!bookingData.quoteId && originalData.itinerary) {
+        const { itinerary, addons = [], passengers = 1 } = originalData;
+        
+        // Calculate pricing and create quote
+        const pricing = await storage.calculateQuotePrice(itinerary, addons, passengers);
+        
+        const quote = await storage.createQuote({
+          jsonBlob: { 
+            itinerary, 
+            addons, 
+            passengers,
+            cities: originalData.cities || [],
+            breakdown: pricing.breakdown 
+          },
+          total: pricing.grandTotal.toString(),
+          commissionPct: pricing.commissionPct.toString()
+        });
+        
+        // Update booking data with quote ID and total
+        bookingData = {
+          ...bookingData,
+          quoteId: quote.id,
+          totalAmount: pricing.grandTotal.toString()
+        };
+      }
+      
       const booking = await storage.createBooking(bookingData);
       
       // Send booking confirmation email
