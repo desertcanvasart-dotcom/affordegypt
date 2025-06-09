@@ -385,7 +385,91 @@ export async function sendNewsletterSubscriptionEmail(email: string): Promise<bo
   const mailService = new MailService();
   mailService.setApiKey(process.env.SENDGRID_API_KEY);
 
-  const emailContent = `
+  // Send welcome email to subscriber
+  const welcomeEmailContent = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: Georgia, serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+          .container { max-width: 600px; margin: 0 auto; background: #fff; }
+          .header { background: linear-gradient(135deg, #0891b2 0%, #065f7c 100%); color: white; padding: 40px 20px; text-align: center; }
+          .logo { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+          .tagline { font-size: 16px; opacity: 0.9; font-style: italic; }
+          .content { padding: 40px 30px; }
+          .welcome-title { color: #0891b2; font-size: 24px; margin-bottom: 20px; text-align: center; }
+          .message { font-size: 16px; margin-bottom: 25px; }
+          .promise-box { background: #f8f9fa; border-left: 4px solid #0891b2; padding: 20px; margin: 25px 0; }
+          .promise-title { color: #0891b2; font-weight: bold; margin-bottom: 15px; }
+          .benefits { list-style: none; padding: 0; }
+          .benefits li { padding: 8px 0; position: relative; padding-left: 25px; }
+          .benefits li:before { content: "🏺"; position: absolute; left: 0; }
+          .footer { background: #2c3e50; color: #bdc3c7; text-align: center; padding: 30px 20px; }
+          .footer-text { margin: 5px 0; }
+          .unsubscribe { font-size: 12px; color: #95a5a6; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <div class="logo">Afford Egypt</div>
+            <div class="tagline">Your Gateway to Ancient Wonders</div>
+          </div>
+          
+          <div class="content">
+            <h1 class="welcome-title">Welcome to Our Travel Community!</h1>
+            
+            <div class="message">
+              Dear Egypt Travel Enthusiast,
+            </div>
+            
+            <div class="message">
+              Thank you for joining the Afford Egypt newsletter! We're thrilled to have you as part of our community of passionate travelers who share a love for Egypt's incredible history, culture, and hidden treasures.
+            </div>
+            
+            <div class="promise-box">
+              <div class="promise-title">Our Promise to You</div>
+              <p>We believe your inbox should only receive content that truly matters. That's why we promise to send you:</p>
+              <ul class="benefits">
+                <li>Insider tips from local Egyptian guides and experts</li>
+                <li>Exclusive travel deals and early-bird offers</li>
+                <li>Hidden gems and off-the-beaten-path destinations</li>
+                <li>Cultural insights and historical stories</li>
+                <li>Practical travel advice for budget-conscious explorers</li>
+                <li>Seasonal travel recommendations and timing tips</li>
+              </ul>
+            </div>
+            
+            <div class="message">
+              <strong>No spam, no fluff, no irrelevant content.</strong> Only carefully curated information that will enhance your Egypt travel experience and help you discover the country like never before.
+            </div>
+            
+            <div class="message">
+              Whether you're planning your first visit to the Pyramids or you're a seasoned Egypt traveler looking for new adventures, we're here to help you explore this magnificent country affordably and authentically.
+            </div>
+            
+            <div class="message">
+              Safe travels and welcome aboard!<br>
+              <strong>The Afford Egypt Team</strong>
+            </div>
+          </div>
+          
+          <div class="footer">
+            <div class="footer-text">Afford Egypt - Making Egypt Accessible to Everyone</div>
+            <div class="footer-text">📧 info@affordegypt.com | 📱 +20 110 076 5283</div>
+            <div class="unsubscribe">
+              You're receiving this because you subscribed to our newsletter. 
+              You can unsubscribe at any time by replying to this email.
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  // Send notification email to admin
+  const adminNotificationContent = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -421,7 +505,7 @@ export async function sendNewsletterSubscriptionEmail(email: string): Promise<bo
             
             <div class="field">
               <div class="label">Action Required:</div>
-              <div>Add this email to your newsletter mailing list to receive travel tips and special offers.</div>
+              <div>Add this email to your newsletter mailing list. A welcome email has been automatically sent to the subscriber.</div>
             </div>
           </div>
           
@@ -434,6 +518,44 @@ export async function sendNewsletterSubscriptionEmail(email: string): Promise<bo
   `;
 
   try {
+    // Send welcome email to subscriber
+    await mailService.send({
+      to: email,
+      from: {
+        email: 'info@affordegypt.com',
+        name: 'Afford Egypt'
+      },
+      subject: 'Welcome to Afford Egypt - Your Egypt Travel Journey Begins!',
+      html: welcomeEmailContent,
+      text: `
+Welcome to Afford Egypt!
+
+Dear Egypt Travel Enthusiast,
+
+Thank you for joining our newsletter! We're excited to have you as part of our community.
+
+Our Promise: We'll only send you content that truly matters for Egypt travel lovers:
+• Insider tips from local guides
+• Exclusive travel deals
+• Hidden gems and destinations
+• Cultural insights and stories
+• Practical budget travel advice
+• Seasonal recommendations
+
+No spam, no fluff - just valuable content to enhance your Egypt travel experience.
+
+Whether you're planning your first visit or you're a seasoned traveler, we're here to help you explore Egypt affordably and authentically.
+
+Safe travels and welcome aboard!
+The Afford Egypt Team
+
+---
+Afford Egypt - Making Egypt Accessible to Everyone
+📧 info@affordegypt.com | 📱 +20 110 076 5283
+      `.trim()
+    });
+
+    // Send notification to admin
     await mailService.send({
       to: 'info@affordegypt.com',
       from: {
@@ -441,16 +563,17 @@ export async function sendNewsletterSubscriptionEmail(email: string): Promise<bo
         name: 'Afford Egypt Newsletter'
       },
       subject: `New Newsletter Subscription - ${email}`,
-      html: emailContent,
+      html: adminNotificationContent,
       text: `
 New Newsletter Subscription
 
 Subscriber Email: ${email}
 Subscription Date: ${new Date().toLocaleString()}
 
-Action Required: Add this email to your newsletter mailing list.
+Action Required: Add this email to your newsletter mailing list. A welcome email has been automatically sent to the subscriber.
       `.trim()
     });
+
     return true;
   } catch (error: any) {
     console.error('Failed to send newsletter subscription email:', error);
