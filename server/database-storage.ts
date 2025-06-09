@@ -96,6 +96,14 @@ export interface IStorage {
   markEmailSent(id: number, emailType: 'confirmation' | 'reminder'): Promise<Booking>;
   generateBookingReference(): string;
 
+  // Reviews
+  getActiveReviews(): Promise<Review[]>;
+  getAllReviews(): Promise<Review[]>;
+  getReview(id: number): Promise<Review | undefined>;
+  createReview(review: InsertReview): Promise<Review>;
+  updateReview(id: number, review: Partial<InsertReview>): Promise<Review>;
+  deleteReview(id: number): Promise<void>;
+
   // Pricing Engine
   calculateQuotePrice(itinerary: any[], addons: any[], passengers: number): Promise<{
     subtotal: number;
@@ -785,6 +793,43 @@ export class DatabaseStorage implements IStorage {
       grandTotal,
       breakdown
     };
+  }
+
+  // Reviews methods
+  async getActiveReviews(): Promise<Review[]> {
+    return await db.select().from(reviews)
+      .where(and(eq(reviews.isActive, true)))
+      .orderBy(desc(reviews.createdAt));
+  }
+
+  async getAllReviews(): Promise<Review[]> {
+    return await db.select().from(reviews)
+      .orderBy(desc(reviews.createdAt));
+  }
+
+  async getReview(id: number): Promise<Review | undefined> {
+    const [review] = await db.select().from(reviews)
+      .where(eq(reviews.id, id));
+    return review;
+  }
+
+  async createReview(review: InsertReview): Promise<Review> {
+    const [newReview] = await db.insert(reviews)
+      .values(review)
+      .returning();
+    return newReview;
+  }
+
+  async updateReview(id: number, reviewData: Partial<InsertReview>): Promise<Review> {
+    const [updatedReview] = await db.update(reviews)
+      .set({ ...reviewData, updatedAt: new Date() })
+      .where(eq(reviews.id, id))
+      .returning();
+    return updatedReview;
+  }
+
+  async deleteReview(id: number): Promise<void> {
+    await db.delete(reviews).where(eq(reviews.id, id));
   }
 }
 
