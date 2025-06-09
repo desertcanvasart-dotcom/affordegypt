@@ -660,15 +660,14 @@ export class DatabaseStorage implements IStorage {
           }
         }
         
-        // Calculate guide pricing
+        // Calculate guide pricing (daily rate for 8-hour service)
         if (item.selectedGuide) {
           const guidePrices = {
             "English": 40, "Spanish": 45, "French": 45, "German": 50,
             "Italian": 45, "Japanese": 60, "Chinese": 55, "Arabic": 35
           };
-          const guidePrice = guidePrices[item.selectedGuide.language] || 40;
-          const guideCost = guidePrice * (item.selectedGuide.duration || 8);
-          itemCost += guideCost;
+          const guideDayRate = guidePrices[item.selectedGuide.language] || 40;
+          itemCost += guideDayRate; // Fixed daily rate regardless of duration
         }
         
         // Calculate attractions

@@ -201,7 +201,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing
+        // Calculate guide pricing (daily rate for 8-hour service)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
           const guidePrices = {
