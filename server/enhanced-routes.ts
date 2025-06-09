@@ -102,6 +102,177 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Alternative endpoint name for compatibility
+  app.get("/api/addons", async (req, res) => {
+    try {
+      const { cityId } = req.query;
+      const addOns = cityId 
+        ? await storage.getAddOns(parseInt(cityId as string))
+        : await storage.getAddOns();
+      
+      res.json(addOns);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get attractions
+  app.get("/api/attractions", async (req, res) => {
+    try {
+      const attractions = await storage.getAttractions();
+      res.json(attractions);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Pricing endpoints for multi-city tool
+  app.get("/api/pricing/languages", async (req, res) => {
+    try {
+      const languages = [
+        "English", "Spanish", "French", "German", 
+        "Italian", "Japanese", "Chinese", "Arabic"
+      ];
+      res.json(languages);
+    } catch (error) {
+      console.error('Languages fetch error:', error);
+      res.status(500).json({ message: 'Failed to fetch languages' });
+    }
+  });
+
+  app.get("/api/pricing/addons", async (req, res) => {
+    try {
+      const addOns = await storage.getAddOns();
+      const formattedAddOns = addOns.map(addon => ({
+        id: addon.id,
+        name: addon.name,
+        price: parseFloat(addon.price),
+        type: addon.unitType,
+        category: addon.category
+      }));
+      res.json(formattedAddOns);
+    } catch (error) {
+      console.error('Add-ons fetch error:', error);
+      res.status(500).json({ message: 'Failed to fetch add-ons' });
+    }
+  });
+
+  app.post("/api/pricing/calculate", async (req, res) => {
+    try {
+      const { cityServices } = req.body;
+      
+      let totalAmount = 0;
+      const breakdown = [];
+
+      for (const cityService of cityServices) {
+        let cityTotal = 0;
+        const travelers = cityService.travelers || 1;
+
+        // Calculate routes using database pricing
+        let routesTotal = 0;
+        if (cityService.selectedRoutes && cityService.selectedRoutes.length > 0) {
+          for (const routeId of cityService.selectedRoutes) {
+            try {
+              const routes = await storage.getRoutes();
+              const route = routes.find(r => r.id === routeId);
+              
+              if (route && route.basePriceByVehicle) {
+                const pricing = typeof route.basePriceByVehicle === 'string' 
+                  ? JSON.parse(route.basePriceByVehicle) 
+                  : route.basePriceByVehicle;
+                
+                let vehicleType = 1;
+                if (travelers > 8) vehicleType = 3;
+                else if (travelers > 2) vehicleType = 2;
+                
+                const vehiclePricing = pricing[vehicleType] || pricing[1];
+                const routePrice = vehiclePricing && vehiclePricing[1] 
+                  ? parseFloat(vehiclePricing[1]) 
+                  : 50;
+                
+                routesTotal += routePrice;
+              } else {
+                routesTotal += 50;
+              }
+            } catch (error) {
+              console.error('Error calculating route price:', error);
+              routesTotal += 50;
+            }
+          }
+        }
+
+        // Calculate guide pricing
+        let guideTotal = 0;
+        if (cityService.selectedGuide) {
+          const guidePrices = {
+            "English": 40, "Spanish": 45, "French": 45, "German": 50,
+            "Italian": 45, "Japanese": 60, "Chinese": 55, "Arabic": 35
+          };
+          guideTotal = guidePrices[cityService.selectedGuide.language] || 40;
+        }
+
+        // Calculate attractions
+        let attractionsTotal = 0;
+        if (cityService.selectedAttractions) {
+          const attractionPrices = {
+            "pyramids": 15, "khan_khalili": 8, "al_muizz": 5, "citadel": 12, 
+            "coptic": 8, "egyptian_museum": 18, "cairo_tower": 10,
+            "alexandria_library": 12, "qaitbay_citadel": 8, "montaza_palace": 10, "catacombs": 15,
+            "luxor_temple": 12, "valley_kings": 20, "karnak_temple": 15, "hatshepsut_temple": 12,
+            "abu_simbel": 35, "philae_temple": 15, "high_dam": 8, "unfinished_obelisk": 5,
+            "hurghada_marina": 10, "desert_safari": 45, "snorkeling": 35,
+            "sharm_old_market": 8, "ras_mohammed": 25, "colored_canyon": 30
+          };
+          
+          cityService.selectedAttractions.forEach(attraction => {
+            const price = attractionPrices[attraction] || 10;
+            attractionsTotal += price * travelers;
+          });
+        }
+
+        // Calculate add-ons
+        let addOnsTotal = 0;
+        if (cityService.selectedAddOns) {
+          for (const addOn of cityService.selectedAddOns) {
+            const addOnItem = await storage.getAddOn(addOn.id);
+            if (addOnItem) {
+              const basePrice = parseFloat(addOnItem.price);
+              if (addOnItem.unitType === "per_person") {
+                addOnsTotal += basePrice * travelers * (addOn.quantity || 1);
+              } else {
+                addOnsTotal += basePrice * (addOn.quantity || 1);
+              }
+            }
+          }
+        }
+
+        cityTotal = routesTotal + guideTotal + attractionsTotal + addOnsTotal;
+        totalAmount += cityTotal;
+
+        breakdown.push({
+          city: cityService.cityName,
+          routes: routesTotal,
+          guide: guideTotal,
+          attractions: attractionsTotal,
+          addOns: addOnsTotal,
+          total: cityTotal
+        });
+      }
+
+      const perPersonAmount = totalAmount / (cityServices[0]?.travelers || 1);
+
+      res.json({
+        totalAmount,
+        perPersonAmount,
+        breakdown,
+        travelers: cityServices[0]?.travelers || 1
+      });
+    } catch (error) {
+      console.error('Pricing calculation error:', error);
+      res.status(500).json({ message: 'Failed to calculate pricing' });
+    }
+  });
+
   // Enhanced pricing calculation using new engine
   app.post("/api/calculate-pricing", async (req, res) => {
     try {
