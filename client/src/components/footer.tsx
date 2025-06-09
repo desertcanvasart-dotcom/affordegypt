@@ -73,7 +73,11 @@ export default function Footer() {
                   About Us
                 </Link>
               </li>
-              <li><span className="text-gray-500 cursor-default">Contact</span></li>
+              <li>
+                <Link href="/contact" className="text-gray-300 hover:text-primary transition-colors">
+                  Contact
+                </Link>
+              </li>
               <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">Terms of Service</Link></li>
               <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">Cookie Policy</Link></li>
