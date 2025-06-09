@@ -269,3 +269,108 @@ class SendGridEmailService implements EmailService {
 }
 
 export const emailService = new SendGridEmailService();
+
+// Contact form email function
+export async function sendContactFormEmail(contactData: {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}): Promise<boolean> {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log('SendGrid API key not configured - contact email not sent');
+    return false;
+  }
+
+  const mailService = new MailService();
+  mailService.setApiKey(process.env.SENDGRID_API_KEY);
+
+  const emailContent = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: #0891b2; color: white; padding: 20px; text-align: center; }
+          .content { padding: 20px; background: #f9f9f9; }
+          .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
+          .field { margin-bottom: 15px; }
+          .label { font-weight: bold; color: #0891b2; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>New Contact Form Submission</h1>
+          </div>
+          
+          <div class="content">
+            <h2>Contact Form Details</h2>
+            
+            <div class="field">
+              <div class="label">Name:</div>
+              <div>${contactData.name}</div>
+            </div>
+            
+            <div class="field">
+              <div class="label">Email:</div>
+              <div>${contactData.email}</div>
+            </div>
+            
+            ${contactData.phone ? `
+            <div class="field">
+              <div class="label">Phone:</div>
+              <div>${contactData.phone}</div>
+            </div>
+            ` : ''}
+            
+            <div class="field">
+              <div class="label">Subject:</div>
+              <div>${contactData.subject}</div>
+            </div>
+            
+            <div class="field">
+              <div class="label">Message:</div>
+              <div>${contactData.message.replace(/\n/g, '<br>')}</div>
+            </div>
+          </div>
+          
+          <div class="footer">
+            <p>This message was sent from the Afford Egypt contact form</p>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  try {
+    await mailService.send({
+      to: 'info@affordegypt.com',
+      from: {
+        email: 'info@affordegypt.com',
+        name: 'Afford Egypt Contact Form'
+      },
+      replyTo: contactData.email,
+      subject: `Contact Form: ${contactData.subject}`,
+      html: emailContent,
+      text: `
+New Contact Form Submission
+
+Name: ${contactData.name}
+Email: ${contactData.email}
+${contactData.phone ? `Phone: ${contactData.phone}` : ''}
+Subject: ${contactData.subject}
+
+Message:
+${contactData.message}
+      `.trim()
+    });
+    return true;
+  } catch (error: any) {
+    console.error('Failed to send contact form email:', error);
+    return false;
+  }
+}

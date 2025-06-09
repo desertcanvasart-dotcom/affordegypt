@@ -824,6 +824,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Contact form endpoint
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const { name, email, phone, subject, message } = req.body;
+      
+      if (!name || !email || !subject || !message) {
+        return res.status(400).json({ message: "Required fields missing" });
+      }
+
+      // Send contact form email using existing email service
+      const { sendContactFormEmail } = await import('./email-service');
+      
+      await sendContactFormEmail({
+        name,
+        email,
+        phone: phone || '',
+        subject,
+        message
+      });
+
+      res.json({ message: "Contact form submitted successfully" });
+    } catch (error: any) {
+      console.error('Contact form error:', error);
+      res.status(500).json({ message: "Failed to send contact form" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

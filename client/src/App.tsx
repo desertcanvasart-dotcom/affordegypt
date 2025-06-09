@@ -22,6 +22,7 @@ import NileValleyGuide from "@/pages/nile-valley-guide";
 import SinaiPeninsulaGuide from "@/pages/sinai-peninsula-guide";
 import EasternWesternDesertsGuide from "@/pages/eastern-western-deserts-guide";
 import About from "@/pages/about";
+import Contact from "@/pages/contact";
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/travel-tips" component={TravelTips} />
       <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
       <Route path="/budget-travel-egypt" component={BudgetTravelEgypt} />
       <Route path="/egyptian-street-food-guide" component={EgyptianStreetFoodGuide} />
       <Route path="/nile-valley-guide" component={NileValleyGuide} />
