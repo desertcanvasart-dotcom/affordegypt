@@ -152,13 +152,14 @@ export default function Navbar() {
                 <User className="w-4 h-4" />
                 About
               </Link>
-              <button 
-                onClick={() => { scrollToContact(); setIsMenuOpen(false); }}
+              <Link 
+                href="/contact"
+                onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
                 <Mail className="w-4 h-4" />
                 Contact
-              </button>
+              </Link>
               <Button 
                 onClick={() => { scrollToQuote(); setIsMenuOpen(false); }}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full"
