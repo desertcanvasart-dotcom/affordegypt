@@ -98,10 +98,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p className="text-sm sm:text-base">&copy; 2025 Afford Egypt. All rights reserved. <span className="block sm:inline">| Powered and Polished by <a href="https://traveldigitalera.com/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 transition-all duration-300 hover:underline decoration-primary underline-offset-4 relative inline-block overflow-hidden">
+          <p className="text-sm sm:text-base">&copy; 2025 Afford Egypt. All rights reserved. | Powered and Polished by <a href="https://traveldigitalera.com/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 transition-all duration-300 hover:underline decoration-primary underline-offset-4 relative inline-block overflow-hidden">
             <span className="relative z-10">Travel Digital Era</span>
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full h-full animate-light-sweep"></span>
-          </a></span></p>
+          </a></p>
         </div>
       </div>
     </footer>
