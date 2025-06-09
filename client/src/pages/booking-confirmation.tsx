@@ -313,7 +313,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             </Card>
 
             {/* Trip Itinerary */}
-            {quote.jsonBlob && quote.jsonBlob.cities && (
+            {quote && quote.jsonBlob && quote.jsonBlob.cities && (
               <Card>
                 <CardHeader>
                   <CardTitle>Trip Itinerary</CardTitle>
