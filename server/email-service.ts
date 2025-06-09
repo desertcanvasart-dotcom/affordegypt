@@ -13,8 +13,8 @@ class SendGridEmailService implements EmailService {
 
   constructor() {
     this.mailService = new MailService();
-    // Use a default verified sender - user needs to verify this email in SendGrid
-    this.fromEmail = 'noreply@affordegypt.com';
+    // Use the verified sender email address
+    this.fromEmail = 'info@affordegypt.com';
     
     if (process.env.SENDGRID_API_KEY) {
       this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
