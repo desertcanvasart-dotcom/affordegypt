@@ -1013,28 +1013,28 @@ export default function MultiCityPricingTool() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {totalPricing.breakdown.map((city: any, index: number) => (
                   <Card key={index} className="p-4">
-                    <h4 className="font-medium mb-2">{city.cityName}</h4>
+                    <h4 className="font-medium mb-2">{city.city}</h4>
                     <div className="space-y-1 text-sm">
                       <div className="flex justify-between">
                         <span>Routes:</span>
-                        <span className="font-mono">${city.details.routes}</span>
+                        <span className="font-mono">${city.routes || 0}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Guide:</span>
-                        <span className="font-mono">${city.details.guide}</span>
+                        <span className="font-mono">${city.guide || 0}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Attractions:</span>
-                        <span className="font-mono">${city.details.attractions || 0}</span>
+                        <span className="font-mono">${city.attractions || 0}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Add-ons:</span>
-                        <span className="font-mono">${city.details.addOns}</span>
+                        <span className="font-mono">${city.addOns || 0}</span>
                       </div>
                       <Separator className="my-2" />
                       <div className="flex justify-between font-semibold">
                         <span>Total:</span>
-                        <span className="font-mono">${city.amount}</span>
+                        <span className="font-mono">${city.total || 0}</span>
                       </div>
                     </div>
                   </Card>
