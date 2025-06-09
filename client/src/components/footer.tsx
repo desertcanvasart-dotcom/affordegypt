@@ -2,8 +2,56 @@ import { Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "wouter";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const newsletterMutation = useMutation({
+    mutationFn: async (email: string) => {
+      await apiRequest("POST", "/api/newsletter-subscribe", { email });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Successfully subscribed!",
+        description: "You'll receive travel tips and special offers in your inbox.",
+      });
+      setEmail("");
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Subscription failed",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+    newsletterMutation.mutate(email);
+  };
+
   return (
     <footer className="bg-foreground text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -88,16 +136,23 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
             <p className="text-gray-300 mb-4">Get travel tips and special offers</p>
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-0">
               <Input 
                 type="email" 
                 placeholder="Your email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-gray-700 text-white border-gray-600 sm:rounded-r-none focus:border-primary" 
+                disabled={newsletterMutation.isPending}
               />
-              <Button className="btn-primary sm:rounded-l-none">
-                Subscribe
+              <Button 
+                type="submit"
+                className="btn-primary sm:rounded-l-none"
+                disabled={newsletterMutation.isPending}
+              >
+                {newsletterMutation.isPending ? "Subscribing..." : "Subscribe"}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
 
