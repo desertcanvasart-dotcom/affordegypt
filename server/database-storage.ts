@@ -709,6 +709,36 @@ export class DatabaseStorage implements IStorage {
           cost: itemCost
         });
       }
+      // Handle route-based transport legs (direct booking)
+      else if (item.mode === "route") {
+        const route = await this.getRoute(item.fromCityId, item.toCityId);
+        if (route) {
+          const pricing = route.basePriceByVehicle as any;
+          itemCost = parseFloat(pricing[item.vehicleId]?.[item.licenseClassId] || "0");
+        }
+        
+        subtotal += itemCost;
+        breakdown.push({
+          type: "transport",
+          description: "Route transport",
+          cost: itemCost
+        });
+      } 
+      // Handle hourly transport legs (direct booking)
+      else if (item.mode === "hourly") {
+        const timeBlock = await this.getTimeBlock(item.cityId, item.hours);
+        if (timeBlock) {
+          const pricing = timeBlock.basePriceByVehicle as any;
+          itemCost = parseFloat(pricing[item.vehicleId]?.[item.licenseClassId] || "0");
+        }
+        
+        subtotal += itemCost;
+        breakdown.push({
+          type: "transport",
+          description: "Hourly transport",
+          cost: itemCost
+        });
+      }
 
       // Add guide cost if specified (for direct booking)
       if (item.guideId && item.guideHours) {
