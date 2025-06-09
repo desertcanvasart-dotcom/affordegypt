@@ -38,7 +38,7 @@ export default function AdminReviews() {
   const queryClient = useQueryClient();
 
   const { data: reviews, isLoading } = useQuery<Review[]>({
-    queryKey: ["/api/reviews", "admin"],
+    queryKey: ["/api/reviews/all"],
   });
 
   const form = useForm<ReviewFormData>({
