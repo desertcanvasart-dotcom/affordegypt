@@ -628,35 +628,93 @@ export class DatabaseStorage implements IStorage {
     const breakdown = [];
 
     // Calculate itinerary costs
-    for (const leg of itinerary) {
-      let legCost = 0;
+    for (const item of itinerary) {
+      let itemCost = 0;
       
-      if (leg.mode === "route") {
-        const route = await this.getRoute(leg.fromCityId, leg.toCityId);
-        if (route) {
-          const pricing = route.basePriceByVehicle as any;
-          legCost = parseFloat(pricing[leg.vehicleId]?.[leg.licenseClassId] || "0");
+      // Handle city-based itinerary (multi-city tool) - check this first
+      if (item.cityId && !item.mode) {
+        const travelers = item.travelers || passengers || 1;
+        
+        // Calculate routes
+        if (item.selectedRoutes && item.selectedRoutes.length > 0) {
+          for (const routeId of item.selectedRoutes) {
+            const routes = await this.getRoutes();
+            const route = routes.find(r => r.id === routeId);
+            
+            if (route && route.basePriceByVehicle) {
+              const pricing = typeof route.basePriceByVehicle === 'string' 
+                ? JSON.parse(route.basePriceByVehicle) 
+                : route.basePriceByVehicle;
+              
+              let vehicleType = 1;
+              if (travelers > 8) vehicleType = 3;
+              else if (travelers > 2) vehicleType = 2;
+              
+              const vehiclePricing = pricing[vehicleType] || pricing[1];
+              const routePrice = vehiclePricing && vehiclePricing[1] 
+                ? parseFloat(vehiclePricing[1]) 
+                : 50;
+              
+              itemCost += routePrice;
+            }
+          }
         }
-      } else if (leg.mode === "hourly") {
-        const timeBlock = await this.getTimeBlock(leg.cityId, leg.hours);
-        if (timeBlock) {
-          const pricing = timeBlock.basePriceByVehicle as any;
-          legCost = parseFloat(pricing[leg.vehicleId]?.[leg.licenseClassId] || "0");
+        
+        // Calculate guide pricing
+        if (item.selectedGuide) {
+          const guidePrices = {
+            "English": 40, "Spanish": 45, "French": 45, "German": 50,
+            "Italian": 45, "Japanese": 60, "Chinese": 55, "Arabic": 35
+          };
+          const guidePrice = guidePrices[item.selectedGuide.language] || 40;
+          const guideCost = guidePrice * (item.selectedGuide.duration || 8);
+          itemCost += guideCost;
         }
+        
+        // Calculate attractions
+        if (item.selectedAttractions) {
+          const attractionPrices = {
+            "pyramids": 15, "khan_khalili": 8, "al_muizz": 5, "citadel": 12, 
+            "coptic": 8, "egyptian_museum": 18, "cairo_tower": 10,
+            "alexandria_library": 12, "qaitbay_citadel": 8, "montaza_palace": 10, "catacombs": 15,
+            "luxor_temple": 12, "valley_kings": 20, "karnak_temple": 15, "hatshepsut_temple": 12,
+            "abu_simbel": 35, "philae_temple": 15, "high_dam": 8, "unfinished_obelisk": 5,
+            "hurghada_marina": 10, "desert_safari": 45, "snorkeling": 35,
+            "sharm_old_market": 8, "ras_mohammed": 25, "colored_canyon": 30,
+            "Antiquities of Rosetta City": 10, "Qitbay Citadel": 8
+          };
+          
+          item.selectedAttractions.forEach(attraction => {
+            const price = attractionPrices[attraction] || 10;
+            itemCost += price * travelers;
+          });
+        }
+        
+        // Calculate city add-ons
+        if (item.selectedAddOns) {
+          for (const addOnItem of item.selectedAddOns) {
+            const addOn = await this.getAddOn(addOnItem.id);
+            if (addOn) {
+              const isPerPerson = addOn.unitType === 'per_person';
+              const addOnCost = parseFloat(addOn.price) * addOnItem.quantity * (isPerPerson ? travelers : 1);
+              itemCost += addOnCost;
+            }
+          }
+        }
+        
+        subtotal += itemCost;
+        breakdown.push({
+          type: "city_package",
+          description: `${item.cityName} package`,
+          cost: itemCost
+        });
       }
 
-      subtotal += legCost;
-      breakdown.push({
-        type: "transport",
-        description: `${leg.mode === "route" ? "Route" : "Hourly"} transport`,
-        cost: legCost
-      });
-
-      // Add guide cost if specified
-      if (leg.guideId && leg.guideHours) {
-        const guide = await this.getGuideRate(leg.guideId);
+      // Add guide cost if specified (for direct booking)
+      if (item.guideId && item.guideHours) {
+        const guide = await this.getGuideRate(item.guideId);
         if (guide) {
-          const guideCost = parseFloat(guide.hourlyPrice) * leg.guideHours;
+          const guideCost = parseFloat(guide.hourlyPrice) * item.guideHours;
           subtotal += guideCost;
           breakdown.push({
             type: "guide",
