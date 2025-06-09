@@ -284,7 +284,7 @@ export default function Reviews() {
                             {review.tripDate && (
                               <div className="flex items-center gap-2">
                                 <Calendar className="w-4 h-4" />
-                                <span>Trip: {format(new Date(review.tripDate), "MMMM yyyy")}</span>
+                                <span>Trip: {format(new Date(review.tripDate!), "MMMM yyyy")}</span>
                               </div>
                             )}
                           </div>

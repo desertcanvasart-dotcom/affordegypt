@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Mail, Lightbulb, Calculator } from "lucide-react";
+import { Menu, X, MapPin, User, Mail, Lightbulb, Calculator, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 
@@ -87,6 +87,13 @@ export default function Navbar() {
             >
               <Lightbulb className="w-4 h-4" />
               Travel Tips
+            </Link>
+            <Link 
+              href="/reviews"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
+              <Star className="w-4 h-4" />
+              Reviews
             </Link>
             <Link 
               href="/about"
