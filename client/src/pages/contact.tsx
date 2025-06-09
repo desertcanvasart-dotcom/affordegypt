@@ -8,9 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Award, Shield } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { Helmet } from "react-helmet-async";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -65,19 +68,53 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Contact Us
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to explore Egypt? Get in touch with our travel experts for personalized assistance and planning.
-          </p>
+    <>
+      <Helmet>
+        <title>Contact Us - Afford Egypt</title>
+        <meta name="description" content="Get in touch with Afford Egypt for travel inquiries, bookings, and support. We're here to help make your Egypt travel dreams come true." />
+      </Helmet>
+      
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-background py-20">
+        <div className="absolute inset-0 opacity-30"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-5xl font-bold text-foreground mb-6 leading-tight">
+              Let's Plan Your
+              <span className="text-primary block">Egypt Adventure</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Connect with our travel experts who know Egypt inside and out. From ancient wonders to hidden gems, 
+              we'll help you create memories that last a lifetime.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
+                <MessageCircle className="w-4 h-4 text-primary" />
+                <span>Instant Response</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
+                <Users className="w-4 h-4 text-primary" />
+                <span>Local Experts</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
+                <Award className="w-4 h-4 text-primary" />
+                <span>Best Prices</span>
+              </div>
+              <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
+                <Shield className="w-4 h-4 text-primary" />
+                <span>Secure Booking</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* Contact Section */}
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
@@ -118,9 +155,9 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+20 100 123 4567</p>
+                      <p className="text-muted-foreground">+20 110 076 5283</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        Available 9 AM - 8 PM (Egypt Time)
+                        Available 24/7
                       </p>
                     </div>
                   </div>
@@ -301,8 +338,59 @@ export default function Contact() {
               </CardContent>
             </Card>
           </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Find Us in Cairo</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Located in the heart of Cairo, we're perfectly positioned to help you explore all of Egypt.
+            </p>
+          </div>
+          
+          <div className="bg-card border border-border rounded-lg overflow-hidden shadow-sm">
+            <div className="aspect-[16/9] w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220834.96206943142!2d31.041818!3d30.033333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate%2C%20Egypt!5e0!3m2!1sen!2sus!4v1642021729542!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+                title="Afford Egypt Location in Cairo"
+              ></iframe>
+            </div>
+            
+            <div className="p-6 bg-card">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <h3 className="font-semibold text-foreground mb-1">Our Location</h3>
+                  <p className="text-sm text-muted-foreground">Downtown Cairo, Egypt</p>
+                </div>
+                <div className="text-center">
+                  <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <h3 className="font-semibold text-foreground mb-1">Office Hours</h3>
+                  <p className="text-sm text-muted-foreground">24/7 Support Available</p>
+                </div>
+                <div className="text-center">
+                  <Phone className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <h3 className="font-semibold text-foreground mb-1">Contact</h3>
+                  <p className="text-sm text-muted-foreground">+20 110 076 5283</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+    </>
   );
 }
