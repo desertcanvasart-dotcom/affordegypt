@@ -13,7 +13,8 @@ class SendGridEmailService implements EmailService {
 
   constructor() {
     this.mailService = new MailService();
-    this.fromEmail = 'bookings@affordegypt.com';
+    // Use the verified sender email from environment variables
+    this.fromEmail = process.env.SENDGRID_VERIFIED_SENDER || 'noreply@example.com';
     
     if (process.env.SENDGRID_API_KEY) {
       this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
@@ -40,8 +41,11 @@ class SendGridEmailService implements EmailService {
         text: this.stripHtml(emailContent)
       });
       return true;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to send booking confirmation email:', error);
+      if (error.response && error.response.body && error.response.body.errors) {
+        console.error('SendGrid error details:', JSON.stringify(error.response.body.errors, null, 2));
+      }
       return false;
     }
   }
