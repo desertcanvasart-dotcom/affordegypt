@@ -13,8 +13,8 @@ class SendGridEmailService implements EmailService {
 
   constructor() {
     this.mailService = new MailService();
-    // Use the verified sender email from environment variables
-    this.fromEmail = process.env.SENDGRID_VERIFIED_SENDER || 'noreply@example.com';
+    // Use a default verified sender - user needs to verify this email in SendGrid
+    this.fromEmail = 'noreply@affordegypt.com';
     
     if (process.env.SENDGRID_API_KEY) {
       this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
@@ -35,7 +35,10 @@ class SendGridEmailService implements EmailService {
     try {
       await this.mailService.send({
         to: booking.customerEmail,
-        from: this.fromEmail,
+        from: {
+          email: this.fromEmail,
+          name: 'Afford Egypt'
+        },
         subject: `Booking Confirmation - ${booking.bookingReference}`,
         html: emailContent,
         text: this.stripHtml(emailContent)
