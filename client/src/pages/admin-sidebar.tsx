@@ -804,6 +804,7 @@ export default function AdminSidebar() {
                   <Table>
                     <TableHeader className="sticky top-0 bg-white z-10">
                       <TableRow>
+                        <TableHead>Order</TableHead>
                         <TableHead>Route</TableHead>
                         <TableHead>Type</TableHead>
                         <TableHead>Distance</TableHead>
@@ -815,6 +816,11 @@ export default function AdminSidebar() {
                     <TableBody>
                       {(routes as any[]).map((route: any) => (
                         <TableRow key={route.id} className="h-12">
+                          <TableCell>
+                            <Badge variant="outline" className="text-xs font-mono">
+                              {route.displayOrder || 0}
+                            </Badge>
+                          </TableCell>
                           <TableCell>
                             <div className="text-sm">
                               {(() => {
