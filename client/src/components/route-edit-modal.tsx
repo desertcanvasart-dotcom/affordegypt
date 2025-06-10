@@ -86,13 +86,17 @@ export default function RouteEditModal({
   // Create/Update route mutation
   const saveMutation = useMutation({
     mutationFn: async (data: any) => {
+      console.log('Submitting route data:', data);
       if (route) {
+        console.log('Updating route with ID:', route.id);
         return apiRequest("PUT", `/api/routes/${route.id}`, data);
       } else {
+        console.log('Creating new route');
         return apiRequest("POST", "/api/routes", data);
       }
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
+      console.log('Route save successful:', result);
       queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
       toast({
         title: "Success!",
@@ -100,10 +104,11 @@ export default function RouteEditModal({
       });
       handleClose();
     },
-    onError: (error) => {
+    onError: (error: any) => {
+      console.error('Route save error:', error);
       toast({
         title: "Error",
-        description: `Failed to ${route ? 'update' : 'create'} route. Please try again.`,
+        description: `Failed to ${route ? 'update' : 'create'} route: ${error.message || 'Please try again.'}`,
         variant: "destructive",
       });
     },
@@ -133,11 +138,16 @@ export default function RouteEditModal({
       description: formData.description.trim() || null,
       fromCityId: parseInt(formData.fromCityId),
       toCityId: parseInt(formData.toCityId),
-      km: formData.km ? parseFloat(formData.km) : null,
+      km: formData.km ? formData.km.toString() : "0",
       estimatedDuration: formData.estimatedDuration.trim() || null,
       sedanPrice: parseFloat(formData.sedanPrice),
       minivanPrice: formData.minivanPrice ? parseFloat(formData.minivanPrice) : parseFloat(formData.sedanPrice) * 1.4,
       vanPrice: formData.vanPrice ? parseFloat(formData.vanPrice) : parseFloat(formData.sedanPrice) * 1.8,
+      basePriceByVehicle: {
+        sedan: parseFloat(formData.sedanPrice),
+        minivan: formData.minivanPrice ? parseFloat(formData.minivanPrice) : parseFloat(formData.sedanPrice) * 1.4,
+        van: formData.vanPrice ? parseFloat(formData.vanPrice) : parseFloat(formData.sedanPrice) * 1.8
+      },
       displayOrder: formData.displayOrder ? parseInt(formData.displayOrder) : 0,
       isActive: formData.isActive
     };
