@@ -19,7 +19,7 @@ import {
   Clock,
   DollarSign
 } from "lucide-react";
-import AddItemModal from "@/components/add-item-modal";
+import RouteEditModal from "@/components/route-edit-modal";
 import { useToast } from "@/hooks/use-toast";
 
 export default function AdminCityRoutes() {
@@ -28,6 +28,7 @@ export default function AdminCityRoutes() {
   const category = params?.category; // 'inter-city', 'city-tours', or undefined for all
   
   const [showAddModal, setShowAddModal] = useState(false);
+  const [editingRoute, setEditingRoute] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const { toast } = useToast();
 
@@ -355,7 +356,11 @@ export default function AdminCityRoutes() {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <Button variant="ghost" size="sm">
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => setEditingRoute(route)}
+                        >
                           <Edit2 className="w-4 h-4" />
                         </Button>
                         <Button 
@@ -376,11 +381,16 @@ export default function AdminCityRoutes() {
         </CardContent>
       </Card>
 
-      {/* Add Route Modal */}
-      <AddItemModal
-        isOpen={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        modalType="route"
+      {/* Route Modal */}
+      <RouteEditModal
+        isOpen={showAddModal || !!editingRoute}
+        onClose={() => {
+          setShowAddModal(false);
+          setEditingRoute(null);
+        }}
+        route={editingRoute}
+        defaultFromCityId={currentCity?.id}
+        defaultToCityId={currentCity?.id}
       />
     </div>
   );

@@ -13,9 +13,11 @@ import {
   Route
 } from "lucide-react";
 import { Link } from "wouter";
+import RouteEditModal from "@/components/route-edit-modal";
 
 export default function AdminRoutesOverview() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [showAddModal, setShowAddModal] = useState(false);
 
   // Fetch routes from API
   const { data: routes = [], isLoading: routesLoading } = useQuery({
