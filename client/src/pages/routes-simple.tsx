@@ -112,7 +112,6 @@ export default function RoutesSimple() {
                         <div className="space-y-2">
                           {interCityRoutes
                             .filter((route: any) => route.fromCityId === cityId)
-                            .slice(0, 2)
                             .map((route: any) => (
                               <div key={route.id} className="flex justify-between items-center text-sm">
                                 <span className="text-gray-600">
@@ -155,7 +154,6 @@ export default function RoutesSimple() {
                         <div className="space-y-2">
                           {cityTours
                             .filter((route: any) => route.fromCityId === cityId)
-                            .slice(0, 2)
                             .map((route: any) => (
                               <div key={route.id} className="flex justify-between items-center text-sm">
                                 <span className="text-gray-600">
