@@ -829,6 +829,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Route-only booking endpoint (transportation only)
+  app.post("/api/route-bookings", async (req, res) => {
+    try {
+      const {
+        routeId,
+        vehicleType,
+        passengers,
+        travelDate,
+        customerName,
+        customerEmail,
+        customerPhone,
+        specialRequests,
+        totalAmount,
+        bookingType
+      } = req.body;
+
+      // Generate unique booking reference
+      const bookingReference = `RT${Date.now()}${Math.random().toString(36).substr(2, 4)}`.toUpperCase();
+
+      // Create simplified booking data for route-only bookings
+      const routeBookingData = {
+        bookingReference,
+        quoteId: null, // No quote needed for simple route bookings
+        customerName,
+        customerEmail,
+        customerPhone: customerPhone || null,
+        totalAmount: totalAmount.toString(),
+        status: 'pending',
+        bookingType: 'route-only',
+        routeDetails: {
+          routeId,
+          vehicleType,
+          passengers,
+          travelDate,
+          specialRequests: specialRequests || null
+        }
+      };
+
+      const booking = await storage.createBooking(routeBookingData);
+      
+      res.json({
+        success: true,
+        bookingReference,
+        booking,
+        message: "Route booking submitted successfully. We'll contact you to confirm details."
+      });
+    } catch (error: any) {
+      console.error('Route booking error:', error);
+      res.status(500).json({ 
+        success: false,
+        message: "Failed to process route booking. Please try again." 
+      });
+    }
+  });
+
   // Stripe payment route for one-time payments
   app.post("/api/create-payment-intent", async (req, res) => {
     if (!stripe) {
