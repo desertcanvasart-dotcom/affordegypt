@@ -91,12 +91,13 @@ export default function AdminRoutesOverview() {
           <p className="text-gray-500 mt-2">Manage routes organized by city for better efficiency</p>
         </div>
         <div className="flex gap-2">
-          <Link href="/admin/routes/new">
-            <Button className="flex items-center gap-2">
-              <Plus className="w-4 h-4" />
-              Add New Route
-            </Button>
-          </Link>
+          <Button 
+            onClick={() => setShowAddModal(true)}
+            className="flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            Add New Route
+          </Button>
         </div>
       </div>
 
@@ -250,6 +251,12 @@ export default function AdminRoutesOverview() {
           <p className="text-gray-500">Try adjusting your search criteria</p>
         </div>
       )}
+
+      {/* Add Route Modal */}
+      <RouteEditModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+      />
     </div>
   );
 }
