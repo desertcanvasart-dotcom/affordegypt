@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Lightbulb, Star } from "lucide-react";
+import { Menu, X, MapPin, User, Lightbulb, Star, Route } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
@@ -75,7 +75,7 @@ export default function Navbar() {
               href="/routes"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
-              <MapPin className="w-4 h-4" />
+              <Route className="w-4 h-4" />
               Routes
             </Link>
             <Link 

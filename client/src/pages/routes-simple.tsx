@@ -18,7 +18,7 @@ export default function RoutesSimple() {
   // Helper function to get city name by ID
   const getCityName = (cityId: number) => {
     if (!cities || !Array.isArray(cities)) return 'Unknown';
-    const city = cities.find((c: any) => c.id === cityId);
+    const city = (cities as any[]).find((c: any) => c.id === cityId);
     return city ? city.name : 'Unknown';
   };
 
@@ -106,7 +106,7 @@ export default function RoutesSimple() {
                     {Array.from(interCityCities).map((cityId: any) => (
                       <Link
                         key={cityId}
-                        href={`/routes/inter-city-routes/${cities?.find((c: any) => c.id === cityId)?.slug || 'unknown'}`}
+                        href={`/routes/inter-city-routes/${(cities as any[])?.find((c: any) => c.id === cityId)?.slug || 'unknown'}`}
                         className="flex items-center gap-2 p-3 rounded-md border border-gray-200 hover:border-teal-200 hover:bg-teal-50 transition-colors"
                       >
                         <MapPin className="w-4 h-4 text-teal-600" />
@@ -134,7 +134,7 @@ export default function RoutesSimple() {
                     {Array.from(cityTourCities).map((cityId: any) => (
                       <Link
                         key={cityId}
-                        href={`/routes/city-tours/${cities?.find((c: any) => c.id === cityId)?.slug || 'unknown'}`}
+                        href={`/routes/city-tours/${(cities as any[])?.find((c: any) => c.id === cityId)?.slug || 'unknown'}`}
                         className="flex items-center gap-2 p-3 rounded-md border border-gray-200 hover:border-orange-200 hover:bg-orange-50 transition-colors"
                       >
                         <MapPin className="w-4 h-4 text-orange-600" />
