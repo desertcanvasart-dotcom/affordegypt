@@ -88,7 +88,7 @@ export default function Reviews() {
       <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50">
         <Navbar />
         
-        <main className="pt-20">
+        <main>
           {/* Hero Section */}
           <section className="min-h-[90vh] flex items-center justify-center bg-gradient-to-r from-teal-600 to-blue-600 text-white">
             <div className="container mx-auto px-4">
