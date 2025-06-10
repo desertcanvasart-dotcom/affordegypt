@@ -147,7 +147,14 @@ export default function Destinations() {
                       ))}
                     </div>
                     
-                    <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white">
+                    <Button 
+                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                      onClick={() => {
+                        if (article.id === 1) window.location.href = '/budget-travel-egypt';
+                        else if (article.id === 2) window.location.href = '/eastern-western-deserts-guide';
+                        else if (article.id === 3) window.location.href = '/sinai-peninsula-guide';
+                      }}
+                    >
                       Read Full Guide
                     </Button>
                   </CardContent>
