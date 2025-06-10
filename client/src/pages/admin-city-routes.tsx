@@ -344,9 +344,23 @@ export default function AdminCityRoutes() {
                     </TableCell>
                     <TableCell>
                       <div className="text-sm space-y-1">
-                        {route.sedanPrice && <div>Sedan: ${route.sedanPrice}</div>}
-                        {route.minivanPrice && <div>Minivan: ${route.minivanPrice}</div>}
-                        {route.vanPrice && <div>Van: ${route.vanPrice}</div>}
+                        {(() => {
+                          // Extract prices from basePriceByVehicle structure
+                          const sedanPrice = route.basePriceByVehicle?.['1']?.['1'] || route.sedanPrice;
+                          const minivanPrice = route.basePriceByVehicle?.['2']?.['1'] || route.minivanPrice;
+                          const vanPrice = route.basePriceByVehicle?.['3']?.['1'] || route.vanPrice;
+                          
+                          return (
+                            <>
+                              {sedanPrice && <div>Sedan: ${sedanPrice}</div>}
+                              {minivanPrice && <div>Minivan: ${minivanPrice}</div>}
+                              {vanPrice && <div>Van: ${vanPrice}</div>}
+                              {!sedanPrice && !minivanPrice && !vanPrice && (
+                                <div className="text-gray-400 text-xs">No pricing set</div>
+                              )}
+                            </>
+                          );
+                        })()}
                       </div>
                     </TableCell>
                     <TableCell>

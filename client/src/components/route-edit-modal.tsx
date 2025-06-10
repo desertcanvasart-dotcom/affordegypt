@@ -51,6 +51,11 @@ export default function RouteEditModal({
     if (isOpen) {
       if (route) {
         // Editing existing route
+        // Extract prices from basePriceByVehicle structure
+        const sedanPrice = route.basePriceByVehicle?.['1']?.['1'] || route.sedanPrice || '';
+        const minivanPrice = route.basePriceByVehicle?.['2']?.['1'] || route.minivanPrice || '';
+        const vanPrice = route.basePriceByVehicle?.['3']?.['1'] || route.vanPrice || '';
+        
         setFormData({
           name: route.name || '',
           description: route.description || '',
@@ -58,9 +63,9 @@ export default function RouteEditModal({
           toCityId: route.toCityId?.toString() || '',
           km: route.km?.toString() || '',
           estimatedDuration: route.estimatedDuration || '',
-          sedanPrice: route.sedanPrice?.toString() || '',
-          minivanPrice: route.minivanPrice?.toString() || '',
-          vanPrice: route.vanPrice?.toString() || '',
+          sedanPrice: sedanPrice?.toString() || '',
+          minivanPrice: minivanPrice?.toString() || '',
+          vanPrice: vanPrice?.toString() || '',
           displayOrder: route.displayOrder?.toString() || '',
           isActive: route.isActive !== false
         });
