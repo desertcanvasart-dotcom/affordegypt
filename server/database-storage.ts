@@ -783,9 +783,9 @@ export class DatabaseStorage implements IStorage {
       }
     }
 
-    // Commission calculation: 10% if < $1000, 8% if >= $1000
-    const commissionPct = subtotal < 1000 ? 0.10 : 0.08;
-    const grandTotal = subtotal * (1 + commissionPct);
+    // No commission added - show actual pricing
+    const commissionPct = 0;
+    const grandTotal = subtotal;
 
     return {
       subtotal,

@@ -731,15 +731,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      // Get commission tier
-      const commissionTier = await storage.getCommissionTier(subtotal);
-      const commissionRate = commissionTier ? parseFloat(commissionTier.commissionRate) : 0.10;
-      const commission = subtotal * commissionRate;
+      // No commission or taxes added - show actual pricing
+      const commissionRate = 0;
+      const commission = 0;
+      const taxes = 0;
       
-      // Calculate taxes (5%)
-      const taxes = subtotal * 0.05;
-      
-      const total = subtotal + commission + taxes;
+      const total = subtotal;
 
       res.json({
         subtotal: subtotal.toFixed(2),

@@ -188,7 +188,7 @@ export default function MultiCityPricingTool() {
       // Create a quote in the database with proper structure
       const quoteData = {
         total: totalPricing.totalAmount.toString(),
-        commissionPct: "15", // Default commission percentage
+        commissionPct: "0", // No commission added
         jsonBlob: {
           passengers: totalPricing.travelers,
           itinerary: cityServices,
