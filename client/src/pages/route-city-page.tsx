@@ -206,7 +206,7 @@ export default function RouteCityPage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {cityRoutes.map((route) => (
+                {cityRoutes.map((route: Route) => (
                   <Card key={route.id} className="hover:shadow-lg transition-shadow">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -292,7 +292,7 @@ export default function RouteCityPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {cityAttractions.map((attraction) => (
+                {cityAttractions.map((attraction: Attraction) => (
                   <Card key={attraction.id} className="hover:shadow-md transition-shadow">
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-2">{attraction.name}</h3>
