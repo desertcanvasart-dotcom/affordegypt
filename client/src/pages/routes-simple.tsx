@@ -114,9 +114,21 @@ export default function RoutesSimple() {
                             .filter((route: any) => route.fromCityId === cityId)
                             .map((route: any) => (
                               <div key={route.id} className="flex justify-between items-center text-sm">
-                                <span className="text-gray-600">
-                                  {getCityName(route.fromCityId)} → {getCityName(route.toCityId)}
-                                </span>
+                                <div className="flex-1">
+                                  <span className="text-gray-600 font-medium">
+                                    {getCityName(route.fromCityId)} → {getCityName(route.toCityId)}
+                                  </span>
+                                  {route.description && (
+                                    <div className="text-xs text-gray-500 mt-1">
+                                      {route.description}
+                                    </div>
+                                  )}
+                                  {route.name && !route.description && (
+                                    <div className="text-xs text-gray-500 mt-1">
+                                      {route.name}
+                                    </div>
+                                  )}
+                                </div>
                                 <Link href={`/routes/book/${route.id}`}>
                                   <button className="bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700">
                                     Book
@@ -156,9 +168,16 @@ export default function RoutesSimple() {
                             .filter((route: any) => route.fromCityId === cityId)
                             .map((route: any) => (
                               <div key={route.id} className="flex justify-between items-center text-sm">
-                                <span className="text-gray-600">
-                                  {route.name || `${getCityName(route.fromCityId)} Tour`}
-                                </span>
+                                <div className="flex-1">
+                                  <span className="text-gray-600 font-medium">
+                                    {route.name || `${getCityName(route.fromCityId)} Tour`}
+                                  </span>
+                                  {route.description && (
+                                    <div className="text-xs text-gray-500 mt-1">
+                                      {route.description}
+                                    </div>
+                                  )}
+                                </div>
                                 <Link href={`/routes/book/${route.id}`}>
                                   <button className="bg-orange-600 text-white px-2 py-1 rounded text-xs hover:bg-orange-700">
                                     Book
