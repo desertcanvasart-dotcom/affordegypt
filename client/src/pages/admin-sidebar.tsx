@@ -168,6 +168,7 @@ export default function AdminSidebar() {
       fromLocation: item.fromLocation || "",
       toLocation: item.toLocation || "",
       km: item.km?.toString() || "",
+      displayOrder: item.displayOrder?.toString() || "",
       basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {}),
       vehiclePricing: item.basePriceByVehicle || {}
     });
@@ -224,6 +225,7 @@ export default function AdminSidebar() {
         fromLocation: formData.fromLocation || null,
         toLocation: formData.toLocation || null,
         km: parseFloat(formData.km) || 0,
+        displayOrder: parseInt(formData.displayOrder) || 0,
         basePriceByVehicle: formData.vehiclePricing && Object.keys(formData.vehiclePricing).length > 0 
           ? formData.vehiclePricing 
           : (formData.basePriceByVehicle ? JSON.parse(formData.basePriceByVehicle) : {})
@@ -1185,6 +1187,17 @@ export default function AdminSidebar() {
                       <option value="inter-city">Inter-city</option>
                       <option value="intra-city">Intra-city</option>
                     </select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Display Order</label>
+                    <Input
+                      type="number"
+                      value={formData.displayOrder || ''}
+                      onChange={(e) => setFormData({...formData, displayOrder: e.target.value})}
+                      placeholder="0"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Lower numbers appear first in the pricing tool</p>
                   </div>
                   
                   {formData.routeType === 'inter-city' ? (

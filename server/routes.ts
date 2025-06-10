@@ -339,38 +339,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/pricing/routes/:cityId", async (req, res) => {
     try {
       const { cityId } = req.params;
+      const cityIdNum = parseInt(cityId);
       
-      // Available routes for each city based on your specification
-      const routesByCity = {
-        1: [ // Cairo
-          { id: 1, name: "Airport to Hotel or Vice Versa", type: "airport" },
-          { id: 2, name: "Cairo to Alexandria Over Day", type: "inter-city" },
-          { id: 3, name: "Cairo to Alexandria Over Night", type: "inter-city" },
-          { id: 4, name: "Cairo to El Fayoum Over Day", type: "inter-city" },
-          { id: 5, name: "Cairo to El Fayoum Over Night", type: "inter-city" },
-          { id: 6, name: "Day Tour in Cairo 8 Hours", type: "intra-city" },
-          { id: 7, name: "Day Tour in Cairo 12 Hours", type: "intra-city" },
-          { id: 8, name: "Sound & Light Show", type: "activity" }
-        ],
-        2: [ // Alexandria
-          { id: 9, name: "Alexandria to Cairo Over Day", type: "inter-city" },
-          { id: 10, name: "Alexandria City Tour", type: "intra-city" },
-          { id: 11, name: "Airport Transfer Alexandria", type: "airport" }
-        ],
-        3: [ // Luxor
-          { id: 12, name: "Luxor to Aswan Over Day", type: "inter-city" },
-          { id: 13, name: "East Bank Tour", type: "intra-city" },
-          { id: 14, name: "West Bank Tour", type: "intra-city" },
-          { id: 15, name: "Airport Transfer Luxor", type: "airport" }
-        ],
-        4: [ // Aswan
-          { id: 16, name: "Aswan to Abu Simbel", type: "inter-city" },
-          { id: 17, name: "Aswan City Tour", type: "intra-city" },
-          { id: 18, name: "Airport Transfer Aswan", type: "airport" }
-        ]
+      // Get routes and cities from database
+      const allRoutes = await storage.getRoutes();
+      const cities = await storage.getCities();
+      
+      // Helper function to get city name by ID
+      const getCityNameById = (id: number) => {
+        const city = cities.find(c => c.id === id);
+        return city ? city.name : 'Unknown';
       };
-
-      const routes = routesByCity[parseInt(cityId)] || [];
+      
+      // Filter routes for the specified city (either fromCityId or toCityId matches)
+      const routes = allRoutes
+        .filter(route => route.fromCityId === cityIdNum || route.toCityId === cityIdNum)
+        .map(route => {
+          const fromCityName = getCityNameById(route.fromCityId);
+          const toCityName = getCityNameById(route.toCityId);
+          return {
+            id: route.id,
+            name: route.name || `${fromCityName} → ${toCityName}`,
+            type: route.fromCityId === route.toCityId ? 'intra-city' : 'inter-city'
+          };
+        });
+      
       res.json(routes);
     } catch (error) {
       console.error('Routes fetch error:', error);
