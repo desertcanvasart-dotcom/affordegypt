@@ -13,31 +13,34 @@ export default function Destinations() {
       id: 1,
       title: "Budget Travel in Egypt: Complete Guide for 2025",
       excerpt: "Discover how to explore Egypt on a shoestring budget with insider tips on accommodation, food, transport, and must-see attractions that won't break the bank.",
-      image: "https://pixabay.com/get/gc3907a47ada5ea4d33214a9ca2f30dde8c33dd84992fa0e86609a7ed683a54adf6504d33277b05593855b5ba07cde8e8bfc9c5f7ea6d7edf8271cac45f4ee0fe_1280.jpg",
+      image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
       readTime: "12 min read",
       category: "Destinations",
       tags: ["Budget Travel", "Egypt Guide", "2025"],
-      author: "Travel Expert"
+      author: "Travel Expert",
+      link: "/budget-travel-egypt"
     },
     {
       id: 2,
       title: "Eastern & Western Deserts: Hidden Gems of Egypt", 
       excerpt: "Venture beyond the pyramids to discover Egypt's stunning desert landscapes, natural wonders, and unique experiences in the Eastern and Western Deserts.",
-      image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "http://travel2egypt.org/wp-content/uploads/2025/06/beach-in-sinai.jpg",
       readTime: "10 min read",
       category: "Destinations",
       tags: ["Desert", "Adventure", "Hidden Gems"],
-      author: "Desert Guide"
+      author: "Desert Guide",
+      link: "/eastern-western-deserts-guide"
     },
     {
       id: 3,
       title: "Sinai Peninsula: Mountain Adventures & Red Sea Coast",
       excerpt: "Explore the dramatic landscapes of Sinai Peninsula, from Mount Sinai's spiritual heights to the pristine coral reefs of the Red Sea coast.",
-      image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "http://travel2egypt.org/wp-content/uploads/2025/06/red-sea-diving.jpg",
       readTime: "8 min read", 
       category: "Destinations",
       tags: ["Sinai", "Mountains", "Red Sea"],
-      author: "Adventure Specialist"
+      author: "Adventure Specialist",
+      link: "/sinai-peninsula-guide"
     }
   ];
 
@@ -107,7 +110,10 @@ export default function Destinations() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {destinationArticles.map((article) => (
                 <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white">
-                  <div className="aspect-video relative overflow-hidden">
+                  <div 
+                    className="aspect-video relative overflow-hidden cursor-pointer"
+                    onClick={() => window.location.href = article.link}
+                  >
                     <img 
                       src={article.image}
                       alt={article.title}
@@ -149,11 +155,7 @@ export default function Destinations() {
                     
                     <Button 
                       className="w-full bg-teal-600 hover:bg-teal-700 text-white"
-                      onClick={() => {
-                        if (article.id === 1) window.location.href = '/budget-travel-egypt';
-                        else if (article.id === 2) window.location.href = '/eastern-western-deserts-guide';
-                        else if (article.id === 3) window.location.href = '/sinai-peninsula-guide';
-                      }}
+                      onClick={() => window.location.href = article.link}
                     >
                       Read Full Guide
                     </Button>
