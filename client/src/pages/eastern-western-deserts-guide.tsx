@@ -139,11 +139,26 @@ export default function EasternWesternDesertsGuide() {
               Egypt's deserts offer ancient mysteries, Martian landscapes, spiritual solitude, and local hospitality—all at a fraction of typical tourist hotspot costs. Perfect for budget-conscious adventurers seeking authentic experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-3">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
+                onClick={() => {
+                  window.location.href = '/#quote-builder';
+                }}
+              >
                 <Tent className="w-5 h-5 mr-2" />
                 Plan Your Desert Adventure
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
+                onClick={() => {
+                  const element = document.getElementById('budget-adventure');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 <DollarSign className="w-5 h-5 mr-2" />
                 View Budget Guide
               </Button>
@@ -268,7 +283,7 @@ export default function EasternWesternDesertsGuide() {
         </section>
 
         {/* 5-Day Budget Itinerary */}
-        <section>
+        <section id="budget-adventure">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-primary mb-4">5-Day Budget Desert Adventure</h2>
             <p className="text-xl text-slate-600 mb-4">
