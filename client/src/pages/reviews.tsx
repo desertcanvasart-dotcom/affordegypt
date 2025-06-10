@@ -90,7 +90,7 @@ export default function Reviews() {
         
         <main className="pt-20">
           {/* Hero Section */}
-          <section className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-16">
+          <section className="min-h-[90vh] flex items-center justify-center bg-gradient-to-r from-teal-600 to-blue-600 text-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <Quote className="w-16 h-16 mx-auto mb-6 text-teal-200" />
