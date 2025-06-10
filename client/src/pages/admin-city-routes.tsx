@@ -57,7 +57,7 @@ export default function AdminCityRoutes() {
     if (!currentCity) return [];
     
     let filteredRoutes = (routes as any[]).filter((route: any) => 
-      route.fromCityId === currentCity.id || route.toCityId === currentCity.id
+      route.fromCityId === currentCity.id
     );
 
     // Apply category filter
