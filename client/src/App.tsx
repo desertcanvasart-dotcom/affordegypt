@@ -16,6 +16,7 @@ import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
 import TravelTips from "@/pages/travel-tips";
+import Destinations from "@/pages/destinations";
 import BudgetTravelEgypt from "@/pages/budget-travel-egypt";
 import EgyptianStreetFoodGuide from "@/pages/egyptian-street-food-guide";
 import NileValleyGuide from "@/pages/nile-valley-guide";
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/admin/bookings" component={AdminBookings} />
       <Route path="/routes" component={Routes} />
       <Route path="/attractions" component={AttractionsSimple} />
+      <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/about" component={About} />

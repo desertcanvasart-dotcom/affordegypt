@@ -72,6 +72,13 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
+              href="/destinations"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
+              <MapPin className="w-4 h-4" />
+              Destinations
+            </Link>
+            <Link 
               href="/travel-tips"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
@@ -92,6 +99,12 @@ export default function Navbar() {
               <User className="w-4 h-4" />
               About
             </Link>
+            <button
+              onClick={() => navigateToSection('quote-builder')}
+              className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors font-medium"
+            >
+              Get A Quote
+            </button>
           </nav>
 
 
@@ -111,7 +124,14 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
-
+              <Link 
+                href="/destinations"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
+                <MapPin className="w-4 h-4" />
+                Destinations
+              </Link>
               <Link 
                 href="/travel-tips"
                 onClick={() => setIsMenuOpen(false)}
