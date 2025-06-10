@@ -85,7 +85,7 @@ export default function Reviews() {
         <meta property="og:description" content="Read authentic reviews from travelers who have experienced Egypt with Afford Egypt. Real testimonials from real customers." />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
         <Navbar />
         
         <main className="pt-20">
