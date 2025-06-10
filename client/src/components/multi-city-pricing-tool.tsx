@@ -77,7 +77,7 @@ export default function MultiCityPricingTool() {
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   // Fetch available cities from the database
-  const { data: cities = [] } = useQuery<{id: number, name: string}[]>({
+  const { data: cities = [] } = useQuery<{id: number, name: string, description?: string}[]>({
     queryKey: ["/api/cities"],
   });
 
@@ -323,12 +323,12 @@ export default function MultiCityPricingTool() {
 
   const getBudgetEstimate = (cityId: number, style: string) => {
     const baseRates = {
-      1: { budget: 80, balanced: 150, luxury: 300 }, // Cairo
-      2: { budget: 70, balanced: 120, luxury: 250 }, // Alexandria  
-      3: { budget: 90, balanced: 180, luxury: 350 }, // Luxor
-      4: { budget: 85, balanced: 160, luxury: 320 }  // Aswan
+      1: { budget: 40, balanced: 75, luxury: 150 }, // Cairo - reduced by half
+      2: { budget: 35, balanced: 60, luxury: 125 }, // Alexandria - reduced by half  
+      3: { budget: 45, balanced: 90, luxury: 175 }, // Luxor - reduced by half
+      4: { budget: 42, balanced: 80, luxury: 160 }  // Aswan - reduced by half
     };
-    return baseRates[cityId as keyof typeof baseRates]?.[style as keyof typeof baseRates[1]] || 100;
+    return baseRates[cityId as keyof typeof baseRates]?.[style as keyof typeof baseRates[1]] || 50;
   };
 
   const isWithinBudget = (price: number, range: { min: number; max: number }) => {
@@ -350,13 +350,9 @@ export default function MultiCityPricingTool() {
   };
 
   const getCityDescription = (cityName: string) => {
-    const descriptions = {
-      'Cairo': 'Ancient capital with pyramids, museums, and vibrant culture',
-      'Alexandria': 'Mediterranean coastal city with Greco-Roman heritage',
-      'Luxor': 'Open-air museum with Valley of Kings and magnificent temples',
-      'Aswan': 'Nubian culture hub with beautiful Nile scenery and temples'
-    };
-    return descriptions[cityName as keyof typeof descriptions] || 'Historic Egyptian destination';
+    // Use the city description from the database
+    const city = cities.find(c => c.name === cityName);
+    return city?.description || 'Historic Egyptian destination';
   };
 
   // Smart itinerary suggestions
