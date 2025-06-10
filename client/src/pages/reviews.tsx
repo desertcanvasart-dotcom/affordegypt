@@ -90,14 +90,14 @@ export default function Reviews() {
         
         <main className="pt-20">
           {/* Hero Section */}
-          <section className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-16">
+          <section className="bg-gradient-to-r from-orange-600 to-amber-600 text-white py-16">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
-                <Quote className="w-16 h-16 mx-auto mb-6 text-teal-200" />
+                <Quote className="w-16 h-16 mx-auto mb-6 text-orange-200" />
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
                   What Our Travelers Say
                 </h1>
-                <p className="text-xl md:text-2xl text-teal-100 mb-8">
+                <p className="text-xl md:text-2xl text-orange-100 mb-8">
                   Authentic reviews from real customers who experienced the magic of Egypt with us
                 </p>
                 
@@ -105,20 +105,20 @@ export default function Reviews() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                   <div className="text-center">
                     <div className="text-3xl font-bold mb-2">{reviews.length}</div>
-                    <div className="text-teal-200">Total Reviews</div>
+                    <div className="text-orange-200">Total Reviews</div>
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <span className="text-3xl font-bold">{getAverageRating()}</span>
                       <div className="flex">{renderStars(Math.round(parseFloat(getAverageRating())))}</div>
                     </div>
-                    <div className="text-teal-200">Average Rating</div>
+                    <div className="text-orange-200">Average Rating</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold mb-2">
                       {Math.round((ratingCounts[5] / reviews.length) * 100)}%
                     </div>
-                    <div className="text-teal-200">5-Star Reviews</div>
+                    <div className="text-orange-200">5-Star Reviews</div>
                   </div>
                 </div>
               </div>
@@ -305,17 +305,17 @@ export default function Reviews() {
           </section>
 
           {/* Call to Action */}
-          <section className="py-16 bg-gradient-to-r from-teal-600 to-blue-600 text-white">
+          <section className="py-16 bg-gradient-to-r from-orange-600 to-amber-600 text-white">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-3xl font-bold mb-4">Ready to Create Your Own Egypt Story?</h2>
-              <p className="text-xl text-teal-100 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
                 Join thousands of satisfied travelers who have experienced the magic of Egypt with us
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100">
+                <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
                   Plan Your Trip
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
                   Contact Us
                 </Button>
               </div>
