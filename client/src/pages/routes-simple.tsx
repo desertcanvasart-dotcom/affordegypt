@@ -104,14 +104,29 @@ export default function RoutesSimple() {
                 <CardContent className="p-6">
                   <div className="grid grid-cols-2 gap-3">
                     {Array.from(interCityCities).map((cityId: any) => (
-                      <Link
-                        key={cityId}
-                        href={`/routes/inter-city-routes/${(cities as any[])?.find((c: any) => c.id === cityId)?.slug || 'unknown'}`}
-                        className="flex items-center gap-2 p-3 rounded-md border border-gray-200 hover:border-teal-200 hover:bg-teal-50 transition-colors"
-                      >
-                        <MapPin className="w-4 h-4 text-teal-600" />
-                        <span className="font-medium">{getCityName(cityId)}</span>
-                      </Link>
+                      <div key={cityId} className="p-3 rounded-md border border-gray-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MapPin className="w-4 h-4 text-teal-600" />
+                          <span className="font-medium">{getCityName(cityId)}</span>
+                        </div>
+                        <div className="space-y-2">
+                          {interCityRoutes
+                            .filter((route: any) => route.fromCityId === cityId || route.toCityId === cityId)
+                            .slice(0, 2)
+                            .map((route: any) => (
+                              <div key={route.id} className="flex justify-between items-center text-sm">
+                                <span className="text-gray-600">
+                                  {getCityName(route.fromCityId)} → {getCityName(route.toCityId)}
+                                </span>
+                                <Link href={`/routes/book/${route.id}`}>
+                                  <button className="bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700">
+                                    Book
+                                  </button>
+                                </Link>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </CardContent>
@@ -132,14 +147,29 @@ export default function RoutesSimple() {
                 <CardContent className="p-6">
                   <div className="grid grid-cols-2 gap-3">
                     {Array.from(cityTourCities).map((cityId: any) => (
-                      <Link
-                        key={cityId}
-                        href={`/routes/city-tours/${(cities as any[])?.find((c: any) => c.id === cityId)?.slug || 'unknown'}`}
-                        className="flex items-center gap-2 p-3 rounded-md border border-gray-200 hover:border-orange-200 hover:bg-orange-50 transition-colors"
-                      >
-                        <MapPin className="w-4 h-4 text-orange-600" />
-                        <span className="font-medium">{getCityName(cityId)}</span>
-                      </Link>
+                      <div key={cityId} className="p-3 rounded-md border border-gray-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MapPin className="w-4 h-4 text-orange-600" />
+                          <span className="font-medium">{getCityName(cityId)}</span>
+                        </div>
+                        <div className="space-y-2">
+                          {cityTours
+                            .filter((route: any) => route.fromCityId === cityId)
+                            .slice(0, 2)
+                            .map((route: any) => (
+                              <div key={route.id} className="flex justify-between items-center text-sm">
+                                <span className="text-gray-600">
+                                  {route.name || `${getCityName(route.fromCityId)} Tour`}
+                                </span>
+                                <Link href={`/routes/book/${route.id}`}>
+                                  <button className="bg-orange-600 text-white px-2 py-1 rounded text-xs hover:bg-orange-700">
+                                    Book
+                                  </button>
+                                </Link>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </CardContent>

@@ -14,6 +14,7 @@ import AdminBookings from "@/pages/admin-bookings";
 import Routes from "@/pages/routes";
 import RoutesSimple from "@/pages/routes-simple";
 import RouteCityPage from "@/pages/route-city-page";
+import RouteBooking from "@/pages/route-booking";
 import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
@@ -48,6 +49,7 @@ function Router() {
       <Route path="/admin/bookings" component={AdminBookings} />
       <Route path="/admin/routes" component={Routes} />
       <Route path="/routes" component={RoutesSimple} />
+      <Route path="/routes/book/:routeId" component={RouteBooking} />
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/destinations" component={Destinations} />
