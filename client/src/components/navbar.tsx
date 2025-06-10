@@ -72,6 +72,13 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
+              href="/routes"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
+              <MapPin className="w-4 h-4" />
+              Routes
+            </Link>
+            <Link 
               href="/destinations"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
@@ -124,6 +131,14 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
+              <Link 
+                href="/routes"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
+                <MapPin className="w-4 h-4" />
+                Routes
+              </Link>
               <Link 
                 href="/destinations"
                 onClick={() => setIsMenuOpen(false)}
