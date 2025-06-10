@@ -33,11 +33,11 @@ export default function RoutesNavigation() {
 
   // Group routes by route type and organize cities
   const routeCategories = useMemo(() => {
-    if (!routes || !cities) return [];
+    if (!routes || !cities || !Array.isArray(routes) || !Array.isArray(cities)) return [];
 
     const routeGroups = new Map<string, { cities: Set<number>, routes: Route[] }>();
 
-    routes.forEach((route: Route) => {
+    (routes as Route[]).forEach((route: Route) => {
       const isInterCity = route.fromCityId !== route.toCityId;
       const categoryKey = isInterCity ? 'Inter-City Routes' : 'City Tours';
       
@@ -56,8 +56,8 @@ export default function RoutesNavigation() {
     return Array.from(routeGroups.entries()).map(([categoryName, group]) => ({
       name: categoryName,
       cities: Array.from(group.cities)
-        .map(cityId => cities.find((c: City) => c.id === cityId))
-        .filter(Boolean)
+        .map(cityId => (cities as City[]).find((c: City) => c.id === cityId))
+        .filter((city): city is City => Boolean(city))
         .sort((a: City, b: City) => a.name.localeCompare(b.name)),
       routes: group.routes.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0))
     }));

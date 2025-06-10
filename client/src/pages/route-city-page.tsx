@@ -54,8 +54,8 @@ export default function RouteCityPage() {
 
   // Find the current city
   const currentCity = useMemo(() => {
-    if (!cities || !citySlug) return null;
-    return cities.find((city: City) => city.slug === citySlug);
+    if (!cities || !Array.isArray(cities) || !citySlug) return null;
+    return (cities as City[]).find((city: City) => city.slug === citySlug);
   }, [cities, citySlug]);
 
   // Determine route type based on category
@@ -63,9 +63,9 @@ export default function RouteCityPage() {
 
   // Filter routes for this city and category
   const cityRoutes = useMemo(() => {
-    if (!routes || !currentCity) return [];
+    if (!routes || !Array.isArray(routes) || !currentCity) return [];
     
-    return routes
+    return (routes as Route[])
       .filter((route: Route) => {
         if (isInterCity) {
           // For inter-city routes, include routes that start from or go to this city
@@ -80,16 +80,16 @@ export default function RouteCityPage() {
 
   // Get city attractions
   const cityAttractions = useMemo(() => {
-    if (!attractions || !currentCity) return [];
-    return attractions
+    if (!attractions || !Array.isArray(attractions) || !currentCity) return [];
+    return (attractions as Attraction[])
       .filter((attraction: Attraction) => attraction.cityId === currentCity.id)
       .slice(0, 6); // Show top 6 attractions
   }, [attractions, currentCity]);
 
   // Helper function to get city name by ID
   const getCityName = (cityId: number) => {
-    if (!cities) return 'Unknown';
-    const city = cities.find((c: City) => c.id === cityId);
+    if (!cities || !Array.isArray(cities)) return 'Unknown';
+    const city = (cities as City[]).find((c: City) => c.id === cityId);
     return city ? city.name : 'Unknown';
   };
 

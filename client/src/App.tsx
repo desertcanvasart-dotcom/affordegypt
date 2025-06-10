@@ -12,6 +12,8 @@ import BookPage from "@/pages/book";
 import AdminSidebar from "@/pages/admin-sidebar";
 import AdminBookings from "@/pages/admin-bookings";
 import Routes from "@/pages/routes";
+import RoutesOverview from "@/pages/routes-overview";
+import RouteCityPage from "@/pages/route-city-page";
 import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
@@ -44,7 +46,9 @@ function Router() {
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin" component={AdminSidebar} />
       <Route path="/admin/bookings" component={AdminBookings} />
-      <Route path="/routes" component={Routes} />
+      <Route path="/admin/routes" component={Routes} />
+      <Route path="/routes" component={RoutesOverview} />
+      <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />
