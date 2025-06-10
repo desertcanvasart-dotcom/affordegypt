@@ -315,7 +315,7 @@ export default function Reviews() {
                 <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100">
                   Plan Your Trip
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
                   Contact Us
                 </Button>
               </div>
