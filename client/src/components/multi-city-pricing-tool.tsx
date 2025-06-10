@@ -228,10 +228,21 @@ export default function MultiCityPricingTool() {
   const getCurrentCityRoutes = (cityId: number) => {
     if (!routes || routes.length === 0) return [];
     
-    // Filter routes that start from this city
-    return routes.filter((route: any) => {
-      return route.fromCityId === cityId;
-    }).map((route: any) => {
+    // Filter routes that start from this city and preserve database ordering
+    return routes
+      .filter((route: any) => {
+        return route.fromCityId === cityId;
+      })
+      .sort((a: any, b: any) => {
+        // Sort by displayOrder first, then by id to maintain consistent ordering
+        const orderA = a.displayOrder || 0;
+        const orderB = b.displayOrder || 0;
+        if (orderA !== orderB) {
+          return orderA - orderB;
+        }
+        return a.id - b.id;
+      })
+      .map((route: any) => {
       // Generate route name based on available data
       let routeName = '';
       let routeType = 'inter-city';
