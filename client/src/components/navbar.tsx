@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Mail, Lightbulb, Calculator, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, MapPin, User, Lightbulb, Star } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
@@ -35,9 +34,7 @@ export default function Navbar() {
     }
   };
 
-  const scrollToQuote = () => navigateToSection('quote-builder');
-  const scrollToAbout = () => navigateToSection('about');
-  const scrollToContact = () => navigateToSection('contact');
+
 
   const navigateToHome = () => {
     if (location === '/') {
@@ -74,13 +71,6 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={scrollToQuote}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <Calculator className="w-4 h-4" />
-              Get Quote
-            </button>
             <Link 
               href="/travel-tips"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
@@ -102,24 +92,9 @@ export default function Navbar() {
               <User className="w-4 h-4" />
               About
             </Link>
-            <Link 
-              href="/contact"
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <Mail className="w-4 h-4" />
-              Contact
-            </Link>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center">
-            <Button 
-              onClick={scrollToQuote}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
-            >
-              Get Quote
-            </Button>
-          </div>
+
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -136,13 +111,7 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
-              <button 
-                onClick={() => { scrollToQuote(); setIsMenuOpen(false); }}
-                className="text-muted-foreground hover:text-primary transition-colors text-left flex items-center gap-2"
-              >
-                <Calculator className="w-4 h-4" />
-                Get Quote
-              </button>
+
               <Link 
                 href="/travel-tips"
                 onClick={() => setIsMenuOpen(false)}
@@ -152,6 +121,14 @@ export default function Navbar() {
                 Travel Tips
               </Link>
               <Link 
+                href="/reviews"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
+                <Star className="w-4 h-4" />
+                Reviews
+              </Link>
+              <Link 
                 href="/about"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
@@ -159,20 +136,7 @@ export default function Navbar() {
                 <User className="w-4 h-4" />
                 About
               </Link>
-              <Link 
-                href="/contact"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <Mail className="w-4 h-4" />
-                Contact
-              </Link>
-              <Button 
-                onClick={() => { scrollToQuote(); setIsMenuOpen(false); }}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full"
-              >
-                Get Quote
-              </Button>
+
             </div>
           </div>
         )}
