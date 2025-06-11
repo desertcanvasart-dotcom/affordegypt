@@ -713,7 +713,7 @@ export default function AdminWorking() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {cities.map((city: any) => (
+                  {cities?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                     <TableRow key={city.id} className="h-12">
                       <TableCell>
                         <div>
@@ -1811,7 +1811,7 @@ export default function AdminWorking() {
                                 onChange={(e) => setFormData({...formData, fromCityId: e.target.value})}
                               >
                                 <option value="">Select From City</option>
-                                {(cities as any[])?.map((city: any) => (
+                                {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                                   <option key={city.id} value={city.id}>{city.name}</option>
                                 ))}
                               </select>
@@ -1824,7 +1824,7 @@ export default function AdminWorking() {
                                 onChange={(e) => setFormData({...formData, toCityId: e.target.value})}
                               >
                                 <option value="">Select To City</option>
-                                {(cities as any[])?.map((city: any) => (
+                                {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                                   <option key={city.id} value={city.id}>{city.name}</option>
                                 ))}
                               </select>
@@ -1853,7 +1853,7 @@ export default function AdminWorking() {
                               onChange={(e) => setFormData({...formData, fromCityId: e.target.value, toCityId: e.target.value})}
                             >
                               <option value="">Select City</option>
-                              {(cities as any[])?.map((city: any) => (
+                              {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                                 <option key={city.id} value={city.id}>{city.name}</option>
                               ))}
                             </select>

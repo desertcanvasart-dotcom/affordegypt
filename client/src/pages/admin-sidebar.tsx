@@ -1114,7 +1114,7 @@ export default function AdminSidebar() {
                       onChange={(e) => setFormData({...formData, cityId: e.target.value})}
                     >
                       <option value="">All Cities</option>
-                      {(cities as any[]).map((city: any) => (
+                      {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                         <option key={city.id} value={city.id}>{city.name}</option>
                       ))}
                     </select>
