@@ -480,26 +480,27 @@ export default function AdminWorking() {
           isActive: formData.isActive !== undefined ? formData.isActive : true
         };
       case 'route':
-        // Calculate base pricing based on distance and vehicle types
-        const distance = parseFloat(formData.km) || 0;
+        // Use manual pricing data from form inputs
         const basePricing: any = {};
         
-        // Generate pricing for all vehicle types
+        // Manual pricing for all vehicle types (no automatic calculation)
         // Vehicle IDs: 1=Sedan, 2=Minivan, 3=Van
-        const pricePerKm = formData.routeType === 'intra-city' ? 1.5 : 0.5; // Higher rate for city routes
-        
         [1, 2, 3].forEach(vehicleId => {
           basePricing[vehicleId] = {};
-          const multiplier = vehicleId === 1 ? 1 : vehicleId === 2 ? 1.4 : 1.8;
-          basePricing[vehicleId][1] = (distance * pricePerKm * multiplier).toFixed(2);
+          // Use manual pricing inputs from form (normal pricing only)
+          const vehicleTypeKey = vehicleId === 1 ? 'sedan' : vehicleId === 2 ? 'minivan' : 'van';
+          const manualPrice = formData[`${vehicleTypeKey}Price`] || '0';
+          basePricing[vehicleId][1] = parseFloat(manualPrice).toFixed(2);
         });
         
         // Debug logging
-        console.log('Route form data:', {
+        console.log('Route manual pricing:', {
           fromCityId: formData.fromCityId,
           toCityId: formData.toCityId,
           routeType: formData.routeType,
-          km: formData.km
+          sedanPrice: formData.sedanPrice,
+          minivanPrice: formData.minivanPrice,
+          vanPrice: formData.vanPrice
         });
 
         // Validate required fields

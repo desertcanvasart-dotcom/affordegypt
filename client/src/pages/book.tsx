@@ -296,6 +296,25 @@ export default function BookPage() {
                     )}
                   />
 
+                  {/* Deposit Information */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+                    <div className="flex items-start gap-3">
+                      <div className="text-2xl">💵</div>
+                      <div>
+                        <h4 className="font-semibold text-blue-900 mb-2">10% deposit required</h4>
+                        <p className="text-sm text-blue-800 mb-2">
+                          Our team will contact you to collect it and confirm your booking.
+                        </p>
+                        <p className="text-sm text-blue-800">
+                          Pay the rest in cash to your guide after the tour.
+                        </p>
+                        <p className="text-xs text-blue-700 mt-2">
+                          Payment accepted in Euro, GBP, or USD (in that order of preference)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <Button 
                     type="submit" 
                     size="lg" 

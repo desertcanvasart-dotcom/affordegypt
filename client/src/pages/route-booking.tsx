@@ -58,6 +58,7 @@ export default function RouteBooking() {
   const [customerEmail, setCustomerEmail] = useState<string>("");
   const [customerPhone, setCustomerPhone] = useState<string>("");
   const [specialRequests, setSpecialRequests] = useState<string>("");
+  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
   const [bookingConfirmed, setBookingConfirmed] = useState<boolean>(false);
   const [bookingData, setBookingData] = useState<any>(null);
 
@@ -702,11 +703,44 @@ Email: support@affordegypt.com
                     </div>
                   )}
 
+                  {/* Deposit Information */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                    <div className="flex items-start gap-3">
+                      <div className="text-2xl">💵</div>
+                      <div>
+                        <h4 className="font-semibold text-blue-900 mb-2">10% deposit required</h4>
+                        <p className="text-sm text-blue-800 mb-2">
+                          Our team will contact you to collect it and confirm your booking.
+                        </p>
+                        <p className="text-sm text-blue-800">
+                          Pay the rest in cash to your guide after the tour.
+                        </p>
+                        <p className="text-xs text-blue-700 mt-2">
+                          Payment accepted in Euro, GBP, or USD (in that order of preference)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Terms of Service Checkbox */}
+                  <div className="flex items-start gap-3 mb-4">
+                    <input
+                      type="checkbox"
+                      id="acceptTerms"
+                      checked={acceptTerms}
+                      onChange={(e) => setAcceptTerms(e.target.checked)}
+                      className="mt-1 h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="acceptTerms" className="text-sm text-gray-700">
+                      I have reviewed and accept the Terms of Service and Booking Agreement
+                    </label>
+                  </div>
+
                   {/* Submit Button */}
                   <Button 
                     type="submit" 
                     className="w-full bg-teal-600 hover:bg-teal-700"
-                    disabled={bookingMutation.isPending}
+                    disabled={bookingMutation.isPending || !acceptTerms}
                   >
                     {bookingMutation.isPending ? "Submitting..." : "Book Transportation"}
                   </Button>

@@ -75,6 +75,7 @@ export default function MultiCityPricingTool() {
   });
   const [citySearchTerm, setCitySearchTerm] = useState('');
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   // Fetch available cities from the database
   const { data: cities = [] } = useQuery<{id: number, name: string, description?: string}[]>({
@@ -993,6 +994,33 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
+              {/* Payment Information */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                <div className="flex items-start gap-3">
+                  <div className="text-xl">💵</div>
+                  <div>
+                    <h4 className="font-semibold text-blue-900 text-sm mb-1">Payment Information</h4>
+                    <p className="text-xs text-blue-800">
+                      Prices shown in EGP • Payment accepted in Euro, GBP, or USD (preferred order)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Terms of Service Checkbox */}
+              <div className="flex items-start gap-3 mb-4">
+                <input
+                  type="checkbox"
+                  id="acceptTermsPricing"
+                  checked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                  className="mt-1 h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                />
+                <label htmlFor="acceptTermsPricing" className="text-sm text-gray-700">
+                  I have reviewed and accept the Terms of Service and Booking Agreement
+                </label>
+              </div>
+
               {pricingMutation.isPending ? (
                 <Button size="lg" disabled className="flex items-center gap-2">
                   <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
@@ -1002,7 +1030,7 @@ export default function MultiCityPricingTool() {
                 <Button 
                   size="lg"
                   className="flex items-center gap-2 transition-all duration-200"
-                  disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
+                  disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0 || !acceptTerms}
                   onClick={handleContinueBooking}
                 >
                   Continue to Booking
