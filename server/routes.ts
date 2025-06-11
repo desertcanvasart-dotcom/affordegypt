@@ -581,7 +581,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.json(route);
       } else {
         const routes = await storage.getRoutes();
-        res.json(routes);
+        
+        // Transform routes to include individual vehicle prices for frontend compatibility
+        const transformedRoutes = routes.map(route => {
+          let sedanPrice = null;
+          let minivanPrice = null;
+          let vanPrice = null;
+          
+          // Extract pricing from basePriceByVehicle structure
+          if (route.basePriceByVehicle) {
+            const pricing = typeof route.basePriceByVehicle === 'string' 
+              ? JSON.parse(route.basePriceByVehicle) 
+              : route.basePriceByVehicle;
+            
+            sedanPrice = pricing.sedan || route.sedanPrice;
+            minivanPrice = pricing.minivan || route.minivanPrice;
+            vanPrice = pricing.van || route.vanPrice;
+          } else {
+            // Fallback to direct fields if available
+            sedanPrice = route.sedanPrice;
+            minivanPrice = route.minivanPrice;
+            vanPrice = route.vanPrice;
+          }
+          
+          return {
+            ...route,
+            sedanPrice,
+            minivanPrice,
+            vanPrice
+          };
+        });
+        
+        res.json(transformedRoutes);
       }
     } catch (error: any) {
       res.status(500).json({ message: error.message });

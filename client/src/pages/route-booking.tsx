@@ -73,15 +73,7 @@ export default function RouteBooking() {
   const selectedRoute = routes && Array.isArray(routes) ? 
     (routes as Route[]).find((route: Route) => route.id === routeId) : undefined;
   
-  // Debug logging
-  console.log('Route booking debug:', {
-    routeId,
-    selectedRoute,
-    routesCount: Array.isArray(routes) ? routes.length : 0,
-    hasSedanPrice: selectedRoute?.sedanPrice,
-    hasMinivanPrice: selectedRoute?.minivanPrice,
-    hasVanPrice: selectedRoute?.vanPrice
-  });
+
   
   // Helper functions
   const getCityName = (cityId: number) => {
