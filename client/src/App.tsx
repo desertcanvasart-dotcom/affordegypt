@@ -30,6 +30,7 @@ import EasternWesternDesertsGuide from "@/pages/eastern-western-deserts-guide";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Reviews from "@/pages/reviews";
+import Transfers from "@/pages/transfers";
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
@@ -54,6 +55,7 @@ function Router() {
       <Route path="/routes" component={RoutesSimple} />
       <Route path="/routes/book/:routeId" component={RouteBooking} />
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
+      <Route path="/transfers" component={Transfers} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />
