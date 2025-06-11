@@ -119,8 +119,13 @@ export default function TransfersPage() {
       availableCities = cities.filter(city => citiesWithInternalRoutes.has(city.id));
     }
     
-    // Always sort cities alphabetically
-    return [...availableCities].sort((a, b) => a.name.localeCompare(b.name));
+    // Always sort cities alphabetically (case-insensitive, trimmed, with proper locale handling)
+    return [...availableCities].sort((a, b) => 
+      a.name.trim().toLowerCase().localeCompare(b.name.trim().toLowerCase(), 'en', { 
+        numeric: true, 
+        sensitivity: 'base' 
+      })
+    );
   };
 
   const handleQuickSearch = () => {
