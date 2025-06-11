@@ -54,30 +54,7 @@ export default function TransfersPage() {
     setShowLocalRoutes(false);
   };
 
-  // Calculate time-based pricing multiplier
-  const getTimePricing = (basePrice: number) => {
-    if (!travelDate || !travelTime || !basePrice) return basePrice;
-    
-    try {
-      const hour = parseInt(travelTime.split(':')[0]);
-      if (isNaN(hour)) return basePrice;
-      
-      const date = new Date(travelDate + 'T00:00:00');
-      if (isNaN(date.getTime())) return basePrice;
-      
-      const isWeekend = date.getDay() === 5 || date.getDay() === 6; // Friday/Saturday
-      const isPeakHour = (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19);
-      
-      let multiplier = 1;
-      if (isPeakHour) multiplier += 0.2; // 20% peak hour surcharge
-      if (isWeekend) multiplier += 0.15; // 15% weekend surcharge
-      
-      return Math.round(basePrice * multiplier);
-    } catch (error) {
-      console.warn('Error calculating time-based pricing:', error);
-      return basePrice;
-    }
-  };
+
 
   // Fetch cities
   const { data: cities = [] } = useQuery<City[]>({
@@ -195,13 +172,10 @@ export default function TransfersPage() {
   const getPrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
     const basePrice = getValidPrice(selectedRoute.basePriceByVehicle, vehicleType);
-    return getTimePricing(basePrice);
+    return basePrice;
   };
 
-  const getBasePrice = () => {
-    if (!selectedRoute || !vehicleType) return 0;
-    return getValidPrice(selectedRoute.basePriceByVehicle, vehicleType);
-  };
+
 
   const getVehicleCapacity = (type: string) => {
     switch (type) {
@@ -604,23 +578,14 @@ export default function TransfersPage() {
                           <Car className="w-8 h-8 mx-auto mb-2 text-teal-600" />
                           <h5 className="font-semibold capitalize">{type}</h5>
                           <p className="text-sm text-gray-600 mb-2">{getVehicleCapacity(type)}</p>
-                          {travelDate && travelTime && getTimePricing(price) !== price ? (
-                            <div>
-                              <p className="text-sm text-gray-500 line-through">
-                                {price} EGP
-                              </p>
-                              <p className="text-lg font-bold text-teal-600">
-                                {getTimePricing(price)} EGP
-                              </p>
-                              <p className="text-xs text-orange-600">
-                                Time-based pricing
-                              </p>
-                            </div>
-                          ) : (
+                          <div>
                             <p className="text-lg font-bold text-teal-600">
                               {price} EGP
                             </p>
-                          )}
+                            <p className="text-xs text-gray-500 mt-1">
+                              Payment: €/£/$ accepted
+                            </p>
+                          </div>
                         </div>
                       </div>
                     );
