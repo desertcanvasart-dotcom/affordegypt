@@ -73,6 +73,16 @@ export default function RouteBooking() {
   const selectedRoute = routes && Array.isArray(routes) ? 
     (routes as Route[]).find((route: Route) => route.id === routeId) : undefined;
   
+  // Debug logging
+  console.log('Route booking debug:', {
+    routeId,
+    selectedRoute,
+    routesCount: Array.isArray(routes) ? routes.length : 0,
+    hasSedanPrice: selectedRoute?.sedanPrice,
+    hasMinivanPrice: selectedRoute?.minivanPrice,
+    hasVanPrice: selectedRoute?.vanPrice
+  });
+  
   // Helper functions
   const getCityName = (cityId: number) => {
     if (!cities) return 'Unknown';
@@ -255,21 +265,21 @@ export default function RouteBooking() {
                   <div>
                     <Label>Vehicle Type *</Label>
                     <Select value={selectedVehicle} onValueChange={setSelectedVehicle}>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Choose vehicle type" />
                       </SelectTrigger>
-                      <SelectContent>
-                        {selectedRoute.sedanPrice && (
+                      <SelectContent className="z-50">
+                        {selectedRoute?.sedanPrice && (
                           <SelectItem value="sedan">
                             Sedan - ${selectedRoute.sedanPrice}
                           </SelectItem>
                         )}
-                        {selectedRoute.minivanPrice && (
+                        {selectedRoute?.minivanPrice && (
                           <SelectItem value="minivan">
                             Minivan - ${selectedRoute.minivanPrice}
                           </SelectItem>
                         )}
-                        {selectedRoute.vanPrice && (
+                        {selectedRoute?.vanPrice && (
                           <SelectItem value="van">
                             Van - ${selectedRoute.vanPrice}
                           </SelectItem>
