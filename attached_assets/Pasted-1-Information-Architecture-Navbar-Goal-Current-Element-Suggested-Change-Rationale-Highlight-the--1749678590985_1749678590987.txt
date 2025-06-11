@@ -1,0 +1,68 @@
+1 | Information Architecture & Navbar
+Goal	Current Element	Suggested Change	Rationale
+Highlight the two booking flows (full quote vs. transfers only)	Routes link + Get A Quote button	Primary CTA: Start Your Trip Quote (solid brand-teal)
+Secondary CTA: Book a Transfer (outline style)
+Move both to the far-right of the navbar, side-by-side	Visually separates the paths; keeps “cheap/quick transfers” top-of-mind
+Reduce decision fatigue	`Destinations	Travel Tips	Reviews
+Name clarity	Routes	Rename to “Transfers” (icon: 🚐)	“Transfers” is universally understood; “routes” can read like a blog section
+Build trust fast	n/a	Add a left-aligned super-nav bar (height 28 px) with tiny lock/check icons: “No hidden fees – Real prices in EGP – 4.9★ on 2,500+ trips”	Conveys price honesty & social proof before they even scroll
+
+2 | Hero Section Concepts
+A. Split-Card Hero (minimal dev work)
+arduino
+Copy
+| Egypt Travel Made Simple |
+   sub-headline
+   ┌──────────────┬──────────────┐
+   │  Full Trip   │   Transfers  │
+   │  Planner     │  Only        │
+   │  (button)    │  (button)    │
+   └──────────────┴──────────────┘
+background: hero image
+Left card (Full Trip Planner): uses existing 1-2-3 steps (journey → extras → price).
+
+Right card (Instant Transfers): 1-click to the transfer price picker.
+
+Keeps one hero image; no extra scrolling.
+
+B. Tabbed Hero (JS toggle)
+Add an inline toggle pill just under the main headline:
+
+Egypt Travel Made [ Trips | Transfers ] Simple
+
+Switching tabs morphs the 3-step boxes below (Trip Steps vs. Transfer Steps).
+Great for a sleek, single-hero look; requires light JS but feels premium.
+
+C. Dual-Panel Hero (bold option)
+Two 50/50 panels with their own background photos (Nile felucca vs. freeway at sunset) and large centered CTAs. Users self-select instantly. Works best when you want to emphasise that transfers are truly a standalone product line.
+
+3 | Micro-copy, Icons & Visual Cues
+Use-case	Copy Snippet	Suggested Icon
+Transfers button	“Instant Transfer Price”	🚐 or 🚌 (outline style)
+Full trip button	“Build My Egypt Trip”	🎒 or 🏛️
+Price honesty	“See your final EGP price before you pay – no surprises.”	✅
+Speed	“Quote in < 60 seconds”	⚡
+Add-ons	“Optional meal add-on from £4 / person”	🍴
+Why us (hover tooltip)	“Local network = lower rates; we pass savings on to you.”	📉
+
+4 | Visual & Interaction Details
+Sticky CTA bar (mobile only)
+After 180 px scroll, show a slim bar with the two primary CTAs; boosts conversion on long pages.
+
+Teal > Beige gradient buttons
+• Solid teal (#19A974) for primary, 8 px radius, shadow 2 dp
+• Outline beige for secondary – keeps visual hierarchy clear.
+
+Step cards
+Convert the translucent rectangles into glass-blur cards (backdrop-filter) to modernise. Add tiny numbers in circles (① ② ③) and animate them upward on page load.
+
+Icon set consistency
+Use a single library (e.g., Lucide) so line weight matches across car, guide, ticket, etc.
+
+5 | Suggested Text Refresh
+Egypt Travel, Two Ways:
+1. Plan a full trip – mix transport, guides, tickets & more.
+2. Just need a ride? Get a door-to-door transfer price instantly.
+
+Short, punchy, and spells out exactly what you sell.
+

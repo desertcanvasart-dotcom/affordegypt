@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Lightbulb, Star, Route } from "lucide-react";
+import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
@@ -57,6 +57,28 @@ export default function Navbar() {
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+      {/* Super Nav Bar */}
+      <div className="bg-teal-50 border-b border-teal-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center h-7 text-xs text-teal-800">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-1">
+                <Shield className="w-3 h-3" />
+                <span>No hidden fees – Real prices in EGP</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <Star className="w-3 h-3 fill-current" />
+                <span>4.9★ on 2,500+ trips</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <CheckCircle className="w-3 h-3" />
+                <span>Local network = lower rates</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -70,13 +92,13 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <Link 
-              href="/routes"
+              href="/transfers"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
-              <Route className="w-4 h-4" />
-              Routes
+              <Truck className="w-4 h-4" />
+              Transfers
             </Link>
             <Link 
               href="/destinations"
@@ -99,20 +121,23 @@ export default function Navbar() {
               <Star className="w-4 h-4" />
               Reviews
             </Link>
-            <Link 
-              href="/about"
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <User className="w-4 h-4" />
-              About
-            </Link>
+          </nav>
+
+          {/* Primary CTAs */}
+          <div className="hidden md:flex items-center space-x-3">
             <button
               onClick={() => navigateToSection('quote-builder')}
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors font-medium"
+              className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors font-medium shadow-md"
             >
-              Get A Quote
+              Start Your Trip Quote
             </button>
-          </nav>
+            <Link
+              href="/transfers"
+              className="border border-teal-600 text-teal-600 px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors font-medium"
+            >
+              Book a Transfer
+            </Link>
+          </div>
 
 
 
@@ -132,12 +157,12 @@ export default function Navbar() {
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
               <Link 
-                href="/routes"
+                href="/transfers"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
-                <MapPin className="w-4 h-4" />
-                Routes
+                <Truck className="w-4 h-4" />
+                Transfers
               </Link>
               <Link 
                 href="/destinations"
@@ -163,15 +188,26 @@ export default function Navbar() {
                 <Star className="w-4 h-4" />
                 Reviews
               </Link>
-              <Link 
-                href="/about"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <User className="w-4 h-4" />
-                About
-              </Link>
-
+              
+              {/* Mobile CTAs */}
+              <div className="pt-4 space-y-3 border-t border-border">
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigateToSection('quote-builder');
+                  }}
+                  className="w-full bg-teal-600 text-white px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium text-center"
+                >
+                  Start Your Trip Quote
+                </button>
+                <Link
+                  href="/transfers"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full border border-teal-600 text-teal-600 px-4 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium text-center block"
+                >
+                  Book a Transfer
+                </Link>
+              </div>
             </div>
           </div>
         )}
