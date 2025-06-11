@@ -129,10 +129,10 @@ export default function RouteEditModal({
       return;
     }
 
-    if (!formData.sedanPrice) {
+    if (!formData.sedanPrice || !formData.minivanPrice || !formData.vanPrice) {
       toast({
         title: "Error",
-        description: "Please enter at least the sedan price.",
+        description: "Please enter prices for all vehicle types.",
         variant: "destructive",
       });
       return;
@@ -146,12 +146,12 @@ export default function RouteEditModal({
       km: formData.km ? formData.km.toString() : "0",
       estimatedDuration: formData.estimatedDuration.trim() || null,
       sedanPrice: parseFloat(formData.sedanPrice),
-      minivanPrice: formData.minivanPrice ? parseFloat(formData.minivanPrice) : parseFloat(formData.sedanPrice) * 1.4,
-      vanPrice: formData.vanPrice ? parseFloat(formData.vanPrice) : parseFloat(formData.sedanPrice) * 1.8,
+      minivanPrice: parseFloat(formData.minivanPrice),
+      vanPrice: parseFloat(formData.vanPrice),
       basePriceByVehicle: {
         sedan: parseFloat(formData.sedanPrice),
-        minivan: formData.minivanPrice ? parseFloat(formData.minivanPrice) : parseFloat(formData.sedanPrice) * 1.4,
-        van: formData.vanPrice ? parseFloat(formData.vanPrice) : parseFloat(formData.sedanPrice) * 1.8
+        minivan: parseFloat(formData.minivanPrice),
+        van: parseFloat(formData.vanPrice)
       },
       displayOrder: formData.displayOrder ? parseInt(formData.displayOrder) : 0,
       isActive: formData.isActive

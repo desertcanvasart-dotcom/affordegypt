@@ -71,22 +71,22 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
 
   const handleSubmit = () => {
     if (modalType === 'route') {
-      if (formData.fromCityId && formData.toCityId && formData.sedanPrice) {
+      if (formData.fromCityId && formData.toCityId && formData.sedanPrice && formData.minivanPrice && formData.vanPrice) {
         createMutation.mutate({
           fromCityId: parseInt(formData.fromCityId),
           toCityId: parseInt(formData.toCityId),
           km: formData.distance,
           routeType: formData.routeType,
           sedanPrice: parseFloat(formData.sedanPrice),
-          minivanPrice: parseFloat(formData.minivanPrice) || parseFloat(formData.sedanPrice) * 1.4,
-          vanPrice: parseFloat(formData.vanPrice) || parseFloat(formData.sedanPrice) * 1.8,
+          minivanPrice: parseFloat(formData.minivanPrice),
+          vanPrice: parseFloat(formData.vanPrice),
           basePrice: parseFloat(formData.sedanPrice), // Use sedan as base price
           isActive: true
         });
       } else {
         toast({
           title: "Error",
-          description: "Please select cities and enter at least the sedan price.",
+          description: "Please select cities and enter prices for all vehicle types.",
           variant: "destructive",
         });
       }
