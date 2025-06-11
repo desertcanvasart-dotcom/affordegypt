@@ -103,7 +103,7 @@ export default function TransfersPage() {
     return route.fromCityId === parseInt(fromCity) && route.toCityId === parseInt(toCity);
   });
 
-  // Filter cities for display based on active tab
+  // Filter cities for display based on active tab and sort alphabetically
   const getAvailableCities = (isFromCity: boolean) => {
     let availableCities;
     if (activeTab === "intercity") {
@@ -119,8 +119,8 @@ export default function TransfersPage() {
       availableCities = cities.filter(city => citiesWithInternalRoutes.has(city.id));
     }
     
-    // Sort cities alphabetically
-    return availableCities.sort((a, b) => a.name.localeCompare(b.name));
+    // Always sort cities alphabetically
+    return [...availableCities].sort((a, b) => a.name.localeCompare(b.name));
   };
 
   const handleQuickSearch = () => {
