@@ -936,12 +936,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Send confirmation email
       try {
-        const emailSent = await emailService.sendBookingConfirmation(booking, {
+        // Create a mock quote for email purposes
+        const mockQuote = {
           id: 0,
+          createdAt: null,
           jsonBlob: routeBookingData.routeDetails,
           total: totalAmount.toString(),
           commissionPct: "0"
-        });
+        } as any;
+        
+        const emailSent = await emailService.sendBookingConfirmation(booking, mockQuote);
         
         if (emailSent) {
           console.log(`Confirmation email sent for booking ${bookingReference}`);
