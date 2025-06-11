@@ -520,7 +520,7 @@ export default function TransfersPage() {
                       >
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-lg mb-2">
+                            <h4 className="font-semibold text-base mb-2">
                               {route.name || `${route.fromLocation || 'Unknown'} → ${route.toLocation || 'Unknown'}`}
                             </h4>
                             <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
@@ -651,37 +651,80 @@ export default function TransfersPage() {
           </Card>
         )}
 
-        {/* Popular Routes */}
+        {/* Suggested Routes */}
         <Card>
           <CardHeader>
-            <CardTitle>Popular Transfer Routes</CardTitle>
+            <CardTitle>
+              {fromCity && cities.find(c => c.id.toString() === fromCity) 
+                ? `Popular routes from ${cities.find(c => c.id.toString() === fromCity)?.name}`
+                : activeTab === "intercity" 
+                  ? "Popular Intercity Routes" 
+                  : "Popular Local Routes"
+              }
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {routes.slice(0, 6).map((route) => {
-                const fromCityName = cities.find(c => c.id === route.fromCityId)?.name;
-                const toCityName = cities.find(c => c.id === route.toCityId)?.name;
-                const prices = route.basePriceByVehicle && typeof route.basePriceByVehicle === 'object' 
-                  ? Object.values(route.basePriceByVehicle).filter(p => typeof p === 'number')
-                  : [];
-                const minPrice = prices.length > 0 ? Math.min(...prices) : 0;
+              {(() => {
+                let suggestedRoutes = [];
                 
-                return (
-                  <div
-                    key={route.id}
-                    className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
-                    onClick={() => {
-                      setFromCity(route.fromCityId.toString());
-                      setToCity(route.toCityId.toString());
-                      setSelectedRoute(route);
-                    }}
-                  >
-                    <h4 className="font-semibold">{fromCityName} → {toCityName}</h4>
-                    <p className="text-sm text-gray-600">{route.km} km</p>
-                    <p className="text-teal-600 font-bold mt-2">From {minPrice} EGP</p>
-                  </div>
-                );
-              })}
+                if (fromCity) {
+                  // Show routes from the selected departure city
+                  suggestedRoutes = routes.filter(route => 
+                    route.fromCityId.toString() === fromCity && 
+                    route.toCityId.toString() !== toCity &&
+                    (activeTab === "intercity" ? route.fromCityId !== route.toCityId : route.fromCityId === route.toCityId)
+                  );
+                } else if (toCity) {
+                  // Show routes to the selected destination city
+                  suggestedRoutes = routes.filter(route => 
+                    route.toCityId.toString() === toCity && 
+                    route.fromCityId.toString() !== fromCity &&
+                    (activeTab === "intercity" ? route.fromCityId !== route.toCityId : route.fromCityId === route.toCityId)
+                  );
+                } else {
+                  // Show popular routes based on active tab
+                  suggestedRoutes = routes.filter(route => 
+                    activeTab === "intercity" ? route.fromCityId !== route.toCityId : route.fromCityId === route.toCityId
+                  );
+                }
+                
+                return suggestedRoutes.slice(0, 6).map((route) => {
+                  const fromCityName = cities.find(c => c.id === route.fromCityId)?.name?.trim();
+                  const toCityName = cities.find(c => c.id === route.toCityId)?.name?.trim();
+                  const minPrice = getValidPrice(route.basePriceByVehicle, 'sedan') || 
+                                 getValidPrice(route.basePriceByVehicle, 'minivan') || 
+                                 getValidPrice(route.basePriceByVehicle, 'van') || 0;
+                  
+                  return (
+                    <div
+                      key={route.id}
+                      className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
+                      onClick={() => {
+                        if (activeTab === "intercity") {
+                          setFromCity(route.fromCityId.toString());
+                          setToCity(route.toCityId.toString());
+                        } else {
+                          setSelectedCityForLocal(route.fromCityId.toString());
+                          setShowLocalRoutes(true);
+                        }
+                        setSelectedRoute(route);
+                      }}
+                    >
+                      <h4 className="font-semibold text-sm">
+                        {activeTab === "intercity" 
+                          ? `${fromCityName} → ${toCityName}`
+                          : route.name || `${route.fromLocation || fromCityName} → ${route.toLocation || toCityName}`
+                        }
+                      </h4>
+                      <p className="text-sm text-gray-600">{route.km} km</p>
+                      {minPrice > 0 && (
+                        <p className="text-teal-600 font-bold mt-2">From {minPrice} EGP</p>
+                      )}
+                    </div>
+                  );
+                });
+              })()}
             </div>
           </CardContent>
         </Card>
