@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Car, Clock, Users, Calendar, Phone, Mail, MessageSquare } from "lucide-react";
+import { MapPin, Car, Clock, Users, Calendar, Phone, Mail, MessageSquare, CheckCircle, Download, ArrowRight, Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useRoute } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
@@ -54,6 +54,8 @@ export default function RouteBooking() {
   const [customerEmail, setCustomerEmail] = useState<string>("");
   const [customerPhone, setCustomerPhone] = useState<string>("");
   const [specialRequests, setSpecialRequests] = useState<string>("");
+  const [bookingConfirmed, setBookingConfirmed] = useState<boolean>(false);
+  const [bookingData, setBookingData] = useState<any>(null);
 
   const { toast } = useToast();
 
@@ -106,18 +108,28 @@ export default function RouteBooking() {
       return apiRequest("POST", "/api/route-bookings", bookingData);
     },
     onSuccess: (data) => {
+      // Store booking confirmation data
+      const confirmationData = {
+        ...data,
+        route: selectedRoute,
+        vehicleType: selectedVehicle,
+        passengers,
+        travelDate,
+        customerName,
+        customerEmail,
+        customerPhone,
+        specialRequests,
+        totalAmount: calculateTotal(),
+        submittedAt: new Date().toISOString()
+      };
+      
+      setBookingData(confirmationData);
+      setBookingConfirmed(true);
+      
       toast({
         title: "Booking Submitted Successfully",
-        description: "We'll contact you shortly to confirm your transportation booking.",
+        description: "Your booking confirmation is ready to download.",
       });
-      // Reset form
-      setSelectedVehicle("");
-      setPassengers(2);
-      setTravelDate("");
-      setCustomerName("");
-      setCustomerEmail("");
-      setCustomerPhone("");
-      setSpecialRequests("");
     },
     onError: (error) => {
       toast({
@@ -156,6 +168,79 @@ export default function RouteBooking() {
     bookingMutation.mutate(bookingData);
   };
 
+  const downloadConfirmation = () => {
+    if (!bookingData) return;
+    
+    const confirmationText = `
+BOOKING CONFIRMATION
+Afford Egypt Transportation Services
+
+Booking Reference: ${bookingData.bookingReference || 'RT-' + Date.now()}
+Booking Date: ${new Date(bookingData.submittedAt).toLocaleDateString()}
+
+ROUTE DETAILS
+From: ${getCityName(bookingData.route.fromCityId)}
+To: ${getCityName(bookingData.route.toCityId)}
+${bookingData.route.name ? `Route: ${bookingData.route.name}` : ''}
+${bookingData.route.km ? `Distance: ${bookingData.route.km} km` : ''}
+${bookingData.route.estimatedDuration ? `Duration: ${bookingData.route.estimatedDuration}` : ''}
+
+BOOKING DETAILS
+Vehicle Type: ${bookingData.vehicleType.charAt(0).toUpperCase() + bookingData.vehicleType.slice(1)}
+Passengers: ${bookingData.passengers}
+Travel Date: ${new Date(bookingData.travelDate).toLocaleDateString()}
+Total Amount: $${bookingData.totalAmount}
+
+CUSTOMER INFORMATION
+Name: ${bookingData.customerName}
+Email: ${bookingData.customerEmail}
+Phone: ${bookingData.customerPhone}
+${bookingData.specialRequests ? `Special Requests: ${bookingData.specialRequests}` : ''}
+
+NEXT STEPS
+1. We will contact you within 24 hours to confirm your booking
+2. Payment will be processed upon confirmation
+3. You will receive driver details 24 hours before travel
+4. For any changes, contact us at support@affordegypt.com
+
+Thank you for choosing Afford Egypt!
+Website: affordegypt.com
+Phone: +20 123 456 7890
+Email: support@affordegypt.com
+    `;
+
+    const blob = new Blob([confirmationText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `booking-confirmation-${bookingData.bookingReference || 'RT-' + Date.now()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const copyBookingReference = () => {
+    const reference = bookingData?.bookingReference || 'RT-' + Date.now();
+    navigator.clipboard.writeText(reference);
+    toast({
+      title: "Copied to clipboard",
+      description: "Booking reference copied successfully",
+    });
+  };
+
+  const startNewBooking = () => {
+    setBookingConfirmed(false);
+    setBookingData(null);
+    setSelectedVehicle("");
+    setPassengers(2);
+    setTravelDate("");
+    setCustomerName("");
+    setCustomerEmail("");
+    setCustomerPhone("");
+    setSpecialRequests("");
+  };
+
   if (!selectedRoute) {
     return (
       <>
@@ -172,6 +257,208 @@ export default function RouteBooking() {
                 <Link href="/routes">
                   <Button>Browse All Routes</Button>
                 </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Show confirmation screen after successful booking
+  if (bookingConfirmed && bookingData) {
+    return (
+      <>
+        <Helmet>
+          <title>Booking Confirmed | Afford Egypt</title>
+          <meta name="description" content="Your transportation booking has been confirmed. Download your confirmation and review next steps." />
+        </Helmet>
+        
+        <div className="min-h-screen bg-gray-50">
+          <Navbar />
+          
+          <div className="max-w-4xl mx-auto px-4 py-8">
+            {/* Success Header */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                <CheckCircle className="w-8 h-8 text-green-600" />
+              </div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Booking Confirmed!</h1>
+              <p className="text-lg text-gray-600">Your transportation request has been submitted successfully</p>
+            </div>
+
+            {/* Booking Reference */}
+            <Card className="mb-6">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Booking Reference</h3>
+                    <p className="text-2xl font-mono text-teal-600">{bookingData.bookingReference || 'RT-' + Date.now()}</p>
+                  </div>
+                  <Button variant="outline" onClick={copyBookingReference} className="flex items-center gap-2">
+                    <Copy className="w-4 h-4" />
+                    Copy
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Booking Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-teal-600" />
+                    Route Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div>
+                      <span className="font-medium">From:</span> {getCityName(bookingData.route.fromCityId)}
+                    </div>
+                    <div>
+                      <span className="font-medium">To:</span> {getCityName(bookingData.route.toCityId)}
+                    </div>
+                    {bookingData.route.name && (
+                      <div>
+                        <span className="font-medium">Route:</span> {bookingData.route.name}
+                      </div>
+                    )}
+                    {bookingData.route.km && (
+                      <div>
+                        <span className="font-medium">Distance:</span> {bookingData.route.km} km
+                      </div>
+                    )}
+                    {bookingData.route.estimatedDuration && (
+                      <div>
+                        <span className="font-medium">Duration:</span> {bookingData.route.estimatedDuration}
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Car className="w-5 h-5 text-teal-600" />
+                    Booking Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div>
+                      <span className="font-medium">Vehicle:</span> {bookingData.vehicleType.charAt(0).toUpperCase() + bookingData.vehicleType.slice(1)}
+                    </div>
+                    <div>
+                      <span className="font-medium">Passengers:</span> {bookingData.passengers}
+                    </div>
+                    <div>
+                      <span className="font-medium">Travel Date:</span> {new Date(bookingData.travelDate).toLocaleDateString()}
+                    </div>
+                    <div>
+                      <span className="font-medium">Total Amount:</span> <span className="text-lg font-bold text-teal-600">${bookingData.totalAmount}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Customer Information */}
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="w-5 h-5 text-teal-600" />
+                  Customer Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <span className="font-medium">Name:</span> {bookingData.customerName}
+                  </div>
+                  <div>
+                    <span className="font-medium">Email:</span> {bookingData.customerEmail}
+                  </div>
+                  <div>
+                    <span className="font-medium">Phone:</span> {bookingData.customerPhone}
+                  </div>
+                  {bookingData.specialRequests && (
+                    <div className="md:col-span-2">
+                      <span className="font-medium">Special Requests:</span> {bookingData.specialRequests}
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Next Steps */}
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ArrowRight className="w-5 h-5 text-teal-600" />
+                  What Happens Next?
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-sm font-medium">1</div>
+                    <div>
+                      <h4 className="font-medium">Confirmation Call</h4>
+                      <p className="text-gray-600">We'll contact you within 24 hours to confirm your booking details and arrange payment.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-sm font-medium">2</div>
+                    <div>
+                      <h4 className="font-medium">Payment Processing</h4>
+                      <p className="text-gray-600">Payment will be processed securely upon booking confirmation.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-sm font-medium">3</div>
+                    <div>
+                      <h4 className="font-medium">Driver Assignment</h4>
+                      <p className="text-gray-600">You'll receive driver details and contact information 24 hours before your trip.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button onClick={downloadConfirmation} className="bg-teal-600 hover:bg-teal-700 flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                Download Confirmation
+              </Button>
+              <Button variant="outline" onClick={startNewBooking}>
+                Book Another Route
+              </Button>
+              <Link href="/">
+                <Button variant="outline">
+                  Return to Home
+                </Button>
+              </Link>
+            </div>
+
+            {/* Contact Information */}
+            <Card className="mt-8">
+              <CardContent className="p-6 text-center">
+                <h3 className="font-semibold mb-2">Need Help?</h3>
+                <p className="text-gray-600 mb-4">Contact us for any questions or changes to your booking</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-teal-600" />
+                    +20 123 456 7890
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-teal-600" />
+                    support@affordegypt.com
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
