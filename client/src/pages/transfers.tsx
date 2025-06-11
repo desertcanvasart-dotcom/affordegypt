@@ -206,16 +206,15 @@ export default function TransfersPage() {
   const bookTransfer = useMutation({
     mutationFn: async () => {
       const bookingData = {
-        type: 'transfer',
-        fromCityId: parseInt(fromCity),
-        toCityId: parseInt(toCity),
+        routeId: selectedRoute?.id,
         vehicleType,
         passengers: parseInt(passengers),
-        routeId: selectedRoute?.id,
-        totalPrice: getPrice(),
+        travelDate: travelDate || new Date().toISOString().split('T')[0],
         customerName: "Direct Transfer Booking",
         customerEmail: "transfer@example.com",
-        customerPhone: "+20100000000"
+        customerPhone: "+20100000000",
+        totalAmount: getPrice(),
+        bookingType: 'route-only'
       };
       
       return await apiRequest("POST", "/api/route-bookings", bookingData);
