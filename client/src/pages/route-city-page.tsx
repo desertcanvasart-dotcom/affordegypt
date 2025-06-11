@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
@@ -51,6 +51,11 @@ export default function RouteCityPage() {
   const { data: attractions } = useQuery({
     queryKey: ["/api/attractions"],
   });
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Find the current city
   const currentCity = useMemo(() => {

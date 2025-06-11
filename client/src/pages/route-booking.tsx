@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/navbar";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -71,11 +71,14 @@ export default function RouteBooking() {
     queryKey: ["/api/vehicle-types"],
   });
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Find the selected route
   const selectedRoute = routes && Array.isArray(routes) ? 
     (routes as Route[]).find((route: Route) => route.id === routeId) : undefined;
-  
-
   
   // Helper functions
   const getCityName = (cityId: number) => {
