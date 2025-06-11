@@ -440,6 +440,47 @@ export default function TransfersPage() {
                   </div>
                 </div>
 
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Travel Date</label>
+                    <input
+                      type="date"
+                      value={travelDate}
+                      onChange={(e) => setTravelDate(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                      min={new Date().toISOString().split('T')[0]}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Travel Time</label>
+                    <Select value={travelTime} onValueChange={setTravelTime}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select preferred time" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="06:00">06:00 AM</SelectItem>
+                        <SelectItem value="07:00">07:00 AM</SelectItem>
+                        <SelectItem value="08:00">08:00 AM</SelectItem>
+                        <SelectItem value="09:00">09:00 AM</SelectItem>
+                        <SelectItem value="10:00">10:00 AM</SelectItem>
+                        <SelectItem value="11:00">11:00 AM</SelectItem>
+                        <SelectItem value="12:00">12:00 PM</SelectItem>
+                        <SelectItem value="13:00">01:00 PM</SelectItem>
+                        <SelectItem value="14:00">02:00 PM</SelectItem>
+                        <SelectItem value="15:00">03:00 PM</SelectItem>
+                        <SelectItem value="16:00">04:00 PM</SelectItem>
+                        <SelectItem value="17:00">05:00 PM</SelectItem>
+                        <SelectItem value="18:00">06:00 PM</SelectItem>
+                        <SelectItem value="19:00">07:00 PM</SelectItem>
+                        <SelectItem value="20:00">08:00 PM</SelectItem>
+                        <SelectItem value="21:00">09:00 PM</SelectItem>
+                        <SelectItem value="22:00">10:00 PM</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
                 <div className="flex justify-center">
                   <Button 
                     onClick={handleQuickSearch}
