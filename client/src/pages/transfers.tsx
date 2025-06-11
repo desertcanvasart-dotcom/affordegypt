@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { Car, MapPin, Clock, Users, CheckCircle, Zap } from "lucide-react";
+import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import Navbar from "@/components/navbar";
@@ -32,6 +33,7 @@ interface Route {
 }
 
 export default function TransfersPage() {
+  const [activeTab, setActiveTab] = useState("intercity");
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
   const [vehicleType, setVehicleType] = useState("");
@@ -49,11 +51,35 @@ export default function TransfersPage() {
     queryKey: ["/api/routes"],
   });
 
-  // Filter available routes based on selected cities
+  // Filter routes based on tab and selected cities
   const availableRoutes = routes.filter(route => {
+    if (activeTab === "intercity") {
+      // Intercity: different cities
+      if (route.fromCityId === route.toCityId) return false;
+    } else {
+      // Intracity: same city
+      if (route.fromCityId !== route.toCityId) return false;
+    }
+    
     if (!fromCity || !toCity) return false;
     return route.fromCityId === parseInt(fromCity) && route.toCityId === parseInt(toCity);
   });
+
+  // Filter cities for display based on active tab
+  const getAvailableCities = (isFromCity: boolean) => {
+    if (activeTab === "intercity") {
+      return cities; // Show all cities for intercity
+    } else {
+      // For intracity, only show cities that have internal routes
+      const citiesWithInternalRoutes = new Set();
+      routes.forEach(route => {
+        if (route.fromCityId === route.toCityId) {
+          citiesWithInternalRoutes.add(route.fromCityId);
+        }
+      });
+      return cities.filter(city => citiesWithInternalRoutes.has(city.id));
+    }
+  };
 
   const handleQuickSearch = () => {
     if (!fromCity || !toCity) {
