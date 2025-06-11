@@ -41,6 +41,8 @@ export default function TransfersPage() {
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
+  const [selectedCityForLocal, setSelectedCityForLocal] = useState("");
+  const [showLocalRoutes, setShowLocalRoutes] = useState(false);
   const { toast } = useToast();
 
   // Reset form when switching tabs
@@ -50,6 +52,8 @@ export default function TransfersPage() {
     setToCity("");
     setVehicleType("");
     setSelectedRoute(null);
+    setSelectedCityForLocal("");
+    setShowLocalRoutes(false);
   };
 
   // Calculate time-based pricing multiplier
@@ -109,25 +113,52 @@ export default function TransfersPage() {
   };
 
   const handleQuickSearch = () => {
-    if (!fromCity || !toCity) {
-      toast({
-        title: "Missing Information",
-        description: "Please select both pickup and drop-off locations.",
-        variant: "destructive",
-      });
-      return;
-    }
+    if (activeTab === "intercity") {
+      if (!fromCity || !toCity) {
+        toast({
+          title: "Missing Information",
+          description: "Please select both pickup and drop-off locations.",
+          variant: "destructive",
+        });
+        return;
+      }
 
-    const route = availableRoutes[0];
-    if (route) {
-      setSelectedRoute(route);
+      const route = availableRoutes[0];
+      if (route) {
+        setSelectedRoute(route);
+      } else {
+        toast({
+          title: "Route Not Available",
+          description: "No direct transfer available for this route. Try our full trip planner instead.",
+          variant: "destructive",
+        });
+      }
     } else {
-      toast({
-        title: "Route Not Available",
-        description: "No direct transfer available for this route. Try our full trip planner instead.",
-        variant: "destructive",
-      });
+      // Intracity search
+      if (!selectedCityForLocal) {
+        toast({
+          title: "Missing Information",
+          description: "Please select a city to see local routes.",
+          variant: "destructive",
+        });
+        return;
+      }
+      setShowLocalRoutes(true);
+      setSelectedRoute(null);
+      setVehicleType("");
     }
+  };
+
+  // Get cities that have intracity routes (where fromCityId === toCityId)
+  const getCitiesWithLocalRoutes = () => {
+    if (!routes.length) return cities;
+    const localCityIds = new Set(routes.filter(route => route.fromCityId === route.toCityId).map(route => route.fromCityId));
+    return cities.filter(city => localCityIds.has(city.id));
+  };
+
+  // Get local routes within a selected city
+  const getLocalRoutesForCity = (cityId: number) => {
+    return routes.filter(route => route.fromCityId === cityId && route.toCityId === cityId);
   };
 
   const getPrice = () => {
@@ -347,16 +378,13 @@ export default function TransfersPage() {
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">City</label>
-                    <Select value={fromCity} onValueChange={(value) => {
-                      setFromCity(value);
-                      setToCity(value); // For intracity, from and to are the same city
-                    }}>
+                    <label className="block text-sm font-medium mb-2">Select City</label>
+                    <Select value={selectedCityForLocal} onValueChange={setSelectedCityForLocal}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select city" />
+                        <SelectValue placeholder="Choose city for local routes" />
                       </SelectTrigger>
                       <SelectContent>
-                        {getAvailableCities(true).map((city) => (
+                        {getCitiesWithLocalRoutes().map((city) => (
                           <SelectItem key={city.id} value={city.id.toString()}>
                             {city.name}
                           </SelectItem>
@@ -386,7 +414,7 @@ export default function TransfersPage() {
                   <Button 
                     onClick={handleQuickSearch}
                     className="bg-orange-600 hover:bg-orange-700 px-8"
-                    disabled={!fromCity}
+                    disabled={!selectedCityForLocal}
                   >
                     <Zap className="w-4 h-4 mr-2" />
                     See Local Routes
@@ -394,6 +422,61 @@ export default function TransfersPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Local Routes Display */}
+            {showLocalRoutes && selectedCityForLocal && (
+              <Card className="mb-8 shadow-lg border-orange-200">
+                <CardHeader>
+                  <CardTitle className="flex items-center text-xl">
+                    <MapPin className="w-5 h-5 mr-2 text-orange-600" />
+                    Local Routes in {cities.find(c => c.id === parseInt(selectedCityForLocal))?.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {getLocalRoutesForCity(parseInt(selectedCityForLocal)).map((route) => (
+                      <div
+                        key={route.id}
+                        className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                          selectedRoute?.id === route.id
+                            ? 'border-orange-500 bg-orange-50'
+                            : 'border-gray-200 hover:border-orange-300'
+                        }`}
+                        onClick={() => {
+                          setSelectedRoute(route);
+                          setVehicleType("");
+                        }}
+                      >
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-lg mb-2">
+                              {route.fromLocation} → {route.toLocation}
+                            </h4>
+                            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
+                              <div className="flex items-center">
+                                <Clock className="w-4 h-4 mr-1" />
+                                {route.estimatedDuration}
+                              </div>
+                              <div className="flex items-center">
+                                <Navigation className="w-4 h-4 mr-1" />
+                                {route.km} km
+                              </div>
+                              <div className="flex items-center">
+                                <Car className="w-4 h-4 mr-1" />
+                                From {route.basePriceByVehicle?.sedan || 0} EGP
+                              </div>
+                            </div>
+                            {route.routeHighlights && (
+                              <p className="mt-2 text-sm text-gray-700">{route.routeHighlights}</p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </TabsContent>
         </Tabs>
 

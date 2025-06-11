@@ -910,6 +910,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         bookingType
       } = req.body;
 
+      // Validate required fields
+      if (!routeId || !vehicleType || !passengers || !customerName || !customerEmail || !totalAmount) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Missing required booking information" 
+        });
+      }
+
       // Generate unique booking reference
       const bookingReference = `RT${Date.now()}${Math.random().toString(36).substr(2, 4)}`.toUpperCase();
 
