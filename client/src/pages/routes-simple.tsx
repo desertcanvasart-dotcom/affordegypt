@@ -45,9 +45,9 @@ export default function RoutesSimple() {
     );
   }
 
-  // Filter routes by type - convert km to number for proper comparison
-  const interCityRoutes = routes.filter((route: any) => Number(route.km) > 0);
-  const cityTourRoutes = routes.filter((route: any) => Number(route.km) === 0);
+  // Filter routes by type - inter-city routes have different from/to cities
+  const interCityRoutes = routes.filter((route: any) => route.fromCityId !== route.toCityId);
+  const cityTourRoutes = routes.filter((route: any) => route.fromCityId === route.toCityId);
 
   // Get unique cities for each category
   const interCityCities = new Set(interCityRoutes.map((route: any) => route.fromCityId));
@@ -167,9 +167,9 @@ export default function RoutesSimple() {
                                   <span className="text-gray-800 font-medium">
                                     → {getCityName(route.toCityId)}
                                   </span>
-                                  {route.description && (
+                                  {route.name && (
                                     <div className="text-sm text-gray-600 mt-1">
-                                      {route.description}
+                                      {route.name}
                                     </div>
                                   )}
                                   <div className="flex gap-3 mt-2 text-sm text-gray-500">
@@ -216,7 +216,7 @@ export default function RoutesSimple() {
                               <div className="flex justify-between items-start gap-3">
                                 <div className="flex-1">
                                   <span className="text-gray-800 font-medium">
-                                    {route.description || `${getCityName(route.fromCityId)} Tour`}
+                                    {route.name || `${getCityName(route.fromCityId)} Tour`}
                                   </span>
                                   <div className="flex gap-3 mt-2 text-sm text-gray-500">
                                     <span>From ${route.basePriceByVehicle?.sedan || 0}</span>
