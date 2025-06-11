@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar, Star, Route } from "lucide-react";
+import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar, Star } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import AdminLogin from "@/components/admin-login";
@@ -305,15 +305,6 @@ export default function AdminSidebar() {
 
         {/* Navigation Menu */}
         <nav className="flex-1 px-4 py-4 space-y-2">
-          <Link href="/admin/dashboard">
-            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors bg-gradient-to-r from-teal-600 to-teal-700 text-white hover:from-teal-700 hover:to-teal-800">
-              <Route className="w-4 h-4" />
-              <span>Unified Dashboard</span>
-            </button>
-          </Link>
-          
-          <div className="border-t border-gray-200 pt-2 mt-2"></div>
-          
           <button
             onClick={() => setActiveSection('cities')}
             className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${

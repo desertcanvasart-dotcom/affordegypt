@@ -11,7 +11,6 @@ import Checkout from "@/pages/checkout";
 import BookPage from "@/pages/book";
 import AdminSidebar from "@/pages/admin-sidebar";
 import AdminBookings from "@/pages/admin-bookings";
-import AdminDashboard from "@/pages/admin-dashboard";
 import Routes from "@/pages/routes";
 import AdminRoutesOverview from "@/pages/admin-routes-overview";
 import AdminCityRoutes from "@/pages/admin-city-routes";
@@ -49,7 +48,6 @@ function Router() {
       <Route path="/booking-confirmation/:reference" component={BookingConfirmation} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin" component={AdminSidebar} />
-      <Route path="/admin/dashboard" component={() => <AdminDashboard />} />
       <Route path="/admin/bookings" component={AdminBookings} />
       <Route path="/admin/routes" component={AdminRoutesOverview} />
       <Route path="/admin/routes/city/:citySlug/:category?" component={AdminCityRoutes} />

@@ -47,7 +47,7 @@ interface City {
 }
 
 interface AdminDashboardProps {
-  onLogout?: () => void;
+  onLogout: () => void;
 }
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
