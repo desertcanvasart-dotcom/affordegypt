@@ -23,14 +23,11 @@ interface Route {
   toCityId: number;
   fromLocation: string;
   toLocation: string;
+  name?: string;
   km: string;
   estimatedDuration: string | null;
   routeHighlights?: string | null;
-  basePriceByVehicle: {
-    sedan: number;
-    minivan: number;
-    van: number;
-  };
+  basePriceByVehicle: any;
 }
 
 export default function TransfersPage() {
@@ -171,19 +168,30 @@ export default function TransfersPage() {
     return routes.filter(route => route.fromCityId === cityId && route.toCityId === cityId);
   };
 
+  const getValidPrice = (priceData: any, vehicleType: string): number => {
+    if (!priceData || typeof priceData !== 'object') return 0;
+    
+    // Try direct access first
+    const directPrice = priceData[vehicleType];
+    if (typeof directPrice === 'number' && directPrice > 0) return directPrice;
+    
+    // Try fallback properties for legacy data
+    const fallbackKey = `${vehicleType}Price`;
+    const fallbackPrice = priceData[fallbackKey];
+    if (typeof fallbackPrice === 'number' && fallbackPrice > 0) return fallbackPrice;
+    
+    return 0;
+  };
+
   const getPrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
-    const priceData = selectedRoute.basePriceByVehicle;
-    if (!priceData || typeof priceData !== 'object') return 0;
-    const basePrice = Number(priceData[vehicleType as keyof typeof priceData]) || 0;
+    const basePrice = getValidPrice(selectedRoute.basePriceByVehicle, vehicleType);
     return getTimePricing(basePrice);
   };
 
   const getBasePrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
-    const priceData = selectedRoute.basePriceByVehicle;
-    if (!priceData || typeof priceData !== 'object') return 0;
-    return Number(priceData[vehicleType as keyof typeof priceData]) || 0;
+    return getValidPrice(selectedRoute.basePriceByVehicle, vehicleType);
   };
 
   const getVehicleCapacity = (type: string) => {
@@ -464,7 +472,7 @@ export default function TransfersPage() {
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
                             <h4 className="font-semibold text-lg mb-2">
-                              {route.fromLocation} → {route.toLocation}
+                              {route.name || `${route.fromLocation || 'Unknown'} → ${route.toLocation || 'Unknown'}`}
                             </h4>
                             <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
                               <div className="flex items-center">
@@ -477,7 +485,7 @@ export default function TransfersPage() {
                               </div>
                               <div className="flex items-center">
                                 <Car className="w-4 h-4 mr-1" />
-                                From {typeof route.basePriceByVehicle === 'object' && route.basePriceByVehicle?.sedan ? route.basePriceByVehicle.sedan : 'N/A'} EGP
+                                From {getValidPrice(route.basePriceByVehicle, 'sedan') || 'N/A'} EGP
                               </div>
                             </div>
                             {route.routeHighlights && (
