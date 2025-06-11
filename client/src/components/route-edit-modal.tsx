@@ -67,6 +67,10 @@ export default function RouteEditModal({
           toCityId: route.toCityId?.toString() || '',
           km: route.km?.toString() || '',
           estimatedDuration: route.estimatedDuration || '',
+          routeHighlights: route.routeHighlights || '',
+          travelTips: route.travelTips || '',
+          pickupInstructions: route.pickupInstructions || '',
+          dropoffInstructions: route.dropoffInstructions || '',
           sedanPrice: sedanPrice?.toString() || '',
           minivanPrice: minivanPrice?.toString() || '',
           vanPrice: vanPrice?.toString() || '',
@@ -82,6 +86,10 @@ export default function RouteEditModal({
           toCityId: defaultToCityId?.toString() || '',
           km: '',
           estimatedDuration: '',
+          routeHighlights: '',
+          travelTips: '',
+          pickupInstructions: '',
+          dropoffInstructions: '',
           sedanPrice: '',
           minivanPrice: '',
           vanPrice: '',
@@ -269,6 +277,57 @@ export default function RouteEditModal({
                 value={formData.estimatedDuration}
                 onChange={(e) => setFormData(prev => ({...prev, estimatedDuration: e.target.value}))}
               />
+            </div>
+          </div>
+
+          {/* Additional Route Information */}
+          <div className="space-y-4">
+            <Label className="text-base font-medium">Additional Route Information</Label>
+            
+            <div>
+              <Label htmlFor="route-highlights">Route Highlights</Label>
+              <Textarea
+                id="route-highlights"
+                placeholder="Key attractions or points of interest along this route"
+                value={formData.routeHighlights}
+                onChange={(e) => setFormData(prev => ({...prev, routeHighlights: e.target.value}))}
+                rows={2}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="travel-tips">Travel Tips</Label>
+              <Textarea
+                id="travel-tips"
+                placeholder="Important travel information, best times to travel, etc."
+                value={formData.travelTips}
+                onChange={(e) => setFormData(prev => ({...prev, travelTips: e.target.value}))}
+                rows={2}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="pickup-instructions">Pickup Instructions</Label>
+                <Textarea
+                  id="pickup-instructions"
+                  placeholder="Specific pickup location details"
+                  value={formData.pickupInstructions}
+                  onChange={(e) => setFormData(prev => ({...prev, pickupInstructions: e.target.value}))}
+                  rows={2}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="dropoff-instructions">Dropoff Instructions</Label>
+                <Textarea
+                  id="dropoff-instructions"
+                  placeholder="Specific dropoff location details"
+                  value={formData.dropoffInstructions}
+                  onChange={(e) => setFormData(prev => ({...prev, dropoffInstructions: e.target.value}))}
+                  rows={2}
+                />
+              </div>
             </div>
           </div>
 

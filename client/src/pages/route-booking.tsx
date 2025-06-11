@@ -22,6 +22,10 @@ interface Route {
   description?: string;
   km?: string;
   estimatedDuration?: string;
+  routeHighlights?: string;
+  travelTips?: string;
+  pickupInstructions?: string;
+  dropoffInstructions?: string;
   displayOrder?: number;
   sedanPrice?: string;
   minivanPrice?: string;
