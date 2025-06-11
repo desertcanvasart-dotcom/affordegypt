@@ -176,6 +176,12 @@ export default function RoutesSimple() {
                                     <span>From ${route.basePriceByVehicle?.sedan || 0}</span>
                                     <span>•</span>
                                     <span>{route.km || 0} km</span>
+                                    {route.estimatedDuration && (
+                                      <>
+                                        <span>•</span>
+                                        <span>{route.estimatedDuration}</span>
+                                      </>
+                                    )}
                                   </div>
                                 </div>
                                 <Link href={`/routes/book/${route.id}`}>
@@ -222,6 +228,12 @@ export default function RoutesSimple() {
                                     <span>From ${route.basePriceByVehicle?.sedan || 0}</span>
                                     <span>•</span>
                                     <span>{route.km || 0} km</span>
+                                    {route.estimatedDuration && (
+                                      <>
+                                        <span>•</span>
+                                        <span>{route.estimatedDuration}</span>
+                                      </>
+                                    )}
                                   </div>
                                 </div>
                                 <Link href={`/routes/book/${route.id}`}>

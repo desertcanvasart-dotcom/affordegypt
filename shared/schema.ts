@@ -61,6 +61,7 @@ export const routes = pgTable("routes", {
   toLocation: text("to_location"), // For intra-city routes: "Hotel", "Train Station", etc.
   name: text("name"), // Custom route name: "Cairo City Tour", "Airport Transfer", etc.
   km: decimal("km", { precision: 8, scale: 2 }).notNull(),
+  estimatedDuration: text("estimated_duration"), // Duration like "2 hours", "45 minutes", etc.
   basePriceByVehicle: jsonb("base_price_by_vehicle").notNull(), // JSON: {vehicle_id: {license_class_id: price}}
   displayOrder: integer("display_order").default(0), // Controls display order in pricing tool
 });
