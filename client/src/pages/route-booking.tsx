@@ -528,6 +528,55 @@ Email: support@affordegypt.com
                       <p className="text-gray-600 text-sm">{selectedRoute.description}</p>
                     </div>
                   )}
+                  
+                  {selectedRoute.routeHighlights && (
+                    <div className="pt-3 border-t border-gray-100">
+                      <div className="flex items-start gap-3">
+                        <Star className="w-5 h-5 text-yellow-500 mt-0.5" />
+                        <div>
+                          <div className="font-medium text-sm mb-1">Route Highlights</div>
+                          <p className="text-gray-600 text-sm">{selectedRoute.routeHighlights}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {selectedRoute.travelTips && (
+                    <div className="pt-3">
+                      <div className="flex items-start gap-3">
+                        <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        </div>
+                        <div>
+                          <div className="font-medium text-sm mb-1">Travel Tips</div>
+                          <p className="text-gray-600 text-sm">{selectedRoute.travelTips}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {(selectedRoute.pickupInstructions || selectedRoute.dropoffInstructions) && (
+                    <div className="pt-3">
+                      {selectedRoute.pickupInstructions && (
+                        <div className="flex items-start gap-3 mb-2">
+                          <MapPin className="w-5 h-5 text-green-600 mt-0.5" />
+                          <div>
+                            <div className="font-medium text-sm mb-1">Pickup Instructions</div>
+                            <p className="text-gray-600 text-sm">{selectedRoute.pickupInstructions}</p>
+                          </div>
+                        </div>
+                      )}
+                      {selectedRoute.dropoffInstructions && (
+                        <div className="flex items-start gap-3">
+                          <MapPin className="w-5 h-5 text-red-600 mt-0.5" />
+                          <div>
+                            <div className="font-medium text-sm mb-1">Dropoff Instructions</div>
+                            <p className="text-gray-600 text-sm">{selectedRoute.dropoffInstructions}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

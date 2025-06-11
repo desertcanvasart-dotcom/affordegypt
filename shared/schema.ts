@@ -62,6 +62,10 @@ export const routes = pgTable("routes", {
   name: text("name"), // Custom route name: "Cairo City Tour", "Airport Transfer", etc.
   km: decimal("km", { precision: 8, scale: 2 }).notNull(),
   estimatedDuration: text("estimated_duration"), // Duration like "2 hours", "45 minutes", etc.
+  routeHighlights: text("route_highlights"), // Key attractions or stops along the route
+  travelTips: text("travel_tips"), // Important travel information for this route
+  pickupInstructions: text("pickup_instructions"), // Specific pickup location details
+  dropoffInstructions: text("dropoff_instructions"), // Specific dropoff location details
   basePriceByVehicle: jsonb("base_price_by_vehicle").notNull(), // JSON: {vehicle_id: {license_class_id: price}}
   displayOrder: integer("display_order").default(0), // Controls display order in pricing tool
 });
