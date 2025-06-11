@@ -173,13 +173,17 @@ export default function TransfersPage() {
 
   const getPrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
-    const basePrice = selectedRoute.basePriceByVehicle[vehicleType as keyof typeof selectedRoute.basePriceByVehicle] || 0;
+    const priceData = selectedRoute.basePriceByVehicle;
+    if (!priceData || typeof priceData !== 'object') return 0;
+    const basePrice = Number(priceData[vehicleType as keyof typeof priceData]) || 0;
     return getTimePricing(basePrice);
   };
 
   const getBasePrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
-    return selectedRoute.basePriceByVehicle[vehicleType as keyof typeof selectedRoute.basePriceByVehicle] || 0;
+    const priceData = selectedRoute.basePriceByVehicle;
+    if (!priceData || typeof priceData !== 'object') return 0;
+    return Number(priceData[vehicleType as keyof typeof priceData]) || 0;
   };
 
   const getVehicleCapacity = (type: string) => {
@@ -598,7 +602,10 @@ export default function TransfersPage() {
               {routes.slice(0, 6).map((route) => {
                 const fromCityName = cities.find(c => c.id === route.fromCityId)?.name;
                 const toCityName = cities.find(c => c.id === route.toCityId)?.name;
-                const minPrice = Math.min(...Object.values(route.basePriceByVehicle));
+                const prices = route.basePriceByVehicle && typeof route.basePriceByVehicle === 'object' 
+                  ? Object.values(route.basePriceByVehicle).filter(p => typeof p === 'number')
+                  : [];
+                const minPrice = prices.length > 0 ? Math.min(...prices) : 0;
                 
                 return (
                   <div
