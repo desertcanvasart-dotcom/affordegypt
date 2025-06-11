@@ -105,8 +105,9 @@ export default function TransfersPage() {
 
   // Filter cities for display based on active tab
   const getAvailableCities = (isFromCity: boolean) => {
+    let availableCities;
     if (activeTab === "intercity") {
-      return cities; // Show all cities for intercity
+      availableCities = cities; // Show all cities for intercity
     } else {
       // For intracity, only show cities that have internal routes
       const citiesWithInternalRoutes = new Set();
@@ -115,8 +116,11 @@ export default function TransfersPage() {
           citiesWithInternalRoutes.add(route.fromCityId);
         }
       });
-      return cities.filter(city => citiesWithInternalRoutes.has(city.id));
+      availableCities = cities.filter(city => citiesWithInternalRoutes.has(city.id));
     }
+    
+    // Sort cities alphabetically
+    return availableCities.sort((a, b) => a.name.localeCompare(b.name));
   };
 
   const handleQuickSearch = () => {
@@ -391,7 +395,7 @@ export default function TransfersPage() {
             <Card className="mb-8 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl">
-                  <Building className="w-6 h-6 mr-3 text-orange-600" />
+                  <Building className="w-6 h-6 mr-3 text-teal-600" />
                   Local City Transfer
                 </CardTitle>
                 <p className="text-gray-600">Local transport within the same city</p>
@@ -434,7 +438,7 @@ export default function TransfersPage() {
                 <div className="flex justify-center">
                   <Button 
                     onClick={handleQuickSearch}
-                    className="bg-orange-600 hover:bg-orange-700 px-8"
+                    className="bg-teal-600 hover:bg-teal-700 px-8"
                     disabled={!selectedCityForLocal}
                   >
                     <Zap className="w-4 h-4 mr-2" />
@@ -446,10 +450,10 @@ export default function TransfersPage() {
 
             {/* Local Routes Display */}
             {showLocalRoutes && selectedCityForLocal && (
-              <Card className="mb-8 shadow-lg border-orange-200">
+              <Card className="mb-8 shadow-lg border-teal-200">
                 <CardHeader>
                   <CardTitle className="flex items-center text-xl">
-                    <MapPin className="w-5 h-5 mr-2 text-orange-600" />
+                    <MapPin className="w-5 h-5 mr-2 text-teal-600" />
                     Local Routes in {cities.find(c => c.id === parseInt(selectedCityForLocal))?.name}
                   </CardTitle>
                 </CardHeader>
@@ -460,8 +464,8 @@ export default function TransfersPage() {
                         key={route.id}
                         className={`p-4 border rounded-lg cursor-pointer transition-all ${
                           selectedRoute?.id === route.id
-                            ? 'border-orange-500 bg-orange-50'
-                            : 'border-gray-200 hover:border-orange-300'
+                            ? 'border-teal-500 bg-teal-50'
+                            : 'border-gray-200 hover:border-teal-300'
                         }`}
                         onClick={() => {
                           setSelectedRoute(route);
