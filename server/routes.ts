@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./database-storage";
 import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
+import { emailService } from "./email-service";
 
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
@@ -860,6 +861,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get all bookings (admin endpoint)
+  app.get("/api/admin/bookings", async (req, res) => {
+    try {
+      const bookings = await storage.getBookings();
+      
+      // Get quote data for each booking that has a quoteId
+      const bookingsWithQuotes = await Promise.all(
+        bookings.map(async (booking) => {
+          if (booking.quoteId) {
+            const quote = await storage.getQuote(booking.quoteId);
+            return {
+              ...booking,
+              quote: quote ? {
+                id: quote.id,
+                jsonBlob: quote.jsonBlob,
+                total: quote.total,
+                commissionPct: quote.commissionPct
+              } : null
+            };
+          }
+          return {
+            ...booking,
+            quote: null
+          };
+        })
+      );
+      
+      res.json(bookingsWithQuotes);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Route-only booking endpoint (transportation only)
   app.post("/api/route-bookings", async (req, res) => {
     try {
@@ -899,6 +933,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
 
       const booking = await storage.createBooking(routeBookingData);
+      
+      // Send confirmation email
+      try {
+        const emailSent = await emailService.sendBookingConfirmation(booking, {
+          id: 0,
+          jsonBlob: routeBookingData.routeDetails,
+          total: totalAmount.toString(),
+          commissionPct: "0"
+        });
+        
+        if (emailSent) {
+          console.log(`Confirmation email sent for booking ${bookingReference}`);
+        }
+      } catch (emailError) {
+        console.error('Failed to send confirmation email:', emailError);
+      }
       
       res.json({
         success: true,
