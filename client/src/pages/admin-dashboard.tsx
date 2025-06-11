@@ -22,10 +22,14 @@ import {
   Download,
   Upload,
   Phone,
-  LogOut
+  LogOut,
+  Route,
+  Eye,
+  Trash2
 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import RouteEditModal from "@/components/route-edit-modal";
 
 interface DashboardStats {
   totalQuotes: number;
@@ -50,6 +54,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [editData, setEditData] = useState<any>({});
+  const [routeEditModal, setRouteEditModal] = useState({ isOpen: false, route: null });
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -124,7 +129,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       {/* Main Content */}
       <div className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 bg-white border">
+          <TabsList className="grid w-full grid-cols-7 bg-white border">
             <TabsTrigger value="dashboard" className="flex items-center space-x-2">
               <BarChart3 className="w-4 h-4" />
               <span>Dashboard</span>
@@ -132,6 +137,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <TabsTrigger value="cities" className="flex items-center space-x-2">
               <MapPin className="w-4 h-4" />
               <span>Cities</span>
+            </TabsTrigger>
+            <TabsTrigger value="routes" className="flex items-center space-x-2">
+              <MapPin className="w-4 h-4" />
+              <span>Routes</span>
             </TabsTrigger>
             <TabsTrigger value="vehicles" className="flex items-center space-x-2">
               <Car className="w-4 h-4" />
@@ -638,7 +647,103 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
               </CardContent>
             </Card>
           </TabsContent>
+
+          <TabsContent value="routes" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Route Management</h2>
+              <Button 
+                onClick={() => setRouteEditModal({ isOpen: true, route: null })}
+                className="bg-teal-600 hover:bg-teal-700"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add New Route
+              </Button>
+            </div>
+            
+            <Card>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Route Name</TableHead>
+                      <TableHead>From → To</TableHead>
+                      <TableHead>Distance</TableHead>
+                      <TableHead>Duration</TableHead>
+                      <TableHead>Route Info</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {routes.map((route: any) => {
+                      const fromCity = cities.find((c: any) => c.id === route.fromCityId);
+                      const toCity = cities.find((c: any) => c.id === route.toCityId);
+                      const hasRouteInfo = route.routeHighlights || route.travelTips || route.pickupInstructions || route.dropoffInstructions;
+                      
+                      return (
+                        <TableRow key={route.id}>
+                          <TableCell className="font-medium">
+                            {route.name || `${fromCity?.name} to ${toCity?.name}`}
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center space-x-2">
+                              <MapPin className="w-4 h-4 text-gray-400" />
+                              <span>{fromCity?.name || 'Unknown'} → {toCity?.name || 'Unknown'}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell>{route.km} km</TableCell>
+                          <TableCell>{route.estimatedDuration || 'N/A'}</TableCell>
+                          <TableCell>
+                            {hasRouteInfo ? (
+                              <Badge variant="secondary" className="bg-green-100 text-green-800">
+                                <Eye className="w-3 h-3 mr-1" />
+                                Complete
+                              </Badge>
+                            ) : (
+                              <Badge variant="outline" className="text-orange-600 border-orange-300">
+                                Basic Only
+                              </Badge>
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant={route.isActive ? "secondary" : "outline"}>
+                              {route.isActive ? "Active" : "Inactive"}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex space-x-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => setRouteEditModal({ isOpen: true, route })}
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="text-red-600 hover:text-red-700"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
+
+        {/* Route Edit Modal */}
+        <RouteEditModal
+          isOpen={routeEditModal.isOpen}
+          onClose={() => setRouteEditModal({ isOpen: false, route: null })}
+          route={routeEditModal.route}
+        />
       </div>
     </div>
   );
