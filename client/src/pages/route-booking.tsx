@@ -715,12 +715,15 @@ Email: support@affordegypt.com
                         <p className="text-sm text-blue-800">
                           Pay the rest in cash to your guide after the tour.
                         </p>
-                        <p className="text-xs text-blue-700 mt-2">
-                          Payment accepted in Euro, GBP, or USD (in that order of preference)
-                        </p>
+
                       </div>
                     </div>
                   </div>
+
+                  {/* Payment Currency Note */}
+                  <p className="text-sm text-gray-600 text-center mb-4">
+                    Prices shown in EGP • Payment accepted in Euro, GBP, or USD
+                  </p>
 
                   {/* Terms of Service Checkbox */}
                   <div className="flex items-start gap-3 mb-4">
