@@ -563,7 +563,7 @@ export default function TransfersPage() {
             <CardContent>
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="font-semibold text-lg">
+                  <h3 className="font-semibold text-base">
                     {cities.find(c => c.id === selectedRoute.fromCityId)?.name} → {cities.find(c => c.id === selectedRoute.toCityId)?.name}
                   </h3>
                   <div className="flex items-center text-sm text-gray-600 mt-2 space-x-4">
