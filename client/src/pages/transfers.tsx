@@ -473,7 +473,7 @@ export default function TransfersPage() {
                               </div>
                               <div className="flex items-center">
                                 <Car className="w-4 h-4 mr-1" />
-                                From {route.basePriceByVehicle?.sedan || 0} EGP
+                                From {typeof route.basePriceByVehicle === 'object' && route.basePriceByVehicle?.sedan ? route.basePriceByVehicle.sedan : 'N/A'} EGP
                               </div>
                             </div>
                             {route.routeHighlights && (
@@ -525,40 +525,43 @@ export default function TransfersPage() {
               <div className="space-y-4">
                 <h4 className="font-medium">Choose Your Vehicle:</h4>
                 <div className="grid md:grid-cols-3 gap-4">
-                  {Object.entries(selectedRoute.basePriceByVehicle).map(([type, price]) => (
-                    <div
-                      key={type}
-                      className={`border rounded-lg p-4 cursor-pointer transition-colors ${
-                        vehicleType === type 
-                          ? 'border-teal-500 bg-teal-50' 
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                      onClick={() => setVehicleType(type)}
-                    >
-                      <div className="text-center">
-                        <Car className="w-8 h-8 mx-auto mb-2 text-teal-600" />
-                        <h5 className="font-semibold capitalize">{type}</h5>
-                        <p className="text-sm text-gray-600 mb-2">{getVehicleCapacity(type)}</p>
-                        {travelDate && travelTime && getTimePricing(price) !== price ? (
-                          <div>
-                            <p className="text-sm text-gray-500 line-through">
+                  {selectedRoute.basePriceByVehicle && typeof selectedRoute.basePriceByVehicle === 'object' ? 
+                    Object.entries(selectedRoute.basePriceByVehicle).map(([type, price]) => (
+                      <div
+                        key={type}
+                        className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                          vehicleType === type 
+                            ? 'border-teal-500 bg-teal-50' 
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                        onClick={() => setVehicleType(type)}
+                      >
+                        <div className="text-center">
+                          <Car className="w-8 h-8 mx-auto mb-2 text-teal-600" />
+                          <h5 className="font-semibold capitalize">{type}</h5>
+                          <p className="text-sm text-gray-600 mb-2">{getVehicleCapacity(type)}</p>
+                          {travelDate && travelTime && getTimePricing(Number(price)) !== Number(price) ? (
+                            <div>
+                              <p className="text-sm text-gray-500 line-through">
+                                {price} EGP
+                              </p>
+                              <p className="text-lg font-bold text-teal-600">
+                                {getTimePricing(Number(price))} EGP
+                              </p>
+                              <p className="text-xs text-orange-600">
+                                Time-based pricing
+                              </p>
+                            </div>
+                          ) : (
+                            <p className="text-lg font-bold text-teal-600">
                               {price} EGP
                             </p>
-                            <p className="text-lg font-bold text-teal-600">
-                              {getTimePricing(price)} EGP
-                            </p>
-                            <p className="text-xs text-orange-600">
-                              Time-based pricing
-                            </p>
-                          </div>
-                        ) : (
-                          <p className="text-lg font-bold text-teal-600">
-                            {price} EGP
-                          </p>
-                        )}
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )) : (
+                      <div className="text-gray-500">No vehicle options available</div>
+                    )}
                 </div>
               </div>
 
