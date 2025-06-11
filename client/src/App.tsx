@@ -31,6 +31,7 @@ import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Reviews from "@/pages/reviews";
 import Transfers from "@/pages/transfers";
+import PricingTool from "@/pages/pricing-tool";
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
@@ -56,6 +57,7 @@ function Router() {
       <Route path="/routes/book/:routeId" component={RouteBooking} />
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
       <Route path="/transfers" component={Transfers} />
+      <Route path="/pricing-tool" component={PricingTool} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />
