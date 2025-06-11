@@ -39,7 +39,34 @@ export default function TransfersPage() {
   const [vehicleType, setVehicleType] = useState("");
   const [passengers, setPassengers] = useState("2");
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
+  const [travelDate, setTravelDate] = useState("");
+  const [travelTime, setTravelTime] = useState("");
   const { toast } = useToast();
+
+  // Reset form when switching tabs
+  const handleTabChange = (newTab: string) => {
+    setActiveTab(newTab);
+    setFromCity("");
+    setToCity("");
+    setVehicleType("");
+    setSelectedRoute(null);
+  };
+
+  // Calculate time-based pricing multiplier
+  const getTimePricing = (basePrice: number) => {
+    if (!travelDate || !travelTime) return basePrice;
+    
+    const hour = parseInt(travelTime.split(':')[0]);
+    const date = new Date(travelDate);
+    const isWeekend = date.getDay() === 5 || date.getDay() === 6; // Friday/Saturday
+    const isPeakHour = (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19);
+    
+    let multiplier = 1;
+    if (isPeakHour) multiplier += 0.2; // 20% peak hour surcharge
+    if (isWeekend) multiplier += 0.15; // 15% weekend surcharge
+    
+    return Math.round(basePrice * multiplier);
+  };
 
   // Fetch cities
   const { data: cities = [] } = useQuery<City[]>({
@@ -104,6 +131,12 @@ export default function TransfersPage() {
   };
 
   const getPrice = () => {
+    if (!selectedRoute || !vehicleType) return 0;
+    const basePrice = selectedRoute.basePriceByVehicle[vehicleType as keyof typeof selectedRoute.basePriceByVehicle] || 0;
+    return getTimePricing(basePrice);
+  };
+
+  const getBasePrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
     return selectedRoute.basePriceByVehicle[vehicleType as keyof typeof selectedRoute.basePriceByVehicle] || 0;
   };
@@ -190,79 +223,179 @@ export default function TransfersPage() {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Quick Transfer Form */}
-        <Card className="mb-8 shadow-lg">
-          <CardHeader>
-            <CardTitle className="flex items-center text-2xl">
-              <Car className="w-6 h-6 mr-3 text-teal-600" />
-              Book Your Transfer
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Pickup Location</label>
-                <Select value={fromCity} onValueChange={setFromCity}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select pickup city" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.map((city) => (
-                      <SelectItem key={city.id} value={city.id.toString()}>
-                        {city.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-2">Drop-off Location</label>
-                <Select value={toCity} onValueChange={setToCity}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select destination city" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.map((city) => (
-                      <SelectItem key={city.id} value={city.id.toString()}>
-                        {city.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+        {/* Tab Interface */}
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="mb-8">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="intercity" className="flex items-center space-x-2">
+              <Plane className="w-4 h-4" />
+              <span>Intercity Travel</span>
+            </TabsTrigger>
+            <TabsTrigger value="intracity" className="flex items-center space-x-2">
+              <Building className="w-4 h-4" />
+              <span>City Local</span>
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="intercity">
+            <Card className="mb-8 shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center text-2xl">
+                  <Plane className="w-6 h-6 mr-3 text-teal-600" />
+                  Intercity Transfer
+                </CardTitle>
+                <p className="text-gray-600">Travel between different cities across Egypt</p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">From City</label>
+                    <Select value={fromCity} onValueChange={setFromCity}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select departure city" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {getAvailableCities(true).map((city) => (
+                          <SelectItem key={city.id} value={city.id.toString()}>
+                            {city.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">To City</label>
+                    <Select value={toCity} onValueChange={setToCity}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select destination city" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {getAvailableCities(false).map((city) => (
+                          <SelectItem key={city.id} value={city.id.toString()}>
+                            {city.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Passengers</label>
-                <Select value={passengers} onValueChange={setPassengers}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[1,2,3,4,5,6,7,8,9,10,11,12].map((num) => (
-                      <SelectItem key={num} value={num.toString()}>
-                        {num} passenger{num > 1 ? 's' : ''}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex items-end">
-                <Button 
-                  onClick={handleQuickSearch}
-                  className="w-full bg-teal-600 hover:bg-teal-700"
-                  disabled={!fromCity || !toCity}
-                >
-                  <Zap className="w-4 h-4 mr-2" />
-                  Get Instant Quote
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Passengers</label>
+                    <Select value={passengers} onValueChange={setPassengers}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[1,2,3,4,5,6,7,8,9,10,11,12].map((num) => (
+                          <SelectItem key={num} value={num.toString()}>
+                            {num} passenger{num > 1 ? 's' : ''}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Travel Date</label>
+                    <input
+                      type="date"
+                      value={travelDate}
+                      onChange={(e) => setTravelDate(e.target.value)}
+                      min={new Date().toISOString().split('T')[0]}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Departure Time</label>
+                    <input
+                      type="time"
+                      value={travelTime}
+                      onChange={(e) => setTravelTime(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    />
+                  </div>
+                  
+                  <div className="flex items-end">
+                    <Button 
+                      onClick={handleQuickSearch}
+                      className="w-full bg-teal-600 hover:bg-teal-700"
+                      disabled={!fromCity || !toCity}
+                    >
+                      <Zap className="w-4 h-4 mr-2" />
+                      Get Quote
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="intracity">
+            <Card className="mb-8 shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center text-2xl">
+                  <Building className="w-6 h-6 mr-3 text-orange-600" />
+                  Local City Transfer
+                </CardTitle>
+                <p className="text-gray-600">Local transport within the same city</p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">City</label>
+                    <Select value={fromCity} onValueChange={(value) => {
+                      setFromCity(value);
+                      setToCity(value); // For intracity, from and to are the same city
+                    }}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select city" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {getAvailableCities(true).map((city) => (
+                          <SelectItem key={city.id} value={city.id.toString()}>
+                            {city.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Passengers</label>
+                    <Select value={passengers} onValueChange={setPassengers}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[1,2,3,4,5,6,7,8,9,10,11,12].map((num) => (
+                          <SelectItem key={num} value={num.toString()}>
+                            {num} passenger{num > 1 ? 's' : ''}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <Button 
+                    onClick={handleQuickSearch}
+                    className="bg-orange-600 hover:bg-orange-700 px-8"
+                    disabled={!fromCity}
+                  >
+                    <Zap className="w-4 h-4 mr-2" />
+                    See Local Routes
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
 
         {/* Route Results */}
         {selectedRoute && (
@@ -313,9 +446,23 @@ export default function TransfersPage() {
                         <Car className="w-8 h-8 mx-auto mb-2 text-teal-600" />
                         <h5 className="font-semibold capitalize">{type}</h5>
                         <p className="text-sm text-gray-600 mb-2">{getVehicleCapacity(type)}</p>
-                        <p className="text-lg font-bold text-teal-600">
-                          {price} EGP
-                        </p>
+                        {travelDate && travelTime && getTimePricing(price) !== price ? (
+                          <div>
+                            <p className="text-sm text-gray-500 line-through">
+                              {price} EGP
+                            </p>
+                            <p className="text-lg font-bold text-teal-600">
+                              {getTimePricing(price)} EGP
+                            </p>
+                            <p className="text-xs text-orange-600">
+                              Time-based pricing
+                            </p>
+                          </div>
+                        ) : (
+                          <p className="text-lg font-bold text-teal-600">
+                            {price} EGP
+                          </p>
+                        )}
                       </div>
                     </div>
                   ))}
