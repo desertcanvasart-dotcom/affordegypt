@@ -129,7 +129,7 @@ export default function RoutesSimple() {
                   onClick={() => setActiveTab('city-tours')}
                   className={`px-8 py-3 rounded-md font-semibold text-lg transition-all ${
                     activeTab === 'city-tours'
-                      ? 'bg-orange-600 text-white shadow-md'
+                      ? 'bg-teal-600 text-white shadow-md'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -145,7 +145,9 @@ export default function RoutesSimple() {
             {/* Inter-City Routes Tab */}
             {activeTab === 'inter-city' && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Array.from(interCityCities).map((cityId: any) => (
+                {Array.from(interCityCities)
+                  .sort((a: any, b: any) => getCityName(a).localeCompare(getCityName(b)))
+                  .map((cityId: any) => (
                   <Card key={cityId} className="shadow-lg border-0 hover:shadow-xl transition-shadow">
                     <CardHeader className="bg-gradient-to-r from-teal-50 to-teal-100 p-6">
                       <CardTitle className="flex items-center gap-3 text-xl">
@@ -202,11 +204,13 @@ export default function RoutesSimple() {
             {/* City Tours Tab */}
             {activeTab === 'city-tours' && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Array.from(cityTourCities).map((cityId: any) => (
+                {Array.from(cityTourCities)
+                  .sort((a: any, b: any) => getCityName(a).localeCompare(getCityName(b)))
+                  .map((cityId: any) => (
                   <Card key={cityId} className="shadow-lg border-0 hover:shadow-xl transition-shadow">
-                    <CardHeader className="bg-gradient-to-r from-orange-50 to-orange-100 p-6">
+                    <CardHeader className="bg-gradient-to-r from-teal-50 to-teal-100 p-6">
                       <CardTitle className="flex items-center gap-3 text-xl">
-                        <MapPin className="w-6 h-6 text-orange-600" />
+                        <MapPin className="w-6 h-6 text-teal-600" />
                         <span className="text-gray-900">{getCityName(cityId)}</span>
                       </CardTitle>
                       <p className="text-gray-600 text-sm">
@@ -218,7 +222,7 @@ export default function RoutesSimple() {
                         {cityTourRoutes
                           .filter((route: any) => route.fromCityId === cityId)
                           .map((route: any) => (
-                            <div key={route.id} className="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-orange-200 transition-colors">
+                            <div key={route.id} className="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-teal-200 transition-colors">
                               <div className="flex justify-between items-start gap-3">
                                 <div className="flex-1">
                                   <span className="text-gray-800 font-medium">
@@ -237,7 +241,7 @@ export default function RoutesSimple() {
                                   </div>
                                 </div>
                                 <Link href={`/routes/book/${route.id}`}>
-                                  <button className="bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-700 transition-colors">
+                                  <button className="bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-teal-700 transition-colors">
                                     Book Now
                                   </button>
                                 </Link>
