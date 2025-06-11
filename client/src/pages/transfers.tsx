@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building } from "lucide-react";
+import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -25,6 +25,7 @@ interface Route {
   toLocation: string;
   km: string;
   estimatedDuration: string | null;
+  routeHighlights?: string | null;
   basePriceByVehicle: {
     sedan: number;
     minivan: number;
@@ -58,18 +59,27 @@ export default function TransfersPage() {
 
   // Calculate time-based pricing multiplier
   const getTimePricing = (basePrice: number) => {
-    if (!travelDate || !travelTime) return basePrice;
+    if (!travelDate || !travelTime || !basePrice) return basePrice;
     
-    const hour = parseInt(travelTime.split(':')[0]);
-    const date = new Date(travelDate);
-    const isWeekend = date.getDay() === 5 || date.getDay() === 6; // Friday/Saturday
-    const isPeakHour = (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19);
-    
-    let multiplier = 1;
-    if (isPeakHour) multiplier += 0.2; // 20% peak hour surcharge
-    if (isWeekend) multiplier += 0.15; // 15% weekend surcharge
-    
-    return Math.round(basePrice * multiplier);
+    try {
+      const hour = parseInt(travelTime.split(':')[0]);
+      if (isNaN(hour)) return basePrice;
+      
+      const date = new Date(travelDate + 'T00:00:00');
+      if (isNaN(date.getTime())) return basePrice;
+      
+      const isWeekend = date.getDay() === 5 || date.getDay() === 6; // Friday/Saturday
+      const isPeakHour = (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19);
+      
+      let multiplier = 1;
+      if (isPeakHour) multiplier += 0.2; // 20% peak hour surcharge
+      if (isWeekend) multiplier += 0.15; // 15% weekend surcharge
+      
+      return Math.round(basePrice * multiplier);
+    } catch (error) {
+      console.warn('Error calculating time-based pricing:', error);
+      return basePrice;
+    }
   };
 
   // Fetch cities
