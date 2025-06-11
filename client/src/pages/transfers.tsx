@@ -537,8 +537,11 @@ export default function TransfersPage() {
               <div className="space-y-4">
                 <h4 className="font-medium">Choose Your Vehicle:</h4>
                 <div className="grid md:grid-cols-3 gap-4">
-                  {selectedRoute.basePriceByVehicle && typeof selectedRoute.basePriceByVehicle === 'object' ? 
-                    Object.entries(selectedRoute.basePriceByVehicle).map(([type, price]) => (
+                  {['sedan', 'minivan', 'van'].map((type) => {
+                    const price = getValidPrice(selectedRoute.basePriceByVehicle, type);
+                    if (price === 0) return null;
+                    
+                    return (
                       <div
                         key={type}
                         className={`border rounded-lg p-4 cursor-pointer transition-colors ${
@@ -552,13 +555,13 @@ export default function TransfersPage() {
                           <Car className="w-8 h-8 mx-auto mb-2 text-teal-600" />
                           <h5 className="font-semibold capitalize">{type}</h5>
                           <p className="text-sm text-gray-600 mb-2">{getVehicleCapacity(type)}</p>
-                          {travelDate && travelTime && getTimePricing(Number(price)) !== Number(price) ? (
+                          {travelDate && travelTime && getTimePricing(price) !== price ? (
                             <div>
                               <p className="text-sm text-gray-500 line-through">
                                 {price} EGP
                               </p>
                               <p className="text-lg font-bold text-teal-600">
-                                {getTimePricing(Number(price))} EGP
+                                {getTimePricing(price)} EGP
                               </p>
                               <p className="text-xs text-orange-600">
                                 Time-based pricing
@@ -571,9 +574,8 @@ export default function TransfersPage() {
                           )}
                         </div>
                       </div>
-                    )) : (
-                      <div className="text-gray-500">No vehicle options available</div>
-                    )}
+                    );
+                  }).filter(Boolean)}
                 </div>
               </div>
 
