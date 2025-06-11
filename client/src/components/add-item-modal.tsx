@@ -141,7 +141,7 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
                     <SelectValue placeholder="Select departure city" />
                   </SelectTrigger>
                   <SelectContent>
-                    {(cities as any[]).map((city: any) => (
+                    {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                       <SelectItem key={city.id} value={city.id.toString()}>
                         {city.name}
                       </SelectItem>
@@ -157,7 +157,7 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
                     <SelectValue placeholder="Select destination city" />
                   </SelectTrigger>
                   <SelectContent>
-                    {(cities as any[]).map((city: any) => (
+                    {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
                       <SelectItem key={city.id} value={city.id.toString()}>
                         {city.name}
                       </SelectItem>
