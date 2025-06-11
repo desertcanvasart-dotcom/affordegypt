@@ -45,13 +45,15 @@ export default function RoutesSimple() {
     );
   }
 
-  // Filter routes by type
-  const interCityRoutes = routes.filter((route: any) => route.km > 0);
-  const cityTourRoutes = routes.filter((route: any) => route.km === 0);
+  // Filter routes by type - convert km to number for proper comparison
+  const interCityRoutes = routes.filter((route: any) => Number(route.km) > 0);
+  const cityTourRoutes = routes.filter((route: any) => Number(route.km) === 0);
 
   // Get unique cities for each category
   const interCityCities = new Set(interCityRoutes.map((route: any) => route.fromCityId));
   const cityTourCities = new Set(cityTourRoutes.map((route: any) => route.fromCityId));
+
+
 
   return (
     <>
@@ -176,7 +178,7 @@ export default function RoutesSimple() {
                                     <span>{route.km || 0} km</span>
                                   </div>
                                 </div>
-                                <Link href={`/route-booking?routeId=${route.id}`}>
+                                <Link href={`/routes/book/${route.id}`}>
                                   <button className="bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-teal-700 transition-colors">
                                     Book Now
                                   </button>
@@ -222,7 +224,7 @@ export default function RoutesSimple() {
                                     <span>{route.km || 0} km</span>
                                   </div>
                                 </div>
-                                <Link href={`/route-booking?routeId=${route.id}`}>
+                                <Link href={`/routes/book/${route.id}`}>
                                   <button className="bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-700 transition-colors">
                                     Book Now
                                   </button>
