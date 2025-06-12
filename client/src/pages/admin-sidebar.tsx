@@ -145,6 +145,20 @@ export default function AdminSidebar() {
   const handleEdit = (item: any, type: string) => {
     setEditingItem(item);
     setModalType(type as any);
+    
+    // Parse basePriceByVehicle for editing
+    let vehiclePricing = {};
+    if (item.basePriceByVehicle) {
+      try {
+        vehiclePricing = typeof item.basePriceByVehicle === 'string' 
+          ? JSON.parse(item.basePriceByVehicle) 
+          : item.basePriceByVehicle;
+      } catch (e) {
+        console.error('Error parsing basePriceByVehicle:', e);
+        vehiclePricing = {};
+      }
+    }
+    
     setFormData({
       name: item.name || "",
       description: item.description || "",
@@ -171,7 +185,7 @@ export default function AdminSidebar() {
       km: item.km?.toString() || "",
       displayOrder: item.displayOrder?.toString() || "",
       basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {}),
-      vehiclePricing: item.basePriceByVehicle || {}
+      vehiclePricing: vehiclePricing
     });
     setIsAddModalOpen(true);
   };

@@ -656,14 +656,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "fromCityId and toCityId are required" });
       }
 
+      // Prepare route data with proper pricing structure
       const routeData = {
         fromCityId: parseInt(req.body.fromCityId),
         toCityId: parseInt(req.body.toCityId),
+        fromLocation: req.body.fromLocation || null,
+        toLocation: req.body.toLocation || null,
+        name: req.body.name || null,
         km: req.body.km || req.body.distance || "0",
-        basePriceByVehicle: {
-          sedan: req.body.sedanPrice || req.body.basePrice || 0,
-          minivan: req.body.minivanPrice || (req.body.basePrice ? req.body.basePrice * 1.4 : 0),
-          van: req.body.vanPrice || (req.body.basePrice ? req.body.basePrice * 1.8 : 0)
+        estimatedDuration: req.body.estimatedDuration || null,
+        routeHighlights: req.body.routeHighlights || null,
+        travelTips: req.body.travelTips || null,
+        pickupInstructions: req.body.pickupInstructions || null,
+        dropoffInstructions: req.body.dropoffInstructions || null,
+        displayOrder: req.body.displayOrder || 0,
+        basePriceByVehicle: req.body.basePriceByVehicle || {
+          "1": {"1": (req.body.sedanPrice || req.body.basePrice || "0")},
+          "2": {"1": (req.body.minivanPrice || (req.body.basePrice ? (parseFloat(req.body.basePrice) * 1.4).toString() : "0"))},
+          "3": {"1": (req.body.vanPrice || (req.body.basePrice ? (parseFloat(req.body.basePrice) * 1.8).toString() : "0"))}
         }
       };
 
@@ -680,7 +690,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.put("/api/routes/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      const updatedRoute = await storage.updateRoute(parseInt(id), req.body);
+      
+      // Prepare update data with proper pricing structure
+      const updateData = {
+        ...req.body,
+        fromCityId: req.body.fromCityId ? parseInt(req.body.fromCityId) : undefined,
+        toCityId: req.body.toCityId ? parseInt(req.body.toCityId) : undefined,
+        displayOrder: req.body.displayOrder !== undefined ? parseInt(req.body.displayOrder) : undefined,
+        // Ensure basePriceByVehicle is properly formatted if provided
+        basePriceByVehicle: req.body.basePriceByVehicle || (
+          req.body.sedanPrice || req.body.minivanPrice || req.body.vanPrice ? {
+            "1": {"1": (req.body.sedanPrice || "0")},
+            "2": {"1": (req.body.minivanPrice || "0")},
+            "3": {"1": (req.body.vanPrice || "0")}
+          } : undefined
+        )
+      };
+
+      // Remove undefined values to avoid overwriting existing data
+      Object.keys(updateData).forEach(key => 
+        updateData[key] === undefined && delete updateData[key]
+      );
+
+      console.log('Updating route with data:', updateData);
+      const updatedRoute = await storage.updateRoute(parseInt(id), updateData);
       res.json(updatedRoute);
     } catch (error: any) {
       console.error('Route update error:', error);
