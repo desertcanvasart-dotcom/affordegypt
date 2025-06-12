@@ -493,7 +493,7 @@ export default function EgyptianStreetFoodGuide() {
                   <div className="bg-teal-50 p-6">
                     <div className="flex justify-between items-center">
                       <span className="text-xl font-bold text-gray-900">Total Daily Cost:</span>
-                      <span className="text-2xl font-bold text-teal-600">75 EGP (~$1.50–$2.50 USD)</span>
+                      <span className="text-2xl font-bold text-teal-600">75 EGP</span>
                     </div>
                   </div>
                 </CardContent>

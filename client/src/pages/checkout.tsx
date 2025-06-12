@@ -187,6 +187,9 @@ export default function Checkout() {
                     <span>Total</span>
                     <span className="pricing-red">{booking.total} EGP</span>
                   </div>
+                  <p className="text-sm text-gray-600 text-center mt-3">
+                    Prices shown in EGP • Payment accepted in Euro, GBP, or USD
+                  </p>
                 </div>
               </div>
             </CardContent>

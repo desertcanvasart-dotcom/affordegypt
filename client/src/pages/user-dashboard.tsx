@@ -294,7 +294,7 @@ function BookingsList({
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                   <div>
                     <p className="text-sm text-muted-foreground">Total Amount</p>
-                    <p className="font-semibold">${booking.totalAmount}</p>
+                    <p className="font-semibold">{booking.totalAmount} EGP</p>
                   </div>
                   
                   {booking.startDate && (

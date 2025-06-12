@@ -985,11 +985,14 @@ export default function MultiCityPricingTool() {
                 <div className="text-right">
                   <div className="text-sm text-muted-foreground">Final Total Per Person</div>
                   <div className="text-2xl font-bold font-mono text-primary">
-                    ${totalPricing.perPersonAmount}
+                    {totalPricing.perPersonAmount} EGP
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Total: ${totalPricing.totalAmount} for {totalPricing.travelers} travelers
+                    Total: {totalPricing.totalAmount} EGP for {totalPricing.travelers} travelers
                   </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Payment accepted in Euro, GBP, or USD
+                  </p>
                 </div>
               )}
 
@@ -1024,24 +1027,24 @@ export default function MultiCityPricingTool() {
                     <div className="space-y-1 text-sm">
                       <div className="flex justify-between">
                         <span>Routes:</span>
-                        <span className="font-mono">${city.routes || 0}</span>
+                        <span className="font-mono">{city.routes || 0} EGP</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Guide:</span>
-                        <span className="font-mono">${city.guide || 0}</span>
+                        <span className="font-mono">{city.guide || 0} EGP</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Attractions:</span>
-                        <span className="font-mono">${city.attractions || 0}</span>
+                        <span className="font-mono">{city.attractions || 0} EGP</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Add-ons:</span>
-                        <span className="font-mono">${city.addOns || 0}</span>
+                        <span className="font-mono">{city.addOns || 0} EGP</span>
                       </div>
                       <Separator className="my-2" />
                       <div className="flex justify-between font-semibold">
                         <span>Total:</span>
-                        <span className="font-mono">${city.total || 0}</span>
+                        <span className="font-mono">{city.total || 0} EGP</span>
                       </div>
                     </div>
                   </Card>
