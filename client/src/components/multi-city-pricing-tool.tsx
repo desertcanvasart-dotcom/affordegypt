@@ -468,20 +468,20 @@ export default function MultiCityPricingTool() {
             
             <CardContent>
               {/* Start Here Guide */}
-              <div className="relative mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+              <div className="relative mb-2">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium mt-2">
                     Start Here
                   </div>
                   <svg 
-                    className="w-16 h-12 text-primary" 
-                    viewBox="0 0 64 48" 
+                    className="w-16 h-16 text-primary mt-1" 
+                    viewBox="0 0 64 64" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     {/* Main curved arrow body */}
                     <path 
-                      d="M8 12C8 12 16 6 32 6C48 6 56 12 56 24C56 32 52 38 46 42" 
+                      d="M8 16C8 16 16 8 32 8C48 8 56 16 56 32C56 42 52 50 46 56" 
                       stroke="currentColor" 
                       strokeWidth="2.5" 
                       strokeLinecap="round" 
@@ -490,7 +490,7 @@ export default function MultiCityPricingTool() {
                     />
                     {/* Arrow head - clear triangular point */}
                     <path 
-                      d="M40 36L46 42L52 36M46 42L46 34" 
+                      d="M40 50L46 56L52 50M46 56L46 48" 
                       stroke="currentColor" 
                       strokeWidth="2.5" 
                       strokeLinecap="round" 
