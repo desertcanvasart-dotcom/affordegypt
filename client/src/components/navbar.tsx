@@ -94,13 +94,6 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link 
-              href="/transfers"
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <Truck className="w-4 h-4" />
-              Transfers
-            </Link>
-            <Link 
               href="/destinations"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
@@ -114,13 +107,6 @@ export default function Navbar() {
               <Lightbulb className="w-4 h-4" />
               Travel Tips
             </Link>
-            <Link 
-              href="/reviews"
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <Star className="w-4 h-4" />
-              Reviews
-            </Link>
           </nav>
 
           {/* Primary CTAs */}
@@ -131,12 +117,6 @@ export default function Navbar() {
             >
               Start Your Trip Quote
             </button>
-            <Link
-              href="/transfers"
-              className="border border-teal-600 text-teal-600 px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors font-medium"
-            >
-              Book a Transfer
-            </Link>
           </div>
 
 
@@ -157,14 +137,6 @@ export default function Navbar() {
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
               <Link 
-                href="/transfers"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <Truck className="w-4 h-4" />
-                Transfers
-              </Link>
-              <Link 
                 href="/destinations"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
@@ -180,14 +152,6 @@ export default function Navbar() {
                 <Lightbulb className="w-4 h-4" />
                 Travel Tips
               </Link>
-              <Link 
-                href="/reviews"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <Star className="w-4 h-4" />
-                Reviews
-              </Link>
               
               {/* Mobile CTAs */}
               <div className="pt-4 space-y-3 border-t border-border">
@@ -200,13 +164,6 @@ export default function Navbar() {
                 >
                   Start Your Trip Quote
                 </button>
-                <Link
-                  href="/transfers"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="w-full border border-teal-600 text-teal-600 px-4 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium text-center block"
-                >
-                  Book a Transfer
-                </Link>
               </div>
             </div>
           </div>

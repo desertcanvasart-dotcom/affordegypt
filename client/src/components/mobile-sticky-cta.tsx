@@ -30,18 +30,11 @@ export default function MobileStickyCTA() {
       <div className="flex">
         <button
           onClick={scrollToBooking}
-          className="flex-1 bg-teal-600 text-white px-4 py-4 font-medium flex items-center justify-center space-x-2 hover:bg-teal-700 transition-colors"
+          className="w-full bg-teal-600 text-white px-4 py-4 font-medium flex items-center justify-center space-x-2 hover:bg-teal-700 transition-colors"
         >
           <Backpack className="w-4 h-4" />
           <span>Build My Trip</span>
         </button>
-        <Link
-          href="/transfers"
-          className="flex-1 bg-orange-500 text-white px-4 py-4 font-medium flex items-center justify-center space-x-2 hover:bg-orange-600 transition-colors"
-        >
-          <Truck className="w-4 h-4" />
-          <span>Book Transfer</span>
-        </Link>
       </div>
     </div>
   );
