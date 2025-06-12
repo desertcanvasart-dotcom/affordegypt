@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -188,41 +187,35 @@ export default function TransfersPage() {
     }
   };
 
-  const bookTransfer = useMutation({
-    mutationFn: async () => {
-      const bookingData = {
-        routeId: selectedRoute?.id,
-        vehicleType,
-        passengers: parseInt(passengers),
-        travelDate: travelDate || new Date().toISOString().split('T')[0],
-        customerName: "Direct Transfer Booking",
-        customerEmail: "transfer@example.com",
-        customerPhone: "+20100000000",
-        totalAmount: getPrice(),
-        bookingType: 'route-only'
-      };
-      
-      return await apiRequest("POST", "/api/route-bookings", bookingData);
-    },
-    onSuccess: () => {
+  const proceedToBooking = () => {
+    if (!selectedRoute || !vehicleType) {
       toast({
-        title: "Transfer Booked!",
-        description: "Your transfer has been confirmed. Check your email for details.",
-      });
-      // Reset form
-      setFromCity("");
-      setToCity("");
-      setVehicleType("");
-      setSelectedRoute(null);
-    },
-    onError: () => {
-      toast({
-        title: "Booking Failed",
-        description: "Please try again or contact support.",
+        title: "Missing Information",
+        description: "Please select a route and vehicle type.",
         variant: "destructive",
       });
+      return;
     }
-  });
+
+    // Store booking data in sessionStorage for the route booking page
+    const bookingData = {
+      routeId: selectedRoute.id,
+      vehicleType,
+      passengers: parseInt(passengers),
+      travelDate: travelDate || new Date().toISOString().split('T')[0],
+      travelTime,
+      totalAmount: getPrice(),
+      fromCityName: cities.find(c => c.id === selectedRoute.fromCityId)?.name,
+      toCityName: cities.find(c => c.id === selectedRoute.toCityId)?.name,
+      routeName: selectedRoute.name,
+      distance: selectedRoute.km,
+      duration: selectedRoute.estimatedDuration,
+      highlights: selectedRoute.routeHighlights
+    };
+    
+    sessionStorage.setItem('pendingBooking', JSON.stringify(bookingData));
+    setLocation('/route-booking');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -605,11 +598,10 @@ export default function TransfersPage() {
                       <p className="text-xs text-gray-500">Final price - no hidden fees</p>
                     </div>
                     <Button
-                      onClick={() => bookTransfer.mutate()}
-                      disabled={bookTransfer.isPending}
+                      onClick={proceedToBooking}
                       className="bg-teal-600 hover:bg-teal-700 px-8 py-3 text-lg"
                     >
-                      {bookTransfer.isPending ? "Booking..." : "Book Transfer Now"}
+                      Continue to Booking
                     </Button>
                   </div>
                 </div>

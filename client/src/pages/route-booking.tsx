@@ -30,6 +30,7 @@ interface Route {
   sedanPrice?: string;
   minivanPrice?: string;
   vanPrice?: string;
+  basePriceByVehicle?: any;
 }
 
 interface City {
@@ -49,7 +50,8 @@ interface VehicleType {
 
 export default function RouteBooking() {
   const [match, params] = useRoute("/routes/book/:routeId");
-  const routeId = params?.routeId ? parseInt(params.routeId) : null;
+  const [pendingBookingData, setPendingBookingData] = useState<any>(null);
+  const routeId = params?.routeId ? parseInt(params.routeId) : pendingBookingData?.routeId;
   
   const [selectedVehicle, setSelectedVehicle] = useState<string>("");
   const [passengers, setPassengers] = useState<number>(2);
@@ -76,9 +78,25 @@ export default function RouteBooking() {
     queryKey: ["/api/vehicle-types"],
   });
 
-  // Scroll to top when component mounts
+  // Check for pending booking data and scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Check for pending booking data from transfers page
+    const pendingData = sessionStorage.getItem('pendingBooking');
+    if (pendingData) {
+      try {
+        const data = JSON.parse(pendingData);
+        setPendingBookingData(data);
+        setSelectedVehicle(data.vehicleType || "");
+        setPassengers(data.passengers || 2);
+        setTravelDate(data.travelDate || "");
+        // Clear the session data after loading
+        sessionStorage.removeItem('pendingBooking');
+      } catch (error) {
+        console.error('Error parsing pending booking data:', error);
+      }
+    }
   }, []);
 
   // Find the selected route
@@ -93,7 +111,18 @@ export default function RouteBooking() {
   };
 
   const getVehiclePrice = (vehicleType: string) => {
-    if (!selectedRoute) return "0";
+    if (!selectedRoute) {
+      // If no route selected but we have pending booking data, use that total
+      return pendingBookingData?.totalAmount?.toString() || "0";
+    }
+    
+    // Try to get price from basePriceByVehicle object
+    if ((selectedRoute as any).basePriceByVehicle && typeof (selectedRoute as any).basePriceByVehicle === 'object') {
+      const price = (selectedRoute as any).basePriceByVehicle[vehicleType];
+      if (typeof price === 'number' && price > 0) return price.toString();
+    }
+    
+    // Fallback to individual price fields for compatibility
     switch (vehicleType.toLowerCase()) {
       case 'sedan':
         return selectedRoute.sedanPrice || "0";
