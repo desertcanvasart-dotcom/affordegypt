@@ -70,7 +70,6 @@ export default function MultiCityPricingTool() {
   const [searchFilters, setSearchFilters] = useState({
     budgetRange: { min: 0, max: 2000 },
     duration: { min: 1, max: 14 },
-    preferredActivities: [] as string[],
     travelStyle: 'balanced' as 'budget' | 'balanced' | 'luxury'
   });
   const [citySearchTerm, setCitySearchTerm] = useState('');
@@ -304,7 +303,7 @@ export default function MultiCityPricingTool() {
 
   // Enhanced city filtering and recommendations
   const getFilteredCities = () => {
-    const { budgetRange, travelStyle, preferredActivities } = searchFilters;
+    const { budgetRange, travelStyle } = searchFilters;
     
     return cities.filter(city => {
       if (citySearchTerm && !city.name.toLowerCase().includes(citySearchTerm.toLowerCase())) {
@@ -315,7 +314,7 @@ export default function MultiCityPricingTool() {
       // Add budget estimates and recommendations
       const basePrice = getBudgetEstimate(city.id, travelStyle);
       const isRecommended = isWithinBudget(basePrice, budgetRange);
-      const hasPreferredActivities = getActivityScore(city.id, preferredActivities);
+      const hasPreferredActivities = getActivityScore(city.id, []);
       
       return {
         ...city,
@@ -368,7 +367,7 @@ export default function MultiCityPricingTool() {
 
   // Smart itinerary suggestions
   const getItinerarySuggestions = () => {
-    const { budgetRange, duration, preferredActivities, travelStyle } = searchFilters;
+    const { budgetRange, duration, travelStyle } = searchFilters;
     
     const suggestions = [
       {
@@ -406,13 +405,11 @@ export default function MultiCityPricingTool() {
     return suggestions.filter(suggestion => {
       const withinBudget = suggestion.estimatedCost >= budgetRange.min && suggestion.estimatedCost <= budgetRange.max;
       const withinDuration = suggestion.duration >= duration.min && suggestion.duration <= duration.max;
-      const hasPreferredActivities = preferredActivities.length === 0 || 
-        preferredActivities.some(activity => suggestion.activities.includes(activity));
       
-      return withinBudget && withinDuration && hasPreferredActivities;
+      return withinBudget && withinDuration;
     }).map(suggestion => ({
       ...suggestion,
-      matchScore: getMatchScore(suggestion, preferredActivities)
+      matchScore: 5
     })).sort((a, b) => b.matchScore - a.matchScore);
   };
 
@@ -677,37 +674,14 @@ export default function MultiCityPricingTool() {
                   </div>
                 )}
 
-                {/* Activity Preferences */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium text-muted-foreground">Preferred Activities</Label>
-                  <div className="flex flex-wrap gap-2">
-                    {['historical', 'cultural', 'museums', 'temples', 'coastal', 'adventure', 'relaxation', 'nightlife'].map((activity) => (
-                      <Badge
-                        key={activity}
-                        variant={searchFilters.preferredActivities.includes(activity) ? "default" : "outline"}
-                        className={`cursor-pointer transition-colors ${
-                          searchFilters.preferredActivities.includes(activity) 
-                            ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
-                            : 'hover:bg-primary/10 hover:text-primary'
-                        }`}
-                        onClick={() => {
-                          setSearchFilters(prev => ({
-                            ...prev,
-                            preferredActivities: prev.preferredActivities.includes(activity)
-                              ? prev.preferredActivities.filter(a => a !== activity)
-                              : [...prev.preferredActivities, activity]
-                          }));
-                        }}
-                      >
-                        {activity}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
+
               </div>
               
               {/* Enhanced City Selection */}
               <div className="mt-6">
+                <p className="text-sm text-muted-foreground mb-3">
+                  Type at least 2 letters of your destination, then click "Add Destination" to include it in your itinerary.
+                </p>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex-1 relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
