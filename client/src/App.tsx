@@ -56,6 +56,7 @@ function Router() {
       <Route path="/admin/routes/city/:citySlug/:category?" component={AdminCityRoutes} />
       <Route path="/routes" component={RoutesSimple} />
       <Route path="/routes/book/:routeId" component={RouteBooking} />
+      <Route path="/route-booking" component={RouteBooking} />
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
       <Route path="/transfers" component={Transfers} />
       <Route path="/pricing-tool" component={PricingTool} />
