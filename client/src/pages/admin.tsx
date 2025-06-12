@@ -26,7 +26,8 @@ import {
   User,
   Bus,
   Truck,
-  Route
+  Route,
+  ArrowRight
 } from "lucide-react";
 import { Link } from "wouter";
 import AddItemModal from "@/components/add-item-modal";
@@ -40,6 +41,7 @@ export default function AdminPanel() {
   const [editData, setEditData] = useState<any>({});
   const [showAddModal, setShowAddModal] = useState(false);
   const [modalType, setModalType] = useState<'vehicle' | 'guide' | 'addon' | 'city' | 'route'>('addon');
+  const [selectedCity, setSelectedCity] = useState<number | null>(null);
 
   const { toast } = useToast();
 
@@ -75,6 +77,31 @@ export default function AdminPanel() {
     queryKey: ["/api/add-ons"],
     enabled: isAuthenticated,
   });
+
+  const { data: routes = [] } = useQuery({
+    queryKey: ["/api/routes"],
+    enabled: isAuthenticated,
+  });
+
+  // Helper functions for routes organization
+  const getCityName = (cityId: number) => {
+    const city = (cities as any[]).find((c: any) => c.id === cityId);
+    return city ? city.name : `City ${cityId}`;
+  };
+
+  const getRoutesForCity = (cityId: number) => {
+    return (routes as any[]).filter((route: any) => 
+      route.fromCityId === cityId || route.toCityId === cityId
+    );
+  };
+
+  const getRoutesByType = (cityId: number) => {
+    const cityRoutes = getRoutesForCity(cityId);
+    return {
+      intracity: cityRoutes.filter((route: any) => route.fromCityId === route.toCityId),
+      intercity: cityRoutes.filter((route: any) => route.fromCityId !== route.toCityId)
+    };
+  };
 
   const handleEdit = (id: number, data: any) => {
     setEditingRow(id);
@@ -190,7 +217,7 @@ export default function AdminPanel() {
       {/* Main Content */}
       <div className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 bg-white border shadow-sm">
+          <TabsList className="grid w-full grid-cols-7 bg-white border shadow-sm">
             <TabsTrigger value="dashboard" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <BarChart3 className="w-4 h-4" />
               <span>📊 Dashboard</span>
@@ -202,6 +229,10 @@ export default function AdminPanel() {
             <TabsTrigger value="vehicles" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <Car className="w-4 h-4" />
               <span>🚐 Vehicles</span>
+            </TabsTrigger>
+            <TabsTrigger value="routes" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
+              <Route className="w-4 h-4" />
+              <span>🛣️ Routes</span>
             </TabsTrigger>
             <TabsTrigger value="guides" className="flex items-center space-x-2 hover:bg-gray-50 transition-colors">
               <UserCheck className="w-4 h-4" />
