@@ -1375,7 +1375,7 @@ export default function AdminSidebar() {
                   {/* Vehicle Pricing Section */}
                   <div className="space-y-4">
                     <div className="border-t pt-4">
-                      <h4 className="text-sm font-medium mb-3">Vehicle Pricing (USD)</h4>
+                      <h4 className="text-sm font-medium mb-3">Vehicle Pricing (EGP)</h4>
                       <div className="grid grid-cols-1 gap-3">
                         {(vehicles as any[])
                           .sort((a, b) => {
@@ -1389,7 +1389,7 @@ export default function AdminSidebar() {
                               <Input
                                 type="number"
                                 step="0.01"
-                                placeholder="Price (USD)"
+                                placeholder="Price (EGP)"
                                 value={formData.vehiclePricing?.[vehicle.id]?.['1'] || ''}
                                 onChange={(e) => {
                                   const newPricing = { ...formData.vehiclePricing };
@@ -1404,7 +1404,7 @@ export default function AdminSidebar() {
                         ))}
                       </div>
                       <div className="text-xs text-gray-500 mt-2">
-                        Set pricing for each vehicle type in USD.
+                        Set pricing for each vehicle type in EGP.
                       </div>
                     </div>
                   </div>
