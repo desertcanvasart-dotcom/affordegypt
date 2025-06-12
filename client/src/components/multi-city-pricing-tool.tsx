@@ -474,25 +474,25 @@ export default function MultiCityPricingTool() {
                     Start Here
                   </div>
                   <svg 
-                    className="w-12 h-8 text-primary" 
-                    viewBox="0 0 48 32" 
+                    className="w-16 h-12 text-primary" 
+                    viewBox="0 0 64 48" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    {/* Curved arrow path */}
+                    {/* Main curved arrow body */}
                     <path 
-                      d="M4 8C4 8 12 4 24 4C36 4 44 8 44 16C44 20 42 24 38 26" 
+                      d="M8 12C8 12 16 6 32 6C48 6 56 12 56 24C56 32 52 38 46 42" 
                       stroke="currentColor" 
-                      strokeWidth="2" 
+                      strokeWidth="2.5" 
                       strokeLinecap="round" 
                       strokeLinejoin="round"
                       fill="none"
                     />
-                    {/* Arrow head */}
+                    {/* Arrow head - clear triangular point */}
                     <path 
-                      d="M34 22L38 26L42 22" 
+                      d="M40 36L46 42L52 36M46 42L46 34" 
                       stroke="currentColor" 
-                      strokeWidth="2" 
+                      strokeWidth="2.5" 
                       strokeLinecap="round" 
                       strokeLinejoin="round"
                       fill="none"
