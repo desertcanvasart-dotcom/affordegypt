@@ -645,7 +645,7 @@ export default function MultiCityPricingTool() {
                               </div>
                               <div className="flex items-center gap-1">
                                 <DollarSign className="w-3 h-3 text-primary" />
-                                <span>${suggestion.estimatedCost} total</span>
+                                <span>{suggestion.estimatedCost} EGP total</span>
                               </div>
                               <div className="flex flex-wrap gap-1">
                                 {suggestion.highlights.slice(0, 2).map((highlight, idx) => (

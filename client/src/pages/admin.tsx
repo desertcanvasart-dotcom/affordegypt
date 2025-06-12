@@ -766,7 +766,7 @@ export default function AdminPanel() {
                   <TableHeader>
                     <TableRow>
                       <TableHead>Service</TableHead>
-                      <TableHead className="text-right">Price (USD)</TableHead>
+                      <TableHead className="text-right">Price (EGP)</TableHead>
                       <TableHead className="text-center">Pricing Type</TableHead>
                       <TableHead>Category</TableHead>
                       <TableHead className="text-right w-32">Actions</TableHead>

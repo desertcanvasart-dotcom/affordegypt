@@ -64,7 +64,7 @@ const CheckoutForm = ({ booking }: { booking: any }) => {
         disabled={!stripe || isLoading} 
         className="w-full btn-primary py-3"
       >
-        {isLoading ? 'Processing...' : `Pay $${booking.total}`}
+        {isLoading ? 'Processing...' : `Pay ${booking.total} EGP`}
       </Button>
     </form>
   );
@@ -172,20 +172,20 @@ export default function Checkout() {
               <div className="border-t pt-4">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${booking.subtotal}</span>
+                  <span>{booking.subtotal} EGP</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Commission ({(parseFloat(booking.commissionRate) * 100).toFixed(1)}%)</span>
-                  <span>${booking.commission}</span>
+                  <span>{booking.commission} EGP</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Taxes & Fees</span>
-                  <span>${booking.taxes}</span>
+                  <span>{booking.taxes} EGP</span>
                 </div>
                 <div className="border-t pt-2 mt-2">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
-                    <span className="pricing-red">${booking.total}</span>
+                    <span className="pricing-red">{booking.total} EGP</span>
                   </div>
                 </div>
               </div>

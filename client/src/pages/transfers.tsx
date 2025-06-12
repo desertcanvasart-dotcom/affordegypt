@@ -578,7 +578,7 @@ export default function TransfersPage() {
                               {price} EGP
                             </p>
                             <p className="text-xs text-gray-500 mt-1">
-                              Payment: €/£/$ accepted
+                              Payment: Euro/GBP/USD accepted
                             </p>
                           </div>
                         </div>
