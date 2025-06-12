@@ -368,7 +368,15 @@ export default function AdminSidebar() {
 
           <div>
             <button
-              onClick={() => setActiveSection('routes')}
+              onClick={() => {
+                if (activeSection === 'routes') {
+                  // If already active, deactivate to close subcategories
+                  setActiveSection('cities');
+                  setSelectedCityForRoutes(null);
+                } else {
+                  setActiveSection('routes');
+                }
+              }}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeSection === 'routes' 
                   ? 'bg-teal-100 text-teal-700' 
