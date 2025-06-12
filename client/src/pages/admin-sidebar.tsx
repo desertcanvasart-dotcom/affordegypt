@@ -196,7 +196,11 @@ export default function AdminSidebar() {
       const payload = modalType === 'city' ? {
         name: formData.name,
         description: formData.description,
-        slug: formData.slug || formData.name.toLowerCase().replace(/\s+/g, '-'),
+        slug: formData.slug || formData.name.toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+          .replace(/\s+/g, '-') // Replace spaces with hyphens
+          .replace(/-+/g, '-') // Replace multiple hyphens with single
+          .trim('-'), // Remove leading/trailing hyphens
         isActive: formData.isActive
       } : modalType === 'vehicle' ? {
         name: formData.name,
@@ -276,9 +280,15 @@ export default function AdminSidebar() {
       console.error('Save error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       if (errorMessage.includes('duplicate key')) {
-        toast({ title: "Item already exists", description: "An item with this name or slug already exists", variant: "destructive" });
+        if (errorMessage.includes('cities_name_key')) {
+          toast({ title: "City name already exists", description: `A city with the name "${formData.name}" already exists`, variant: "destructive" });
+        } else if (errorMessage.includes('cities_slug_key')) {
+          toast({ title: "City URL already exists", description: `A city with this URL slug already exists. Try a different name.`, variant: "destructive" });
+        } else {
+          toast({ title: "Item already exists", description: "An item with this name or identifier already exists", variant: "destructive" });
+        }
       } else {
-        toast({ title: editingItem ? "Failed to update" : "Failed to create", variant: "destructive" });
+        toast({ title: editingItem ? "Failed to update" : "Failed to create", description: errorMessage, variant: "destructive" });
       }
     } finally {
       setIsSubmitting(false);

@@ -21,7 +21,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/cities", async (req, res) => {
     try {
-      const city = await storage.createCity(req.body);
+      // Generate slug if not provided
+      const slug = req.body.slug || req.body.name.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-') // Replace multiple hyphens with single
+        .trim('-'); // Remove leading/trailing hyphens
+
+      // Check for existing city with same name or slug
+      const existingCities = await storage.getCities();
+      const nameExists = existingCities.some(city => 
+        city.name.toLowerCase().trim() === req.body.name.toLowerCase().trim()
+      );
+      const slugExists = existingCities.some(city => 
+        city.slug === slug
+      );
+
+      if (nameExists) {
+        return res.status(400).json({ message: `A city with the name "${req.body.name}" already exists` });
+      }
+      if (slugExists) {
+        return res.status(400).json({ message: `A city with this URL slug already exists. Try a different name.` });
+      }
+
+      const cityData = { ...req.body, slug };
+      const city = await storage.createCity(cityData);
       res.json(city);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
