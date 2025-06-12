@@ -1170,12 +1170,12 @@ export default function AdminSidebar() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Daily Price</label>
+                    <label className="block text-sm font-medium mb-1">Daily Price (EGP)</label>
                     <Input
                       type="number"
                       value={formData.pricePerHour}
                       onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
-                      placeholder="200"
+                      placeholder="5000"
                     />
                   </div>
                   <div>
@@ -1198,12 +1198,12 @@ export default function AdminSidebar() {
               {modalType === 'addon' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Price</label>
+                    <label className="block text-sm font-medium mb-1">Price (EGP)</label>
                     <Input
                       type="number"
                       value={formData.price}
                       onChange={(e) => setFormData({...formData, price: e.target.value})}
-                      placeholder="15"
+                      placeholder="375"
                     />
                   </div>
                   <div>
@@ -1259,12 +1259,12 @@ export default function AdminSidebar() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Ticket Price</label>
+                    <label className="block text-sm font-medium mb-1">Ticket Price (EGP)</label>
                     <Input
                       type="number"
                       value={formData.ticketPrice}
                       onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
-                      placeholder="20"
+                      placeholder="500"
                     />
                   </div>
                   <div>

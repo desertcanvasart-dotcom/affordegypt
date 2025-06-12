@@ -336,7 +336,7 @@ export default function RouteEditModal({
             <Label className="text-base font-medium">Vehicle Pricing *</Label>
             <div className="grid grid-cols-3 gap-4 mt-2">
               <div>
-                <Label htmlFor="sedan-price">Sedan Price ($) *</Label>
+                <Label htmlFor="sedan-price">Sedan Price (EGP) *</Label>
                 <Input
                   id="sedan-price"
                   type="number"
@@ -348,7 +348,7 @@ export default function RouteEditModal({
               </div>
 
               <div>
-                <Label htmlFor="minivan-price">Minivan Price ($)</Label>
+                <Label htmlFor="minivan-price">Minivan Price (EGP)</Label>
                 <Input
                   id="minivan-price"
                   type="number"
@@ -365,7 +365,7 @@ export default function RouteEditModal({
               </div>
 
               <div>
-                <Label htmlFor="van-price">Van Price ($)</Label>
+                <Label htmlFor="van-price">Van Price (EGP)</Label>
                 <Input
                   id="van-price"
                   type="number"

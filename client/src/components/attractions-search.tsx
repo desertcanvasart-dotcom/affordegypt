@@ -232,7 +232,7 @@ export default function AttractionsSearch({
                       
                       <div className="text-right">
                         <div className={`text-sm font-medium ${getPriceColor(attraction.ticketPrice)}`}>
-                          {parseInt(attraction.ticketPrice) === 0 ? 'Free' : `$${attraction.ticketPrice}`}
+                          {parseInt(attraction.ticketPrice) === 0 ? 'Free' : `EGP ${attraction.ticketPrice}`}
                         </div>
                         <div className="text-xs text-muted-foreground">per person</div>
                       </div>
