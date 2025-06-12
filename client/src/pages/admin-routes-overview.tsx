@@ -91,6 +91,15 @@ export default function AdminRoutesOverview() {
           <p className="text-gray-500 mt-2">Manage routes organized by city for better efficiency</p>
         </div>
         <div className="flex gap-2">
+          <Link href="/admin">
+            <Button 
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <ArrowRight className="w-4 h-4 rotate-180" />
+              Back to Dashboard
+            </Button>
+          </Link>
           <Button 
             onClick={() => setShowAddModal(true)}
             className="flex items-center gap-2"
