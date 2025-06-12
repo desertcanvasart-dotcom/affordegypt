@@ -1052,7 +1052,7 @@ export default function AdminSidebar() {
                               {(cities as any[]).find((city: any) => city.id === attraction.cityId)?.name || 'Unknown'}
                             </Badge>
                           </TableCell>
-                          <TableCell className="font-mono text-sm">${attraction.ticketPrice}</TableCell>
+                          <TableCell className="font-mono text-sm">EGP {attraction.ticketPrice}</TableCell>
                           <TableCell className="text-xs text-gray-600">{attraction.duration}</TableCell>
                           <TableCell className="text-right">
                             <div className="flex items-center justify-end space-x-1">
