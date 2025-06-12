@@ -452,7 +452,7 @@ export default function AdminSidebar() {
           <Link href="/admin/routes/" className="w-full">
             <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
               <Plus className="w-4 h-4" />
-              <span>New</span>
+              <span>Transfer Dashboard</span>
             </button>
           </Link>
         </nav>
