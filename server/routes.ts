@@ -1132,6 +1132,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Reviews endpoints
+  app.get("/api/reviews", async (req, res) => {
+    try {
+      const reviews = await storage.getActiveReviews();
+      res.json(reviews);
+    } catch (error: any) {
+      console.error('Error fetching reviews:', error);
+      res.status(500).json({ message: "Failed to fetch reviews" });
+    }
+  });
+
+  app.get("/api/reviews/all", async (req, res) => {
+    try {
+      const reviews = await storage.getAllReviews();
+      res.json(reviews);
+    } catch (error: any) {
+      console.error('Error fetching all reviews:', error);
+      res.status(500).json({ message: "Failed to fetch reviews" });
+    }
+  });
+
+  app.post("/api/reviews", async (req, res) => {
+    try {
+      const reviewData = req.body;
+      const review = await storage.createReview(reviewData);
+      res.json(review);
+    } catch (error: any) {
+      console.error('Error creating review:', error);
+      res.status(500).json({ message: "Failed to create review" });
+    }
+  });
+
+  app.put("/api/reviews/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const reviewData = req.body;
+      const review = await storage.updateReview(id, reviewData);
+      res.json(review);
+    } catch (error: any) {
+      console.error('Error updating review:', error);
+      res.status(500).json({ message: "Failed to update review" });
+    }
+  });
+
+  app.delete("/api/reviews/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteReview(id);
+      res.json({ message: "Review deleted successfully" });
+    } catch (error: any) {
+      console.error('Error deleting review:', error);
+      res.status(500).json({ message: "Failed to delete review" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
