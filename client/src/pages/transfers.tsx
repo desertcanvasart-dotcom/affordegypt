@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,6 +43,7 @@ export default function TransfersPage() {
   const [selectedCityForLocal, setSelectedCityForLocal] = useState("");
   const [showLocalRoutes, setShowLocalRoutes] = useState(false);
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
 
   // Reset form when switching tabs
   const handleTabChange = (newTab: string) => {
