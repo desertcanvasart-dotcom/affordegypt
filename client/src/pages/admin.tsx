@@ -564,6 +564,260 @@ export default function AdminPanel() {
             </div>
           </TabsContent>
 
+          <TabsContent value="routes" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold">Route Management</h2>
+                <p className="text-sm text-gray-600 mt-1">Manage transportation routes organized by city</p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input placeholder="Search routes..." className="pl-10 w-64" />
+                </div>
+                <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => handleAddService('route')}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Route
+                </Button>
+              </div>
+            </div>
+
+            {/* City Selection */}
+            <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+              <span className="text-sm font-medium text-gray-700">Filter by City:</span>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  size="sm"
+                  variant={selectedCity === null ? "default" : "outline"}
+                  onClick={() => setSelectedCity(null)}
+                  className={selectedCity === null ? "bg-teal-600 hover:bg-teal-700" : ""}
+                >
+                  All Cities
+                </Button>
+                {Array.isArray(cities) && cities.map((city: any) => (
+                  <Button
+                    key={city.id}
+                    size="sm"
+                    variant={selectedCity === city.id ? "default" : "outline"}
+                    onClick={() => setSelectedCity(city.id)}
+                    className={selectedCity === city.id ? "bg-teal-600 hover:bg-teal-700" : ""}
+                  >
+                    {city.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Routes by City */}
+            <div className="space-y-6">
+              {Array.isArray(cities) && cities
+                .filter((city: any) => selectedCity === null || city.id === selectedCity)
+                .map((city: any) => {
+                  const cityRoutes = getRoutesByType(city.id);
+                  const totalRoutes = cityRoutes.intracity.length + cityRoutes.intercity.length;
+                  
+                  if (totalRoutes === 0) return null;
+
+                  return (
+                    <Card key={city.id}>
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            <Badge variant="outline" className="bg-blue-50 text-blue-700">
+                              📍 {city.name}
+                            </Badge>
+                            <span className="text-sm text-gray-600">
+                              {totalRoutes} route{totalRoutes !== 1 ? 's' : ''} available
+                            </span>
+                          </div>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              setModalType('route');
+                              setShowAddModal(true);
+                              // Pre-select city in modal
+                            }}
+                          >
+                            <Plus className="w-4 h-4 mr-1" />
+                            Add Route
+                          </Button>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-0">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Route Type</TableHead>
+                              <TableHead>Route Details</TableHead>
+                              <TableHead className="text-center">Distance</TableHead>
+                              <TableHead className="text-center">🚗 Sedan</TableHead>
+                              <TableHead className="text-center">🚐 Minivan</TableHead>
+                              <TableHead className="text-center">🚌 Van</TableHead>
+                              <TableHead className="text-center">Status</TableHead>
+                              <TableHead className="text-right w-32">Actions</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {/* Intra-city routes */}
+                            {cityRoutes.intracity.map((route: any) => (
+                              <TableRow key={route.id} className="hover:bg-gray-50">
+                                <TableCell>
+                                  <Badge variant="secondary" className="bg-green-100 text-green-800">
+                                    🏙️ Intra-city
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <div>
+                                    <div className="font-medium">
+                                      {route.name || `${route.fromLocation || 'Location A'} → ${route.toLocation || 'Location B'}`}
+                                    </div>
+                                    <div className="text-sm text-gray-500">
+                                      Within {city.name}
+                                    </div>
+                                  </div>
+                                </TableCell>
+                                <TableCell className="text-center">
+                                  <Badge variant="outline" className="text-xs">
+                                    {route.km ? `${route.km}km` : 'N/A'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="text-center font-mono">
+                                  {route.sedanPrice ? `${route.sedanPrice} EGP` : 'N/A'}
+                                </TableCell>
+                                <TableCell className="text-center font-mono">
+                                  {route.minivanPrice ? `${route.minivanPrice} EGP` : 'N/A'}
+                                </TableCell>
+                                <TableCell className="text-center font-mono">
+                                  {route.vanPrice ? `${route.vanPrice} EGP` : 'N/A'}
+                                </TableCell>
+                                <TableCell className="text-center">
+                                  <Badge variant={route.isActive ? 'default' : 'secondary'}>
+                                    {route.isActive ? 'Active' : 'Inactive'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="text-right">
+                                  <div className="flex items-center justify-end space-x-2">
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-8 w-8 p-0"
+                                      title="Edit Route"
+                                      onClick={() => handleEdit(route.id, route)}
+                                    >
+                                      <Edit2 className="w-3 h-3" />
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                                      title="Delete Route"
+                                      onClick={() => handleDelete(route.id, 'route')}
+                                    >
+                                      <Trash2 className="w-3 h-3" />
+                                    </Button>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                            
+                            {/* Inter-city routes */}
+                            {cityRoutes.intercity.map((route: any) => (
+                              <TableRow key={route.id} className="hover:bg-gray-50">
+                                <TableCell>
+                                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                                    🌍 Inter-city
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <div className="flex items-center space-x-2">
+                                    <span className="font-medium">{getCityName(route.fromCityId)}</span>
+                                    <ArrowRight className="w-4 h-4 text-gray-400" />
+                                    <span className="font-medium">{getCityName(route.toCityId)}</span>
+                                  </div>
+                                  {route.name && (
+                                    <div className="text-sm text-gray-500 mt-1">{route.name}</div>
+                                  )}
+                                </TableCell>
+                                <TableCell className="text-center">
+                                  <Badge variant="outline" className="text-xs">
+                                    {route.km ? `${route.km}km` : 'N/A'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="text-center font-mono">
+                                  {route.sedanPrice ? `${route.sedanPrice} EGP` : 'N/A'}
+                                </TableCell>
+                                <TableCell className="text-center font-mono">
+                                  {route.minivanPrice ? `${route.minivanPrice} EGP` : 'N/A'}
+                                </TableCell>
+                                <TableCell className="text-center font-mono">
+                                  {route.vanPrice ? `${route.vanPrice} EGP` : 'N/A'}
+                                </TableCell>
+                                <TableCell className="text-center">
+                                  <Badge variant={route.isActive ? 'default' : 'secondary'}>
+                                    {route.isActive ? 'Active' : 'Inactive'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="text-right">
+                                  <div className="flex items-center justify-end space-x-2">
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-8 w-8 p-0"
+                                      title="Edit Route"
+                                      onClick={() => handleEdit(route.id, route)}
+                                    >
+                                      <Edit2 className="w-3 h-3" />
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                                      title="Delete Route"
+                                      onClick={() => handleDelete(route.id, 'route')}
+                                    >
+                                      <Trash2 className="w-3 h-3" />
+                                    </Button>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              
+              {/* No routes message */}
+              {selectedCity !== null && Array.isArray(cities) && cities
+                .filter((city: any) => city.id === selectedCity)
+                .every((city: any) => getRoutesForCity(city.id).length === 0) && (
+                <Card>
+                  <CardContent className="p-8 text-center">
+                    <div className="text-gray-500">
+                      <Route className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                      <h3 className="text-lg font-medium mb-2">No routes found</h3>
+                      <p className="text-sm mb-4">
+                        {selectedCity ? `No routes available for ${getCityName(selectedCity)}` : 'No routes configured yet'}
+                      </p>
+                      <Button
+                        onClick={() => {
+                          setModalType('route');
+                          setShowAddModal(true);
+                        }}
+                        className="bg-teal-600 hover:bg-teal-700"
+                      >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Add First Route
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+          </TabsContent>
+
           <TabsContent value="guides" className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
