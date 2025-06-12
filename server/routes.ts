@@ -610,30 +610,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         const routes = await storage.getRoutes();
         
-        // Transform routes to include individual vehicle prices for frontend compatibility
+        // Transform routes to normalize pricing format for admin interface
         const transformedRoutes = routes.map(route => {
-          let sedanPrice = null;
-          let minivanPrice = null;
-          let vanPrice = null;
+          let normalizedPricing = {};
+          let sedanPrice = "0";
+          let minivanPrice = "0";
+          let vanPrice = "0";
           
-          // Extract pricing from basePriceByVehicle structure
+          // Convert pricing format from old (sedan/minivan/van) to new (1/2/3)
           if (route.basePriceByVehicle) {
             const pricing = typeof route.basePriceByVehicle === 'string' 
               ? JSON.parse(route.basePriceByVehicle) 
               : route.basePriceByVehicle;
             
-            sedanPrice = pricing.sedan || route.sedanPrice;
-            minivanPrice = pricing.minivan || route.minivanPrice;
-            vanPrice = pricing.van || route.vanPrice;
-          } else {
-            // Fallback to direct fields if available
-            sedanPrice = route.sedanPrice;
-            minivanPrice = route.minivanPrice;
-            vanPrice = route.vanPrice;
+            // Check if it's the old format with string keys
+            if (pricing.sedan !== undefined || pricing.minivan !== undefined || pricing.van !== undefined) {
+              sedanPrice = (pricing.sedan || 0).toString();
+              minivanPrice = (pricing.minivan || 0).toString();
+              vanPrice = (pricing.van || 0).toString();
+              
+              normalizedPricing = {
+                "1": {"1": sedanPrice},
+                "2": {"1": minivanPrice},
+                "3": {"1": vanPrice}
+              };
+            } else {
+              // Already in new format or handle new format
+              normalizedPricing = pricing;
+              sedanPrice = pricing["1"]?.["1"] || "0";
+              minivanPrice = pricing["2"]?.["1"] || "0";
+              vanPrice = pricing["3"]?.["1"] || "0";
+            }
           }
           
           return {
             ...route,
+            basePriceByVehicle: normalizedPricing,
             sedanPrice,
             minivanPrice,
             vanPrice
