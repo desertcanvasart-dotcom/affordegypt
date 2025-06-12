@@ -10,7 +10,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star } from "lucide-react";
-import curvedArrowIcon from "@assets/curved_arrow-512_1749770301291.webp";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
@@ -474,11 +473,33 @@ export default function MultiCityPricingTool() {
                   <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                     Start Here
                   </div>
-                  <img 
-                    src={curvedArrowIcon} 
-                    alt="Arrow pointing to date" 
-                    className="w-8 h-8 opacity-60 transform rotate-45"
-                  />
+                  <div className="relative">
+                    <svg 
+                      className="w-8 h-8 text-primary" 
+                      viewBox="0 0 32 32" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {/* White background circle */}
+                      <circle 
+                        cx="16" 
+                        cy="16" 
+                        r="15" 
+                        fill="white" 
+                        stroke="currentColor" 
+                        strokeWidth="1.5"
+                      />
+                      {/* Curved arrow path */}
+                      <path 
+                        d="M8 16C8 11.58 11.58 8 16 8C20.42 8 24 11.58 24 16M22 14L24 16L22 18" 
+                        stroke="currentColor" 
+                        strokeWidth="1.5" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        fill="none"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
