@@ -30,6 +30,7 @@ import EasternWesternDesertsGuide from "@/pages/eastern-western-deserts-guide";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Reviews from "@/pages/reviews";
+import SubmitReview from "@/pages/submit-review";
 import Transfers from "@/pages/transfers";
 import PricingTool from "@/pages/pricing-tool";
 import BookingAgreement from "@/pages/booking-agreement";
@@ -62,6 +63,7 @@ function Router() {
       <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />
       <Route path="/reviews" component={Reviews} />
+      <Route path="/submit-review" component={SubmitReview} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/budget-travel-egypt" component={BudgetTravelEgypt} />
