@@ -269,9 +269,12 @@ export default function AdminCityRoutes() {
               <div>
                 <p className="text-sm font-medium text-gray-600">Avg. Price</p>
                 <p className="text-2xl font-bold">
-                  ${cityRoutes.length > 0 ? 
-                    Math.round(cityRoutes.reduce((sum: number, r: any) => sum + parseFloat(r.sedanPrice || '0'), 0) / cityRoutes.length) 
-                    : 0}
+                  {cityRoutes.length > 0 ? 
+                    Math.round(cityRoutes.reduce((sum: number, r: any) => {
+                      const sedanPrice = r.basePriceByVehicle?.['1']?.['1'] || r.sedanPrice || '0';
+                      return sum + parseFloat(sedanPrice);
+                    }, 0) / cityRoutes.length) 
+                    : 0} EGP
                 </p>
               </div>
             </div>
@@ -352,9 +355,9 @@ export default function AdminCityRoutes() {
                           
                           return (
                             <>
-                              {sedanPrice && <div>Sedan: ${sedanPrice}</div>}
-                              {minivanPrice && <div>Minivan: ${minivanPrice}</div>}
-                              {vanPrice && <div>Van: ${vanPrice}</div>}
+                              {sedanPrice && <div>Sedan: {sedanPrice} EGP</div>}
+                              {minivanPrice && <div>Minivan: {minivanPrice} EGP</div>}
+                              {vanPrice && <div>Van: {vanPrice} EGP</div>}
                               {!sedanPrice && !minivanPrice && !vanPrice && (
                                 <div className="text-gray-400 text-xs">No pricing set</div>
                               )}
