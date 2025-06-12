@@ -245,7 +245,7 @@ export default function QuoteBuilderWizard() {
                             </p>
                           </div>
                           <div className="text-right">
-                            <div className="price-chip">${guide.hourlyPrice}/hr</div>
+                            <div className="price-chip">EGP {guide.hourlyPrice}/hr</div>
                           </div>
                         </div>
                       </Card>

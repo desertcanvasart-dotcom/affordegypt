@@ -853,7 +853,7 @@ export default function AdminWorking() {
                             </div>
                           </TableCell>
                           <TableCell className="text-sm">{guide.name}</TableCell>
-                          <TableCell className="font-mono text-sm">${(parseFloat(guide.hourlyPrice) * 8).toFixed(2)}</TableCell>
+                          <TableCell className="font-mono text-sm">EGP {(parseFloat(guide.hourlyPrice) * 8).toFixed(2)}</TableCell>
                           <TableCell>
                             <Badge className="bg-blue-100 text-blue-700 text-xs">
                               {cities.find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}
@@ -919,7 +919,7 @@ export default function AdminWorking() {
                               {addon.category}
                             </Badge>
                           </TableCell>
-                          <TableCell className="font-mono text-sm">${addon.price}</TableCell>
+                          <TableCell className="font-mono text-sm">EGP {addon.price}</TableCell>
                           <TableCell className="text-xs text-gray-600">{addon.unitType}</TableCell>
                           <TableCell className="text-right">
                             <div className="flex items-center justify-end space-x-1">
@@ -1253,7 +1253,7 @@ export default function AdminWorking() {
                         </div>
                       </TableCell>
                       <TableCell>{guide.name}</TableCell>
-                      <TableCell className="font-mono">${(parseFloat(guide.hourlyPrice) * 8).toFixed(2)}</TableCell>
+                      <TableCell className="font-mono">EGP {(parseFloat(guide.hourlyPrice) * 8).toFixed(2)}</TableCell>
                       <TableCell>
                         <Badge className="bg-blue-100 text-blue-800">
                           {cities.find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}

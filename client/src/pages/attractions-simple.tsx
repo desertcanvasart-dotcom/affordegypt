@@ -193,7 +193,7 @@ export default function AttractionsPage() {
                       </div>
 
                       <div>
-                        <Label htmlFor="ticketPrice">Ticket Price ($)</Label>
+                        <Label htmlFor="ticketPrice">Ticket Price (EGP)</Label>
                         <Input
                           id="ticketPrice"
                           type="number"
