@@ -441,16 +441,25 @@ export default function AdminSidebar() {
             <Star className="w-4 h-4" />
             <span>Reviews</span>
           </button>
+
+          <Link href="/attractions" className="w-full">
+            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
+              <MapPin className="w-4 h-4" />
+              <span>Attractions Portal</span>
+            </button>
+          </Link>
+
+          <button
+            onClick={() => {}}
+            className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New</span>
+          </button>
         </nav>
 
         {/* Sidebar Footer */}
         <div className="px-4 py-4 border-t border-gray-200">
-          <Link href="/attractions">
-            <Button variant="outline" size="sm" className="w-full mb-2">
-              <MapPin className="w-4 h-4 mr-2" />
-              Attractions Portal
-            </Button>
-          </Link>
           <Button variant="outline" onClick={handleLogout} className="w-full">
             <LogOut className="w-4 h-4 mr-2" />
             Logout
