@@ -507,9 +507,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         totalAmount += cityTotal;
 
         breakdown.push({
-          cityName: cityService.cityName,
-          amount: cityTotal,
-          details: { routes: routesTotal, guide: guideTotal, attractions: attractionsTotal, addOns: addOnsTotal }
+          city: cityService.cityName,
+          routes: routesTotal,
+          guide: guideTotal,
+          attractions: attractionsTotal,
+          addOns: addOnsTotal,
+          total: cityTotal
         });
       }
 

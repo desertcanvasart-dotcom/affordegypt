@@ -536,7 +536,7 @@ export default function MultiCityPricingTool() {
                       <div className="space-y-2">
                         <Label className="flex items-center gap-2 font-medium">
                           <DollarSign className="w-4 h-4 text-primary" />
-                          Budget per Day ($)
+                          Budget per Day (EGP)
                         </Label>
                         <div className="flex items-center gap-2">
                           <Input
@@ -769,7 +769,7 @@ export default function MultiCityPricingTool() {
                                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
                                     <span className="flex items-center gap-1">
                                       <DollarSign className="w-3 h-3" />
-                                      ${city.estimatedPrice}/day
+                                      {city.estimatedPrice} EGP/day
                                     </span>
                                     {city.activityScore > 0 && (
                                       <span className="flex items-center gap-1">
@@ -910,7 +910,7 @@ export default function MultiCityPricingTool() {
                       {/* Total Per Person */}
                       <TableCell>
                         <div className="price-chip text-lg font-bold">
-                          ${cityTotal}
+                          {cityTotal} EGP
                         </div>
                       </TableCell>
                     </TableRow>
