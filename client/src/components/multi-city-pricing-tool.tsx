@@ -473,33 +473,31 @@ export default function MultiCityPricingTool() {
                   <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                     Start Here
                   </div>
-                  <div className="relative">
-                    <svg 
-                      className="w-8 h-8 text-primary" 
-                      viewBox="0 0 32 32" 
-                      fill="none" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      {/* White background circle */}
-                      <circle 
-                        cx="16" 
-                        cy="16" 
-                        r="15" 
-                        fill="white" 
-                        stroke="currentColor" 
-                        strokeWidth="1.5"
-                      />
-                      {/* Curved arrow path */}
-                      <path 
-                        d="M8 16C8 11.58 11.58 8 16 8C20.42 8 24 11.58 24 16M22 14L24 16L22 18" 
-                        stroke="currentColor" 
-                        strokeWidth="1.5" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round"
-                        fill="none"
-                      />
-                    </svg>
-                  </div>
+                  <svg 
+                    className="w-12 h-8 text-primary" 
+                    viewBox="0 0 48 32" 
+                    fill="none" 
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {/* Curved arrow path */}
+                    <path 
+                      d="M4 8C4 8 12 4 24 4C36 4 44 8 44 16C44 20 42 24 38 26" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      fill="none"
+                    />
+                    {/* Arrow head */}
+                    <path 
+                      d="M34 22L38 26L42 22" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      fill="none"
+                    />
+                  </svg>
                 </div>
               </div>
 
