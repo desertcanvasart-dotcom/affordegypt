@@ -1256,7 +1256,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/reviews", async (req, res) => {
     try {
-      const reviewData = req.body;
+      const reviewData = {
+        ...req.body,
+        tripDate: req.body.tripDate ? new Date(req.body.tripDate) : null
+      };
       const review = await storage.createReview(reviewData);
       res.json(review);
     } catch (error: any) {
