@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -70,14 +71,30 @@ export default function Footer() {
               Budget-friendly Egypt travel with transparent pricing and expert local guides.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <i className="fab fa-facebook-f"></i>
+              <a 
+                href="https://www.facebook.com/affordegypt/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-primary transition-colors"
+                aria-label="Follow us on Facebook"
+              >
+                <FaFacebookF className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <i className="fab fa-instagram"></i>
+              <a 
+                href="https://www.instagram.com/affordegypt/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-primary transition-colors"
+                aria-label="Follow us on Instagram"
+              >
+                <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <i className="fab fa-twitter"></i>
+              <a 
+                href="#" 
+                className="text-gray-400 hover:text-primary transition-colors"
+                aria-label="Follow us on Twitter"
+              >
+                <FaTwitter className="w-5 h-5" />
               </a>
             </div>
           </div>
