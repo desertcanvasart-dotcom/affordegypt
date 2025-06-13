@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle, Star, Users, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 
 export default function Hero() {
   const scrollToQuote = () => {
@@ -98,6 +99,9 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      
+      {/* Animated Review Carousel */}
+      <AnimatedReviewCarousel />
     </section>
   );
 }
