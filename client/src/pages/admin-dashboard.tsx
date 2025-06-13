@@ -495,7 +495,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <TableHeader>
                     <TableRow>
                       <TableHead>Name</TableHead>
-                      <TableHead>Price (USD)</TableHead>
+                      <TableHead>Price (EGP)</TableHead>
                       <TableHead>Type</TableHead>
                       <TableHead>Category</TableHead>
                       <TableHead>Description</TableHead>
@@ -519,7 +519,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                               value={editData.price || addOn.price}
                               onChange={(e) => setEditData({...editData, price: e.target.value})}
                             />
-                          ) : `$${addOn.price}`}
+                          ) : `EGP ${addOn.price}`}
                         </TableCell>
                         <TableCell>
                           <Badge variant={addOn.unitType === 'per_unit' ? 'default' : 'secondary'}>
