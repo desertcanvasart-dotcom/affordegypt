@@ -16,6 +16,7 @@ export default function ReviewsPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
 
   const { data: reviews = [], isLoading } = useQuery<Review[]>({
     queryKey: ["/api/reviews"],
@@ -79,6 +80,17 @@ export default function ReviewsPage() {
         setSortBy(value);
         break;
     }
+  };
+
+  // Toggle card expansion
+  const toggleCardExpansion = (reviewId: number) => {
+    const newExpanded = new Set(expandedCards);
+    if (newExpanded.has(reviewId)) {
+      newExpanded.delete(reviewId);
+    } else {
+      newExpanded.add(reviewId);
+    }
+    setExpandedCards(newExpanded);
   };
 
   const averageRating = reviews.length > 0 
@@ -246,54 +258,69 @@ export default function ReviewsPage() {
             itemsPerPage === 12 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : 
             "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6"
           }`}>
-            {paginatedReviews.map((review) => (
-              <Card key={review.id} className="relative hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <div className="absolute top-4 right-4">
-                    <Quote className="w-6 h-6 text-primary/20" />
-                  </div>
-                  
-                  <div className="flex items-center gap-1 mb-3">
-                    {renderStars(review.rating)}
-                  </div>
-                  
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    {review.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {review.content}
-                  </p>
-                  
-                  <div className="border-t pt-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium text-gray-900">
-                          {review.customerName}
-                        </p>
-                        {review.customerLocation && (
-                          <p className="text-sm text-gray-500">
-                            {review.customerLocation}
+            {paginatedReviews.map((review) => {
+              const isExpanded = expandedCards.has(review.id);
+              const shouldShowToggle = review.content.length > 200; // Show toggle for long reviews
+              
+              return (
+                <Card key={review.id} className="relative hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <div className="absolute top-4 right-4">
+                      <Quote className="w-6 h-6 text-primary/20" />
+                    </div>
+                    
+                    <div className="flex items-center gap-1 mb-3">
+                      {renderStars(review.rating)}
+                    </div>
+                    
+                    <h3 className="font-semibold text-gray-900 mb-2">
+                      {review.title}
+                    </h3>
+                    
+                    <div className="text-gray-600 mb-4">
+                      <p className={!isExpanded && shouldShowToggle ? "line-clamp-3" : ""}>
+                        {review.content}
+                      </p>
+                      {shouldShowToggle && (
+                        <button
+                          onClick={() => toggleCardExpansion(review.id)}
+                          className="text-primary hover:text-primary/80 text-sm font-medium mt-2 transition-colors"
+                        >
+                          {isExpanded ? "Read less" : "Read more"}
+                        </button>
+                      )}
+                    </div>
+                    
+                    <div className="border-t pt-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium text-gray-900">
+                            {review.customerName}
                           </p>
-                        )}
-                      </div>
-                      <div className="text-right">
-                        {review.isVerified && (
-                          <Badge variant="secondary" className="mb-1">
-                            Verified
-                          </Badge>
-                        )}
-                        {review.tripDate && (
-                          <p className="text-xs text-gray-500">
-                            {format(new Date(review.tripDate), "MMM yyyy")}
-                          </p>
-                        )}
+                          {review.customerLocation && (
+                            <p className="text-sm text-gray-500">
+                              {review.customerLocation}
+                            </p>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          {review.isVerified && (
+                            <Badge variant="secondary" className="mb-1">
+                              Verified
+                            </Badge>
+                          )}
+                          {review.tripDate && (
+                            <p className="text-xs text-gray-500">
+                              {format(new Date(review.tripDate), "MMM yyyy")}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         ) : (
           <div className="space-y-4 mb-8">
