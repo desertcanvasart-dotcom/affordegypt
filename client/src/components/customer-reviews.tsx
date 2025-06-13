@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
+import { Link } from "wouter";
 import type { Review } from "@shared/schema";
 
 export default function CustomerReviews() {
@@ -148,9 +149,11 @@ export default function CustomerReviews() {
 
         {reviews.length > 9 && (
           <div className="text-center">
-            <Button variant="outline" size="lg">
-              View All Reviews ({reviews.length})
-            </Button>
+            <Link href="/reviews">
+              <Button variant="outline" size="lg">
+                View All Reviews ({reviews.length})
+              </Button>
+            </Link>
           </div>
         )}
       </div>
