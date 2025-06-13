@@ -744,7 +744,7 @@ export default function AdminSidebar() {
                                   {addon.category}
                                 </Badge>
                               </TableCell>
-                              <TableCell className="font-mono text-sm">EGP ${addon.price}</TableCell>
+                              <TableCell className="font-mono text-sm">EGP {addon.price}</TableCell>
                               <TableCell className="text-right">
                                 <div className="flex items-center justify-end space-x-1">
                                   <Button 
@@ -830,7 +830,7 @@ export default function AdminSidebar() {
                                   {addon.category}
                                 </Badge>
                               </TableCell>
-                              <TableCell className="font-mono text-sm">EGP ${addon.price}</TableCell>
+                              <TableCell className="font-mono text-sm">EGP {addon.price}</TableCell>
                               <TableCell className="text-right">
                                 <div className="flex items-center justify-end space-x-1">
                                   <Button 
