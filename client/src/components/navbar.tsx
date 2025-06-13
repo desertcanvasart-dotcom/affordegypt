@@ -85,33 +85,33 @@ export default function Navbar() {
           {/* Logo with Social Icons */}
           <div className="flex flex-col items-start">
             {/* Social Media Icons */}
-            <div className="flex items-center space-x-3 mb-1">
+            <div className="flex items-center space-x-3 mb-2">
               <a 
                 href="https://www.facebook.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-teal-600 transition-colors"
+                className="w-6 h-6 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
                 aria-label="Follow us on Facebook"
               >
-                <FaFacebookF className="w-4 h-4" />
+                <FaFacebookF className="w-3 h-3" />
               </a>
               <a 
                 href="https://www.instagram.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-teal-600 transition-colors"
+                className="w-6 h-6 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
                 aria-label="Follow us on Instagram"
               >
-                <FaInstagram className="w-4 h-4" />
+                <FaInstagram className="w-3 h-3" />
               </a>
               <a 
                 href="https://www.youtube.com/@affordegypt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-teal-600 transition-colors"
+                className="w-6 h-6 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
                 aria-label="Subscribe to our YouTube channel"
               >
-                <FaYoutube className="w-4 h-4" />
+                <FaYoutube className="w-3 h-3" />
               </a>
             </div>
             {/* Logo */}
