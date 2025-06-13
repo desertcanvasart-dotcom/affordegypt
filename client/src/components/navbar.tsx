@@ -85,33 +85,33 @@ export default function Navbar() {
           {/* Logo with Social Icons */}
           <div className="flex flex-col items-start">
             {/* Social Media Icons */}
-            <div className="flex items-center space-x-3 mb-2">
+            <div className="flex items-center space-x-2 mb-1">
               <a 
                 href="https://www.facebook.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-6 h-6 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+                className="w-5 h-5 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
                 aria-label="Follow us on Facebook"
               >
-                <FaFacebookF className="w-3 h-3" />
+                <FaFacebookF className="w-2.5 h-2.5" />
               </a>
               <a 
                 href="https://www.instagram.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-6 h-6 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+                className="w-5 h-5 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
                 aria-label="Follow us on Instagram"
               >
-                <FaInstagram className="w-3 h-3" />
+                <FaInstagram className="w-2.5 h-2.5" />
               </a>
               <a 
                 href="https://www.youtube.com/@affordegypt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-6 h-6 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+                className="w-5 h-5 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
                 aria-label="Subscribe to our YouTube channel"
               >
-                <FaYoutube className="w-3 h-3" />
+                <FaYoutube className="w-2.5 h-2.5" />
               </a>
             </div>
             {/* Logo */}
