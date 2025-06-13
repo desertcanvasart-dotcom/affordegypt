@@ -56,9 +56,17 @@ export default function AdminCityRoutes() {
   const getCityRoutes = () => {
     if (!currentCity) return [];
     
-    let filteredRoutes = (routes as any[]).filter((route: any) => 
-      route.fromCityId === currentCity.id
-    );
+    console.log('Current city:', currentCity);
+    console.log('All routes:', routes);
+    console.log('Filtering routes for fromCityId:', currentCity.id);
+    
+    let filteredRoutes = (routes as any[]).filter((route: any) => {
+      const matches = route.fromCityId === currentCity.id;
+      if (!matches) {
+        console.log(`Route ${route.id} filtered out: fromCityId=${route.fromCityId}, currentCity.id=${currentCity.id}`);
+      }
+      return matches;
+    });
 
     // Apply category filter
     if (category === 'inter-city') {
