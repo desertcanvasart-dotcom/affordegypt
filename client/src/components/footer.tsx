@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -90,11 +90,13 @@ export default function Footer() {
                 <FaInstagram className="w-5 h-5" />
               </a>
               <a 
-                href="#" 
+                href="https://www.youtube.com/@affordegypt" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary transition-colors"
-                aria-label="Follow us on Twitter"
+                aria-label="Subscribe to our YouTube channel"
               >
-                <FaTwitter className="w-5 h-5" />
+                <FaYoutube className="w-5 h-5" />
               </a>
             </div>
           </div>

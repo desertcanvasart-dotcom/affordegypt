@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,6 +58,43 @@ export default function Navbar() {
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+      {/* Social Media Bar */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center h-8">
+            <div className="flex items-center space-x-4">
+              <a 
+                href="https://www.facebook.com/affordegypt/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-teal-600 transition-colors"
+                aria-label="Follow us on Facebook"
+              >
+                <FaFacebookF className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.instagram.com/affordegypt/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-teal-600 transition-colors"
+                aria-label="Follow us on Instagram"
+              >
+                <FaInstagram className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.youtube.com/@affordegypt" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-teal-600 transition-colors"
+                aria-label="Subscribe to our YouTube channel"
+              >
+                <FaYoutube className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Super Nav Bar */}
       <div className="bg-teal-50 border-b border-teal-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
