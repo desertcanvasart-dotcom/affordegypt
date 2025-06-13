@@ -50,6 +50,12 @@ export default function RouteEditModal({
     retry: false,
   });
 
+  // Fetch existing routes to check for duplicates
+  const { data: existingRoutes = [] } = useQuery({
+    queryKey: ['/api/routes'],
+    retry: false,
+  });
+
   // Reset form when modal opens/closes or route changes
   useEffect(() => {
     if (isOpen) {
@@ -131,6 +137,31 @@ export default function RouteEditModal({
     },
   });
 
+  // Check for duplicate routes
+  const checkForDuplicateRoutes = (fromCityId: string, toCityId: string) => {
+    if (!fromCityId || !toCityId || fromCityId === toCityId) return { hasConflict: false };
+    
+    const fromId = parseInt(fromCityId);
+    const toId = parseInt(toCityId);
+    
+    // Check for exact duplicate (same direction)
+    const exactDuplicate = (existingRoutes as any[]).find(route => 
+      route.fromCityId === fromId && route.toCityId === toId && route.id !== route?.id
+    );
+    
+    // Check for reverse route
+    const reverseRoute = (existingRoutes as any[]).find(route => 
+      route.fromCityId === toId && route.toCityId === fromId
+    );
+    
+    return {
+      hasConflict: !!exactDuplicate,
+      hasReverse: !!reverseRoute,
+      exactDuplicate,
+      reverseRoute
+    };
+  };
+
   const handleSubmit = () => {
     if (!formData.fromCityId || !formData.toCityId) {
       toast({
@@ -139,6 +170,29 @@ export default function RouteEditModal({
         variant: "destructive",
       });
       return;
+    }
+
+    // Check for route conflicts (only for new routes, not when editing)
+    if (!route) {
+      const routeCheck = checkForDuplicateRoutes(formData.fromCityId, formData.toCityId);
+      
+      if (routeCheck.hasConflict) {
+        toast({
+          title: "Duplicate Route",
+          description: "A route already exists between these cities in this direction. Please edit the existing route instead.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      if (routeCheck.hasReverse) {
+        const fromCityName = (cities as any[]).find(c => c.id === parseInt(formData.fromCityId))?.name || 'City';
+        const toCityName = (cities as any[]).find(c => c.id === parseInt(formData.toCityId))?.name || 'City';
+        
+        if (!confirm(`A route already exists from ${toCityName} to ${fromCityName}. Creating this route will result in bidirectional routes between these cities. Are you sure you want to continue?`)) {
+          return;
+        }
+      }
     }
 
     if (!formData.sedanPrice || !formData.minivanPrice || !formData.vanPrice) {

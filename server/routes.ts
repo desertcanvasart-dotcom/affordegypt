@@ -668,6 +668,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "fromCityId and toCityId are required" });
       }
 
+      const fromCityId = parseInt(req.body.fromCityId);
+      const toCityId = parseInt(req.body.toCityId);
+
+      // Check for existing routes between these cities to prevent duplicates
+      // Only check for inter-city routes (different cities)
+      if (fromCityId !== toCityId) {
+        const existingRoutes = await storage.getRoutes();
+        
+        // Check if exact route already exists
+        const exactRouteExists = existingRoutes.some(route => 
+          route.fromCityId === fromCityId && route.toCityId === toCityId
+        );
+        
+        if (exactRouteExists) {
+          return res.status(409).json({ 
+            message: "A route already exists between these cities in this direction" 
+          });
+        }
+
+        // Check if reverse route exists and warn (but allow creation)
+        const reverseRouteExists = existingRoutes.some(route => 
+          route.fromCityId === toCityId && route.toCityId === fromCityId
+        );
+        
+        if (reverseRouteExists) {
+          console.log(`Warning: Reverse route exists for ${toCityId} to ${fromCityId}, creating opposite direction route`);
+        }
+      }
+
       // Prepare route data with proper pricing structure
       const routeData = {
         fromCityId: parseInt(req.body.fromCityId),
