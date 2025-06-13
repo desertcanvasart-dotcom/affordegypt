@@ -7,17 +7,20 @@ export default function AboutSection() {
     <section id="about" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">About Afford Egypt</h2>
+          <h2 className="text-3xl font-bold mb-6">Why Travel With Us</h2>
           
           <div className="text-lg text-muted-foreground leading-relaxed mb-8 space-y-4">
             <p>
-              We're a dedicated team of Egypt travel specialists committed to making authentic Egyptian experiences accessible to budget-conscious travelers. Since 2020, we've helped thousands of visitors explore Egypt's wonders without the premium price tag.
+              At Afford Egypt, we're a new generation of Egypt travel specialists redefining what budget travel means—transparent, flexible, and rich in experience.
             </p>
             <p>
-              Our transparent pricing model eliminates hidden fees and surprise costs, giving you the confidence to plan your perfect Egyptian adventure. From ancient pyramids to vibrant markets, we connect you with local guides and reliable transportation at fair prices.
+              Since 2020, we've helped thousands explore the real Egypt with zero hidden fees and maximum peace of mind. From intercity rides to full-day guided adventures, everything is built to fit your plan and your budget.
             </p>
             <p>
-              Whether you're exploring Cairo's bustling streets, cruising the Nile, or discovering temples in Luxor, we provide the tools and local expertise to make your journey unforgettable while staying within your budget.
+              Whether you're navigating the ancient streets of Cairo, sailing down the Nile, or uncovering Luxor's temple secrets, our platform connects you directly to reliable transport, trusted local guides, and essential attractions—all in just a few clicks.
+            </p>
+            <p>
+              Backed by outstanding customer support and built by young people who actually understand modern travelers, Afford Egypt makes exploring Egypt easy, affordable, and unforgettable.
             </p>
           </div>
 
