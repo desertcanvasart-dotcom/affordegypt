@@ -118,7 +118,7 @@ export default function Navbar() {
             <img 
               src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
               alt="Afford Egypt Logo" 
-              className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity"
+              className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity pb-1"
               onClick={navigateToHome}
             />
           </div>
