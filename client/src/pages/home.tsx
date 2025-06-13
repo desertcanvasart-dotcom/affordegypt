@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
+import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 import BlogGrid from "@/components/blog-grid";
 import AboutSection from "@/components/about-section";
 import CustomerReviews from "@/components/customer-reviews";
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <MultiCityPricingTool />
+      <AnimatedReviewCarousel />
       <BlogGrid />
       <AboutSection />
       <CustomerReviews />

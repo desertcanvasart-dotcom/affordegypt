@@ -99,9 +99,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      
-      {/* Animated Review Carousel */}
-      <AnimatedReviewCarousel />
     </section>
   );
 }

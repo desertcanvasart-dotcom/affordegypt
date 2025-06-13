@@ -54,14 +54,14 @@ export default function AnimatedReviewCarousel() {
   }
 
   return (
-    <section className="relative bg-white/5 backdrop-blur-sm py-12">
+    <section className="relative bg-gray-50 py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             What Our Travelers Say
           </h2>
-          <p className="text-white/80 text-lg">
+          <p className="text-gray-600 text-lg">
             Real experiences from real travelers
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function AnimatedReviewCarousel() {
             >
               {featuredReviews.map((review, index) => (
                 <div key={review.id} className="w-full flex-shrink-0 px-2">
-                  <Card className="bg-white/10 backdrop-blur-sm border-white/20 h-full">
+                  <Card className="bg-white shadow-lg border-gray-200 h-full hover:shadow-xl transition-shadow duration-300">
                     <CardContent className="p-8">
                       <div className="flex flex-col h-full">
                         {/* Quote Icon */}
@@ -92,28 +92,28 @@ export default function AnimatedReviewCarousel() {
 
                         {/* Review Content */}
                         <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-white mb-3">
+                          <h3 className="text-xl font-semibold text-gray-900 mb-3">
                             {review.title}
                           </h3>
-                          <p className="text-white/90 leading-relaxed line-clamp-4">
+                          <p className="text-gray-700 leading-relaxed line-clamp-4">
                             {review.content}
                           </p>
                         </div>
 
                         {/* Customer Info */}
-                        <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/20">
+                        <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
                           <div>
-                            <p className="font-semibold text-white">
+                            <p className="font-semibold text-gray-900">
                               {review.customerName}
                             </p>
                             {review.customerLocation && (
-                              <p className="text-sm text-white/70">
+                              <p className="text-sm text-gray-600">
                                 {review.customerLocation}
                               </p>
                             )}
                           </div>
                           {review.isVerified && (
-                            <div className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs font-medium">
+                            <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
                               Verified
                             </div>
                           )}
@@ -131,7 +131,7 @@ export default function AnimatedReviewCarousel() {
             variant="ghost"
             size="sm"
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/10 hover:bg-white/20 text-white border-white/20 w-10 h-10 rounded-full p-0"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg hover:shadow-xl text-gray-700 border border-gray-200 w-10 h-10 rounded-full p-0"
             disabled={featuredReviews.length <= 1}
           >
             <ChevronLeft className="w-5 h-5" />
@@ -141,7 +141,7 @@ export default function AnimatedReviewCarousel() {
             variant="ghost"
             size="sm"
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/10 hover:bg-white/20 text-white border-white/20 w-10 h-10 rounded-full p-0"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg hover:shadow-xl text-gray-700 border border-gray-200 w-10 h-10 rounded-full p-0"
             disabled={featuredReviews.length <= 1}
           >
             <ChevronRight className="w-5 h-5" />
@@ -157,7 +157,7 @@ export default function AnimatedReviewCarousel() {
               className={`carousel-indicator w-3 h-3 rounded-full ${
                 index === currentIndex
                   ? "bg-primary active"
-                  : "bg-white/30 hover:bg-white/50"
+                  : "bg-gray-300 hover:bg-gray-400"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -165,19 +165,19 @@ export default function AnimatedReviewCarousel() {
         </div>
 
         {/* Statistics */}
-        <div className="flex justify-center items-center gap-8 mt-8 text-white/80">
+        <div className="flex justify-center items-center gap-8 mt-8 text-gray-600">
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">{reviews.length}</div>
+            <div className="text-2xl font-bold text-gray-900">{reviews.length}</div>
             <div className="text-sm">Total Reviews</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-gray-900">
               {reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : "0"}
             </div>
             <div className="text-sm">Average Rating</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-gray-900">
               {Math.round((reviews.filter(r => r.rating === 5).length / reviews.length) * 100) || 0}%
             </div>
             <div className="text-sm">5-Star Reviews</div>
