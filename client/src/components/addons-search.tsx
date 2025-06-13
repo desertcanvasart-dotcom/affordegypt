@@ -188,7 +188,7 @@ export function AddOnsSearch({
           </div>
           
           <div className="text-right">
-            <div className="text-sm font-semibold text-teal-600">${addOn.price}</div>
+            <div className="text-sm font-semibold text-teal-600">EGP ${addOn.price}</div>
             <div className="text-xs text-gray-500">{getUnitTypeLabel(addOn.unitType)}</div>
           </div>
         </div>

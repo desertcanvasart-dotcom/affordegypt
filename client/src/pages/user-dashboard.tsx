@@ -411,7 +411,7 @@ function BookingDetailsModal({
                         <div key={index} className="flex items-center justify-between">
                           <span>{addon.name}</span>
                           <span className="text-sm text-muted-foreground">
-                            ${addon.price}
+                            EGP ${addon.price}
                           </span>
                         </div>
                       ))}
