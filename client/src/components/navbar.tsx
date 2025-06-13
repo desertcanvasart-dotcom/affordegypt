@@ -58,43 +58,6 @@ export default function Navbar() {
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-      {/* Social Media Bar */}
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center h-8">
-            <div className="flex items-center space-x-4">
-              <a 
-                href="https://www.facebook.com/affordegypt/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-teal-600 transition-colors"
-                aria-label="Follow us on Facebook"
-              >
-                <FaFacebookF className="w-4 h-4" />
-              </a>
-              <a 
-                href="https://www.instagram.com/affordegypt/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-teal-600 transition-colors"
-                aria-label="Follow us on Instagram"
-              >
-                <FaInstagram className="w-4 h-4" />
-              </a>
-              <a 
-                href="https://www.youtube.com/@affordegypt" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-teal-600 transition-colors"
-                aria-label="Subscribe to our YouTube channel"
-              >
-                <FaYoutube className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Super Nav Bar */}
       <div className="bg-teal-50 border-b border-teal-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,8 +82,39 @@ export default function Navbar() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo with Social Icons */}
+          <div className="flex flex-col items-start">
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-3 mb-1">
+              <a 
+                href="https://www.facebook.com/affordegypt/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-teal-600 transition-colors"
+                aria-label="Follow us on Facebook"
+              >
+                <FaFacebookF className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.instagram.com/affordegypt/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-teal-600 transition-colors"
+                aria-label="Follow us on Instagram"
+              >
+                <FaInstagram className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.youtube.com/@affordegypt" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-teal-600 transition-colors"
+                aria-label="Subscribe to our YouTube channel"
+              >
+                <FaYoutube className="w-4 h-4" />
+              </a>
+            </div>
+            {/* Logo */}
             <img 
               src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
               alt="Afford Egypt Logo" 
