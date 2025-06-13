@@ -117,6 +117,12 @@ export default function Navbar() {
             >
               Start Your Trip Quote
             </button>
+            <Link
+              href="/transfers"
+              className="border border-teal-600 text-teal-600 px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors font-medium"
+            >
+              Book a Transfer
+            </Link>
           </div>
 
 
