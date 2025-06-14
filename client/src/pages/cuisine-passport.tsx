@@ -56,6 +56,7 @@ interface Dish {
   signatureTraits?: string[];
   regionalVariations?: string[];
   cookingMethods?: string[];
+  preparationTips?: string[];
 }
 
 const egyptianDishes: Dish[] = [
@@ -63,21 +64,47 @@ const egyptianDishes: Dish[] = [
     id: 1,
     name: "Koshari",
     arabicName: "كشري",
-    description: "Egypt's national dish - a hearty mix of rice, lentils, pasta, and chickpeas topped with spicy tomato sauce and crispy onions",
+    description: "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing.",
     region: "Cairo",
     spiceLevel: 2,
     difficulty: "Medium",
     cookingTime: "45 minutes",
     priceRange: "25-50 EGP",
-    ingredients: ["Rice", "Lentils", "Pasta", "Chickpeas", "Tomato sauce", "Onions", "Garlic"],
+    ingredients: ["Brown lentils", "White rice", "Small pasta", "Chickpeas", "Onions", "Garlic", "Crushed tomatoes", "White vinegar", "Cumin", "Chili flakes"],
     allergens: ["Gluten"],
     category: "Main",
     popularity: 95,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/koshary.jpg",
     nutritionScore: 85,
-    culturalStory: "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt",
-    bestLocations: ["Abou Tarek - Downtown Cairo", "Koshari El Tahrir", "Koshari Hind"]
+    culturalStory: "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food.",
+    bestLocations: ["Abou Tarek - Downtown Cairo", "Koshari El Tahrir", "Koshari Hind", "Street stalls throughout Egypt"],
+    signatureTraits: [
+      "Hearty & filling - a full meal in one bowl",
+      "Naturally vegan (no meat or dairy)",
+      "Layered textures: crispy, soft, chewy",
+      "Bold, spicy, tangy flavours",
+      "Affordable & widely available"
+    ],
+    servingStyles: [
+      "Layered in deep bowl starting with rice",
+      "Topped with lentils, pasta, and chickpeas",
+      "Covered in garlicky tomato sauce",
+      "Finished with crispy fried onions",
+      "Optional spicy vinegar sauce (Da'a) on the side"
+    ],
+    cookingMethods: [
+      "Cook each component separately for best texture",
+      "Fry onions until deep golden and crispy (10-15 minutes)",
+      "Simmer tomato sauce 15-20 minutes until thickened",
+      "Layer components just before serving for optimal texture"
+    ],
+    preparationTips: [
+      "Make extra fried onions - they disappear first",
+      "Prepare all elements in advance and assemble before serving",
+      "Add dash of baharat (Egyptian spice mix) for authentic flavor",
+      "Reheats well, making it great for meal prep"
+    ]
   },
   {
     id: 2,
@@ -730,6 +757,20 @@ export default function CuisinePassport() {
                         <li key={index} className="flex items-center gap-2">
                           <ChefHat className="w-3 h-3 text-primary" />
                           {method}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.preparationTips && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-yellow-600">Preparation Tips</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.preparationTips.map((tip, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <Clock className="w-3 h-3 text-yellow-500" />
+                          {tip}
                         </li>
                       ))}
                     </ul>
