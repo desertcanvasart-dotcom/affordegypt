@@ -487,10 +487,8 @@ export default function NileValleyGuide() {
     : nileValleyCities.filter(city => city.region === selectedRegion);
 
   const navigateToQuote = () => {
-    const element = document.getElementById('quote-builder');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Navigate to the pricing tool page
+    window.location.href = '/pricing-tool';
   };
 
   return (
