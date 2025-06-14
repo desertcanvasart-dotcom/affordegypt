@@ -591,7 +591,16 @@ export default function NileValleyGuide() {
                         left: '50%',
                         top: `${(index / (filteredCities.length - 1)) * 80 + 10}%`
                       }}
-                      onClick={() => setSelectedCity(city)}
+                      onClick={() => {
+                        setSelectedCity(city);
+                        // Scroll to city details card after a short delay to allow state update
+                        setTimeout(() => {
+                          const element = document.getElementById('selected-city-details');
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }
+                        }, 100);
+                      }}
                     >
                       <div className={`
                         flex items-center gap-1 sm:gap-2 p-2 sm:p-3 rounded-lg border-2 transition-all duration-300 shadow-lg
@@ -618,7 +627,7 @@ export default function NileValleyGuide() {
 
           {/* Selected City Details */}
           {selectedCity && (
-            <Card className="p-6 border-primary border-2">
+            <Card id="selected-city-details" className="p-6 border-primary border-2">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">{selectedCity.name}</h3>
