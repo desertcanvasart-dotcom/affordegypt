@@ -682,7 +682,7 @@ export default function CuisinePassport() {
               {isARActive && selectedDish && (
                 <div className="absolute inset-0 pointer-events-none">
                   {/* Instructions Header */}
-                  <div className="absolute top-4 left-4 right-4 pointer-events-auto">
+                  <div className="absolute top-20 left-4 right-4 pointer-events-none">
                     <Card className="bg-primary/90 text-white backdrop-blur-sm">
                       <CardContent className="p-3">
                         <div className="flex items-center gap-2">
@@ -724,7 +724,7 @@ export default function CuisinePassport() {
                   </div>
 
                   {/* Dish Information Card - Positioned as if "detected" */}
-                  <div className="absolute bottom-32 left-4 right-4 pointer-events-auto">
+                  <div className="absolute bottom-32 left-4 right-4 pointer-events-none">
                     <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-green-500">
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
@@ -782,14 +782,14 @@ export default function CuisinePassport() {
                             <MapPin className="w-3 h-3 text-blue-500" />
                             <span className="font-medium text-xs">Best Place to Try</span>
                           </div>
-                          <p className="text-xs text-blue-700">{selectedDish.bestLocation}</p>
+                          <p className="text-xs text-blue-700">{selectedDish.bestLocations[0]}</p>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
 
                   {/* Quick Action Tips */}
-                  <div className="absolute bottom-4 left-4 right-4 pointer-events-auto">
+                  <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
                     <div className="flex justify-center gap-2">
                       <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs flex items-center gap-1">
                         <Camera className="w-3 h-3" />
@@ -838,13 +838,13 @@ export default function CuisinePassport() {
                 </div>
               )}
 
-              {/* Control Buttons */}
-              <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-auto">
+              {/* Control Buttons - Outside the overlay container for proper interaction */}
+              <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={closeARPreview}
-                  className="bg-white/90 backdrop-blur-sm"
+                  className="bg-white/90 backdrop-blur-sm hover:bg-white"
                 >
                   <X className="w-4 h-4 mr-2" />
                   Close AR
@@ -855,7 +855,7 @@ export default function CuisinePassport() {
                     <Button
                       size="sm"
                       onClick={startARCamera}
-                      className="bg-primary/90 text-white"
+                      className="bg-primary/90 text-white hover:bg-primary"
                     >
                       <Play className="w-4 h-4 mr-2" />
                       Start Camera
@@ -867,7 +867,11 @@ export default function CuisinePassport() {
                       variant="outline"
                       size="sm"
                       onClick={() => toggleTried(selectedDish.id)}
-                      className={`${selectedDish.tried ? 'bg-green-100 text-green-800' : 'bg-white/90'} backdrop-blur-sm`}
+                      className={`${
+                        selectedDish.tried 
+                          ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                          : 'bg-white/90 hover:bg-white'
+                      } backdrop-blur-sm`}
                     >
                       <Heart className={`w-4 h-4 mr-2 ${selectedDish.tried ? 'fill-current' : ''}`} />
                       {selectedDish.tried ? 'Tried' : 'Mark Tried'}
