@@ -25,7 +25,7 @@ export default function About() {
       <Navbar />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="relative bg-teal-600 text-white py-24">
+        <section className="relative bg-teal-600 text-white min-h-[90vh] flex items-center justify-center">
           <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-700" />
           <div className="relative max-w-6xl mx-auto px-4 text-center">
             <Badge className="bg-white/20 text-white mb-6 text-sm px-4 py-2">
