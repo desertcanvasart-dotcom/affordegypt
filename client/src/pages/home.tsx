@@ -4,6 +4,7 @@ import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 import BlogGrid from "@/components/blog-grid";
 import AboutSection from "@/components/about-section";
+import FAQSection from "@/components/faq-section";
 import Footer from "@/components/footer";
 import MobileStickyCTA from "@/components/mobile-sticky-cta";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ export default function Home() {
       
       <BlogGrid />
       <AboutSection />
+      <FAQSection />
       <Footer />
       <MobileStickyCTA />
     </div>
