@@ -110,21 +110,53 @@ const egyptianDishes: Dish[] = [
     id: 2,
     name: "Ful Medames",
     arabicName: "فول مدمس",
-    description: "Traditional breakfast of slow-cooked fava beans served with olive oil, garlic, and lemon",
+    description: "Egypt's most iconic breakfast dish made from slow-cooked fava beans, typically seasoned with olive oil, garlic, lemon juice, and spices. Deeply embedded in Egyptian daily life, versatile and rich in protein and fiber.",
     region: "Upper Egypt",
     spiceLevel: 1,
     difficulty: "Easy",
     cookingTime: "6 hours",
     priceRange: "15-30 EGP",
-    ingredients: ["Fava beans", "Olive oil", "Garlic", "Lemon", "Cumin", "Tahini"],
+    ingredients: ["Cooked fava beans", "Olive oil", "Garlic", "Lemon juice", "Ground cumin", "Salt", "Black pepper"],
     allergens: [],
     category: "Main",
     popularity: 90,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/fool-medames.jpg",
     nutritionScore: 92,
-    culturalStory: "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots",
-    bestLocations: ["Al Malky Restaurant", "Traditional street carts", "Local cafes"]
+    culturalStory: "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots. Enjoyed daily by millions of Egyptians, from simple street carts in Cairo to home kitchens across the country.",
+    bestLocations: ["Al Malky Restaurant", "Traditional street carts", "Local cafes", "Street breakfast vendors"],
+    signatureTraits: [
+      "Creamy or chunky texture (depending on preference)",
+      "Earthy, garlicky, lemony, and sometimes spicy flavor",
+      "Vegan & healthy - packed with fiber and protein",
+      "National favorite enjoyed daily by millions",
+      "Most iconic Egyptian breakfast dish"
+    ],
+    servingStyles: [
+      "Served with warm baladi bread or pita",
+      "Accompanied by hard-boiled eggs",
+      "Garnished with diced tomatoes, onions, or parsley",
+      "Paired with pickled vegetables (torshi)",
+      "Optional tahini drizzle or chopped green chilies"
+    ],
+    cookingMethods: [
+      "Warm beans gently in saucepan with splash of water",
+      "Mash lightly with fork for desired texture",
+      "Add seasonings and simmer 2-3 minutes",
+      "Serve immediately while warm"
+    ],
+    regionalVariations: [
+      "Ful Eskandrani (Alexandrian): Served cold with chili, tomatoes, parsley, vinegar",
+      "Ful with boiled eggs: Classic street-style breakfast",
+      "Ful bel Dabba (with butter): Creamy, indulgent restaurant version",
+      "Spicy Ful: Add harissa or fresh chili oil for heat"
+    ],
+    preparationTips: [
+      "Use cooked fava beans or quality canned beans",
+      "Adjust mashing to personal texture preference",
+      "Balance lemon juice and olive oil for best flavor",
+      "Serve immediately for optimal temperature and taste"
+    ]
   },
   {
     id: 3,
