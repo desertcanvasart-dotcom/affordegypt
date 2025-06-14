@@ -591,7 +591,7 @@ export default function CuisinePassport() {
         
         {/* Hero Section */}
         <header 
-          className="min-h-[70vh] flex items-center justify-center relative"
+          className="min-h-[90vh] flex items-center justify-center relative"
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/egyptian-cuisine-hero.jpg')`,
             backgroundSize: 'cover',
