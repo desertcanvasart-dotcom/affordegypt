@@ -665,221 +665,158 @@ export default function CuisinePassport() {
           </div>
         )}
 
-        {/* AR Preview Modal */}
+        {/* AR Preview Modal - Redesigned for better UX */}
         {selectedDish && showARPreview && (
           <div className="fixed inset-0 bg-black z-50">
-            <div className="relative h-full w-full">
-              {/* Camera View */}
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover"
-                autoPlay
-                playsInline
-                muted
-              />
+            {/* Top Control Bar */}
+            <div className="absolute top-0 left-0 right-0 bg-black/50 p-4 flex justify-between items-center z-20">
+              <button
+                onClick={closeARPreview}
+                className="flex items-center gap-2 bg-white/90 hover:bg-white text-black px-4 py-2 rounded-lg transition-colors"
+              >
+                <X className="w-4 h-4" />
+                Close AR
+              </button>
               
-              {/* AR Overlay Content */}
-              {isARActive && selectedDish && (
-                <div className="absolute inset-0 pointer-events-none">
-                  {/* Instructions Header */}
-                  <div className="absolute top-20 left-4 right-4 pointer-events-none">
-                    <Card className="bg-primary/90 text-white backdrop-blur-sm">
-                      <CardContent className="p-3">
-                        <div className="flex items-center gap-2">
-                          <Camera className="w-5 h-5" />
-                          <div>
-                            <h3 className="font-medium">Point camera at Egyptian food or menu</h3>
-                            <p className="text-xs opacity-90">Move your camera to see dish information appear</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Menu Detection Frame */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="w-64 h-48 border-2 border-primary/60 rounded-lg relative">
-                      <div className="absolute inset-0 border-primary/30 border-dashed border-2 rounded-lg animate-pulse"></div>
-                      
-                      {/* Corner Markers */}
-                      <div className="absolute -top-2 -left-2 w-6 h-6 border-l-4 border-t-4 border-primary"></div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 border-r-4 border-t-4 border-primary"></div>
-                      <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-4 border-b-4 border-primary"></div>
-                      <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-4 border-b-4 border-primary"></div>
-                      
-                      {/* Center Target */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <div className="w-8 h-8 border-2 border-primary rounded-full bg-primary/20 flex items-center justify-center">
-                          <div className="w-3 h-3 bg-primary rounded-full animate-ping"></div>
-                        </div>
-                      </div>
-                      
-                      {/* Scanning Text */}
-                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-                        <p className="text-primary font-medium text-sm bg-white/90 px-3 py-1 rounded-full">
-                          Scanning for {selectedDish.name}...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Dish Information Card - Positioned as if "detected" */}
-                  <div className="absolute bottom-32 left-4 right-4 pointer-events-none">
-                    <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-green-500">
-                      <CardHeader className="pb-2">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="font-bold text-lg text-green-700">✓ Dish Detected!</h3>
-                            <p className="text-sm text-gray-600">{selectedDish.name} • {selectedDish.arabicName}</p>
-                          </div>
-                          <Badge className="bg-green-500 text-white animate-pulse">Found</Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="bg-gray-100 p-2 rounded">
-                            <div className="flex items-center gap-1">
-                              <Clock className="w-3 h-3 text-primary" />
-                              <span className="font-medium">Cook Time</span>
-                            </div>
-                            <p>{selectedDish.cookingTime}</p>
-                          </div>
-                          <div className="bg-gray-100 p-2 rounded">
-                            <div className="flex items-center gap-1">
-                              <DollarSign className="w-3 h-3 text-primary" />
-                              <span className="font-medium">Price</span>
-                            </div>
-                            <p>{selectedDish.priceRange}</p>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-gray-100 p-2 rounded">
-                          <div className="flex items-center gap-1 mb-1">
-                            <Flame className="w-3 h-3 text-red-500" />
-                            <span className="font-medium text-xs">Spice Level</span>
-                          </div>
-                          <div className="flex gap-1">
-                            {getSpiceIcons(selectedDish.spiceLevel)}
-                          </div>
-                        </div>
-
-                        <div className="bg-gray-100 p-2 rounded">
-                          <div className="flex items-center gap-1 mb-1">
-                            <Leaf className="w-3 h-3 text-green-500" />
-                            <span className="font-medium text-xs">Nutrition Score</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div 
-                              className="bg-green-500 h-2 rounded-full transition-all duration-1000" 
-                              style={{ width: `${selectedDish.nutritionScore}%` }}
-                            ></div>
-                          </div>
-                          <p className="text-xs mt-1">{selectedDish.nutritionScore}% Healthy</p>
-                        </div>
-
-                        <div className="bg-blue-50 p-2 rounded border border-blue-200">
-                          <div className="flex items-center gap-1 mb-1">
-                            <MapPin className="w-3 h-3 text-blue-500" />
-                            <span className="font-medium text-xs">Best Place to Try</span>
-                          </div>
-                          <p className="text-xs text-blue-700">{selectedDish.bestLocations[0]}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Quick Action Tips */}
-                  <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
-                    <div className="flex justify-center gap-2">
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                        <Camera className="w-3 h-3" />
-                        Move camera around
-                      </div>
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                        <Eye className="w-3 h-3" />
-                        Find Egyptian dishes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Error State */}
-              {cameraError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-                  <Card className="max-w-md mx-4">
-                    <CardContent className="p-6 text-center">
-                      <Camera className="w-12 h-12 text-red-500 mx-auto mb-4" />
-                      <h3 className="text-lg font-semibold mb-2">Camera Access Required</h3>
-                      <p className="text-gray-600 mb-4 text-sm">{cameraError}</p>
-                      <div className="space-y-2">
-                        <Button onClick={startARCamera} className="w-full">
-                          Try Again
-                        </Button>
-                        <Button variant="outline" onClick={closeARPreview} className="w-full">
-                          Close AR Preview
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              )}
-
-              {/* Loading State */}
-              {!isARActive && !cameraError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-                  <Card className="max-w-md mx-4">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                      <h3 className="text-lg font-semibold mb-2">Starting AR Camera</h3>
-                      <p className="text-gray-600 text-sm">Please allow camera access when prompted</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              )}
-
-              {/* Control Buttons - Outside the overlay container for proper interaction */}
-              <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={closeARPreview}
-                  className="bg-white/90 backdrop-blur-sm hover:bg-white"
-                >
-                  <X className="w-4 h-4 mr-2" />
-                  Close AR
-                </Button>
-                
-                <div className="flex gap-2">
-                  {!isARActive && !cameraError && (
-                    <Button
-                      size="sm"
-                      onClick={startARCamera}
-                      className="bg-primary/90 text-white hover:bg-primary"
-                    >
-                      <Play className="w-4 h-4 mr-2" />
-                      Start Camera
-                    </Button>
-                  )}
-                  
-                  {selectedDish && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => toggleTried(selectedDish.id)}
-                      className={`${
-                        selectedDish.tried 
-                          ? 'bg-green-100 text-green-800 hover:bg-green-200' 
-                          : 'bg-white/90 hover:bg-white'
-                      } backdrop-blur-sm`}
-                    >
-                      <Heart className={`w-4 h-4 mr-2 ${selectedDish.tried ? 'fill-current' : ''}`} />
-                      {selectedDish.tried ? 'Tried' : 'Mark Tried'}
-                    </Button>
-                  )}
-                </div>
-              </div>
+              <button
+                onClick={() => toggleTried(selectedDish.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  selectedDish.tried 
+                    ? 'bg-green-500 hover:bg-green-600 text-white' 
+                    : 'bg-white/90 hover:bg-white text-black'
+                }`}
+              >
+                <Heart className={`w-4 h-4 ${selectedDish.tried ? 'fill-current' : ''}`} />
+                {selectedDish.tried ? 'Tried' : 'Mark Tried'}
+              </button>
             </div>
+
+            {/* Camera Feed */}
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              autoPlay
+              playsInline
+              muted
+            />
+
+            {/* AR Information Overlay */}
+            {isARActive && (
+              <div className="absolute inset-0 flex items-center justify-center p-4 pt-20 pb-20">
+                <Card className="max-w-lg w-full bg-white/95 backdrop-blur-sm shadow-2xl">
+                  <CardHeader className="text-center pb-4">
+                    <h2 className="text-2xl font-bold text-primary">{selectedDish.name}</h2>
+                    <p className="text-lg text-gray-600">{selectedDish.arabicName}</p>
+                    <Badge className="mx-auto bg-green-500 text-white">AR Experience</Badge>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-4">
+                    <div className="text-center mb-4">
+                      <p className="text-gray-700">{selectedDish.culturalStory}</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-gray-100 p-3 rounded-lg text-center">
+                        <Clock className="w-6 h-6 text-primary mx-auto mb-2" />
+                        <p className="font-medium">Cook Time</p>
+                        <p className="text-sm text-gray-600">{selectedDish.cookingTime}</p>
+                      </div>
+                      <div className="bg-gray-100 p-3 rounded-lg text-center">
+                        <DollarSign className="w-6 h-6 text-primary mx-auto mb-2" />
+                        <p className="font-medium">Price Range</p>
+                        <p className="text-sm text-gray-600">{selectedDish.priceRange}</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-100 p-3 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Flame className="w-5 h-5 text-red-500" />
+                        <span className="font-medium">Spice Level</span>
+                      </div>
+                      <div className="flex gap-1">
+                        {getSpiceIcons(selectedDish.spiceLevel)}
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-100 p-3 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Leaf className="w-5 h-5 text-green-500" />
+                        <span className="font-medium">Nutrition Score</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className="bg-green-500 h-3 rounded-full transition-all duration-1000" 
+                          style={{ width: `${selectedDish.nutritionScore}%` }}
+                        ></div>
+                      </div>
+                      <p className="text-sm mt-1">{selectedDish.nutritionScore}% Healthy</p>
+                    </div>
+
+                    <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <MapPin className="w-5 h-5 text-blue-500" />
+                        <span className="font-medium">Best Place to Try</span>
+                      </div>
+                      <p className="text-sm text-blue-700">{selectedDish.bestLocations[0]}</p>
+                    </div>
+
+                    <div className="bg-gray-100 p-3 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Utensils className="w-5 h-5 text-primary" />
+                        <span className="font-medium">Key Ingredients</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedDish.ingredients.map((ingredient, index) => (
+                          <Badge key={index} variant="outline" className="text-xs">
+                            {ingredient}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* Error State */}
+            {cameraError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/80 p-4">
+                <Card className="max-w-md w-full">
+                  <CardContent className="p-6 text-center">
+                    <Camera className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold mb-3">Camera Access Required</h3>
+                    <p className="text-gray-600 mb-6">{cameraError}</p>
+                    <div className="space-y-3">
+                      <button
+                        onClick={startARCamera}
+                        className="w-full bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-lg font-medium transition-colors"
+                      >
+                        Try Again
+                      </button>
+                      <button
+                        onClick={closeARPreview}
+                        className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-3 rounded-lg font-medium transition-colors"
+                      >
+                        Close AR Preview
+                      </button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* Loading State */}
+            {!isARActive && !cameraError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/80 p-4">
+                <Card className="max-w-md w-full">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-20 h-20 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <h3 className="text-xl font-semibold mb-3">Starting AR Experience</h3>
+                    <p className="text-gray-600">Setting up your culinary AR experience for {selectedDish.name}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
           </div>
         )}
 
