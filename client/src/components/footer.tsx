@@ -120,7 +120,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/budget-travel-in-egypt" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/budget-travel-egypt" className="text-gray-300 hover:text-primary transition-colors">
                   Budget Travel in Egypt
                 </Link>
               </li>
