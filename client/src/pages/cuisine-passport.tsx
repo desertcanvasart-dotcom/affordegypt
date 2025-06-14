@@ -546,8 +546,8 @@ export default function CuisinePassport() {
                             setShowARPreview(true);
                           }}
                         >
-                          <Camera className="w-3 h-3 mr-1" />
-                          AR View
+                          <ChefHat className="w-3 h-3 mr-1" />
+                          Explore
                         </Button>
                       </div>
                     </div>
@@ -665,158 +665,139 @@ export default function CuisinePassport() {
           </div>
         )}
 
-        {/* AR Preview Modal - Redesigned for better UX */}
+        {/* Dish Details Modal */}
         {selectedDish && showARPreview && (
-          <div className="fixed inset-0 bg-black z-50">
-            {/* Top Control Bar */}
-            <div className="absolute top-0 left-0 right-0 bg-black/50 p-4 flex justify-between items-center z-20">
-              <button
-                onClick={closeARPreview}
-                className="flex items-center gap-2 bg-white/90 hover:bg-white text-black px-4 py-2 rounded-lg transition-colors"
-              >
-                <X className="w-4 h-4" />
-                Close AR
-              </button>
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+            <Card className="max-w-2xl w-full max-h-[90vh] overflow-y-auto bg-white">
+              <CardHeader className="relative">
+                <button
+                  onClick={closeARPreview}
+                  className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                
+                <div className="text-center pr-12">
+                  <h2 className="text-3xl font-bold text-primary mb-2">{selectedDish.name}</h2>
+                  <p className="text-xl text-gray-600 mb-3">{selectedDish.arabicName}</p>
+                  <Badge className="bg-primary text-white">Traditional Egyptian Dish</Badge>
+                </div>
+              </CardHeader>
               
-              <button
-                onClick={() => toggleTried(selectedDish.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                  selectedDish.tried 
-                    ? 'bg-green-500 hover:bg-green-600 text-white' 
-                    : 'bg-white/90 hover:bg-white text-black'
-                }`}
-              >
-                <Heart className={`w-4 h-4 ${selectedDish.tried ? 'fill-current' : ''}`} />
-                {selectedDish.tried ? 'Tried' : 'Mark Tried'}
-              </button>
-            </div>
+              <CardContent className="space-y-6">
+                {/* Cultural Story */}
+                <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                  <div className="flex items-start gap-3">
+                    <Star className="w-6 h-6 text-amber-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-amber-800 mb-2">Cultural Story</h3>
+                      <p className="text-amber-700 leading-relaxed">{selectedDish.culturalStory}</p>
+                    </div>
+                  </div>
+                </div>
 
-            {/* Camera Feed */}
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              autoPlay
-              playsInline
-              muted
-            />
-
-            {/* AR Information Overlay */}
-            {isARActive && (
-              <div className="absolute inset-0 flex items-center justify-center p-4 pt-20 pb-20">
-                <Card className="max-w-lg w-full bg-white/95 backdrop-blur-sm shadow-2xl">
-                  <CardHeader className="text-center pb-4">
-                    <h2 className="text-2xl font-bold text-primary">{selectedDish.name}</h2>
-                    <p className="text-lg text-gray-600">{selectedDish.arabicName}</p>
-                    <Badge className="mx-auto bg-green-500 text-white">AR Experience</Badge>
-                  </CardHeader>
+                {/* Quick Info Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Clock className="w-5 h-5 text-primary" />
+                      <span className="font-semibold">Cook Time</span>
+                    </div>
+                    <p className="text-gray-700">{selectedDish.cookingTime}</p>
+                  </div>
                   
-                  <CardContent className="space-y-4">
-                    <div className="text-center mb-4">
-                      <p className="text-gray-700">{selectedDish.culturalStory}</p>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <DollarSign className="w-5 h-5 text-primary" />
+                      <span className="font-semibold">Price Range</span>
                     </div>
+                    <p className="text-gray-700">{selectedDish.priceRange}</p>
+                  </div>
+                </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-gray-100 p-3 rounded-lg text-center">
-                        <Clock className="w-6 h-6 text-primary mx-auto mb-2" />
-                        <p className="font-medium">Cook Time</p>
-                        <p className="text-sm text-gray-600">{selectedDish.cookingTime}</p>
-                      </div>
-                      <div className="bg-gray-100 p-3 rounded-lg text-center">
-                        <DollarSign className="w-6 h-6 text-primary mx-auto mb-2" />
-                        <p className="font-medium">Price Range</p>
-                        <p className="text-sm text-gray-600">{selectedDish.priceRange}</p>
-                      </div>
+                {/* Spice Level */}
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Flame className="w-5 h-5 text-red-500" />
+                    <span className="font-semibold">Spice Level</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1">
+                      {getSpiceIcons(selectedDish.spiceLevel)}
                     </div>
+                    <span className="text-sm text-gray-600 ml-2">({selectedDish.spiceLevel})</span>
+                  </div>
+                </div>
 
-                    <div className="bg-gray-100 p-3 rounded-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Flame className="w-5 h-5 text-red-500" />
-                        <span className="font-medium">Spice Level</span>
-                      </div>
-                      <div className="flex gap-1">
-                        {getSpiceIcons(selectedDish.spiceLevel)}
-                      </div>
-                    </div>
+                {/* Nutrition Score */}
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Leaf className="w-5 h-5 text-green-500" />
+                    <span className="font-semibold">Nutrition Score</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-4 mb-2">
+                    <div 
+                      className="bg-green-500 h-4 rounded-full transition-all duration-1000" 
+                      style={{ width: `${selectedDish.nutritionScore}%` }}
+                    ></div>
+                  </div>
+                  <p className="text-sm text-gray-600">{selectedDish.nutritionScore}% Healthy Score</p>
+                </div>
 
-                    <div className="bg-gray-100 p-3 rounded-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Leaf className="w-5 h-5 text-green-500" />
-                        <span className="font-medium">Nutrition Score</span>
+                {/* Best Places to Try */}
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-center gap-2 mb-3">
+                    <MapPin className="w-5 h-5 text-blue-500" />
+                    <span className="font-semibold text-blue-800">Best Places to Try</span>
+                  </div>
+                  <div className="space-y-2">
+                    {selectedDish.bestLocations.map((location, index) => (
+                      <div key={index} className="bg-white p-3 rounded border border-blue-100">
+                        <p className="text-blue-700 font-medium">{location}</p>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-3">
-                        <div 
-                          className="bg-green-500 h-3 rounded-full transition-all duration-1000" 
-                          style={{ width: `${selectedDish.nutritionScore}%` }}
-                        ></div>
-                      </div>
-                      <p className="text-sm mt-1">{selectedDish.nutritionScore}% Healthy</p>
-                    </div>
+                    ))}
+                  </div>
+                </div>
 
-                    <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                      <div className="flex items-center gap-2 mb-2">
-                        <MapPin className="w-5 h-5 text-blue-500" />
-                        <span className="font-medium">Best Place to Try</span>
-                      </div>
-                      <p className="text-sm text-blue-700">{selectedDish.bestLocations[0]}</p>
-                    </div>
+                {/* Key Ingredients */}
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Utensils className="w-5 h-5 text-primary" />
+                    <span className="font-semibold">Key Ingredients</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedDish.ingredients.map((ingredient, index) => (
+                      <Badge key={index} variant="outline" className="bg-white border-gray-300">
+                        {ingredient}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
 
-                    <div className="bg-gray-100 p-3 rounded-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Utensils className="w-5 h-5 text-primary" />
-                        <span className="font-medium">Key Ingredients</span>
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {selectedDish.ingredients.map((ingredient, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
-                            {ingredient}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-
-            {/* Error State */}
-            {cameraError && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/80 p-4">
-                <Card className="max-w-md w-full">
-                  <CardContent className="p-6 text-center">
-                    <Camera className="w-16 h-16 text-red-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-3">Camera Access Required</h3>
-                    <p className="text-gray-600 mb-6">{cameraError}</p>
-                    <div className="space-y-3">
-                      <button
-                        onClick={startARCamera}
-                        className="w-full bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-lg font-medium transition-colors"
-                      >
-                        Try Again
-                      </button>
-                      <button
-                        onClick={closeARPreview}
-                        className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-3 rounded-lg font-medium transition-colors"
-                      >
-                        Close AR Preview
-                      </button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-
-            {/* Loading State */}
-            {!isARActive && !cameraError && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/80 p-4">
-                <Card className="max-w-md w-full">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-20 h-20 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <h3 className="text-xl font-semibold mb-3">Starting AR Experience</h3>
-                    <p className="text-gray-600">Setting up your culinary AR experience for {selectedDish.name}</p>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                  <button
+                    onClick={() => toggleTried(selectedDish.id)}
+                    className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors flex-1 ${
+                      selectedDish.tried 
+                        ? 'bg-green-500 hover:bg-green-600 text-white' 
+                        : 'bg-primary hover:bg-primary/90 text-white'
+                    }`}
+                  >
+                    <Heart className={`w-5 h-5 ${selectedDish.tried ? 'fill-current' : ''}`} />
+                    {selectedDish.tried ? 'Marked as Tried!' : 'Mark as Tried'}
+                  </button>
+                  
+                  <button
+                    onClick={closeARPreview}
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors flex-1 sm:flex-none"
+                  >
+                    <X className="w-5 h-5" />
+                    Close
+                  </button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )}
 
