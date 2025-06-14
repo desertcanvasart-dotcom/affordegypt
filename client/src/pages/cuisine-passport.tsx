@@ -208,7 +208,7 @@ const egyptianDishes: Dish[] = [
     category: "Beverage",
     popularity: 70,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/karkade.jpg",
+    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&h=480&fit=crop&crop=center&q=80",
     nutritionScore: 95,
     culturalStory: "Ancient Nubian drink with medicinal properties, popular throughout Egypt",
     bestLocations: ["Aswan street vendors", "Traditional cafes", "Nubian restaurants"]
