@@ -130,21 +130,53 @@ const egyptianDishes: Dish[] = [
     id: 3,
     name: "Molokhia",
     arabicName: "ملوخية",
-    description: "Green soup made from jute leaves, garlic, and coriander, served with rice and meat",
+    description: "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt's most ancient dishes dating back to Pharaonic times. Smooth, garlicky, and full of umami with a unique slightly mucilaginous texture.",
     region: "Nile Delta",
     spiceLevel: 2,
     difficulty: "Medium",
     cookingTime: "30 minutes",
     priceRange: "40-80 EGP",
-    ingredients: ["Molokhia leaves", "Chicken broth", "Garlic", "Coriander", "Rice"],
+    ingredients: ["Molokhia leaves", "Garlic", "Ground coriander", "Chicken broth", "Ghee or butter", "Lemon juice", "Salt"],
     allergens: [],
     category: "Main",
     popularity: 80,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/molo5eya.jpg",
     nutritionScore: 88,
-    culturalStory: "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty",
-    bestLocations: ["Naguib Mahfouz Cafe", "Traditional family restaurants", "Hotel restaurants"]
+    culturalStory: "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt's most ancient and beloved dishes, representing the ultimate comfort food for Egyptians across generations.",
+    bestLocations: ["Naguib Mahfouz Cafe", "Traditional family restaurants", "Hotel restaurants", "Rural Egyptian households"],
+    signatureTraits: [
+      "Thick and slightly viscous texture (similar to okra)",
+      "Earthy, garlicky, and rich with coriander flavor",
+      "Ancient dish with Pharaonic origins",
+      "Ultimate Egyptian comfort food",
+      "Unique mucilaginous consistency"
+    ],
+    servingStyles: [
+      "Served over white rice or vermicelli rice",
+      "Accompanied by baladi bread",
+      "Topped with squeeze of fresh lemon",
+      "Paired with hot chili vinegar",
+      "Served with grilled protein on the side"
+    ],
+    cookingMethods: [
+      "Never boil - heat gently to preserve texture",
+      "Stir only once after adding to broth",
+      "Heat 3-5 minutes until warmed and thickened",
+      "Add tasha (garlic-coriander mix) while sizzling hot"
+    ],
+    regionalVariations: [
+      "Alexandrian-style: Includes chopped tomatoes, served with seafood",
+      "Palestinian/Lebanese style: Whole leaves, more stew-like texture",
+      "Rural Egyptian: Traditionally paired with rabbit for feasts",
+      "Modern variations: Served with vinegar-chili dip on side"
+    ],
+    preparationTips: [
+      "Fresh molokhia must be chopped until paste-like consistency",
+      "Frozen molokhia works well as convenient alternative",
+      "Make tasha separately for proper flavor infusion",
+      "Avoid over-stirring to prevent slimy texture"
+    ]
   },
   {
     id: 4,
