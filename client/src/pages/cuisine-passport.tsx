@@ -68,7 +68,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 95,
     tried: false,
-    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/koshary.jpg",
     nutritionScore: 85,
     culturalStory: "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt",
     bestLocations: ["Abou Tarek - Downtown Cairo", "Koshari El Tahrir", "Koshari Hind"]
@@ -88,7 +88,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 90,
     tried: false,
-    image: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/fool-medames.jpg",
     nutritionScore: 92,
     culturalStory: "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots",
     bestLocations: ["Al Malky Restaurant", "Traditional street carts", "Local cafes"]
@@ -108,7 +108,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 80,
     tried: false,
-    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/molo5eya.jpg",
     nutritionScore: 88,
     culturalStory: "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty",
     bestLocations: ["Naguib Mahfouz Cafe", "Traditional family restaurants", "Hotel restaurants"]
@@ -128,7 +128,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 75,
     tried: false,
-    image: "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/mashi.jpg",
     nutritionScore: 90,
     culturalStory: "Ottoman influence dish that became deeply rooted in Egyptian family traditions",
     bestLocations: ["Alexandrian family restaurants", "Traditional homes", "Coastal restaurants"]
@@ -148,7 +148,7 @@ const egyptianDishes: Dish[] = [
     category: "Appetizer",
     popularity: 100,
     tried: false,
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/3esh.jpg",
     nutritionScore: 70,
     culturalStory: "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life",
     bestLocations: ["Local bakeries", "Street vendors", "Every Egyptian table"]
@@ -168,7 +168,7 @@ const egyptianDishes: Dish[] = [
     category: "Dessert",
     popularity: 85,
     tried: false,
-    image: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/om-3aly.jpg",
     nutritionScore: 60,
     culturalStory: "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory",
     bestLocations: ["Groppi Cafe", "Traditional cafes", "Hotel restaurants"]
@@ -188,7 +188,7 @@ const egyptianDishes: Dish[] = [
     category: "Street Food",
     popularity: 85,
     tried: false,
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/7awawshy.jpg",
     nutritionScore: 75,
     culturalStory: "Created in Cairo's working-class neighborhoods as a quick, filling meal",
     bestLocations: ["El Refai Restaurant", "Street food vendors", "Local grills"]
@@ -208,7 +208,7 @@ const egyptianDishes: Dish[] = [
     category: "Beverage",
     popularity: 70,
     tried: false,
-    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&h=480&fit=crop&crop=center&q=80",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/karkade.jpg",
     nutritionScore: 95,
     culturalStory: "Ancient Nubian drink with medicinal properties, popular throughout Egypt",
     bestLocations: ["Aswan street vendors", "Traditional cafes", "Nubian restaurants"]
