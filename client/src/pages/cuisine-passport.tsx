@@ -214,21 +214,53 @@ const egyptianDishes: Dish[] = [
     id: 4,
     name: "Mahshi",
     arabicName: "محشي",
-    description: "Stuffed vegetables (zucchini, eggplant, peppers) filled with rice, herbs, and sometimes meat",
+    description: "Egypt's classic dish of vegetables stuffed with seasoned rice, slow-cooked in light tomato broth. Includes zucchini, eggplant, bell peppers, tomatoes, cabbage leaves, and grape leaves. Deeply tied to family gatherings and celebrations.",
     region: "Alexandria",
     spiceLevel: 2,
     difficulty: "Hard",
     cookingTime: "90 minutes",
     priceRange: "60-120 EGP",
-    ingredients: ["Mixed vegetables", "Rice", "Fresh herbs", "Tomato sauce", "Ground meat"],
+    ingredients: ["Zucchini", "Bell peppers", "Egyptian rice", "Onion", "Tomato paste", "Parsley", "Dill", "Cilantro", "Vegetable oil", "Cumin", "Coriander"],
     allergens: [],
     category: "Main",
     popularity: 75,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/mashi.jpg",
     nutritionScore: 90,
-    culturalStory: "Ottoman influence dish that became deeply rooted in Egyptian family traditions",
-    bestLocations: ["Alexandrian family restaurants", "Traditional homes", "Coastal restaurants"]
+    culturalStory: "Ottoman influence dish that became deeply rooted in Egyptian family traditions. Often prepared in large trays for sharing at family gatherings, feasts, and celebrations. The name literally means 'stuffed' in Arabic.",
+    bestLocations: ["Alexandrian family restaurants", "Traditional homes", "Coastal restaurants", "Friday family lunch gatherings"],
+    signatureTraits: [
+      "Vegetables stuffed with seasoned rice filling",
+      "Slow-cooked in tomato-based broth for maximum flavor",
+      "Herby, garlicky, rich, and comforting taste",
+      "Naturally vegetarian, often vegan",
+      "Perfect for family gatherings and celebrations"
+    ],
+    servingStyles: [
+      "Arranged upright on serving tray",
+      "Spooned with cooking broth on top",
+      "Served with yogurt or green salad",
+      "Accompanied by lemon wedges",
+      "Paired with pickles or molokhia for complete meal"
+    ],
+    cookingMethods: [
+      "Hollow vegetables carefully with vegetable corer",
+      "Fill 2/3 full to allow rice expansion",
+      "Layer with potato slices to prevent sticking",
+      "Simmer gently 45-60 minutes until tender"
+    ],
+    regionalVariations: [
+      "Upper Egypt: Cabbage and grape leaves versions especially loved",
+      "Nile Delta: Traditional cabbage rolls popular",
+      "Meat variation: Add minced meat to rice for richer version",
+      "Coastal areas: Often served with seafood accompaniments"
+    ],
+    preparationTips: [
+      "Use short grain Egyptian rice for best texture",
+      "Do not pre-cook rice - it cooks inside vegetables",
+      "Reserve tomato juice from hollowed tomatoes for broth",
+      "Served at Friday family lunches, Eid, and special occasions"
+    ]
   },
   {
     id: 5,
