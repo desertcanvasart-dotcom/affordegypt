@@ -50,6 +50,9 @@ interface Dish {
   nutritionScore: number;
   culturalStory: string;
   bestLocations: string[];
+  healthBenefits?: string[];
+  servingStyles?: string[];
+  preparationMethods?: string[];
 }
 
 const egyptianDishes: Dish[] = [
@@ -197,21 +200,39 @@ const egyptianDishes: Dish[] = [
     id: 8,
     name: "Karkade",
     arabicName: "كركديه",
-    description: "Refreshing hibiscus tea served hot or cold, known for its deep red color and tart flavor",
+    description: "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free.",
     region: "Aswan",
     spiceLevel: 0,
     difficulty: "Easy",
-    cookingTime: "10 minutes",
+    cookingTime: "10 minutes (hot) / 6-12 hours (cold brew)",
     priceRange: "10-25 EGP",
-    ingredients: ["Dried hibiscus flowers", "Water", "Sugar"],
+    ingredients: ["Dried hibiscus petals", "Water", "Sugar", "Optional: lemon, cinnamon, clove"],
     allergens: [],
     category: "Beverage",
     popularity: 70,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/karkade.jpg",
     nutritionScore: 95,
-    culturalStory: "Ancient Nubian drink with medicinal properties, popular throughout Egypt",
-    bestLocations: ["Aswan street vendors", "Traditional cafes", "Nubian restaurants"]
+    culturalStory: "Also spelled Karkaday or Karkadi, this traditional drink holds deep cultural significance in Egypt. Served during weddings and festive gatherings, it's a Ramadan favorite for breaking the fast. Known for medicinal benefits including lowering blood pressure, aiding digestion, and boosting liver health. Can be prepared as cold brew (traditional Egyptian method for smoother taste) or hot brew for stronger flavor.",
+    bestLocations: ["Aswan street vendors", "Traditional cafes", "Cairo street cafés with shisha", "Wedding celebrations", "Ramadan iftar tables"],
+    healthBenefits: [
+      "Lowers blood pressure (clinically studied)",
+      "Aids digestion", 
+      "Boosts liver health",
+      "Rich in vitamin C and antioxidants",
+      "Caffeine-free alternative to tea/coffee"
+    ],
+    servingStyles: [
+      "Hot as soothing herbal tea",
+      "Cold as refreshing summer drink", 
+      "With rosewater for floral twist",
+      "Infused with ginger or mint",
+      "Mixed with sparkling water as hibiscus soda"
+    ],
+    preparationMethods: [
+      "Cold Brew: Soak petals 6-12 hours for gentler flavor",
+      "Hot Brew: Simmer 10-15 minutes for stronger taste"
+    ]
   }
 ];
 
@@ -606,6 +627,48 @@ export default function CuisinePassport() {
                   <h4 className="font-semibold mb-2">Cultural Story</h4>
                   <p className="text-gray-700 text-sm">{selectedDish.culturalStory}</p>
                 </div>
+
+                {selectedDish.healthBenefits && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-green-600">Health Benefits</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.healthBenefits.map((benefit, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <Leaf className="w-3 h-3 text-green-500" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.servingStyles && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-primary">Serving Styles</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.servingStyles.map((style, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <ChefHat className="w-3 h-3 text-primary" />
+                          {style}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.preparationMethods && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-blue-600">Preparation Methods</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.preparationMethods.map((method, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <Clock className="w-3 h-3 text-blue-500" />
+                          {method}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
