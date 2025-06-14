@@ -57,6 +57,7 @@ interface Dish {
   regionalVariations?: string[];
   cookingMethods?: string[];
   preparationTips?: string[];
+  traditionalUses?: string[];
 }
 
 const egyptianDishes: Dish[] = [
@@ -266,21 +267,53 @@ const egyptianDishes: Dish[] = [
     id: 5,
     name: "Baladi Bread",
     arabicName: "عيش بلدي",
-    description: "Traditional Egyptian flatbread baked in wood-fired ovens, the staple of every Egyptian meal",
+    description: "Egypt's traditional whole wheat flatbread, a cornerstone of everyday Egyptian life. The word 'baladi' means 'traditional' or 'local'. Similar to pita but made with 100% whole wheat flour, baked at high heat creating a puffed pocket inside.",
     region: "All Egypt",
     spiceLevel: 0,
     difficulty: "Medium",
     cookingTime: "3 hours",
     priceRange: "2-5 EGP",
-    ingredients: ["Wheat flour", "Water", "Salt", "Yeast"],
+    ingredients: ["Whole wheat flour", "All-purpose flour", "Instant yeast", "Sugar", "Salt", "Warm water", "Olive oil"],
     allergens: ["Gluten"],
     category: "Appetizer",
     popularity: 100,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/3esh.jpg",
     nutritionScore: 70,
-    culturalStory: "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life",
-    bestLocations: ["Local bakeries", "Street vendors", "Every Egyptian table"]
+    culturalStory: "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life. Simple, hearty, and deeply rooted in Egyptian culture, this bread truly embodies the traditional local spirit.",
+    bestLocations: ["Local bakeries", "Street vendors", "Every Egyptian table", "Furn baladi (clay ovens)"],
+    signatureTraits: [
+      "Whole wheat, round and flat shape",
+      "Puffs up when baked - forming a pocket inside",
+      "Soft yet slightly chewy with nutty, earthy flavor",
+      "Naturally vegan, no dairy or eggs",
+      "Served with almost every Egyptian meal"
+    ],
+    servingStyles: [
+      "Breakfast with ful medames",
+      "Scooping up molokhia or koshari",
+      "Wrapping kebda (liver) sandwiches",
+      "Pairing with taameya (Egyptian falafel)",
+      "Served with dips like tahini, baba ghanoush, duqqa"
+    ],
+    cookingMethods: [
+      "Baked on hot baking stone or iron griddle",
+      "Cooked at 250°C (480°F) for 5-7 minutes",
+      "Puffs up during high-heat baking process",
+      "Can be made at home with or without special oven"
+    ],
+    preparationTips: [
+      "Use preheated pizza stone to mimic clay oven effect",
+      "Avoid over-handling dough once shaped to ensure puffing",
+      "Add white flour for better elasticity in modern baking",
+      "Store in sealed bag for 2-3 days or freeze for longer"
+    ],
+    traditionalUses: [
+      "Accompanies mahshi and other main dishes",
+      "Essential for authentic Egyptian breakfast",
+      "Used for wrapping and scooping foods",
+      "Symbol of sustenance in Egyptian culture"
+    ]
   },
   {
     id: 6,
@@ -867,6 +900,20 @@ export default function CuisinePassport() {
                         <li key={index} className="flex items-center gap-2">
                           <Clock className="w-3 h-3 text-yellow-500" />
                           {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.traditionalUses && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-amber-600">Traditional Uses</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.traditionalUses.map((use, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <Star className="w-3 h-3 text-amber-500" />
+                          {use}
                         </li>
                       ))}
                     </ul>
