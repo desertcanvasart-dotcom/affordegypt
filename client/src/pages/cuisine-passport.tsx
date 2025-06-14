@@ -53,6 +53,9 @@ interface Dish {
   healthBenefits?: string[];
   servingStyles?: string[];
   preparationMethods?: string[];
+  signatureTraits?: string[];
+  regionalVariations?: string[];
+  cookingMethods?: string[];
 }
 
 const egyptianDishes: Dish[] = [
@@ -180,21 +183,42 @@ const egyptianDishes: Dish[] = [
     id: 7,
     name: "Hawawshi",
     arabicName: "حواوشي",
-    description: "Spiced minced meat stuffed in baladi bread and baked until crispy",
+    description: "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside.",
     region: "Cairo",
     spiceLevel: 3,
     difficulty: "Medium",
     cookingTime: "25 minutes",
     priceRange: "35-70 EGP",
-    ingredients: ["Baladi bread", "Ground meat", "Onions", "Spices", "Herbs"],
+    ingredients: ["Ground beef or lamb", "Baladi bread", "Onion", "Bell pepper", "Garlic", "Green chilli", "Parsley", "Cumin", "Paprika", "Cinnamon", "Allspice"],
     allergens: ["Gluten"],
     category: "Street Food",
     popularity: 85,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/7awawshy.jpg",
     nutritionScore: 75,
-    culturalStory: "Created in Cairo's working-class neighborhoods as a quick, filling meal",
-    bestLocations: ["El Refai Restaurant", "Street food vendors", "Local grills"]
+    culturalStory: "Created in Cairo's working-class neighborhoods as a quick, filling meal that's become one of Egypt's most beloved street foods. Often compared to a Middle Eastern-style meat pie or spiced burger in pita, it's popular as a street snack, family meal, or party dish.",
+    bestLocations: ["El Refai Restaurant", "Street food vendors", "Local grills", "Cairo street food stalls"],
+    signatureTraits: [
+      "Crispy and golden on the outside",
+      "Juicy, spiced meat filling inside", 
+      "Packed with onions, peppers, and warm spices",
+      "Perfect balance of texture and flavor"
+    ],
+    servingStyles: [
+      "Sliced in halves or quarters",
+      "Served with tahini sauce",
+      "Accompanied by pickles",
+      "With fresh salad on the side"
+    ],
+    regionalVariations: [
+      "Alexandrian Hawawshi: Spicier version in fresh kneaded dough",
+      "Modern twist: Add cheese for extra richness",
+      "Lighter version: Use whole wheat pita bread"
+    ],
+    cookingMethods: [
+      "Oven method: 200°C for 20-25 minutes, flip halfway",
+      "Skillet method: 5-7 minutes per side on medium heat"
+    ]
   },
   {
     id: 8,
@@ -663,6 +687,48 @@ export default function CuisinePassport() {
                       {selectedDish.preparationMethods.map((method, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <Clock className="w-3 h-3 text-blue-500" />
+                          {method}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.signatureTraits && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-orange-600">Signature Traits</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.signatureTraits.map((trait, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <Star className="w-3 h-3 text-orange-500" />
+                          {trait}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.regionalVariations && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-purple-600">Regional Variations</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.regionalVariations.map((variation, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <MapPin className="w-3 h-3 text-purple-500" />
+                          {variation}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.cookingMethods && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-primary">Cooking Methods</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.cookingMethods.map((method, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <ChefHat className="w-3 h-3 text-primary" />
                           {method}
                         </li>
                       ))}
