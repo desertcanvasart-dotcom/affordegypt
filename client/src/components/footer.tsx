@@ -129,6 +129,11 @@ export default function Footer() {
                   Egyptian Street Food
                 </Link>
               </li>
+              <li>
+                <Link href="/cuisine-passport" className="text-gray-300 hover:text-primary transition-colors">
+                  Cuisine Passport
+                </Link>
+              </li>
             </ul>
           </div>
 

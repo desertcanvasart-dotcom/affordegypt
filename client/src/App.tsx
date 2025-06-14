@@ -27,6 +27,7 @@ import EgyptianStreetFoodGuide from "@/pages/egyptian-street-food-guide";
 import NileValleyGuide from "@/pages/nile-valley-guide";
 import SinaiPeninsulaGuide from "@/pages/sinai-peninsula-guide";
 import EasternWesternDesertsGuide from "@/pages/eastern-western-deserts-guide";
+import CuisinePassport from "@/pages/cuisine-passport";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Reviews from "@/pages/reviews";
@@ -72,6 +73,7 @@ function Router() {
       <Route path="/nile-valley-guide" component={NileValleyGuide} />
       <Route path="/sinai-peninsula-guide" component={SinaiPeninsulaGuide} />
       <Route path="/eastern-western-deserts-guide" component={EasternWesternDesertsGuide} />
+      <Route path="/cuisine-passport" component={CuisinePassport} />
       <Route path="/booking-agreement" component={BookingAgreement} />
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle } from "lucide-react";
+import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle, ChefHat } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 
@@ -139,6 +139,13 @@ export default function Navbar() {
               <Lightbulb className="w-4 h-4" />
               Travel Tips
             </Link>
+            <Link 
+              href="/cuisine-passport"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+            >
+              <ChefHat className="w-4 h-4" />
+              Cuisine Passport
+            </Link>
           </nav>
 
           {/* Primary CTAs */}
@@ -189,6 +196,14 @@ export default function Navbar() {
               >
                 <Lightbulb className="w-4 h-4" />
                 Travel Tips
+              </Link>
+              <Link 
+                href="/cuisine-passport"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
+                <ChefHat className="w-4 h-4" />
+                Cuisine Passport
               </Link>
               
               {/* Mobile CTAs */}
