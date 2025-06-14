@@ -58,6 +58,7 @@ interface Dish {
   cookingMethods?: string[];
   preparationTips?: string[];
   traditionalUses?: string[];
+  celebrationOccasions?: string[];
 }
 
 const egyptianDishes: Dish[] = [
@@ -319,21 +320,53 @@ const egyptianDishes: Dish[] = [
     id: 6,
     name: "Umm Ali",
     arabicName: "أم علي",
-    description: "Warm bread pudding with milk, nuts, and raisins - Egypt's most famous dessert",
+    description: "Egypt's most famous and comforting dessert meaning 'Ali's Mother'. Rich, creamy bread pudding-style dish with pastry, nuts, milk, and cream, baked until bubbling and golden. Associated with celebrations, Ramadan, and special occasions.",
     region: "Cairo",
     spiceLevel: 0,
     difficulty: "Easy",
     cookingTime: "20 minutes",
     priceRange: "30-60 EGP",
-    ingredients: ["Puff pastry", "Milk", "Sugar", "Nuts", "Raisins", "Coconut"],
+    ingredients: ["Puff pastry", "Full-fat milk", "Heavy cream", "Sugar", "Mixed nuts", "Shredded coconut", "Raisins", "Vanilla extract"],
     allergens: ["Gluten", "Nuts", "Dairy"],
     category: "Dessert",
     popularity: 85,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/om-3aly.jpg",
     nutritionScore: 60,
-    culturalStory: "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory",
-    bestLocations: ["Groppi Cafe", "Traditional cafes", "Hotel restaurants"]
+    culturalStory: "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory. Often called the Egyptian version of bread pudding with Middle Eastern flair, loaded with nuts, coconut, and sometimes raisins.",
+    bestLocations: ["Groppi Cafe", "Traditional cafes", "Hotel restaurants", "Ramadan iftar tables"],
+    signatureTraits: [
+      "Served warm, straight from the oven",
+      "Crispy, golden top; creamy and soft underneath",
+      "Made with puff pastry, phyllo, or bread",
+      "No eggs - unlike Western bread puddings",
+      "Rich, festive, and deeply satisfying"
+    ],
+    servingStyles: [
+      "Best enjoyed fresh out of the oven",
+      "Garnished with crushed pistachios",
+      "Optional drizzle of condensed milk for extra indulgence",
+      "Served in individual ramekins or family-style dish",
+      "Accompanied by Arabic coffee or tea"
+    ],
+    cookingMethods: [
+      "Bake at 200°C (390°F) for 20-25 minutes",
+      "Broil for extra 2-3 minutes for crispier top",
+      "Layer pastry with nuts and pour hot milk mixture",
+      "Top with heavy cream without stirring"
+    ],
+    celebrationOccasions: [
+      "Ramadan Iftar desserts",
+      "Eid feasts and celebrations",
+      "Weddings and special occasions",
+      "Café menus and Friday family lunches"
+    ],
+    preparationTips: [
+      "Use cream-soaked toast for more rustic version",
+      "Add rosewater or orange blossom water for Arabian twist",
+      "Include sweetened condensed milk for richer version",
+      "Watch closely during broiling to prevent burning"
+    ]
   },
   {
     id: 7,
@@ -914,6 +947,20 @@ export default function CuisinePassport() {
                         <li key={index} className="flex items-center gap-2">
                           <Star className="w-3 h-3 text-amber-500" />
                           {use}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedDish.celebrationOccasions && (
+                  <div>
+                    <h4 className="font-semibold mb-2 text-pink-600">Celebration Occasions</h4>
+                    <ul className="text-sm space-y-1">
+                      {selectedDish.celebrationOccasions.map((occasion, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <Heart className="w-3 h-3 text-pink-500" />
+                          {occasion}
                         </li>
                       ))}
                     </ul>
