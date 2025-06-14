@@ -800,8 +800,8 @@ export default function NileValleyGuide() {
                 Book sleeping cars for long journeys.
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• Cairo-Luxor: 450-850 EGP</li>
-                <li>• Cairo-Aswan: 500-950 EGP</li>
+                <li>• Cairo-Luxor: 1000-1250 EGP</li>
+                <li>• Cairo-Aswan: 1100-1450 EGP</li>
                 <li>• AC coaches available</li>
                 <li>• Night trains include meals</li>
               </ul>
@@ -815,7 +815,7 @@ export default function NileValleyGuide() {
                 3-7 day options available.
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• 3-4 days: 1500-4000 EGP</li>
+                <li>• 3-4 days: 14500-17000 EGP</li>
                 <li>• All meals included</li>
                 <li>• Site entrance fees extra</li>
                 <li>• Best Oct-Apr weather</li>
@@ -830,8 +830,8 @@ export default function NileValleyGuide() {
                 Book early for better prices.
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• Cairo-Luxor: 2000-4000 EGP</li>
-                <li>• Cairo-Aswan: 2500-4500 EGP</li>
+                <li>• Cairo-Luxor: 4300-6000 EGP</li>
+                <li>• Cairo-Aswan: 5200-7000 EGP</li>
                 <li>• Abu Simbel day trips</li>
                 <li>• 1-2 hour flight times</li>
               </ul>
