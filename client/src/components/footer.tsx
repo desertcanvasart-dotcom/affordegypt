@@ -125,7 +125,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/egyptian-street-food" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/egyptian-street-food-guide" className="text-gray-300 hover:text-primary transition-colors">
                   Egyptian Street Food
                 </Link>
               </li>
