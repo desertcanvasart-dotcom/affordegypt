@@ -875,11 +875,11 @@ export default function NileValleyGuide() {
                 </div>
                 <div>
                   <h4 className="font-medium">Mid-Range Traveler</h4>
-                  <p className="text-sm text-gray-600">3-star hotel, mix of restaurants, private transport: 1500-2500 EGP</p>
+                  <p className="text-sm text-gray-600">3-star hotel, mix of restaurants, private transport: 2300-3500 EGP</p>
                 </div>
                 <div>
                   <h4 className="font-medium">Luxury Traveler</h4>
-                  <p className="text-sm text-gray-600">5-star hotels, fine dining, guided tours: 3000+ EGP</p>
+                  <p className="text-sm text-gray-600">5-star hotels, fine dining, guided tours: 9000+ EGP</p>
                 </div>
               </div>
             </Card>
