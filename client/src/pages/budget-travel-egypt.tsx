@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { 
   DollarSign, 
   Calendar, 
@@ -557,6 +558,8 @@ export default function BudgetTravelEgypt() {
 
         </div>
       </div>
+      
+      <Footer />
     </>
   );
 }
