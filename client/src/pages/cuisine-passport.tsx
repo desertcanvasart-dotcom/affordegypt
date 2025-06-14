@@ -743,7 +743,9 @@ export default function CuisinePassport() {
                 <div className="text-center pr-12">
                   <h2 className="text-3xl font-bold text-primary mb-2">{selectedDish.name}</h2>
                   <p className="text-xl text-gray-600 mb-3">{selectedDish.arabicName}</p>
-                  <Badge className="bg-primary text-white">Traditional Egyptian Dish</Badge>
+                  <Badge className="bg-primary text-white">
+                    {selectedDish.category === "Beverage" ? "Traditional Egyptian Drink" : "Traditional Egyptian Dish"}
+                  </Badge>
                 </div>
               </CardHeader>
               
@@ -781,7 +783,7 @@ export default function CuisinePassport() {
                 {/* Spice Level */}
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-3">
-                    <Flame className="w-5 h-5 text-red-500" />
+                    <Flame className="w-5 h-5 text-primary" />
                     <span className="font-semibold">Spice Level</span>
                   </div>
                   <div className="flex items-center gap-2">
