@@ -681,15 +681,59 @@ export default function CuisinePassport() {
               {/* AR Overlay Content */}
               {isARActive && selectedDish && (
                 <div className="absolute inset-0 pointer-events-none">
-                  {/* Dish Information Overlay */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-                    <Card className="bg-white/95 backdrop-blur-sm max-w-sm mx-auto shadow-2xl">
+                  {/* Instructions Header */}
+                  <div className="absolute top-4 left-4 right-4 pointer-events-auto">
+                    <Card className="bg-primary/90 text-white backdrop-blur-sm">
+                      <CardContent className="p-3">
+                        <div className="flex items-center gap-2">
+                          <Camera className="w-5 h-5" />
+                          <div>
+                            <h3 className="font-medium">Point camera at Egyptian food or menu</h3>
+                            <p className="text-xs opacity-90">Move your camera to see dish information appear</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Menu Detection Frame */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-64 h-48 border-2 border-primary/60 rounded-lg relative">
+                      <div className="absolute inset-0 border-primary/30 border-dashed border-2 rounded-lg animate-pulse"></div>
+                      
+                      {/* Corner Markers */}
+                      <div className="absolute -top-2 -left-2 w-6 h-6 border-l-4 border-t-4 border-primary"></div>
+                      <div className="absolute -top-2 -right-2 w-6 h-6 border-r-4 border-t-4 border-primary"></div>
+                      <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-4 border-b-4 border-primary"></div>
+                      <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-4 border-b-4 border-primary"></div>
+                      
+                      {/* Center Target */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div className="w-8 h-8 border-2 border-primary rounded-full bg-primary/20 flex items-center justify-center">
+                          <div className="w-3 h-3 bg-primary rounded-full animate-ping"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Scanning Text */}
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                        <p className="text-primary font-medium text-sm bg-white/90 px-3 py-1 rounded-full">
+                          Scanning for {selectedDish.name}...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dish Information Card - Positioned as if "detected" */}
+                  <div className="absolute bottom-32 left-4 right-4 pointer-events-auto">
+                    <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-2 border-green-500">
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
-                          <h3 className="font-bold text-lg">{selectedDish.name}</h3>
-                          <Badge className="bg-primary text-white">AR Live</Badge>
+                          <div>
+                            <h3 className="font-bold text-lg text-green-700">✓ Dish Detected!</h3>
+                            <p className="text-sm text-gray-600">{selectedDish.name} • {selectedDish.arabicName}</p>
+                          </div>
+                          <Badge className="bg-green-500 text-white animate-pulse">Found</Badge>
                         </div>
-                        <p className="text-gray-600 text-sm">{selectedDish.arabicName}</p>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div className="grid grid-cols-2 gap-2 text-xs">
@@ -726,63 +770,36 @@ export default function CuisinePassport() {
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2">
                             <div 
-                              className="bg-green-500 h-2 rounded-full" 
+                              className="bg-green-500 h-2 rounded-full transition-all duration-1000" 
                               style={{ width: `${selectedDish.nutritionScore}%` }}
                             ></div>
                           </div>
                           <p className="text-xs mt-1">{selectedDish.nutritionScore}% Healthy</p>
                         </div>
 
-                        <div className="bg-gray-100 p-2 rounded">
+                        <div className="bg-blue-50 p-2 rounded border border-blue-200">
                           <div className="flex items-center gap-1 mb-1">
-                            <Utensils className="w-3 h-3 text-primary" />
-                            <span className="font-medium text-xs">Key Ingredients</span>
+                            <MapPin className="w-3 h-3 text-blue-500" />
+                            <span className="font-medium text-xs">Best Place to Try</span>
                           </div>
-                          <div className="flex flex-wrap gap-1">
-                            {selectedDish.ingredients.slice(0, 4).map((ingredient, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
-                                {ingredient}
-                              </Badge>
-                            ))}
-                            {selectedDish.ingredients.length > 4 && (
-                              <Badge variant="outline" className="text-xs">
-                                +{selectedDish.ingredients.length - 4} more
-                              </Badge>
-                            )}
-                          </div>
+                          <p className="text-xs text-blue-700">{selectedDish.bestLocation}</p>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
 
-                  {/* AR Scanning Animation */}
-                  <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2">
-                    <div className="w-32 h-32 border-2 border-primary rounded-lg relative">
-                      <div className="absolute inset-0 border-primary border-t-2 rounded-lg animate-spin opacity-50"></div>
-                      <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-primary"></div>
-                      <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-primary"></div>
-                      <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-primary"></div>
-                      <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-primary"></div>
-                    </div>
-                  </div>
-
-                  {/* Cultural Story Popup */}
+                  {/* Quick Action Tips */}
                   <div className="absolute bottom-4 left-4 right-4 pointer-events-auto">
-                    <Card className="bg-white/90 backdrop-blur-sm">
-                      <CardContent className="p-3">
-                        <div className="flex items-start gap-2">
-                          <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                            <Star className="w-4 h-4 text-white" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-sm mb-1">Cultural Story</h4>
-                            <p className="text-xs text-gray-700 line-clamp-2">
-                              {selectedDish.culturalStory}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <div className="flex justify-center gap-2">
+                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs flex items-center gap-1">
+                        <Camera className="w-3 h-3" />
+                        Move camera around
+                      </div>
+                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs flex items-center gap-1">
+                        <Eye className="w-3 h-3" />
+                        Find Egyptian dishes
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
