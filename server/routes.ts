@@ -677,13 +677,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const existingRoutes = await storage.getRoutes();
         
         // Check if exact route already exists
-        const exactRouteExists = existingRoutes.some(route => 
+        const existingRoute = existingRoutes.find(route => 
           route.fromCityId === fromCityId && route.toCityId === toCityId
         );
         
-        if (exactRouteExists) {
+        if (existingRoute) {
           return res.status(409).json({ 
-            message: "A route already exists between these cities in this direction" 
+            message: `A route already exists between these cities in this direction: "${existingRoute.name}" (ID: ${existingRoute.id})` 
           });
         }
 
