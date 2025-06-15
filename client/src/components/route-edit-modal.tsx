@@ -65,10 +65,25 @@ export default function RouteEditModal({
     if (isOpen) {
       if (route) {
         // Editing existing route
-        // Extract prices from basePriceByVehicle structure
-        const sedanPrice = route.basePriceByVehicle?.['1']?.['1'] || route.sedanPrice || '';
-        const minivanPrice = route.basePriceByVehicle?.['2']?.['1'] || route.minivanPrice || '';
-        const vanPrice = route.basePriceByVehicle?.['3']?.['1'] || route.vanPrice || '';
+        // Extract prices from vehiclePrices (new format) or basePriceByVehicle (legacy)
+        let vehiclePrices = route.vehiclePrices;
+        if (typeof vehiclePrices === 'string') {
+          try {
+            vehiclePrices = JSON.parse(vehiclePrices);
+          } catch (e) {
+            vehiclePrices = {};
+          }
+        }
+        
+        const sedanPrice = vehiclePrices?.sedan || 
+                          route.basePriceByVehicle?.['1']?.['1'] || 
+                          route.sedanPrice || '';
+        const minivanPrice = vehiclePrices?.minivan || 
+                            route.basePriceByVehicle?.['2']?.['1'] || 
+                            route.minivanPrice || '';
+        const vanPrice = vehiclePrices?.van || 
+                        route.basePriceByVehicle?.['3']?.['1'] || 
+                        route.vanPrice || '';
         
         setFormData({
           name: route.name || '',
