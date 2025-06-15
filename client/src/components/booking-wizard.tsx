@@ -307,7 +307,7 @@ export default function BookingWizard() {
                         <div className="flex-1">
                           <h4 className="font-semibold">{addOn.name}</h4>
                           <p className="text-sm text-muted-foreground">{addOn.description}</p>
-                          <div className="text-green-600 font-semibold">${addOn.price} {addOn.priceUnit.replace('_', ' ')}</div>
+                          <div className="text-green-600 font-semibold">EGP {Math.round(parseFloat(addOn.price) * 32)} {addOn.priceUnit.replace('_', ' ')}</div>
                         </div>
                       </div>
                     </div>

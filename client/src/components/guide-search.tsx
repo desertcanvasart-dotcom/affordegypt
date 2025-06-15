@@ -217,7 +217,7 @@ export function GuideSearch({
                   </div>
                   <div className="text-right">
                     <div className="text-sm font-medium text-teal-600">
-                      ${selectedDuration * 15}/day
+                      EGP {selectedDuration * 480}/day
                     </div>
                     <div className="text-xs text-gray-500">
                       {getDurationLabel(selectedDuration)}
