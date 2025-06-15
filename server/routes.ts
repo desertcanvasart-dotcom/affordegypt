@@ -479,21 +479,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing
+        // Calculate guide pricing (converted to EGP)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
-          const guidePrices = {
+          const guidePricesUSD = {
             "English": 40, "Spanish": 45, "French": 45, "German": 50,
             "Italian": 45, "Japanese": 60, "Chinese": 55, "Arabic": 35
           };
-          guideTotal = guidePrices[cityService.selectedGuide.language] || 40;
+          const usdPrice = guidePricesUSD[cityService.selectedGuide.language] || 40;
+          guideTotal = Math.round(usdPrice * 32); // Convert to EGP
         }
 
-        // Calculate attractions
+        // Calculate attractions (converted to EGP)
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
-          // Define attraction prices per person based on city
-          const attractionPrices = {
+          // Define attraction prices per person in USD, then convert to EGP
+          const attractionPricesUSD = {
             "pyramids": 15, "khan_khalili": 8, "al_muizz": 5, "citadel": 12, 
             "coptic": 8, "egyptian_museum": 18, "cairo_tower": 10,
             "alexandria_library": 12, "qaitbay_citadel": 8, "montaza_palace": 10, "catacombs": 15,
@@ -503,25 +504,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
             "sharm_old_market": 8, "ras_mohammed": 25, "colored_canyon": 30
           };
           
-          cityService.selectedAttractions.forEach(attraction => {
-            const price = attractionPrices[attraction] || 10; // Default $10 per person
-            attractionsTotal += price * travelers;
+          cityService.selectedAttractions.forEach((attraction: any) => {
+            const usdPrice = attractionPricesUSD[attraction] || 10; // Default $10 per person
+            const egpPrice = Math.round(usdPrice * 32); // Convert to EGP
+            attractionsTotal += egpPrice * travelers;
           });
         }
 
-        // Calculate add-ons
+        // Calculate add-ons (converted to EGP)
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
           for (const addOn of cityService.selectedAddOns) {
             const addOnItem = await storage.getAddOn(addOn.id);
             if (addOnItem) {
-              const basePrice = parseFloat(addOnItem.price);
+              const basePriceUSD = parseFloat(addOnItem.price);
+              const basePriceEGP = Math.round(basePriceUSD * 32); // Convert to EGP
               const pricingType = addOnItem.unitType;
               
               if (pricingType === "per_person") {
-                addOnsTotal += basePrice * addOn.quantity * travelers;
+                addOnsTotal += basePriceEGP * addOn.quantity * travelers;
               } else {
-                addOnsTotal += basePrice * addOn.quantity;
+                addOnsTotal += basePriceEGP * addOn.quantity;
               }
             }
           }

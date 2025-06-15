@@ -41,7 +41,7 @@ export default function ServiceOverview() {
             </div>
             <h3 className="text-xl font-semibold text-foreground mb-3">Licensed Tour Guides</h3>
             <p className="text-muted-foreground mb-4">Multi-language guides. City-specific rates. Hourly or daily pricing.</p>
-            <div className="text-sm text-muted-foreground">Starting from $25/day</div>
+            <div className="text-sm text-muted-foreground">Starting from EGP 800/day</div>
           </div>
 
           {/* Add-ons */}
