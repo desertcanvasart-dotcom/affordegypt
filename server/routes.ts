@@ -1283,6 +1283,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/reviews/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updateData = req.body;
+      const review = await storage.updateReview(id, updateData);
+      res.json(review);
+    } catch (error: any) {
+      console.error('Error patching review:', error);
+      res.status(500).json({ message: "Failed to update review" });
+    }
+  });
+
   app.delete("/api/reviews/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
