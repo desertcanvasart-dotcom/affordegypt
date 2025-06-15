@@ -19,15 +19,20 @@ interface City {
 
 interface Route {
   id: number;
-  fromCityId: number;
-  toCityId: number;
+  routeCategory: string;
+  fromCityId: number | null;
+  toCityId: number | null;
+  cityId: number | null;
   fromLocation: string;
   toLocation: string;
   name?: string;
-  km: string;
+  tripMode: string;
+  nights: number;
+  distanceKm: number | null;
   estimatedDuration: string | null;
   routeHighlights?: string | null;
-  basePriceByVehicle: any;
+  vehiclePrices: any;
+  basePriceByVehicle?: any; // Legacy field for backward compatibility
 }
 
 export default function TransfersPage() {
@@ -70,15 +75,16 @@ export default function TransfersPage() {
   // Filter routes based on tab and selected cities
   const availableRoutes = routes.filter(route => {
     if (activeTab === "intercity") {
-      // Intercity: different cities
-      if (route.fromCityId === route.toCityId) return false;
+      // Intercity: routes between different cities
+      if (route.routeCategory !== 'inter_city') return false;
+      if (!fromCity || !toCity) return false;
+      return route.fromCityId === parseInt(fromCity) && route.toCityId === parseInt(toCity);
     } else {
-      // Intracity: same city
-      if (route.fromCityId !== route.toCityId) return false;
+      // Intracity: routes within same city
+      if (route.routeCategory !== 'intra_city') return false;
+      if (!selectedCityForLocal) return false;
+      return route.cityId === parseInt(selectedCityForLocal);
     }
-    
-    if (!fromCity || !toCity) return false;
-    return route.fromCityId === parseInt(fromCity) && route.toCityId === parseInt(toCity);
   });
 
   // Filter cities for display based on active tab and sort alphabetically
@@ -90,8 +96,8 @@ export default function TransfersPage() {
       // For intracity, only show cities that have internal routes
       const citiesWithInternalRoutes = new Set();
       routes.forEach(route => {
-        if (route.fromCityId === route.toCityId) {
-          citiesWithInternalRoutes.add(route.fromCityId);
+        if (route.routeCategory === 'intra_city' && route.cityId) {
+          citiesWithInternalRoutes.add(route.cityId);
         }
       });
       availableCities = cities.filter(city => citiesWithInternalRoutes.has(city.id));
@@ -155,25 +161,33 @@ export default function TransfersPage() {
     return routes.filter(route => route.fromCityId === cityId && route.toCityId === cityId);
   };
 
-  const getValidPrice = (priceData: any, vehicleType: string): number => {
-    if (!priceData || typeof priceData !== 'object') return 0;
+  const getValidPrice = (route: Route, vehicleType: string): number => {
+    if (!route) return 0;
     
-    // Try direct access first
-    const directPrice = priceData[vehicleType];
-    if (typeof directPrice === 'number' && directPrice > 0) return directPrice;
+    // Try new vehiclePrices field first
+    if (route.vehiclePrices && typeof route.vehiclePrices === 'object') {
+      const price = route.vehiclePrices[vehicleType];
+      if (typeof price === 'number' && price > 0) return price;
+      if (typeof price === 'string' && !isNaN(parseFloat(price))) return parseFloat(price);
+    }
     
-    // Try fallback properties for legacy data
-    const fallbackKey = `${vehicleType}Price`;
-    const fallbackPrice = priceData[fallbackKey];
-    if (typeof fallbackPrice === 'number' && fallbackPrice > 0) return fallbackPrice;
+    // Fallback to legacy basePriceByVehicle for existing routes
+    if (route.basePriceByVehicle && typeof route.basePriceByVehicle === 'object') {
+      const directPrice = route.basePriceByVehicle[vehicleType];
+      if (typeof directPrice === 'number' && directPrice > 0) return directPrice;
+      
+      // Try fallback properties for legacy data
+      const fallbackKey = `${vehicleType}Price`;
+      const fallbackPrice = route.basePriceByVehicle[fallbackKey];
+      if (typeof fallbackPrice === 'number' && fallbackPrice > 0) return fallbackPrice;
+    }
     
     return 0;
   };
 
   const getPrice = () => {
     if (!selectedRoute || !vehicleType) return 0;
-    const basePrice = getValidPrice(selectedRoute.basePriceByVehicle, vehicleType);
-    return basePrice;
+    return getValidPrice(selectedRoute, vehicleType);
   };
 
 
@@ -208,7 +222,7 @@ export default function TransfersPage() {
       fromCityName: cities.find(c => c.id === selectedRoute.fromCityId)?.name,
       toCityName: cities.find(c => c.id === selectedRoute.toCityId)?.name,
       routeName: selectedRoute.name,
-      distance: selectedRoute.km,
+      distance: selectedRoute.distanceKm?.toString() || '0',
       duration: selectedRoute.estimatedDuration,
       highlights: selectedRoute.routeHighlights
     };
@@ -499,11 +513,11 @@ export default function TransfersPage() {
                               </div>
                               <div className="flex items-center">
                                 <Navigation className="w-4 h-4 mr-1" />
-                                {route.km} km
+                                {route.distanceKm || 0} km
                               </div>
                               <div className="flex items-center">
                                 <Car className="w-4 h-4 mr-1" />
-                                From {getValidPrice(route.basePriceByVehicle, 'sedan') || 'N/A'} EGP
+                                From {getValidPrice(route, 'sedan') || 'N/A'} EGP
                               </div>
                             </div>
                             {route.routeHighlights && (
@@ -556,7 +570,7 @@ export default function TransfersPage() {
                 <h4 className="font-medium">Choose Your Vehicle:</h4>
                 <div className="grid md:grid-cols-3 gap-4">
                   {['sedan', 'minivan', 'van'].map((type) => {
-                    const price = getValidPrice(selectedRoute.basePriceByVehicle, type);
+                    const price = getValidPrice(selectedRoute, type);
                     if (price === 0) return null;
                     
                     return (
