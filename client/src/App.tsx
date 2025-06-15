@@ -35,6 +35,7 @@ import Reviews from "@/pages/reviews";
 import SubmitReview from "@/pages/submit-review";
 import Transfers from "@/pages/transfers";
 import PricingTool from "@/pages/pricing-tool";
+import DayByDayPlanner from "@/pages/day-by-day-planner";
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
@@ -63,6 +64,7 @@ function Router() {
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
       <Route path="/transfers" component={Transfers} />
       <Route path="/pricing-tool" component={PricingTool} />
+      <Route path="/day-by-day-planner" component={DayByDayPlanner} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />

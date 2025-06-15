@@ -247,6 +247,35 @@ export class DatabaseStorage implements IStorage {
     ];
 
     await db.insert(addOns).values(addOnData);
+
+    // Seed services for Day-by-Day Custom Planner
+    const serviceData = [
+      // Transfer Services
+      { type: "transfer", title: "Airport Transfer - Cairo", description: "Comfortable transfer from Cairo Airport to city center", cityId: createdCities[0].id, basePrice: "450.00", pricingMode: "per_group", vehicleCategory: "Sedan", durationMinutes: 60, capacity: 4, isActive: true },
+      { type: "transfer", title: "Airport Transfer - Luxor", description: "Transfer from Luxor Airport to hotels", cityId: createdCities[2].id, basePrice: "380.00", pricingMode: "per_group", vehicleCategory: "Sedan", durationMinutes: 45, capacity: 4, isActive: true },
+      { type: "transfer", title: "Hotel to Pyramids Transfer", description: "Private transfer from Cairo hotels to Giza Pyramids", cityId: createdCities[0].id, basePrice: "320.00", pricingMode: "per_group", vehicleCategory: "Sedan", durationMinutes: 45, capacity: 4, isActive: true },
+      
+      // Tour Services
+      { type: "tour", title: "Half-Day Pyramids Tour", description: "Visit the Great Pyramid, Sphinx, and pyramid complex", cityId: createdCities[0].id, basePrice: "850.00", pricingMode: "per_person", durationMinutes: 240, capacity: 15, isActive: true },
+      { type: "tour", title: "Full-Day Cairo City Tour", description: "Comprehensive tour of Islamic Cairo, Coptic Quarter, and Khan el-Khalili", cityId: createdCities[0].id, basePrice: "1200.00", pricingMode: "per_person", durationMinutes: 480, capacity: 15, isActive: true },
+      { type: "tour", title: "Valley of the Kings Tour", description: "Explore ancient tombs and temples in Luxor's west bank", cityId: createdCities[2].id, basePrice: "950.00", pricingMode: "per_person", durationMinutes: 300, capacity: 12, isActive: true },
+      { type: "tour", title: "Karnak Temple Complex", description: "Visit the massive temple complex dedicated to Amun-Ra", cityId: createdCities[2].id, basePrice: "650.00", pricingMode: "per_person", durationMinutes: 180, capacity: 20, isActive: true },
+      { type: "tour", title: "Alexandria Day Trip", description: "Explore the Mediterranean city with library and catacombs", cityId: createdCities[1].id, basePrice: "1100.00", pricingMode: "per_person", durationMinutes: 480, capacity: 15, isActive: true },
+      
+      // Guide Services
+      { type: "guide", title: "Professional Egyptologist Guide", description: "Expert guide with archaeology background", cityId: null, basePrice: "600.00", pricingMode: "per_group", durationMinutes: 480, capacity: 15, isActive: true },
+      { type: "guide", title: "Local Cultural Guide", description: "Knowledgeable local guide for cultural experiences", cityId: null, basePrice: "400.00", pricingMode: "per_group", durationMinutes: 240, capacity: 10, isActive: true },
+      { type: "guide", title: "Multilingual Tour Guide", description: "Guide fluent in English, German, French, and Arabic", cityId: null, basePrice: "500.00", pricingMode: "per_group", durationMinutes: 480, capacity: 12, isActive: true },
+      
+      // Add-on Services
+      { type: "addon", title: "Traditional Egyptian Lunch", description: "Authentic local cuisine at traditional restaurant", cityId: null, basePrice: "180.00", pricingMode: "per_person", isActive: true },
+      { type: "addon", title: "Entrance Tickets Bundle", description: "Combined entrance tickets for major attractions", cityId: null, basePrice: "350.00", pricingMode: "per_person", isActive: true },
+      { type: "addon", title: "Camel Ride Experience", description: "30-minute camel ride around the pyramids", cityId: createdCities[0].id, basePrice: "120.00", pricingMode: "per_person", durationMinutes: 30, isActive: true },
+      { type: "addon", title: "Felucca Sailing Trip", description: "Traditional sailboat experience on the Nile", cityId: createdCities[2].id, basePrice: "200.00", pricingMode: "per_person", durationMinutes: 90, capacity: 8, isActive: true },
+      { type: "addon", title: "Sound & Light Show", description: "Evening show at the pyramids with narration", cityId: createdCities[0].id, basePrice: "250.00", pricingMode: "per_person", durationMinutes: 60, isActive: true }
+    ];
+
+    await db.insert(services).values(serviceData);
   }
 
   // User methods
@@ -850,17 +879,17 @@ export class DatabaseStorage implements IStorage {
 
   // Day-by-Day Custom Planner methods
   async getServices(filter?: { type?: string; cityId?: number }): Promise<Service[]> {
-    let query = db.select().from(services).where(eq(services.isActive, true));
+    let whereClause = eq(services.isActive, true);
     
     if (filter?.type) {
-      query = query.where(eq(services.type, filter.type));
+      whereClause = and(whereClause, eq(services.type, filter.type));
     }
     
     if (filter?.cityId) {
-      query = query.where(eq(services.cityId, filter.cityId));
+      whereClause = and(whereClause, eq(services.cityId, filter.cityId));
     }
     
-    return await query;
+    return await db.select().from(services).where(whereClause);
   }
 
   async createDayByDayBooking(bookingData: any): Promise<Booking> {
