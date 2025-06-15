@@ -479,46 +479,43 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing (converted to EGP)
+        // Calculate guide pricing (in EGP)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
-          const guidePricesUSD = {
-            "English": 40, "Spanish": 45, "French": 45, "German": 50,
-            "Italian": 45, "Japanese": 60, "Chinese": 55, "Arabic": 35
+          const guidePricesEGP = {
+            "English": 1280, "Spanish": 1440, "French": 1440, "German": 1600,
+            "Italian": 1440, "Japanese": 1920, "Chinese": 1760, "Arabic": 1120
           };
-          const usdPrice = guidePricesUSD[cityService.selectedGuide.language] || 40;
-          guideTotal = Math.round(usdPrice * 32); // Convert to EGP
+          guideTotal = guidePricesEGP[cityService.selectedGuide.language] || 1280;
         }
 
-        // Calculate attractions (converted to EGP)
+        // Calculate attractions (in EGP)
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
-          // Define attraction prices per person in USD, then convert to EGP
-          const attractionPricesUSD = {
-            "pyramids": 15, "khan_khalili": 8, "al_muizz": 5, "citadel": 12, 
-            "coptic": 8, "egyptian_museum": 18, "cairo_tower": 10,
-            "alexandria_library": 12, "qaitbay_citadel": 8, "montaza_palace": 10, "catacombs": 15,
-            "luxor_temple": 12, "valley_kings": 20, "karnak_temple": 15, "hatshepsut_temple": 12,
-            "abu_simbel": 35, "philae_temple": 15, "high_dam": 8, "unfinished_obelisk": 5,
-            "hurghada_marina": 10, "desert_safari": 45, "snorkeling": 35,
-            "sharm_old_market": 8, "ras_mohammed": 25, "colored_canyon": 30
+          // Define attraction prices per person in EGP
+          const attractionPricesEGP = {
+            "pyramids": 480, "khan_khalili": 256, "al_muizz": 160, "citadel": 384, 
+            "coptic": 256, "egyptian_museum": 576, "cairo_tower": 320,
+            "alexandria_library": 384, "qaitbay_citadel": 256, "montaza_palace": 320, "catacombs": 480,
+            "luxor_temple": 384, "valley_kings": 640, "karnak_temple": 480, "hatshepsut_temple": 384,
+            "abu_simbel": 1120, "philae_temple": 480, "high_dam": 256, "unfinished_obelisk": 160,
+            "hurghada_marina": 320, "desert_safari": 1440, "snorkeling": 1120,
+            "sharm_old_market": 256, "ras_mohammed": 800, "colored_canyon": 960
           };
           
           cityService.selectedAttractions.forEach((attraction: any) => {
-            const usdPrice = attractionPricesUSD[attraction] || 10; // Default $10 per person
-            const egpPrice = Math.round(usdPrice * 32); // Convert to EGP
+            const egpPrice = attractionPricesEGP[attraction] || 320; // Default 320 EGP per person
             attractionsTotal += egpPrice * travelers;
           });
         }
 
-        // Calculate add-ons (converted to EGP)
+        // Calculate add-ons (in EGP)
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
           for (const addOn of cityService.selectedAddOns) {
             const addOnItem = await storage.getAddOn(addOn.id);
             if (addOnItem) {
-              const basePriceUSD = parseFloat(addOnItem.price);
-              const basePriceEGP = Math.round(basePriceUSD * 32); // Convert to EGP
+              const basePriceEGP = parseFloat(addOnItem.price); // Price is already in EGP
               const pricingType = addOnItem.unitType;
               
               if (pricingType === "per_person") {
