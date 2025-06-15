@@ -729,7 +729,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
           sedan: req.body.sedanPrice || "0",
           minivan: req.body.minivanPrice || "0", 
           van: req.body.vanPrice || "0"
-        }
+        },
+        basePriceByVehicle: req.body.basePriceByVehicle || (() => {
+          const prices = req.body.vehiclePrices || {
+            sedan: req.body.sedanPrice || "0",
+            minivan: req.body.minivanPrice || "0", 
+            van: req.body.vanPrice || "0"
+          };
+          return {
+            "1": {"1": prices.sedan.toString()},
+            "2": {"1": prices.minivan.toString()},
+            "3": {"1": prices.van.toString()}
+          };
+        })()
       };
 
       console.log('Creating route with data:', routeData);
