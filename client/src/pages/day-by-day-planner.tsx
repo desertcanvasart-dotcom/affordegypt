@@ -76,7 +76,13 @@ export default function DayByDayPlanner() {
   // Create booking mutation
   const createBookingMutation = useMutation({
     mutationFn: async (dateRange: { startDate: Date; endDate: Date }) => {
-      return await apiRequest("POST", "/api/day-by-day/bookings", dateRange);
+      const response = await fetch("/api/day-by-day/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dateRange),
+      });
+      if (!response.ok) throw new Error("Failed to create booking");
+      return await response.json();
     },
     onSuccess: (data) => {
       setBookingId(data.id);
@@ -97,9 +103,13 @@ export default function DayByDayPlanner() {
   // Create booking day mutation
   const createDayMutation = useMutation({
     mutationFn: async ({ date }: { date: Date }) => {
-      return await apiRequest("POST", `/api/day-by-day/bookings/${bookingId}/days`, {
-        date: date.toISOString(),
+      const response = await fetch(`/api/day-by-day/bookings/${bookingId}/days`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ date: date.toISOString() }),
       });
+      if (!response.ok) throw new Error("Failed to create day");
+      return await response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -109,10 +119,9 @@ export default function DayByDayPlanner() {
   });
 
   // Handle date range selection
-  const handleDateRangeSelect = (range: { from: Date; to: Date } | null) => {
-    setSelectedRange(range);
-    
+  const handleDateRangeSelect = (range: any) => {
     if (range?.from && range?.to) {
+      setSelectedRange(range);
       // Create booking with selected date range
       createBookingMutation.mutate({
         startDate: range.from,

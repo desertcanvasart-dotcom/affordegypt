@@ -36,6 +36,7 @@ import SubmitReview from "@/pages/submit-review";
 import Transfers from "@/pages/transfers";
 import PricingTool from "@/pages/pricing-tool";
 import DayByDayPlanner from "@/pages/day-by-day-planner";
+import DayByDayTest from "@/pages/day-by-day-test";
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
