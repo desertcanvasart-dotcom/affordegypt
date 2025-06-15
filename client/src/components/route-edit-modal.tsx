@@ -321,7 +321,7 @@ export default function RouteEditModal({
               value={formData.tripType} 
               onValueChange={(value) => setFormData(prev => ({...prev, tripType: value}))}
             >
-              <SelectTrigger>
+              <SelectTrigger id="trip-type">
                 <SelectValue placeholder="Select trip type" />
               </SelectTrigger>
               <SelectContent>
@@ -331,6 +331,9 @@ export default function RouteEditModal({
                 <SelectItem value="multi-day">Multi-Day Tour</SelectItem>
               </SelectContent>
             </Select>
+            <p className="text-xs text-gray-500 mt-1">
+              Current value: {formData.tripType || 'none'}
+            </p>
           </div>
 
           {/* Route Info */}
