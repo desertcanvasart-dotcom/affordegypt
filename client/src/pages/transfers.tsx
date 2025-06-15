@@ -625,10 +625,12 @@ export default function TransfersPage() {
                             {getTripModeLabel(route.tripMode)}
                           </h5>
                           <div className="flex items-center text-sm text-gray-600 space-x-4">
-                            <span className="flex items-center">
-                              <Clock className="w-4 h-4 mr-1" />
-                              {route.nights} night{route.nights !== 1 ? 's' : ''}
-                            </span>
+                            {route.tripMode !== 'transfer' && (
+                              <span className="flex items-center">
+                                <Clock className="w-4 h-4 mr-1" />
+                                {route.nights === 0 ? 'Same day return' : `${route.nights} night${route.nights !== 1 ? 's' : ''}`}
+                              </span>
+                            )}
                             {route.distanceKm && (
                               <span className="flex items-center">
                                 <MapPin className="w-4 h-4 mr-1" />
