@@ -35,14 +35,13 @@ export default function TransportationSearch({
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
 
-  // Filter routes for the current city
+  // Filter routes for the current city - only show routes that START from this city
   const cityRoutes = useMemo(() => {
     return routes.filter(route => 
-      route.name?.toLowerCase().includes(cityName.toLowerCase()) ||
-      route.fromLocation?.toLowerCase().includes(cityName.toLowerCase()) ||
-      route.toLocation?.toLowerCase().includes(cityName.toLowerCase())
+      route.fromCityId === cityId || 
+      (route.fromCityId === route.toCityId && route.fromCityId === cityId) // Include intra-city routes
     );
-  }, [routes, cityName]);
+  }, [routes, cityId]);
 
   // Get unique route types
   const routeTypes = useMemo(() => {
