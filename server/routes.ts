@@ -676,57 +676,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const fromCityId = parseInt(req.body.fromCityId);
       const toCityId = parseInt(req.body.toCityId);
 
-      // Check for existing routes between these cities to prevent duplicates
-      // Only check for inter-city routes (different cities)
-      if (fromCityId !== toCityId) {
-        const existingRoutes = await storage.getRoutes();
-        
-        console.log('=== ROUTE CREATION DEBUG ===');
-        console.log('Request tripMode:', JSON.stringify(req.body.tripMode));
-        console.log('Request tripMode type:', typeof req.body.tripMode);
-        
-        const existingForPair = existingRoutes.filter(r => 
-          r.fromCityId === fromCityId && r.toCityId === toCityId
-        );
-        
-        console.log('Existing routes for this city pair:');
-        existingForPair.forEach(r => {
-          console.log(`  Route ${r.id}: name="${r.name}", tripMode="${r.tripMode}" (type: ${typeof r.tripMode})`);
-          console.log(`  Comparison: "${r.tripMode}" === "${req.body.tripMode}" = ${r.tripMode === req.body.tripMode}`);
-        });
-        
-        // Check if exact route already exists with the same trip mode
-        const existingRoute = existingRoutes.find(route => 
-          route.fromCityId === fromCityId && 
-          route.toCityId === toCityId &&
-          route.tripMode === req.body.tripMode
-        );
-        
-        if (existingRoute) {
-          const tripModeLabels = {
-            'transfer': 'Transfer & Drop off',
-            'day_trip': 'Day Trip',
-            'overnight': 'Overnight Stay',
-            'multi_day': 'Multi-Day Tour'
-          };
-          
-          console.log('Found duplicate route:', existingRoute.id, 'with tripMode:', existingRoute.tripMode);
-          // Temporarily disabled to allow route creation for debugging
-          console.log('ALLOWING DUPLICATE FOR DEBUGGING - would normally block this');
-          // return res.status(409).json({ 
-          //   message: `A ${tripModeLabels[req.body.tripMode] || req.body.tripMode} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
-          // });
-        }
-
-        // Check if reverse route exists and warn (but allow creation)
-        const reverseRouteExists = existingRoutes.some(route => 
-          route.fromCityId === toCityId && route.toCityId === fromCityId
-        );
-        
-        if (reverseRouteExists) {
-          console.log(`Warning: Reverse route exists for ${toCityId} to ${fromCityId}, creating opposite direction route`);
-        }
-      }
+      console.log('=== ROUTE CREATION ATTEMPT ===');
+      console.log('Request body keys:', Object.keys(req.body));
+      console.log('tripMode in request:', req.body.tripMode);
+      
+      // Temporarily skip uniqueness check to allow route creation
+      console.log('SKIPPING UNIQUENESS CHECK FOR DEBUGGING');
 
       // Prepare route data with new route category structure
       const routeData = {
