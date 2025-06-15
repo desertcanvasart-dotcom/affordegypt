@@ -469,14 +469,18 @@ export default function AdminSidebar() {
               <span>Transfer Dashboard</span>
             </button>
           </Link>
+
+          {/* Logout Button positioned under Transfer Dashboard */}
+          <div className="pt-2">
+            <Button variant="outline" onClick={handleLogout} className="w-full">
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
+            </Button>
+          </div>
         </nav>
 
         {/* Sidebar Footer */}
         <div className="px-4 py-4 border-t border-gray-200">
-          <Button variant="outline" onClick={handleLogout} className="w-full">
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
-          </Button>
         </div>
       </div>
 
