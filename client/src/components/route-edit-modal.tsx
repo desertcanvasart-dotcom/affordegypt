@@ -92,6 +92,7 @@ export default function RouteEditModal({
           description: '',
           fromCityId: defaultFromCityId?.toString() || '',
           toCityId: defaultToCityId?.toString() || '',
+          tripType: 'transfer',
           km: '',
           estimatedDuration: '',
           routeHighlights: '',
@@ -211,6 +212,7 @@ export default function RouteEditModal({
       description: formData.description.trim() || null,
       fromCityId: parseInt(formData.fromCityId),
       toCityId: parseInt(formData.toCityId),
+      tripType: formData.tripType,
       km: formData.km ? formData.km.toString() : "0",
       estimatedDuration: formData.estimatedDuration.trim() || null,
       sedanPrice: parseFloat(formData.sedanPrice),
@@ -310,6 +312,25 @@ export default function RouteEditModal({
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          {/* Trip Type */}
+          <div>
+            <Label htmlFor="trip-type">Trip Type *</Label>
+            <Select 
+              value={formData.tripType} 
+              onValueChange={(value) => setFormData(prev => ({...prev, tripType: value}))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select trip type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="transfer">Transfer & Drop off</SelectItem>
+                <SelectItem value="day-trip">Day Trip</SelectItem>
+                <SelectItem value="overnight">Overnight Stay</SelectItem>
+                <SelectItem value="multi-day">Multi-Day Tour</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Route Info */}
