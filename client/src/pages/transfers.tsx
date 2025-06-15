@@ -128,6 +128,8 @@ export default function TransfersPage() {
       }
 
       // Get all available route options for this city pair
+      console.log('Searching for routes:', { fromCityId: parseInt(fromCity), toCityId: parseInt(toCity) });
+      console.log('All routes in database:', routes.map(r => ({ id: r.id, from: r.fromCityId, to: r.toCityId, tripMode: r.tripMode })));
       const routeOptions = getRouteOptionsForCityPair(parseInt(fromCity), parseInt(toCity));
       console.log('Route options found:', routeOptions.length, routeOptions.map(r => r.tripMode));
       
