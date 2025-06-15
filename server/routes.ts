@@ -706,25 +706,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      // Prepare route data with proper pricing structure
+      // Prepare route data with new route category structure
       const routeData = {
-        fromCityId: parseInt(req.body.fromCityId),
-        toCityId: parseInt(req.body.toCityId),
+        routeCategory: req.body.routeCategory || 'inter_city',
+        fromCityId: req.body.routeCategory === 'inter_city' ? parseInt(req.body.fromCityId) : null,
+        toCityId: req.body.routeCategory === 'inter_city' ? parseInt(req.body.toCityId) : null,
+        cityId: req.body.routeCategory === 'intra_city' ? parseInt(req.body.cityId) : null,
         fromLocation: req.body.fromLocation || null,
         toLocation: req.body.toLocation || null,
         name: req.body.name || null,
-        tripType: req.body.tripType || "transfer",
-        km: req.body.km || req.body.distance || "0",
+        tripMode: req.body.tripMode || 'transfer',
+        nights: req.body.nights || 0,
+        distanceKm: req.body.distanceKm ? parseInt(req.body.distanceKm) : null,
         estimatedDuration: req.body.estimatedDuration || null,
         routeHighlights: req.body.routeHighlights || null,
         travelTips: req.body.travelTips || null,
         pickupInstructions: req.body.pickupInstructions || null,
         dropoffInstructions: req.body.dropoffInstructions || null,
         displayOrder: req.body.displayOrder || 0,
-        basePriceByVehicle: req.body.basePriceByVehicle || {
-          "1": {"1": (req.body.sedanPrice || req.body.basePrice || "0")},
-          "2": {"1": (req.body.minivanPrice || (req.body.basePrice ? (parseFloat(req.body.basePrice) * 1.4).toString() : "0"))},
-          "3": {"1": (req.body.vanPrice || (req.body.basePrice ? (parseFloat(req.body.basePrice) * 1.8).toString() : "0"))}
+        vehiclePrices: req.body.vehiclePrices || {
+          sedan: req.body.sedanPrice || "0",
+          minivan: req.body.minivanPrice || "0", 
+          van: req.body.vanPrice || "0"
         }
       };
 
