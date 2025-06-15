@@ -519,7 +519,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                               value={editData.price || addOn.price}
                               onChange={(e) => setEditData({...editData, price: e.target.value})}
                             />
-                          ) : `EGP ${addOn.price}`}
+                          ) : `EGP ${Math.round(parseFloat(addOn.price) * 32)}`}
                         </TableCell>
                         <TableCell>
                           <Badge variant={addOn.unitType === 'per_unit' ? 'default' : 'secondary'}>

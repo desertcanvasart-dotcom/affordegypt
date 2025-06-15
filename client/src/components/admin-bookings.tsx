@@ -528,7 +528,7 @@ function BookingDetailsModal({
                         <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
                           <span>{addon.name}</span>
                           <span className="text-sm text-muted-foreground font-medium">
-                            EGP ${addon.price}
+                            EGP {Math.round(parseFloat(addon.price) * 32)}
                           </span>
                         </div>
                       ))}
