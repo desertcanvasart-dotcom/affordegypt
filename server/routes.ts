@@ -676,23 +676,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (fromCityId !== toCityId) {
         const existingRoutes = await storage.getRoutes();
         
-        // Check if exact route already exists with the same trip type
+        // Check if exact route already exists with the same trip mode
         const existingRoute = existingRoutes.find(route => 
           route.fromCityId === fromCityId && 
           route.toCityId === toCityId &&
-          route.tripType === req.body.tripType
+          route.tripMode === req.body.tripMode
         );
         
         if (existingRoute) {
-          const tripTypeLabels = {
+          const tripModeLabels = {
             'transfer': 'Transfer & Drop off',
-            'day-trip': 'Day Trip',
+            'day_trip': 'Day Trip',
             'overnight': 'Overnight Stay',
-            'multi-day': 'Multi-Day Tour'
+            'multi_day': 'Multi-Day Tour'
           };
           
           return res.status(409).json({ 
-            message: `A ${tripTypeLabels[req.body.tripType]} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
+            message: `A ${tripModeLabels[req.body.tripMode]} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
           });
         }
 
