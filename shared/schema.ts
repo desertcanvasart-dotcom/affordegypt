@@ -55,21 +55,28 @@ export const licenseClasses = pgTable("license_classes", {
 
 export const routes = pgTable("routes", {
   id: serial("id").primaryKey(),
-  fromCityId: integer("from_city_id").references(() => cities.id).notNull(),
-  toCityId: integer("to_city_id").references(() => cities.id).notNull(),
-  fromLocation: text("from_location"), // For intra-city routes: "Airport", "Downtown", etc.
-  toLocation: text("to_location"), // For intra-city routes: "Hotel", "Train Station", etc.
-  name: text("name"), // Custom route name: "Cairo City Tour", "Airport Transfer", etc.
-  tripType: text("trip_type").default("transfer"), // "transfer", "day-trip", "overnight", "multi-day"
-  km: decimal("km", { precision: 8, scale: 2 }).notNull(),
+  routeCategory: text("route_category").notNull(), // "intra_city" or "inter_city"
+  fromCityId: integer("from_city_id").references(() => cities.id), // Required when inter_city
+  toCityId: integer("to_city_id").references(() => cities.id), // Required when inter_city
+  cityId: integer("city_id").references(() => cities.id), // Used only when intra_city
+  tripMode: text("trip_mode").notNull().default("transfer"), // "transfer", "day_trip", "overnight", "multi_day"
+  nights: integer("nights").notNull().default(0), // Auto-filled: 0,0,1,2+ based on trip_mode
+  name: text("name"), // Optional custom route name
+  fromLocation: text("from_location"), // Pickup details
+  toLocation: text("to_location"), // Dropoff details
+  distanceKm: integer("distance_km"), // Can be auto-calculated or manual
   estimatedDuration: text("estimated_duration"), // Duration like "2 hours", "45 minutes", etc.
   routeHighlights: text("route_highlights"), // Key attractions or stops along the route
   travelTips: text("travel_tips"), // Important travel information for this route
   pickupInstructions: text("pickup_instructions"), // Specific pickup location details
   dropoffInstructions: text("dropoff_instructions"), // Specific dropoff location details
-  basePriceByVehicle: jsonb("base_price_by_vehicle").notNull(), // JSON: {vehicle_id: {license_class_id: price}}
+  vehiclePrices: jsonb("vehicle_prices").notNull(), // JSON: { "sedan": price, "minivan": price, "van": price }
   displayOrder: integer("display_order").default(0), // Controls display order in pricing tool
-});
+}, (table) => ({
+  // Unique constraints to prevent duplicates
+  uniqueInterCity: index("unique_inter_city").on(table.fromCityId, table.toCityId, table.tripMode),
+  uniqueIntraCity: index("unique_intra_city").on(table.cityId, table.tripMode),
+}));
 
 export const timeBlocks = pgTable("time_blocks", {
   id: serial("id").primaryKey(),
@@ -179,7 +186,12 @@ export const insertCitySchema = createInsertSchema(cities).omit({ id: true });
 export const insertVehicleTypeSchema = createInsertSchema(vehicleTypes).omit({ id: true });
 export const insertLicenseClassSchema = createInsertSchema(licenseClasses).omit({ id: true });
 export const insertRouteSchema = createInsertSchema(routes).omit({ id: true }).extend({
-  tripType: z.enum(["transfer", "day-trip", "overnight", "multi-day"]).default("transfer")
+  routeCategory: z.enum(["intra_city", "inter_city"]),
+  tripMode: z.enum(["transfer", "day_trip", "overnight", "multi_day"]).default("transfer"),
+  nights: z.number().min(0).default(0),
+  fromCityId: z.number().optional(),
+  toCityId: z.number().optional(),
+  cityId: z.number().optional(),
 });
 export const insertTimeBlockSchema = createInsertSchema(timeBlocks).omit({ id: true });
 export const insertGuideRateSchema = createInsertSchema(guideRates).omit({ id: true });

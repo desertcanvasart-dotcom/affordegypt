@@ -27,10 +27,13 @@ export default function RouteEditModal({
   const [formData, setFormData] = useState({
     name: '',
     description: '',
+    routeCategory: 'inter_city',
     fromCityId: '',
     toCityId: '',
-    tripType: 'transfer',
-    km: '',
+    cityId: '',
+    tripMode: 'transfer',
+    nights: 0,
+    distanceKm: '',
     estimatedDuration: '',
     routeHighlights: '',
     travelTips: '',
@@ -70,10 +73,13 @@ export default function RouteEditModal({
         setFormData({
           name: route.name || '',
           description: route.description || '',
+          routeCategory: route.routeCategory || 'inter_city',
           fromCityId: route.fromCityId?.toString() || '',
           toCityId: route.toCityId?.toString() || '',
-          tripType: route.tripType || 'transfer',
-          km: route.km?.toString() || '',
+          cityId: route.cityId?.toString() || '',
+          tripMode: route.tripMode || 'transfer',
+          nights: route.nights || 0,
+          distanceKm: route.distanceKm?.toString() || '',
           estimatedDuration: route.estimatedDuration || '',
           routeHighlights: route.routeHighlights || '',
           travelTips: route.travelTips || '',
@@ -273,46 +279,95 @@ export default function RouteEditModal({
             </div>
           </div>
 
-          {/* Cities */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="from-city">From City *</Label>
-              <Select 
-                value={formData.fromCityId} 
-                onValueChange={(value) => setFormData(prev => ({...prev, fromCityId: value}))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select departure city" />
-                </SelectTrigger>
-                <SelectContent>
-                  {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
-                    <SelectItem key={city.id} value={city.id.toString()}>
-                      {city.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="to-city">To City *</Label>
-              <Select 
-                value={formData.toCityId} 
-                onValueChange={(value) => setFormData(prev => ({...prev, toCityId: value}))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select destination city" />
-                </SelectTrigger>
-                <SelectContent>
-                  {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
-                    <SelectItem key={city.id} value={city.id.toString()}>
-                      {city.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Route Category */}
+          <div>
+            <Label htmlFor="route-category">Route Category *</Label>
+            <Select 
+              value={formData.routeCategory} 
+              onValueChange={(value) => setFormData(prev => ({
+                ...prev, 
+                routeCategory: value,
+                // Reset city fields when category changes
+                fromCityId: '',
+                toCityId: '',
+                cityId: ''
+              }))}
+            >
+              <SelectTrigger id="route-category">
+                <SelectValue placeholder="Select route category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="inter_city">Inter-City (Between Cities)</SelectItem>
+                <SelectItem value="intra_city">Intra-City (Within City)</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
+
+          {/* Conditional City Fields */}
+          {formData.routeCategory === 'inter_city' && (
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="from-city">From City *</Label>
+                <Select 
+                  value={formData.fromCityId} 
+                  onValueChange={(value) => setFormData(prev => ({...prev, fromCityId: value}))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select departure city" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
+                      <SelectItem key={city.id} value={city.id.toString()}>
+                        {city.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="to-city">To City *</Label>
+                <Select 
+                  value={formData.toCityId} 
+                  onValueChange={(value) => setFormData(prev => ({...prev, toCityId: value}))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select destination city" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name))
+                      .filter((city: any) => city.id.toString() !== formData.fromCityId)
+                      .map((city: any) => (
+                        <SelectItem key={city.id} value={city.id.toString()}>
+                          {city.name}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          )}
+
+          {formData.routeCategory === 'intra_city' && (
+            <div>
+              <Label htmlFor="city">City *</Label>
+              <Select 
+                value={formData.cityId} 
+                onValueChange={(value) => setFormData(prev => ({...prev, cityId: value}))}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select city" />
+                </SelectTrigger>
+                <SelectContent>
+                  {(cities as any[])?.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((city: any) => (
+                    <SelectItem key={city.id} value={city.id.toString()}>
+                      {city.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
 
           {/* Trip Type */}
           <div>

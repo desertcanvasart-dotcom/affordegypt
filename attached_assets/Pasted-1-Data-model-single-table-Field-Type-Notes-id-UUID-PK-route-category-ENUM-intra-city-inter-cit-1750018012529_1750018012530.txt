@@ -1,0 +1,95 @@
+1. Data model (single table)
+Field	Type	Notes
+id	UUID / PK	
+route_category	ENUM(intra_city,inter_city)	Controls the rest of the logic
+from_city_id	FK → Cities	Required when inter_city
+to_city_id	FK → Cities	Required when inter_city; must differ from from_city_id
+city_id	FK → Cities	Used only when intra_city (for within-city services)
+trip_mode	ENUM(transfer,day_trip,overnight,multi_day)	The four options you listed
+nights	INT	Auto-filled: 0,0,1,2 (or editable when multi_day)
+distance_km	INT	Can be auto-calculated or typed
+display_order	INT	Lower = higher in the pricing tool
+vehicle_prices	JSON	{ "sedan": …, "minivan": …, "van": … }
+…	…	any other metadata
+
+Unique constraints
+
+sql
+Copy
+Edit
+-- Inter-city
+UNIQUE (from_city_id, to_city_id, trip_mode);
+
+-- Intra-city
+UNIQUE (city_id, trip_mode);
+These two rules alone eliminate accidental duplicates.
+
+2. Front-end form logic (React / Vue style pseudo-code)
+ts
+Copy
+Edit
+// routeCategory = 'inter_city' or 'intra_city'
+const [routeCategory, setRouteCategory] = useState('inter_city');
+const [tripMode, setTripMode]       = useState('transfer');          // default
+const [fromCity, setFromCity]       = useState(null);
+const [toCity,   setToCity]         = useState(null);
+const [city,     setCity]           = useState(null);                // intra-city
+const [nights,   setNights]         = useState(0);
+
+// ===== Conditional rendering =====
+{routeCategory === 'inter_city' && (
+  <>
+    <CitySelect label="From City" value={fromCity} onChange={setFromCity}/>
+    <CitySelect label="To City"   value={toCity}   onChange={setToCity}/>
+  </>
+)}
+
+{routeCategory === 'intra_city' && (
+  <CitySelect label="City" value={city} onChange={setCity}/>
+)}
+
+<TripModeSelect value={tripMode} onChange={(m)=>{
+  setTripMode(m);
+  setNights({transfer:0,day_trip:0,overnight:1,multi_day:2}[m]);
+}}/>
+Validation before save
+
+ts
+Copy
+Edit
+function validate() {
+  if (routeCategory==='inter_city') {
+    if (!fromCity || !toCity)        return 'Select both cities';
+    if (fromCity.id===toCity.id)     return 'From/To cannot be the same';
+  }
+  if (routeCategory==='intra_city' && !city) return 'Select the city';
+
+  // Duplicate check
+  const key = routeCategory==='inter_city'
+      ? `${fromCity.id}-${toCity.id}-${tripMode}`
+      : `${city.id}-${tripMode}`;
+
+  if (await api.routeExists(key))    return 'Route already exists';
+}
+Notice there is no automatic call to create the reverse (to→from) route.
+If you ever do want it, expose a simple checkbox “Also create reverse route” that, when ticked, fires a second POST with swapped cities.
+
+3. Back-end endpoint (Django / Express pseudo)
+python
+Copy
+Edit
+def create_route(payload):
+    if payload['route_category']=='inter_city':
+        if payload['from_id']==payload['to_id']:
+            raise ValidationError('From and To must differ')
+    # DB-level UNIQUE constraint will raise error on duplicates
+    Route.objects.create(**payload)
+Because the DB constraint is absolute, even a race condition (two admins saving the same route at once) cannot create a duplicate.
+
+4. Trip-mode cheat-sheet (used to auto-fill UI labels / itineraries)
+Trip Mode	Nights	Marketing label	Typical use-case
+transfer	0	One-way transfer	Airport ↔ City A
+day_trip	0	Day trip (return same day)	Cairo ⇄ Alexandria tour
+overnight	1	1-night stay	Luxor → Aswan w/ sleepover
+multi_day	≥2	2-night+ package	Cairo → Siwa desert camp
+
