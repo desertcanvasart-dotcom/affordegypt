@@ -57,7 +57,7 @@ export const routes = pgTable("routes", {
   id: serial("id").primaryKey(),
   fromCityId: integer("from_city_id").references(() => cities.id),
   toCityId: integer("to_city_id").references(() => cities.id),
-  km: decimal("km", { precision: 10, scale: 2 }), // Keep existing column
+  km: decimal("km", { precision: 8, scale: 2 }), // Keep existing column
   basePriceByVehicle: jsonb("base_price_by_vehicle"), // Keep existing column
   fromLocation: text("from_location"),
   toLocation: text("to_location"),

@@ -1,12 +1,17 @@
 import { 
   users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, attractions, quotes, bookings, reviews,
+  services, bookingDays, bookingServices, bookingAdjustments,
   type User, type InsertUser, type City, type InsertCity,
   type VehicleType, type InsertVehicleType, type LicenseClass, type InsertLicenseClass,
   type Route, type InsertRoute, type TimeBlock, type InsertTimeBlock,
   type GuideRate, type InsertGuideRate, type AddOn, type InsertAddOn,
   type Attraction, type InsertAttraction,
   type Quote, type InsertQuote, type Booking, type InsertBooking,
-  type Review, type InsertReview
+  type Review, type InsertReview,
+  type Service, type InsertService,
+  type BookingDay, type InsertBookingDay,
+  type BookingService, type InsertBookingService,
+  type BookingAdjustment, type InsertBookingAdjustment
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
@@ -111,6 +116,17 @@ export interface IStorage {
     grandTotal: number;
     breakdown: any[];
   }>;
+
+  // Day-by-Day Custom Planner
+  getServices(filter?: { type?: string; cityId?: number }): Promise<Service[]>;
+  createDayByDayBooking(booking: any): Promise<Booking>;
+  createBookingDay(day: InsertBookingDay): Promise<BookingDay>;
+  createBookingService(service: InsertBookingService): Promise<BookingService>;
+  updateBookingService(id: number, updates: Partial<InsertBookingService>): Promise<BookingService>;
+  deleteBookingService(id: number): Promise<void>;
+  calculateDayByDayQuote(bookingId: number): Promise<{ totalAmount: string; breakdown: any[] }>;
+  getDayByDayBooking(bookingId: number): Promise<any>;
+  updateDayByDayBooking(bookingId: number, updates: any): Promise<Booking>;
 }
 
 export class DatabaseStorage implements IStorage {
