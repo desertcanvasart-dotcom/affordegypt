@@ -60,6 +60,7 @@ export const routes = pgTable("routes", {
   fromLocation: text("from_location"), // For intra-city routes: "Airport", "Downtown", etc.
   toLocation: text("to_location"), // For intra-city routes: "Hotel", "Train Station", etc.
   name: text("name"), // Custom route name: "Cairo City Tour", "Airport Transfer", etc.
+  tripType: text("trip_type").default("transfer"), // "transfer", "day-trip", "overnight", "multi-day"
   km: decimal("km", { precision: 8, scale: 2 }).notNull(),
   estimatedDuration: text("estimated_duration"), // Duration like "2 hours", "45 minutes", etc.
   routeHighlights: text("route_highlights"), // Key attractions or stops along the route
@@ -177,7 +178,9 @@ export const insertUserSchema = createInsertSchema(users).omit({
 export const insertCitySchema = createInsertSchema(cities).omit({ id: true });
 export const insertVehicleTypeSchema = createInsertSchema(vehicleTypes).omit({ id: true });
 export const insertLicenseClassSchema = createInsertSchema(licenseClasses).omit({ id: true });
-export const insertRouteSchema = createInsertSchema(routes).omit({ id: true });
+export const insertRouteSchema = createInsertSchema(routes).omit({ id: true }).extend({
+  tripType: z.enum(["transfer", "day-trip", "overnight", "multi-day"]).default("transfer")
+});
 export const insertTimeBlockSchema = createInsertSchema(timeBlocks).omit({ id: true });
 export const insertGuideRateSchema = createInsertSchema(guideRates).omit({ id: true });
 export const insertAddOnSchema = createInsertSchema(addOns).omit({ id: true });
