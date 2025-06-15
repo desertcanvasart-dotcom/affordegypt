@@ -213,7 +213,7 @@ export default function TransportationSearch({
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      {getRouteIcon(route.type)}
+                      {getRouteIcon(route.tripType)}
                       <h5 className="font-medium text-sm truncate">
                         {route.name}
                       </h5>
@@ -222,9 +222,9 @@ export default function TransportationSearch({
                     <div className="flex items-center gap-2 mb-2">
                       <Badge 
                         variant="secondary" 
-                        className={`text-xs ${getTypeColor(route.type)}`}
+                        className={`text-xs ${getTypeColor(route.tripType)}`}
                       >
-                        {route.type?.replace('-', ' ') || 'General'}
+                        {getTripTypeLabel(route.tripType)}
                       </Badge>
                     </div>
 
