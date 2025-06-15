@@ -164,11 +164,23 @@ export default function TransfersPage() {
   const getValidPrice = (route: Route, vehicleType: string): number => {
     if (!route) return 0;
     
-    // Try new vehiclePrices field first
+    // Try new vehiclePrices field first with vehicle names
     if (route.vehiclePrices && typeof route.vehiclePrices === 'object') {
       const price = route.vehiclePrices[vehicleType];
       if (typeof price === 'number' && price > 0) return price;
       if (typeof price === 'string' && !isNaN(parseFloat(price))) return parseFloat(price);
+      
+      // Try legacy vehicle ID mapping (1=sedan, 2=minivan, 3=van)
+      const vehicleIdMap = { sedan: '1', minivan: '2', van: '3' };
+      const vehicleId = vehicleIdMap[vehicleType as keyof typeof vehicleIdMap];
+      if (vehicleId && route.vehiclePrices[vehicleId]) {
+        const idBasedPrice = route.vehiclePrices[vehicleId];
+        if (typeof idBasedPrice === 'object' && idBasedPrice['1']) {
+          const finalPrice = idBasedPrice['1'];
+          if (typeof finalPrice === 'string' && !isNaN(parseFloat(finalPrice))) return parseFloat(finalPrice);
+          if (typeof finalPrice === 'number' && finalPrice > 0) return finalPrice;
+        }
+      }
     }
     
     // Fallback to legacy basePriceByVehicle for existing routes
@@ -219,9 +231,16 @@ export default function TransfersPage() {
       travelDate: travelDate || new Date().toISOString().split('T')[0],
       travelTime,
       totalAmount: getPrice(),
-      fromCityName: cities.find(c => c.id === selectedRoute.fromCityId)?.name,
-      toCityName: cities.find(c => c.id === selectedRoute.toCityId)?.name,
-      routeName: selectedRoute.name,
+      fromCityName: selectedRoute.routeCategory === 'inter_city' 
+        ? cities.find(c => c.id === selectedRoute.fromCityId)?.name
+        : cities.find(c => c.id === selectedRoute.cityId)?.name,
+      toCityName: selectedRoute.routeCategory === 'inter_city'
+        ? cities.find(c => c.id === selectedRoute.toCityId)?.name
+        : 'Local',
+      routeName: selectedRoute.name || 
+        (selectedRoute.routeCategory === 'inter_city' 
+          ? `${cities.find(c => c.id === selectedRoute.fromCityId)?.name} → ${cities.find(c => c.id === selectedRoute.toCityId)?.name}`
+          : `${cities.find(c => c.id === selectedRoute.cityId)?.name} Local`),
       distance: selectedRoute.distanceKm?.toString() || '0',
       duration: selectedRoute.estimatedDuration,
       highlights: selectedRoute.routeHighlights
