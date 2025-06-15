@@ -164,9 +164,12 @@ export default function TransfersPage() {
   const getValidPrice = (route: Route, vehicleType: string): number => {
     if (!route) return 0;
     
+    console.log('Getting price for vehicle:', vehicleType, 'from route:', route.vehiclePrices);
+    
     // Try new vehiclePrices field first with vehicle names
     if (route.vehiclePrices && typeof route.vehiclePrices === 'object') {
       const price = route.vehiclePrices[vehicleType];
+      console.log('Found price:', price, 'for type:', vehicleType);
       if (typeof price === 'number' && price > 0) return price;
       if (typeof price === 'string' && !isNaN(parseFloat(price))) return parseFloat(price);
       
@@ -194,6 +197,7 @@ export default function TransfersPage() {
       if (typeof fallbackPrice === 'number' && fallbackPrice > 0) return fallbackPrice;
     }
     
+    console.log('No price found, returning 0');
     return 0;
   };
 
@@ -687,9 +691,9 @@ export default function TransfersPage() {
                 return suggestedRoutes.slice(0, 6).map((route) => {
                   const fromCityName = cities.find(c => c.id === route.fromCityId)?.name?.trim();
                   const toCityName = cities.find(c => c.id === route.toCityId)?.name?.trim();
-                  const minPrice = getValidPrice(route.basePriceByVehicle, 'sedan') || 
-                                 getValidPrice(route.basePriceByVehicle, 'minivan') || 
-                                 getValidPrice(route.basePriceByVehicle, 'van') || 0;
+                  const minPrice = route.vehiclePrices?.sedan || 
+                                 route.vehiclePrices?.minivan || 
+                                 route.vehiclePrices?.van || 0;
                   
                   return (
                     <div
