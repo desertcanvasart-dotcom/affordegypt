@@ -164,20 +164,28 @@ export default function TransfersPage() {
   const getValidPrice = (route: Route, vehicleType: string): number => {
     if (!route) return 0;
     
-    console.log('Getting price for vehicle:', vehicleType, 'from route:', route.vehiclePrices);
+    // Parse vehiclePrices if it's a string (from database JSON)
+    let vehiclePrices = route.vehiclePrices;
+    if (typeof vehiclePrices === 'string') {
+      try {
+        vehiclePrices = JSON.parse(vehiclePrices);
+      } catch (e) {
+        console.error('Failed to parse vehiclePrices:', vehiclePrices);
+        vehiclePrices = {};
+      }
+    }
     
     // Try new vehiclePrices field first with vehicle names
-    if (route.vehiclePrices && typeof route.vehiclePrices === 'object') {
-      const price = route.vehiclePrices[vehicleType];
-      console.log('Found price:', price, 'for type:', vehicleType);
+    if (vehiclePrices && typeof vehiclePrices === 'object') {
+      const price = vehiclePrices[vehicleType];
       if (typeof price === 'number' && price > 0) return price;
       if (typeof price === 'string' && !isNaN(parseFloat(price))) return parseFloat(price);
       
       // Try legacy vehicle ID mapping (1=sedan, 2=minivan, 3=van)
       const vehicleIdMap = { sedan: '1', minivan: '2', van: '3' };
       const vehicleId = vehicleIdMap[vehicleType as keyof typeof vehicleIdMap];
-      if (vehicleId && route.vehiclePrices[vehicleId]) {
-        const idBasedPrice = route.vehiclePrices[vehicleId];
+      if (vehicleId && vehiclePrices[vehicleId]) {
+        const idBasedPrice = vehiclePrices[vehicleId];
         if (typeof idBasedPrice === 'object' && idBasedPrice['1']) {
           const finalPrice = idBasedPrice['1'];
           if (typeof finalPrice === 'string' && !isNaN(parseFloat(finalPrice))) return parseFloat(finalPrice);
@@ -197,7 +205,6 @@ export default function TransfersPage() {
       if (typeof fallbackPrice === 'number' && fallbackPrice > 0) return fallbackPrice;
     }
     
-    console.log('No price found, returning 0');
     return 0;
   };
 
