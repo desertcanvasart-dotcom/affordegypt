@@ -96,10 +96,13 @@ export default function RouteEditModal({
         setFormData({
           name: '',
           description: '',
+          routeCategory: 'inter_city',
           fromCityId: defaultFromCityId?.toString() || '',
           toCityId: defaultToCityId?.toString() || '',
-          tripType: 'transfer',
-          km: '',
+          cityId: '',
+          tripMode: 'transfer',
+          nights: 0,
+          distanceKm: '',
           estimatedDuration: '',
           routeHighlights: '',
           travelTips: '',
@@ -172,35 +175,32 @@ export default function RouteEditModal({
   };
 
   const handleSubmit = () => {
-    if (!formData.fromCityId || !formData.toCityId) {
-      toast({
-        title: "Error",
-        description: "Please select both departure and destination cities.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Check for route conflicts (only for new routes, not when editing)
-    if (!route) {
-      const routeCheck = checkForDuplicateRoutes(formData.fromCityId, formData.toCityId);
-      
-      if (routeCheck.hasConflict) {
+    // Validate route category specific fields
+    if (formData.routeCategory === 'inter_city') {
+      if (!formData.fromCityId || !formData.toCityId) {
         toast({
-          title: "Duplicate Route",
-          description: "A route already exists between these cities in this direction. Please edit the existing route instead.",
+          title: "Error",
+          description: "Please select both departure and destination cities.",
           variant: "destructive",
         });
         return;
       }
-      
-      if (routeCheck.hasReverse) {
-        const fromCityName = (cities as any[]).find(c => c.id === parseInt(formData.fromCityId))?.name || 'City';
-        const toCityName = (cities as any[]).find(c => c.id === parseInt(formData.toCityId))?.name || 'City';
-        
-        if (!confirm(`A route already exists from ${toCityName} to ${fromCityName}. Creating this route will result in bidirectional routes between these cities. Are you sure you want to continue?`)) {
-          return;
-        }
+      if (formData.fromCityId === formData.toCityId) {
+        toast({
+          title: "Error",
+          description: "From and To cities cannot be the same.",
+          variant: "destructive",
+        });
+        return;
+      }
+    } else if (formData.routeCategory === 'intra_city') {
+      if (!formData.cityId) {
+        toast({
+          title: "Error",
+          description: "Please select a city for the intra-city route.",
+          variant: "destructive",
+        });
+        return;
       }
     }
 
@@ -216,11 +216,20 @@ export default function RouteEditModal({
     const submitData = {
       name: formData.name.trim() || null,
       description: formData.description.trim() || null,
-      fromCityId: parseInt(formData.fromCityId),
-      toCityId: parseInt(formData.toCityId),
-      tripType: formData.tripType,
-      km: formData.km ? formData.km.toString() : "0",
+      routeCategory: formData.routeCategory,
+      fromCityId: formData.routeCategory === 'inter_city' ? parseInt(formData.fromCityId) : null,
+      toCityId: formData.routeCategory === 'inter_city' ? parseInt(formData.toCityId) : null,
+      cityId: formData.routeCategory === 'intra_city' ? parseInt(formData.cityId) : null,
+      tripMode: formData.tripMode,
+      nights: formData.nights,
+      distanceKm: formData.distanceKm ? parseInt(formData.distanceKm) : null,
       estimatedDuration: formData.estimatedDuration.trim() || null,
+      vehiclePrices: {
+        sedan: parseFloat(formData.sedanPrice),
+        minivan: parseFloat(formData.minivanPrice),
+        van: parseFloat(formData.vanPrice)
+      },
+      // Legacy field mapping for backward compatibility
       sedanPrice: parseFloat(formData.sedanPrice),
       minivanPrice: parseFloat(formData.minivanPrice),
       vanPrice: parseFloat(formData.vanPrice),
@@ -369,25 +378,37 @@ export default function RouteEditModal({
             </div>
           )}
 
-          {/* Trip Type */}
+          {/* Trip Mode */}
           <div>
-            <Label htmlFor="trip-type">Trip Type *</Label>
+            <Label htmlFor="trip-mode">Trip Mode *</Label>
             <Select 
-              value={formData.tripType} 
-              onValueChange={(value) => setFormData(prev => ({...prev, tripType: value}))}
+              value={formData.tripMode} 
+              onValueChange={(value) => setFormData(prev => {
+                const nightsMap = {
+                  'transfer': 0,
+                  'day_trip': 0,
+                  'overnight': 1,
+                  'multi_day': 2
+                };
+                return {
+                  ...prev, 
+                  tripMode: value,
+                  nights: nightsMap[value as keyof typeof nightsMap] || 0
+                };
+              })}
             >
-              <SelectTrigger id="trip-type">
-                <SelectValue placeholder="Select trip type" />
+              <SelectTrigger id="trip-mode">
+                <SelectValue placeholder="Select trip mode" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="transfer">Transfer & Drop off</SelectItem>
-                <SelectItem value="day-trip">Day Trip</SelectItem>
-                <SelectItem value="overnight">Overnight Stay</SelectItem>
-                <SelectItem value="multi-day">Multi-Day Tour</SelectItem>
+                <SelectItem value="day_trip">Day Trip (return same day)</SelectItem>
+                <SelectItem value="overnight">Overnight Stay (1 night)</SelectItem>
+                <SelectItem value="multi_day">Multi-Day Tour (2+ nights)</SelectItem>
               </SelectContent>
             </Select>
             <p className="text-xs text-gray-500 mt-1">
-              Current value: {formData.tripType || 'none'}
+              Auto-filled nights: {formData.nights}
             </p>
           </div>
 
@@ -399,8 +420,8 @@ export default function RouteEditModal({
                 id="distance"
                 type="number"
                 placeholder="e.g., 250"
-                value={formData.km}
-                onChange={(e) => setFormData(prev => ({...prev, km: e.target.value}))}
+                value={formData.distanceKm}
+                onChange={(e) => setFormData(prev => ({...prev, distanceKm: e.target.value}))}
               />
             </div>
 
