@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import ReviewUpload from "@/components/review-upload";
 
 export default function AdminReviews() {
@@ -17,11 +15,9 @@ export default function AdminReviews() {
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        
-        <div className="py-16">
+        <div className="py-8">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
                 Review Management
               </h1>
@@ -33,8 +29,6 @@ export default function AdminReviews() {
             <ReviewUpload />
           </div>
         </div>
-        
-        <Footer />
       </div>
     </>
   );

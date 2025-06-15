@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, Download, AlertCircle } from "lucide-react";
+import { Upload, Download, AlertCircle, RefreshCw } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 
 export default function ReviewUpload() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadResults, setUploadResults] = useState<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const downloadTemplate = () => {
@@ -36,6 +37,8 @@ export default function ReviewUpload() {
         description: "Please upload a CSV file. Download the template if needed.",
         variant: "destructive",
       });
+      // Reset file input
+      event.target.value = '';
       return;
     }
 
@@ -157,7 +160,16 @@ export default function ReviewUpload() {
     } finally {
       setIsUploading(false);
       // Reset file input
-      event.target.value = '';
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+
+  const resetForm = () => {
+    setUploadResults(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
@@ -194,6 +206,7 @@ export default function ReviewUpload() {
 
           <div className="relative">
             <Input
+              ref={fileInputRef}
               type="file"
               accept=".csv"
               onChange={handleFileUpload}
@@ -231,6 +244,17 @@ export default function ReviewUpload() {
                   </ul>
                 </div>
               )}
+              <div className="mt-4">
+                <Button
+                  onClick={resetForm}
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                >
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Upload Another File
+                </Button>
+              </div>
             </div>
           )}
         </div>
