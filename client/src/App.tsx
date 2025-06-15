@@ -66,6 +66,7 @@ function Router() {
       <Route path="/transfers" component={Transfers} />
       <Route path="/pricing-tool" component={PricingTool} />
       <Route path="/day-by-day-planner" component={DayByDayPlanner} />
+      <Route path="/day-by-day-test" component={DayByDayTest} />
       <Route path="/attractions" component={AttractionsSimple} />
       <Route path="/destinations" component={Destinations} />
       <Route path="/travel-tips" component={TravelTips} />
