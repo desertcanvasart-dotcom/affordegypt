@@ -55,28 +55,27 @@ export const licenseClasses = pgTable("license_classes", {
 
 export const routes = pgTable("routes", {
   id: serial("id").primaryKey(),
-  routeCategory: text("route_category").notNull(), // "intra_city" or "inter_city"
-  fromCityId: integer("from_city_id").references(() => cities.id), // Required when inter_city
-  toCityId: integer("to_city_id").references(() => cities.id), // Required when inter_city
-  cityId: integer("city_id").references(() => cities.id), // Used only when intra_city
-  tripMode: text("trip_mode").notNull().default("transfer"), // "transfer", "day_trip", "overnight", "multi_day"
-  nights: integer("nights").notNull().default(0), // Auto-filled: 0,0,1,2+ based on trip_mode
-  name: text("name"), // Optional custom route name
-  fromLocation: text("from_location"), // Pickup details
-  toLocation: text("to_location"), // Dropoff details
-  distanceKm: integer("distance_km"), // Can be auto-calculated or manual
-  estimatedDuration: text("estimated_duration"), // Duration like "2 hours", "45 minutes", etc.
-  routeHighlights: text("route_highlights"), // Key attractions or stops along the route
-  travelTips: text("travel_tips"), // Important travel information for this route
-  pickupInstructions: text("pickup_instructions"), // Specific pickup location details
-  dropoffInstructions: text("dropoff_instructions"), // Specific dropoff location details
-  vehiclePrices: jsonb("vehicle_prices").notNull(), // JSON: { "sedan": price, "minivan": price, "van": price }
-  displayOrder: integer("display_order").default(0), // Controls display order in pricing tool
-}, (table) => ({
-  // Unique constraints to prevent duplicates
-  uniqueInterCity: index("unique_inter_city").on(table.fromCityId, table.toCityId, table.tripMode),
-  uniqueIntraCity: index("unique_intra_city").on(table.cityId, table.tripMode),
-}));
+  fromCityId: integer("from_city_id").references(() => cities.id),
+  toCityId: integer("to_city_id").references(() => cities.id),
+  km: decimal("km", { precision: 10, scale: 2 }), // Keep existing column
+  basePriceByVehicle: jsonb("base_price_by_vehicle"), // Keep existing column
+  fromLocation: text("from_location"),
+  toLocation: text("to_location"),
+  name: text("name"),
+  displayOrder: integer("display_order").default(0),
+  estimatedDuration: text("estimated_duration"),
+  routeHighlights: text("route_highlights"),
+  travelTips: text("travel_tips"),
+  pickupInstructions: text("pickup_instructions"),
+  dropoffInstructions: text("dropoff_instructions"),
+  tripType: text("trip_type"), // Keep existing column
+  routeCategory: text("route_category"),
+  cityId: integer("city_id").references(() => cities.id),
+  tripMode: text("trip_mode").default("transfer"),
+  nights: integer("nights").default(0),
+  distanceKm: integer("distance_km"),
+  vehiclePrices: jsonb("vehicle_prices"),
+});
 
 export const timeBlocks = pgTable("time_blocks", {
   id: serial("id").primaryKey(),
@@ -132,6 +131,23 @@ export const quotes = pgTable("quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Services catalog for Day-by-Day Custom Planner
+export const services = pgTable("services", {
+  id: serial("id").primaryKey(),
+  type: text("type").notNull(), // 'transfer', 'tour', 'guide', 'addon'
+  title: text("title").notNull(),
+  description: text("description"),
+  cityId: integer("city_id").references(() => cities.id),
+  basePrice: decimal("base_price", { precision: 10, scale: 2 }).notNull(),
+  pricingMode: text("pricing_mode").notNull(), // 'per_group', 'per_person'
+  vehicleCategory: text("vehicle_category"), // 'sedan', 'minivan', 'van' (for transfers)
+  durationMinutes: integer("duration_minutes"), // for tours/guides
+  capacity: integer("capacity"),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 export const bookings = pgTable("bookings", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id),
@@ -152,6 +168,8 @@ export const bookings = pgTable("bookings", {
   startDate: timestamp("start_date"),
   endDate: timestamp("end_date"),
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
+  module: text("module").notNull().default("multi_city"), // 'transfer_only', 'multi_city', 'day_by_day'
+  currency: text("currency").notNull().default("EGP"),
   
   // Communication
   confirmationEmailSent: boolean("confirmation_email_sent").default(false),
@@ -159,6 +177,43 @@ export const bookings = pgTable("bookings", {
   
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Daily breakdown for Day-by-Day bookings
+export const bookingDays = pgTable("booking_days", {
+  id: serial("id").primaryKey(),
+  bookingId: integer("booking_id").references(() => bookings.id).notNull(),
+  date: timestamp("date").notNull(),
+  cityId: integer("city_id").references(() => cities.id),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Individual services within each booking day
+export const bookingServices = pgTable("booking_services", {
+  id: serial("id").primaryKey(),
+  bookingDayId: integer("booking_day_id").references(() => bookingDays.id).notNull(),
+  serviceId: integer("service_id").references(() => services.id).notNull(),
+  passengers: integer("passengers").notNull().default(1),
+  unitPrice: decimal("unit_price", { precision: 10, scale: 2 }).notNull(),
+  subtotal: decimal("subtotal", { precision: 10, scale: 2 }).notNull(),
+  startTime: text("start_time"), // e.g., "09:00"
+  endTime: text("end_time"), // e.g., "17:00"
+  meta: jsonb("meta"), // origin/destination, guide language, pickup details, etc.
+  sortOrder: integer("sort_order").default(0), // for drag-and-drop ordering
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Booking adjustments for discounts and surcharges
+export const bookingAdjustments = pgTable("booking_adjustments", {
+  id: serial("id").primaryKey(),
+  bookingId: integer("booking_id").references(() => bookings.id).notNull(),
+  type: text("type").notNull(), // 'discount', 'surcharge', 'tax'
+  description: text("description").notNull(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  percentage: decimal("percentage", { precision: 5, scale: 2 }),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const reviews = pgTable("reviews", {
@@ -186,18 +241,36 @@ export const insertCitySchema = createInsertSchema(cities).omit({ id: true });
 export const insertVehicleTypeSchema = createInsertSchema(vehicleTypes).omit({ id: true });
 export const insertLicenseClassSchema = createInsertSchema(licenseClasses).omit({ id: true });
 export const insertRouteSchema = createInsertSchema(routes).omit({ id: true }).extend({
-  routeCategory: z.enum(["intra_city", "inter_city"]),
-  tripMode: z.enum(["transfer", "day_trip", "overnight", "multi_day"]).default("transfer"),
-  nights: z.number().min(0).default(0),
+  routeCategory: z.string().optional(),
+  tripMode: z.string().optional(),
+  tripType: z.string().optional(),
+  nights: z.number().min(0).optional(),
   fromCityId: z.number().optional(),
   toCityId: z.number().optional(),
   cityId: z.number().optional(),
+  km: z.string().optional(),
+  distanceKm: z.number().optional(),
+  displayOrder: z.number().optional()
 });
 export const insertTimeBlockSchema = createInsertSchema(timeBlocks).omit({ id: true });
 export const insertGuideRateSchema = createInsertSchema(guideRates).omit({ id: true });
 export const insertAddOnSchema = createInsertSchema(addOns).omit({ id: true });
 export const insertAttractionSchema = createInsertSchema(attractions).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertQuoteSchema = createInsertSchema(quotes).omit({ id: true, createdAt: true });
+
+export const insertServiceSchema = createInsertSchema(services).omit({ 
+  id: true, 
+  createdAt: true, 
+  updatedAt: true 
+}).extend({
+  type: z.enum(["transfer", "tour", "guide", "addon"]),
+  pricingMode: z.enum(["per_group", "per_person"]),
+  vehicleCategory: z.enum(["sedan", "minivan", "van"]).optional(),
+  durationMinutes: z.number().optional(),
+  capacity: z.number().optional(),
+  isActive: z.boolean().optional()
+});
+
 export const insertBookingSchema = createInsertSchema(bookings).omit({ 
   id: true, 
   userId: true,
@@ -214,7 +287,40 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   paymentStatus: z.string().optional(),
   bookingStatus: z.string().optional(),
   startDate: z.date().nullable().optional(),
-  endDate: z.date().nullable().optional()
+  endDate: z.date().nullable().optional(),
+  module: z.enum(["transfer_only", "multi_city", "day_by_day"]).optional(),
+  currency: z.string().optional()
+});
+
+export const insertBookingDaySchema = createInsertSchema(bookingDays).omit({ 
+  id: true, 
+  createdAt: true 
+}).extend({
+  date: z.date(),
+  cityId: z.number().optional(),
+  notes: z.string().optional()
+});
+
+export const insertBookingServiceSchema = createInsertSchema(bookingServices).omit({ 
+  id: true, 
+  createdAt: true, 
+  updatedAt: true 
+}).extend({
+  passengers: z.number().min(1).default(1),
+  unitPrice: z.string(),
+  subtotal: z.string(),
+  startTime: z.string().optional(),
+  endTime: z.string().optional(),
+  sortOrder: z.number().optional()
+});
+
+export const insertBookingAdjustmentSchema = createInsertSchema(bookingAdjustments).omit({ 
+  id: true, 
+  createdAt: true 
+}).extend({
+  type: z.enum(["discount", "surcharge", "tax"]),
+  amount: z.string(),
+  percentage: z.string().optional()
 });
 
 export const insertReviewSchema = createInsertSchema(reviews).omit({ 
@@ -259,8 +365,20 @@ export type InsertAttraction = z.infer<typeof insertAttractionSchema>;
 export type Quote = typeof quotes.$inferSelect;
 export type InsertQuote = z.infer<typeof insertQuoteSchema>;
 
+export type Service = typeof services.$inferSelect;
+export type InsertService = z.infer<typeof insertServiceSchema>;
+
 export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
+
+export type BookingDay = typeof bookingDays.$inferSelect;
+export type InsertBookingDay = z.infer<typeof insertBookingDaySchema>;
+
+export type BookingService = typeof bookingServices.$inferSelect;
+export type InsertBookingService = z.infer<typeof insertBookingServiceSchema>;
+
+export type BookingAdjustment = typeof bookingAdjustments.$inferSelect;
+export type InsertBookingAdjustment = z.infer<typeof insertBookingAdjustmentSchema>;
 
 export type Review = typeof reviews.$inferSelect;
 export type InsertReview = z.infer<typeof insertReviewSchema>;
