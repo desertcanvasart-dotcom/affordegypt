@@ -978,26 +978,41 @@ export default function AdminSidebar() {
                           <TableCell className="text-xs text-gray-600">
                             <div className="space-y-1">
                               {(() => {
-                                if (route.basePriceByVehicle && typeof route.basePriceByVehicle === 'object') {
-                                  const prices = [];
-                                  // Check for sedan pricing (vehicle ID 1)
+                                // Parse vehiclePrices if it's a string (from database JSON)
+                                let vehiclePrices = route.vehiclePrices;
+                                if (typeof vehiclePrices === 'string') {
+                                  try {
+                                    vehiclePrices = JSON.parse(vehiclePrices);
+                                  } catch (e) {
+                                    vehiclePrices = {};
+                                  }
+                                }
+                                
+                                const prices = [];
+                                
+                                // Try new vehiclePrices format first
+                                if (vehiclePrices && typeof vehiclePrices === 'object') {
+                                  if (vehiclePrices.sedan) prices.push(`Sedan: ${vehiclePrices.sedan} EGP`);
+                                  if (vehiclePrices.minivan) prices.push(`Minivan: ${vehiclePrices.minivan} EGP`);
+                                  if (vehiclePrices.van) prices.push(`Van: ${vehiclePrices.van} EGP`);
+                                }
+                                
+                                // Fallback to legacy basePriceByVehicle format
+                                if (prices.length === 0 && route.basePriceByVehicle && typeof route.basePriceByVehicle === 'object') {
                                   if (route.basePriceByVehicle['1']?.['1']) {
                                     prices.push(`Sedan: ${route.basePriceByVehicle['1']['1']} EGP`);
                                   }
-                                  // Check for minivan pricing (vehicle ID 2)
                                   if (route.basePriceByVehicle['2']?.['1']) {
                                     prices.push(`Minivan: ${route.basePriceByVehicle['2']['1']} EGP`);
                                   }
-                                  // Check for van pricing (vehicle ID 3)
                                   if (route.basePriceByVehicle['3']?.['1']) {
                                     prices.push(`Van: ${route.basePriceByVehicle['3']['1']} EGP`);
                                   }
-                                  
-                                  return prices.length > 0 ? prices.map((price, index) => (
-                                    <div key={index}>{price}</div>
-                                  )) : 'No pricing set';
                                 }
-                                return 'No pricing set';
+                                
+                                return prices.length > 0 ? prices.map((price, index) => (
+                                  <div key={index}>{price}</div>
+                                )) : 'No pricing set';
                               })()}
                             </div>
                           </TableCell>

@@ -357,9 +357,30 @@ export default function AdminCityRoutes() {
                       <div className="text-sm space-y-1">
                         {(() => {
                           // Extract prices from basePriceByVehicle structure
-                          const sedanPrice = route.basePriceByVehicle?.['1']?.['1'] || route.sedanPrice;
-                          const minivanPrice = route.basePriceByVehicle?.['2']?.['1'] || route.minivanPrice;
-                          const vanPrice = route.basePriceByVehicle?.['3']?.['1'] || route.vanPrice;
+                          // Parse vehiclePrices if it's a string (from database JSON)
+                          let vehiclePrices = route.vehiclePrices;
+                          if (typeof vehiclePrices === 'string') {
+                            try {
+                              vehiclePrices = JSON.parse(vehiclePrices);
+                            } catch (e) {
+                              vehiclePrices = {};
+                            }
+                          }
+                          
+                          // Try new vehiclePrices format first
+                          let sedanPrice, minivanPrice, vanPrice;
+                          if (vehiclePrices && typeof vehiclePrices === 'object') {
+                            sedanPrice = vehiclePrices.sedan;
+                            minivanPrice = vehiclePrices.minivan;
+                            vanPrice = vehiclePrices.van;
+                          }
+                          
+                          // Fallback to legacy format
+                          if (!sedanPrice && !minivanPrice && !vanPrice) {
+                            sedanPrice = route.basePriceByVehicle?.['1']?.['1'] || route.sedanPrice;
+                            minivanPrice = route.basePriceByVehicle?.['2']?.['1'] || route.minivanPrice;
+                            vanPrice = route.basePriceByVehicle?.['3']?.['1'] || route.vanPrice;
+                          }
                           
                           return (
                             <>
