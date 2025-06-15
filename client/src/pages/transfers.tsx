@@ -72,6 +72,8 @@ export default function TransfersPage() {
   // Fetch routes
   const { data: routes = [] } = useQuery<Route[]>({
     queryKey: ["/api/routes"],
+    staleTime: 0, // Always fetch fresh data
+    refetchOnWindowFocus: true,
   });
 
   // Filter routes based on tab and selected cities
@@ -127,6 +129,7 @@ export default function TransfersPage() {
 
       // Get all available route options for this city pair
       const routeOptions = getRouteOptionsForCityPair(parseInt(fromCity), parseInt(toCity));
+      console.log('Route options found:', routeOptions.length, routeOptions.map(r => r.tripMode));
       
       if (routeOptions.length > 0) {
         // If multiple options exist, don't auto-select one - let user choose
