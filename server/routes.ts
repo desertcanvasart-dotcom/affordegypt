@@ -676,6 +676,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (fromCityId !== toCityId) {
         const existingRoutes = await storage.getRoutes();
         
+        console.log('=== ROUTE CREATION DEBUG ===');
+        console.log('Request tripMode:', JSON.stringify(req.body.tripMode));
+        console.log('Request tripMode type:', typeof req.body.tripMode);
+        
+        const existingForPair = existingRoutes.filter(r => 
+          r.fromCityId === fromCityId && r.toCityId === toCityId
+        );
+        
+        console.log('Existing routes for this city pair:');
+        existingForPair.forEach(r => {
+          console.log(`  Route ${r.id}: name="${r.name}", tripMode="${r.tripMode}" (type: ${typeof r.tripMode})`);
+          console.log(`  Comparison: "${r.tripMode}" === "${req.body.tripMode}" = ${r.tripMode === req.body.tripMode}`);
+        });
+        
         // Check if exact route already exists with the same trip mode
         const existingRoute = existingRoutes.find(route => 
           route.fromCityId === fromCityId && 
@@ -691,8 +705,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             'multi_day': 'Multi-Day Tour'
           };
           
+          console.log('Found duplicate route:', existingRoute.id, 'with tripMode:', existingRoute.tripMode);
           return res.status(409).json({ 
-            message: `A ${tripModeLabels[req.body.tripMode]} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
+            message: `A ${tripModeLabels[req.body.tripMode] || req.body.tripMode} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
           });
         }
 
