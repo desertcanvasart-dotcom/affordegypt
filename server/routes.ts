@@ -718,6 +718,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         tripMode: req.body.tripMode || 'transfer',
         nights: req.body.nights || 0,
         distanceKm: req.body.distanceKm ? parseInt(req.body.distanceKm) : null,
+        km: req.body.distanceKm ? req.body.distanceKm.toString() : "0", // Legacy field compatibility
         estimatedDuration: req.body.estimatedDuration || null,
         routeHighlights: req.body.routeHighlights || null,
         travelTips: req.body.travelTips || null,
