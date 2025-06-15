@@ -208,6 +208,8 @@ export default function TransfersPage() {
       }
     }
     
+    console.log('Getting price for:', vehicleType, 'from route:', route.id, 'vehiclePrices:', vehiclePrices);
+    
     // Try new vehiclePrices field first with vehicle names
     if (vehiclePrices && typeof vehiclePrices === 'object') {
       const price = vehiclePrices[vehicleType];
@@ -618,6 +620,7 @@ export default function TransfersPage() {
                       key={route.id}
                       className="border rounded-lg p-4 cursor-pointer transition-colors hover:border-teal-300 hover:bg-teal-50"
                       onClick={() => {
+                        console.log('Selected route:', route);
                         setSelectedRoute(route);
                         setVehicleType("");
                       }}
