@@ -140,6 +140,7 @@ export default function TransfersPage() {
           setSelectedRoute(null); // Show options dropdown
         }
         setRouteOptions(routeOptions);
+        console.log('Set routeOptions state to:', routeOptions);
       } else {
         toast({
           title: "Route Not Available",
@@ -600,6 +601,10 @@ export default function TransfersPage() {
         </Tabs>
 
         {/* Route Options Selection */}
+        {(() => {
+          console.log('Render check - routeOptions.length:', routeOptions.length, 'selectedRoute:', selectedRoute);
+          return null;
+        })()}
         {routeOptions.length > 1 && !selectedRoute && (
           <Card className="mb-8 shadow-lg border-teal-200">
             <CardHeader>
