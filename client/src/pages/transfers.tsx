@@ -141,7 +141,7 @@ export default function TransfersPage() {
         } else {
           setSelectedRoute(null); // Show options dropdown
         }
-        setRouteOptions(routeOptions);
+        setRouteOptions([...routeOptions]); // Force array recreation to trigger re-render
         console.log('Set routeOptions state to:', routeOptions);
       } else {
         toast({
@@ -607,6 +607,11 @@ export default function TransfersPage() {
           console.log('Render check - routeOptions.length:', routeOptions.length, 'selectedRoute:', selectedRoute);
           return null;
         })()}
+        {routeOptions.length > 1 && !selectedRoute && (
+          <div className="mb-8 p-4 bg-yellow-100 border-2 border-yellow-400 rounded">
+            <p>DEBUG: Should show dropdown here - routeOptions: {routeOptions.length}, selectedRoute: {selectedRoute ? 'exists' : 'null'}</p>
+          </div>
+        )}
         {routeOptions.length > 1 && !selectedRoute && (
           <Card className="mb-8 shadow-lg border-teal-200">
             <CardHeader>
