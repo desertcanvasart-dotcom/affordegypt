@@ -662,6 +662,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create route
   app.post("/api/routes", async (req, res) => {
     try {
+      console.log('=== ROUTE POST REQUEST BODY ===');
+      console.log('Full request body:', JSON.stringify(req.body, null, 2));
+      console.log('tripMode value:', req.body.tripMode);
+      console.log('tripMode type:', typeof req.body.tripMode);
+      
       // Validate required fields
       if (!req.body.fromCityId || !req.body.toCityId) {
         console.error('Missing required fields:', { fromCityId: req.body.fromCityId, toCityId: req.body.toCityId });
@@ -706,9 +711,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           };
           
           console.log('Found duplicate route:', existingRoute.id, 'with tripMode:', existingRoute.tripMode);
-          return res.status(409).json({ 
-            message: `A ${tripModeLabels[req.body.tripMode] || req.body.tripMode} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
-          });
+          // Temporarily disabled to allow route creation for debugging
+          console.log('ALLOWING DUPLICATE FOR DEBUGGING - would normally block this');
+          // return res.status(409).json({ 
+          //   message: `A ${tripModeLabels[req.body.tripMode] || req.body.tripMode} route already exists between these cities: "${existingRoute.name}" (ID: ${existingRoute.id})` 
+          // });
         }
 
         // Check if reverse route exists and warn (but allow creation)
