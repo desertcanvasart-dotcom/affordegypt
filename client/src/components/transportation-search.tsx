@@ -12,7 +12,9 @@ import { Search, MapPin, Car, Plane, Ship, ChevronDown, X } from "lucide-react";
 interface Route {
   id: number;
   name: string;
-  type: string;
+  tripType: string;
+  fromCityId: number;
+  toCityId: number;
   fromLocation?: string;
   toLocation?: string;
 }
@@ -43,9 +45,9 @@ export default function TransportationSearch({
     );
   }, [routes, cityId]);
 
-  // Get unique route types
-  const routeTypes = useMemo(() => {
-    const types = Array.from(new Set(cityRoutes.map(r => r.type).filter(Boolean)));
+  // Get unique trip types
+  const tripTypes = useMemo(() => {
+    const types = Array.from(new Set(cityRoutes.map(r => r.tripType).filter(Boolean)));
     return types;
   }, [cityRoutes]);
 
@@ -57,7 +59,7 @@ export default function TransportationSearch({
         route.fromLocation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         route.toLocation?.toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesType = selectedType === "all" || route.type === selectedType;
+      const matchesType = selectedType === "all" || route.tripType === selectedType;
       
       return matchesSearch && matchesType;
     });
@@ -70,34 +72,46 @@ export default function TransportationSearch({
     onRoutesChange(updated);
   };
 
-  const getRouteIcon = (type: string) => {
-    if (!type) return <Car className="h-4 w-4" />;
-    switch (type.toLowerCase()) {
-      case 'inter-city':
+  const getRouteIcon = (tripType: string) => {
+    if (!tripType) return <Car className="h-4 w-4" />;
+    switch (tripType.toLowerCase()) {
+      case 'transfer':
         return <Car className="h-4 w-4" />;
-      case 'airport':
-        return <Plane className="h-4 w-4" />;
-      case 'activity':
+      case 'day-trip':
         return <MapPin className="h-4 w-4" />;
+      case 'overnight':
+        return <Ship className="h-4 w-4" />;
+      case 'multi-day':
+        return <Plane className="h-4 w-4" />;
       default:
         return <Car className="h-4 w-4" />;
     }
   };
 
-  const getTypeColor = (type: string) => {
-    if (!type) return 'bg-gray-100 text-gray-800';
-    switch (type.toLowerCase()) {
-      case 'inter-city':
+  const getTypeColor = (tripType: string) => {
+    if (!tripType) return 'bg-gray-100 text-gray-800';
+    switch (tripType.toLowerCase()) {
+      case 'transfer':
         return 'bg-blue-100 text-blue-800';
-      case 'airport':
+      case 'day-trip':
         return 'bg-green-100 text-green-800';
-      case 'activity':
+      case 'overnight':
         return 'bg-purple-100 text-purple-800';
-      case 'intra-city':
+      case 'multi-day':
         return 'bg-orange-100 text-orange-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }
+  };
+
+  const getTripTypeLabel = (tripType: string) => {
+    const labels: Record<string, string> = {
+      'transfer': 'Transfer & Drop off',
+      'day-trip': 'Day Trip',
+      'overnight': 'Overnight Stay',
+      'multi-day': 'Multi-Day Tour'
+    };
+    return labels[tripType] || tripType;
   };
 
   const getDisplayText = () => {
@@ -143,21 +157,21 @@ export default function TransportationSearch({
             />
           </div>
 
-          {/* Route Type Filter */}
-          {routeTypes.length > 1 && (
+          {/* Trip Type Filter */}
+          {tripTypes.length > 1 && (
             <div className="space-y-2">
-              <Label className="text-xs font-medium text-gray-600">Route Type</Label>
+              <Label className="text-xs font-medium text-gray-600">Trip Type</Label>
               <Select value={selectedType} onValueChange={setSelectedType}>
                 <SelectTrigger className="h-8 text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Types</SelectItem>
-                  {routeTypes.map(type => (
-                    <SelectItem key={type} value={type}>
+                  {tripTypes.map(tripType => (
+                    <SelectItem key={tripType} value={tripType}>
                       <div className="flex items-center gap-2">
-                        {getRouteIcon(type)}
-                        <span className="capitalize">{type.replace('-', ' ')}</span>
+                        {getRouteIcon(tripType)}
+                        <span>{getTripTypeLabel(tripType)}</span>
                       </div>
                     </SelectItem>
                   ))}
