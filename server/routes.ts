@@ -764,7 +764,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         fromCityId: req.body.fromCityId ? parseInt(req.body.fromCityId) : undefined,
         toCityId: req.body.toCityId ? parseInt(req.body.toCityId) : undefined,
         displayOrder: req.body.displayOrder !== undefined ? parseInt(req.body.displayOrder) : undefined,
-        // Ensure basePriceByVehicle is properly formatted if provided
+        // Handle vehiclePrices properly
+        vehiclePrices: req.body.vehiclePrices || (
+          req.body.sedanPrice || req.body.minivanPrice || req.body.vanPrice ? {
+            sedan: req.body.sedanPrice || "0",
+            minivan: req.body.minivanPrice || "0",
+            van: req.body.vanPrice || "0"
+          } : undefined
+        ),
+        // Ensure basePriceByVehicle is properly formatted if provided (legacy compatibility)
         basePriceByVehicle: req.body.basePriceByVehicle || (
           req.body.sedanPrice || req.body.minivanPrice || req.body.vanPrice ? {
             "1": {"1": (req.body.sedanPrice || "0")},
