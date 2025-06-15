@@ -13,8 +13,9 @@ export default function ReviewUpload() {
 
   const downloadTemplate = () => {
     const csvContent = `customerName,customerLocation,rating,title,content,tripDate,isVerified,isActive
-John Smith,New York USA,5,Amazing Egypt Experience,Had the most incredible time exploring Cairo and Luxor with Afford Egypt. The guides were knowledgeable and the transportation was comfortable.,2024-03-15,TRUE,TRUE
-Sarah Johnson,London UK,5,Unforgettable Journey,Best travel experience ever! Professional service and authentic Egyptian culture.,2024-02-20,TRUE,TRUE`;
+"John Smith","New York USA",5,"Amazing Egypt Experience","Had the most incredible time exploring Cairo and Luxor with Afford Egypt. The guides were knowledgeable and the transportation was comfortable.","2024-03-15","TRUE","TRUE"
+"Sarah Johnson","London UK",5,"Unforgettable Journey","Best travel experience ever! Professional service and authentic Egyptian culture.","2024-02-20","TRUE","TRUE"
+"Ahmed Hassan","Cairo Egypt",4,"Great Local Experience","Excellent service from local team. Very professional and accommodating.","2024-01-10","FALSE","TRUE"`;
     
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
@@ -49,11 +50,32 @@ Sarah Johnson,London UK,5,Unforgettable Journey,Best travel experience ever! Pro
         throw new Error("File must contain at least a header row and one data row");
       }
 
-      const headers = lines[0].split(',').map(h => h.trim());
+      // Parse CSV with proper quote handling
+      const parseCSVLine = (line: string): string[] => {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        result.push(current.trim());
+        return result;
+      };
+
+      const headers = parseCSVLine(lines[0]);
       const reviews = [];
 
       for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+        const values = parseCSVLine(lines[i]);
         
         if (values.length < 4) continue; // Skip incomplete rows
         
@@ -66,7 +88,10 @@ Sarah Johnson,London UK,5,Unforgettable Journey,Best travel experience ever! Pro
                 break;
               case 'tripDate':
                 if (values[index] && values[index] !== '') {
-                  review[header] = new Date(values[index]).toISOString();
+                  const dateValue = new Date(values[index]);
+                  if (!isNaN(dateValue.getTime())) {
+                    review[header] = dateValue.toISOString();
+                  }
                 }
                 break;
               case 'isVerified':
@@ -89,21 +114,39 @@ Sarah Johnson,London UK,5,Unforgettable Journey,Best travel experience ever! Pro
         throw new Error("No valid reviews found in the file");
       }
 
-      // Upload reviews
-      const results = await Promise.allSettled(
-        reviews.map(review => apiRequest("POST", "/api/reviews", review))
-      );
+      // Upload reviews one by one with detailed error tracking
+      const results = [];
+      const errors = [];
+      
+      for (const review of reviews) {
+        try {
+          await apiRequest("POST", "/api/reviews", review);
+          results.push({ status: 'success', review });
+        } catch (error: any) {
+          console.error('Review upload error:', error, 'Review data:', review);
+          results.push({ status: 'error', review, error: error.message });
+          errors.push(`Row ${results.length}: ${error.message}`);
+        }
+      }
 
-      const successful = results.filter(r => r.status === 'fulfilled').length;
-      const failed = results.filter(r => r.status === 'rejected').length;
+      const successful = results.filter(r => r.status === 'success').length;
+      const failed = results.filter(r => r.status === 'error').length;
 
-      setUploadResults({ successful, failed, total: reviews.length });
+      setUploadResults({ successful, failed, total: reviews.length, errors });
 
-      toast({
-        title: "Upload Complete",
-        description: `Successfully uploaded ${successful} reviews. ${failed > 0 ? `${failed} failed.` : ''}`,
-        variant: successful > 0 ? "default" : "destructive",
-      });
+      if (successful > 0) {
+        toast({
+          title: "Upload Complete",
+          description: `Successfully uploaded ${successful} of ${reviews.length} reviews.${failed > 0 ? ` ${failed} failed.` : ''}`,
+          variant: "default",
+        });
+      } else {
+        toast({
+          title: "Upload Failed",
+          description: `All ${failed} reviews failed to upload. Check console for details.`,
+          variant: "destructive",
+        });
+      }
 
     } catch (error: any) {
       toast({
@@ -167,12 +210,27 @@ Sarah Johnson,London UK,5,Unforgettable Journey,Best travel experience ever! Pro
           )}
 
           {uploadResults && (
-            <div className="bg-green-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-green-900">Upload Results</h4>
-              <p className="text-sm text-green-700 mt-1">
+            <div className={`p-4 rounded-lg ${uploadResults.successful > 0 ? 'bg-green-50' : 'bg-red-50'}`}>
+              <h4 className={`font-semibold ${uploadResults.successful > 0 ? 'text-green-900' : 'text-red-900'}`}>
+                Upload Results
+              </h4>
+              <p className={`text-sm mt-1 ${uploadResults.successful > 0 ? 'text-green-700' : 'text-red-700'}`}>
                 {uploadResults.successful} of {uploadResults.total} reviews uploaded successfully
                 {uploadResults.failed > 0 && ` (${uploadResults.failed} failed)`}
               </p>
+              {uploadResults.errors && uploadResults.errors.length > 0 && (
+                <div className="mt-3">
+                  <h5 className="font-medium text-red-900 text-sm">Error Details:</h5>
+                  <ul className="text-xs text-red-700 mt-1 space-y-1">
+                    {uploadResults.errors.slice(0, 5).map((error: string, index: number) => (
+                      <li key={index}>• {error}</li>
+                    ))}
+                    {uploadResults.errors.length > 5 && (
+                      <li className="italic">... and {uploadResults.errors.length - 5} more errors</li>
+                    )}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
         </div>
