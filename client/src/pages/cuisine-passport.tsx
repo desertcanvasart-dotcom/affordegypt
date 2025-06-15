@@ -369,6 +369,58 @@ const egyptianDishes: Dish[] = [
     ]
   },
   {
+    id: 9,
+    name: "Rice Muammar",
+    arabicName: "رز معمر",
+    description: "Traditional Egyptian baked rice dish cooked slowly in milk and cream, served in clay tajin. Creates a creamy, golden-topped casserole with crispy crust and rich, buttery center. Popular in countryside and Upper Egypt for Friday lunches and family gatherings.",
+    region: "Upper Egypt",
+    spiceLevel: 0,
+    difficulty: "Medium",
+    cookingTime: "60-75 minutes",
+    priceRange: "25-50 EGP",
+    ingredients: ["Short-grain rice", "Full-fat milk", "Cooking cream", "Ghee", "Chicken or beef", "Salt", "Pepper", "Bay leaf"],
+    allergens: ["Dairy"],
+    category: "Main Course",
+    popularity: 78,
+    tried: false,
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Rice-Muammar-رز-معمر.jpg",
+    nutritionScore: 75,
+    culturalStory: "The name 'muammar' means 'enriched,' referring to the rich milk and cream used. Traditional clay tajin cooking gives the best crispy crust and is especially popular in rural Egyptian kitchens.",
+    bestLocations: ["Upper Egypt restaurants", "Rural family kitchens", "Traditional Egyptian homes", "Friday lunch tables"],
+    signatureTraits: [
+      "Baked in clay or ceramic tajin",
+      "Signature creamy interior with crispy golden crust",
+      "Can be savory with meat or sweet for dessert",
+      "Simple ingredients with deeply comforting result",
+      "Popular in rural Egyptian countryside"
+    ],
+    servingStyles: [
+      "Served straight from the tajin while warm",
+      "Accompanied by side salad or yogurt",
+      "Family-style sharing from clay pot",
+      "Crispy top and creamy base highlight",
+      "Friday lunch centerpiece dish"
+    ],
+    cookingMethods: [
+      "Bake at 200°C (390°F) for 45-60 minutes",
+      "Cover with foil, then uncover for golden crust",
+      "Use clay tajin for best crispy texture",
+      "Layer meat at bottom, rice and milk mixture on top"
+    ],
+    regionalVariations: [
+      "Savory version with chicken or beef chunks",
+      "Sweet version (Muammar Helw) with sugar and vanilla",
+      "Upper Egypt style with whole spices",
+      "Countryside version with extra ghee and ishta"
+    ],
+    preparationTips: [
+      "Use clay tajin if available for best crust",
+      "Brown meat slightly before adding for extra flavor",
+      "Mix milk and evaporated milk for extra richness",
+      "Add whole clove or bay leaf for subtle aroma"
+    ]
+  },
+  {
     id: 7,
     name: "Hawawshi",
     arabicName: "حواوشي",
