@@ -42,6 +42,7 @@ export default function TransfersPage() {
   const [vehicleType, setVehicleType] = useState("");
   const [passengers, setPassengers] = useState("2");
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
+  const [routeOptions, setRouteOptions] = useState<Route[]>([]);
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
   const [selectedCityForLocal, setSelectedCityForLocal] = useState("");
@@ -56,6 +57,7 @@ export default function TransfersPage() {
     setToCity("");
     setVehicleType("");
     setSelectedRoute(null);
+    setRouteOptions([]);
     setSelectedCityForLocal("");
     setShowLocalRoutes(false);
   };
@@ -123,15 +125,25 @@ export default function TransfersPage() {
         return;
       }
 
-      const route = availableRoutes[0];
-      if (route) {
-        setSelectedRoute(route);
+      // Get all available route options for this city pair
+      const routeOptions = getRouteOptionsForCityPair(parseInt(fromCity), parseInt(toCity));
+      
+      if (routeOptions.length > 0) {
+        // If multiple options exist, don't auto-select one - let user choose
+        // If only one option exists, auto-select it
+        if (routeOptions.length === 1) {
+          setSelectedRoute(routeOptions[0]);
+        } else {
+          setSelectedRoute(null); // Show options dropdown
+        }
+        setRouteOptions(routeOptions);
       } else {
         toast({
           title: "Route Not Available",
           description: "No direct transfer available for this route. Try our full trip planner instead.",
           variant: "destructive",
         });
+        setRouteOptions([]);
       }
     } else {
       // Intracity search
@@ -159,6 +171,24 @@ export default function TransfersPage() {
   // Get local routes within a selected city
   const getLocalRoutesForCity = (cityId: number) => {
     return routes.filter(route => route.fromCityId === cityId && route.toCityId === cityId);
+  };
+
+  // Get all route options for a city pair (grouped by trip mode)
+  const getRouteOptionsForCityPair = (fromCityId: number, toCityId: number) => {
+    return routes.filter(route => 
+      route.fromCityId === fromCityId && route.toCityId === toCityId
+    );
+  };
+
+  // Get trip mode label
+  const getTripModeLabel = (tripMode: string) => {
+    const labels = {
+      'transfer': 'Transfer & Drop off',
+      'day_trip': 'Day Trip (return same day)',
+      'overnight': 'Overnight Stay (1 night)',
+      'multi_day': 'Multi-Day Tour (2+ nights)'
+    };
+    return labels[tripMode as keyof typeof labels] || tripMode;
   };
 
   const getValidPrice = (route: Route, vehicleType: string): number => {
@@ -564,14 +594,97 @@ export default function TransfersPage() {
           </TabsContent>
         </Tabs>
 
-        {/* Route Results */}
+        {/* Route Options Selection */}
+        {routeOptions.length > 1 && !selectedRoute && (
+          <Card className="mb-8 shadow-lg border-teal-200">
+            <CardHeader>
+              <CardTitle className="flex items-center text-xl text-teal-700">
+                <MapPin className="w-5 h-5 mr-2" />
+                Choose Your Trip Type
+              </CardTitle>
+              <p className="text-gray-600">
+                {cities.find(c => c.id === parseInt(fromCity))?.name} → {cities.find(c => c.id === parseInt(toCity))?.name}
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <h4 className="font-medium">Multiple options available for this route:</h4>
+                <div className="grid gap-4">
+                  {routeOptions.map((route) => (
+                    <div
+                      key={route.id}
+                      className="border rounded-lg p-4 cursor-pointer transition-colors hover:border-teal-300 hover:bg-teal-50"
+                      onClick={() => {
+                        setSelectedRoute(route);
+                        setVehicleType("");
+                      }}
+                    >
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <h5 className="font-semibold text-base mb-2">
+                            {getTripModeLabel(route.tripMode)}
+                          </h5>
+                          <div className="flex items-center text-sm text-gray-600 space-x-4">
+                            <span className="flex items-center">
+                              <Clock className="w-4 h-4 mr-1" />
+                              {route.nights} night{route.nights !== 1 ? 's' : ''}
+                            </span>
+                            {route.distanceKm && (
+                              <span className="flex items-center">
+                                <MapPin className="w-4 h-4 mr-1" />
+                                {route.distanceKm} km
+                              </span>
+                            )}
+                            {route.estimatedDuration && (
+                              <span className="flex items-center">
+                                <Clock className="w-4 h-4 mr-1" />
+                                {route.estimatedDuration}
+                              </span>
+                            )}
+                          </div>
+                          {route.routeHighlights && (
+                            <p className="mt-2 text-sm text-gray-700">{route.routeHighlights}</p>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm text-gray-600">From</div>
+                          <div className="text-lg font-bold text-teal-600">
+                            {getValidPrice(route, 'sedan') || 'N/A'} EGP
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Selected Route Details */}
         {selectedRoute && (
           <Card className="mb-8 shadow-lg border-teal-200">
             <CardHeader>
               <CardTitle className="flex items-center text-xl text-teal-700">
                 <MapPin className="w-5 h-5 mr-2" />
-                Available Transfer
+                {getTripModeLabel(selectedRoute.tripMode)}
               </CardTitle>
+              <p className="text-gray-600">
+                {selectedRoute.routeCategory === 'inter_city' 
+                  ? `${cities.find(c => c.id === selectedRoute.fromCityId)?.name} → ${cities.find(c => c.id === selectedRoute.toCityId)?.name}`
+                  : `${cities.find(c => c.id === selectedRoute.cityId)?.name} Local`
+                }
+              </p>
+              {routeOptions.length > 1 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setSelectedRoute(null)}
+                  className="mt-2 w-fit"
+                >
+                  ← Back to Options
+                </Button>
+              )}
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between mb-6">
