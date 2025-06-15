@@ -380,7 +380,7 @@ const egyptianDishes: Dish[] = [
     priceRange: "25-50 EGP",
     ingredients: ["Short-grain rice", "Full-fat milk", "Cooking cream", "Ghee", "Chicken or beef", "Salt", "Pepper", "Bay leaf"],
     allergens: ["Dairy"],
-    category: "Main Course",
+    category: "Main",
     popularity: 78,
     tried: false,
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/Rice-Muammar-رز-معمر.jpg",
