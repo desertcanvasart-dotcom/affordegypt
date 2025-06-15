@@ -164,16 +164,19 @@ export default function RouteEditModal({
     },
   });
 
-  // Check for duplicate routes
+  // Check for duplicate routes (temporarily disabled)
   const checkForDuplicateRoutes = (fromCityId: string, toCityId: string) => {
     if (!fromCityId || !toCityId || fromCityId === toCityId) return { hasConflict: false };
     
     const fromId = parseInt(fromCityId);
     const toId = parseInt(toCityId);
     
-    // Check for exact duplicate (same direction)
+    // Check for exact duplicate with same trip mode
     const exactDuplicate = (existingRoutes as any[]).find(route => 
-      route.fromCityId === fromId && route.toCityId === toId && route.id !== route?.id
+      route.fromCityId === fromId && 
+      route.toCityId === toId && 
+      route.tripMode === formData.tripMode &&
+      route.id !== route?.id
     );
     
     // Check for reverse route
@@ -181,8 +184,9 @@ export default function RouteEditModal({
       route.fromCityId === toId && route.toCityId === fromId
     );
     
+    // Temporarily disable conflict detection to allow multiple trip modes
     return {
-      hasConflict: !!exactDuplicate,
+      hasConflict: false, // Was: !!exactDuplicate
       hasReverse: !!reverseRoute,
       exactDuplicate,
       reverseRoute
