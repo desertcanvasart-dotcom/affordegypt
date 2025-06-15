@@ -547,12 +547,15 @@ export default function TransfersPage() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="font-semibold text-base">
-                    {cities.find(c => c.id === selectedRoute.fromCityId)?.name} → {cities.find(c => c.id === selectedRoute.toCityId)?.name}
+                    {selectedRoute.routeCategory === 'inter_city' 
+                      ? `${cities.find(c => c.id === selectedRoute.fromCityId)?.name} → ${cities.find(c => c.id === selectedRoute.toCityId)?.name}`
+                      : `${cities.find(c => c.id === selectedRoute.cityId)?.name} Local`
+                    }
                   </h3>
                   <div className="flex items-center text-sm text-gray-600 mt-2 space-x-4">
                     <span className="flex items-center">
                       <MapPin className="w-4 h-4 mr-1" />
-                      {selectedRoute.km} km
+                      {selectedRoute.distanceKm || 0} km
                     </span>
                     {selectedRoute.estimatedDuration && (
                       <span className="flex items-center">
@@ -690,7 +693,7 @@ export default function TransfersPage() {
                           : route.name || `${route.fromLocation || fromCityName} → ${route.toLocation || toCityName}`
                         }
                       </h4>
-                      <p className="text-sm text-gray-600">{route.km} km</p>
+                      <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
                       {minPrice > 0 && (
                         <p className="text-teal-600 font-bold mt-2">From {minPrice} EGP</p>
                       )}
