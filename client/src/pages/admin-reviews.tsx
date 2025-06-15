@@ -63,7 +63,7 @@ export default function AdminReviews() {
       await apiRequest("PATCH", `/api/reviews/${reviewId}`, { isActive });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/reviews"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/reviews/all"] });
       toast({
         title: "Success",
         description: "Review visibility updated",
