@@ -128,10 +128,7 @@ export default function TransfersPage() {
       }
 
       // Get all available route options for this city pair
-      console.log('Searching for routes:', { fromCityId: parseInt(fromCity), toCityId: parseInt(toCity) });
-      console.log('All routes in database:', routes.map(r => ({ id: r.id, from: r.fromCityId, to: r.toCityId, tripMode: r.tripMode })));
       const routeOptions = getRouteOptionsForCityPair(parseInt(fromCity), parseInt(toCity));
-      console.log('Route options found:', routeOptions.length, routeOptions.map(r => r.tripMode));
       
       if (routeOptions.length > 0) {
         // If multiple options exist, don't auto-select one - let user choose
@@ -142,7 +139,6 @@ export default function TransfersPage() {
           setSelectedRoute(null); // Show options dropdown
         }
         setRouteOptions([...routeOptions]); // Force array recreation to trigger re-render
-        console.log('Set routeOptions state to:', routeOptions);
       } else {
         toast({
           title: "Route Not Available",
@@ -603,15 +599,8 @@ export default function TransfersPage() {
         </Tabs>
 
         {/* Route Options Selection */}
-        {(() => {
-          console.log('Render check - routeOptions.length:', routeOptions.length, 'selectedRoute:', selectedRoute);
-          return null;
-        })()}
-        {routeOptions.length > 1 && !selectedRoute && (
-          <div className="mb-8 p-4 bg-yellow-100 border-2 border-yellow-400 rounded">
-            <p>DEBUG: Should show dropdown here - routeOptions: {routeOptions.length}, selectedRoute: {selectedRoute ? 'exists' : 'null'}</p>
-          </div>
-        )}
+
+
         {routeOptions.length > 1 && !selectedRoute && (
           <Card className="mb-8 shadow-lg border-teal-200">
             <CardHeader>
@@ -632,7 +621,6 @@ export default function TransfersPage() {
                       key={route.id}
                       className="border rounded-lg p-4 cursor-pointer transition-colors hover:border-teal-300 hover:bg-teal-50"
                       onClick={() => {
-                        console.log('Selected route:', route);
                         setSelectedRoute(route);
                         setVehicleType("");
                       }}
