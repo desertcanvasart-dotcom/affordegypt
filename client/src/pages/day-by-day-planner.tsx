@@ -53,6 +53,7 @@ export default function DayByDayPlanner() {
   const [bookingId, setBookingId] = useState<number | null>(null);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [selectedDayId, setSelectedDayId] = useState<number | null>(null);
+  const [daysCreated, setDaysCreated] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -146,9 +147,9 @@ export default function DayByDayPlanner() {
     }
   };
 
-  // Generate timeline of dates
+  // Generate timeline of dates - only run once per booking
   useEffect(() => {
-    if (bookingId && selectedRange?.from && selectedRange?.to && (!booking || !booking.days || booking.days.length === 0)) {
+    if (bookingId && selectedRange?.from && selectedRange?.to && !daysCreated) {
       const daysDiff = differenceInDays(selectedRange.to, selectedRange.from);
       
       // Create booking days for each date in range
@@ -156,8 +157,9 @@ export default function DayByDayPlanner() {
         const date = addDays(selectedRange.from, i);
         createDayMutation.mutate({ date });
       }
+      setDaysCreated(true);
     }
-  }, [bookingId, selectedRange, booking]);
+  }, [bookingId, selectedRange?.from, selectedRange?.to, daysCreated]);
 
   // Handle adding service to a day
   const handleAddService = (dayId: number) => {
@@ -366,6 +368,7 @@ export default function DayByDayPlanner() {
           onClick={() => {
             setSelectedRange(null);
             setBookingId(null);
+            setDaysCreated(false);
           }}
         >
           Change Dates
