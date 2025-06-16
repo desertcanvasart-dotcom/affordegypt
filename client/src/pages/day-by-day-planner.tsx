@@ -7,9 +7,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Plus, MapPin, Clock, Users, DollarSign } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import ServiceModal from "@/components/day-by-day/service-modal";
-import PricingSidebar from "@/components/day-by-day/pricing-sidebar";
-import DayColumn from "@/components/day-by-day/day-column";
+// import ServiceModal from "@/components/day-by-day/service-modal";
+// import PricingSidebar from "@/components/day-by-day/pricing-sidebar";
+// import DayColumn from "@/components/day-by-day/day-column";
 import { format, addDays, differenceInDays } from "date-fns";
 
 interface BookingDay {
@@ -163,87 +163,93 @@ export default function DayByDayPlanner() {
 
   if (!selectedRange) {
     return (
-      <div className="container mx-auto p-6 max-w-6xl">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-teal-600 mb-2">Day-by-Day Custom Planner</h1>
-          <p className="text-gray-600">
-            Build your perfect Egypt itinerary one day at a time. Select your travel dates to get started.
-          </p>
-        </div>
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto p-6 max-w-6xl">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-teal-600 mb-2">Day-by-Day Custom Planner</h1>
+            <p className="text-gray-600">
+              Build your perfect Egypt itinerary one day at a time. Select your travel dates to get started.
+            </p>
+          </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Select Your Travel Dates</CardTitle>
-              <CardDescription>
-                Choose your trip start and end dates to begin planning your custom itinerary
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Calendar
-                mode="range"
-                selected={selectedRange}
-                onSelect={handleDateRangeSelect}
-                disabled={[{ before: new Date() }]}
-                className="rounded-md border"
-              />
-              {selectedRange?.from && !selectedRange?.to && (
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm text-blue-700">
-                    Start date selected: {format(selectedRange.from, "MMM d, yyyy")}
-                  </p>
-                  <p className="text-sm text-blue-600 mt-1">
-                    Now click your end date to create your itinerary
-                  </p>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <Card className="bg-white shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-xl">Select Your Travel Dates</CardTitle>
+                <CardDescription>
+                  Choose your trip start and end dates to begin planning your custom itinerary
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-4">
+                  <Calendar
+                    mode="range"
+                    selected={selectedRange}
+                    onSelect={handleDateRangeSelect}
+                    disabled={[{ before: new Date() }]}
+                    className="mx-auto"
+                  />
                 </div>
-              )}
-              {createBookingMutation.isPending && (
-                <div className="mt-4 flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-teal-600"></div>
-                  <span className="ml-2 text-sm text-gray-600">Creating your itinerary...</span>
+                
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-gray-500 mb-2">
+                    Select both start and end dates to begin planning
+                  </p>
+                  <Button 
+                    onClick={() => {
+                      handleDateRangeSelect({
+                        from: new Date(),
+                        to: addDays(new Date(), 3)
+                      });
+                    }}
+                    variant="outline"
+                    size="sm"
+                  >
+                    Quick Test: 4-Day Trip
+                  </Button>
                 </div>
-              )}
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>What You Can Plan</CardTitle>
-              <CardDescription>
-                With the Day-by-Day planner, you have complete flexibility
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-teal-600" />
-                <div>
-                  <h4 className="font-medium">Transportation</h4>
-                  <p className="text-sm text-gray-600">Airport transfers, inter-city travel, local transport</p>
+            <Card>
+              <CardHeader>
+                <CardTitle>What You Can Plan</CardTitle>
+                <CardDescription>
+                  With the Day-by-Day planner, you have complete flexibility
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <MapPin className="h-5 w-5 text-teal-600" />
+                  <div>
+                    <h4 className="font-medium">Transportation</h4>
+                    <p className="text-sm text-gray-600">Airport transfers, inter-city travel, local transport</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="h-5 w-5 text-teal-600" />
-                <div>
-                  <h4 className="font-medium">Tours & Activities</h4>
-                  <p className="text-sm text-gray-600">Half-day tours, full-day experiences, attractions</p>
+                <div className="flex items-center space-x-3">
+                  <Clock className="h-5 w-5 text-teal-600" />
+                  <div>
+                    <h4 className="font-medium">Tours & Activities</h4>
+                    <p className="text-sm text-gray-600">Half-day tours, full-day experiences, attractions</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Users className="h-5 w-5 text-teal-600" />
-                <div>
-                  <h4 className="font-medium">Guides & Extras</h4>
-                  <p className="text-sm text-gray-600">Professional guides, entrance tickets, meals</p>
+                <div className="flex items-center space-x-3">
+                  <Users className="h-5 w-5 text-teal-600" />
+                  <div>
+                    <h4 className="font-medium">Guides & Extras</h4>
+                    <p className="text-sm text-gray-600">Professional guides, entrance tickets, meals</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <DollarSign className="h-5 w-5 text-teal-600" />
-                <div>
-                  <h4 className="font-medium">Flexible Pricing</h4>
-                  <p className="text-sm text-gray-600">Pay only for what you book, with volume discounts</p>
+                <div className="flex items-center space-x-3">
+                  <DollarSign className="h-5 w-5 text-teal-600" />
+                  <div>
+                    <h4 className="font-medium">Flexible Pricing</h4>
+                    <p className="text-sm text-gray-600">Pay only for what you book, with volume discounts</p>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     );
@@ -265,7 +271,7 @@ export default function DayByDayPlanner() {
         <div>
           <h1 className="text-3xl font-bold text-teal-600 mb-2">Day-by-Day Custom Planner</h1>
           <p className="text-gray-600">
-            {selectedRange.from && selectedRange.to && 
+            {selectedRange?.from && selectedRange?.to && 
               `${format(selectedRange.from, 'MMM d')} - ${format(selectedRange.to, 'MMM d, yyyy')} • ${differenceInDays(selectedRange.to, selectedRange.from) + 1} days`
             }
           </p>
