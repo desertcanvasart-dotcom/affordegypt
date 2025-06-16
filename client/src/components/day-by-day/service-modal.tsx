@@ -60,7 +60,13 @@ export function ServiceModal({ isOpen, onClose, dayId, cities, onServiceAdded }:
   // Add service mutation
   const addServiceMutation = useMutation({
     mutationFn: async (serviceData: any) => {
-      return await apiRequest("POST", `/api/day-by-day/days/${dayId}/services`, serviceData);
+      const response = await fetch(`/api/day-by-day/days/${dayId}/services`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(serviceData),
+      });
+      if (!response.ok) throw new Error("Failed to add service");
+      return await response.json();
     },
     onSuccess: () => {
       toast({

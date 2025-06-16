@@ -7,9 +7,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Plus, MapPin, Clock, Users, DollarSign } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { ServiceModal } from "@/components/day-by-day/service-modal";
-import { PricingSidebar } from "@/components/day-by-day/pricing-sidebar";
-import { DayColumn } from "@/components/day-by-day/day-column";
+import ServiceModal from "@/components/day-by-day/service-modal";
+import PricingSidebar from "@/components/day-by-day/pricing-sidebar";
+import DayColumn from "@/components/day-by-day/day-column";
 import { format, addDays, differenceInDays } from "date-fns";
 
 interface BookingDay {
