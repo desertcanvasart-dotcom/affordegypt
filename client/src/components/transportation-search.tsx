@@ -12,7 +12,7 @@ import { Search, MapPin, Car, Plane, Ship, ChevronDown, X } from "lucide-react";
 interface Route {
   id: number;
   name: string;
-  tripType: string;
+  trip_mode: string;
   fromCityId: number;
   toCityId: number;
   fromLocation?: string;
@@ -47,7 +47,7 @@ export default function TransportationSearch({
 
   // Get unique trip types
   const tripTypes = useMemo(() => {
-    const types = Array.from(new Set(cityRoutes.map(r => r.tripType).filter(Boolean)));
+    const types = Array.from(new Set(cityRoutes.map(r => r.trip_mode).filter(Boolean)));
     return types;
   }, [cityRoutes]);
 
@@ -59,7 +59,7 @@ export default function TransportationSearch({
         route.fromLocation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         route.toLocation?.toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesType = selectedType === "all" || route.tripType === selectedType;
+      const matchesType = selectedType === "all" || route.trip_mode === selectedType;
       
       return matchesSearch && matchesType;
     });
@@ -72,32 +72,32 @@ export default function TransportationSearch({
     onRoutesChange(updated);
   };
 
-  const getRouteIcon = (tripType: string) => {
-    if (!tripType) return <Car className="h-4 w-4" />;
-    switch (tripType.toLowerCase()) {
+  const getRouteIcon = (tripMode: string) => {
+    if (!tripMode) return <Car className="h-4 w-4" />;
+    switch (tripMode.toLowerCase()) {
       case 'transfer':
         return <Car className="h-4 w-4" />;
-      case 'day-trip':
+      case 'day_trip':
         return <MapPin className="h-4 w-4" />;
       case 'overnight':
         return <Ship className="h-4 w-4" />;
-      case 'multi-day':
+      case 'multi_day':
         return <Plane className="h-4 w-4" />;
       default:
         return <Car className="h-4 w-4" />;
     }
   };
 
-  const getTypeColor = (tripType: string) => {
-    if (!tripType) return 'bg-gray-100 text-gray-800';
-    switch (tripType.toLowerCase()) {
+  const getTypeColor = (tripMode: string) => {
+    if (!tripMode) return 'bg-gray-100 text-gray-800';
+    switch (tripMode.toLowerCase()) {
       case 'transfer':
         return 'bg-blue-100 text-blue-800';
-      case 'day-trip':
+      case 'day_trip':
         return 'bg-green-100 text-green-800';
       case 'overnight':
         return 'bg-purple-100 text-purple-800';
-      case 'multi-day':
+      case 'multi_day':
         return 'bg-orange-100 text-orange-800';
       default:
         return 'bg-gray-100 text-gray-800';

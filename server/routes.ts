@@ -610,7 +610,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         const routes = await storage.getRoutes();
         
-        // Transform routes to normalize pricing format for admin interface
+        // Transform routes to normalize pricing format and include trip mode
         const transformedRoutes = routes.map(route => {
           let normalizedPricing = {};
           let sedanPrice = "0";
