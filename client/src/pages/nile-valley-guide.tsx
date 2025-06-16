@@ -602,7 +602,11 @@ export default function NileValleyGuide() {
                         setTimeout(() => {
                           const element = document.getElementById('selected-city-details');
                           if (element) {
-                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            element.scrollIntoView({ 
+                              behavior: 'smooth', 
+                              block: 'center',
+                              inline: 'nearest'
+                            });
                           }
                         }, 100);
                       }}
