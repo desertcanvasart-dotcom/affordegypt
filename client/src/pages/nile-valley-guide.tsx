@@ -34,6 +34,48 @@ interface NileCity {
 const nileValleyCities: NileCity[] = [
   {
     id: 1,
+    name: "Alexandria",
+    arabicName: "الإسكندرية",
+    region: "Lower Egypt",
+    latitude: 31.2001,
+    longitude: 29.9187,
+    population: "5.2 million",
+    highlights: ["Library of Alexandria", "Qaitbay Citadel", "Mediterranean beaches", "Ancient Roman sites"],
+    bestTimeToVisit: "March - November",
+    averageStay: "2-3 days",
+    keyAttractions: [
+      {
+        name: "Bibliotheca Alexandrina",
+        description: "Modern revival of the ancient Library of Alexandria with stunning architecture",
+        entryFee: "70 EGP",
+        hours: "10:00 AM - 7:00 PM"
+      },
+      {
+        name: "Qaitbay Citadel",
+        description: "15th-century fortress built on the site of the ancient Lighthouse of Alexandria",
+        entryFee: "60 EGP",
+        hours: "9:00 AM - 4:00 PM"
+      },
+      {
+        name: "Catacombs of Kom el Shoqafa",
+        description: "Largest Roman burial site in Egypt with unique Greco-Roman-Egyptian fusion",
+        entryFee: "80 EGP",
+        hours: "9:00 AM - 4:00 PM"
+      }
+    ],
+    transportation: {
+      fromCairo: "2.5 hours by train/bus",
+      localTransport: ["Tram", "Bus", "Taxi", "Uber"]
+    },
+    budgetTips: [
+      "Stay near the Corniche for sea views",
+      "Try fresh seafood at local restaurants",
+      "Use the historic tram system for cheap transport"
+    ],
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/alexandria-library.jpg"
+  },
+  {
+    id: 2,
     name: "Cairo",
     arabicName: "القاهرة",
     region: "Lower Egypt",
@@ -76,7 +118,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg"
   },
   {
-    id: 2,
+    id: 3,
     name: "Beni Suef",
     arabicName: "بني سويف",
     region: "Middle Egypt",
@@ -112,7 +154,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg"
   },
   {
-    id: 3,
+    id: 4,
     name: "Minya",
     arabicName: "المنيا",
     region: "Middle Egypt",
@@ -154,7 +196,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
   },
   {
-    id: 4,
+    id: 5,
     name: "Asyut",
     arabicName: "أسيوط",
     region: "Middle Egypt",
@@ -477,7 +519,7 @@ const nileValleyCities: NileCity[] = [
 ];
 
 export default function NileValleyGuide() {
-  const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Cairo
+  const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
 
   // Scroll to top when component mounts
@@ -527,8 +569,8 @@ export default function NileValleyGuide() {
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <MapPin className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">11 Historic Cities</h4>
-              <p className="text-sm text-white/80">From Cairo to Abu Simbel along the Nile</p>
+              <h4 className="font-semibold mb-2 text-green-primary">12 Historic Cities</h4>
+              <p className="text-sm text-white/80">From Alexandria to Abu Simbel along the Nile</p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
