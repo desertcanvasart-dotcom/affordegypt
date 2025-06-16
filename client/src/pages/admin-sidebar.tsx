@@ -183,6 +183,8 @@ export default function AdminSidebar() {
       fromLocation: item.fromLocation || "",
       toLocation: item.toLocation || "",
       km: item.km?.toString() || "",
+      tripMode: item.tripMode || 'transfer',
+      nights: item.nights || 0,
       displayOrder: item.displayOrder?.toString() || "",
       basePriceByVehicle: typeof item.basePriceByVehicle === 'string' ? item.basePriceByVehicle : JSON.stringify(item.basePriceByVehicle || {}),
       vehiclePricing: vehiclePricing
@@ -243,6 +245,8 @@ export default function AdminSidebar() {
           : (formData.fromCityId ? parseInt(formData.fromCityId) : null),
         fromLocation: formData.fromLocation || null,
         toLocation: formData.toLocation || null,
+        tripMode: formData.tripMode || 'transfer',
+        nights: formData.nights || 0,
         km: parseFloat(formData.km) || 0,
         displayOrder: parseInt(formData.displayOrder) || 0,
         basePriceByVehicle: formData.vehiclePricing && Object.keys(formData.vehiclePricing).length > 0 
@@ -1337,6 +1341,36 @@ export default function AdminSidebar() {
                       placeholder="0"
                     />
                     <p className="text-xs text-gray-500 mt-1">Lower numbers appear first in the pricing tool</p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Trip Mode *</label>
+                    <select
+                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.tripMode || ''}
+                      onChange={(e) => {
+                        const nightsMap = {
+                          'transfer': 0,
+                          'day_trip': 0,
+                          'overnight': 1,
+                          'multi_day': 2
+                        };
+                        setFormData({
+                          ...formData, 
+                          tripMode: e.target.value,
+                          nights: nightsMap[e.target.value as keyof typeof nightsMap] || 0
+                        });
+                      }}
+                    >
+                      <option value="">Select Trip Mode</option>
+                      <option value="transfer">Transfer & Drop off</option>
+                      <option value="day_trip">Day Trip (return same day)</option>
+                      <option value="overnight">Overnight Stay (1 night)</option>
+                      <option value="multi_day">Multi-Day Tour (2+ nights)</option>
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Auto-filled nights: {formData.nights || 0}
+                    </p>
                   </div>
                   
                   {formData.routeType === 'inter-city' ? (
