@@ -155,7 +155,7 @@ const nileValleyCities: NileCity[] = [
       "Bargain at local markets"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg"
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/Beni-Suef-.jpg"
   },
   {
     id: 4,
