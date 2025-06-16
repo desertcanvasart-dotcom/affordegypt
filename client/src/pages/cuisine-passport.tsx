@@ -645,7 +645,7 @@ export default function CuisinePassport() {
         <header 
           className="min-h-[90vh] flex items-center justify-center relative"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/egyptian-cuisine-hero.jpg')`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('@assets/egyptian-food_1750091515770.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed'
