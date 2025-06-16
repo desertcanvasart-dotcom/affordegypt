@@ -3,9 +3,24 @@ import { createServer, type Server } from "http";
 import { storage } from "./database-storage";
 import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 import { emailService } from "./email-service";
+import multer from "multer";
+import csv from "csv-parser";
+import fs from "fs";
 
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
+
+// Configure multer for file uploads
+const upload = multer({ 
+  dest: 'uploads/',
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'text/csv' || file.originalname.endsWith('.csv')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only CSV files are allowed'));
+    }
+  }
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -782,6 +797,139 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Route deletion error:', error);
       res.status(500).json({ message: "Failed to delete route" });
+    }
+  });
+
+  // CSV Import endpoint for bulk route upload
+  app.post("/api/routes/import-csv", upload.single('csvFile'), async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ message: "No CSV file uploaded" });
+    }
+
+    const results: any[] = [];
+    const errors: string[] = [];
+    let successCount = 0;
+
+    try {
+      // Get all cities for name-to-ID mapping
+      const cities = await storage.getCities();
+      const cityMap = new Map(cities.map(city => [city.name.toLowerCase(), city.id]));
+
+      // Parse CSV file
+      await new Promise((resolve, reject) => {
+        fs.createReadStream(req.file!.path)
+          .pipe(csv())
+          .on('data', (data) => results.push(data))
+          .on('end', resolve)
+          .on('error', reject);
+      });
+
+      // Process each row
+      for (let i = 0; i < results.length; i++) {
+        const row = results[i];
+        const rowNum = i + 1;
+
+        try {
+          // Validate required fields
+          const requiredFields = ['route_name', 'from_city_name', 'to_city_name', 'distance_km', 'trip_mode'];
+          for (const field of requiredFields) {
+            if (!row[field] || row[field].trim() === '') {
+              throw new Error(`Missing required field: ${field}`);
+            }
+          }
+
+          // Map city names to IDs
+          const fromCityId = cityMap.get(row.from_city_name.toLowerCase().trim());
+          const toCityId = cityMap.get(row.to_city_name.toLowerCase().trim());
+
+          if (!fromCityId) {
+            throw new Error(`From city "${row.from_city_name}" not found`);
+          }
+          if (!toCityId) {
+            throw new Error(`To city "${row.to_city_name}" not found`);
+          }
+
+          // Validate trip mode
+          const validTripModes = ['transfer', 'day_trip', 'overnight', 'multi_day'];
+          if (!validTripModes.includes(row.trip_mode)) {
+            throw new Error(`Invalid trip mode: ${row.trip_mode}. Must be one of: ${validTripModes.join(', ')}`);
+          }
+
+          // Calculate nights based on trip mode
+          const nights = row.trip_mode === 'overnight' ? 1 : 
+                        row.trip_mode === 'multi_day' ? 2 : 0;
+
+          // Validate and parse prices
+          const sedanPrice = parseFloat(row.sedan_price) || 0;
+          const minivanPrice = parseFloat(row.minivan_price) || 0;
+          const vanPrice = parseFloat(row.van_price) || 0;
+          const coachPrice = parseFloat(row.coach_price) || 0;
+
+          // Create route category (inter_city for different cities, intra_city for same city)
+          const routeCategory = fromCityId === toCityId ? 'intra_city' : 'inter_city';
+
+          // Prepare route data
+          const routeData = {
+            routeCategory,
+            fromCityId: routeCategory === 'inter_city' ? fromCityId : null,
+            toCityId: routeCategory === 'inter_city' ? toCityId : null,
+            cityId: routeCategory === 'intra_city' ? fromCityId : null,
+            fromLocation: row.from_location?.trim() || null,
+            toLocation: row.to_location?.trim() || null,
+            name: row.route_name?.trim() || null,
+            tripMode: row.trip_mode,
+            nights,
+            distanceKm: parseInt(row.distance_km) || 0,
+            km: row.distance_km?.toString() || "0",
+            estimatedDuration: row.estimated_duration?.trim() || null,
+            routeHighlights: row.route_highlights?.trim() || null,
+            travelTips: row.travel_tips?.trim() || null,
+            pickupInstructions: row.pickup_instructions?.trim() || null,
+            dropoffInstructions: row.dropoff_instructions?.trim() || null,
+            displayOrder: parseInt(row.display_order) || 0,
+            vehiclePrices: {
+              sedan: sedanPrice.toString(),
+              minivan: minivanPrice.toString(),
+              van: vanPrice.toString(),
+              coach: coachPrice.toString()
+            },
+            basePriceByVehicle: {
+              "1": {"1": sedanPrice.toString()},
+              "2": {"1": minivanPrice.toString()},
+              "3": {"1": vanPrice.toString()},
+              "4": {"1": coachPrice.toString()}
+            }
+          };
+
+          // Create the route
+          await storage.createRoute(routeData);
+          successCount++;
+
+        } catch (error: any) {
+          errors.push(`Row ${rowNum}: ${error.message}`);
+        }
+      }
+
+      // Clean up uploaded file
+      fs.unlinkSync(req.file.path);
+
+      // Return results
+      res.json({
+        success: true,
+        message: `Successfully imported ${successCount} routes`,
+        totalRows: results.length,
+        successCount,
+        errorCount: errors.length,
+        errors: errors.slice(0, 10) // Limit to first 10 errors
+      });
+
+    } catch (error: any) {
+      // Clean up uploaded file on error
+      if (req.file?.path && fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
+      console.error('CSV import error:', error);
+      res.status(500).json({ message: `Import failed: ${error.message}` });
     }
   });
 

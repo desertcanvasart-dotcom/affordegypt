@@ -51,6 +51,12 @@ export default function AdminSidebar() {
     vehiclePricing: {}
   });
 
+  // CSV Import state
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [importFile, setImportFile] = useState<File | null>(null);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importResults, setImportResults] = useState<any>(null);
+
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -140,6 +146,70 @@ export default function AdminSidebar() {
       basePriceByVehicle: "",
       vehiclePricing: {}
     });
+  };
+
+  // CSV Import handlers
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type === 'text/csv') {
+      setImportFile(file);
+      setImportResults(null);
+    } else {
+      toast({
+        title: "Invalid file",
+        description: "Please select a CSV file",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handleImportCSV = async () => {
+    if (!importFile) {
+      toast({
+        title: "No file selected",
+        description: "Please select a CSV file to upload",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsImporting(true);
+    const formData = new FormData();
+    formData.append('csvFile', importFile);
+
+    try {
+      const response = await fetch('/api/routes/import-csv', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setImportResults(result);
+        queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+        toast({
+          title: "Import completed",
+          description: `Successfully imported ${result.successCount} routes`
+        });
+      } else {
+        throw new Error(result.message || 'Import failed');
+      }
+    } catch (error: any) {
+      toast({
+        title: "Import failed",
+        description: error.message,
+        variant: "destructive"
+      });
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  const resetImport = () => {
+    setImportFile(null);
+    setImportResults(null);
+    setIsImportModalOpen(false);
   };
 
   const handleEdit = (item: any, type: string) => {
