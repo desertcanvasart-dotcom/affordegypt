@@ -59,7 +59,7 @@ export default function TransportationSearch({
         route.fromLocation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         route.toLocation?.toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesType = selectedType === "all" || route.trip_mode === selectedType;
+      const matchesType = selectedType === "all" || route.tripType === selectedType;
       
       return matchesSearch && matchesType;
     });
@@ -72,9 +72,9 @@ export default function TransportationSearch({
     onRoutesChange(updated);
   };
 
-  const getRouteIcon = (tripMode: string) => {
-    if (!tripMode) return <Car className="h-4 w-4" />;
-    switch (tripMode.toLowerCase()) {
+  const getRouteIcon = (tripType: string) => {
+    if (!tripType) return <Car className="h-4 w-4" />;
+    switch (tripType.toLowerCase()) {
       case 'transfer':
         return <Car className="h-4 w-4" />;
       case 'day_trip':
@@ -88,9 +88,9 @@ export default function TransportationSearch({
     }
   };
 
-  const getTypeColor = (tripMode: string) => {
-    if (!tripMode) return 'bg-gray-100 text-gray-800';
-    switch (tripMode.toLowerCase()) {
+  const getTypeColor = (tripType: string) => {
+    if (!tripType) return 'bg-gray-100 text-gray-800';
+    switch (tripType.toLowerCase()) {
       case 'transfer':
         return 'bg-blue-100 text-blue-800';
       case 'day_trip':
@@ -104,14 +104,14 @@ export default function TransportationSearch({
     }
   };
 
-  const getTripTypeLabel = (tripMode: string) => {
+  const getTripTypeLabel = (tripType: string) => {
     const labels: Record<string, string> = {
       'transfer': 'Transfer & Drop off',
       'day_trip': 'Day Trip',
       'overnight': 'Overnight Stay',
       'multi_day': 'Multi-Day Tour'
     };
-    return labels[tripMode] || tripMode;
+    return labels[tripType] || tripType;
   };
 
   const getDisplayText = () => {
@@ -167,11 +167,11 @@ export default function TransportationSearch({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Types</SelectItem>
-                  {tripTypes.map(tripMode => (
-                    <SelectItem key={tripMode} value={tripMode}>
+                  {tripTypes.map(tripType => (
+                    <SelectItem key={tripType} value={tripType}>
                       <div className="flex items-center gap-2">
-                        {getRouteIcon(tripMode)}
-                        <span>{getTripTypeLabel(tripMode)}</span>
+                        {getRouteIcon(tripType)}
+                        <span>{getTripTypeLabel(tripType)}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -213,7 +213,7 @@ export default function TransportationSearch({
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      {getRouteIcon(route.trip_mode)}
+                      {getRouteIcon(route.tripType)}
                       <h5 className="font-medium text-sm truncate">
                         {route.name}
                       </h5>
@@ -222,9 +222,9 @@ export default function TransportationSearch({
                     <div className="flex items-center gap-2 mb-2">
                       <Badge 
                         variant="secondary" 
-                        className={`text-xs ${getTypeColor(route.trip_mode)}`}
+                        className={`text-xs ${getTypeColor(route.tripType)}`}
                       >
-                        {getTripTypeLabel(route.trip_mode)}
+                        {getTripTypeLabel(route.tripType)}
                       </Badge>
                     </div>
 
