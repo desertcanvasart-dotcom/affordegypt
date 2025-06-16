@@ -576,13 +576,141 @@ export default function NileValleyGuide() {
               ))}
             </div>
             
-            <div className="relative bg-blue-50 rounded-lg p-4 sm:p-8 min-h-[400px] sm:min-h-[500px]">
+            <div className="relative bg-gradient-to-b from-blue-50 to-amber-50 rounded-lg p-4 sm:p-8 min-h-[400px] sm:min-h-[500px] overflow-hidden">
+              {/* Egypt Map SVG Background */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                <svg viewBox="0 0 400 600" className="w-full h-full max-w-md">
+                  <defs>
+                    <linearGradient id="egyptGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style={{stopColor:"#f4f1de", stopOpacity:1}} />
+                      <stop offset="100%" style={{stopColor:"#e07a5f", stopOpacity:0.3}} />
+                    </linearGradient>
+                  </defs>
+                  {/* Egypt country outline - simplified */}
+                  <path 
+                    d="M 50 50 
+                       L 350 50 
+                       L 350 120
+                       L 320 140
+                       L 300 160
+                       L 280 180
+                       L 260 200
+                       L 240 240
+                       L 220 280
+                       L 200 320
+                       L 180 360
+                       L 160 400
+                       L 140 440
+                       L 120 480
+                       L 100 520
+                       L 80 550
+                       L 50 580
+                       L 30 560
+                       L 20 540
+                       L 15 520
+                       L 10 500
+                       L 8 480
+                       L 5 460
+                       L 3 440
+                       L 2 420
+                       L 1 400
+                       L 2 380
+                       L 5 360
+                       L 10 340
+                       L 15 320
+                       L 20 300
+                       L 25 280
+                       L 30 260
+                       L 35 240
+                       L 40 220
+                       L 45 200
+                       L 48 180
+                       L 50 160
+                       L 50 140
+                       L 50 120
+                       L 50 100
+                       L 50 80
+                       L 50 60
+                       Z" 
+                    fill="url(#egyptGradient)" 
+                    stroke="#d4a574" 
+                    strokeWidth="2"
+                  />
+                  {/* Red Sea */}
+                  <path 
+                    d="M 350 120 
+                       L 380 140
+                       L 390 180
+                       L 385 220
+                       L 375 260
+                       L 365 300
+                       L 350 340
+                       L 320 360
+                       L 300 380
+                       L 280 400
+                       L 260 420
+                       L 240 440
+                       L 220 460
+                       L 200 480
+                       L 180 500
+                       L 160 520
+                       L 140 540
+                       L 120 560
+                       L 100 580
+                       L 80 590
+                       L 80 550
+                       L 100 520
+                       L 120 480
+                       L 140 440
+                       L 160 400
+                       L 180 360
+                       L 200 320
+                       L 220 280
+                       L 240 240
+                       L 260 200
+                       L 280 180
+                       L 300 160
+                       L 320 140
+                       Z" 
+                    fill="rgba(59, 130, 246, 0.2)" 
+                    stroke="rgba(59, 130, 246, 0.4)" 
+                    strokeWidth="1"
+                  />
+                  {/* Nile River */}
+                  <path 
+                    d="M 200 50 
+                       Q 190 100 185 150
+                       Q 180 200 175 250
+                       Q 170 300 165 350
+                       Q 160 400 155 450
+                       Q 150 500 145 530
+                       L 120 550
+                       L 100 565
+                       L 85 580" 
+                    fill="none" 
+                    stroke="rgba(59, 130, 246, 0.6)" 
+                    strokeWidth="4"
+                  />
+                  {/* Nile Delta */}
+                  <path 
+                    d="M 200 50 
+                       Q 150 80 120 120
+                       Q 160 90 200 50
+                       Q 250 80 280 120
+                       Q 220 70 200 50" 
+                    fill="rgba(34, 197, 94, 0.3)" 
+                    stroke="rgba(34, 197, 94, 0.5)" 
+                    strokeWidth="1"
+                  />
+                </svg>
+              </div>
+              
               <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-2 rounded-lg border">
                 <p className="text-xs sm:text-sm font-medium text-gray-700">📍 Click cities to explore</p>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 {/* Simplified Nile River visualization */}
-                <div className="w-2 bg-blue-400 h-full absolute left-1/2 transform -translate-x-1/2 rounded-full opacity-30"></div>
+                <div className="w-2 bg-blue-400 h-full absolute left-1/2 transform -translate-x-1/2 rounded-full opacity-40"></div>
                 
                 {/* City markers positioned along the "river" */}
                 <div className="relative w-full h-full">
