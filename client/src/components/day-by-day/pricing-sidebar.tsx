@@ -56,7 +56,11 @@ export default function PricingSidebar({ booking, quote, onCheckout }: PricingSi
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Travel Dates:</span>
             <span className="font-medium">
-              {format(new Date(booking.startDate), "MMM d")} - {format(new Date(booking.endDate), "MMM d, yyyy")}
+              {booking?.startDate && booking?.endDate ? (
+                `${format(new Date(booking.startDate), "MMM d")} - ${format(new Date(booking.endDate), "MMM d, yyyy")}`
+              ) : (
+                "Dates not selected"
+              )}
             </span>
           </div>
           
