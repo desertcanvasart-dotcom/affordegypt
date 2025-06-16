@@ -331,6 +331,42 @@ export default function RouteEditModal({
             </Select>
           </div>
 
+          {/* Trip Mode - Show after route category is selected */}
+          {formData.routeCategory && (
+            <div>
+              <Label htmlFor="trip-mode">Trip Mode *</Label>
+              <Select 
+                value={formData.tripMode} 
+                onValueChange={(value) => setFormData(prev => {
+                  const nightsMap = {
+                    'transfer': 0,
+                    'day_trip': 0,
+                    'overnight': 1,
+                    'multi_day': 2
+                  };
+                  return {
+                    ...prev, 
+                    tripMode: value,
+                    nights: nightsMap[value as keyof typeof nightsMap] || 0
+                  };
+                })}
+              >
+                <SelectTrigger id="trip-mode">
+                  <SelectValue placeholder="Select trip mode" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="transfer">Transfer & Drop off</SelectItem>
+                  <SelectItem value="day_trip">Day Trip (return same day)</SelectItem>
+                  <SelectItem value="overnight">Overnight Stay (1 night)</SelectItem>
+                  <SelectItem value="multi_day">Multi-Day Tour (2+ nights)</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-gray-500 mt-1">
+                Auto-filled nights: {formData.nights}
+              </p>
+            </div>
+          )}
+
           {/* Conditional City Fields */}
           {formData.routeCategory === 'inter_city' && (
             <div className="grid grid-cols-2 gap-4">
@@ -397,39 +433,7 @@ export default function RouteEditModal({
             </div>
           )}
 
-          {/* Trip Mode */}
-          <div>
-            <Label htmlFor="trip-mode">Trip Mode *</Label>
-            <Select 
-              value={formData.tripMode} 
-              onValueChange={(value) => setFormData(prev => {
-                const nightsMap = {
-                  'transfer': 0,
-                  'day_trip': 0,
-                  'overnight': 1,
-                  'multi_day': 2
-                };
-                return {
-                  ...prev, 
-                  tripMode: value,
-                  nights: nightsMap[value as keyof typeof nightsMap] || 0
-                };
-              })}
-            >
-              <SelectTrigger id="trip-mode">
-                <SelectValue placeholder="Select trip mode" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="transfer">Transfer & Drop off</SelectItem>
-                <SelectItem value="day_trip">Day Trip (return same day)</SelectItem>
-                <SelectItem value="overnight">Overnight Stay (1 night)</SelectItem>
-                <SelectItem value="multi_day">Multi-Day Tour (2+ nights)</SelectItem>
-              </SelectContent>
-            </Select>
-            <p className="text-xs text-gray-500 mt-1">
-              Auto-filled nights: {formData.nights}
-            </p>
-          </div>
+
 
           {/* Route Info */}
           <div className="grid grid-cols-2 gap-4">
