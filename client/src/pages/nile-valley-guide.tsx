@@ -520,7 +520,8 @@ const nileValleyCities: NileCity[] = [
       "Bring lunch and water",
       "Early morning arrival for best photos"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel.jpg",
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel-1.jpg"
   }
 ];
 
