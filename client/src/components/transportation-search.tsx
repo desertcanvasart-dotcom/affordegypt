@@ -104,14 +104,14 @@ export default function TransportationSearch({
     }
   };
 
-  const getTripTypeLabel = (tripType: string) => {
+  const getTripTypeLabel = (tripMode: string) => {
     const labels: Record<string, string> = {
       'transfer': 'Transfer & Drop off',
-      'day-trip': 'Day Trip',
+      'day_trip': 'Day Trip',
       'overnight': 'Overnight Stay',
-      'multi-day': 'Multi-Day Tour'
+      'multi_day': 'Multi-Day Tour'
     };
-    return labels[tripType] || tripType;
+    return labels[tripMode] || tripMode;
   };
 
   const getDisplayText = () => {
@@ -167,11 +167,11 @@ export default function TransportationSearch({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Types</SelectItem>
-                  {tripTypes.map(tripType => (
-                    <SelectItem key={tripType} value={tripType}>
+                  {tripTypes.map(tripMode => (
+                    <SelectItem key={tripMode} value={tripMode}>
                       <div className="flex items-center gap-2">
-                        {getRouteIcon(tripType)}
-                        <span>{getTripTypeLabel(tripType)}</span>
+                        {getRouteIcon(tripMode)}
+                        <span>{getTripTypeLabel(tripMode)}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -213,7 +213,7 @@ export default function TransportationSearch({
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      {getRouteIcon(route.tripType)}
+                      {getRouteIcon(route.trip_mode)}
                       <h5 className="font-medium text-sm truncate">
                         {route.name}
                       </h5>
@@ -222,9 +222,9 @@ export default function TransportationSearch({
                     <div className="flex items-center gap-2 mb-2">
                       <Badge 
                         variant="secondary" 
-                        className={`text-xs ${getTypeColor(route.tripType)}`}
+                        className={`text-xs ${getTypeColor(route.trip_mode)}`}
                       >
-                        {getTripTypeLabel(route.tripType)}
+                        {getTripTypeLabel(route.trip_mode)}
                       </Badge>
                     </div>
 
