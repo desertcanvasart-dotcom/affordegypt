@@ -133,12 +133,15 @@ export default function DayByDayPlanner() {
         endDate: range.to,
       });
     } else if (range?.from) {
-      // Show partial selection
+      // Only store partial selection, don't advance to next page
       setSelectedRange(range);
       toast({
         title: "Start Date Selected",
         description: "Now select your end date to continue",
       });
+    } else {
+      // Clear selection if no dates
+      setSelectedRange(null);
     }
   };
 
@@ -161,7 +164,7 @@ export default function DayByDayPlanner() {
     setIsServiceModalOpen(true);
   };
 
-  if (!selectedRange) {
+  if (!selectedRange || !selectedRange.from || !selectedRange.to) {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="container mx-auto p-6 max-w-6xl">
