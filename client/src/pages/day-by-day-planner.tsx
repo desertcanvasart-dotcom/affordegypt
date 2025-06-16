@@ -64,6 +64,7 @@ export default function DayByDayPlanner() {
   // Get current booking if exists
   const { data: booking, isLoading: bookingLoading } = useQuery({
     queryKey: ["/api/day-by-day/bookings", bookingId],
+    queryFn: () => apiRequest("GET", `/api/day-by-day/bookings/${bookingId}`),
     enabled: !!bookingId,
   });
 
