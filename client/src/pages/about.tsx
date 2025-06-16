@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Shield, Users, MapPin, Clock, Star } from "lucide-react";
@@ -8,10 +8,25 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function About() {
+  const [, setLocation] = useLocation();
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleStartJourney = () => {
+    setLocation('/');
+    setTimeout(() => {
+      const element = document.getElementById('quote-builder');
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
 
   return (
     <>
@@ -185,11 +200,13 @@ export default function About() {
               <p className="text-gray-700 mb-6">
                 Afford Egypt is here to ensure it's unforgettable and accessible for everyone.
               </p>
-              <Link href="/#quote-builder">
-                <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
-                  Start Your Journey
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg"
+                onClick={handleStartJourney}
+              >
+                Start Your Journey
+              </Button>
             </div>
           </div>
         </section>
