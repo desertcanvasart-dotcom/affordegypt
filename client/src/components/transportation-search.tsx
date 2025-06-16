@@ -12,7 +12,7 @@ import { Search, MapPin, Car, Plane, Ship, ChevronDown, X } from "lucide-react";
 interface Route {
   id: number;
   name: string;
-  trip_mode: string;
+  tripType: string;
   fromCityId: number;
   toCityId: number;
   fromLocation?: string;
@@ -47,7 +47,7 @@ export default function TransportationSearch({
 
   // Get unique trip types
   const tripTypes = useMemo(() => {
-    const types = Array.from(new Set(cityRoutes.map(r => r.trip_mode).filter(Boolean)));
+    const types = Array.from(new Set(cityRoutes.map(r => r.tripType).filter(Boolean)));
     return types;
   }, [cityRoutes]);
 
