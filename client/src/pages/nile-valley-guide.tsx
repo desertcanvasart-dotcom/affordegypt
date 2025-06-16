@@ -751,7 +751,9 @@ export default function NileValleyGuide() {
                       }`}
                       style={{
                         left: '50%',
-                        top: `${(index / (filteredCities.length - 1)) * 80 + 10}%`
+                        top: filteredCities.length === 1 
+                          ? '50%' 
+                          : `${(index / (filteredCities.length - 1)) * 70 + 15}%`
                       }}
                       onClick={() => {
                         setSelectedCity(city);
