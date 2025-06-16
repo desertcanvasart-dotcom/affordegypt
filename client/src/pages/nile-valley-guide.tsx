@@ -118,7 +118,7 @@ const nileValleyCities: NileCity[] = [
       "Visit free mosques and markets"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg"
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-detail.jpg"
   },
   {
     id: 3,
@@ -361,7 +361,8 @@ const nileValleyCities: NileCity[] = [
       "Eat at local restaurants away from tourist areas",
       "Buy combination tickets for multiple sites"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg",
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg"
   },
   {
     id: 8,
