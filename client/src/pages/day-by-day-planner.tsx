@@ -69,6 +69,11 @@ export default function DayByDayPlanner() {
     enabled: !!bookingId,
   });
 
+  // Debug logging
+  console.log("Booking data:", booking);
+  console.log("Booking loading:", bookingLoading);
+  console.log("Days:", booking?.days);
+
   // Get pricing quote
   const { data: quote } = useQuery({
     queryKey: ["/api/day-by-day/pricing/quote", { bookingId }],
