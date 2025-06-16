@@ -29,6 +29,7 @@ interface NileCity {
   };
   budgetTips: string[];
   image: string;
+  detailImage?: string;
 }
 
 const nileValleyCities: NileCity[] = [
@@ -72,7 +73,8 @@ const nileValleyCities: NileCity[] = [
       "Try fresh seafood at local restaurants",
       "Use the historic tram system for cheap transport"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg",
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg"
   },
   {
     id: 2,
@@ -115,7 +117,8 @@ const nileValleyCities: NileCity[] = [
       "Stay in Downtown Cairo for budget accommodation",
       "Visit free mosques and markets"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg"
   },
   {
     id: 3,
@@ -151,7 +154,8 @@ const nileValleyCities: NileCity[] = [
       "Basic accommodation available (200-400 EGP/night)",
       "Bargain at local markets"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg",
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg"
   },
   {
     id: 4,
@@ -193,7 +197,8 @@ const nileValleyCities: NileCity[] = [
       "Take shared taxis between sites",
       "Local restaurants very affordable (30-70 EGP)"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
   },
   {
     id: 5,
@@ -876,7 +881,7 @@ export default function NileValleyGuide() {
 
                 <div>
                   <img 
-                    src={selectedCity.image} 
+                    src={selectedCity.detailImage || selectedCity.image} 
                     alt={selectedCity.name}
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
