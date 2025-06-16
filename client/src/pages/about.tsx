@@ -185,7 +185,7 @@ export default function About() {
               <p className="text-gray-700 mb-6">
                 Afford Egypt is here to ensure it's unforgettable and accessible for everyone.
               </p>
-              <Link href="/#pricing-tool">
+              <Link href="/#quote-builder">
                 <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
                   Start Your Journey
                 </Button>
