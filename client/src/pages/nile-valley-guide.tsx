@@ -47,13 +47,13 @@ const nileValleyCities: NileCity[] = [
       {
         name: "Bibliotheca Alexandrina",
         description: "Modern revival of the ancient Library of Alexandria with stunning architecture",
-        entryFee: "70 EGP",
+        entryFee: "100 EGP",
         hours: "10:00 AM - 7:00 PM"
       },
       {
         name: "Qaitbay Citadel",
         description: "15th-century fortress built on the site of the ancient Lighthouse of Alexandria",
-        entryFee: "60 EGP",
+        entryFee: "200 EGP",
         hours: "9:00 AM - 4:00 PM"
       },
       {
