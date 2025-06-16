@@ -19,42 +19,42 @@ export default function EasternWesternDesertsGuide() {
       name: "Bahariya Oasis",
       location: "Bawiti",
       highlights: ["White Desert tours", "Crystal Mountain", "Hot springs"],
-      budget: "300-500 EGP/night",
+      budget: "1000-1400 EGP/night",
       icon: <Mountain className="w-6 h-6 text-primary" />
     },
     {
       name: "Black & White Desert", 
       location: "From Bahariya",
       highlights: ["Mushroom rock formations", "Fossilized seashells", "Volcanic hills"],
-      budget: "900 EGP pp (group tour)",
+      budget: "2600 EGP pp (group tour)",
       icon: <Compass className="w-6 h-6 text-primary" />
     },
     {
       name: "Farafra Oasis",
       location: "Central Western Desert",
       highlights: ["Art Centre", "Bir Sitta hot spring", "Quiet atmosphere"],
-      budget: "400-600 EGP/night",
+      budget: "2300-2800 EGP/night",
       icon: <Sun className="w-6 h-6 text-primary" />
     },
     {
       name: "Dakhla Oasis",
       location: "Southern Western Desert",
       highlights: ["Al-Qasr mudbrick town", "Desert farms", "Mut hot springs"],
-      budget: "450 EGP/night",
+      budget: "2750 EGP/night",
       icon: <Camera className="w-6 h-6 text-primary" />
     },
     {
       name: "Kharga Oasis",
       location: "New Valley",
       highlights: ["Temple of Hibis", "Christian cemeteries", "Ancient forts"],
-      budget: "300-500 EGP/night",
+      budget: "1000-1470 EGP/night",
       icon: <Star className="w-6 h-6 text-primary" />
     },
     {
       name: "Siwa Oasis",
       location: "Near Libyan border",
       highlights: ["Salt lakes", "Mountain of the Dead", "Great Sand Sea"],
-      budget: "300-500 EGP/night",
+      budget: "2000-30000 EGP/night",
       icon: <MapPin className="w-6 h-6 text-primary" />
     }
   ];
