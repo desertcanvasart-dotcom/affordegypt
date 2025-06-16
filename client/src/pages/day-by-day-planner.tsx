@@ -290,47 +290,69 @@ export default function DayByDayPlanner() {
       <div className="grid lg:grid-cols-4 gap-6">
         {/* Timeline Column */}
         <div className="lg:col-span-3 space-y-4">
-          {booking?.days?.map((day: BookingDay, index: number) => (
-            <DayColumn
-              key={day.id}
-              day={day}
-              dayIndex={index}
-              onAddService={handleAddService}
-              onRemoveService={(serviceId: number) => {
-                // TODO: Implement service removal
-                console.log('Remove service:', serviceId);
-              }}
-            />
-          ))}
+          <Card>
+            <CardHeader>
+              <CardTitle>Your Itinerary Days</CardTitle>
+              <CardDescription>
+                Book services for each day of your trip
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-center text-gray-500 py-8">
+                Day-by-day service booking interface will be added here.
+                <br />
+                Use the "Quick Test" button above to create a sample itinerary.
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Pricing Sidebar */}
         <div className="lg:col-span-1">
-          <PricingSidebar 
-            booking={booking || { days: [] } as any}
-            quote={quote}
-            onCheckout={() => {
-              console.log('Checkout clicked');
-            }}
-          />
+          <Card>
+            <CardHeader>
+              <CardTitle>Pricing Summary</CardTitle>
+              <CardDescription>
+                Real-time pricing for your custom itinerary
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Travel Dates:</span>
+                  <span className="font-medium">
+                    {selectedRange?.from && selectedRange?.to ? (
+                      `${format(selectedRange.from, "MMM d")} - ${format(selectedRange.to, "MMM d, yyyy")}`
+                    ) : (
+                      "Dates not selected"
+                    )}
+                  </span>
+                </div>
+                
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Duration:</span>
+                  <span className="font-medium">
+                    {selectedRange?.from && selectedRange?.to ? 
+                      `${differenceInDays(selectedRange.to, selectedRange.from) + 1} days` : '0 days'
+                    }
+                  </span>
+                </div>
+                
+                <div className="border-t pt-3">
+                  <div className="flex justify-between font-semibold text-lg">
+                    <span>Total:</span>
+                    <span className="text-teal-600">EGP 0</span>
+                  </div>
+                </div>
+                
+                <Button className="w-full" disabled>
+                  Add Services to Continue
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
-
-      {/* Service Modal */}
-      <ServiceModal
-        isOpen={isServiceModalOpen}
-        onClose={() => setIsServiceModalOpen(false)}
-        dayId={selectedDayId}
-        cities={cities}
-        onServiceAdded={() => {
-          queryClient.invalidateQueries({
-            queryKey: ["/api/day-by-day/bookings", bookingId],
-          });
-          queryClient.invalidateQueries({
-            queryKey: ["/api/day-by-day/pricing/quote", { bookingId }],
-          });
-        }}
-      />
     </div>
   );
 }
