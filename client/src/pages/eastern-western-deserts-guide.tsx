@@ -4,15 +4,30 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, Star, Camera, Mountain, Sun, Compass, DollarSign, Calendar, Users, Tent } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function EasternWesternDesertsGuide() {
+  const [, setLocation] = useLocation();
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleNavigateToPlanning = () => {
+    setLocation('/');
+    setTimeout(() => {
+      const element = document.getElementById('quote-builder');
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
 
   const destinations = [
     {
@@ -142,9 +157,7 @@ export default function EasternWesternDesertsGuide() {
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
-                onClick={() => {
-                  window.location.href = '/#quote-builder';
-                }}
+                onClick={handleNavigateToPlanning}
               >
                 <Tent className="w-5 h-5 mr-2" />
                 Plan Your Desert Adventure
@@ -410,9 +423,7 @@ export default function EasternWesternDesertsGuide() {
               <Button 
                 size="lg" 
                 className="bg-white text-teal-700 hover:bg-teal-50 min-w-48"
-                onClick={() => {
-                  window.location.href = '/#quote-builder';
-                }}
+                onClick={handleNavigateToPlanning}
               >
                 <MapPin className="w-5 h-5 mr-2" />
                 Start Planning Your Trip
