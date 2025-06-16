@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MapPin, Clock, Camera, Star, Navigation, Plane, Train, Ship } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -479,6 +479,11 @@ const nileValleyCities: NileCity[] = [
 export default function NileValleyGuide() {
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Cairo
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const regions = ["All", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
   
