@@ -191,23 +191,48 @@ export default function DayByDayPlanner() {
                   />
                 </div>
                 
-                <div className="mt-4 text-center">
-                  <p className="text-sm text-gray-500 mb-2">
-                    Select both start and end dates to begin planning
-                  </p>
-                  <Button 
-                    onClick={() => {
-                      handleDateRangeSelect({
-                        from: new Date(),
-                        to: addDays(new Date(), 3)
-                      });
-                    }}
-                    variant="outline"
-                    size="sm"
-                  >
-                    Quick Test: 4-Day Trip
-                  </Button>
-                </div>
+                {selectedRange?.from && !selectedRange?.to && (
+                  <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-sm text-blue-700 font-medium mb-2">
+                      Start date selected: {format(selectedRange.from, "MMM d, yyyy")}
+                    </p>
+                    <p className="text-sm text-blue-600 mb-3">
+                      Now click your end date on the calendar to create your itinerary
+                    </p>
+                    <Button 
+                      onClick={() => {
+                        handleDateRangeSelect({
+                          from: selectedRange.from,
+                          to: addDays(selectedRange.from, 3)
+                        });
+                      }}
+                      className="w-full"
+                      size="sm"
+                    >
+                      Or Create 4-Day Trip Starting {format(selectedRange.from, "MMM d")}
+                    </Button>
+                  </div>
+                )}
+                
+                {!selectedRange?.from && (
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-500 mb-3">
+                      Select your travel dates to begin planning
+                    </p>
+                    <Button 
+                      onClick={() => {
+                        handleDateRangeSelect({
+                          from: new Date(),
+                          to: addDays(new Date(), 3)
+                        });
+                      }}
+                      variant="outline"
+                      size="sm"
+                    >
+                      Quick Test: 4-Day Trip
+                    </Button>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
