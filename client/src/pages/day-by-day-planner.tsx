@@ -164,6 +164,56 @@ export default function DayByDayPlanner() {
     setIsServiceModalOpen(true);
   };
 
+  // Simple service modal component
+  const ServiceModal = ({ isOpen, onClose, dayId }: { isOpen: boolean; onClose: () => void; dayId: number | null }) => {
+    if (!isOpen || !dayId) return null;
+
+    const sampleServices = [
+      { id: 1, title: "Giza Pyramids & Sphinx Tour", description: "Half-day tour with expert guide", price: "450", type: "tour" },
+      { id: 2, title: "Airport Transfer - Private Car", description: "Comfortable sedan for 1-4 passengers", price: "280", type: "transfer" },
+      { id: 3, title: "Khan el-Khalili Bazaar Walking Tour", description: "3-hour guided shopping experience", price: "320", type: "tour" },
+      { id: 4, title: "Nile River Felucca Ride", description: "Traditional sailboat experience", price: "180", type: "activity" },
+      { id: 5, title: "Cairo City Transfer", description: "Inter-city transport", price: "220", type: "transfer" }
+    ];
+
+    const handleSelectService = (service: any) => {
+      toast({
+        title: "Service Added",
+        description: `${service.title} added to your itinerary`,
+      });
+      onClose();
+    };
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold">Add Service to Day {dayId}</h3>
+            <Button variant="ghost" onClick={onClose}>×</Button>
+          </div>
+          
+          <div className="space-y-3">
+            {sampleServices.map((service) => (
+              <div key={service.id} className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer" onClick={() => handleSelectService(service)}>
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <h4 className="font-medium">{service.title}</h4>
+                    <p className="text-sm text-gray-600 mt-1">{service.description}</p>
+                    <Badge variant="secondary" className="mt-2">{service.type}</Badge>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold text-teal-600">EGP {service.price}</p>
+                    <Button size="sm" className="mt-2">Add Service</Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   if (!selectedRange || !selectedRange.from || !selectedRange.to) {
     return (
       <div className="min-h-screen bg-gray-50">
@@ -294,8 +344,14 @@ export default function DayByDayPlanner() {
   }
 
   return (
-    <div className="container mx-auto p-6 max-w-7xl">
-      <div className="mb-6 flex items-center justify-between">
+    <>
+      <ServiceModal 
+        isOpen={isServiceModalOpen} 
+        onClose={() => setIsServiceModalOpen(false)}
+        dayId={selectedDayId}
+      />
+      <div className="container mx-auto p-6 max-w-7xl">
+        <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-teal-600 mb-2">Day-by-Day Custom Planner</h1>
           <p className="text-gray-600">
@@ -318,21 +374,89 @@ export default function DayByDayPlanner() {
       <div className="grid lg:grid-cols-4 gap-6">
         {/* Timeline Column */}
         <div className="lg:col-span-3 space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Itinerary Days</CardTitle>
-              <CardDescription>
-                Book services for each day of your trip
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-center text-gray-500 py-8">
-                Day-by-day service booking interface will be added here.
-                <br />
-                Use the "Quick Test" button above to create a sample itinerary.
-              </p>
-            </CardContent>
-          </Card>
+          {booking?.days?.map((day: BookingDay, index: number) => (
+            <Card key={day.id} className="border-l-4 border-l-teal-500">
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle className="text-lg">
+                      Day {index + 1} - {format(new Date(day.date), "EEEE, MMM d")}
+                    </CardTitle>
+                    <CardDescription>
+                      {day.services.length === 0 ? "No services booked yet" : `${day.services.length} services booked`}
+                    </CardDescription>
+                  </div>
+                  <Button 
+                    onClick={() => handleAddService(day.id)}
+                    size="sm"
+                    className="bg-teal-600 hover:bg-teal-700"
+                  >
+                    <Plus className="h-4 w-4 mr-1" />
+                    Add Service
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {day.services.length === 0 ? (
+                  <div className="text-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+                    <p className="text-gray-500 mb-3">No services planned for this day</p>
+                    <Button 
+                      onClick={() => handleAddService(day.id)}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <Plus className="h-4 w-4 mr-1" />
+                      Add Your First Service
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {day.services.map((service: BookingService) => (
+                      <div key={service.id} className="p-4 border rounded-lg bg-gray-50">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <h4 className="font-medium text-gray-900">{service.service.title}</h4>
+                            <p className="text-sm text-gray-600 mt-1">{service.service.description}</p>
+                            <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                              <span className="flex items-center">
+                                <Users className="h-4 w-4 mr-1" />
+                                {service.passengers} passengers
+                              </span>
+                              {service.startTime && (
+                                <span className="flex items-center">
+                                  <Clock className="h-4 w-4 mr-1" />
+                                  {service.startTime}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-semibold text-teal-600">EGP {service.subtotal}</p>
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => {
+                                // TODO: Remove service
+                                console.log('Remove service:', service.id);
+                              }}
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )) || (
+            <Card>
+              <CardContent className="text-center py-8">
+                <p className="text-gray-500">Loading your itinerary days...</p>
+              </CardContent>
+            </Card>
+          )}
         </div>
 
         {/* Pricing Sidebar */}
@@ -382,5 +506,6 @@ export default function DayByDayPlanner() {
         </div>
       </div>
     </div>
+    </>
   );
 }
