@@ -1,0 +1,6 @@
+route_name,from_city_name,to_city_name,from_location,to_location,distance_km,trip_mode,sedan_price,minivan_price,van_price,coach_price,estimated_duration,route_highlights,travel_tips,pickup_instructions,dropoff_instructions,display_order
+Cairo Airport to Downtown,Cairo,Cairo,Cairo International Airport,Downtown Cairo Hotels,45,transfer,350,450,650,950,1 hour,Scenic drive through New Cairo,Traffic can be heavy during rush hours,Terminal 1-2-3 arrivals area,Hotel lobby or designated area,1
+Cairo to Alexandria,Cairo,Alexandria,Cairo Hotels,Alexandria Hotels,220,transfer,1200,1500,2200,3200,3 hours,Desert highway with Mediterranean views,Best to travel early morning,Hotel pickup available,Alexandria corniche hotels,2
+Cairo to Luxor,Cairo,Luxor,Cairo Hotels,Luxor Hotels,670,overnight,3500,4200,6000,8500,9 hours,Nile Valley scenery along the way,Overnight journey recommended,Early morning departure suggested,Luxor East Bank hotels,3
+Luxor to Aswan,Luxor,Aswan,Luxor Hotels,Aswan Hotels,230,day_trip,1800,2200,3100,4500,3.5 hours,Beautiful Nile landscapes,Stop at Kom Ombo Temple possible,Luxor East Bank pickup,Aswan corniche hotels,4
+Hurghada Airport Transfer,Hurghada,Hurghada,Hurghada International Airport,Red Sea Hotels,25,transfer,200,280,400,600,30 minutes,Red Sea coastal views,Airport is close to hotel zone,Arrivals terminal,Resort reception,5
