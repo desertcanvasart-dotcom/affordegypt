@@ -702,6 +702,35 @@ export default function NileValleyGuide() {
                     stroke="rgba(34, 197, 94, 0.5)" 
                     strokeWidth="1"
                   />
+                  
+                  {/* Desert Labels */}
+                  <text x="90" y="300" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                    Western
+                  </text>
+                  <text x="90" y="315" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                    Desert
+                  </text>
+                  
+                  <text x="310" y="300" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                    Eastern
+                  </text>
+                  <text x="310" y="315" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                    Desert
+                  </text>
+                  
+                  {/* Desert terrain indicators */}
+                  {/* Western Desert sand dunes */}
+                  <circle cx="70" cy="200" r="3" fill="#D2B48C" opacity="0.4"/>
+                  <circle cx="85" cy="210" r="2" fill="#D2B48C" opacity="0.4"/>
+                  <circle cx="75" cy="380" r="4" fill="#D2B48C" opacity="0.4"/>
+                  <circle cx="90" cy="370" r="2" fill="#D2B48C" opacity="0.4"/>
+                  <circle cx="60" cy="450" r="3" fill="#D2B48C" opacity="0.4"/>
+                  
+                  {/* Eastern Desert rocky terrain */}
+                  <polygon points="320,200 325,195 330,200 325,205" fill="#8B7355" opacity="0.5"/>
+                  <polygon points="335,250 340,245 345,250 340,255" fill="#8B7355" opacity="0.5"/>
+                  <polygon points="315,380 320,375 325,380 320,385" fill="#8B7355" opacity="0.5"/>
+                  <polygon points="340,420 345,415 350,420 345,425" fill="#8B7355" opacity="0.5"/>
                 </svg>
               </div>
               
