@@ -116,7 +116,7 @@ ${'='.repeat(50)}
 BOOKING INFORMATION
 Booking Reference: ${booking.bookingReference}
 Status: ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
-Total Amount: $${booking.totalAmount}
+Total Amount: ${parseFloat(booking.totalAmount).toLocaleString()} EGP
 `;
 
     if (booking.startDate) {
@@ -246,7 +246,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                       Total Amount
                     </label>
                     <p className="text-lg font-semibold">
-                      ${booking.totalAmount}
+                      {parseFloat(booking.totalAmount).toLocaleString()} EGP
                     </p>
                   </div>
                   {booking.startDate && (
