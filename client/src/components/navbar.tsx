@@ -156,12 +156,7 @@ export default function Navbar() {
             >
               Start Your Trip Quote
             </button>
-            <Link
-              href="/day-by-day-planner"
-              className="border border-teal-600 text-teal-600 px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors font-medium"
-            >
-              Day-by-Day Planner
-            </Link>
+
             <Link
               href="/transfers"
               className="border border-gray-300 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors font-medium"
