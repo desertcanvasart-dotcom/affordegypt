@@ -118,7 +118,7 @@ const nileValleyCities: NileCity[] = [
       "Visit free mosques and markets"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-detail.jpg"
+    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg"
   },
   {
     id: 3,
