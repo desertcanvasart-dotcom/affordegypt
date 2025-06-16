@@ -120,12 +120,24 @@ export default function DayByDayPlanner() {
 
   // Handle date range selection
   const handleDateRangeSelect = (range: any) => {
+    console.log('Date range selected:', range);
     if (range?.from && range?.to) {
       setSelectedRange(range);
+      toast({
+        title: "Dates Selected",
+        description: `Creating itinerary from ${format(range.from, 'MMM d')} to ${format(range.to, 'MMM d')}`,
+      });
       // Create booking with selected date range
       createBookingMutation.mutate({
         startDate: range.from,
         endDate: range.to,
+      });
+    } else if (range?.from) {
+      // Show partial selection
+      setSelectedRange(range);
+      toast({
+        title: "Start Date Selected",
+        description: "Now select your end date to continue",
       });
     }
   };
@@ -175,6 +187,12 @@ export default function DayByDayPlanner() {
                 disabled={(date) => date < new Date()}
                 className="rounded-md border"
               />
+              {createBookingMutation.isPending && (
+                <div className="mt-4 flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-teal-600"></div>
+                  <span className="ml-2 text-sm text-gray-600">Creating your itinerary...</span>
+                </div>
+              )}
             </CardContent>
           </Card>
 
