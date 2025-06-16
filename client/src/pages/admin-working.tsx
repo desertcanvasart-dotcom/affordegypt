@@ -42,7 +42,9 @@ export default function AdminWorking() {
     basePriceByVehicle: {},
     routeType: "",
     fromLocation: "",
-    toLocation: ""
+    toLocation: "",
+    tripMode: "",
+    nights: 0
   });
 
   const { toast } = useToast();
@@ -377,7 +379,9 @@ export default function AdminWorking() {
       basePriceByVehicle: {},
       routeType: "",
       fromLocation: "",
-      toLocation: ""
+      toLocation: "",
+      tripMode: "",
+      nights: 0
     });
   };
 
@@ -1831,6 +1835,37 @@ export default function AdminWorking() {
                               </select>
                             </div>
                           </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Trip Mode *</label>
+                            <select
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              value={formData.tripMode}
+                              onChange={(e) => {
+                                const nightsMap = {
+                                  'transfer': 0,
+                                  'day_trip': 0,
+                                  'overnight': 1,
+                                  'multi_day': 2
+                                };
+                                setFormData({
+                                  ...formData, 
+                                  tripMode: e.target.value,
+                                  nights: nightsMap[e.target.value as keyof typeof nightsMap] || 0
+                                });
+                              }}
+                            >
+                              <option value="">Select Trip Mode</option>
+                              <option value="transfer">Transfer & Drop off</option>
+                              <option value="day_trip">Day Trip (return same day)</option>
+                              <option value="overnight">Overnight Stay (1 night)</option>
+                              <option value="multi_day">Multi-Day Tour (2+ nights)</option>
+                            </select>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Auto-filled nights: {formData.nights || 0}
+                            </p>
+                          </div>
+                          
                           <div>
                             <label className="block text-sm font-medium mb-1">Distance (KM)</label>
                             <Input
@@ -1859,6 +1894,37 @@ export default function AdminWorking() {
                               ))}
                             </select>
                           </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Trip Mode *</label>
+                            <select
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              value={formData.tripMode}
+                              onChange={(e) => {
+                                const nightsMap = {
+                                  'transfer': 0,
+                                  'day_trip': 0,
+                                  'overnight': 1,
+                                  'multi_day': 2
+                                };
+                                setFormData({
+                                  ...formData, 
+                                  tripMode: e.target.value,
+                                  nights: nightsMap[e.target.value as keyof typeof nightsMap] || 0
+                                });
+                              }}
+                            >
+                              <option value="">Select Trip Mode</option>
+                              <option value="transfer">Transfer & Drop off</option>
+                              <option value="day_trip">Day Trip (return same day)</option>
+                              <option value="overnight">Overnight Stay (1 night)</option>
+                              <option value="multi_day">Multi-Day Tour (2+ nights)</option>
+                            </select>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Auto-filled nights: {formData.nights || 0}
+                            </p>
+                          </div>
+                          
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <label className="block text-sm font-medium mb-1">From Location</label>
