@@ -144,7 +144,7 @@ export default function DayByDayPlanner() {
 
   // Generate timeline of dates
   useEffect(() => {
-    if (bookingId && selectedRange?.from && selectedRange?.to && !booking?.days?.length) {
+    if (bookingId && selectedRange?.from && selectedRange?.to && (!booking || !booking.days || booking.days.length === 0)) {
       const daysDiff = differenceInDays(selectedRange.to, selectedRange.from);
       
       // Create booking days for each date in range
@@ -153,7 +153,7 @@ export default function DayByDayPlanner() {
         createDayMutation.mutate({ date });
       }
     }
-  }, [bookingId, selectedRange, booking?.days?.length]);
+  }, [bookingId, selectedRange, booking]);
 
   // Handle adding service to a day
   const handleAddService = (dayId: number) => {
@@ -184,7 +184,7 @@ export default function DayByDayPlanner() {
                 mode="range"
                 selected={selectedRange}
                 onSelect={handleDateRangeSelect}
-                disabled={(date) => date < new Date()}
+                disabled={[{ before: new Date() }]}
                 className="rounded-md border"
               />
               {createBookingMutation.isPending && (
@@ -278,16 +278,25 @@ export default function DayByDayPlanner() {
             <DayColumn
               key={day.id}
               day={day}
-              dayNumber={index + 1}
-              cities={cities}
-              onAddService={() => handleAddService(day.id)}
+              dayIndex={index}
+              onAddService={handleAddService}
+              onRemoveService={(serviceId: number) => {
+                // TODO: Implement service removal
+                console.log('Remove service:', serviceId);
+              }}
             />
           ))}
         </div>
 
         {/* Pricing Sidebar */}
         <div className="lg:col-span-1">
-          <PricingSidebar quote={quote} />
+          <PricingSidebar 
+            booking={booking || { days: [] } as any}
+            quote={quote}
+            onCheckout={() => {
+              console.log('Checkout clicked');
+            }}
+          />
         </div>
       </div>
 

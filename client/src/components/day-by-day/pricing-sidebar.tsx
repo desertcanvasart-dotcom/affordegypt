@@ -34,11 +34,11 @@ interface PricingSidebarProps {
 }
 
 export default function PricingSidebar({ booking, quote, onCheckout }: PricingSidebarProps) {
-  const totalServices = booking.days?.reduce((sum, day) => sum + (day.services?.length || 0), 0) || 0;
-  const totalPassengers = booking.days?.reduce((sum, day) => 
+  const totalServices = booking?.days?.reduce((sum, day) => sum + (day.services?.length || 0), 0) || 0;
+  const totalPassengers = booking?.days?.reduce((sum, day) => 
     sum + (day.services?.reduce((daySum, service) => daySum + service.passengers, 0) || 0), 0) || 0;
 
-  const displayAmount = quote?.totalAmount || booking.totalAmount || "0.00";
+  const displayAmount = quote?.totalAmount || booking?.totalAmount || "0.00";
   const hasServices = totalServices > 0;
 
   return (
