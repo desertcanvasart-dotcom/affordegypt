@@ -421,3 +421,5 @@ export function ServiceModal({ isOpen, onClose, dayId, cities, onServiceAdded }:
     </Dialog>
   );
 }
+
+export default ServiceModal;
