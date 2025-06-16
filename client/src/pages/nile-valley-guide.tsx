@@ -72,7 +72,7 @@ const nileValleyCities: NileCity[] = [
       "Try fresh seafood at local restaurants",
       "Use the historic tram system for cheap transport"
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/alexandria-library.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg"
   },
   {
     id: 2,
