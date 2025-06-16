@@ -187,6 +187,16 @@ export default function DayByDayPlanner() {
                 disabled={[{ before: new Date() }]}
                 className="rounded-md border"
               />
+              {selectedRange?.from && !selectedRange?.to && (
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700">
+                    Start date selected: {format(selectedRange.from, "MMM d, yyyy")}
+                  </p>
+                  <p className="text-sm text-blue-600 mt-1">
+                    Now click your end date to create your itinerary
+                  </p>
+                </div>
+              )}
               {createBookingMutation.isPending && (
                 <div className="mt-4 flex items-center justify-center">
                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-teal-600"></div>
