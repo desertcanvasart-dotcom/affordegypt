@@ -145,9 +145,28 @@ export default function RouteEditModal({
         return apiRequest("POST", "/api/routes", data);
       }
     },
-    onSuccess: (result) => {
+    onSuccess: async (result) => {
       console.log('Route save successful:', result);
-      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      
+      // Use setQueryData to update cache directly instead of invalidating
+      try {
+        const response = await result.json();
+        queryClient.setQueryData(['/api/routes'], (oldData: any) => {
+          if (!oldData) return oldData;
+          
+          if (route) {
+            // Update existing route
+            return oldData.map((r: any) => r.id === route.id ? response : r);
+          } else {
+            // Add new route
+            return [...oldData, response];
+          }
+        });
+      } catch (e) {
+        // Fallback to invalidation if direct update fails
+        queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      }
+      
       toast({
         title: "Success!",
         description: `Route has been ${route ? 'updated' : 'created'} successfully.`,

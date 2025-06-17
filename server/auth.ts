@@ -32,7 +32,7 @@ export function generateToken(userId: number, username: string, email: string, r
       role 
     },
     JWT_SECRET,
-    { expiresIn: '7d' }
+    { expiresIn: '30d' } // Extended to 30 days to prevent frequent logouts
   );
 }
 
@@ -54,7 +54,7 @@ export function authenticateToken(req: AuthRequest, res: Response, next: NextFun
 
   const decoded = verifyToken(token);
   if (!decoded) {
-    return res.status(403).json({ message: 'Invalid or expired token' });
+    return res.status(401).json({ message: 'Invalid or expired token' });
   }
 
   req.user = decoded;

@@ -3,6 +3,15 @@ import { QueryClient, QueryFunction } from "@tanstack/react-query";
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
+    
+    // Handle authentication errors specifically
+    if (res.status === 401) {
+      // Remove invalid token and reload to trigger re-authentication
+      localStorage.removeItem("auth_token");
+      // Don't throw immediately - let the component handle this gracefully
+      throw new Error(`401: Unauthorized`);
+    }
+    
     throw new Error(`${res.status}: ${text}`);
   }
 }
@@ -54,8 +63,14 @@ export const queryClient = new QueryClient({
       queryFn: getQueryFn({ on401: "throw" }),
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      retry: false,
+      staleTime: 5 * 60 * 1000, // 5 minutes instead of Infinity
+      retry: (failureCount, error: any) => {
+        // Don't retry on authentication errors
+        if (error.message && error.message.includes('401')) {
+          return false;
+        }
+        return failureCount < 2;
+      },
     },
     mutations: {
       retry: false,

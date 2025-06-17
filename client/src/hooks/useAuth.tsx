@@ -38,6 +38,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Check if user is logged in on app start
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
+    const cachedUser = localStorage.getItem("cached_user");
+    
+    // If we have cached user data, use it immediately to prevent logout flashing
+    if (cachedUser) {
+      try {
+        setUser(JSON.parse(cachedUser));
+      } catch (e) {
+        localStorage.removeItem("cached_user");
+      }
+    }
+    
     if (token) {
       verifyToken();
     } else {
@@ -53,9 +64,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(data.user);
       } else {
         localStorage.removeItem("auth_token");
+        setUser(null);
       }
-    } catch (error) {
-      localStorage.removeItem("auth_token");
+    } catch (error: any) {
+      // Only remove token if it's actually an auth error
+      if (error.message && error.message.includes('401')) {
+        localStorage.removeItem("auth_token");
+        setUser(null);
+      }
+      // For other errors, keep the user state as is to prevent unnecessary logouts
     } finally {
       setIsLoading(false);
     }
