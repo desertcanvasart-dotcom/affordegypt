@@ -61,7 +61,7 @@ export const queryClient = new QueryClient({
       queryFn: getQueryFn({ on401: "throw" }),
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      staleTime: 5 * 60 * 1000, // 5 minutes instead of Infinity
+      staleTime: 10 * 60 * 1000, // 10 minutes for better stability
       retry: (failureCount, error: any) => {
         // Don't retry on authentication errors
         if (error.message && error.message.includes('401')) {
@@ -69,6 +69,9 @@ export const queryClient = new QueryClient({
         }
         return failureCount < 2;
       },
+      // Prevent automatic refetching that could cause auth issues
+      refetchOnMount: false,
+      refetchOnReconnect: false,
     },
     mutations: {
       retry: false,

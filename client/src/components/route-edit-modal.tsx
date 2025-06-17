@@ -148,7 +148,7 @@ export default function RouteEditModal({
     onSuccess: async (result) => {
       console.log('Route save successful:', result);
       
-      // Use setQueryData to update cache directly instead of invalidating
+      // Update cache directly without invalidating other queries
       try {
         const response = await result.json();
         queryClient.setQueryData(['/api/routes'], (oldData: any) => {
@@ -163,8 +163,11 @@ export default function RouteEditModal({
           }
         });
       } catch (e) {
-        // Fallback to invalidation if direct update fails
-        queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+        // Only invalidate routes, not all queries
+        queryClient.invalidateQueries({ 
+          queryKey: ['/api/routes'],
+          exact: true 
+        });
       }
       
       toast({

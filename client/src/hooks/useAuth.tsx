@@ -64,19 +64,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(data.user);
         // Cache user data to prevent logout flashing
         localStorage.setItem("cached_user", JSON.stringify(data.user));
-      } else {
+      } else if (response.status === 401) {
+        // Only clear auth on actual auth failures
         localStorage.removeItem("auth_token");
         localStorage.removeItem("cached_user");
         setUser(null);
       }
+      // For other errors (network, server), keep existing state
     } catch (error: any) {
-      // Only remove token if it's actually an auth error
+      console.log("Auth verification error:", error.message);
+      // Only remove token if it's actually an auth error, not network issues
       if (error.message && error.message.includes('401')) {
         localStorage.removeItem("auth_token");
         localStorage.removeItem("cached_user");
         setUser(null);
       }
-      // For other errors, keep the user state as is to prevent unnecessary logouts
+      // For network errors, keep the user logged in
     } finally {
       setIsLoading(false);
     }

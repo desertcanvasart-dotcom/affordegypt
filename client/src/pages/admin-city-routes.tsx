@@ -103,8 +103,12 @@ export default function AdminCityRoutes() {
     mutationFn: async (id: number) => {
       return apiRequest("DELETE", `/api/routes/${id}`);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+    onSuccess: (_, deletedId) => {
+      // Update cache directly instead of invalidating all queries
+      queryClient.setQueryData(['/api/routes'], (oldData: any) => {
+        if (!oldData) return oldData;
+        return oldData.filter((route: any) => route.id !== deletedId);
+      });
       toast({
         title: "Route deleted successfully",
         description: "The route has been removed from the system.",
