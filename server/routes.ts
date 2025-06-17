@@ -747,10 +747,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Route creation error:', error);
       
-      // Check for unique constraint violation on display_order
-      if (error.constraint === 'unique_display_order' || (error.message && error.message.includes('unique_display_order'))) {
+      // Check for unique constraint violation on display_order per destination
+      if (error.message && (error.message.includes('unique_display_order_inter_city') || error.message.includes('unique_display_order_intra_city'))) {
+        const destinationType = req.body.routeCategory === 'inter_city' ? 'departure city' : 'city';
         return res.status(400).json({ 
-          message: `Display order ${req.body.displayOrder} is already taken. Please choose a different display order.` 
+          message: `Display order ${req.body.displayOrder} is already taken for this ${destinationType}. Please choose a different display order.` 
         });
       }
       
@@ -798,10 +799,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Route update error:', error);
       
-      // Check for unique constraint violation on display_order
-      if (error.constraint === 'unique_display_order' || (error.message && error.message.includes('unique_display_order'))) {
+      // Check for unique constraint violation on display_order per destination
+      if (error.message && (error.message.includes('unique_display_order_inter_city') || error.message.includes('unique_display_order_intra_city'))) {
+        const destinationType = req.body.routeCategory === 'inter_city' ? 'departure city' : 'city';
         return res.status(400).json({ 
-          message: `Display order ${req.body.displayOrder} is already taken. Please choose a different display order.` 
+          message: `Display order ${req.body.displayOrder} is already taken for this ${destinationType}. Please choose a different display order.` 
         });
       }
       
