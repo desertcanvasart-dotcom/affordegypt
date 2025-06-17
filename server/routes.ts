@@ -746,6 +746,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(route);
     } catch (error: any) {
       console.error('Route creation error:', error);
+      
+      // Check for unique constraint violation on display_order
+      if (error.message && error.message.includes('unique_display_order')) {
+        return res.status(400).json({ 
+          message: `Display order ${req.body.displayOrder} is already taken. Please choose a different display order.` 
+        });
+      }
+      
       res.status(500).json({ message: "Failed to create route" });
     }
   });
@@ -789,6 +797,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(updatedRoute);
     } catch (error: any) {
       console.error('Route update error:', error);
+      
+      // Check for unique constraint violation on display_order
+      if (error.message && error.message.includes('unique_display_order')) {
+        return res.status(400).json({ 
+          message: `Display order ${req.body.displayOrder} is already taken. Please choose a different display order.` 
+        });
+      }
+      
       res.status(500).json({ message: "Failed to update route" });
     }
   });
