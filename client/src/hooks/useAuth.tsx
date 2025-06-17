@@ -62,14 +62,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
+        // Cache user data to prevent logout flashing
+        localStorage.setItem("cached_user", JSON.stringify(data.user));
       } else {
         localStorage.removeItem("auth_token");
+        localStorage.removeItem("cached_user");
         setUser(null);
       }
     } catch (error: any) {
       // Only remove token if it's actually an auth error
       if (error.message && error.message.includes('401')) {
         localStorage.removeItem("auth_token");
+        localStorage.removeItem("cached_user");
         setUser(null);
       }
       // For other errors, keep the user state as is to prevent unnecessary logouts
@@ -91,6 +95,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const data = await response.json();
     localStorage.setItem("auth_token", data.token);
+    localStorage.setItem("cached_user", JSON.stringify(data.user));
     setUser(data.user);
   };
 
@@ -104,11 +109,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const data = await response.json();
     localStorage.setItem("auth_token", data.token);
+    localStorage.setItem("cached_user", JSON.stringify(data.user));
     setUser(data.user);
   };
 
   const logout = () => {
     localStorage.removeItem("auth_token");
+    localStorage.removeItem("cached_user");
     setUser(null);
   };
 
@@ -121,6 +128,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const data = await response.json();
+    localStorage.setItem("cached_user", JSON.stringify(data.user));
     setUser(data.user);
   };
 

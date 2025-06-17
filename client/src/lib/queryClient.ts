@@ -6,9 +6,7 @@ async function throwIfResNotOk(res: Response) {
     
     // Handle authentication errors specifically
     if (res.status === 401) {
-      // Remove invalid token and reload to trigger re-authentication
-      localStorage.removeItem("auth_token");
-      // Don't throw immediately - let the component handle this gracefully
+      // Don't automatically remove token - let auth hook handle it
       throw new Error(`401: Unauthorized`);
     }
     
