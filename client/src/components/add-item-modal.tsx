@@ -52,8 +52,24 @@ export default function AddItemModal({ isOpen, onClose, modalType }: AddItemModa
       const endpoint = modalType === 'route' ? '/api/routes' : '/api/admin/items';
       return apiRequest("POST", endpoint, data);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+    onSuccess: async (result) => {
+      if (modalType === 'route') {
+        // Update cache directly for routes
+        try {
+          const response = await result.json();
+          queryClient.setQueryData(['/api/routes'], (oldData: any) => {
+            if (!oldData) return [response];
+            return [...oldData, response];
+          });
+        } catch (e) {
+          // Only invalidate routes if direct update fails
+          queryClient.invalidateQueries({ 
+            queryKey: ['/api/routes'],
+            exact: true 
+          });
+        }
+      }
+      
       toast({
         title: "Success!",
         description: `${modalType === 'addon' ? 'Service' : modalType} has been added successfully.`,

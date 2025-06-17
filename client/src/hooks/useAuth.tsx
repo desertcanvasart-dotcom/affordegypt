@@ -40,16 +40,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const token = localStorage.getItem("auth_token");
     const cachedUser = localStorage.getItem("cached_user");
     
-    // If we have cached user data, use it immediately to prevent logout flashing
-    if (cachedUser) {
+    // If we have both token and cached user, trust the cache and skip verification
+    if (token && cachedUser) {
       try {
-        setUser(JSON.parse(cachedUser));
+        const cached = JSON.parse(cachedUser);
+        // Handle both old and new cache formats
+        const userData = cached.user || cached;
+        setUser(userData);
+        setIsLoading(false);
+        return; // Skip token verification to prevent logout issues
       } catch (e) {
         localStorage.removeItem("cached_user");
       }
     }
     
-    if (token) {
+    // Only verify token if we don't have cached user data
+    if (token && !cachedUser) {
       verifyToken();
     } else {
       setIsLoading(false);
@@ -62,24 +68,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-        // Cache user data to prevent logout flashing
-        localStorage.setItem("cached_user", JSON.stringify(data.user));
+        // Cache user data with timestamp for better session management
+        const cachedData = {
+          user: data.user,
+          timestamp: Date.now()
+        };
+        localStorage.setItem("cached_user", JSON.stringify(cachedData));
       } else if (response.status === 401) {
-        // Only clear auth on actual auth failures
+        // Only clear auth on explicit 401 errors
         localStorage.removeItem("auth_token");
         localStorage.removeItem("cached_user");
         setUser(null);
       }
-      // For other errors (network, server), keep existing state
+      // For other errors (network, server), maintain existing state
     } catch (error: any) {
       console.log("Auth verification error:", error.message);
-      // Only remove token if it's actually an auth error, not network issues
-      if (error.message && error.message.includes('401')) {
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("cached_user");
-        setUser(null);
+      // Preserve authentication state for network issues
+      const cachedUser = localStorage.getItem("cached_user");
+      if (cachedUser) {
+        try {
+          const cached = JSON.parse(cachedUser);
+          if (cached.user) {
+            setUser(cached.user);
+          }
+        } catch (e) {
+          console.error("Failed to restore cached user:", e);
+        }
       }
-      // For network errors, keep the user logged in
     } finally {
       setIsLoading(false);
     }

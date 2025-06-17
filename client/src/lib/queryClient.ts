@@ -70,7 +70,7 @@ export const queryClient = new QueryClient({
         return failureCount < 2;
       },
       // Prevent automatic refetching that could cause auth issues
-      refetchOnMount: false,
+      refetchOnMount: true, // Allow mounting queries but control them carefully
       refetchOnReconnect: false,
     },
     mutations: {
