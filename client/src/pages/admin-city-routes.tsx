@@ -52,30 +52,38 @@ export default function AdminCityRoutes() {
     return city ? city.name : `City ${cityId}`;
   };
 
-  // Filter routes for the current city
+  // Filter routes for the current city - FIXED: Prevent automatic bidirectional route display
   const getCityRoutes = () => {
     if (!currentCity) return [];
     
     console.log('Current city:', currentCity);
     console.log('All routes:', routes);
-    console.log('Filtering routes for fromCityId:', currentCity.id);
+    console.log('Filtering routes for currentCity.id:', currentCity.id);
     
+    // CRITICAL FIX: Only show routes that truly BELONG to this city section
+    // For inter-city: show routes departing FROM this city only
+    // For intra-city: show routes within this city only
     let filteredRoutes = (routes as any[]).filter((route: any) => {
-      const matches = route.fromCityId === currentCity.id;
-      if (!matches) {
-        console.log(`Route ${route.id} filtered out: fromCityId=${route.fromCityId}, currentCity.id=${currentCity.id}`);
+      if (route.routeCategory === 'intra_city') {
+        // For intra-city routes, show if cityId matches current city
+        return route.cityId === currentCity.id;
+      } else {
+        // For inter-city routes, ONLY show routes departing from current city
+        // This prevents "Cairo → Alexandria" from appearing in Alexandria section
+        return route.fromCityId === currentCity.id;
       }
-      return matches;
     });
+
+    console.log(`Filtered ${filteredRoutes.length} routes for city ${currentCity.name}`);
 
     // Apply category filter
     if (category === 'inter-city') {
       filteredRoutes = filteredRoutes.filter((route: any) => 
-        route.fromCityId !== route.toCityId
+        route.routeCategory === 'inter_city'
       );
     } else if (category === 'city-tours') {
       filteredRoutes = filteredRoutes.filter((route: any) => 
-        route.fromCityId === route.toCityId
+        route.routeCategory === 'intra_city'
       );
     }
 
