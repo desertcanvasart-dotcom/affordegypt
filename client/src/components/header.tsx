@@ -1,7 +1,18 @@
-import { Crown } from "lucide-react";
+import { Crown, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import { Link } from "wouter";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
+  const { user, isAuthenticated, logout } = useAuth();
+  
   const scrollToBooking = () => {
     const bookingSection = document.getElementById('booking-wizard');
     if (bookingSection) {
@@ -27,6 +38,42 @@ export default function Header() {
           
           <div className="flex items-center space-x-4">
             <span className="text-sm text-muted-foreground">EN</span>
+            
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-3">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="sm" className="flex items-center space-x-2">
+                      <User className="w-4 h-4" />
+                      <span>{user?.firstName || user?.username}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard" className="flex items-center">
+                        <User className="w-4 h-4 mr-2" />
+                        Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={logout} className="flex items-center text-red-600">
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" asChild>
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button size="sm" asChild>
+                  <Link href="/register">Sign Up</Link>
+                </Button>
+              </div>
+            )}
+            
             <Button 
               onClick={scrollToBooking}
               className="btn-primary rounded-full px-6"

@@ -1,11 +1,21 @@
 import { useState } from "react";
-import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle, ChefHat } from "lucide-react";
+import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle, ChefHat, LogOut } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location, setLocation] = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const navigateToSection = (sectionId: string) => {
     // If we're on the homepage, scroll to the section
@@ -150,6 +160,41 @@ export default function Navbar() {
 
           {/* Primary CTAs */}
           <div className="hidden md:flex items-center space-x-3">
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-3">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-gray-700 hover:text-gray-900">
+                      <User className="w-4 h-4" />
+                      <span>{user?.firstName || user?.username}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard" className="flex items-center">
+                        <User className="w-4 h-4 mr-2" />
+                        Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={logout} className="flex items-center text-red-600">
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" asChild>
+                  <Link href="/login" className="text-gray-600 hover:text-gray-900">Sign In</Link>
+                </Button>
+                <Button size="sm" className="bg-gray-800 hover:bg-gray-900 text-white" asChild>
+                  <Link href="/register">Sign Up</Link>
+                </Button>
+              </div>
+            )}
+            
             <button
               onClick={() => navigateToSection('quote-builder')}
               className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors font-medium shadow-md"
@@ -207,8 +252,52 @@ export default function Navbar() {
                 Cuisine Passport
               </Link>
               
-              {/* Mobile CTAs */}
+              {/* Mobile Authentication & CTAs */}
               <div className="pt-4 space-y-3 border-t border-border">
+                {isAuthenticated ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 text-gray-700 py-2">
+                      <User className="w-4 h-4" />
+                      <span className="font-medium">{user?.firstName || user?.username}</span>
+                    </div>
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 py-2"
+                    >
+                      <User className="w-4 h-4" />
+                      <span>Dashboard</span>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center space-x-2 text-red-600 hover:text-red-700 py-2 w-full text-left"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <Link
+                      href="/login"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block w-full text-center border border-gray-300 text-gray-600 px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      href="/register"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block w-full text-center bg-gray-800 text-white px-4 py-3 rounded-lg hover:bg-gray-900 transition-colors font-medium"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                )}
+                
                 <button
                   onClick={() => {
                     setIsMenuOpen(false);
