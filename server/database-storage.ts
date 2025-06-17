@@ -427,7 +427,7 @@ export class DatabaseStorage implements IStorage {
 
   // Route methods
   async getRoutes(): Promise<Route[]> {
-    return await db.select().from(routes).orderBy(routes.displayOrder, routes.id);
+    return await db.select().from(routes).orderBy(routes.displayOrder, routes.routeCategory, routes.name, routes.id);
   }
 
   async getRoute(fromCityId: number, toCityId: number): Promise<Route | undefined> {
