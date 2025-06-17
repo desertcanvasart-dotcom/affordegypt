@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./database-storage";
 import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 import { emailService } from "./email-service";
+import { setupAuthRoutes } from "./auth-routes";
+import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import multer from "multer";
 import csv from "csv-parser";
 import fs from "fs";
@@ -23,6 +25,9 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // Setup authentication routes
+  setupAuthRoutes(app);
   
   // Cities CRUD endpoints
   app.get("/api/cities", async (req, res) => {
