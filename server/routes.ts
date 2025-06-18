@@ -5,7 +5,7 @@ import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 import { emailService } from "./email-service";
 import { setupAuthRoutes } from "./auth-routes";
 import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
-import { registerEnhancedRoutes } from "./enhanced-routes";
+import { registerPricingRoutes } from "./pricing-routes";
 import multer from "multer";
 import csv from "csv-parser";
 import fs from "fs";
@@ -1612,8 +1612,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Register enhanced routes for additional pricing endpoints
-  await registerEnhancedRoutes(app);
+  // Register pricing routes for Transfer Only pricing endpoint
+  await registerPricingRoutes(app);
 
   const httpServer = createServer(app);
   return httpServer;
