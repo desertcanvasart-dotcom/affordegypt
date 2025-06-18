@@ -1130,6 +1130,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete booking endpoint (admin only)
+  app.delete("/api/bookings/:id", async (req, res) => {
+    try {
+      const bookingId = parseInt(req.params.id);
+      
+      // Get booking to verify it exists
+      const booking = await storage.getBooking(bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+
+      // Delete the booking
+      await storage.deleteBooking(bookingId);
+      
+      res.json({ message: "Booking deleted successfully" });
+    } catch (error: any) {
+      console.error('Error deleting booking:', error);
+      res.status(500).json({ message: "Failed to delete booking" });
+    }
+  });
+
   // Route-only booking endpoint (transportation only)
   app.post("/api/route-bookings", async (req, res) => {
     try {

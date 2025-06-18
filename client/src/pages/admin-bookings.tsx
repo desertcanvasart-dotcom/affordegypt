@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Send, Calendar, DollarSign, User } from "lucide-react";
+import { Mail, Send, Calendar, DollarSign, User, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 interface Booking {
@@ -85,6 +85,26 @@ export default function AdminBookings() {
         description: "Status update email sent successfully",
       });
       setStatusUpdate(prev => ({ ...prev, [variables.bookingId]: "" }));
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const deleteBookingMutation = useMutation({
+    mutationFn: async (bookingId: number) => {
+      await apiRequest("DELETE", `/api/bookings/${bookingId}`);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Booking deleted successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
     },
     onError: (error) => {
       toast({

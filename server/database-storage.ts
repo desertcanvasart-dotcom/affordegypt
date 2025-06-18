@@ -101,6 +101,7 @@ export interface IStorage {
   updateBookingStatus(id: number, status: string): Promise<Booking>;
   markEmailSent(id: number, emailType: 'confirmation' | 'reminder'): Promise<Booking>;
   generateBookingReference(): string;
+  deleteBooking(id: number): Promise<void>;
 
   // Reviews
   getActiveReviews(): Promise<Review[]>;
@@ -674,6 +675,10 @@ export class DatabaseStorage implements IStorage {
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.random().toString(36).substring(2, 5).toUpperCase();
     return `${prefix}${timestamp}${random}`;
+  }
+
+  async deleteBooking(id: number): Promise<void> {
+    await db.delete(bookings).where(eq(bookings.id, id));
   }
 
   // Enhanced pricing engine following your pseudo-code
