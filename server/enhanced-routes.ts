@@ -201,39 +201,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing using database rates only
+        // Calculate guide pricing (day-based, divided by travelers)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
           const guideRates = await storage.getGuideRates(cityService.cityId);
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            guideTotal = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
+            const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
+            guideTotal = dailyRate / travelers; // Divide by number of travelers
           }
         }
 
-        // Calculate attractions using database values only
+        // Calculate attractions (direct database values - no calculations)
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
           for (const attractionId of cityService.selectedAttractions) {
             const attraction = await storage.getAttraction(attractionId);
             if (attraction) {
-              attractionsTotal += parseFloat(attraction.ticketPrice) * travelers;
+              attractionsTotal += parseFloat(attraction.ticketPrice); // Direct database value, no multiplication
             }
           }
         }
 
-        // Calculate add-ons
+        // Calculate add-ons (direct database values - no calculations)
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
           for (const addOn of cityService.selectedAddOns) {
             const addOnItem = await storage.getAddOn(addOn.id);
             if (addOnItem) {
               const basePrice = parseFloat(addOnItem.price);
-              if (addOnItem.unitType === "per_person") {
-                addOnsTotal += basePrice * travelers * (addOn.quantity || 1);
-              } else {
-                addOnsTotal += basePrice * (addOn.quantity || 1);
-              }
+              addOnsTotal += basePrice * (addOn.quantity || 1); // Only multiply by quantity
             }
           }
         }
@@ -265,20 +262,81 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Enhanced pricing calculation using new engine
+  // Corrected pricing calculation with business rules
   app.post("/api/calculate-pricing", async (req, res) => {
     try {
-      const { itinerary = [], addons = [], passengers = 1 } = req.body;
-      
-      const pricing = await storage.calculateQuotePrice(itinerary, addons, passengers);
-      
+      const { 
+        routeId,
+        vehicleTypeId, 
+        cityId,
+        guideLanguage,
+        guideHours = 8,
+        attractionIds = [],
+        addOnIds = [],
+        travelers = 1
+      } = req.body;
+
+      let totalPrice = 0;
+      const breakdown = {
+        routes: 0,
+        guide: 0,
+        attractions: 0,
+        addons: 0
+      };
+
+      // Calculate route pricing (divided by travelers)
+      if (routeId && vehicleTypeId) {
+        const route = await storage.getRoute(routeId);
+        if (route && route.basePriceByVehicle) {
+          const vehicleType = await storage.getVehicleType(vehicleTypeId);
+          if (vehicleType) {
+            const priceData = route.basePriceByVehicle as any;
+            const vehicleKey = vehicleType.name.toLowerCase();
+            const routePrice = priceData[vehicleKey] || 0;
+            breakdown.routes = routePrice / travelers; // Divide by travelers
+            totalPrice += breakdown.routes;
+          }
+        }
+      }
+
+      // Calculate guide pricing (day-based, divided by travelers)
+      if (cityId && guideLanguage) {
+        const guideRates = await storage.getGuideRates(cityId);
+        const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === guideLanguage.trim().toLowerCase());
+        if (guideRate) {
+          const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
+          breakdown.guide = dailyRate / travelers; // Divide by travelers
+          totalPrice += breakdown.guide;
+        }
+      }
+
+      // Calculate attractions (direct database values - no calculations)
+      if (attractionIds.length > 0) {
+        for (const attractionId of attractionIds) {
+          const attraction = await storage.getAttraction(attractionId);
+          if (attraction) {
+            breakdown.attractions += parseFloat(attraction.ticketPrice);
+          }
+        }
+        totalPrice += breakdown.attractions;
+      }
+
+      // Calculate add-ons (direct database values - no calculations)
+      if (addOnIds.length > 0) {
+        for (const addOnId of addOnIds) {
+          const addOn = await storage.getAddOn(addOnId);
+          if (addOn) {
+            breakdown.addons += parseFloat(addOn.price);
+          }
+        }
+        totalPrice += breakdown.addons;
+      }
+
       res.json({
-        subtotal: pricing.subtotal.toFixed(2),
-        commissionPct: (pricing.commissionPct * 100).toFixed(1),
-        commission: (pricing.subtotal * pricing.commissionPct).toFixed(2),
-        taxes: "0.00", // No taxes in simplified model
-        total: pricing.grandTotal.toFixed(2),
-        breakdown: pricing.breakdown
+        subtotal: totalPrice.toFixed(0),
+        breakdown,
+        total: totalPrice.toFixed(0),
+        currency: "EGP"
       });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
