@@ -32,7 +32,7 @@ export default function AdminBookings() {
   const [statusUpdate, setStatusUpdate] = useState<{ [key: number]: string }>({});
 
   const { data: bookings, isLoading } = useQuery<Booking[]>({
-    queryKey: ["/api/bookings"],
+    queryKey: ["/api/admin/bookings"],
   });
 
   const sendConfirmationMutation = useMutation({
@@ -44,7 +44,7 @@ export default function AdminBookings() {
         title: "Success",
         description: "Confirmation email sent successfully",
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
     },
     onError: (error) => {
       toast({
@@ -64,7 +64,7 @@ export default function AdminBookings() {
         title: "Success",
         description: "Reminder email sent successfully",
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
     },
     onError: (error) => {
       toast({
@@ -104,7 +104,7 @@ export default function AdminBookings() {
         title: "Success",
         description: "Booking deleted successfully",
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
     },
     onError: (error) => {
       toast({
@@ -234,6 +234,20 @@ export default function AdminBookings() {
                   >
                     <Send className="w-4 h-4 mr-2" />
                     Send Reminder
+                  </Button>
+
+                  <Button
+                    size="sm"
+                    variant="destructive"
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to delete booking ${booking.bookingReference}? This action cannot be undone.`)) {
+                        deleteBookingMutation.mutate(booking.id);
+                      }
+                    }}
+                    disabled={deleteBookingMutation.isPending}
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Delete Booking
                   </Button>
                 </div>
 
