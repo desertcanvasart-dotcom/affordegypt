@@ -985,73 +985,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/calculate-pricing", async (req, res) => {
     try {
       const { 
+        routeId,
         vehicleTypeId, 
-        transportType, 
-        transportHours = 1,
-        tourGuideId, 
-        guideType, 
-        guideDays = 0, 
-        guideHours = 0,
-        selectedAddOns = [],
-        passengerCount = 1
+        cityId,
+        guideLanguage,
+        guideHours = 8,
+        attractionIds = [],
+        addOnIds = [],
+        travelers = 1
       } = req.body;
 
-      let subtotal = 0;
+      let totalPrice = 0;
+      const breakdown = {
+        routes: 0,
+        guide: 0,
+        attractions: 0,
+        addons: 0
+      };
 
-      // Calculate transportation cost
-      if (vehicleTypeId) {
-        const vehicle = await storage.getVehicleType(vehicleTypeId);
-        if (vehicle) {
-          if (transportType === "route_based") {
-            subtotal += parseFloat(vehicle.basePrice);
-          } else if (transportType === "hour_based" && vehicle.pricePerHour) {
-            subtotal += parseFloat(vehicle.pricePerHour) * transportHours;
+      // Calculate route pricing using database values
+      if (routeId && vehicleTypeId) {
+        const route = await storage.getRoute(routeId);
+        if (route && route.basePriceByVehicle) {
+          const vehicleType = await storage.getVehicleType(vehicleTypeId);
+          if (vehicleType) {
+            const priceData = route.basePriceByVehicle as any;
+            const vehicleKey = vehicleType.name.toLowerCase();
+            breakdown.routes = priceData[vehicleKey] || 0;
+            totalPrice += breakdown.routes;
           }
         }
       }
 
-      // Calculate guide cost
-      if (tourGuideId) {
-        const guide = await storage.getTourGuide(tourGuideId);
-        if (guide) {
-          if (guideType === "daily") {
-            subtotal += parseFloat(guide.dailyRate) * guideDays;
-          } else if (guideType === "hourly") {
-            subtotal += parseFloat(guide.hourlyRate) * guideHours;
-          }
+      // Calculate guide pricing using database rates only
+      if (cityId && guideLanguage) {
+        const guideRates = await storage.getGuideRates(cityId);
+        const guideRate = guideRates.find(rate => 
+          rate.language.trim().toLowerCase() === guideLanguage.trim().toLowerCase()
+        );
+        if (guideRate) {
+          breakdown.guide = parseFloat(guideRate.hourlyPrice) * guideHours;
+          totalPrice += breakdown.guide;
         }
       }
 
-      // Calculate add-ons cost
-      for (const addon of selectedAddOns) {
-        const addOnItem = await storage.getAddOn(addon.id);
-        if (addOnItem) {
-          const price = parseFloat(addOnItem.price);
-          if (addOnItem.priceUnit === "per_person") {
-            subtotal += price * addon.quantity * passengerCount;
-          } else {
-            subtotal += price * addon.quantity;
+      // Calculate attraction pricing using database values only
+      if (attractionIds.length > 0) {
+        for (const attractionId of attractionIds) {
+          const attraction = await storage.getAttraction(attractionId);
+          if (attraction) {
+            breakdown.attractions += parseFloat(attraction.ticketPrice) * travelers;
           }
         }
+        totalPrice += breakdown.attractions;
       }
 
-      // No commission or taxes added - show actual pricing
-      const commissionRate = 0;
-      const commission = 0;
-      const taxes = 0;
-      
-      const total = subtotal;
+      // Calculate add-on pricing using database values only
+      if (addOnIds.length > 0) {
+        for (const addOnId of addOnIds) {
+          const addOn = await storage.getAddOn(addOnId);
+          if (addOn) {
+            const basePrice = parseFloat(addOn.price);
+            if (addOn.unitType === "per_person") {
+              breakdown.addons += basePrice * travelers;
+            } else {
+              breakdown.addons += basePrice;
+            }
+          }
+        }
+        totalPrice += breakdown.addons;
+      }
 
       res.json({
-        subtotal: subtotal.toFixed(2),
-        commissionRate: commissionRate,
-        commission: commission.toFixed(2),
-        taxes: taxes.toFixed(2),
-        total: total.toFixed(2),
-        commissionTier: commissionTier?.name || "Budget Tier"
+        subtotal: Math.round(totalPrice).toString(),
+        breakdown,
+        total: Math.round(totalPrice).toString(),
+        currency: "EGP"
       });
 
     } catch (error: any) {
+      console.error("Pricing calculation error:", error);
       res.status(500).json({ message: error.message });
     }
   });

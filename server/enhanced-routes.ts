@@ -201,38 +201,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing (daily rate for 8-hour service) - use database rates
+        // Calculate guide pricing using database rates only
         let guideTotal = 0;
         if (cityService.selectedGuide) {
-          // Get guide rates from database instead of hardcoded USD values
           const guideRates = await storage.getGuideRates(cityService.cityId);
-          const guideRate = guideRates.find(rate => rate.language === cityService.selectedGuide.language);
+          const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            // Convert from hourly EGP to 8-hour total
-            guideTotal = parseFloat(guideRate.hourlyPrice) * 8;
-          } else {
-            // Fallback only if no rate found in database
-            guideTotal = 16000; // Default 2000 EGP/hour * 8 hours = 16000 EGP
+            guideTotal = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
           }
         }
 
-        // Calculate attractions
+        // Calculate attractions using database values only
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
-          const attractionPrices = {
-            "pyramids": 15, "khan_khalili": 8, "al_muizz": 5, "citadel": 12, 
-            "coptic": 8, "egyptian_museum": 18, "cairo_tower": 10,
-            "alexandria_library": 12, "qaitbay_citadel": 8, "montaza_palace": 10, "catacombs": 15,
-            "luxor_temple": 12, "valley_kings": 20, "karnak_temple": 15, "hatshepsut_temple": 12,
-            "abu_simbel": 35, "philae_temple": 15, "high_dam": 8, "unfinished_obelisk": 5,
-            "hurghada_marina": 10, "desert_safari": 45, "snorkeling": 35,
-            "sharm_old_market": 8, "ras_mohammed": 25, "colored_canyon": 30
-          };
-          
-          cityService.selectedAttractions.forEach(attraction => {
-            const price = attractionPrices[attraction] || 10;
-            attractionsTotal += price * travelers;
-          });
+          for (const attractionId of cityService.selectedAttractions) {
+            const attraction = await storage.getAttraction(attractionId);
+            if (attraction) {
+              attractionsTotal += parseFloat(attraction.ticketPrice) * travelers;
+            }
+          }
         }
 
         // Calculate add-ons
