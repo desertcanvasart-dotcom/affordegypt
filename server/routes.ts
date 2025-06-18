@@ -545,14 +545,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate add-ons (direct database values - no calculations)
+        // Calculate add-ons (direct database values - no calculations at all)
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
           for (const addOn of cityService.selectedAddOns) {
             const addOnItem = await storage.getAddOn(addOn.id);
             if (addOnItem) {
               const basePriceEGP = parseFloat(addOnItem.price); // Direct database value
-              addOnsTotal += basePriceEGP * addOn.quantity; // Only multiply by quantity
+              addOnsTotal += basePriceEGP; // NO multiplication - direct value only
             }
           }
         }
@@ -572,7 +572,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const firstService = cityServices[0];
       const travelers = firstService?.travelers || 1;
-      const perPersonAmount = Math.round((totalAmount / travelers) * 100) / 100;
+      const perPersonAmount = totalAmount; // No division - already calculated correctly
 
       res.json({
         totalAmount,
