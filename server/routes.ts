@@ -475,31 +475,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
               const routes = await storage.getRoutes();
               const route = routes.find(r => r.id === routeId);
               
-              console.log(`Looking for route ID: ${routeId}`);
-              console.log(`Found route:`, route ? `${route.name} (ID: ${route.id})` : 'NOT FOUND');
-              
               if (route && route.basePriceByVehicle) {
                 // Parse the JSON pricing data
                 const pricing = typeof route.basePriceByVehicle === 'string' 
                   ? JSON.parse(route.basePriceByVehicle) 
                   : route.basePriceByVehicle;
                 
-                console.log(`Route ${routeId} pricing data:`, pricing);
-                
                 // Determine vehicle type name based on passenger count
                 let vehicleTypeName = "sedan"; // Default to sedan
                 if (travelers > 8) vehicleTypeName = "van";
                 else if (travelers > 2) vehicleTypeName = "minivan";
-                
-                console.log(`Vehicle type for ${travelers} travelers: ${vehicleTypeName}`);
-                console.log(`Price for ${vehicleTypeName}:`, pricing[vehicleTypeName]);
                 
                 // Get pricing for the appropriate vehicle type
                 const routePrice = pricing[vehicleTypeName] 
                   ? parseFloat(pricing[vehicleTypeName]) / travelers // Multi-city tour: divide by travelers
                   : 1500 / travelers; // Fallback price divided by travelers
                 
-                console.log(`Final route price per person: ${routePrice}`);
                 routesTotal += routePrice;
               } else {
                 // Fallback pricing if route not found
