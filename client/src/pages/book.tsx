@@ -59,6 +59,11 @@ export default function BookPage() {
     queryKey: ["/api/addons"],
   });
 
+  // Fetch attractions data for proper name display
+  const { data: attractions } = useQuery({
+    queryKey: ["/api/attractions"],
+  });
+
   const form = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
@@ -399,14 +404,35 @@ export default function BookPage() {
                           </div>
                         )}
                         
-                        {city.attractions && city.attractions.length > 0 && (
+                        {(city.selectedAttractions || city.attractions) && (city.selectedAttractions || city.attractions).length > 0 && (
                           <div>
                             <div className="text-xs font-medium text-muted-foreground mb-1">Attractions</div>
-                            {city.attractions.map((attraction: string, aIndex: number) => (
-                              <div key={aIndex} className="text-xs text-muted-foreground">
-                                {attraction}
-                              </div>
-                            ))}
+                            {(city.selectedAttractions || city.attractions).map((attraction: any, aIndex: number) => {
+                              // Handle both ID numbers and attraction name strings
+                              if (typeof attraction === 'string') {
+                                return (
+                                  <div key={aIndex} className="text-xs text-muted-foreground">
+                                    {attraction}
+                                  </div>
+                                );
+                              } else if (typeof attraction === 'number') {
+                                // Look up attraction name by ID
+                                const attractionsList = attractions as any[] || [];
+                                const fullAttraction = attractionsList.find((a: any) => a.id === attraction);
+                                return (
+                                  <div key={aIndex} className="text-xs text-muted-foreground">
+                                    {fullAttraction?.name || `Attraction #${attraction}`}
+                                  </div>
+                                );
+                              } else if (attraction?.name) {
+                                return (
+                                  <div key={aIndex} className="text-xs text-muted-foreground">
+                                    {attraction.name}
+                                  </div>
+                                );
+                              }
+                              return null;
+                            })}
                           </div>
                         )}
                         
