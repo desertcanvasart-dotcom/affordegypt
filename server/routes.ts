@@ -5,6 +5,7 @@ import { insertBookingSchema, insertQuoteSchema } from "@shared/schema";
 import { emailService } from "./email-service";
 import { setupAuthRoutes } from "./auth-routes";
 import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
+import { registerEnhancedRoutes } from "./enhanced-routes";
 import multer from "multer";
 import csv from "csv-parser";
 import fs from "fs";
@@ -1610,6 +1611,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: error.message });
     }
   });
+
+  // Register enhanced routes for additional pricing endpoints
+  await registerEnhancedRoutes(app);
 
   const httpServer = createServer(app);
   return httpServer;

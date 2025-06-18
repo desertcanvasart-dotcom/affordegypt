@@ -9,7 +9,7 @@ import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export async function registerEnhancedRoutes(app: Express): Promise<void> {
   // Setup authentication routes
   setupAuthRoutes(app);
 
