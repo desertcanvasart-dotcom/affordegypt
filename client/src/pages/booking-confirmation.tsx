@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useRoute } from "wouter";
 import { CheckCircle, Clock, AlertCircle, Download, Mail, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -90,20 +92,164 @@ export default function BookingConfirmation() {
   const booking = bookingData?.booking;
   const quote = bookingData?.quote;
 
-  const downloadBookingDetails = () => {
+  const downloadBookingPDF = async () => {
     if (!booking || !quote) return;
-
-    const bookingDetails = generateBookingDetailsText(booking, quote);
     
-    const blob = new Blob([bookingDetails], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `AffordEgypt-Booking-${booking.bookingReference}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
+    try {
+      // Create a temporary container for PDF content
+      const pdfContainer = document.createElement('div');
+      pdfContainer.style.position = 'absolute';
+      pdfContainer.style.left = '-9999px';
+      pdfContainer.style.width = '210mm';
+      pdfContainer.style.padding = '20px';
+      pdfContainer.style.backgroundColor = 'white';
+      pdfContainer.style.fontFamily = 'Arial, sans-serif';
+      
+      const itinerary = quote.jsonBlob.cities || quote.jsonBlob.itinerary || [];
+      
+      pdfContainer.innerHTML = `
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #0d9488; margin: 0; font-size: 28px;">AffordEgypt</h1>
+          <h2 style="margin: 10px 0; color: #374151;">Booking Confirmation</h2>
+          <p style="color: #6b7280; margin: 0;">Reference: ${booking.bookingReference}</p>
+        </div>
+        
+        <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <h3 style="color: #0d9488; margin-top: 0;">Booking Information</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <strong>Total Amount:</strong> ${parseFloat(booking.totalAmount).toLocaleString()} EGP<br>
+              <strong>Status:</strong> ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
+            </div>
+            <div>
+              ${booking.startDate ? `<strong>Start Date:</strong> ${formatDate(booking.startDate)}<br>` : ''}
+              ${booking.endDate ? `<strong>End Date:</strong> ${formatDate(booking.endDate)}<br>` : ''}
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <h3 style="color: #0d9488; margin-top: 0;">Customer Information</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <strong>Name:</strong> ${booking.customerName}<br>
+              <strong>Email:</strong> ${booking.customerEmail}
+            </div>
+            <div>
+              <strong>Phone:</strong> ${booking.customerPhone}<br>
+              ${booking.customerNotes ? `<strong>Special Requests:</strong> ${booking.customerNotes}` : ''}
+            </div>
+          </div>
+        </div>
+        
+        ${itinerary.length > 0 ? `
+        <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <h3 style="color: #0d9488; margin-top: 0;">Trip Itinerary</h3>
+          ${itinerary.map((city: any, index: number) => `
+            <div style="margin-bottom: 20px; padding-left: 15px; border-left: 4px solid #0d9488;">
+              <h4 style="margin: 0 0 10px 0; color: #374151;">${index + 1}. ${city.cityName}</h4>
+              <p style="margin: 5px 0; color: #6b7280;"><strong>Date:</strong> ${city.date} • <strong>Travelers:</strong> ${city.travelers}</p>
+              
+              ${city.selectedRoutes && city.selectedRoutes.length > 0 ? `
+                <div style="margin: 10px 0;">
+                  <strong style="color: #374151;">Transportation:</strong>
+                  <ul style="margin: 5px 0; padding-left: 20px;">
+                    ${city.selectedRoutes.map((route: any) => `
+                      <li style="color: #6b7280;">${typeof route === 'object' ? (route.name || `Route ${route.id}`) : `Route ID: ${route}`}</li>
+                    `).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+              
+              ${city.selectedGuide ? `
+                <div style="margin: 10px 0;">
+                  <strong style="color: #374151;">Guide Service:</strong>
+                  <span style="color: #6b7280;"> ${city.selectedGuide.language} guide - ${city.selectedGuide.duration} hours</span>
+                </div>
+              ` : ''}
+              
+              ${(city.attractions || city.selectedAttractions) && (city.attractions || city.selectedAttractions).length > 0 ? `
+                <div style="margin: 10px 0;">
+                  <strong style="color: #374151;">Attractions:</strong>
+                  <ul style="margin: 5px 0; padding-left: 20px;">
+                    ${(city.attractions || city.selectedAttractions).map((attraction: string) => `
+                      <li style="color: #6b7280;">${attraction}</li>
+                    `).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+              
+              ${city.selectedAddOns && city.selectedAddOns.length > 0 ? `
+                <div style="margin: 10px 0;">
+                  <strong style="color: #374151;">Add-ons:</strong>
+                  <ul style="margin: 5px 0; padding-left: 20px;">
+                    ${city.selectedAddOns.map((addOn: any) => {
+                      const travelers = quote?.jsonBlob?.passengers || city.travelers || 1;
+                      const isPerPerson = addOn.unitType === 'per_person' || addOn.type === 'per_person';
+                      const displayQuantity = isPerPerson ? addOn.quantity * travelers : addOn.quantity;
+                      return `<li style="color: #6b7280;">${addOn.name} x${displayQuantity}${isPerPerson ? ` (${addOn.quantity} per person)` : ''}</li>`;
+                    }).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+        ` : ''}
+        
+        <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; background-color: #f0f9ff;">
+          <h3 style="color: #0d9488; margin-top: 0;">Payment Information</h3>
+          <p style="margin: 5px 0; color: #374151;"><strong>10% deposit required</strong></p>
+          <p style="margin: 5px 0; color: #6b7280;">Our team will contact you to collect it and confirm your booking.</p>
+          <p style="margin: 5px 0; color: #6b7280;">Pay the rest in cash to your guide after the tour.</p>
+        </div>
+        
+        <div style="text-align: center; padding: 20px; border-top: 2px solid #0d9488; margin-top: 30px;">
+          <h3 style="color: #0d9488; margin: 0 0 10px 0;">Contact Information</h3>
+          <p style="margin: 5px 0; color: #374151;"><strong>Phone:</strong> +20 110 076 5283</p>
+          <p style="margin: 5px 0; color: #374151;"><strong>WhatsApp:</strong> +20 110 076 5283</p>
+          <p style="margin: 5px 0; color: #374151;"><strong>Email:</strong> info@affordegypt.com</p>
+          <p style="margin: 15px 0 0 0; color: #6b7280; font-style: italic;">Thank you for choosing AffordEgypt for your Egypt adventure!</p>
+        </div>
+      `;
+      
+      document.body.appendChild(pdfContainer);
+      
+      // Generate PDF
+      const canvas = await html2canvas(pdfContainer, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      });
+      
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0;
+      
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      
+      pdf.save(`AffordEgypt-Booking-${booking.bookingReference}.pdf`);
+      
+      // Clean up
+      document.body.removeChild(pdfContainer);
+      
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Error generating PDF. Please try again.');
+    }
   };
 
   const generateBookingDetailsText = (booking: any, quote: any) => {
@@ -215,11 +361,11 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
           {/* Download Button */}
           <div className="flex justify-center mt-6">
             <Button 
-              onClick={downloadBookingDetails}
+              onClick={downloadBookingPDF}
               className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3"
             >
               <Download className="w-4 h-4 mr-2" />
-              Download Booking Details
+              Download PDF Confirmation
             </Button>
           </div>
         </div>
