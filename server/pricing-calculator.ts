@@ -11,9 +11,9 @@ export interface PricingBreakdown {
 
 export class PricingCalculator {
   /**
-   * Calculate guide pricing using database rates only
+   * Calculate guide pricing using database rates (day-based, divided by travelers)
    */
-  static async calculateGuidePrice(cityId: number, language: string, hours: number = 8): Promise<number> {
+  static async calculateGuidePrice(cityId: number, language: string, travelers: number = 1): Promise<number> {
     const guideRates = await storage.getGuideRates(cityId);
     const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === language.trim().toLowerCase());
     
@@ -22,19 +22,20 @@ export class PricingCalculator {
       return 0;
     }
     
-    return parseFloat(guideRate.hourlyPrice) * hours;
+    const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // Convert hourly to daily
+    return dailyRate / travelers; // Divide by number of travelers
   }
 
   /**
-   * Calculate attraction pricing using database values only
+   * Calculate attraction pricing using database values only (no calculations - direct values)
    */
-  static async calculateAttractionPrice(attractionIds: number[], travelers: number = 1): Promise<number> {
+  static async calculateAttractionPrice(attractionIds: number[]): Promise<number> {
     let total = 0;
     
     for (const attractionId of attractionIds) {
       const attraction = await storage.getAttraction(attractionId);
       if (attraction) {
-        total += parseFloat(attraction.ticketPrice) * travelers;
+        total += parseFloat(attraction.ticketPrice); // Direct database value, no multiplication
       }
     }
     

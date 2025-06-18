@@ -504,18 +504,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing using database rates (day-based, divided by travelers)
+        // Calculate guide pricing using database rates (day-based = hourly * 8, divided by travelers)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
           const guideRates = await storage.getGuideRates(cityService.cityId);
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            const dailyRate = parseFloat(guideRate.dailyPrice);
+            const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // Convert hourly to daily
             guideTotal = dailyRate / travelers; // Divide by number of travelers
           }
         }
 
-        // Calculate attractions using database values only
+        // Calculate attractions using database values only (no division - direct database values)
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
           for (const attractionItem of cityService.selectedAttractions) {
@@ -536,7 +536,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               if (attractionId) {
                 const attraction = await storage.getAttraction(attractionId);
                 if (attraction) {
-                  attractionsTotal += parseFloat(attraction.ticketPrice) * travelers;
+                  attractionsTotal += parseFloat(attraction.ticketPrice); // No multiplication by travelers
                 }
               }
             } catch (error) {
@@ -545,20 +545,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate add-ons (in EGP)
+        // Calculate add-ons (direct database values - no calculations)
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
           for (const addOn of cityService.selectedAddOns) {
             const addOnItem = await storage.getAddOn(addOn.id);
             if (addOnItem) {
-              const basePriceEGP = parseFloat(addOnItem.price); // Price is already in EGP
-              const pricingType = addOnItem.unitType;
-              
-              if (pricingType === "per_person") {
-                addOnsTotal += basePriceEGP * addOn.quantity * travelers;
-              } else {
-                addOnsTotal += basePriceEGP * addOn.quantity;
-              }
+              const basePriceEGP = parseFloat(addOnItem.price); // Direct database value
+              addOnsTotal += basePriceEGP * addOn.quantity; // Only multiply by quantity
             }
           }
         }
