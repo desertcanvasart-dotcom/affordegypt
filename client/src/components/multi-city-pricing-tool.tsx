@@ -210,8 +210,8 @@ export default function MultiCityPricingTool() {
       console.error('Error creating quote:', error);
       // Fallback: navigate to booking form with quote data in URL params
       const queryParams = new URLSearchParams({
-        total: totalPricing.totalAmount.toString(),
-        travelers: totalPricing.travelers.toString(),
+        total: (totalPricing?.totalAmount || 0).toString(),
+        travelers: (totalPricing?.travelers || 1).toString(),
         cities: cityServices.map(c => c.cityName).join(','),
         travelDate: travelDate,
         itinerary: encodeURIComponent(JSON.stringify(cityServices))

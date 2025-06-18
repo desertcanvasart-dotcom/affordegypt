@@ -466,7 +466,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // Vehicle pricing is already handled by selecting the correct vehicle type in the database
 
-        // Calculate routes using database pricing (divided by travelers)
+        // Calculate routes using database pricing (MULTI-CITY TOUR: divided by travelers)
         let routesTotal = 0;
         if (cityService.selectedRoutes && cityService.selectedRoutes.length > 0) {
           for (const routeId of cityService.selectedRoutes) {
@@ -489,17 +489,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 // Get pricing for the appropriate vehicle (only normal pricing)
                 const vehiclePricing = pricing[vehicleType] || pricing[1]; // Fallback to sedan
                 const routePrice = vehiclePricing && vehiclePricing[1] 
-                  ? parseFloat(vehiclePricing[1]) / travelers // Divide by number of travelers
-                  : 50 / travelers; // Default price divided by travelers
+                  ? parseFloat(vehiclePricing[1]) / travelers // Multi-city tour: divide by travelers
+                  : 3000 / travelers; // Default price divided by travelers
                 
                 routesTotal += routePrice;
               } else {
                 // Fallback pricing if route not found
-                routesTotal += 50 / travelers;
+                routesTotal += 3000 / travelers; // Default price divided by travelers
               }
             } catch (error) {
               console.error('Error calculating route price:', error);
-              routesTotal += 50 / travelers; // Fallback price divided by travelers
+              routesTotal += 3000 / travelers; // Fallback price divided by travelers
             }
           }
         }
@@ -510,7 +510,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const guideRates = await storage.getGuideRates(cityService.cityId);
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            const dailyRate = parseFloat(guideRate.pricePerDay); // Use day-based pricing directly
+            const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // Convert hourly to daily (8 hours)
             guideTotal = dailyRate / travelers; // Divide by number of travelers
           }
         }
@@ -572,11 +572,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const firstService = cityServices[0];
       const travelers = firstService?.travelers || 1;
-      const perPersonAmount = totalAmount; // No division - already calculated correctly
+      
+      // Calculate per-person breakdown properly:
+      // - Transportation: fixed cost divided by travelers
+      // - Guide: already divided by travelers in calculation
+      // - Attractions: per-person cost (multiply by travelers for total)
+      // - Add-ons: direct database values per unit
+      
+      let perPersonRoutes = 0;
+      let perPersonGuide = 0;
+      let perPersonAttractions = 0;
+      let perPersonAddons = 0;
+      
+      for (const cityBreakdown of breakdown) {
+        perPersonRoutes += cityBreakdown.routes / travelers; // Transportation divided by travelers
+        perPersonGuide += cityBreakdown.guide; // Guide already calculated per person
+        perPersonAttractions += cityBreakdown.attractions; // Attractions are per person
+        perPersonAddons += cityBreakdown.addOns; // Add-ons are direct values
+      }
+      
+      const perPersonAmount = Math.round((perPersonRoutes + perPersonGuide + perPersonAttractions + perPersonAddons) * 100) / 100;
 
       res.json({
         totalAmount,
         perPersonAmount,
+        travelers,
         breakdown,
         travelers
       });
