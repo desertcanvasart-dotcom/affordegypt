@@ -504,18 +504,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing using database rates (day-based, divided by travelers)
+        // Calculate guide pricing using database rates (day-based, shared cost divided by travelers)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
           const guideRates = await storage.getGuideRates(cityService.cityId);
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
             const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // Convert hourly to daily (8 hours)
-            guideTotal = dailyRate / travelers; // Divide by number of travelers
+            guideTotal = dailyRate / travelers; // Per-person share of total guide cost
           }
         }
 
-        // Calculate attractions using database values only (no division - direct database values)
+        // Calculate attractions using database values (per person pricing)
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
           for (const attractionItem of cityService.selectedAttractions) {
@@ -536,7 +536,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               if (attractionId) {
                 const attraction = await storage.getAttraction(attractionId);
                 if (attraction) {
-                  attractionsTotal += parseFloat(attraction.ticketPrice); // No multiplication by travelers
+                  attractionsTotal += parseFloat(attraction.ticketPrice); // Per person price
                 }
               }
             } catch (error) {
@@ -545,20 +545,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate add-ons (direct database values - no calculations at all)
+        // Calculate add-ons (per person pricing for Multi-City Tour)
         let addOnsTotal = 0;
         if (cityService.selectedAddOns) {
           for (const addOn of cityService.selectedAddOns) {
             const addOnItem = await storage.getAddOn(addOn.id);
             if (addOnItem) {
-              const basePriceEGP = parseFloat(addOnItem.price); // Direct database value
-              addOnsTotal += basePriceEGP; // NO multiplication - direct value only
+              const basePriceEGP = parseFloat(addOnItem.price); // Per person price
+              addOnsTotal += basePriceEGP; // Per person
             }
           }
         }
 
+        // Multi-city tour: all costs are per person, cityTotal is per person
         cityTotal = routesTotal + guideTotal + attractionsTotal + addOnsTotal;
-        totalAmount += cityTotal;
+        totalAmount += cityTotal; // cityTotal is already per person
 
         breakdown.push({
           city: cityService.cityName,
@@ -573,32 +574,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const firstService = cityServices[0];
       const travelers = firstService?.travelers || 1;
       
-      // Calculate per-person breakdown properly:
-      // - Transportation: fixed cost divided by travelers
-      // - Guide: already divided by travelers in calculation
-      // - Attractions: per-person cost (multiply by travelers for total)
-      // - Add-ons: direct database values per unit
-      
-      let perPersonRoutes = 0;
-      let perPersonGuide = 0;
-      let perPersonAttractions = 0;
-      let perPersonAddons = 0;
-      
-      for (const cityBreakdown of breakdown) {
-        perPersonRoutes += cityBreakdown.routes / travelers; // Transportation divided by travelers
-        perPersonGuide += cityBreakdown.guide; // Guide already calculated per person
-        perPersonAttractions += cityBreakdown.attractions; // Attractions are per person
-        perPersonAddons += cityBreakdown.addOns; // Add-ons are direct values
-      }
-      
-      const perPersonAmount = Math.round((perPersonRoutes + perPersonGuide + perPersonAttractions + perPersonAddons) * 100) / 100;
+      // For Multi-City Tour module: totalAmount is sum of per-person costs, so multiply by travelers for actual total
+      const actualTotalAmount = totalAmount * travelers;
+      const perPersonAmount = Math.round(totalAmount * 100) / 100;
 
       res.json({
         totalAmount,
         perPersonAmount,
         travelers,
-        breakdown,
-        travelers
+        breakdown
       });
     } catch (error) {
       console.error('Pricing calculation error:', error);
