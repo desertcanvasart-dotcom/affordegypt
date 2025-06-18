@@ -49,20 +49,32 @@ const ROUTE_PRICES: RoutePrice[] = [
   { routeId: 3, vehicleCategory: "van", carType: "normal", basePrice: 220 },
 ];
 
-const GUIDE_PRICES: GuidePrice[] = [
-  // Cairo guides
-  { language: "English", cityId: 1, pricePerDay: 40, pricePerHour: 8 },
-  { language: "Spanish", cityId: 1, pricePerDay: 45, pricePerHour: 9 },
-  { language: "French", cityId: 1, pricePerDay: 45, pricePerHour: 9 },
-  { language: "German", cityId: 1, pricePerDay: 50, pricePerHour: 10 },
-  { language: "Italian", cityId: 1, pricePerDay: 45, pricePerHour: 9 },
-  { language: "Japanese", cityId: 1, pricePerDay: 60, pricePerHour: 12 },
-  { language: "Chinese", cityId: 1, pricePerDay: 55, pricePerHour: 11 },
+// Guide prices now come from database - this array is deprecated
+const GUIDE_PRICES: GuidePrice[] = [];
+
+// Function to get guide price from database
+export async function getGuidePrice(language: string, cityId: number): Promise<{ pricePerDay: number; pricePerHour: number }> {
+  try {
+    const guideRates = await storage.getGuideRates(cityId);
+    const guideRate = guideRates.find(rate => rate.language === language);
+    
+    if (guideRate) {
+      const hourlyPrice = parseFloat(guideRate.hourlyPrice);
+      return {
+        pricePerHour: hourlyPrice,
+        pricePerDay: hourlyPrice * 8 // 8-hour day
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching guide rates from database:', error);
+  }
   
-  // Other cities (sample)
-  { language: "English", cityId: 2, pricePerDay: 35, pricePerHour: 7 },
-  { language: "Spanish", cityId: 2, pricePerDay: 40, pricePerHour: 8 },
-];
+  // Fallback rates in EGP only if database fails
+  return {
+    pricePerHour: 2000, // 2000 EGP per hour
+    pricePerDay: 16000  // 16000 EGP per day (8 hours)
+  };
+}
 
 const ADDON_PRICES: AddOnPrice[] = [
   // Per unit add-ons

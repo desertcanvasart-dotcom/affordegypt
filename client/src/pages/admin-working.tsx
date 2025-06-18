@@ -857,7 +857,7 @@ export default function AdminWorking() {
                             </div>
                           </TableCell>
                           <TableCell className="text-sm">{guide.name}</TableCell>
-                          <TableCell className="font-mono text-sm">EGP {(parseFloat(guide.hourlyPrice) * 8).toFixed(2)}</TableCell>
+                          <TableCell className="font-mono text-sm">EGP {parseFloat(guide.hourlyPrice || '0').toFixed(2)}/hr</TableCell>
                           <TableCell>
                             <Badge className="bg-blue-100 text-blue-700 text-xs">
                               {cities.find((city: any) => city.id === guide.cityId)?.name || 'Unknown'}

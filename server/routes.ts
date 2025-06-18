@@ -499,14 +499,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing (in EGP)
+        // Calculate guide pricing (in EGP) - use actual database rates
         let guideTotal = 0;
         if (cityService.selectedGuide) {
-          const guidePricesEGP = {
-            "English": 1280, "Spanish": 1440, "French": 1440, "German": 1600,
-            "Italian": 1440, "Japanese": 1920, "Chinese": 1760, "Arabic": 1120
-          };
-          guideTotal = guidePricesEGP[cityService.selectedGuide.language] || 1280;
+          // Get guide rates from database instead of hardcoded values
+          const guideRates = await storage.getGuideRates(cityService.cityId);
+          const guideRate = guideRates.find(rate => rate.language === cityService.selectedGuide.language);
+          if (guideRate) {
+            // Use actual hourly rate for 8-hour day
+            guideTotal = parseFloat(guideRate.hourlyPrice) * 8;
+          } else {
+            // Fallback only if no rate found in database
+            guideTotal = 2000; // Default 2000 EGP for 8 hours
+          }
         }
 
         // Calculate attractions (in EGP)
