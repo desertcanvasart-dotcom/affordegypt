@@ -504,13 +504,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing using database rates (day-based = hourly * 8, divided by travelers)
+        // Calculate guide pricing using database rates (day-based, divided by travelers)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
           const guideRates = await storage.getGuideRates(cityService.cityId);
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // Convert hourly to daily
+            const dailyRate = parseFloat(guideRate.pricePerDay); // Use day-based pricing directly
             guideTotal = dailyRate / travelers; // Divide by number of travelers
           }
         }
