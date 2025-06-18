@@ -466,7 +466,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // Vehicle pricing is already handled by selecting the correct vehicle type in the database
 
-        // Calculate routes using database pricing
+        // Calculate routes using database pricing (divided by travelers)
         let routesTotal = 0;
         if (cityService.selectedRoutes && cityService.selectedRoutes.length > 0) {
           for (const routeId of cityService.selectedRoutes) {
@@ -489,38 +489,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 // Get pricing for the appropriate vehicle (only normal pricing)
                 const vehiclePricing = pricing[vehicleType] || pricing[1]; // Fallback to sedan
                 const routePrice = vehiclePricing && vehiclePricing[1] 
-                  ? parseFloat(vehiclePricing[1]) 
-                  : 50; // Default price
+                  ? parseFloat(vehiclePricing[1]) / travelers // Divide by number of travelers
+                  : 50 / travelers; // Default price divided by travelers
                 
                 routesTotal += routePrice;
               } else {
                 // Fallback pricing if route not found
-                routesTotal += 50;
+                routesTotal += 50 / travelers;
               }
             } catch (error) {
               console.error('Error calculating route price:', error);
-              routesTotal += 50; // Fallback price
+              routesTotal += 50 / travelers; // Fallback price divided by travelers
             }
           }
         }
 
-        // Calculate guide pricing using database rates only
+        // Calculate guide pricing using database rates (day-based, divided by travelers)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
           const guideRates = await storage.getGuideRates(cityService.cityId);
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            guideTotal = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
+            const dailyRate = parseFloat(guideRate.dailyPrice);
+            guideTotal = dailyRate / travelers; // Divide by number of travelers
           }
         }
 
         // Calculate attractions using database values only
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
-          for (const attractionId of cityService.selectedAttractions) {
-            const attraction = await storage.getAttraction(attractionId);
-            if (attraction) {
-              attractionsTotal += parseFloat(attraction.ticketPrice) * travelers;
+          for (const attractionItem of cityService.selectedAttractions) {
+            try {
+              // Handle both ID numbers and attraction names/objects
+              let attractionId;
+              if (typeof attractionItem === 'number') {
+                attractionId = attractionItem;
+              } else if (typeof attractionItem === 'string') {
+                // If it's a string name, find the attraction by name
+                const attractions = await storage.getAttractions();
+                const attraction = attractions.find(a => a.name === attractionItem);
+                attractionId = attraction ? attraction.id : null;
+              } else if (attractionItem.id) {
+                attractionId = attractionItem.id;
+              }
+              
+              if (attractionId) {
+                const attraction = await storage.getAttraction(attractionId);
+                if (attraction) {
+                  attractionsTotal += parseFloat(attraction.ticketPrice) * travelers;
+                }
+              }
+            } catch (error) {
+              console.error('Error processing attraction:', attractionItem, error);
             }
           }
         }
