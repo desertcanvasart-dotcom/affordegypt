@@ -321,7 +321,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
-                    {(quote.jsonBlob.cities || []).map((city: any, index: number) => (
+                    {(quote.jsonBlob.cities || quote.jsonBlob.itinerary || []).map((city: any, index: number) => (
                       <div key={index} className="border-l-4 border-teal-500 pl-4">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="font-semibold text-lg">{city.cityName}</h3>
@@ -336,7 +336,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                             <div className="space-y-1">
                               {city.selectedRoutes.map((route: any, rIndex: number) => (
                                 <div key={rIndex} className="text-sm text-muted-foreground">
-                                  {route.name || `Route ${route.id}`}
+                                  {typeof route === 'object' ? (route.name || `Route ${route.id}`) : `Route ID: ${route}`}
                                 </div>
                               ))}
                             </div>
@@ -352,11 +352,11 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                           </div>
                         )}
                         
-                        {city.attractions && city.attractions.length > 0 && (
+                        {(city.attractions || city.selectedAttractions) && (city.attractions || city.selectedAttractions).length > 0 && (
                           <div>
                             <div className="font-medium text-sm mb-2">Attractions</div>
                             <div className="space-y-1">
-                              {city.attractions.map((attraction: string, aIndex: number) => (
+                              {(city.attractions || city.selectedAttractions).map((attraction: string, aIndex: number) => (
                                 <div key={aIndex} className="text-sm text-muted-foreground">
                                   {attraction}
                                 </div>
@@ -407,7 +407,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Total Amount</label>
-                        <p className="text-2xl font-bold text-primary">${booking.totalAmount}</p>
+                        <p className="text-2xl font-bold text-primary">{booking.totalAmount} EGP</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Status</label>
