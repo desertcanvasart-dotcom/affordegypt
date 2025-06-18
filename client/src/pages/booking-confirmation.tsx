@@ -42,6 +42,11 @@ export default function BookingConfirmation() {
     enabled: !!reference,
   });
 
+  // Fetch routes to resolve route IDs to names
+  const { data: routes = [] } = useQuery({
+    queryKey: ["/api/routes"],
+  });
+
   const getStatusIcon = (status: BookingStatus) => {
     switch (status) {
       case 'confirmed': return <CheckCircle className="w-4 h-4 text-green-500" />;
@@ -91,6 +96,12 @@ export default function BookingConfirmation() {
 
   const booking = bookingData?.booking;
   const quote = bookingData?.quote;
+
+  // Helper function to get route name by ID
+  const getRouteName = (routeId: number) => {
+    const route = routes.find((r: any) => r.id === routeId);
+    return route ? route.name : `Route ${routeId}`;
+  };
 
   const downloadBookingPDF = async () => {
     if (!booking || !quote) return;
@@ -155,7 +166,7 @@ export default function BookingConfirmation() {
                   <strong style="color: #374151;">Transportation:</strong>
                   <ul style="margin: 5px 0; padding-left: 20px;">
                     ${city.selectedRoutes.map((route: any) => `
-                      <li style="color: #6b7280;">${typeof route === 'object' ? (route.name || `Route ${route.id}`) : `Route ID: ${route}`}</li>
+                      <li style="color: #6b7280;">${typeof route === 'object' ? (route.name || getRouteName(route.id)) : getRouteName(route)}</li>
                     `).join('')}
                   </ul>
                 </div>
@@ -298,7 +309,7 @@ ${index + 1}. ${city.cityName}
       if (city.selectedRoutes && city.selectedRoutes.length > 0) {
         details += `   Transportation:\n`;
         city.selectedRoutes.forEach((route: any) => {
-          details += `   - ${route.name || `Route ${route.id}`}\n`;
+          details += `   - ${typeof route === 'object' ? (route.name || getRouteName(route.id)) : getRouteName(route)}\n`;
         });
       }
 
@@ -482,7 +493,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                             <div className="space-y-1">
                               {city.selectedRoutes.map((route: any, rIndex: number) => (
                                 <div key={rIndex} className="text-sm text-muted-foreground">
-                                  {typeof route === 'object' ? (route.name || `Route ${route.id}`) : `Route ID: ${route}`}
+                                  {typeof route === 'object' ? (route.name || getRouteName(route.id)) : getRouteName(route)}
                                 </div>
                               ))}
                             </div>
