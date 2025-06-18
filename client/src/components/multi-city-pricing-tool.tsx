@@ -184,13 +184,31 @@ export default function MultiCityPricingTool() {
     if (!totalPricing || cityServices.length === 0) return;
     
     try {
+      // Enrich city services with full route data for proper display
+      const enrichedItinerary = await Promise.all(cityServices.map(async (cityService) => {
+        const enrichedRoutes = await Promise.all(cityService.selectedRoutes.map(async (routeId) => {
+          const route = routes.find(r => r.id === routeId);
+          return route ? {
+            id: routeId,
+            fromLocation: route.fromLocation,
+            toLocation: route.toLocation,
+            name: route.name
+          } : { id: routeId, fromLocation: 'Unknown', toLocation: 'Unknown', name: 'Route' };
+        }));
+
+        return {
+          ...cityService,
+          selectedRoutes: enrichedRoutes
+        };
+      }));
+
       // Create a quote in the database with proper structure
       const quoteData = {
         total: totalPricing.totalAmount.toString(),
         commissionPct: "0", // No commission added
         jsonBlob: {
           passengers: totalPricing.travelers,
-          itinerary: cityServices,
+          itinerary: enrichedItinerary,
           travelDate: travelDate,
           totalAmount: totalPricing.totalAmount,
           breakdown: totalPricing.breakdown || []
