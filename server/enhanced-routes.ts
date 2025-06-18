@@ -301,12 +301,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Calculate guide pricing (day-based, divided by travelers)
       if (cityId && guideLanguage) {
+        console.log(`[/api/calculate-pricing] Looking for guide in city ${cityId}, language: "${guideLanguage}"`);
         const guideRates = await storage.getGuideRates(cityId);
+        console.log(`[/api/calculate-pricing] Available guide rates:`, guideRates.map(r => ({ id: r.id, language: `"${r.language}"`, hourlyPrice: r.hourlyPrice })));
+        
         const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === guideLanguage.trim().toLowerCase());
+        console.log(`[/api/calculate-pricing] Found guide rate:`, guideRate);
+        
         if (guideRate) {
-          const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
+          const hourlyRate = parseFloat(guideRate.hourlyPrice);
+          const dailyRate = hourlyRate * guideHours; // Use guideHours parameter
           breakdown.guide = dailyRate / travelers; // Divide by travelers
           totalPrice += breakdown.guide;
+          console.log(`[/api/calculate-pricing] Guide calculation: ${hourlyRate}/hour × ${guideHours}hours = ${dailyRate} total ÷ ${travelers} travelers = ${breakdown.guide} per person`);
+        } else {
+          console.log(`[/api/calculate-pricing] No guide rate found for language "${guideLanguage}"`);
         }
       }
 

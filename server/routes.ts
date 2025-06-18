@@ -506,11 +506,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Calculate guide pricing using database rates (day-based, shared cost divided by travelers)
         let guideTotal = 0;
         if (cityService.selectedGuide) {
+          console.log(`Looking for guide in city ${cityService.cityId}, language: "${cityService.selectedGuide.language}"`);
           const guideRates = await storage.getGuideRates(cityService.cityId);
+          console.log(`Available guide rates:`, guideRates.map(r => ({ id: r.id, language: `"${r.language}"`, hourlyPrice: r.hourlyPrice })));
+          
           const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
+          console.log(`Found guide rate:`, guideRate);
+          
           if (guideRate) {
-            const dailyRate = parseFloat(guideRate.hourlyPrice) * 8; // Convert hourly to daily (8 hours)
+            const hourlyRate = parseFloat(guideRate.hourlyPrice);
+            const duration = cityService.selectedGuide.duration || 8; // Use selected duration or default 8 hours
+            const dailyRate = hourlyRate * duration;
             guideTotal = dailyRate / travelers; // Per-person share of total guide cost
+            console.log(`Guide calculation: ${hourlyRate}/hour × ${duration}hours = ${dailyRate} total ÷ ${travelers} travelers = ${guideTotal} per person`);
+          } else {
+            console.log(`No guide rate found for language "${cityService.selectedGuide.language}"`);
           }
         }
 
