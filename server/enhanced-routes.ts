@@ -341,10 +341,13 @@ export async function registerEnhancedRoutes(app: Express): Promise<void> {
         totalPrice += breakdown.addons;
       }
 
+      // Multiply by travelers to get the actual total cost for all guests
+      const actualTotal = totalPrice * travelers;
+      
       res.json({
-        subtotal: totalPrice.toFixed(0),
+        subtotal: actualTotal.toFixed(0),
         breakdown,
-        total: totalPrice.toFixed(0),
+        total: actualTotal.toFixed(0),
         currency: "EGP"
       });
     } catch (error: any) {

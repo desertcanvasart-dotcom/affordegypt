@@ -587,7 +587,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const perPersonAmount = Math.round(totalAmount * 100) / 100;
 
       res.json({
-        totalAmount,
+        totalAmount: actualTotalAmount,
         perPersonAmount,
         travelers,
         breakdown
