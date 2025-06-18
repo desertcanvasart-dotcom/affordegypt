@@ -515,11 +515,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.log(`Found guide rate:`, guideRate);
           
           if (guideRate) {
-            const hourlyRate = parseFloat(guideRate.hourlyPrice);
-            const duration = cityService.selectedGuide.duration || 8; // Use selected duration or default 8 hours
-            const dailyRate = hourlyRate * duration;
+            const dailyRate = parseFloat(guideRate.hourlyPrice); // This is actually daily rate, not hourly
             guideTotal = dailyRate / travelers; // Per-person share of total guide cost
-            console.log(`Guide calculation: ${hourlyRate}/hour × ${duration}hours = ${dailyRate} total ÷ ${travelers} travelers = ${guideTotal} per person`);
+            console.log(`Guide calculation: ${dailyRate} EGP daily rate ÷ ${travelers} travelers = ${guideTotal} per person`);
           } else {
             console.log(`No guide rate found for language "${cityService.selectedGuide.language}"`);
           }

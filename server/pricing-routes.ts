@@ -49,11 +49,10 @@ export async function registerPricingRoutes(app: Express): Promise<void> {
         console.log(`[/api/calculate-pricing] Found guide rate:`, guideRate);
         
         if (guideRate) {
-          const hourlyRate = parseFloat(guideRate.hourlyPrice);
-          const dailyRate = hourlyRate * guideHours; // Use guideHours parameter
+          const dailyRate = parseFloat(guideRate.hourlyPrice); // This is actually daily rate, not hourly
           breakdown.guide = dailyRate / travelers; // Divide by travelers
           totalPrice += breakdown.guide;
-          console.log(`[/api/calculate-pricing] Guide calculation: ${hourlyRate}/hour × ${guideHours}hours = ${dailyRate} total ÷ ${travelers} travelers = ${breakdown.guide} per person`);
+          console.log(`[/api/calculate-pricing] Guide calculation: ${dailyRate} EGP daily rate ÷ ${travelers} travelers = ${breakdown.guide} per person`);
         } else {
           console.log(`[/api/calculate-pricing] No guide rate found for language "${guideLanguage}"`);
         }
