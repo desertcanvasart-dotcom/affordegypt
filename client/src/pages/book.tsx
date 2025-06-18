@@ -479,16 +479,16 @@ export default function BookPage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>
-                  <span>${totalAmount}</span>
+                  <span>{totalAmount} EGP</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Taxes & Fees</span>
-                  <span>$0</span>
+                  <span>0 EGP</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>${totalAmount}</span>
+                  <span>{totalAmount} EGP</span>
                 </div>
               </div>
 
