@@ -504,39 +504,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
 
-        // Calculate guide pricing (in EGP) - use actual database rates
+        // Calculate guide pricing using database rates only
         let guideTotal = 0;
         if (cityService.selectedGuide) {
-          // Get guide rates from database instead of hardcoded values
           const guideRates = await storage.getGuideRates(cityService.cityId);
-          const guideRate = guideRates.find(rate => rate.language === cityService.selectedGuide.language);
+          const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === cityService.selectedGuide.language.trim().toLowerCase());
           if (guideRate) {
-            // Use actual hourly rate for 8-hour day
-            guideTotal = parseFloat(guideRate.hourlyPrice) * 8;
-          } else {
-            // Fallback only if no rate found in database
-            guideTotal = 2000; // Default 2000 EGP for 8 hours
+            guideTotal = parseFloat(guideRate.hourlyPrice) * 8; // 8-hour day
           }
         }
 
-        // Calculate attractions (in EGP)
+        // Calculate attractions using database values only
         let attractionsTotal = 0;
         if (cityService.selectedAttractions) {
-          // Define attraction prices per person in EGP
-          const attractionPricesEGP = {
-            "pyramids": 480, "khan_khalili": 256, "al_muizz": 160, "citadel": 384, 
-            "coptic": 256, "egyptian_museum": 576, "cairo_tower": 320,
-            "alexandria_library": 384, "qaitbay_citadel": 256, "montaza_palace": 320, "catacombs": 480,
-            "luxor_temple": 384, "valley_kings": 640, "karnak_temple": 480, "hatshepsut_temple": 384,
-            "abu_simbel": 1120, "philae_temple": 480, "high_dam": 256, "unfinished_obelisk": 160,
-            "hurghada_marina": 320, "desert_safari": 1440, "snorkeling": 1120,
-            "sharm_old_market": 256, "ras_mohammed": 800, "colored_canyon": 960
-          };
-          
-          cityService.selectedAttractions.forEach((attraction: any) => {
-            const egpPrice = attractionPricesEGP[attraction] || 320; // Default 320 EGP per person
-            attractionsTotal += egpPrice * travelers;
-          });
+          for (const attractionId of cityService.selectedAttractions) {
+            const attraction = await storage.getAttraction(attractionId);
+            if (attraction) {
+              attractionsTotal += parseFloat(attraction.ticketPrice) * travelers;
+            }
+          }
         }
 
         // Calculate add-ons (in EGP)
