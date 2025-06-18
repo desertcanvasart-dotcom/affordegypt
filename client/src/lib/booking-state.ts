@@ -14,19 +14,30 @@ const initialBookingData: BookingData = {
   // Transportation
   fromCityId: null,
   toCityId: null,
+  routeId: null,
   vehicleTypeId: null,
   transportType: null,
   transportHours: 1,
   passengerCount: 1,
   
+  // Location
+  cityId: null,
+  
   // Guide
   tourGuideId: null,
   guideType: null,
+  guideLanguage: null,
   guideDays: 0,
-  guideHours: 0,
+  guideHours: 8,
+  
+  // Attractions
+  selectedAttractions: [],
   
   // Add-ons
   selectedAddOns: [],
+  
+  // Travelers
+  travelers: 1,
   
   // Customer info
   customerName: '',

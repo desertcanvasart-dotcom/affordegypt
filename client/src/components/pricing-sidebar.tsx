@@ -9,12 +9,21 @@ export default function PricingSidebar() {
 
   const { data: pricing, isLoading } = useQuery({
     queryKey: ["/api/calculate-pricing", bookingData],
-    enabled: !!(bookingData.vehicleTypeId || bookingData.tourGuideId || bookingData.selectedAddOns.length > 0),
+    enabled: !!(bookingData.routeId || bookingData.guideLanguage || bookingData.selectedAttractions.length > 0 || bookingData.selectedAddOns.length > 0),
     queryFn: async () => {
       const response = await fetch("/api/calculate-pricing", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData),
+        body: JSON.stringify({
+          routeId: bookingData.routeId,
+          vehicleTypeId: bookingData.vehicleTypeId,
+          cityId: bookingData.cityId,
+          guideLanguage: bookingData.guideLanguage,
+          guideHours: 8,
+          attractionIds: bookingData.selectedAttractions || [],
+          addOnIds: bookingData.selectedAddOns || [],
+          travelers: bookingData.travelers || 1
+        }),
       });
       if (!response.ok) throw new Error("Failed to calculate pricing");
       return response.json();
@@ -40,30 +49,35 @@ export default function PricingSidebar() {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Selected Items */}
+        {/* Pricing Breakdown */}
         <div className="space-y-4">
-          {bookingData.fromCityId && bookingData.toCityId && bookingData.vehicleTypeId && (
-            <div className="flex justify-between items-center py-2 border-b border-border">
-              <span className="text-sm">Transportation</span>
-              <span className="font-medium text-foreground">
-                {isLoading ? "..." : pricing ? `$${(parseFloat(pricing.subtotal) * 0.7).toFixed(2)}` : "$0.00"}
-              </span>
-            </div>
-          )}
+          <div className="flex justify-between items-center py-2 border-b border-border">
+            <span className="text-sm">Routes:</span>
+            <span className="font-medium text-foreground">
+              {isLoading ? "..." : pricing ? `${pricing.breakdown?.routes || 0} EGP` : "0 EGP"}
+            </span>
+          </div>
           
-          {bookingData.tourGuideId ? (
-            <div className="flex justify-between items-center py-2 border-b border-border">
-              <span className="text-sm">Tour Guide</span>
-              <span className="font-medium text-foreground">
-                {isLoading ? "..." : pricing ? `$${(parseFloat(pricing.subtotal) * 0.3).toFixed(2)}` : "$0.00"}
-              </span>
-            </div>
-          ) : (
-            <div className="flex justify-between items-center py-2 border-b border-border text-muted-foreground">
-              <span className="text-sm">Tour Guide</span>
-              <span className="text-sm">Not selected</span>
-            </div>
-          )}
+          <div className="flex justify-between items-center py-2 border-b border-border">
+            <span className="text-sm">Guide:</span>
+            <span className="font-medium text-foreground">
+              {isLoading ? "..." : pricing ? `${pricing.breakdown?.guide || 0} EGP` : "0 EGP"}
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center py-2 border-b border-border">
+            <span className="text-sm">Attractions:</span>
+            <span className="font-medium text-foreground">
+              {isLoading ? "..." : pricing ? `${pricing.breakdown?.attractions || 0} EGP` : "0 EGP"}
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center py-2 border-b border-border">
+            <span className="text-sm">Add-ons:</span>
+            <span className="font-medium text-foreground">
+              {isLoading ? "..." : pricing ? `${pricing.breakdown?.addons || 0} EGP` : "0 EGP"}
+            </span>
+          </div>
           
           {bookingData.selectedAddOns.length > 0 ? (
             <div className="flex justify-between items-center py-2 border-b border-border">
@@ -78,29 +92,15 @@ export default function PricingSidebar() {
           )}
         </div>
 
-        {/* Price Breakdown */}
-        {pricing && (
-          <div className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span>Subtotal</span>
-              <span>${pricing.subtotal}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span>Portal Commission ({(pricing.commissionRate * 100).toFixed(1)}%)</span>
-              <span>${pricing.commission}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span>Taxes & Fees</span>
-              <span>${pricing.taxes}</span>
-            </div>
-            <div className="border-t border-border pt-3">
-              <div className="flex justify-between font-semibold text-lg">
-                <span>Total</span>
-                <span className="pricing-red">${pricing.total}</span>
-              </div>
-            </div>
+        {/* Total */}
+        <div className="bg-muted/50 p-4 rounded-lg">
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold">Total</span>
+            <span className="text-2xl font-bold text-primary">
+              {isLoading ? "..." : pricing ? `${pricing.total} EGP` : "0 EGP"}
+            </span>
           </div>
-        )}
+        </div>
 
         {/* Commission Tier */}
         {pricing && (
