@@ -40,25 +40,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const token = localStorage.getItem("auth_token");
     const cachedUser = localStorage.getItem("cached_user");
     
-    // If we have both token and cached user, trust the cache and skip verification
+    // Immediately set loading to false for faster app startup
+    setIsLoading(false);
+    
+    // If we have both token and cached user, trust the cache completely
     if (token && cachedUser) {
       try {
         const cached = JSON.parse(cachedUser);
         // Handle both old and new cache formats
         const userData = cached.user || cached;
         setUser(userData);
-        setIsLoading(false);
-        return; // Skip token verification to prevent logout issues
+        return; // Skip any verification to prevent logout issues
       } catch (e) {
         localStorage.removeItem("cached_user");
       }
     }
     
-    // Only verify token if we don't have cached user data
-    if (token && !cachedUser) {
-      verifyToken();
-    } else {
-      setIsLoading(false);
+    // Clear auth state if no valid cached data
+    if (!token || !cachedUser) {
+      setUser(null);
     }
   }, []);
 
