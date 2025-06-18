@@ -89,6 +89,7 @@ export interface IStorage {
   getQuotes(): Promise<Quote[]>;
   getQuote(id: number): Promise<Quote | undefined>;
   createQuote(quote: InsertQuote): Promise<Quote>;
+  deleteQuote(id: number): Promise<void>;
 
   // Bookings
   getBookings(): Promise<Booking[]>;
@@ -589,6 +590,10 @@ export class DatabaseStorage implements IStorage {
   async createQuote(insertQuote: InsertQuote): Promise<Quote> {
     const [quote] = await db.insert(quotes).values(insertQuote).returning();
     return quote;
+  }
+
+  async deleteQuote(id: number): Promise<void> {
+    await db.delete(quotes).where(eq(quotes.id, id));
   }
 
   // Booking methods

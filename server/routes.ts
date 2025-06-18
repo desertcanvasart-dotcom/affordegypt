@@ -457,6 +457,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { cityServices } = req.body;
       
+      console.log('=== PRICING CALCULATION DEBUG ===');
+      console.log('Request body:', JSON.stringify(req.body, null, 2));
+      console.log('Number of city services:', cityServices?.length || 0);
+      
       // Calculate pricing based on your specification
       let totalAmount = 0;
       const breakdown = [];
