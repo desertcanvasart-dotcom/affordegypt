@@ -414,16 +414,17 @@ export default function BookPage() {
                           <div>
                             <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
                             {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
-                              // Fetch the full add-on data to get unitType
+                              // Fetch the full add-on data to get name and unitType
                               const fullAddOn = addOns?.find((a: any) => a.id === addOn.id);
+                              const addOnName = addOn.name || fullAddOn?.name || 'Unknown Add-on';
                               const isPerPerson = fullAddOn?.unitType === 'per_person' || addOn.unitType === 'per_person' || addOn.type === 'per_person';
                               const displayQuantity = isPerPerson 
                                 ? travelers // For per-person add-ons, show traveler count
-                                : addOn.quantity; // For per-unit add-ons, show actual quantity
+                                : (addOn.quantity || 1); // For per-unit add-ons, show actual quantity
                               
                               return (
                                 <div key={aoIndex} className="text-xs text-muted-foreground">
-                                  {addOn.name} x{displayQuantity}
+                                  {addOnName} x{displayQuantity}
                                 </div>
                               );
                             })}
