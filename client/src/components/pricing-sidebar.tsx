@@ -102,20 +102,7 @@ export default function PricingSidebar() {
           </div>
         </div>
 
-        {/* Commission Tier */}
-        {pricing && (
-          <div className={`${pricing.commissionTier === "Premium Tier" ? "bg-blue-50 border-blue-200" : "bg-green-50 border-green-200"} border rounded-lg p-4`}>
-            <div className="flex items-center">
-              <Info className={`${pricing.commissionTier === "Premium Tier" ? "text-blue-600" : "text-green-600"} mr-2`} size={16} />
-              <span className={`text-sm font-medium ${pricing.commissionTier === "Premium Tier" ? "text-blue-800" : "text-green-800"}`}>
-                {pricing.commissionTier} ({(pricing.commissionRate * 100).toFixed(1)}% commission)
-              </span>
-            </div>
-            {pricing.commissionTier === "Budget Tier" && (
-              <p className="text-xs text-green-700 mt-1">Spend $100+ to unlock 8% commission tier</p>
-            )}
-          </div>
-        )}
+
 
         {/* Actions */}
         <div className="space-y-3">
