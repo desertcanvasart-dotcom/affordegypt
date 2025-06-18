@@ -1437,6 +1437,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Quotes API endpoints
+  app.get("/api/quotes", async (req, res) => {
+    try {
+      const quotes = await storage.getQuotes();
+      res.json(quotes);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/quotes/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const quote = await storage.getQuote(id);
+      
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/quotes", async (req, res) => {
+    try {
+      const quoteData = {
+        total: req.body.total,
+        commissionPct: req.body.commissionPct || "0",
+        jsonBlob: JSON.stringify(req.body.jsonBlob),
+        name: req.body.name || null
+      };
+      
+      const quote = await storage.createQuote(quoteData);
+      res.json(quote);
+    } catch (error: any) {
+      console.error('Error creating quote:', error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/quotes/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteQuote(id);
+      res.json({ message: "Quote deleted successfully" });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Day-by-Day Custom Planner API endpoints
   
   // Get services catalog for service picker
