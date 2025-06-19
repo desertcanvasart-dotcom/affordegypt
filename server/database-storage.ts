@@ -878,6 +878,6 @@ export class DatabaseStorage implements IStorage {
     await db.delete(reviews).where(eq(reviews.id, id));
   }
 
-  // Day-by-Day Custom Planner methods
+}
 
 export const storage = new DatabaseStorage();
