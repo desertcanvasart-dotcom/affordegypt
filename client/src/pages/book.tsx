@@ -158,11 +158,18 @@ export default function BookPage() {
     );
   }
 
+  // Debug logging
+  console.log('Quote data received:', quote);
+  console.log('Quote jsonBlob:', quote?.jsonBlob);
+  console.log('Fallback quote:', fallbackQuote);
+
   const displayQuote = quote || fallbackQuote;
   const totalAmount = quote?.jsonBlob?.totalAmount || quote?.total || fallbackQuote.total;
   const travelers = quote?.jsonBlob?.passengers || fallbackQuote.travelers;
   const quoteTravelDate = quote?.jsonBlob?.travelDate || fallbackQuote.travelDate;
   const quoteItinerary = quote?.jsonBlob?.itinerary || fallbackQuote.itinerary;
+
+  console.log('Processed values:', { totalAmount, travelers, quoteTravelDate, quoteItinerary });
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 animate-in fade-in duration-300">
