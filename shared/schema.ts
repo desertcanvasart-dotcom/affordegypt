@@ -281,7 +281,7 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
 }).extend({
   quoteId: z.number().nullable().optional(),
   bookingReference: z.string().optional(),
-  totalAmount: z.string().optional(),
+  totalAmount: z.union([z.string(), z.number()]).transform(val => String(val)).optional(),
   customerPhone: z.string().nullable().optional(),
   stripePaymentIntentId: z.string().nullable().optional(),
   paymentStatus: z.string().optional(),
