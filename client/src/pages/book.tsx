@@ -50,7 +50,6 @@ export default function BookPage() {
   // Fetch quote if ID is provided
   const { data: quote, isLoading } = useQuery({
     queryKey: ["/api/quotes", params.id],
-    queryFn: () => apiRequest("GET", `/api/quotes/${params.id}`),
     enabled: !!params.id,
     retry: false,
   });
