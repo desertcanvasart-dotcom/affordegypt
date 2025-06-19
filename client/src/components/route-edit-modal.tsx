@@ -265,6 +265,10 @@ export default function RouteEditModal({
       nights: formData.nights,
       distanceKm: formData.distanceKm ? parseInt(formData.distanceKm) : null,
       estimatedDuration: formData.estimatedDuration.trim() || null,
+      routeHighlights: formData.routeHighlights.trim() || null,
+      travelTips: formData.travelTips.trim() || null,
+      pickupInstructions: formData.pickupInstructions.trim() || null,
+      dropoffInstructions: formData.dropoffInstructions.trim() || null,
       vehiclePrices: {
         sedan: parseFloat(formData.sedanPrice),
         minivan: parseFloat(formData.minivanPrice),
@@ -293,6 +297,127 @@ export default function RouteEditModal({
   const getCityName = (cityId: number) => {
     const city = (cities as any[]).find((c: any) => c.id === cityId);
     return city ? city.name : `City ${cityId}`;
+  };
+
+  // Auto-generate route information based on cities and route type
+  const generateRouteInformation = (fromCityId: string, toCityId: string, routeCategory: string, tripMode: string) => {
+    const fromCity = getCityName(parseInt(fromCityId));
+    const toCity = getCityName(parseInt(toCityId));
+    
+    // Route highlights based on cities
+    const generateHighlights = () => {
+      const cityHighlights: { [key: string]: string[] } = {
+        'Cairo': ['Ancient pyramids and sphinx views', 'Islamic Cairo historic districts', 'Nile River scenic routes'],
+        'Alexandria': ['Mediterranean coastal views', 'Historic Alexandria Library', 'Qaitbay Citadel fortress'],
+        'Luxor': ['Valley of the Kings entrance', 'Karnak Temple complex', 'Nile River east bank'],
+        'Aswan': ['High Dam engineering marvel', 'Philae Temple island', 'Nubian village culture'],
+        'Hurghada': ['Red Sea coastal highway', 'Desert mountain landscapes', 'Resort area access'],
+        'Sharm El Sheikh': ['Sinai Peninsula mountains', 'Gulf of Aqaba coastline', 'Desert oasis stops'],
+        'Dahab': ['Blue Hole diving sites', 'Bedouin cultural areas', 'Sinai desert routes'],
+        'Marsa Alam': ['Eastern Desert landscapes', 'Red Sea pristine beaches', 'Ancient emerald mines']
+      };
+
+      if (routeCategory === 'inter_city') {
+        const fromHighlights = cityHighlights[fromCity] || [];
+        const toHighlights = cityHighlights[toCity] || [];
+        return [...fromHighlights.slice(0, 1), ...toHighlights.slice(0, 2)].join(', ');
+      } else {
+        return (cityHighlights[fromCity] || ['Local landmarks and attractions', 'Cultural sites', 'Scenic viewpoints']).join(', ');
+      }
+    };
+
+    // Travel tips based on route characteristics
+    const generateTravelTips = () => {
+      const distance = parseInt(formData.distanceKm) || 0;
+      const duration = parseFloat(formData.estimatedDuration) || 0;
+      
+      let tips = [];
+      
+      if (routeCategory === 'inter_city') {
+        if (distance > 400) {
+          tips.push('Long journey - bring snacks and water');
+          tips.push('Rest stops available every 2-3 hours');
+        }
+        if (duration > 6) {
+          tips.push('Early morning departure recommended');
+          tips.push('Overnight accommodation may be needed');
+        }
+        if (fromCity === 'Cairo' || toCity === 'Cairo') {
+          tips.push('Avoid rush hours (7-9 AM, 5-7 PM)');
+        }
+        if (fromCity.includes('Sharm') || toCity.includes('Sharm') || fromCity.includes('Dahab') || toCity.includes('Dahab')) {
+          tips.push('Mountain roads - check weather conditions');
+        }
+        if (fromCity.includes('Hurghada') || toCity.includes('Hurghada') || fromCity.includes('Marsa')) {
+          tips.push('Desert highway - carry extra water');
+        }
+      } else {
+        tips.push('Flexible timing for sightseeing stops');
+        tips.push('Local guide recommendations available');
+        tips.push('Climate-appropriate clothing advised');
+      }
+      
+      return tips.slice(0, 3).join('. ') + '.';
+    };
+
+    // Pickup instructions based on city
+    const generatePickupInstructions = () => {
+      const cityInstructions: { [key: string]: string } = {
+        'Cairo': 'Hotel lobby pickup available. Airport pickup: Terminal 1 or 3 arrival hall. Train station: Main entrance near taxi area.',
+        'Alexandria': 'Hotel pickup available. Train station: Main entrance. Corniche area: Designated pickup points.',
+        'Luxor': 'Hotel pickup included. Airport: Arrival hall main entrance. Train station: Platform exit area.',
+        'Aswan': 'Hotel lobby pickup available. Airport: Arrival hall. Railway station: Main entrance.',
+        'Hurghada': 'Resort pickup available. Airport: Terminal building exit. Marina area: Designated spots.',
+        'Sharm El Sheikh': 'Hotel pickup available. Airport: Terminal entrance. Naama Bay: Central pickup points.',
+        'Dahab': 'Hotel pickup available. Central Dahab: Lighthouse area. Mashraba area: Main road.',
+        'Marsa Alam': 'Resort pickup available. Airport: Terminal exit. Port Ghalib: Marina entrance.'
+      };
+      
+      return cityInstructions[fromCity] || 'Hotel pickup available. Specific pickup location to be confirmed 24 hours before departure.';
+    };
+
+    // Dropoff instructions based on destination
+    const generateDropoffInstructions = () => {
+      const cityInstructions: { [key: string]: string } = {
+        'Cairo': 'Hotel dropoff available. Airport: Terminal 1 or 3 departure area. Specific terminal confirmed based on flight.',
+        'Alexandria': 'Hotel dropoff available. Train station: Main entrance area. Corniche: Designated dropoff points.',
+        'Luxor': 'Hotel dropoff included. Airport: Departure terminal. Train station: Platform access area.',
+        'Aswan': 'Hotel dropoff available. Airport: Departure hall. Railway station: Main entrance.',
+        'Hurghada': 'Resort dropoff available. Airport: Departure terminal. Marina: Designated areas.',
+        'Sharm El Sheikh': 'Hotel dropoff available. Airport: Departure terminal. Naama Bay: Central locations.',
+        'Dahab': 'Hotel dropoff available. Central Dahab: Lighthouse area. Mashraba: Main road access.',
+        'Marsa Alam': 'Resort dropoff available. Airport: Departure terminal. Port Ghalib: Marina area.'
+      };
+      
+      if (routeCategory === 'inter_city') {
+        return cityInstructions[toCity] || 'Hotel dropoff available. Specific dropoff location confirmed based on accommodation.';
+      } else {
+        return cityInstructions[fromCity] || 'Return to original pickup location. Alternative dropoff points can be arranged.';
+      }
+    };
+
+    return {
+      routeHighlights: generateHighlights(),
+      travelTips: generateTravelTips(),
+      pickupInstructions: generatePickupInstructions(),
+      dropoffInstructions: generateDropoffInstructions()
+    };
+  };
+
+  // Auto-populate fields when cities or route details change
+  const handleAutoPopulate = () => {
+    if (formData.fromCityId && (formData.toCityId || formData.routeCategory === 'intra_city')) {
+      const toCityId = formData.routeCategory === 'intra_city' ? formData.fromCityId : formData.toCityId;
+      const generated = generateRouteInformation(formData.fromCityId, toCityId, formData.routeCategory, formData.tripMode);
+      
+      setFormData(prev => ({
+        ...prev,
+        routeHighlights: prev.routeHighlights || generated.routeHighlights,
+        travelTips: prev.travelTips || generated.travelTips,
+        pickupInstructions: prev.pickupInstructions || generated.pickupInstructions,
+        dropoffInstructions: prev.dropoffInstructions || generated.dropoffInstructions
+      }));
+    }
   };
 
   return (
@@ -396,7 +521,15 @@ export default function RouteEditModal({
                 <Label htmlFor="from-city">From City *</Label>
                 <Select 
                   value={formData.fromCityId} 
-                  onValueChange={(value) => setFormData(prev => ({...prev, fromCityId: value}))}
+                  onValueChange={(value) => {
+                    setFormData(prev => ({...prev, fromCityId: value}));
+                    // Auto-generate route info when both cities are selected
+                    setTimeout(() => {
+                      if (value && (formData.toCityId || formData.routeCategory === 'intra_city')) {
+                        handleAutoPopulate();
+                      }
+                    }, 100);
+                  }}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select departure city" />
@@ -415,7 +548,15 @@ export default function RouteEditModal({
                 <Label htmlFor="to-city">To City *</Label>
                 <Select 
                   value={formData.toCityId} 
-                  onValueChange={(value) => setFormData(prev => ({...prev, toCityId: value}))}
+                  onValueChange={(value) => {
+                    setFormData(prev => ({...prev, toCityId: value}));
+                    // Auto-generate route info when both cities are selected
+                    setTimeout(() => {
+                      if (value && formData.fromCityId) {
+                        handleAutoPopulate();
+                      }
+                    }, 100);
+                  }}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select destination city" />
@@ -439,7 +580,15 @@ export default function RouteEditModal({
               <Label htmlFor="city">City *</Label>
               <Select 
                 value={formData.cityId} 
-                onValueChange={(value) => setFormData(prev => ({...prev, cityId: value}))}
+                onValueChange={(value) => {
+                  setFormData(prev => ({...prev, cityId: value, fromCityId: value}));
+                  // Auto-generate route info for intra-city routes
+                  setTimeout(() => {
+                    if (value) {
+                      handleAutoPopulate();
+                    }
+                  }, 100);
+                }}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select city" />
@@ -483,7 +632,19 @@ export default function RouteEditModal({
 
           {/* Additional Route Information */}
           <div className="space-y-4">
-            <Label className="text-base font-medium">Additional Route Information</Label>
+            <div className="flex items-center justify-between">
+              <Label className="text-base font-medium">Additional Route Information</Label>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleAutoPopulate}
+                disabled={!formData.fromCityId || (!formData.toCityId && formData.routeCategory !== 'intra_city')}
+                className="text-xs"
+              >
+                Auto-Generate Info
+              </Button>
+            </div>
             
             <div>
               <Label htmlFor="route-highlights">Route Highlights</Label>
