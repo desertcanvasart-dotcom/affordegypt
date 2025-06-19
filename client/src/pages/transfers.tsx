@@ -348,14 +348,30 @@ export default function TransfersPage() {
                       : selectedRoute.name || `${selectedRoute.fromLocation} → ${selectedRoute.toLocation}`
                     }
                   </CardTitle>
-                  <p className="text-sm text-gray-600">
-                    Distance: {selectedRoute.distanceKm || 0} km | 
-                    Duration: {selectedRoute.estimatedDuration || 'N/A'}
-                  </p>
+                  <div className="space-y-1">
+                    <p className="text-sm text-gray-600">
+                      Distance: {selectedRoute.distanceKm || 0} km | 
+                      Duration: {selectedRoute.estimatedDuration || 'N/A'}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-gray-500">Service Type:</span>
+                      <Badge variant="secondary" className="text-xs">
+                        {selectedRoute.tripMode === 'transfer' && 'Transfer & Drop-off'}
+                        {selectedRoute.tripMode === 'day_trip' && 'Day Trip (Return Same Day)'}
+                        {selectedRoute.tripMode === 'overnight' && 'Overnight Stay (1 Night)'}
+                        {selectedRoute.tripMode === 'multi_day' && 'Multi-Day Tour (2+ Nights)'}
+                      </Badge>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(selectedRoute.vehiclePrices || {}).map(([vehicleType, price]) => {
+                    {Object.entries(selectedRoute.vehiclePrices || {})
+                      .sort(([a], [b]) => {
+                        const order = { sedan: 1, minivan: 2, van: 3, bus: 4 };
+                        return (order[a as keyof typeof order] || 999) - (order[b as keyof typeof order] || 999);
+                      })
+                      .map(([vehicleType, price]) => {
                       const priceValue = typeof price === 'number' ? price : (typeof price === 'string' ? parseFloat(price) : 0);
                       return (
                         <div
