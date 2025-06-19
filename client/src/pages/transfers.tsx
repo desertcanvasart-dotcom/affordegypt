@@ -798,15 +798,15 @@ export default function TransfersPage() {
                 if (fromCity) {
                   // Show routes from the selected departure city
                   suggestedRoutes = routes.filter(route => 
-                    route.fromCityId.toString() === fromCity && 
-                    route.toCityId.toString() !== toCity &&
+                    route.fromCityId?.toString() === fromCity && 
+                    route.toCityId?.toString() !== toCity &&
                     (activeTab === "intercity" ? route.fromCityId !== route.toCityId : route.fromCityId === route.toCityId)
                   );
                 } else if (toCity) {
                   // Show routes to the selected destination city
                   suggestedRoutes = routes.filter(route => 
-                    route.toCityId.toString() === toCity && 
-                    route.fromCityId.toString() !== fromCity &&
+                    route.toCityId?.toString() === toCity && 
+                    route.fromCityId?.toString() !== fromCity &&
                     (activeTab === "intercity" ? route.fromCityId !== route.toCityId : route.fromCityId === route.toCityId)
                   );
                 } else {
