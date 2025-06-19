@@ -36,6 +36,7 @@ interface Route {
 }
 
 export default function TransfersPage() {
+  const [currentStep, setCurrentStep] = useState(1); // 1: Route Selection, 2: Vehicle Selection
   const [activeTab, setActiveTab] = useState("intercity");
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
@@ -53,6 +54,7 @@ export default function TransfersPage() {
   // Reset form when switching tabs
   const handleTabChange = (newTab: string) => {
     setActiveTab(newTab);
+    setCurrentStep(1);
     setFromCity("");
     setToCity("");
     setVehicleType("");
@@ -60,6 +62,18 @@ export default function TransfersPage() {
     setRouteOptions([]);
     setSelectedCityForLocal("");
     setShowLocalRoutes(false);
+  };
+
+  // Handle route selection and move to vehicle selection
+  const handleRouteSelection = (route: Route) => {
+    setSelectedRoute(route);
+    setCurrentStep(2);
+  };
+
+  // Handle back to route selection
+  const handleBackToRoutes = () => {
+    setCurrentStep(1);
+    setVehicleType("");
   };
 
 
@@ -331,9 +345,25 @@ export default function TransfersPage() {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Tab Interface */}
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="mb-8">
-          <TabsList className="grid w-full grid-cols-2">
+        {/* Step Indicator */}
+        <div className="flex justify-center mb-8">
+          <div className="flex items-center space-x-4">
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${currentStep === 1 ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+              1
+            </div>
+            <div className="w-12 h-0.5 bg-gray-200"></div>
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${currentStep === 2 ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+              2
+            </div>
+          </div>
+        </div>
+
+        {currentStep === 1 ? (
+          // Step 1: Route Selection
+          <>
+            {/* Tab Interface */}
+            <Tabs value={activeTab} onValueChange={handleTabChange} className="mb-8">
+              <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="intercity" className="flex items-center space-x-2">
               <Plane className="w-4 h-4" />
               <span>Intercity Travel</span>
@@ -827,16 +857,7 @@ export default function TransfersPage() {
                     <div
                       key={route.id}
                       className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
-                      onClick={() => {
-                        if (activeTab === "intercity") {
-                          setFromCity(route.fromCityId.toString());
-                          setToCity(route.toCityId.toString());
-                        } else {
-                          setSelectedCityForLocal(route.fromCityId.toString());
-                          setShowLocalRoutes(true);
-                        }
-                        setSelectedRoute(route);
-                      }}
+                      onClick={() => handleRouteSelection(route)}
                     >
                       <h4 className="font-semibold text-sm">
                         {activeTab === "intercity" 
@@ -845,9 +866,7 @@ export default function TransfersPage() {
                         }
                       </h4>
                       <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
-                      {minPrice > 0 && (
-                        <p className="text-teal-600 font-bold mt-2">From {minPrice} EGP</p>
-                      )}
+                      <p className="text-sm text-gray-500 mt-1">Click to see vehicle options</p>
                     </div>
                   );
                 });
@@ -855,6 +874,68 @@ export default function TransfersPage() {
             </div>
           </CardContent>
         </Card>
+            </>
+        ) : (
+          // Step 2: Vehicle Selection
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Select Vehicle</h2>
+                <p className="text-gray-600 mt-1">Choose your preferred vehicle type for this route</p>
+              </div>
+              <button
+                onClick={() => setCurrentStep(1)}
+                className="px-4 py-2 text-teal-600 hover:text-teal-700 font-medium"
+              >
+                ← Back to Routes
+              </button>
+            </div>
+
+            {selectedRoute && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">
+                    {activeTab === "intercity" 
+                      ? `${cities.find(c => c.id === selectedRoute.fromCityId)?.name} → ${cities.find(c => c.id === selectedRoute.toCityId)?.name}`
+                      : selectedRoute.name || `${selectedRoute.fromLocation} → ${selectedRoute.toLocation}`
+                    }
+                  </CardTitle>
+                  <p className="text-sm text-gray-600">
+                    Distance: {selectedRoute.distanceKm || 0} km | 
+                    Duration: {selectedRoute.estimatedDuration || 'N/A'}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {Object.entries(selectedRoute.vehiclePrices || {}).map(([vehicleType, price]) => (
+                      <div
+                        key={vehicleType}
+                        className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
+                        onClick={() => {
+                          setSelectedVehicleType(vehicleType);
+                          // Proceed to booking
+                          window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${price}`;
+                        }}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold capitalize">{vehicleType.replace('_', ' ')}</h3>
+                          <Car className="w-5 h-5 text-teal-600" />
+                        </div>
+                        <p className="text-2xl font-bold text-teal-600">{price} EGP</p>
+                        <p className="text-sm text-gray-500 mt-1">
+                          {vehicleType === 'sedan' && 'Up to 4 passengers'}
+                          {vehicleType === 'minivan' && 'Up to 7 passengers'}
+                          {vehicleType === 'van' && 'Up to 12 passengers'}
+                          {vehicleType === 'bus' && 'Up to 20 passengers'}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        )}
       </div>
 
       <Footer />
