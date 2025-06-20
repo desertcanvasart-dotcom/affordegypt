@@ -242,9 +242,17 @@ export default function TransfersPage() {
                                 className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
                                 onClick={() => handleRouteSelection(route)}
                               >
-                                <h4 className="font-semibold text-sm">
-                                  {fromCityName} → {toCityName}
-                                </h4>
+                                <div className="flex items-center justify-between mb-2">
+                                  <h4 className="font-semibold text-sm">
+                                    {fromCityName} → {toCityName}
+                                  </h4>
+                                  <Badge variant="secondary" className="text-xs">
+                                    {route.tripMode === 'transfer' && 'Transfer & Drop-off'}
+                                    {route.tripMode === 'day_trip' && 'Day Trip'}
+                                    {route.tripMode === 'overnight' && 'Overnight'}
+                                    {route.tripMode === 'multi_day' && 'Multi-Day'}
+                                  </Badge>
+                                </div>
                                 <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
                                 <p className="text-sm text-gray-500 mt-1">Click to see vehicle options</p>
                               </div>
