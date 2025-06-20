@@ -412,7 +412,7 @@ export default function BookPage() {
                               if (typeof attraction === 'string') {
                                 return (
                                   <div key={aIndex} className="text-xs text-muted-foreground">
-                                    {attraction}
+                                    {attraction} x{travelers}
                                   </div>
                                 );
                               } else if (typeof attraction === 'number') {
@@ -421,13 +421,13 @@ export default function BookPage() {
                                 const fullAttraction = attractionsList.find((a: any) => a.id === attraction);
                                 return (
                                   <div key={aIndex} className="text-xs text-muted-foreground">
-                                    {fullAttraction?.name || `Attraction #${attraction}`}
+                                    {fullAttraction?.name || `Attraction #${attraction}`} x{travelers}
                                   </div>
                                 );
                               } else if (attraction?.name) {
                                 return (
                                   <div key={aIndex} className="text-xs text-muted-foreground">
-                                    {attraction.name}
+                                    {attraction.name} x{travelers}
                                   </div>
                                 );
                               }
