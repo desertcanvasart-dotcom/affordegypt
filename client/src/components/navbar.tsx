@@ -66,6 +66,25 @@ export default function Navbar() {
     }
   };
 
+  const navigateToTransfers = () => {
+    if (location === '/transfers') {
+      // If already on transfers page, scroll to top smoothly
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    } else {
+      // Navigate to transfers page and then scroll to top
+      setLocation('/transfers');
+      setTimeout(() => {
+        window.scrollTo({ 
+          top: 0, 
+          behavior: 'smooth' 
+        });
+      }, 100);
+    }
+  };
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       {/* Super Nav Bar */}
@@ -202,12 +221,12 @@ export default function Navbar() {
               Start Your Trip Quote
             </button>
 
-            <Link
-              href="/transfers"
+            <button
+              onClick={navigateToTransfers}
               className="border border-gray-300 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors font-medium"
             >
               Book a Transfer
-            </Link>
+            </button>
           </div>
 
 
