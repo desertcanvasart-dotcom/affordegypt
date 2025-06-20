@@ -11,14 +11,14 @@ export default function Destinations() {
   const destinationArticles = [
     {
       id: 1,
-      title: "Budget Travel in Egypt: Complete Guide for 2025",
-      excerpt: "Discover how to explore Egypt on a shoestring budget with insider tips on accommodation, food, transport, and must-see attractions that won't break the bank.",
-      image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
-      readTime: "12 min read",
+      title: "Nile Valley Travel Guide: Luxor, Aswan & Ancient Wonders",
+      excerpt: "Journey through Egypt's heartland along the legendary Nile River, exploring ancient temples, tombs, and timeless villages between Luxor and Aswan.",
+      image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-temples.jpg",
+      readTime: "15 min read",
       category: "Destinations",
-      tags: ["Budget Travel", "Egypt Guide", "2025"],
-      author: "Travel Expert",
-      link: "/budget-travel-egypt"
+      tags: ["Nile Valley", "Ancient Egypt", "Temples"],
+      author: "Egyptology Expert",
+      link: "/nile-valley-guide"
     },
     {
       id: 2,
