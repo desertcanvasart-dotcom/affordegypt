@@ -85,6 +85,25 @@ export default function Navbar() {
     }
   };
 
+  const navigateToDestinations = () => {
+    if (location === '/destinations') {
+      // If already on destinations page, scroll to top smoothly
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    } else {
+      // Navigate to destinations page and then scroll to top
+      setLocation('/destinations');
+      setTimeout(() => {
+        window.scrollTo({ 
+          top: 0, 
+          behavior: 'smooth' 
+        });
+      }, 100);
+    }
+  };
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       {/* Super Nav Bar */}
@@ -154,13 +173,13 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link 
-              href="/destinations"
+            <button 
+              onClick={navigateToDestinations}
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
               <MapPin className="w-4 h-4" />
               Destinations
-            </Link>
+            </button>
             <Link 
               href="/travel-tips"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
