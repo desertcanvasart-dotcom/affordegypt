@@ -1011,10 +1011,10 @@ export default function MultiCityPricingTool() {
                 <div className="text-right">
                   <div className="text-sm text-muted-foreground">Final Total Per Person</div>
                   <div className="text-2xl font-bold font-mono text-primary">
-                    {totalPricing.perPersonAmount} EGP
+                    {Math.round(totalPricing.perPersonAmount)} EGP
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Total: {totalPricing.totalAmount} EGP for {totalPricing.travelers} travelers
+                    Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
                     Payment accepted in Euro, GBP, or USD

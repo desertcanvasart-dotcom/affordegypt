@@ -534,7 +534,7 @@ export default function BookPage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>
-                  <span>{totalAmount} EGP</span>
+                  <span>{Math.round(totalAmount)} EGP</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Taxes & Fees</span>
@@ -543,7 +543,7 @@ export default function BookPage() {
                 <Separator />
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>{totalAmount} EGP</span>
+                  <span>{Math.round(totalAmount)} EGP</span>
                 </div>
               </div>
 

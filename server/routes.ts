@@ -587,8 +587,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const travelers = firstService?.travelers || 1;
       
       // For Multi-City Tour module: totalAmount is sum of per-person costs, so multiply by travelers for actual total
-      const actualTotalAmount = totalAmount * travelers;
-      const perPersonAmount = Math.round(totalAmount * 100) / 100;
+      const actualTotalAmount = Math.round(totalAmount * travelers);
+      const perPersonAmount = Math.round(totalAmount);
 
       res.json({
         totalAmount: actualTotalAmount,

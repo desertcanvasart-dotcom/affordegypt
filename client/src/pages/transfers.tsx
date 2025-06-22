@@ -387,14 +387,14 @@ export default function TransfersPage() {
                           className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
                           onClick={() => {
                             // Proceed to booking
-                            window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${priceValue}`;
+                            window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${Math.round(priceValue)}`;
                           }}
                         >
                           <div className="flex items-center justify-between mb-2">
                             <h3 className="font-semibold capitalize">{vehicleType.replace('_', ' ')}</h3>
                             <Car className="w-5 h-5 text-teal-600" />
                           </div>
-                          <p className="text-2xl font-bold text-teal-600">{priceValue} EGP</p>
+                          <p className="text-2xl font-bold text-teal-600">{Math.round(priceValue)} EGP</p>
                           <p className="text-sm text-gray-500 mt-1">
                             {vehicleType === 'sedan' && 'Up to 4 passengers'}
                             {vehicleType === 'minivan' && 'Up to 7 passengers'}
