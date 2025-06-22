@@ -881,6 +881,7 @@ export default function MultiCityPricingTool() {
                           selectedGuide={cityService.selectedGuide}
                           onGuideChange={(guide) => updateCityService(index, { selectedGuide: guide })}
                           cityName={cityService.cityName}
+                          cityId={cityService.cityId}
                         />
                       </TableCell>
 

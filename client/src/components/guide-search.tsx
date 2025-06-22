@@ -25,10 +25,25 @@ export function GuideSearch({
   languages, 
   selectedGuide, 
   onGuideChange, 
-  cityName 
+  cityName,
+  cityId
 }: GuideSearchProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDuration, setSelectedDuration] = useState<number>(8);
+
+  // Fetch actual guide rates from database
+  const { data: guideRates = [] } = useQuery({
+    queryKey: ['/api/guide-rates', cityId],
+    enabled: !!cityId
+  });
+
+  // Get actual daily rate for a language from database
+  const getDailyRate = (language: string): number => {
+    const guideRate = guideRates.find((rate: any) => 
+      rate.language?.trim().toLowerCase() === language.trim().toLowerCase()
+    );
+    return guideRate ? Math.round(parseFloat(guideRate.hourlyPrice)) : 2500; // Default fallback
+  };
 
   // Enhanced language data with ratings and specialties
   const enhancedLanguages = useMemo(() => {
@@ -219,7 +234,7 @@ export function GuideSearch({
                   </div>
                   <div className="text-right">
                     <div className="text-sm font-medium text-teal-600">
-                      EGP {selectedDuration * 480}/day
+                      EGP {getDailyRate(language)}/day
                     </div>
                     <div className="text-xs text-gray-500">
                       {getDurationLabel(selectedDuration)}
