@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { ChevronDown, Search, User, Clock, Globe, Star } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 interface GuideOption {
   language: string;
@@ -17,6 +18,7 @@ interface GuideSearchProps {
   selectedGuide?: GuideOption;
   onGuideChange: (guide?: GuideOption) => void;
   cityName: string;
+  cityId: number;
 }
 
 export function GuideSearch({ 
