@@ -39,12 +39,22 @@ export default function BookPage() {
 
   // Parse URL parameters for fallback quote data
   const urlParams = new URLSearchParams(search);
+  
+  // Handle transfer module parameters
+  const routeId = urlParams.get('route');
+  const vehicleType = urlParams.get('vehicle');
+  const price = urlParams.get('price');
+  
   const fallbackQuote = {
-    total: urlParams.get('total') || '0',
+    total: price || urlParams.get('total') || '0',
     travelers: parseInt(urlParams.get('travelers') || '1'),
     cities: urlParams.get('cities')?.split(',') || [],
     travelDate: urlParams.get('travelDate') || '',
-    itinerary: urlParams.get('itinerary') ? JSON.parse(decodeURIComponent(urlParams.get('itinerary')!)) : []
+    itinerary: urlParams.get('itinerary') ? JSON.parse(decodeURIComponent(urlParams.get('itinerary')!)) : [],
+    // Transfer-specific data
+    routeId: routeId ? parseInt(routeId) : null,
+    vehicleType: vehicleType || null,
+    isTransferBooking: !!(routeId && vehicleType && price)
   };
 
   // Fetch quote if ID is provided
@@ -62,6 +72,19 @@ export default function BookPage() {
   // Fetch attractions data for proper name display
   const { data: attractions } = useQuery({
     queryKey: ["/api/attractions"],
+  });
+
+  // Fetch route data for transfer bookings
+  const { data: routeData } = useQuery({
+    queryKey: [`/api/routes/${fallbackQuote.routeId}`],
+    enabled: !!fallbackQuote.routeId && fallbackQuote.isTransferBooking,
+    retry: false,
+  });
+
+  // Fetch cities data for route display
+  const { data: cities } = useQuery({
+    queryKey: ["/api/cities"],
+    enabled: fallbackQuote.isTransferBooking,
   });
 
   const form = useForm<BookingFormData>({
@@ -135,7 +158,13 @@ export default function BookPage() {
         quoteId: quote?.id || null,
         totalAmount: totalAmount,
         travelers: travelers,
-        itinerary: quoteItinerary || fallbackQuote.itinerary || []
+        itinerary: quoteItinerary || fallbackQuote.itinerary || [],
+        // Transfer-specific data
+        ...(fallbackQuote.isTransferBooking && {
+          routeId: fallbackQuote.routeId,
+          vehicleType: fallbackQuote.vehicleType,
+          isTransferBooking: true
+        })
       };
       
       console.log('Prepared booking data:', bookingData);
@@ -158,7 +187,7 @@ export default function BookPage() {
   }
 
   const displayQuote = quote || fallbackQuote;
-  const totalAmount = quote?.jsonBlob?.totalAmount || quote?.total || fallbackQuote.total;
+  const totalAmount = quote?.jsonBlob?.totalAmount || quote?.total || parseInt(fallbackQuote.total);
   const travelers = quote?.jsonBlob?.passengers || fallbackQuote.travelers;
   const quoteTravelDate = quote?.jsonBlob?.travelDate || fallbackQuote.travelDate;
   const quoteItinerary = quote?.jsonBlob?.itinerary || fallbackQuote.itinerary;
@@ -378,7 +407,33 @@ export default function BookPage() {
               <div className="space-y-3">
                 <h4 className="font-medium">Your Booking</h4>
                 
-                {quoteItinerary && (
+                {/* Transfer Booking Display */}
+                {fallbackQuote.isTransferBooking && routeData && cities && (
+                  <div className="border rounded-md p-3 space-y-2">
+                    <div className="font-medium text-sm">
+                      {cities.find((c: any) => c.id === routeData.fromCityId)?.name} → {cities.find((c: any) => c.id === routeData.toCityId)?.name}
+                    </div>
+                    
+                    <div>
+                      <div className="text-xs font-medium text-muted-foreground mb-1">Transportation</div>
+                      <div className="text-xs text-muted-foreground">
+                        {fallbackQuote.vehicleType?.charAt(0).toUpperCase() + fallbackQuote.vehicleType?.slice(1)} - {routeData.distanceKm} km
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-xs font-medium text-muted-foreground mb-1">Service Type</div>
+                      <div className="text-xs text-muted-foreground">
+                        {routeData.tripMode === 'transfer' && 'Transfer & Drop-off'}
+                        {routeData.tripMode === 'day_trip' && 'Day Trip (Return Same Day)'}
+                        {routeData.tripMode === 'overnight' && 'Overnight Stay (1 Night)'}
+                        {routeData.tripMode === 'multi_day' && 'Multi-Day Tour (2+ Nights)'}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {quoteItinerary && !fallbackQuote.isTransferBooking && (
                   <div className="space-y-3">
                     {quoteItinerary.map((city: any, index: number) => (
                       <div key={index} className="border rounded-md p-3 space-y-2">
