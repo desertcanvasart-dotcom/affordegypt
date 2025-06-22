@@ -13,7 +13,7 @@ export default function Destinations() {
       id: 1,
       title: "Nile Valley Travel Guide: Luxor, Aswan & Ancient Wonders",
       excerpt: "Journey through Egypt's heartland along the legendary Nile River, exploring ancient temples, tombs, and timeless villages between Luxor and Aswan.",
-      image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73beb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-1.jpg",
       readTime: "15 min read",
       category: "Destinations",
       tags: ["Nile Valley", "Ancient Egypt", "Temples"],
