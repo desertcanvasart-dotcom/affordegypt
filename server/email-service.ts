@@ -47,6 +47,9 @@ class SendGridEmailService implements EmailService {
       });
       
       console.log(`Successfully sent confirmation email for booking ${booking.bookingReference}`);
+      
+      // Send admin notification
+      await this.sendAdminNotification(booking, quote, 'confirmation');
       return true;
     } catch (error: any) {
       console.error('Failed to send booking confirmation email:', error);
@@ -76,6 +79,9 @@ class SendGridEmailService implements EmailService {
         html: emailContent,
         text: this.stripHtml(emailContent)
       });
+      
+      // Send admin notification
+      await this.sendAdminNotification(booking, quote, 'reminder');
       return true;
     } catch (error) {
       console.error('Failed to send booking reminder email:', error);
@@ -269,6 +275,158 @@ class SendGridEmailService implements EmailService {
 
   private stripHtml(html: string): string {
     return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  async sendAdminNotification(booking: any, quote: any, type: 'confirmation' | 'reminder'): Promise<boolean> {
+    try {
+      const jsonBlob = typeof quote.jsonBlob === 'string' ? JSON.parse(quote.jsonBlob) : quote.jsonBlob;
+      
+      const emailContent = this.generateAdminNotificationEmail(booking, quote, jsonBlob, type);
+      
+      await this.mailService.send({
+        to: 'info@affordegypt.com',
+        from: this.fromEmail,
+        subject: 'New Book',
+        html: emailContent,
+      });
+      
+      return true;
+    } catch (error: any) {
+      console.error("Failed to send admin notification email:", error);
+      return false;
+    }
+  }
+
+  private generateAdminNotificationEmail(booking: any, quote: any, jsonBlob: any, type: 'confirmation' | 'reminder'): string {
+    const formatPrice = (price: number | string) => {
+      const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+      return Math.round(numPrice).toLocaleString();
+    };
+
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>New Booking Notification</title>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: #0d9488; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+          .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
+          .booking-details { background: white; padding: 15px; border-radius: 6px; margin: 15px 0; }
+          .detail-row { display: flex; justify-content: space-between; margin: 8px 0; padding: 8px 0; border-bottom: 1px solid #eee; }
+          .detail-label { font-weight: bold; color: #0d9488; }
+          .total { background: #0d9488; color: white; padding: 15px; text-align: center; border-radius: 6px; font-size: 18px; font-weight: bold; }
+          .status { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+          .status.paid { background: #dcfce7; color: #16a34a; }
+          .status.pending { background: #fef3c7; color: #d97706; }
+          .status.failed { background: #fee2e2; color: #dc2626; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>🔔 New Booking ${type === 'confirmation' ? 'Confirmation' : 'Reminder'} Sent</h1>
+          <p>A ${type} email has been sent to a customer</p>
+        </div>
+        
+        <div class="content">
+          <div class="booking-details">
+            <h3>Booking Information</h3>
+            <div class="detail-row">
+              <span class="detail-label">Booking Reference:</span>
+              <span>${booking.bookingReference}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Customer Name:</span>
+              <span>${booking.customerName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Email:</span>
+              <span>${booking.customerEmail}</span>
+            </div>
+            ${booking.customerPhone ? `
+            <div class="detail-row">
+              <span class="detail-label">Phone:</span>
+              <span>${booking.customerPhone}</span>
+            </div>
+            ` : ''}
+            <div class="detail-row">
+              <span class="detail-label">Payment Status:</span>
+              <span class="status ${booking.paymentStatus}">${booking.paymentStatus.toUpperCase()}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Booking Status:</span>
+              <span class="status ${booking.bookingStatus}">${booking.bookingStatus.toUpperCase()}</span>
+            </div>
+            ${booking.startDate ? `
+            <div class="detail-row">
+              <span class="detail-label">Travel Date:</span>
+              <span>${new Date(booking.startDate).toLocaleDateString('en-GB')}</span>
+            </div>
+            ` : ''}
+          </div>
+
+          ${jsonBlob?.travelers ? `
+          <div class="booking-details">
+            <h3>Trip Details</h3>
+            <div class="detail-row">
+              <span class="detail-label">Number of Travelers:</span>
+              <span>${jsonBlob.travelers}</span>
+            </div>
+            ${jsonBlob.language ? `
+            <div class="detail-row">
+              <span class="detail-label">Guide Language:</span>
+              <span>${jsonBlob.language}</span>
+            </div>
+            ` : ''}
+            ${jsonBlob.vehicleType ? `
+            <div class="detail-row">
+              <span class="detail-label">Vehicle Type:</span>
+              <span>${jsonBlob.vehicleType}</span>
+            </div>
+            ` : ''}
+          </div>
+          ` : ''}
+
+          ${jsonBlob?.itinerary && Array.isArray(jsonBlob.itinerary) && jsonBlob.itinerary.length > 0 ? `
+          <div class="booking-details">
+            <h3>Itinerary</h3>
+            ${jsonBlob.itinerary.map((item: any, index: number) => `
+              <div class="detail-row">
+                <span class="detail-label">${item.city || item.route || `Day ${index + 1}`}:</span>
+                <span>${item.description || item.date || 'Service included'}</span>
+              </div>
+            `).join('')}
+          </div>
+          ` : ''}
+
+          ${jsonBlob?.addons && jsonBlob.addons.length > 0 ? `
+          <div class="booking-details">
+            <h3>Add-ons</h3>
+            ${jsonBlob.addons.map((addon: any) => `
+              <div class="detail-row">
+                <span class="detail-label">${addon.name}:</span>
+                <span>EGP ${formatPrice(addon.price)}</span>
+              </div>
+            `).join('')}
+          </div>
+          ` : ''}
+
+          <div class="total">
+            Total Amount: EGP ${formatPrice(booking.totalAmount)}
+          </div>
+
+          <div class="booking-details">
+            <h3>Action Required</h3>
+            <p><strong>Email Type:</strong> ${type === 'confirmation' ? 'Booking Confirmation' : 'Trip Reminder'}</p>
+            <p><strong>Sent to:</strong> ${booking.customerEmail}</p>
+            <p><strong>Next Steps:</strong> ${type === 'confirmation' ? 'Monitor payment status and prepare for trip' : 'Ensure all arrangements are confirmed for upcoming trip'}</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
   }
 }
 
