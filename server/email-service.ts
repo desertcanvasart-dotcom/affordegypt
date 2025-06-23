@@ -13,7 +13,7 @@ class SendGridEmailService implements EmailService {
 
   constructor() {
     this.mailService = new MailService();
-    // Use the verified sender email address from environment
+    // Use the verified sender email address
     this.fromEmail = process.env.SENDGRID_VERIFIED_SENDER || 'info@affordegypt.com';
     
     if (process.env.SENDGRID_API_KEY) {
@@ -33,6 +33,8 @@ class SendGridEmailService implements EmailService {
     const emailContent = this.generateConfirmationEmail(booking, quoteData, totalAmount);
 
     try {
+      console.log(`Attempting to send confirmation email to: ${booking.customerEmail} from: ${this.fromEmail}`);
+      
       await this.mailService.send({
         to: booking.customerEmail,
         from: {
@@ -43,6 +45,8 @@ class SendGridEmailService implements EmailService {
         html: emailContent,
         text: this.stripHtml(emailContent)
       });
+      
+      console.log(`Successfully sent confirmation email for booking ${booking.bookingReference}`);
       return true;
     } catch (error: any) {
       console.error('Failed to send booking confirmation email:', error);
