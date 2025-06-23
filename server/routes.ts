@@ -1048,6 +1048,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const validatedData = insertBookingSchema.parse(bookingData);
       const booking = await storage.createBooking(validatedData);
+      
+      // Send confirmation email
+      try {
+        if (booking.quoteId) {
+          const quote = await storage.getQuote(booking.quoteId);
+          if (quote) {
+            const emailSent = await emailService.sendBookingConfirmation(booking, quote);
+            if (emailSent) {
+              console.log(`Confirmation email sent for booking ${booking.bookingReference}`);
+              // Mark email as sent in the database
+              await storage.markEmailSent(booking.id, 'confirmation');
+            } else {
+              console.log(`Failed to send confirmation email for booking ${booking.bookingReference}`);
+            }
+          }
+        }
+      } catch (emailError) {
+        console.error('Failed to send confirmation email:', emailError);
+        // Don't fail the booking creation if email fails
+      }
+      
       res.json(booking);
     } catch (error: any) {
       console.error('Booking creation error:', error);
@@ -1214,6 +1235,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         if (emailSent) {
           console.log(`Confirmation email sent for booking ${bookingReference}`);
+          // Mark email as sent in the database
+          await storage.markEmailSent(booking.id, 'confirmation');
+        } else {
+          console.log(`Failed to send confirmation email for booking ${bookingReference}`);
         }
       } catch (emailError) {
         console.error('Failed to send confirmation email:', emailError);
