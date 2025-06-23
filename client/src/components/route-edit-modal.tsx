@@ -148,27 +148,18 @@ export default function RouteEditModal({
     onSuccess: async (result) => {
       console.log('Route save successful:', result);
       
-      // Update cache directly without invalidating other queries
-      try {
-        const response = await result.json();
-        queryClient.setQueryData(['/api/routes'], (oldData: any) => {
-          if (!oldData) return oldData;
-          
-          if (route) {
-            // Update existing route
-            return oldData.map((r: any) => r.id === route.id ? response : r);
-          } else {
-            // Add new route
-            return [...oldData, response];
-          }
-        });
-      } catch (e) {
-        // Only invalidate routes, not all queries
-        queryClient.invalidateQueries({ 
-          queryKey: ['/api/routes'],
-          exact: true 
-        });
-      }
+      // Force invalidate routes cache everywhere to ensure multi-city pricing tool updates
+      await queryClient.invalidateQueries({ 
+        queryKey: ['/api/routes'],
+        exact: true,
+        refetchType: 'active'
+      });
+      
+      // Also refetch any active route queries immediately
+      await queryClient.refetchQueries({
+        queryKey: ['/api/routes'],
+        exact: true
+      });
       
       toast({
         title: "Success!",

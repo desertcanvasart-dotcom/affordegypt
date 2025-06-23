@@ -90,9 +90,13 @@ export default function MultiCityPricingTool() {
     queryKey: ["/api/addons"],
   });
 
-  // Fetch available routes
-  const { data: routes = [] } = useQuery<any[]>({
+  // Fetch available routes with shorter stale time for real-time updates
+  const { data: routes = [], refetch: refetchRoutes } = useQuery<any[]>({
     queryKey: ["/api/routes"],
+    staleTime: 0, // Always fetch fresh data
+    cacheTime: 30 * 1000, // Keep in cache for 30 seconds
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
   });
 
   // Fetch available attractions
