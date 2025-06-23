@@ -503,7 +503,7 @@ function BookingDetailsModal({
                   <div>
                     <h5 className="text-sm font-medium mb-2">Itinerary</h5>
                     <div className="space-y-2">
-                      {booking.quote.jsonBlob.itinerary.map((item: any, index: number) => (
+                      {Array.isArray(booking.quote.jsonBlob.itinerary) ? booking.quote.jsonBlob.itinerary.map((item: any, index: number) => (
                         <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                           <div>
                             <span className="font-medium">{item.city || item.route || `Service ${index + 1}`}</span>
@@ -515,7 +515,11 @@ function BookingDetailsModal({
                             {item.date || `Day ${index + 1}`}
                           </span>
                         </div>
-                      ))}
+                      )) : (
+                        <div className="p-3 bg-gray-50 rounded-lg text-sm text-muted-foreground">
+                          No itinerary data available
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
