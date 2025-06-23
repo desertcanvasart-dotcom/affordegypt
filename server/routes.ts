@@ -1542,6 +1542,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register pricing routes for Transfer Only pricing endpoint
   await registerPricingRoutes(app);
 
+  // Email notification endpoints
+  app.post("/api/bookings/:id/send-confirmation", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const booking = await storage.getBooking(id);
+      
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      if (booking.quoteId === null) {
+        return res.status(400).json({ message: "Booking has no associated quote" });
+      }
+      
+      const quote = await storage.getQuote(booking.quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      const emailSent = await emailService.sendBookingConfirmation(booking, quote);
+      if (emailSent) {
+        await storage.markEmailSent(booking.id, 'confirmation');
+        res.json({ message: "Confirmation email sent successfully" });
+      } else {
+        res.status(500).json({ message: "Failed to send confirmation email" });
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
+  app.post("/api/bookings/:id/send-reminder", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const booking = await storage.getBooking(id);
+      
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      
+      if (booking.quoteId === null) {
+        return res.status(400).json({ message: "Booking has no associated quote" });
+      }
+      
+      const quote = await storage.getQuote(booking.quoteId);
+      if (!quote) {
+        return res.status(404).json({ message: "Quote not found" });
+      }
+      
+      const emailSent = await emailService.sendBookingReminder(booking, quote);
+      if (emailSent) {
+        await storage.markEmailSent(booking.id, 'reminder');
+        res.json({ message: "Reminder email sent successfully" });
+      } else {
+        res.status(500).json({ message: "Failed to send reminder email" });
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
