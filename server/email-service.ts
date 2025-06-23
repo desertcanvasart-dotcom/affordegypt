@@ -136,7 +136,7 @@ class SendGridEmailService implements EmailService {
               <div class="booking-details">
                 <h3>Booking Information</h3>
                 <p><strong>Booking Reference:</strong> <span class="highlight">${booking.bookingReference}</span></p>
-                <p><strong>Total Amount:</strong> $${totalAmount}</p>
+                <p><strong>Total Amount:</strong> ${Math.round(parseFloat(totalAmount))} EGP</p>
                 <p><strong>Payment Status:</strong> ${booking.paymentStatus}</p>
                 ${booking.startDate ? `<p><strong>Trip Start Date:</strong> ${new Date(booking.startDate).toLocaleDateString()}</p>` : ''}
                 ${booking.endDate ? `<p><strong>Trip End Date:</strong> ${new Date(booking.endDate).toLocaleDateString()}</p>` : ''}

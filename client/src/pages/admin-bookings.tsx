@@ -183,7 +183,7 @@ export default function AdminBookings() {
                 <div className="flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-muted-foreground" />
                   <div>
-                    <p className="text-sm font-medium">${booking.totalAmount}</p>
+                    <p className="text-sm font-medium">{Math.round(parseFloat(booking.totalAmount))} EGP</p>
                     <p className="text-xs text-muted-foreground">Total Amount</p>
                   </div>
                 </div>

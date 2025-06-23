@@ -299,7 +299,7 @@ export default function AdminBookings() {
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4">
                       <div>
                         <p className="text-sm text-muted-foreground">Total Amount</p>
-                        <p className="font-semibold">${booking.totalAmount}</p>
+                        <p className="font-semibold">{Math.round(parseFloat(booking.totalAmount))} EGP</p>
                       </div>
                       
                       {booking.startDate && (
@@ -455,7 +455,7 @@ function BookingDetailsModal({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label>Total Amount</Label>
-                <p className="text-2xl font-bold text-green-600">${booking.totalAmount}</p>
+                <p className="text-2xl font-bold text-green-600">{Math.round(parseFloat(booking.totalAmount))} EGP</p>
               </div>
               <div>
                 <Label>Payment Status</Label>
