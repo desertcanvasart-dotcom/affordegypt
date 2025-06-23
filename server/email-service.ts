@@ -13,8 +13,8 @@ class SendGridEmailService implements EmailService {
 
   constructor() {
     this.mailService = new MailService();
-    // Use the verified sender email address
-    this.fromEmail = 'info@affordegypt.com';
+    // Use the verified sender email address from environment
+    this.fromEmail = process.env.SENDGRID_VERIFIED_SENDER || 'info@affordegypt.com';
     
     if (process.env.SENDGRID_API_KEY) {
       this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
