@@ -149,11 +149,18 @@ export default function TransportationSearch({
           {/* Header */}
           <div className="flex items-center justify-between">
             <h4 className="font-medium text-sm">{cityName} Transportation</h4>
-            {selectedRoutes.length > 0 && (
-              <Badge variant="secondary" className="text-xs">
-                {selectedRoutes.length} selected
-              </Badge>
-            )}
+            <div className="flex items-center gap-2">
+              {cityId === 3 && (
+                <Badge variant="destructive" className="text-xs">
+                  Debug: {cityRoutes.length}/{filteredRoutes.length}
+                </Badge>
+              )}
+              {selectedRoutes.length > 0 && (
+                <Badge variant="secondary" className="text-xs">
+                  {selectedRoutes.length} selected
+                </Badge>
+              )}
+            </div>
           </div>
 
           {/* Search */}
