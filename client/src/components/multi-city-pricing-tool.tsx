@@ -97,6 +97,12 @@ export default function MultiCityPricingTool() {
     cacheTime: 30 * 1000, // Keep in cache for 30 seconds
     refetchOnMount: true,
     refetchOnWindowFocus: true,
+    onSuccess: (data) => {
+      console.log('DEBUG: Routes fetched from API:', data.length);
+      const luxorRoutes = data.filter(r => r.fromCityId === 3);
+      console.log('DEBUG: Luxor routes in API response:', luxorRoutes.length);
+      console.log('DEBUG: Luxor route details:', luxorRoutes.map(r => ({ id: r.id, name: r.name })));
+    }
   });
 
   // Fetch available attractions
