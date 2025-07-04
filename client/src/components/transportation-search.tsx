@@ -46,9 +46,10 @@ export default function TransportationSearch({
     
     // Debug logging for Luxor (cityId = 3)
     if (cityId === 3) {
-      console.log(`DEBUG: Total routes: ${routes.length}`);
-      console.log(`DEBUG: Luxor routes found: ${filteredRoutes.length}`);
-      console.log('DEBUG: Luxor routes:', filteredRoutes.map(r => ({ id: r.id, name: r.name, fromCityId: r.fromCityId, toCityId: r.toCityId })));
+      console.log(`DEBUG Transportation: Total routes: ${routes.length}`);
+      console.log(`DEBUG Transportation: Luxor routes found: ${filteredRoutes.length}`);
+      console.log('DEBUG Transportation: All routes with fromCityId=3:', routes.filter(r => r.fromCityId === 3).map(r => ({ id: r.id, name: r.name, fromCityId: r.fromCityId, toCityId: r.toCityId })));
+      console.log('DEBUG Transportation: Final filtered routes:', filteredRoutes.map(r => ({ id: r.id, name: r.name, fromCityId: r.fromCityId, toCityId: r.toCityId })));
     }
     
     return filteredRoutes;
@@ -201,6 +202,12 @@ export default function TransportationSearch({
                   <p className="text-xs text-gray-400 mt-1">
                     Try adjusting your search or filters
                   </p>
+                )}
+                {cityId === 3 && (
+                  <div className="text-xs text-red-500 mt-2">
+                    Debug: Total routes: {routes.length}, City routes: {cityRoutes.length}, Filtered: {filteredRoutes.length}
+                    <br />Search: "{searchTerm}", Type: "{selectedType}"
+                  </div>
                 )}
               </div>
             ) : (
