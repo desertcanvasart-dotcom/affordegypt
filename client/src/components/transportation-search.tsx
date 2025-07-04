@@ -39,10 +39,19 @@ export default function TransportationSearch({
 
   // Filter routes for the current city - only show routes that START from this city
   const cityRoutes = useMemo(() => {
-    return routes.filter(route => 
+    const filteredRoutes = routes.filter(route => 
       route.fromCityId === cityId || 
       (route.fromCityId === route.toCityId && route.fromCityId === cityId) // Include intra-city routes
     );
+    
+    // Debug logging for Luxor (cityId = 3)
+    if (cityId === 3) {
+      console.log(`DEBUG: Total routes: ${routes.length}`);
+      console.log(`DEBUG: Luxor routes found: ${filteredRoutes.length}`);
+      console.log('DEBUG: Luxor routes:', filteredRoutes.map(r => ({ id: r.id, name: r.name, fromCityId: r.fromCityId, toCityId: r.toCityId })));
+    }
+    
+    return filteredRoutes;
   }, [routes, cityId]);
 
   // Get unique trip types
