@@ -179,5 +179,72 @@
     "invalidPhone": "Bitte geben Sie eine gültige Telefonnummer ein",
     "selectDate": "Bitte wählen Sie ein Reisedatum",
     "selectRoute": "Bitte wählen Sie mindestens eine Route"
+  },
+  "reviews": {
+    "title": "Was Unsere Reisenden Sagen",
+    "subtitle": "Echte Erfahrungen von Tausenden von Reisenden"
+  },
+  "blog": {
+    "title": "Reise-Tipps & Führungen",
+    "subtitle": "Expertenführungen, versteckte Juwelen und praktische Ratschläge für Ihre Ägypten-Reise",
+    "viewAll": "Alle Artikel Ansehen",
+    "readMore": "Mehr Lesen",
+    "minRead": "Min. Lesezeit",
+    "posts": {
+      "sinaiGuide": {
+        "title": "Sinai-Halbinsel Reiseführer",
+        "excerpt": "Sinai-Halbinsel Reiseführer: Beste Orte zum Besuchen, Tauchen und Wandern in Ägypten"
+      },
+      "redSeaGuide": {
+        "title": "Rotes Meer Resorts Führer",
+        "excerpt": "Ultimativer Führer zum Tauchen, Stränden und Luxusresorts am Roten Meer"
+      },
+      "luxorGuide": {
+        "title": "Luxor Reiseführer",
+        "excerpt": "Vollständiger Führer zu Luxors Tempeln, Gräbern und antiken Wundern"
+      },
+      "cairoGuide": {
+        "title": "Kairo Reiseführer",
+        "excerpt": "Navigieren Sie Kairo wie ein Einheimischer: Attraktionen, Essen und versteckte Juwelen"
+      },
+      "budgetTips": {
+        "title": "Budget-Reise-Tipps",
+        "excerpt": "Wie man Ägypten mit einem Budget erkundet, ohne die Erfahrung zu beeinträchtigen"
+      },
+      "packing": {
+        "title": "Ägypten Packliste",
+        "excerpt": "Wesentliche Gegenstände und Reisetipps für Ihr Ägypten-Abenteuer"
+      }
+    }
+  },
+  "faq": {
+    "title": "Ägypten Reise FAQ",
+    "subtitle": "Antworten auf Ihre häufigsten Fragen - klar, ehrlich und aktuell",
+    "questions": {
+      "safety": {
+        "question": "Ist Ägypten derzeit sicher für Touristen?",
+        "answer": "Ja, Ägypten ist generell sicher für Touristen, besonders in Hauptzielen wie Kairo, Luxor, Assuan und den Resorts am Roten Meer. Wir überwachen alle Regionen genau und passen jeden Reiseplan an, um Ihren Komfort und Ihre Sicherheit zu gewährleisten, mit privatem Transport und lokaler Unterstützung bei jedem Schritt."
+      },
+      "visa": {
+        "question": "Benötige ich ein Visum für die Einreise nach Ägypten?",
+        "answer": "Die meisten Reisenden können ein e-Visa online vor der Ankunft erhalten oder bei der Ankunft an größeren Flughäfen kaufen. Wir führen Sie nach der Buchung durch den Prozess. Einige Nationalitäten benötigen eine Vorabgenehmigung - fragen Sie bei Ihrer örtlichen Botschaft nach oder fragen Sie uns."
+      },
+      "price": {
+        "question": "Was ist in meinem Reisepreis enthalten?",
+        "answer": "Alle unsere Reiserouten sind vollständig transparent, ohne versteckte Gebühren. Einschlüsse decken typischerweise privaten Transport, Expertenführer, Eintrittskarten, Flaschenwasser und alle erwähnten Aktivitäten ab. Optionale Extras oder persönliche Ausgaben werden vor der Buchung klar aufgelistet."
+      },
+      "customise": {
+        "question": "Kann ich meine Reiseroute anpassen?",
+        "answer": "Absolut! Unsere Reisen sind um Sie herum gestaltet. Ob Sie ein Paar, ein Alleinreisender oder eine Familie sind, Sie können alles anpassen - Hotelkategorie, Tempo, Führer und sogar Ziele."
+      },
+      "currency": {
+        "question": "Welche Währung sollte ich mitbringen?",
+        "answer": "Obwohl Ägypten das Ägyptische Pfund (EGP) verwendet, werden USD und EUR weithin akzeptiert. Wir empfehlen, etwas Bargeld für kleine Einkäufe und Trinkgelder mitzubringen, obwohl Kreditkarten in den meisten Hotels und Restaurants akzeptiert werden."
+      },
+      "weather": {
+        "question": "Wann ist die beste Zeit, Ägypten zu besuchen?",
+        "answer": "Oktober bis April bietet das angenehmste Wetter mit kühleren Temperaturen, perfekt für Sightseeing. Der Sommer (Mai-September) ist heißer, aber ideal für Aktivitäten am Roten Meer und kommt mit niedrigeren Unterkunftspreisen."
+      }
+    }
   }
 }

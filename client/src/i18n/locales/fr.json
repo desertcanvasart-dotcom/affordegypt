@@ -179,5 +179,72 @@
     "invalidPhone": "Veuillez entrer un numéro de téléphone valide",
     "selectDate": "Veuillez sélectionner une date de voyage",
     "selectRoute": "Veuillez sélectionner au moins un itinéraire"
+  },
+  "reviews": {
+    "title": "Ce Que Disent Nos Voyageurs",
+    "subtitle": "Expériences réelles de milliers de voyageurs"
+  },
+  "blog": {
+    "title": "Conseils et Guides de Voyage",
+    "subtitle": "Guides d'experts, joyaux cachés et conseils pratiques pour votre voyage en Égypte",
+    "viewAll": "Voir Tous les Articles",
+    "readMore": "Lire Plus",
+    "minRead": "min de lecture",
+    "posts": {
+      "sinaiGuide": {
+        "title": "Guide de Voyage de la Péninsule du Sinaï",
+        "excerpt": "Guide de voyage de la Péninsule du Sinaï : Meilleurs endroits à visiter, plonger et faire de la randonnée en Égypte"
+      },
+      "redSeaGuide": {
+        "title": "Guide des Resorts de la Mer Rouge",
+        "excerpt": "Guide ultime pour la plongée, les plages et les resorts de luxe de la Mer Rouge"
+      },
+      "luxorGuide": {
+        "title": "Guide de Voyage de Louxor",
+        "excerpt": "Guide complet des temples, tombes et merveilles antiques de Louxor"
+      },
+      "cairoGuide": {
+        "title": "Guide de Voyage du Caire",
+        "excerpt": "Naviguez au Caire comme un local : attractions, cuisine et joyaux cachés"
+      },
+      "budgetTips": {
+        "title": "Conseils de Voyage Économique",
+        "excerpt": "Comment explorer l'Égypte avec un budget limité sans compromettre l'expérience"
+      },
+      "packing": {
+        "title": "Guide de Bagages pour l'Égypte",
+        "excerpt": "Articles essentiels et conseils de voyage pour votre aventure en Égypte"
+      }
+    }
+  },
+  "faq": {
+    "title": "FAQ Voyage en Égypte",
+    "subtitle": "Réponses à vos questions les plus fréquentes : claires, honnêtes et à jour",
+    "questions": {
+      "safety": {
+        "question": "L'Égypte est-elle sûre pour les touristes actuellement ?",
+        "answer": "Oui, l'Égypte est généralement sûre pour les touristes, en particulier dans les destinations principales comme Le Caire, Louxor, Assouan et les resorts de la Mer Rouge. Nous surveillons toutes les régions de près et adaptons chaque itinéraire pour assurer votre confort et sécurité, avec transport privé et support local à chaque étape."
+      },
+      "visa": {
+        "question": "Ai-je besoin d'un visa pour entrer en Égypte ?",
+        "answer": "La plupart des voyageurs peuvent obtenir un e-Visa en ligne avant l'arrivée ou en acheter un à l'arrivée dans les aéroports principaux. Nous vous guiderons à travers le processus après la réservation. Certaines nationalités nécessitent une pré-approbation : vérifiez avec votre ambassade locale ou demandez-nous."
+      },
+      "price": {
+        "question": "Qu'est-ce qui est inclus dans le prix de mon voyage ?",
+        "answer": "Tous nos itinéraires sont entièrement transparents, sans frais cachés. Les inclusions couvrent généralement le transport privé, les guides experts, les billets d'entrée, l'eau en bouteille et toutes les activités mentionnées. Les extras optionnels ou dépenses personnelles sont clairement listés avant la réservation."
+      },
+      "customise": {
+        "question": "Puis-je personnaliser mon itinéraire ?",
+        "answer": "Absolument ! Nos voyages sont conçus autour de vous. Que vous soyez un couple, un voyageur solo ou une famille, vous pouvez tout personnaliser : catégorie d'hôtel, rythme, guides et même destinations."
+      },
+      "currency": {
+        "question": "Quelle devise dois-je apporter ?",
+        "answer": "Bien que l'Égypte utilise la Livre Égyptienne (EGP), USD et EUR sont largement acceptés. Nous recommandons d'apporter de l'argent liquide pour les petits achats et pourboires, bien que les cartes de crédit soient acceptées dans la plupart des hôtels et restaurants."
+      },
+      "weather": {
+        "question": "Quel est le meilleur moment pour visiter l'Égypte ?",
+        "answer": "Octobre à avril offre le climat le plus confortable avec des températures plus fraîches parfaites pour le tourisme. L'été (mai-septembre) est plus chaud mais idéal pour les activités de la Mer Rouge et vient avec des prix d'hébergement plus bas."
+      }
+    }
   }
 }

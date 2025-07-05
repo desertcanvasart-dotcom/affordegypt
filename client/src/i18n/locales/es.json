@@ -179,5 +179,72 @@
     "invalidPhone": "Por favor ingresa un número de teléfono válido",
     "selectDate": "Por favor selecciona una fecha de viaje",
     "selectRoute": "Por favor selecciona al menos una ruta"
+  },
+  "reviews": {
+    "title": "Lo Que Dicen Nuestros Viajeros",
+    "subtitle": "Experiencias reales de miles de viajeros"
+  },
+  "blog": {
+    "title": "Consejos y Guías de Viaje",
+    "subtitle": "Guías expertas, joyas ocultas y consejos prácticos para tu viaje por Egipto",
+    "viewAll": "Ver Todos los Artículos",
+    "readMore": "Leer Más",
+    "minRead": "min de lectura",
+    "posts": {
+      "sinaiGuide": {
+        "title": "Guía de Viaje de la Península del Sinaí",
+        "excerpt": "Guía de viaje de la Península del Sinaí: Mejores lugares para visitar, bucear y hacer senderismo en Egipto"
+      },
+      "redSeaGuide": {
+        "title": "Guía de Resorts del Mar Rojo",
+        "excerpt": "Guía definitiva para buceo, playas y resorts de lujo en el Mar Rojo"
+      },
+      "luxorGuide": {
+        "title": "Guía de Viaje de Luxor",
+        "excerpt": "Guía completa de los templos, tumbas y maravillas antiguas de Luxor"
+      },
+      "cairoGuide": {
+        "title": "Guía de Viaje de El Cairo",
+        "excerpt": "Navega El Cairo como un local: atracciones, comida y joyas ocultas"
+      },
+      "budgetTips": {
+        "title": "Consejos de Viaje Económico",
+        "excerpt": "Cómo explorar Egipto con un presupuesto limitado sin comprometer la experiencia"
+      },
+      "packing": {
+        "title": "Guía de Equipaje para Egipto",
+        "excerpt": "Artículos esenciales y consejos de viaje para tu aventura en Egipto"
+      }
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes sobre Egipto",
+    "subtitle": "Respuestas a tus preguntas más comunes: claras, honestas y actualizadas",
+    "questions": {
+      "safety": {
+        "question": "¿Es seguro Egipto para los turistas ahora?",
+        "answer": "Sí, Egipto es generalmente seguro para los turistas, especialmente en destinos principales como El Cairo, Luxor, Asuán y los resorts del Mar Rojo. Monitoreamos todas las regiones de cerca y adaptamos cada itinerario para garantizar tu comodidad y seguridad, con transporte privado y apoyo local en cada paso."
+      },
+      "visa": {
+        "question": "¿Necesito visa para ingresar a Egipto?",
+        "answer": "La mayoría de los viajeros pueden obtener una e-Visa en línea antes de llegar o comprar una al llegar a los aeropuertos principales. Te guiaremos a través del proceso después de la reserva. Algunas nacionalidades requieren pre-aprobación: consulta con tu embajada local o pregúntanos."
+      },
+      "price": {
+        "question": "¿Qué está incluido en el precio de mi tour?",
+        "answer": "Todos nuestros itinerarios son completamente transparentes, sin tarifas ocultas. Las inclusiones típicamente cubren transporte privado, guías expertos, boletos de entrada, agua embotellada y todas las actividades mencionadas. Los extras opcionales o gastos personales se listan claramente antes de la reserva."
+      },
+      "customise": {
+        "question": "¿Puedo personalizar mi itinerario?",
+        "answer": "¡Absolutamente! Nuestros viajes están diseñados alrededor de ti. Ya seas una pareja, un viajero solo o una familia, puedes personalizar todo: categoría de hotel, ritmo, guías e incluso destinos."
+      },
+      "currency": {
+        "question": "¿Qué moneda debo llevar?",
+        "answer": "Aunque Egipto usa la Libra Egipcia (EGP), USD y EUR son ampliamente aceptados. Recomendamos llevar algo de efectivo para compras pequeñas y propinas, aunque las tarjetas de crédito son aceptadas en la mayoría de hoteles y restaurantes."
+      },
+      "weather": {
+        "question": "¿Cuál es el mejor momento para visitar Egipto?",
+        "answer": "Octubre a abril ofrece el clima más cómodo con temperaturas más frescas perfectas para turismo. El verano (mayo-septiembre) es más caluroso pero ideal para actividades en el Mar Rojo y viene con precios más bajos de alojamiento."
+      }
+    }
   }
 }

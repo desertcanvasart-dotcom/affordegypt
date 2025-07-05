@@ -194,5 +194,72 @@
     "invalidPhone": "Please enter a valid phone number",
     "selectDate": "Please select a travel date",
     "selectRoute": "Please select at least one route"
+  },
+  "reviews": {
+    "title": "What Our Travelers Say",
+    "subtitle": "Real experiences from thousands of travelers"
+  },
+  "blog": {
+    "title": "Travel Insights & Tips",
+    "subtitle": "Expert guides, hidden gems, and practical advice for your Egypt journey",
+    "viewAll": "View All Articles",
+    "readMore": "Read More",
+    "minRead": "min read",
+    "posts": {
+      "sinaiGuide": {
+        "title": "Sinai Peninsula Travel Guide",
+        "excerpt": "Sinai Peninsula Travel Guide: Best Places to Visit, Dive & Hike in Egypt"
+      },
+      "redSeaGuide": {
+        "title": "Red Sea Resorts Guide",
+        "excerpt": "Ultimate guide to Red Sea diving, beaches, and luxury resorts"
+      },
+      "luxorGuide": {
+        "title": "Luxor Travel Guide",
+        "excerpt": "Complete guide to Luxor's temples, tombs, and ancient wonders"
+      },
+      "cairoGuide": {
+        "title": "Cairo Travel Guide",
+        "excerpt": "Navigate Cairo like a local: attractions, food, and hidden gems"
+      },
+      "budgetTips": {
+        "title": "Budget Travel Tips",
+        "excerpt": "How to explore Egypt on a budget without compromising on experience"
+      },
+      "packing": {
+        "title": "Egypt Packing Guide",
+        "excerpt": "Essential items and travel tips for your Egypt adventure"
+      }
+    }
+  },
+  "faq": {
+    "title": "Egypt Travel FAQs",
+    "subtitle": "Answers to your most common questions—clear, honest, and up-to-date",
+    "questions": {
+      "safety": {
+        "question": "Is Egypt safe for tourists right now?",
+        "answer": "Yes, Egypt is generally safe for tourists, especially in major destinations like Cairo, Luxor, Aswan, and the Red Sea resorts. We monitor all regions closely and tailor each itinerary to ensure your comfort and safety, with private transport and local support at every step."
+      },
+      "visa": {
+        "question": "Do I need a visa to enter Egypt?",
+        "answer": "Most travelers can obtain an e-Visa online before arrival or purchase one on arrival at major airports. We'll guide you through the process after booking. Some nationalities require pre-approval—check with your local embassy or ask us."
+      },
+      "price": {
+        "question": "What's included in my tour price?",
+        "answer": "All our itineraries are fully transparent, with no hidden fees. Inclusions typically cover private transportation, expert guides, entrance tickets, bottled water, and all mentioned activities. Optional extras or personal spending are clearly listed before booking."
+      },
+      "customise": {
+        "question": "Can I customise my itinerary?",
+        "answer": "Absolutely! Our trips are designed around you. Whether you're a couple, a solo traveler, or a family, you can customise everything—hotel category, pace, guides, and even destinations."
+      },
+      "currency": {
+        "question": "What currency should I bring?",
+        "answer": "While Egypt uses the Egyptian Pound (EGP), USD and EUR are widely accepted. We recommend bringing some cash for small purchases and tips, though credit cards are accepted in most hotels and restaurants."
+      },
+      "weather": {
+        "question": "What's the best time to visit Egypt?",
+        "answer": "October to April offers the most comfortable weather with cooler temperatures perfect for sightseeing. Summer (May-September) is hotter but ideal for Red Sea activities and comes with lower accommodation prices."
+      }
+    }
   }
 }

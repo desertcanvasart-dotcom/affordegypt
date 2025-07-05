@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 import type { Review } from "@shared/schema";
 
 export default function AnimatedReviewCarousel() {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -75,7 +77,7 @@ export default function AnimatedReviewCarousel() {
             </div>
 
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center">
-              What Our Travelers Say
+              {t('reviews.title')}
             </h2>
 
             {/* TripAdvisor Logo */}
@@ -128,7 +130,7 @@ export default function AnimatedReviewCarousel() {
           </div>
           
           <p className="text-gray-600 text-lg">
-            Real experiences from real travelers
+            {t('reviews.subtitle')}
           </p>
         </div>
 

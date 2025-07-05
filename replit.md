@@ -126,6 +126,11 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 05, 2025. Completed multilingual translations for all homepage sections
+  * Added translations for Reviews, Blog Grid, and FAQ sections in 4 languages
+  * All homepage sections now fully support English, Spanish, French, and German
+  * Dynamic FAQ questions and answers translate based on selected language
+  * Complete homepage is now multilingual: Hero, Multi-City Tool, Reviews, Blog, FAQ, Footer
 - July 05, 2025. Restored homepage to original simple design per user request
   * Removed About section and other extra sections that were incorrectly added
   * Restored clean homepage structure: Hero → Multi-City Tool → Reviews → Blog → FAQ → Footer

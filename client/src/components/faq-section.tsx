@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from 'react-i18next';
 
 interface FAQ {
   id: number;
@@ -62,6 +63,7 @@ const faqs: FAQ[] = [
 ];
 
 export default function FAQSection() {
+  const { t } = useTranslation();
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const toggleItem = (id: number) => {
@@ -72,20 +74,54 @@ export default function FAQSection() {
     );
   };
 
+  // Dynamic FAQ data using translations
+  const translatedFaqs = [
+    {
+      id: 1,
+      question: t('faq.questions.safety.question'),
+      answer: t('faq.questions.safety.answer')
+    },
+    {
+      id: 2,
+      question: t('faq.questions.visa.question'),
+      answer: t('faq.questions.visa.answer')
+    },
+    {
+      id: 3,
+      question: t('faq.questions.price.question'),
+      answer: t('faq.questions.price.answer')
+    },
+    {
+      id: 4,
+      question: t('faq.questions.customise.question'),
+      answer: t('faq.questions.customise.answer')
+    },
+    {
+      id: 5,
+      question: t('faq.questions.currency.question'),
+      answer: t('faq.questions.currency.answer')
+    },
+    {
+      id: 6,
+      question: t('faq.questions.weather.question'),
+      answer: t('faq.questions.weather.answer')
+    }
+  ];
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Egypt Travel FAQs
+            {t('faq.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Answers to your most common questions – clear, honest, and up-to-date.
+            {t('faq.subtitle')}
           </p>
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq) => (
+          {translatedFaqs.map((faq) => (
             <Card key={faq.id} className="border border-gray-200 shadow-sm">
               <button
                 onClick={() => toggleItem(faq.id)}

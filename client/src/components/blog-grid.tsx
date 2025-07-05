@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
+import { useTranslation } from 'react-i18next';
 
 interface BlogPost {
   id: number;
@@ -90,6 +91,7 @@ const blogPosts: BlogPost[] = [
 ];
 
 export default function BlogGrid() {
+  const { t } = useTranslation();
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
@@ -117,9 +119,9 @@ export default function BlogGrid() {
     <section id="blog" className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Travel Insights & Tips</h2>
+          <h2 className="text-3xl font-bold mb-4">{t('blog.title')}</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Expert advice and insider knowledge to make your Egypt adventure unforgettable
+            {t('blog.subtitle')}
           </p>
         </div>
 
