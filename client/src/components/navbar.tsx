@@ -132,7 +132,7 @@ export default function Navbar() {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20 pb-3">
           {/* Logo with Social Icons */}
           <div className="flex flex-col items-start">
             {/* Social Media Icons */}
@@ -190,13 +190,7 @@ export default function Navbar() {
               <Lightbulb className="w-4 h-4" />
               {t('nav.travelTips')}
             </Link>
-            <Link 
-              href="/cuisine-passport"
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <ChefHat className="w-4 h-4" />
-              {t('nav.cuisine')}
-            </Link>
+
             <LanguageSelector />
           </nav>
 
@@ -286,14 +280,7 @@ export default function Navbar() {
                 <Lightbulb className="w-4 h-4" />
                 {t('nav.travelTips')}
               </Link>
-              <Link 
-                href="/cuisine-passport"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <ChefHat className="w-4 h-4" />
-                {t('nav.cuisine')}
-              </Link>
+
               <div className="px-4">
                 <LanguageSelector />
               </div>
