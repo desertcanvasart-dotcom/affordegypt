@@ -99,15 +99,7 @@ export default function MultiCityPricingTool() {
     refetchOnWindowFocus: true,
   });
 
-  // Debug logging for routes
-  useEffect(() => {
-    if (routes.length > 0) {
-      console.log('DEBUG: Routes fetched from API:', routes.length);
-      const luxorRoutes = routes.filter((r: any) => r.fromCityId === 3);
-      console.log('DEBUG: Luxor routes in API response:', luxorRoutes.length);
-      console.log('DEBUG: Luxor route details:', luxorRoutes.map((r: any) => ({ id: r.id, name: r.name })));
-    }
-  }, [routes]);
+
 
   // Fetch available attractions
   const { data: attractions = [] } = useQuery<any[]>({

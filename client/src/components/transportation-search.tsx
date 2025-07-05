@@ -44,13 +44,7 @@ export default function TransportationSearch({
       (route.fromCityId === route.toCityId && route.fromCityId === cityId) // Include intra-city routes
     );
     
-    // Debug logging for Luxor (cityId = 3)
-    if (cityId === 3) {
-      console.log(`DEBUG Transportation: Total routes: ${routes.length}`);
-      console.log(`DEBUG Transportation: Luxor routes found: ${filteredRoutes.length}`);
-      console.log('DEBUG Transportation: All routes with fromCityId=3:', routes.filter(r => r.fromCityId === 3).map(r => ({ id: r.id, name: r.name, fromCityId: r.fromCityId, toCityId: r.toCityId })));
-      console.log('DEBUG Transportation: Final filtered routes:', filteredRoutes.map(r => ({ id: r.id, name: r.name, fromCityId: r.fromCityId, toCityId: r.toCityId })));
-    }
+
     
     return filteredRoutes;
   }, [routes, cityId]);
@@ -149,18 +143,11 @@ export default function TransportationSearch({
           {/* Header */}
           <div className="flex items-center justify-between">
             <h4 className="font-medium text-sm">{cityName} Transportation</h4>
-            <div className="flex items-center gap-2">
-              {cityId === 3 && (
-                <Badge variant="destructive" className="text-xs">
-                  Debug: {cityRoutes.length}/{filteredRoutes.length}
-                </Badge>
-              )}
-              {selectedRoutes.length > 0 && (
-                <Badge variant="secondary" className="text-xs">
-                  {selectedRoutes.length} selected
-                </Badge>
-              )}
-            </div>
+            {selectedRoutes.length > 0 && (
+              <Badge variant="secondary" className="text-xs">
+                {selectedRoutes.length} selected
+              </Badge>
+            )}
           </div>
 
           {/* Search */}
@@ -210,12 +197,7 @@ export default function TransportationSearch({
                     Try adjusting your search or filters
                   </p>
                 )}
-                {cityId === 3 && (
-                  <div className="text-xs text-red-500 mt-2">
-                    Debug: Total routes: {routes.length}, City routes: {cityRoutes.length}, Filtered: {filteredRoutes.length}
-                    <br />Search: "{searchTerm}", Type: "{selectedType}"
-                  </div>
-                )}
+
               </div>
             ) : (
               filteredRoutes.map((route) => (

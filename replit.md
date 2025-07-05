@@ -126,6 +126,7 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 05, 2025. Fixed route caching issue - all 15 Luxor routes now display correctly in multi-city pricing tool
 - July 04, 2025. Initial setup
 
 ## User Preferences
