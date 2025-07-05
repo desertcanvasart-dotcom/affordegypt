@@ -126,10 +126,11 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
-- July 05, 2025. Removed About section from homepage per user request
-  * About section was incorrectly displaying on homepage
-  * Removed both import and component usage from home.tsx
-  * About section should only appear on dedicated About page, not homepage
+- July 05, 2025. Restored homepage to original simple design per user request
+  * Removed About section and other extra sections that were incorrectly added
+  * Restored clean homepage structure: Hero → Multi-City Tool → Reviews → Blog → FAQ → Footer
+  * Homepage now matches original design exactly as intended
+  * Multilingual translations remain available in appropriate components
 - July 05, 2025. Implemented comprehensive multilingual support with react-i18next
   * Added English, Spanish, French, and German language support
   * Translated Hero component with full language switching
