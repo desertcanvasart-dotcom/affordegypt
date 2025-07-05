@@ -6,9 +6,11 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const { toast } = useToast();
 
@@ -18,15 +20,15 @@ export default function Footer() {
     },
     onSuccess: () => {
       toast({
-        title: "Successfully subscribed!",
-        description: "You'll receive travel tips and special offers in your inbox.",
+        title: t('footer.newsletter.success'),
+        description: t('footer.newsletter.successDesc'),
       });
       setEmail("");
     },
     onError: (error: any) => {
       toast({
-        title: "Subscription failed",
-        description: "Please try again or contact us directly.",
+        title: t('footer.newsletter.failed'),
+        description: t('footer.newsletter.failedDesc'),
         variant: "destructive",
       });
     },
@@ -36,16 +38,16 @@ export default function Footer() {
     e.preventDefault();
     if (!email) {
       toast({
-        title: "Email required",
-        description: "Please enter your email address.",
+        title: t('validation.required'),
+        description: t('footer.newsletter.emailRequired'),
         variant: "destructive",
       });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
+        title: t('validation.invalidEmail'),
+        description: t('validation.invalidEmail'),
         variant: "destructive",
       });
       return;

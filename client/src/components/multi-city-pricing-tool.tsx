@@ -485,10 +485,10 @@ export default function MultiCityPricingTool() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-2xl">
                 <Calculator className="w-6 h-6 text-primary" />
-                Multi-City Egypt Travel Pricing Tool
+                {t('pricing.multiCityTool')}
               </CardTitle>
               <p className="text-muted-foreground">
-                Build your complete Egypt itinerary city by city with instant pricing
+                {t('pricing.buildItinerary')}
               </p>
             </CardHeader>
             
@@ -497,7 +497,7 @@ export default function MultiCityPricingTool() {
               <div className="relative mb-2">
                 <div className="flex items-start gap-3">
                   <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium mt-2">
-                    Start Here
+                    {t('pricing.startHere')}
                   </div>
                   <svg 
                     className="w-16 h-16 text-primary mt-1" 

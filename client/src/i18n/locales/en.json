@@ -105,7 +105,9 @@
     }
   },
   "pricing": {
-    "multiCityTool": "Multi-City Pricing Tool",
+    "multiCityTool": "Multi-City Egypt Travel Pricing Tool",
+    "buildItinerary": "Build your complete Egypt itinerary city by city with instant pricing",
+    "startHere": "Start Here",
     "addCity": "Add City",
     "selectTransportation": "Select transportation...",
     "selectTourGuide": "Select tour guide...",
@@ -151,7 +153,40 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "followUs": "Follow Us",
-    "newsletter": "Subscribe to our newsletter for travel tips and deals"
+    "newsletter": {
+      "title": "Subscribe to our newsletter for travel tips and deals",
+      "placeholder": "Enter your email address",
+      "subscribe": "Subscribe",
+      "success": "Successfully subscribed!",
+      "successDesc": "You'll receive travel tips and special offers in your inbox.",
+      "failed": "Subscription failed",
+      "failedDesc": "Please try again or contact us directly.",
+      "emailRequired": "Please enter your email address."
+    },
+    "company": "Afford Egypt Travel",
+    "description": "Your trusted partner for authentic Egyptian experiences at transparent prices.",
+    "quickLinks": "Quick Links",
+    "support": "Support",
+    "legal": "Legal",
+    "copyright": "All rights reserved."
+  },
+  "about": {
+    "title": "Why Travel With Us",
+    "description1": "At Afford Egypt, we're a new generation of Egypt travel specialists redefining what budget travel means—transparent, flexible, and rich in experience.",
+    "description2": "Since 2020, we've helped thousands explore the real Egypt with zero hidden fees and maximum peace of mind. From intercity rides to full-day guided adventures, everything is built to fit your plan and your budget.",
+    "description3": "Whether you're navigating the ancient streets of Cairo, sailing down the Nile, or uncovering Luxor's temple secrets, our platform connects you directly to reliable transport, trusted local guides, and essential attractions—all in just a few clicks.",
+    "description4": "Backed by outstanding customer support and built by young people who actually understand modern travelers, Afford Egypt makes exploring Egypt easy, affordable, and unforgettable.",
+    "stats": {
+      "travelers": "5000+ Travelers",
+      "travelersDesc": "Served since 2020",
+      "destinations": "15+ Destinations", 
+      "destinationsDesc": "Across Egypt",
+      "support": "24/7 Support",
+      "supportDesc": "During your trip",
+      "guarantee": "100% Guarantee",
+      "guaranteeDesc": "Money back promise"
+    },
+    "cta": "Start Planning"
   },
   "validation": {
     "required": "This field is required",

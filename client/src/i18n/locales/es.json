@@ -105,7 +105,9 @@
     }
   },
   "pricing": {
-    "multiCityTool": "Herramienta de Precios Multi-Ciudad",
+    "multiCityTool": "Herramienta de Precios de Viaje Multi-Ciudad de Egipto",
+    "buildItinerary": "Construye tu itinerario completo de Egipto ciudad por ciudad con precios instantáneos",
+    "startHere": "Comienza Aquí",
     "addCity": "Agregar Ciudad",
     "selectTransportation": "Seleccionar transporte...",
     "selectTourGuide": "Seleccionar guía turístico...",
@@ -152,6 +154,24 @@
     "termsOfService": "Términos de Servicio",
     "followUs": "Síguenos",
     "newsletter": "Suscríbete a nuestro boletín para consejos de viaje y ofertas"
+  },
+  "about": {
+    "title": "Por Qué Viajar Con Nosotros",
+    "description1": "En Afford Egypt, somos una nueva generación de especialistas en viajes a Egipto que redefinimos lo que significa viajar con presupuesto: transparente, flexible y rico en experiencias.",
+    "description2": "Desde 2020, hemos ayudado a miles a explorar el verdadero Egipto sin tarifas ocultas y con máxima tranquilidad. Desde traslados entre ciudades hasta aventuras guiadas de día completo, todo está diseñado para ajustarse a tu plan y presupuesto.",
+    "description3": "Ya sea navegando por las calles ancestrales de El Cairo, navegando por el Nilo, o descubriendo los secretos de los templos de Luxor, nuestra plataforma te conecta directamente con transporte confiable, guías locales de confianza y atracciones esenciales, todo en solo unos clics.",
+    "description4": "Respaldados por un excelente servicio al cliente y construidos por jóvenes que realmente entienden a los viajeros modernos, Afford Egypt hace que explorar Egipto sea fácil, asequible e inolvidable.",
+    "stats": {
+      "travelers": "5000+ Viajeros",
+      "travelersDesc": "Atendidos desde 2020",
+      "destinations": "15+ Destinos",
+      "destinationsDesc": "Por todo Egipto",
+      "support": "Soporte 24/7",
+      "supportDesc": "Durante tu viaje",
+      "guarantee": "100% Garantía",
+      "guaranteeDesc": "Promesa de devolución"
+    },
+    "cta": "Empezar a Planificar"
   },
   "validation": {
     "required": "Este campo es obligatorio",
