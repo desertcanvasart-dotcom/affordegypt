@@ -40,6 +40,31 @@
       "localNetwork": "Réseau local + tarifs plus bas"
     }
   },
+  "hero": {
+    "title": "Voyager en Égypte c'est",
+    "titleHighlight": "Simple",
+    "subtitle": "Obtenez des devis instantanés pour le transport, les guides et les expériences. Voyez le prix final réel à l'avance - pas de frais cachés.",
+    "steps": {
+      "step1": {
+        "title": "Sélectionnez votre Voyage",
+        "description": "Choisissez les villes, le transport et la taille du groupe"
+      },
+      "step2": {
+        "title": "Ajouter Guides et Extras",
+        "description": "Choisissez des guides locaux et des expériences"
+      },
+      "step3": {
+        "title": "Obtenez votre Devis",
+        "description": "Prix réels affichés en livres égyptiennes"
+      }
+    },
+    "cta": "Commencez à Planifier votre Voyage",
+    "trustSignals": {
+      "satisfaction": "99% Satisfaction Client",
+      "experience": "15+ Années d'Expérience",
+      "coverage": "Toute l'Égypte Couverte"
+    }
+  },
   "transfers": {
     "title": "Services de Transport",
     "intercityTravel": "Voyage Inter-urbain",

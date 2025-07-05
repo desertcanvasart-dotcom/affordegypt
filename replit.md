@@ -126,6 +126,12 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 05, 2025. Implemented comprehensive multilingual support with react-i18next
+  * Added English, Spanish, French, and German language support
+  * Translated Hero component with full language switching
+  * Started translating Multi-City Pricing Tool component
+  * Removed Arabic language support per user request
+  * Updated navbar with language selector and removed Cuisine Passport link
 - July 05, 2025. Fixed route caching issue - all 15 Luxor routes now display correctly in multi-city pricing tool
 - July 04, 2025. Initial setup
 

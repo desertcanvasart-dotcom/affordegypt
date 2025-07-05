@@ -40,6 +40,31 @@
       "localNetwork": "Red local + tarifas más bajas"
     }
   },
+  "hero": {
+    "title": "Viajar por Egipto es",
+    "titleHighlight": "Sencillo",
+    "subtitle": "Obtenga cotizaciones instantáneas para transporte, guías y experiencias. Vea el precio final real por adelantado, sin tarifas ocultas.",
+    "steps": {
+      "step1": {
+        "title": "Selecciona tu Viaje",
+        "description": "Elige ciudades, transporte y tamaño de grupo"
+      },
+      "step2": {
+        "title": "Agregar Guías y Extras",
+        "description": "Elige guías locales y experiencias"
+      },
+      "step3": {
+        "title": "Obtén tu Cotización",
+        "description": "Precios reales mostrados en libras egipcias"
+      }
+    },
+    "cta": "Comienza a Planificar tu Viaje",
+    "trustSignals": {
+      "satisfaction": "99% Satisfacción del Cliente",
+      "experience": "15+ Años de Experiencia",
+      "coverage": "Todo Egipto Cubierto"
+    }
+  },
   "transfers": {
     "title": "Servicios de Transporte",
     "intercityTravel": "Viajes Entre Ciudades",

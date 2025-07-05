@@ -40,6 +40,31 @@
       "localNetwork": "Local network + lower rates"
     }
   },
+  "hero": {
+    "title": "Egypt Travel Made",
+    "titleHighlight": "Simple",
+    "subtitle": "Get instant quotes for transport, guides, and experiences. See the real final price upfront – no hidden fees.",
+    "steps": {
+      "step1": {
+        "title": "Select Your Journey",
+        "description": "Choose cities, transport, and group size"
+      },
+      "step2": {
+        "title": "Add Guides & Extras",
+        "description": "Pick local guides and experiences"
+      },
+      "step3": {
+        "title": "Get Your Quote",
+        "description": "Real prices shown in Egyptian pounds"
+      }
+    },
+    "cta": "Start Planning Your Trip",
+    "trustSignals": {
+      "satisfaction": "99% Customer Satisfaction",
+      "experience": "15+ Years Experience",
+      "coverage": "All Egypt Covered"
+    }
+  },
   "transfers": {
     "title": "Transportation Services",
     "intercityTravel": "Intercity Travel",

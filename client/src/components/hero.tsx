@@ -1,9 +1,12 @@
 import { ArrowRight, CheckCircle, Star, Users, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useTranslation } from 'react-i18next';
 import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 
 export default function Hero() {
+  const { t } = useTranslation();
+  
   const scrollToQuote = () => {
     const element = document.getElementById('quote-builder');
     if (element) {
@@ -25,35 +28,34 @@ export default function Hero() {
         <div className="text-center text-white">
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">
-            Egypt Travel Made{" "}
+            {t('hero.title')}{" "}
             <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
-              Simple
+              {t('hero.titleHighlight')}
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
-            Get instant quotes for transport, guides, and experiences. 
-            See the real final price upfront – no hidden fees.
+            {t('hero.subtitle')}
           </p>
 
           {/* 3-Step Process */}
           <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 text-center">
               <div className="step-number mx-auto mb-4">1</div>
-              <h3 className="text-lg font-semibold mb-2 text-green-primary">Select Your Journey</h3>
-              <p className="text-white/80 text-sm">Choose cities, transport, and group size</p>
+              <h3 className="text-lg font-semibold mb-2 text-green-primary">{t('hero.steps.step1.title')}</h3>
+              <p className="text-white/80 text-sm">{t('hero.steps.step1.description')}</p>
             </Card>
             
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 text-center">
               <div className="step-number mx-auto mb-4">2</div>
-              <h3 className="text-lg font-semibold mb-2 text-green-primary">Add Guides & Extras</h3>
-              <p className="text-white/80 text-sm">Pick local guides and experiences</p>
+              <h3 className="text-lg font-semibold mb-2 text-green-primary">{t('hero.steps.step2.title')}</h3>
+              <p className="text-white/80 text-sm">{t('hero.steps.step2.description')}</p>
             </Card>
             
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 text-center">
               <div className="step-number mx-auto mb-4">3</div>
-              <h3 className="text-lg font-semibold mb-2 text-green-primary">Get Instant Quote</h3>
-              <p className="text-white/80 text-sm">See total price with all fees included</p>
+              <h3 className="text-lg font-semibold mb-2 text-green-primary">{t('hero.steps.step3.title')}</h3>
+              <p className="text-white/80 text-sm">{t('hero.steps.step3.description')}</p>
             </Card>
           </div>
 
@@ -63,7 +65,7 @@ export default function Hero() {
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-lg font-semibold shadow-xl"
           >
-            Start Your Quote
+            {t('hero.cta')}
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 

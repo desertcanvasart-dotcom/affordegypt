@@ -40,6 +40,31 @@
       "localNetwork": "Lokales Netzwerk + niedrigere Preise"
     }
   },
+  "hero": {
+    "title": "Ägypten Reisen wird",
+    "titleHighlight": "Einfach",
+    "subtitle": "Erhalten Sie sofortige Angebote für Transport, Guides und Erlebnisse. Sehen Sie den echten Endpreis im Voraus - keine versteckten Gebühren.",
+    "steps": {
+      "step1": {
+        "title": "Wählen Sie Ihre Reise",
+        "description": "Wählen Sie Städte, Transport und Gruppengröße"
+      },
+      "step2": {
+        "title": "Guides & Extras hinzufügen",
+        "description": "Wählen Sie lokale Guides und Erlebnisse"
+      },
+      "step3": {
+        "title": "Erhalten Sie Ihr Angebot",
+        "description": "Echte Preise in ägyptischen Pfund angezeigt"
+      }
+    },
+    "cta": "Beginnen Sie Ihre Reiseplanung",
+    "trustSignals": {
+      "satisfaction": "99% Kundenzufriedenheit",
+      "experience": "15+ Jahre Erfahrung",
+      "coverage": "Ganz Ägypten Abgedeckt"
+    }
+  },
   "transfers": {
     "title": "Transportservices",
     "intercityTravel": "Städteverbindungen",
