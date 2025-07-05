@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "destinations": "Destinations",
+    "travelTips": "Travel Tips",
+    "cuisine": "Cuisine Passport",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "startTrip": "Start Your Trip Quote",
+    "bookTransfer": "Book a Transfer"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "total": "Total",
+    "perPerson": "per person",
+    "egp": "EGP",
+    "usd": "USD",
+    "eur": "EUR",
+    "gbp": "GBP",
+    "travelers": "travelers",
+    "traveler": "traveler"
+  },
+  "home": {
+    "title": "Discover Egypt's Wonders",
+    "subtitle": "Affordable, transparent travel with no hidden fees",
+    "features": {
+      "noHiddenFees": "No hidden fees - Real prices in EGP",
+      "rating": "4.9★ on 2,500+ trips",
+      "localNetwork": "Local network + lower rates"
+    }
+  },
+  "transfers": {
+    "title": "Transportation Services",
+    "intercityTravel": "Intercity Travel",
+    "localTours": "Local Tours",
+    "selectFrom": "From",
+    "selectTo": "To",
+    "selectCity": "Select City",
+    "selectCityForLocal": "Choose a city for local tours",
+    "availableRoutes": "Available Local Routes",
+    "matchingRoutes": "Matching Routes",
+    "popularRoutes": "Popular Routes",
+    "noRoutes": "No routes found for your search",
+    "clickToSeeOptions": "Click to see vehicle options",
+    "selectVehicle": "Select Vehicle",
+    "backToRoutes": "← Back to Routes",
+    "serviceType": "Service Type",
+    "distance": "Distance",
+    "duration": "Duration",
+    "vehicleTypes": {
+      "sedan": "Sedan",
+      "minivan": "Minivan", 
+      "van": "Van",
+      "coach": "Coach",
+      "bus": "Bus"
+    },
+    "passengerCapacity": {
+      "sedan": "1-2 passengers",
+      "minivan": "3-8 passengers",
+      "van": "9-15 passengers", 
+      "coach": "16-35 passengers",
+      "bus": "16-35 passengers"
+    },
+    "tripModes": {
+      "transfer": "Transfer & Drop-off",
+      "day_trip": "Day Trip",
+      "overnight": "Overnight",
+      "multi_day": "Multi-Day"
+    }
+  },
+  "pricing": {
+    "multiCityTool": "Multi-City Pricing Tool",
+    "addCity": "Add City",
+    "selectTransportation": "Select transportation...",
+    "selectTourGuide": "Select tour guide...",
+    "selectAddOns": "Select add-ons...",
+    "historical": "Historical",
+    "selectAllVisible": "Select All Visible",
+    "deselectAllVisible": "Deselect All Visible",
+    "finalTotalPerPerson": "Final Total Per Person",
+    "totalFor": "Total: 0 EGP for 1 Travelers",
+    "paymentAccepted": "Payment accepted in Euro, GBP, or USD",
+    "continueToBooking": "Continue to Booking",
+    "pricingBreakdown": "Pricing Breakdown",
+    "routes": "Routes",
+    "guide": "Guide",
+    "attractions": "Attractions",
+    "guideLanguages": {
+      "english": "English",
+      "spanish": "Spanish", 
+      "french": "French",
+      "german": "German",
+      "arabic": "Arabic"
+    }
+  },
+  "booking": {
+    "title": "Complete Your Booking",
+    "customerInfo": "Customer Information",
+    "firstName": "First Name",
+    "lastName": "Last Name", 
+    "email": "Email",
+    "phone": "Phone",
+    "nationality": "Nationality",
+    "travelDetails": "Travel Details",
+    "travelDate": "Travel Date",
+    "notes": "Special Requests (Optional)",
+    "bookingConfirmation": "Booking Confirmation",
+    "thankYou": "Thank you for your booking!",
+    "confirmationSent": "A confirmation email has been sent to your email address.",
+    "bookingReference": "Booking Reference"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us", 
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "followUs": "Follow Us",
+    "newsletter": "Subscribe to our newsletter for travel tips and deals"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "selectDate": "Please select a travel date",
+    "selectRoute": "Please select at least one route"
+  }
+}

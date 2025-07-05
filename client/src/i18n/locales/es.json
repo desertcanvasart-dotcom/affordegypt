@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "destinations": "Destinos",
+    "travelTips": "Consejos de Viaje",
+    "cuisine": "Pasaporte Culinario",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "startTrip": "Comenzar Cotización de Viaje",
+    "bookTransfer": "Reservar Traslado"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpiar",
+    "total": "Total",
+    "perPerson": "por persona",
+    "egp": "EGP",
+    "usd": "USD",
+    "eur": "EUR",
+    "gbp": "GBP",
+    "travelers": "viajeros",
+    "traveler": "viajero"
+  },
+  "home": {
+    "title": "Descubre las Maravillas de Egipto",
+    "subtitle": "Viajes asequibles y transparentes sin tarifas ocultas",
+    "features": {
+      "noHiddenFees": "Sin tarifas ocultas - Precios reales en EGP",
+      "rating": "4.9★ en más de 2,500 viajes",
+      "localNetwork": "Red local + tarifas más bajas"
+    }
+  },
+  "transfers": {
+    "title": "Servicios de Transporte",
+    "intercityTravel": "Viajes Entre Ciudades",
+    "localTours": "Tours Locales",
+    "selectFrom": "Desde",
+    "selectTo": "Hacia",
+    "selectCity": "Seleccionar Ciudad",
+    "selectCityForLocal": "Elige una ciudad para tours locales",
+    "availableRoutes": "Rutas Locales Disponibles",
+    "matchingRoutes": "Rutas Coincidentes",
+    "popularRoutes": "Rutas Populares",
+    "noRoutes": "No se encontraron rutas para tu búsqueda",
+    "clickToSeeOptions": "Clic para ver opciones de vehículos",
+    "selectVehicle": "Seleccionar Vehículo",
+    "backToRoutes": "← Volver a Rutas",
+    "serviceType": "Tipo de Servicio",
+    "distance": "Distancia",
+    "duration": "Duración",
+    "vehicleTypes": {
+      "sedan": "Sedán",
+      "minivan": "Minivan",
+      "van": "Furgoneta",
+      "coach": "Autocar",
+      "bus": "Autobús"
+    },
+    "passengerCapacity": {
+      "sedan": "1-2 pasajeros",
+      "minivan": "3-8 pasajeros",
+      "van": "9-15 pasajeros",
+      "coach": "16-35 pasajeros",
+      "bus": "16-35 pasajeros"
+    },
+    "tripModes": {
+      "transfer": "Traslado y Entrega",
+      "day_trip": "Excursión de Día",
+      "overnight": "Pernoctación",
+      "multi_day": "Varios Días"
+    }
+  },
+  "pricing": {
+    "multiCityTool": "Herramienta de Precios Multi-Ciudad",
+    "addCity": "Agregar Ciudad",
+    "selectTransportation": "Seleccionar transporte...",
+    "selectTourGuide": "Seleccionar guía turístico...",
+    "selectAddOns": "Seleccionar complementos...",
+    "historical": "Histórico",
+    "selectAllVisible": "Seleccionar Todo Visible",
+    "deselectAllVisible": "Deseleccionar Todo Visible",
+    "finalTotalPerPerson": "Total Final Por Persona",
+    "totalFor": "Total: 0 EGP para 1 Viajero",
+    "paymentAccepted": "Pago aceptado en Euro, GBP, o USD",
+    "continueToBooking": "Continuar con la Reserva",
+    "pricingBreakdown": "Desglose de Precios",
+    "routes": "Rutas",
+    "guide": "Guía",
+    "attractions": "Atracciones",
+    "guideLanguages": {
+      "english": "Inglés",
+      "spanish": "Español",
+      "french": "Francés",
+      "german": "Alemán",
+      "arabic": "Árabe"
+    }
+  },
+  "booking": {
+    "title": "Completa tu Reserva",
+    "customerInfo": "Información del Cliente",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "nationality": "Nacionalidad",
+    "travelDetails": "Detalles del Viaje",
+    "travelDate": "Fecha de Viaje",
+    "notes": "Solicitudes Especiales (Opcional)",
+    "bookingConfirmation": "Confirmación de Reserva",
+    "thankYou": "¡Gracias por tu reserva!",
+    "confirmationSent": "Se ha enviado un email de confirmación a tu dirección de correo.",
+    "bookingReference": "Referencia de Reserva"
+  },
+  "footer": {
+    "aboutUs": "Acerca de Nosotros",
+    "contactUs": "Contáctanos",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "followUs": "Síguenos",
+    "newsletter": "Suscríbete a nuestro boletín para consejos de viaje y ofertas"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Por favor ingresa un email válido",
+    "invalidPhone": "Por favor ingresa un número de teléfono válido",
+    "selectDate": "Por favor selecciona una fecha de viaje",
+    "selectRoute": "Por favor selecciona al menos una ruta"
+  }
+}

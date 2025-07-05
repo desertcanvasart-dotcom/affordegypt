@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle, ChefHat, LogOut } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { LanguageSelector } from "@/components/language-selector";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +18,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
+  const { t } = useTranslation();
 
   const navigateToSection = (sectionId: string) => {
     // If we're on the homepage, scroll to the section
@@ -113,15 +116,15 @@ export default function Navbar() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-1">
                 <Shield className="w-3 h-3" />
-                <span>No hidden fees – Real prices in EGP</span>
+                <span>{t('home.features.noHiddenFees')}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Star className="w-3 h-3 fill-current" />
-                <span>4.9★ on 2,500+ trips</span>
+                <span>{t('home.features.rating')}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <CheckCircle className="w-3 h-3" />
-                <span>Local network = lower rates</span>
+                <span>{t('home.features.localNetwork')}</span>
               </div>
             </div>
           </div>
@@ -178,22 +181,23 @@ export default function Navbar() {
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
               <MapPin className="w-4 h-4" />
-              Destinations
+              {t('nav.destinations')}
             </button>
             <Link 
               href="/travel-tips"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
               <Lightbulb className="w-4 h-4" />
-              Travel Tips
+              {t('nav.travelTips')}
             </Link>
             <Link 
               href="/cuisine-passport"
               className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
             >
               <ChefHat className="w-4 h-4" />
-              Cuisine Passport
+              {t('nav.cuisine')}
             </Link>
+            <LanguageSelector />
           </nav>
 
           {/* Primary CTAs */}
@@ -225,10 +229,10 @@ export default function Navbar() {
             ) : (
               <div className="flex items-center space-x-2">
                 <Button variant="ghost" size="sm" asChild>
-                  <Link href="/login" className="text-gray-600 hover:text-gray-900">Sign In</Link>
+                  <Link href="/login" className="text-gray-600 hover:text-gray-900">{t('nav.signIn')}</Link>
                 </Button>
                 <Button size="sm" className="bg-gray-800 hover:bg-gray-900 text-white" asChild>
-                  <Link href="/register">Sign Up</Link>
+                  <Link href="/register">{t('nav.signUp')}</Link>
                 </Button>
               </div>
             )}
@@ -237,14 +241,15 @@ export default function Navbar() {
               onClick={() => navigateToSection('quote-builder')}
               className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors font-medium shadow-md"
             >
-              Start Your Trip Quote
+              {t('nav.startTrip')}
             </button>
 
             <button
               onClick={navigateToTransfers}
               className="border border-gray-300 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors font-medium"
             >
-              Book a Transfer
+              <Truck className="w-4 h-4 inline mr-1" />
+              {t('nav.bookTransfer')}
             </button>
           </div>
 
@@ -271,7 +276,7 @@ export default function Navbar() {
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
                 <MapPin className="w-4 h-4" />
-                Destinations
+                {t('nav.destinations')}
               </Link>
               <Link 
                 href="/travel-tips"
@@ -279,7 +284,7 @@ export default function Navbar() {
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
                 <Lightbulb className="w-4 h-4" />
-                Travel Tips
+                {t('nav.travelTips')}
               </Link>
               <Link 
                 href="/cuisine-passport"
@@ -287,8 +292,11 @@ export default function Navbar() {
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >
                 <ChefHat className="w-4 h-4" />
-                Cuisine Passport
+                {t('nav.cuisine')}
               </Link>
+              <div className="px-4">
+                <LanguageSelector />
+              </div>
               
               {/* Mobile Authentication & CTAs */}
               <div className="pt-4 space-y-3 border-t border-border">
