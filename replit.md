@@ -126,10 +126,14 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 05, 2025. Removed About section from homepage per user request
+  * About section was incorrectly displaying on homepage
+  * Removed both import and component usage from home.tsx
+  * About section should only appear on dedicated About page, not homepage
 - July 05, 2025. Implemented comprehensive multilingual support with react-i18next
   * Added English, Spanish, French, and German language support
   * Translated Hero component with full language switching
-  * Started translating Multi-City Pricing Tool component
+  * Translated Multi-City Pricing Tool header and About section components
   * Removed Arabic language support per user request
   * Updated navbar with language selector and removed Cuisine Passport link
 - July 05, 2025. Fixed route caching issue - all 15 Luxor routes now display correctly in multi-city pricing tool
