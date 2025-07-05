@@ -36,7 +36,7 @@ export function TranslationDemo() {
             <span className="px-2 py-1 bg-blue-100 rounded">{t('pricing.guideLanguages.spanish')}</span>
             <span className="px-2 py-1 bg-green-100 rounded">{t('pricing.guideLanguages.french')}</span>
             <span className="px-2 py-1 bg-orange-100 rounded">{t('pricing.guideLanguages.german')}</span>
-            <span className="px-2 py-1 bg-purple-100 rounded">{t('pricing.guideLanguages.arabic')}</span>
+
           </div>
         </div>
 

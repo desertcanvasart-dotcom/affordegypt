@@ -10,7 +10,6 @@ import {
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ar', name: 'العربية', flag: '🇪🇬' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
@@ -23,13 +22,6 @@ export function LanguageSelector() {
     i18n.changeLanguage(languageCode);
     // Store the language preference
     localStorage.setItem('language', languageCode);
-    
-    // Update document direction for RTL languages
-    if (languageCode === 'ar') {
-      document.documentElement.dir = 'rtl';
-    } else {
-      document.documentElement.dir = 'ltr';
-    }
   };
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
