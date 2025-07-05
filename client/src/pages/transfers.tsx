@@ -302,12 +302,11 @@ export default function TransfersPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                           {routes
                             .filter(route => 
-                              route.fromCityId?.toString() === selectedCityForLocal &&
-                              route.fromCityId === route.toCityId
+                              route.fromCityId?.toString() === selectedCityForLocal
                             )
-                            .slice(0, 6)
                             .map((route) => {
                               const cityName = cities.find(c => c.id === route.fromCityId)?.name;
+                              const toCityName = cities.find(c => c.id === route.toCityId)?.name;
                               
                               return (
                                 <div
@@ -315,9 +314,20 @@ export default function TransfersPage() {
                                   className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
                                   onClick={() => handleRouteSelection(route)}
                                 >
-                                  <h4 className="font-semibold text-sm">
-                                    {route.name || `${route.fromLocation} → ${route.toLocation}`}
-                                  </h4>
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h4 className="font-semibold text-sm">
+                                      {route.name || (route.fromCityId === route.toCityId 
+                                        ? `${route.fromLocation} → ${route.toLocation}`
+                                        : `${cityName} → ${toCityName}`
+                                      )}
+                                    </h4>
+                                    <Badge variant="secondary" className="text-xs">
+                                      {route.tripMode === 'transfer' && 'Transfer'}
+                                      {route.tripMode === 'day_trip' && 'Day Trip'}
+                                      {route.tripMode === 'overnight' && 'Overnight'}
+                                      {route.tripMode === 'multi_day' && 'Multi-Day'}
+                                    </Badge>
+                                  </div>
                                   <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
                                   <p className="text-sm text-gray-500 mt-1">Click to see vehicle options</p>
                                 </div>
