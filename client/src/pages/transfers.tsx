@@ -298,7 +298,14 @@ export default function TransfersPage() {
                     {/* Local Routes */}
                     {showLocalRoutes && (
                       <div>
-                        <h3 className="text-lg font-semibold mb-4">Available Local Routes</h3>
+                        <h3 className="text-lg font-semibold mb-4">
+                          Available Local Routes
+                          {selectedCityForLocal === '3' && (
+                            <span className="text-sm text-red-500 ml-2">
+                              (Debug: {routes.filter(route => route.fromCityId?.toString() === selectedCityForLocal).length} found)
+                            </span>
+                          )}
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                           {routes
                             .filter(route => 
@@ -406,10 +413,11 @@ export default function TransfersPage() {
                           </div>
                           <p className="text-2xl font-bold text-teal-600">{Math.round(priceValue)} EGP</p>
                           <p className="text-sm text-gray-500 mt-1">
-                            {vehicleType === 'sedan' && 'Up to 4 passengers'}
-                            {vehicleType === 'minivan' && 'Up to 7 passengers'}
-                            {vehicleType === 'van' && 'Up to 12 passengers'}
-                            {vehicleType === 'bus' && 'Up to 20 passengers'}
+                            {vehicleType === 'sedan' && '1-2 passengers'}
+                            {vehicleType === 'minivan' && '3-8 passengers'}
+                            {vehicleType === 'van' && '9-15 passengers'}
+                            {vehicleType === 'coach' && '16-35 passengers'}
+                            {vehicleType === 'bus' && '16-35 passengers'}
                           </p>
                         </div>
                       );
