@@ -70,7 +70,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-gray-300 mb-4">
-              Budget-friendly Egypt travel with transparent pricing and expert local guides.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a 
@@ -113,64 +113,64 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/eastern-western-deserts-guide" className="text-gray-300 hover:text-primary transition-colors">
-                  Eastern & Western Deserts Travel Guide
+                  {t('footer.desertsGuide')}
                 </Link>
               </li>
               <li>
                 <Link href="/sinai-peninsula-guide" className="text-gray-300 hover:text-primary transition-colors">
-                  Sinai Peninsula Travel Guide
+                  {t('footer.sinaiGuide')}
                 </Link>
               </li>
               <li>
                 <Link href="/nile-valley-guide" className="text-gray-300 hover:text-primary transition-colors">
-                  Nile Valley Travel Guide
+                  {t('footer.nileGuide')}
                 </Link>
               </li>
               <li>
                 <Link href="/budget-travel-egypt" className="text-gray-300 hover:text-primary transition-colors">
-                  Budget Travel in Egypt
+                  {t('footer.budgetTravel')}
                 </Link>
               </li>
               <li>
                 <Link href="/egyptian-street-food-guide" className="text-gray-300 hover:text-primary transition-colors">
-                  Egyptian Street Food
+                  {t('footer.streetFood')}
                 </Link>
               </li>
               <li>
                 <Link href="/cuisine-passport" className="text-gray-300 hover:text-primary transition-colors">
-                  Cuisine Passport
+                  {t('footer.cuisinePassport')}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-gray-300 hover:text-primary transition-colors">
-                  About Us
+                  {t('footer.aboutUs')}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-gray-300 hover:text-primary transition-colors">
-                  Contact
+                  {t('footer.contactUs')}
                 </Link>
               </li>
-              <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">Terms of Service</Link></li>
-              <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">Cookie Policy</Link></li>
-              <li><Link href="/booking-agreement" className="text-gray-300 hover:text-primary transition-colors">Booking Agreement</Link></li>
+              <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.privacyPolicy')}</Link></li>
+              <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">{t('footer.termsOfService')}</Link></li>
+              <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.cookiePolicy')}</Link></li>
+              <li><Link href="/booking-agreement" className="text-gray-300 hover:text-primary transition-colors">{t('footer.bookingAgreement')}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-300 mb-4">Get travel tips and special offers</p>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.newsletter.title')}</h3>
+            <p className="text-gray-300 mb-4">{t('footer.newsletter.subtitle')}</p>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-0">
               <Input 
                 type="email" 
-                placeholder="Your email" 
+                placeholder={t('footer.newsletter.placeholder')} 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-gray-700 text-white border-gray-600 sm:rounded-r-none focus:border-primary" 
@@ -181,7 +181,7 @@ export default function Footer() {
                 className="btn-primary sm:rounded-l-none"
                 disabled={newsletterMutation.isPending}
               >
-                {newsletterMutation.isPending ? "Subscribing..." : "Subscribe"}
+                {newsletterMutation.isPending ? t('footer.newsletter.subscribing') : t('footer.newsletter.subscribe')}
               </Button>
             </form>
           </div>
@@ -189,7 +189,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
           <p className="text-xs sm:text-sm whitespace-nowrap overflow-hidden text-ellipsis">
-            &copy; 2025 Afford Egypt. All rights reserved. | Powered and Polished by{' '}
+            &copy; 2025 Afford Egypt. {t('footer.copyright')} | {t('footer.poweredBy')}{' '}
             <a 
               href="https://traveldigitalera.com/" 
               target="_blank" 
