@@ -183,13 +183,6 @@ export default function Navbar() {
               <MapPin className="w-4 h-4" />
               {t('nav.destinations')}
             </button>
-            <Link 
-              href="/travel-tips"
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <Lightbulb className="w-4 h-4" />
-              {t('nav.travelTips')}
-            </Link>
 
             <LanguageSelector />
           </nav>
@@ -271,14 +264,6 @@ export default function Navbar() {
               >
                 <MapPin className="w-4 h-4" />
                 {t('nav.destinations')}
-              </Link>
-              <Link 
-                href="/travel-tips"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <Lightbulb className="w-4 h-4" />
-                {t('nav.travelTips')}
               </Link>
 
               <div className="px-4">

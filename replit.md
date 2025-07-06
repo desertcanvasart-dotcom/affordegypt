@@ -126,6 +126,11 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 06, 2025. Reorganized navigation by moving Travel Tips from header to footer
+  * Removed "Travel Tips" link from both desktop and mobile navigation menus
+  * Added "Travel Tips" to footer under "Useful Links" section with multilingual support
+  * Updated translation files to support "Useful Links" and "Travel Tips" in all 4 languages
+  * Navigation now cleaner with only Destinations link and language selector
 - July 05, 2025. Completed multilingual translations for all homepage sections
   * Added translations for Reviews, Blog Grid, and FAQ sections in 4 languages
   * All homepage sections now fully support English, Spanish, French, and German

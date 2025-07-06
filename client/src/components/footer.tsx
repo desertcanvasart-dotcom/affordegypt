@@ -104,8 +104,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.usefulLinks')}</h3>
             <ul className="space-y-2">
+              <li>
+                <Link href="/travel-tips" className="text-gray-300 hover:text-primary transition-colors">
+                  {t('footer.travelTips')}
+                </Link>
+              </li>
               <li>
                 <Link href="/eastern-western-deserts-guide" className="text-gray-300 hover:text-primary transition-colors">
                   Eastern & Western Deserts Travel Guide
