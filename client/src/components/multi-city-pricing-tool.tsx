@@ -531,7 +531,7 @@ export default function MultiCityPricingTool() {
               <div className="flex items-center gap-6 mt-4 p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-primary" />
-                  <Label htmlFor="travel-date" className="font-medium">Trip Start Date:</Label>
+                  <Label htmlFor="travel-date" className="font-medium">{t('pricing.tripStartDate')}</Label>
                   <Input
                     id="travel-date"
                     type="date"
@@ -546,7 +546,7 @@ export default function MultiCityPricingTool() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-primary" />
-                  <Label htmlFor="total-travelers" className="font-medium">Total Travelers:</Label>
+                  <Label htmlFor="total-travelers" className="font-medium">{t('pricing.totalTravelers')}</Label>
                   <Select
                     value={globalTravelers.toString()}
                     onValueChange={(value) => {
@@ -573,7 +573,7 @@ export default function MultiCityPricingTool() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Filter className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg font-semibold text-primary">Smart Itinerary Builder</h3>
+                    <h3 className="text-lg font-semibold text-primary">{t('pricing.smartItineraryBuilder')}</h3>
                   </div>
                   <Button
                     variant="outline"
@@ -582,7 +582,7 @@ export default function MultiCityPricingTool() {
                     className="text-primary border-primary/30 hover:bg-primary/10"
                   >
                     <Sliders className="w-4 h-4 mr-2" />
-                    {showAdvancedFilters ? 'Hide' : 'Show'} Filters
+                    {showAdvancedFilters ? t('pricing.hideFilters') : t('pricing.showFilters')}
                   </Button>
                 </div>
 
@@ -740,13 +740,13 @@ export default function MultiCityPricingTool() {
               {/* Enhanced City Selection */}
               <div className="mt-6">
                 <p className="text-sm text-muted-foreground mb-3">
-                  Type at least 2 letters of your destination, then click "Add Destination" to include it in your itinerary.
+                  {t('pricing.searchInstruction')}
                 </p>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex-1 relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
-                      placeholder="Search cities..."
+                      placeholder={t('pricing.searchCities')}
                       value={citySearchTerm}
                       onChange={(e) => setCitySearchTerm(e.target.value)}
                       className="pl-10"
@@ -756,14 +756,14 @@ export default function MultiCityPricingTool() {
                     <PopoverTrigger asChild>
                       <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                         <Plus className="w-4 h-4 mr-2" />
-                        Add Destination
+                        {t('pricing.addDestination')}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-96" align="start">
                       <div className="space-y-4">
                         <h4 className="font-medium text-lg flex items-center gap-2">
                           <MapPin className="w-5 h-5 text-primary" />
-                          Choose Your Next Destination
+                          {t('pricing.chooseNextDestination')}
                         </h4>
                         <div className="grid gap-3 max-h-80 overflow-y-auto">
                           {getFilteredCities().map((city: any) => (
@@ -828,13 +828,13 @@ export default function MultiCityPricingTool() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[140px]">City</TableHead>
-                  <TableHead className="min-w-[200px]">Transportation</TableHead>
-                  <TableHead className="min-w-[140px]">Guide</TableHead>
-                  <TableHead className="min-w-[160px]">Attractions</TableHead>
-                  <TableHead className="min-w-[140px]">Per Person Add-ons</TableHead>
-                  <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
-                  <TableHead className="min-w-[100px]">Total/Person</TableHead>
+                  <TableHead className="min-w-[140px]">{t('pricing.city')}</TableHead>
+                  <TableHead className="min-w-[200px]">{t('pricing.transportation')}</TableHead>
+                  <TableHead className="min-w-[140px]">{t('pricing.guide')}</TableHead>
+                  <TableHead className="min-w-[160px]">{t('pricing.attractions')}</TableHead>
+                  <TableHead className="min-w-[140px]">{t('pricing.perPersonAddOns')}</TableHead>
+                  <TableHead className="min-w-[140px]">{t('pricing.perUnitAddOns')}</TableHead>
+                  <TableHead className="min-w-[100px]">{t('pricing.totalPerPerson')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -965,7 +965,7 @@ export default function MultiCityPricingTool() {
                   className="flex items-center gap-2"
                 >
                   <Plus className="w-4 h-4" />
-                  Add City
+                  {t('pricing.addCity')}
                 </Button>
               ) : (
                 <div className="flex items-center gap-2">
@@ -988,7 +988,7 @@ export default function MultiCityPricingTool() {
                     setShowCityPicker(false);
                   }}>
                     <SelectTrigger className="w-48">
-                      <SelectValue placeholder="Choose a city to visit" />
+                      <SelectValue placeholder={t('pricing.chooseCityToVisit')} />
                     </SelectTrigger>
                     <SelectContent>
                       {cities.filter((city: any) => !cityServices.find(cs => cs.cityId === city.id)).map((city: any) => (
@@ -1009,7 +1009,7 @@ export default function MultiCityPricingTool() {
                     size="sm"
                     onClick={() => setShowCityPicker(false)}
                   >
-                    Cancel
+                    {t('pricing.cancel')}
                   </Button>
                 </div>
               )}
@@ -1018,7 +1018,7 @@ export default function MultiCityPricingTool() {
             <div className="flex items-center gap-4">
               {totalPricing && (
                 <div className="text-right">
-                  <div className="text-sm text-muted-foreground">Final Total Per Person</div>
+                  <div className="text-sm text-muted-foreground">{t('pricing.finalTotalPerPerson')}</div>
                   <div className="text-2xl font-bold font-mono text-primary">
                     {Math.round(totalPricing.perPersonAmount)} EGP
                   </div>
@@ -1026,7 +1026,7 @@ export default function MultiCityPricingTool() {
                     Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
-                    Payment accepted in Euro, GBP, or USD
+                    {t('pricing.paymentAccepted')}
                   </p>
                 </div>
               )}
@@ -1034,7 +1034,7 @@ export default function MultiCityPricingTool() {
               {pricingMutation.isPending ? (
                 <Button size="lg" disabled className="flex items-center gap-2">
                   <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
-                  Calculating...
+                  {t('pricing.calculating')}
                 </Button>
               ) : (
                 <Button 
@@ -1043,7 +1043,7 @@ export default function MultiCityPricingTool() {
                   disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
                   onClick={handleContinueBooking}
                 >
-                  Continue to Booking
+                  {t('pricing.continueToBooking')}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               )}

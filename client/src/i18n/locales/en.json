@@ -129,7 +129,26 @@
       "french": "French",
       "german": "German",
       "arabic": "Arabic"
-    }
+    },
+    "smartItineraryBuilder": "Smart Itinerary Builder",
+    "showFilters": "Show Filters",
+    "hideFilters": "Hide Filters",
+    "addDestination": "Add Destination",
+    "searchCities": "Search cities...",
+    "tripStartDate": "Trip Start Date:",
+    "totalTravelers": "Total Travelers:",
+    "city": "City",
+    "transportation": "Transportation",
+    "guide": "Guide",
+    "attractions": "Attractions",
+    "perPersonAddOns": "Per Person Add-ons",
+    "perUnitAddOns": "Per Unit Add-ons",
+    "totalPerPerson": "Total/Person",
+    "searchInstruction": "Type at least 2 letters of your destination, then click \"Add Destination\" to include it in your itinerary.",
+    "chooseNextDestination": "Choose Your Next Destination",
+    "cancel": "Cancel",
+    "calculating": "Calculating...",
+    "chooseCityToVisit": "Choose a city to visit"
   },
   "booking": {
     "title": "Complete Your Booking",
