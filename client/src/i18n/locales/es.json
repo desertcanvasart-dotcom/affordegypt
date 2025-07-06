@@ -215,6 +215,15 @@
     "viewAll": "Ver Todos los Artículos",
     "readMore": "Leer Más",
     "minRead": "min de lectura",
+    "loadMore": "Cargar Más Artículos",
+    "noArticles": "No se encontraron artículos en esta categoría.",
+    "categories": {
+      "all": "Todos",
+      "destinations": "Destinos",
+      "budgetTravel": "Viajes Económicos",
+      "foodCulture": "Comida y Cultura",
+      "travelTips": "Consejos de Viaje"
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Guía de Viaje de la Península del Sinaí",
@@ -270,6 +279,11 @@
         "question": "¿Cuál es el mejor momento para visitar Egipto?",
         "answer": "Octubre a abril ofrece el clima más cómodo con temperaturas más frescas perfectas para turismo. El verano (mayo-septiembre) es más caluroso pero ideal para actividades en el Mar Rojo y viene con precios más bajos de alojamiento."
       }
+    },
+    "support": {
+      "question": "¿Tienes más preguntas? ¡Estamos aquí para ayudarte!",
+      "whatsapp": "Soporte por WhatsApp",
+      "email": "Escríbenos"
     }
   }
 }

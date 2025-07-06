@@ -95,7 +95,12 @@ export default function BlogGrid() {
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Destinations", "Budget Travel", "Food & Culture"];
+  const categories = [
+    { key: "All", label: t('blog.categories.all') },
+    { key: "Destinations", label: t('blog.categories.destinations') },
+    { key: "Budget Travel", label: t('blog.categories.budgetTravel') },
+    { key: "Food & Culture", label: t('blog.categories.foodCulture') }
+  ];
 
   // Filter out Travel Tips posts and apply category filter
   const availablePosts = blogPosts.filter(post => post.category !== "Travel Tips");
@@ -129,16 +134,16 @@ export default function BlogGrid() {
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {categories.map((category) => (
             <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
+              key={category.key}
+              variant={selectedCategory === category.key ? "default" : "outline"}
               size="sm"
               onClick={() => {
-                setSelectedCategory(category);
+                setSelectedCategory(category.key);
                 setVisiblePosts(3);
               }}
-              className={selectedCategory === category ? "bg-primary text-primary-foreground" : ""}
+              className={selectedCategory === category.key ? "bg-primary text-primary-foreground" : ""}
             >
-              {category}
+              {category.label}
             </Button>
           ))}
         </div>
@@ -158,7 +163,11 @@ export default function BlogGrid() {
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
                   <Badge variant="secondary" className="text-xs">
-                    {post.category}
+                    {post.category === 'Destinations' ? t('blog.categories.destinations') :
+                     post.category === 'Budget Travel' ? t('blog.categories.budgetTravel') :
+                     post.category === 'Food & Culture' ? t('blog.categories.foodCulture') :
+                     post.category === 'Travel Tips' ? t('blog.categories.travelTips') :
+                     post.category}
                   </Badge>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1">
@@ -182,41 +191,41 @@ export default function BlogGrid() {
                 {post.slug === "nile-valley-travel-guide" ? (
                   <Link href="/nile-valley-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      Read More
+                      {t('blog.readMore')}
                       <ArrowRight className="ml-1 w-3 h-3" />
                     </Button>
                   </Link>
                 ) : post.slug === "sinai-peninsula-travel-guide" ? (
                   <Link href="/sinai-peninsula-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      Read More
+                      {t('blog.readMore')}
                       <ArrowRight className="ml-1 w-3 h-3" />
                     </Button>
                   </Link>
                 ) : post.slug === "eastern-western-deserts-travel-guide" ? (
                   <Link href="/eastern-western-deserts-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      Read More
+                      {t('blog.readMore')}
                       <ArrowRight className="ml-1 w-3 h-3" />
                     </Button>
                   </Link>
                 ) : post.slug === "budget-travel-egypt" ? (
                   <Link href="/budget-travel-egypt">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      Read More
+                      {t('blog.readMore')}
                       <ArrowRight className="ml-1 w-3 h-3" />
                     </Button>
                   </Link>
                 ) : post.slug === "egyptian-street-food-guide" ? (
                   <Link href="/egyptian-street-food-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      Read More
+                      {t('blog.readMore')}
                       <ArrowRight className="ml-1 w-3 h-3" />
                     </Button>
                   </Link>
                 ) : (
                   <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                    Read More
+                    {t('blog.readMore')}
                     <ArrowRight className="ml-1 w-3 h-3" />
                   </Button>
                 )}
@@ -233,7 +242,7 @@ export default function BlogGrid() {
               onClick={loadMore}
               className="flex items-center gap-2"
             >
-              Load More Articles
+{t('blog.loadMore')}
               <ChevronDown className="w-4 h-4" />
             </Button>
           </div>
@@ -241,7 +250,7 @@ export default function BlogGrid() {
 
         {filteredPosts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No articles found in this category.</p>
+            <p className="text-muted-foreground">{t('blog.noArticles')}</p>
           </div>
         )}
       </div>

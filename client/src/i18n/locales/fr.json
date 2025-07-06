@@ -214,6 +214,15 @@
     "subtitle": "Guides d'experts, joyaux cachés et conseils pratiques pour votre voyage en Égypte",
     "viewAll": "Voir Tous les Articles",
     "readMore": "Lire Plus",
+    "loadMore": "Charger Plus d'Articles",
+    "noArticles": "Aucun article trouvé dans cette catégorie.",
+    "categories": {
+      "all": "Tous",
+      "destinations": "Destinations",
+      "budgetTravel": "Voyage à Petit Budget",
+      "foodCulture": "Nourriture et Culture",
+      "travelTips": "Conseils de Voyage"
+    },
     "minRead": "min de lecture",
     "posts": {
       "sinaiGuide": {
@@ -270,6 +279,11 @@
         "question": "Quel est le meilleur moment pour visiter l'Égypte ?",
         "answer": "Octobre à avril offre le climat le plus confortable avec des températures plus fraîches parfaites pour le tourisme. L'été (mai-septembre) est plus chaud mais idéal pour les activités de la Mer Rouge et vient avec des prix d'hébergement plus bas."
       }
+    },
+    "support": {
+      "question": "Vous avez encore des questions ? Nous sommes là pour vous aider !",
+      "whatsapp": "Support WhatsApp",
+      "email": "Nous Contacter"
     }
   }
 }

@@ -154,20 +154,20 @@ export default function FAQSection() {
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">
-            Still have questions? We're here to help!
+            {t('faq.support.question')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="https://wa.me/1234567890" 
               className="inline-flex items-center justify-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors duration-200"
             >
-              WhatsApp Support
+              {t('faq.support.whatsapp')}
             </a>
             <a 
               href="mailto:info@affordegypt.com" 
               className="inline-flex items-center justify-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg transition-colors duration-200"
             >
-              Email Us
+              {t('faq.support.email')}
             </a>
           </div>
         </div>

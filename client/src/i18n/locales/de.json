@@ -215,6 +215,15 @@
     "viewAll": "Alle Artikel Ansehen",
     "readMore": "Mehr Lesen",
     "minRead": "Min. Lesezeit",
+    "loadMore": "Mehr Artikel Laden",
+    "noArticles": "Keine Artikel in dieser Kategorie gefunden.",
+    "categories": {
+      "all": "Alle",
+      "destinations": "Reiseziele",
+      "budgetTravel": "Budget-Reisen",
+      "foodCulture": "Essen und Kultur",
+      "travelTips": "Reisetipps"
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Sinai-Halbinsel Reiseführer",
@@ -270,6 +279,11 @@
         "question": "Wann ist die beste Zeit, Ägypten zu besuchen?",
         "answer": "Oktober bis April bietet das angenehmste Wetter mit kühleren Temperaturen, perfekt für Sightseeing. Der Sommer (Mai-September) ist heißer, aber ideal für Aktivitäten am Roten Meer und kommt mit niedrigeren Unterkunftspreisen."
       }
+    },
+    "support": {
+      "question": "Haben Sie noch Fragen? Wir helfen Ihnen gerne!",
+      "whatsapp": "WhatsApp Support",
+      "email": "E-Mail Kontakt"
     }
   }
 }

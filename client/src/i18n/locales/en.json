@@ -215,6 +215,15 @@
     "viewAll": "View All Articles",
     "readMore": "Read More",
     "minRead": "min read",
+    "loadMore": "Load More Articles",
+    "noArticles": "No articles found in this category.",
+    "categories": {
+      "all": "All",
+      "destinations": "Destinations",
+      "budgetTravel": "Budget Travel",
+      "foodCulture": "Food & Culture",
+      "travelTips": "Travel Tips"
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Sinai Peninsula Travel Guide",
@@ -270,6 +279,11 @@
         "question": "What's the best time to visit Egypt?",
         "answer": "October to April offers the most comfortable weather with cooler temperatures perfect for sightseeing. Summer (May-September) is hotter but ideal for Red Sea activities and comes with lower accommodation prices."
       }
+    },
+    "support": {
+      "question": "Still have questions? We're here to help!",
+      "whatsapp": "WhatsApp Support",
+      "email": "Email Us"
     }
   }
 }
