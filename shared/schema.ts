@@ -36,6 +36,9 @@ export const cities = pgTable("cities", {
   description: text("description"),
   image: text("image"),
   isActive: boolean("is_active").default(true),
+  // Translation columns
+  nameTranslations: jsonb("name_translations"), // {en: "Cairo", es: "El Cairo", fr: "Le Caire", de: "Kairo"}
+  descriptionTranslations: jsonb("description_translations"),
 });
 
 export const vehicleTypes = pgTable("vehicle_types", {
@@ -45,6 +48,9 @@ export const vehicleTypes = pgTable("vehicle_types", {
   paxMin: integer("pax_min").notNull(),
   paxMax: integer("pax_max").notNull(),
   image: text("image"),
+  // Translation columns
+  nameTranslations: jsonb("name_translations"),
+  descriptionTranslations: jsonb("description_translations"),
 });
 
 export const licenseClasses = pgTable("license_classes", {
@@ -75,6 +81,14 @@ export const routes = pgTable("routes", {
   nights: integer("nights").default(0),
   distanceKm: integer("distance_km"),
   vehiclePrices: jsonb("vehicle_prices"),
+  // Translation columns
+  nameTranslations: jsonb("name_translations"),
+  fromLocationTranslations: jsonb("from_location_translations"),
+  toLocationTranslations: jsonb("to_location_translations"),
+  routeHighlightsTranslations: jsonb("route_highlights_translations"),
+  travelTipsTranslations: jsonb("travel_tips_translations"),
+  pickupInstructionsTranslations: jsonb("pickup_instructions_translations"),
+  dropoffInstructionsTranslations: jsonb("dropoff_instructions_translations"),
 });
 
 export const timeBlocks = pgTable("time_blocks", {
@@ -104,6 +118,9 @@ export const addOns = pgTable("add_ons", {
   category: text("category").notNull(), // 'transport', 'experience', 'meal', 'ticket'
   image: text("image"),
   isActive: boolean("is_active").default(true),
+  // Translation columns
+  nameTranslations: jsonb("name_translations"),
+  descriptionTranslations: jsonb("description_translations"),
 });
 
 export const attractions = pgTable("attractions", {
@@ -121,6 +138,10 @@ export const attractions = pgTable("attractions", {
   capacity: integer("capacity"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+  // Translation columns
+  nameTranslations: jsonb("name_translations"),
+  descriptionTranslations: jsonb("description_translations"),
+  bestTimeToVisitTranslations: jsonb("best_time_to_visit_translations"),
 });
 
 export const quotes = pgTable("quotes", {
@@ -146,6 +167,9 @@ export const services = pgTable("services", {
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+  // Translation columns
+  titleTranslations: jsonb("title_translations"),
+  descriptionTranslations: jsonb("description_translations"),
 });
 
 export const bookings = pgTable("bookings", {

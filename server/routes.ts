@@ -6,6 +6,7 @@ import { emailService } from "./email-service";
 import { setupAuthRoutes } from "./auth-routes";
 import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
+import { createTranslatedRoute } from "./translationMiddleware";
 import multer from "multer";
 import csv from "csv-parser";
 import fs from "fs";
@@ -36,14 +37,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuthRoutes(app);
   
   // Cities CRUD endpoints
-  app.get("/api/cities", async (req, res) => {
+  app.get("/api/cities", ...createTranslatedRoute(async (req, res) => {
     try {
       const cities = await storage.getCities();
       res.json(cities);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
-  });
+  }, "cities"));
 
   app.post("/api/cities", async (req, res) => {
     try {
@@ -97,14 +98,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Add-ons CRUD endpoints
-  app.get("/api/addons", async (req, res) => {
+  app.get("/api/addons", ...createTranslatedRoute(async (req, res) => {
     try {
       const addOns = await storage.getAddOns();
       res.json(addOns);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
-  });
+  }, "addOns"));
 
   app.post("/api/addons", async (req, res) => {
     try {
@@ -134,14 +135,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Attractions CRUD endpoints
-  app.get("/api/attractions", async (req, res) => {
+  app.get("/api/attractions", ...createTranslatedRoute(async (req, res) => {
     try {
       const attractions = await storage.getAttractions();
       res.json(attractions);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
-  });
+  }, "attractions"));
 
   app.post("/api/attractions", async (req, res) => {
     try {
@@ -171,14 +172,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Vehicle Types CRUD endpoints
-  app.get("/api/vehicle-types", async (req, res) => {
+  app.get("/api/vehicle-types", ...createTranslatedRoute(async (req, res) => {
     try {
       const vehicles = await storage.getVehicleTypes();
       res.json(vehicles);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
-  });
+  }, "vehicleTypes"));
 
   app.post("/api/vehicle-types", async (req, res) => {
     try {
@@ -647,7 +648,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get routes
-  app.get("/api/routes", async (req, res) => {
+  app.get("/api/routes", ...createTranslatedRoute(async (req, res) => {
     try {
       const { fromCityId, toCityId } = req.query;
       if (fromCityId && toCityId) {
@@ -703,7 +704,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
-  });
+  }, "routes"));
 
   // Create route
   app.post("/api/routes", async (req, res) => {
