@@ -845,7 +845,7 @@ export default function MultiCityPricingTool() {
                       <TableCell className="font-medium">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            {cityService.cityName}
+                            {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
                             {index === cityServices.length - 1 && (
                               <Badge variant="secondary" className="text-xs">Current</Badge>
                             )}
