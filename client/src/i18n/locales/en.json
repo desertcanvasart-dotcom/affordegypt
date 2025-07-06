@@ -226,7 +226,10 @@
   },
   "reviews": {
     "title": "What Our Travelers Say",
-    "subtitle": "Real experiences from thousands of travelers"
+    "subtitle": "Real experiences from thousands of travelers",
+    "totalReviews": "Total Reviews",
+    "averageRating": "Average Rating",
+    "fiveStarReviews": "5-Star Reviews"
   },
   "blog": {
     "title": "Travel Insights & Tips",

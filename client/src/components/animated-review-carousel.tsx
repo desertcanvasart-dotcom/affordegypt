@@ -236,19 +236,19 @@ export default function AnimatedReviewCarousel() {
         <div className="flex justify-center items-center gap-8 mt-8 text-gray-600">
           <div className="text-center">
             <div className="text-2xl font-bold text-gray-900">{reviews.length}</div>
-            <div className="text-sm">Total Reviews</div>
+            <div className="text-sm">{t('reviews.totalReviews')}</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-gray-900">
               {reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : "0"}
             </div>
-            <div className="text-sm">Average Rating</div>
+            <div className="text-sm">{t('reviews.averageRating')}</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-gray-900">
               {Math.round((reviews.filter(r => r.rating === 5).length / reviews.length) * 100) || 0}%
             </div>
-            <div className="text-sm">5-Star Reviews</div>
+            <div className="text-sm">{t('reviews.fiveStarReviews')}</div>
           </div>
         </div>
       </div>

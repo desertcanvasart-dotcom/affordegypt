@@ -226,7 +226,10 @@
   },
   "reviews": {
     "title": "Ce Que Disent Nos Voyageurs",
-    "subtitle": "Expériences réelles de milliers de voyageurs"
+    "subtitle": "Expériences réelles de milliers de voyageurs",
+    "totalReviews": "Total des Avis",
+    "averageRating": "Note Moyenne",
+    "fiveStarReviews": "Avis 5 Étoiles"
   },
   "blog": {
     "title": "Conseils et Guides de Voyage",

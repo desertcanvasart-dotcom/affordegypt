@@ -226,7 +226,10 @@
   },
   "reviews": {
     "title": "Was Unsere Reisenden Sagen",
-    "subtitle": "Echte Erfahrungen von Tausenden von Reisenden"
+    "subtitle": "Echte Erfahrungen von Tausenden von Reisenden",
+    "totalReviews": "Bewertungen Gesamt",
+    "averageRating": "Durchschnittsbewertung",
+    "fiveStarReviews": "5-Sterne-Bewertungen"
   },
   "blog": {
     "title": "Reise-Tipps & Führungen",
