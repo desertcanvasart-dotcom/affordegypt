@@ -20,6 +20,7 @@ import AttractionsSearch from "@/components/attractions-search";
 import TransportationSearch from "@/components/transportation-search";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
+import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 
 interface CityService {
   cityId: number;
@@ -77,24 +78,19 @@ export default function MultiCityPricingTool() {
   const [citySearchTerm, setCitySearchTerm] = useState('');
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
-  // Fetch available cities from the database
-  const { data: cities = [] } = useQuery<{id: number, name: string, description?: string}[]>({
-    queryKey: ["/api/cities"],
-  });
+  // Fetch available cities from the database with translation
+  const { data: cities = [] } = useTranslatedQuery<{id: number, name: string, description?: string}[]>("/api/cities");
 
   // Fetch available languages
   const { data: languages = [] } = useQuery<string[]>({
     queryKey: ["/api/pricing/languages"],
   });
 
-  // Fetch available add-ons
-  const { data: addOns = [] } = useQuery<AddOn[]>({
-    queryKey: ["/api/addons"],
-  });
+  // Fetch available add-ons with translation
+  const { data: addOns = [] } = useTranslatedQuery<AddOn[]>("/api/addons");
 
-  // Fetch available routes with shorter stale time for real-time updates
-  const { data: routes = [], refetch: refetchRoutes } = useQuery<any[]>({
-    queryKey: ["/api/routes"],
+  // Fetch available routes with translation and shorter stale time for real-time updates
+  const { data: routes = [], refetch: refetchRoutes } = useTranslatedQuery<any[]>("/api/routes", {
     staleTime: 0, // Always fetch fresh data
     gcTime: 30 * 1000, // Keep in cache for 30 seconds (was cacheTime in v4)
     refetchOnMount: true,
@@ -103,10 +99,8 @@ export default function MultiCityPricingTool() {
 
 
 
-  // Fetch available attractions
-  const { data: attractions = [] } = useQuery<any[]>({
-    queryKey: ["/api/attractions"],
-  });
+  // Fetch available attractions with translation
+  const { data: attractions = [] } = useTranslatedQuery<any[]>("/api/attractions");
 
   // Calculate pricing mutation
   const pricingMutation = useMutation({
