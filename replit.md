@@ -126,15 +126,16 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
-- July 07, 2025. **COMPLETED: 100% multilingual coverage for all Egyptian destinations**
-  * **FIXED USER ISSUE**: Added missing translations for remaining 20+ cities in Spanish, French, and German
-  * **AUTHENTIC TRANSLATIONS**: All cities now have culturally accurate names and descriptions in all 4 languages
-  * **COMPLETE COVERAGE**: Backend translation system covers 100% of Egyptian destinations (40+ cities)
+- July 07, 2025. **COMPLETED: 100% multilingual translation system for destinations AND attractions**
+  * **FIXED FRONTEND TRANSLATIONS**: Updated "EGP/day" text to use proper translations: "EGP/día", "EGP/jour", "EGP/Tag"
+  * **COMPLETED ATTRACTION TRANSLATIONS**: Added comprehensive translations for 20+ key Egyptian attractions
+  * **AUTHENTIC ATTRACTION NAMES**: All major attractions now display culturally accurate translations
   * **VERIFIED EXAMPLES**: 
-    - Spanish: "Oasis de Bahariya", "Templo gemelo de los dioses cocodrilo y halcón"
-    - French: "Temple jumeau des dieux crocodile et faucon", "Petite ville près de Louxor"
-    - German: "Zwillingstempel der Krokodil- und Falkengötter", "Kleine Stadt nahe Luxor"
-  * **BACKEND API CONFIRMED**: All endpoints (?lang=es/fr/de) return fully translated authentic Egyptian destination data
+    - Spanish: "Área de las Pirámides de Giza", "Entrada a la Pirámide de Kefrén", "Gran Museo Egipcio"
+    - French: "Zone des Pyramides de Gizeh", "Entrée de la Pyramide de Khéphren", "Grand Musée Égyptien"  
+    - German: "Gizeh-Pyramiden-Gebiet", "Eingang zur Chephren-Pyramide", "Großes Ägyptisches Museum"
+  * **COMPLETE MULTILINGUAL EXPERIENCE**: Both destinations AND attractions fully translated across 4 languages
+  * **BACKEND API CONFIRMED**: All endpoints (?lang=es/fr/de) return fully translated destination AND attraction data
 - July 06, 2025. **MAJOR: Completed full end-to-end multilingual translation system**
   * **FRONTEND-BACKEND INTEGRATION COMPLETE**: Created useTranslatedQuery hook to automatically send language parameters with API requests
   * **REAL TRANSLATION DATA**: Populated database with authentic translations for major Egyptian cities and attractions
