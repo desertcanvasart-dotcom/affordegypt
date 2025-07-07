@@ -30,7 +30,9 @@
     "gbp": "GBP",
     "travelers": "Reisende",
     "traveler": "Reisender",
-    "recommended": "Empfohlen"
+    "recommended": "Empfohlen",
+    "current": "Aktuell",
+    "selectAllVisible": "Alle Sichtbaren Auswählen"
   },
   "home": {
     "title": "Entdecke Ägyptens Wunder",
@@ -151,6 +153,29 @@
     "calculating": "Berechnung läuft...",
     "chooseCityToVisit": "Wählen Sie eine Stadt zum Besuchen",
     "recommendedItineraries": "Empfohlene Reiserouten"
+  },
+  "transportation": {
+    "transferDropOff": "Transfer & Abholung",
+    "dayTrip": "Tagesausflug",
+    "overnight": "Übernachtung",
+    "multiDay": "Mehrtägige Tour",
+    "withinCity": "Innerhalb der Stadt",
+    "betweenCities": "Zwischen Städten",
+    "airport": "Flughafen",
+    "activity": "Aktivität",
+    "selectTransportation": "Transport auswählen...",
+    "selectedRoute": "Gewählte Route",
+    "routeSelected": "1 Route ausgewählt",
+    "routesSelected": "{{count}} Routen ausgewählt",
+    "searchRoutes": "Routen suchen..."
+  },
+  "guides": {
+    "selectTourGuide": "Reiseführer auswählen...",
+    "selectedGuide": "{{language}} Reiseführer ({{duration}}h)"
+  },
+  "addons": {
+    "selectAddOns": "Zusätze auswählen...",
+    "addOnsSelected": "{{count}} Zusätze ausgewählt ({{items}} Artikel)"
   },
   "attractions": {
     "searchPlaceholder": "Sehenswürdigkeiten suchen...",

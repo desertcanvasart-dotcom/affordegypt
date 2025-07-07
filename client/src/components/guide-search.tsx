@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
@@ -28,6 +29,7 @@ export function GuideSearch({
   cityName,
   cityId
 }: GuideSearchProps) {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDuration, setSelectedDuration] = useState<number>(8);
 
@@ -109,8 +111,8 @@ export function GuideSearch({
   };
 
   const getDisplayText = () => {
-    if (!selectedGuide) return "Select tour guide...";
-    return `${selectedGuide.language} guide (${selectedGuide.duration}h)`;
+    if (!selectedGuide) return t('guides.selectTourGuide');
+    return t('guides.selectedGuide', { language: selectedGuide.language, duration: selectedGuide.duration });
   };
 
   const handleLanguageSelect = (language: string) => {

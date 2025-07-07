@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
@@ -41,6 +42,7 @@ export function AddOnsSearch({
   cityName,
   unitTypeFilter 
 }: AddOnsSearchProps) {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -139,13 +141,13 @@ export function AddOnsSearch({
   };
 
   const getDisplayText = () => {
-    if (selectedAddOns.length === 0) return "Select add-ons...";
+    if (selectedAddOns.length === 0) return t('addons.selectAddOns');
     
     const totalItems = selectedAddOns.reduce((sum, addon) => sum + addon.quantity, 0);
     if (selectedAddOns.length === 1) {
       return `${selectedAddOns[0].name} ${totalItems > 1 ? `(×${totalItems})` : ''}`;
     }
-    return `${selectedAddOns.length} add-ons selected (${totalItems} items)`;
+    return t('addons.addOnsSelected', { count: selectedAddOns.length, items: totalItems });
   };
 
   const clearAll = () => {

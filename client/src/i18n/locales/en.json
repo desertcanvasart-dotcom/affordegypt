@@ -30,7 +30,9 @@
     "gbp": "GBP",
     "travelers": "travelers",
     "traveler": "traveler",
-    "recommended": "Recommended"
+    "recommended": "Recommended",
+    "current": "Current",
+    "selectAllVisible": "Select All Visible"
   },
   "home": {
     "title": "Discover Egypt's Wonders",
@@ -151,6 +153,29 @@
     "calculating": "Calculating...",
     "chooseCityToVisit": "Choose a city to visit",
     "recommendedItineraries": "Recommended Itineraries"
+  },
+  "transportation": {
+    "transferDropOff": "Transfer & Drop off",
+    "dayTrip": "Day Trip",
+    "overnight": "Overnight Stay",
+    "multiDay": "Multi-Day Tour",
+    "withinCity": "Within City",
+    "betweenCities": "Between Cities",
+    "airport": "Airport",
+    "activity": "Activity",
+    "selectTransportation": "Select transportation...",
+    "selectedRoute": "Selected route",
+    "routeSelected": "1 route selected",
+    "routesSelected": "{{count}} routes selected",
+    "searchRoutes": "Search routes..."
+  },
+  "guides": {
+    "selectTourGuide": "Select tour guide...",
+    "selectedGuide": "{{language}} guide ({{duration}}h)"
+  },
+  "addons": {
+    "selectAddOns": "Select add-ons...",
+    "addOnsSelected": "{{count}} add-ons selected ({{items}} items)"
   },
   "attractions": {
     "searchPlaceholder": "Search attractions...",

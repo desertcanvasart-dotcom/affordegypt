@@ -847,7 +847,7 @@ export default function MultiCityPricingTool() {
                           <div className="flex items-center gap-2">
                             {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
                             {index === cityServices.length - 1 && (
-                              <Badge variant="secondary" className="text-xs">Current</Badge>
+                              <Badge variant="secondary" className="text-xs">{t('common.current')}</Badge>
                             )}
                           </div>
                           <Button

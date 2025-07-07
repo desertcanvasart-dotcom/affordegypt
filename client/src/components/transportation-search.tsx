@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,6 +35,7 @@ export default function TransportationSearch({
   cityId,
   cityName,
 }: TransportationSearchProps) {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
 
@@ -110,21 +112,21 @@ export default function TransportationSearch({
 
   const getTripTypeLabel = (tripType: string) => {
     const labels: Record<string, string> = {
-      'transfer': 'Transfer & Drop off',
-      'day_trip': 'Day Trip',
-      'overnight': 'Overnight Stay',
-      'multi_day': 'Multi-Day Tour'
+      'transfer': t('transportation.transferDropOff'),
+      'day_trip': t('transportation.dayTrip'),
+      'overnight': t('transportation.overnight'),
+      'multi_day': t('transportation.multiDay')
     };
     return labels[tripType] || tripType;
   };
 
   const getDisplayText = () => {
-    if (selectedRoutes.length === 0) return "Select transportation...";
+    if (selectedRoutes.length === 0) return t('transportation.selectTransportation');
     if (selectedRoutes.length === 1) {
       const route = cityRoutes.find(r => r.id === selectedRoutes[0]);
-      return route?.name || "1 route selected";
+      return route?.name || t('transportation.routeSelected');
     }
-    return `${selectedRoutes.length} routes selected`;
+    return t('transportation.routesSelected', { count: selectedRoutes.length });
   };
 
   return (
@@ -154,7 +156,7 @@ export default function TransportationSearch({
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search routes..."
+              placeholder={t('transportation.searchRoutes')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 text-sm"
@@ -259,7 +261,7 @@ export default function TransportationSearch({
                   onRoutesChange(Array.from(new Set(combined)));
                 }}
               >
-                Select All Visible
+{t('common.selectAllVisible')}
               </Button>
               {selectedRoutes.length > 0 && (
                 <Button

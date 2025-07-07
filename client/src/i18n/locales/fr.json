@@ -30,7 +30,9 @@
     "gbp": "GBP",
     "travelers": "voyageurs",
     "traveler": "voyageur",
-    "recommended": "Recommandé"
+    "recommended": "Recommandé",
+    "current": "Actuel",
+    "selectAllVisible": "Sélectionner Tout Visible"
   },
   "home": {
     "title": "Découvrez les Merveilles de l'Égypte",
@@ -151,6 +153,29 @@
     "calculating": "Calcul en cours...",
     "chooseCityToVisit": "Choisissez une ville à visiter",
     "recommendedItineraries": "Itinéraires Recommandés"
+  },
+  "transportation": {
+    "transferDropOff": "Transfer & Dépose",
+    "dayTrip": "Excursion d'une Journée",
+    "overnight": "Séjour d'une Nuit",
+    "multiDay": "Circuit de Plusieurs Jours",
+    "withinCity": "Dans la Ville",
+    "betweenCities": "Entre les Villes",
+    "airport": "Aéroport",
+    "activity": "Activité",
+    "selectTransportation": "Sélectionner transport...",
+    "selectedRoute": "Route sélectionnée",
+    "routeSelected": "1 route sélectionnée",
+    "routesSelected": "{{count}} routes sélectionnées",
+    "searchRoutes": "Rechercher routes..."
+  },
+  "guides": {
+    "selectTourGuide": "Sélectionner guide touristique...",
+    "selectedGuide": "Guide {{language}} ({{duration}}h)"
+  },
+  "addons": {
+    "selectAddOns": "Sélectionner services...",
+    "addOnsSelected": "{{count}} services sélectionnés ({{items}} articles)"
   },
   "attractions": {
     "searchPlaceholder": "Rechercher des attractions...",

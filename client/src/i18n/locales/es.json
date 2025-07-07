@@ -30,7 +30,9 @@
     "gbp": "GBP",
     "travelers": "viajeros",
     "traveler": "viajero",
-    "recommended": "Recomendado"
+    "recommended": "Recomendado",
+    "current": "Actual",
+    "selectAllVisible": "Seleccionar Todo Visible"
   },
   "home": {
     "title": "Descubre las Maravillas de Egipto",
@@ -151,6 +153,29 @@
     "calculating": "Calculando...",
     "chooseCityToVisit": "Elige una ciudad para visitar",
     "recommendedItineraries": "Itinerarios Recomendados"
+  },
+  "transportation": {
+    "transferDropOff": "Transfer & Recogida",
+    "dayTrip": "Viaje de un Día",
+    "overnight": "Estancia Nocturna",
+    "multiDay": "Tour de Varios Días",
+    "withinCity": "Dentro de la Ciudad",
+    "betweenCities": "Entre Ciudades",
+    "airport": "Aeropuerto",
+    "activity": "Actividad",
+    "selectTransportation": "Seleccionar transporte...",
+    "selectedRoute": "Ruta seleccionada",
+    "routeSelected": "1 ruta seleccionada",
+    "routesSelected": "{{count}} rutas seleccionadas",
+    "searchRoutes": "Buscar rutas..."
+  },
+  "guides": {
+    "selectTourGuide": "Seleccionar guía turístico...",
+    "selectedGuide": "Guía {{language}} ({{duration}}h)"
+  },
+  "addons": {
+    "selectAddOns": "Seleccionar complementos...",
+    "addOnsSelected": "{{count}} complementos seleccionados ({{items}} artículos)"
   },
   "attractions": {
     "searchPlaceholder": "Buscar atracciones...",
