@@ -28,6 +28,7 @@
     "usd": "USD",
     "eur": "EUR",
     "gbp": "GBP",
+    "egpPerDay": "EGP/Tag",
     "travelers": "Reisende",
     "traveler": "Reisender",
     "recommended": "Empfohlen",
