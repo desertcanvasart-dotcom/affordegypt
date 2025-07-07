@@ -673,7 +673,7 @@ export default function MultiCityPricingTool() {
                     <div className="space-y-4">
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4 text-primary" />
-                        <Label className="font-medium">Recommended Itineraries</Label>
+                        <Label className="font-medium">{t('pricing.recommendedItineraries')}</Label>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {getItinerarySuggestions().slice(0, 3).map((suggestion) => (
@@ -789,7 +789,7 @@ export default function MultiCityPricingTool() {
                                     <h5 className="font-medium">{city.name}</h5>
                                     {city.isRecommended && (
                                       <Badge variant="default" className="bg-primary text-xs">
-                                        Recommended
+{t('common.recommended')}
                                       </Badge>
                                     )}
                                   </div>

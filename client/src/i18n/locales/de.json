@@ -29,7 +29,8 @@
     "eur": "EUR",
     "gbp": "GBP",
     "travelers": "Reisende",
-    "traveler": "Reisender"
+    "traveler": "Reisender",
+    "recommended": "Empfohlen"
   },
   "home": {
     "title": "Entdecke Ägyptens Wunder",
@@ -148,7 +149,15 @@
     "chooseNextDestination": "Wählen Sie Ihr Nächstes Reiseziel",
     "cancel": "Abbrechen",
     "calculating": "Berechnung läuft...",
-    "chooseCityToVisit": "Wählen Sie eine Stadt zum Besuchen"
+    "chooseCityToVisit": "Wählen Sie eine Stadt zum Besuchen",
+    "recommendedItineraries": "Empfohlene Reiserouten"
+  },
+  "attractions": {
+    "searchPlaceholder": "Sehenswürdigkeiten suchen...",
+    "allCategories": "Alle Kategorien",
+    "noAttractionsFound": "Keine Sehenswürdigkeiten gefunden",
+    "clearFilters": "Filter löschen, um alle zu sehen",
+    "showing": "Zeige"
   },
   "booking": {
     "title": "Buchung Abschließen",

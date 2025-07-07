@@ -29,7 +29,8 @@
     "eur": "EUR",
     "gbp": "GBP",
     "travelers": "voyageurs",
-    "traveler": "voyageur"
+    "traveler": "voyageur",
+    "recommended": "Recommandé"
   },
   "home": {
     "title": "Découvrez les Merveilles de l'Égypte",
@@ -148,7 +149,15 @@
     "chooseNextDestination": "Choisissez Votre Prochaine Destination",
     "cancel": "Annuler",
     "calculating": "Calcul en cours...",
-    "chooseCityToVisit": "Choisissez une ville à visiter"
+    "chooseCityToVisit": "Choisissez une ville à visiter",
+    "recommendedItineraries": "Itinéraires Recommandés"
+  },
+  "attractions": {
+    "searchPlaceholder": "Rechercher des attractions...",
+    "allCategories": "Toutes les Catégories",
+    "noAttractionsFound": "Aucune attraction trouvée",
+    "clearFilters": "Effacer les filtres pour tout voir",
+    "showing": "Affichage"
   },
   "booking": {
     "title": "Complétez Votre Réservation",

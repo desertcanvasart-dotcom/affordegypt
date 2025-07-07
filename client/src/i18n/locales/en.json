@@ -29,7 +29,8 @@
     "eur": "EUR",
     "gbp": "GBP",
     "travelers": "travelers",
-    "traveler": "traveler"
+    "traveler": "traveler",
+    "recommended": "Recommended"
   },
   "home": {
     "title": "Discover Egypt's Wonders",
@@ -148,7 +149,15 @@
     "chooseNextDestination": "Choose Your Next Destination",
     "cancel": "Cancel",
     "calculating": "Calculating...",
-    "chooseCityToVisit": "Choose a city to visit"
+    "chooseCityToVisit": "Choose a city to visit",
+    "recommendedItineraries": "Recommended Itineraries"
+  },
+  "attractions": {
+    "searchPlaceholder": "Search attractions...",
+    "allCategories": "All Categories",
+    "noAttractionsFound": "No attractions found matching your criteria",
+    "clearFilters": "Clear filters to see all attractions",
+    "showing": "Showing"
   },
   "booking": {
     "title": "Complete Your Booking",

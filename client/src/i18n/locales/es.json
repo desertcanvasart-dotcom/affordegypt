@@ -29,7 +29,8 @@
     "eur": "EUR",
     "gbp": "GBP",
     "travelers": "viajeros",
-    "traveler": "viajero"
+    "traveler": "viajero",
+    "recommended": "Recomendado"
   },
   "home": {
     "title": "Descubre las Maravillas de Egipto",
@@ -148,7 +149,15 @@
     "chooseNextDestination": "Elige tu Próximo Destino",
     "cancel": "Cancelar",
     "calculating": "Calculando...",
-    "chooseCityToVisit": "Elige una ciudad para visitar"
+    "chooseCityToVisit": "Elige una ciudad para visitar",
+    "recommendedItineraries": "Itinerarios Recomendados"
+  },
+  "attractions": {
+    "searchPlaceholder": "Buscar atracciones...",
+    "allCategories": "Todas las Categorías",
+    "noAttractionsFound": "No se encontraron atracciones",
+    "clearFilters": "Limpiar filtros para ver todas",
+    "showing": "Mostrando"
   },
   "booking": {
     "title": "Completa tu Reserva",

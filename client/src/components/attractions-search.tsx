@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from 'react-i18next';
 import { Search, MapPin, Clock, DollarSign, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +36,7 @@ export default function AttractionsSearch({
   cityId,
   cityName
 }: AttractionsSearchProps) {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [priceRange, setPriceRange] = useState<string>("all");
@@ -141,7 +143,7 @@ export default function AttractionsSearch({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
           <Input
-            placeholder="Search attractions..."
+            placeholder={t('attractions.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-9"
@@ -155,7 +157,7 @@ export default function AttractionsSearch({
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
+              <SelectItem value="all">{t('attractions.allCategories')}</SelectItem>
               {categories.map(category => (
                 <SelectItem key={category} value={category}>
                   {getCategoryIcon(category)} {category}
@@ -276,7 +278,7 @@ export default function AttractionsSearch({
               onAttractionsChange(Array.from(new Set(combined)));
             }}
           >
-            Select All Visible
+{t('pricing.selectAllVisible')}
           </Button>
           <Button
             variant="outline"
@@ -286,7 +288,7 @@ export default function AttractionsSearch({
               onAttractionsChange(selectedAttractions.filter(name => !visibleNames.includes(name)));
             }}
           >
-            Deselect All Visible
+{t('pricing.deselectAllVisible')}
           </Button>
         </div>
       )}
