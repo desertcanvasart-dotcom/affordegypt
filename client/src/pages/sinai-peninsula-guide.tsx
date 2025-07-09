@@ -4,11 +4,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, Star, Camera, Mountain, Waves, Sun, Compass, AlertTriangle, Thermometer } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useTranslation } from 'react-i18next';
 
 export default function SinaiPeninsulaGuide() {
+  const { t } = useTranslation();
+  const [, setLocation] = useLocation();
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,131 +19,115 @@ export default function SinaiPeninsulaGuide() {
 
   const destinations = [
     {
-      name: "Sharm El Sheikh",
-      description: "The Red Sea's crown jewel, evolved from a Bedouin fishing settlement into one of the world's most celebrated diving destinations",
-      highlights: ["Ras Muhammad National Park", "SS Thistlegorm Wreck", "Naama Bay Marina", "Soho Square"],
+      name: t('sinaiGuide.destinations.sharmElSheikh.name'),
+      description: t('sinaiGuide.destinations.sharmElSheikh.description'),
+      highlights: t('sinaiGuide.destinations.sharmElSheikh.highlights', { returnObjects: true }),
       bestTime: "Oct-Apr",
       duration: "3-7 days",
       difficulty: "Easy",
       image: "🏖️",
-      details: "Perched on the southern tip of Sinai, this resort town offers world-class coral reefs, luxury accommodations, and vibrant nightlife. Experience night-time plankton snorkeling in Nabq Bay where bioluminescent organisms create trails of glowing light."
+      details: t('sinaiGuide.destinations.sharmElSheikh.details')
     },
     {
-      name: "Dahab",
-      description: "A bohemian coastal town where the name 'gold' reflects both desert sands and sunset hues, beloved by divers and free spirits",
-      highlights: ["Blue Hole Diving", "Three Pools", "Masbat Beach", "The Lagoon"],
+      name: t('sinaiGuide.destinations.dahab.name'),
+      description: t('sinaiGuide.destinations.dahab.description'),
+      highlights: t('sinaiGuide.destinations.dahab.highlights', { returnObjects: true }),
       bestTime: "Oct-Apr",
       duration: "2-5 days", 
       difficulty: "Moderate",
       image: "🤿",
-      details: "Once a modest Bedouin fishing camp, Dahab's laid-back atmosphere attracts adventurers worldwide. The Blue Hole's vertical walls and the Canyon's dramatic drop-offs showcase vibrant marine life, while steady winds make it perfect for windsurfing."
+      details: t('sinaiGuide.destinations.dahab.details')
     },
     {
-      name: "Nuweiba",
-      description: "A tranquil gateway where ancient trade routes meet pristine coastline, offering authentic Bedouin culture and unspoiled beaches",
-      highlights: ["Colored Canyon", "Aya Bay", "Pharaoh's Island", "Bedouin Camps"],
+      name: t('sinaiGuide.destinations.nuweiba.name'),
+      description: t('sinaiGuide.destinations.nuweiba.description'),
+      highlights: t('sinaiGuide.destinations.nuweiba.highlights', { returnObjects: true }),
       bestTime: "Oct-Apr",
       duration: "2-3 days",
       difficulty: "Easy",
       image: "🏕️",
-      details: "Nuweiba's shores have witnessed millennia of passage from Nabatean caravans to modern travelers. Enjoy sunset Bedouin tea rituals on Aya Bay's dunes and explore the nearby Colored Canyon's sandstone walls glowing in bands of ochre and crimson."
+      details: t('sinaiGuide.destinations.nuweiba.details')
     },
     {
-      name: "Taba",
-      description: "The northern gateway of Sinai, where strategic crossroads meet luxury resorts overlooking the Gulf of Aqaba",
-      highlights: ["Taba Heights", "Border Crossing", "Cliff Resorts", "Pharaoh's Island"],
+      name: t('sinaiGuide.destinations.taba.name'),
+      description: t('sinaiGuide.destinations.taba.description'),
+      highlights: t('sinaiGuide.destinations.taba.highlights', { returnObjects: true }),
       bestTime: "Oct-Mar",
       duration: "2-4 days",
       difficulty: "Easy",
       image: "🏰",
-      details: "Long serving as the crossroads between Egypt and the Levant, Taba combines historical significance with modern luxury. Elegant cliff-top resorts offer panoramic gulf views while maintaining traditional Bedouin architectural motifs."
+      details: t('sinaiGuide.destinations.taba.details')
     }
   ];
 
   const activities = [
     {
-      category: "Water Sports",
+      category: t('sinaiGuide.activities.waterSports.title'),
       items: [
-        { name: "Scuba Diving", price: "From $45/dive", description: "Explore world-famous coral reefs" },
-        { name: "Snorkeling Tours", price: "From $25/trip", description: "Discover marine life in shallow waters" },
-        { name: "Windsurfing", price: "From $35/hour", description: "Perfect conditions in Dahab" },
-        { name: "Kitesurfing", price: "From $50/lesson", description: "Learn in ideal wind conditions" }
+        { name: t('sinaiGuide.activities.waterSports.scubaDiving.name'), price: t('sinaiGuide.activities.waterSports.scubaDiving.price'), description: t('sinaiGuide.activities.waterSports.scubaDiving.description') },
+        { name: t('sinaiGuide.activities.waterSports.snorkeling.name'), price: t('sinaiGuide.activities.waterSports.snorkeling.price'), description: t('sinaiGuide.activities.waterSports.snorkeling.description') },
+        { name: t('sinaiGuide.activities.waterSports.windsurfing.name'), price: t('sinaiGuide.activities.waterSports.windsurfing.price'), description: t('sinaiGuide.activities.waterSports.windsurfing.description') },
+        { name: t('sinaiGuide.activities.waterSports.kitesurfing.name'), price: t('sinaiGuide.activities.waterSports.kitesurfing.price'), description: t('sinaiGuide.activities.waterSports.kitesurfing.description') }
       ]
     },
     {
-      category: "Desert Adventures", 
+      category: t('sinaiGuide.activities.desertAdventures.title'),
       items: [
-        { name: "Camel Trekking", price: "From $30/day", description: "Traditional Bedouin transport" },
-        { name: "Desert Safari", price: "From $60/trip", description: "4WD exploration of Sinai desert" },
-        { name: "Colored Canyon Hike", price: "From $40/trip", description: "Stunning geological formations" },
-        { name: "Bedouin Night", price: "From $45/night", description: "Authentic desert camping experience" }
+        { name: t('sinaiGuide.activities.desertAdventures.camelTrekking.name'), price: t('sinaiGuide.activities.desertAdventures.camelTrekking.price'), description: t('sinaiGuide.activities.desertAdventures.camelTrekking.description') },
+        { name: t('sinaiGuide.activities.desertAdventures.desertSafari.name'), price: t('sinaiGuide.activities.desertAdventures.desertSafari.price'), description: t('sinaiGuide.activities.desertAdventures.desertSafari.description') },
+        { name: t('sinaiGuide.activities.desertAdventures.coloredCanyon.name'), price: t('sinaiGuide.activities.desertAdventures.coloredCanyon.price'), description: t('sinaiGuide.activities.desertAdventures.coloredCanyon.description') },
+        { name: t('sinaiGuide.activities.desertAdventures.bedouinNight.name'), price: t('sinaiGuide.activities.desertAdventures.bedouinNight.price'), description: t('sinaiGuide.activities.desertAdventures.bedouinNight.description') }
       ]
     },
     {
-      category: "Cultural & Spiritual",
+      category: t('sinaiGuide.activities.cultural.title'),
       items: [
-        { name: "Mount Sinai Sunrise Trek", price: "From $35/person", description: "Biblical mountain pilgrimage" },
-        { name: "St. Catherine's Monastery", price: "From $25/visit", description: "Ancient Christian monastery" },
-        { name: "Bedouin Village Visit", price: "From $30/trip", description: "Traditional desert culture" },
-        { name: "Wadi Feiran Oasis", price: "From $55/trip", description: "Historic biblical oasis" }
+        { name: t('sinaiGuide.activities.cultural.mountSinai.name'), price: t('sinaiGuide.activities.cultural.mountSinai.price'), description: t('sinaiGuide.activities.cultural.mountSinai.description') },
+        { name: t('sinaiGuide.activities.cultural.monastery.name'), price: t('sinaiGuide.activities.cultural.monastery.price'), description: t('sinaiGuide.activities.cultural.monastery.description') },
+        { name: t('sinaiGuide.activities.cultural.bedouinVillage.name'), price: t('sinaiGuide.activities.cultural.bedouinVillage.price'), description: t('sinaiGuide.activities.cultural.bedouinVillage.description') },
+        { name: t('sinaiGuide.activities.cultural.wadiFeiran.name'), price: t('sinaiGuide.activities.cultural.wadiFeiran.price'), description: t('sinaiGuide.activities.cultural.wadiFeiran.description') }
       ]
     }
   ];
 
   const practicalInfo = [
     {
-      title: "Best Time to Visit",
-      content: "October to April offers perfect weather (20-25°C). Summer months (May-September) are extremely hot (35-45°C) but great for diving.",
+      title: t('sinaiGuide.practical.bestTime.title'),
+      content: t('sinaiGuide.practical.bestTime.content'),
       icon: <Thermometer className="w-5 h-5 text-orange-500" />
     },
     {
-      title: "Getting There",
-      content: "Fly into Sharm El Sheikh Airport (SSH) or drive from Cairo (6-7 hours). Taba border crossing connects to Israel/Jordan.",
+      title: t('sinaiGuide.practical.gettingThere.title'),
+      content: t('sinaiGuide.practical.gettingThere.content'),
       icon: <Compass className="w-5 h-5 text-blue-500" />
     },
     {
-      title: "Safety Considerations", 
-      content: "Generally safe for tourists. Stick to established resorts and tour operators. Check current travel advisories for desert areas.",
+      title: t('sinaiGuide.practical.safety.title'),
+      content: t('sinaiGuide.practical.safety.content'),
       icon: <AlertTriangle className="w-5 h-5 text-red-500" />
     },
     {
-      title: "What to Pack",
-      content: "Reef-safe sunscreen, diving gear (or rent locally), desert clothing, warm layers for mountain treks, comfortable hiking boots.",
+      title: t('sinaiGuide.practical.packing.title'),
+      content: t('sinaiGuide.practical.packing.content'),
       icon: <Mountain className="w-5 h-5 text-green-500" />
     }
   ];
 
   const itineraries = [
     {
-      title: "Sinai Highlights (5 Days)",
-      days: [
-        "Day 1-2: Sharm El Sheikh - Diving & relaxation",
-        "Day 3: Mount Sinai sunrise trek & St. Catherine's",
-        "Day 4: Transfer to Dahab, Blue Hole diving",
-        "Day 5: Colored Canyon day trip from Dahab"
-      ],
-      price: "From $380/person"
+      title: t('sinaiGuide.itineraries.highlights.title'),
+      days: t('sinaiGuide.itineraries.highlights.days', { returnObjects: true }),
+      price: t('sinaiGuide.itineraries.highlights.price')
     },
     {
-      title: "Adventure Sinai (7 Days)", 
-      days: [
-        "Day 1-2: Sharm El Sheikh - Ras Mohammed diving",
-        "Day 3-4: Dahab - Advanced diving & windsurfing",
-        "Day 5: Mount Sinai trek & monastery visit",
-        "Day 6: Nuweiba - Colored Canyon & Bedouin experience",
-        "Day 7: Return via desert safari to Sharm"
-      ],
-      price: "From $590/person"
+      title: t('sinaiGuide.itineraries.adventure.title'),
+      days: t('sinaiGuide.itineraries.adventure.days', { returnObjects: true }),
+      price: t('sinaiGuide.itineraries.adventure.price')
     },
     {
-      title: "Relaxed Sinai (10 Days)",
-      days: [
-        "Day 1-4: Sharm El Sheikh - Resort relaxation & diving",
-        "Day 5-7: Dahab - Leisurely diving & desert trips", 
-        "Day 8: Mount Sinai spiritual journey",
-        "Day 9-10: Nuweiba - Beach relaxation & cultural experiences"
-      ],
-      price: "From $720/person"
+      title: t('sinaiGuide.itineraries.relaxed.title'),
+      days: t('sinaiGuide.itineraries.relaxed.days', { returnObjects: true }),
+      price: t('sinaiGuide.itineraries.relaxed.price')
     }
   ];
 
@@ -162,10 +149,10 @@ export default function SinaiPeninsulaGuide() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-                Sinai Peninsula
+                {t('sinaiGuide.title')}
               </h1>
               <p className="text-2xl md:text-3xl text-teal-100 font-light">
-                Where Desert Grandeur Meets Crystalline Seas
+                {t('sinaiGuide.subtitle')}
               </p>
             </div>
             <p className="text-lg md:text-xl text-teal-200 max-w-4xl mx-auto leading-relaxed">
@@ -193,9 +180,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Destinations Grid */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">Sinai Destinations</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.destinations.title')}</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              From world-renowned diving spots to sacred biblical sites, explore the diverse wonders of the Sinai Peninsula
+              {t('sinaiGuide.destinations.description')}
             </p>
           </div>
           
@@ -220,7 +207,7 @@ export default function SinaiPeninsulaGuide() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex flex-wrap gap-2">
-                      {destination.highlights.map((highlight, idx) => (
+                      {destination.highlights && Array.isArray(destination.highlights) && destination.highlights.map((highlight, idx) => (
                         <Badge key={idx} variant="outline" className="border-teal-200 text-teal-700">
                           {highlight}
                         </Badge>
@@ -247,9 +234,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Activities Section */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">Adventures & Activities</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.activities.title')}</h2>
             <p className="text-xl text-slate-600">
-              From underwater explorations to desert expeditions and spiritual journeys
+              {t('sinaiGuide.activities.description')}
             </p>
           </div>
 
@@ -282,9 +269,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Sample Itineraries */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">Sample Itineraries</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.itineraries.title')}</h2>
             <p className="text-xl text-slate-600">
-              Carefully crafted journeys combining adventure, culture, and relaxation
+              {t('sinaiGuide.itineraries.description')}
             </p>
           </div>
 
@@ -301,7 +288,7 @@ export default function SinaiPeninsulaGuide() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {itinerary.days.map((day, idx) => (
+                    {itinerary.days && Array.isArray(itinerary.days) && itinerary.days.map((day, idx) => (
                       <div key={idx} className="flex items-start gap-3">
                         <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
                           <span className="text-xs font-semibold text-teal-700">{idx + 1}</span>
@@ -319,9 +306,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Practical Information */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">Essential Travel Information</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.practical.title')}</h2>
             <p className="text-xl text-slate-600">
-              Everything you need to know for your Sinai Peninsula adventure
+              {t('sinaiGuide.practical.description')}
             </p>
           </div>
 
@@ -345,9 +332,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Call to Action */}
         <section className="text-center py-16 bg-gradient-to-r from-teal-600 via-teal-700 to-cyan-800 rounded-2xl text-white">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-6">Ready to Explore the Sinai Peninsula?</h2>
+            <h2 className="text-4xl font-bold mb-6">{t('sinaiGuide.cta.title')}</h2>
             <p className="text-xl mb-8 text-teal-100">
-              Create your perfect Sinai adventure with our multi-city pricing tool and expert local guides. Get transparent pricing and build your custom itinerary in minutes.
+              {t('sinaiGuide.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -358,7 +345,7 @@ export default function SinaiPeninsulaGuide() {
                 }}
               >
                 <MapPin className="w-5 h-5 mr-2" />
-                Start Planning Your Trip
+                {t('sinaiGuide.cta.button')}
               </Button>
               <Button 
                 size="lg" 
