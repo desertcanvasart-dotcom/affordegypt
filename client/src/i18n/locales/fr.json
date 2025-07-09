@@ -316,31 +316,31 @@
       "foodCulture": "Nourriture et Culture",
       "travelTips": "Conseils de Voyage"
     },
-    "minRead": "min de lecture",
+    "readTime": "{{time}} min de lecture",
     "posts": {
       "sinaiGuide": {
         "title": "Guide de Voyage de la Péninsule du Sinaï",
         "excerpt": "Guide de voyage de la Péninsule du Sinaï : Meilleurs endroits à visiter, plonger et faire de la randonnée en Égypte"
       },
-      "redSeaGuide": {
-        "title": "Guide des Resorts de la Mer Rouge",
-        "excerpt": "Guide ultime pour la plongée, les plages et les resorts de luxe de la Mer Rouge"
+      "cairoTransport": {
+        "title": "Naviguer au Caire : Conseils de Transport pour les Visiteurs Novices",
+        "excerpt": "Tout ce que vous devez savoir pour vous déplacer au Caire en toute sécurité et efficacement, des systèmes de métro aux applications de covoiturage."
       },
-      "luxorGuide": {
-        "title": "Guide de Voyage de Louxor",
-        "excerpt": "Guide complet des temples, tombes et merveilles antiques de Louxor"
+      "desertsGuide": {
+        "title": "Guide de Voyage des Déserts Oriental et Occidental",
+        "excerpt": "Guide de Voyage du Désert d'Égypte : Explorez Siwa, le Désert Blanc et les Sentiers de l'Est"
       },
-      "cairoGuide": {
-        "title": "Guide de Voyage du Caire",
-        "excerpt": "Naviguez au Caire comme un local : attractions, cuisine et joyaux cachés"
+      "nileValley": {
+        "title": "Guide de Voyage de la Vallée du Nil",
+        "excerpt": "Vallée du Nil Égypte : Principales Destinations, Croisières sur le Nil et Guide des Sites Antiques"
       },
-      "budgetTips": {
-        "title": "Conseils de Voyage Économique",
-        "excerpt": "Comment explorer l'Égypte avec un budget limité sans compromettre l'expérience"
+      "budgetTravel": {
+        "title": "Voyage Économique en Égypte : Comment Voir Plus pour Moins",
+        "excerpt": "Stratégies intelligentes pour découvrir les merveilles de l'Égypte sans se ruiner, incluant conseils d'hébergement et de restauration."
       },
-      "packing": {
-        "title": "Guide de Bagages pour l'Égypte",
-        "excerpt": "Articles essentiels et conseils de voyage pour votre aventure en Égypte"
+      "streetFood": {
+        "title": "Cuisine de Rue Égyptienne : Un Guide d'Aventure Culinaire",
+        "excerpt": "Naviguez dans le délicieux monde de la cuisine de rue égyptienne avec des conseils de sécurité et des plats incontournables dans chaque grande ville."
       }
     }
   },

@@ -317,30 +317,31 @@
       "foodCulture": "Essen und Kultur",
       "travelTips": "Reisetipps"
     },
+    "readTime": "{{time}} Min. Lesezeit",
     "posts": {
       "sinaiGuide": {
         "title": "Sinai-Halbinsel Reiseführer",
         "excerpt": "Sinai-Halbinsel Reiseführer: Beste Orte zum Besuchen, Tauchen und Wandern in Ägypten"
       },
-      "redSeaGuide": {
-        "title": "Rotes Meer Resorts Führer",
-        "excerpt": "Ultimativer Führer zum Tauchen, Stränden und Luxusresorts am Roten Meer"
+      "cairoTransport": {
+        "title": "Kairo Navigieren: Transport-Tipps für Erstbesucher",
+        "excerpt": "Alles, was Sie über das sichere und effiziente Fortbewegen in Kairo wissen müssen, von U-Bahn-Systemen bis hin zu Ridesharing-Apps."
       },
-      "luxorGuide": {
-        "title": "Luxor Reiseführer",
-        "excerpt": "Vollständiger Führer zu Luxors Tempeln, Gräbern und antiken Wundern"
+      "desertsGuide": {
+        "title": "Östliche & Westliche Wüsten Reiseführer",
+        "excerpt": "Ägyptischer Wüsten-Reiseführer: Erkunden Sie Siwa, die Weiße Wüste und östliche Pfade"
       },
-      "cairoGuide": {
-        "title": "Kairo Reiseführer",
-        "excerpt": "Navigieren Sie Kairo wie ein Einheimischer: Attraktionen, Essen und versteckte Juwelen"
+      "nileValley": {
+        "title": "Nil-Tal Reiseführer",
+        "excerpt": "Nil-Tal Ägypten: Top-Destinationen, Nilkreuzfahrten und Führer zu antiken Stätten"
       },
-      "budgetTips": {
-        "title": "Budget-Reise-Tipps",
-        "excerpt": "Wie man Ägypten mit einem Budget erkundet, ohne die Erfahrung zu beeinträchtigen"
+      "budgetTravel": {
+        "title": "Budget-Reisen in Ägypten: Wie Man Mehr für Weniger Sieht",
+        "excerpt": "Kluge Strategien, um Ägyptens Wunder zu erleben, ohne pleite zu gehen, einschließlich Unterkunfts- und Essensmöglichkeiten."
       },
-      "packing": {
-        "title": "Ägypten Packliste",
-        "excerpt": "Wesentliche Gegenstände und Reisetipps für Ihr Ägypten-Abenteuer"
+      "streetFood": {
+        "title": "Ägyptisches Straßenessen: Ein Kulinarischer Abenteuer-Führer",
+        "excerpt": "Navigieren Sie durch die köstliche Welt des ägyptischen Straßenessens mit Sicherheitstipps und Must-Try-Gerichten in jeder Großstadt."
       }
     }
   },

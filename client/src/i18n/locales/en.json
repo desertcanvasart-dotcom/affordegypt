@@ -316,30 +316,31 @@
       "foodCulture": "Food & Culture",
       "travelTips": "Travel Tips"
     },
+    "readTime": "{{time}} min read",
     "posts": {
       "sinaiGuide": {
         "title": "Sinai Peninsula Travel Guide",
         "excerpt": "Sinai Peninsula Travel Guide: Best Places to Visit, Dive & Hike in Egypt"
       },
-      "redSeaGuide": {
-        "title": "Red Sea Resorts Guide",
-        "excerpt": "Ultimate guide to Red Sea diving, beaches, and luxury resorts"
+      "cairoTransport": {
+        "title": "Navigating Cairo: Transportation Tips for First-Time Visitors",
+        "excerpt": "Everything you need to know about getting around Cairo safely and efficiently, from metro systems to ride-sharing apps."
       },
-      "luxorGuide": {
-        "title": "Luxor Travel Guide",
-        "excerpt": "Complete guide to Luxor's temples, tombs, and ancient wonders"
+      "desertsGuide": {
+        "title": "Eastern & Western Deserts Travel Guide",
+        "excerpt": "Egypt Desert Travel Guide: Explore Siwa, White Desert & Eastern Trails"
       },
-      "cairoGuide": {
-        "title": "Cairo Travel Guide",
-        "excerpt": "Navigate Cairo like a local: attractions, food, and hidden gems"
+      "nileValley": {
+        "title": "Nile Valley Travel Guide",
+        "excerpt": "Nile Valley Egypt: Top Destinations, Nile Cruises & Ancient Sites Guide"
       },
-      "budgetTips": {
-        "title": "Budget Travel Tips",
-        "excerpt": "How to explore Egypt on a budget without compromising on experience"
+      "budgetTravel": {
+        "title": "Budget Travel in Egypt: How to See More for Less",
+        "excerpt": "Smart strategies for experiencing Egypt's wonders without breaking the bank, including accommodation and dining tips."
       },
-      "packing": {
-        "title": "Egypt Packing Guide",
-        "excerpt": "Essential items and travel tips for your Egypt adventure"
+      "streetFood": {
+        "title": "Egyptian Street Food: A Culinary Adventure Guide",
+        "excerpt": "Navigate the delicious world of Egyptian street food with safety tips and must-try dishes in every major city."
       }
     }
   },
