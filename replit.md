@@ -126,14 +126,19 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
-- July 09, 2025. **COMPLETED: 100% multilingual translation system for transportation routes**
+- July 09, 2025. **COMPLETED: 100% multilingual translation system for transportation routes INCLUDING location descriptions**
   * **COMPLETED TRANSPORTATION ROUTES TRANSLATION**: Added comprehensive translations for all major transportation routes
-  * **VERIFIED WORKING TRANSLATIONS**: All route endpoints now return properly translated names in Spanish, French, and German
+  * **COMPLETED LOCATION DESCRIPTIONS**: Fixed third-line route descriptions with proper translations (fromLocation/toLocation fields)
+  * **VERIFIED WORKING TRANSLATIONS**: All route endpoints now return properly translated names AND location descriptions in Spanish, French, and German
   * **TRANSLATION EXAMPLES CONFIRMED**:
     - Spanish: "El Cairo - Día completo Saqqara y Dahshur", "Aeropuerto ↔ Hotel de El Cairo o Giza", "Aeropuerto de Hurghada → Hotel de la Ciudad"
     - French: "Le Caire - Journée complète Saqqarah et Dahchour", "Aéroport ↔ Hôtel du Caire ou Gizeh", "Aéroport de Hurghada → Hôtel de la Ville"
     - German: "Kairo - Ganztägig Saqqara und Dahschur", "Flughafen ↔ Kairo oder Gizeh Hotel", "Hurghada Flughafen → Stadthotel"
-  * **COMPLETE MULTILINGUAL TRANSPORTATION**: All major airport transfers, city routes, and inter-city transportation now fully translated
+  * **LOCATION TRANSLATIONS EXAMPLES**:
+    - Spanish: "hotel → restaurante", "Centro de El Cairo → Centro de Alejandría", "Aeropuerto Internacional de El Cairo → Aeropuerto de Lúxor"
+    - French: "hôtel → restaurant", "Centre-ville du Caire → Centre-ville d'Alexandrie", "Aéroport international du Caire → Aéroport de Louxor"
+    - German: "Hotel → Restaurant", "Kairo Stadtzentrum → Alexandria Zentrum", "Kairo Internationaler Flughafen → Luxor Flughafen"
+  * **COMPLETE MULTILINGUAL TRANSPORTATION**: All major airport transfers, city routes, and inter-city transportation now fully translated including location descriptions
   * **END-TO-END MULTILINGUAL PLATFORM**: Destinations, attractions, AND transportation routes all translate seamlessly across 4 languages
 - July 07, 2025. **COMPLETED: 100% multilingual translation system for destinations AND attractions**
   * **FIXED FRONTEND TRANSLATIONS**: Updated "EGP/day" text to use proper translations: "EGP/día", "EGP/jour", "EGP/Tag"
