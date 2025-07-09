@@ -50,14 +50,14 @@ export function GuideSearch({
   // Enhanced language data with ratings and specialties
   const enhancedLanguages = useMemo(() => {
     const specialties = {
-      'English': ['Historical sites', 'Cultural tours', 'Photography'],
-      'Spanish': ['Art history', 'Religious sites', 'Local cuisine'],
-      'French': ['Architecture', 'Museum tours', 'Cultural heritage'],
-      'German': ['Archaeological sites', 'Historical analysis', 'Technical tours'],
-      'Italian': ['Art collections', 'Religious history', 'Renaissance culture'],
-      'Japanese': ['Cultural exchange', 'Photography', 'Spiritual sites'],
-      'Chinese': ['Ancient history', 'Cultural traditions', 'Silk road heritage'],
-      'Arabic': ['Islamic heritage', 'Local customs', 'Traditional crafts']
+      'English': [t('guides.specialties.historicalSites'), t('guides.specialties.culturalTours'), t('guides.specialties.photography')],
+      'Spanish': [t('guides.specialties.artHistory'), t('guides.specialties.religiousSites'), t('guides.specialties.localCuisine')],
+      'French': [t('guides.specialties.architecture'), t('guides.specialties.museumTours'), t('guides.specialties.culturalHeritage')],
+      'German': [t('guides.specialties.archaeologicalSites'), t('guides.specialties.historicalAnalysis'), t('guides.specialties.technicalTours')],
+      'Italian': [t('guides.specialties.artCollections'), t('guides.specialties.religiousHistory'), t('guides.specialties.renaissanceCulture')],
+      'Japanese': [t('guides.specialties.culturalExchange'), t('guides.specialties.photography'), t('guides.specialties.spiritualSites')],
+      'Chinese': [t('guides.specialties.ancientHistory'), t('guides.specialties.culturalTraditions'), t('guides.specialties.silkRoad')],
+      'Arabic': [t('guides.specialties.islamicHeritage'), t('guides.specialties.localCustoms'), t('guides.specialties.traditionalCrafts')]
     };
 
     const ratings = {
@@ -73,10 +73,11 @@ export function GuideSearch({
 
     return languages.map(language => ({
       language,
+      displayName: t(`guides.languages.${language.toLowerCase()}`),
       rating: ratings[language as keyof typeof ratings] || 4.5,
-      specialties: specialties[language as keyof typeof specialties] || ['General tours']
+      specialties: specialties[language as keyof typeof specialties] || [t('guides.specialties.generalTours')]
     }));
-  }, [languages]);
+  }, [languages, t]);
 
   // Filter languages based on search
   const filteredLanguages = useMemo(() => {
@@ -84,6 +85,7 @@ export function GuideSearch({
     
     return enhancedLanguages.filter(lang => 
       lang.language.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      lang.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       lang.specialties.some(specialty => 
         specialty.toLowerCase().includes(searchTerm.toLowerCase())
       )
@@ -112,7 +114,8 @@ export function GuideSearch({
 
   const getDisplayText = () => {
     if (!selectedGuide) return t('guides.selectTourGuide');
-    return t('guides.selectedGuide', { language: selectedGuide.language, duration: selectedGuide.duration });
+    const languageDisplay = t(`guides.languages.${selectedGuide.language.toLowerCase()}`);
+    return t('guides.selectedGuide', { language: languageDisplay, duration: selectedGuide.duration });
   };
 
   const handleLanguageSelect = (language: string) => {
@@ -203,7 +206,7 @@ export function GuideSearch({
                 <p>No guides found matching your search</p>
               </div>
             ) : (
-              filteredLanguages.map(({ language, rating, specialties }) => (
+              filteredLanguages.map(({ language, displayName, rating, specialties }) => (
                 <div
                   key={language}
                   className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
@@ -219,7 +222,7 @@ export function GuideSearch({
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">{language}</span>
+                        <span className="font-medium">{displayName}</span>
                         <div className="flex items-center gap-1">
                           <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                           <span className="text-xs text-gray-600">{rating}</span>

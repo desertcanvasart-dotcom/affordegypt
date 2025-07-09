@@ -172,7 +172,43 @@
   },
   "guides": {
     "selectTourGuide": "Reiseführer auswählen...",
-    "selectedGuide": "{{language}} Reiseführer ({{duration}}h)"
+    "selectedGuide": "{{language}} Reiseführer ({{duration}}h)",
+    "languages": {
+      "english": "Englisch",
+      "spanish": "Spanisch",
+      "french": "Französisch",
+      "german": "Deutsch",
+      "italian": "Italienisch",
+      "japanese": "Japanisch",
+      "chinese": "Chinesisch",
+      "arabic": "Arabisch"
+    },
+    "specialties": {
+      "historicalSites": "Historische Stätten",
+      "culturalTours": "Kulturelle Touren",
+      "photography": "Fotografie",
+      "artHistory": "Kunstgeschichte",
+      "religiousSites": "Religiöse Stätten",
+      "localCuisine": "Lokale Küche",
+      "architecture": "Architektur",
+      "museumTours": "Museumsführungen",
+      "culturalHeritage": "Kulturelles Erbe",
+      "archaeologicalSites": "Archäologische Stätten",
+      "historicalAnalysis": "Historische Analyse",
+      "technicalTours": "Technische Touren",
+      "artCollections": "Kunstsammlungen",
+      "religiousHistory": "Religionsgeschichte",
+      "renaissanceCulture": "Renaissance-Kultur",
+      "culturalExchange": "Kulturaustausch",
+      "spiritualSites": "Spirituelle Stätten",
+      "ancientHistory": "Antike Geschichte",
+      "culturalTraditions": "Kulturelle Traditionen",
+      "silkRoad": "Seidenstraße",
+      "islamicHeritage": "Islamisches Erbe",
+      "localCustoms": "Lokale Bräuche",
+      "traditionalCrafts": "Traditionelles Handwerk",
+      "generalTours": "Allgemeine Touren"
+    }
   },
   "addons": {
     "selectAddOns": "Zusätze auswählen...",

@@ -172,7 +172,43 @@
   },
   "guides": {
     "selectTourGuide": "Seleccionar guía turístico...",
-    "selectedGuide": "Guía {{language}} ({{duration}}h)"
+    "selectedGuide": "Guía {{language}} ({{duration}}h)",
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español",
+      "french": "Francés",
+      "german": "Alemán",
+      "italian": "Italiano",
+      "japanese": "Japonés",
+      "chinese": "Chino",
+      "arabic": "Árabe"
+    },
+    "specialties": {
+      "historicalSites": "Sitios históricos",
+      "culturalTours": "Tours culturales",
+      "photography": "Fotografía",
+      "artHistory": "Historia del arte",
+      "religiousSites": "Sitios religiosos",
+      "localCuisine": "Cocina local",
+      "architecture": "Arquitectura",
+      "museumTours": "Tours de museos",
+      "culturalHeritage": "Patrimonio cultural",
+      "archaeologicalSites": "Sitios arqueológicos",
+      "historicalAnalysis": "Análisis histórico",
+      "technicalTours": "Tours técnicos",
+      "artCollections": "Colecciones de arte",
+      "religiousHistory": "Historia religiosa",
+      "renaissanceCulture": "Cultura renacentista",
+      "culturalExchange": "Intercambio cultural",
+      "spiritualSites": "Sitios espirituales",
+      "ancientHistory": "Historia antigua",
+      "culturalTraditions": "Tradiciones culturales",
+      "silkRoad": "Ruta de la seda",
+      "islamicHeritage": "Patrimonio islámico",
+      "localCustoms": "Costumbres locales",
+      "traditionalCrafts": "Artesanías tradicionales",
+      "generalTours": "Tours generales"
+    }
   },
   "addons": {
     "selectAddOns": "Seleccionar complementos...",
