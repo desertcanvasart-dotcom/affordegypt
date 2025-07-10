@@ -76,7 +76,9 @@ export default function EasternWesternDesertsGuide() {
     }
   ];
 
-  const budgetItinerary = [
+  // Handle budget itinerary with fallback
+  const budgetItineraryTranslation = t('blog.desertsGuide.sections.itinerary.days', { returnObjects: true });
+  const budgetItinerary = Array.isArray(budgetItineraryTranslation) ? budgetItineraryTranslation : [
     {
       day: "Day 1",
       location: "Cairo → Bahariya",
@@ -109,7 +111,9 @@ export default function EasternWesternDesertsGuide() {
     }
   ];
 
-  const packingList = [
+  // Handle packing list with fallback
+  const packingListTranslation = t('blog.desertsGuide.sections.packing.items', { returnObjects: true });
+  const packingList = Array.isArray(packingListTranslation) ? packingListTranslation : [
     { item: "Power bank", reason: "No electricity during camping" },
     { item: "Scarf/keffiyeh", reason: "Sun, dust, and sand protection" },
     { item: "Flip flops & hiking shoes", reason: "For springs and rugged walks" },
@@ -118,7 +122,9 @@ export default function EasternWesternDesertsGuide() {
     { item: "Refillable water bottle", reason: "Eco-friendly and refillable in oases" }
   ];
 
-  const budgetTips = [
+  // Handle budget tips with fallback
+  const budgetTipsTranslation = t('blog.desertsGuide.sections.budgetTips.tips', { returnObjects: true });
+  const budgetTips = Array.isArray(budgetTipsTranslation) ? budgetTipsTranslation : [
     "Join local safari groups instead of private trips to save up to 60%",
     "Travel during November and March for shoulder season pricing",
     "Use minibuses and shared taxis between oases",
@@ -162,7 +168,7 @@ export default function EasternWesternDesertsGuide() {
                 onClick={handleNavigateToPlanning}
               >
                 <Tent className="w-5 h-5 mr-2" />
-                Plan Your Desert Adventure
+                {t('blog.desertsGuide.buttons.planAdventure')}
               </Button>
               <Button 
                 size="lg" 
@@ -175,7 +181,7 @@ export default function EasternWesternDesertsGuide() {
                 }}
               >
                 <DollarSign className="w-5 h-5 mr-2" />
-                View Budget Guide
+                {t('blog.desertsGuide.buttons.viewBudgetGuide')}
               </Button>
             </div>
           </div>
@@ -188,9 +194,9 @@ export default function EasternWesternDesertsGuide() {
         {/* Desert Comparison */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">Understanding Egypt's Two Great Deserts</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.comparison.title')}</h2>
             <p className="text-xl text-slate-600">
-              Each desert offers unique landscapes and experiences for budget travelers
+              {t('blog.desertsGuide.sections.comparison.subtitle')}
             </p>
           </div>
 
@@ -199,16 +205,16 @@ export default function EasternWesternDesertsGuide() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-xl text-primary">
                   <Mountain className="w-6 h-6" />
-                  Eastern Desert
+                  {t('blog.desertsGuide.sections.comparison.eastern.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-slate-700"><strong>Location:</strong> Between the Nile and Red Sea</p>
-                  <p className="text-slate-700"><strong>Terrain:</strong> Rugged mountains, ancient trade routes</p>
-                  <p className="text-slate-700"><strong>Best For:</strong> Hikers, off-roaders, history lovers</p>
-                  <p className="text-slate-700"><strong>Access:</strong> Qena, Hurghada, Marsa Alam</p>
-                  <p className="text-slate-700"><strong>Highlights:</strong> Roman quarries, Red Sea mountains</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.eastern.location')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.eastern.terrain')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.eastern.bestFor')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.eastern.access')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.eastern.highlights')}</p>
                 </div>
               </CardContent>
             </Card>
@@ -217,16 +223,16 @@ export default function EasternWesternDesertsGuide() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-xl text-primary">
                   <Sun className="w-6 h-6" />
-                  Western Desert
+                  {t('blog.desertsGuide.sections.comparison.western.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-slate-700"><strong>Location:</strong> West of the Nile to Libyan border</p>
-                  <p className="text-slate-700"><strong>Terrain:</strong> Oases, sand dunes, white & black deserts</p>
-                  <p className="text-slate-700"><strong>Best For:</strong> Stargazers, nature seekers, cultural buffs</p>
-                  <p className="text-slate-700"><strong>Access:</strong> Cairo, Luxor, Asyut, Marsa Matrouh</p>
-                  <p className="text-slate-700"><strong>Highlights:</strong> Siwa, Bahariya, Farafra, Dakhla, Kharga</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.western.location')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.western.terrain')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.western.bestFor')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.western.access')}</p>
+                  <p className="text-slate-700">{t('blog.desertsGuide.sections.comparison.western.highlights')}</p>
                 </div>
               </CardContent>
             </Card>
@@ -236,9 +242,9 @@ export default function EasternWesternDesertsGuide() {
         {/* Top Destinations */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">Budget-Friendly Desert Destinations</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.destinations.title')}</h2>
             <p className="text-xl text-slate-600">
-              Explore these incredible oases and landscapes without breaking the bank
+              {t('blog.desertsGuide.sections.destinations.subtitle')}
             </p>
           </div>
 
@@ -274,9 +280,9 @@ export default function EasternWesternDesertsGuide() {
         <section className="bg-teal-50 -mx-4 px-4 py-16 rounded-2xl">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-primary mb-4">Smart Budget Travel Tips</h2>
+              <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.budgetTips.title')}</h2>
               <p className="text-xl text-slate-600">
-                How to explore Egypt's deserts affordably without compromising the experience
+                {t('blog.desertsGuide.sections.budgetTips.subtitle')}
               </p>
             </div>
 
@@ -300,12 +306,12 @@ export default function EasternWesternDesertsGuide() {
         {/* 5-Day Budget Itinerary */}
         <section id="budget-adventure">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">5-Day Budget Desert Adventure</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.itinerary.title')}</h2>
             <p className="text-xl text-slate-600 mb-4">
-              Complete desert experience for under $250 USD
+              {t('blog.desertsGuide.sections.itinerary.subtitle')}
             </p>
             <Badge className="bg-primary text-white text-lg px-4 py-2">
-              Total: ~2200 EGP (~$140 USD)
+              {t('blog.desertsGuide.sections.itinerary.total')}
             </Badge>
           </div>
 
@@ -337,9 +343,9 @@ export default function EasternWesternDesertsGuide() {
         <section className="bg-slate-50 -mx-4 px-4 py-16 rounded-2xl">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-primary mb-4">Desert Packing Essentials</h2>
+              <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.packing.title')}</h2>
               <p className="text-xl text-slate-600">
-                What to pack for comfortable and safe budget desert travel
+                {t('blog.desertsGuide.sections.packing.subtitle')}
               </p>
             </div>
 
@@ -366,9 +372,9 @@ export default function EasternWesternDesertsGuide() {
         {/* Best Time to Visit */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">When to Visit for Best Value</h2>
+            <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.bestTime.title')}</h2>
             <p className="text-xl text-slate-600">
-              Timing your desert adventure for optimal weather and budget savings
+              {t('blog.desertsGuide.sections.bestTime.subtitle')}
             </p>
           </div>
 
@@ -377,12 +383,12 @@ export default function EasternWesternDesertsGuide() {
               <CardHeader>
                 <CardTitle className="text-center text-green-700">
                   <Calendar className="w-8 h-8 mx-auto mb-2" />
-                  Best Season
+                  {t('blog.desertsGuide.sections.bestTime.bestSeason.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-2xl font-bold text-green-700 mb-2">Oct - Apr</p>
-                <p className="text-slate-600">Perfect weather conditions and comfortable temperatures for desert exploration</p>
+                <p className="text-2xl font-bold text-green-700 mb-2">{t('blog.desertsGuide.sections.bestTime.bestSeason.period')}</p>
+                <p className="text-slate-600">{t('blog.desertsGuide.sections.bestTime.bestSeason.description')}</p>
               </CardContent>
             </Card>
 
@@ -390,12 +396,12 @@ export default function EasternWesternDesertsGuide() {
               <CardHeader>
                 <CardTitle className="text-center text-primary">
                   <DollarSign className="w-8 h-8 mx-auto mb-2" />
-                  Budget Sweet Spot
+                  {t('blog.desertsGuide.sections.bestTime.budgetSpot.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-2xl font-bold text-primary mb-2">Nov & Mar</p>
-                <p className="text-slate-600">Shoulder months with lower prices, fewer crowds, and mild weather</p>
+                <p className="text-2xl font-bold text-primary mb-2">{t('blog.desertsGuide.sections.bestTime.budgetSpot.period')}</p>
+                <p className="text-slate-600">{t('blog.desertsGuide.sections.bestTime.budgetSpot.description')}</p>
               </CardContent>
             </Card>
 
@@ -403,12 +409,12 @@ export default function EasternWesternDesertsGuide() {
               <CardHeader>
                 <CardTitle className="text-center text-red-700">
                   <Sun className="w-8 h-8 mx-auto mb-2" />
-                  Avoid
+                  {t('blog.desertsGuide.sections.bestTime.avoid.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-2xl font-bold text-red-700 mb-2">Jun - Aug</p>
-                <p className="text-slate-600">Extreme heat makes desert travel uncomfortable and potentially dangerous</p>
+                <p className="text-2xl font-bold text-red-700 mb-2">{t('blog.desertsGuide.sections.bestTime.avoid.period')}</p>
+                <p className="text-slate-600">{t('blog.desertsGuide.sections.bestTime.avoid.description')}</p>
               </CardContent>
             </Card>
           </div>
@@ -417,9 +423,9 @@ export default function EasternWesternDesertsGuide() {
         {/* Call to Action */}
         <section className="text-center py-16 bg-gradient-to-r from-teal-600 via-primary to-teal-800 rounded-2xl text-white">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-6">Ready to Explore Egypt's Desert Wilderness?</h2>
+            <h2 className="text-4xl font-bold mb-6">{t('blog.desertsGuide.cta.title')}</h2>
             <p className="text-xl mb-8 text-teal-100">
-              Start planning your budget desert adventure with our multi-city pricing tool. Get transparent costs for transport, guides, and accommodations across all desert destinations.
+              {t('blog.desertsGuide.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -428,7 +434,7 @@ export default function EasternWesternDesertsGuide() {
                 onClick={handleNavigateToPlanning}
               >
                 <MapPin className="w-5 h-5 mr-2" />
-                Start Planning Your Trip
+                {t('blog.desertsGuide.cta.buttons.startPlanning')}
               </Button>
               <Button 
                 size="lg" 
@@ -436,7 +442,7 @@ export default function EasternWesternDesertsGuide() {
                 disabled
               >
                 <Users className="w-5 h-5 mr-2" />
-                Find Desert Guides
+                {t('blog.desertsGuide.cta.buttons.findGuides')}
               </Button>
             </div>
           </div>

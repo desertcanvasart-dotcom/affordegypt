@@ -496,7 +496,143 @@
     "desertsGuide": {
       "title": "Ost- & Westwüste",
       "subtitle": "Das Tor für Budgetreisende zu Ägyptens ungezähmter Schönheit",
-      "description": "Ägyptens Wüsten bieten antike Geheimnisse, marsähnliche Landschaften, spirituelle Einsamkeit und lokale Gastfreundschaft – und das alles zu einem Bruchteil der Kosten typischer Touristenorte. Ideal für preisbewusste Abenteurer, die authentische Erlebnisse suchen."
+      "description": "Ägyptens Wüsten bieten antike Geheimnisse, marsähnliche Landschaften, spirituelle Einsamkeit und lokale Gastfreundschaft – und das alles zu einem Bruchteil der Kosten typischer Touristenorte. Ideal für preisbewusste Abenteurer, die authentische Erlebnisse suchen.",
+      "buttons": {
+        "planAdventure": "Planen Sie Ihr Wüstenabenteuer",
+        "viewBudgetGuide": "Budget-Leitfaden Anzeigen"
+      },
+      "sections": {
+        "comparison": {
+          "title": "Verständnis von Ägyptens Zwei Großen Wüsten",
+          "subtitle": "Jede Wüste bietet einzigartige Landschaften und Erlebnisse für Budgetreisende",
+          "eastern": {
+            "title": "Ostwüste",
+            "location": "Lage: Zwischen dem Nil und dem Roten Meer",
+            "terrain": "Gelände: Schroffe Berge, antike Handelsrouten",
+            "bestFor": "Ideal Für: Wanderer, Geländefahrer, Geschichtsliebhaber",
+            "access": "Zugang: Qena, Hurghada, Marsa Alam",
+            "highlights": "Höhepunkte: Römische Steinbrüche, Rotes Meer Berge"
+          },
+          "western": {
+            "title": "Westwüste",
+            "location": "Lage: West des Nils zur libyschen Grenze",
+            "terrain": "Gelände: Oasen, Sanddünen, weiße & schwarze Wüsten",
+            "bestFor": "Ideal Für: Sterngucker, Naturliebhaber, Kulturinteressierte",
+            "access": "Zugang: Kairo, Luxor, Asyut, Marsa Matrouh",
+            "highlights": "Höhepunkte: Siwa, Bahariya, Farafra, Dakhla, Kharga"
+          }
+        },
+        "destinations": {
+          "title": "Budget-Freundliche Wüstenziele",
+          "subtitle": "Erkunden Sie diese unglaublichen Oasen und Landschaften ohne das Budget zu sprengen"
+        },
+        "budgetTips": {
+          "title": "Intelligente Budget-Reisetipps",
+          "subtitle": "Wie man Ägyptens Wüsten günstig erkundet ohne das Erlebnis zu beeinträchtigen",
+          "tips": [
+            "Schließen Sie sich lokalen Safari-Gruppen statt privaten Reisen an, um bis zu 60% zu sparen",
+            "Reisen Sie im November und März für Nebensaison-Preise",
+            "Nutzen Sie Minibusse und geteilte Taxis zwischen Oasen",
+            "Übernachten Sie in familiengeführten Gästehäusern statt Hotels",
+            "Essen Sie dort, wo sich Einheimische versammeln für authentische, günstige Mahlzeiten",
+            "Verhandeln Sie Preise persönlich, besonders in der Nebensaison"
+          ]
+        },
+        "itinerary": {
+          "title": "5-Tage Budget Wüstenabenteuer",
+          "subtitle": "Komplettes Wüstenerlebnis für unter 250 USD",
+          "total": "Gesamt: ~2200 EGP (~140 USD)",
+          "days": [
+            {
+              "day": "Tag 1",
+              "location": "Kairo → Bahariya",
+              "activities": "Busfahrt, Übernachtung in Bawiti",
+              "cost": "350 EGP"
+            },
+            {
+              "day": "Tag 2",
+              "location": "Weiße Wüste Tour",
+              "activities": "Gruppenausflug inkl. Mahlzeiten und Camping",
+              "cost": "900 EGP"
+            },
+            {
+              "day": "Tag 3",
+              "location": "Bahariya Entspannung",
+              "activities": "Heiße Quellen, lokales Essen, Lodge-Aufenthalt",
+              "cost": "400 EGP"
+            },
+            {
+              "day": "Tag 4",
+              "location": "Dakhla Oase",
+              "activities": "Mikrobus-Transfer, Besuch der islamischen Lehmstadt",
+              "cost": "250 EGP"
+            },
+            {
+              "day": "Tag 5",
+              "location": "Rückkehr nach Kairo",
+              "activities": "Busfahrt, Mahlzeiten, SIM-Karten-Aufladung",
+              "cost": "300 EGP"
+            }
+          ]
+        },
+        "packing": {
+          "title": "Wüsten-Packliste Essentials",
+          "subtitle": "Was man für komfortables und sicheres Budget-Wüstenreisen einpacken sollte",
+          "items": [
+            {
+              "item": "Powerbank",
+              "reason": "Kein Strom während des Campings"
+            },
+            {
+              "item": "Schal/Keffiyeh",
+              "reason": "Schutz vor Sonne, Staub und Sand"
+            },
+            {
+              "item": "Flip-Flops & Wanderschuhe",
+              "reason": "Für Quellen und schwierige Spaziergänge"
+            },
+            {
+              "item": "Thermische Schicht",
+              "reason": "Wüstennächte können kalt sein"
+            },
+            {
+              "item": "Taschenlampe",
+              "reason": "Minimale Beleuchtung in Camps"
+            },
+            {
+              "item": "Nachfüllbare Wasserflasche",
+              "reason": "Umweltfreundlich und nachfüllbar in Oasen"
+            }
+          ]
+        },
+        "bestTime": {
+          "title": "Wann zu Besuchen für Besten Wert",
+          "subtitle": "Timing Ihres Wüstenabenteuers für optimales Wetter und Budget-Einsparungen",
+          "bestSeason": {
+            "title": "Beste Saison",
+            "period": "Okt - Apr",
+            "description": "Perfekte Wetterbedingungen und angenehme Temperaturen für Wüstenerkundung"
+          },
+          "budgetSpot": {
+            "title": "Budget Süßer Punkt",
+            "period": "Nov & Mär",
+            "description": "Nebenmonate mit niedrigeren Preisen, weniger Menschenmengen und mildem Wetter"
+          },
+          "avoid": {
+            "title": "Zu Vermeiden",
+            "period": "Jun - Aug",
+            "description": "Extreme Hitze macht Wüstenreisen unbequem und potentiell gefährlich"
+          }
+        }
+      },
+      "cta": {
+        "title": "Bereit, Ägyptens Wüsten-Wildnis zu Erkunden?",
+        "description": "Beginnen Sie mit der Planung Ihres Budget-Wüstenabenteuers mit unserem Multi-City-Preistool. Erhalten Sie transparente Kosten für Transport, Führer und Unterkünfte in allen Wüstenzielen.",
+        "buttons": {
+          "startPlanning": "Reise Planen Beginnen",
+          "findGuides": "Wüsten-Führer Finden"
+        }
+      }
     },
     "posts": {
       "sinaiGuide": {
