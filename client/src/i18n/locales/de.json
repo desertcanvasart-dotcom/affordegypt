@@ -318,6 +318,181 @@
       "travelTips": "Reisetipps"
     },
     "readTime": "{{time}} Min. Lesezeit",
+    "sinaiGuide": {
+      "title": "Reiseführer Sinai-Halbinsel",
+      "subtitle": "Ihr Tor zu einer Region, in der antike Geschichte auf die unberührte Schönheit des Roten Meeres trifft",
+      "description": "Entdecken Sie die berühmtesten Korallenriffe der Welt, steigen Sie bei Sonnenaufgang auf den heiligen Berg Sinai und durchqueren Sie mit Beduinenführern windgepeitschte Dünen. Die Sinai-Halbinsel bietet ein außergewöhnliches Mosaik aus zerklüfteten Bergen, unberührten Stränden und zeitloser Wüstenkultur.",
+      "destinations": {
+        "title": "Wichtige Reiseziele",
+        "description": "Von weltberühmten Tauchplätzen bis hin zu biblischen Bergen - entdecken Sie die vielfältigen Landschaften des Sinai",
+        "dahab": {
+          "name": "Dahab",
+          "description": "Entspanntes Beduinen-Dorf mit erstklassigen Tauchplätzen",
+          "highlights": ["Blue Hole", "Canyon Tauchplatz", "Windsurf-Lagune", "Beduinen-Kultur"],
+          "details": "Bekannt für seine entspannte Atmosphäre und außergewöhnliche Tauchplätze, einschließlich des berühmten Blue Hole."
+        },
+        "sharmElSheikh": {
+          "name": "Sharm El Sheikh",
+          "description": "Luxuriöser Badeort mit erstklassigen Resorts und Korallenriffen",
+          "highlights": ["Ras Mohammed Nationalpark", "Naama Bay", "Old Market", "Luxusresorts"],
+          "details": "Ägyptens Premier-Badeort mit weltklasse Tauchplätzen und luxuriösen Unterkünften."
+        },
+        "mountSinai": {
+          "name": "Berg Sinai",
+          "description": "Heiliger Berg mit atemberaubenden Sonnenaufgängen",
+          "highlights": ["Sonnenaufgang-Wanderung", "Katharinenkloster", "Mosesberg", "Pilgerweg"],
+          "details": "Ein spiritueller Höhepunkt, der eine nächtliche Wanderung zum Sonnenaufgang belohnt."
+        },
+        "nuweiba": {
+          "name": "Nuweiba",
+          "description": "Ruhiger Küstenort mit unberührten Stränden",
+          "highlights": ["Coral Beach", "Beduinen-Camps", "Kameltrekking", "Entspannung"],
+          "details": "Perfekt für diejenigen, die Ruhe und unberührte Naturschönheit suchen."
+        },
+        "taba": {
+          "name": "Taba",
+          "description": "Grenzstadt mit spektakulären Bergblicken",
+          "highlights": ["Pharaonen-Insel", "Taba Heights", "Grenzübergang", "Wüstenlandschaft"],
+          "details": "Strategisch an der israelischen Grenze gelegen mit beeindruckenden Wüsten- und Berglandschaften."
+        }
+      },
+      "activities": {
+        "title": "Aktivitäten & Erlebnisse",
+        "description": "Vom Unterwassererlebnis bis zum Wüstenabenteuer - der Sinai bietet endlose Möglichkeiten",
+        "waterSports": {
+          "title": "Wassersport",
+          "scubaDiving": {
+            "name": "Gerätetauchen",
+            "price": "€35-85/Tag",
+            "description": "Entdecken Sie Weltklasse-Korallenriffe und Meereslebewesen"
+          },
+          "snorkeling": {
+            "name": "Schnorcheln",
+            "price": "€15-25/Tag",
+            "description": "Oberflächenerkundung der bunten Unterwasserwelt"
+          },
+          "windsurfing": {
+            "name": "Windsurfen",
+            "price": "€20-40/Tag",
+            "description": "Nutzen Sie die beständigen Winde des Roten Meeres"
+          },
+          "kitesurfing": {
+            "name": "Kitesurfen",
+            "price": "€40-80/Tag",
+            "description": "Aufregende Wassersportart mit professionellen Lehrern"
+          }
+        },
+        "desertAdventures": {
+          "title": "Wüstenabenteuer",
+          "camelTrekking": {
+            "name": "Kameltrekking",
+            "price": "€25-50/Tag",
+            "description": "Traditioneller Transport durch Wüstenlandschaften"
+          },
+          "desertSafari": {
+            "name": "Wüstensafari",
+            "price": "€40-80/Tag",
+            "description": "4x4-Abenteuer durch zerklüftetes Gelände"
+          },
+          "coloredCanyon": {
+            "name": "Colored Canyon",
+            "price": "€30-60/Besuch",
+            "description": "Geologisches Wunder mit mehrfarbigen Felsformationen"
+          },
+          "bedouinNight": {
+            "name": "Beduinen-Nacht",
+            "price": "€35-70/Nacht",
+            "description": "Übernachtung unter Sternen mit traditioneller Kultur"
+          }
+        },
+        "cultural": {
+          "title": "Kulturelle Erlebnisse",
+          "mountSinai": {
+            "name": "Berg Sinai Aufstieg",
+            "price": "€20-40/Person",
+            "description": "Spirituelle Wanderung zum Sonnenaufgang auf dem heiligen Berg"
+          },
+          "monastery": {
+            "name": "Katharinenkloster",
+            "price": "€15-25/Eintritt",
+            "description": "Eines der ältesten christlichen Klöster der Welt"
+          },
+          "bedouinVillage": {
+            "name": "Beduinen-Dorf Besuch",
+            "price": "€25-45/Besuch",
+            "description": "Erleben Sie authentische Beduinen-Kultur und Gastfreundschaft"
+          },
+          "wadiFeiran": {
+            "name": "Wadi Feiran",
+            "price": "€30-50/Tour",
+            "description": "Grüne Oase mit historischer und biblischer Bedeutung"
+          }
+        }
+      },
+      "itineraries": {
+        "title": "Beispiel-Reiserouten",
+        "description": "Sorgfältig gestaltete Reisepläne für unterschiedliche Interessen und Zeitpläne",
+        "highlights": {
+          "title": "Sinai Höhepunkte (5 Tage)",
+          "price": "€280-420/Person",
+          "days": [
+            "Ankunft in Sharm El Sheikh, Entspannung am Strand",
+            "Ganztägiges Schnorcheln im Ras Mohammed Nationalpark",
+            "Fahrt nach Dahab, Blue Hole Tauchen",
+            "Berg Sinai Sonnenaufgangs-Wanderung, Katharinenkloster",
+            "Rückkehr nach Sharm, Abreise"
+          ]
+        },
+        "adventure": {
+          "title": "Abenteuer & Kultur (7 Tage)",
+          "price": "€450-680/Person",
+          "days": [
+            "Sharm El Sheikh Ankunft, Orientierung",
+            "Wüstensafari zum Colored Canyon",
+            "Kameltrekking mit Beduinen-Übernachtung",
+            "Dahab: Blue Hole und Canyon Tauchen",
+            "Berg Sinai Aufstieg, Katharinenkloster",
+            "Nuweiba: Entspannung und Schnorcheln",
+            "Rückfahrt und Abreise"
+          ]
+        },
+        "relaxed": {
+          "title": "Entspannte Entdeckung (4 Tage)",
+          "price": "€200-320/Person",
+          "days": [
+            "Dahab Ankunft, Strand und lokale Erkundung",
+            "Schnorcheln und Windsurf-Unterricht",
+            "Berg Sinai bei Sonnenaufgang, nachmittags Entspannung",
+            "Abschiedstauchgang oder Strandzeit, Abreise"
+          ]
+        }
+      },
+      "practical": {
+        "title": "Praktische Informationen",
+        "description": "Alles, was Sie für eine erfolgreiche Sinai-Reise wissen müssen",
+        "bestTime": {
+          "title": "Beste Reisezeit",
+          "content": "Oktober bis April bietet ideales Wetter mit Temperaturen von 20-28°C. Mai bis September ist heißer (30-40°C), aber perfekt für Wassersport und weniger überfüllt."
+        },
+        "gettingThere": {
+          "title": "Anreise",
+          "content": "Fliegen Sie nach Sharm El Sheikh (SSH) für südlichen Sinai oder Taba für nördliche Gebiete. Landtransfers von Kairo dauern 6-7 Stunden durch beeindruckende Wüstenlandschaft."
+        },
+        "safety": {
+          "title": "Sicherheit & Gesundheit",
+          "content": "Der Sinai ist sicher für Touristen mit grundlegenden Vorsichtsmaßnahmen. Bleiben Sie hydratisiert, verwenden Sie Sonnenschutz und folgen Sie örtlichen Führer-Ratschlägen, besonders in Wüstengebieten."
+        },
+        "packing": {
+          "title": "Packliste Essentials",
+          "content": "Sonnenschutz, Riffschuhe für felsige Strände, warme Kleidung für Bergwanderungen, Wasserflasche und Unterwasserkamera für unvergessliche Meeresmomente."
+        }
+      },
+      "cta": {
+        "title": "Bereit, den Sinai zu Erkunden?",
+        "description": "Lassen Sie uns Ihr perfektes Sinai-Abenteuer mit transparenten Preisen und lokaler Expertise planen",
+        "button": "Sinai-Reise Planen"
+      }
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Sinai-Halbinsel Reiseführer",

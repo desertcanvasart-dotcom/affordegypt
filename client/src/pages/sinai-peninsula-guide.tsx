@@ -156,7 +156,7 @@ export default function SinaiPeninsulaGuide() {
               </p>
             </div>
             <p className="text-lg md:text-xl text-teal-200 max-w-4xl mx-auto leading-relaxed">
-              Discover the world's most celebrated coral reefs, ascend sacred Mount Sinai at sunrise, and journey through windswept dunes with Bedouin guides. The Sinai Peninsula offers an extraordinary tapestry of rugged mountains, pristine beaches, and timeless desert culture.
+              {t('blog.sinaiGuide.description')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-6">
               <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
