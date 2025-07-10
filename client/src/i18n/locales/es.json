@@ -509,6 +509,38 @@
         "description": "Conéctate con nuestros expertos en viajes del Sinaí para itinerarios personalizados y precios competitivos en traslados, actividades y alojamiento.",
         "button": "Planea Tu Aventura en el Sinaí"
       }
+    },
+    "nileValley": {
+      "title": "Valle del Nilo",
+      "subtitle": "Guía Completa",
+      "description": "Viaja a través de 5,000 años de historia a lo largo del río más largo del mundo. Desde las pirámides de El Cairo hasta los templos de Abu Simbel - tu aventura completa por el Nilo.",
+      "hero": {
+        "features": {
+          "cities": {
+            "title": "12 Ciudades Históricas",
+            "description": "Desde Alejandría hasta Abu Simbel a lo largo del Nilo"
+          },
+          "sites": {
+            "title": "50+ Sitios Antiguos",
+            "description": "Templos, tumbas y maravillas arqueológicas"
+          },
+          "budget": {
+            "title": "Planificación Presupuestaria",
+            "description": "Consejos de transporte, alojamiento y comida"
+          }
+        },
+        "cta": "Planifica tu Viaje por el Nilo"
+      },
+      "regions": [
+        "Todos",
+        "Bajo Egipto",
+        "Egipto Medio",
+        "Alto Egipto",
+        "Nubia"
+      ],
+      "map": {
+        "title": "Mapa Interactivo del Valle del Nilo"
+      }
     }
   },
   "faq": {

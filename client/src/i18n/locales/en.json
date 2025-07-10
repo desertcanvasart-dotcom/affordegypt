@@ -508,6 +508,38 @@
         "description": "Connect with our Sinai travel experts for personalized itineraries and competitive pricing on transfers, activities, and accommodations.",
         "button": "Plan Your Sinai Adventure"
       }
+    },
+    "nileValley": {
+      "title": "Nile Valley",
+      "subtitle": "Complete Guide",
+      "description": "Journey through 5,000 years of history along the world's longest river. From Cairo's pyramids to Abu Simbel's temples - your complete Nile adventure.",
+      "hero": {
+        "features": {
+          "cities": {
+            "title": "12 Historic Cities",
+            "description": "From Alexandria to Abu Simbel along the Nile"
+          },
+          "sites": {
+            "title": "50+ Ancient Sites",
+            "description": "Temples, tombs, and archaeological wonders"
+          },
+          "budget": {
+            "title": "Budget Planning",
+            "description": "Transportation, accommodation & dining tips"
+          }
+        },
+        "cta": "Plan Your Nile Journey"
+      },
+      "regions": [
+        "All",
+        "Lower Egypt",
+        "Middle Egypt",
+        "Upper Egypt",
+        "Nubia"
+      ],
+      "map": {
+        "title": "Interactive Nile Valley Map"
+      }
     }
   },
   "faq": {

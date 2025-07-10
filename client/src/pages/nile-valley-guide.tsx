@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MapPin, Clock, Camera, Star, Navigation, Plane, Train, Ship } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Card } from "@/components/ui/card";
@@ -526,6 +527,7 @@ const nileValleyCities: NileCity[] = [
 ];
 
 export default function NileValleyGuide() {
+  const { t } = useTranslation();
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
 
@@ -534,11 +536,41 @@ export default function NileValleyGuide() {
     window.scrollTo(0, 0);
   }, []);
 
-  const regions = ["All", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
+  // Handle regions with fallback
+  const regionsTranslation = t('blog.nileValley.regions', { returnObjects: true });
+  const regions = Array.isArray(regionsTranslation) ? regionsTranslation : ["All", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
   
-  const filteredCities = selectedRegion === "All" 
+  // Create a mapping between translated regions and English region names
+  const regionMap: { [key: string]: string } = {
+    "All": "All",
+    "Lower Egypt": "Lower Egypt",
+    "Middle Egypt": "Middle Egypt", 
+    "Upper Egypt": "Upper Egypt",
+    "Nubia": "Nubia",
+    // Spanish
+    "Todos": "All",
+    "Bajo Egipto": "Lower Egypt",
+    "Egipto Medio": "Middle Egypt",
+    "Alto Egipto": "Upper Egypt",
+    "Nubia": "Nubia",
+    // French
+    "Tous": "All",
+    "Basse-Égypte": "Lower Egypt",
+    "Moyenne-Égypte": "Middle Egypt",
+    "Haute-Égypte": "Upper Egypt",
+    "Nubie": "Nubia",
+    // German
+    "Alle": "All",
+    "Unterägypten": "Lower Egypt",
+    "Mittelägypten": "Middle Egypt",
+    "Oberägypten": "Upper Egypt",
+    "Nubien": "Nubia"
+  };
+  
+  const englishRegion = regionMap[selectedRegion] || selectedRegion;
+  const filteredCities = englishRegion === "All" 
     ? nileValleyCities 
-    : nileValleyCities.filter(city => city.region === selectedRegion);
+    : nileValleyCities.filter(city => city.region === englishRegion);
 
   const navigateToQuote = () => {
     // Navigate to the pricing tool page
@@ -561,14 +593,13 @@ export default function NileValleyGuide() {
       >
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-            Nile Valley{" "}
+            {t('blog.nileValley.title')}{" "}
             <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
-              Complete Guide
+              {t('blog.nileValley.subtitle')}
             </span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance text-center">
-            Journey through 5,000 years of history along the world's longest river.<br/>
-            From Cairo's pyramids to Abu Simbel's temples - your complete Nile adventure.
+            {t('blog.nileValley.description')}
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mt-12 mb-8">
@@ -576,22 +607,22 @@ export default function NileValleyGuide() {
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <MapPin className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">12 Historic Cities</h4>
-              <p className="text-sm text-white/80">From Alexandria to Abu Simbel along the Nile</p>
+              <h4 className="font-semibold mb-2 text-green-primary">{t('blog.nileValley.hero.features.cities.title')}</h4>
+              <p className="text-sm text-white/80">{t('blog.nileValley.hero.features.cities.description')}</p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <Camera className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">50+ Ancient Sites</h4>
-              <p className="text-sm text-white/80">Temples, tombs, and archaeological wonders</p>
+              <h4 className="font-semibold mb-2 text-green-primary">{t('blog.nileValley.hero.features.sites.title')}</h4>
+              <p className="text-sm text-white/80">{t('blog.nileValley.hero.features.sites.description')}</p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <Navigation className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">Budget Planning</h4>
-              <p className="text-sm text-white/80">Transportation, accommodation & dining tips</p>
+              <h4 className="font-semibold mb-2 text-green-primary">{t('blog.nileValley.hero.features.budget.title')}</h4>
+              <p className="text-sm text-white/80">{t('blog.nileValley.hero.features.budget.description')}</p>
             </div>
           </div>
           
@@ -599,7 +630,7 @@ export default function NileValleyGuide() {
             onClick={navigateToQuote}
             className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1"
           >
-            Plan Your Nile Journey →
+            {t('blog.nileValley.hero.cta')} →
           </Button>
         </div>
       </header>
@@ -608,7 +639,7 @@ export default function NileValleyGuide() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Interactive Nile Valley Map
+            {t('blog.nileValley.map.title')}
           </h2>
           
           <div className="bg-white rounded-lg shadow-lg p-6 mb-8">

@@ -634,6 +634,38 @@
         }
       }
     },
+    "nileValley": {
+      "title": "Nil-Tal",
+      "subtitle": "Kompletter Reiseführer",
+      "description": "Reisen Sie durch 5.000 Jahre Geschichte entlang des längsten Flusses der Welt. Von Kairos Pyramiden bis zu Abu Simbels Tempeln - Ihr komplettes Nil-Abenteuer.",
+      "hero": {
+        "features": {
+          "cities": {
+            "title": "12 Historische Städte",
+            "description": "Von Alexandria bis Abu Simbel entlang des Nils"
+          },
+          "sites": {
+            "title": "50+ Antike Stätten",
+            "description": "Tempel, Gräber und archäologische Wunder"
+          },
+          "budget": {
+            "title": "Budget-Planung",
+            "description": "Transport-, Unterkunfts- und Essensstipps"
+          }
+        },
+        "cta": "Planen Sie Ihre Nil-Reise"
+      },
+      "regions": [
+        "Alle",
+        "Unterägypten",
+        "Mittelägypten",
+        "Oberägypten",
+        "Nubien"
+      ],
+      "map": {
+        "title": "Interaktive Nil-Tal Karte"
+      }
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Sinai-Halbinsel Reiseführer",
