@@ -7,8 +7,10 @@ import { MapPin, Clock, Star, Camera, Mountain, Sun, Compass, DollarSign, Calend
 import { Link, useLocation } from "wouter";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useTranslation } from 'react-i18next';
 
 export default function EasternWesternDesertsGuide() {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
 
   // Scroll to top when component mounts
@@ -144,14 +146,14 @@ export default function EasternWesternDesertsGuide() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-                Eastern & Western Deserts
+                {t('blog.desertsGuide.title')}
               </h1>
               <p className="text-2xl md:text-3xl text-teal-100 font-light">
-                A Budget Explorer's Gateway to Egypt's Untamed Beauty
+                {t('blog.desertsGuide.subtitle')}
               </p>
             </div>
             <p className="text-lg md:text-xl text-teal-200 max-w-4xl mx-auto leading-relaxed">
-              Egypt's deserts offer ancient mysteries, Martian landscapes, spiritual solitude, and local hospitality—all at a fraction of typical tourist hotspot costs. Perfect for budget-conscious adventurers seeking authentic experiences.
+              {t('blog.desertsGuide.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Button 
