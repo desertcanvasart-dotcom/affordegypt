@@ -346,8 +346,9 @@
     }
   },
   "sinaiGuide": {
-    "title": "Guía de Viaje de la Península del Sinaí",
-    "subtitle": "Tu puerta de entrada donde la historia antigua se encuentra con la belleza prístina del Mar Rojo",
+    "title": "Guía de Viaje por la Península del Sinaí",
+    "subtitle": "Tu puerta de entrada a donde la historia antigua se encuentra con la belleza virgen del Mar Rojo",
+    "description": "Descubre los arrecifes de coral más famosos del mundo, asciende al sagrado Monte Sinaí al amanecer y recorre dunas azotadas por el viento junto a guías beduinos. La Península del Sinaí ofrece un tapiz extraordinario de montañas escarpadas, playas prístinas y una cultura desértica atemporal.",
     "destinations": {
       "title": "Comprendiendo los Cuatro Grandes Destinos del Sinaí",
       "description": "Desde paisajes de cañones de roca roja hasta aguas cristalinas, cada destino ofrece una forma única de experimentar la magia de la Península del Sinaí.",
