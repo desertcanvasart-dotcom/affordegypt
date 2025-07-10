@@ -344,8 +344,9 @@
       }
     },
     "sinaiGuide": {
-      "title": "Péninsule du Sinaï",
-      "subtitle": "L'Aventure Désertique de l'Égypte",
+      "title": "Guide de Voyage dans la Péninsule du Sinaï",
+      "subtitle": "Votre porte d'entrée vers une région où l'histoire ancienne rencontre la beauté préservée de la mer Rouge",
+      "description": "Découvrez les récifs coralliens les plus célèbres du monde, grimpez au sommet du mont Sinaï au lever du soleil et parcourez les dunes balayées par le vent avec des guides bédouins. La péninsule du Sinaï offre un fabuleux mélange de montagnes escarpées, de plages immaculées et de culture désertique intemporelle.",
       "destinations": {
         "title": "Principales Destinations du Sinaï",
         "description": "Des paysages de canyons de roche rouge aux eaux cristallines, chaque destination offre une façon unique de découvrir la magie de la Péninsule du Sinaï.",
