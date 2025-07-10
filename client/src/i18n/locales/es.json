@@ -343,172 +343,172 @@
         "title": "Comida Callejera Egipcia: Una Guía de Aventura Culinaria",
         "excerpt": "Navega el delicioso mundo de la comida callejera egipcia con consejos de seguridad y platillos imperdibles en cada ciudad importante."
       }
-    }
-  },
-  "sinaiGuide": {
-    "title": "Guía de Viaje por la Península del Sinaí",
-    "subtitle": "Tu puerta de entrada a donde la historia antigua se encuentra con la belleza virgen del Mar Rojo",
-    "description": "Descubre los arrecifes de coral más famosos del mundo, asciende al sagrado Monte Sinaí al amanecer y recorre dunas azotadas por el viento junto a guías beduinos. La Península del Sinaí ofrece un tapiz extraordinario de montañas escarpadas, playas prístinas y una cultura desértica atemporal.",
-    "destinations": {
-      "title": "Comprendiendo los Cuatro Grandes Destinos del Sinaí",
-      "description": "Desde paisajes de cañones de roca roja hasta aguas cristalinas, cada destino ofrece una forma única de experimentar la magia de la Península del Sinaí.",
-      "sharmElSheikh": {
-        "name": "Sharm El Sheikh",
-        "description": "La joya de la corona del Mar Rojo, evolucionó de un asentamiento de pescadores beduinos a uno de los destinos de buceo más célebres del mundo",
-        "highlights": ["Parque Nacional Ras Muhammad", "Naufragio SS Thistlegorm", "Puerto Naama Bay", "Plaza Soho"],
-        "details": "Ubicado en el extremo sur del Sinaí, este pueblo turístico ofrece arrecifes de coral de clase mundial, alojamientos de lujo y vida nocturna vibrante. Experimenta el snorkeling nocturno con plancton en la Bahía de Nabq donde los organismos bioluminiscentes crean senderos de luz brillante."
-      },
-      "dahab": {
-        "name": "Dahab",
-        "description": "Una ciudad costera bohemia donde el nombre 'oro' refleja tanto las arenas del desierto como los matices del atardecer, amada por buceadores y espíritus libres",
-        "highlights": ["Buceo en el Agujero Azul", "Tres Piscinas", "Playa Masbat", "La Laguna"],
-        "details": "Una vez un modesto campamento de pescadores beduinos, la atmósfera relajada de Dahab atrae a aventureros de todo el mundo. Las paredes verticales del Agujero Azul y las caídas dramáticas del Cañón muestran vida marina vibrante, mientras que los vientos constantes lo hacen perfecto para el windsurf."
-      },
-      "nuweiba": {
-        "name": "Nuweiba",
-        "description": "Una puerta de entrada tranquila donde las rutas comerciales antiguas se encuentran con la costa prístina, ofreciendo cultura beduina auténtica y playas vírgenes",
-        "highlights": ["Cañón de Colores", "Bahía Aya", "Isla del Faraón", "Campamentos Beduinos"],
-        "details": "Las costas de Nuweiba han sido testigo de milenios de paso desde caravanas nabateas hasta viajeros modernos. Disfruta de rituales beduinos de té al atardecer en las dunas de la Bahía Aya y explora las paredes de arenisca del cercano Cañón de Colores brillando en bandas de ocre y carmesí."
-      },
-      "taba": {
-        "name": "Taba",
-        "description": "La puerta de entrada norte del Sinaí, donde cruces estratégicos se encuentran con resorts de lujo con vista al Golfo de Aqaba",
-        "highlights": ["Alturas de Taba", "Cruce Fronterizo", "Resorts en Acantilado", "Isla del Faraón"],
-        "details": "Sirviendo durante mucho tiempo como el cruce entre Egipto y el Levante, Taba combina significado histórico con lujo moderno. Elegantes resorts en acantilados ofrecen vistas panorámicas del golfo mientras mantienen motivos arquitectónicos beduinos tradicionales."
-      }
     },
-    "activities": {
-      "title": "Aventuras del Desierto Económicas",
-      "description": "Consejos Inteligentes de Viaje Económico: Cómo experimentar las aventuras del Sinaí sin gastar de más",
-      "waterSports": {
-        "title": "Deportes Acuáticos",
-        "scubaDiving": {
-          "name": "Buceo",
-          "price": "Desde $45/inmersión",
-          "description": "Explora arrecifes de coral mundialmente famosos"
+    "sinaiGuide": {
+      "title": "Guía de Viaje por la Península del Sinaí",
+      "subtitle": "Tu puerta de entrada a donde la historia antigua se encuentra con la belleza virgen del Mar Rojo",
+      "description": "Descubre los arrecifes de coral más famosos del mundo, asciende al sagrado Monte Sinaí al amanecer y recorre dunas azotadas por el viento junto a guías beduinos. La Península del Sinaí ofrece un tapiz extraordinario de montañas escarpadas, playas prístinas y una cultura desértica atemporal.",
+      "destinations": {
+        "title": "Comprendiendo los Cuatro Grandes Destinos del Sinaí",
+        "description": "Desde paisajes de cañones de roca roja hasta aguas cristalinas, cada destino ofrece una forma única de experimentar la magia de la Península del Sinaí.",
+        "sharmElSheikh": {
+          "name": "Sharm El Sheikh",
+          "description": "La joya de la corona del Mar Rojo, evolucionó de un asentamiento de pescadores beduinos a uno de los destinos de buceo más célebres del mundo",
+          "highlights": ["Parque Nacional Ras Muhammad", "Naufragio SS Thistlegorm", "Puerto Naama Bay", "Plaza Soho"],
+          "details": "Ubicado en el extremo sur del Sinaí, este pueblo turístico ofrece arrecifes de coral de clase mundial, alojamientos de lujo y vida nocturna vibrante. Experimenta el snorkeling nocturno con plancton en la Bahía de Nabq donde los organismos bioluminiscentes crean senderos de luz brillante."
         },
-        "snorkeling": {
-          "name": "Tours de Snorkeling",
-          "price": "Desde $25/viaje",
-          "description": "Descubre vida marina en aguas poco profundas"
+        "dahab": {
+          "name": "Dahab",
+          "description": "Una ciudad costera bohemia donde el nombre 'oro' refleja tanto las arenas del desierto como los matices del atardecer, amada por buceadores y espíritus libres",
+          "highlights": ["Buceo en el Agujero Azul", "Tres Piscinas", "Playa Masbat", "La Laguna"],
+          "details": "Una vez un modesto campamento de pescadores beduinos, la atmósfera relajada de Dahab atrae a aventureros de todo el mundo. Las paredes verticales del Agujero Azul y las caídas dramáticas del Cañón muestran vida marina vibrante, mientras que los vientos constantes lo hacen perfecto para el windsurf."
         },
-        "windsurfing": {
-          "name": "Windsurf",
-          "price": "Desde $35/hora",
-          "description": "Condiciones perfectas en Dahab"
+        "nuweiba": {
+          "name": "Nuweiba",
+          "description": "Una puerta de entrada tranquila donde las rutas comerciales antiguas se encuentran con la costa prístina, ofreciendo cultura beduina auténtica y playas vírgenes",
+          "highlights": ["Cañón de Colores", "Bahía Aya", "Isla del Faraón", "Campamentos Beduinos"],
+          "details": "Las costas de Nuweiba han sido testigo de milenios de paso desde caravanas nabateas hasta viajeros modernos. Disfruta de rituales beduinos de té al atardecer en las dunas de la Bahía Aya y explora las paredes de arenisca del cercano Cañón de Colores brillando en bandas de ocre y carmesí."
         },
-        "kitesurfing": {
-          "name": "Kitesurf",
-          "price": "Desde $50/lección",
-          "description": "Aprende en condiciones ideales de viento"
+        "taba": {
+          "name": "Taba",
+          "description": "La puerta de entrada norte del Sinaí, donde cruces estratégicos se encuentran con resorts de lujo con vista al Golfo de Aqaba",
+          "highlights": ["Alturas de Taba", "Cruce Fronterizo", "Resorts en Acantilado", "Isla del Faraón"],
+          "details": "Sirviendo durante mucho tiempo como el cruce entre Egipto y el Levante, Taba combina significado histórico con lujo moderno. Elegantes resorts en acantilados ofrecen vistas panorámicas del golfo mientras mantienen motivos arquitectónicos beduinos tradicionales."
         }
       },
-      "desertAdventures": {
-        "title": "Aventuras del Desierto",
-        "camelTrekking": {
-          "name": "Trekking en Camello",
-          "price": "Desde $30/día",
-          "description": "Transporte beduino tradicional"
+      "activities": {
+        "title": "Aventuras del Desierto Económicas",
+        "description": "Consejos Inteligentes de Viaje Económico: Cómo experimentar las aventuras del Sinaí sin gastar de más",
+        "waterSports": {
+          "title": "Deportes Acuáticos",
+          "scubaDiving": {
+            "name": "Buceo",
+            "price": "Desde $45/inmersión",
+            "description": "Explora arrecifes de coral mundialmente famosos"
+          },
+          "snorkeling": {
+            "name": "Tours de Snorkeling",
+            "price": "Desde $25/viaje",
+            "description": "Descubre vida marina en aguas poco profundas"
+          },
+          "windsurfing": {
+            "name": "Windsurf",
+            "price": "Desde $35/hora",
+            "description": "Condiciones perfectas en Dahab"
+          },
+          "kitesurfing": {
+            "name": "Kitesurf",
+            "price": "Desde $50/lección",
+            "description": "Aprende en condiciones ideales de viento"
+          }
         },
-        "desertSafari": {
-          "name": "Safari del Desierto",
-          "price": "Desde $60/viaje",
-          "description": "Exploración 4WD del desierto del Sinaí"
+        "desertAdventures": {
+          "title": "Aventuras del Desierto",
+          "camelTrekking": {
+            "name": "Trekking en Camello",
+            "price": "Desde $30/día",
+            "description": "Transporte beduino tradicional"
+          },
+          "desertSafari": {
+            "name": "Safari del Desierto",
+            "price": "Desde $60/viaje",
+            "description": "Exploración 4WD del desierto del Sinaí"
+          },
+          "coloredCanyon": {
+            "name": "Caminata del Cañón de Colores",
+            "price": "Desde $40/viaje",
+            "description": "Formaciones geológicas impresionantes"
+          },
+          "bedouinNight": {
+            "name": "Noche Beduina",
+            "price": "Desde $45/noche",
+            "description": "Experiencia auténtica de campamento en el desierto"
+          }
         },
-        "coloredCanyon": {
-          "name": "Caminata del Cañón de Colores",
-          "price": "Desde $40/viaje",
-          "description": "Formaciones geológicas impresionantes"
-        },
-        "bedouinNight": {
-          "name": "Noche Beduina",
-          "price": "Desde $45/noche",
-          "description": "Experiencia auténtica de campamento en el desierto"
+        "cultural": {
+          "title": "Cultural y Espiritual",
+          "mountSinai": {
+            "name": "Caminata del Amanecer en el Monte Sinaí",
+            "price": "Desde $35/persona",
+            "description": "Peregrinación bíblica de montaña"
+          },
+          "monastery": {
+            "name": "Monasterio de Santa Catalina",
+            "price": "Desde $25/visita",
+            "description": "Monasterio cristiano antiguo"
+          },
+          "bedouinVillage": {
+            "name": "Visita al Pueblo Beduino",
+            "price": "Desde $30/viaje",
+            "description": "Cultura tradicional del desierto"
+          },
+          "wadiFeiran": {
+            "name": "Oasis Wadi Feiran",
+            "price": "Desde $55/viaje",
+            "description": "Oasis bíblico histórico"
+          }
         }
       },
-      "cultural": {
-        "title": "Cultural y Espiritual",
-        "mountSinai": {
-          "name": "Caminata del Amanecer en el Monte Sinaí",
-          "price": "Desde $35/persona",
-          "description": "Peregrinación bíblica de montaña"
+      "practical": {
+        "title": "Esenciales para el Desierto",
+        "description": "Esto es lo que debes empacar para tu aventura en el Sinaí cuando las temperaturas bajan por la noche",
+        "bestTime": {
+          "title": "Mejor Época para Visitar",
+          "content": "De octubre a abril ofrece clima perfecto (20-25°C). Los meses de verano (mayo-septiembre) son extremadamente calurosos (35-45°C) pero excelentes para buceo."
         },
-        "monastery": {
-          "name": "Monasterio de Santa Catalina",
-          "price": "Desde $25/visita",
-          "description": "Monasterio cristiano antiguo"
+        "gettingThere": {
+          "title": "Cómo Llegar",
+          "content": "Vuela al Aeropuerto de Sharm El Sheikh (SSH) o conduce desde El Cairo (6-7 horas). El cruce fronterizo de Taba conecta con Israel/Jordania."
         },
-        "bedouinVillage": {
-          "name": "Visita al Pueblo Beduino",
-          "price": "Desde $30/viaje",
-          "description": "Cultura tradicional del desierto"
+        "safety": {
+          "title": "Consideraciones de Seguridad",
+          "content": "Generalmente seguro para turistas. Quédate en resorts establecidos y operadores turísticos. Consulta las advertencias de viaje actuales para áreas del desierto."
         },
-        "wadiFeiran": {
-          "name": "Oasis Wadi Feiran",
-          "price": "Desde $55/viaje",
-          "description": "Oasis bíblico histórico"
+        "packing": {
+          "title": "Qué Empacar",
+          "content": "Protector solar seguro para arrecifes, equipo de buceo (o alquílalo localmente), ropa de desierto, capas abrigadas para caminatas de montaña, botas de senderismo cómodas."
         }
+      },
+      "itineraries": {
+        "title": "Cuándo Visitar para Mejor Valor",
+        "description": "Consejos inteligentes de temporada para experiencias increíbles en el Sinaí",
+        "highlights": {
+          "title": "Destacados del Sinaí (5 Días)",
+          "days": [
+            "Día 1-2: Sharm El Sheikh - Buceo y relajación",
+            "Día 3: Caminata del amanecer en Monte Sinaí y Santa Catalina",
+            "Día 4: Traslado a Dahab, buceo en Agujero Azul",
+            "Día 5: Excursión de día al Cañón de Colores desde Dahab"
+          ],
+          "price": "Desde $380/persona"
+        },
+        "adventure": {
+          "title": "Aventura Sinaí (7 Días)",
+          "days": [
+            "Día 1-2: Sharm El Sheikh - Buceo en Ras Mohammed",
+            "Día 3-4: Dahab - Buceo avanzado y windsurf",
+            "Día 5: Caminata Monte Sinaí y visita al monasterio",
+            "Día 6: Nuweiba - Cañón de Colores y experiencia beduina",
+            "Día 7: Regreso vía safari del desierto a Sharm"
+          ],
+          "price": "Desde $590/persona"
+        },
+        "relaxed": {
+          "title": "Sinaí Relajado (10 Días)",
+          "days": [
+            "Día 1-4: Sharm El Sheikh - Relajación en resort y buceo",
+            "Día 5-7: Dahab - Buceo tranquilo y viajes al desierto",
+            "Día 8: Viaje espiritual al Monte Sinaí",
+            "Día 9-10: Nuweiba - Relajación en playa y experiencias culturales"
+          ],
+          "price": "Desde $720/persona"
+        }
+      },
+      "cta": {
+        "title": "¿Listo para Explorar el Desierto Salvaje del Sinaí?",
+        "description": "Conéctate con nuestros expertos en viajes del Sinaí para itinerarios personalizados y precios competitivos en traslados, actividades y alojamiento.",
+        "button": "Planea Tu Aventura en el Sinaí"
       }
-    },
-    "practical": {
-      "title": "Esenciales para el Desierto",
-      "description": "Esto es lo que debes empacar para tu aventura en el Sinaí cuando las temperaturas bajan por la noche",
-      "bestTime": {
-        "title": "Mejor Época para Visitar",
-        "content": "De octubre a abril ofrece clima perfecto (20-25°C). Los meses de verano (mayo-septiembre) son extremadamente calurosos (35-45°C) pero excelentes para buceo."
-      },
-      "gettingThere": {
-        "title": "Cómo Llegar",
-        "content": "Vuela al Aeropuerto de Sharm El Sheikh (SSH) o conduce desde El Cairo (6-7 horas). El cruce fronterizo de Taba conecta con Israel/Jordania."
-      },
-      "safety": {
-        "title": "Consideraciones de Seguridad",
-        "content": "Generalmente seguro para turistas. Quédate en resorts establecidos y operadores turísticos. Consulta las advertencias de viaje actuales para áreas del desierto."
-      },
-      "packing": {
-        "title": "Qué Empacar",
-        "content": "Protector solar seguro para arrecifes, equipo de buceo (o alquílalo localmente), ropa de desierto, capas abrigadas para caminatas de montaña, botas de senderismo cómodas."
-      }
-    },
-    "itineraries": {
-      "title": "Cuándo Visitar para Mejor Valor",
-      "description": "Consejos inteligentes de temporada para experiencias increíbles en el Sinaí",
-      "highlights": {
-        "title": "Destacados del Sinaí (5 Días)",
-        "days": [
-          "Día 1-2: Sharm El Sheikh - Buceo y relajación",
-          "Día 3: Caminata del amanecer en Monte Sinaí y Santa Catalina",
-          "Día 4: Traslado a Dahab, buceo en Agujero Azul",
-          "Día 5: Excursión de día al Cañón de Colores desde Dahab"
-        ],
-        "price": "Desde $380/persona"
-      },
-      "adventure": {
-        "title": "Aventura Sinaí (7 Días)",
-        "days": [
-          "Día 1-2: Sharm El Sheikh - Buceo en Ras Mohammed",
-          "Día 3-4: Dahab - Buceo avanzado y windsurf",
-          "Día 5: Caminata Monte Sinaí y visita al monasterio",
-          "Día 6: Nuweiba - Cañón de Colores y experiencia beduina",
-          "Día 7: Regreso vía safari del desierto a Sharm"
-        ],
-        "price": "Desde $590/persona"
-      },
-      "relaxed": {
-        "title": "Sinaí Relajado (10 Días)",
-        "days": [
-          "Día 1-4: Sharm El Sheikh - Relajación en resort y buceo",
-          "Día 5-7: Dahab - Buceo tranquilo y viajes al desierto",
-          "Día 8: Viaje espiritual al Monte Sinaí",
-          "Día 9-10: Nuweiba - Relajación en playa y experiencias culturales"
-        ],
-        "price": "Desde $720/persona"
-      }
-    },
-    "cta": {
-      "title": "¿Listo para Explorar el Desierto Salvaje del Sinaí?",
-      "description": "Conéctate con nuestros expertos en viajes del Sinaí para itinerarios personalizados y precios competitivos en traslados, actividades y alojamiento.",
-      "button": "Planea Tu Aventura en el Sinaí"
     }
   },
   "faq": {
