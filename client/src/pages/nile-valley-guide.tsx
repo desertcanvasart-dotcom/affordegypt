@@ -450,28 +450,28 @@ const nileValleyCities: NileCity[] = [
     averageStay: "2-3 days",
     keyAttractions: [
       {
-        name: "Philae Temple",
-        description: "Beautiful temple complex on an island, dedicated to Isis",
-        entryFee: "550 EGP + boat fees",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.aswan.philaeTemple.name",
+        description: "attractions.aswan.philaeTemple.description",
+        entryFee: "attractions.aswan.philaeTemple.entryFee",
+        hours: "attractions.aswan.philaeTemple.hours"
       },
       {
-        name: "High Dam",
-        description: "Engineering marvel that created Lake Nasser",
-        entryFee: "200 EGP",
-        hours: "8:00 AM - 5:00 PM"
+        name: "attractions.aswan.highDam.name",
+        description: "attractions.aswan.highDam.description",
+        entryFee: "attractions.aswan.highDam.entryFee",
+        hours: "attractions.aswan.highDam.hours"
       },
       {
-        name: "Unfinished Obelisk",
-        description: "Ancient granite quarry showing obelisk carving techniques",
-        entryFee: "220 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.aswan.unfinishedObelisk.name",
+        description: "attractions.aswan.unfinishedObelisk.description",
+        entryFee: "attractions.aswan.unfinishedObelisk.entryFee",
+        hours: "attractions.aswan.unfinishedObelisk.hours"
       },
       {
-        name: "Nubian Village",
-        description: "Colorful traditional villages showcasing Nubian culture",
-        entryFee: "Boat ride 200-300 EGP",
-        hours: "Daylight hours"
+        name: "attractions.aswan.nubianVillage.name",
+        description: "attractions.aswan.nubianVillage.description",
+        entryFee: "attractions.aswan.nubianVillage.entryFee",
+        hours: "attractions.aswan.nubianVillage.hours"
       }
     ],
     transportation: {
@@ -1007,8 +1007,8 @@ export default function NileValleyGuide() {
                         <ul className="text-sm space-y-1">
                           {city.keyAttractions.slice(0, 3).map((attraction, index) => (
                             <li key={index} className="flex justify-between">
-                              <span>{attraction.name}</span>
-                              <span className="text-primary">{attraction.entryFee}</span>
+                              <span>{t(attraction.name)}</span>
+                              <span className="text-primary">{t(attraction.entryFee)}</span>
                             </li>
                           ))}
                         </ul>

@@ -680,6 +680,34 @@
       "earlyMorningArrival": "Arrivée tôt le matin pour les meilleures photos"
     }
   },
+  "attractions": {
+    "aswan": {
+      "philaeTemple": {
+        "name": "Temple de Philae",
+        "description": "Magnifique complexe de temples sur une île, dédié à Isis",
+        "entryFee": "550 EGP + frais de bateau",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "highDam": {
+        "name": "Haut Barrage",
+        "description": "Merveille d'ingénierie qui a créé le lac Nasser",
+        "entryFee": "200 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      },
+      "unfinishedObelisk": {
+        "name": "Obélisque Inachevé",
+        "description": "Ancienne carrière de granit montrant les techniques de sculpture d'obélisques",
+        "entryFee": "220 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "nubianVillage": {
+        "name": "Village Nubien",
+        "description": "Villages traditionnels colorés présentant la culture nubienne",
+        "entryFee": "Balade en bateau 200-300 EGP",
+        "hours": "Heures de jour"
+      }
+    }
+  },
   "faq": {
     "title": "FAQ Voyage en Égypte",
     "subtitle": "Réponses à vos questions les plus fréquentes : claires, honnêtes et à jour",

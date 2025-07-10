@@ -681,6 +681,34 @@
       "earlyMorningArrival": "Llegada temprano en la mañana para mejores fotos"
     }
   },
+  "attractions": {
+    "aswan": {
+      "philaeTemple": {
+        "name": "Templo de Filae",
+        "description": "Hermoso complejo de templos en una isla, dedicado a Isis",
+        "entryFee": "550 EGP + tarifas de barco",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "highDam": {
+        "name": "Presa Alta",
+        "description": "Maravilla de ingeniería que creó el Lago Nasser",
+        "entryFee": "200 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      },
+      "unfinishedObelisk": {
+        "name": "Obelisco Inacabado",
+        "description": "Cantera de granito antigua que muestra técnicas de tallado de obeliscos",
+        "entryFee": "220 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "nubianVillage": {
+        "name": "Pueblo Nubio",
+        "description": "Pueblos tradicionales coloridos que muestran la cultura nubia",
+        "entryFee": "Paseo en barco 200-300 EGP",
+        "hours": "Horas de luz del día"
+      }
+    }
+  },
   "faq": {
     "title": "Preguntas Frecuentes sobre Egipto",
     "subtitle": "Respuestas a tus preguntas más comunes: claras, honestas y actualizadas",

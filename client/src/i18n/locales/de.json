@@ -831,6 +831,34 @@
       "earlyMorningArrival": "Frühe Ankunft am Morgen für beste Fotos"
     }
   },
+  "attractions": {
+    "aswan": {
+      "philaeTemple": {
+        "name": "Philae Tempel",
+        "description": "Wunderschöner Tempelkomplex auf einer Insel, Isis gewidmet",
+        "entryFee": "550 EGP + Bootsgebühren",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "highDam": {
+        "name": "Hoher Damm",
+        "description": "Ingenieursmeisterwerk, das den Nassersee schuf",
+        "entryFee": "200 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      },
+      "unfinishedObelisk": {
+        "name": "Unvollendeter Obelisk",
+        "description": "Alter Granitsteinbruch, der Obelisk-Schnitzverfahren zeigt",
+        "entryFee": "220 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "nubianVillage": {
+        "name": "Nubisches Dorf",
+        "description": "Farbenfrohe traditionelle Dörfer, die die nubische Kultur zeigen",
+        "entryFee": "Bootsfahrt 200-300 EGP",
+        "hours": "Tageslichtstunden"
+      }
+    }
+  },
   "faq": {
     "title": "Ägypten Reise FAQ",
     "subtitle": "Antworten auf Ihre häufigsten Fragen - klar, ehrlich und aktuell",
