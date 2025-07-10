@@ -680,11 +680,54 @@
       },
       "completeGuide": {
         "title": "Vollständiger Nil-Tal Städteführer",
+        "population": "Bevölkerung:",
+        "bestTime": "Beste Zeit:",
+        "stayDuration": "Aufenthaltsdauer:",
+        "fromCairo": "Von Kairo:",
+        "keyHighlights": "Wichtige Höhepunkte:",
+        "topAttractions": "Top-Sehenswürdigkeiten:",
+        "budgetTips": "Budget-Tipps:",
         "readMore": "Mehr Lesen",
         "showLess": "Weniger Anzeigen"
       },
+      "transportation": {
+        "title": "Nil-Tal Transportführer",
+        "train": {
+          "title": "Zugreisen",
+          "description": "Komfortable Nachtzüge verbinden Kairo mit Luxor und Assuan. Buchen Sie Schlafwagen für lange Fahrten.",
+          "cairoLuxor": "Kairo-Luxor: 1000-1250 EGP",
+          "cairoAswan": "Kairo-Assuan: 1100-1450 EGP",
+          "acCoaches": "Klimatisierte Waggons verfügbar",
+          "nightTrains": "Nachtzüge beinhalten Mahlzeiten"
+        },
+        "cruise": {
+          "title": "Nil-Kreuzfahrten",
+          "description": "Luxor-Assuan-Kreuzfahrten halten in Edfu und Kom Ombo. 3-7 Tage Optionen verfügbar.",
+          "threeFourDays": "3-4 Tage: 14500-17000 EGP",
+          "allMeals": "Alle Mahlzeiten inbegriffen",
+          "entranceFees": "Eintrittsgebühren für Stätten extra",
+          "bestTime": "Bestes Wetter Okt-Apr"
+        },
+        "flights": {
+          "title": "Inlandsflüge",
+          "description": "Schnelle Flüge nach Luxor, Assuan und Abu Simbel. Früh buchen für bessere Preise.",
+          "cairoLuxor": "Kairo-Luxor: 4300-6000 EGP",
+          "cairoAswan": "Kairo-Assuan: 5200-7000 EGP",
+          "abuSimbel": "Abu Simbel Tagesausflüge",
+          "flightTimes": "1-2 Stunden Flugzeit"
+        }
+      },
       "travelTips": {
-        "title": "Wichtige Reisetipps",
+        "title": "Wichtige Planungstipps",
+        "bestTime": {
+          "title": "Beste Reisezeit",
+          "peakSeason": "Oktober - März (Hochsaison)",
+          "peakDescription": "Perfektes Wetter, angenehme Temperaturen (20-25°C), höhere Preise",
+          "shoulderSeason": "April - Mai (Nebensaison)",
+          "shoulderDescription": "Warm aber machbar (25-30°C), weniger Menschenmengen, gute Preise",
+          "lowSeason": "Juni - September (Niedrigsaison)",
+          "lowDescription": "Sehr heiß (35-45°C), niedrigste Preise, morgendliche Besuche notwendig"
+        },
         "budgetBreakdown": {
           "title": "Budget-Aufschlüsselung (Pro Tag)",
           "budget": {
@@ -702,26 +745,22 @@
         },
         "culturalEtiquette": {
           "title": "Kulturelle Etikette",
-          "tips": [
-            "Sich bescheiden kleiden, besonders an religiösen Stätten",
-            "Schuhe ausziehen beim Betreten von Moscheen",
-            "Um Erlaubnis fragen vor dem Fotografieren von Menschen",
-            "Respektvoll auf Märkten handeln",
-            "Servicepersonal Trinkgeld geben (10-15%)",
-            "Grundlegende arabische Begrüßungen lernen"
-          ]
+          "dressModestly": "Sich bescheiden kleiden, besonders an religiösen Stätten",
+          "removeShoes": "Schuhe ausziehen beim Betreten von Moscheen",
+          "askPermission": "Um Erlaubnis fragen vor dem Fotografieren von Menschen",
+          "bargainRespectfully": "Respektvoll auf Märkten handeln",
+          "tipStaff": "Servicepersonal Trinkgeld geben (10-15%)",
+          "learnGreetings": "Grundlegende arabische Begrüßungen lernen"
         },
         "healthSafety": {
           "title": "Gesundheit & Sicherheit",
-          "tips": [
-            "Nur Flaschenwasser trinken",
-            "Sonnencreme und Hut im Sommer verwenden",
-            "Grundmedikamente einpacken",
-            "Reiseversicherung abschließen",
-            "Kopien von Dokumenten aufbewahren",
-            "Registrierte Reiseführer verwenden",
-            "Im Wüstenklima hydratisiert bleiben"
-          ]
+          "drinkBottledWater": "Nur Flaschenwasser trinken",
+          "useSunscreen": "Sonnencreme und Hut im Sommer verwenden",
+          "packMedications": "Grundmedikamente einpacken",
+          "getTravelInsurance": "Reiseversicherung abschließen",
+          "keepCopies": "Kopien von Dokumenten aufbewahren",
+          "useRegisteredGuides": "Registrierte Reiseführer verwenden",
+          "stayHydrated": "Im Wüstenklima hydratisiert bleiben"
         }
       }
     },

@@ -556,11 +556,54 @@
       },
       "completeGuide": {
         "title": "Guía Completa de Ciudades del Valle del Nilo",
+        "population": "Población:",
+        "bestTime": "Mejor época:",
+        "stayDuration": "Duración de estancia:",
+        "fromCairo": "Desde El Cairo:",
+        "keyHighlights": "Puntos Destacados:",
+        "topAttractions": "Principales Atracciones:",
+        "budgetTips": "Consejos de Presupuesto:",
         "readMore": "Leer Más",
         "showLess": "Mostrar Menos"
       },
+      "transportation": {
+        "title": "Guía de Transporte del Valle del Nilo",
+        "train": {
+          "title": "Viaje en Tren",
+          "description": "Trenes nocturnos cómodos conectan El Cairo con Luxor y Asuán. Reserva vagones cama para viajes largos.",
+          "cairoLuxor": "El Cairo-Luxor: 1000-1250 EGP",
+          "cairoAswan": "El Cairo-Asuán: 1100-1450 EGP",
+          "acCoaches": "Vagones con aire acondicionado disponibles",
+          "nightTrains": "Trenes nocturnos incluyen comidas"
+        },
+        "cruise": {
+          "title": "Cruceros por el Nilo",
+          "description": "Cruceros de Luxor a Asuán paran en Edfu y Kom Ombo. Opciones de 3-7 días disponibles.",
+          "threeFourDays": "3-4 días: 14500-17000 EGP",
+          "allMeals": "Todas las comidas incluidas",
+          "entranceFees": "Tarifas de entrada a sitios extra",
+          "bestTime": "Mejor clima octubre-abril"
+        },
+        "flights": {
+          "title": "Vuelos Domésticos",
+          "description": "Vuelos rápidos a Luxor, Asuán y Abu Simbel. Reserva temprano para mejores precios.",
+          "cairoLuxor": "El Cairo-Luxor: 4300-6000 EGP",
+          "cairoAswan": "El Cairo-Asuán: 5200-7000 EGP",
+          "abuSimbel": "Excursiones de día a Abu Simbel",
+          "flightTimes": "1-2 horas de tiempo de vuelo"
+        }
+      },
       "travelTips": {
-        "title": "Consejos de Viaje Esenciales",
+        "title": "Consejos de Planificación Esenciales",
+        "bestTime": {
+          "title": "Mejor Época para Visitar",
+          "peakSeason": "Octubre - Marzo (Temporada Alta)",
+          "peakDescription": "Clima perfecto, temperaturas cómodas (20-25°C), precios más altos",
+          "shoulderSeason": "Abril - Mayo (Temporada Media)",
+          "shoulderDescription": "Cálido pero manejable (25-30°C), menos multitudes, buenos precios",
+          "lowSeason": "Junio - Septiembre (Temporada Baja)",
+          "lowDescription": "Muy caluroso (35-45°C), precios más bajos, visitas matutinas esenciales"
+        },
         "budgetBreakdown": {
           "title": "Desglose del Presupuesto (Por Día)",
           "budget": {
@@ -578,26 +621,22 @@
         },
         "culturalEtiquette": {
           "title": "Etiqueta Cultural",
-          "tips": [
-            "Vístete modestamente, especialmente en sitios religiosos",
-            "Quítate los zapatos al entrar a mezquitas",
-            "Pide permiso antes de fotografiar personas",
-            "Regatear respetuosamente en mercados",
-            "Dar propina al personal de servicio (10-15%)",
-            "Aprender saludos básicos en árabe"
-          ]
+          "dressModestly": "Vístete modestamente, especialmente en sitios religiosos",
+          "removeShoes": "Quítate los zapatos al entrar a mezquitas",
+          "askPermission": "Pide permiso antes de fotografiar personas",
+          "bargainRespectfully": "Regatear respetuosamente en mercados",
+          "tipStaff": "Dar propina al personal de servicio (10-15%)",
+          "learnGreetings": "Aprender saludos básicos en árabe"
         },
         "healthSafety": {
           "title": "Salud y Seguridad",
-          "tips": [
-            "Beber solo agua embotellada",
-            "Usar protector solar y sombrero en verano",
-            "Llevar medicamentos básicos",
-            "Obtener seguro de viaje",
-            "Mantener copias de documentos",
-            "Usar guías turísticos registrados",
-            "Mantenerse hidratado en clima desértico"
-          ]
+          "drinkBottledWater": "Beber solo agua embotellada",
+          "useSunscreen": "Usar protector solar y sombrero en verano",
+          "packMedications": "Llevar medicamentos básicos",
+          "getTravelInsurance": "Obtener seguro de viaje",
+          "keepCopies": "Mantener copias de documentos",
+          "useRegisteredGuides": "Usar guías turísticos registrados",
+          "stayHydrated": "Mantenerse hidratado en clima desértico"
         }
       }
     }

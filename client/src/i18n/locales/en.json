@@ -555,11 +555,54 @@
       },
       "completeGuide": {
         "title": "Complete Nile Valley City Guide",
+        "population": "Population:",
+        "bestTime": "Best time:",
+        "stayDuration": "Stay duration:",
+        "fromCairo": "From Cairo:",
+        "keyHighlights": "Key Highlights:",
+        "topAttractions": "Top Attractions:",
+        "budgetTips": "Budget Tips:",
         "readMore": "Read More",
         "showLess": "Show Less"
       },
+      "transportation": {
+        "title": "Nile Valley Transportation Guide",
+        "train": {
+          "title": "Train Travel",
+          "description": "Comfortable overnight trains connect Cairo to Luxor and Aswan. Book sleeping cars for long journeys.",
+          "cairoLuxor": "Cairo-Luxor: 1000-1250 EGP",
+          "cairoAswan": "Cairo-Aswan: 1100-1450 EGP",
+          "acCoaches": "AC coaches available",
+          "nightTrains": "Night trains include meals"
+        },
+        "cruise": {
+          "title": "Nile Cruises",
+          "description": "Luxor to Aswan cruises stop at Edfu and Kom Ombo. 3-7 day options available.",
+          "threeFourDays": "3-4 days: 14500-17000 EGP",
+          "allMeals": "All meals included",
+          "entranceFees": "Site entrance fees extra",
+          "bestTime": "Best Oct-Apr weather"
+        },
+        "flights": {
+          "title": "Domestic Flights",
+          "description": "Quick flights to Luxor, Aswan, and Abu Simbel. Book early for better prices.",
+          "cairoLuxor": "Cairo-Luxor: 4300-6000 EGP",
+          "cairoAswan": "Cairo-Aswan: 5200-7000 EGP",
+          "abuSimbel": "Abu Simbel day trips",
+          "flightTimes": "1-2 hour flight times"
+        }
+      },
       "travelTips": {
-        "title": "Essential Travel Tips",
+        "title": "Essential Planning Tips",
+        "bestTime": {
+          "title": "Best Time to Visit",
+          "peakSeason": "October - March (Peak Season)",
+          "peakDescription": "Perfect weather, comfortable temperatures (20-25°C), higher prices",
+          "shoulderSeason": "April - May (Shoulder Season)",
+          "shoulderDescription": "Warm but manageable (25-30°C), fewer crowds, good prices",
+          "lowSeason": "June - September (Low Season)",
+          "lowDescription": "Very hot (35-45°C), lowest prices, early morning visits essential"
+        },
         "budgetBreakdown": {
           "title": "Budget Breakdown (Per Day)",
           "budget": {
@@ -577,26 +620,22 @@
         },
         "culturalEtiquette": {
           "title": "Cultural Etiquette",
-          "tips": [
-            "Dress modestly, especially at religious sites",
-            "Remove shoes when entering mosques",
-            "Ask permission before photographing people",
-            "Bargain respectfully at markets",
-            "Tip service staff (10-15%)",
-            "Learn basic Arabic greetings"
-          ]
+          "dressModestly": "Dress modestly, especially at religious sites",
+          "removeShoes": "Remove shoes when entering mosques",
+          "askPermission": "Ask permission before photographing people",
+          "bargainRespectfully": "Bargain respectfully at markets",
+          "tipStaff": "Tip service staff (10-15%)",
+          "learnGreetings": "Learn basic Arabic greetings"
         },
         "healthSafety": {
           "title": "Health & Safety",
-          "tips": [
-            "Drink bottled water only",
-            "Use sunscreen and hat in summer",
-            "Pack basic medications",
-            "Get travel insurance",
-            "Keep copies of documents",
-            "Use registered tour guides",
-            "Stay hydrated in desert climate"
-          ]
+          "drinkBottledWater": "Drink bottled water only",
+          "useSunscreen": "Use sunscreen and hat in summer",
+          "packMedications": "Pack basic medications",
+          "getTravelInsurance": "Get travel insurance",
+          "keepCopies": "Keep copies of documents",
+          "useRegisteredGuides": "Use registered tour guides",
+          "stayHydrated": "Stay hydrated in desert climate"
         }
       }
     }

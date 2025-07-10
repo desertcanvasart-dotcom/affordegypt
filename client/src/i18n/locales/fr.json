@@ -555,11 +555,54 @@
       },
       "completeGuide": {
         "title": "Guide Complet des Villes de la Vallée du Nil",
+        "population": "Population :",
+        "bestTime": "Meilleure période :",
+        "stayDuration": "Durée de séjour :",
+        "fromCairo": "Depuis Le Caire :",
+        "keyHighlights": "Points Forts :",
+        "topAttractions": "Principales Attractions :",
+        "budgetTips": "Conseils Budget :",
         "readMore": "Lire Plus",
         "showLess": "Afficher Moins"
       },
+      "transportation": {
+        "title": "Guide du Transport de la Vallée du Nil",
+        "train": {
+          "title": "Voyage en Train",
+          "description": "Les trains de nuit confortables relient Le Caire à Louxor et Assouan. Réservez les wagons-lits pour les longs trajets.",
+          "cairoLuxor": "Le Caire-Louxor : 1000-1250 EGP",
+          "cairoAswan": "Le Caire-Assouan : 1100-1450 EGP",
+          "acCoaches": "Wagons climatisés disponibles",
+          "nightTrains": "Trains de nuit incluent les repas"
+        },
+        "cruise": {
+          "title": "Croisières sur le Nil",
+          "description": "Les croisières Louxor-Assouan s'arrêtent à Edfou et Kom Ombo. Options de 3-7 jours disponibles.",
+          "threeFourDays": "3-4 jours : 14500-17000 EGP",
+          "allMeals": "Tous les repas inclus",
+          "entranceFees": "Droits d'entrée aux sites en supplément",
+          "bestTime": "Meilleur climat oct-avr"
+        },
+        "flights": {
+          "title": "Vols Domestiques",
+          "description": "Vols rapides vers Louxor, Assouan et Abou Simbel. Réservez tôt pour de meilleurs prix.",
+          "cairoLuxor": "Le Caire-Louxor : 4300-6000 EGP",
+          "cairoAswan": "Le Caire-Assouan : 5200-7000 EGP",
+          "abuSimbel": "Excursions d'une journée à Abou Simbel",
+          "flightTimes": "1-2 heures de vol"
+        }
+      },
       "travelTips": {
-        "title": "Conseils de Voyage Essentiels",
+        "title": "Conseils de Planification Essentiels",
+        "bestTime": {
+          "title": "Meilleure Période pour Visiter",
+          "peakSeason": "Octobre - Mars (Haute Saison)",
+          "peakDescription": "Temps parfait, températures confortables (20-25°C), prix plus élevés",
+          "shoulderSeason": "Avril - Mai (Saison Intermédiaire)",
+          "shoulderDescription": "Chaud mais gérable (25-30°C), moins de foule, bons prix",
+          "lowSeason": "Juin - Septembre (Basse Saison)",
+          "lowDescription": "Très chaud (35-45°C), prix les plus bas, visites matinales essentielles"
+        },
         "budgetBreakdown": {
           "title": "Répartition du Budget (Par Jour)",
           "budget": {
@@ -577,26 +620,22 @@
         },
         "culturalEtiquette": {
           "title": "Étiquette Culturelle",
-          "tips": [
-            "S'habiller modestement, surtout dans les sites religieux",
-            "Retirer ses chaussures en entrant dans les mosquées",
-            "Demander la permission avant de photographier les gens",
-            "Marchander respectueusement dans les marchés",
-            "Donner un pourboire au personnel de service (10-15%)",
-            "Apprendre les salutations de base en arabe"
-          ]
+          "dressModestly": "S'habiller modestement, surtout dans les sites religieux",
+          "removeShoes": "Retirer ses chaussures en entrant dans les mosquées",
+          "askPermission": "Demander la permission avant de photographier les gens",
+          "bargainRespectfully": "Marchander respectueusement dans les marchés",
+          "tipStaff": "Donner un pourboire au personnel de service (10-15%)",
+          "learnGreetings": "Apprendre les salutations de base en arabe"
         },
         "healthSafety": {
           "title": "Santé et Sécurité",
-          "tips": [
-            "Boire uniquement de l'eau en bouteille",
-            "Utiliser crème solaire et chapeau en été",
-            "Emporter des médicaments de base",
-            "Souscrire une assurance voyage",
-            "Garder des copies des documents",
-            "Utiliser des guides touristiques enregistrés",
-            "Rester hydraté dans le climat désertique"
-          ]
+          "drinkBottledWater": "Boire uniquement de l'eau en bouteille",
+          "useSunscreen": "Utiliser crème solaire et chapeau en été",
+          "packMedications": "Emporter des médicaments de base",
+          "getTravelInsurance": "Souscrire une assurance voyage",
+          "keepCopies": "Garder des copies des documents",
+          "useRegisteredGuides": "Utiliser des guides touristiques enregistrés",
+          "stayHydrated": "Rester hydraté dans le climat désertique"
         }
       }
     }
