@@ -32,6 +32,7 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: false,
+    returnObjects: true,
     
     interpolation: {
       escapeValue: false, // React already escapes values

@@ -19,73 +19,73 @@ export default function SinaiPeninsulaGuide() {
 
   const destinations = [
     {
-      name: t('sinaiGuide.destinations.sharmElSheikh.name'),
-      description: t('sinaiGuide.destinations.sharmElSheikh.description'),
-      highlights: t('sinaiGuide.destinations.sharmElSheikh.highlights', { returnObjects: true }),
+      name: t('blog.sinaiGuide.destinations.sharmElSheikh.name'),
+      description: t('blog.sinaiGuide.destinations.sharmElSheikh.description'),
+      highlights: t('blog.sinaiGuide.destinations.sharmElSheikh.highlights', { returnObjects: true }),
       bestTime: "Oct-Apr",
       duration: "3-7 days",
       difficulty: "Easy",
       image: "🏖️",
-      details: t('sinaiGuide.destinations.sharmElSheikh.details')
+      details: t('blog.sinaiGuide.destinations.sharmElSheikh.details')
     },
     {
-      name: t('sinaiGuide.destinations.dahab.name'),
-      description: t('sinaiGuide.destinations.dahab.description'),
-      highlights: t('sinaiGuide.destinations.dahab.highlights', { returnObjects: true }),
+      name: t('blog.sinaiGuide.destinations.dahab.name'),
+      description: t('blog.sinaiGuide.destinations.dahab.description'),
+      highlights: t('blog.sinaiGuide.destinations.dahab.highlights', { returnObjects: true }),
       bestTime: "Oct-Apr",
       duration: "2-5 days", 
       difficulty: "Moderate",
       image: "🤿",
-      details: t('sinaiGuide.destinations.dahab.details')
+      details: t('blog.sinaiGuide.destinations.dahab.details')
     },
     {
-      name: t('sinaiGuide.destinations.nuweiba.name'),
-      description: t('sinaiGuide.destinations.nuweiba.description'),
-      highlights: t('sinaiGuide.destinations.nuweiba.highlights', { returnObjects: true }),
+      name: t('blog.sinaiGuide.destinations.nuweiba.name'),
+      description: t('blog.sinaiGuide.destinations.nuweiba.description'),
+      highlights: t('blog.sinaiGuide.destinations.nuweiba.highlights', { returnObjects: true }),
       bestTime: "Oct-Apr",
       duration: "2-3 days",
       difficulty: "Easy",
       image: "🏕️",
-      details: t('sinaiGuide.destinations.nuweiba.details')
+      details: t('blog.sinaiGuide.destinations.nuweiba.details')
     },
     {
-      name: t('sinaiGuide.destinations.taba.name'),
-      description: t('sinaiGuide.destinations.taba.description'),
-      highlights: t('sinaiGuide.destinations.taba.highlights', { returnObjects: true }),
+      name: t('blog.sinaiGuide.destinations.taba.name'),
+      description: t('blog.sinaiGuide.destinations.taba.description'),
+      highlights: t('blog.sinaiGuide.destinations.taba.highlights', { returnObjects: true }),
       bestTime: "Oct-Mar",
       duration: "2-4 days",
       difficulty: "Easy",
       image: "🏰",
-      details: t('sinaiGuide.destinations.taba.details')
+      details: t('blog.sinaiGuide.destinations.taba.details')
     }
   ];
 
   const activities = [
     {
-      category: t('sinaiGuide.activities.waterSports.title'),
+      category: t('blog.sinaiGuide.activities.waterSports.title'),
       items: [
-        { name: t('sinaiGuide.activities.waterSports.scubaDiving.name'), price: t('sinaiGuide.activities.waterSports.scubaDiving.price'), description: t('sinaiGuide.activities.waterSports.scubaDiving.description') },
-        { name: t('sinaiGuide.activities.waterSports.snorkeling.name'), price: t('sinaiGuide.activities.waterSports.snorkeling.price'), description: t('sinaiGuide.activities.waterSports.snorkeling.description') },
-        { name: t('sinaiGuide.activities.waterSports.windsurfing.name'), price: t('sinaiGuide.activities.waterSports.windsurfing.price'), description: t('sinaiGuide.activities.waterSports.windsurfing.description') },
-        { name: t('sinaiGuide.activities.waterSports.kitesurfing.name'), price: t('sinaiGuide.activities.waterSports.kitesurfing.price'), description: t('sinaiGuide.activities.waterSports.kitesurfing.description') }
+        { name: t('blog.sinaiGuide.activities.waterSports.scubaDiving.name'), price: t('blog.sinaiGuide.activities.waterSports.scubaDiving.price'), description: t('blog.sinaiGuide.activities.waterSports.scubaDiving.description') },
+        { name: t('blog.sinaiGuide.activities.waterSports.snorkeling.name'), price: t('blog.sinaiGuide.activities.waterSports.snorkeling.price'), description: t('blog.sinaiGuide.activities.waterSports.snorkeling.description') },
+        { name: t('blog.sinaiGuide.activities.waterSports.windsurfing.name'), price: t('blog.sinaiGuide.activities.waterSports.windsurfing.price'), description: t('blog.sinaiGuide.activities.waterSports.windsurfing.description') },
+        { name: t('blog.sinaiGuide.activities.waterSports.kitesurfing.name'), price: t('blog.sinaiGuide.activities.waterSports.kitesurfing.price'), description: t('blog.sinaiGuide.activities.waterSports.kitesurfing.description') }
       ]
     },
     {
-      category: t('sinaiGuide.activities.desertAdventures.title'),
+      category: t('blog.sinaiGuide.activities.desertAdventures.title'),
       items: [
-        { name: t('sinaiGuide.activities.desertAdventures.camelTrekking.name'), price: t('sinaiGuide.activities.desertAdventures.camelTrekking.price'), description: t('sinaiGuide.activities.desertAdventures.camelTrekking.description') },
-        { name: t('sinaiGuide.activities.desertAdventures.desertSafari.name'), price: t('sinaiGuide.activities.desertAdventures.desertSafari.price'), description: t('sinaiGuide.activities.desertAdventures.desertSafari.description') },
-        { name: t('sinaiGuide.activities.desertAdventures.coloredCanyon.name'), price: t('sinaiGuide.activities.desertAdventures.coloredCanyon.price'), description: t('sinaiGuide.activities.desertAdventures.coloredCanyon.description') },
-        { name: t('sinaiGuide.activities.desertAdventures.bedouinNight.name'), price: t('sinaiGuide.activities.desertAdventures.bedouinNight.price'), description: t('sinaiGuide.activities.desertAdventures.bedouinNight.description') }
+        { name: t('blog.sinaiGuide.activities.desertAdventures.camelTrekking.name'), price: t('blog.sinaiGuide.activities.desertAdventures.camelTrekking.price'), description: t('blog.sinaiGuide.activities.desertAdventures.camelTrekking.description') },
+        { name: t('blog.sinaiGuide.activities.desertAdventures.desertSafari.name'), price: t('blog.sinaiGuide.activities.desertAdventures.desertSafari.price'), description: t('blog.sinaiGuide.activities.desertAdventures.desertSafari.description') },
+        { name: t('blog.sinaiGuide.activities.desertAdventures.coloredCanyon.name'), price: t('blog.sinaiGuide.activities.desertAdventures.coloredCanyon.price'), description: t('blog.sinaiGuide.activities.desertAdventures.coloredCanyon.description') },
+        { name: t('blog.sinaiGuide.activities.desertAdventures.bedouinNight.name'), price: t('blog.sinaiGuide.activities.desertAdventures.bedouinNight.price'), description: t('blog.sinaiGuide.activities.desertAdventures.bedouinNight.description') }
       ]
     },
     {
-      category: t('sinaiGuide.activities.cultural.title'),
+      category: t('blog.sinaiGuide.activities.cultural.title'),
       items: [
-        { name: t('sinaiGuide.activities.cultural.mountSinai.name'), price: t('sinaiGuide.activities.cultural.mountSinai.price'), description: t('sinaiGuide.activities.cultural.mountSinai.description') },
-        { name: t('sinaiGuide.activities.cultural.monastery.name'), price: t('sinaiGuide.activities.cultural.monastery.price'), description: t('sinaiGuide.activities.cultural.monastery.description') },
-        { name: t('sinaiGuide.activities.cultural.bedouinVillage.name'), price: t('sinaiGuide.activities.cultural.bedouinVillage.price'), description: t('sinaiGuide.activities.cultural.bedouinVillage.description') },
-        { name: t('sinaiGuide.activities.cultural.wadiFeiran.name'), price: t('sinaiGuide.activities.cultural.wadiFeiran.price'), description: t('sinaiGuide.activities.cultural.wadiFeiran.description') }
+        { name: t('blog.sinaiGuide.activities.cultural.mountSinai.name'), price: t('blog.sinaiGuide.activities.cultural.mountSinai.price'), description: t('blog.sinaiGuide.activities.cultural.mountSinai.description') },
+        { name: t('blog.sinaiGuide.activities.cultural.monastery.name'), price: t('blog.sinaiGuide.activities.cultural.monastery.price'), description: t('blog.sinaiGuide.activities.cultural.monastery.description') },
+        { name: t('blog.sinaiGuide.activities.cultural.bedouinVillage.name'), price: t('blog.sinaiGuide.activities.cultural.bedouinVillage.price'), description: t('blog.sinaiGuide.activities.cultural.bedouinVillage.description') },
+        { name: t('blog.sinaiGuide.activities.cultural.wadiFeiran.name'), price: t('blog.sinaiGuide.activities.cultural.wadiFeiran.price'), description: t('blog.sinaiGuide.activities.cultural.wadiFeiran.description') }
       ]
     }
   ];
@@ -115,19 +115,19 @@ export default function SinaiPeninsulaGuide() {
 
   const itineraries = [
     {
-      title: t('sinaiGuide.itineraries.highlights.title'),
-      days: t('sinaiGuide.itineraries.highlights.days', { returnObjects: true }),
-      price: t('sinaiGuide.itineraries.highlights.price')
+      title: t('blog.sinaiGuide.itineraries.highlights.title'),
+      days: t('blog.sinaiGuide.itineraries.highlights.days', { returnObjects: true }),
+      price: t('blog.sinaiGuide.itineraries.highlights.price')
     },
     {
-      title: t('sinaiGuide.itineraries.adventure.title'),
-      days: t('sinaiGuide.itineraries.adventure.days', { returnObjects: true }),
-      price: t('sinaiGuide.itineraries.adventure.price')
+      title: t('blog.sinaiGuide.itineraries.adventure.title'),
+      days: t('blog.sinaiGuide.itineraries.adventure.days', { returnObjects: true }),
+      price: t('blog.sinaiGuide.itineraries.adventure.price')
     },
     {
-      title: t('sinaiGuide.itineraries.relaxed.title'),
-      days: t('sinaiGuide.itineraries.relaxed.days', { returnObjects: true }),
-      price: t('sinaiGuide.itineraries.relaxed.price')
+      title: t('blog.sinaiGuide.itineraries.relaxed.title'),
+      days: t('blog.sinaiGuide.itineraries.relaxed.days', { returnObjects: true }),
+      price: t('blog.sinaiGuide.itineraries.relaxed.price')
     }
   ];
 
@@ -149,10 +149,10 @@ export default function SinaiPeninsulaGuide() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-                {t('sinaiGuide.title')}
+                {t('blog.sinaiGuide.title')}
               </h1>
               <p className="text-2xl md:text-3xl text-teal-100 font-light">
-                {t('sinaiGuide.subtitle')}
+                {t('blog.sinaiGuide.subtitle')}
               </p>
             </div>
             <p className="text-lg md:text-xl text-teal-200 max-w-4xl mx-auto leading-relaxed">
@@ -180,9 +180,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Destinations Grid */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.destinations.title')}</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('blog.sinaiGuide.destinations.title')}</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              {t('sinaiGuide.destinations.description')}
+              {t('blog.sinaiGuide.destinations.description')}
             </p>
           </div>
           
@@ -234,9 +234,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Activities Section */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.activities.title')}</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('blog.sinaiGuide.activities.title')}</h2>
             <p className="text-xl text-slate-600">
-              {t('sinaiGuide.activities.description')}
+              {t('blog.sinaiGuide.activities.description')}
             </p>
           </div>
 
@@ -269,9 +269,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Sample Itineraries */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.itineraries.title')}</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('blog.sinaiGuide.itineraries.title')}</h2>
             <p className="text-xl text-slate-600">
-              {t('sinaiGuide.itineraries.description')}
+              {t('blog.sinaiGuide.itineraries.description')}
             </p>
           </div>
 
@@ -306,9 +306,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Practical Information */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('sinaiGuide.practical.title')}</h2>
+            <h2 className="text-4xl font-bold text-teal-900 mb-4">{t('blog.sinaiGuide.practical.title')}</h2>
             <p className="text-xl text-slate-600">
-              {t('sinaiGuide.practical.description')}
+              {t('blog.sinaiGuide.practical.description')}
             </p>
           </div>
 
@@ -332,9 +332,9 @@ export default function SinaiPeninsulaGuide() {
         {/* Call to Action */}
         <section className="text-center py-16 bg-gradient-to-r from-teal-600 via-teal-700 to-cyan-800 rounded-2xl text-white">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-6">{t('sinaiGuide.cta.title')}</h2>
+            <h2 className="text-4xl font-bold mb-6">{t('blog.sinaiGuide.cta.title')}</h2>
             <p className="text-xl mb-8 text-teal-100">
-              {t('sinaiGuide.cta.description')}
+              {t('blog.sinaiGuide.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -345,7 +345,7 @@ export default function SinaiPeninsulaGuide() {
                 }}
               >
                 <MapPin className="w-5 h-5 mr-2" />
-                {t('sinaiGuide.cta.button')}
+                {t('blog.sinaiGuide.cta.button')}
               </Button>
               <Button 
                 size="lg" 
