@@ -342,6 +342,171 @@
         "title": "Cuisine de Rue Égyptienne : Un Guide d'Aventure Culinaire",
         "excerpt": "Naviguez dans le délicieux monde de la cuisine de rue égyptienne avec des conseils de sécurité et des plats incontournables dans chaque grande ville."
       }
+    },
+    "sinaiGuide": {
+      "title": "Péninsule du Sinaï",
+      "subtitle": "L'Aventure Désertique de l'Égypte",
+      "destinations": {
+        "title": "Principales Destinations du Sinaï",
+        "description": "Des paysages de canyons de roche rouge aux eaux cristallines, chaque destination offre une façon unique de découvrir la magie de la Péninsule du Sinaï.",
+        "sharmElSheikh": {
+          "name": "Sharm El Sheikh",
+          "description": "Le joyau de la couronne de la mer Rouge, évoluant d'un village de pêcheurs bédouins vers l'une des destinations de plongée les plus célébrées au monde",
+          "highlights": ["Parc National de Ras Muhammad", "Épave SS Thistlegorm", "Marina de Naama Bay", "Place Soho"],
+          "details": "Perché à la pointe sud du Sinaï, cette station balnéaire offre des récifs coralliens de classe mondiale, des hébergements de luxe et une vie nocturne animée. Vivez la plongée nocturne avec plancton dans la baie de Nabq où les organismes bioluminescents créent des traînées de lumière scintillante."
+        },
+        "dahab": {
+          "name": "Dahab",
+          "description": "Une ville côtière bohème où le nom 'or' reflète à la fois les sables du désert et les teintes du coucher de soleil, aimée des plongeurs et des esprits libres",
+          "highlights": ["Plongée au Blue Hole", "Trois Piscines", "Plage Masbat", "Le Lagon"],
+          "details": "Autrefois un modeste camp de pêche bédouin, l'atmosphère décontractée de Dahab attire les aventuriers du monde entier. Les parois verticales du Blue Hole et les chutes dramatiques du Canyon présentent une vie marine vibrante, tandis que les vents constants en font un endroit parfait pour la planche à voile."
+        },
+        "nuweiba": {
+          "name": "Nuweiba",
+          "description": "Une porte d'entrée tranquille où les anciennes routes commerciales rencontrent le littoral vierge, offrant une culture bédouine authentique et des plages préservées",
+          "highlights": ["Canyon Coloré", "Baie d'Aya", "Île du Pharaon", "Camps Bédouins"],
+          "details": "Les rivages de Nuweiba ont été témoins de millénaires de passage, des caravanes nabatéennes aux voyageurs modernes. Profitez des rituels du thé bédouin au coucher de soleil sur les dunes de la baie d'Aya et explorez les parois de grès du Canyon Coloré qui brillent en bandes d'ocre et de cramoisi."
+        },
+        "taba": {
+          "name": "Taba",
+          "description": "La porte nord du Sinaï, où les carrefours stratégiques rencontrent les stations de luxe surplombant le golfe d'Aqaba",
+          "highlights": ["Taba Heights", "Passage Frontalier", "Stations sur Falaise", "Île du Pharaon"],
+          "details": "Servant longtemps comme carrefour entre l'Égypte et le Levant, Taba combine importance historique et luxe moderne. Les élégantes stations au sommet des falaises offrent des vues panoramiques sur le golfe tout en conservant les motifs architecturaux bédouins traditionnels."
+        }
+      },
+      "activities": {
+        "title": "Aventures Désertiques à Prix Abordable",
+        "description": "Conseils de Voyage Économique : Comment vivre les aventures du Sinaï sans trop dépenser",
+        "waterSports": {
+          "title": "Sports Nautiques",
+          "scubaDiving": {
+            "name": "Plongée Sous-Marine",
+            "price": "À partir de 45$/plongée",
+            "description": "Explorez les récifs coralliens de renommée mondiale"
+          },
+          "snorkeling": {
+            "name": "Tours de Snorkeling",
+            "price": "À partir de 25$/voyage",
+            "description": "Découvrez la vie marine en eaux peu profondes"
+          },
+          "windsurfing": {
+            "name": "Planche à Voile",
+            "price": "À partir de 35$/heure",
+            "description": "Conditions parfaites à Dahab"
+          },
+          "kitesurfing": {
+            "name": "Kitesurf",
+            "price": "À partir de 50$/leçon",
+            "description": "Apprenez dans des conditions de vent idéales"
+          }
+        },
+        "desertAdventures": {
+          "title": "Aventures Désertiques",
+          "camelTrekking": {
+            "name": "Randonnée à Dos de Chameau",
+            "price": "À partir de 30$/jour",
+            "description": "Transport bédouin traditionnel"
+          },
+          "desertSafari": {
+            "name": "Safari Désertique",
+            "price": "À partir de 60$/voyage",
+            "description": "Exploration 4x4 du désert du Sinaï"
+          },
+          "coloredCanyon": {
+            "name": "Randonnée Canyon Coloré",
+            "price": "À partir de 40$/voyage",
+            "description": "Formations géologiques époustouflantes"
+          },
+          "bedouinNight": {
+            "name": "Nuit Bédouine",
+            "price": "À partir de 45$/nuit",
+            "description": "Expérience authentique de camping dans le désert"
+          }
+        },
+        "cultural": {
+          "title": "Culturel et Spirituel",
+          "mountSinai": {
+            "name": "Randonnée Lever de Soleil Mont Sinaï",
+            "price": "À partir de 35$/personne",
+            "description": "Pèlerinage de montagne biblique"
+          },
+          "monastery": {
+            "name": "Monastère Sainte-Catherine",
+            "price": "À partir de 25$/visite",
+            "description": "Ancien monastère chrétien"
+          },
+          "bedouinVillage": {
+            "name": "Visite Village Bédouin",
+            "price": "À partir de 30$/voyage",
+            "description": "Culture traditionnelle du désert"
+          },
+          "wadiFeiran": {
+            "name": "Oasis Wadi Feiran",
+            "price": "À partir de 55$/voyage",
+            "description": "Oasis biblique historique"
+          }
+        }
+      },
+      "practical": {
+        "title": "Essentiels pour l'Emballage Désertique",
+        "description": "Voici ce qu'il faut emballer pour votre aventure au Sinaï quand les températures chutent la nuit",
+        "bestTime": {
+          "title": "Meilleur Moment pour Visiter",
+          "content": "Octobre à avril offre un temps parfait (20-25°C). Les mois d'été (mai-septembre) sont extrêmement chauds (35-45°C) mais excellents pour la plongée."
+        },
+        "gettingThere": {
+          "title": "Comment S'y Rendre",
+          "content": "Volez vers l'aéroport de Sharm El Sheikh (SSH) ou conduisez depuis Le Caire (6-7 heures). Le passage frontalier de Taba connecte à Israël/Jordanie."
+        },
+        "safety": {
+          "title": "Considérations de Sécurité",
+          "content": "Généralement sûr pour les touristes. Restez dans les stations établies et les opérateurs de tours. Vérifiez les avis de voyage actuels pour les zones désertiques."
+        },
+        "packing": {
+          "title": "Que Emballer",
+          "content": "Crème solaire respectueuse des récifs, équipement de plongée (ou louez localement), vêtements de désert, couches chaudes pour les randonnées en montagne, chaussures de randonnée confortables."
+        }
+      },
+      "itineraries": {
+        "title": "Quand Visiter pour le Meilleur Rapport Qualité-Prix",
+        "description": "Conseils de timing intelligent pour des expériences incroyables au Sinaï",
+        "highlights": {
+          "title": "Points Forts du Sinaï (5 Jours)",
+          "days": [
+            "Jour 1-2 : Sharm El Sheikh - Plongée et détente",
+            "Jour 3 : Randonnée lever de soleil Mont Sinaï et Sainte-Catherine",
+            "Jour 4 : Transfert à Dahab, plongée Blue Hole",
+            "Jour 5 : Excursion d'une journée Canyon Coloré depuis Dahab"
+          ],
+          "price": "À partir de 380$/personne"
+        },
+        "adventure": {
+          "title": "Aventure Sinaï (7 Jours)",
+          "days": [
+            "Jour 1-2 : Sharm El Sheikh - Plongée Ras Mohammed",
+            "Jour 3-4 : Dahab - Plongée avancée et planche à voile",
+            "Jour 5 : Randonnée Mont Sinaï et visite monastère",
+            "Jour 6 : Nuweiba - Canyon Coloré et expérience bédouine",
+            "Jour 7 : Retour via safari désertique à Sharm"
+          ],
+          "price": "À partir de 590$/personne"
+        },
+        "relaxed": {
+          "title": "Sinaï Détendu (10 Jours)",
+          "days": [
+            "Jour 1-4 : Sharm El Sheikh - Détente en station et plongée",
+            "Jour 5-7 : Dahab - Plongée tranquille et voyages désertiques",
+            "Jour 8 : Voyage spirituel Mont Sinaï",
+            "Jour 9-10 : Nuweiba - Détente à la plage et expériences culturelles"
+          ],
+          "price": "À partir de 720$/personne"
+        }
+      },
+      "cta": {
+        "title": "Prêt à Explorer la Nature Sauvage Désertique du Sinaï ?",
+        "description": "Connectez-vous avec nos experts de voyage du Sinaï pour des itinéraires personnalisés et des prix compétitifs sur les transferts, activités et hébergements.",
+        "button": "Planifiez Votre Aventure au Sinaï"
+      }
     }
   },
   "faq": {
