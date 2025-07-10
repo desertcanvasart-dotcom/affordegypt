@@ -709,6 +709,14 @@
       }
     }
   },
+  "highlights": {
+    "aswan": {
+      "philaeTemple": "Templo de Filae",
+      "highDam": "Presa Alta",
+      "nubianVillages": "Pueblos nubios",
+      "elephantineIsland": "Isla Elefantina"
+    }
+  },
   "faq": {
     "title": "Preguntas Frecuentes sobre Egipto",
     "subtitle": "Respuestas a tus preguntas más comunes: claras, honestas y actualizadas",

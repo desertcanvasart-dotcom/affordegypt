@@ -708,6 +708,14 @@
       }
     }
   },
+  "highlights": {
+    "aswan": {
+      "philaeTemple": "Temple de Philae",
+      "highDam": "Haut Barrage",
+      "nubianVillages": "Villages nubiens",
+      "elephantineIsland": "Île Éléphantine"
+    }
+  },
   "faq": {
     "title": "FAQ Voyage en Égypte",
     "subtitle": "Réponses à vos questions les plus fréquentes : claires, honnêtes et à jour",

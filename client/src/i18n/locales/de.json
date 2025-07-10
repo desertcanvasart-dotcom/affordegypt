@@ -859,6 +859,14 @@
       }
     }
   },
+  "highlights": {
+    "aswan": {
+      "philaeTemple": "Philae Tempel",
+      "highDam": "Hoher Damm",
+      "nubianVillages": "Nubische Dörfer",
+      "elephantineIsland": "Elefantine Insel"
+    }
+  },
   "faq": {
     "title": "Ägypten Reise FAQ",
     "subtitle": "Antworten auf Ihre häufigsten Fragen - klar, ehrlich und aktuell",

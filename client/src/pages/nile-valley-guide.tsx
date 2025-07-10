@@ -445,7 +445,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 24.0889,
     longitude: 32.8998,
     population: "290,000",
-    highlights: ["Philae Temple", "High Dam", "Nubian villages", "Elephantine Island"],
+    highlights: ["highlights.aswan.philaeTemple", "highlights.aswan.highDam", "highlights.aswan.nubianVillages", "highlights.aswan.elephantineIsland"],
     bestTimeToVisit: "October - March",
     averageStay: "2-3 days",
     keyAttractions: [
@@ -972,7 +972,13 @@ export default function NileValleyGuide() {
                   <div className="md:col-span-2">
                     <div className="flex items-center gap-3 mb-3">
                       <h3 className="text-2xl font-bold">{city.name}</h3>
-                      <Badge>{city.region}</Badge>
+                      <Badge>{
+                        city.region === "Upper Egypt" ? t('blog.nileValley.regions.3') :
+                        city.region === "Middle Egypt" ? t('blog.nileValley.regions.2') :
+                        city.region === "Lower Egypt" ? t('blog.nileValley.regions.1') :
+                        city.region === "Nubia" ? t('blog.nileValley.regions.4') :
+                        city.region
+                      }</Badge>
                     </div>
                     
                     <p className="text-gray-600 mb-1">{city.arabicName}</p>
@@ -996,7 +1002,7 @@ export default function NileValleyGuide() {
                       <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.keyHighlights')}</h4>
                       <div className="flex flex-wrap gap-2">
                         {city.highlights.map((highlight, index) => (
-                          <Badge key={index} variant="outline">{highlight}</Badge>
+                          <Badge key={index} variant="outline">{t(highlight)}</Badge>
                         ))}
                       </div>
                     </div>
