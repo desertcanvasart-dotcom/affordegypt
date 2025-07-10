@@ -538,7 +538,66 @@
         "Nubia"
       ],
       "map": {
-        "title": "Interactive Nile Valley Map"
+        "title": "Interactive Nile Valley Map",
+        "clickCities": "📍 Click cities to explore"
+      },
+      "cityDetails": {
+        "population": "Population:",
+        "bestTime": "Best time:",
+        "recommendedStay": "Recommended stay:",
+        "keyHighlights": "Key Highlights:",
+        "budgetTips": "Budget Tips:",
+        "transportation": "Transportation:",
+        "localTransport": "Local:",
+        "topAttractions": "Top Attractions:",
+        "entry": "Entry:",
+        "hours": "Hours:"
+      },
+      "completeGuide": {
+        "title": "Complete Nile Valley City Guide",
+        "readMore": "Read More",
+        "showLess": "Show Less"
+      },
+      "travelTips": {
+        "title": "Essential Travel Tips",
+        "budgetBreakdown": {
+          "title": "Budget Breakdown (Per Day)",
+          "budget": {
+            "title": "Budget Traveler",
+            "description": "Hostel/guesthouse, local food, public transport: 800-1200 EGP"
+          },
+          "midRange": {
+            "title": "Mid-Range Traveler", 
+            "description": "3-star hotel, mix of restaurants, private transport: 2300-3500 EGP"
+          },
+          "luxury": {
+            "title": "Luxury Traveler",
+            "description": "5-star hotels, fine dining, guided tours: 9000+ EGP"
+          }
+        },
+        "culturalEtiquette": {
+          "title": "Cultural Etiquette",
+          "tips": [
+            "Dress modestly, especially at religious sites",
+            "Remove shoes when entering mosques",
+            "Ask permission before photographing people",
+            "Bargain respectfully at markets",
+            "Tip service staff (10-15%)",
+            "Learn basic Arabic greetings"
+          ]
+        },
+        "healthSafety": {
+          "title": "Health & Safety",
+          "tips": [
+            "Drink bottled water only",
+            "Use sunscreen and hat in summer",
+            "Pack basic medications",
+            "Get travel insurance",
+            "Keep copies of documents",
+            "Use registered tour guides",
+            "Stay hydrated in desert climate"
+          ]
+        }
       }
     }
   },

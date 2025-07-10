@@ -539,7 +539,66 @@
         "Nubia"
       ],
       "map": {
-        "title": "Mapa Interactivo del Valle del Nilo"
+        "title": "Mapa Interactivo del Valle del Nilo",
+        "clickCities": "📍 Haz clic en las ciudades para explorar"
+      },
+      "cityDetails": {
+        "population": "Población:",
+        "bestTime": "Mejor época:",
+        "recommendedStay": "Estancia recomendada:",
+        "keyHighlights": "Puntos Destacados:",
+        "budgetTips": "Consejos de Presupuesto:",
+        "transportation": "Transporte:",
+        "localTransport": "Local:",
+        "topAttractions": "Principales Atracciones:",
+        "entry": "Entrada:",
+        "hours": "Horario:"
+      },
+      "completeGuide": {
+        "title": "Guía Completa de Ciudades del Valle del Nilo",
+        "readMore": "Leer Más",
+        "showLess": "Mostrar Menos"
+      },
+      "travelTips": {
+        "title": "Consejos de Viaje Esenciales",
+        "budgetBreakdown": {
+          "title": "Desglose del Presupuesto (Por Día)",
+          "budget": {
+            "title": "Viajero Económico",
+            "description": "Hostal/pensión, comida local, transporte público: 800-1200 EGP"
+          },
+          "midRange": {
+            "title": "Viajero de Gama Media", 
+            "description": "Hotel de 3 estrellas, mezcla de restaurantes, transporte privado: 2300-3500 EGP"
+          },
+          "luxury": {
+            "title": "Viajero de Lujo",
+            "description": "Hoteles de 5 estrellas, restaurantes finos, tours guiados: 9000+ EGP"
+          }
+        },
+        "culturalEtiquette": {
+          "title": "Etiqueta Cultural",
+          "tips": [
+            "Vístete modestamente, especialmente en sitios religiosos",
+            "Quítate los zapatos al entrar a mezquitas",
+            "Pide permiso antes de fotografiar personas",
+            "Regatear respetuosamente en mercados",
+            "Dar propina al personal de servicio (10-15%)",
+            "Aprender saludos básicos en árabe"
+          ]
+        },
+        "healthSafety": {
+          "title": "Salud y Seguridad",
+          "tips": [
+            "Beber solo agua embotellada",
+            "Usar protector solar y sombrero en verano",
+            "Llevar medicamentos básicos",
+            "Obtener seguro de viaje",
+            "Mantener copias de documentos",
+            "Usar guías turísticos registrados",
+            "Mantenerse hidratado en clima desértico"
+          ]
+        }
       }
     }
   },

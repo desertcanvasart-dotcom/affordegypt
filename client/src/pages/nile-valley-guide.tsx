@@ -552,7 +552,6 @@ export default function NileValleyGuide() {
     "Bajo Egipto": "Lower Egypt",
     "Egipto Medio": "Middle Egypt",
     "Alto Egipto": "Upper Egypt",
-    "Nubia": "Nubia",
     // French
     "Tous": "All",
     "Basse-Égypte": "Lower Egypt",
@@ -815,7 +814,7 @@ export default function NileValleyGuide() {
               </div>
               
               <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-2 rounded-lg border">
-                <p className="text-xs sm:text-sm font-medium text-gray-700">📍 Click cities to explore</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-700">{t('blog.nileValley.map.clickCities')}</p>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 {/* Simplified Nile River visualization */}
@@ -885,26 +884,26 @@ export default function NileValleyGuide() {
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-primary" />
-                      <span>Population: {selectedCity.population}</span>
+                      <span>{t('blog.nileValley.cityDetails.population')} {selectedCity.population}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
-                      <span>Best time: {selectedCity.bestTimeToVisit}</span>
+                      <span>{t('blog.nileValley.cityDetails.bestTime')} {selectedCity.bestTimeToVisit}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-primary" />
-                      <span>Recommended stay: {selectedCity.averageStay}</span>
+                      <span>{t('blog.nileValley.cityDetails.recommendedStay')} {selectedCity.averageStay}</span>
                     </div>
                   </div>
 
-                  <h4 className="font-semibold mb-2">Key Highlights:</h4>
+                  <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.keyHighlights')}</h4>
                   <ul className="list-disc list-inside text-gray-700 mb-4">
                     {selectedCity.highlights.map((highlight, index) => (
                       <li key={index}>{highlight}</li>
                     ))}
                   </ul>
 
-                  <h4 className="font-semibold mb-2">Budget Tips:</h4>
+                  <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.budgetTips')}</h4>
                   <ul className="list-disc list-inside text-gray-700">
                     {selectedCity.budgetTips.map((tip, index) => (
                       <li key={index}>{tip}</li>
@@ -919,7 +918,7 @@ export default function NileValleyGuide() {
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   
-                  <h4 className="font-semibold mb-3">Transportation:</h4>
+                  <h4 className="font-semibold mb-3">{t('blog.nileValley.cityDetails.transportation')}</h4>
                   <div className="bg-gray-50 p-3 rounded-lg mb-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Train className="w-4 h-4 text-primary" />
@@ -927,19 +926,19 @@ export default function NileValleyGuide() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Navigation className="w-4 h-4 text-primary" />
-                      <span className="text-sm">Local: {selectedCity.transportation.localTransport.join(', ')}</span>
+                      <span className="text-sm">{t('blog.nileValley.cityDetails.localTransport')} {selectedCity.transportation.localTransport.join(', ')}</span>
                     </div>
                   </div>
 
-                  <h4 className="font-semibold mb-2">Top Attractions:</h4>
+                  <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.topAttractions')}</h4>
                   <div className="space-y-2">
                     {selectedCity.keyAttractions.slice(0, 2).map((attraction, index) => (
                       <div key={index} className="bg-gray-50 p-3 rounded-lg">
                         <h5 className="font-medium">{attraction.name}</h5>
                         <p className="text-sm text-gray-600 mb-1">{attraction.description}</p>
                         <div className="flex justify-between text-xs text-gray-500">
-                          <span>Entry: {attraction.entryFee}</span>
-                          <span>Hours: {attraction.hours}</span>
+                          <span>{t('blog.nileValley.cityDetails.entry')} {attraction.entryFee}</span>
+                          <span>{t('blog.nileValley.cityDetails.hours')} {attraction.hours}</span>
                         </div>
                       </div>
                     ))}
@@ -955,7 +954,7 @@ export default function NileValleyGuide() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Complete Nile Valley City Guide
+            {t('blog.nileValley.completeGuide.title')}
           </h2>
           
           <div className="grid gap-8">
@@ -980,21 +979,21 @@ export default function NileValleyGuide() {
                     
                     <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                       <div>
-                        <span className="font-medium">Population:</span> {city.population}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.population')}</span> {city.population}
                       </div>
                       <div>
-                        <span className="font-medium">Best time:</span> {city.bestTimeToVisit}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.bestTime')}</span> {city.bestTimeToVisit}
                       </div>
                       <div>
-                        <span className="font-medium">Stay duration:</span> {city.averageStay}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.stayDuration')}</span> {city.averageStay}
                       </div>
                       <div>
-                        <span className="font-medium">From Cairo:</span> {city.transportation.fromCairo}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.fromCairo')}</span> {city.transportation.fromCairo}
                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold mb-2">Key Highlights:</h4>
+                      <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.keyHighlights')}</h4>
                       <div className="flex flex-wrap gap-2">
                         {city.highlights.map((highlight, index) => (
                           <Badge key={index} variant="outline">{highlight}</Badge>
@@ -1004,7 +1003,7 @@ export default function NileValleyGuide() {
 
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold mb-2">Top Attractions:</h4>
+                        <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.topAttractions')}</h4>
                         <ul className="text-sm space-y-1">
                           {city.keyAttractions.slice(0, 3).map((attraction, index) => (
                             <li key={index} className="flex justify-between">
@@ -1016,7 +1015,7 @@ export default function NileValleyGuide() {
                       </div>
                       
                       <div>
-                        <h4 className="font-semibold mb-2">Budget Tips:</h4>
+                        <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.budgetTips')}</h4>
                         <ul className="text-sm space-y-1">
                           {city.budgetTips.slice(0, 2).map((tip, index) => (
                             <li key={index} className="text-gray-600">• {tip}</li>
@@ -1036,52 +1035,49 @@ export default function NileValleyGuide() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Nile Valley Transportation Guide
+            {t('blog.nileValley.transportation.title')}
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-6 text-center">
               <Train className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Train Travel</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('blog.nileValley.transportation.train.title')}</h3>
               <p className="text-gray-600 mb-4">
-                Comfortable overnight trains connect Cairo to Luxor and Aswan. 
-                Book sleeping cars for long journeys.
+                {t('blog.nileValley.transportation.train.description')}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• Cairo-Luxor: 1000-1250 EGP</li>
-                <li>• Cairo-Aswan: 1100-1450 EGP</li>
-                <li>• AC coaches available</li>
-                <li>• Night trains include meals</li>
+                <li>• {t('blog.nileValley.transportation.train.cairoLuxor')}</li>
+                <li>• {t('blog.nileValley.transportation.train.cairoAswan')}</li>
+                <li>• {t('blog.nileValley.transportation.train.acCoaches')}</li>
+                <li>• {t('blog.nileValley.transportation.train.nightTrains')}</li>
               </ul>
             </Card>
 
             <Card className="p-6 text-center">
               <Ship className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Nile Cruises</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('blog.nileValley.transportation.cruise.title')}</h3>
               <p className="text-gray-600 mb-4">
-                Luxor to Aswan cruises stop at Edfu and Kom Ombo. 
-                3-7 day options available.
+                {t('blog.nileValley.transportation.cruise.description')}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• 3-4 days: 14500-17000 EGP</li>
-                <li>• All meals included</li>
-                <li>• Site entrance fees extra</li>
-                <li>• Best Oct-Apr weather</li>
+                <li>• {t('blog.nileValley.transportation.cruise.threeFourDays')}</li>
+                <li>• {t('blog.nileValley.transportation.cruise.allMeals')}</li>
+                <li>• {t('blog.nileValley.transportation.cruise.entranceFees')}</li>
+                <li>• {t('blog.nileValley.transportation.cruise.bestTime')}</li>
               </ul>
             </Card>
 
             <Card className="p-6 text-center">
               <Plane className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Domestic Flights</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('blog.nileValley.transportation.flights.title')}</h3>
               <p className="text-gray-600 mb-4">
-                Quick flights to Luxor, Aswan, and Abu Simbel. 
-                Book early for better prices.
+                {t('blog.nileValley.transportation.flights.description')}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• Cairo-Luxor: 4300-6000 EGP</li>
-                <li>• Cairo-Aswan: 5200-7000 EGP</li>
-                <li>• Abu Simbel day trips</li>
-                <li>• 1-2 hour flight times</li>
+                <li>• {t('blog.nileValley.transportation.flights.cairoLuxor')}</li>
+                <li>• {t('blog.nileValley.transportation.flights.cairoAswan')}</li>
+                <li>• {t('blog.nileValley.transportation.flights.abuSimbel')}</li>
+                <li>• {t('blog.nileValley.transportation.flights.flightTimes')}</li>
               </ul>
             </Card>
           </div>
@@ -1092,68 +1088,68 @@ export default function NileValleyGuide() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Essential Planning Tips
+            {t('blog.nileValley.travelTips.title')}
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Best Time to Visit</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">{t('blog.nileValley.travelTips.bestTime.title')}</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-medium">October - March (Peak Season)</h4>
-                  <p className="text-sm text-gray-600">Perfect weather, comfortable temperatures (20-25°C), higher prices</p>
+                  <h4 className="font-medium">{t('blog.nileValley.travelTips.bestTime.peakSeason')}</h4>
+                  <p className="text-sm text-gray-600">{t('blog.nileValley.travelTips.bestTime.peakDescription')}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium">April - May (Shoulder Season)</h4>
-                  <p className="text-sm text-gray-600">Warm but manageable (25-30°C), fewer crowds, good prices</p>
+                  <h4 className="font-medium">{t('blog.nileValley.travelTips.bestTime.shoulderSeason')}</h4>
+                  <p className="text-sm text-gray-600">{t('blog.nileValley.travelTips.bestTime.shoulderDescription')}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium">June - September (Low Season)</h4>
-                  <p className="text-sm text-gray-600">Very hot (35-45°C), lowest prices, early morning visits essential</p>
+                  <h4 className="font-medium">{t('blog.nileValley.travelTips.bestTime.lowSeason')}</h4>
+                  <p className="text-sm text-gray-600">{t('blog.nileValley.travelTips.bestTime.lowDescription')}</p>
                 </div>
               </div>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Budget Breakdown (Per Day)</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">{t('blog.nileValley.travelTips.budgetBreakdown.title')}</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-medium">Budget Traveler</h4>
-                  <p className="text-sm text-gray-600">Hostel/guesthouse, local food, public transport: 800-1200 EGP</p>
+                  <h4 className="font-medium">{t('blog.nileValley.travelTips.budgetBreakdown.budget.title')}</h4>
+                  <p className="text-sm text-gray-600">{t('blog.nileValley.travelTips.budgetBreakdown.budget.description')}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium">Mid-Range Traveler</h4>
-                  <p className="text-sm text-gray-600">3-star hotel, mix of restaurants, private transport: 2300-3500 EGP</p>
+                  <h4 className="font-medium">{t('blog.nileValley.travelTips.budgetBreakdown.midRange.title')}</h4>
+                  <p className="text-sm text-gray-600">{t('blog.nileValley.travelTips.budgetBreakdown.midRange.description')}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium">Luxury Traveler</h4>
-                  <p className="text-sm text-gray-600">5-star hotels, fine dining, guided tours: 9000+ EGP</p>
+                  <h4 className="font-medium">{t('blog.nileValley.travelTips.budgetBreakdown.luxury.title')}</h4>
+                  <p className="text-sm text-gray-600">{t('blog.nileValley.travelTips.budgetBreakdown.luxury.description')}</p>
                 </div>
               </div>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Cultural Etiquette</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">{t('blog.nileValley.travelTips.culturalEtiquette.title')}</h3>
               <ul className="space-y-2 text-sm">
-                <li>• Dress modestly, especially at religious sites</li>
-                <li>• Remove shoes when entering mosques</li>
-                <li>• Ask permission before photographing people</li>
-                <li>• Bargain respectfully at markets</li>
-                <li>• Tip service staff (10-15%)</li>
-                <li>• Learn basic Arabic greetings</li>
+                <li>• {t('blog.nileValley.travelTips.culturalEtiquette.dressModestly')}</li>
+                <li>• {t('blog.nileValley.travelTips.culturalEtiquette.removeShoes')}</li>
+                <li>• {t('blog.nileValley.travelTips.culturalEtiquette.askPermission')}</li>
+                <li>• {t('blog.nileValley.travelTips.culturalEtiquette.bargainRespectfully')}</li>
+                <li>• {t('blog.nileValley.travelTips.culturalEtiquette.tipStaff')}</li>
+                <li>• {t('blog.nileValley.travelTips.culturalEtiquette.learnGreetings')}</li>
               </ul>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Health & Safety</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">{t('blog.nileValley.travelTips.healthSafety.title')}</h3>
               <ul className="space-y-2 text-sm">
-                <li>• Drink bottled water only</li>
-                <li>• Use sunscreen and hat in summer</li>
-                <li>• Pack basic medications</li>
-                <li>• Get travel insurance</li>
-                <li>• Keep copies of documents</li>
-                <li>• Use registered tour guides</li>
-                <li>• Stay hydrated in desert climate</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.drinkBottledWater')}</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.useSunscreen')}</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.packMedications')}</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.getTravelInsurance')}</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.keepCopies')}</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.useRegisteredGuides')}</li>
+                <li>• {t('blog.nileValley.travelTips.healthSafety.stayHydrated')}</li>
               </ul>
             </Card>
           </div>

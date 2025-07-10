@@ -663,7 +663,66 @@
         "Nubien"
       ],
       "map": {
-        "title": "Interaktive Nil-Tal Karte"
+        "title": "Interaktive Nil-Tal Karte",
+        "clickCities": "📍 Klicken Sie auf Städte zum Erkunden"
+      },
+      "cityDetails": {
+        "population": "Bevölkerung:",
+        "bestTime": "Beste Zeit:",
+        "recommendedStay": "Empfohlener Aufenthalt:",
+        "keyHighlights": "Wichtige Höhepunkte:",
+        "budgetTips": "Budget-Tipps:",
+        "transportation": "Transport:",
+        "localTransport": "Lokal:",
+        "topAttractions": "Top-Sehenswürdigkeiten:",
+        "entry": "Eintritt:",
+        "hours": "Öffnungszeiten:"
+      },
+      "completeGuide": {
+        "title": "Vollständiger Nil-Tal Städteführer",
+        "readMore": "Mehr Lesen",
+        "showLess": "Weniger Anzeigen"
+      },
+      "travelTips": {
+        "title": "Wichtige Reisetipps",
+        "budgetBreakdown": {
+          "title": "Budget-Aufschlüsselung (Pro Tag)",
+          "budget": {
+            "title": "Budget-Reisender",
+            "description": "Hostel/Pension, lokales Essen, öffentliche Verkehrsmittel: 800-1200 EGP"
+          },
+          "midRange": {
+            "title": "Mittelklasse-Reisender", 
+            "description": "3-Sterne-Hotel, Restaurant-Mix, privater Transport: 2300-3500 EGP"
+          },
+          "luxury": {
+            "title": "Luxus-Reisender",
+            "description": "5-Sterne-Hotels, gehobene Küche, geführte Touren: 9000+ EGP"
+          }
+        },
+        "culturalEtiquette": {
+          "title": "Kulturelle Etikette",
+          "tips": [
+            "Sich bescheiden kleiden, besonders an religiösen Stätten",
+            "Schuhe ausziehen beim Betreten von Moscheen",
+            "Um Erlaubnis fragen vor dem Fotografieren von Menschen",
+            "Respektvoll auf Märkten handeln",
+            "Servicepersonal Trinkgeld geben (10-15%)",
+            "Grundlegende arabische Begrüßungen lernen"
+          ]
+        },
+        "healthSafety": {
+          "title": "Gesundheit & Sicherheit",
+          "tips": [
+            "Nur Flaschenwasser trinken",
+            "Sonnencreme und Hut im Sommer verwenden",
+            "Grundmedikamente einpacken",
+            "Reiseversicherung abschließen",
+            "Kopien von Dokumenten aufbewahren",
+            "Registrierte Reiseführer verwenden",
+            "Im Wüstenklima hydratisiert bleiben"
+          ]
+        }
       }
     },
     "posts": {

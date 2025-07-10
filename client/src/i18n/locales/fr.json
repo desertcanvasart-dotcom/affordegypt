@@ -538,7 +538,66 @@
         "Nubie"
       ],
       "map": {
-        "title": "Carte Interactive de la Vallée du Nil"
+        "title": "Carte Interactive de la Vallée du Nil",
+        "clickCities": "📍 Cliquez sur les villes pour explorer"
+      },
+      "cityDetails": {
+        "population": "Population :",
+        "bestTime": "Meilleure période :",
+        "recommendedStay": "Séjour recommandé :",
+        "keyHighlights": "Points Forts :",
+        "budgetTips": "Conseils Budget :",
+        "transportation": "Transport :",
+        "localTransport": "Local :",
+        "topAttractions": "Principales Attractions :",
+        "entry": "Entrée :",
+        "hours": "Horaires :"
+      },
+      "completeGuide": {
+        "title": "Guide Complet des Villes de la Vallée du Nil",
+        "readMore": "Lire Plus",
+        "showLess": "Afficher Moins"
+      },
+      "travelTips": {
+        "title": "Conseils de Voyage Essentiels",
+        "budgetBreakdown": {
+          "title": "Répartition du Budget (Par Jour)",
+          "budget": {
+            "title": "Voyageur Économique",
+            "description": "Auberge/pension, nourriture locale, transport public : 800-1200 EGP"
+          },
+          "midRange": {
+            "title": "Voyageur Milieu de Gamme", 
+            "description": "Hôtel 3 étoiles, mélange de restaurants, transport privé : 2300-3500 EGP"
+          },
+          "luxury": {
+            "title": "Voyageur de Luxe",
+            "description": "Hôtels 5 étoiles, restauration fine, visites guidées : 9000+ EGP"
+          }
+        },
+        "culturalEtiquette": {
+          "title": "Étiquette Culturelle",
+          "tips": [
+            "S'habiller modestement, surtout dans les sites religieux",
+            "Retirer ses chaussures en entrant dans les mosquées",
+            "Demander la permission avant de photographier les gens",
+            "Marchander respectueusement dans les marchés",
+            "Donner un pourboire au personnel de service (10-15%)",
+            "Apprendre les salutations de base en arabe"
+          ]
+        },
+        "healthSafety": {
+          "title": "Santé et Sécurité",
+          "tips": [
+            "Boire uniquement de l'eau en bouteille",
+            "Utiliser crème solaire et chapeau en été",
+            "Emporter des médicaments de base",
+            "Souscrire une assurance voyage",
+            "Garder des copies des documents",
+            "Utiliser des guides touristiques enregistrés",
+            "Rester hydraté dans le climat désertique"
+          ]
+        }
       }
     }
   },
