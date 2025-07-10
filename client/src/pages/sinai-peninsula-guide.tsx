@@ -92,23 +92,23 @@ export default function SinaiPeninsulaGuide() {
 
   const practicalInfo = [
     {
-      title: t('sinaiGuide.practical.bestTime.title'),
-      content: t('sinaiGuide.practical.bestTime.content'),
+      title: t('blog.sinaiGuide.practical.bestTime.title'),
+      content: t('blog.sinaiGuide.practical.bestTime.content'),
       icon: <Thermometer className="w-5 h-5 text-orange-500" />
     },
     {
-      title: t('sinaiGuide.practical.gettingThere.title'),
-      content: t('sinaiGuide.practical.gettingThere.content'),
+      title: t('blog.sinaiGuide.practical.gettingThere.title'),
+      content: t('blog.sinaiGuide.practical.gettingThere.content'),
       icon: <Compass className="w-5 h-5 text-blue-500" />
     },
     {
-      title: t('sinaiGuide.practical.safety.title'),
-      content: t('sinaiGuide.practical.safety.content'),
+      title: t('blog.sinaiGuide.practical.safety.title'),
+      content: t('blog.sinaiGuide.practical.safety.content'),
       icon: <AlertTriangle className="w-5 h-5 text-red-500" />
     },
     {
-      title: t('sinaiGuide.practical.packing.title'),
-      content: t('sinaiGuide.practical.packing.content'),
+      title: t('blog.sinaiGuide.practical.packing.title'),
+      content: t('blog.sinaiGuide.practical.packing.content'),
       icon: <Mountain className="w-5 h-5 text-green-500" />
     }
   ];
