@@ -70,9 +70,9 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Tram", "Bus", "Taxi", "Uber"]
     },
     budgetTips: [
-      "Stay near the Corniche for sea views",
-      "Try fresh seafood at local restaurants",
-      "Use the historic tram system for cheap transport"
+      "budgetTips.alexandria.stayNearCorniche",
+      "budgetTips.alexandria.freshSeafood",
+      "budgetTips.alexandria.historicTram"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg"
@@ -113,10 +113,10 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Metro", "Taxi", "Uber", "Bus"]
     },
     budgetTips: [
-      "Use metro for cheap transportation (5-15 EGP)",
-      "Eat at local restaurants (50-100 EGP per meal)",
-      "Stay in Downtown Cairo for budget accommodation",
-      "Visit free mosques and markets"
+      "budgetTips.cairo.useMetro",
+      "budgetTips.cairo.localRestaurants",
+      "budgetTips.cairo.downtownAccommodation",
+      "budgetTips.cairo.freeMosquesMarkets"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg"
@@ -151,9 +151,9 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Taxi", "Microbus", "Tuk-tuk"]
     },
     budgetTips: [
-      "Very affordable local food (20-50 EGP)",
-      "Basic accommodation available (200-400 EGP/night)",
-      "Bargain at local markets"
+      "budgetTips.beniSuef.affordableFood",
+      "budgetTips.beniSuef.basicAccommodation",
+      "budgetTips.beniSuef.bargainMarkets"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/Beni-Suef-.jpg"
@@ -194,9 +194,9 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Taxi", "Microbus", "Felucca"]
     },
     budgetTips: [
-      "Stay at Akhenaten Hotel for budget option",
-      "Take shared taxis between sites",
-      "Local restaurants very affordable (30-70 EGP)"
+      "budgetTips.minya.akhenatonHotel",
+      "budgetTips.minya.sharedTaxis",
+      "budgetTips.minya.affordableRestaurants"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
@@ -231,9 +231,9 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Taxi", "Microbus", "Horse cart"]
     },
     budgetTips: [
-      "Very budget-friendly destination",
-      "Traditional workshops for handicrafts",
-      "Cheap Nile boat rides"
+      "budgetTips.asyut.budgetFriendly",
+      "budgetTips.asyut.traditionalWorkshops",
+      "budgetTips.asyut.cheapBoatRides"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg"
   },
@@ -479,10 +479,10 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Felucca", "Taxi", "Motorboat"]
     },
     budgetTips: [
-      "Stay near the souk for atmosphere",
-      "Take felucca rides at sunset",
-      "Visit Nubian villages for authentic culture",
-      "Excellent value spice shopping"
+      "budgetTips.aswan.stayNearSouk",
+      "budgetTips.aswan.feluccaRides",
+      "budgetTips.aswan.nubianVillages",
+      "budgetTips.aswan.spiceShopping"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/philae-temple.jpg"
   },
@@ -516,10 +516,10 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Tour bus", "Private car"]
     },
     budgetTips: [
-      "Day trip from Aswan is most economical",
-      "Join group tours to split costs",
-      "Bring lunch and water",
-      "Early morning arrival for best photos"
+      "budgetTips.abuSimbel.dayTripFromAswan",
+      "budgetTips.abuSimbel.joinGroupTours",
+      "budgetTips.abuSimbel.bringLunchWater",
+      "budgetTips.abuSimbel.earlyMorningArrival"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel-1.jpg"
@@ -906,7 +906,7 @@ export default function NileValleyGuide() {
                   <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.budgetTips')}</h4>
                   <ul className="list-disc list-inside text-gray-700">
                     {selectedCity.budgetTips.map((tip, index) => (
-                      <li key={index}>{tip}</li>
+                      <li key={index}>{t(tip)}</li>
                     ))}
                   </ul>
                 </div>
@@ -1018,7 +1018,7 @@ export default function NileValleyGuide() {
                         <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.budgetTips')}</h4>
                         <ul className="text-sm space-y-1">
                           {city.budgetTips.slice(0, 2).map((tip, index) => (
-                            <li key={index} className="text-gray-600">• {tip}</li>
+                            <li key={index} className="text-gray-600">• {t(tip)}</li>
                           ))}
                         </ul>
                       </div>

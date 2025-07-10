@@ -640,6 +640,46 @@
       }
     }
   },
+  "budgetTips": {
+    "alexandria": {
+      "stayNearCorniche": "Stay near the Corniche for sea views",
+      "freshSeafood": "Try fresh seafood at local restaurants",
+      "historicTram": "Use the historic tram system for cheap transport"
+    },
+    "cairo": {
+      "useMetro": "Use metro for cheap transportation (5-15 EGP)",
+      "localRestaurants": "Eat at local restaurants (50-100 EGP per meal)",
+      "downtownAccommodation": "Stay in Downtown Cairo for budget accommodation",
+      "freeMosquesMarkets": "Visit free mosques and markets"
+    },
+    "beniSuef": {
+      "affordableFood": "Very affordable local food (20-50 EGP)",
+      "basicAccommodation": "Basic accommodation available (200-400 EGP/night)",
+      "bargainMarkets": "Bargain at local markets"
+    },
+    "minya": {
+      "akhenatonHotel": "Stay at Akhenaten Hotel for budget option",
+      "sharedTaxis": "Take shared taxis between sites",
+      "affordableRestaurants": "Local restaurants very affordable (30-70 EGP)"
+    },
+    "asyut": {
+      "budgetFriendly": "Very budget-friendly destination",
+      "traditionalWorkshops": "Traditional workshops for handicrafts",
+      "cheapBoatRides": "Cheap Nile boat rides"
+    },
+    "aswan": {
+      "stayNearSouk": "Stay near the souk for atmosphere",
+      "feluccaRides": "Take felucca rides at sunset",
+      "nubianVillages": "Visit Nubian villages for authentic culture",
+      "spiceShopping": "Excellent value spice shopping"
+    },
+    "abuSimbel": {
+      "dayTripFromAswan": "Day trip from Aswan is most economical",
+      "joinGroupTours": "Join group tours to split costs",
+      "bringLunchWater": "Bring lunch and water",
+      "earlyMorningArrival": "Early morning arrival for best photos"
+    }
+  },
   "faq": {
     "title": "Egypt Travel FAQs",
     "subtitle": "Answers to your most common questions—clear, honest, and up-to-date",

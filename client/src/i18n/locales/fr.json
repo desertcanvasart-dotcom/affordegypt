@@ -640,6 +640,46 @@
       }
     }
   },
+  "budgetTips": {
+    "alexandria": {
+      "stayNearCorniche": "Séjournez près de la Corniche pour les vues sur la mer",
+      "freshSeafood": "Essayez les fruits de mer frais dans les restaurants locaux",
+      "historicTram": "Utilisez le système de tramway historique pour un transport pas cher"
+    },
+    "cairo": {
+      "useMetro": "Utilisez le métro pour un transport pas cher (5-15 EGP)",
+      "localRestaurants": "Mangez dans les restaurants locaux (50-100 EGP par repas)",
+      "downtownAccommodation": "Séjournez au centre-ville du Caire pour un hébergement économique",
+      "freeMosquesMarkets": "Visitez les mosquées et marchés gratuits"
+    },
+    "beniSuef": {
+      "affordableFood": "Nourriture locale très abordable (20-50 EGP)",
+      "basicAccommodation": "Hébergement de base disponible (200-400 EGP/nuit)",
+      "bargainMarkets": "Marchandez dans les marchés locaux"
+    },
+    "minya": {
+      "akhenatonHotel": "Séjournez à l'hôtel Akhenaten pour une option économique",
+      "sharedTaxis": "Prenez des taxis partagés entre les sites",
+      "affordableRestaurants": "Restaurants locaux très abordables (30-70 EGP)"
+    },
+    "asyut": {
+      "budgetFriendly": "Destination très économique",
+      "traditionalWorkshops": "Ateliers traditionnels pour l'artisanat",
+      "cheapBoatRides": "Promenades en bateau sur le Nil pas chères"
+    },
+    "aswan": {
+      "stayNearSouk": "Séjournez près du souk pour l'atmosphère",
+      "feluccaRides": "Promenades en felouque au coucher du soleil",
+      "nubianVillages": "Visitez les villages nubiens pour une culture authentique",
+      "spiceShopping": "Excellent rapport qualité-prix pour les épices"
+    },
+    "abuSimbel": {
+      "dayTripFromAswan": "Excursion d'une journée depuis Assouan est plus économique",
+      "joinGroupTours": "Rejoignez des tours de groupe pour partager les coûts",
+      "bringLunchWater": "Apportez déjeuner et eau",
+      "earlyMorningArrival": "Arrivée tôt le matin pour les meilleures photos"
+    }
+  },
   "faq": {
     "title": "FAQ Voyage en Égypte",
     "subtitle": "Réponses à vos questions les plus fréquentes : claires, honnêtes et à jour",

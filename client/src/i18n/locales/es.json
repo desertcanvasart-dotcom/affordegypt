@@ -641,6 +641,46 @@
       }
     }
   },
+  "budgetTips": {
+    "alexandria": {
+      "stayNearCorniche": "Alójate cerca de la Corniche para vistas al mar",
+      "freshSeafood": "Prueba mariscos frescos en restaurantes locales",
+      "historicTram": "Usa el sistema de tranvía histórico para transporte barato"
+    },
+    "cairo": {
+      "useMetro": "Usa el metro para transporte barato (5-15 EGP)",
+      "localRestaurants": "Come en restaurantes locales (50-100 EGP por comida)",
+      "downtownAccommodation": "Alójate en el centro de El Cairo para alojamiento económico",
+      "freeMosquesMarkets": "Visita mezquitas y mercados gratuitos"
+    },
+    "beniSuef": {
+      "affordableFood": "Comida local muy asequible (20-50 EGP)",
+      "basicAccommodation": "Alojamiento básico disponible (200-400 EGP/noche)",
+      "bargainMarkets": "Regatea en mercados locales"
+    },
+    "minya": {
+      "akhenatonHotel": "Alójate en el Hotel Akhenaten para opción económica",
+      "sharedTaxis": "Toma taxis compartidos entre sitios",
+      "affordableRestaurants": "Restaurantes locales muy asequibles (30-70 EGP)"
+    },
+    "asyut": {
+      "budgetFriendly": "Destino muy económico",
+      "traditionalWorkshops": "Talleres tradicionales para artesanías",
+      "cheapBoatRides": "Paseos en bote por el Nilo baratos"
+    },
+    "aswan": {
+      "stayNearSouk": "Alójate cerca del zoco para ambiente auténtico",
+      "feluccaRides": "Toma paseos en faluca al atardecer",
+      "nubianVillages": "Visita pueblos nubios para cultura auténtica",
+      "spiceShopping": "Excelente valor comprando especias"
+    },
+    "abuSimbel": {
+      "dayTripFromAswan": "Viaje de día desde Asuán es más económico",
+      "joinGroupTours": "Únete a tours grupales para dividir costos",
+      "bringLunchWater": "Trae almuerzo y agua",
+      "earlyMorningArrival": "Llegada temprano en la mañana para mejores fotos"
+    }
+  },
   "faq": {
     "title": "Preguntas Frecuentes sobre Egipto",
     "subtitle": "Respuestas a tus preguntas más comunes: claras, honestas y actualizadas",
