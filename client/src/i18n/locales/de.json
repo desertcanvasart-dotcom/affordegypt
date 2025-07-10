@@ -493,6 +493,11 @@
         "button": "Sinai-Reise Planen"
       }
     },
+    "desertsGuide": {
+      "title": "Ost- & Westwüste",
+      "subtitle": "Das Tor für Budgetreisende zu Ägyptens ungezähmter Schönheit",
+      "description": "Ägyptens Wüsten bieten antike Geheimnisse, marsähnliche Landschaften, spirituelle Einsamkeit und lokale Gastfreundschaft – und das alles zu einem Bruchteil der Kosten typischer Touristenorte. Ideal für preisbewusste Abenteurer, die authentische Erlebnisse suchen."
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Sinai-Halbinsel Reiseführer",
