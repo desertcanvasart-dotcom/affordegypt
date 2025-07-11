@@ -924,5 +924,8 @@
       "whatsapp": "Support WhatsApp",
       "email": "Nous Contacter"
     }
-  }
+  },
+  "luxorBestTime": "Octobre - Mars",
+  "luxorStay": "3-4 jours", 
+  "luxorTransport": "10 heures en train, 1 heure en avion"
 }
