@@ -47,22 +47,22 @@ const nileValleyCities: NileCity[] = [
     averageStay: "2-3 days",
     keyAttractions: [
       {
-        name: "Bibliotheca Alexandrina",
-        description: "Modern revival of the ancient Library of Alexandria with stunning architecture",
-        entryFee: "100 EGP",
-        hours: "10:00 AM - 7:00 PM"
+        name: "attractions.alexandria.bibliotheca.name",
+        description: "attractions.alexandria.bibliotheca.description",
+        entryFee: "attractions.alexandria.bibliotheca.entryFee",
+        hours: "attractions.alexandria.bibliotheca.hours"
       },
       {
-        name: "Qaitbay Citadel",
-        description: "15th-century fortress built on the site of the ancient Lighthouse of Alexandria",
-        entryFee: "200 EGP",
-        hours: "9:00 AM - 4:00 PM"
+        name: "attractions.alexandria.qaitbayCitadel.name",
+        description: "attractions.alexandria.qaitbayCitadel.description",
+        entryFee: "attractions.alexandria.qaitbayCitadel.entryFee",
+        hours: "attractions.alexandria.qaitbayCitadel.hours"
       },
       {
-        name: "Catacombs of Kom el Shoqafa",
-        description: "Largest Roman burial site in Egypt with unique Greco-Roman-Egyptian fusion",
-        entryFee: "80 EGP",
-        hours: "9:00 AM - 4:00 PM"
+        name: "attractions.alexandria.catacombs.name",
+        description: "attractions.alexandria.catacombs.description",
+        entryFee: "attractions.alexandria.catacombs.entryFee",
+        hours: "attractions.alexandria.catacombs.hours"
       }
     ],
     transportation: {
@@ -90,22 +90,22 @@ const nileValleyCities: NileCity[] = [
     averageStay: "3-4 days",
     keyAttractions: [
       {
-        name: "Pyramids of Giza",
-        description: "The last surviving Wonder of the Ancient World, including the Great Pyramid and Sphinx",
-        entryFee: "700 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.cairo.pyramidsGiza.name",
+        description: "attractions.cairo.pyramidsGiza.description",
+        entryFee: "attractions.cairo.pyramidsGiza.entryFee",
+        hours: "attractions.cairo.pyramidsGiza.hours"
       },
       {
-        name: "Egyptian Museum",
-        description: "World's finest collection of ancient Egyptian artifacts including Tutankhamun's treasures",
-        entryFee: "550 EGP",
-        hours: "9:00 AM - 5:00 PM"
+        name: "attractions.cairo.egyptianMuseum.name",
+        description: "attractions.cairo.egyptianMuseum.description",
+        entryFee: "attractions.cairo.egyptianMuseum.entryFee",
+        hours: "attractions.cairo.egyptianMuseum.hours"
       },
       {
-        name: "Citadel of Saladin",
-        description: "Medieval Islamic fortification with stunning views of Cairo",
-        entryFee: "550 EGP",
-        hours: "8:00 AM - 5:00 PM"
+        name: "attractions.cairo.citadelSaladin.name",
+        description: "attractions.cairo.citadelSaladin.description",
+        entryFee: "attractions.cairo.citadelSaladin.entryFee",
+        hours: "attractions.cairo.citadelSaladin.hours"
       }
     ],
     transportation: {
@@ -134,16 +134,16 @@ const nileValleyCities: NileCity[] = [
     averageStay: "1 day",
     keyAttractions: [
       {
-        name: "Meidum Pyramid",
-        description: "Unique collapsed pyramid showing ancient construction techniques",
-        entryFee: "180 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.beniSuef.meidumPyramid.name",
+        description: "attractions.beniSuef.meidumPyramid.description",
+        entryFee: "attractions.beniSuef.meidumPyramid.entryFee",
+        hours: "attractions.beniSuef.meidumPyramid.hours"
       },
       {
-        name: "Beni Suef Museum",
-        description: "Local artifacts and Pharaonic remains from the region",
-        entryFee: "120 EGP",
-        hours: "9:00 AM - 4:00 PM"
+        name: "attractions.beniSuef.beniSuefMuseum.name",
+        description: "attractions.beniSuef.beniSuefMuseum.description",
+        entryFee: "attractions.beniSuef.beniSuefMuseum.entryFee",
+        hours: "attractions.beniSuef.beniSuefMuseum.hours"
       }
     ],
     transportation: {
@@ -214,16 +214,16 @@ const nileValleyCities: NileCity[] = [
     averageStay: "1-2 days",
     keyAttractions: [
       {
-        name: "Monastery of the Virgin Mary",
-        description: "Important Coptic Christian pilgrimage site",
-        entryFee: "Free",
-        hours: "6:00 AM - 6:00 PM"
+        name: "attractions.asyut.monasteryVirginMary.name",
+        description: "attractions.asyut.monasteryVirginMary.description",
+        entryFee: "attractions.asyut.monasteryVirginMary.entryFee",
+        hours: "attractions.asyut.monasteryVirginMary.hours"
       },
       {
-        name: "Asyut Barrage",
-        description: "Historic Nile dam with scenic views",
-        entryFee: "Free",
-        hours: "24 hours"
+        name: "attractions.asyut.asyutBarrage.name",
+        description: "attractions.asyut.asyutBarrage.description",
+        entryFee: "attractions.asyut.asyutBarrage.entryFee",
+        hours: "attractions.asyut.asyutBarrage.hours"
       }
     ],
     transportation: {
@@ -250,22 +250,22 @@ const nileValleyCities: NileCity[] = [
     averageStay: "1-2 days",
     keyAttractions: [
       {
-        name: "Red Monastery",
-        description: "5th-century Coptic monastery with stunning frescoes",
-        entryFee: "50 EGP",
-        hours: "8:00 AM - 5:00 PM"
+        name: "attractions.sohag.redMonastery.name",
+        description: "attractions.sohag.redMonastery.description",
+        entryFee: "attractions.sohag.redMonastery.entryFee",
+        hours: "attractions.sohag.redMonastery.hours"
       },
       {
-        name: "White Monastery",
-        description: "Ancient Coptic monastery with unique architecture",
-        entryFee: "50 EGP",
-        hours: "8:00 AM - 5:00 PM"
+        name: "attractions.sohag.whiteMonastery.name",
+        description: "attractions.sohag.whiteMonastery.description",
+        entryFee: "attractions.sohag.whiteMonastery.entryFee",
+        hours: "attractions.sohag.whiteMonastery.hours"
       },
       {
-        name: "Akhmim",
-        description: "Traditional textile weaving town on the Nile",
-        entryFee: "Free",
-        hours: "Daylight hours"
+        name: "attractions.sohag.akhmim.name",
+        description: "attractions.sohag.akhmim.description",
+        entryFee: "attractions.sohag.akhmim.entryFee",
+        hours: "attractions.sohag.akhmim.hours"
       }
     ],
     transportation: {
@@ -292,16 +292,16 @@ const nileValleyCities: NileCity[] = [
     averageStay: "1 day",
     keyAttractions: [
       {
-        name: "Dendera Temple Complex",
-        description: "Best-preserved temple complex dedicated to goddess Hathor",
-        entryFee: "300 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.qena.denderaTemple.name",
+        description: "attractions.qena.denderaTemple.description",
+        entryFee: "attractions.qena.denderaTemple.entryFee",
+        hours: "attractions.qena.denderaTemple.hours"
       },
       {
-        name: "Qena Pottery Quarter",
-        description: "Traditional pottery workshops using ancient techniques",
-        entryFee: "Free",
-        hours: "8:00 AM - 6:00 PM"
+        name: "attractions.qena.qenaPotteryQuarter.name",
+        description: "attractions.qena.qenaPotteryQuarter.description",
+        entryFee: "attractions.qena.qenaPotteryQuarter.entryFee",
+        hours: "attractions.qena.qenaPotteryQuarter.hours"
       }
     ],
     transportation: {
@@ -328,28 +328,28 @@ const nileValleyCities: NileCity[] = [
     averageStay: "3-4 days",
     keyAttractions: [
       {
-        name: "Valley of the Kings",
-        description: "Royal burial ground with elaborately decorated tombs",
-        entryFee: "750 EGP for 3 tombs",
-        hours: "6:00 AM - 4:00 PM"
+        name: "attractions.luxor.valleyKings.name",
+        description: "attractions.luxor.valleyKings.description",
+        entryFee: "attractions.luxor.valleyKings.entryFee",
+        hours: "attractions.luxor.valleyKings.hours"
       },
       {
-        name: "Karnak Temple",
-        description: "Massive temple complex dedicated to Amun-Ra",
-        entryFee: "600 EGP",
-        hours: "6:00 AM - 5:30 PM"
+        name: "attractions.luxor.karnakTemple.name",
+        description: "attractions.luxor.karnakTemple.description",
+        entryFee: "attractions.luxor.karnakTemple.entryFee",
+        hours: "attractions.luxor.karnakTemple.hours"
       },
       {
-        name: "Luxor Temple",
-        description: "Beautiful temple in the heart of modern Luxor",
-        entryFee: "500 EGP",
-        hours: "6:00 AM - 9:00 PM"
+        name: "attractions.luxor.luxorTemple.name",
+        description: "attractions.luxor.luxorTemple.description",
+        entryFee: "attractions.luxor.luxorTemple.entryFee",
+        hours: "attractions.luxor.luxorTemple.hours"
       },
       {
-        name: "Temple of Hatshepsut",
-        description: "Mortuary temple of Egypt's famous female pharaoh",
-        entryFee: "140 EGP",
-        hours: "6:00 AM - 4:00 PM"
+        name: "attractions.luxor.hatshepsutTemple.name",
+        description: "attractions.luxor.hatshepsutTemple.description",
+        entryFee: "attractions.luxor.hatshepsutTemple.entryFee",
+        hours: "attractions.luxor.hatshepsutTemple.hours"
       }
     ],
     transportation: {
@@ -499,16 +499,16 @@ const nileValleyCities: NileCity[] = [
     averageStay: "1 day",
     keyAttractions: [
       {
-        name: "Great Temple of Ramesses II",
-        description: "Massive rock-cut temple relocated to save from flooding",
-        entryFee: "875 EGP",
-        hours: "6:00 AM - 5:00 PM"
+        name: "attractions.abuSimbel.greatTempleRamesses.name",
+        description: "attractions.abuSimbel.greatTempleRamesses.description",
+        entryFee: "attractions.abuSimbel.greatTempleRamesses.entryFee",
+        hours: "attractions.abuSimbel.greatTempleRamesses.hours"
       },
       {
-        name: "Temple of Nefertari",
-        description: "Smaller temple dedicated to Ramesses II's beloved queen",
-        entryFee: "Free",
-        hours: "6:00 AM - 5:00 PM"
+        name: "attractions.abuSimbel.templeNefertari.name",
+        description: "attractions.abuSimbel.templeNefertari.description",
+        entryFee: "attractions.abuSimbel.templeNefertari.entryFee",
+        hours: "attractions.abuSimbel.templeNefertari.hours"
       }
     ],
     transportation: {

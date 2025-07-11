@@ -832,6 +832,148 @@
     }
   },
   "attractions": {
+    "alexandria": {
+      "bibliotheca": {
+        "name": "Bibliotheca Alexandrina",
+        "description": "Moderne Wiederbelebung der alten Bibliothek von Alexandria mit atemberaubender Architektur",
+        "entryFee": "100 EGP",
+        "hours": "10:00 AM - 7:00 PM"
+      },
+      "qaitbayCitadel": {
+        "name": "Qaitbay Zitadelle",
+        "description": "Festung aus dem 15. Jahrhundert, erbaut auf der Stelle des alten Leuchtturms von Alexandria",
+        "entryFee": "200 EGP",
+        "hours": "9:00 AM - 4:00 PM"
+      },
+      "catacombs": {
+        "name": "Katakomben von Kom el Shoqafa",
+        "description": "Größte römische Begräbnisstätte Ägyptens mit einzigartiger griechisch-römisch-ägyptischer Fusion",
+        "entryFee": "80 EGP",
+        "hours": "9:00 AM - 4:00 PM"
+      }
+    },
+    "cairo": {
+      "pyramidsGiza": {
+        "name": "Pyramiden von Gizeh",
+        "description": "Das letzte überlebende Wunder der Antiken Welt, einschließlich der Großen Pyramide und Sphinx",
+        "entryFee": "700 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "egyptianMuseum": {
+        "name": "Ägyptisches Museum",
+        "description": "Weltbeste Sammlung altägyptischer Artefakte einschließlich Tutanchamuns Schätze",
+        "entryFee": "550 EGP",
+        "hours": "9:00 AM - 5:00 PM"
+      },
+      "citadelSaladin": {
+        "name": "Zitadelle von Saladin",
+        "description": "Mittelalterliche islamische Befestigung mit atemberaubender Aussicht auf Kairo",
+        "entryFee": "550 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      }
+    },
+    "luxor": {
+      "valleyKings": {
+        "name": "Tal der Könige",
+        "description": "Königliche Begräbnisstätte mit aufwendig dekorierten Gräbern",
+        "entryFee": "750 EGP für 3 Gräber",
+        "hours": "6:00 AM - 4:00 PM"
+      },
+      "karnakTemple": {
+        "name": "Karnak-Tempel",
+        "description": "Riesiger Tempelkomplex, Amun-Ra gewidmet",
+        "entryFee": "600 EGP",
+        "hours": "6:00 AM - 5:30 PM"
+      },
+      "luxorTemple": {
+        "name": "Luxor-Tempel",
+        "description": "Wunderschöner Tempel im Herzen des modernen Luxor",
+        "entryFee": "500 EGP",
+        "hours": "6:00 AM - 9:00 PM"
+      },
+      "hatshepsutTemple": {
+        "name": "Hatschepsut-Tempel",
+        "description": "Totentempel der berühmten weiblichen Pharaonin Ägyptens",
+        "entryFee": "140 EGP",
+        "hours": "6:00 AM - 4:00 PM"
+      }
+    },
+    "beniSuef": {
+      "meidumPyramid": {
+        "name": "Meidum Pyramide",
+        "description": "Einzigartige eingestürzte Pyramide, die antike Bautechniken zeigt",
+        "entryFee": "180 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "beniSuefMuseum": {
+        "name": "Beni Suef Museum",
+        "description": "Lokale Artefakte und pharaonische Überreste aus der Region",
+        "entryFee": "120 EGP",
+        "hours": "9:00 AM - 4:00 PM"
+      }
+    },
+    "asyut": {
+      "monasteryVirginMary": {
+        "name": "Kloster der Jungfrau Maria",
+        "description": "Wichtige koptisch-christliche Pilgerstätte",
+        "entryFee": "Frei",
+        "hours": "6:00 AM - 6:00 PM"
+      },
+      "asyutBarrage": {
+        "name": "Asyut Staudamm",
+        "description": "Historischer Nil-Damm mit malerischen Ausblicken",
+        "entryFee": "Frei",
+        "hours": "24 Stunden"
+      }
+    },
+    "sohag": {
+      "redMonastery": {
+        "name": "Rotes Kloster",
+        "description": "Koptisches Kloster aus dem 5. Jahrhundert mit atemberaubenden Fresken",
+        "entryFee": "50 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      },
+      "whiteMonastery": {
+        "name": "Weißes Kloster",
+        "description": "Altes koptisches Kloster mit einzigartiger Architektur",
+        "entryFee": "50 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      },
+      "akhmim": {
+        "name": "Akhmim",
+        "description": "Traditionelle Textilweberstadt am Nil",
+        "entryFee": "Frei",
+        "hours": "Tageslichtstunden"
+      }
+    },
+    "qena": {
+      "denderaTemple": {
+        "name": "Dendera Tempel",
+        "description": "Besterhaltener Tempelkomplex, der Göttin Hathor gewidmet",
+        "entryFee": "300 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "qenaPotteryQuarter": {
+        "name": "Qena Töpferviertel",
+        "description": "Traditionelle Töpferwerkstätten mit alten Techniken",
+        "entryFee": "Frei",
+        "hours": "8:00 AM - 6:00 PM"
+      }
+    },
+    "abuSimbel": {
+      "greatTempleRamesses": {
+        "name": "Großer Tempel von Ramses II",
+        "description": "Massiver in Fels gehauener Tempel, verlegt um vor Überschwemmung zu retten",
+        "entryFee": "875 EGP",
+        "hours": "6:00 AM - 5:00 PM"
+      },
+      "templeNefertari": {
+        "name": "Tempel der Nefertari",
+        "description": "Kleinerer Tempel, Ramses II's geliebter Königin gewidmet",
+        "entryFee": "Frei",
+        "hours": "6:00 AM - 5:00 PM"
+      }
+    },
     "aswan": {
       "philaeTemple": {
         "name": "Philae Tempel",
