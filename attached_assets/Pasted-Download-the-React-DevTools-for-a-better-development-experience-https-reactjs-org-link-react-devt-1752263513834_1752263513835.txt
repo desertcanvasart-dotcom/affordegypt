@@ -1,0 +1,46 @@
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+ Translation test: October - March
+ Translation test raw: October - March
+ Warning: Encountered two children with the same key, `11`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+    at div
+    at div
+    at div
+    at div
+    at div
+    at section
+    at div
+    at NileValleyGuide (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/src/pages/nile-valley-guide.tsx:520:17)
+    at Route (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=ae3f5a87:323:16)
+    at Switch (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=ae3f5a87:379:17)
+    at Router
+    at Provider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-OXZDJRWN.js?v=ae3f5a87:38:15)
+    at TooltipProvider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=ae3f5a87:61:5)
+    at AuthProvider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/src/hooks/useAuth.tsx:20:32)
+    at _a (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-helmet-async.js?v=ae3f5a87:624:5)
+    at QueryClientProvider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=ae3f5a87:2805:3)
+    at App
+printWarning @ @fs/home/runner/work…N.js?v=ae3f5a87:521
+ Warning: Encountered two children with the same key, `11`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+    at div
+    at div
+    at section
+    at div
+    at NileValleyGuide (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/src/pages/nile-valley-guide.tsx:520:17)
+    at Route (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=ae3f5a87:323:16)
+    at Switch (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=ae3f5a87:379:17)
+    at Router
+    at Provider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-OXZDJRWN.js?v=ae3f5a87:38:15)
+    at TooltipProvider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=ae3f5a87:61:5)
+    at AuthProvider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/src/hooks/useAuth.tsx:20:32)
+    at _a (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-helmet-async.js?v=ae3f5a87:624:5)
+    at QueryClientProvider (https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=ae3f5a87:2805:3)
+    at App
+printWarning @ @fs/home/runner/work…N.js?v=ae3f5a87:521
+16Mixed Content: The page at '<URL>' was loaded over HTTPS, but requested an insecure element '<URL>'. This request was automatically upgraded to HTTPS, For more information see <URL>
+m.stripe.network/inn…__[version]=basil:1 Uncaught (in promise) undefined
+
+                
+          
+          
+          
+         Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.

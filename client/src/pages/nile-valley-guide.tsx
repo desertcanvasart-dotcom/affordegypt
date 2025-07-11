@@ -527,13 +527,15 @@ const nileValleyCities: NileCity[] = [
 ];
 
 export default function NileValleyGuide() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   
-  // Debug translation
+  // Debug translation and language
+  console.log('Current language:', i18n.language);
   console.log('Translation test:', t('luxorBestTime'));
-  console.log('Translation test raw:', t('luxorBestTime', { returnObjects: false }));
+  console.log('Available languages:', i18n.languages);
+  console.log('Translation resource exists:', i18n.hasResourceBundle('de', 'translation'));
 
   // Scroll to top when component mounts
   useEffect(() => {
