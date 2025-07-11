@@ -324,8 +324,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.6396,
     population: "507,000",
     highlights: ["Valley of the Kings", "Karnak Temple", "Luxor Temple", "West Bank tombs"],
-    bestTimeToVisit: "blog.nileValley.completeGuide.values.bestTimeToVisit.octoberMarch",
-    averageStay: "blog.nileValley.completeGuide.values.averageStay.threeToFourDays",
+    bestTimeToVisit: "blog.nileValley.completeGuide.cardValues.bestTime.octoberMarch",
+    averageStay: "blog.nileValley.completeGuide.cardValues.stay.threeToFourDays",
     keyAttractions: [
       {
         name: "attractions.luxor.valleyKings.name",
@@ -353,7 +353,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "blog.nileValley.completeGuide.values.transportation.fromCairo.luxor",
+      fromCairo: "blog.nileValley.completeGuide.cardValues.transportation.luxor",
       localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"]
     },
     budgetTips: [

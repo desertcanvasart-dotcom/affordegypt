@@ -570,12 +570,12 @@
           "lowerEgypt": "Lower Egypt",
           "nubia": "Nubia"
         },
-        "values": {
-          "bestTimeToVisit": {
+        "cardValues": {
+          "bestTime": {
             "octoberMarch": "October - March",
             "octoberApril": "October - April"
           },
-          "averageStay": {
+          "stay": {
             "threeToFourDays": "3-4 days",
             "twoToThreeDays": "2-3 days",
             "oneToTwoDays": "1-2 days",
@@ -583,19 +583,17 @@
             "halfDay": "Half day"
           },
           "transportation": {
-            "fromCairo": {
-              "luxor": "10 hours by train, 1 hour flight",
-              "alexandria": "2.5 hours by train/bus",
-              "cairo": "Starting point",
-              "beniSuef": "2 hours by train/bus",
-              "minya": "4 hours by train/bus",
-              "asyut": "5 hours by train/bus",
-              "sohag": "6 hours by train/bus",
-              "qena": "7 hours by train/bus",
-              "edfu": "12 hours by train/bus",
-              "komOmbo": "13 hours by train/bus",
-              "aswan": "14 hours by train/bus, 1.5 hours flight"
-            }
+            "luxor": "10 hours by train, 1 hour flight",
+            "alexandria": "2.5 hours by train/bus",
+            "cairo": "Starting point",
+            "beniSuef": "2 hours by train/bus",
+            "minya": "4 hours by train/bus",
+            "asyut": "5 hours by train/bus",
+            "sohag": "6 hours by train/bus",
+            "qena": "7 hours by train/bus",
+            "edfu": "12 hours by train/bus",
+            "komOmbo": "13 hours by train/bus",
+            "aswan": "14 hours by train/bus, 1.5 hours flight"
           }
         }
       },
