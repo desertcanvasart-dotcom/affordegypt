@@ -564,7 +564,13 @@
         "topAttractions": "Principales Atracciones:",
         "budgetTips": "Consejos de Presupuesto:",
         "readMore": "Leer Más",
-        "showLess": "Mostrar Menos"
+        "showLess": "Mostrar Menos",
+        "regions": {
+          "upperEgypt": "Alto Egipto",
+          "middleEgypt": "Egipto Medio",
+          "lowerEgypt": "Bajo Egipto",
+          "nubia": "Nubia"
+        }
       },
       "transportation": {
         "title": "Guía de Transporte del Valle del Nilo",

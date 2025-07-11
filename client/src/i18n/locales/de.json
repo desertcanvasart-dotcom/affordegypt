@@ -688,7 +688,13 @@
         "topAttractions": "Top-Sehenswürdigkeiten:",
         "budgetTips": "Budget-Tipps:",
         "readMore": "Mehr Lesen",
-        "showLess": "Weniger Anzeigen"
+        "showLess": "Weniger Anzeigen",
+        "regions": {
+          "upperEgypt": "Oberägypten",
+          "middleEgypt": "Mittelägypten",
+          "lowerEgypt": "Unterägypten",
+          "nubia": "Nubien"
+        }
       },
       "transportation": {
         "title": "Nil-Tal Transportführer",

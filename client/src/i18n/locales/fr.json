@@ -563,7 +563,13 @@
         "topAttractions": "Principales Attractions :",
         "budgetTips": "Conseils Budget :",
         "readMore": "Lire Plus",
-        "showLess": "Afficher Moins"
+        "showLess": "Afficher Moins",
+        "regions": {
+          "upperEgypt": "Haute-Égypte",
+          "middleEgypt": "Égypte Moyenne",
+          "lowerEgypt": "Basse-Égypte",
+          "nubia": "Nubie"
+        }
       },
       "transportation": {
         "title": "Guide du Transport de la Vallée du Nil",

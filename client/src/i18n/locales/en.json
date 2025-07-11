@@ -563,7 +563,13 @@
         "topAttractions": "Top Attractions:",
         "budgetTips": "Budget Tips:",
         "readMore": "Read More",
-        "showLess": "Show Less"
+        "showLess": "Show Less",
+        "regions": {
+          "upperEgypt": "Upper Egypt",
+          "middleEgypt": "Middle Egypt",
+          "lowerEgypt": "Lower Egypt",
+          "nubia": "Nubia"
+        }
       },
       "transportation": {
         "title": "Nile Valley Transportation Guide",

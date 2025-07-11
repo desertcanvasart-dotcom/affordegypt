@@ -238,7 +238,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg"
   },
   {
-    id: 5,
+    id: 6,
     name: "Sohag",
     arabicName: "سوهاج",
     region: "Upper Egypt",
@@ -879,7 +879,13 @@ export default function NileValleyGuide() {
                 <div>
                   <h3 className="text-2xl font-bold mb-2">{selectedCity.name}</h3>
                   <p className="text-gray-600 mb-1">{selectedCity.arabicName}</p>
-                  <Badge className="mb-4">{selectedCity.region}</Badge>
+                  <Badge className="mb-4">{
+                    selectedCity.region === "Upper Egypt" ? t('blog.nileValley.completeGuide.regions.upperEgypt') :
+                    selectedCity.region === "Middle Egypt" ? t('blog.nileValley.completeGuide.regions.middleEgypt') :
+                    selectedCity.region === "Lower Egypt" ? t('blog.nileValley.completeGuide.regions.lowerEgypt') :
+                    selectedCity.region === "Nubia" ? t('blog.nileValley.completeGuide.regions.nubia') :
+                    selectedCity.region
+                  }</Badge>
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-2">
@@ -973,10 +979,10 @@ export default function NileValleyGuide() {
                     <div className="flex items-center gap-3 mb-3">
                       <h3 className="text-2xl font-bold">{city.name}</h3>
                       <Badge>{
-                        city.region === "Upper Egypt" ? t('blog.nileValley.regions.3') :
-                        city.region === "Middle Egypt" ? t('blog.nileValley.regions.2') :
-                        city.region === "Lower Egypt" ? t('blog.nileValley.regions.1') :
-                        city.region === "Nubia" ? t('blog.nileValley.regions.4') :
+                        city.region === "Upper Egypt" ? t('blog.nileValley.completeGuide.regions.upperEgypt') :
+                        city.region === "Middle Egypt" ? t('blog.nileValley.completeGuide.regions.middleEgypt') :
+                        city.region === "Lower Egypt" ? t('blog.nileValley.completeGuide.regions.lowerEgypt') :
+                        city.region === "Nubia" ? t('blog.nileValley.completeGuide.regions.nubia') :
                         city.region
                       }</Badge>
                     </div>
