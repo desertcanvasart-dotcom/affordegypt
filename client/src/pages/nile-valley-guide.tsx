@@ -280,7 +280,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/abydos-temple.jpg"
   },
   {
-    id: 6,
+    id: 7,
     name: "Qena",
     arabicName: "قنا",
     region: "Upper Egypt",
@@ -316,7 +316,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/dendera-temple.jpg"
   },
   {
-    id: 7,
+    id: 8,
     name: "Luxor",
     arabicName: "الأقصر",
     region: "Upper Egypt",
@@ -324,8 +324,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.6396,
     population: "507,000",
     highlights: ["Valley of the Kings", "Karnak Temple", "Luxor Temple", "West Bank tombs"],
-    bestTimeToVisit: "October - March",
-    averageStay: "3-4 days",
+    bestTimeToVisit: "blog.nileValley.completeGuide.values.bestTimeToVisit.octoberMarch",
+    averageStay: "blog.nileValley.completeGuide.values.averageStay.threeToFourDays",
     keyAttractions: [
       {
         name: "attractions.luxor.valleyKings.name",
@@ -353,7 +353,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "10 hours by train, 1 hour flight",
+      fromCairo: "blog.nileValley.completeGuide.values.transportation.fromCairo.luxor",
       localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"]
     },
     budgetTips: [
@@ -366,7 +366,7 @@ const nileValleyCities: NileCity[] = [
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg"
   },
   {
-    id: 8,
+    id: 9,
     name: "Edfu",
     arabicName: "إدفو",
     region: "Upper Egypt",
@@ -402,7 +402,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/edfu.jpg"
   },
   {
-    id: 9,
+    id: 10,
     name: "Kom Ombo",
     arabicName: "كوم أمبو",
     region: "Upper Egypt",
@@ -438,7 +438,7 @@ const nileValleyCities: NileCity[] = [
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/ko-mombo-temple.jpg"
   },
   {
-    id: 10,
+    id: 11,
     name: "Aswan",
     arabicName: "أسوان",
     region: "Upper Egypt",
@@ -894,11 +894,11 @@ export default function NileValleyGuide() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
-                      <span>{t('blog.nileValley.cityDetails.bestTime')} {selectedCity.bestTimeToVisit}</span>
+                      <span>{t('blog.nileValley.cityDetails.bestTime')} {t(selectedCity.bestTimeToVisit)}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-primary" />
-                      <span>{t('blog.nileValley.cityDetails.recommendedStay')} {selectedCity.averageStay}</span>
+                      <span>{t('blog.nileValley.cityDetails.recommendedStay')} {t(selectedCity.averageStay)}</span>
                     </div>
                   </div>
 
@@ -928,7 +928,7 @@ export default function NileValleyGuide() {
                   <div className="bg-gray-50 p-3 rounded-lg mb-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Train className="w-4 h-4 text-primary" />
-                      <span className="text-sm">{selectedCity.transportation.fromCairo}</span>
+                      <span className="text-sm">{t(selectedCity.transportation.fromCairo)}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Navigation className="w-4 h-4 text-primary" />
@@ -994,13 +994,13 @@ export default function NileValleyGuide() {
                         <span className="font-medium">{t('blog.nileValley.completeGuide.population')}</span> {city.population}
                       </div>
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.bestTime')}</span> {city.bestTimeToVisit}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.bestTime')}</span> {t(city.bestTimeToVisit)}
                       </div>
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.stayDuration')}</span> {city.averageStay}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.stayDuration')}</span> {t(city.averageStay)}
                       </div>
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.fromCairo')}</span> {city.transportation.fromCairo}
+                        <span className="font-medium">{t('blog.nileValley.completeGuide.fromCairo')}</span> {t(city.transportation.fromCairo)}
                       </div>
                     </div>
 

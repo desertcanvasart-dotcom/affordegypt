@@ -694,6 +694,34 @@
           "middleEgypt": "Mittelägypten",
           "lowerEgypt": "Unterägypten",
           "nubia": "Nubien"
+        },
+        "values": {
+          "bestTimeToVisit": {
+            "octoberMarch": "Oktober - März",
+            "octoberApril": "Oktober - April"
+          },
+          "averageStay": {
+            "threeToFourDays": "3-4 Tage",
+            "twoToThreeDays": "2-3 Tage",
+            "oneToTwoDays": "1-2 Tage",
+            "oneDay": "1 Tag",
+            "halfDay": "Halber Tag"
+          },
+          "transportation": {
+            "fromCairo": {
+              "luxor": "10 Stunden mit Zug, 1 Stunde Flug",
+              "alexandria": "2,5 Stunden mit Zug/Bus",
+              "cairo": "Ausgangspunkt",
+              "beniSuef": "2 Stunden mit Zug/Bus",
+              "minya": "4 Stunden mit Zug/Bus",
+              "asyut": "5 Stunden mit Zug/Bus",
+              "sohag": "6 Stunden mit Zug/Bus",
+              "qena": "7 Stunden mit Zug/Bus",
+              "edfu": "12 Stunden mit Zug/Bus",
+              "komOmbo": "13 Stunden mit Zug/Bus",
+              "aswan": "14 Stunden mit Zug/Bus, 1,5 Stunden Flug"
+            }
+          }
         }
       },
       "transportation": {
