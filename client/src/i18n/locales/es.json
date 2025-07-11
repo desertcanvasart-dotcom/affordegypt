@@ -928,5 +928,74 @@
   },
   "luxorBestTime": "Octubre - Marzo",
   "luxorStay": "3-4 días", 
-  "luxorTransport": "10 horas en tren, 1 hora en avión"
+  "luxorTransport": "10 horas en tren, 1 hora en avión",
+  "budgetTips": {
+    "cairo": {
+      "useMetro": "Usa el Metro para transporte barato (5-15 EGP)",
+      "localRestaurants": "Come en restaurantes locales (50-100 EGP por comida)",
+      "downtownAccommodation": "Quédate en el Centro para alojamiento económico",
+      "freeMosquesMarkets": "Visitas gratuitas a mezquitas y mercados"
+    },
+    "beniSuef": {
+      "affordableFood": "Comida y alojamiento muy asequible",
+      "basicAccommodation": "Alojamiento básico pero limpio disponible",
+      "bargainMarkets": "Grandes gangas en mercados tradicionales"
+    }
+  },
+  "attractions": {
+    "cairo": {
+      "pyramidsGiza": {
+        "name": "Pirámides de Giza",
+        "description": "La última Maravilla del Mundo Antiguo superviviente",
+        "entryFee": "700 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "egyptianMuseum": {
+        "name": "Museo Egipcio",
+        "description": "La mejor colección de artefactos del antiguo Egipto del mundo",
+        "entryFee": "550 EGP",
+        "hours": "9:00 AM - 5:00 PM"
+      },
+      "citadelSaladin": {
+        "name": "Ciudadela de Saladino",
+        "description": "Fortificación islámica medieval con vistas impresionantes",
+        "entryFee": "550 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      }
+    },
+    "alexandria": {
+      "bibliotheca": {
+        "name": "Biblioteca de Alejandría",
+        "description": "Renacimiento moderno de la antigua Biblioteca de Alejandría",
+        "entryFee": "100 EGP",
+        "hours": "10:00 AM - 7:00 PM"
+      },
+      "qaitbayCitadel": {
+        "name": "Ciudadela de Qaitbay",
+        "description": "Fortaleza del siglo XV construida sobre el antiguo Faro",
+        "entryFee": "200 EGP",
+        "hours": "9:00 AM - 4:00 PM"
+      }
+    },
+    "luxor": {
+      "valleyKings": {
+        "name": "Valle de los Reyes",
+        "description": "Cementerio real con tumbas decoradas",
+        "entryFee": "750 EGP",
+        "hours": "6:00 AM - 4:00 PM"
+      },
+      "karnakTemple": {
+        "name": "Templo de Karnak",
+        "description": "El sitio religioso antiguo más grande del mundo",
+        "entryFee": "550 EGP",
+        "hours": "6:00 AM - 5:00 PM"
+      },
+      "luxorTemple": {
+        "name": "Templo de Luxor",
+        "description": "Complejo de templos del antiguo Egipto",
+        "entryFee": "300 EGP",
+        "hours": "6:00 AM - 9:00 PM"
+      }
+    }
+  }
 }
