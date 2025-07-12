@@ -902,6 +902,26 @@
   "luxorBestTime": "October - March",
   "luxorStay": "3-4 days", 
   "luxorTransport": "10 hours by train, 1 hour flight",
+  "nile": {
+    "bestTime": {
+      "octoberMarch": "October - March",
+      "octoberApril": "October - April",
+      "marchNovember": "March - November"
+    },
+    "stay": {
+      "1day": "1 day",
+      "2_3days": "2-3 days", 
+      "3_4days": "3-4 days",
+      "4_5days": "4-5 days"
+    },
+    "transport": {
+      "10h_train_1h_flight": "10 hours by train, 1 hour flight",
+      "2h_train_bus": "2 hours by train/bus",
+      "7h_train_bus": "7 hours by train/bus",
+      "starting_point": "Starting point",
+      "flight_3h_drive": "Flight to Aswan + 3-hour drive"
+    }
+  },
   "budgetTips": {
     "cairo": {
       "useMetro": "Use Metro for cheap transport (5-15 EGP)",

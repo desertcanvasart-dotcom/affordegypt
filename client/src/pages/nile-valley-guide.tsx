@@ -43,8 +43,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 29.9187,
     population: "5.2 million",
     highlights: ["Library of Alexandria", "Qaitbay Citadel", "Mediterranean beaches", "Ancient Roman sites"],
-    bestTimeToVisit: "March - November",
-    averageStay: "2-3 days",
+    bestTimeToVisit: "nile.bestTime.marchNovember",
+    averageStay: "nile.stay.2_3days",
     keyAttractions: [
       {
         name: "attractions.alexandria.bibliotheca.name",
@@ -86,8 +86,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 31.2357,
     population: "20+ million",
     highlights: ["Pyramids of Giza", "Egyptian Museum", "Islamic Cairo", "Khan el-Khalili Bazaar"],
-    bestTimeToVisit: "October - April",
-    averageStay: "3-4 days",
+    bestTimeToVisit: "nile.bestTime.octoberApril",
+    averageStay: "nile.stay.3_4days",
     keyAttractions: [
       {
         name: "attractions.cairo.pyramidsGiza.name",
@@ -109,7 +109,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "Starting point",
+      fromCairo: "nile.transport.starting_point",
       localTransport: ["Metro", "Taxi", "Uber", "Bus"]
     },
     budgetTips: [
@@ -130,8 +130,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 31.0994,
     population: "250,000",
     highlights: ["Meidum Pyramid", "Rural Nile landscapes", "Traditional markets"],
-    bestTimeToVisit: "October - April",
-    averageStay: "1 day",
+    bestTimeToVisit: "nile.bestTime.octoberApril",
+    averageStay: "nile.stay.1day",
     keyAttractions: [
       {
         name: "attractions.beniSuef.meidumPyramid.name",
@@ -147,7 +147,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "2 hours by train/bus",
+      fromCairo: "nile.transport.2h_train_bus",
       localTransport: ["Taxi", "Microbus", "Tuk-tuk"]
     },
     budgetTips: [
@@ -305,7 +305,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "7 hours by train/bus",
+      fromCairo: "nile.transport.7h_train_bus",
       localTransport: ["Taxi", "Microbus", "Horse cart"]
     },
     budgetTips: [
@@ -324,8 +324,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.6396,
     population: "507,000",
     highlights: ["Valley of the Kings", "Karnak Temple", "Luxor Temple", "West Bank tombs"],
-    bestTimeToVisit: "luxorBestTime",
-    averageStay: "luxorStay",
+    bestTimeToVisit: "nile.bestTime.octoberMarch",
+    averageStay: "nile.stay.3_4days",
     keyAttractions: [
       {
         name: "attractions.luxor.valleyKings.name",
@@ -353,7 +353,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "luxorTransport",
+      fromCairo: "nile.transport.10h_train_1h_flight",
       localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"]
     },
     budgetTips: [
@@ -512,7 +512,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "Flight to Aswan + 3-hour drive",
+      fromCairo: "nile.transport.flight_3h_drive",
       localTransport: ["Tour bus", "Private car"]
     },
     budgetTips: [
@@ -531,7 +531,10 @@ export default function NileValleyGuide() {
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   
-
+  // Test new flat key structure
+  console.log('Current language:', i18n.language);
+  console.log('Test flat key:', t('nile.bestTime.octoberMarch'));
+  console.log('Test attraction:', t('attractions.luxor.valleyKings.name'));
 
   // Scroll to top when component mounts
   useEffect(() => {
