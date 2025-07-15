@@ -531,8 +531,10 @@ export default function NileValleyGuide() {
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   
-  // Test new flat key structure
-  console.log('Current language:', i18n.language);
+  // Debug i18next configuration
+  console.log('i18next.languages:', i18next.languages);
+  console.log('i18next.hasResourceBundle(\'de\', \'translation\'):', i18next.hasResourceBundle('de', 'translation'));
+  console.log('i18next.getResourceBundle(\'de\', \'translation\'):', i18next.getResourceBundle('de', 'translation'));
   console.log('Test flat key:', t('nile.bestTime.octoberMarch'));
   console.log('Test attraction:', t('attractions.luxor.valleyKings.name'));
 
