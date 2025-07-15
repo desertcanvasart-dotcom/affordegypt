@@ -902,26 +902,18 @@
   "luxorBestTime": "October - March",
   "luxorStay": "3-4 days", 
   "luxorTransport": "10 hours by train, 1 hour flight",
-  "nile": {
-    "bestTime": {
-      "octoberMarch": "October - March",
-      "octoberApril": "October - April",
-      "marchNovember": "March - November"
-    },
-    "stay": {
-      "1day": "1 day",
-      "2_3days": "2-3 days", 
-      "3_4days": "3-4 days",
-      "4_5days": "4-5 days"
-    },
-    "transport": {
-      "10h_train_1h_flight": "10 hours by train, 1 hour flight",
-      "2h_train_bus": "2 hours by train/bus",
-      "7h_train_bus": "7 hours by train/bus",
-      "starting_point": "Starting point",
-      "flight_3h_drive": "Flight to Aswan + 3-hour drive"
-    }
-  },
+  "nile.bestTime.octoberMarch": "October - March",
+  "nile.bestTime.octoberApril": "October - April", 
+  "nile.bestTime.marchNovember": "March - November",
+  "nile.stay.1day": "1 day",
+  "nile.stay.2_3days": "2-3 days",
+  "nile.stay.3_4days": "3-4 days", 
+  "nile.stay.4_5days": "4-5 days",
+  "nile.transport.10h_train_1h_flight": "10 hours by train, 1 hour flight",
+  "nile.transport.2h_train_bus": "2 hours by train/bus",
+  "nile.transport.7h_train_bus": "7 hours by train/bus",
+  "nile.transport.starting_point": "Starting point",
+  "nile.transport.flight_3h_drive": "Flight to Aswan + 3-hour drive",
   "budgetTips": {
     "cairo": {
       "useMetro": "Use Metro for cheap transport (5-15 EGP)",
@@ -990,5 +982,33 @@
         "hours": "6:00 AM - 9:00 PM"
       }
     }
-  }
+  },
+  "attractions.beniSuef.meidumPyramid.name": "Meidum Pyramid",
+  "attractions.beniSuef.meidumPyramid.description": "Collapsed pyramid showing early construction techniques",
+  "attractions.beniSuef.meidumPyramid.entryFee": "100 EGP",
+  "attractions.beniSuef.meidumPyramid.hours": "8:00 AM - 4:00 PM",
+  "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
+  "attractions.beniSuef.beniSuefMuseum.description": "Local artifacts and regional history",
+  "attractions.beniSuef.beniSuefMuseum.entryFee": "50 EGP",
+  "attractions.beniSuef.beniSuefMuseum.hours": "9:00 AM - 3:00 PM",
+  "attractions.aswan.monasteryVirgMary.name": "Monastery of Virgin Mary",
+  "attractions.aswan.monasteryVirgMary.description": "Historic monastery with religious significance",
+  "attractions.aswan.monasteryVirgMary.entryFee": "Free",
+  "attractions.aswan.monasteryVirgMary.hours": "9:00 AM - 5:00 PM",
+  "attractions.aswan.asyutBarrage.name": "Asyut Barrage",
+  "attractions.aswan.asyutBarrage.description": "Historic water management infrastructure",
+  "attractions.aswan.asyutBarrage.entryFee": "20 EGP",
+  "attractions.aswan.asyutBarrage.hours": "8:00 AM - 6:00 PM",
+  "attractions.sohag.redMonastery.name": "Red and White Monasteries",
+  "attractions.sohag.redMonastery.description": "Ancient Coptic monasteries with preserved frescoes",
+  "attractions.sohag.redMonastery.entryFee": "Free",
+  "attractions.sohag.redMonastery.hours": "9:00 AM - 5:00 PM",
+  "attractions.sohag.whiteMonastery.name": "White Monastery",
+  "attractions.sohag.whiteMonastery.description": "Ancient monastery with beautiful architecture",
+  "attractions.sohag.whiteMonastery.entryFee": "Free",
+  "attractions.sohag.whiteMonastery.hours": "9:00 AM - 5:00 PM",
+  "attractions.sohag.akhmim.name": "Akhmim textiles",
+  "attractions.sohag.akhmim.description": "Famous textile workshops for authentic souvenirs",
+  "attractions.sohag.akhmim.entryFee": "Free",
+  "attractions.sohag.akhmim.hours": "9:00 AM - 6:00 PM"
 }

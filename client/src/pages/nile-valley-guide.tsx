@@ -532,12 +532,14 @@ export default function NileValleyGuide() {
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   
-  // Debug i18next configuration
-  console.log('i18next.languages:', i18next.languages);
-  console.log('i18next.hasResourceBundle(\'de\', \'translation\'):', i18next.hasResourceBundle('de', 'translation'));
-  console.log('i18next.getResourceBundle(\'de\', \'translation\'):', i18next.getResourceBundle('de', 'translation'));
-  console.log('Test flat key:', t('nile.bestTime.octoberMarch'));
-  console.log('Test attraction:', t('attractions.luxor.valleyKings.name'));
+  // Debug flat keys
+  console.log('Current language:', i18n.language);
+  console.log('Test flat key EN:', t('nile.bestTime.octoberMarch'));
+  console.log('Test flat key DE:', i18next.t('nile.bestTime.octoberMarch', { lng: 'de' }));
+  console.log('Test flat key ES:', i18next.t('nile.bestTime.octoberMarch', { lng: 'es' }));
+  console.log('Test attraction EN:', t('attractions.beniSuef.meidumPyramid.name'));
+  console.log('Test attraction DE:', i18next.t('attractions.beniSuef.meidumPyramid.name', { lng: 'de' }));
+  console.log('Test attraction ES:', i18next.t('attractions.beniSuef.meidumPyramid.name', { lng: 'es' }));
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -948,11 +950,11 @@ export default function NileValleyGuide() {
                   <div className="space-y-2">
                     {selectedCity.keyAttractions.slice(0, 2).map((attraction, index) => (
                       <div key={index} className="bg-gray-50 p-3 rounded-lg">
-                        <h5 className="font-medium">{attraction.name}</h5>
-                        <p className="text-sm text-gray-600 mb-1">{attraction.description}</p>
+                        <h5 className="font-medium">{t(attraction.name)}</h5>
+                        <p className="text-sm text-gray-600 mb-1">{t(attraction.description)}</p>
                         <div className="flex justify-between text-xs text-gray-500">
-                          <span>{t('blog.nileValley.cityDetails.entry')} {attraction.entryFee}</span>
-                          <span>{t('blog.nileValley.cityDetails.hours')} {attraction.hours}</span>
+                          <span>{t('blog.nileValley.cityDetails.entry')} {t(attraction.entryFee)}</span>
+                          <span>{t('blog.nileValley.cityDetails.hours')} {t(attraction.hours)}</span>
                         </div>
                       </div>
                     ))}
