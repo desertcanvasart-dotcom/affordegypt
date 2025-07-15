@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapPin, Clock, Camera, Star, Navigation, Plane, Train, Ship } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Card } from "@/components/ui/card";
