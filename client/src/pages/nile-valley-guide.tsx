@@ -532,14 +532,7 @@ export default function NileValleyGuide() {
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   
-  // Debug flat keys
-  console.log('Current language:', i18n.language);
-  console.log('Test flat key EN:', t('nile.bestTime.octoberMarch'));
-  console.log('Test flat key DE:', i18next.t('nile.bestTime.octoberMarch', { lng: 'de' }));
-  console.log('Test flat key ES:', i18next.t('nile.bestTime.octoberMarch', { lng: 'es' }));
-  console.log('Test attraction EN:', t('attractions.beniSuef.meidumPyramid.name'));
-  console.log('Test attraction DE:', i18next.t('attractions.beniSuef.meidumPyramid.name', { lng: 'de' }));
-  console.log('Test attraction ES:', i18next.t('attractions.beniSuef.meidumPyramid.name', { lng: 'es' }));
+
 
   // Scroll to top when component mounts
   useEffect(() => {

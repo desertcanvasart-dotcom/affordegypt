@@ -126,6 +126,17 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 15, 2025. **MAJOR FIX: Resolved all city attraction translation issues across 4 languages**
+  * **FIXED TRANSLATION KEYS**: Successfully added missing flat key translations for all major cities
+  * **COMPLETED CITIES**: Alexandria, Cairo, Beni Suef, Minya, Asyut, Qena, Sohag, Luxor, Aswan, Abu Simbel
+  * **COMPREHENSIVE COVERAGE**: All attraction names, descriptions, entry fees, and hours now translate properly
+  * **VERIFIED WORKING**: Instead of showing literal keys like "attractions.beniSuef.meidumPyramid.name", now displays proper translations:
+    - English: "Meidum Pyramid", "Pyramids of Giza", "Valley of the Kings", "Philae Temple"
+    - Spanish: "Pirámide de Meidúm", "Pirámides de Giza", "Valle de los Reyes", "Templo de Filae"  
+    - French: "Pyramide de Meidoum", "Pyramides de Gizeh", "Vallée des Rois", "Temple de Philae"
+    - German: "Meidum-Pyramide", "Pyramiden von Gizeh", "Tal der Könige", "Philae-Tempel"
+  * **COMPLETE MULTILINGUAL EXPERIENCE**: All destination guides now fully functional across all 4 languages
+  * **TRANSLATION ARCHITECTURE**: Maintained flat key structure for optimal performance and consistency
 - July 09, 2025. **COMPLETED: 100% multilingual translation system for transportation routes INCLUDING all Luxor routes**
   * **COMPLETED TRANSPORTATION ROUTES TRANSLATION**: Added comprehensive translations for all major transportation routes including Cairo and Luxor
   * **COMPLETED LOCATION DESCRIPTIONS**: Fixed third-line route descriptions with proper translations (fromLocation/toLocation fields)
