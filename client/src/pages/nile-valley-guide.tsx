@@ -168,36 +168,36 @@ const nileValleyCities: NileCity[] = [
     longitude: 30.7503,
     population: "260,000",
     highlights: ["Tell el-Amarna", "Beni Hassan tombs", "Tuna el-Gebel"],
-    bestTimeToVisit: "October - April",
-    averageStay: "2 days",
+    bestTimeToVisit: "nile.bestTime.octoberApril",
+    averageStay: "nile.stay.2days",
     keyAttractions: [
       {
-        name: "Tell el-Amarna",
-        description: "Akhenaten's capital city with unique Amarna Period art",
-        entryFee: "200 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.minya.tellElAmarna.name",
+        description: "attractions.minya.tellElAmarna.description",
+        entryFee: "attractions.minya.tellElAmarna.entryFee",
+        hours: "attractions.minya.tellElAmarna.hours"
       },
       {
-        name: "Beni Hassan",
-        description: "Middle Kingdom tombs with well-preserved wall paintings",
-        entryFee: "200 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.minya.beniHassan.name",
+        description: "attractions.minya.beniHassan.description",
+        entryFee: "attractions.minya.beniHassan.entryFee",
+        hours: "attractions.minya.beniHassan.hours"
       },
       {
-        name: "Tuna el-Gebel",
-        description: "Greco-Roman necropolis and ibis mummy catacombs",
-        entryFee: "200 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.minya.tunaElGebel.name",
+        description: "attractions.minya.tunaElGebel.description",
+        entryFee: "attractions.minya.tunaElGebel.entryFee",
+        hours: "attractions.minya.tunaElGebel.hours"
       }
     ],
     transportation: {
-      fromCairo: "4 hours by train/bus",
+      fromCairo: "nile.transport.4h_train_bus",
       localTransport: ["Taxi", "Microbus", "Felucca"]
     },
     budgetTips: [
-      "budgetTips.minya.akhenatonHotel",
-      "budgetTips.minya.sharedTaxis",
-      "budgetTips.minya.affordableRestaurants"
+      "budgetTips.minya.dayTripFromCairo",
+      "budgetTips.minya.localGuides",
+      "budgetTips.minya.groupTours"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
@@ -211,8 +211,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 31.1859,
     population: "420,000",
     highlights: ["Coptic monasteries", "Traditional crafts", "Nile corniche"],
-    bestTimeToVisit: "October - April",
-    averageStay: "1-2 days",
+    bestTimeToVisit: "nile.bestTime.octoberApril",
+    averageStay: "nile.stay.1_2days",
     keyAttractions: [
       {
         name: "attractions.asyut.monasteryVirginMary.name",
@@ -228,13 +228,13 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "5 hours by train/bus",
+      fromCairo: "nile.transport.5h_train_bus",
       localTransport: ["Taxi", "Microbus", "Horse cart"]
     },
     budgetTips: [
-      "budgetTips.asyut.budgetFriendly",
-      "budgetTips.asyut.traditionalWorkshops",
-      "budgetTips.asyut.cheapBoatRides"
+      "budgetTips.asyut.affordableStays",
+      "budgetTips.asyut.localTransport",
+      "budgetTips.asyut.traditionalFood"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg"
   },
@@ -247,8 +247,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 31.6948,
     population: "290,000",
     highlights: ["Red and White Monasteries", "Akhmim textiles", "Rural culture"],
-    bestTimeToVisit: "October - April",
-    averageStay: "1-2 days",
+    bestTimeToVisit: "nile.bestTime.octoberApril",
+    averageStay: "nile.stay.1_2days",
     keyAttractions: [
       {
         name: "attractions.sohag.redMonastery.name",
@@ -270,7 +270,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "6 hours by train/bus",
+      fromCairo: "nile.transport.6h_train_bus",
       localTransport: ["Taxi", "Microbus", "Bicycle"]
     },
     budgetTips: [

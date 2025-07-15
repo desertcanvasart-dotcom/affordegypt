@@ -911,9 +911,14 @@
   "nile.stay.4_5days": "4-5 days",
   "nile.transport.10h_train_1h_flight": "10 hours by train, 1 hour flight",
   "nile.transport.2h_train_bus": "2 hours by train/bus",
+  "nile.transport.4h_train_bus": "4 hours by train/bus",
+  "nile.transport.5h_train_bus": "5 hours by train/bus",
+  "nile.transport.6h_train_bus": "6 hours by train/bus",
   "nile.transport.7h_train_bus": "7 hours by train/bus",
   "nile.transport.starting_point": "Starting point",
   "nile.transport.flight_3h_drive": "Flight to Aswan + 3-hour drive",
+  "nile.stay.2days": "2 days",
+  "nile.stay.1_2days": "1-2 days",
   "budgetTips": {
     "cairo": {
       "useMetro": "Use Metro for cheap transport (5-15 EGP)",
@@ -1124,5 +1129,17 @@
   "budgetTips.abuSimbel.dayTripFromAswan": "Day trip from Aswan is most economical",
   "budgetTips.abuSimbel.joinGroupTours": "Join group tours to split costs",
   "budgetTips.abuSimbel.bringLunchWater": "Bring lunch and water to save money",
-  "budgetTips.abuSimbel.earlyMorningArrival": "Early morning arrival for best experience"
+  "budgetTips.abuSimbel.earlyMorningArrival": "Early morning arrival for best experience",
+  "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+  "attractions.minya.tellElAmarna.description": "Akhenaten's capital city with unique Amarna Period art",
+  "attractions.minya.tellElAmarna.entryFee": "200 EGP",
+  "attractions.minya.tellElAmarna.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.beniHassan.name": "Beni Hassan",
+  "attractions.minya.beniHassan.description": "Middle Kingdom tombs with well-preserved wall paintings",
+  "attractions.minya.beniHassan.entryFee": "200 EGP",
+  "attractions.minya.beniHassan.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.tunaElGebel.name": "Tuna el-Gebel",
+  "attractions.minya.tunaElGebel.description": "Greco-Roman necropolis and ibis mummy catacombs",
+  "attractions.minya.tunaElGebel.entryFee": "200 EGP",
+  "attractions.minya.tunaElGebel.hours": "8:00 AM - 4:00 PM"
 }

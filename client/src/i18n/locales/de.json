@@ -1088,9 +1088,14 @@
   "nile.stay.4_5days": "4-5 Tage",
   "nile.transport.10h_train_1h_flight": "10 Stunden mit Zug, 1 Stunde Flug",
   "nile.transport.2h_train_bus": "2 Stunden mit Zug/Bus",
+  "nile.transport.4h_train_bus": "4 Stunden mit Zug/Bus",
+  "nile.transport.5h_train_bus": "5 Stunden mit Zug/Bus",
+  "nile.transport.6h_train_bus": "6 Stunden mit Zug/Bus",
   "nile.transport.7h_train_bus": "7 Stunden mit Zug/Bus",
   "nile.transport.starting_point": "Ausgangspunkt",
   "nile.transport.flight_3h_drive": "Flug nach Assuan + 3 Stunden Fahrt",
+  "nile.stay.2days": "2 Tage",
+  "nile.stay.1_2days": "1-2 Tage",
   "budgetTips": {
     "cairo": {
       "useMetro": "Nutzen Sie die Metro für günstigen Transport (5-15 EGP)",
@@ -1301,5 +1306,17 @@
   "budgetTips.abuSimbel.dayTripFromAswan": "Tagesausflug von Assuan ist am wirtschaftlichsten",
   "budgetTips.abuSimbel.joinGroupTours": "Schließen Sie sich Gruppentouren an, um Kosten zu teilen",
   "budgetTips.abuSimbel.bringLunchWater": "Bringen Sie Mittagessen und Wasser mit, um Geld zu sparen",
-  "budgetTips.abuSimbel.earlyMorningArrival": "Frühe Ankunft für beste Erfahrung"
+  "budgetTips.abuSimbel.earlyMorningArrival": "Frühe Ankunft für beste Erfahrung",
+  "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+  "attractions.minya.tellElAmarna.description": "Echnatons Hauptstadt mit einzigartiger Amarna-Kunst",
+  "attractions.minya.tellElAmarna.entryFee": "200 EGP",
+  "attractions.minya.tellElAmarna.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.beniHassan.name": "Beni Hassan",
+  "attractions.minya.beniHassan.description": "Mittleres Reich Gräber mit gut erhaltenen Wandmalereien",
+  "attractions.minya.beniHassan.entryFee": "200 EGP",
+  "attractions.minya.beniHassan.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.tunaElGebel.name": "Tuna el-Gebel",
+  "attractions.minya.tunaElGebel.description": "Griechisch-römische Nekropole und Ibis-Mumien-Katakomben",
+  "attractions.minya.tunaElGebel.entryFee": "200 EGP",
+  "attractions.minya.tunaElGebel.hours": "8:00 AM - 4:00 PM"
 }

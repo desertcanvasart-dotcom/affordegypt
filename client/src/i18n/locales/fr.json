@@ -937,9 +937,14 @@
   "nile.stay.4_5days": "4-5 jours",
   "nile.transport.10h_train_1h_flight": "10 heures en train, 1 heure en avion",
   "nile.transport.2h_train_bus": "2 heures en train/bus",
+  "nile.transport.4h_train_bus": "4 heures en train/bus",
+  "nile.transport.5h_train_bus": "5 heures en train/bus",
+  "nile.transport.6h_train_bus": "6 heures en train/bus",
   "nile.transport.7h_train_bus": "7 heures en train/bus",
   "nile.transport.starting_point": "Point de départ",
   "nile.transport.flight_3h_drive": "Vol vers Assouan + 3 heures de route",
+  "nile.stay.2days": "2 jours",
+  "nile.stay.1_2days": "1-2 jours",
   "budgetTips": {
     "cairo": {
       "useMetro": "Utilisez le métro pour un transport bon marché (5-15 EGP)",
@@ -1150,5 +1155,17 @@
   "budgetTips.abuSimbel.dayTripFromAswan": "Excursion d'une journée depuis Assouan est plus économique",
   "budgetTips.abuSimbel.joinGroupTours": "Rejoignez des tours de groupe pour partager les coûts",
   "budgetTips.abuSimbel.bringLunchWater": "Apportez le déjeuner et l'eau pour économiser",
-  "budgetTips.abuSimbel.earlyMorningArrival": "Arrivée matinale pour la meilleure expérience"
+  "budgetTips.abuSimbel.earlyMorningArrival": "Arrivée matinale pour la meilleure expérience",
+  "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+  "attractions.minya.tellElAmarna.description": "Capitale d'Akhenaton avec art unique de la période amarnienne",
+  "attractions.minya.tellElAmarna.entryFee": "200 EGP",
+  "attractions.minya.tellElAmarna.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.beniHassan.name": "Beni Hassan",
+  "attractions.minya.beniHassan.description": "Tombes du Moyen Empire avec peintures murales bien conservées",
+  "attractions.minya.beniHassan.entryFee": "200 EGP",
+  "attractions.minya.beniHassan.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.tunaElGebel.name": "Tuna el-Gebel",
+  "attractions.minya.tunaElGebel.description": "Nécropole gréco-romaine et catacombes de momies d'ibis",
+  "attractions.minya.tunaElGebel.entryFee": "200 EGP",
+  "attractions.minya.tunaElGebel.hours": "8:00 AM - 4:00 PM"
 }

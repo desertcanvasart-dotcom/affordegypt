@@ -938,9 +938,14 @@
   "nile.stay.4_5days": "4-5 días",
   "nile.transport.10h_train_1h_flight": "10 horas en tren, 1 hora en avión",
   "nile.transport.2h_train_bus": "2 horas en tren/autobús",
+  "nile.transport.4h_train_bus": "4 horas en tren/autobús",
+  "nile.transport.5h_train_bus": "5 horas en tren/autobús",
+  "nile.transport.6h_train_bus": "6 horas en tren/autobús",
   "nile.transport.7h_train_bus": "7 horas en tren/autobús",
   "nile.transport.starting_point": "Punto de partida",
   "nile.transport.flight_3h_drive": "Vuelo a Asuán + 3 horas en coche",
+  "nile.stay.2days": "2 días",
+  "nile.stay.1_2days": "1-2 días",
   "budgetTips": {
     "cairo": {
       "useMetro": "Usa el Metro para transporte barato (5-15 EGP)",
@@ -1151,5 +1156,17 @@
   "budgetTips.abuSimbel.dayTripFromAswan": "Excursión de un día desde Asuán es más económica",
   "budgetTips.abuSimbel.joinGroupTours": "Únete a tours grupales para dividir costos",
   "budgetTips.abuSimbel.bringLunchWater": "Trae almuerzo y agua para ahorrar dinero",
-  "budgetTips.abuSimbel.earlyMorningArrival": "Llegada temprana para mejor experiencia"
+  "budgetTips.abuSimbel.earlyMorningArrival": "Llegada temprana para mejor experiencia",
+  "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+  "attractions.minya.tellElAmarna.description": "Capital de Akhenatón con arte único del Período de Amarna",
+  "attractions.minya.tellElAmarna.entryFee": "200 EGP",
+  "attractions.minya.tellElAmarna.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.beniHassan.name": "Beni Hassan",
+  "attractions.minya.beniHassan.description": "Tumbas del Reino Medio con pinturas murales bien conservadas",
+  "attractions.minya.beniHassan.entryFee": "200 EGP",
+  "attractions.minya.beniHassan.hours": "8:00 AM - 4:00 PM",
+  "attractions.minya.tunaElGebel.name": "Tuna el-Gebel",
+  "attractions.minya.tunaElGebel.description": "Necrópolis grecorromana y catacumbas de momias de ibis",
+  "attractions.minya.tunaElGebel.entryFee": "200 EGP",
+  "attractions.minya.tunaElGebel.hours": "8:00 AM - 4:00 PM"
 }
