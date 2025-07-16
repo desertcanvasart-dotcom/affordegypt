@@ -532,6 +532,11 @@ export default function NileValleyGuide() {
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   
+  // Debug: Check what language is currently active and test a specific translation
+  console.log('Current language:', i18n.language);
+  console.log('Test translation - highlights.abuSimbel.greatTemple:', t('highlights.abuSimbel.greatTemple'));
+  console.log('Test translation - blog.nileValley.cityDetails.keyHighlights:', t('blog.nileValley.cityDetails.keyHighlights'));
+  
 
 
   // Scroll to top when component mounts
