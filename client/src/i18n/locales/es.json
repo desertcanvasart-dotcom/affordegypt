@@ -1230,5 +1230,71 @@
   "highlights.luxor.valleyKings": "Valle de los Reyes",
   "highlights.luxor.karnakTemple": "Templo de Karnak",
   "highlights.luxor.luxorTemple": "Templo de Luxor",
-  "highlights.luxor.westBankTombs": "Tumbas de la Ribera Occidental"
+  "highlights.luxor.westBankTombs": "Tumbas de la Ribera Occidental",
+  "destinations": {
+    "meta": {
+      "title": "Destinos de Egipto - Descubre Gemas Ocultas | Afford Egypt",
+      "description": "Explora los destinos más cautivadores de Egipto desde guías de viaje económicas hasta gemas ocultas del desierto y aventuras montañosas en la Península del Sinaí."
+    },
+    "hero": {
+      "title": "Descubre los Destinos Ocultos de Egipto",
+      "subtitle": "Desde aventuras económicas hasta escapadas al desierto y expediciones montañosas - explora Egipto más allá de los monumentos famosos",
+      "features": {
+        "locations": {
+          "title": "Ubicaciones Únicas",
+          "description": "Descubre gemas ocultas fuera de los caminos trillados"
+        },
+        "insights": {
+          "title": "Conocimientos Locales",
+          "description": "Guías expertos y conocimiento interno"
+        },
+        "experiences": {
+          "title": "Experiencias Auténticas",
+          "description": "Aventuras reales más allá de las trampas turísticas"
+        }
+      }
+    },
+    "articles": {
+      "title": "Explora los Mejores Destinos de Egipto",
+      "description": "Guías detalladas de los destinos más fascinantes de Egipto, desde consejos de viaje económico hasta expediciones de aventura"
+    },
+    "nileValley": {
+      "title": "Guía de Viaje del Valle del Nilo: Luxor, Asuán y Maravillas Antiguas",
+      "excerpt": "Viaja por el corazón de Egipto a lo largo del legendario río Nilo, explorando templos antiguos, tumbas y pueblos eternos entre Luxor y Asuán.",
+      "readTime": "15 min de lectura",
+      "author": "Experto en Egiptología"
+    },
+    "deserts": {
+      "title": "Desiertos Oriental y Occidental: Gemas Ocultas de Egipto",
+      "excerpt": "Aventúrate más allá de las pirámides para descubrir los paisajes desérticos impresionantes de Egipto, maravillas naturales y experiencias únicas en los Desiertos Oriental y Occidental.",
+      "readTime": "10 min de lectura",
+      "author": "Guía del Desierto"
+    },
+    "sinai": {
+      "title": "Península del Sinaí: Aventuras Montañosas y Costa del Mar Rojo",
+      "excerpt": "Explora los paisajes dramáticos de la Península del Sinaí, desde las alturas espirituales del Monte Sinaí hasta los arrecifes de coral prístinos de la costa del Mar Rojo.",
+      "readTime": "8 min de lectura",
+      "author": "Especialista en Aventuras"
+    },
+    "category": "Destinos",
+    "tags": {
+      "nileValley": "Valle del Nilo",
+      "ancientEgypt": "Antiguo Egipto",
+      "temples": "Templos",
+      "desert": "Desierto",
+      "adventure": "Aventura",
+      "hiddenGems": "Gemas Ocultas",
+      "sinai": "Sinaí",
+      "mountains": "Montañas",
+      "redSea": "Mar Rojo"
+    },
+    "byAuthor": "Por {{author}}",
+    "readGuide": "Leer Guía Completa",
+    "cta": {
+      "title": "¿Listo para Explorar Estos Destinos?",
+      "description": "Obtén cotizaciones personalizadas para transporte, guías y experiencias a cualquiera de estos lugares increíbles",
+      "planTrip": "Planifica tu Viaje",
+      "contactUs": "Contáctanos"
+    }
+  }
 }

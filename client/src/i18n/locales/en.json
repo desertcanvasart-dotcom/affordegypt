@@ -1203,5 +1203,71 @@
   "highlights.luxor.valleyKings": "Valley of the Kings",
   "highlights.luxor.karnakTemple": "Karnak Temple",
   "highlights.luxor.luxorTemple": "Luxor Temple",
-  "highlights.luxor.westBankTombs": "West Bank tombs"
+  "highlights.luxor.westBankTombs": "West Bank tombs",
+  "destinations": {
+    "meta": {
+      "title": "Egypt Destinations - Discover Hidden Gems | Afford Egypt",
+      "description": "Explore Egypt's most captivating destinations from budget-friendly travel guides to hidden desert gems and mountain adventures in Sinai Peninsula."
+    },
+    "hero": {
+      "title": "Discover Egypt's Hidden Destinations",
+      "subtitle": "From budget adventures to desert escapes and mountain expeditions - explore Egypt beyond the famous landmarks",
+      "features": {
+        "locations": {
+          "title": "Unique Locations",
+          "description": "Discover hidden gems off the beaten path"
+        },
+        "insights": {
+          "title": "Local Insights",
+          "description": "Expert guides and insider knowledge"
+        },
+        "experiences": {
+          "title": "Authentic Experiences",
+          "description": "Real adventures beyond tourist traps"
+        }
+      }
+    },
+    "articles": {
+      "title": "Explore Egypt's Best Destinations",
+      "description": "In-depth guides to Egypt's most fascinating destinations, from budget travel tips to adventure expeditions"
+    },
+    "nileValley": {
+      "title": "Nile Valley Travel Guide: Luxor, Aswan & Ancient Wonders",
+      "excerpt": "Journey through Egypt's heartland along the legendary Nile River, exploring ancient temples, tombs, and timeless villages between Luxor and Aswan.",
+      "readTime": "15 min read",
+      "author": "Egyptology Expert"
+    },
+    "deserts": {
+      "title": "Eastern & Western Deserts: Hidden Gems of Egypt",
+      "excerpt": "Venture beyond the pyramids to discover Egypt's stunning desert landscapes, natural wonders, and unique experiences in the Eastern and Western Deserts.",
+      "readTime": "10 min read",
+      "author": "Desert Guide"
+    },
+    "sinai": {
+      "title": "Sinai Peninsula: Mountain Adventures & Red Sea Coast",
+      "excerpt": "Explore the dramatic landscapes of Sinai Peninsula, from Mount Sinai's spiritual heights to the pristine coral reefs of the Red Sea coast.",
+      "readTime": "8 min read",
+      "author": "Adventure Specialist"
+    },
+    "category": "Destinations",
+    "tags": {
+      "nileValley": "Nile Valley",
+      "ancientEgypt": "Ancient Egypt",
+      "temples": "Temples",
+      "desert": "Desert",
+      "adventure": "Adventure",
+      "hiddenGems": "Hidden Gems",
+      "sinai": "Sinai",
+      "mountains": "Mountains",
+      "redSea": "Red Sea"
+    },
+    "byAuthor": "By {{author}}",
+    "readGuide": "Read Full Guide",
+    "cta": {
+      "title": "Ready to Explore These Destinations?",
+      "description": "Get personalized quotes for transport, guides, and experiences to any of these amazing locations",
+      "planTrip": "Plan Your Trip",
+      "contactUs": "Contact Us"
+    }
+  }
 }

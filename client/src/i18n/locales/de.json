@@ -1380,5 +1380,71 @@
   "highlights.luxor.valleyKings": "Tal der Könige",
   "highlights.luxor.karnakTemple": "Karnak-Tempel",
   "highlights.luxor.luxorTemple": "Luxor-Tempel",
-  "highlights.luxor.westBankTombs": "Westufer-Gräber"
+  "highlights.luxor.westBankTombs": "Westufer-Gräber",
+  "destinations": {
+    "meta": {
+      "title": "Ägypten Reiseziele - Entdecke Versteckte Schätze | Afford Egypt",
+      "description": "Erkunde Ägyptens faszinierendste Reiseziele von budgetfreundlichen Reiseführern bis hin zu versteckten Wüstenschätzen und Bergabenteuern auf der Sinai-Halbinsel."
+    },
+    "hero": {
+      "title": "Entdecke Ägyptens Versteckte Reiseziele",
+      "subtitle": "Von Budget-Abenteuern bis hin zu Wüstenausflügen und Bergexpeditionen - erkunde Ägypten jenseits der berühmten Wahrzeichen",
+      "features": {
+        "locations": {
+          "title": "Einzigartige Orte",
+          "description": "Entdecke versteckte Schätze abseits der ausgetretenen Pfade"
+        },
+        "insights": {
+          "title": "Lokale Einblicke",
+          "description": "Expertenwissen und Insider-Kenntnisse"
+        },
+        "experiences": {
+          "title": "Authentische Erlebnisse",
+          "description": "Echte Abenteuer jenseits der Touristenfallen"
+        }
+      }
+    },
+    "articles": {
+      "title": "Erkunde Ägyptens Beste Reiseziele",
+      "description": "Detaillierte Führer zu Ägyptens faszinierendsten Reisezielen, von Budget-Reisetipps bis hin zu Abenteuer-Expeditionen"
+    },
+    "nileValley": {
+      "title": "Nil-Tal Reiseführer: Luxor, Assuan & Antike Wunder",
+      "excerpt": "Reisen Sie durch Ägyptens Herzland entlang des legendären Nils und erkunden Sie antike Tempel, Gräber und zeitlose Dörfer zwischen Luxor und Assuan.",
+      "readTime": "15 Min. Lesezeit",
+      "author": "Ägyptologie-Experte"
+    },
+    "deserts": {
+      "title": "Östliche & Westliche Wüsten: Versteckte Schätze Ägyptens",
+      "excerpt": "Wagen Sie sich über die Pyramiden hinaus, um Ägyptens atemberaubende Wüstenlandschaften, Naturwunder und einzigartige Erlebnisse in den Östlichen und Westlichen Wüsten zu entdecken.",
+      "readTime": "10 Min. Lesezeit",
+      "author": "Wüsten-Führer"
+    },
+    "sinai": {
+      "title": "Sinai-Halbinsel: Bergabenteuer & Rotes Meer Küste",
+      "excerpt": "Erkunden Sie die dramatischen Landschaften der Sinai-Halbinsel, von den spirituellen Höhen des Sinai-Bergs bis zu den unberührten Korallenriffen der Roten Meer Küste.",
+      "readTime": "8 Min. Lesezeit",
+      "author": "Abenteuer-Spezialist"
+    },
+    "category": "Reiseziele",
+    "tags": {
+      "nileValley": "Nil-Tal",
+      "ancientEgypt": "Antikes Ägypten",
+      "temples": "Tempel",
+      "desert": "Wüste",
+      "adventure": "Abenteuer",
+      "hiddenGems": "Versteckte Schätze",
+      "sinai": "Sinai",
+      "mountains": "Berge",
+      "redSea": "Rotes Meer"
+    },
+    "byAuthor": "Von {{author}}",
+    "readGuide": "Vollständigen Führer Lesen",
+    "cta": {
+      "title": "Bereit, Diese Reiseziele zu Erkunden?",
+      "description": "Erhalten Sie personalisierte Angebote für Transport, Führer und Erlebnisse zu jedem dieser erstaunlichen Orte",
+      "planTrip": "Reise Planen",
+      "contactUs": "Kontaktieren Sie Uns"
+    }
+  }
 }

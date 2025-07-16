@@ -5,41 +5,44 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useTranslation } from "react-i18next";
 
 export default function Destinations() {
+  const { t } = useTranslation();
+  
   // Articles tagged with "Destinations" 
   const destinationArticles = [
     {
       id: 1,
-      title: "Nile Valley Travel Guide: Luxor, Aswan & Ancient Wonders",
-      excerpt: "Journey through Egypt's heartland along the legendary Nile River, exploring ancient temples, tombs, and timeless villages between Luxor and Aswan.",
+      title: "destinations.nileValley.title",
+      excerpt: "destinations.nileValley.excerpt",
       image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-1.jpg",
-      readTime: "15 min read",
-      category: "Destinations",
-      tags: ["Nile Valley", "Ancient Egypt", "Temples"],
-      author: "Egyptology Expert",
+      readTime: "destinations.nileValley.readTime",
+      category: "destinations.category",
+      tags: ["destinations.tags.nileValley", "destinations.tags.ancientEgypt", "destinations.tags.temples"],
+      author: "destinations.nileValley.author",
       link: "/nile-valley-guide"
     },
     {
       id: 2,
-      title: "Eastern & Western Deserts: Hidden Gems of Egypt", 
-      excerpt: "Venture beyond the pyramids to discover Egypt's stunning desert landscapes, natural wonders, and unique experiences in the Eastern and Western Deserts.",
+      title: "destinations.deserts.title", 
+      excerpt: "destinations.deserts.excerpt",
       image: "http://travel2egypt.org/wp-content/uploads/2025/06/beach-in-sinai.jpg",
-      readTime: "10 min read",
-      category: "Destinations",
-      tags: ["Desert", "Adventure", "Hidden Gems"],
-      author: "Desert Guide",
+      readTime: "destinations.deserts.readTime",
+      category: "destinations.category",
+      tags: ["destinations.tags.desert", "destinations.tags.adventure", "destinations.tags.hiddenGems"],
+      author: "destinations.deserts.author",
       link: "/eastern-western-deserts-guide"
     },
     {
       id: 3,
-      title: "Sinai Peninsula: Mountain Adventures & Red Sea Coast",
-      excerpt: "Explore the dramatic landscapes of Sinai Peninsula, from Mount Sinai's spiritual heights to the pristine coral reefs of the Red Sea coast.",
+      title: "destinations.sinai.title",
+      excerpt: "destinations.sinai.excerpt",
       image: "http://travel2egypt.org/wp-content/uploads/2025/06/red-sea-diving.jpg",
-      readTime: "8 min read", 
-      category: "Destinations",
-      tags: ["Sinai", "Mountains", "Red Sea"],
-      author: "Adventure Specialist",
+      readTime: "destinations.sinai.readTime", 
+      category: "destinations.category",
+      tags: ["destinations.tags.sinai", "destinations.tags.mountains", "destinations.tags.redSea"],
+      author: "destinations.sinai.author",
       link: "/sinai-peninsula-guide"
     }
   ];
@@ -47,10 +50,10 @@ export default function Destinations() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Egypt Destinations - Discover Hidden Gems | Afford Egypt</title>
-        <meta name="description" content="Explore Egypt's most captivating destinations from budget-friendly travel guides to hidden desert gems and mountain adventures in Sinai Peninsula." />
-        <meta property="og:title" content="Egypt Destinations - Discover Hidden Gems | Afford Egypt" />
-        <meta property="og:description" content="Explore Egypt's most captivating destinations from budget-friendly travel guides to hidden desert gems and mountain adventures in Sinai Peninsula." />
+        <title>{t('destinations.meta.title')}</title>
+        <meta name="description" content={t('destinations.meta.description')} />
+        <meta property="og:title" content={t('destinations.meta.title')} />
+        <meta property="og:description" content={t('destinations.meta.description')} />
       </Helmet>
 
       <Navbar />
@@ -62,10 +65,10 @@ export default function Destinations() {
             <div className="max-w-4xl mx-auto text-center">
               <MapPin className="w-16 h-16 mx-auto mb-6 text-teal-200" />
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Discover Egypt's Hidden Destinations
+                {t('destinations.hero.title')}
               </h1>
               <p className="text-xl md:text-2xl text-teal-100 mb-8">
-                From budget adventures to desert escapes and mountain expeditions - explore Egypt beyond the famous landmarks
+                {t('destinations.hero.subtitle')}
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -73,22 +76,22 @@ export default function Destinations() {
                   <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <MapPin className="w-8 h-8 text-teal-200" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">Unique Locations</h3>
-                  <p className="text-teal-100 text-sm">Discover hidden gems off the beaten path</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('destinations.hero.features.locations.title')}</h3>
+                  <p className="text-teal-100 text-sm">{t('destinations.hero.features.locations.description')}</p>
                 </div>
                 <div className="text-center">
                   <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-teal-200" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">Local Insights</h3>
-                  <p className="text-teal-100 text-sm">Expert guides and insider knowledge</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('destinations.hero.features.insights.title')}</h3>
+                  <p className="text-teal-100 text-sm">{t('destinations.hero.features.insights.description')}</p>
                 </div>
                 <div className="text-center">
                   <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Star className="w-8 h-8 text-teal-200" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">Authentic Experiences</h3>
-                  <p className="text-teal-100 text-sm">Real adventures beyond tourist traps</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('destinations.hero.features.experiences.title')}</h3>
+                  <p className="text-teal-100 text-sm">{t('destinations.hero.features.experiences.description')}</p>
                 </div>
               </div>
             </div>
@@ -100,10 +103,10 @@ export default function Destinations() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Explore Egypt's Best Destinations
+                {t('destinations.articles.title')}
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                In-depth guides to Egypt's most fascinating destinations, from budget travel tips to adventure expeditions
+                {t('destinations.articles.description')}
               </p>
             </div>
 
@@ -116,39 +119,39 @@ export default function Destinations() {
                   >
                     <img 
                       src={article.image}
-                      alt={article.title}
+                      alt={t(article.title)}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
                       <Badge variant="secondary" className="bg-teal-600 text-white">
-                        {article.category}
+                        {t(article.category)}
                       </Badge>
                     </div>
                   </div>
                   
                   <CardHeader>
                     <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 hover:text-teal-600 transition-colors">
-                      {article.title}
+                      {t(article.title)}
                     </CardTitle>
                   </CardHeader>
                   
                   <CardContent>
                     <p className="text-gray-600 mb-4 line-clamp-3">
-                      {article.excerpt}
+                      {t(article.excerpt)}
                     </p>
                     
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                       <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        {article.readTime}
+                        {t(article.readTime)}
                       </div>
-                      <span>By {article.author}</span>
+                      <span>{t('destinations.byAuthor', { author: t(article.author) })}</span>
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {article.tags.map((tag) => (
                         <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
+                          {t(tag)}
                         </Badge>
                       ))}
                     </div>
@@ -157,7 +160,7 @@ export default function Destinations() {
                       className="w-full bg-teal-600 hover:bg-teal-700 text-white"
                       onClick={() => window.location.href = article.link}
                     >
-                      Read Full Guide
+                      {t('destinations.readGuide')}
                     </Button>
                   </CardContent>
                 </Card>
@@ -170,17 +173,17 @@ export default function Destinations() {
         <section className="py-16 bg-gradient-to-r from-teal-600 to-blue-600 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Explore These Destinations?
+              {t('destinations.cta.title')}
             </h2>
             <p className="text-xl mb-8 text-teal-100">
-              Get personalized quotes for transport, guides, and experiences to any of these amazing locations
+              {t('destinations.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100">
-                Plan Your Trip
+                {t('destinations.cta.planTrip')}
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
-                Contact Us
+                {t('destinations.cta.contactUs')}
               </Button>
             </div>
           </div>

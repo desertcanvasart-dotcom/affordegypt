@@ -1229,5 +1229,71 @@
   "highlights.luxor.valleyKings": "Vallée des Rois",
   "highlights.luxor.karnakTemple": "Temple de Karnak",
   "highlights.luxor.luxorTemple": "Temple de Louxor",
-  "highlights.luxor.westBankTombs": "Tombes de la Rive Ouest"
+  "highlights.luxor.westBankTombs": "Tombes de la Rive Ouest",
+  "destinations": {
+    "meta": {
+      "title": "Destinations d'Égypte - Découvrez les Joyaux Cachés | Afford Egypt",
+      "description": "Explorez les destinations les plus captivantes d'Égypte, des guides de voyage économiques aux joyaux cachés du désert et aux aventures de montagne dans la péninsule du Sinaï."
+    },
+    "hero": {
+      "title": "Découvrez les Destinations Cachées d'Égypte",
+      "subtitle": "Des aventures économiques aux escapades désertiques et expéditions de montagne - explorez l'Égypte au-delà des monuments célèbres",
+      "features": {
+        "locations": {
+          "title": "Lieux Uniques",
+          "description": "Découvrez des joyaux cachés hors des sentiers battus"
+        },
+        "insights": {
+          "title": "Connaissances Locales",
+          "description": "Guides experts et savoir-faire interne"
+        },
+        "experiences": {
+          "title": "Expériences Authentiques",
+          "description": "Vraies aventures au-delà des pièges à touristes"
+        }
+      }
+    },
+    "articles": {
+      "title": "Explorez les Meilleures Destinations d'Égypte",
+      "description": "Guides détaillés des destinations les plus fascinantes d'Égypte, des conseils de voyage économiques aux expéditions d'aventure"
+    },
+    "nileValley": {
+      "title": "Guide de Voyage de la Vallée du Nil : Louxor, Assouan et Merveilles Antiques",
+      "excerpt": "Voyagez à travers le cœur de l'Égypte le long du légendaire fleuve Nil, en explorant des temples antiques, des tombes et des villages intemporels entre Louxor et Assouan.",
+      "readTime": "15 min de lecture",
+      "author": "Expert en Égyptologie"
+    },
+    "deserts": {
+      "title": "Déserts Oriental et Occidental : Joyaux Cachés d'Égypte",
+      "excerpt": "Aventurez-vous au-delà des pyramides pour découvrir les paysages désertiques époustouflants d'Égypte, les merveilles naturelles et les expériences uniques dans les Déserts Oriental et Occidental.",
+      "readTime": "10 min de lecture",
+      "author": "Guide du Désert"
+    },
+    "sinai": {
+      "title": "Péninsule du Sinaï : Aventures de Montagne et Côte de la Mer Rouge",
+      "excerpt": "Explorez les paysages dramatiques de la péninsule du Sinaï, des hauteurs spirituelles du mont Sinaï aux récifs coralliens vierges de la côte de la mer Rouge.",
+      "readTime": "8 min de lecture",
+      "author": "Spécialiste Aventure"
+    },
+    "category": "Destinations",
+    "tags": {
+      "nileValley": "Vallée du Nil",
+      "ancientEgypt": "Égypte Antique",
+      "temples": "Temples",
+      "desert": "Désert",
+      "adventure": "Aventure",
+      "hiddenGems": "Joyaux Cachés",
+      "sinai": "Sinaï",
+      "mountains": "Montagnes",
+      "redSea": "Mer Rouge"
+    },
+    "byAuthor": "Par {{author}}",
+    "readGuide": "Lire le Guide Complet",
+    "cta": {
+      "title": "Prêt à Explorer Ces Destinations ?",
+      "description": "Obtenez des devis personnalisés pour le transport, les guides et les expériences vers n'importe lequel de ces lieux incroyables",
+      "planTrip": "Planifiez Votre Voyage",
+      "contactUs": "Contactez-nous"
+    }
+  }
 }
