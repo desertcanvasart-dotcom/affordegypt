@@ -374,7 +374,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 24.9777,
     longitude: 32.8713,
     population: "133,000",
-    highlights: ["Temple of Horus", "Traditional markets", "Nile cruise stop"],
+    highlights: ["highlights.edfu.templeHorus", "highlights.edfu.traditionalMarkets", "highlights.edfu.nileCruiseStop"],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.halfday",
     keyAttractions: [
@@ -410,7 +410,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 24.4539,
     longitude: 32.9478,
     population: "67,000",
-    highlights: ["Double temple", "Crocodile museum", "Sugar cane fields"],
+    highlights: ["highlights.komOmbo.doubleTemple", "highlights.komOmbo.crocodileMuseum", "highlights.komOmbo.sugarCaneFields"],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.halfday",
     keyAttractions: [
@@ -495,7 +495,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 22.3372,
     longitude: 31.6256,
     population: "2,600",
-    highlights: ["Great Temple of Ramesses II", "Temple of Nefertari", "UNESCO World Heritage"],
+    highlights: ["highlights.abuSimbel.greatTemple", "highlights.abuSimbel.templeNefertari", "highlights.abuSimbel.unescoSite"],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.1day",
     keyAttractions: [

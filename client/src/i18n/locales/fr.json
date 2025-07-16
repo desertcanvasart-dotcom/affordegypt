@@ -1193,5 +1193,14 @@
   "budgetTips.edfu.affordableFood": "Nourriture locale très abordable",
   "budgetTips.komOmbo.combineWithEdfu": "Combiner avec visite d'Edfu pour efficacité",
   "budgetTips.komOmbo.sunsetViews": "Belles vues du coucher de soleil depuis le temple",
-  "budgetTips.komOmbo.basicTown": "Petite ville avec équipements de base"
+  "budgetTips.komOmbo.basicTown": "Petite ville avec équipements de base",
+  "highlights.edfu.templeHorus": "Temple d'Horus",
+  "highlights.edfu.traditionalMarkets": "Marchés traditionnels",
+  "highlights.edfu.nileCruiseStop": "Escale de croisière sur le Nil",
+  "highlights.komOmbo.doubleTemple": "Temple double",
+  "highlights.komOmbo.crocodileMuseum": "Musée du crocodile",
+  "highlights.komOmbo.sugarCaneFields": "Champs de canne à sucre",
+  "highlights.abuSimbel.greatTemple": "Grand Temple de Ramsès II",
+  "highlights.abuSimbel.templeNefertari": "Temple de Néfertari",
+  "highlights.abuSimbel.unescoSite": "Site du patrimoine mondial de l'UNESCO"
 }
