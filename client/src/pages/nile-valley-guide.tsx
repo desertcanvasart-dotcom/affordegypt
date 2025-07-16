@@ -274,9 +274,9 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Taxi", "Microbus", "Bicycle"]
     },
     budgetTips: [
-      "Stay in local guesthouses",
-      "Visit textile workshops for authentic souvenirs",
-      "Extremely affordable local food"
+      "budgetTips.sohag.cheapAccommodation",
+      "budgetTips.sohag.localFood",
+      "budgetTips.sohag.walkingTours"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/abydos-temple.jpg"
   },
@@ -289,8 +289,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.7160,
     population: "235,000",
     highlights: ["Gateway to Dendera", "Traditional pottery", "Nile islands"],
-    bestTimeToVisit: "October - April",
-    averageStay: "1 day",
+    bestTimeToVisit: "nile.bestTime.octoberApril",
+    averageStay: "nile.stay.1day",
     keyAttractions: [
       {
         name: "attractions.qena.denderaTemple.name",
@@ -310,9 +310,9 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Taxi", "Microbus", "Horse cart"]
     },
     budgetTips: [
-      "Base for visiting Dendera Temple",
-      "Buy authentic pottery directly from artisans",
-      "Very affordable accommodation options"
+      "budgetTips.qena.budgetFriendly",
+      "budgetTips.qena.localMarkets",
+      "budgetTips.qena.basicHotels"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/dendera-temple.jpg"
   },
@@ -358,10 +358,10 @@ const nileValleyCities: NileCity[] = [
       localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"]
     },
     budgetTips: [
-      "Stay on West Bank for cheaper accommodation",
-      "Rent bicycle to explore sites",
-      "Eat at local restaurants away from tourist areas",
-      "Buy combination tickets for multiple sites"
+      "budgetTips.luxor.eastBankStay",
+      "budgetTips.luxor.groupTickets",
+      "budgetTips.luxor.earlyMorning",
+      "budgetTips.luxor.localRestaurants"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg",
     detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg"
@@ -375,30 +375,30 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.8713,
     population: "133,000",
     highlights: ["Temple of Horus", "Traditional markets", "Nile cruise stop"],
-    bestTimeToVisit: "October - March",
-    averageStay: "Half day",
+    bestTimeToVisit: "nile.bestTime.octoberMarch",
+    averageStay: "nile.stay.halfday",
     keyAttractions: [
       {
-        name: "Temple of Horus",
-        description: "Best-preserved ancient Egyptian temple",
-        entryFee: "550 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.edfu.templeHorus.name",
+        description: "attractions.edfu.templeHorus.description",
+        entryFee: "attractions.edfu.templeHorus.entryFee",
+        hours: "attractions.edfu.templeHorus.hours"
       },
       {
-        name: "Edfu Market",
-        description: "Traditional local market with authentic atmosphere",
-        entryFee: "Free",
-        hours: "Morning hours"
+        name: "attractions.edfu.edfuMarket.name",
+        description: "attractions.edfu.edfuMarket.description",
+        entryFee: "attractions.edfu.edfuMarket.entryFee",
+        hours: "attractions.edfu.edfuMarket.hours"
       }
     ],
     transportation: {
-      fromCairo: "12 hours by train/bus",
+      fromCairo: "nile.transport.12h_train_bus",
       localTransport: ["Horse cart", "Taxi", "Walking"]
     },
     budgetTips: [
-      "Perfect for Nile cruise stopovers",
-      "Horse cart ride to temple is authentic experience",
-      "Local food very affordable"
+      "budgetTips.edfu.nileCruiseStop",
+      "budgetTips.edfu.horseCartRide",
+      "budgetTips.edfu.affordableFood"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/edfu.jpg"
   },
@@ -411,30 +411,30 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.9478,
     population: "67,000",
     highlights: ["Double temple", "Crocodile museum", "Sugar cane fields"],
-    bestTimeToVisit: "October - March",
-    averageStay: "Half day",
+    bestTimeToVisit: "nile.bestTime.octoberMarch",
+    averageStay: "nile.stay.halfday",
     keyAttractions: [
       {
-        name: "Temple of Kom Ombo",
-        description: "Unique double temple dedicated to Sobek and Haroeris",
-        entryFee: "450 EGP",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.komOmbo.templeKomOmbo.name",
+        description: "attractions.komOmbo.templeKomOmbo.description",
+        entryFee: "attractions.komOmbo.templeKomOmbo.entryFee",
+        hours: "attractions.komOmbo.templeKomOmbo.hours"
       },
       {
-        name: "Crocodile Museum",
-        description: "Mummified crocodiles and artifacts related to Sobek worship",
-        entryFee: "Free",
-        hours: "8:00 AM - 4:00 PM"
+        name: "attractions.komOmbo.crocodileMuseum.name",
+        description: "attractions.komOmbo.crocodileMuseum.description",
+        entryFee: "attractions.komOmbo.crocodileMuseum.entryFee",
+        hours: "attractions.komOmbo.crocodileMuseum.hours"
       }
     ],
     transportation: {
-      fromCairo: "13 hours by train/bus",
+      fromCairo: "nile.transport.13h_train_bus",
       localTransport: ["Horse cart", "Taxi", "Walking"]
     },
     budgetTips: [
-      "Combine with Edfu visit for efficiency",
-      "Beautiful sunset views from temple",
-      "Small town with basic amenities"
+      "budgetTips.komOmbo.combineWithEdfu",
+      "budgetTips.komOmbo.sunsetViews",
+      "budgetTips.komOmbo.basicTown"
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/ko-mombo-temple.jpg"
   },
@@ -447,8 +447,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 32.8998,
     population: "290,000",
     highlights: ["highlights.aswan.philaeTemple", "highlights.aswan.highDam", "highlights.aswan.nubianVillages", "highlights.aswan.elephantineIsland"],
-    bestTimeToVisit: "October - March",
-    averageStay: "2-3 days",
+    bestTimeToVisit: "nile.bestTime.octoberMarch",
+    averageStay: "nile.stay.2_3days",
     keyAttractions: [
       {
         name: "attractions.aswan.philaeTemple.name",
@@ -476,7 +476,7 @@ const nileValleyCities: NileCity[] = [
       }
     ],
     transportation: {
-      fromCairo: "14 hours by train, 1.5 hours flight",
+      fromCairo: "nile.transport.14h_train_1.5h_flight",
       localTransport: ["Felucca", "Taxi", "Motorboat"]
     },
     budgetTips: [
@@ -496,8 +496,8 @@ const nileValleyCities: NileCity[] = [
     longitude: 31.6256,
     population: "2,600",
     highlights: ["Great Temple of Ramesses II", "Temple of Nefertari", "UNESCO World Heritage"],
-    bestTimeToVisit: "October - March",
-    averageStay: "1 day",
+    bestTimeToVisit: "nile.bestTime.octoberMarch",
+    averageStay: "nile.stay.1day",
     keyAttractions: [
       {
         name: "attractions.abuSimbel.greatTempleRamesses.name",
