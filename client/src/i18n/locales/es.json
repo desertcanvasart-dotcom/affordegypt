@@ -1360,5 +1360,84 @@
         }
       }
     }
+  },
+  "blog": {
+    "desertsGuide": {
+      "title": "Desiertos Oriental y Occidental",
+      "subtitle": "La Puerta de Entrada a Aventuras Económicas en la Naturaleza Salvaje de Egipto",
+      "description": "Los desiertos de Egipto ofrecen tesoros únicos, paisajes majestuosos, experiencias espirituales y geología única, todo a una fracción del costo de las actividades turísticas típicas. Ideal para aventureros conscientes del presupuesto, experiencias auténticas te esperan.",
+      "buttons": {
+        "planAdventure": "Planifica tu Aventura",
+        "viewBudgetGuide": "Ver Guía de Presupuesto"
+      },
+      "sections": {
+        "comparison": {
+          "title": "Desiertos Oriental vs. Occidental: Una Comparación",
+          "subtitle": "Elige tu aventura según tus intereses y presupuesto",
+          "eastern": {
+            "title": "Desierto Oriental",
+            "location": "Ubicación: Entre el Nilo y el Mar Rojo",
+            "terrain": "Terreno: Montañas rocosas, wadis y llanuras costeras",
+            "bestFor": "Mejor para: Historia minera, cultura beduina y acceso al Mar Rojo",
+            "access": "Acceso: Vía Qena o Hurghada",
+            "highlights": "Destacados: Minas de esmeraldas, monasterios y vida silvestre del desierto"
+          },
+          "western": {
+            "title": "Desierto Occidental",
+            "location": "Ubicación: Oeste del Valle del Nilo",
+            "terrain": "Terreno: Dunas de arena, oasis y formaciones rocosas únicas",
+            "bestFor": "Mejor para: Salto de oasis, camping en el Desierto Blanco y observación de estrellas",
+            "access": "Acceso: Vía El Cairo o Bahariya",
+            "highlights": "Destacados: Desierto Negro y Blanco, aguas termales y asentamientos antiguos"
+          }
+        },
+        "destinations": {
+          "title": "Destinos Desérticos: Exploración Económica",
+          "subtitle": "Principales destinos para experiencias desérticas auténticas"
+        },
+        "budgetTips": {
+          "title": "Consejos de Viaje Económico",
+          "subtitle": "Consejos esenciales para viajeros del desierto conscientes del presupuesto",
+          "tips": [
+            "Únete a grupos de safari locales en lugar de viajes privados para ahorrar hasta un 60%",
+            "Viaja durante noviembre y marzo para precios de temporada media",
+            "Usa minibuses y taxis compartidos entre oasis",
+            "Hospédate en casas de huéspedes familiares en lugar de hoteles",
+            "Come donde se reúnen los locales para comidas auténticas y económicas",
+            "Negocia precios en persona, especialmente en temporadas bajas"
+          ]
+        },
+        "itinerary": {
+          "title": "Aventura Desértica de 5 Días con Presupuesto",
+          "subtitle": "Itinerario completo con precios transparentes",
+          "total": "Total: 2,850 EGP por persona"
+        },
+        "packing": {
+          "title": "Elementos Esenciales para el Desierto",
+          "subtitle": "Qué empacar para tu aventura en el desierto",
+          "items": [
+            { "item": "Banco de energía", "reason": "No hay electricidad durante el campamento" },
+            { "item": "Bufanda/keffiyeh", "reason": "Protección contra sol, polvo y arena" },
+            { "item": "Chanclas y zapatos de trekking", "reason": "Para manantiales y caminatas accidentadas" },
+            { "item": "Capa térmica", "reason": "Las noches del desierto pueden ser frías" },
+            { "item": "Linterna", "reason": "Iluminación mínima en campamentos" },
+            { "item": "Botella de agua reutilizable", "reason": "Ecológica y rellenable en oasis" }
+          ]
+        },
+        "bestTime": {
+          "title": "Mejor Época para Visitar",
+          "content": "Octubre a marzo ofrece las temperaturas más cómodas para la exploración del desierto. Evita los meses de verano (junio-agosto) cuando las temperaturas pueden superar los 40°C."
+        },
+        "cta": {
+          "title": "¿Listo para Explorar los Desiertos de Egipto?",
+          "subtitle": "Obtén cotizaciones personalizadas para tu aventura en el desierto",
+          "description": "Planifica tu escape perfecto al desierto con nuestros guías locales expertos",
+          "buttons": {
+            "startPlanning": "Empezar Planificación",
+            "findGuides": "Encontrar Guías Locales"
+          }
+        }
+      }
+    }
   }
 }

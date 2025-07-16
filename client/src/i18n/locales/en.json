@@ -1333,5 +1333,84 @@
         }
       }
     }
+  },
+  "blog": {
+    "desertsGuide": {
+      "title": "Eastern & Western Deserts",
+      "subtitle": "The Gateway to Budget-Friendly Adventures in Egypt's Untamed Wilderness",
+      "description": "Egypt's deserts offer unique treasures, majestic landscapes, spiritual experiences, and unique geology - and all at a fraction of the cost of typical tourist activities. Ideal for budget-conscious adventurers, authentic experiences await.",
+      "buttons": {
+        "planAdventure": "Plan Your Adventure",
+        "viewBudgetGuide": "View Budget Guide"
+      },
+      "sections": {
+        "comparison": {
+          "title": "Eastern vs. Western Deserts: A Comparison",
+          "subtitle": "Choose your adventure based on your interests and budget",
+          "eastern": {
+            "title": "Eastern Desert",
+            "location": "Location: Between Nile and Red Sea",
+            "terrain": "Terrain: Rocky mountains, wadis, and coastal plains",
+            "bestFor": "Best for: Mining history, Bedouin culture, and Red Sea access",
+            "access": "Access: Via Qena or Hurghada",
+            "highlights": "Highlights: Emerald mines, monasteries, and desert wildlife"
+          },
+          "western": {
+            "title": "Western Desert",
+            "location": "Location: West of the Nile Valley",
+            "terrain": "Terrain: Sand dunes, oases, and unique rock formations",
+            "bestFor": "Best for: Oasis hopping, White Desert camping, and stargazing",
+            "access": "Access: Via Cairo or Bahariya",
+            "highlights": "Highlights: Black & White Desert, hot springs, and ancient settlements"
+          }
+        },
+        "destinations": {
+          "title": "Desert Destinations: Budget-Friendly Exploration",
+          "subtitle": "Top destinations for authentic desert experiences"
+        },
+        "budgetTips": {
+          "title": "Budget Travel Tips",
+          "subtitle": "Essential tips for budget-conscious desert travelers",
+          "tips": [
+            "Join local safari groups instead of private trips to save up to 60%",
+            "Travel during November and March for shoulder season pricing",
+            "Use minibuses and shared taxis between oases",
+            "Stay in family-run guesthouses over hotels",
+            "Eat where locals gather for authentic, affordable meals",
+            "Negotiate prices in person, especially in off-seasons"
+          ]
+        },
+        "itinerary": {
+          "title": "5-Day Budget Desert Adventure",
+          "subtitle": "Complete itinerary with transparent pricing",
+          "total": "Total: 2,850 EGP per person"
+        },
+        "packing": {
+          "title": "Desert Packing Essentials",
+          "subtitle": "What to pack for your desert adventure",
+          "items": [
+            { "item": "Power bank", "reason": "No electricity during camping" },
+            { "item": "Scarf/keffiyeh", "reason": "Sun, dust, and sand protection" },
+            { "item": "Flip flops & hiking shoes", "reason": "For springs and rugged walks" },
+            { "item": "Thermal layer", "reason": "Desert nights can be cold" },
+            { "item": "Flashlight", "reason": "Minimal lighting in camps" },
+            { "item": "Refillable water bottle", "reason": "Eco-friendly and refillable in oases" }
+          ]
+        },
+        "bestTime": {
+          "title": "Best Time to Visit",
+          "content": "October to March offers the most comfortable temperatures for desert exploration. Avoid summer months (June-August) when temperatures can exceed 40°C."
+        },
+        "cta": {
+          "title": "Ready to Explore Egypt's Deserts?",
+          "subtitle": "Get personalized quotes for your desert adventure",
+          "description": "Plan your perfect desert escape with our expert local guides",
+          "buttons": {
+            "startPlanning": "Start Planning",
+            "findGuides": "Find Local Guides"
+          }
+        }
+      }
+    }
   }
 }

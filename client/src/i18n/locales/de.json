@@ -1510,5 +1510,84 @@
         }
       }
     }
+  },
+  "blog": {
+    "desertsGuide": {
+      "title": "Ost- & Westwüste",
+      "subtitle": "Das Tor für Budgetreisende zu Ägyptens ungezähmter Schönheit",
+      "description": "Ägyptens Wüsten bieten einige Geheimnisse, majestätische Landschaften, spirituelle Erfahrungen und einzigartige Geologie - und das alles zu einem Bruchteil der Kosten typischer Touristenaktivitäten. Ideal für preisbewusste Abenteurer, authentische Erlebnisse suchen.",
+      "buttons": {
+        "planAdventure": "Planen Sie Ihr Wüstenabenteuer",
+        "viewBudgetGuide": "Budget-Leitfaden Anzeigen"
+      },
+      "sections": {
+        "comparison": {
+          "title": "Ost- vs. Westwüste: Ein Vergleich",
+          "subtitle": "Wählen Sie Ihr Abenteuer basierend auf Ihren Interessen und Budget",
+          "eastern": {
+            "title": "Ostwüste",
+            "location": "Lage: Zwischen Nil und Rotem Meer",
+            "terrain": "Gelände: Felsige Berge, Wadis und Küstenebenen",
+            "bestFor": "Am besten für: Bergbaugeschichte, Beduinenkultur und Zugang zum Roten Meer",
+            "access": "Zugang: Über Qena oder Hurghada",
+            "highlights": "Highlights: Smaragdminen, Klöster und Wüstentierwelt"
+          },
+          "western": {
+            "title": "Westwüste",
+            "location": "Lage: Westlich des Niltals",
+            "terrain": "Gelände: Sanddünen, Oasen und einzigartige Felsformationen",
+            "bestFor": "Am besten für: Oasen-Hopping, Weiße Wüste Camping und Sternenbeobachtung",
+            "access": "Zugang: Über Kairo oder Bahariya",
+            "highlights": "Highlights: Schwarze & Weiße Wüste, heiße Quellen und antike Siedlungen"
+          }
+        },
+        "destinations": {
+          "title": "Wüstenziele: Budgetfreundliche Erkundung",
+          "subtitle": "Top-Ziele für authentische Wüstenerlebnisse"
+        },
+        "budgetTips": {
+          "title": "Budget-Reisetipps",
+          "subtitle": "Wichtige Tipps für budgetbewusste Wüstenreisende",
+          "tips": [
+            "Schließen Sie sich lokalen Safari-Gruppen an statt privaten Reisen, um bis zu 60% zu sparen",
+            "Reisen Sie im November und März für Nebensaison-Preise",
+            "Nutzen Sie Minibusse und geteilte Taxis zwischen Oasen",
+            "Übernachten Sie in familiengeführten Gästehäusern statt Hotels",
+            "Essen Sie dort, wo sich Einheimische treffen, für authentische, erschwingliche Mahlzeiten",
+            "Verhandeln Sie Preise persönlich, besonders in der Nebensaison"
+          ]
+        },
+        "itinerary": {
+          "title": "5-Tage Budget-Wüstenabenteuer",
+          "subtitle": "Vollständiger Reiseplan mit transparenten Preisen",
+          "total": "Gesamt: 2.850 EGP pro Person"
+        },
+        "packing": {
+          "title": "Wüsten-Packliste",
+          "subtitle": "Was Sie für Ihr Wüstenabenteuer einpacken sollten",
+          "items": [
+            { "item": "Powerbank", "reason": "Kein Strom beim Camping" },
+            { "item": "Schal/Keffiyeh", "reason": "Schutz vor Sonne, Staub und Sand" },
+            { "item": "Flip-Flops & Wanderschuhe", "reason": "Für Quellen und raue Wanderungen" },
+            { "item": "Thermische Schicht", "reason": "Wüstennächte können kalt sein" },
+            { "item": "Taschenlampe", "reason": "Minimale Beleuchtung in Camps" },
+            { "item": "Nachfüllbare Wasserflasche", "reason": "Umweltfreundlich und in Oasen nachfüllbar" }
+          ]
+        },
+        "bestTime": {
+          "title": "Beste Reisezeit",
+          "content": "Oktober bis März bietet die angenehmsten Temperaturen für Wüstenerkundung. Vermeiden Sie Sommermonate (Juni-August), wenn Temperaturen 40°C überschreiten können."
+        },
+        "cta": {
+          "title": "Bereit, Ägyptens Wüsten zu Erkunden?",
+          "subtitle": "Erhalten Sie personalisierte Angebote für Ihr Wüstenabenteuer",
+          "description": "Planen Sie Ihren perfekten Wüstenausflug mit unseren erfahrenen lokalen Führern",
+          "buttons": {
+            "startPlanning": "Planung Beginnen",
+            "findGuides": "Lokale Führer Finden"
+          }
+        }
+      }
+    }
   }
 }
