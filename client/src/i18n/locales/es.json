@@ -1426,7 +1426,22 @@
         },
         "bestTime": {
           "title": "Mejor Época para Visitar",
-          "content": "Octubre a marzo ofrece las temperaturas más cómodas para la exploración del desierto. Evita los meses de verano (junio-agosto) cuando las temperaturas pueden superar los 40°C."
+          "subtitle": "Planifica tu aventura en el desierto para un clima y presupuesto óptimos",
+          "bestSeason": {
+            "title": "Mejor Temporada",
+            "period": "Oct - Mar",
+            "description": "Clima perfecto, cielos despejados y temperaturas cómodas para acampar"
+          },
+          "budgetSpot": {
+            "title": "Punto Ideal de Presupuesto",
+            "period": "Nov & Mar",
+            "description": "Precios de temporada media con excelentes condiciones climáticas"
+          },
+          "avoid": {
+            "title": "Evitar",
+            "period": "Jun - Ago",
+            "description": "El calor extremo hace que acampar en el desierto sea incómodo y peligroso"
+          }
         },
         "cta": {
           "title": "¿Listo para Explorar los Desiertos de Egipto?",

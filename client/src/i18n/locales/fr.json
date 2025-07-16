@@ -1425,7 +1425,22 @@
         },
         "bestTime": {
           "title": "Meilleure Période pour Visiter",
-          "content": "Octobre à mars offre les températures les plus confortables pour l'exploration du désert. Évitez les mois d'été (juin-août) lorsque les températures peuvent dépasser 40°C."
+          "subtitle": "Planifiez votre aventure dans le désert pour un climat et un budget optimaux",
+          "bestSeason": {
+            "title": "Meilleure Saison",
+            "period": "Oct - Mar",
+            "description": "Temps parfait, ciel clair et températures confortables pour camper"
+          },
+          "budgetSpot": {
+            "title": "Point Idéal Budget",
+            "period": "Nov & Mar",
+            "description": "Prix de saison intermédiaire avec d'excellentes conditions météorologiques"
+          },
+          "avoid": {
+            "title": "À Éviter",
+            "period": "Jun - Aoû",
+            "description": "La chaleur extrême rend le camping dans le désert inconfortable et dangereux"
+          }
         },
         "cta": {
           "title": "Prêt à Explorer les Déserts d'Égypte ?",

@@ -1399,7 +1399,22 @@
         },
         "bestTime": {
           "title": "Best Time to Visit",
-          "content": "October to March offers the most comfortable temperatures for desert exploration. Avoid summer months (June-August) when temperatures can exceed 40°C."
+          "subtitle": "Plan your desert adventure for optimal weather and budget",
+          "bestSeason": {
+            "title": "Best Season",
+            "period": "Oct - Mar",
+            "description": "Perfect weather, clear skies, and comfortable camping temperatures"
+          },
+          "budgetSpot": {
+            "title": "Budget Sweet Spot",
+            "period": "Nov & Mar",
+            "description": "Shoulder season pricing with excellent weather conditions"
+          },
+          "avoid": {
+            "title": "Avoid",
+            "period": "Jun - Aug",
+            "description": "Extreme heat makes desert camping uncomfortable and dangerous"
+          }
         },
         "cta": {
           "title": "Ready to Explore Egypt's Deserts?",

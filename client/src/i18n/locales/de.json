@@ -1576,7 +1576,22 @@
         },
         "bestTime": {
           "title": "Beste Reisezeit",
-          "content": "Oktober bis März bietet die angenehmsten Temperaturen für Wüstenerkundung. Vermeiden Sie Sommermonate (Juni-August), wenn Temperaturen 40°C überschreiten können."
+          "subtitle": "Planen Sie Ihr Wüstenabenteuer für optimales Wetter und Budget",
+          "bestSeason": {
+            "title": "Beste Saison",
+            "period": "Okt - Mär",
+            "description": "Perfektes Wetter, klarer Himmel und komfortable Camping-Temperaturen"
+          },
+          "budgetSpot": {
+            "title": "Budget-Süßer Punkt",
+            "period": "Nov & Mär",
+            "description": "Nebensaison-Preise mit ausgezeichneten Wetterbedingungen"
+          },
+          "avoid": {
+            "title": "Vermeiden",
+            "period": "Jun - Aug",
+            "description": "Extreme Hitze macht Wüstencamping unbequem und gefährlich"
+          }
         },
         "cta": {
           "title": "Bereit, Ägyptens Wüsten zu Erkunden?",
