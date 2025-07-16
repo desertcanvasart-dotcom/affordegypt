@@ -1296,5 +1296,69 @@
       "planTrip": "Planifica tu Viaje",
       "contactUs": "Contáctanos"
     }
+  },
+  "deserts": {
+    "destinations": {
+      "bahariya": {
+        "name": "Oasis de Bahariya",
+        "location": "Bawiti",
+        "budget": "1000-1400 EGP/noche",
+        "highlights": {
+          "whiteDesert": "Tours del Desierto Blanco",
+          "crystalMountain": "Montaña de Cristal",
+          "hotSprings": "Aguas termales"
+        }
+      },
+      "blackWhite": {
+        "name": "Desierto Negro y Blanco",
+        "location": "Desde Bahariya",
+        "budget": "2600 EGP pp (tour grupal)",
+        "highlights": {
+          "mushroom": "Formaciones rocosas de hongos",
+          "seashells": "Conchas marinas fosilizadas",
+          "volcanic": "Colinas volcánicas"
+        }
+      },
+      "farafra": {
+        "name": "Oasis de Farafra",
+        "location": "Desierto Occidental Central",
+        "budget": "2300-2800 EGP/noche",
+        "highlights": {
+          "artCentre": "Centro de Arte",
+          "birSitta": "Aguas termales de Bir Sitta",
+          "quiet": "Ambiente tranquilo"
+        }
+      },
+      "dakhla": {
+        "name": "Oasis de Dakhla",
+        "location": "Desierto Occidental Sur",
+        "budget": "2750 EGP/noche",
+        "highlights": {
+          "qasr": "Pueblo de adobe Al-Qasr",
+          "farms": "Granjas del desierto",
+          "springs": "Aguas termales de Mut"
+        }
+      },
+      "kharga": {
+        "name": "Oasis de Kharga",
+        "location": "Nuevo Valle",
+        "budget": "1000-1470 EGP/noche",
+        "highlights": {
+          "hibis": "Templo de Hibis",
+          "cemeteries": "Cementerios cristianos",
+          "forts": "Fortalezas antiguas"
+        }
+      },
+      "siwa": {
+        "name": "Oasis de Siwa",
+        "location": "Cerca de la frontera libia",
+        "budget": "2000-30000 EGP/noche",
+        "highlights": {
+          "saltLakes": "Lagos salados",
+          "mountain": "Montaña de los Muertos",
+          "sandSea": "Gran Mar de Arena"
+        }
+      }
+    }
   }
 }

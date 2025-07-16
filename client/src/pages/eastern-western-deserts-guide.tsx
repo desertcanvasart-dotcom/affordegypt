@@ -33,45 +33,69 @@ export default function EasternWesternDesertsGuide() {
 
   const destinations = [
     {
-      name: "Bahariya Oasis",
-      location: "Bawiti",
-      highlights: ["White Desert tours", "Crystal Mountain", "Hot springs"],
-      budget: "1000-1400 EGP/night",
+      name: t("deserts.destinations.bahariya.name"),
+      location: t("deserts.destinations.bahariya.location"),
+      highlights: [
+        t("deserts.destinations.bahariya.highlights.whiteDesert"),
+        t("deserts.destinations.bahariya.highlights.crystalMountain"),
+        t("deserts.destinations.bahariya.highlights.hotSprings")
+      ],
+      budget: t("deserts.destinations.bahariya.budget"),
       icon: <Mountain className="w-6 h-6 text-primary" />
     },
     {
-      name: "Black & White Desert", 
-      location: "From Bahariya",
-      highlights: ["Mushroom rock formations", "Fossilized seashells", "Volcanic hills"],
-      budget: "2600 EGP pp (group tour)",
+      name: t("deserts.destinations.blackWhite.name"), 
+      location: t("deserts.destinations.blackWhite.location"),
+      highlights: [
+        t("deserts.destinations.blackWhite.highlights.mushroom"),
+        t("deserts.destinations.blackWhite.highlights.seashells"),
+        t("deserts.destinations.blackWhite.highlights.volcanic")
+      ],
+      budget: t("deserts.destinations.blackWhite.budget"),
       icon: <Compass className="w-6 h-6 text-primary" />
     },
     {
-      name: "Farafra Oasis",
-      location: "Central Western Desert",
-      highlights: ["Art Centre", "Bir Sitta hot spring", "Quiet atmosphere"],
-      budget: "2300-2800 EGP/night",
+      name: t("deserts.destinations.farafra.name"),
+      location: t("deserts.destinations.farafra.location"),
+      highlights: [
+        t("deserts.destinations.farafra.highlights.artCentre"),
+        t("deserts.destinations.farafra.highlights.birSitta"),
+        t("deserts.destinations.farafra.highlights.quiet")
+      ],
+      budget: t("deserts.destinations.farafra.budget"),
       icon: <Sun className="w-6 h-6 text-primary" />
     },
     {
-      name: "Dakhla Oasis",
-      location: "Southern Western Desert",
-      highlights: ["Al-Qasr mudbrick town", "Desert farms", "Mut hot springs"],
-      budget: "2750 EGP/night",
+      name: t("deserts.destinations.dakhla.name"),
+      location: t("deserts.destinations.dakhla.location"),
+      highlights: [
+        t("deserts.destinations.dakhla.highlights.qasr"),
+        t("deserts.destinations.dakhla.highlights.farms"),
+        t("deserts.destinations.dakhla.highlights.springs")
+      ],
+      budget: t("deserts.destinations.dakhla.budget"),
       icon: <Camera className="w-6 h-6 text-primary" />
     },
     {
-      name: "Kharga Oasis",
-      location: "New Valley",
-      highlights: ["Temple of Hibis", "Christian cemeteries", "Ancient forts"],
-      budget: "1000-1470 EGP/night",
+      name: t("deserts.destinations.kharga.name"),
+      location: t("deserts.destinations.kharga.location"),
+      highlights: [
+        t("deserts.destinations.kharga.highlights.hibis"),
+        t("deserts.destinations.kharga.highlights.cemeteries"),
+        t("deserts.destinations.kharga.highlights.forts")
+      ],
+      budget: t("deserts.destinations.kharga.budget"),
       icon: <Star className="w-6 h-6 text-primary" />
     },
     {
-      name: "Siwa Oasis",
-      location: "Near Libyan border",
-      highlights: ["Salt lakes", "Mountain of the Dead", "Great Sand Sea"],
-      budget: "2000-30000 EGP/night",
+      name: t("deserts.destinations.siwa.name"),
+      location: t("deserts.destinations.siwa.location"),
+      highlights: [
+        t("deserts.destinations.siwa.highlights.saltLakes"),
+        t("deserts.destinations.siwa.highlights.mountain"),
+        t("deserts.destinations.siwa.highlights.sandSea")
+      ],
+      budget: t("deserts.destinations.siwa.budget"),
       icon: <MapPin className="w-6 h-6 text-primary" />
     }
   ];

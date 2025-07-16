@@ -1295,5 +1295,69 @@
       "planTrip": "Planifiez Votre Voyage",
       "contactUs": "Contactez-nous"
     }
+  },
+  "deserts": {
+    "destinations": {
+      "bahariya": {
+        "name": "Oasis de Bahariya",
+        "location": "Bawiti",
+        "budget": "1000-1400 EGP/nuit",
+        "highlights": {
+          "whiteDesert": "Tours du Désert Blanc",
+          "crystalMountain": "Montagne de Cristal",
+          "hotSprings": "Sources chaudes"
+        }
+      },
+      "blackWhite": {
+        "name": "Désert Noir et Blanc",
+        "location": "Depuis Bahariya",
+        "budget": "2600 EGP pp (tour de groupe)",
+        "highlights": {
+          "mushroom": "Formations rocheuses de champignons",
+          "seashells": "Coquillages fossilisés",
+          "volcanic": "Collines volcaniques"
+        }
+      },
+      "farafra": {
+        "name": "Oasis de Farafra",
+        "location": "Désert Occidental Central",
+        "budget": "2300-2800 EGP/nuit",
+        "highlights": {
+          "artCentre": "Centre d'Art",
+          "birSitta": "Source chaude de Bir Sitta",
+          "quiet": "Atmosphère paisible"
+        }
+      },
+      "dakhla": {
+        "name": "Oasis de Dakhla",
+        "location": "Désert Occidental Sud",
+        "budget": "2750 EGP/nuit",
+        "highlights": {
+          "qasr": "Ville d'adobe Al-Qasr",
+          "farms": "Fermes du désert",
+          "springs": "Sources chaudes de Mut"
+        }
+      },
+      "kharga": {
+        "name": "Oasis de Kharga",
+        "location": "Nouvelle Vallée",
+        "budget": "1000-1470 EGP/nuit",
+        "highlights": {
+          "hibis": "Temple d'Hibis",
+          "cemeteries": "Cimetières chrétiens",
+          "forts": "Anciens forts"
+        }
+      },
+      "siwa": {
+        "name": "Oasis de Siwa",
+        "location": "Près de la frontière libyenne",
+        "budget": "2000-30000 EGP/nuit",
+        "highlights": {
+          "saltLakes": "Lacs salés",
+          "mountain": "Montagne des Morts",
+          "sandSea": "Grande Mer de Sable"
+        }
+      }
+    }
   }
 }

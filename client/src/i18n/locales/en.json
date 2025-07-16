@@ -1269,5 +1269,69 @@
       "planTrip": "Plan Your Trip",
       "contactUs": "Contact Us"
     }
+  },
+  "deserts": {
+    "destinations": {
+      "bahariya": {
+        "name": "Bahariya Oasis",
+        "location": "Bawiti",
+        "budget": "1000-1400 EGP/night",
+        "highlights": {
+          "whiteDesert": "White Desert tours",
+          "crystalMountain": "Crystal Mountain",
+          "hotSprings": "Hot springs"
+        }
+      },
+      "blackWhite": {
+        "name": "Black & White Desert",
+        "location": "From Bahariya",
+        "budget": "2600 EGP pp (group tour)",
+        "highlights": {
+          "mushroom": "Mushroom rock formations",
+          "seashells": "Fossilized seashells",
+          "volcanic": "Volcanic hills"
+        }
+      },
+      "farafra": {
+        "name": "Farafra Oasis",
+        "location": "Central Western Desert",
+        "budget": "2300-2800 EGP/night",
+        "highlights": {
+          "artCentre": "Art Centre",
+          "birSitta": "Bir Sitta hot spring",
+          "quiet": "Quiet atmosphere"
+        }
+      },
+      "dakhla": {
+        "name": "Dakhla Oasis",
+        "location": "Southern Western Desert",
+        "budget": "2750 EGP/night",
+        "highlights": {
+          "qasr": "Al-Qasr mudbrick town",
+          "farms": "Desert farms",
+          "springs": "Mut hot springs"
+        }
+      },
+      "kharga": {
+        "name": "Kharga Oasis",
+        "location": "New Valley",
+        "budget": "1000-1470 EGP/night",
+        "highlights": {
+          "hibis": "Temple of Hibis",
+          "cemeteries": "Christian cemeteries",
+          "forts": "Ancient forts"
+        }
+      },
+      "siwa": {
+        "name": "Siwa Oasis",
+        "location": "Near Libyan border",
+        "budget": "2000-30000 EGP/night",
+        "highlights": {
+          "saltLakes": "Salt lakes",
+          "mountain": "Mountain of the Dead",
+          "sandSea": "Great Sand Sea"
+        }
+      }
+    }
   }
 }

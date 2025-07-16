@@ -1446,5 +1446,69 @@
       "planTrip": "Reise Planen",
       "contactUs": "Kontaktieren Sie Uns"
     }
+  },
+  "deserts": {
+    "destinations": {
+      "bahariya": {
+        "name": "Bahariya-Oase",
+        "location": "Bawiti",
+        "budget": "1000-1400 EGP/Nacht",
+        "highlights": {
+          "whiteDesert": "Weiße Wüste Touren",
+          "crystalMountain": "Kristallberg",
+          "hotSprings": "Heiße Quellen"
+        }
+      },
+      "blackWhite": {
+        "name": "Schwarze & Weiße Wüste",
+        "location": "Von Bahariya",
+        "budget": "2600 EGP pp (Gruppentour)",
+        "highlights": {
+          "mushroom": "Pilz-Felsformationen",
+          "seashells": "Versteinerte Muscheln",
+          "volcanic": "Vulkanhügel"
+        }
+      },
+      "farafra": {
+        "name": "Farafra-Oase",
+        "location": "Zentrale Westliche Wüste",
+        "budget": "2300-2800 EGP/Nacht",
+        "highlights": {
+          "artCentre": "Kunstzentrum",
+          "birSitta": "Bir Sitta Heiße Quelle",
+          "quiet": "Ruhige Atmosphäre"
+        }
+      },
+      "dakhla": {
+        "name": "Dakhla-Oase",
+        "location": "Südliche Westliche Wüste",
+        "budget": "2750 EGP/Nacht",
+        "highlights": {
+          "qasr": "Al-Qasr Lehmziegelstadt",
+          "farms": "Wüstenfarmen",
+          "springs": "Mut Heiße Quellen"
+        }
+      },
+      "kharga": {
+        "name": "Kharga-Oase",
+        "location": "Neues Tal",
+        "budget": "1000-1470 EGP/Nacht",
+        "highlights": {
+          "hibis": "Tempel von Hibis",
+          "cemeteries": "Christliche Friedhöfe",
+          "forts": "Antike Festungen"
+        }
+      },
+      "siwa": {
+        "name": "Siwa-Oase",
+        "location": "Nahe der libyschen Grenze",
+        "budget": "2000-30000 EGP/Nacht",
+        "highlights": {
+          "saltLakes": "Salzseen",
+          "mountain": "Berg der Toten",
+          "sandSea": "Großes Sandmeer"
+        }
+      }
+    }
   }
 }
