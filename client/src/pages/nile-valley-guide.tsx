@@ -43,7 +43,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 31.2001,
     longitude: 29.9187,
     population: "5.2 million",
-    highlights: ["Library of Alexandria", "Qaitbay Citadel", "Mediterranean beaches", "Ancient Roman sites"],
+    highlights: ["highlights.alexandria.library", "highlights.alexandria.qaitbayCitadel", "highlights.alexandria.mediterraneanBeaches", "highlights.alexandria.romanSites"],
     bestTimeToVisit: "nile.bestTime.marchNovember",
     averageStay: "nile.stay.2_3days",
     keyAttractions: [
@@ -86,7 +86,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 30.0444,
     longitude: 31.2357,
     population: "20+ million",
-    highlights: ["Pyramids of Giza", "Egyptian Museum", "Islamic Cairo", "Khan el-Khalili Bazaar"],
+    highlights: ["highlights.cairo.pyramidsGiza", "highlights.cairo.egyptianMuseum", "highlights.cairo.islamicCairo", "highlights.cairo.khanElKhalili"],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.3_4days",
     keyAttractions: [
@@ -130,7 +130,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 29.0661,
     longitude: 31.0994,
     population: "250,000",
-    highlights: ["Meidum Pyramid", "Rural Nile landscapes", "Traditional markets"],
+    highlights: ["highlights.beniSuef.meidumPyramid", "highlights.beniSuef.ruralNile", "highlights.beniSuef.traditionalMarkets"],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1day",
     keyAttractions: [
@@ -167,7 +167,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 28.1099,
     longitude: 30.7503,
     population: "260,000",
-    highlights: ["Tell el-Amarna", "Beni Hassan tombs", "Tuna el-Gebel"],
+    highlights: ["highlights.minya.tellElAmarna", "highlights.minya.beniHassan", "highlights.minya.tunaElGebel"],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.2days",
     keyAttractions: [
@@ -210,7 +210,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 27.1783,
     longitude: 31.1859,
     population: "420,000",
-    highlights: ["Coptic monasteries", "Traditional crafts", "Nile corniche"],
+    highlights: ["highlights.asyut.copticMonasteries", "highlights.asyut.traditionalCrafts", "highlights.asyut.nileCorniche"],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1_2days",
     keyAttractions: [
@@ -246,7 +246,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 26.5569,
     longitude: 31.6948,
     population: "290,000",
-    highlights: ["Red and White Monasteries", "Akhmim textiles", "Rural culture"],
+    highlights: ["highlights.sohag.redWhiteMonasteries", "highlights.sohag.akhmimTextiles", "highlights.sohag.ruralCulture"],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1_2days",
     keyAttractions: [
@@ -288,7 +288,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 26.1551,
     longitude: 32.7160,
     population: "235,000",
-    highlights: ["Gateway to Dendera", "Traditional pottery", "Nile islands"],
+    highlights: ["highlights.qena.gatewayDendera", "highlights.qena.traditionalPottery", "highlights.qena.nileIslands"],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1day",
     keyAttractions: [
@@ -324,7 +324,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 25.6872,
     longitude: 32.6396,
     population: "507,000",
-    highlights: ["Valley of the Kings", "Karnak Temple", "Luxor Temple", "West Bank tombs"],
+    highlights: ["highlights.luxor.valleyKings", "highlights.luxor.karnakTemple", "highlights.luxor.luxorTemple", "highlights.luxor.westBankTombs"],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.3_4days",
     keyAttractions: [
@@ -531,11 +531,6 @@ export default function NileValleyGuide() {
   const { t, i18n } = useTranslation();
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
-  
-  // Debug: Check what language is currently active and test a specific translation
-  console.log('Current language:', i18n.language);
-  console.log('Test translation - highlights.abuSimbel.greatTemple:', t('highlights.abuSimbel.greatTemple'));
-  console.log('Test translation - blog.nileValley.cityDetails.keyHighlights:', t('blog.nileValley.cityDetails.keyHighlights'));
   
 
 
@@ -913,7 +908,7 @@ export default function NileValleyGuide() {
                   <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.keyHighlights')}</h4>
                   <ul className="list-disc list-inside text-gray-700 mb-4">
                     {selectedCity.highlights.map((highlight, index) => (
-                      <li key={index}>{highlight}</li>
+                      <li key={index}>{t(highlight)}</li>
                     ))}
                   </ul>
 

@@ -32,7 +32,7 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: false,
-    returnObjects: true,
+    returnObjects: false,
     
     interpolation: {
       escapeValue: false, // React already escapes values
