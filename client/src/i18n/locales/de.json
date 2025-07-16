@@ -1592,15 +1592,15 @@
             "period": "Jun - Aug",
             "description": "Extreme Hitze macht Wüstencamping unbequem und gefährlich"
           }
-        },
-        "cta": {
-          "title": "Bereit, Ägyptens Wüsten zu Erkunden?",
-          "subtitle": "Erhalten Sie personalisierte Angebote für Ihr Wüstenabenteuer",
-          "description": "Planen Sie Ihren perfekten Wüstenausflug mit unseren erfahrenen lokalen Führern",
-          "buttons": {
-            "startPlanning": "Planung Beginnen",
-            "findGuides": "Lokale Führer Finden"
-          }
+        }
+      },
+      "cta": {
+        "title": "Bereit, Ägyptens Wüsten zu Erkunden?",
+        "subtitle": "Erhalten Sie personalisierte Angebote für Ihr Wüstenabenteuer",
+        "description": "Planen Sie Ihren perfekten Wüstenausflug mit unseren erfahrenen lokalen Führern",
+        "buttons": {
+          "startPlanning": "Planung Beginnen",
+          "findGuides": "Lokale Führer Finden"
         }
       }
     }

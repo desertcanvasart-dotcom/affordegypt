@@ -1441,15 +1441,15 @@
             "period": "Jun - Aoû",
             "description": "La chaleur extrême rend le camping dans le désert inconfortable et dangereux"
           }
-        },
-        "cta": {
-          "title": "Prêt à Explorer les Déserts d'Égypte ?",
-          "subtitle": "Obtenez des devis personnalisés pour votre aventure dans le désert",
-          "description": "Planifiez votre évasion parfaite dans le désert avec nos guides locaux experts",
-          "buttons": {
-            "startPlanning": "Commencer la Planification",
-            "findGuides": "Trouver des Guides Locaux"
-          }
+        }
+      },
+      "cta": {
+        "title": "Prêt à Explorer les Déserts d'Égypte ?",
+        "subtitle": "Obtenez des devis personnalisés pour votre aventure dans le désert",
+        "description": "Planifiez votre évasion parfaite dans le désert avec nos guides locaux experts",
+        "buttons": {
+          "startPlanning": "Commencer la Planification",
+          "findGuides": "Trouver des Guides Locaux"
         }
       }
     }

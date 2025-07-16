@@ -1442,15 +1442,15 @@
             "period": "Jun - Ago",
             "description": "El calor extremo hace que acampar en el desierto sea incómodo y peligroso"
           }
-        },
-        "cta": {
-          "title": "¿Listo para Explorar los Desiertos de Egipto?",
-          "subtitle": "Obtén cotizaciones personalizadas para tu aventura en el desierto",
-          "description": "Planifica tu escape perfecto al desierto con nuestros guías locales expertos",
-          "buttons": {
-            "startPlanning": "Empezar Planificación",
-            "findGuides": "Encontrar Guías Locales"
-          }
+        }
+      },
+      "cta": {
+        "title": "¿Listo para Explorar los Desiertos de Egipto?",
+        "subtitle": "Obtén cotizaciones personalizadas para tu aventura en el desierto",
+        "description": "Planifica tu escape perfecto al desierto con nuestros guías locales expertos",
+        "buttons": {
+          "startPlanning": "Empezar Planificación",
+          "findGuides": "Encontrar Guías Locales"
         }
       }
     }

@@ -1415,15 +1415,15 @@
             "period": "Jun - Aug",
             "description": "Extreme heat makes desert camping uncomfortable and dangerous"
           }
-        },
-        "cta": {
-          "title": "Ready to Explore Egypt's Deserts?",
-          "subtitle": "Get personalized quotes for your desert adventure",
-          "description": "Plan your perfect desert escape with our expert local guides",
-          "buttons": {
-            "startPlanning": "Start Planning",
-            "findGuides": "Find Local Guides"
-          }
+        }
+      },
+      "cta": {
+        "title": "Ready to Explore Egypt's Deserts?",
+        "subtitle": "Get personalized quotes for your desert adventure",
+        "description": "Plan your perfect desert escape with our expert local guides",
+        "buttons": {
+          "startPlanning": "Start Planning",
+          "findGuides": "Find Local Guides"
         }
       }
     }
