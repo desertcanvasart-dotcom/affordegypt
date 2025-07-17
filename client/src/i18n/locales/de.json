@@ -1673,7 +1673,11 @@
       "traditionalUses": "Traditionelle Verwendungen",
       "celebrationOccasions": "Feierliche Anlässe",
       "nutritionScore": "Nährwert-Score",
-      "healthBenefits": "Gesundheitsvorteile"
+      "healthBenefits": "Gesundheitsvorteile",
+      "details": "Details",
+      "explore": "Entdecken",
+      "healthLabel": "Gesundheit",
+      "spiceLevel": "Schärfegrad"
     },
     "badges": {
       "traditionalDish": "Traditionelles Ägyptisches Gericht",

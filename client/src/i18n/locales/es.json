@@ -1523,7 +1523,11 @@
       "traditionalUses": "Usos Tradicionales",
       "celebrationOccasions": "Ocasiones de Celebración",
       "nutritionScore": "Puntuación Nutricional",
-      "healthBenefits": "Beneficios para la Salud"
+      "healthBenefits": "Beneficios para la Salud",
+      "details": "Detalles",
+      "explore": "Explorar",
+      "healthLabel": "Salud",
+      "spiceLevel": "Nivel de Picante"
     },
     "badges": {
       "traditionalDish": "Plato Tradicional Egipcio",

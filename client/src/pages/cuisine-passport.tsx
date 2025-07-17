@@ -510,29 +510,29 @@ export default function CuisinePassport() {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedDifficulty, setSelectedDifficulty] = useState("All Levels");
 
-  const regions = [
-    t('cuisinePassport.filters.regions.all'),
-    t('cuisinePassport.filters.regions.cairo'),
-    t('cuisinePassport.filters.regions.alexandria'),
-    t('cuisinePassport.filters.regions.upperEgypt'),
-    t('cuisinePassport.filters.regions.nileDelta'),
-    t('cuisinePassport.filters.regions.aswan')
+  const regionOptions = [
+    { value: "All Regions", label: t('cuisinePassport.filters.regions.all') },
+    { value: "Cairo", label: t('cuisinePassport.filters.regions.cairo') },
+    { value: "Alexandria", label: t('cuisinePassport.filters.regions.alexandria') },
+    { value: "Upper Egypt", label: t('cuisinePassport.filters.regions.upperEgypt') },
+    { value: "Nile Delta", label: t('cuisinePassport.filters.regions.nileDelta') },
+    { value: "Aswan", label: t('cuisinePassport.filters.regions.aswan') }
   ];
   
-  const categories = [
-    t('cuisinePassport.filters.categories.all'),
-    t('cuisinePassport.filters.categories.appetizer'),
-    t('cuisinePassport.filters.categories.main'),
-    t('cuisinePassport.filters.categories.dessert'),
-    t('cuisinePassport.filters.categories.streetFood'),
-    t('cuisinePassport.filters.categories.beverage')
+  const categoryOptions = [
+    { value: "All Categories", label: t('cuisinePassport.filters.categories.all') },
+    { value: "Appetizer", label: t('cuisinePassport.filters.categories.appetizer') },
+    { value: "Main", label: t('cuisinePassport.filters.categories.main') },
+    { value: "Dessert", label: t('cuisinePassport.filters.categories.dessert') },
+    { value: "Street Food", label: t('cuisinePassport.filters.categories.streetFood') },
+    { value: "Beverage", label: t('cuisinePassport.filters.categories.beverage') }
   ];
   
-  const difficulties = [
-    t('cuisinePassport.filters.difficulties.all'),
-    t('cuisinePassport.filters.difficulties.easy'),
-    t('cuisinePassport.filters.difficulties.medium'),
-    t('cuisinePassport.filters.difficulties.hard')
+  const difficultyOptions = [
+    { value: "All Levels", label: t('cuisinePassport.filters.difficulties.all') },
+    { value: "Easy", label: t('cuisinePassport.filters.difficulties.easy') },
+    { value: "Medium", label: t('cuisinePassport.filters.difficulties.medium') },
+    { value: "Hard", label: t('cuisinePassport.filters.difficulties.hard') }
   ];
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
@@ -731,8 +731,8 @@ export default function CuisinePassport() {
                 onChange={(e) => setSelectedRegion(e.target.value)}
                 className="p-2 border rounded-md bg-white"
               >
-                {regions.map(region => (
-                  <option key={region} value={region}>{region}</option>
+                {regionOptions.map(option => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
               </select>
 
@@ -741,8 +741,8 @@ export default function CuisinePassport() {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="p-2 border rounded-md bg-white"
               >
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
+                {categoryOptions.map(option => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
               </select>
 
@@ -751,8 +751,8 @@ export default function CuisinePassport() {
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
                 className="p-2 border rounded-md bg-white"
               >
-                {difficulties.map(difficulty => (
-                  <option key={difficulty} value={difficulty}>{difficulty}</option>
+                {difficultyOptions.map(option => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
               </select>
             </div>
@@ -814,7 +814,7 @@ export default function CuisinePassport() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-1">
-                          <span className="text-xs text-gray-500">Spice Level:</span>
+                          <span className="text-xs text-gray-500">{t('cuisinePassport.dish.spiceLevel')}:</span>
                           <div className="flex gap-1">
                             {getSpiceIcons(dish.spiceLevel)}
                           </div>
@@ -832,7 +832,7 @@ export default function CuisinePassport() {
                         </div>
                         <div className="flex items-center gap-1 text-xs text-primary">
                           <Leaf className="w-3 h-3" />
-                          Health: {dish.nutritionScore}%
+                          {t('cuisinePassport.dish.healthLabel')}: {dish.nutritionScore}%
                         </div>
                       </div>
 
@@ -844,7 +844,7 @@ export default function CuisinePassport() {
                           onClick={() => setSelectedDish(dish)}
                         >
                           <Eye className="w-3 h-3 mr-1" />
-                          Details
+                          {t('cuisinePassport.dish.details')}
                         </Button>
                         <Button 
                           size="sm" 
@@ -855,7 +855,7 @@ export default function CuisinePassport() {
                           }}
                         >
                           <ChefHat className="w-3 h-3 mr-1" />
-                          Explore
+                          {t('cuisinePassport.dish.explore')}
                         </Button>
                       </div>
                     </div>

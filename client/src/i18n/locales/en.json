@@ -1496,7 +1496,11 @@
       "traditionalUses": "Traditional Uses",
       "celebrationOccasions": "Celebration Occasions",
       "nutritionScore": "Nutrition Score",
-      "healthBenefits": "Health Benefits"
+      "healthBenefits": "Health Benefits",
+      "details": "Details",
+      "explore": "Explore",
+      "healthLabel": "Health",
+      "spiceLevel": "Spice Level"
     },
     "badges": {
       "traditionalDish": "Traditional Egyptian Dish",

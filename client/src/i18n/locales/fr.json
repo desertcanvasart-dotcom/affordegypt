@@ -1522,7 +1522,11 @@
       "traditionalUses": "Usages Traditionnels",
       "celebrationOccasions": "Occasions de Célébration",
       "nutritionScore": "Score Nutritionnel",
-      "healthBenefits": "Bienfaits pour la Santé"
+      "healthBenefits": "Bienfaits pour la Santé",
+      "details": "Détails",
+      "explore": "Explorer",
+      "healthLabel": "Santé",
+      "spiceLevel": "Niveau d'Épice"
     },
     "badges": {
       "traditionalDish": "Plat Traditionnel Égyptien",
