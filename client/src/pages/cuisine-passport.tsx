@@ -520,7 +520,9 @@ export default function CuisinePassport() {
       "Roz Bel Laban": "roz",
       "Rice Muammar": "ricemuammar",
       "Hawawshi": "hawawshi",
-      "Karkade": "karkade"
+      "Karkade": "karkade",
+      "Baladi Bread": "baladibre",
+      "Umm Ali": "umm"
     };
     
     const translationKey = dishKeys[dish.name];
@@ -540,7 +542,9 @@ export default function CuisinePassport() {
       "Roz Bel Laban": "roz",
       "Rice Muammar": "ricemuammar",
       "Hawawshi": "hawawshi",
-      "Karkade": "karkade"
+      "Karkade": "karkade",
+      "Baladi Bread": "baladibre",
+      "Umm Ali": "umm"
     };
     
     const translationKey = dishKeys[dish.name];
@@ -560,7 +564,9 @@ export default function CuisinePassport() {
       "Roz Bel Laban": "roz",
       "Rice Muammar": "ricemuammar",
       "Hawawshi": "hawawshi",
-      "Karkade": "karkade"
+      "Karkade": "karkade",
+      "Baladi Bread": "baladibre",
+      "Umm Ali": "umm"
     };
     
     const translationKey = dishKeys[dish.name];
