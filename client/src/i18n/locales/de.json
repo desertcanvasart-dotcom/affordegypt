@@ -1684,6 +1684,16 @@
       "ingredients": "Zutaten",
       "tried": "Versucht"
     },
+    "descriptions": {
+      "koshari": "Ägyptens Nationalgericht - ein herzhaftes, würziges und einzigartig befriedigendes Streetfood, das durch Schichten von Linsen, Reis, Nudeln, Kichererbsen und knusprigen gebratenen Zwiebeln zubereitet wird, dann mit knoblauchiger Tomatensauce und optionalem würzigem Essig-Chili-Dressing übergossen wird.",
+      "fulMedames": "Ägyptens ikonischstes Frühstücksgericht aus langsam gekochten Ackerbohnen, typisch gewürzt mit Olivenöl, Knoblauch, Zitronensaft und Gewürzen. Tief verwurzelt im ägyptischen Alltag, vielseitig und reich an Proteinen und Ballaststoffen.",
+      "mahshi": "Traditionelles ägyptisches gefülltes Gemüse - typisch Zucchini, Auberginen, Paprika und Weinblätter gefüllt mit aromatischer Reis- und Kräutermischung. Langsam in Tomatenbrühe gekocht bis zart und geschmackvoll.",
+      "molokhia": "Tiefgrüne Blättersuppe aus fein gehackten Malvenblättern. Eines der ältesten Gerichte Ägyptens, oft mit Huhn oder Kaninchen, Reis und einem Spritzer Zitrone serviert.",
+      "roz": "Ägyptens Wohlfühlessen - cremiger Milchreis mit Milch, Zucker und aromatischen Gewürzen wie Vanille und Zimt. Oft mit Nüssen garniert und warm oder kalt serviert.",
+      "ricemuammar": "Traditionelles ägyptisches gebackenes Reisgericht, langsam in Milch und Sahne gekocht, in Ton-Tajine serviert. Schafft einen cremigen, goldenen Auflauf mit knuspriger Kruste und reichem, buttrigem Kern.",
+      "hawawshi": "Klassisches ägyptisches fleischgefülltes Brot - gewürztes Hackfleisch oder Lamm gemischt mit Gemüse und Kräutern, in Baladi-Brot gestopft und gebacken bis es außen knusprig golden und innen saftig gefüllt ist.",
+      "karkade": "Traditioneller ägyptischer Hibiskustee aus getrockneten Hibiscus sabdariffa-Blütenblättern. Tiefkarmesinrote Farbe, herber und fruchtiger Geschmack ähnlich Cranberry. Reich an Antioxidantien und koffeinfrei."
+    },
     "badges": {
       "traditionalDish": "Traditionelles Ägyptisches Gericht",
       "traditionalDrink": "Traditionelles Ägyptisches Getränk"

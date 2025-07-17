@@ -1507,6 +1507,16 @@
       "ingredients": "Ingredients",
       "tried": "Tried"
     },
+    "descriptions": {
+      "koshari": "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing.",
+      "fulMedames": "Egypt's most iconic breakfast dish made from slow-cooked fava beans, typically seasoned with olive oil, garlic, lemon juice, and spices. Deeply embedded in Egyptian daily life, versatile and rich in protein and fiber.",
+      "mahshi": "Traditional Egyptian stuffed vegetables - typically zucchini, eggplant, peppers, and grape leaves filled with aromatic rice and herb mixture. Slow-cooked in tomato broth until tender and flavorful.",
+      "molokhia": "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt's most ancient dishes, often served with chicken or rabbit, rice, and a squeeze of lemon.",
+      "roz": "Egypt's comfort food - creamy rice pudding made with milk, sugar, and aromatic spices like vanilla and cinnamon. Often garnished with nuts and served warm or chilled.",
+      "ricemuammar": "Traditional Egyptian baked rice dish cooked slowly in milk and cream, served in clay tajin. Creates a creamy, golden-topped casserole with crispy crust and rich, buttery center.",
+      "hawawshi": "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside.",
+      "karkade": "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free."
+    },
     "badges": {
       "traditionalDish": "Traditional Egyptian Dish",
       "traditionalDrink": "Traditional Egyptian Drink"

@@ -510,6 +510,26 @@ export default function CuisinePassport() {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedDifficulty, setSelectedDifficulty] = useState("All Levels");
 
+  // Helper function to get translated description
+  const getTranslatedDescription = (dish: Dish) => {
+    const dishKeys: {[key: string]: string} = {
+      "Koshari": "koshari",
+      "Ful Medames": "fulMedames", 
+      "Mahshi": "mahshi",
+      "Molokhia": "molokhia",
+      "Roz Bel Laban": "roz",
+      "Rice Muammar": "ricemuammar",
+      "Hawawshi": "hawawshi",
+      "Karkade": "karkade"
+    };
+    
+    const translationKey = dishKeys[dish.name];
+    if (translationKey) {
+      return t(`cuisinePassport.descriptions.${translationKey}`);
+    }
+    return dish.description; // fallback to original description
+  };
+
   const regionOptions = [
     { value: "All Regions", label: t('cuisinePassport.filters.regions.all') },
     { value: "Cairo", label: t('cuisinePassport.filters.regions.cairo') },
@@ -809,7 +829,7 @@ export default function CuisinePassport() {
                     <p className="text-gray-600 text-sm mb-1">{dish.arabicName}</p>
                     <Badge variant="outline" className="mb-3">{dish.region}</Badge>
                     
-                    <p className="text-gray-700 text-sm mb-4 line-clamp-2">{dish.description}</p>
+                    <p className="text-gray-700 text-sm mb-4 line-clamp-2">{getTranslatedDescription(dish)}</p>
 
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
@@ -893,7 +913,7 @@ export default function CuisinePassport() {
                         {selectedDish.difficulty}
                       </Badge>
                     </div>
-                    <p className="text-gray-700 mb-4">{selectedDish.description}</p>
+                    <p className="text-gray-700 mb-4">{getTranslatedDescription(selectedDish)}</p>
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>

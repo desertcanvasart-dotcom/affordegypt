@@ -1533,6 +1533,16 @@
       "ingredients": "Ingrédients",
       "tried": "Essayé"
     },
+    "descriptions": {
+      "koshari": "Plat national d'Égypte - un plat de rue copieux, épicé et uniquement satisfaisant fait en superposant lentilles, riz, pâtes, pois chiches et oignons frits croustillants, puis arrosé de sauce tomate à l'ail et assaisonnement optionnel de vinaigre-piment.",
+      "fulMedames": "Le plat de petit-déjeuner le plus emblématique d'Égypte fait avec des fèves cuites lentement, typiquement assaisonnées avec de l'huile d'olive, de l'ail, du jus de citron et des épices. Profondément ancré dans la vie quotidienne égyptienne, polyvalent et riche en protéines et fibres.",
+      "mahshi": "Légumes farcis traditionnels égyptiens - typiquement courgettes, aubergines, poivrons et feuilles de vigne farcies avec un mélange aromatique de riz et d'herbes. Cuits lentement dans un bouillon de tomate jusqu'à être tendres et savoureux.",
+      "molokhia": "Soupe verte profonde faite de feuilles de mauve finement hachées. L'un des plats les plus anciens d'Égypte, souvent servi avec du poulet ou du lapin, du riz et un trait de citron.",
+      "roz": "Aliment réconfortant d'Égypte - riz au lait crémeux fait avec du lait, du sucre et des épices aromatiques comme la vanille et la cannelle. Souvent garni de noix et servi chaud ou froid.",
+      "ricemuammar": "Plat traditionnel égyptien de riz cuit au four lentement dans du lait et de la crème, servi dans un tajine en argile. Crée une casserole crémeuse avec un dessus doré et une croûte croustillante avec un centre riche et beurré.",
+      "hawawshi": "Pain farci à la viande égyptien classique - bœuf ou agneau haché épicé mélangé avec des légumes et des herbes, fourré dans du pain baladi et cuit jusqu'à être doré et croustillant à l'extérieur avec une farce juteuse à l'intérieur.",
+      "karkade": "Thé d'hibiscus traditionnel égyptien fait avec des pétales séchés d'Hibiscus sabdariffa. Couleur cramoisie profonde, saveur acidulée et fruitée similaire à la canneberge. Riche en antioxydants et sans caféine."
+    },
     "badges": {
       "traditionalDish": "Plat Traditionnel Égyptien",
       "traditionalDrink": "Boisson Traditionnelle Égyptienne"

@@ -1534,6 +1534,16 @@
       "ingredients": "Ingredientes",
       "tried": "Probado"
     },
+    "descriptions": {
+      "koshari": "Plato nacional de Egipto - una comida callejera abundante, picante y únicamente satisfactoria hecha al superponer lentejas, arroz, pasta, garbanzos y cebollas fritas crujientes, luego bañada en salsa de tomate con ajo y aderezo opcional de vinagre picante.",
+      "fulMedames": "El plato de desayuno más icónico de Egipto hecho con habas cocidas a fuego lento, típicamente sazonadas con aceite de oliva, ajo, jugo de limón y especias. Profundamente arraigado en la vida diaria egipcia, versátil y rico en proteínas y fibra.",
+      "mahshi": "Verduras rellenas tradicionales egipcias - típicamente calabacín, berenjena, pimientos y hojas de parra rellenas con una mezcla aromática de arroz y hierbas. Cocinadas lentamente en caldo de tomate hasta quedar tiernas y sabrosas.",
+      "molokhia": "Sopa verde profunda hecha de hojas de malva finamente picadas. Uno de los platos más antiguos de Egipto, a menudo servido con pollo o conejo, arroz y un chorrito de limón.",
+      "roz": "Comida reconfortante de Egipto - arroz con leche cremoso hecho con leche, azúcar y especias aromáticas como vainilla y canela. A menudo decorado con nueces y servido caliente o frío.",
+      "ricemuammar": "Plato tradicional egipcio de arroz horneado cocido lentamente en leche y crema, servido en tajín de barro. Crea una cazuela cremosa con tope dorado y corteza crujiente con centro rico y mantecoso.",
+      "hawawshi": "Pan relleno de carne egipcio clásico - carne de res o cordero molida condimentada mezclada con verduras y hierbas, rellena en pan baladi y horneada hasta quedar dorada y crujiente por fuera con relleno jugoso por dentro.",
+      "karkade": "Té de hibisco tradicional egipcio hecho con pétalos secos de Hibiscus sabdariffa. Color carmesí profundo, sabor ácido y afrutado similar al arándano. Rico en antioxidantes y sin cafeína."
+    },
     "badges": {
       "traditionalDish": "Plato Tradicional Egipcio",
       "traditionalDrink": "Bebida Tradicional Egipcia"
