@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useTranslation } from "react-i18next";
 import { 
   Utensils, 
   MapPin, 
@@ -501,16 +502,38 @@ const egyptianDishes: Dish[] = [
   }
 ];
 
-const regions = ["All Regions", "Cairo", "Alexandria", "Upper Egypt", "Nile Delta", "Aswan"];
-const categories = ["All Categories", "Appetizer", "Main", "Dessert", "Street Food", "Beverage"];
-const difficulties = ["All Levels", "Easy", "Medium", "Hard"];
-
 export default function CuisinePassport() {
+  const { t } = useTranslation();
   const [dishes, setDishes] = useState<Dish[]>(egyptianDishes);
   const [filteredDishes, setFilteredDishes] = useState<Dish[]>(egyptianDishes);
   const [selectedRegion, setSelectedRegion] = useState("All Regions");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedDifficulty, setSelectedDifficulty] = useState("All Levels");
+
+  const regions = [
+    t('cuisinePassport.filters.regions.all'),
+    t('cuisinePassport.filters.regions.cairo'),
+    t('cuisinePassport.filters.regions.alexandria'),
+    t('cuisinePassport.filters.regions.upperEgypt'),
+    t('cuisinePassport.filters.regions.nileDelta'),
+    t('cuisinePassport.filters.regions.aswan')
+  ];
+  
+  const categories = [
+    t('cuisinePassport.filters.categories.all'),
+    t('cuisinePassport.filters.categories.appetizer'),
+    t('cuisinePassport.filters.categories.main'),
+    t('cuisinePassport.filters.categories.dessert'),
+    t('cuisinePassport.filters.categories.streetFood'),
+    t('cuisinePassport.filters.categories.beverage')
+  ];
+  
+  const difficulties = [
+    t('cuisinePassport.filters.difficulties.all'),
+    t('cuisinePassport.filters.difficulties.easy'),
+    t('cuisinePassport.filters.difficulties.medium'),
+    t('cuisinePassport.filters.difficulties.hard')
+  ];
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
   const [showARPreview, setShowARPreview] = useState(false);
@@ -634,8 +657,8 @@ export default function CuisinePassport() {
   return (
     <>
       <Helmet>
-        <title>Interactive Local Cuisine Flavor Passport - Afford Egypt</title>
-        <meta name="description" content="Discover authentic Egyptian cuisine with our interactive flavor passport. Track your culinary journey, explore traditional dishes, and experience AR menu previews." />
+        <title>{t('cuisinePassport.title')} - Afford Egypt</title>
+        <meta name="description" content={t('cuisinePassport.description')} />
       </Helmet>
 
       <div className="min-h-screen bg-white">
@@ -653,36 +676,35 @@ export default function CuisinePassport() {
         >
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-              Egyptian Cuisine{" "}
+              {t('cuisinePassport.hero.title')}{" "}
               <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
-                Flavor Passport
+                {t('cuisinePassport.hero.subtitle')}
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
-              Embark on an interactive culinary journey through authentic Egyptian flavors.<br/>
-              Track your taste adventures with AR menu previews and cultural stories.
+              {t('cuisinePassport.hero.description')}
             </p>
             
             {/* Progress Card */}
             <Card className="max-w-md mx-auto mb-8 bg-white/95 backdrop-blur-sm">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-gray-800">Your Culinary Journey</h3>
+                  <h3 className="font-semibold text-gray-800">{t('cuisinePassport.progress.title')}</h3>
                   <Award className="w-5 h-5 text-primary" />
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span>Dishes Tried</span>
+                    <span>{t('cuisinePassport.progress.dishesTriedLabel')}</span>
                     <span className="font-medium">{triedCount}/{dishes.length}</span>
                   </div>
                   <Progress value={progressPercentage} className="h-2" />
                   <p className="text-xs text-gray-600 text-center">
-                    {triedCount === 0 && "Start your flavor adventure!"}
-                    {triedCount > 0 && triedCount < 3 && "Great start! Keep exploring."}
-                    {triedCount >= 3 && triedCount < 6 && "You're becoming a food explorer!"}
-                    {triedCount >= 6 && "Culinary master in the making!"}
+                    {triedCount === 0 && t('cuisinePassport.progress.messages.start')}
+                    {triedCount > 0 && triedCount < 3 && t('cuisinePassport.progress.messages.beginner')}
+                    {triedCount >= 3 && triedCount < 6 && t('cuisinePassport.progress.messages.intermediate')}
+                    {triedCount >= 6 && t('cuisinePassport.progress.messages.advanced')}
                   </p>
                 </div>
               </CardContent>
@@ -697,7 +719,7 @@ export default function CuisinePassport() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
-                  placeholder="Search dishes..."
+                  placeholder={t('cuisinePassport.filters.searchPlaceholder')}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -737,7 +759,7 @@ export default function CuisinePassport() {
 
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Filter className="w-4 h-4" />
-              <span>Found {filteredDishes.length} dishes</span>
+              <span>{t('cuisinePassport.filters.foundDishes', { count: filteredDishes.length })}</span>
             </div>
           </div>
         </section>
@@ -756,12 +778,12 @@ export default function CuisinePassport() {
                     />
                     <div className="absolute top-3 right-3 flex gap-2">
                       <Badge className={getDifficultyColor(dish.difficulty)}>
-                        {dish.difficulty}
+                        {t(`cuisinePassport.filters.difficulties.${dish.difficulty.toLowerCase()}`)}
                       </Badge>
                       {dish.tried && (
                         <Badge className="bg-primary text-white">
                           <CheckCircle className="w-3 h-3 mr-1" />
-                          Tried
+                          {t('cuisinePassport.dish.tried')}
                         </Badge>
                       )}
                     </div>
@@ -895,7 +917,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.healthBenefits && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Health Benefits</h4>
+                    <h4 className="font-semibold mb-2 text-green-600">{t('cuisinePassport.dish.healthBenefits')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.healthBenefits.map((benefit, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -909,7 +931,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.servingStyles && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-primary">Serving Styles</h4>
+                    <h4 className="font-semibold mb-2 text-primary">{t('cuisinePassport.dish.servingStyles')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.servingStyles.map((style, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -923,7 +945,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.preparationMethods && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-blue-600">Preparation Methods</h4>
+                    <h4 className="font-semibold mb-2 text-blue-600">{t('cuisinePassport.dish.preparationMethods')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.preparationMethods.map((method, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -937,7 +959,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.signatureTraits && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-orange-600">Signature Traits</h4>
+                    <h4 className="font-semibold mb-2 text-orange-600">{t('cuisinePassport.dish.signatureTraits')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.signatureTraits.map((trait, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -951,7 +973,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.regionalVariations && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-purple-600">Regional Variations</h4>
+                    <h4 className="font-semibold mb-2 text-purple-600">{t('cuisinePassport.dish.regionalVariations')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.regionalVariations.map((variation, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -965,7 +987,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.cookingMethods && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-primary">Cooking Methods</h4>
+                    <h4 className="font-semibold mb-2 text-primary">{t('cuisinePassport.dish.cookingMethods')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.cookingMethods.map((method, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -979,7 +1001,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.preparationTips && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-yellow-600">Preparation Tips</h4>
+                    <h4 className="font-semibold mb-2 text-yellow-600">{t('cuisinePassport.dish.preparationTips')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.preparationTips.map((tip, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -993,7 +1015,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.traditionalUses && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-amber-600">Traditional Uses</h4>
+                    <h4 className="font-semibold mb-2 text-amber-600">{t('cuisinePassport.dish.traditionalUses')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.traditionalUses.map((use, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -1007,7 +1029,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.celebrationOccasions && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-pink-600">Celebration Occasions</h4>
+                    <h4 className="font-semibold mb-2 text-pink-600">{t('cuisinePassport.dish.celebrationOccasions')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.celebrationOccasions.map((occasion, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -1021,7 +1043,7 @@ export default function CuisinePassport() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold mb-2">Ingredients</h4>
+                    <h4 className="font-semibold mb-2">{t('cuisinePassport.dish.ingredients')}</h4>
                     <div className="flex flex-wrap gap-1">
                       {selectedDish.ingredients.map((ingredient, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
@@ -1032,7 +1054,7 @@ export default function CuisinePassport() {
                   </div>
 
                   <div>
-                    <h4 className="font-semibold mb-2">Best Locations to Try</h4>
+                    <h4 className="font-semibold mb-2">{t('cuisinePassport.dish.bestLocations')}</h4>
                     <ul className="text-sm space-y-1">
                       {selectedDish.bestLocations.map((location, index) => (
                         <li key={index} className="flex items-center gap-2">
@@ -1046,7 +1068,7 @@ export default function CuisinePassport() {
 
                 {selectedDish.allergens.length > 0 && (
                   <div>
-                    <h4 className="font-semibold mb-2 text-red-600">Allergens</h4>
+                    <h4 className="font-semibold mb-2 text-red-600">{t('cuisinePassport.dish.allergens')}</h4>
                     <div className="flex gap-1">
                       {selectedDish.allergens.map((allergen, index) => (
                         <Badge key={index} variant="destructive" className="text-xs">
@@ -1062,14 +1084,14 @@ export default function CuisinePassport() {
                     onClick={() => toggleTried(selectedDish.id)}
                     className={selectedDish.tried ? "bg-green-600 hover:bg-green-700" : ""}
                   >
-                    {selectedDish.tried ? "Mark as Not Tried" : "Mark as Tried"}
+                    {selectedDish.tried ? t('cuisinePassport.dish.markAsNotTried') : t('cuisinePassport.dish.markAsTried')}
                   </Button>
                   <Button 
                     variant="outline"
                     onClick={() => setShowARPreview(true)}
                   >
                     <Camera className="w-4 h-4 mr-2" />
-                    AR Preview
+                    {t('cuisinePassport.dish.arPreview')}
                   </Button>
                 </div>
               </CardContent>
@@ -1093,7 +1115,7 @@ export default function CuisinePassport() {
                   <h2 className="text-3xl font-bold text-primary mb-2">{selectedDish.name}</h2>
                   <p className="text-xl text-gray-600 mb-3">{selectedDish.arabicName}</p>
                   <Badge className="bg-primary text-white">
-                    {selectedDish.category === "Beverage" ? "Traditional Egyptian Drink" : "Traditional Egyptian Dish"}
+                    {selectedDish.category === "Beverage" ? t('cuisinePassport.badges.traditionalDrink') : t('cuisinePassport.badges.traditionalDish')}
                   </Badge>
                 </div>
               </CardHeader>
@@ -1104,7 +1126,7 @@ export default function CuisinePassport() {
                   <div className="flex items-start gap-3">
                     <Star className="w-6 h-6 text-amber-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-amber-800 mb-2">Cultural Story</h3>
+                      <h3 className="font-semibold text-amber-800 mb-2">{t('cuisinePassport.dish.culturalStory')}</h3>
                       <p className="text-amber-700 leading-relaxed">{selectedDish.culturalStory}</p>
                     </div>
                   </div>
@@ -1115,7 +1137,7 @@ export default function CuisinePassport() {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
                       <Clock className="w-5 h-5 text-primary" />
-                      <span className="font-semibold">Cook Time</span>
+                      <span className="font-semibold">{t('cuisinePassport.dish.cookingTime')}</span>
                     </div>
                     <p className="text-gray-700">{selectedDish.cookingTime}</p>
                   </div>
@@ -1123,7 +1145,7 @@ export default function CuisinePassport() {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
                       <DollarSign className="w-5 h-5 text-primary" />
-                      <span className="font-semibold">Price Range</span>
+                      <span className="font-semibold">{t('cuisinePassport.dish.priceRange')}</span>
                     </div>
                     <p className="text-gray-700">{selectedDish.priceRange}</p>
                   </div>
@@ -1147,7 +1169,7 @@ export default function CuisinePassport() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-3">
                     <Leaf className="w-5 h-5 text-green-500" />
-                    <span className="font-semibold">Nutrition Score</span>
+                    <span className="font-semibold">{t('cuisinePassport.dish.nutritionScore')}</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-4 mb-2">
                     <div 
@@ -1155,14 +1177,14 @@ export default function CuisinePassport() {
                       style={{ width: `${selectedDish.nutritionScore}%` }}
                     ></div>
                   </div>
-                  <p className="text-sm text-gray-600">{selectedDish.nutritionScore}% Healthy Score</p>
+                  <p className="text-sm text-gray-600">{selectedDish.nutritionScore}% {t('cuisinePassport.dish.healthyScore')}</p>
                 </div>
 
                 {/* Best Places to Try */}
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                   <div className="flex items-center gap-2 mb-3">
                     <MapPin className="w-5 h-5 text-blue-500" />
-                    <span className="font-semibold text-blue-800">Best Places to Try</span>
+                    <span className="font-semibold text-blue-800">{t('cuisinePassport.dish.bestPlacesToTry')}</span>
                   </div>
                   <div className="space-y-2">
                     {selectedDish.bestLocations.map((location, index) => (
@@ -1177,7 +1199,7 @@ export default function CuisinePassport() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-3">
                     <Utensils className="w-5 h-5 text-primary" />
-                    <span className="font-semibold">Key Ingredients</span>
+                    <span className="font-semibold">{t('cuisinePassport.dish.keyIngredients')}</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {selectedDish.ingredients.map((ingredient, index) => (
@@ -1199,7 +1221,7 @@ export default function CuisinePassport() {
                     }`}
                   >
                     <Heart className={`w-5 h-5 ${selectedDish.tried ? 'fill-current' : ''}`} />
-                    {selectedDish.tried ? 'Marked as Tried!' : 'Mark as Tried'}
+                    {selectedDish.tried ? t('cuisinePassport.dish.markedAsTried') : t('cuisinePassport.dish.markAsTried')}
                   </button>
                   
                   <button
@@ -1207,7 +1229,7 @@ export default function CuisinePassport() {
                     className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors flex-1 sm:flex-none"
                   >
                     <X className="w-5 h-5" />
-                    Close
+                    {t('cuisinePassport.dish.close')}
                   </button>
                 </div>
               </CardContent>

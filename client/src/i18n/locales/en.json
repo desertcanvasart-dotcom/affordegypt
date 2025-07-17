@@ -1427,5 +1427,80 @@
         }
       }
     }
+  },
+  "cuisinePassport": {
+    "title": "Egyptian Cuisine Flavor Passport",
+    "description": "Discover authentic Egyptian cuisine with our interactive flavor passport. Track your culinary journey, explore traditional dishes, and experience AR menu previews.",
+    "hero": {
+      "title": "Egyptian Cuisine",
+      "subtitle": "Flavor Passport",
+      "description": "Embark on an interactive culinary journey through authentic Egyptian flavors. Track your taste adventures with AR menu previews and cultural stories."
+    },
+    "progress": {
+      "title": "Your Culinary Journey",
+      "dishesTriedLabel": "Dishes Tried",
+      "messages": {
+        "start": "Start your flavor adventure!",
+        "beginner": "Great start! Keep exploring.",
+        "intermediate": "You're becoming a food explorer!",
+        "advanced": "Culinary master in the making!"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Search dishes...",
+      "foundDishes": "Found {count} dishes",
+      "regions": {
+        "all": "All Regions",
+        "cairo": "Cairo",
+        "alexandria": "Alexandria",
+        "upperEgypt": "Upper Egypt",
+        "nileDelta": "Nile Delta",
+        "aswan": "Aswan"
+      },
+      "categories": {
+        "all": "All Categories",
+        "appetizer": "Appetizer",
+        "main": "Main",
+        "dessert": "Dessert",
+        "streetFood": "Street Food",
+        "beverage": "Beverage"
+      },
+      "difficulties": {
+        "all": "All Levels",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      }
+    },
+    "dish": {
+      "spiceLevel": "Spice Level",
+      "difficulty": "Difficulty",
+      "cookingTime": "Cook Time",
+      "priceRange": "Price Range",
+      "tried": "Tried",
+      "markAsTried": "Mark as Tried",
+      "markAsNotTried": "Mark as Not Tried",
+      "markedAsTried": "Marked as Tried!",
+      "arPreview": "AR Preview",
+      "close": "Close",
+      "culturalStory": "Cultural Story",
+      "ingredients": "Ingredients",
+      "keyIngredients": "Key Ingredients",
+      "bestLocations": "Best Locations to Try",
+      "allergens": "Allergens",
+      "signatureTraits": "Signature Traits",
+      "servingStyles": "Serving Styles",
+      "cookingMethods": "Cooking Methods",
+      "preparationTips": "Preparation Tips",
+      "regionalVariations": "Regional Variations",
+      "traditionalUses": "Traditional Uses",
+      "celebrationOccasions": "Celebration Occasions",
+      "nutritionScore": "Nutrition Score",
+      "healthBenefits": "Health Benefits"
+    },
+    "badges": {
+      "traditionalDish": "Traditional Egyptian Dish",
+      "traditionalDrink": "Traditional Egyptian Drink"
+    }
   }
 }

@@ -1454,5 +1454,80 @@
         }
       }
     }
+  },
+  "cuisinePassport": {
+    "title": "Pasaporte de Sabores de la Cocina Egipcia",
+    "description": "Descubre la auténtica cocina egipcia con nuestro pasaporte de sabores interactivo. Sigue tu viaje culinario, explora platos tradicionales y experimenta vistas previas AR de menús.",
+    "hero": {
+      "title": "Cocina Egipcia",
+      "subtitle": "Pasaporte de Sabores",
+      "description": "Embárcate en un viaje culinario interactivo a través de los auténticos sabores egipcios. Rastrea tus aventuras gustativas con vistas previas AR de menús e historias culturales."
+    },
+    "progress": {
+      "title": "Tu Viaje Culinario",
+      "dishesTriedLabel": "Platos Probados",
+      "messages": {
+        "start": "¡Comienza tu aventura de sabores!",
+        "beginner": "¡Excelente comienzo! Sigue explorando.",
+        "intermediate": "¡Te estás convirtiendo en un explorador gastronómico!",
+        "advanced": "¡Maestro culinario en proceso!"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Buscar platos...",
+      "foundDishes": "Se encontraron {count} platos",
+      "regions": {
+        "all": "Todas las Regiones",
+        "cairo": "El Cairo",
+        "alexandria": "Alejandría",
+        "upperEgypt": "Alto Egipto",
+        "nileDelta": "Delta del Nilo",
+        "aswan": "Asuán"
+      },
+      "categories": {
+        "all": "Todas las Categorías",
+        "appetizer": "Aperitivo",
+        "main": "Principal",
+        "dessert": "Postre",
+        "streetFood": "Comida Callejera",
+        "beverage": "Bebida"
+      },
+      "difficulties": {
+        "all": "Todos los Niveles",
+        "easy": "Fácil",
+        "medium": "Medio",
+        "hard": "Difícil"
+      }
+    },
+    "dish": {
+      "spiceLevel": "Nivel de Especias",
+      "difficulty": "Dificultad",
+      "cookingTime": "Tiempo de Cocción",
+      "priceRange": "Rango de Precio",
+      "tried": "Probado",
+      "markAsTried": "Marcar como Probado",
+      "markAsNotTried": "Marcar como No Probado",
+      "markedAsTried": "¡Marcado como Probado!",
+      "arPreview": "Vista Previa AR",
+      "close": "Cerrar",
+      "culturalStory": "Historia Cultural",
+      "ingredients": "Ingredientes",
+      "keyIngredients": "Ingredientes Clave",
+      "bestLocations": "Mejores Lugares para Probar",
+      "allergens": "Alérgenos",
+      "signatureTraits": "Características Distintivas",
+      "servingStyles": "Estilos de Servir",
+      "cookingMethods": "Métodos de Cocción",
+      "preparationTips": "Consejos de Preparación",
+      "regionalVariations": "Variaciones Regionales",
+      "traditionalUses": "Usos Tradicionales",
+      "celebrationOccasions": "Ocasiones de Celebración",
+      "nutritionScore": "Puntuación Nutricional",
+      "healthBenefits": "Beneficios para la Salud"
+    },
+    "badges": {
+      "traditionalDish": "Plato Tradicional Egipcio",
+      "traditionalDrink": "Bebida Tradicional Egipcia"
+    }
   }
 }

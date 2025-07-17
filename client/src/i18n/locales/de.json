@@ -1604,5 +1604,80 @@
         }
       }
     }
+  },
+  "cuisinePassport": {
+    "title": "Ägyptischer Küche Geschmackspass",
+    "description": "Entdecken Sie authentische ägyptische Küche mit unserem interaktiven Geschmackspass. Verfolgen Sie Ihre kulinarische Reise, erkunden Sie traditionelle Gerichte und erleben Sie AR-Menü-Vorschauen.",
+    "hero": {
+      "title": "Ägyptische Küche",
+      "subtitle": "Geschmackspass",
+      "description": "Begeben Sie sich auf eine interaktive kulinarische Reise durch authentische ägyptische Aromen. Verfolgen Sie Ihre Geschmacksabenteuer mit AR-Menü-Vorschauen und kulturellen Geschichten."
+    },
+    "progress": {
+      "title": "Ihre Kulinarische Reise",
+      "dishesTriedLabel": "Gerichte Probiert",
+      "messages": {
+        "start": "Beginnen Sie Ihr Geschmacksabenteuer!",
+        "beginner": "Großartiger Start! Weiter erkunden.",
+        "intermediate": "Sie werden ein kulinarischer Entdecker!",
+        "advanced": "Kulinarischer Meister in Ausbildung!"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Gerichte suchen...",
+      "foundDishes": "{count} Gerichte gefunden",
+      "regions": {
+        "all": "Alle Regionen",
+        "cairo": "Kairo",
+        "alexandria": "Alexandria",
+        "upperEgypt": "Oberägypten",
+        "nileDelta": "Nil-Delta",
+        "aswan": "Assuan"
+      },
+      "categories": {
+        "all": "Alle Kategorien",
+        "appetizer": "Vorspeise",
+        "main": "Hauptgericht",
+        "dessert": "Dessert",
+        "streetFood": "Straßenessen",
+        "beverage": "Getränk"
+      },
+      "difficulties": {
+        "all": "Alle Schwierigkeitsgrade",
+        "easy": "Einfach",
+        "medium": "Mittel",
+        "hard": "Schwer"
+      }
+    },
+    "dish": {
+      "spiceLevel": "Gewürzniveau",
+      "difficulty": "Schwierigkeit",
+      "cookingTime": "Kochzeit",
+      "priceRange": "Preisspanne",
+      "tried": "Probiert",
+      "markAsTried": "Als Probiert Markieren",
+      "markAsNotTried": "Als Nicht Probiert Markieren",
+      "markedAsTried": "Als Probiert Markiert!",
+      "arPreview": "AR-Vorschau",
+      "close": "Schließen",
+      "culturalStory": "Kulturelle Geschichte",
+      "ingredients": "Zutaten",
+      "keyIngredients": "Hauptzutaten",
+      "bestLocations": "Beste Orte zum Probieren",
+      "allergens": "Allergene",
+      "signatureTraits": "Charakteristische Merkmale",
+      "servingStyles": "Servierstile",
+      "cookingMethods": "Kochmethoden",
+      "preparationTips": "Zubereitungstipps",
+      "regionalVariations": "Regionale Variationen",
+      "traditionalUses": "Traditionelle Verwendungen",
+      "celebrationOccasions": "Feierliche Anlässe",
+      "nutritionScore": "Nährwert-Score",
+      "healthBenefits": "Gesundheitsvorteile"
+    },
+    "badges": {
+      "traditionalDish": "Traditionelles Ägyptisches Gericht",
+      "traditionalDrink": "Traditionelles Ägyptisches Getränk"
+    }
   }
 }
