@@ -1677,7 +1677,12 @@
       "details": "Details",
       "explore": "Entdecken",
       "healthLabel": "Gesundheit",
-      "spiceLevel": "Schärfegrad"
+      "spiceLevel": "Schärfegrad",
+      "cookingTime": "Kochzeit",
+      "priceRange": "Preisbereich",
+      "culturalStory": "Kulturelle Geschichte",
+      "ingredients": "Zutaten",
+      "tried": "Versucht"
     },
     "badges": {
       "traditionalDish": "Traditionelles Ägyptisches Gericht",

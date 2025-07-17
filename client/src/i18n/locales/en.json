@@ -1500,7 +1500,12 @@
       "details": "Details",
       "explore": "Explore",
       "healthLabel": "Health",
-      "spiceLevel": "Spice Level"
+      "spiceLevel": "Spice Level",
+      "cookingTime": "Cooking Time",
+      "priceRange": "Price Range",
+      "culturalStory": "Cultural Story",
+      "ingredients": "Ingredients",
+      "tried": "Tried"
     },
     "badges": {
       "traditionalDish": "Traditional Egyptian Dish",

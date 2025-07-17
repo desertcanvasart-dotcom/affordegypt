@@ -1527,7 +1527,12 @@
       "details": "Detalles",
       "explore": "Explorar",
       "healthLabel": "Salud",
-      "spiceLevel": "Nivel de Picante"
+      "spiceLevel": "Nivel de Picante",
+      "cookingTime": "Tiempo de Cocción",
+      "priceRange": "Rango de Precio",
+      "culturalStory": "Historia Cultural",
+      "ingredients": "Ingredientes",
+      "tried": "Probado"
     },
     "badges": {
       "traditionalDish": "Plato Tradicional Egipcio",

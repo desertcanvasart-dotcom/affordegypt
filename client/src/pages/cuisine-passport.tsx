@@ -897,11 +897,11 @@ export default function CuisinePassport() {
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="font-medium">Cooking Time:</span>
+                        <span className="font-medium">{t('cuisinePassport.dish.cookingTime')}:</span>
                         <p>{selectedDish.cookingTime}</p>
                       </div>
                       <div>
-                        <span className="font-medium">Price Range:</span>
+                        <span className="font-medium">{t('cuisinePassport.dish.priceRange')}:</span>
                         <p>{selectedDish.priceRange}</p>
                       </div>
                     </div>
@@ -911,7 +911,7 @@ export default function CuisinePassport() {
 
               <CardContent className="space-y-6">
                 <div>
-                  <h4 className="font-semibold mb-2">Cultural Story</h4>
+                  <h4 className="font-semibold mb-2">{t('cuisinePassport.dish.culturalStory')}</h4>
                   <p className="text-gray-700 text-sm">{selectedDish.culturalStory}</p>
                 </div>
 

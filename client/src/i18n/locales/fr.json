@@ -1526,7 +1526,12 @@
       "details": "Détails",
       "explore": "Explorer",
       "healthLabel": "Santé",
-      "spiceLevel": "Niveau d'Épice"
+      "spiceLevel": "Niveau d'Épice",
+      "cookingTime": "Temps de Cuisson",
+      "priceRange": "Gamme de Prix",
+      "culturalStory": "Histoire Culturelle",
+      "ingredients": "Ingrédients",
+      "tried": "Essayé"
     },
     "badges": {
       "traditionalDish": "Plat Traditionnel Égyptien",
