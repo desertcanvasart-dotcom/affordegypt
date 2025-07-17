@@ -1694,6 +1694,43 @@
       "hawawshi": "Klassisches ägyptisches fleischgefülltes Brot - gewürztes Hackfleisch oder Lamm gemischt mit Gemüse und Kräutern, in Baladi-Brot gestopft und gebacken bis es außen knusprig golden und innen saftig gefüllt ist.",
       "karkade": "Traditioneller ägyptischer Hibiskustee aus getrockneten Hibiscus sabdariffa-Blütenblättern. Tiefkarmesinrote Farbe, herber und fruchtiger Geschmack ähnlich Cranberry. Reich an Antioxidantien und koffeinfrei."
     },
+    "culturalStories": {
+      "koshari": "Im 19. Jahrhundert durch Mischung verschiedener Getreidearten von verschiedenen Kulturen, die in Ägypten handelten, entstanden. Obwohl bescheidenen Ursprungs, ist Koshari ein Symbol ägyptischer Kreativität, serviert in Häusern, Straßenständen und Restaurants von Kairo bis Assuan. Es repräsentiert das ultimative ägyptische Straßen-Comfort-Food."
+    },
+    "servingStyles": {
+      "koshari": [
+        "Schichtweise in tiefer Schüssel beginnend mit Reis serviert",
+        "Gekrönt mit Linsen, Nudeln und Kichererbsen",
+        "Bedeckt mit knoblauchiger Tomatensauce",
+        "Abgeschlossen mit knusprigen gebratenen Zwiebeln",
+        "Optional würzige Essigsauce (Da'a) an der Seite"
+      ]
+    },
+    "signatureTraits": {
+      "koshari": [
+        "Herzhaft und sättigend - eine vollständige Mahlzeit in einer Schüssel",
+        "Natürlich vegan (kein Fleisch oder Milchprodukte)",
+        "Geschichtete Texturen: knusprig, weich, zäh",
+        "Kräftige, würzige, würzige Aromen",
+        "Erschwinglich und weit verbreitet"
+      ]
+    },
+    "cookingMethods": {
+      "koshari": [
+        "Jede Komponente separat kochen für beste Textur",
+        "Zwiebeln goldbraun und knusprig braten (10-15 Minuten)",
+        "Tomatensauce 15-20 Minuten köcheln lassen bis eingedickt",
+        "Komponenten kurz vor dem Servieren schichten für optimale Textur"
+      ]
+    },
+    "preparationTips": {
+      "koshari": [
+        "Extra gebratene Zwiebeln machen - sie verschwinden zuerst",
+        "Alle Elemente im Voraus vorbereiten und vor dem Servieren zusammenfügen",
+        "Prise Baharat (ägyptische Gewürzmischung) für authentischen Geschmack hinzufügen",
+        "Lässt sich gut aufwärmen, ideal für Meal Prep"
+      ]
+    },
     "badges": {
       "traditionalDish": "Traditionelles Ägyptisches Gericht",
       "traditionalDrink": "Traditionelles Ägyptisches Getränk"

@@ -1543,6 +1543,43 @@
       "hawawshi": "Pain farci à la viande égyptien classique - bœuf ou agneau haché épicé mélangé avec des légumes et des herbes, fourré dans du pain baladi et cuit jusqu'à être doré et croustillant à l'extérieur avec une farce juteuse à l'intérieur.",
       "karkade": "Thé d'hibiscus traditionnel égyptien fait avec des pétales séchés d'Hibiscus sabdariffa. Couleur cramoisie profonde, saveur acidulée et fruitée similaire à la canneberge. Riche en antioxydants et sans caféine."
     },
+    "culturalStories": {
+      "koshari": "Créé au 19ème siècle en mélangeant divers plats de grains de différentes cultures commerçant en Égypte. Bien que d'origine humble, Koshari est un symbole de l'ingéniosité égyptienne, servi dans les maisons, les étals de rue et les restaurants du Caire à Assouan. Il représente la nourriture de rue réconfortante ultime d'Égypte."
+    },
+    "servingStyles": {
+      "koshari": [
+        "Servi en couches dans un bol profond en commençant par le riz",
+        "Garni de lentilles, pâtes et pois chiches",
+        "Recouvert de sauce tomate à l'ail",
+        "Fini avec des oignons frits croustillants",
+        "Sauce de vinaigre épicée optionnelle (Da'a) sur le côté"
+      ]
+    },
+    "signatureTraits": {
+      "koshari": [
+        "Copieux et rassasiant - un repas complet dans un bol",
+        "Naturellement végétalien (pas de viande ni de produits laitiers)",
+        "Textures en couches : croustillant, doux, moelleux",
+        "Saveurs audacieuses, épicées, acidulées",
+        "Abordable et largement disponible"
+      ]
+    },
+    "cookingMethods": {
+      "koshari": [
+        "Cuire chaque composant séparément pour une meilleure texture",
+        "Faire frire les oignons jusqu'à ce qu'ils soient dorés et croustillants (10-15 minutes)",
+        "Faire mijoter la sauce tomate 15-20 minutes jusqu'à épaississement",
+        "Disposer les composants en couches juste avant de servir pour une texture optimale"
+      ]
+    },
+    "preparationTips": {
+      "koshari": [
+        "Faire des oignons frits supplémentaires - ils disparaissent en premier",
+        "Préparer tous les éléments à l'avance et assembler avant de servir",
+        "Ajouter une pincée de baharat (mélange d'épices égyptiennes) pour un goût authentique",
+        "Se réchauffe bien, ce qui en fait un excellent choix pour la préparation de repas"
+      ]
+    },
     "badges": {
       "traditionalDish": "Plat Traditionnel Égyptien",
       "traditionalDrink": "Boisson Traditionnelle Égyptienne"

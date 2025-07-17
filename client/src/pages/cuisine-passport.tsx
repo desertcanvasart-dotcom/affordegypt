@@ -530,6 +530,49 @@ export default function CuisinePassport() {
     return dish.description; // fallback to original description
   };
 
+  // Helper function to get translated cultural story
+  const getTranslatedCulturalStory = (dish: Dish) => {
+    const dishKeys: {[key: string]: string} = {
+      "Koshari": "koshari",
+      "Ful Medames": "fulMedames", 
+      "Mahshi": "mahshi",
+      "Molokhia": "molokhia",
+      "Roz Bel Laban": "roz",
+      "Rice Muammar": "ricemuammar",
+      "Hawawshi": "hawawshi",
+      "Karkade": "karkade"
+    };
+    
+    const translationKey = dishKeys[dish.name];
+    if (translationKey) {
+      return t(`cuisinePassport.culturalStories.${translationKey}`);
+    }
+    return dish.culturalStory; // fallback
+  };
+
+  // Helper function to get translated array content
+  const getTranslatedArrayContent = (dish: Dish, arrayType: 'servingStyles' | 'signatureTraits' | 'cookingMethods' | 'preparationTips') => {
+    const dishKeys: {[key: string]: string} = {
+      "Koshari": "koshari",
+      "Ful Medames": "fulMedames", 
+      "Mahshi": "mahshi",
+      "Molokhia": "molokhia",
+      "Roz Bel Laban": "roz",
+      "Rice Muammar": "ricemuammar",
+      "Hawawshi": "hawawshi",
+      "Karkade": "karkade"
+    };
+    
+    const translationKey = dishKeys[dish.name];
+    if (translationKey) {
+      const translatedArray = t(`cuisinePassport.${arrayType}.${translationKey}`, { returnObjects: true });
+      if (Array.isArray(translatedArray)) {
+        return translatedArray;
+      }
+    }
+    return dish[arrayType] || []; // fallback
+  };
+
   const regionOptions = [
     { value: "All Regions", label: t('cuisinePassport.filters.regions.all') },
     { value: "Cairo", label: t('cuisinePassport.filters.regions.cairo') },
@@ -932,7 +975,7 @@ export default function CuisinePassport() {
               <CardContent className="space-y-6">
                 <div>
                   <h4 className="font-semibold mb-2">{t('cuisinePassport.dish.culturalStory')}</h4>
-                  <p className="text-gray-700 text-sm">{selectedDish.culturalStory}</p>
+                  <p className="text-gray-700 text-sm">{getTranslatedCulturalStory(selectedDish)}</p>
                 </div>
 
                 {selectedDish.healthBenefits && (
@@ -953,7 +996,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-primary">{t('cuisinePassport.dish.servingStyles')}</h4>
                     <ul className="text-sm space-y-1">
-                      {selectedDish.servingStyles.map((style, index) => (
+                      {getTranslatedArrayContent(selectedDish, 'servingStyles').map((style, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <ChefHat className="w-3 h-3 text-primary" />
                           {style}
@@ -981,7 +1024,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-orange-600">{t('cuisinePassport.dish.signatureTraits')}</h4>
                     <ul className="text-sm space-y-1">
-                      {selectedDish.signatureTraits.map((trait, index) => (
+                      {getTranslatedArrayContent(selectedDish, 'signatureTraits').map((trait, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <Star className="w-3 h-3 text-orange-500" />
                           {trait}
@@ -1009,7 +1052,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-primary">{t('cuisinePassport.dish.cookingMethods')}</h4>
                     <ul className="text-sm space-y-1">
-                      {selectedDish.cookingMethods.map((method, index) => (
+                      {getTranslatedArrayContent(selectedDish, 'cookingMethods').map((method, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <ChefHat className="w-3 h-3 text-primary" />
                           {method}
@@ -1023,7 +1066,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-yellow-600">{t('cuisinePassport.dish.preparationTips')}</h4>
                     <ul className="text-sm space-y-1">
-                      {selectedDish.preparationTips.map((tip, index) => (
+                      {getTranslatedArrayContent(selectedDish, 'preparationTips').map((tip, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <Clock className="w-3 h-3 text-yellow-500" />
                           {tip}

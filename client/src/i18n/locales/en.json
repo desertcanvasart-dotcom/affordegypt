@@ -1517,6 +1517,43 @@
       "hawawshi": "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside.",
       "karkade": "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free."
     },
+    "culturalStories": {
+      "koshari": "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food."
+    },
+    "servingStyles": {
+      "koshari": [
+        "Layered in deep bowl starting with rice",
+        "Topped with lentils, pasta, and chickpeas",
+        "Covered in garlicky tomato sauce",
+        "Finished with crispy fried onions",
+        "Optional spicy vinegar sauce (Da'a) on the side"
+      ]
+    },
+    "signatureTraits": {
+      "koshari": [
+        "Hearty & filling - a full meal in one bowl",
+        "Naturally vegan (no meat or dairy)",
+        "Layered textures: crispy, soft, chewy",
+        "Bold, spicy, tangy flavours",
+        "Affordable & widely available"
+      ]
+    },
+    "cookingMethods": {
+      "koshari": [
+        "Cook each component separately for best texture",
+        "Fry onions until deep golden and crispy (10-15 minutes)",
+        "Simmer tomato sauce 15-20 minutes until thickened",
+        "Layer components just before serving for optimal texture"
+      ]
+    },
+    "preparationTips": {
+      "koshari": [
+        "Make extra fried onions - they disappear first",
+        "Prepare all elements in advance and assemble before serving",
+        "Add dash of baharat (Egyptian spice mix) for authentic flavor",
+        "Reheats well, making it great for meal prep"
+      ]
+    },
     "badges": {
       "traditionalDish": "Traditional Egyptian Dish",
       "traditionalDrink": "Traditional Egyptian Drink"

@@ -1544,6 +1544,43 @@
       "hawawshi": "Pan relleno de carne egipcio clásico - carne de res o cordero molida condimentada mezclada con verduras y hierbas, rellena en pan baladi y horneada hasta quedar dorada y crujiente por fuera con relleno jugoso por dentro.",
       "karkade": "Té de hibisco tradicional egipcio hecho con pétalos secos de Hibiscus sabdariffa. Color carmesí profundo, sabor ácido y afrutado similar al arándano. Rico en antioxidantes y sin cafeína."
     },
+    "culturalStories": {
+      "koshari": "Creado en el siglo XIX al mezclar varios platos de granos de diferentes culturas comerciando en Egipto. Aunque de origen humilde, Koshari es un símbolo del ingenio egipcio, servido en hogares, puestos callejeros y restaurantes desde El Cairo hasta Asuán. Representa la comida callejera reconfortante definitiva de Egipto."
+    },
+    "servingStyles": {
+      "koshari": [
+        "Servido en capas en tazón profundo comenzando con arroz",
+        "Coronado con lentejas, pasta y garbanzos",
+        "Cubierto con salsa de tomate con ajo",
+        "Terminado con cebollas fritas crujientes",
+        "Salsa de vinagre picante opcional (Da'a) a un lado"
+      ]
+    },
+    "signatureTraits": {
+      "koshari": [
+        "Abundante y saciante - una comida completa en un tazón",
+        "Naturalmente vegano (sin carne ni lácteos)",
+        "Texturas en capas: crujiente, suave, masticable",
+        "Sabores audaces, picantes, ácidos",
+        "Asequible y ampliamente disponible"
+      ]
+    },
+    "cookingMethods": {
+      "koshari": [
+        "Cocinar cada componente por separado para mejor textura",
+        "Freír cebollas hasta que estén doradas y crujientes (10-15 minutos)",
+        "Hervir salsa de tomate 15-20 minutos hasta espesar",
+        "Colocar componentes en capas justo antes de servir para textura óptima"
+      ]
+    },
+    "preparationTips": {
+      "koshari": [
+        "Hacer cebollas fritas extra - desaparecen primero",
+        "Preparar todos los elementos con anticipación y ensamblar antes de servir",
+        "Agregar pizca de baharat (mezcla de especias egipcias) para sabor auténtico",
+        "Se recalienta bien, lo que lo hace ideal para preparación de comidas"
+      ]
+    },
     "badges": {
       "traditionalDish": "Plato Tradicional Egipcio",
       "traditionalDrink": "Bebida Tradicional Egipcia"
