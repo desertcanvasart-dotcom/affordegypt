@@ -295,6 +295,27 @@
     "selectDate": "Veuillez sélectionner une date de voyage",
     "selectRoute": "Veuillez sélectionner au moins un itinéraire"
   },
+  "slugs": {
+    "destinations": "destinations",
+    "travel-tips": "conseils-voyage",
+    "reviews": "avis",
+    "submit-review": "soumettre-avis",
+    "about": "a-propos",
+    "contact": "contact",
+    "budget-travel-egypt": "voyage-budget-egypte",
+    "egyptian-street-food-guide": "guide-street-food-egyptien",
+    "nile-valley-guide": "guide-vallee-du-nil",
+    "sinai-peninsula-guide": "guide-peninsule-sinai",
+    "eastern-western-deserts-guide": "guide-deserts-oriental-occidental",
+    "cuisine-passport": "passeport-culinaire",
+    "booking-agreement": "accord-de-reservation",
+    "terms-of-service": "conditions-de-service",
+    "privacy-policy": "politique-de-confidentialite",
+    "cookie-policy": "politique-cookies",
+    "transfers": "transferts",
+    "pricing-tool": "outil-de-prix",
+    "attractions": "attractions"
+  },
   "reviews": {
     "title": "Ce Que Disent Nos Voyageurs",
     "subtitle": "Expériences réelles de milliers de voyageurs",

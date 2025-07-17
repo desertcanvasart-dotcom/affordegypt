@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "@/components/language-selector";
+import { useTranslatedLink } from "@/utils/slugTranslation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +20,7 @@ export default function Navbar() {
   const [location, setLocation] = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
   const { t } = useTranslation();
+  const getTranslatedLink = useTranslatedLink();
 
   const navigateToSection = (sectionId: string) => {
     // If we're on the homepage, scroll to the section
@@ -258,7 +260,7 @@ export default function Navbar() {
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-4">
               <Link 
-                href="/destinations"
+                href={getTranslatedLink("destinations")}
                 onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
               >

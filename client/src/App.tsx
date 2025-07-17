@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FaWhatsapp } from "react-icons/fa";
 import { AuthProvider } from "@/hooks/useAuth";
+import { getAllSlugVariants } from "@/utils/slugTranslation";
 import Home from "@/pages/home";
 import Checkout from "@/pages/checkout";
 import BookPage from "@/pages/book";
@@ -45,6 +46,14 @@ import Register from "@/pages/register";
 
 import NotFound from "@/pages/not-found";
 
+// Helper function to create routes for all language variants
+function createMultilingualRoute(englishSlug: string, Component: React.ComponentType<any>) {
+  const variants = getAllSlugVariants(englishSlug);
+  return variants.map((slug) => (
+    <Route key={slug} path={`/${slug}`} component={Component} />
+  ));
+}
+
 function Router() {
   return (
     <Switch>
@@ -62,28 +71,29 @@ function Router() {
       <Route path="/routes/book/:routeId" component={RouteBooking} />
       <Route path="/route-booking" component={RouteBooking} />
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
-      <Route path="/transfers" component={Transfers} />
-      <Route path="/pricing-tool" component={PricingTool} />
-
-      <Route path="/attractions" component={AttractionsSimple} />
-      <Route path="/destinations" component={Destinations} />
-      <Route path="/travel-tips" component={TravelTips} />
-      <Route path="/reviews" component={Reviews} />
-      <Route path="/submit-review" component={SubmitReview} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/budget-travel-egypt" component={BudgetTravelEgypt} />
-      <Route path="/egyptian-street-food-guide" component={EgyptianStreetFoodGuide} />
-      <Route path="/nile-valley-guide" component={NileValleyGuide} />
-      <Route path="/sinai-peninsula-guide" component={SinaiPeninsulaGuide} />
-      <Route path="/eastern-western-deserts-guide" component={EasternWesternDesertsGuide} />
-      <Route path="/cuisine-passport" component={CuisinePassport} />
-      <Route path="/booking-agreement" component={BookingAgreement} />
-      <Route path="/terms-of-service" component={TermsOfService} />
-      <Route path="/privacy-policy" component={PrivacyPolicy} />
-      <Route path="/cookie-policy" component={CookiePolicy} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+
+      {/* Multilingual routes */}
+      {createMultilingualRoute("transfers", Transfers)}
+      {createMultilingualRoute("pricing-tool", PricingTool)}
+      {createMultilingualRoute("attractions", AttractionsSimple)}
+      {createMultilingualRoute("destinations", Destinations)}
+      {createMultilingualRoute("travel-tips", TravelTips)}
+      {createMultilingualRoute("reviews", Reviews)}
+      {createMultilingualRoute("submit-review", SubmitReview)}
+      {createMultilingualRoute("about", About)}
+      {createMultilingualRoute("contact", Contact)}
+      {createMultilingualRoute("budget-travel-egypt", BudgetTravelEgypt)}
+      {createMultilingualRoute("egyptian-street-food-guide", EgyptianStreetFoodGuide)}
+      {createMultilingualRoute("nile-valley-guide", NileValleyGuide)}
+      {createMultilingualRoute("sinai-peninsula-guide", SinaiPeninsulaGuide)}
+      {createMultilingualRoute("eastern-western-deserts-guide", EasternWesternDesertsGuide)}
+      {createMultilingualRoute("cuisine-passport", CuisinePassport)}
+      {createMultilingualRoute("booking-agreement", BookingAgreement)}
+      {createMultilingualRoute("terms-of-service", TermsOfService)}
+      {createMultilingualRoute("privacy-policy", PrivacyPolicy)}
+      {createMultilingualRoute("cookie-policy", CookiePolicy)}
 
       <Route component={NotFound} />
     </Switch>

@@ -295,6 +295,27 @@
     "selectDate": "Bitte wählen Sie ein Reisedatum",
     "selectRoute": "Bitte wählen Sie mindestens eine Route"
   },
+  "slugs": {
+    "destinations": "reiseziele",
+    "travel-tips": "reisetipps",
+    "reviews": "bewertungen",
+    "submit-review": "bewertung-abgeben",
+    "about": "uber-uns",
+    "contact": "kontakt",
+    "budget-travel-egypt": "budget-reise-agypten",
+    "egyptian-street-food-guide": "agyptischer-street-food-guide",
+    "nile-valley-guide": "niltal-reisefuhrer",
+    "sinai-peninsula-guide": "sinai-halbinsel-guide",
+    "eastern-western-deserts-guide": "ostliche-westliche-wusten-guide",
+    "cuisine-passport": "kulinarischer-pass",
+    "booking-agreement": "buchungsvereinbarung",
+    "terms-of-service": "nutzungsbedingungen",
+    "privacy-policy": "datenschutzrichtlinie",
+    "cookie-policy": "cookie-richtlinie",
+    "transfers": "transfers",
+    "pricing-tool": "preisrechner",
+    "attractions": "attraktionen"
+  },
   "reviews": {
     "title": "Was Unsere Reisenden Sagen",
     "subtitle": "Echte Erfahrungen von Tausenden von Reisenden",

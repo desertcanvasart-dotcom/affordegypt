@@ -294,6 +294,27 @@
     "selectDate": "Please select a travel date",
     "selectRoute": "Please select at least one route"
   },
+  "slugs": {
+    "destinations": "destinations",
+    "travel-tips": "travel-tips",
+    "reviews": "reviews",
+    "submit-review": "submit-review",
+    "about": "about",
+    "contact": "contact",
+    "budget-travel-egypt": "budget-travel-egypt",
+    "egyptian-street-food-guide": "egyptian-street-food-guide",
+    "nile-valley-guide": "nile-valley-guide",
+    "sinai-peninsula-guide": "sinai-peninsula-guide",
+    "eastern-western-deserts-guide": "eastern-western-deserts-guide",
+    "cuisine-passport": "cuisine-passport",
+    "booking-agreement": "booking-agreement",
+    "terms-of-service": "terms-of-service",
+    "privacy-policy": "privacy-policy",
+    "cookie-policy": "cookie-policy",
+    "transfers": "transfers",
+    "pricing-tool": "pricing-tool",
+    "attractions": "attractions"
+  },
   "reviews": {
     "title": "What Our Travelers Say",
     "subtitle": "Real experiences from thousands of travelers",

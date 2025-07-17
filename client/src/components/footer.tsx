@@ -8,11 +8,13 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { useTranslatedLink } from "@/utils/slugTranslation";
 
 export default function Footer() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const { toast } = useToast();
+  const getTranslatedLink = useTranslatedLink();
 
   const newsletterMutation = useMutation({
     mutationFn: async (email: string) => {
@@ -107,37 +109,37 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">{t('footer.usefulLinks')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/travel-tips" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("travel-tips")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.travelTips')}
                 </Link>
               </li>
               <li>
-                <Link href="/eastern-western-deserts-guide" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("eastern-western-deserts-guide")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.desertsGuide')}
                 </Link>
               </li>
               <li>
-                <Link href="/sinai-peninsula-guide" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("sinai-peninsula-guide")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.sinaiGuide')}
                 </Link>
               </li>
               <li>
-                <Link href="/nile-valley-guide" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("nile-valley-guide")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.nileGuide')}
                 </Link>
               </li>
               <li>
-                <Link href="/budget-travel-egypt" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("budget-travel-egypt")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.budgetTravel')}
                 </Link>
               </li>
               <li>
-                <Link href="/egyptian-street-food-guide" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("egyptian-street-food-guide")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.streetFood')}
                 </Link>
               </li>
               <li>
-                <Link href="/cuisine-passport" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.cuisinePassport')}
                 </Link>
               </li>
@@ -148,12 +150,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("about")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.aboutUs')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href={getTranslatedLink("contact")} className="text-gray-300 hover:text-primary transition-colors">
                   {t('footer.contactUs')}
                 </Link>
               </li>
