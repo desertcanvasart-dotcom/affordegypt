@@ -1224,7 +1224,7 @@ export default function CuisinePassport() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-3">
                     <Flame className="w-5 h-5 text-primary" />
-                    <span className="font-semibold">Spice Level</span>
+                    <span className="font-semibold">{t('cuisinePassport.dish.spiceLevel')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">

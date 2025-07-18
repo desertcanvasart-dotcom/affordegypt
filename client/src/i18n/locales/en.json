@@ -1526,7 +1526,9 @@
       "priceRange": "Price Range",
       "culturalStory": "Cultural Story",
       "ingredients": "Ingredients",
-      "tried": "Tried"
+      "tried": "Tried",
+      "healthyScore": "Healthy Score",
+      "bestPlacesToTry": "Best Places to Try"
     },
     "descriptions": {
       "koshari": "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing.",

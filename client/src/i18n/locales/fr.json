@@ -1552,7 +1552,9 @@
       "priceRange": "Gamme de Prix",
       "culturalStory": "Histoire Culturelle",
       "ingredients": "Ingrédients",
-      "tried": "Essayé"
+      "tried": "Essayé",
+      "healthyScore": "Score Santé",
+      "bestPlacesToTry": "Meilleurs Endroits pour Essayer"
     },
     "descriptions": {
       "koshari": "Plat national d'Égypte - un plat de rue copieux, épicé et uniquement satisfaisant fait en superposant lentilles, riz, pâtes, pois chiches et oignons frits croustillants, puis arrosé de sauce tomate à l'ail et assaisonnement optionnel de vinaigre-piment.",

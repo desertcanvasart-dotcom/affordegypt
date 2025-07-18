@@ -1553,7 +1553,9 @@
       "priceRange": "Rango de Precio",
       "culturalStory": "Historia Cultural",
       "ingredients": "Ingredientes",
-      "tried": "Probado"
+      "tried": "Probado",
+      "healthyScore": "Puntuación Saludable",
+      "bestPlacesToTry": "Mejores Lugares para Probar"
     },
     "descriptions": {
       "koshari": "Plato nacional de Egipto - una comida callejera abundante, picante y únicamente satisfactoria hecha al superponer lentejas, arroz, pasta, garbanzos y cebollas fritas crujientes, luego bañada en salsa de tomate con ajo y aderezo opcional de vinagre picante.",

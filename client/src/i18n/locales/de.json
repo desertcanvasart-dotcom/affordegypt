@@ -1703,7 +1703,9 @@
       "priceRange": "Preisbereich",
       "culturalStory": "Kulturelle Geschichte",
       "ingredients": "Zutaten",
-      "tried": "Versucht"
+      "tried": "Versucht",
+      "healthyScore": "Gesundheitswert",
+      "bestPlacesToTry": "Beste Orte zum Probieren"
     },
     "descriptions": {
       "koshari": "Ägyptens Nationalgericht - ein herzhaftes, würziges und einzigartig befriedigendes Streetfood, das durch Schichten von Linsen, Reis, Nudeln, Kichererbsen und knusprigen gebratenen Zwiebeln zubereitet wird, dann mit knoblauchiger Tomatensauce und optionalem würzigem Essig-Chili-Dressing übergossen wird.",
