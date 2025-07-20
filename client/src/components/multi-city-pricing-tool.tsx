@@ -466,11 +466,11 @@ export default function MultiCityPricingTool() {
         <TabsList className="grid w-full grid-cols-2 mb-6">
           <TabsTrigger value="pricing" className="flex items-center gap-2">
             <Calculator className="w-4 h-4" />
-            {t('pricing.buildQuote')}
+            Build Quote
           </TabsTrigger>
           <TabsTrigger value="saved" className="flex items-center gap-2">
             <BookOpen className="w-4 h-4" />
-            {t('pricing.savedQuotes')}
+            Saved Quotes
           </TabsTrigger>
         </TabsList>
 
