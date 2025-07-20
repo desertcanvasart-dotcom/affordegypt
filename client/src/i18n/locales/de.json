@@ -1533,6 +1533,44 @@
     }
   },
   "blog": {
+    "title": "Reisegeschichten & Guides",
+    "subtitle": "Entdecken Sie Insider-Tipps, versteckte Juwelen und authentische Erlebnisse in ganz Ägypten",
+    "readTime": "{{time}} Min. Lesezeit",
+    "readMore": "Mehr Lesen",
+    "loadMore": "Mehr Laden",
+    "categories": {
+      "all": "Alle",
+      "destinations": "Reiseziele",
+      "budgetTravel": "Budget-Reisen",
+      "foodCulture": "Essen & Kultur",
+      "travelTips": "Reisetipps"
+    },
+    "posts": {
+      "sinaiGuide": {
+        "title": "Sinai-Halbinsel Reiseführer",
+        "excerpt": "Entdecken Sie die raue Schönheit und spirituelle Bedeutung der ägyptischen Sinai-Halbinsel mit unserem umfassenden Reiseführer."
+      },
+      "cairoTransport": {
+        "title": "Kairos Transport Navigieren",
+        "excerpt": "Meistern Sie Kairos belebte Straßen mit unseren Insider-Tipps für die effiziente Nutzung von Metro, Taxis und öffentlichen Verkehrsmitteln."
+      },
+      "desertsGuide": {
+        "title": "Östliche & Westliche Wüsten Guide",
+        "excerpt": "Erkunden Sie Ägyptens prächtige Wüstenlandschaften, von den Formationen der Weißen Wüste bis zu alten Oasen."
+      },
+      "nileValley": {
+        "title": "Verborgene Schätze des Niltals",
+        "excerpt": "Reisen Sie über die berühmten Stätten hinaus, um weniger bekannte Schätze entlang des lebensspendenden Nils zu entdecken."
+      },
+      "budgetTravel": {
+        "title": "Budget-Reisetipps für Ägypten",
+        "excerpt": "Reisen Sie preiswert durch Ägypten mit unseren Spartipps, lokalen Einsichten und budgetfreundlichen Empfehlungen."
+      },
+      "streetFood": {
+        "title": "Ägyptischer Street Food Guide",
+        "excerpt": "Schmecken Sie das authentische Ägypten durch seine lebendige Street Food-Szene, von Koshari bis zu frischen Säften."
+      }
+    },
     "desertsGuide": {
       "title": "Ost- & Westwüste",
       "subtitle": "Das Tor für Budgetreisende zu Ägyptens ungezähmter Schönheit",

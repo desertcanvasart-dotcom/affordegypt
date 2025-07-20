@@ -1356,6 +1356,44 @@
     }
   },
   "blog": {
+    "title": "Travel Stories & Guides",
+    "subtitle": "Discover insider tips, hidden gems, and authentic experiences across Egypt",
+    "readTime": "{{time}} min read",
+    "readMore": "Read More",
+    "loadMore": "Load More",
+    "categories": {
+      "all": "All",
+      "destinations": "Destinations", 
+      "budgetTravel": "Budget Travel",
+      "foodCulture": "Food & Culture",
+      "travelTips": "Travel Tips"
+    },
+    "posts": {
+      "sinaiGuide": {
+        "title": "Sinai Peninsula Travel Guide", 
+        "excerpt": "Discover the rugged beauty and spiritual significance of Egypt's Sinai Peninsula with our comprehensive travel guide."
+      },
+      "cairoTransport": {
+        "title": "Navigating Cairo's Transportation",
+        "excerpt": "Master Cairo's busy streets with our insider tips for using metro, taxis, and public transport efficiently."
+      },
+      "desertsGuide": {
+        "title": "Eastern & Western Deserts Guide",
+        "excerpt": "Explore Egypt's magnificent desert landscapes, from the White Desert's formations to ancient oases."
+      },
+      "nileValley": {
+        "title": "Nile Valley Hidden Gems",
+        "excerpt": "Journey beyond the famous sites to discover lesser-known treasures along the life-giving Nile."
+      },
+      "budgetTravel": {
+        "title": "Budget Travel Tips for Egypt",
+        "excerpt": "Travel Egypt affordably with our money-saving tips, local insights, and budget-friendly recommendations."
+      },
+      "streetFood": {
+        "title": "Egyptian Street Food Guide",
+        "excerpt": "Taste authentic Egypt through its vibrant street food scene, from koshari to fresh juices."
+      }
+    },
     "desertsGuide": {
       "title": "Eastern & Western Deserts",
       "subtitle": "The Gateway to Budget-Friendly Adventures in Egypt's Untamed Wilderness",

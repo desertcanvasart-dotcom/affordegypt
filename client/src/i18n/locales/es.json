@@ -1383,6 +1383,44 @@
     }
   },
   "blog": {
+    "title": "Historias de Viaje y Guías",
+    "subtitle": "Descubre consejos privilegiados, joyas ocultas y experiencias auténticas por todo Egipto",
+    "readTime": "{{time}} min de lectura",
+    "readMore": "Leer Más",
+    "loadMore": "Cargar Más",
+    "categories": {
+      "all": "Todo",
+      "destinations": "Destinos",
+      "budgetTravel": "Viajes Económicos", 
+      "foodCulture": "Comida y Cultura",
+      "travelTips": "Consejos de Viaje"
+    },
+    "posts": {
+      "sinaiGuide": {
+        "title": "Guía de Viaje de la Península del Sinaí",
+        "excerpt": "Descubre la belleza agreste y el significado espiritual de la Península del Sinaí de Egipto con nuestra guía completa."
+      },
+      "cairoTransport": {
+        "title": "Navegando el Transporte de El Cairo",
+        "excerpt": "Domina las calles concurridas de El Cairo con nuestros consejos privilegiados para usar metro, taxis y transporte público eficientemente."
+      },
+      "desertsGuide": {
+        "title": "Guía de Desiertos Oriental y Occidental",
+        "excerpt": "Explora los magníficos paisajes desérticos de Egipto, desde las formaciones del Desierto Blanco hasta oasis antiguos."
+      },
+      "nileValley": {
+        "title": "Joyas Ocultas del Valle del Nilo",
+        "excerpt": "Viaja más allá de los sitios famosos para descubrir tesoros menos conocidos a lo largo del Nilo dador de vida."
+      },
+      "budgetTravel": {
+        "title": "Consejos de Viaje Económico para Egipto",
+        "excerpt": "Viaja por Egipto de forma asequible con nuestros consejos para ahorrar dinero, perspectivas locales y recomendaciones económicas."
+      },
+      "streetFood": {
+        "title": "Guía de Comida Callejera Egipcia",
+        "excerpt": "Prueba el Egipto auténtico a través de su vibrante escena de comida callejera, desde koshari hasta jugos frescos."
+      }
+    },
     "desertsGuide": {
       "title": "Desiertos Oriental y Occidental",
       "subtitle": "La Puerta de Entrada a Aventuras Económicas en la Naturaleza Salvaje de Egipto",

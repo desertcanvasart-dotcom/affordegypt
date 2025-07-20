@@ -1382,6 +1382,44 @@
     }
   },
   "blog": {
+    "title": "Récits de Voyage et Guides",
+    "subtitle": "Découvrez des conseils d'initiés, des joyaux cachés et des expériences authentiques à travers l'Égypte",
+    "readTime": "{{time}} min de lecture",
+    "readMore": "Lire Plus",
+    "loadMore": "Charger Plus",
+    "categories": {
+      "all": "Tout",
+      "destinations": "Destinations",
+      "budgetTravel": "Voyage Économique",
+      "foodCulture": "Nourriture et Culture", 
+      "travelTips": "Conseils Voyage"
+    },
+    "posts": {
+      "sinaiGuide": {
+        "title": "Guide de Voyage de la Péninsule du Sinaï",
+        "excerpt": "Découvrez la beauté sauvage et la signification spirituelle de la péninsule du Sinaï d'Égypte avec notre guide complet."
+      },
+      "cairoTransport": {
+        "title": "Naviguer dans les Transports du Caire",
+        "excerpt": "Maîtrisez les rues animées du Caire avec nos conseils d'initiés pour utiliser le métro, les taxis et les transports publics efficacement."
+      },
+      "desertsGuide": {
+        "title": "Guide des Déserts Oriental et Occidental",
+        "excerpt": "Explorez les magnifiques paysages désertiques d'Égypte, des formations du Désert Blanc aux oasis anciennes."
+      },
+      "nileValley": {
+        "title": "Joyaux Cachés de la Vallée du Nil",
+        "excerpt": "Voyagez au-delà des sites célèbres pour découvrir des trésors moins connus le long du Nil donneur de vie."
+      },
+      "budgetTravel": {
+        "title": "Conseils de Voyage Économique pour l'Égypte",
+        "excerpt": "Voyagez en Égypte à moindre coût avec nos conseils d'économie, perspectives locales et recommandations économiques."
+      },
+      "streetFood": {
+        "title": "Guide de la Street Food Égyptienne",
+        "excerpt": "Goûtez l'Égypte authentique à travers sa scène vibrante de street food, du koshari aux jus frais."
+      }
+    },
     "desertsGuide": {
       "title": "Déserts Oriental et Occidental",
       "subtitle": "La Porte d'Entrée aux Aventures Économiques dans la Nature Sauvage d'Égypte",
