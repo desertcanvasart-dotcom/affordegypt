@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 
 interface SavedQuote {
   id: number;
@@ -40,6 +41,7 @@ interface QuoteManagerProps {
 }
 
 export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManagerProps) {
+  const { t } = useTranslation();
   const [location, setLocation] = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"date" | "total" | "name">("date");
@@ -190,7 +192,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Save className="w-5 h-5" />
-            Quote Manager
+            {t('pricing.quoteManager')}
           </CardTitle>
           {currentQuote && (
             <Button 
@@ -198,7 +200,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
               size="sm"
               onClick={() => setShowSaveForm(!showSaveForm)}
             >
-              Save Current Quote
+{t('pricing.saveCurrentQuote')}
             </Button>
           )}
         </div>
@@ -242,7 +244,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
-                placeholder="Search quotes by name or city..."
+                placeholder={t('pricing.searchQuotes')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -258,7 +260,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
               className="flex items-center gap-1"
             >
               <Filter className="w-4 h-4" />
-              {sortBy === "date" ? "Date" : sortBy === "name" ? "Name" : "Price"}
+{sortBy === "date" ? t('pricing.date') : sortBy === "name" ? "Name" : "Price"}
             </Button>
             
             <Button
@@ -279,7 +281,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
           </div>
         ) : filteredQuotes.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
-            {searchTerm ? "No quotes match your search." : "No saved quotes yet."}
+{searchTerm ? "No quotes match your search." : t('pricing.noSavedQuotes')}
           </div>
         ) : (
           <div className="space-y-3">
