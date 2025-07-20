@@ -1,73 +1,334 @@
 {
   "nav": {
-    "destinations": "Destinos",
-    "travelTips": "Consejos de Viaje",
-    "cuisine": "Pasaporte Culinario",
-    "signIn": "Iniciar Sesión",
-    "signUp": "Registrarse",
-    "startTrip": "Comenzar Tu Presupuesto de Viaje",
-    "bookTransfer": "Reservar Traslado"
+    "destinations": "Reiseziele",
+    "travelTips": "Reisetipps",
+    "cuisine": "Kulinarischer Pass",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "startTrip": "Reiseangebot Starten",
+    "bookTransfer": "Transfer Buchen"
   },
   "common": {
-    "loading": "Cargando...",
-    "error": "Error",
-    "submit": "Enviar",
-    "cancel": "Cancelar",
-    "save": "Guardar",
-    "edit": "Editar",
-    "delete": "Eliminar",
-    "back": "Atrás",
-    "next": "Siguiente",
-    "previous": "Anterior",
-    "search": "Buscar",
-    "filter": "Filtrar",
-    "clear": "Limpiar",
-    "total": "Total",
-    "perPerson": "por persona",
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "submit": "Senden",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "search": "Suchen",
+    "filter": "Filter",
+    "clear": "Löschen",
+    "total": "Gesamt",
+    "perPerson": "pro Person",
     "egp": "EGP",
     "usd": "USD",
     "eur": "EUR",
     "gbp": "GBP",
-    "egpPerDay": "EGP/día",
-    "travelers": "viajeros",
-    "traveler": "viajero",
-    "recommended": "Recomendado",
-    "current": "Actual",
-    "selectAllVisible": "Seleccionar Todo Visible"
+    "egpPerDay": "EGP/Tag",
+    "travelers": "Reisende",
+    "traveler": "Reisender",
+    "recommended": "Empfohlen",
+    "current": "Aktuell",
+    "selectAllVisible": "Alle Sichtbaren Auswählen"
   },
   "home": {
-    "title": "Descubre las Maravillas de Egipto",
-    "subtitle": "Viajes asequibles y transparentes sin tarifas ocultas",
+    "title": "Entdecke Ägyptens Wunder",
+    "subtitle": "Erschwingliches, transparentes Reisen ohne versteckte Gebühren",
     "features": {
-      "noHiddenFees": "Sin tarifas ocultas - Precios reales en EGP",
-      "rating": "4.9★ en más de 2,500 viajes",
-      "localNetwork": "Red local + tarifas más bajas"
+      "noHiddenFees": "Keine versteckten Gebühren - Echte Preise in EGP",
+      "rating": "4.9★ bei über 2.500 Reisen",
+      "localNetwork": "Lokales Netzwerk + niedrigere Preise"
     }
   },
   "hero": {
-    "title": "Viajes por Egipto",
-    "titleHighlight": "Simplificados",
-    "subtitle": "Obtén cotizaciones instantáneas para transporte, guías y experiencias. Ve el precio final real por adelantado - sin tarifas ocultas.",
+    "title": "Ägypten Reisen wird",
+    "titleHighlight": "Einfach",
+    "subtitle": "Erhalten Sie sofortige Angebote für Transport, Guides und Erlebnisse. Sehen Sie den echten Endpreis im Voraus - keine versteckten Gebühren.",
     "steps": {
       "step1": {
-        "title": "Selecciona Tu Viaje",
-        "description": "Elige ciudades, transporte y tamaño del grupo"
+        "title": "Wählen Sie Ihre Reise",
+        "description": "Wählen Sie Städte, Transport und Gruppengröße"
       },
       "step2": {
-        "title": "Agregar Guías y Extras",
-        "description": "Elige guías locales y experiencias"
+        "title": "Guides & Extras hinzufügen",
+        "description": "Wählen Sie lokale Guides und Erlebnisse"
       },
       "step3": {
-        "title": "Obtén Tu Presupuesto",
-        "description": "Precios reales mostrados en libras egipcias"
+        "title": "Erhalten Sie Ihr Angebot",
+        "description": "Echte Preise in ägyptischen Pfund angezeigt"
       }
     },
-    "cta": "Comenzar a Planificar Tu Viaje",
+    "cta": "Beginnen Sie Ihre Reiseplanung",
     "trustSignals": {
-      "satisfaction": "99% Satisfacción del Cliente",
-      "experience": "Más de 15 Años de Experiencia",
-      "coverage": "Todo Egipto Cubierto"
+      "satisfaction": "99% Kundenzufriedenheit",
+      "experience": "15+ Jahre Erfahrung",
+      "coverage": "Ganz Ägypten Abgedeckt"
     }
+  },
+  "transfers": {
+    "title": "Transportservices",
+    "intercityTravel": "Städteverbindungen",
+    "localTours": "Lokale Touren",
+    "selectFrom": "Von",
+    "selectTo": "Nach",
+    "selectCity": "Stadt Auswählen",
+    "selectCityForLocal": "Wähle eine Stadt für lokale Touren",
+    "availableRoutes": "Verfügbare Lokale Routen",
+    "matchingRoutes": "Passende Routen",
+    "popularRoutes": "Beliebte Routen",
+    "noRoutes": "Keine Routen für Ihre Suche gefunden",
+    "clickToSeeOptions": "Klicken für Fahrzeugoptionen",
+    "selectVehicle": "Fahrzeug Auswählen",
+    "backToRoutes": "← Zurück zu Routen",
+    "serviceType": "Service-Typ",
+    "distance": "Entfernung",
+    "duration": "Dauer",
+    "vehicleTypes": {
+      "sedan": "Limousine",
+      "minivan": "Kleinbus",
+      "van": "Transporter",
+      "coach": "Reisebus",
+      "bus": "Bus"
+    },
+    "passengerCapacity": {
+      "sedan": "1-2 Passagiere",
+      "minivan": "3-8 Passagiere",
+      "van": "9-15 Passagiere",
+      "coach": "16-35 Passagiere",
+      "bus": "16-35 Passagiere"
+    },
+    "tripModes": {
+      "transfer": "Transfer & Abgabe",
+      "day_trip": "Tagesausflug",
+      "overnight": "Übernachtung",
+      "multi_day": "Mehrtägig"
+    }
+  },
+  "pricing": {
+    "multiCityTool": "Ägypten Multi-Stadt Reise-Preisrechner",
+    "buildItinerary": "Erstellen Sie Ihre komplette Ägypten-Reiseroute Stadt für Stadt mit sofortiger Preisberechnung",
+    "startHere": "Hier Beginnen",
+    "buildQuote": "Angebot Erstellen",
+    "savedQuotes": "Gespeicherte Angebote",
+    "quoteManager": "Angebots-Manager",
+    "searchQuotes": "Angebote nach Name oder Stadt suchen...",
+    "noSavedQuotes": "Noch keine gespeicherten Angebote.",
+    "saveCurrentQuote": "Aktuelles Angebot Speichern",
+    "date": "Datum",
+    "addCity": "Stadt Hinzufügen",
+    "selectTransportation": "Transport auswählen...",
+    "selectTourGuide": "Reiseführer auswählen...",
+    "selectAddOns": "Zusätze auswählen...",
+    "historical": "Historisch",
+    "selectAllVisible": "Alle Sichtbaren Auswählen",
+    "deselectAllVisible": "Alle Sichtbaren Abwählen",
+    "finalTotalPerPerson": "Gesamtsumme Pro Person",
+    "totalFor": "Gesamt: 0 EGP für 1 Reisender",
+    "paymentAccepted": "Zahlung in Euro, GBP oder USD akzeptiert",
+    "continueToBooking": "Zur Buchung Fortfahren",
+    "pricingBreakdown": "Preisaufschlüsselung",
+    "routes": "Routen",
+    "guide": "Führer",
+    "attractions": "Sehenswürdigkeiten",
+    "guideLanguages": {
+      "english": "Englisch",
+      "spanish": "Spanisch",
+      "french": "Französisch",
+      "german": "Deutsch",
+      "arabic": "Arabisch"
+    },
+    "smartItineraryBuilder": "Intelligenter Reiserouten-Planer",
+    "showFilters": "Filter Anzeigen",
+    "hideFilters": "Filter Ausblenden",
+    "addDestination": "Reiseziel Hinzufügen",
+    "searchCities": "Städte suchen...",
+    "tripStartDate": "Reisebeginn:",
+    "totalTravelers": "Anzahl Reisender:",
+    "city": "Stadt",
+    "transportation": "Transport",
+    "guide": "Reiseführer",
+    "attractions": "Sehenswürdigkeiten",
+    "perPersonAddOns": "Zusätze pro Person",
+    "perUnitAddOns": "Zusätze pro Einheit",
+    "totalPerPerson": "Gesamt/Person",
+    "searchInstruction": "Geben Sie mindestens 2 Buchstaben Ihres Ziels ein und klicken Sie dann auf \"Reiseziel Hinzufügen\", um es zu Ihrer Reiseroute hinzuzufügen.",
+    "chooseNextDestination": "Wählen Sie Ihr Nächstes Reiseziel",
+    "cancel": "Abbrechen",
+    "calculating": "Berechnung läuft...",
+    "chooseCityToVisit": "Wählen Sie eine Stadt zum Besuchen",
+    "recommendedItineraries": "Empfohlene Reiserouten"
+  },
+  "transportation": {
+    "transferDropOff": "Transfer & Abholung",
+    "dayTrip": "Tagesausflug",
+    "overnight": "Übernachtung",
+    "multiDay": "Mehrtägige Tour",
+    "withinCity": "Innerhalb der Stadt",
+    "betweenCities": "Zwischen Städten",
+    "airport": "Flughafen",
+    "activity": "Aktivität",
+    "selectTransportation": "Transport auswählen...",
+    "selectedRoute": "Gewählte Route",
+    "routeSelected": "1 Route ausgewählt",
+    "routesSelected": "{{count}} Routen ausgewählt",
+    "searchRoutes": "Routen suchen..."
+  },
+  "guides": {
+    "selectTourGuide": "Reiseführer auswählen...",
+    "selectedGuide": "{{language}} Reiseführer ({{duration}}h)",
+    "languages": {
+      "english": "Englisch",
+      "spanish": "Spanisch",
+      "french": "Französisch",
+      "german": "Deutsch",
+      "italian": "Italienisch",
+      "japanese": "Japanisch",
+      "chinese": "Chinesisch",
+      "arabic": "Arabisch"
+    },
+    "specialties": {
+      "historicalSites": "Historische Stätten",
+      "culturalTours": "Kulturelle Touren",
+      "photography": "Fotografie",
+      "artHistory": "Kunstgeschichte",
+      "religiousSites": "Religiöse Stätten",
+      "localCuisine": "Lokale Küche",
+      "architecture": "Architektur",
+      "museumTours": "Museumsführungen",
+      "culturalHeritage": "Kulturelles Erbe",
+      "archaeologicalSites": "Archäologische Stätten",
+      "historicalAnalysis": "Historische Analyse",
+      "technicalTours": "Technische Touren",
+      "artCollections": "Kunstsammlungen",
+      "religiousHistory": "Religionsgeschichte",
+      "renaissanceCulture": "Renaissance-Kultur",
+      "culturalExchange": "Kulturaustausch",
+      "spiritualSites": "Spirituelle Stätten",
+      "ancientHistory": "Antike Geschichte",
+      "culturalTraditions": "Kulturelle Traditionen",
+      "silkRoad": "Seidenstraße",
+      "islamicHeritage": "Islamisches Erbe",
+      "localCustoms": "Lokale Bräuche",
+      "traditionalCrafts": "Traditionelles Handwerk",
+      "generalTours": "Allgemeine Touren"
+    }
+  },
+  "addons": {
+    "selectAddOns": "Zusätze auswählen...",
+    "addOnsSelected": "{{count}} Zusätze ausgewählt ({{items}} Artikel)"
+  },
+  "attractions": {
+    "searchPlaceholder": "Sehenswürdigkeiten suchen...",
+    "allCategories": "Alle Kategorien",
+    "noAttractionsFound": "Keine Sehenswürdigkeiten gefunden",
+    "clearFilters": "Filter löschen, um alle zu sehen",
+    "showing": "Zeige"
+  },
+  "booking": {
+    "title": "Buchung Abschließen",
+    "customerInfo": "Kundeninformationen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "nationality": "Nationalität",
+    "travelDetails": "Reisedetails",
+    "travelDate": "Reisedatum",
+    "notes": "Besondere Wünsche (Optional)",
+    "bookingConfirmation": "Buchungsbestätigung",
+    "thankYou": "Vielen Dank für Ihre Buchung!",
+    "confirmationSent": "Eine Bestätigungs-E-Mail wurde an Ihre E-Mail-Adresse gesendet.",
+    "bookingReference": "Buchungsreferenz"
+  },
+  "footer": {
+    "aboutUs": "Über Uns",
+    "contactUs": "Kontakt",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "bookingAgreement": "Buchungsvereinbarung",
+    "followUs": "Folgen Sie Uns",
+    "description": "Erschwingliche Ägypten-Reisen mit transparenten Preisen und erfahrenen lokalen Führern.",
+    "usefulLinks": "Nützliche Links",
+    "travelTips": "Reisetipps",
+    "desertsGuide": "Reiseführer für die Ost- und Westwüsten",
+    "sinaiGuide": "Sinai-Halbinsel Reiseführer",
+    "nileGuide": "Niltal Reiseführer",
+    "budgetTravel": "Budget-Reisen in Ägypten",
+    "streetFood": "Ägyptisches Straßenessen",
+    "cuisinePassport": "Kulinarischer Pass",
+    "legal": "Rechtliches",
+    "copyright": "Alle Rechte vorbehalten.",
+    "poweredBy": "Entwickelt und Perfektioniert von",
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "Erhalten Sie Reisetipps und Sonderangebote",
+      "placeholder": "Ihre E-Mail",
+      "subscribe": "Abonnieren",
+      "subscribing": "Abonnieren...",
+      "success": "Erfolgreich abonniert!",
+      "successDesc": "Sie erhalten Reisetipps und Sonderangebote in Ihrem Posteingang.",
+      "failed": "Abonnement fehlgeschlagen",
+      "failedDesc": "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein."
+    }
+  },
+  "about": {
+    "title": "Warum Mit Uns Reisen",
+    "description1": "Bei Afford Egypt sind wir eine neue Generation von Ägypten-Reisespezialisten, die neu definieren, was Budgetreisen bedeutet: transparent, flexibel und reich an Erfahrungen.",
+    "description2": "Seit 2020 haben wir Tausenden geholfen, das wahre Ägypten ohne versteckte Gebühren und mit maximaler Seelenruhe zu erkunden. Von Intercity-Fahrten bis hin zu ganztägigen geführten Abenteuern ist alles darauf ausgelegt, zu Ihrem Plan und Budget zu passen.",
+    "description3": "Ob Sie durch die alten Straßen von Kairo navigieren, den Nil hinuntersegeln oder die Geheimnisse der Luxor-Tempel entdecken, unsere Plattform verbindet Sie direkt mit zuverlässigem Transport, vertrauenswürdigen lokalen Guides und wesentlichen Attraktionen – alles mit nur wenigen Klicks.",
+    "description4": "Unterstützt von ausgezeichnetem Kundensupport und gebaut von jungen Leuten, die moderne Reisende wirklich verstehen, macht Afford Egypt die Erkundung Ägyptens einfach, erschwinglich und unvergesslich.",
+    "stats": {
+      "travelers": "5000+ Reisende",
+      "travelersDesc": "Betreut seit 2020",
+      "destinations": "15+ Reiseziele",
+      "destinationsDesc": "Durch ganz Ägypten",
+      "support": "24/7 Support",
+      "supportDesc": "Während Ihrer Reise",
+      "guarantee": "100% Garantie",
+      "guaranteeDesc": "Geld-zurück-Versprechen"
+    },
+    "cta": "Planung Beginnen"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "invalidPhone": "Bitte geben Sie eine gültige Telefonnummer ein",
+    "selectDate": "Bitte wählen Sie ein Reisedatum",
+    "selectRoute": "Bitte wählen Sie mindestens eine Route"
+  },
+  "slugs": {
+    "destinations": "reiseziele",
+    "travel-tips": "reisetipps",
+    "reviews": "bewertungen",
+    "submit-review": "bewertung-abgeben",
+    "about": "uber-uns",
+    "contact": "kontakt",
+    "budget-travel-egypt": "budget-reise-agypten",
+    "egyptian-street-food-guide": "agyptischer-street-food-guide",
+    "nile-valley-guide": "niltal-reisefuhrer",
+    "sinai-peninsula-guide": "sinai-halbinsel-guide",
+    "eastern-western-deserts-guide": "ostliche-westliche-wusten-guide",
+    "cuisine-passport": "kulinarischer-pass",
+    "booking-agreement": "buchungsvereinbarung",
+    "terms-of-service": "nutzungsbedingungen",
+    "privacy-policy": "datenschutzrichtlinie",
+    "cookie-policy": "cookie-richtlinie",
+    "transfers": "transfers",
+    "pricing-tool": "preisrechner",
+    "attractions": "attraktionen"
+  },
+  "reviews": {
+    "title": "Was Unsere Reisenden Sagen",
+    "subtitle": "Echte Erfahrungen von Tausenden von Reisenden",
+    "totalReviews": "Bewertungen Gesamt",
+    "averageRating": "Durchschnittsbewertung",
+    "fiveStarReviews": "5-Sterne-Bewertungen"
   },
   "blog": {
     "title": "Reise-Tipps & Führungen",
@@ -108,143 +369,6 @@
       "streetFood": {
         "title": "Ägyptisches Street Food: Ein Kulinarischer Abenteuer-Führer",
         "excerpt": "Navigieren Sie die köstliche Welt des ägyptischen Street Foods mit Sicherheitstipps und Must-Try-Gerichten in jeder größeren Stadt."
-      }
-    }
-  },
-  "pricing": {
-    "multiCityTool": "Planifica Tu Aventura Multi-Ciudad por Egipto",
-    "buildItinerary": "Construye tu itinerario perfecto con precios transparentes",
-    "buildQuote": "Crear Cotización",
-    "savedQuotes": "Cotizaciones Guardadas",
-    "startHere": "Empezar Aquí",
-    "tripStartDate": "Fecha de Inicio del Viaje",
-    "totalTravelers": "Total de Viajeros",
-    "smartItineraryBuilder": "Constructor de Itinerario Inteligente",
-    "showFilters": "Mostrar Filtros",
-    "hideFilters": "Ocultar Filtros",
-    "recommendedItineraries": "Itinerarios Recomendados",
-    "searchInstruction": "Instrucción de Búsqueda",
-    "searchCities": "Buscar ciudades...",
-    "addDestination": "Agregar Destino",
-    "chooseNextDestination": "Elegir Próximo Destino",
-    "city": "Ciudad",
-    "transportation": "Transporte",
-    "guide": "Guía",
-    "attractions": "Atracciones", 
-    "perPersonAddOns": "Extras por Persona",
-    "perUnitAddOns": "Extras por Unidad",
-    "totalPerPerson": "Total por Persona",
-    "addCity": "Agregar Ciudad",
-    "continueToBook": "Continuar para Reservar"
-  },
-  "guides": {
-    "selectTourGuide": "Seleccionar guía turístico...",
-    "selectedGuide": "Guía de {{language}} ({{duration}}h)",
-    "languages": {
-      "english": "Inglés",
-      "spanish": "Español", 
-      "french": "Francés",
-      "german": "Alemán",
-      "italian": "Italiano",
-      "japanese": "Japonés",
-      "chinese": "Chino",
-      "arabic": "Árabe"
-    }
-  },
-  "addons": {
-    "selectAddOns": "Seleccionar servicios...",
-    "addOnsSelected": "{{count}} servicios seleccionados ({{items}} artículos)"
-  },
-  "attractions": {
-    "searchPlaceholder": "Buscar atracciones...",
-    "allCategories": "Todas las Categorías",
-    "noAttractionsFound": "No se encontraron atracciones",
-    "clearFilters": "Limpiar filtros para ver todo",
-    "showing": "Mostrando"
-  },
-  "booking": {
-    "title": "Completa Tu Reserva",
-    "customerInfo": "Información del Cliente",
-    "firstName": "Nombre",
-    "lastName": "Apellido", 
-    "email": "Email",
-    "phone": "Teléfono",
-    "nationality": "Nacionalidad",
-    "travelDetails": "Detalles del Viaje",
-    "travelDate": "Fecha de Viaje",
-    "notes": "Solicitudes Especiales (Opcional)",
-    "bookingConfirmation": "Confirmación de Reserva",
-    "thankYou": "¡Gracias por tu reserva!",
-    "confirmationSent": "Se ha enviado un email de confirmación a tu dirección de correo.",
-    "bookingReference": "Referencia de Reserva"
-  },
-  "footer": {
-    "aboutUs": "Sobre Nosotros",
-    "contactUs": "Contáctanos", 
-    "privacyPolicy": "Política de Privacidad",
-    "termsOfService": "Términos de Servicio",
-    "cookiePolicy": "Política de Cookies",
-    "bookingAgreement": "Acuerdo de Reserva",
-    "followUs": "Síguenos",
-    "description": "Viajes económicos por Egipto con precios transparentes y guías locales expertos.",
-    "usefulLinks": "Enlaces Útiles",
-    "travelTips": "Consejos de Viaje",
-    "desertsGuide": "Guía de los Desiertos Oriental y Occidental",
-    "sinaiGuide": "Guía de la Península del Sinaí", 
-    "nileGuide": "Guía del Valle del Nilo",
-    "budgetTravel": "Viaje Económico en Egipto",
-    "streetFood": "Comida Callejera Egipcia",
-    "cuisinePassport": "Pasaporte Culinario",
-    "legal": "Legal",
-    "copyright": "Todos los derechos reservados.",
-    "poweredBy": "Desarrollado y Perfeccionado por",
-    "newsletter": {
-      "title": "Boletín",
-      "subtitle": "Recibe consejos de viaje y ofertas especiales",
-      "placeholder": "Tu email",
-      "subscribe": "Suscribirse",
-      "subscribing": "Suscribiendo...",
-      "success": "¡Suscripción exitosa!",
-      "successDesc": "Recibirás consejos de viaje y ofertas especiales en tu bandeja de entrada.",
-      "failed": "Suscripción fallida",
-      "failedDesc": "Por favor intenta de nuevo o contáctanos directamente.",
-      "emailRequired": "Por favor ingresa tu dirección de email."
-    }
-  },
-  "reviews": {
-    "title": "Lo Que Dicen Nuestros Viajeros",
-    "subtitle": "Experiencias reales de miles de viajeros",
-    "totalReviews": "Total de Reseñas",
-    "averageRating": "Calificación Promedio", 
-    "fiveStarReviews": "Reseñas de 5 Estrellas"
-  },
-  "faq": {
-    "title": "Preguntas Frecuentes",
-    "subtitle": "Todo lo que necesitas saber sobre viajar a Egipto",
-    "questions": {
-      "safety": {
-        "question": "¿Es Egipto seguro para los turistas?",
-        "answer": "Egipto es generalmente seguro para los turistas, especialmente en las principales áreas turísticas. Sigue las prácticas comunes de seguridad de viaje, usa operadores turísticos confiables y consulta los avisos de viaje actuales."
-      },
-      "visa": {
-        "question": "¿Necesito una visa para visitar Egipto?",
-        "answer": "La mayoría de los visitantes necesitan una visa. Puedes obtener una visa turística a la llegada al aeropuerto por $25 USD, o solicitar una e-visa en línea antes de viajar. Consulta con tu embajada para requisitos específicos."
-      },
-      "price": {
-        "question": "¿Qué está incluido en el precio?",
-        "answer": "Todos los precios incluyen transporte, tarifas de guía (si se selecciona) y tarifas de entrada a atracciones. Las comidas, propinas y gastos personales no están incluidos a menos que se mencione específicamente."
-      },
-      "customise": {
-        "question": "¿Puedo personalizar mi itinerario?",
-        "answer": "¡Sí! Nuestra herramienta de precios multi-ciudad te permite construir itinerarios personalizados. Puedes seleccionar diferentes ciudades, rutas, guías y atracciones según tus preferencias y presupuesto."
-      },
-      "currency": {
-        "question": "¿Qué moneda aceptan?",
-        "answer": "Todos los precios se muestran en Libras Egipcias (EGP) pero puedes pagar en USD, EUR o GBP. Aceptamos las principales tarjetas de crédito (Visa, Mastercard, American Express), PayPal y transferencias bancarias."
-      },
-      "weather": {
-        "question": "¿Cuál es la mejor época para visitar Egipto?",
-        "answer": "Octubre a abril ofrece el mejor clima con temperaturas cómodas (20-25°C). Los meses de verano (mayo-septiembre) son muy calurosos pero ofrecen precios más bajos y menos multitudes."
       }
     }
   }
