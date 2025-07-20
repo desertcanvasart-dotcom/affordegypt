@@ -323,6 +323,41 @@
     "pricing-tool": "preisrechner",
     "attractions": "attraktionen"
   },
+  "faq": {
+    "title": "Häufig Gestellte Fragen",
+    "subtitle": "Alles was Sie über das Reisen in Ägypten wissen müssen",
+    "questions": {
+      "safety": {
+        "question": "Ist Ägypten sicher für Touristen?",
+        "answer": "Ägypten ist generell sicher für Touristen, besonders in den wichtigsten Touristengebieten. Befolgen Sie übliche Reisesicherheitspraktiken, nutzen Sie seriöse Reiseveranstalter und prüfen Sie aktuelle Reisehinweise."
+      },
+      "visa": {
+        "question": "Brauche ich ein Visum für Ägypten?",
+        "answer": "Die meisten Besucher brauchen ein Visum. Sie können ein Touristenvisum bei der Ankunft am Flughafen für 25 USD erhalten oder online ein e-Visa vor der Reise beantragen. Prüfen Sie bei Ihrer Botschaft die spezifischen Anforderungen."
+      },
+      "price": {
+        "question": "Was ist im Preis enthalten?",
+        "answer": "Alle Preise beinhalten Transport, Führergebühren (falls gewählt) und Eintrittsgelder für Attraktionen. Mahlzeiten, Trinkgelder und persönliche Ausgaben sind nicht enthalten, es sei denn, es wird speziell erwähnt."
+      },
+      "customise": {
+        "question": "Kann ich meine Reiseroute anpassen?",
+        "answer": "Ja! Unser Multi-City-Preistool ermöglicht es Ihnen, maßgeschneiderte Reiserouten zu erstellen. Sie können verschiedene Städte, Routen, Führer und Attraktionen basierend auf Ihren Vorlieben und Budget auswählen."
+      },
+      "currency": {
+        "question": "Welche Währung akzeptieren Sie?",
+        "answer": "Alle Preise werden in Ägyptischen Pfund (EGP) angezeigt, aber Sie können in USD, EUR oder GBP bezahlen. Wir akzeptieren gängige Kreditkarten (Visa, Mastercard, American Express), PayPal und Banküberweisungen."
+      },
+      "weather": {
+        "question": "Wann ist die beste Zeit für einen Besuch in Ägypten?",
+        "answer": "Oktober bis April bietet das beste Wetter mit angenehmen Temperaturen (20-25°C). Die Sommermonate (Mai-September) sind sehr heiß, bieten aber niedrigere Preise und weniger Menschenmassen."
+      }
+    },
+    "support": {
+      "question": "Haben Sie noch Fragen?",
+      "whatsapp": "WhatsApp uns",
+      "email": "E-Mail senden"
+    }
+  },
   "reviews": {
     "title": "Was Unsere Reisenden Sagen",
     "subtitle": "Echte Erfahrungen von Tausenden von Reisenden",
