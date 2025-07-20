@@ -21,11 +21,65 @@ interface BlogPost {
 
 
 export default function BlogGrid() {
-  const { t, ready } = useTranslation();
+  const { t, ready, i18n } = useTranslation();
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  // Debug logging removed after fix
+  // Enhanced debug logging for blog translations
+  console.log('🔍 BlogGrid Enhanced Debug Info:');
+  console.log('- Current language:', i18n.language);
+  console.log('- i18n ready:', ready);
+  console.log('- i18n isInitialized:', i18n.isInitialized);
+  
+  // Test key lookups with detailed logging
+  const testKeys = [
+    'blog.title',
+    'blog.subtitle', 
+    'blog.categories.all',
+    'blog.posts.sinaiGuide.title',
+    'blog.posts.desertsGuide.title'
+  ];
+  
+  console.log('🔑 Translation Key Testing:');
+  testKeys.forEach(key => {
+    const result = t(key);
+    const fallbackUsed = result === key;
+    console.log(`- Key "${key}" → Result: "${result}" (fallback: ${fallbackUsed})`);
+  });
+
+  // Check if blog section exists in resources
+  console.log('📚 i18n Resource Investigation:');
+  if (i18n.store?.data) {
+    console.log('- Available language keys:', Object.keys(i18n.store.data));
+    
+    // Check current language and available languages
+    console.log('- Current language from i18n:', i18n.language);
+    console.log('- Available languages:', Object.keys(i18n.store.data));
+    
+    // Map current language to available language
+    const langCode = i18n.language.split('-')[0]; // Convert en-US to en
+    console.log('- Mapped language code:', langCode);
+    
+    if (i18n.store.data[langCode]) {
+      const langData = i18n.store.data[langCode];
+      console.log(`- ${langCode} root keys:`, typeof langData === 'object' ? Object.keys(langData) : 'not object');
+      
+      if (typeof langData === 'object' && langData !== null) {
+        // Check if data is nested under 'translation'
+        const actualData = langData.translation || langData;
+        console.log('- Actual data keys:', typeof actualData === 'object' ? Object.keys(actualData) : 'not object');
+        console.log('- Blog key exists in', langCode, ':', 'blog' in actualData);
+        
+        if (typeof actualData === 'object' && 'blog' in actualData) {
+          console.log('- Blog data found!', Object.keys(actualData.blog));
+        } else {
+          console.log('❌ Blog key is missing from', langCode, 'language data!');
+        }
+      }
+    } else {
+      console.log('❌ Language code', langCode, 'not found in available languages');
+    }
+  }
 
   const categories = [
     { key: "All", label: t('blog.categories.all') },
