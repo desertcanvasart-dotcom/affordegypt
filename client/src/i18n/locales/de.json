@@ -383,7 +383,162 @@
     "posts": {
       "sinaiGuide": {
         "title": "Reiseführer Sinai-Halbinsel",
-        "excerpt": "Sinai-Halbinsel Reiseführer: Beste Orte zum Besuchen, Tauchen & Wandern in Ägypten"
+        "excerpt": "Sinai-Halbinsel Reiseführer: Beste Orte zum Besuchen, Tauchen & Wandern in Ägypten",
+        "destinations": {
+          "sharmElSheikh": {
+            "name": "Sharm El Sheikh",
+            "description": "Das beliebteste Strandziel Ägyptens mit erstklassigen Resorts und Weltklasse-Tauchplätzen.",
+            "highlights": ["Ras Mohammed Nationalpark", "Naama Bay", "SOHO Square", "Tiran Island"],
+            "details": "Luxuriöse Resorts, lebendiges Nachtleben und einige der besten Korallenriffe der Welt."
+          },
+          "dahab": {
+            "name": "Dahab",
+            "description": "Entspanntes Backpacker-Paradies berühmt für das Blue Hole und Freitauchen.",
+            "highlights": ["Blue Hole", "Lighthouse Reef", "Canyon", "Freitauchen"],
+            "details": "Bohemische Atmosphäre, budgetfreundliche Unterkünfte und unglaubliche Tauchplätze."
+          },
+          "nuweiba": {
+            "name": "Nuweiba",
+            "description": "Ruhiger Küstenort perfekt für Entspannung und Wüstenabenteuer.",
+            "highlights": ["Tarabin Beach", "Muzaina Beach", "Castle Zaman", "Wüstensafaris"],
+            "details": "Friedliche Strände, Beduinenkultur und Tor zu Wüstenabenteuern."
+          },
+          "taba": {
+            "name": "Taba",
+            "description": "Grenzstadt mit atemberaubenden Bergblicken und historischen Stätten.",
+            "highlights": ["Taba Heights", "Pharaoh Island", "Fjord Bay", "Grenzübergang"],
+            "details": "Bergige Landschaften, antike Festungen und spektakuläre Sonnenuntergänge."
+          }
+        },
+        "activities": {
+          "waterSports": {
+            "title": "Wassersport",
+            "scubaDiving": {
+              "name": "Gerätetauchen",
+              "price": "30-80 USD pro Tauchgang",
+              "description": "Entdecken Sie Weltklasse-Korallenriffe und Meereslebewesen"
+            },
+            "snorkeling": {
+              "name": "Schnorcheln",
+              "price": "15-40 USD pro Trip",
+              "description": "Oberflächentauchen in kristallklarem Wasser"
+            },
+            "windsurfing": {
+              "name": "Windsurfen",
+              "price": "25-60 USD pro Session",
+              "description": "Perfekte Windbedingungen das ganze Jahr über"
+            },
+            "kitesurfing": {
+              "name": "Kitesurfen",
+              "price": "40-100 USD pro Lesson",
+              "description": "Adrenalinreiche Wassersportart mit professioneller Anleitung"
+            }
+          },
+          "desertAdventures": {
+            "title": "Wüstenabenteuer",
+            "camelTrekking": {
+              "name": "Kameltrekking",
+              "price": "20-50 USD pro Trip",
+              "description": "Traditionelle Beduinen-Erfahrung durch die Wüste"
+            },
+            "desertSafari": {
+              "name": "Wüstensafari",
+              "price": "40-120 USD pro Trip",
+              "description": "4x4-Abenteuer durch atemberaubende Wüstenlandschaften"
+            },
+            "coloredCanyon": {
+              "name": "Farbiger Canyon",
+              "price": "60-150 USD pro Trip",
+              "description": "Wanderung durch spektakuläre mehrfarbige Felsformationen"
+            },
+            "bedouinNight": {
+              "name": "Beduinen-Nacht",
+              "price": "30-80 USD pro Nacht",
+              "description": "Übernachtung unter Sternen mit traditionellem Beduinen-Essen"
+            }
+          },
+          "cultural": {
+            "title": "Kulturelle Erlebnisse",
+            "mountSinai": {
+              "name": "Berg Sinai",
+              "price": "25-60 USD pro Trip",
+              "description": "Wanderung zum heiligen Berg für den Sonnenaufgang"
+            },
+            "monastery": {
+              "name": "Katharinenkloster",
+              "price": "Freier Eintritt",
+              "description": "Antikes orthodoxes Kloster, UNESCO-Weltkulturerbe"
+            },
+            "bedouinVillage": {
+              "name": "Beduinendorf",
+              "price": "20-50 USD pro Besuch",
+              "description": "Authentische Beduinenkultur und Traditionen erleben"
+            },
+            "wadiFeiran": {
+              "name": "Wadi Feiran",
+              "price": "40-100 USD pro Trip",
+              "description": "Üppige Oase mit Palmen und antiken Ruinen"
+            }
+          }
+        },
+        "practical": {
+          "bestTime": {
+            "title": "Beste Reisezeit",
+            "content": "Oktober bis April bietet perfektes Wetter mit Temperaturen von 20-28°C. Mai bis September ist heiß (30-40°C) aber weniger überfüllt."
+          },
+          "gettingThere": {
+            "title": "Anreise",
+            "content": "Fliegen Sie nach Sharm El Sheikh Airport (SSH) oder fahren Sie von Kairo (6-7 Stunden). Busse und private Transfers verfügbar."
+          },
+          "safety": {
+            "title": "Sicherheit",
+            "content": "Sinai ist generell sicher für Touristen. Befolgen Sie lokale Ratschläge, bleiben Sie in touristischen Gebieten und respektieren Sie lokale Gebräuche."
+          },
+          "packing": {
+            "title": "Packliste",
+            "content": "Sonnenschutz, leichte Kleidung, Badekleidung, bequeme Wanderschuhe, Kopfbedeckung und viel Wasser."
+          }
+        },
+        "itineraries": {
+          "highlights": {
+            "title": "Sinai Highlights (5 Tage)",
+            "days": [
+              "Tag 1: Ankunft in Sharm El Sheikh, Naama Bay erkunden",
+              "Tag 2: Ras Mohammed Nationalpark Schnorcheln",
+              "Tag 3: Tagesausflug nach Dahab und Blue Hole",
+              "Tag 4: Berg Sinai Sonnenaufgang und Katharinenkloster",
+              "Tag 5: Entspannung und Abreise"
+            ],
+            "price": "Ab 300 USD pro Person"
+          },
+          "adventure": {
+            "title": "Abenteuer & Tauchen (7 Tage)",
+            "days": [
+              "Tag 1-2: Sharm El Sheikh, Tauchkurse",
+              "Tag 3-4: Dahab, Blue Hole und Canyon",
+              "Tag 4-5: Nuweiba, Wüstensafari",
+              "Tag 6: Berg Sinai und Kloster",
+              "Tag 7: Abreise"
+            ],
+            "price": "Ab 450 USD pro Person"
+          },
+          "relaxed": {
+            "title": "Entspannte Erkundung (4 Tage)",
+            "days": [
+              "Tag 1: Ankunft, Strand entspannen",
+              "Tag 2: Ras Mohammed Schnorcheln",
+              "Tag 3: Dahab Tagesausflug",
+              "Tag 4: Abreise"
+            ],
+            "price": "Ab 220 USD pro Person"
+          }
+        },
+        "cta": {
+          "title": "Bereit Sinai zu Erkunden?",
+          "subtitle": "Planen Sie Ihr Sinai-Abenteuer mit unseren lokalen Experten",
+          "startPlanning": "Planung Beginnen",
+          "getQuote": "Kostenvoranschlag Erhalten"
+        }
       },
       "cairoTransport": {
         "title": "Kairo Navigieren: Transport-Tipps für Erstbesucher",
