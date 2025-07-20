@@ -20,9 +20,14 @@ interface BlogPost {
 
 
 export default function BlogGrid() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  // Debug logging
+  console.log('Blog translation ready:', ready);
+  console.log('Blog title translation:', t('blog.title'));
+  console.log('Blog subtitle translation:', t('blog.subtitle'));
 
   const categories = [
     { key: "All", label: t('blog.categories.all') },
