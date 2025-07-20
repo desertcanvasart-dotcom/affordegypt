@@ -18,8 +18,17 @@ export default function SinaiPeninsulaGuide() {
     console.log('Current language:', i18n.language);
     console.log('Testing translation keys:');
     console.log('Title:', t('blog.sinaiGuide.title'));
+    console.log('Subtitle:', t('blog.sinaiGuide.subtitle'));
+    console.log('Description:', t('blog.sinaiGuide.description'));
+    console.log('Destinations title:', t('blog.sinaiGuide.destinations.title'));
     console.log('Sharm name:', t('blog.sinaiGuide.destinations.sharmElSheikh.name'));
     console.log('CTA title:', t('blog.sinaiGuide.cta.title'));
+    console.log('CTA description:', t('blog.sinaiGuide.cta.description'));
+    console.log('CTA button:', t('blog.sinaiGuide.cta.button'));
+    
+    // Check if resource exists
+    console.log('i18n resources loaded:', !!i18n.getResourceBundle('de', 'translation'));
+    console.log('Does blog key exist?', i18n.exists('blog.sinaiGuide.title'));
   }, [t, i18n.language]);
   
   // Scroll to top when component mounts

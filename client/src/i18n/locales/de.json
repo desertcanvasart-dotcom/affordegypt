@@ -539,6 +539,8 @@
         },
         "cta": {
           "title": "Bereit Sinai zu Erkunden?",
+          "description": "Planen Sie Ihr Sinai-Abenteuer mit unseren lokalen Experten",
+          "button": "Planung Beginnen",
           "subtitle": "Planen Sie Ihr Sinai-Abenteuer mit unseren lokalen Experten",
           "startPlanning": "Planung Beginnen",
           "getQuote": "Kostenvoranschlag Erhalten"
