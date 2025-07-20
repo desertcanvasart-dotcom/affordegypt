@@ -346,6 +346,32 @@
       "travelTips": "Reisetipps"
     },
     "readTime": "{{time}} Min. Lesezeit",
+    "posts": {
+      "sinaiGuide": {
+        "title": "Reiseführer Sinai-Halbinsel",
+        "excerpt": "Sinai-Halbinsel Reiseführer: Beste Orte zum Besuchen, Tauchen & Wandern in Ägypten"
+      },
+      "cairoTransport": {
+        "title": "Kairo Navigieren: Transport-Tipps für Erstbesucher",
+        "excerpt": "Alles was Sie über sicheres und effizientes Fortbewegen in Kairo wissen müssen, von U-Bahn-Systemen bis zu Mitfahr-Apps."
+      },
+      "desertsGuide": {
+        "title": "Östliche & Westliche Wüsten Reiseführer",
+        "excerpt": "Ägypten Wüsten Reiseführer: Erkunden Sie Siwa, Weiße Wüste & Östliche Pfade"
+      },
+      "nileValley": {
+        "title": "Niltal Reiseführer",
+        "excerpt": "Niltal Ägypten: Top-Destinationen, Nilkreuzfahrten & Antike Stätten Führer"
+      },
+      "budgetTravel": {
+        "title": "Budget-Reisen in Ägypten: Wie man Mehr für Weniger Sieht",
+        "excerpt": "Kluge Strategien um Ägyptens Wunder zu erleben ohne pleite zu gehen, inklusive Unterkunfts- und Verpflegungstipps."
+      },
+      "streetFood": {
+        "title": "Ägyptisches Street Food: Ein Kulinarischer Abenteuer-Führer",
+        "excerpt": "Navigieren Sie die köstliche Welt des ägyptischen Street Foods mit Sicherheitstipps und Must-Try-Gerichten in jeder größeren Stadt."
+      }
+    },
     "sinaiGuide": {
       "title": "Reiseführer Sinai-Halbinsel",
       "subtitle": "Ihr Tor zu einer Region, in der antike Geschichte auf die unberührte Schönheit des Roten Meeres trifft",
