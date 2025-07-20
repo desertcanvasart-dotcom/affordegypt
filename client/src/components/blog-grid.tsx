@@ -25,7 +25,8 @@ export default function BlogGrid() {
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  // Simple validation that translations are working
+  // Simple loading check
+  
   if (!ready) {
     return <div>Loading translations...</div>;
   }
