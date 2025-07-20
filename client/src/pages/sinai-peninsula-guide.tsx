@@ -10,8 +10,18 @@ import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
 
 export default function SinaiPeninsulaGuide() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [, setLocation] = useLocation();
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('Current language:', i18n.language);
+    console.log('Testing translation keys:');
+    console.log('Title:', t('blog.sinaiGuide.title'));
+    console.log('Sharm name:', t('blog.sinaiGuide.destinations.sharmElSheikh.name'));
+    console.log('CTA title:', t('blog.sinaiGuide.cta.title'));
+  }, [t, i18n.language]);
+  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);

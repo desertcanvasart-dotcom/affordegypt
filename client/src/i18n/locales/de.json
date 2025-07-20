@@ -382,7 +382,9 @@
     "readTime": "{{time}} Min. Lesezeit",
     "posts": {
       "sinaiGuide": {
-        "title": "Reiseführer Sinai-Halbinsel",
+        "title": "Reiseführer Sinai-Halbinsel", 
+        "subtitle": "Entdecken Sie Ägyptens atemberaubende Halbinsel",
+        "description": "Von den Weltklasse-Tauchplätzen des Roten Meeres bis zum biblischen Berg Sinai - erleben Sie eine perfekte Mischung aus Abenteuer, Geschichte und natürlicher Schönheit auf der Sinai-Halbinsel.",
         "excerpt": "Sinai-Halbinsel Reiseführer: Beste Orte zum Besuchen, Tauchen & Wandern in Ägypten",
         "destinations": {
           "sharmElSheikh": {
@@ -408,7 +410,9 @@
             "description": "Grenzstadt mit atemberaubenden Bergblicken und historischen Stätten.",
             "highlights": ["Taba Heights", "Pharaoh Island", "Fjord Bay", "Grenzübergang"],
             "details": "Bergige Landschaften, antike Festungen und spektakuläre Sonnenuntergänge."
-          }
+          },
+          "title": "Top-Reiseziele",
+          "description": "Erkunden Sie die vielfältigen Landschaften und Kulturen der Sinai-Halbinsel"
         },
         "activities": {
           "waterSports": {
