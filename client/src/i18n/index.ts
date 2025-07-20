@@ -36,6 +36,9 @@ i18n
     keySeparator: '.',
     nsSeparator: ':',
     
+    // Language normalization to handle en-US -> en mapping
+    load: 'languageOnly',  // This loads 'en' when it detects 'en-US'
+    
     interpolation: {
       escapeValue: false, // React already escapes values
     },
