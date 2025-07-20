@@ -25,17 +25,7 @@ export default function BlogGrid() {
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  // Debug logging
-  console.log('Blog translation ready:', ready);
-  console.log('Current language:', i18n?.language);
-  console.log('Blog title translation:', t('blog.title'));
-  console.log('Blog subtitle translation:', t('blog.subtitle'));
-  
-  // Test direct access to resources
-  if (i18n?.store?.data) {
-    const lang = i18n.language || 'en';
-    console.log('Direct resource access:', i18n.store.data[lang]?.translation?.blog);
-  }
+  // Debug logging removed after fix
 
   const categories = [
     { key: "All", label: t('blog.categories.all') },
