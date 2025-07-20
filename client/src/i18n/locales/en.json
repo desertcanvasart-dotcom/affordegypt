@@ -1,34 +1,80 @@
 {
-  "hero": {
-    "mainHeading": "Egypt Travel Made Simple",
-    "subHeading": "Budget-friendly transfers & multi-city adventures in Egypt",
-    "tagline": "Transparent pricing • No hidden fees • Local expertise",
-    "ctaButton": "Start Planning",
-    "secondaryButton": "View Destinations",
-    "badges": [
-      "Trusted by 10,000+ travelers",
-      "Transparent pricing",
-      "24/7 support"
-    ]
-  },
-  "navigation": {
+  "nav": {
     "destinations": "Destinations",
-    "home": "Home",
-    "reviews": "Reviews",
-    "pricing": "Pricing Tool",
     "travelTips": "Travel Tips",
-    "about": "About",
-    "contact": "Contact",
-    "login": "Login",
-    "logout": "Logout",
-    "languageSelector": "Language"
+    "cuisine": "Cuisine Passport",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "startTrip": "Start Your Travel Quote",
+    "bookTransfer": "Book Transfer"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "total": "Total",
+    "perPerson": "per person",
+    "egp": "EGP",
+    "usd": "USD",
+    "eur": "EUR",
+    "gbp": "GBP",
+    "egpPerDay": "EGP/day",
+    "travelers": "travelers",
+    "traveler": "traveler",
+    "recommended": "Recommended",
+    "current": "Current",
+    "selectAllVisible": "Select All Visible"
+  },
+  "home": {
+    "title": "Discover Egypt's Wonders",
+    "subtitle": "Affordable, transparent travel without hidden fees",
+    "features": {
+      "noHiddenFees": "No hidden fees - Real prices in EGP",
+      "rating": "4.9★ across 2,500+ trips",
+      "localNetwork": "Local network + lower rates"
+    }
+  },
+  "hero": {
+    "title": "Egypt Travel Made",
+    "titleHighlight": "Simple",
+    "subtitle": "Get instant quotes for transport, guides, and experiences. See the real final price upfront - no hidden fees.",
+    "steps": {
+      "step1": {
+        "title": "Select Your Trip",
+        "description": "Choose cities, transport, and group size"
+      },
+      "step2": {
+        "title": "Add Guides & Extras",
+        "description": "Choose local guides and experiences"
+      },
+      "step3": {
+        "title": "Get Your Quote",
+        "description": "Real prices displayed in Egyptian pounds"
+      }
+    },
+    "cta": "Start Planning Your Trip",
+    "trustSignals": {
+      "satisfaction": "99% Customer Satisfaction",
+      "experience": "15+ Years Experience",
+      "coverage": "All Egypt Covered"
+    }
   },
   "blog": {
     "title": "Travel Tips & Guides",
     "subtitle": "Expert guides, hidden gems, and practical tips for your Egyptian journey",
     "viewAll": "View All Articles",
     "readMore": "Read More",
-    "loadMore": "Load More Articles", 
+    "loadMore": "Load More Articles",
     "noArticles": "No articles found in this category.",
     "categories": {
       "all": "All",
@@ -44,12 +90,12 @@
         "excerpt": "Sinai Peninsula Travel Guide: Best places to visit, dive and hike in Egypt"
       },
       "cairoTransport": {
-        "title": "Navigating Cairo: Transport Tips for First-Time Visitors", 
+        "title": "Navigating Cairo: Transport Tips for First-Time Visitors",
         "excerpt": "Everything you need to know to get around Cairo safely and efficiently, from metro systems to ride-sharing apps."
       },
       "desertsGuide": {
         "title": "Eastern & Western Deserts Travel Guide",
-        "excerpt": "Egypt Desert Travel Guide: Explore Siwa, White Desert & Eastern Trails"  
+        "excerpt": "Egypt Desert Travel Guide: Explore Siwa, White Desert & Eastern Trails"
       },
       "nileValley": {
         "title": "Nile Valley Travel Guide",
@@ -60,7 +106,7 @@
         "excerpt": "Smart strategies for discovering Egypt's wonders without breaking the bank, including accommodation and dining tips."
       },
       "streetFood": {
-        "title": "Egyptian Street Food: A Culinary Adventure Guide", 
+        "title": "Egyptian Street Food: A Culinary Adventure Guide",
         "excerpt": "Navigate the delicious world of Egyptian street food with safety tips and must-try dishes in every major city."
       }
     }

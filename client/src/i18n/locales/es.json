@@ -1,27 +1,73 @@
 {
-  "hero": {
-    "mainHeading": "Viajes por Egipto Simplificados",
-    "subHeading": "Traslados económicos y aventuras multi-ciudad en Egipto",
-    "tagline": "Precios transparentes • Sin tarifas ocultas • Experiencia local",
-    "ctaButton": "Comenzar Planificación",
-    "secondaryButton": "Ver Destinos",
-    "badges": [
-      "Confiado por más de 10,000 viajeros",
-      "Precios transparentes",
-      "Soporte 24/7"
-    ]
-  },
-  "navigation": {
+  "nav": {
     "destinations": "Destinos",
-    "home": "Inicio",
-    "reviews": "Reseñas",
-    "pricing": "Herramienta de Precios",
     "travelTips": "Consejos de Viaje",
-    "about": "Acerca de",
-    "contact": "Contacto",
-    "login": "Iniciar Sesión",
-    "logout": "Cerrar Sesión",
-    "languageSelector": "Idioma"
+    "cuisine": "Pasaporte Culinario",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "startTrip": "Comenzar Tu Presupuesto de Viaje",
+    "bookTransfer": "Reservar Traslado"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpiar",
+    "total": "Total",
+    "perPerson": "por persona",
+    "egp": "EGP",
+    "usd": "USD",
+    "eur": "EUR",
+    "gbp": "GBP",
+    "egpPerDay": "EGP/día",
+    "travelers": "viajeros",
+    "traveler": "viajero",
+    "recommended": "Recomendado",
+    "current": "Actual",
+    "selectAllVisible": "Seleccionar Todo Visible"
+  },
+  "home": {
+    "title": "Descubre las Maravillas de Egipto",
+    "subtitle": "Viajes asequibles y transparentes sin tarifas ocultas",
+    "features": {
+      "noHiddenFees": "Sin tarifas ocultas - Precios reales en EGP",
+      "rating": "4.9★ en más de 2,500 viajes",
+      "localNetwork": "Red local + tarifas más bajas"
+    }
+  },
+  "hero": {
+    "title": "Viajes por Egipto",
+    "titleHighlight": "Simplificados",
+    "subtitle": "Obtén cotizaciones instantáneas para transporte, guías y experiencias. Ve el precio final real por adelantado - sin tarifas ocultas.",
+    "steps": {
+      "step1": {
+        "title": "Selecciona Tu Viaje",
+        "description": "Elige ciudades, transporte y tamaño del grupo"
+      },
+      "step2": {
+        "title": "Agregar Guías y Extras",
+        "description": "Elige guías locales y experiencias"
+      },
+      "step3": {
+        "title": "Obtén Tu Presupuesto",
+        "description": "Precios reales mostrados en libras egipcias"
+      }
+    },
+    "cta": "Comenzar a Planificar Tu Viaje",
+    "trustSignals": {
+      "satisfaction": "99% Satisfacción del Cliente",
+      "experience": "Más de 15 Años de Experiencia",
+      "coverage": "Todo Egipto Cubierto"
+    }
   },
   "blog": {
     "title": "Consejos y Guías de Viaje",
@@ -32,7 +78,7 @@
     "noArticles": "No se encontraron artículos en esta categoría.",
     "categories": {
       "all": "Todos",
-      "destinations": "Destinos", 
+      "destinations": "Destinos",
       "budgetTravel": "Viaje Económico",
       "foodCulture": "Comida y Cultura",
       "travelTips": "Consejos de Viaje"
@@ -48,7 +94,7 @@
         "excerpt": "Todo lo que necesitas saber para moverte por El Cairo de forma segura y eficiente, desde sistemas de metro hasta aplicaciones de viajes compartidos."
       },
       "desertsGuide": {
-        "title": "Guía de Viaje de los Desiertos Oriental y Occidental", 
+        "title": "Guía de Viaje de los Desiertos Oriental y Occidental",
         "excerpt": "Guía de Viaje del Desierto de Egipto: Explora Siwa, el Desierto Blanco y los Senderos Orientales"
       },
       "nileValley": {
