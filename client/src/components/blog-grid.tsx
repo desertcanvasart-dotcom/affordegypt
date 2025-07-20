@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from 'react-i18next';
-import i18n from '@/i18n';
 
 interface BlogPost {
   id: number;
@@ -18,18 +17,83 @@ interface BlogPost {
   slug: string;
 }
 
-
+const getBlogPosts = (t: any): BlogPost[] => [
+  {
+    id: 1,
+    title: t('blog.posts.sinaiGuide.title'),
+    excerpt: t('blog.posts.sinaiGuide.excerpt'),
+    category: "Destinations",
+    readTime: t('blog.readTime', { time: "5" }),
+    publishDate: "2024-03-15",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/sinai-monastery.jpg",
+    slug: "sinai-peninsula-travel-guide"
+  },
+  {
+    id: 2,
+    title: t('blog.posts.cairoTransport.title'),
+    excerpt: t('blog.posts.cairoTransport.excerpt'),
+    category: "Travel Tips",
+    readTime: t('blog.readTime', { time: "3" }),
+    publishDate: "2024-03-12",
+    image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020",
+    slug: "navigating-cairo-transportation-tips"
+  },
+  {
+    id: 3,
+    title: t('blog.posts.desertsGuide.title'),
+    excerpt: t('blog.posts.desertsGuide.excerpt'),
+    category: "Destinations",
+    readTime: t('blog.readTime', { time: "8" }),
+    publishDate: "2024-03-01",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg",
+    slug: "eastern-western-deserts-travel-guide"
+  },
+  {
+    id: 4,
+    title: t('blog.posts.nileValley.title'),
+    excerpt: t('blog.posts.nileValley.excerpt'),
+    category: "Destinations",
+    readTime: t('blog.readTime', { time: "7" }),
+    publishDate: "2024-03-10",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley.jpg",
+    slug: "nile-valley-travel-guide"
+  },
+  {
+    id: 5,
+    title: t('blog.posts.budgetTravel.title'),
+    excerpt: t('blog.posts.budgetTravel.excerpt'),
+    category: "Budget Travel",
+    readTime: t('blog.readTime', { time: "6" }),
+    publishDate: "2024-03-08",
+    image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7",
+    slug: "budget-travel-egypt"
+  },
+  {
+    id: 6,
+    title: t('blog.posts.streetFood.title'),
+    excerpt: t('blog.posts.streetFood.excerpt'),
+    category: "Food & Culture",
+    readTime: t('blog.readTime', { time: "4" }),
+    publishDate: "2024-03-05",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg",
+    slug: "egyptian-street-food-guide"
+  },
+  {
+    id: 7,
+    title: t('blog.posts.desertsGuide.title'),
+    excerpt: t('blog.posts.desertsGuide.excerpt'),
+    category: "Destinations",
+    readTime: t('blog.readTime', { time: "8" }),
+    publishDate: "2024-03-01",
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/eastern-desert.jpg",
+    slug: "eastern-western-deserts-travel-guide"
+  }
+];
 
 export default function BlogGrid() {
-  const { t, ready, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-
-  // Simple loading check
-  
-  if (!ready) {
-    return <div>Loading translations...</div>;
-  }
 
   const categories = [
     { key: "All", label: t('blog.categories.all') },
@@ -38,69 +102,8 @@ export default function BlogGrid() {
     { key: "Food & Culture", label: t('blog.categories.foodCulture') }
   ];
 
-  // Define translated blog posts inside component
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: t('blog.posts.sinaiGuide.title'),
-      excerpt: t('blog.posts.sinaiGuide.excerpt'),
-      category: "Destinations",
-      readTime: t('blog.readTime', { time: "5" }),
-      publishDate: "2024-03-15",
-      image: "http://travel2egypt.org/wp-content/uploads/2025/06/sinai-monastery.jpg",
-      slug: "sinai-peninsula-travel-guide"
-    },
-    {
-      id: 2,
-      title: t('blog.posts.cairoTransport.title'),
-      excerpt: t('blog.posts.cairoTransport.excerpt'),
-      category: "Travel Tips",
-      readTime: t('blog.readTime', { time: "3" }),
-      publishDate: "2024-03-12",
-      image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020",
-      slug: "navigating-cairo-transportation-tips"
-    },
-    {
-      id: 3,
-      title: t('blog.posts.desertsGuide.title'),
-      excerpt: t('blog.posts.desertsGuide.excerpt'),
-      category: "Destinations",
-      readTime: t('blog.readTime', { time: "8" }),
-      publishDate: "2024-03-01",
-      image: "http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg",
-      slug: "eastern-western-deserts-travel-guide"
-    },
-    {
-      id: 4,
-      title: t('blog.posts.nileValley.title'),
-      excerpt: t('blog.posts.nileValley.excerpt'),
-      category: "Destinations",
-      readTime: t('blog.readTime', { time: "7" }),
-      publishDate: "2024-03-10",
-      image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley.jpg",
-      slug: "nile-valley-travel-guide"
-    },
-    {
-      id: 5,
-      title: t('blog.posts.budgetTravel.title'),
-      excerpt: t('blog.posts.budgetTravel.excerpt'),
-      category: "Budget Travel",
-      readTime: t('blog.readTime', { time: "6" }),
-      publishDate: "2024-03-08",
-      image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7",
-      slug: "budget-travel-egypt"
-    },
-    {
-      id: 6,
-      title: t('blog.posts.streetFood.title'),
-      excerpt: t('blog.posts.streetFood.excerpt'),
-      category: "Food & Culture",
-      readTime: t('blog.readTime', { time: "4" }),
-      publishDate: "2024-03-05",
-      image: "http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg",
-      slug: "egyptian-street-food-guide"
-    }
-  ];
+  // Get translated blog posts
+  const blogPosts = getBlogPosts(t);
   
   // Filter out Travel Tips posts and apply category filter
   const availablePosts = blogPosts.filter(post => post.category !== "Travel Tips");

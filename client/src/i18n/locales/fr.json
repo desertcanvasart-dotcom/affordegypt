@@ -114,11 +114,6 @@
     "startHere": "Commencez Ici",
     "buildQuote": "Créer Devis",
     "savedQuotes": "Devis Sauvegardés",
-    "quoteManager": "Gestionnaire de Devis",
-    "searchQuotes": "Rechercher devis par nom ou ville...",
-    "noSavedQuotes": "Aucun devis sauvegardé pour le moment.",
-    "saveCurrentQuote": "Sauvegarder Devis Actuel",
-    "date": "Date",
     "addCity": "Ajouter Ville",
     "selectTransportation": "Sélectionner transport...",
     "selectTourGuide": "Sélectionner guide touristique...",
@@ -1384,6 +1379,100 @@
           "saltLakes": "Lacs salés",
           "mountain": "Montagne des Morts",
           "sandSea": "Grande Mer de Sable"
+        }
+      }
+    }
+  },
+  "blog": {
+    "desertsGuide": {
+      "title": "Déserts Oriental et Occidental",
+      "subtitle": "La Porte d'Entrée aux Aventures Économiques dans la Nature Sauvage d'Égypte",
+      "description": "Les déserts d'Égypte offrent des trésors uniques, des paysages majestueux, des expériences spirituelles et une géologie unique - le tout à une fraction du coût des activités touristiques typiques. Idéal pour les aventuriers soucieux du budget, des expériences authentiques vous attendent.",
+      "buttons": {
+        "planAdventure": "Planifiez Votre Aventure",
+        "viewBudgetGuide": "Voir le Guide Budget"
+      },
+      "sections": {
+        "comparison": {
+          "title": "Déserts Oriental vs. Occidental : Une Comparaison",
+          "subtitle": "Choisissez votre aventure selon vos intérêts et votre budget",
+          "eastern": {
+            "title": "Désert Oriental",
+            "location": "Emplacement : Entre le Nil et la Mer Rouge",
+            "terrain": "Terrain : Montagnes rocheuses, wadis et plaines côtières",
+            "bestFor": "Meilleur pour : Histoire minière, culture bédouine et accès à la Mer Rouge",
+            "access": "Accès : Via Qena ou Hurghada",
+            "highlights": "Points forts : Mines d'émeraudes, monastères et faune du désert"
+          },
+          "western": {
+            "title": "Désert Occidental",
+            "location": "Emplacement : Ouest de la Vallée du Nil",
+            "terrain": "Terrain : Dunes de sable, oasis et formations rocheuses uniques",
+            "bestFor": "Meilleur pour : Saut d'oasis, camping dans le Désert Blanc et observation des étoiles",
+            "access": "Accès : Via Le Caire ou Bahariya",
+            "highlights": "Points forts : Désert Noir et Blanc, sources chaudes et anciens établissements"
+          }
+        },
+        "destinations": {
+          "title": "Destinations Désertiques : Exploration Économique",
+          "subtitle": "Principales destinations pour des expériences désertiques authentiques"
+        },
+        "budgetTips": {
+          "title": "Conseils de Voyage Économique",
+          "subtitle": "Conseils essentiels pour les voyageurs du désert soucieux du budget",
+          "tips": [
+            "Rejoignez des groupes de safari locaux au lieu de voyages privés pour économiser jusqu'à 60%",
+            "Voyagez en novembre et mars pour les prix de saison intermédiaire",
+            "Utilisez des minibus et des taxis partagés entre les oasis",
+            "Séjournez dans des maisons d'hôtes familiales plutôt qu'à l'hôtel",
+            "Mangez où se rassemblent les locaux pour des repas authentiques et abordables",
+            "Négociez les prix en personne, surtout en basse saison"
+          ]
+        },
+        "itinerary": {
+          "title": "Aventure Désertique de 5 Jours avec Budget",
+          "subtitle": "Itinéraire complet avec prix transparents",
+          "total": "Total : 2 850 EGP par personne"
+        },
+        "packing": {
+          "title": "Éléments Essentiels pour le Désert",
+          "subtitle": "Que emporter pour votre aventure dans le désert",
+          "items": [
+            { "item": "Batterie externe", "reason": "Pas d'électricité pendant le camping" },
+            { "item": "Écharpe/keffiyeh", "reason": "Protection contre le soleil, la poussière et le sable" },
+            { "item": "Tongs et chaussures de randonnée", "reason": "Pour les sources et les marches accidentées" },
+            { "item": "Couche thermique", "reason": "Les nuits du désert peuvent être froides" },
+            { "item": "Lampe de poche", "reason": "Éclairage minimal dans les camps" },
+            { "item": "Bouteille d'eau réutilisable", "reason": "Écologique et rechargeable dans les oasis" }
+          ]
+        },
+        "bestTime": {
+          "title": "Meilleure Période pour Visiter",
+          "subtitle": "Planifiez votre aventure dans le désert pour un climat et un budget optimaux",
+          "bestSeason": {
+            "title": "Meilleure Saison",
+            "period": "Oct - Mar",
+            "description": "Temps parfait, ciel clair et températures confortables pour camper"
+          },
+          "budgetSpot": {
+            "title": "Point Idéal Budget",
+            "period": "Nov & Mar",
+            "description": "Prix de saison intermédiaire avec d'excellentes conditions météorologiques"
+          },
+          "avoid": {
+            "title": "À Éviter",
+            "period": "Jun - Aoû",
+            "description": "La chaleur extrême rend le camping dans le désert inconfortable et dangereux"
+          }
+        }
+      },
+      "cta": {
+        "title": "Prêt à Explorer les Déserts d'Égypte ?",
+        "subtitle": "Obtenez des devis personnalisés pour votre aventure dans le désert",
+        "description": "Planifiez votre évasion parfaite dans le désert avec nos guides locaux experts",
+        "buttons": {
+          "startPlanning": "Commencer la Planification",
+          "findGuides": "Trouver des Guides Locaux"
         }
       }
     }

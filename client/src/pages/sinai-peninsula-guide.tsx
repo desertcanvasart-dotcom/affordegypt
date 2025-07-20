@@ -10,35 +10,8 @@ import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
 
 export default function SinaiPeninsulaGuide() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
-  
-  // Debug logging
-  useEffect(() => {
-    console.log('=== SINAI PAGE DEBUG ===');
-    console.log('Current language:', i18n.language);
-    console.log('Browser language:', navigator.language);
-    console.log('LocalStorage language:', localStorage.getItem('language'));
-    console.log('Testing translation keys:');
-    console.log('Title:', t('blog.sinaiGuide.title'));
-    console.log('Subtitle:', t('blog.sinaiGuide.subtitle'));
-    console.log('Description:', t('blog.sinaiGuide.description'));
-    console.log('Destinations title:', t('blog.sinaiGuide.destinations.title'));
-    console.log('Sharm name:', t('blog.sinaiGuide.destinations.sharmElSheikh.name'));
-    console.log('CTA title:', t('blog.sinaiGuide.cta.title'));
-    console.log('CTA description:', t('blog.sinaiGuide.cta.description'));
-    console.log('CTA button:', t('blog.sinaiGuide.cta.button'));
-    
-    // Check if resource exists
-    console.log('i18n resources loaded:', !!i18n.getResourceBundle('de', 'translation'));
-    const deBundle = i18n.getResourceBundle('de', 'translation');
-    console.log('German resource bundle keys:', Object.keys(deBundle || {}));
-    console.log('Blog exists in bundle?', !!(deBundle && deBundle.blog));
-    console.log('Does blog key exist?', i18n.exists('blog.sinaiGuide.title'));
-    console.log('Direct access test - Title:', deBundle?.blog?.posts?.sinaiGuide?.title);
-    console.log('=== END DEBUG ===');
-  }, [t, i18n.language]);
-  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);

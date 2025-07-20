@@ -31,15 +31,8 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     returnObjects: false,
-    keySeparator: '.',
-    nsSeparator: ':',
-    
-    // Language normalization to handle en-US -> en mapping
-    load: 'languageOnly',  // This loads 'en' when it detects 'en-US'
-    supportedLngs: ['en', 'es', 'fr', 'de'],
-    nonExplicitSupportedLngs: true,
     
     interpolation: {
       escapeValue: false, // React already escapes values
