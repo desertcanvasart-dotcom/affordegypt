@@ -31,8 +31,10 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    debug: false,
+    debug: true, // Enable debug to see what's happening
     returnObjects: false,
+    keySeparator: '.',
+    nsSeparator: ':',
     
     interpolation: {
       escapeValue: false, // React already escapes values

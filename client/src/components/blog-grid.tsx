@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 interface BlogPost {
   id: number;
@@ -26,8 +27,15 @@ export default function BlogGrid() {
 
   // Debug logging
   console.log('Blog translation ready:', ready);
+  console.log('Current language:', i18n?.language);
   console.log('Blog title translation:', t('blog.title'));
   console.log('Blog subtitle translation:', t('blog.subtitle'));
+  
+  // Test direct access to resources
+  if (i18n?.store?.data) {
+    const lang = i18n.language || 'en';
+    console.log('Direct resource access:', i18n.store.data[lang]?.translation?.blog);
+  }
 
   const categories = [
     { key: "All", label: t('blog.categories.all') },
