@@ -126,6 +126,16 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 20, 2025. **COMPLETED: Fixed English and Spanish translation key issues**
+  * **ENGLISH TRANSLATIONS RESTORED**: Added all missing sections that were causing translation key display errors
+  * **SPANISH TRANSLATIONS COMPLETED**: Added comprehensive translations for all sections marked by user in red rectangles  
+  * **PRICING TOOL TRANSLATIONS**: Added all pricing component translations (multiCityTool, buildItinerary, searchCities, etc.)
+  * **FAQ SECTION TRANSLATIONS**: Added all FAQ question and answer translations (safety, visa, price, customise, currency, weather)
+  * **FOOTER TRANSLATIONS**: Added complete footer translations including newsletter, links, and legal sections
+  * **REVIEWS SECTION TRANSLATIONS**: Added reviews component translations (title, subtitle, statistics)
+  * **INCREMENTAL REPAIR APPROACH**: Successfully used one-by-one translation repair strategy as preferred by user
+  * **VALIDATED TRANSLATIONS**: Both English and Spanish translation files now validated and working correctly
+  * **USER FEEDBACK INTEGRATION**: Fixed exact sections identified by user through visual feedback screenshots
 - July 17, 2025. **COMPLETED: Full slug translation system implementation for all pages**
   * **IMPLEMENTED SLUG TRANSLATIONS**: Added comprehensive slug translations for all 18 user-facing pages across 3 languages
   * **CREATED TRANSLATION INFRASTRUCTURE**: Built slugTranslation.ts utility with mapping for all page slugs

@@ -110,5 +110,142 @@
         "excerpt": "Navega por el delicioso mundo de la comida callejera egipcia con consejos de seguridad y platos imperdibles en cada ciudad principal."
       }
     }
+  },
+  "pricing": {
+    "multiCityTool": "Planifica Tu Aventura Multi-Ciudad por Egipto",
+    "buildItinerary": "Construye tu itinerario perfecto con precios transparentes",
+    "buildQuote": "Crear Cotización",
+    "savedQuotes": "Cotizaciones Guardadas",
+    "startHere": "Empezar Aquí",
+    "tripStartDate": "Fecha de Inicio del Viaje",
+    "totalTravelers": "Total de Viajeros",
+    "smartItineraryBuilder": "Constructor de Itinerario Inteligente",
+    "showFilters": "Mostrar Filtros",
+    "hideFilters": "Ocultar Filtros",
+    "recommendedItineraries": "Itinerarios Recomendados",
+    "searchInstruction": "Instrucción de Búsqueda",
+    "searchCities": "Buscar ciudades...",
+    "addDestination": "Agregar Destino",
+    "chooseNextDestination": "Elegir Próximo Destino",
+    "city": "Ciudad",
+    "transportation": "Transporte",
+    "guide": "Guía",
+    "attractions": "Atracciones", 
+    "perPersonAddOns": "Extras por Persona",
+    "perUnitAddOns": "Extras por Unidad",
+    "totalPerPerson": "Total por Persona",
+    "addCity": "Agregar Ciudad",
+    "continueToBook": "Continuar para Reservar"
+  },
+  "guides": {
+    "selectTourGuide": "Seleccionar guía turístico...",
+    "selectedGuide": "Guía de {{language}} ({{duration}}h)",
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español", 
+      "french": "Francés",
+      "german": "Alemán",
+      "italian": "Italiano",
+      "japanese": "Japonés",
+      "chinese": "Chino",
+      "arabic": "Árabe"
+    }
+  },
+  "addons": {
+    "selectAddOns": "Seleccionar servicios...",
+    "addOnsSelected": "{{count}} servicios seleccionados ({{items}} artículos)"
+  },
+  "attractions": {
+    "searchPlaceholder": "Buscar atracciones...",
+    "allCategories": "Todas las Categorías",
+    "noAttractionsFound": "No se encontraron atracciones",
+    "clearFilters": "Limpiar filtros para ver todo",
+    "showing": "Mostrando"
+  },
+  "booking": {
+    "title": "Completa Tu Reserva",
+    "customerInfo": "Información del Cliente",
+    "firstName": "Nombre",
+    "lastName": "Apellido", 
+    "email": "Email",
+    "phone": "Teléfono",
+    "nationality": "Nacionalidad",
+    "travelDetails": "Detalles del Viaje",
+    "travelDate": "Fecha de Viaje",
+    "notes": "Solicitudes Especiales (Opcional)",
+    "bookingConfirmation": "Confirmación de Reserva",
+    "thankYou": "¡Gracias por tu reserva!",
+    "confirmationSent": "Se ha enviado un email de confirmación a tu dirección de correo.",
+    "bookingReference": "Referencia de Reserva"
+  },
+  "footer": {
+    "aboutUs": "Sobre Nosotros",
+    "contactUs": "Contáctanos", 
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "cookiePolicy": "Política de Cookies",
+    "bookingAgreement": "Acuerdo de Reserva",
+    "followUs": "Síguenos",
+    "description": "Viajes económicos por Egipto con precios transparentes y guías locales expertos.",
+    "usefulLinks": "Enlaces Útiles",
+    "travelTips": "Consejos de Viaje",
+    "desertsGuide": "Guía de los Desiertos Oriental y Occidental",
+    "sinaiGuide": "Guía de la Península del Sinaí", 
+    "nileGuide": "Guía del Valle del Nilo",
+    "budgetTravel": "Viaje Económico en Egipto",
+    "streetFood": "Comida Callejera Egipcia",
+    "cuisinePassport": "Pasaporte Culinario",
+    "legal": "Legal",
+    "copyright": "Todos los derechos reservados.",
+    "poweredBy": "Desarrollado y Perfeccionado por",
+    "newsletter": {
+      "title": "Boletín",
+      "subtitle": "Recibe consejos de viaje y ofertas especiales",
+      "placeholder": "Tu email",
+      "subscribe": "Suscribirse",
+      "subscribing": "Suscribiendo...",
+      "success": "¡Suscripción exitosa!",
+      "successDesc": "Recibirás consejos de viaje y ofertas especiales en tu bandeja de entrada.",
+      "failed": "Suscripción fallida",
+      "failedDesc": "Por favor intenta de nuevo o contáctanos directamente.",
+      "emailRequired": "Por favor ingresa tu dirección de email."
+    }
+  },
+  "reviews": {
+    "title": "Lo Que Dicen Nuestros Viajeros",
+    "subtitle": "Experiencias reales de miles de viajeros",
+    "totalReviews": "Total de Reseñas",
+    "averageRating": "Calificación Promedio", 
+    "fiveStarReviews": "Reseñas de 5 Estrellas"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Todo lo que necesitas saber sobre viajar a Egipto",
+    "questions": {
+      "safety": {
+        "question": "¿Es Egipto seguro para los turistas?",
+        "answer": "Egipto es generalmente seguro para los turistas, especialmente en las principales áreas turísticas. Sigue las prácticas comunes de seguridad de viaje, usa operadores turísticos confiables y consulta los avisos de viaje actuales."
+      },
+      "visa": {
+        "question": "¿Necesito una visa para visitar Egipto?",
+        "answer": "La mayoría de los visitantes necesitan una visa. Puedes obtener una visa turística a la llegada al aeropuerto por $25 USD, o solicitar una e-visa en línea antes de viajar. Consulta con tu embajada para requisitos específicos."
+      },
+      "price": {
+        "question": "¿Qué está incluido en el precio?",
+        "answer": "Todos los precios incluyen transporte, tarifas de guía (si se selecciona) y tarifas de entrada a atracciones. Las comidas, propinas y gastos personales no están incluidos a menos que se mencione específicamente."
+      },
+      "customise": {
+        "question": "¿Puedo personalizar mi itinerario?",
+        "answer": "¡Sí! Nuestra herramienta de precios multi-ciudad te permite construir itinerarios personalizados. Puedes seleccionar diferentes ciudades, rutas, guías y atracciones según tus preferencias y presupuesto."
+      },
+      "currency": {
+        "question": "¿Qué moneda aceptan?",
+        "answer": "Todos los precios se muestran en Libras Egipcias (EGP) pero puedes pagar en USD, EUR o GBP. Aceptamos las principales tarjetas de crédito (Visa, Mastercard, American Express), PayPal y transferencias bancarias."
+      },
+      "weather": {
+        "question": "¿Cuál es la mejor época para visitar Egipto?",
+        "answer": "Octubre a abril ofrece el mejor clima con temperaturas cómodas (20-25°C). Los meses de verano (mayo-septiembre) son muy calurosos pero ofrecen precios más bajos y menos multitudes."
+      }
+    }
   }
 }
