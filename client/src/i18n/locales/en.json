@@ -70,19 +70,30 @@
     }
   },
   "pricing": {
-    "multiCityTool": {
-      "title": "Plan Your Multi-City Egypt Adventure",
-      "subtitle": "Build your perfect itinerary with transparent pricing",
-      "citySelection": "City Selection",
-      "selectCities": "Select Cities to Visit",
-      "citiesSelected": "{{count}} cities selected",
-      "routeSelection": "Route Selection", 
-      "selectRoutes": "Select Routes",
-      "selectedRoute": "Selected route",
-      "routeSelected": "1 route selected",
-      "routesSelected": "{{count}} routes selected",
-      "searchRoutes": "Search routes..."
-    }
+    "multiCityTool": "Plan Your Multi-City Egypt Adventure",
+    "buildItinerary": "Build your perfect itinerary with transparent pricing",
+    "buildQuote": "Build Quote",
+    "savedQuotes": "Saved Quotes",
+    "startHere": "Start Here",
+    "tripStartDate": "Trip Start Date",
+    "totalTravelers": "Total Travelers",
+    "smartItineraryBuilder": "Smart Itinerary Builder",
+    "showFilters": "Show Filters",
+    "hideFilters": "Hide Filters",
+    "recommendedItineraries": "Recommended Itineraries",
+    "searchInstruction": "Search Instruction",
+    "searchCities": "Search cities...",
+    "addDestination": "Add Destination",
+    "chooseNextDestination": "Choose Next Destination",
+    "city": "City",
+    "transportation": "Transportation",
+    "guide": "Guide",
+    "attractions": "Attractions", 
+    "perPersonAddOns": "Per Person Add-Ons",
+    "perUnitAddOns": "Per Unit Add-Ons",
+    "totalPerPerson": "Total per Person",
+    "addCity": "Add City",
+    "continueToBook": "Continue to Book"
   },
   "guides": {
     "selectTourGuide": "Select tour guide...",
@@ -169,39 +180,29 @@
     "title": "Frequently Asked Questions",
     "subtitle": "Everything you need to know about traveling in Egypt",
     "questions": {
-      "generalTravel": {
-        "title": "General Travel",
-        "items": {
-          "visaRequirements": {
-            "question": "Do I need a visa to visit Egypt?",
-            "answer": "Most visitors need a visa. You can get a tourist visa on arrival at the airport for $25 USD, or apply for an e-visa online before traveling. Check with your embassy for specific requirements."
-          },
-          "bestTimeVisit": {
-            "question": "What's the best time to visit Egypt?",
-            "answer": "October to April offers the best weather with comfortable temperatures (20-25°C). Summer months (May-September) are very hot but offer lower prices and fewer crowds."
-          },
-          "safetyTravel": {
-            "question": "Is Egypt safe for tourists?",
-            "answer": "Egypt is generally safe for tourists, especially in major tourist areas. Follow common travel safety practices, use reputable tour operators, and check current travel advisories."
-          }
-        }
+      "safety": {
+        "question": "Is Egypt safe for tourists?",
+        "answer": "Egypt is generally safe for tourists, especially in major tourist areas. Follow common travel safety practices, use reputable tour operators, and check current travel advisories."
       },
-      "bookingPayment": {
-        "title": "Booking & Payment",
-        "items": {
-          "paymentMethods": {
-            "question": "What payment methods do you accept?", 
-            "answer": "We accept major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. All prices are shown in Egyptian Pounds (EGP) but you can pay in USD, EUR, or GBP."
-          },
-          "cancellationPolicy": {
-            "question": "What's your cancellation policy?",
-            "answer": "Free cancellation up to 48 hours before travel. Cancellations within 48 hours may incur charges depending on the service. Check specific terms for your booking."
-          },
-          "priceIncludes": {
-            "question": "What's included in the price?",
-            "answer": "All prices include transport, guide fees (if selected), and entrance fees to attractions. Meals, tips, and personal expenses are not included unless specifically mentioned."
-          }
-        }
+      "visa": {
+        "question": "Do I need a visa to visit Egypt?",
+        "answer": "Most visitors need a visa. You can get a tourist visa on arrival at the airport for $25 USD, or apply for an e-visa online before traveling. Check with your embassy for specific requirements."
+      },
+      "price": {
+        "question": "What's included in the price?",
+        "answer": "All prices include transport, guide fees (if selected), and entrance fees to attractions. Meals, tips, and personal expenses are not included unless specifically mentioned."
+      },
+      "customise": {
+        "question": "Can I customize my itinerary?",
+        "answer": "Yes! Our multi-city pricing tool allows you to build custom itineraries. You can select different cities, routes, guides, and attractions based on your preferences and budget."
+      },
+      "currency": {
+        "question": "What currency do you accept?",
+        "answer": "All prices are shown in Egyptian Pounds (EGP) but you can pay in USD, EUR, or GBP. We accept major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers."
+      },
+      "weather": {
+        "question": "What's the best time to visit Egypt?",
+        "answer": "October to April offers the best weather with comfortable temperatures (20-25°C). Summer months (May-September) are very hot but offer lower prices and fewer crowds."
       }
     }
   },
