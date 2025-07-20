@@ -246,6 +246,189 @@
         "question": "¿Cuál es la mejor época para visitar Egipto?",
         "answer": "Octubre a abril ofrece el mejor clima con temperaturas cómodas (20-25°C). Los meses de verano (mayo-septiembre) son muy calurosos pero ofrecen precios más bajos y menos multitudes."
       }
+    },
+    "support": {
+      "question": "¿Tienes más preguntas?",
+      "whatsapp": "WhatsApp nosotros",
+      "email": "Enviar Email"
+    }
+  },
+  "blog": {
+    "title": "Consejos de Viaje y Guías",
+    "subtitle": "Guías expertas, joyas ocultas y consejos prácticos para tu viaje a Egipto",
+    "viewAll": "Ver Todos los Artículos",
+    "readMore": "Leer Más",
+    "loadMore": "Cargar Más Artículos",
+    "noArticles": "No se encontraron artículos en esta categoría.",
+    "categories": {
+      "all": "Todos",
+      "destinations": "Destinos",
+      "budgetTravel": "Viaje Económico",
+      "foodCulture": "Comida y Cultura",
+      "travelTips": "Consejos de Viaje"
+    },
+    "readTime": "{{time}} min de lectura",
+    "posts": {
+      "sinaiGuide": {
+        "title": "Guía de la Península del Sinaí",
+        "subtitle": "Descubre la impresionante península de Egipto",
+        "description": "Desde los sitios de buceo de clase mundial del Mar Rojo hasta el bíblico Monte Sinaí, experimenta una mezcla perfecta de aventura, historia y belleza natural en la Península del Sinaí.",
+        "excerpt": "Guía de la Península del Sinaí: Mejores lugares para visitar, buceo y senderismo en Egipto",
+        "destinations": {
+          "title": "Destinos Principales",
+          "description": "Explora los diversos paisajes y culturas de la Península del Sinaí",
+          "sharmElSheikh": {
+            "name": "Sharm El Sheikh",
+            "description": "El destino de playa más popular de Egipto con resorts de primera clase y sitios de buceo de clase mundial.",
+            "highlights": ["Parque Nacional Ras Mohammed", "Bahía Naama", "Plaza SOHO", "Isla Tiran"],
+            "details": "Resorts de lujo, vida nocturna vibrante y algunos de los mejores arrecifes de coral del mundo."
+          },
+          "dahab": {
+            "name": "Dahab",
+            "description": "Paraíso relajado de mochileros famoso por el Blue Hole y el buceo libre.",
+            "highlights": ["Blue Hole", "Arrecife del Faro", "Cañón", "Buceo libre"],
+            "details": "Ambiente bohemio, alojamiento económico y sitios de buceo increíbles."
+          },
+          "nuweiba": {
+            "name": "Nuweiba",
+            "description": "Pueblo costero tranquilo perfecto para relajarse y aventuras en el desierto.",
+            "highlights": ["Playa Tarabin", "Playa Muzaina", "Castillo Zaman", "Safaris del Desierto"],
+            "details": "Playas pacíficas, cultura beduina y puerta de entrada a aventuras en el desierto."
+          },
+          "taba": {
+            "name": "Taba",
+            "description": "Ciudad fronteriza con vistas impresionantes a las montañas y sitios históricos.",
+            "highlights": ["Taba Heights", "Isla del Faraón", "Bahía Fjord", "Cruce Fronterizo"],
+            "details": "Paisajes montañosos, fortalezas antiguas y atardeceres espectaculares."
+          }
+        },
+        "activities": {
+          "waterSports": {
+            "title": "Deportes Acuáticos",
+            "scubaDiving": {
+              "name": "Buceo",
+              "price": "Desde 45 USD",
+              "description": "Explora los arrecifes de coral prístinos y la vida marina diversa del Mar Rojo."
+            },
+            "snorkeling": {
+              "name": "Snorkel",
+              "price": "Desde 25 USD", 
+              "description": "Descubre el mundo submarino con equipo de snorkel de alta calidad."
+            },
+            "windsurfing": {
+              "name": "Windsurf",
+              "price": "Desde 35 USD",
+              "description": "Aprovecha los vientos constantes para una aventura emocionante de windsurf."
+            },
+            "kitesurfing": {
+              "name": "Kitesurf",
+              "price": "Desde 60 USD",
+              "description": "Experimenta la emoción del kitesurf en las aguas cristalinas."
+            }
+          },
+          "desertAdventures": {
+            "camelTrekking": {
+              "name": "Trekking en Camello",
+              "price": "Desde 40 USD",
+              "description": "Viaja a través del desierto con camellos tradicionales beduinos."
+            },
+            "desertSafari": {
+              "name": "Safari del Desierto",
+              "price": "Desde 55 USD",
+              "description": "Explora los paisajes únicos del desierto en vehículos 4x4."
+            },
+            "coloredCanyon": {
+              "name": "Cañón Coloreado",
+              "price": "Desde 65 USD",
+              "description": "Camina a través de las impresionantes formaciones rocosas del Cañón Coloreado."
+            },
+            "bedouinNight": {
+              "name": "Noche Beduina",
+              "price": "Desde 80 USD",
+              "description": "Experimenta la cultura beduina tradicional bajo las estrellas del desierto."
+            }
+          },
+          "cultural": {
+            "title": "Experiencias Culturales",
+            "mountSinai": {
+              "name": "Monte Sinaí",
+              "price": "Desde 70 USD",
+              "description": "Sube al bíblico Monte Sinaí para una experiencia espiritual única."
+            },
+            "monastery": {
+              "name": "Monasterio de Santa Catalina",
+              "price": "Desde 60 USD",
+              "description": "Visita uno de los monasterios cristianos más antiguos del mundo."
+            },
+            "bedouinVillage": {
+              "name": "Pueblo Beduino",
+              "price": "Desde 45 USD",
+              "description": "Experimenta la vida tradicional beduina y la hospitalidad."
+            },
+            "wadiFeiran": {
+              "name": "Wadi Feiran",
+              "price": "Desde 85 USD",
+              "description": "Explora el oasis del desierto y sitios arqueológicos antiguos."
+            }
+          }
+        },
+        "practical": {
+          "bestTime": {
+            "title": "Mejor Época para Visitar",
+            "content": "Octubre a abril ofrece clima perfecto. Los meses de verano son muy calurosos pero menos concurridos."
+          },
+          "gettingThere": {
+            "title": "Cómo Llegar",
+            "content": "Vuela al Aeropuerto Internacional de Sharm El Sheikh o toma un autobús desde El Cairo (6-7 horas)."
+          },
+          "safety": {
+            "title": "Consejos de Seguridad",
+            "content": "Mantente hidratado, usa protector solar y respeta las costumbres locales. Siempre usa guías con licencia."
+          },
+          "packing": {
+            "title": "Qué Empacar",
+            "content": "Ropa ligera, protector solar, sombrero, zapatos cómodos para caminar y traje de baño."
+          }
+        },
+        "itineraries": {
+          "highlights": {
+            "title": "Lo Mejor del Sinaí - 3 Días",
+            "days": [
+              "Día 1: Llegada a Sharm El Sheikh, snorkel en Ras Mohammed",
+              "Día 2: Excursión de un día a Dahab y Blue Hole",
+              "Día 3: Safari del desierto y experiencia cultural beduina"
+            ],
+            "price": "Desde 180 USD por persona"
+          },
+          "adventure": {
+            "title": "Aventura en el Sinaí - 5 Días",
+            "days": [
+              "Día 1-2: Buceo y deportes acuáticos en Sharm El Sheikh",
+              "Día 3: Trekking en el Cañón Coloreado y pueblo beduino",
+              "Día 4: Subida al Monte Sinaí al amanecer",
+              "Día 5: Relajación en Nuweiba y regreso"
+            ],
+            "price": "Desde 320 USD por persona"
+          },
+          "relaxed": {
+            "title": "Sinaí Relajado - 4 Días", 
+            "days": [
+              "Día 1-2: Relax en la playa y snorkel suave",
+              "Día 3: Paseo en camello y cena beduina",
+              "Día 4: Spa y tiempo libre antes de la salida"
+            ],
+            "price": "Desde 220 USD por persona"
+          }
+        },
+        "cta": {
+          "title": "¿Listo para Explorar el Sinaí?",
+          "description": "Planifica tu aventura en el Sinaí con nuestros expertos locales",
+          "button": "Comenzar a Planificar",
+          "subtitle": "Planifica tu aventura en el Sinaí con nuestros expertos locales",
+          "startPlanning": "Comenzar a Planificar",
+          "getQuote": "Obtener Cotización"
+        }
+      }
     }
   }
 }
