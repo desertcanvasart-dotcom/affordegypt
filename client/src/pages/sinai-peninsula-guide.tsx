@@ -15,6 +15,7 @@ export default function SinaiPeninsulaGuide() {
   
   // Debug logging
   useEffect(() => {
+    console.log('=== SINAI PAGE DEBUG ===');
     console.log('Current language:', i18n.language);
     console.log('Browser language:', navigator.language);
     console.log('LocalStorage language:', localStorage.getItem('language'));
@@ -35,6 +36,7 @@ export default function SinaiPeninsulaGuide() {
     console.log('Blog exists in bundle?', !!(deBundle && deBundle.blog));
     console.log('Does blog key exist?', i18n.exists('blog.sinaiGuide.title'));
     console.log('Direct access test - Title:', deBundle?.blog?.posts?.sinaiGuide?.title);
+    console.log('=== END DEBUG ===');
   }, [t, i18n.language]);
   
   // Scroll to top when component mounts
