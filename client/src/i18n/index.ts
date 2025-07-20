@@ -31,7 +31,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    debug: false,
+    debug: true,
     returnObjects: false,
     keySeparator: '.',
     nsSeparator: ':',

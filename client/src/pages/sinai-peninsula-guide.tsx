@@ -16,6 +16,8 @@ export default function SinaiPeninsulaGuide() {
   // Debug logging
   useEffect(() => {
     console.log('Current language:', i18n.language);
+    console.log('Browser language:', navigator.language);
+    console.log('LocalStorage language:', localStorage.getItem('language'));
     console.log('Testing translation keys:');
     console.log('Title:', t('blog.sinaiGuide.title'));
     console.log('Subtitle:', t('blog.sinaiGuide.subtitle'));
@@ -28,7 +30,11 @@ export default function SinaiPeninsulaGuide() {
     
     // Check if resource exists
     console.log('i18n resources loaded:', !!i18n.getResourceBundle('de', 'translation'));
+    const deBundle = i18n.getResourceBundle('de', 'translation');
+    console.log('German resource bundle keys:', Object.keys(deBundle || {}));
+    console.log('Blog exists in bundle?', !!(deBundle && deBundle.blog));
     console.log('Does blog key exist?', i18n.exists('blog.sinaiGuide.title'));
+    console.log('Direct access test - Title:', deBundle?.blog?.posts?.sinaiGuide?.title);
   }, [t, i18n.language]);
   
   // Scroll to top when component mounts

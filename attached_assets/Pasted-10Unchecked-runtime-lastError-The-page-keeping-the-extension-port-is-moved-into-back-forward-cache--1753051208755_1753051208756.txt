@@ -1,0 +1,27 @@
+10Unchecked runtime.lastError: The page keeping the extension port is moved into back/forward cache, so the message channel is closed.Understand this error
+client:495 [vite] connecting...
+client:618 [vite] connected.
+chunk-RPCDYKBN.js?v=ae3f5a87:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+sinai-peninsula-guide.tsx:18 Current language: de
+sinai-peninsula-guide.tsx:19 Testing translation keys:
+sinai-peninsula-guide.tsx:20 Title: blog.sinaiGuide.title
+sinai-peninsula-guide.tsx:21 Subtitle: blog.sinaiGuide.subtitle
+sinai-peninsula-guide.tsx:22 Description: blog.sinaiGuide.description
+sinai-peninsula-guide.tsx:23 Destinations title: blog.sinaiGuide.destinations.title
+sinai-peninsula-guide.tsx:24 Sharm name: blog.sinaiGuide.destinations.sharmElSheikh.name
+sinai-peninsula-guide.tsx:25 CTA title: blog.sinaiGuide.cta.title
+sinai-peninsula-guide.tsx:26 CTA description: blog.sinaiGuide.cta.description
+sinai-peninsula-guide.tsx:27 CTA button: blog.sinaiGuide.cta.button
+sinai-peninsula-guide.tsx:30 i18n resources loaded: true
+sinai-peninsula-guide.tsx:31 Does blog key exist? false
+sinai-peninsula-guide:1 Mixed Content: The page at 'https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/sinai-peninsula-guide' was loaded over HTTPS, but requested an insecure element 'http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.htmlUnderstand this warning
+sinai-peninsula-guide:1 Mixed Content: The page at 'https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/sinai-peninsula-guide' was loaded over HTTPS, but requested an insecure element 'http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.htmlUnderstand this warning
+sinai-peninsula-guide:1 Mixed Content: The page at 'https://c622bffa-a875-4cb8-a4cd-88ee108f813c-00-1kyd5kh4z8k7t.janeway.replit.dev/sinai-peninsula-guide' was loaded over HTTPS, but requested an insecure element 'http://travel2egypt.org/wp-content/uploads/2025/06/red-sea-diving.jpg'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.htmlUnderstand this warning
+content.js:1 [MindStudio][Content] Initializing content script
+content.js:2 cookies Array(0)
+sinai-peninsula-guide:1 Unchecked runtime.lastError: Could not establish connection. Receiving end does not exist.Understand this error
+cs.js:1 [Report Only] Refused to execute inline event handler because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-...'), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present.
+
+cs.js:1 [Report Only] Refused to execute inline event handler because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-...'), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present.
+
+cs.js:1 [Report Only] Refused to execute inline event handler because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-...'), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present.
