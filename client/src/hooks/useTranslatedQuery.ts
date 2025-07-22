@@ -9,7 +9,10 @@ function appendLanguageParam(url: string, language: string): string {
   return `${url}${separator}lang=${language}`;
 }
 
-// Custom hook that includes language parameter in queries
+/**
+ * Enhanced query hook with language parameter support
+ * Automatically appends language parameter to API requests and handles caching per language
+ */
 export function useTranslatedQuery<TQueryFnData = unknown, TError = Error>(
   queryKey: string,
   options?: Omit<UseQueryOptions<TQueryFnData, TError>, 'queryKey' | 'queryFn'>
@@ -17,10 +20,13 @@ export function useTranslatedQuery<TQueryFnData = unknown, TError = Error>(
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language || 'en';
   
+  // Ensure language is valid, fallback to English
+  const validLanguage = ['en', 'es', 'fr', 'de'].includes(currentLanguage) ? currentLanguage : 'en';
+  
   return useQuery({
-    queryKey: [queryKey, currentLanguage], // Include language in query key for proper caching
+    queryKey: [queryKey, validLanguage], // Include language in query key for proper caching
     queryFn: async () => {
-      const urlWithLang = appendLanguageParam(queryKey, currentLanguage);
+      const urlWithLang = appendLanguageParam(queryKey, validLanguage);
       const response = await fetch(urlWithLang, { credentials: "include" });
       
       if (!response.ok) {
@@ -29,6 +35,8 @@ export function useTranslatedQuery<TQueryFnData = unknown, TError = Error>(
       
       return response.json();
     },
+    // Ensure fresh data when language changes
+    staleTime: 0,
     ...options,
   });
 }

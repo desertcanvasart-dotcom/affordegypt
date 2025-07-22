@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { useParams, useLocation, useSearch } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -58,32 +59,27 @@ export default function BookPage() {
   };
 
   // Fetch quote if ID is provided
-  const { data: quote, isLoading } = useQuery({
+  const { data: quote, isLoading } = useQuery<any>({
     queryKey: [`/api/quotes/${params.id}`],
     enabled: !!params.id,
     retry: false,
   });
 
   // Fetch add-ons data for proper quantity display
-  const { data: addOns } = useQuery({
-    queryKey: ["/api/addons"],
-  });
+  const { data: addOns } = useTranslatedQuery<any[]>("/api/addons");
 
   // Fetch attractions data for proper name display
-  const { data: attractions } = useQuery({
-    queryKey: ["/api/attractions"],
-  });
+  const { data: attractions } = useTranslatedQuery<any[]>("/api/attractions");
 
   // Fetch route data for transfer bookings
-  const { data: routeData } = useQuery({
+  const { data: routeData } = useQuery<any>({
     queryKey: [`/api/routes/${fallbackQuote.routeId}`],
     enabled: !!fallbackQuote.routeId && fallbackQuote.isTransferBooking,
     retry: false,
   });
 
   // Fetch cities data for route display
-  const { data: cities } = useQuery({
-    queryKey: ["/api/cities"],
+  const { data: cities } = useTranslatedQuery<any[]>("/api/cities", {
     enabled: fallbackQuote.isTransferBooking,
   });
 

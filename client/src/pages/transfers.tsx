@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { useLocation } from "wouter";
 import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -52,14 +52,10 @@ export default function TransfersPage() {
   const { toast } = useToast();
 
   // Fetch cities
-  const { data: cities = [] } = useQuery<City[]>({
-    queryKey: ["/api/cities"]
-  });
+  const { data: cities = [] } = useTranslatedQuery<City[]>("/api/cities");
 
   // Fetch routes
-  const { data: routes = [] } = useQuery<Route[]>({
-    queryKey: ["/api/routes"]
-  });
+  const { data: routes = [] } = useTranslatedQuery<Route[]>("/api/routes");
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);

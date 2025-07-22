@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,9 +32,7 @@ export default function AdminBookings() {
   const queryClient = useQueryClient();
   const [statusUpdate, setStatusUpdate] = useState<{ [key: number]: string }>({});
 
-  const { data: bookings, isLoading } = useQuery<Booking[]>({
-    queryKey: ["/api/admin/bookings"],
-  });
+  const { data: bookings, isLoading } = useTranslatedQuery<Booking[]>("/api/admin/bookings");
 
   const sendConfirmationMutation = useMutation({
     mutationFn: async (bookingId: number) => {

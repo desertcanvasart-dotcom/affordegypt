@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { Globe } from 'lucide-react';
 import {
   Select,
@@ -17,11 +18,22 @@ const languages = [
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
+  const queryClient = useQueryClient();
 
   const handleLanguageChange = (languageCode: string) => {
+    // Change language
     i18n.changeLanguage(languageCode);
+    
     // Store the language preference
     localStorage.setItem('language', languageCode);
+    
+    // Clear all cached queries to force refetch with new language
+    queryClient.invalidateQueries();
+    
+    // Force refetch of all translated queries
+    setTimeout(() => {
+      queryClient.refetchQueries();
+    }, 100);
   };
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
