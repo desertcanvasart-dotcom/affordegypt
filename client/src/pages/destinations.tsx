@@ -114,8 +114,8 @@ export default function Destinations() {
               {destinationArticles.map((article) => (
                 <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white">
                   <div 
-                    className="aspect-video relative overflow-hidden cursor-pointer"
-                    onClick={() => window.location.href = article.link}
+                    className={`aspect-video relative overflow-hidden ${article.id === 3 ? 'cursor-default' : 'cursor-pointer'}`}
+                    onClick={article.id === 3 ? undefined : () => window.location.href = article.link}
                   >
                     <img 
                       src={article.image}
@@ -130,7 +130,7 @@ export default function Destinations() {
                   </div>
                   
                   <CardHeader>
-                    <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 hover:text-teal-600 transition-colors">
+                    <CardTitle className={`text-xl font-bold line-clamp-2 transition-colors ${article.id === 3 ? 'text-gray-600 cursor-default' : 'text-gray-900 hover:text-teal-600'}`}>
                       {t(article.title)}
                     </CardTitle>
                   </CardHeader>
@@ -157,8 +157,9 @@ export default function Destinations() {
                     </div>
                     
                     <Button 
-                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
-                      onClick={() => window.location.href = article.link}
+                      className={`w-full ${article.id === 3 ? 'bg-gray-400 cursor-not-allowed text-gray-600' : 'bg-teal-600 hover:bg-teal-700 text-white'}`}
+                      onClick={article.id === 3 ? undefined : () => window.location.href = article.link}
+                      disabled={article.id === 3}
                     >
                       {t('destinations.readGuide')}
                     </Button>

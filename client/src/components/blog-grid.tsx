@@ -199,12 +199,10 @@ export default function BlogGrid() {
                     </Button>
                   </Link>
                 ) : post.slug === "sinai-peninsula-travel-guide" ? (
-                  <Link href="/sinai-peninsula-guide">
-                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      {t('blog.readMore')}
-                      <ArrowRight className="ml-1 w-3 h-3" />
-                    </Button>
-                  </Link>
+                  <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-muted-foreground cursor-default" disabled>
+                    {t('blog.readMore')}
+                    <ArrowRight className="ml-1 w-3 h-3" />
+                  </Button>
                 ) : post.slug === "eastern-western-deserts-travel-guide" ? (
                   <Link href="/eastern-western-deserts-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
