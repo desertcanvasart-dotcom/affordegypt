@@ -30,8 +30,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en',
-    debug: false,
+    lng: 'en',                    // current language
+    fallbackLng: 'en',            // ALWAYS keep a fallback
+    ns: ['translation'],          // namespaces we use
+    defaultNS: 'translation',
+    keySeparator: '.',            // enable nested key lookup (blog.sinaiGuide.title)
+    debug: false, // Enable manually when needed for debugging translations
     returnObjects: false,
     
     interpolation: {
@@ -39,9 +43,19 @@ i18n
     },
     
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
       lookupLocalStorage: 'language',
+      lookupQuerystring: 'lng',
+    },
+    
+    // Add missing key handling
+    saveMissing: process.env.NODE_ENV === 'development',
+    parseMissingKeyHandler: (key: string) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`Missing translation key: ${key}`);
+      }
+      return key;
     },
   });
 

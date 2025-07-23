@@ -25,12 +25,22 @@ export function useSmartTranslation() {
       // Try to get translation in current language
       let result = t(key, interpolation);
       
-      // If result is the same as key, translation is missing
-      if (result === key || result === '') {
+      // Check if translation actually exists or if it returned the key (missing translation)
+      const isTranslationMissing = result === key || result === '';
+      
+      if (isTranslationMissing) {
+        // Log missing key in development
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`i18next::translator: missingKey ${currentLanguage} translation ${key} ${key}`);
+        }
+        
         // Try English fallback if not already English
         if (currentLanguage !== 'en') {
           const englishResult = t(key, { lng: 'en', ...interpolation });
-          if (englishResult !== key && englishResult !== '') {
+          if (englishResult !== key && englishResult !== '' && englishResult) {
+            if (process.env.NODE_ENV === 'development') {
+              console.info(`Using English fallback for "${key}": "${englishResult}"`);
+            }
             return englishResult;
           }
         }
@@ -42,12 +52,19 @@ export function useSmartTranslation() {
         
         // As last resort, return formatted key if fallbackToKey is true
         if (fallbackToKey) {
-          // Convert key like 'blog.title' to 'Blog Title'
-          const lastPart = key.split('.').pop() || key;
-          return lastPart
+          // Convert key like 'blog.sinaiGuide.title' to 'Sinai Guide Title'
+          const parts = key.split('.');
+          const lastPart = parts[parts.length - 1] || key;
+          const formatted = lastPart
             .replace(/([A-Z])/g, ' $1')
             .replace(/^./, str => str.toUpperCase())
             .trim();
+          
+          if (process.env.NODE_ENV === 'development') {
+            console.info(`Using formatted key fallback for "${key}": "${formatted}"`);
+          }
+          
+          return formatted;
         }
         
         return key;
@@ -61,14 +78,20 @@ export function useSmartTranslation() {
   };
 
   /**
-   * Check if a translation exists
+   * Check if a translation exists for the current language
    * @param key - Translation key to check
    * @returns boolean indicating if translation exists
    */
   const exists = (key: string): boolean => {
     try {
       const result = t(key);
-      return result !== key && result !== '';
+      const hasTranslation = result !== key && result !== '' && result != null;
+      
+      if (process.env.NODE_ENV === 'development' && !hasTranslation) {
+        console.debug(`Translation key "${key}" not found in ${currentLanguage}`);
+      }
+      
+      return hasTranslation;
     } catch {
       return false;
     }
