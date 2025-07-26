@@ -11,17 +11,24 @@ import deTranslations from './locales/de.json';
 
 const resources = {
   en: {
-    translation: enTranslations
+    translation: enTranslations,
+    blog: enTranslations.blog,
+    common: enTranslations
   },
-
   es: {
-    translation: esTranslations
+    translation: esTranslations,
+    blog: esTranslations.blog,
+    common: esTranslations
   },
   fr: {
-    translation: frTranslations
+    translation: frTranslations,
+    blog: frTranslations.blog,
+    common: frTranslations
   },
   de: {
-    translation: deTranslations
+    translation: deTranslations,
+    blog: deTranslations.blog,
+    common: deTranslations
   }
 };
 
@@ -32,7 +39,7 @@ i18n
     resources,
     lng: 'en',                    // current language
     fallbackLng: 'en',            // ALWAYS keep a fallback
-    ns: ['translation'],          // namespaces we use
+    ns: ['translation', 'blog', 'common'],          // namespaces we use
     defaultNS: 'translation',
     keySeparator: '.',            // enable nested key lookup (blog.sinaiGuide.title)
     debug: false, // Enable manually when needed for debugging translations
