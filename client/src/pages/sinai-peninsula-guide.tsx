@@ -10,7 +10,7 @@ import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
 
 export default function SinaiPeninsulaGuide() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('blog');
   const [, setLocation] = useLocation();
   // Scroll to top when component mounts
   useEffect(() => {
