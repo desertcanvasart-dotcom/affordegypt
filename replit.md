@@ -126,6 +126,19 @@ This is a full-stack travel platform for Egypt tourism, specifically designed fo
 
 ## Changelog
 
+- July 26, 2025. **FIXED: Marsa Alam to Luxor routes discrepancy in Transfer Only module**
+  * **RESOLVED ROUTE NAMING**: Fixed incorrectly named route #239 from "Hurghada <->Luxor" to "Marsa Alam → Luxor (Overnight)"
+  * **ADDED TRIP TYPE CATEGORIZATION**: Added proper trip_type values to all 3 Marsa Alam to Luxor routes:
+    - Route #236: 'transfer' (Transfer & Drop-off - one-way, 329km)
+    - Route #238: 'day_trip' (Day Trip - round trip same day, 730km) 
+    - Route #239: 'overnight' (Overnight stay - with accommodation, 328km)
+  * **IMPROVED BACKEND API**: Updated route transformation logic to handle both vehiclePrices and basePriceByVehicle fields
+  * **VERIFIED WORKING**: All 3 routes now display correctly in Transfer Only module with proper categorization and pricing
+- July 26, 2025. **FIXED: i18n blog namespace configuration for translation loading**
+  * **RESOLVED MISSING TRANSLATIONS**: Added 'blog' namespace to i18n configuration to fix sinaiGuide translation key errors
+  * **RESTRUCTURED RESOURCES**: Exposed blog namespace separately from main translation namespace
+  * **MAINTAINED COMPONENT LOGIC**: Component already correctly uses useTranslation('blog') for sinaiGuide content
+  * **COMPLETE TRANSLATION COVERAGE**: All language files contain complete sinaiGuide sections with practical, itineraries, and cta content
 - July 22, 2025. **VERIFIED: Translation accuracy across all 4 languages confirmed and enhanced**
   * **COMPREHENSIVE ACCURACY CHECK**: Verified authentic and correct translations across all data types
   * **DATABASE TRANSLATIONS VERIFIED**: Cities, attractions, routes all have accurate Spanish, French, German translations
