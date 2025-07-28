@@ -47,7 +47,7 @@ export default function TransfersPage() {
     setSelectedRoute(null);
   };
 
-  const handleRouteSelection = (route: Route) => {
+  const handleRouteSelection = (route: RouteData) => {
     setSelectedRoute(route);
     setCurrentStep(2);
     
@@ -60,7 +60,7 @@ export default function TransfersPage() {
     }
   };
 
-  const getValidPrice = (route: Route, vehicleType: string): number => {
+  const getValidPrice = (route: RouteData, vehicleType: string): number => {
     const price = route.vehiclePrices?.[vehicleType] || route.basePriceByVehicle?.[vehicleType];
     return typeof price === 'number' ? price : 0;
   };

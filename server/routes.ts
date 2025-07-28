@@ -262,7 +262,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const totalQuotes = quotes.length;
       const averageBasket = quotes.length > 0 ? 
-        quotes.reduce((sum, q) => sum + parseFloat(q.totalPrice), 0) / quotes.length : 0;
+        quotes.reduce((sum, q) => sum + parseFloat(q.total), 0) / quotes.length : 0;
       
       // Calculate top routes (mock data for now)
       const topRoutes = [
@@ -274,7 +274,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const recentQuotes = quotes.slice(-5).map(q => ({
         id: q.id,
         customerName: `Customer ${q.id}`,
-        amount: parseFloat(q.totalPrice),
+        amount: parseFloat(q.total),
         status: 'pending',
         createdAt: q.createdAt || new Date().toISOString()
       }));
@@ -407,8 +407,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const routes = allRoutes
         .filter(route => route.fromCityId === cityIdNum || route.toCityId === cityIdNum)
         .map(route => {
-          const fromCityName = getCityNameById(route.fromCityId);
-          const toCityName = getCityNameById(route.toCityId);
+          const fromCityName = getCityNameById(route.fromCityId || 0);
+          const toCityName = getCityNameById(route.toCityId || 0);
           return {
             id: route.id,
             name: route.name || `${fromCityName} → ${toCityName}`,
@@ -549,7 +549,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               if (attractionId) {
                 const attraction = await storage.getAttraction(attractionId);
                 if (attraction) {
-                  attractionsTotal += parseFloat(attraction.ticketPrice); // Per person price
+                  attractionsTotal += parseFloat(attraction.ticketPrice || "0"); // Per person price
                 }
               }
             } catch (error) {
@@ -756,15 +756,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Prepare route data with new route category structure
       const routeData = {
         routeCategory: req.body.routeCategory || 'inter_city',
-        fromCityId: req.body.routeCategory === 'inter_city' ? parseInt(req.body.fromCityId) : null,
-        toCityId: req.body.routeCategory === 'inter_city' ? parseInt(req.body.toCityId) : null,
-        cityId: req.body.routeCategory === 'intra_city' ? parseInt(req.body.cityId) : null,
+        fromCityId: req.body.routeCategory === 'inter_city' ? parseInt(req.body.fromCityId) : undefined,
+        toCityId: req.body.routeCategory === 'inter_city' ? parseInt(req.body.toCityId) : undefined,
+        cityId: req.body.routeCategory === 'intra_city' ? parseInt(req.body.cityId) : undefined,
         fromLocation: req.body.fromLocation || null,
         toLocation: req.body.toLocation || null,
         name: req.body.name || null,
         tripMode: req.body.tripMode || 'transfer',
         nights: req.body.nights || 0,
-        distanceKm: req.body.distanceKm ? parseInt(req.body.distanceKm) : null,
+        distanceKm: req.body.distanceKm ? parseInt(req.body.distanceKm) : undefined,
         km: req.body.distanceKm ? req.body.distanceKm.toString() : "0", // Legacy field compatibility
         estimatedDuration: req.body.estimatedDuration || null,
         routeHighlights: req.body.routeHighlights || null,
@@ -944,9 +944,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Prepare route data
           const routeData = {
             routeCategory,
-            fromCityId: routeCategory === 'inter_city' ? fromCityId : null,
-            toCityId: routeCategory === 'inter_city' ? toCityId : null,
-            cityId: routeCategory === 'intra_city' ? fromCityId : null,
+            fromCityId: routeCategory === 'inter_city' ? fromCityId : undefined,
+            toCityId: routeCategory === 'inter_city' ? toCityId : undefined,
+            cityId: routeCategory === 'intra_city' ? fromCityId : undefined,
             fromLocation: row.from_location?.trim() || null,
             toLocation: row.to_location?.trim() || null,
             name: row.route_name?.trim() || null,
