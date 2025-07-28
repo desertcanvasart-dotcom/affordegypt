@@ -695,7 +695,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             basePriceByVehicle: normalizedPricing,
             sedanPrice,
             minivanPrice,
-            vanPrice
+            vanPrice,
+            tripType: route.trip_type // Convert snake_case to camelCase for frontend
           };
         });
         
