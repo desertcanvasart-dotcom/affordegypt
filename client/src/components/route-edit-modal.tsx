@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { refreshRouteData } from "@/lib/cacheUtils";
 
 interface RouteEditModalProps {
   isOpen: boolean;
@@ -148,18 +149,8 @@ export default function RouteEditModal({
     onSuccess: async (result) => {
       console.log('Route save successful:', result);
       
-      // Force invalidate routes cache everywhere to ensure multi-city pricing tool updates
-      await queryClient.invalidateQueries({ 
-        queryKey: ['/api/routes'],
-        exact: true,
-        refetchType: 'active'
-      });
-      
-      // Also refetch any active route queries immediately
-      await queryClient.refetchQueries({
-        queryKey: ['/api/routes'],
-        exact: true
-      });
+      // Use enhanced cache invalidation for language-aware queries
+      refreshRouteData();
       
       toast({
         title: "Success!",

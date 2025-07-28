@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { queryClient } from "@/lib/queryClient";
+import { refreshRouteData } from "@/lib/cacheUtils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -46,12 +47,9 @@ export default function RoutesPage() {
     mutationFn: async (id: number) => {
       return apiRequest("DELETE", `/api/routes/${id}`);
     },
-    onSuccess: (_, deletedId) => {
-      // Update cache directly instead of invalidating all queries
-      queryClient.setQueryData(['/api/routes'], (oldData: any) => {
-        if (!oldData) return oldData;
-        return oldData.filter((route: any) => route.id !== deletedId);
-      });
+    onSuccess: () => {
+      // Use enhanced cache invalidation for language-aware queries
+      refreshRouteData();
       toast({
         title: "Success!",
         description: "Route deleted successfully.",
