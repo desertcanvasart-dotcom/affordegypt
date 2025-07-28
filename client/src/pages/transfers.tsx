@@ -11,29 +11,9 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
-interface City {
-  id: number;
-  name: string;
-  slug: string;
-}
 
-interface Route {
-  id: number;
-  routeCategory: string;
-  fromCityId: number | null;
-  toCityId: number | null;
-  cityId: number | null;
-  fromLocation: string;
-  toLocation: string;
-  name?: string;
-  tripMode: string;
-  nights: number;
-  distanceKm: number | null;
-  estimatedDuration: string | null;
-  routeHighlights?: string | null;
-  vehiclePrices: any;
-  basePriceByVehicle?: any; // Legacy field for backward compatibility
-}
+
+import { RouteData, CityData } from "../../../shared/types";
 
 export default function TransfersPage() {
   const [currentStep, setCurrentStep] = useState(1); // 1: Route Selection, 2: Vehicle Selection
@@ -42,9 +22,9 @@ export default function TransfersPage() {
   const [toCity, setToCity] = useState("");
   const [vehicleType, setVehicleType] = useState("");
   const [passengers, setPassengers] = useState("2");
-  const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
+  const [selectedRoute, setSelectedRoute] = useState<RouteData | null>(null);
   const [selectedVehicleType, setSelectedVehicleType] = useState("");
-  const [routeOptions, setRouteOptions] = useState<Route[]>([]);
+  const [routeOptions, setRouteOptions] = useState<RouteData[]>([]);
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
   const [selectedCityForLocal, setSelectedCityForLocal] = useState("");
@@ -52,10 +32,10 @@ export default function TransfersPage() {
   const { toast } = useToast();
 
   // Fetch cities
-  const { data: cities = [] } = useTranslatedQuery<City[]>("/api/cities");
+  const { data: cities = [] } = useTranslatedQuery<CityData[]>("/api/cities");
 
   // Fetch routes
-  const { data: routes = [] } = useTranslatedQuery<Route[]>("/api/routes");
+  const { data: routes = [] } = useTranslatedQuery<RouteData[]>("/api/routes");
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);

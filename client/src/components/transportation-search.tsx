@@ -10,18 +10,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Search, MapPin, Car, Plane, Ship, ChevronDown, X } from "lucide-react";
 
-interface Route {
-  id: number;
-  name: string;
-  tripType: string;
-  fromCityId: number;
-  toCityId: number;
-  fromLocation?: string;
-  toLocation?: string;
-}
+import { RouteData } from "../../../shared/types";
 
 interface TransportationSearchProps {
-  routes: Route[];
+  routes: RouteData[];
   selectedRoutes: number[];
   onRoutesChange: (routes: number[]) => void;
   cityId: number;
@@ -174,10 +166,10 @@ export default function TransportationSearch({
                 <SelectContent>
                   <SelectItem value="all">All Types</SelectItem>
                   {tripTypes.map(tripType => (
-                    <SelectItem key={tripType} value={tripType}>
+                    <SelectItem key={tripType || 'unknown'} value={tripType || 'unknown'}>
                       <div className="flex items-center gap-2">
-                        {getRouteIcon(tripType)}
-                        <span>{getTripTypeLabel(tripType)}</span>
+                        {getRouteIcon(tripType || 'unknown')}
+                        <span>{getTripTypeLabel(tripType || 'unknown')}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -220,18 +212,18 @@ export default function TransportationSearch({
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      {getRouteIcon(route.tripType)}
+                      {getRouteIcon(route.tripType || 'unknown')}
                       <h5 className="font-medium text-sm truncate">
-                        {route.name}
+                        {route.name || 'Unnamed Route'}
                       </h5>
                     </div>
                     
                     <div className="flex items-center gap-2 mb-2">
                       <Badge 
                         variant="secondary" 
-                        className={`text-xs ${getTypeColor(route.tripType)}`}
+                        className={`text-xs ${getTypeColor(route.tripType || 'unknown')}`}
                       >
-                        {getTripTypeLabel(route.tripType)}
+                        {getTripTypeLabel(route.tripType || 'unknown')}
                       </Badge>
                     </div>
 

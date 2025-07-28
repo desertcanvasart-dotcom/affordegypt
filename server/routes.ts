@@ -657,18 +657,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         const routes = await storage.getRoutes();
         
-        // Transform routes to normalize pricing format and include trip mode
+        // Transform routes to normalize all data for frontend consistency
         const transformedRoutes = routes.map(route => {
           let normalizedPricing = {};
           let sedanPrice = "0";
           let minivanPrice = "0";
           let vanPrice = "0";
           
-          // Convert pricing format from old (sedan/minivan/van) to new (1/2/3)
-          if (route.basePriceByVehicle) {
-            const pricing = typeof route.basePriceByVehicle === 'string' 
-              ? JSON.parse(route.basePriceByVehicle) 
-              : route.basePriceByVehicle;
+          // Handle pricing from both old and new formats
+          const pricingSource = route.vehiclePrices || route.basePriceByVehicle;
+          if (pricingSource) {
+            const pricing = typeof pricingSource === 'string' 
+              ? JSON.parse(pricingSource) 
+              : pricingSource;
             
             // Check if it's the old format with string keys
             if (pricing.sedan !== undefined || pricing.minivan !== undefined || pricing.van !== undefined) {
@@ -690,13 +691,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
             }
           }
           
+          // Comprehensive field transformation for frontend compatibility
           return {
-            ...route,
+            id: route.id,
+            name: route.name,
+            tripType: route.tripType, // Already in camelCase from database
+            tripMode: route.tripMode || 'transfer',
+            routeCategory: route.routeCategory,
+            fromCityId: route.fromCityId,
+            toCityId: route.toCityId,
+            cityId: route.cityId,
+            fromLocation: route.fromLocation,
+            toLocation: route.toLocation,
+            km: route.km,
+            distanceKm: route.distanceKm,
+            estimatedDuration: route.estimatedDuration,
+            routeHighlights: route.routeHighlights,
+            travelTips: route.travelTips,
+            pickupInstructions: route.pickupInstructions,
+            dropoffInstructions: route.dropoffInstructions,
+            nights: route.nights || 0,
+            displayOrder: route.displayOrder || 0,
+            
+            // Pricing fields - normalized
             basePriceByVehicle: normalizedPricing,
+            vehiclePrices: normalizedPricing,
             sedanPrice,
             minivanPrice,
-            vanPrice,
-            tripType: route.trip_type // Convert snake_case to camelCase for frontend
+            vanPrice
           };
         });
         
