@@ -33,10 +33,12 @@ export default function AdminCityRoutes() {
   const [searchTerm, setSearchTerm] = useState("");
   const { toast } = useToast();
 
-  // Fetch routes from API
+  // Fetch routes from API with no cache to prevent stale data issues
   const { data: routes = [], isLoading: routesLoading } = useQuery({
     queryKey: ['/api/routes'],
     retry: false,
+    staleTime: 0, // Always treat data as stale
+    gcTime: 0, // Don't cache the data (TanStack Query v5 renamed cacheTime to gcTime)
   });
 
   // Fetch cities for displaying names

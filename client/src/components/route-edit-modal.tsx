@@ -149,12 +149,22 @@ export default function RouteEditModal({
     onSuccess: async (result) => {
       console.log('Route save successful:', result);
       
+      // CRITICAL: Clear ALL cache aggressively to prevent stale data
+      console.log('🚨 Clearing all cache to prevent race conditions...');
+      
+      // Clear all queries completely
+      queryClient.clear();
+      
+      // Force immediate refetch with no cache
+      setTimeout(() => {
+        queryClient.refetchQueries({ 
+          queryKey: ['/api/routes'],
+          type: 'active'
+        });
+      }, 100);
+      
       // Use enhanced cache invalidation for language-aware queries
       refreshRouteData();
-      
-      // Also force invalidate and refetch the specific admin queries
-      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
-      queryClient.refetchQueries({ queryKey: ['/api/routes'] });
       
       toast({
         title: "Success!",
