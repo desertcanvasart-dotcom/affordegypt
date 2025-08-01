@@ -367,37 +367,79 @@ export default function TransfersPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(selectedRoute.vehiclePrices || {})
-                      .sort(([a], [b]) => {
-                        const order = { sedan: 1, minivan: 2, van: 3, bus: 4 };
-                        return (order[a as keyof typeof order] || 999) - (order[b as keyof typeof order] || 999);
-                      })
-                      .map(([vehicleType, price]) => {
-                      const priceValue = typeof price === 'number' ? price : (typeof price === 'string' ? parseFloat(price) : 0);
-                      return (
-                        <div
-                          key={vehicleType}
-                          className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
-                          onClick={() => {
-                            // Proceed to booking
-                            window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${Math.round(priceValue)}`;
-                          }}
-                        >
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-semibold capitalize">{vehicleType.replace('_', ' ')}</h3>
-                            <Car className="w-5 h-5 text-teal-600" />
-                          </div>
-                          <p className="text-2xl font-bold text-teal-600">{Math.round(priceValue)} EGP</p>
-                          <p className="text-sm text-gray-500 mt-1">
-                            {vehicleType === 'sedan' && '1-2 passengers'}
-                            {vehicleType === 'minivan' && '3-8 passengers'}
-                            {vehicleType === 'van' && '9-15 passengers'}
-                            {vehicleType === 'coach' && '16-35 passengers'}
-                            {vehicleType === 'bus' && '16-35 passengers'}
-                          </p>
-                        </div>
-                      );
-                    })}
+                    {(() => {
+                      // Handle both new format {sedan: "365", minivan: "465"} and old format {"1": {"1": "365"}}
+                      const vehiclePrices = selectedRoute.vehiclePrices || {};
+                      const basePrices = selectedRoute.basePriceByVehicle || {};
+                      
+                      // Map vehicle IDs to names
+                      const vehicleIdToName = { "1": "sedan", "2": "minivan", "3": "van", "4": "bus" };
+                      const vehicleNameToId = { sedan: "1", minivan: "2", van: "3", bus: "4" };
+                      
+                      let processedPrices: Record<string, string> = {};
+                      
+                      // Check if vehiclePrices has direct vehicle names (new format)
+                      if (vehiclePrices.sedan || vehiclePrices.minivan || vehiclePrices.van) {
+                        processedPrices = {
+                          sedan: vehiclePrices.sedan || "0",
+                          minivan: vehiclePrices.minivan || "0", 
+                          van: vehiclePrices.van || "0",
+                          ...(vehiclePrices.bus && { bus: vehiclePrices.bus })
+                        };
+                      } else {
+                        // Handle old format with numeric IDs
+                        Object.entries(vehiclePrices).forEach(([id, priceData]) => {
+                          const vehicleName = vehicleIdToName[id as keyof typeof vehicleIdToName];
+                          if (vehicleName && priceData && typeof priceData === 'object') {
+                            processedPrices[vehicleName] = priceData["1"] || "0";
+                          }
+                        });
+                        
+                        // Fallback to basePriceByVehicle if vehiclePrices is empty
+                        if (Object.keys(processedPrices).length === 0) {
+                          Object.entries(basePrices).forEach(([id, priceData]) => {
+                            const vehicleName = vehicleIdToName[id as keyof typeof vehicleIdToName];
+                            if (vehicleName && priceData && typeof priceData === 'object') {
+                              processedPrices[vehicleName] = priceData["1"] || "0";
+                            }
+                          });
+                        }
+                      }
+                      
+                      return Object.entries(processedPrices)
+                        .sort(([a], [b]) => {
+                          const order = { sedan: 1, minivan: 2, van: 3, bus: 4 };
+                          return (order[a as keyof typeof order] || 999) - (order[b as keyof typeof order] || 999);
+                        })
+                        .map(([vehicleType, price]) => {
+                          const priceValue = typeof price === 'number' ? price : (typeof price === 'string' ? parseFloat(price) : 0);
+                          const vehicleId = vehicleNameToId[vehicleType as keyof typeof vehicleNameToId] || vehicleType;
+                          
+                          return (
+                            <div
+                              key={vehicleType}
+                              className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
+                              onClick={() => {
+                                // Proceed to booking with dynamic price
+                                window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleId}&price=${Math.round(priceValue)}`;
+                              }}
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <h3 className="font-semibold capitalize">{vehicleType.replace('_', ' ')}</h3>
+                                <Car className="w-5 h-5 text-teal-600" />
+                              </div>
+                              <p className="text-2xl font-bold text-teal-600">{Math.round(priceValue)} EGP</p>
+                              <p className="text-sm text-gray-500 mt-1">
+                                {vehicleType === 'sedan' && '1-2 passengers'}
+                                {vehicleType === 'minivan' && '3-8 passengers'}
+                                {vehicleType === 'van' && '9-15 passengers'}
+                                {vehicleType === 'coach' && '16-35 passengers'}
+                                {vehicleType === 'bus' && '16-35 passengers'}
+                              </p>
+                            </div>
+                          );
+                        });
+                    })()}
                   </div>
                 </CardContent>
               </Card>
