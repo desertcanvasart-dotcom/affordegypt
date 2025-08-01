@@ -561,6 +561,102 @@ export default function NileValleyGuide() {
         middleEgypt: "Middle Egypt",
         upperEgypt: "Upper Egypt", 
         nubia: "Nubia"
+      },
+      map: {
+        title: "Interactive Nile Valley Map",
+        clickCities: "Click on cities to explore detailed information"
+      },
+      cityDetails: {
+        population: "Population:",
+        bestTime: "Best time to visit:",
+        recommendedStay: "Recommended stay:",
+        keyHighlights: "Key Highlights",
+        budgetTips: "Budget Tips",
+        transportation: "Transportation",
+        localTransport: "Local transport:",
+        topAttractions: "Top Attractions",
+        entry: "Entry:",
+        hours: "Hours:"
+      },
+      completeGuide: {
+        title: "Complete Nile Valley City Guide",
+        population: "Population:",
+        bestTime: "Best time:",
+        stayDuration: "Stay duration:",
+        fromCairo: "From Cairo:",
+        keyHighlights: "Key Highlights",
+        topAttractions: "Top Attractions",
+        regions: {
+          upperEgypt: "Upper Egypt",
+          middleEgypt: "Middle Egypt", 
+          lowerEgypt: "Lower Egypt",
+          nubia: "Nubia"
+        }
+      },
+      transportation: {
+        title: "Getting Around the Nile Valley",
+        cruise: {
+          title: "Nile River Cruises",
+          description: "The most scenic way to travel between Luxor and Aswan, offering stunning views of ancient temples and traditional villages along the riverbanks.",
+          luxorAswan: "Luxor to Aswan: 3-4 days",
+          aswanLuxor: "Aswan to Luxor: 4-5 days",
+          stops: "Stops include Edfu, Kom Ombo, and Esna",
+          bestTime: "Best time: October to April for comfortable weather"
+        },
+        flights: {
+          title: "Domestic Flights",
+          description: "Quick and efficient connections between major cities, perfect for travelers with limited time.",
+          cairoLuxor: "Cairo to Luxor: 1.5 hours",
+          cairoAswan: "Cairo to Aswan: 1.5 hours", 
+          abuSimbel: "Abu Simbel: Daily flights from Cairo and Aswan",
+          flightTimes: "Flight times vary by season and airline"
+        }
+      },
+      travelTips: {
+        title: "Essential Nile Valley Travel Tips",
+        bestTime: {
+          title: "Best Time to Visit",
+          peakSeason: "Peak Season (Oct-Apr)",
+          peakDescription: "Perfect weather, higher prices, crowded attractions",
+          shoulderSeason: "Shoulder Season (May, Sep)",
+          shoulderDescription: "Good weather, moderate prices, fewer crowds",
+          lowSeason: "Low Season (Jun-Aug)",
+          lowDescription: "Very hot weather, lowest prices, minimal crowds"
+        },
+        budgetBreakdown: {
+          title: "Budget Breakdown",
+          budget: {
+            title: "Budget Travel ($30-50/day)",
+            description: "Hostels, local food, public transport, group tours"
+          },
+          midRange: {
+            title: "Mid-range ($50-120/day)",
+            description: "Mid-range hotels, mix of local and tourist restaurants, private tours"
+          },
+          luxury: {
+            title: "Luxury ($120+/day)",
+            description: "5-star hotels, fine dining, private guides, premium experiences"
+          }
+        },
+        culturalEtiquette: {
+          title: "Cultural Etiquette",
+          dressModestly: "Dress modestly, especially when visiting religious sites",
+          removeShoes: "Remove shoes when entering mosques",
+          askPermission: "Ask permission before photographing people",
+          bargainRespectfully: "Bargain respectfully in markets",
+          tipStaff: "Tip hotel and restaurant staff appropriately",
+          learnGreetings: "Learn basic Arabic greetings"
+        },
+        healthSafety: {
+          title: "Health & Safety",
+          drinkBottledWater: "Drink only bottled or filtered water",
+          useSunscreen: "Use high SPF sunscreen and wear protective clothing",
+          packMedications: "Pack any prescription medications you need",
+          getTravelInsurance: "Get comprehensive travel insurance",
+          keepCopies: "Keep copies of important documents",
+          useRegisteredGuides: "Use only registered tour guides",
+          stayHydrated: "Stay hydrated, especially during summer months"
+        }
       }
     },
     es: {
@@ -581,10 +677,106 @@ export default function NileValleyGuide() {
       regions: {
         title: "Explora el Valle del Nilo por Región",
         all: "Todas las Regiones",
-        lowerEgypt: "Bajo Egipto", 
+        lowerEgypt: "Bajo Egipto",
         middleEgypt: "Egipto Medio",
         upperEgypt: "Alto Egipto",
         nubia: "Nubia"
+      },
+      map: {
+        title: "Mapa Interactivo del Valle del Nilo",
+        clickCities: "Haz clic en las ciudades para explorar información detallada"
+      },
+      cityDetails: {
+        population: "Población:",
+        bestTime: "Mejor época para visitar:",
+        recommendedStay: "Estancia recomendada:",
+        keyHighlights: "Puntos Destacados",
+        budgetTips: "Consejos de Presupuesto",
+        transportation: "Transporte",
+        localTransport: "Transporte local:",
+        topAttractions: "Principales Atracciones",
+        entry: "Entrada:",
+        hours: "Horarios:"
+      },
+      completeGuide: {
+        title: "Guía Completa de Ciudades del Valle del Nilo",
+        population: "Población:",
+        bestTime: "Mejor época:",
+        stayDuration: "Duración de estancia:",
+        fromCairo: "Desde El Cairo:",
+        keyHighlights: "Puntos Destacados",
+        topAttractions: "Principales Atracciones",
+        regions: {
+          upperEgypt: "Alto Egipto",
+          middleEgypt: "Egipto Medio",
+          lowerEgypt: "Bajo Egipto",
+          nubia: "Nubia"
+        }
+      },
+      transportation: {
+        title: "Cómo Moverse por el Valle del Nilo",
+        cruise: {
+          title: "Cruceros por el Río Nilo",
+          description: "La forma más pintoresca de viajar entre Luxor y Asuán, ofreciendo vistas impresionantes de templos antiguos y pueblos tradicionales a lo largo de las orillas del río.",
+          luxorAswan: "Luxor a Asuán: 3-4 días",
+          aswanLuxor: "Asuán a Luxor: 4-5 días",
+          stops: "Las paradas incluyen Edfu, Kom Ombo y Esna",
+          bestTime: "Mejor época: octubre a abril para clima cómodo"
+        },
+        flights: {
+          title: "Vuelos Domésticos",
+          description: "Conexiones rápidas y eficientes entre las principales ciudades, perfectas para viajeros con tiempo limitado.",
+          cairoLuxor: "El Cairo a Luxor: 1.5 horas",
+          cairoAswan: "El Cairo a Asuán: 1.5 horas",
+          abuSimbel: "Abu Simbel: Vuelos diarios desde El Cairo y Asuán",
+          flightTimes: "Los horarios de vuelos varían según temporada y aerolínea"
+        }
+      },
+      travelTips: {
+        title: "Consejos Esenciales de Viaje al Valle del Nilo",
+        bestTime: {
+          title: "Mejor Época para Visitar",
+          peakSeason: "Temporada Alta (Oct-Abr)",
+          peakDescription: "Clima perfecto, precios más altos, atracciones concurridas",
+          shoulderSeason: "Temporada Media (May, Sep)",
+          shoulderDescription: "Buen clima, precios moderados, menos multitudes",
+          lowSeason: "Temporada Baja (Jun-Ago)",
+          lowDescription: "Clima muy caluroso, precios más bajos, multitudes mínimas"
+        },
+        budgetBreakdown: {
+          title: "Desglose de Presupuesto",
+          budget: {
+            title: "Viaje Económico ($30-50/día)",
+            description: "Albergues, comida local, transporte público, tours grupales"
+          },
+          midRange: {
+            title: "Rango Medio ($50-120/día)",
+            description: "Hoteles de rango medio, mezcla de restaurantes locales y turísticos, tours privados"
+          },
+          luxury: {
+            title: "Lujo ($120+/día)",
+            description: "Hoteles 5 estrellas, alta gastronomía, guías privados, experiencias premium"
+          }
+        },
+        culturalEtiquette: {
+          title: "Etiqueta Cultural",
+          dressModestly: "Vístete modestamente, especialmente al visitar sitios religiosos",
+          removeShoes: "Quítate los zapatos al entrar a mezquitas",
+          askPermission: "Pide permiso antes de fotografiar a las personas",
+          bargainRespectfully: "Regatear respetuosamente en los mercados",
+          tipStaff: "Dar propina apropiadamente al personal de hoteles y restaurantes",
+          learnGreetings: "Aprende saludos básicos en árabe"
+        },
+        healthSafety: {
+          title: "Salud y Seguridad",
+          drinkBottledWater: "Bebe solo agua embotellada o filtrada",
+          useSunscreen: "Usa protector solar de alto FPS y ropa protectora",
+          packMedications: "Empaca cualquier medicamento recetado que necesites",
+          getTravelInsurance: "Obtén un seguro de viaje integral",
+          keepCopies: "Mantén copias de documentos importantes",
+          useRegisteredGuides: "Usa solo guías turísticos registrados",
+          stayHydrated: "Mantente hidratado, especialmente durante los meses de verano"
+        }
       }
     },
     fr: {
@@ -609,6 +801,102 @@ export default function NileValleyGuide() {
         middleEgypt: "Moyenne-Égypte", 
         upperEgypt: "Haute-Égypte",
         nubia: "Nubie"
+      },
+      map: {
+        title: "Carte Interactive de la Vallée du Nil",
+        clickCities: "Cliquez sur les villes pour explorer des informations détaillées"
+      },
+      cityDetails: {
+        population: "Population:",
+        bestTime: "Meilleure période pour visiter:",
+        recommendedStay: "Séjour recommandé:",
+        keyHighlights: "Points Forts",
+        budgetTips: "Conseils Budget",
+        transportation: "Transport",
+        localTransport: "Transport local:",
+        topAttractions: "Principales Attractions",
+        entry: "Entrée:",
+        hours: "Heures:"
+      },
+      completeGuide: {
+        title: "Guide Complet des Villes de la Vallée du Nil",
+        population: "Population:",
+        bestTime: "Meilleure période:",
+        stayDuration: "Durée de séjour:",
+        fromCairo: "Depuis Le Caire:",
+        keyHighlights: "Points Forts",
+        topAttractions: "Principales Attractions",
+        regions: {
+          upperEgypt: "Haute-Égypte",
+          middleEgypt: "Moyenne-Égypte",
+          lowerEgypt: "Basse-Égypte",
+          nubia: "Nubie"
+        }
+      },
+      transportation: {
+        title: "Se Déplacer dans la Vallée du Nil",
+        cruise: {
+          title: "Croisières sur le Nil",
+          description: "La façon la plus pittoresque de voyager entre Louxor et Assouan, offrant des vues magnifiques sur les temples anciens et les villages traditionnels le long des rives du fleuve.",
+          luxorAswan: "Louxor à Assouan: 3-4 jours",
+          aswanLuxor: "Assouan à Louxor: 4-5 jours",
+          stops: "Les arrêts incluent Edfou, Kom Ombo et Esna",
+          bestTime: "Meilleure période: octobre à avril pour un climat confortable"
+        },
+        flights: {
+          title: "Vols Domestiques",
+          description: "Connexions rapides et efficaces entre les principales villes, parfaites pour les voyageurs avec un temps limité.",
+          cairoLuxor: "Le Caire à Louxor: 1.5 heures",
+          cairoAswan: "Le Caire à Assouan: 1.5 heures",
+          abuSimbel: "Abou Simbel: Vols quotidiens depuis Le Caire et Assouan",
+          flightTimes: "Les horaires de vol varient selon la saison et la compagnie aérienne"
+        }
+      },
+      travelTips: {
+        title: "Conseils Essentiels de Voyage dans la Vallée du Nil",
+        bestTime: {
+          title: "Meilleure Période pour Visiter",
+          peakSeason: "Haute Saison (Oct-Avr)",
+          peakDescription: "Climat parfait, prix plus élevés, attractions bondées",
+          shoulderSeason: "Saison Intermédiaire (Mai, Sep)",
+          shoulderDescription: "Bon climat, prix modérés, moins de foules",
+          lowSeason: "Basse Saison (Jun-Aoû)",
+          lowDescription: "Climat très chaud, prix les plus bas, foules minimales"
+        },
+        budgetBreakdown: {
+          title: "Répartition du Budget",
+          budget: {
+            title: "Voyage Économique ($30-50/jour)",
+            description: "Auberges, nourriture locale, transport public, tours de groupe"
+          },
+          midRange: {
+            title: "Gamme Moyenne ($50-120/jour)",
+            description: "Hôtels de gamme moyenne, mélange de restaurants locaux et touristiques, tours privés"
+          },
+          luxury: {
+            title: "Luxe ($120+/jour)",
+            description: "Hôtels 5 étoiles, cuisine raffinée, guides privés, expériences premium"
+          }
+        },
+        culturalEtiquette: {
+          title: "Étiquette Culturelle",
+          dressModestly: "Habillez-vous modestement, surtout lors de la visite de sites religieux",
+          removeShoes: "Retirez vos chaussures en entrant dans les mosquées",
+          askPermission: "Demandez la permission avant de photographier les gens",
+          bargainRespectfully: "Marchandez respectueusement dans les marchés",
+          tipStaff: "Donnez un pourboire approprié au personnel des hôtels et restaurants",
+          learnGreetings: "Apprenez les salutations de base en arabe"
+        },
+        healthSafety: {
+          title: "Santé et Sécurité",
+          drinkBottledWater: "Buvez uniquement de l'eau en bouteille ou filtrée",
+          useSunscreen: "Utilisez une crème solaire à haut FPS et portez des vêtements protecteurs",
+          packMedications: "Emportez tous les médicaments sur ordonnance dont vous avez besoin",
+          getTravelInsurance: "Souscrivez une assurance voyage complète",
+          keepCopies: "Gardez des copies des documents importants",
+          useRegisteredGuides: "Utilisez uniquement des guides touristiques enregistrés",
+          stayHydrated: "Restez hydraté, surtout pendant les mois d'été"
+        }
       }
     },
     de: {
@@ -633,6 +921,102 @@ export default function NileValleyGuide() {
         middleEgypt: "Mittelägypten",
         upperEgypt: "Oberägypten",
         nubia: "Nubien"
+      },
+      map: {
+        title: "Interaktive Niltal-Karte",
+        clickCities: "Klicken Sie auf Städte, um detaillierte Informationen zu erkunden"
+      },
+      cityDetails: {
+        population: "Bevölkerung:",
+        bestTime: "Beste Reisezeit:",
+        recommendedStay: "Empfohlener Aufenthalt:",
+        keyHighlights: "Wichtige Highlights",
+        budgetTips: "Budget-Tipps",
+        transportation: "Transport",
+        localTransport: "Lokaler Transport:",
+        topAttractions: "Top-Attraktionen",
+        entry: "Eintritt:",
+        hours: "Öffnungszeiten:"
+      },
+      completeGuide: {
+        title: "Vollständiger Niltal-Städteführer",
+        population: "Bevölkerung:",
+        bestTime: "Beste Zeit:",
+        stayDuration: "Aufenthaltsdauer:",
+        fromCairo: "Von Kairo:",
+        keyHighlights: "Wichtige Highlights",
+        topAttractions: "Top-Attraktionen",
+        regions: {
+          upperEgypt: "Oberägypten",
+          middleEgypt: "Mittelägypten",
+          lowerEgypt: "Unterägypten",
+          nubia: "Nubien"
+        }
+      },
+      transportation: {
+        title: "Fortbewegung im Niltal",
+        cruise: {
+          title: "Nilkreuzfahrten",
+          description: "Die schönste Art, zwischen Luxor und Assuan zu reisen, mit atemberaubenden Ausblicken auf antike Tempel und traditionelle Dörfer entlang der Flussufer.",
+          luxorAswan: "Luxor nach Assuan: 3-4 Tage",
+          aswanLuxor: "Assuan nach Luxor: 4-5 Tage",
+          stops: "Stopps beinhalten Edfu, Kom Ombo und Esna",
+          bestTime: "Beste Zeit: Oktober bis April für angenehmes Wetter"
+        },
+        flights: {
+          title: "Inlandsflüge",
+          description: "Schnelle und effiziente Verbindungen zwischen den wichtigsten Städten, perfekt für Reisende mit begrenzter Zeit.",
+          cairoLuxor: "Kairo nach Luxor: 1,5 Stunden",
+          cairoAswan: "Kairo nach Assuan: 1,5 Stunden",
+          abuSimbel: "Abu Simbel: Tägliche Flüge von Kairo und Assuan",
+          flightTimes: "Flugzeiten variieren je nach Saison und Fluggesellschaft"
+        }
+      },
+      travelTips: {
+        title: "Wichtige Niltal-Reisetipps",
+        bestTime: {
+          title: "Beste Reisezeit",
+          peakSeason: "Hauptsaison (Okt-Apr)",
+          peakDescription: "Perfektes Wetter, höhere Preise, überfüllte Attraktionen",
+          shoulderSeason: "Zwischensaison (Mai, Sep)",
+          shoulderDescription: "Gutes Wetter, moderate Preise, weniger Menschenmassen",
+          lowSeason: "Nebensaison (Jun-Aug)",
+          lowDescription: "Sehr heißes Wetter, niedrigste Preise, minimale Menschenmassen"
+        },
+        budgetBreakdown: {
+          title: "Budget-Aufschlüsselung",
+          budget: {
+            title: "Budget-Reise ($30-50/Tag)",
+            description: "Herbergen, lokales Essen, öffentliche Verkehrsmittel, Gruppentouren"
+          },
+          midRange: {
+            title: "Mittelklasse ($50-120/Tag)",
+            description: "Mittelklasse-Hotels, Mischung aus lokalen und touristischen Restaurants, private Touren"
+          },
+          luxury: {
+            title: "Luxus ($120+/Tag)",
+            description: "5-Sterne-Hotels, gehobene Küche, private Reiseführer, Premium-Erlebnisse"
+          }
+        },
+        culturalEtiquette: {
+          title: "Kulturelle Etikette",
+          dressModestly: "Kleiden Sie sich bescheiden, besonders beim Besuch religiöser Stätten",
+          removeShoes: "Ziehen Sie die Schuhe aus, wenn Sie Moscheen betreten",
+          askPermission: "Fragen Sie um Erlaubnis, bevor Sie Menschen fotografieren",
+          bargainRespectfully: "Handeln Sie respektvoll auf Märkten",
+          tipStaff: "Geben Sie Hotel- und Restaurantpersonal angemessenes Trinkgeld",
+          learnGreetings: "Lernen Sie grundlegende arabische Begrüßungen"
+        },
+        healthSafety: {
+          title: "Gesundheit & Sicherheit",
+          drinkBottledWater: "Trinken Sie nur Flaschen- oder gefiltertes Wasser",
+          useSunscreen: "Verwenden Sie hohen LSF-Sonnenschutz und tragen Sie schützende Kleidung",
+          packMedications: "Packen Sie alle verschreibungspflichtigen Medikamente ein, die Sie benötigen",
+          getTravelInsurance: "Schließen Sie eine umfassende Reiseversicherung ab",
+          keepCopies: "Bewahren Sie Kopien wichtiger Dokumente auf",
+          useRegisteredGuides: "Verwenden Sie nur registrierte Reiseführer",
+          stayHydrated: "Bleiben Sie hydratisiert, besonders in den Sommermonaten"
+        }
       }
     }
   };
