@@ -391,7 +391,7 @@ export default function TransfersPage() {
                         Object.entries(vehiclePrices).forEach(([id, priceData]) => {
                           const vehicleName = vehicleIdToName[id as keyof typeof vehicleIdToName];
                           if (vehicleName && priceData && typeof priceData === 'object') {
-                            processedPrices[vehicleName] = priceData["1"] || "0";
+                            processedPrices[vehicleName] = (priceData as any)["1"] || "0";
                           }
                         });
                         
@@ -400,7 +400,7 @@ export default function TransfersPage() {
                           Object.entries(basePrices).forEach(([id, priceData]) => {
                             const vehicleName = vehicleIdToName[id as keyof typeof vehicleIdToName];
                             if (vehicleName && priceData && typeof priceData === 'object') {
-                              processedPrices[vehicleName] = priceData["1"] || "0";
+                              processedPrices[vehicleName] = (priceData as any)["1"] || "0";
                             }
                           });
                         }

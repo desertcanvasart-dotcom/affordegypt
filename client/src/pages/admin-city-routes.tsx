@@ -113,8 +113,12 @@ export default function AdminCityRoutes() {
       return apiRequest("DELETE", `/api/routes/${id}`);
     },
     onSuccess: (_, deletedId) => {
-      // Use comprehensive cache invalidation
+      // Use comprehensive cache invalidation and force refresh
       refreshRouteData();
+      
+      // Force invalidate the specific query used in this component
+      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      
       toast({
         title: "Route deleted successfully",
         description: "The route has been removed from the system.",

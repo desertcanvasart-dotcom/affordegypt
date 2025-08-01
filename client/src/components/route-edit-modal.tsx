@@ -152,6 +152,10 @@ export default function RouteEditModal({
       // Use enhanced cache invalidation for language-aware queries
       refreshRouteData();
       
+      // Also force invalidate and refetch the specific admin queries
+      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      queryClient.refetchQueries({ queryKey: ['/api/routes'] });
+      
       toast({
         title: "Success!",
         description: `Route has been ${route ? 'updated' : 'created'} successfully.`,
