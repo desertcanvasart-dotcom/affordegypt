@@ -531,38 +531,143 @@ export default function NileValleyGuide() {
   const { t, i18n } = useTranslation();
   const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
-  
-
+  const currentLanguage = i18n.language;
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Handle regions with fallback
-  const regionsTranslation = t('blog.nileValley.regions', { returnObjects: true });
-  const regions = Array.isArray(regionsTranslation) ? regionsTranslation : ["All", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
+  const content: Record<string, any> = {
+    en: {
+      title: "Nile Valley Travel Guide",
+      subtitle: "Journey Through Egypt's Ancient Heartland",
+      description: "Follow the lifeblood of Egypt from the Mediterranean coast to the heart of Nubia, exploring ancient temples, vibrant cities, and timeless traditions along the mighty Nile River.",
+      hero: {
+        badge1: "5,000 Years of History",
+        badge2: "Ancient Temples & Tombs", 
+        badge3: "Authentic Egyptian Culture",
+        features: {
+          cities: { title: "12+ Historic Cities", description: "From Alexandria to Abu Simbel" },
+          sites: { title: "Ancient Monuments", description: "Temples, tombs, and pyramids" },
+          budget: { title: "Budget-Friendly", description: "Affordable travel options" }
+        },
+        cta: "Start Planning Your Journey"
+      },
+      regions: {
+        title: "Explore the Nile Valley by Region",
+        all: "All Regions",
+        lowerEgypt: "Lower Egypt",
+        middleEgypt: "Middle Egypt",
+        upperEgypt: "Upper Egypt", 
+        nubia: "Nubia"
+      }
+    },
+    es: {
+      title: "Guía de Viaje del Valle del Nilo", 
+      subtitle: "Viaje a Través del Corazón Ancestral de Egipto",
+      description: "Sigue la línea vital de Egipto desde la costa mediterránea hasta el corazón de Nubia, explorando templos antiguos, ciudades vibrantes y tradiciones atemporales a lo largo del poderoso río Nilo.",
+      hero: {
+        badge1: "5,000 Años de Historia",
+        badge2: "Templos y Tumbas Antiguas",
+        badge3: "Cultura Egipcia Auténtica",
+        features: {
+          cities: { title: "12+ Ciudades Históricas", description: "De Alejandría a Abu Simbel" },
+          sites: { title: "Monumentos Antiguos", description: "Templos, tumbas y pirámides" },
+          budget: { title: "Económico", description: "Opciones de viaje asequibles" }
+        },
+        cta: "Comienza a Planificar tu Viaje"
+      },
+      regions: {
+        title: "Explora el Valle del Nilo por Región",
+        all: "Todas las Regiones",
+        lowerEgypt: "Bajo Egipto", 
+        middleEgypt: "Egipto Medio",
+        upperEgypt: "Alto Egipto",
+        nubia: "Nubia"
+      }
+    },
+    fr: {
+      title: "Guide de Voyage de la Vallée du Nil",
+      subtitle: "Voyage à Travers le Cœur Ancestral de l'Égypte", 
+      description: "Suivez la ligne de vie de l'Égypte depuis la côte méditerranéenne jusqu'au cœur de la Nubie, en explorant des temples anciens, des villes vibrantes et des traditions intemporelles le long du puissant fleuve Nil.",
+      hero: {
+        badge1: "5,000 Ans d'Histoire",
+        badge2: "Temples et Tombes Antiques",
+        badge3: "Culture Égyptienne Authentique",
+        features: {
+          cities: { title: "12+ Villes Historiques", description: "D'Alexandrie à Abou Simbel" },
+          sites: { title: "Monuments Antiques", description: "Temples, tombes et pyramides" },
+          budget: { title: "Économique", description: "Options de voyage abordables" }
+        },
+        cta: "Commencez à Planifier Votre Voyage"
+      },
+      regions: {
+        title: "Explorez la Vallée du Nil par Région",
+        all: "Toutes les Régions",
+        lowerEgypt: "Basse-Égypte",
+        middleEgypt: "Moyenne-Égypte", 
+        upperEgypt: "Haute-Égypte",
+        nubia: "Nubie"
+      }
+    },
+    de: {
+      title: "Niltal Reiseführer",
+      subtitle: "Reise Durch Ägyptens Antikes Herzland",
+      description: "Folgen Sie der Lebensader Ägyptens von der Mittelmeerküste bis ins Herz Nubiens und erkunden Sie antike Tempel, lebendige Städte und zeitlose Traditionen entlang des mächtigen Nils.",
+      hero: {
+        badge1: "5.000 Jahre Geschichte", 
+        badge2: "Antike Tempel & Gräber",
+        badge3: "Authentische Ägyptische Kultur",
+        features: {
+          cities: { title: "12+ Historische Städte", description: "Von Alexandria bis Abu Simbel" },
+          sites: { title: "Antike Monumente", description: "Tempel, Gräber und Pyramiden" },
+          budget: { title: "Budget-freundlich", description: "Erschwingliche Reiseoptionen" }
+        },
+        cta: "Beginnen Sie Ihre Reiseplanung"
+      },
+      regions: {
+        title: "Erkunden Sie das Niltal nach Regionen",
+        all: "Alle Regionen",
+        lowerEgypt: "Unterägypten",
+        middleEgypt: "Mittelägypten",
+        upperEgypt: "Oberägypten",
+        nubia: "Nubien"
+      }
+    }
+  };
+  
+  const currentContent = content[currentLanguage] || content.en;
+
+  // Handle regions with multilingual content
+  const regions = currentLanguage === 'es' ? 
+    ["Todas las Regiones", "Bajo Egipto", "Egipto Medio", "Alto Egipto", "Nubia"] :
+    currentLanguage === 'fr' ?
+    ["Toutes les Régions", "Basse-Égypte", "Moyenne-Égypte", "Haute-Égypte", "Nubie"] :
+    currentLanguage === 'de' ?
+    ["Alle Regionen", "Unterägypten", "Mittelägypten", "Oberägypten", "Nubien"] :
+    ["All Regions", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
   
   // Create a mapping between translated regions and English region names
   const regionMap: { [key: string]: string } = {
-    "All": "All",
+    "All Regions": "All",
     "Lower Egypt": "Lower Egypt",
     "Middle Egypt": "Middle Egypt", 
     "Upper Egypt": "Upper Egypt",
     "Nubia": "Nubia",
     // Spanish
-    "Todos": "All",
+    "Todas las Regiones": "All",
     "Bajo Egipto": "Lower Egypt",
     "Egipto Medio": "Middle Egypt",
     "Alto Egipto": "Upper Egypt",
     // French
-    "Tous": "All",
+    "Toutes les Régions": "All",
     "Basse-Égypte": "Lower Egypt",
     "Moyenne-Égypte": "Middle Egypt",
     "Haute-Égypte": "Upper Egypt",
     "Nubie": "Nubia",
     // German
-    "Alle": "All",
+    "Alle Regionen": "All",
     "Unterägypten": "Lower Egypt",
     "Mittelägypten": "Middle Egypt",
     "Oberägypten": "Upper Egypt",
@@ -595,13 +700,13 @@ export default function NileValleyGuide() {
       >
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-            {t('blog.nileValley.title')}{" "}
+            {currentContent.title}{" "}
             <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
-              {t('blog.nileValley.subtitle')}
+              {currentContent.subtitle}
             </span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance text-center">
-            {t('blog.nileValley.description')}
+            {currentContent.description}
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mt-12 mb-8">
@@ -609,22 +714,22 @@ export default function NileValleyGuide() {
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <MapPin className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">{t('blog.nileValley.hero.features.cities.title')}</h4>
-              <p className="text-sm text-white/80">{t('blog.nileValley.hero.features.cities.description')}</p>
+              <h4 className="font-semibold mb-2 text-green-primary">{currentContent.hero.features.cities.title}</h4>
+              <p className="text-sm text-white/80">{currentContent.hero.features.cities.description}</p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <Camera className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">{t('blog.nileValley.hero.features.sites.title')}</h4>
-              <p className="text-sm text-white/80">{t('blog.nileValley.hero.features.sites.description')}</p>
+              <h4 className="font-semibold mb-2 text-green-primary">{currentContent.hero.features.sites.title}</h4>
+              <p className="text-sm text-white/80">{currentContent.hero.features.sites.description}</p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <Navigation className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">{t('blog.nileValley.hero.features.budget.title')}</h4>
-              <p className="text-sm text-white/80">{t('blog.nileValley.hero.features.budget.description')}</p>
+              <h4 className="font-semibold mb-2 text-green-primary">{currentContent.hero.features.budget.title}</h4>
+              <p className="text-sm text-white/80">{currentContent.hero.features.budget.description}</p>
             </div>
           </div>
           
@@ -632,7 +737,7 @@ export default function NileValleyGuide() {
             onClick={navigateToQuote}
             className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1"
           >
-            {t('blog.nileValley.hero.cta')} →
+            {currentContent.hero.cta} →
           </Button>
         </div>
       </header>
