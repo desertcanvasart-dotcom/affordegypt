@@ -375,160 +375,153 @@
         "sharmElSheikh": {
           "name": "Sharm El Sheikh",
           "description": "The Red Sea's crown jewel, evolved from a Bedouin fishing settlement into one of the world's most celebrated diving destinations",
-          "highlights": ["Ras Muhammad National Park", "SS Thistlegorm Wreck", "Naama Bay Marina", "Soho Square"],
-          "details": "Perched on the southern tip of Sinai, this resort town offers world-class coral reefs, luxury accommodations, and vibrant nightlife. Experience night-time plankton snorkeling in Nabq Bay where bioluminescent organisms create trails of glowing light."
+          "highlights": ["Ras Muhammad National Park", "SS Thistlegorm Wreck", "Naama Bay Marina", "Soho Square"]
         },
         "dahab": {
           "name": "Dahab",
-          "description": "A bohemian coastal town where the name 'gold' reflects both desert sands and sunset hues, beloved by divers and free spirits",
-          "highlights": ["Blue Hole Diving", "Three Pools", "Masbat Beach", "The Lagoon"],
-          "details": "Once a modest Bedouin fishing camp, Dahab's laid-back atmosphere attracts adventurers worldwide. The Blue Hole's vertical walls and the Canyon's dramatic drop-offs showcase vibrant marine life, while steady winds make it perfect for windsurfing."
+          "description": "A laid-back coastal town beloved by backpackers and divers, famous for the Blue Hole and relaxed atmosphere",
+          "highlights": ["Blue Hole", "Canyon dive site", "Assalah beachfront", "Camel treks"]
+        },
+        "mountSinai": {
+          "name": "Mount Sinai & St. Catherine",
+          "description": "Sacred mountain where Moses received the Ten Commandments, home to ancient monasteries and spiritual pilgrimage",
+          "highlights": ["Sunrise hike to summit", "St. Catherine's Monastery", "Burning Bush", "Ancient manuscripts"]
         },
         "nuweiba": {
           "name": "Nuweiba",
-          "description": "A tranquil gateway where ancient trade routes meet pristine coastline, offering authentic Bedouin culture and unspoiled beaches",
-          "highlights": ["Colored Canyon", "Aya Bay", "Pharaoh's Island", "Bedouin Camps"],
-          "details": "Nuweiba's shores have witnessed millennia of passage from Nabatean caravans to modern travelers. Enjoy sunset Bedouin tea rituals on Aya Bay's dunes and explore the nearby Colored Canyon's sandstone walls glowing in bands of ochre and crimson."
-        },
-        "taba": {
-          "name": "Taba",
-          "description": "The northern gateway of Sinai, where strategic crossroads meet luxury resorts overlooking the Gulf of Aqaba",
-          "highlights": ["Taba Heights", "Border Crossing", "Cliff Resorts", "Pharaoh's Island"],
-          "details": "Long serving as the crossroads between Egypt and the Levant, Taba combines historical significance with modern luxury. Elegant cliff-top resorts offer panoramic gulf views while maintaining traditional Bedouin architectural motifs."
+          "description": "Peaceful port town offering pristine beaches, coral reefs, and authentic Bedouin experiences",
+          "highlights": ["Colored Canyon", "Fjord Bay", "Tarabin beach", "Desert safaris"]
         }
       },
       "activities": {
-        "title": "Budget-Friendly Desert Adventures",
-        "description": "Smart Budget Travel Tips: How to experience Sinai's adventures without overspending",
-        "waterSports": {
-          "title": "Water Sports",
-          "scubaDiving": {
-            "name": "Scuba Diving",
-            "price": "From $45/dive",
-            "description": "Explore world-famous coral reefs"
-          },
-          "snorkeling": {
-            "name": "Snorkeling Tours",
-            "price": "From $25/trip",
-            "description": "Discover marine life in shallow waters"
-          },
-          "windsurfing": {
-            "name": "Windsurfing",
-            "price": "From $35/hour",
-            "description": "Perfect conditions in Dahab"
-          },
-          "kitesurfing": {
-            "name": "Kitesurfing",
-            "price": "From $50/lesson",
-            "description": "Learn in ideal wind conditions"
-          }
+        "title": "Adventures & Experiences",
+        "description": "From underwater exploration to desert adventures, the Sinai offers experiences for every type of traveler.",
+        "diving": {
+          "name": "World-Class Diving",
+          "price": "From $45/day",
+          "description": "Explore legendary dive sites with pristine coral reefs and historic wrecks in crystal-clear Red Sea waters."
         },
-        "desertAdventures": {
-          "title": "Desert Adventures",
-          "camelTrekking": {
-            "name": "Camel Trekking",
-            "price": "From $30/day",
-            "description": "Traditional Bedouin transport"
-          },
-          "desertSafari": {
-            "name": "Desert Safari",
-            "price": "From $60/trip",
-            "description": "4WD exploration of Sinai desert"
-          },
-          "coloredCanyon": {
-            "name": "Colored Canyon Hike",
-            "price": "From $40/trip",
-            "description": "Stunning geological formations"
-          },
-          "bedouinNight": {
-            "name": "Bedouin Night",
-            "price": "From $45/night",
-            "description": "Authentic desert camping experience"
-          }
+        "hiking": {
+          "name": "Mount Sinai Sunrise Trek",
+          "price": "From $35/person",
+          "description": "Climb the sacred mountain in darkness to witness a breathtaking sunrise over the desert landscape."
+        },
+        "desert": {
+          "name": "Desert Safari Adventures",
+          "price": "From $50/day",
+          "description": "Explore dramatic canyons, oases, and Bedouin camps with local guides who share ancient desert wisdom."
+        },
+        "snorkeling": {
+          "name": "Coral Reef Snorkeling",
+          "price": "From $25/day",
+          "description": "Discover colorful marine life in shallow reefs perfect for beginners and experienced snorkelers alike."
         },
         "cultural": {
-          "title": "Cultural & Spiritual",
+          "title": "Cultural Experiences",
           "mountSinai": {
-            "name": "Mount Sinai Sunrise Trek",
-            "price": "From $35/person",
-            "description": "Biblical mountain pilgrimage"
+            "name": "Mount Sinai Pilgrimage",
+            "price": "From $40/person",
+            "description": "Follow ancient pilgrimage routes to the summit where Moses received the Ten Commandments."
           },
           "monastery": {
             "name": "St. Catherine's Monastery",
-            "price": "From $25/visit",
-            "description": "Ancient Christian monastery"
+            "price": "From $20/person",
+            "description": "Visit one of the world's oldest continuously operating monasteries with priceless manuscripts and art."
           },
           "bedouinVillage": {
-            "name": "Bedouin Village Visit",
-            "price": "From $30/trip",
-            "description": "Traditional desert culture"
+            "name": "Bedouin Village Experience",
+            "price": "From $30/person",
+            "description": "Share traditional meals and stories with Bedouin families in authentic desert settlements."
           },
           "wadiFeiran": {
             "name": "Wadi Feiran Oasis",
-            "price": "From $55/trip",
-            "description": "Historic biblical oasis"
+            "price": "From $35/person",
+            "description": "Explore the biblical wilderness where the Israelites wandered, now a lush oasis with date palms."
+          }
+        },
+        "desertAdventures": {
+          "coloredCanyon": {
+            "name": "Colored Canyon Trek",
+            "price": "From $45/person",
+            "description": "Hike through spectacular multicolored rock formations carved by millennia of wind and water."
+          },
+          "whiteCanyon": {
+            "name": "White Canyon Adventure",
+            "price": "From $40/person",
+            "description": "Navigate narrow limestone corridors and natural bridges in this hidden desert wonder."
+          },
+          "camelTrek": {
+            "name": "Multi-Day Camel Trek",
+            "price": "From $80/day",
+            "description": "Journey deep into the desert on traditional camel caravans with overnight camping under stars."
+          },
+          "bedouinNight": {
+            "name": "Bedouin Desert Camp",
+            "price": "From $55/night",
+            "description": "Sleep under brilliant desert stars while enjoying traditional music, food, and storytelling."
           }
         }
       },
       "practical": {
-        "title": "Desert Packing Essentials",
-        "description": "Here's what to pack for your Sinai adventure when temps drop at night",
+        "title": "Practical Information",
+        "description": "Essential information for planning your Sinai adventure, from weather to safety tips.",
         "bestTime": {
           "title": "Best Time to Visit",
-          "content": "October to April offers perfect weather (20-25°C). Summer months (May-September) are extremely hot (35-45°C) but great for diving."
+          "content": "October to April offers perfect weather with warm days and cool nights. Avoid summer months (June-August) when temperatures exceed 40°C. Spring (March-May) is ideal for hiking and diving."
         },
         "gettingThere": {
           "title": "Getting There",
-          "content": "Fly into Sharm El Sheikh Airport (SSH) or drive from Cairo (6-7 hours). Taba border crossing connects to Israel/Jordan."
+          "content": "Fly to Sharm El Sheikh (SSH) for southern Sinai or Taba for northern areas. Overland transfers from Cairo take 6-7 hours through stunning desert landscapes."
         },
         "safety": {
-          "title": "Safety Considerations",
-          "content": "Generally safe for tourists. Stick to established resorts and tour operators. Check current travel advisories for desert areas."
+          "title": "Safety & Health",
+          "content": "Sinai is safe for tourists with basic precautions. Stay hydrated, use sun protection, and follow local guide advice, especially in desert areas."
         },
         "packing": {
-          "title": "What to Pack",
-          "content": "Reef-safe sunscreen, diving gear (or rent locally), desert clothing, warm layers for mountain treks, comfortable hiking boots."
+          "title": "Packing Essentials",
+          "content": "Sun protection, reef shoes for rocky beaches, warm clothes for mountain hikes, water bottle, and underwater camera for unforgettable marine moments."
         }
       },
       "itineraries": {
-        "title": "When to Visit for Best Value",
-        "description": "Budget-smart timing tips for incredible Sinai experiences",
+        "title": "Sample Itineraries",
+        "description": "Complete travel plans with transparent pricing and local insights for different types of Sinai adventures.",
         "highlights": {
           "title": "Sinai Highlights (5 Days)",
           "days": [
-            "Day 1-2: Sharm El Sheikh - Diving & relaxation",
-            "Day 3: Mount Sinai sunrise trek & St. Catherine's",
-            "Day 4: Transfer to Dahab, Blue Hole diving",
-            "Day 5: Colored Canyon day trip from Dahab"
+            "Day 1: Arrival in Sharm El Sheikh, Naama Bay exploration",
+            "Day 2: Ras Muhammad diving/snorkeling, sunset dinner",
+            "Day 3: Mount Sinai sunrise trek, St. Catherine's Monastery",
+            "Day 4: Dahab relaxation, Blue Hole diving",
+            "Day 5: Desert safari, Colored Canyon, departure"
           ],
-          "price": "From $380/person"
+          "price": "From $385 per person"
         },
         "adventure": {
-          "title": "Adventure Sinai (7 Days)",
+          "title": "Desert Adventure (7 Days)",
           "days": [
-            "Day 1-2: Sharm El Sheikh - Ras Mohammed diving",
-            "Day 3-4: Dahab - Advanced diving & windsurfing",
-            "Day 5: Mount Sinai trek & monastery visit",
-            "Day 6: Nuweiba - Colored Canyon & Bedouin experience",
-            "Day 7: Return via desert safari to Sharm"
+            "Day 1-2: Sharm El Sheikh diving and marine exploration",
+            "Day 3: Mount Sinai trek and monastery visit",
+            "Day 4-5: Multi-day camel trek with Bedouin guides",  
+            "Day 6: Colored Canyon and White Canyon exploration",
+            "Day 7: Nuweiba relaxation and departure"
           ],
-          "price": "From $590/person"
+          "price": "From $620 per person"
         },
         "relaxed": {
-          "title": "Relaxed Sinai (10 Days)",
+          "title": "Relaxed Explorer (4 Days)",
           "days": [
-            "Day 1-4: Sharm El Sheikh - Resort relaxation & diving",
-            "Day 5-7: Dahab - Leisurely diving & desert trips",
-            "Day 8: Mount Sinai spiritual journey",
-            "Day 9-10: Nuweiba - Beach relaxation & cultural experiences"
+            "Day 1: Arrival, beachfront relaxation",
+            "Day 2: Easy snorkeling, local culture",
+            "Day 3: St. Catherine's Monastery day trip",
+            "Day 4: Sunset camel ride, departure"
           ],
-          "price": "From $720/person"
+          "price": "From $285 per person"
         }
       },
       "cta": {
-        "title": "Ready to Explore Sinai's Desert Wilderness?",
-        "description": "Connect with our Sinai travel experts for personalized itineraries and competitive pricing on transfers, activities, and accommodations.",
-        "button": "Plan Your Sinai Adventure"
+        "title": "Ready to Explore the Sinai?",
+        "description": "Let us plan your perfect Sinai adventure with transparent pricing and local expertise",
+        "button": "Plan Sinai Trip"
       }
     },
     "nileValley": {
