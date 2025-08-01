@@ -595,12 +595,20 @@ export default function NileValleyGuide() {
       },
       transportation: {
         title: "Getting Around the Nile Valley",
+        train: {
+          title: "Train Travel",
+          description: "Affordable and scenic rail connections between major cities along the Nile Valley.",
+          cairoLuxor: "Cairo to Luxor: 10-12 hours overnight",
+          cairoAswan: "Cairo to Aswan: 13-14 hours overnight",
+          acCoaches: "Air-conditioned coaches available",
+          nightTrains: "Comfortable sleeper trains with dining cars"
+        },
         cruise: {
           title: "Nile River Cruises",
           description: "The most scenic way to travel between Luxor and Aswan, offering stunning views of ancient temples and traditional villages along the riverbanks.",
-          luxorAswan: "Luxor to Aswan: 3-4 days",
-          aswanLuxor: "Aswan to Luxor: 4-5 days",
-          stops: "Stops include Edfu, Kom Ombo, and Esna",
+          threeFourDays: "Luxor to Aswan: 3-4 days",
+          allMeals: "All meals included onboard",
+          entranceFees: "Temple entrance fees usually extra",
           bestTime: "Best time: October to April for comfortable weather"
         },
         flights: {
@@ -1130,7 +1138,7 @@ export default function NileValleyGuide() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t('blog.nileValley.map.title')}
+            {currentContent.map.title}
           </h2>
           
           <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
@@ -1306,7 +1314,7 @@ export default function NileValleyGuide() {
               </div>
               
               <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-2 rounded-lg border">
-                <p className="text-xs sm:text-sm font-medium text-gray-700">{t('blog.nileValley.map.clickCities')}</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-700">{currentContent.map.clickCities}</p>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 {/* Simplified Nile River visualization */}
@@ -1372,39 +1380,39 @@ export default function NileValleyGuide() {
                   <h3 className="text-2xl font-bold mb-2">{selectedCity.name}</h3>
                   <p className="text-gray-600 mb-1">{selectedCity.arabicName}</p>
                   <Badge className="mb-4">{
-                    selectedCity.region === "Upper Egypt" ? t('blog.nileValley.completeGuide.regions.upperEgypt') :
-                    selectedCity.region === "Middle Egypt" ? t('blog.nileValley.completeGuide.regions.middleEgypt') :
-                    selectedCity.region === "Lower Egypt" ? t('blog.nileValley.completeGuide.regions.lowerEgypt') :
-                    selectedCity.region === "Nubia" ? t('blog.nileValley.completeGuide.regions.nubia') :
+                    selectedCity.region === "Upper Egypt" ? currentContent.completeGuide.regions.upperEgypt :
+                    selectedCity.region === "Middle Egypt" ? currentContent.completeGuide.regions.middleEgypt :
+                    selectedCity.region === "Lower Egypt" ? currentContent.completeGuide.regions.lowerEgypt :
+                    selectedCity.region === "Nubia" ? currentContent.completeGuide.regions.nubia :
                     selectedCity.region
                   }</Badge>
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-primary" />
-                      <span>{t('blog.nileValley.cityDetails.population')} {selectedCity.population}</span>
+                      <span>{currentContent.cityDetails.population} {selectedCity.population}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
-                      <span>{t('blog.nileValley.cityDetails.bestTime')} {t(selectedCity.bestTimeToVisit)}</span>
+                      <span>{currentContent.cityDetails.bestTime} {selectedCity.bestTimeToVisit}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-primary" />
-                      <span>{t('blog.nileValley.cityDetails.recommendedStay')} {t(selectedCity.averageStay)}</span>
+                      <span>{currentContent.cityDetails.recommendedStay} {selectedCity.averageStay}</span>
                     </div>
                   </div>
 
-                  <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.keyHighlights')}</h4>
+                  <h4 className="font-semibold mb-2">{currentContent.cityDetails.keyHighlights}</h4>
                   <ul className="list-disc list-inside text-gray-700 mb-4">
                     {selectedCity.highlights.map((highlight, index) => (
-                      <li key={index}>{t(highlight)}</li>
+                      <li key={index}>{highlight}</li>
                     ))}
                   </ul>
 
-                  <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.budgetTips')}</h4>
+                  <h4 className="font-semibold mb-2">{currentContent.cityDetails.budgetTips}</h4>
                   <ul className="list-disc list-inside text-gray-700">
                     {selectedCity.budgetTips.map((tip, index) => (
-                      <li key={index}>{t(tip)}</li>
+                      <li key={index}>{tip}</li>
                     ))}
                   </ul>
                 </div>
@@ -1416,27 +1424,27 @@ export default function NileValleyGuide() {
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   
-                  <h4 className="font-semibold mb-3">{t('blog.nileValley.cityDetails.transportation')}</h4>
+                  <h4 className="font-semibold mb-3">{currentContent.cityDetails.transportation}</h4>
                   <div className="bg-gray-50 p-3 rounded-lg mb-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Train className="w-4 h-4 text-primary" />
-                      <span className="text-sm">{t(selectedCity.transportation.fromCairo)}</span>
+                      <span className="text-sm">{selectedCity.transportation.fromCairo}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Navigation className="w-4 h-4 text-primary" />
-                      <span className="text-sm">{t('blog.nileValley.cityDetails.localTransport')} {selectedCity.transportation.localTransport.join(', ')}</span>
+                      <span className="text-sm">{currentContent.cityDetails.localTransport} {selectedCity.transportation.localTransport.join(', ')}</span>
                     </div>
                   </div>
 
-                  <h4 className="font-semibold mb-2">{t('blog.nileValley.cityDetails.topAttractions')}</h4>
+                  <h4 className="font-semibold mb-2">{currentContent.cityDetails.topAttractions}</h4>
                   <div className="space-y-2">
                     {selectedCity.keyAttractions.slice(0, 2).map((attraction, index) => (
                       <div key={index} className="bg-gray-50 p-3 rounded-lg">
-                        <h5 className="font-medium">{t(attraction.name)}</h5>
-                        <p className="text-sm text-gray-600 mb-1">{t(attraction.description)}</p>
+                        <h5 className="font-medium">{attraction.name}</h5>
+                        <p className="text-sm text-gray-600 mb-1">{attraction.description}</p>
                         <div className="flex justify-between text-xs text-gray-500">
-                          <span>{t('blog.nileValley.cityDetails.entry')} {t(attraction.entryFee)}</span>
-                          <span>{t('blog.nileValley.cityDetails.hours')} {t(attraction.hours)}</span>
+                          <span>{currentContent.cityDetails.entry} {attraction.entryFee}</span>
+                          <span>{currentContent.cityDetails.hours} {attraction.hours}</span>
                         </div>
                       </div>
                     ))}
@@ -1452,7 +1460,7 @@ export default function NileValleyGuide() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t('blog.nileValley.completeGuide.title')}
+            {currentContent.completeGuide.title}
           </h2>
           
           <div className="grid gap-8">
@@ -1471,10 +1479,10 @@ export default function NileValleyGuide() {
                     <div className="flex items-center gap-3 mb-3">
                       <h3 className="text-2xl font-bold">{city.name}</h3>
                       <Badge>{
-                        city.region === "Upper Egypt" ? t('blog.nileValley.completeGuide.regions.upperEgypt') :
-                        city.region === "Middle Egypt" ? t('blog.nileValley.completeGuide.regions.middleEgypt') :
-                        city.region === "Lower Egypt" ? t('blog.nileValley.completeGuide.regions.lowerEgypt') :
-                        city.region === "Nubia" ? t('blog.nileValley.completeGuide.regions.nubia') :
+                        city.region === "Upper Egypt" ? currentContent.completeGuide.regions.upperEgypt :
+                        city.region === "Middle Egypt" ? currentContent.completeGuide.regions.middleEgypt :
+                        city.region === "Lower Egypt" ? currentContent.completeGuide.regions.lowerEgypt :
+                        city.region === "Nubia" ? currentContent.completeGuide.regions.nubia :
                         city.region
                       }</Badge>
                     </div>
@@ -1483,46 +1491,46 @@ export default function NileValleyGuide() {
                     
                     <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.population')}</span> {city.population}
+                        <span className="font-medium">{currentContent.completeGuide.population}</span> {city.population}
                       </div>
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.bestTime')}</span> {t(city.bestTimeToVisit)}
+                        <span className="font-medium">{currentContent.completeGuide.bestTime}</span> {city.bestTimeToVisit}
                       </div>
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.stayDuration')}</span> {t(city.averageStay)}
+                        <span className="font-medium">{currentContent.completeGuide.stayDuration}</span> {city.averageStay}
                       </div>
                       <div>
-                        <span className="font-medium">{t('blog.nileValley.completeGuide.fromCairo')}</span> {t(city.transportation.fromCairo)}
+                        <span className="font-medium">{currentContent.completeGuide.fromCairo}</span> {city.transportation.fromCairo}
                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.keyHighlights')}</h4>
+                      <h4 className="font-semibold mb-2">{currentContent.completeGuide.keyHighlights}</h4>
                       <div className="flex flex-wrap gap-2">
                         {city.highlights.map((highlight, index) => (
-                          <Badge key={index} variant="outline">{t(highlight)}</Badge>
+                          <Badge key={index} variant="outline">{highlight}</Badge>
                         ))}
                       </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.topAttractions')}</h4>
+                        <h4 className="font-semibold mb-2">{currentContent.completeGuide.topAttractions}</h4>
                         <ul className="text-sm space-y-1">
                           {city.keyAttractions.slice(0, 3).map((attraction, index) => (
                             <li key={index} className="flex justify-between">
-                              <span>{t(attraction.name)}</span>
-                              <span className="text-primary">{t(attraction.entryFee)}</span>
+                              <span>{attraction.name}</span>
+                              <span className="text-primary">{attraction.entryFee}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       
                       <div>
-                        <h4 className="font-semibold mb-2">{t('blog.nileValley.completeGuide.budgetTips')}</h4>
+                        <h4 className="font-semibold mb-2">{currentContent.completeGuide.budgetTips}</h4>
                         <ul className="text-sm space-y-1">
                           {city.budgetTips.slice(0, 2).map((tip, index) => (
-                            <li key={index} className="text-gray-600">• {t(tip)}</li>
+                            <li key={index} className="text-gray-600">• {tip}</li>
                           ))}
                         </ul>
                       </div>
@@ -1539,49 +1547,49 @@ export default function NileValleyGuide() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t('blog.nileValley.transportation.title')}
+            {currentContent.transportation.title}
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-6 text-center">
               <Train className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{t('blog.nileValley.transportation.train.title')}</h3>
+              <h3 className="text-xl font-semibold mb-3">{currentContent.transportation.train.title}</h3>
               <p className="text-gray-600 mb-4">
-                {t('blog.nileValley.transportation.train.description')}
+                {currentContent.transportation.train.description}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• {t('blog.nileValley.transportation.train.cairoLuxor')}</li>
-                <li>• {t('blog.nileValley.transportation.train.cairoAswan')}</li>
-                <li>• {t('blog.nileValley.transportation.train.acCoaches')}</li>
-                <li>• {t('blog.nileValley.transportation.train.nightTrains')}</li>
+                <li>• {currentContent.transportation.train.cairoLuxor}</li>
+                <li>• {currentContent.transportation.train.cairoAswan}</li>
+                <li>• {currentContent.transportation.train.acCoaches}</li>
+                <li>• {currentContent.transportation.train.nightTrains}</li>
               </ul>
             </Card>
 
             <Card className="p-6 text-center">
               <Ship className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{t('blog.nileValley.transportation.cruise.title')}</h3>
+              <h3 className="text-xl font-semibold mb-3">{currentContent.transportation.cruise.title}</h3>
               <p className="text-gray-600 mb-4">
-                {t('blog.nileValley.transportation.cruise.description')}
+                {currentContent.transportation.cruise.description}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• {t('blog.nileValley.transportation.cruise.threeFourDays')}</li>
-                <li>• {t('blog.nileValley.transportation.cruise.allMeals')}</li>
-                <li>• {t('blog.nileValley.transportation.cruise.entranceFees')}</li>
-                <li>• {t('blog.nileValley.transportation.cruise.bestTime')}</li>
+                <li>• {currentContent.transportation.cruise.threeFourDays}</li>
+                <li>• {currentContent.transportation.cruise.allMeals}</li>
+                <li>• {currentContent.transportation.cruise.entranceFees}</li>
+                <li>• {currentContent.transportation.cruise.bestTime}</li>
               </ul>
             </Card>
 
             <Card className="p-6 text-center">
               <Plane className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{t('blog.nileValley.transportation.flights.title')}</h3>
+              <h3 className="text-xl font-semibold mb-3">{currentContent.transportation.flights.title}</h3>
               <p className="text-gray-600 mb-4">
-                {t('blog.nileValley.transportation.flights.description')}
+                {currentContent.transportation.flights.description}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• {t('blog.nileValley.transportation.flights.cairoLuxor')}</li>
-                <li>• {t('blog.nileValley.transportation.flights.cairoAswan')}</li>
-                <li>• {t('blog.nileValley.transportation.flights.abuSimbel')}</li>
-                <li>• {t('blog.nileValley.transportation.flights.flightTimes')}</li>
+                <li>• {currentContent.transportation.flights.cairoLuxor}</li>
+                <li>• {currentContent.transportation.flights.cairoAswan}</li>
+                <li>• {currentContent.transportation.flights.abuSimbel}</li>
+                <li>• {currentContent.transportation.flights.flightTimes}</li>
               </ul>
             </Card>
           </div>
@@ -1592,7 +1600,7 @@ export default function NileValleyGuide() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {t('blog.nileValley.travelTips.title')}
+            {currentContent.travelTips.title}
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
