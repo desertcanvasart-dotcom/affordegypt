@@ -155,14 +155,21 @@ export default function BlogGrid() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {filteredPosts.slice(0, visiblePosts).map((post) => (
             <Card key={post.id} className="group card-hover overflow-hidden">
-              <div className="aspect-video overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
-              </div>
+              <Link href={post.slug === "sinai-peninsula-travel-guide" ? "/sinai-peninsula-guide" :
+                          post.slug === "nile-valley-travel-guide" ? "/nile-valley-guide" :
+                          post.slug === "eastern-western-deserts-travel-guide" ? "/eastern-western-deserts-guide" :
+                          post.slug === "budget-travel-egypt" ? "/budget-travel-egypt" :
+                          post.slug === "egyptian-street-food-guide" ? "/egyptian-street-food-guide" :
+                          "#"}>
+                <div className="aspect-video overflow-hidden cursor-pointer">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              </Link>
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
                   <Badge variant="secondary" className="text-xs">
@@ -199,10 +206,12 @@ export default function BlogGrid() {
                     </Button>
                   </Link>
                 ) : post.slug === "sinai-peninsula-travel-guide" ? (
-                  <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-muted-foreground cursor-default" disabled>
-                    {t('blog.readMore')}
-                    <ArrowRight className="ml-1 w-3 h-3" />
-                  </Button>
+                  <Link href="/sinai-peninsula-guide">
+                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
+                      {t('blog.readMore')}
+                      <ArrowRight className="ml-1 w-3 h-3" />
+                    </Button>
+                  </Link>
                 ) : post.slug === "eastern-western-deserts-travel-guide" ? (
                   <Link href="/eastern-western-deserts-guide">
                     <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
