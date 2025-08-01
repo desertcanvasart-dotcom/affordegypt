@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { MapPin, Clock, Camera, Star, Navigation, Plane, Train, Ship } from "lucide-react";
+import {
+  MapPin,
+  Clock,
+  Camera,
+  Star,
+  Navigation,
+  Plane,
+  Train,
+  Ship,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import Navbar from "@/components/navbar";
@@ -43,7 +52,12 @@ const nileValleyCities: NileCity[] = [
     latitude: 31.2001,
     longitude: 29.9187,
     population: "5.2 million",
-    highlights: ["highlights.alexandria.library", "highlights.alexandria.qaitbayCitadel", "highlights.alexandria.mediterraneanBeaches", "highlights.alexandria.romanSites"],
+    highlights: [
+      "highlights.alexandria.library",
+      "highlights.alexandria.qaitbayCitadel",
+      "highlights.alexandria.mediterraneanBeaches",
+      "highlights.alexandria.romanSites",
+    ],
     bestTimeToVisit: "nile.bestTime.marchNovember",
     averageStay: "nile.stay.2_3days",
     keyAttractions: [
@@ -51,32 +65,33 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.alexandria.bibliotheca.name",
         description: "attractions.alexandria.bibliotheca.description",
         entryFee: "attractions.alexandria.bibliotheca.entryFee",
-        hours: "attractions.alexandria.bibliotheca.hours"
+        hours: "attractions.alexandria.bibliotheca.hours",
       },
       {
         name: "attractions.alexandria.qaitbayCitadel.name",
         description: "attractions.alexandria.qaitbayCitadel.description",
         entryFee: "attractions.alexandria.qaitbayCitadel.entryFee",
-        hours: "attractions.alexandria.qaitbayCitadel.hours"
+        hours: "attractions.alexandria.qaitbayCitadel.hours",
       },
       {
         name: "attractions.alexandria.catacombs.name",
         description: "attractions.alexandria.catacombs.description",
         entryFee: "attractions.alexandria.catacombs.entryFee",
-        hours: "attractions.alexandria.catacombs.hours"
-      }
+        hours: "attractions.alexandria.catacombs.hours",
+      },
     ],
     transportation: {
       fromCairo: "2.5 hours by train/bus",
-      localTransport: ["Tram", "Bus", "Taxi", "Uber"]
+      localTransport: ["Tram", "Bus", "Taxi", "Uber"],
     },
     budgetTips: [
       "budgetTips.alexandria.stayNearCorniche",
       "budgetTips.alexandria.freshSeafood",
-      "budgetTips.alexandria.historicTram"
+      "budgetTips.alexandria.historicTram",
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg"
+    detailImage:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg",
   },
   {
     id: 2,
@@ -86,7 +101,12 @@ const nileValleyCities: NileCity[] = [
     latitude: 30.0444,
     longitude: 31.2357,
     population: "20+ million",
-    highlights: ["highlights.cairo.pyramidsGiza", "highlights.cairo.egyptianMuseum", "highlights.cairo.islamicCairo", "highlights.cairo.khanElKhalili"],
+    highlights: [
+      "highlights.cairo.pyramidsGiza",
+      "highlights.cairo.egyptianMuseum",
+      "highlights.cairo.islamicCairo",
+      "highlights.cairo.khanElKhalili",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.3_4days",
     keyAttractions: [
@@ -94,33 +114,35 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.cairo.pyramidsGiza.name",
         description: "attractions.cairo.pyramidsGiza.description",
         entryFee: "attractions.cairo.pyramidsGiza.entryFee",
-        hours: "attractions.cairo.pyramidsGiza.hours"
+        hours: "attractions.cairo.pyramidsGiza.hours",
       },
       {
         name: "attractions.cairo.egyptianMuseum.name",
         description: "attractions.cairo.egyptianMuseum.description",
         entryFee: "attractions.cairo.egyptianMuseum.entryFee",
-        hours: "attractions.cairo.egyptianMuseum.hours"
+        hours: "attractions.cairo.egyptianMuseum.hours",
       },
       {
         name: "attractions.cairo.citadelSaladin.name",
         description: "attractions.cairo.citadelSaladin.description",
         entryFee: "attractions.cairo.citadelSaladin.entryFee",
-        hours: "attractions.cairo.citadelSaladin.hours"
-      }
+        hours: "attractions.cairo.citadelSaladin.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.starting_point",
-      localTransport: ["Metro", "Taxi", "Uber", "Bus"]
+      localTransport: ["Metro", "Taxi", "Uber", "Bus"],
     },
     budgetTips: [
       "budgetTips.cairo.useMetro",
       "budgetTips.cairo.localRestaurants",
       "budgetTips.cairo.downtownAccommodation",
-      "budgetTips.cairo.freeMosquesMarkets"
+      "budgetTips.cairo.freeMosquesMarkets",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg"
+    image:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
+    detailImage:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg",
   },
   {
     id: 3,
@@ -130,7 +152,11 @@ const nileValleyCities: NileCity[] = [
     latitude: 29.0661,
     longitude: 31.0994,
     population: "250,000",
-    highlights: ["highlights.beniSuef.meidumPyramid", "highlights.beniSuef.ruralNile", "highlights.beniSuef.traditionalMarkets"],
+    highlights: [
+      "highlights.beniSuef.meidumPyramid",
+      "highlights.beniSuef.ruralNile",
+      "highlights.beniSuef.traditionalMarkets",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1day",
     keyAttractions: [
@@ -138,26 +164,27 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.beniSuef.meidumPyramid.name",
         description: "attractions.beniSuef.meidumPyramid.description",
         entryFee: "attractions.beniSuef.meidumPyramid.entryFee",
-        hours: "attractions.beniSuef.meidumPyramid.hours"
+        hours: "attractions.beniSuef.meidumPyramid.hours",
       },
       {
         name: "attractions.beniSuef.beniSuefMuseum.name",
         description: "attractions.beniSuef.beniSuefMuseum.description",
         entryFee: "attractions.beniSuef.beniSuefMuseum.entryFee",
-        hours: "attractions.beniSuef.beniSuefMuseum.hours"
-      }
+        hours: "attractions.beniSuef.beniSuefMuseum.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.2h_train_bus",
-      localTransport: ["Taxi", "Microbus", "Tuk-tuk"]
+      localTransport: ["Taxi", "Microbus", "Tuk-tuk"],
     },
     budgetTips: [
       "budgetTips.beniSuef.affordableFood",
       "budgetTips.beniSuef.basicAccommodation",
-      "budgetTips.beniSuef.bargainMarkets"
+      "budgetTips.beniSuef.bargainMarkets",
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/Beni-Suef-.jpg"
+    detailImage:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/Beni-Suef-.jpg",
   },
   {
     id: 4,
@@ -167,7 +194,11 @@ const nileValleyCities: NileCity[] = [
     latitude: 28.1099,
     longitude: 30.7503,
     population: "260,000",
-    highlights: ["highlights.minya.tellElAmarna", "highlights.minya.beniHassan", "highlights.minya.tunaElGebel"],
+    highlights: [
+      "highlights.minya.tellElAmarna",
+      "highlights.minya.beniHassan",
+      "highlights.minya.tunaElGebel",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.2days",
     keyAttractions: [
@@ -175,32 +206,33 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.minya.tellElAmarna.name",
         description: "attractions.minya.tellElAmarna.description",
         entryFee: "attractions.minya.tellElAmarna.entryFee",
-        hours: "attractions.minya.tellElAmarna.hours"
+        hours: "attractions.minya.tellElAmarna.hours",
       },
       {
         name: "attractions.minya.beniHassan.name",
         description: "attractions.minya.beniHassan.description",
         entryFee: "attractions.minya.beniHassan.entryFee",
-        hours: "attractions.minya.beniHassan.hours"
+        hours: "attractions.minya.beniHassan.hours",
       },
       {
         name: "attractions.minya.tunaElGebel.name",
         description: "attractions.minya.tunaElGebel.description",
         entryFee: "attractions.minya.tunaElGebel.entryFee",
-        hours: "attractions.minya.tunaElGebel.hours"
-      }
+        hours: "attractions.minya.tunaElGebel.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.4h_train_bus",
-      localTransport: ["Taxi", "Microbus", "Felucca"]
+      localTransport: ["Taxi", "Microbus", "Felucca"],
     },
     budgetTips: [
       "budgetTips.minya.dayTripFromCairo",
       "budgetTips.minya.localGuides",
-      "budgetTips.minya.groupTours"
+      "budgetTips.minya.groupTours",
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg"
+    detailImage:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
   },
   {
     id: 5,
@@ -210,7 +242,11 @@ const nileValleyCities: NileCity[] = [
     latitude: 27.1783,
     longitude: 31.1859,
     population: "420,000",
-    highlights: ["highlights.asyut.copticMonasteries", "highlights.asyut.traditionalCrafts", "highlights.asyut.nileCorniche"],
+    highlights: [
+      "highlights.asyut.copticMonasteries",
+      "highlights.asyut.traditionalCrafts",
+      "highlights.asyut.nileCorniche",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1_2days",
     keyAttractions: [
@@ -218,25 +254,25 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.asyut.monasteryVirginMary.name",
         description: "attractions.asyut.monasteryVirginMary.description",
         entryFee: "attractions.asyut.monasteryVirginMary.entryFee",
-        hours: "attractions.asyut.monasteryVirginMary.hours"
+        hours: "attractions.asyut.monasteryVirginMary.hours",
       },
       {
         name: "attractions.asyut.asyutBarrage.name",
         description: "attractions.asyut.asyutBarrage.description",
         entryFee: "attractions.asyut.asyutBarrage.entryFee",
-        hours: "attractions.asyut.asyutBarrage.hours"
-      }
+        hours: "attractions.asyut.asyutBarrage.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.5h_train_bus",
-      localTransport: ["Taxi", "Microbus", "Horse cart"]
+      localTransport: ["Taxi", "Microbus", "Horse cart"],
     },
     budgetTips: [
       "budgetTips.asyut.affordableStays",
       "budgetTips.asyut.localTransport",
-      "budgetTips.asyut.traditionalFood"
+      "budgetTips.asyut.traditionalFood",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg",
   },
   {
     id: 6,
@@ -246,7 +282,11 @@ const nileValleyCities: NileCity[] = [
     latitude: 26.5569,
     longitude: 31.6948,
     population: "290,000",
-    highlights: ["highlights.sohag.redWhiteMonasteries", "highlights.sohag.akhmimTextiles", "highlights.sohag.ruralCulture"],
+    highlights: [
+      "highlights.sohag.redWhiteMonasteries",
+      "highlights.sohag.akhmimTextiles",
+      "highlights.sohag.ruralCulture",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1_2days",
     keyAttractions: [
@@ -254,31 +294,32 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.sohag.redMonastery.name",
         description: "attractions.sohag.redMonastery.description",
         entryFee: "attractions.sohag.redMonastery.entryFee",
-        hours: "attractions.sohag.redMonastery.hours"
+        hours: "attractions.sohag.redMonastery.hours",
       },
       {
         name: "attractions.sohag.whiteMonastery.name",
         description: "attractions.sohag.whiteMonastery.description",
         entryFee: "attractions.sohag.whiteMonastery.entryFee",
-        hours: "attractions.sohag.whiteMonastery.hours"
+        hours: "attractions.sohag.whiteMonastery.hours",
       },
       {
         name: "attractions.sohag.akhmim.name",
         description: "attractions.sohag.akhmim.description",
         entryFee: "attractions.sohag.akhmim.entryFee",
-        hours: "attractions.sohag.akhmim.hours"
-      }
+        hours: "attractions.sohag.akhmim.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.6h_train_bus",
-      localTransport: ["Taxi", "Microbus", "Bicycle"]
+      localTransport: ["Taxi", "Microbus", "Bicycle"],
     },
     budgetTips: [
       "budgetTips.sohag.cheapAccommodation",
       "budgetTips.sohag.localFood",
-      "budgetTips.sohag.walkingTours"
+      "budgetTips.sohag.walkingTours",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/abydos-temple.jpg"
+    image:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/abydos-temple.jpg",
   },
   {
     id: 7,
@@ -286,9 +327,13 @@ const nileValleyCities: NileCity[] = [
     arabicName: "قنا",
     region: "Upper Egypt",
     latitude: 26.1551,
-    longitude: 32.7160,
+    longitude: 32.716,
     population: "235,000",
-    highlights: ["highlights.qena.gatewayDendera", "highlights.qena.traditionalPottery", "highlights.qena.nileIslands"],
+    highlights: [
+      "highlights.qena.gatewayDendera",
+      "highlights.qena.traditionalPottery",
+      "highlights.qena.nileIslands",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1day",
     keyAttractions: [
@@ -296,25 +341,26 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.qena.denderaTemple.name",
         description: "attractions.qena.denderaTemple.description",
         entryFee: "attractions.qena.denderaTemple.entryFee",
-        hours: "attractions.qena.denderaTemple.hours"
+        hours: "attractions.qena.denderaTemple.hours",
       },
       {
         name: "attractions.qena.qenaPotteryQuarter.name",
         description: "attractions.qena.qenaPotteryQuarter.description",
         entryFee: "attractions.qena.qenaPotteryQuarter.entryFee",
-        hours: "attractions.qena.qenaPotteryQuarter.hours"
-      }
+        hours: "attractions.qena.qenaPotteryQuarter.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.7h_train_bus",
-      localTransport: ["Taxi", "Microbus", "Horse cart"]
+      localTransport: ["Taxi", "Microbus", "Horse cart"],
     },
     budgetTips: [
       "budgetTips.qena.budgetFriendly",
       "budgetTips.qena.localMarkets",
-      "budgetTips.qena.basicHotels"
+      "budgetTips.qena.basicHotels",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/dendera-temple.jpg"
+    image:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/dendera-temple.jpg",
   },
   {
     id: 8,
@@ -324,7 +370,12 @@ const nileValleyCities: NileCity[] = [
     latitude: 25.6872,
     longitude: 32.6396,
     population: "507,000",
-    highlights: ["highlights.luxor.valleyKings", "highlights.luxor.karnakTemple", "highlights.luxor.luxorTemple", "highlights.luxor.westBankTombs"],
+    highlights: [
+      "highlights.luxor.valleyKings",
+      "highlights.luxor.karnakTemple",
+      "highlights.luxor.luxorTemple",
+      "highlights.luxor.westBankTombs",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.3_4days",
     keyAttractions: [
@@ -332,39 +383,41 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.luxor.valleyKings.name",
         description: "attractions.luxor.valleyKings.description",
         entryFee: "attractions.luxor.valleyKings.entryFee",
-        hours: "attractions.luxor.valleyKings.hours"
+        hours: "attractions.luxor.valleyKings.hours",
       },
       {
         name: "attractions.luxor.karnakTemple.name",
         description: "attractions.luxor.karnakTemple.description",
         entryFee: "attractions.luxor.karnakTemple.entryFee",
-        hours: "attractions.luxor.karnakTemple.hours"
+        hours: "attractions.luxor.karnakTemple.hours",
       },
       {
         name: "attractions.luxor.luxorTemple.name",
         description: "attractions.luxor.luxorTemple.description",
         entryFee: "attractions.luxor.luxorTemple.entryFee",
-        hours: "attractions.luxor.luxorTemple.hours"
+        hours: "attractions.luxor.luxorTemple.hours",
       },
       {
         name: "attractions.luxor.hatshepsutTemple.name",
         description: "attractions.luxor.hatshepsutTemple.description",
         entryFee: "attractions.luxor.hatshepsutTemple.entryFee",
-        hours: "attractions.luxor.hatshepsutTemple.hours"
-      }
+        hours: "attractions.luxor.hatshepsutTemple.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.10h_train_1h_flight",
-      localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"]
+      localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"],
     },
     budgetTips: [
       "budgetTips.luxor.eastBankStay",
       "budgetTips.luxor.groupTickets",
       "budgetTips.luxor.earlyMorning",
-      "budgetTips.luxor.localRestaurants"
+      "budgetTips.luxor.localRestaurants",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg"
+    image:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg",
+    detailImage:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg",
   },
   {
     id: 9,
@@ -374,7 +427,11 @@ const nileValleyCities: NileCity[] = [
     latitude: 24.9777,
     longitude: 32.8713,
     population: "133,000",
-    highlights: ["highlights.edfu.templeHorus", "highlights.edfu.traditionalMarkets", "highlights.edfu.nileCruiseStop"],
+    highlights: [
+      "highlights.edfu.templeHorus",
+      "highlights.edfu.traditionalMarkets",
+      "highlights.edfu.nileCruiseStop",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.halfday",
     keyAttractions: [
@@ -382,25 +439,25 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.edfu.templeHorus.name",
         description: "attractions.edfu.templeHorus.description",
         entryFee: "attractions.edfu.templeHorus.entryFee",
-        hours: "attractions.edfu.templeHorus.hours"
+        hours: "attractions.edfu.templeHorus.hours",
       },
       {
         name: "attractions.edfu.edfuMarket.name",
         description: "attractions.edfu.edfuMarket.description",
         entryFee: "attractions.edfu.edfuMarket.entryFee",
-        hours: "attractions.edfu.edfuMarket.hours"
-      }
+        hours: "attractions.edfu.edfuMarket.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.12h_train_bus",
-      localTransport: ["Horse cart", "Taxi", "Walking"]
+      localTransport: ["Horse cart", "Taxi", "Walking"],
     },
     budgetTips: [
       "budgetTips.edfu.nileCruiseStop",
       "budgetTips.edfu.horseCartRide",
-      "budgetTips.edfu.affordableFood"
+      "budgetTips.edfu.affordableFood",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/edfu.jpg"
+    image: "http://travel2egypt.org/wp-content/uploads/2025/06/edfu.jpg",
   },
   {
     id: 10,
@@ -410,7 +467,11 @@ const nileValleyCities: NileCity[] = [
     latitude: 24.4539,
     longitude: 32.9478,
     population: "67,000",
-    highlights: ["highlights.komOmbo.doubleTemple", "highlights.komOmbo.crocodileMuseum", "highlights.komOmbo.sugarCaneFields"],
+    highlights: [
+      "highlights.komOmbo.doubleTemple",
+      "highlights.komOmbo.crocodileMuseum",
+      "highlights.komOmbo.sugarCaneFields",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.halfday",
     keyAttractions: [
@@ -418,25 +479,26 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.komOmbo.templeKomOmbo.name",
         description: "attractions.komOmbo.templeKomOmbo.description",
         entryFee: "attractions.komOmbo.templeKomOmbo.entryFee",
-        hours: "attractions.komOmbo.templeKomOmbo.hours"
+        hours: "attractions.komOmbo.templeKomOmbo.hours",
       },
       {
         name: "attractions.komOmbo.crocodileMuseum.name",
         description: "attractions.komOmbo.crocodileMuseum.description",
         entryFee: "attractions.komOmbo.crocodileMuseum.entryFee",
-        hours: "attractions.komOmbo.crocodileMuseum.hours"
-      }
+        hours: "attractions.komOmbo.crocodileMuseum.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.13h_train_bus",
-      localTransport: ["Horse cart", "Taxi", "Walking"]
+      localTransport: ["Horse cart", "Taxi", "Walking"],
     },
     budgetTips: [
       "budgetTips.komOmbo.combineWithEdfu",
       "budgetTips.komOmbo.sunsetViews",
-      "budgetTips.komOmbo.basicTown"
+      "budgetTips.komOmbo.basicTown",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/ko-mombo-temple.jpg"
+    image:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/ko-mombo-temple.jpg",
   },
   {
     id: 11,
@@ -446,7 +508,12 @@ const nileValleyCities: NileCity[] = [
     latitude: 24.0889,
     longitude: 32.8998,
     population: "290,000",
-    highlights: ["highlights.aswan.philaeTemple", "highlights.aswan.highDam", "highlights.aswan.nubianVillages", "highlights.aswan.elephantineIsland"],
+    highlights: [
+      "highlights.aswan.philaeTemple",
+      "highlights.aswan.highDam",
+      "highlights.aswan.nubianVillages",
+      "highlights.aswan.elephantineIsland",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.2_3days",
     keyAttractions: [
@@ -454,48 +521,53 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.aswan.philaeTemple.name",
         description: "attractions.aswan.philaeTemple.description",
         entryFee: "attractions.aswan.philaeTemple.entryFee",
-        hours: "attractions.aswan.philaeTemple.hours"
+        hours: "attractions.aswan.philaeTemple.hours",
       },
       {
         name: "attractions.aswan.highDam.name",
         description: "attractions.aswan.highDam.description",
         entryFee: "attractions.aswan.highDam.entryFee",
-        hours: "attractions.aswan.highDam.hours"
+        hours: "attractions.aswan.highDam.hours",
       },
       {
         name: "attractions.aswan.unfinishedObelisk.name",
         description: "attractions.aswan.unfinishedObelisk.description",
         entryFee: "attractions.aswan.unfinishedObelisk.entryFee",
-        hours: "attractions.aswan.unfinishedObelisk.hours"
+        hours: "attractions.aswan.unfinishedObelisk.hours",
       },
       {
         name: "attractions.aswan.nubianVillage.name",
         description: "attractions.aswan.nubianVillage.description",
         entryFee: "attractions.aswan.nubianVillage.entryFee",
-        hours: "attractions.aswan.nubianVillage.hours"
-      }
+        hours: "attractions.aswan.nubianVillage.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.14h_train_1.5h_flight",
-      localTransport: ["Felucca", "Taxi", "Motorboat"]
+      localTransport: ["Felucca", "Taxi", "Motorboat"],
     },
     budgetTips: [
       "budgetTips.aswan.stayNearSouk",
       "budgetTips.aswan.feluccaRides",
       "budgetTips.aswan.nubianVillages",
-      "budgetTips.aswan.spiceShopping"
+      "budgetTips.aswan.spiceShopping",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/philae-temple.jpg"
+    image:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/philae-temple.jpg",
   },
   {
-    id: 11,
+    id: 12,
     name: "Abu Simbel",
     arabicName: "أبو سمبل",
     region: "Nubia",
     latitude: 22.3372,
     longitude: 31.6256,
     population: "2,600",
-    highlights: ["highlights.abuSimbel.greatTemple", "highlights.abuSimbel.templeNefertari", "highlights.abuSimbel.unescoSite"],
+    highlights: [
+      "highlights.abuSimbel.greatTemple",
+      "highlights.abuSimbel.templeNefertari",
+      "highlights.abuSimbel.unescoSite",
+    ],
     bestTimeToVisit: "nile.bestTime.octoberMarch",
     averageStay: "nile.stay.1day",
     keyAttractions: [
@@ -503,33 +575,36 @@ const nileValleyCities: NileCity[] = [
         name: "attractions.abuSimbel.greatTempleRamesses.name",
         description: "attractions.abuSimbel.greatTempleRamesses.description",
         entryFee: "attractions.abuSimbel.greatTempleRamesses.entryFee",
-        hours: "attractions.abuSimbel.greatTempleRamesses.hours"
+        hours: "attractions.abuSimbel.greatTempleRamesses.hours",
       },
       {
         name: "attractions.abuSimbel.templeNefertari.name",
         description: "attractions.abuSimbel.templeNefertari.description",
         entryFee: "attractions.abuSimbel.templeNefertari.entryFee",
-        hours: "attractions.abuSimbel.templeNefertari.hours"
-      }
+        hours: "attractions.abuSimbel.templeNefertari.hours",
+      },
     ],
     transportation: {
       fromCairo: "nile.transport.flight_3h_drive",
-      localTransport: ["Tour bus", "Private car"]
+      localTransport: ["Tour bus", "Private car"],
     },
     budgetTips: [
       "budgetTips.abuSimbel.dayTripFromAswan",
       "budgetTips.abuSimbel.joinGroupTours",
       "budgetTips.abuSimbel.bringLunchWater",
-      "budgetTips.abuSimbel.earlyMorningArrival"
+      "budgetTips.abuSimbel.earlyMorningArrival",
     ],
     image: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel.jpg",
-    detailImage: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel-1.jpg"
-  }
+    detailImage:
+      "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel-1.jpg",
+  },
 ];
 
 export default function NileValleyGuide() {
   const { t, i18n } = useTranslation();
-  const [selectedCity, setSelectedCity] = useState<NileCity | null>(nileValleyCities[0]); // Default to Alexandria
+  const [selectedCity, setSelectedCity] = useState<NileCity | null>(
+    nileValleyCities[0],
+  ); // Default to Alexandria
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   const currentLanguage = i18n.language;
 
@@ -542,29 +617,39 @@ export default function NileValleyGuide() {
     en: {
       title: "Nile Valley Travel Guide",
       subtitle: "Journey Through Egypt's Ancient Heartland",
-      description: "Follow the lifeblood of Egypt from the Mediterranean coast to the heart of Nubia, exploring ancient temples, vibrant cities, and timeless traditions along the mighty Nile River.",
+      description:
+        "Follow the lifeblood of Egypt from the Mediterranean coast to the heart of Nubia, exploring ancient temples, vibrant cities, and timeless traditions along the mighty Nile River.",
       hero: {
         badge1: "5,000 Years of History",
-        badge2: "Ancient Temples & Tombs", 
+        badge2: "Ancient Temples & Tombs",
         badge3: "Authentic Egyptian Culture",
         features: {
-          cities: { title: "12+ Historic Cities", description: "From Alexandria to Abu Simbel" },
-          sites: { title: "Ancient Monuments", description: "Temples, tombs, and pyramids" },
-          budget: { title: "Budget-Friendly", description: "Affordable travel options" }
+          cities: {
+            title: "12+ Historic Cities",
+            description: "From Alexandria to Abu Simbel",
+          },
+          sites: {
+            title: "Ancient Monuments",
+            description: "Temples, tombs, and pyramids",
+          },
+          budget: {
+            title: "Budget-Friendly",
+            description: "Affordable travel options",
+          },
         },
-        cta: "Start Planning Your Journey"
+        cta: "Start Planning Your Journey",
       },
       regions: {
         title: "Explore the Nile Valley by Region",
         all: "All Regions",
         lowerEgypt: "Lower Egypt",
         middleEgypt: "Middle Egypt",
-        upperEgypt: "Upper Egypt", 
-        nubia: "Nubia"
+        upperEgypt: "Upper Egypt",
+        nubia: "Nubia",
       },
       map: {
         title: "Interactive Nile Valley Map",
-        clickCities: "Click on cities to explore detailed information"
+        clickCities: "Click on cities to explore detailed information",
       },
       cityDetails: {
         population: "Population:",
@@ -576,7 +661,7 @@ export default function NileValleyGuide() {
         localTransport: "Local transport:",
         topAttractions: "Top Attractions",
         entry: "Entry:",
-        hours: "Hours:"
+        hours: "Hours:",
       },
       completeGuide: {
         title: "Complete Nile Valley City Guide",
@@ -588,72 +673,79 @@ export default function NileValleyGuide() {
         topAttractions: "Top Attractions",
         regions: {
           upperEgypt: "Upper Egypt",
-          middleEgypt: "Middle Egypt", 
+          middleEgypt: "Middle Egypt",
           lowerEgypt: "Lower Egypt",
-          nubia: "Nubia"
-        }
+          nubia: "Nubia",
+        },
       },
       transportation: {
         title: "Getting Around the Nile Valley",
         train: {
           title: "Train Travel",
-          description: "Affordable and scenic rail connections between major cities along the Nile Valley.",
+          description:
+            "Affordable and scenic rail connections between major cities along the Nile Valley.",
           cairoLuxor: "Cairo to Luxor: 10-12 hours overnight",
           cairoAswan: "Cairo to Aswan: 13-14 hours overnight",
           acCoaches: "Air-conditioned coaches available",
-          nightTrains: "Comfortable sleeper trains with dining cars"
+          nightTrains: "Comfortable sleeper trains with dining cars",
         },
         cruise: {
           title: "Nile River Cruises",
-          description: "The most scenic way to travel between Luxor and Aswan, offering stunning views of ancient temples and traditional villages along the riverbanks.",
+          description:
+            "The most scenic way to travel between Luxor and Aswan, offering stunning views of ancient temples and traditional villages along the riverbanks.",
           threeFourDays: "Luxor to Aswan: 3-4 days",
           allMeals: "All meals included onboard",
           entranceFees: "Temple entrance fees usually extra",
-          bestTime: "Best time: October to April for comfortable weather"
+          bestTime: "Best time: October to April for comfortable weather",
         },
         flights: {
           title: "Domestic Flights",
-          description: "Quick and efficient connections between major cities, perfect for travelers with limited time.",
+          description:
+            "Quick and efficient connections between major cities, perfect for travelers with limited time.",
           cairoLuxor: "Cairo to Luxor: 1.5 hours",
-          cairoAswan: "Cairo to Aswan: 1.5 hours", 
+          cairoAswan: "Cairo to Aswan: 1.5 hours",
           abuSimbel: "Abu Simbel: Daily flights from Cairo and Aswan",
-          flightTimes: "Flight times vary by season and airline"
-        }
+          flightTimes: "Flight times vary by season and airline",
+        },
       },
       travelTips: {
         title: "Essential Nile Valley Travel Tips",
         bestTime: {
           title: "Best Time to Visit",
           peakSeason: "Peak Season (Oct-Apr)",
-          peakDescription: "Perfect weather, higher prices, crowded attractions",
+          peakDescription:
+            "Perfect weather, higher prices, crowded attractions",
           shoulderSeason: "Shoulder Season (May, Sep)",
           shoulderDescription: "Good weather, moderate prices, fewer crowds",
           lowSeason: "Low Season (Jun-Aug)",
-          lowDescription: "Very hot weather, lowest prices, minimal crowds"
+          lowDescription: "Very hot weather, lowest prices, minimal crowds",
         },
         budgetBreakdown: {
           title: "Budget Breakdown",
           budget: {
             title: "Budget Travel ($30-50/day)",
-            description: "Hostels, local food, public transport, group tours"
+            description: "Hostels, local food, public transport, group tours",
           },
           midRange: {
             title: "Mid-range ($50-120/day)",
-            description: "Mid-range hotels, mix of local and tourist restaurants, private tours"
+            description:
+              "Mid-range hotels, mix of local and tourist restaurants, private tours",
           },
           luxury: {
             title: "Luxury ($120+/day)",
-            description: "5-star hotels, fine dining, private guides, premium experiences"
-          }
+            description:
+              "5-star hotels, fine dining, private guides, premium experiences",
+          },
         },
         culturalEtiquette: {
           title: "Cultural Etiquette",
-          dressModestly: "Dress modestly, especially when visiting religious sites",
+          dressModestly:
+            "Dress modestly, especially when visiting religious sites",
           removeShoes: "Remove shoes when entering mosques",
           askPermission: "Ask permission before photographing people",
           bargainRespectfully: "Bargain respectfully in markets",
           tipStaff: "Tip hotel and restaurant staff appropriately",
-          learnGreetings: "Learn basic Arabic greetings"
+          learnGreetings: "Learn basic Arabic greetings",
         },
         healthSafety: {
           title: "Health & Safety",
@@ -663,24 +755,34 @@ export default function NileValleyGuide() {
           getTravelInsurance: "Get comprehensive travel insurance",
           keepCopies: "Keep copies of important documents",
           useRegisteredGuides: "Use only registered tour guides",
-          stayHydrated: "Stay hydrated, especially during summer months"
-        }
-      }
+          stayHydrated: "Stay hydrated, especially during summer months",
+        },
+      },
     },
     es: {
-      title: "Guía de Viaje del Valle del Nilo", 
+      title: "Guía de Viaje del Valle del Nilo",
       subtitle: "Viaje a Través del Corazón Ancestral de Egipto",
-      description: "Sigue la línea vital de Egipto desde la costa mediterránea hasta el corazón de Nubia, explorando templos antiguos, ciudades vibrantes y tradiciones atemporales a lo largo del poderoso río Nilo.",
+      description:
+        "Sigue la línea vital de Egipto desde la costa mediterránea hasta el corazón de Nubia, explorando templos antiguos, ciudades vibrantes y tradiciones atemporales a lo largo del poderoso río Nilo.",
       hero: {
         badge1: "5,000 Años de Historia",
         badge2: "Templos y Tumbas Antiguas",
         badge3: "Cultura Egipcia Auténtica",
         features: {
-          cities: { title: "12+ Ciudades Históricas", description: "De Alejandría a Abu Simbel" },
-          sites: { title: "Monumentos Antiguos", description: "Templos, tumbas y pirámides" },
-          budget: { title: "Económico", description: "Opciones de viaje asequibles" }
+          cities: {
+            title: "12+ Ciudades Históricas",
+            description: "De Alejandría a Abu Simbel",
+          },
+          sites: {
+            title: "Monumentos Antiguos",
+            description: "Templos, tumbas y pirámides",
+          },
+          budget: {
+            title: "Económico",
+            description: "Opciones de viaje asequibles",
+          },
         },
-        cta: "Comienza a Planificar tu Viaje"
+        cta: "Comienza a Planificar tu Viaje",
       },
       regions: {
         title: "Explora el Valle del Nilo por Región",
@@ -688,11 +790,12 @@ export default function NileValleyGuide() {
         lowerEgypt: "Bajo Egipto",
         middleEgypt: "Egipto Medio",
         upperEgypt: "Alto Egipto",
-        nubia: "Nubia"
+        nubia: "Nubia",
       },
       map: {
         title: "Mapa Interactivo del Valle del Nilo",
-        clickCities: "Haz clic en las ciudades para explorar información detallada"
+        clickCities:
+          "Haz clic en las ciudades para explorar información detallada",
       },
       cityDetails: {
         population: "Población:",
@@ -704,7 +807,7 @@ export default function NileValleyGuide() {
         localTransport: "Transporte local:",
         topAttractions: "Principales Atracciones",
         entry: "Entrada:",
-        hours: "Horarios:"
+        hours: "Horarios:",
       },
       completeGuide: {
         title: "Guía Completa de Ciudades del Valle del Nilo",
@@ -718,109 +821,134 @@ export default function NileValleyGuide() {
           upperEgypt: "Alto Egipto",
           middleEgypt: "Egipto Medio",
           lowerEgypt: "Bajo Egipto",
-          nubia: "Nubia"
-        }
+          nubia: "Nubia",
+        },
       },
       transportation: {
         title: "Cómo Moverse por el Valle del Nilo",
         train: {
           title: "Viajes en Tren",
-          description: "Conexiones ferroviarias asequibles y pintorescas entre las principales ciudades a lo largo del Valle del Nilo.",
+          description:
+            "Conexiones ferroviarias asequibles y pintorescas entre las principales ciudades a lo largo del Valle del Nilo.",
           cairoLuxor: "El Cairo a Luxor: 10-12 horas nocturno",
           cairoAswan: "El Cairo a Asuán: 13-14 horas nocturno",
           acCoaches: "Vagones con aire acondicionado disponibles",
-          nightTrains: "Trenes nocturnos cómodos con vagones restaurante"
+          nightTrains: "Trenes nocturnos cómodos con vagones restaurante",
         },
         cruise: {
           title: "Cruceros por el Río Nilo",
-          description: "La forma más pintoresca de viajar entre Luxor y Asuán, ofreciendo vistas impresionantes de templos antiguos y pueblos tradicionales a lo largo de las orillas del río.",
+          description:
+            "La forma más pintoresca de viajar entre Luxor y Asuán, ofreciendo vistas impresionantes de templos antiguos y pueblos tradicionales a lo largo de las orillas del río.",
           threeFourDays: "Luxor a Asuán: 3-4 días",
           allMeals: "Todas las comidas incluidas a bordo",
           entranceFees: "Tarifas de entrada a templos generalmente extra",
-          bestTime: "Mejor época: octubre a abril para clima cómodo"
+          bestTime: "Mejor época: octubre a abril para clima cómodo",
         },
         flights: {
           title: "Vuelos Domésticos",
-          description: "Conexiones rápidas y eficientes entre las principales ciudades, perfectas para viajeros con tiempo limitado.",
+          description:
+            "Conexiones rápidas y eficientes entre las principales ciudades, perfectas para viajeros con tiempo limitado.",
           cairoLuxor: "El Cairo a Luxor: 1.5 horas",
           cairoAswan: "El Cairo a Asuán: 1.5 horas",
           abuSimbel: "Abu Simbel: Vuelos diarios desde El Cairo y Asuán",
-          flightTimes: "Los horarios de vuelos varían según temporada y aerolínea"
-        }
+          flightTimes:
+            "Los horarios de vuelos varían según temporada y aerolínea",
+        },
       },
       travelTips: {
         title: "Consejos Esenciales de Viaje al Valle del Nilo",
         bestTime: {
           title: "Mejor Época para Visitar",
           peakSeason: "Temporada Alta (Oct-Abr)",
-          peakDescription: "Clima perfecto, precios más altos, atracciones concurridas",
+          peakDescription:
+            "Clima perfecto, precios más altos, atracciones concurridas",
           shoulderSeason: "Temporada Media (May, Sep)",
-          shoulderDescription: "Buen clima, precios moderados, menos multitudes",
+          shoulderDescription:
+            "Buen clima, precios moderados, menos multitudes",
           lowSeason: "Temporada Baja (Jun-Ago)",
-          lowDescription: "Clima muy caluroso, precios más bajos, multitudes mínimas"
+          lowDescription:
+            "Clima muy caluroso, precios más bajos, multitudes mínimas",
         },
         budgetBreakdown: {
           title: "Desglose de Presupuesto",
           budget: {
             title: "Viaje Económico ($30-50/día)",
-            description: "Albergues, comida local, transporte público, tours grupales"
+            description:
+              "Albergues, comida local, transporte público, tours grupales",
           },
           midRange: {
             title: "Rango Medio ($50-120/día)",
-            description: "Hoteles de rango medio, mezcla de restaurantes locales y turísticos, tours privados"
+            description:
+              "Hoteles de rango medio, mezcla de restaurantes locales y turísticos, tours privados",
           },
           luxury: {
             title: "Lujo ($120+/día)",
-            description: "Hoteles 5 estrellas, alta gastronomía, guías privados, experiencias premium"
-          }
+            description:
+              "Hoteles 5 estrellas, alta gastronomía, guías privados, experiencias premium",
+          },
         },
         culturalEtiquette: {
           title: "Etiqueta Cultural",
-          dressModestly: "Vístete modestamente, especialmente al visitar sitios religiosos",
+          dressModestly:
+            "Vístete modestamente, especialmente al visitar sitios religiosos",
           removeShoes: "Quítate los zapatos al entrar a mezquitas",
           askPermission: "Pide permiso antes de fotografiar a las personas",
           bargainRespectfully: "Regatear respetuosamente en los mercados",
-          tipStaff: "Dar propina apropiadamente al personal de hoteles y restaurantes",
-          learnGreetings: "Aprende saludos básicos en árabe"
+          tipStaff:
+            "Dar propina apropiadamente al personal de hoteles y restaurantes",
+          learnGreetings: "Aprende saludos básicos en árabe",
         },
         healthSafety: {
           title: "Salud y Seguridad",
           drinkBottledWater: "Bebe solo agua embotellada o filtrada",
           useSunscreen: "Usa protector solar de alto FPS y ropa protectora",
-          packMedications: "Empaca cualquier medicamento recetado que necesites",
+          packMedications:
+            "Empaca cualquier medicamento recetado que necesites",
           getTravelInsurance: "Obtén un seguro de viaje integral",
           keepCopies: "Mantén copias de documentos importantes",
           useRegisteredGuides: "Usa solo guías turísticos registrados",
-          stayHydrated: "Mantente hidratado, especialmente durante los meses de verano"
-        }
-      }
+          stayHydrated:
+            "Mantente hidratado, especialmente durante los meses de verano",
+        },
+      },
     },
     fr: {
       title: "Guide de Voyage de la Vallée du Nil",
-      subtitle: "Voyage à Travers le Cœur Ancestral de l'Égypte", 
-      description: "Suivez la ligne de vie de l'Égypte depuis la côte méditerranéenne jusqu'au cœur de la Nubie, en explorant des temples anciens, des villes vibrantes et des traditions intemporelles le long du puissant fleuve Nil.",
+      subtitle: "Voyage à Travers le Cœur Ancestral de l'Égypte",
+      description:
+        "Suivez la ligne de vie de l'Égypte depuis la côte méditerranéenne jusqu'au cœur de la Nubie, en explorant des temples anciens, des villes vibrantes et des traditions intemporelles le long du puissant fleuve Nil.",
       hero: {
         badge1: "5,000 Ans d'Histoire",
         badge2: "Temples et Tombes Antiques",
         badge3: "Culture Égyptienne Authentique",
         features: {
-          cities: { title: "12+ Villes Historiques", description: "D'Alexandrie à Abou Simbel" },
-          sites: { title: "Monuments Antiques", description: "Temples, tombes et pyramides" },
-          budget: { title: "Économique", description: "Options de voyage abordables" }
+          cities: {
+            title: "12+ Villes Historiques",
+            description: "D'Alexandrie à Abou Simbel",
+          },
+          sites: {
+            title: "Monuments Antiques",
+            description: "Temples, tombes et pyramides",
+          },
+          budget: {
+            title: "Économique",
+            description: "Options de voyage abordables",
+          },
         },
-        cta: "Commencez à Planifier Votre Voyage"
+        cta: "Commencez à Planifier Votre Voyage",
       },
       regions: {
         title: "Explorez la Vallée du Nil par Région",
         all: "Toutes les Régions",
         lowerEgypt: "Basse-Égypte",
-        middleEgypt: "Moyenne-Égypte", 
+        middleEgypt: "Moyenne-Égypte",
         upperEgypt: "Haute-Égypte",
-        nubia: "Nubie"
+        nubia: "Nubie",
       },
       map: {
         title: "Carte Interactive de la Vallée du Nil",
-        clickCities: "Cliquez sur les villes pour explorer des informations détaillées"
+        clickCities:
+          "Cliquez sur les villes pour explorer des informations détaillées",
       },
       cityDetails: {
         population: "Population:",
@@ -832,7 +960,7 @@ export default function NileValleyGuide() {
         localTransport: "Transport local:",
         topAttractions: "Principales Attractions",
         entry: "Entrée:",
-        hours: "Heures:"
+        hours: "Heures:",
       },
       completeGuide: {
         title: "Guide Complet des Villes de la Vallée du Nil",
@@ -846,97 +974,124 @@ export default function NileValleyGuide() {
           upperEgypt: "Haute-Égypte",
           middleEgypt: "Moyenne-Égypte",
           lowerEgypt: "Basse-Égypte",
-          nubia: "Nubie"
-        }
+          nubia: "Nubie",
+        },
       },
       transportation: {
         title: "Se Déplacer dans la Vallée du Nil",
         train: {
           title: "Voyages en Train",
-          description: "Connexions ferroviaires abordables et pittoresques entre les principales villes le long de la Vallée du Nil.",
+          description:
+            "Connexions ferroviaires abordables et pittoresques entre les principales villes le long de la Vallée du Nil.",
           cairoLuxor: "Le Caire à Louxor: 10-12 heures de nuit",
           cairoAswan: "Le Caire à Assouan: 13-14 heures de nuit",
           acCoaches: "Voitures climatisées disponibles",
-          nightTrains: "Trains de nuit confortables avec voitures-restaurants"
+          nightTrains: "Trains de nuit confortables avec voitures-restaurants",
         },
         cruise: {
           title: "Croisières sur le Nil",
-          description: "La façon la plus pittoresque de voyager entre Louxor et Assouan, offrant des vues magnifiques sur les temples anciens et les villages traditionnels le long des rives du fleuve.",
+          description:
+            "La façon la plus pittoresque de voyager entre Louxor et Assouan, offrant des vues magnifiques sur les temples anciens et les villages traditionnels le long des rives du fleuve.",
           threeFourDays: "Louxor à Assouan: 3-4 jours",
           allMeals: "Tous les repas inclus à bord",
           entranceFees: "Frais d'entrée des temples généralement en supplément",
-          bestTime: "Meilleure période: octobre à avril pour un climat confortable"
+          bestTime:
+            "Meilleure période: octobre à avril pour un climat confortable",
         },
         flights: {
           title: "Vols Domestiques",
-          description: "Connexions rapides et efficaces entre les principales villes, parfaites pour les voyageurs avec un temps limité.",
+          description:
+            "Connexions rapides et efficaces entre les principales villes, parfaites pour les voyageurs avec un temps limité.",
           cairoLuxor: "Le Caire à Louxor: 1.5 heures",
           cairoAswan: "Le Caire à Assouan: 1.5 heures",
           abuSimbel: "Abou Simbel: Vols quotidiens depuis Le Caire et Assouan",
-          flightTimes: "Les horaires de vol varient selon la saison et la compagnie aérienne"
-        }
+          flightTimes:
+            "Les horaires de vol varient selon la saison et la compagnie aérienne",
+        },
       },
       travelTips: {
         title: "Conseils Essentiels de Voyage dans la Vallée du Nil",
         bestTime: {
           title: "Meilleure Période pour Visiter",
           peakSeason: "Haute Saison (Oct-Avr)",
-          peakDescription: "Climat parfait, prix plus élevés, attractions bondées",
+          peakDescription:
+            "Climat parfait, prix plus élevés, attractions bondées",
           shoulderSeason: "Saison Intermédiaire (Mai, Sep)",
           shoulderDescription: "Bon climat, prix modérés, moins de foules",
           lowSeason: "Basse Saison (Jun-Aoû)",
-          lowDescription: "Climat très chaud, prix les plus bas, foules minimales"
+          lowDescription:
+            "Climat très chaud, prix les plus bas, foules minimales",
         },
         budgetBreakdown: {
           title: "Répartition du Budget",
           budget: {
             title: "Voyage Économique ($30-50/jour)",
-            description: "Auberges, nourriture locale, transport public, tours de groupe"
+            description:
+              "Auberges, nourriture locale, transport public, tours de groupe",
           },
           midRange: {
             title: "Gamme Moyenne ($50-120/jour)",
-            description: "Hôtels de gamme moyenne, mélange de restaurants locaux et touristiques, tours privés"
+            description:
+              "Hôtels de gamme moyenne, mélange de restaurants locaux et touristiques, tours privés",
           },
           luxury: {
             title: "Luxe ($120+/jour)",
-            description: "Hôtels 5 étoiles, cuisine raffinée, guides privés, expériences premium"
-          }
+            description:
+              "Hôtels 5 étoiles, cuisine raffinée, guides privés, expériences premium",
+          },
         },
         culturalEtiquette: {
           title: "Étiquette Culturelle",
-          dressModestly: "Habillez-vous modestement, surtout lors de la visite de sites religieux",
+          dressModestly:
+            "Habillez-vous modestement, surtout lors de la visite de sites religieux",
           removeShoes: "Retirez vos chaussures en entrant dans les mosquées",
-          askPermission: "Demandez la permission avant de photographier les gens",
+          askPermission:
+            "Demandez la permission avant de photographier les gens",
           bargainRespectfully: "Marchandez respectueusement dans les marchés",
-          tipStaff: "Donnez un pourboire approprié au personnel des hôtels et restaurants",
-          learnGreetings: "Apprenez les salutations de base en arabe"
+          tipStaff:
+            "Donnez un pourboire approprié au personnel des hôtels et restaurants",
+          learnGreetings: "Apprenez les salutations de base en arabe",
         },
         healthSafety: {
           title: "Santé et Sécurité",
-          drinkBottledWater: "Buvez uniquement de l'eau en bouteille ou filtrée",
-          useSunscreen: "Utilisez une crème solaire à haut FPS et portez des vêtements protecteurs",
-          packMedications: "Emportez tous les médicaments sur ordonnance dont vous avez besoin",
+          drinkBottledWater:
+            "Buvez uniquement de l'eau en bouteille ou filtrée",
+          useSunscreen:
+            "Utilisez une crème solaire à haut FPS et portez des vêtements protecteurs",
+          packMedications:
+            "Emportez tous les médicaments sur ordonnance dont vous avez besoin",
           getTravelInsurance: "Souscrivez une assurance voyage complète",
           keepCopies: "Gardez des copies des documents importants",
-          useRegisteredGuides: "Utilisez uniquement des guides touristiques enregistrés",
-          stayHydrated: "Restez hydraté, surtout pendant les mois d'été"
-        }
-      }
+          useRegisteredGuides:
+            "Utilisez uniquement des guides touristiques enregistrés",
+          stayHydrated: "Restez hydraté, surtout pendant les mois d'été",
+        },
+      },
     },
     de: {
       title: "Niltal Reiseführer",
       subtitle: "Reise Durch Ägyptens Antikes Herzland",
-      description: "Folgen Sie der Lebensader Ägyptens von der Mittelmeerküste bis ins Herz Nubiens und erkunden Sie antike Tempel, lebendige Städte und zeitlose Traditionen entlang des mächtigen Nils.",
+      description:
+        "Folgen Sie der Lebensader Ägyptens von der Mittelmeerküste bis ins Herz Nubiens und erkunden Sie antike Tempel, lebendige Städte und zeitlose Traditionen entlang des mächtigen Nils.",
       hero: {
-        badge1: "5.000 Jahre Geschichte", 
+        badge1: "5.000 Jahre Geschichte",
         badge2: "Antike Tempel & Gräber",
         badge3: "Authentische Ägyptische Kultur",
         features: {
-          cities: { title: "12+ Historische Städte", description: "Von Alexandria bis Abu Simbel" },
-          sites: { title: "Antike Monumente", description: "Tempel, Gräber und Pyramiden" },
-          budget: { title: "Budget-freundlich", description: "Erschwingliche Reiseoptionen" }
+          cities: {
+            title: "12+ Historische Städte",
+            description: "Von Alexandria bis Abu Simbel",
+          },
+          sites: {
+            title: "Antike Monumente",
+            description: "Tempel, Gräber und Pyramiden",
+          },
+          budget: {
+            title: "Budget-freundlich",
+            description: "Erschwingliche Reiseoptionen",
+          },
         },
-        cta: "Beginnen Sie Ihre Reiseplanung"
+        cta: "Beginnen Sie Ihre Reiseplanung",
       },
       regions: {
         title: "Erkunden Sie das Niltal nach Regionen",
@@ -944,11 +1099,12 @@ export default function NileValleyGuide() {
         lowerEgypt: "Unterägypten",
         middleEgypt: "Mittelägypten",
         upperEgypt: "Oberägypten",
-        nubia: "Nubien"
+        nubia: "Nubien",
       },
       map: {
         title: "Interaktive Niltal-Karte",
-        clickCities: "Klicken Sie auf Städte, um detaillierte Informationen zu erkunden"
+        clickCities:
+          "Klicken Sie auf Städte, um detaillierte Informationen zu erkunden",
       },
       cityDetails: {
         population: "Bevölkerung:",
@@ -960,7 +1116,7 @@ export default function NileValleyGuide() {
         localTransport: "Lokaler Transport:",
         topAttractions: "Top-Attraktionen",
         entry: "Eintritt:",
-        hours: "Öffnungszeiten:"
+        hours: "Öffnungszeiten:",
       },
       completeGuide: {
         title: "Vollständiger Niltal-Städteführer",
@@ -974,85 +1130,103 @@ export default function NileValleyGuide() {
           upperEgypt: "Oberägypten",
           middleEgypt: "Mittelägypten",
           lowerEgypt: "Unterägypten",
-          nubia: "Nubien"
-        }
+          nubia: "Nubien",
+        },
       },
       transportation: {
         title: "Fortbewegung im Niltal",
         train: {
           title: "Zugfahrten",
-          description: "Erschwingliche und landschaftlich reizvolle Bahnverbindungen zwischen den wichtigsten Städten entlang des Niltals.",
+          description:
+            "Erschwingliche und landschaftlich reizvolle Bahnverbindungen zwischen den wichtigsten Städten entlang des Niltals.",
           cairoLuxor: "Kairo nach Luxor: 10-12 Stunden über Nacht",
           cairoAswan: "Kairo nach Assuan: 13-14 Stunden über Nacht",
           acCoaches: "Klimatisierte Waggons verfügbar",
-          nightTrains: "Komfortable Nachtzüge mit Speisewagen"
+          nightTrains: "Komfortable Nachtzüge mit Speisewagen",
         },
         cruise: {
           title: "Nilkreuzfahrten",
-          description: "Die schönste Art, zwischen Luxor und Assuan zu reisen, mit atemberaubenden Ausblicken auf antike Tempel und traditionelle Dörfer entlang der Flussufer.",
+          description:
+            "Die schönste Art, zwischen Luxor und Assuan zu reisen, mit atemberaubenden Ausblicken auf antike Tempel und traditionelle Dörfer entlang der Flussufer.",
           threeFourDays: "Luxor nach Assuan: 3-4 Tage",
           allMeals: "Alle Mahlzeiten an Bord inbegriffen",
           entranceFees: "Tempeleintrittsgebühren meist extra",
-          bestTime: "Beste Zeit: Oktober bis April für angenehmes Wetter"
+          bestTime: "Beste Zeit: Oktober bis April für angenehmes Wetter",
         },
         flights: {
           title: "Inlandsflüge",
-          description: "Schnelle und effiziente Verbindungen zwischen den wichtigsten Städten, perfekt für Reisende mit begrenzter Zeit.",
+          description:
+            "Schnelle und effiziente Verbindungen zwischen den wichtigsten Städten, perfekt für Reisende mit begrenzter Zeit.",
           cairoLuxor: "Kairo nach Luxor: 1,5 Stunden",
           cairoAswan: "Kairo nach Assuan: 1,5 Stunden",
           abuSimbel: "Abu Simbel: Tägliche Flüge von Kairo und Assuan",
-          flightTimes: "Flugzeiten variieren je nach Saison und Fluggesellschaft"
-        }
+          flightTimes:
+            "Flugzeiten variieren je nach Saison und Fluggesellschaft",
+        },
       },
       travelTips: {
         title: "Wichtige Niltal-Reisetipps",
         bestTime: {
           title: "Beste Reisezeit",
           peakSeason: "Hauptsaison (Okt-Apr)",
-          peakDescription: "Perfektes Wetter, höhere Preise, überfüllte Attraktionen",
+          peakDescription:
+            "Perfektes Wetter, höhere Preise, überfüllte Attraktionen",
           shoulderSeason: "Zwischensaison (Mai, Sep)",
-          shoulderDescription: "Gutes Wetter, moderate Preise, weniger Menschenmassen",
+          shoulderDescription:
+            "Gutes Wetter, moderate Preise, weniger Menschenmassen",
           lowSeason: "Nebensaison (Jun-Aug)",
-          lowDescription: "Sehr heißes Wetter, niedrigste Preise, minimale Menschenmassen"
+          lowDescription:
+            "Sehr heißes Wetter, niedrigste Preise, minimale Menschenmassen",
         },
         budgetBreakdown: {
           title: "Budget-Aufschlüsselung",
           budget: {
             title: "Budget-Reise ($30-50/Tag)",
-            description: "Herbergen, lokales Essen, öffentliche Verkehrsmittel, Gruppentouren"
+            description:
+              "Herbergen, lokales Essen, öffentliche Verkehrsmittel, Gruppentouren",
           },
           midRange: {
             title: "Mittelklasse ($50-120/Tag)",
-            description: "Mittelklasse-Hotels, Mischung aus lokalen und touristischen Restaurants, private Touren"
+            description:
+              "Mittelklasse-Hotels, Mischung aus lokalen und touristischen Restaurants, private Touren",
           },
           luxury: {
             title: "Luxus ($120+/Tag)",
-            description: "5-Sterne-Hotels, gehobene Küche, private Reiseführer, Premium-Erlebnisse"
-          }
+            description:
+              "5-Sterne-Hotels, gehobene Küche, private Reiseführer, Premium-Erlebnisse",
+          },
         },
         culturalEtiquette: {
           title: "Kulturelle Etikette",
-          dressModestly: "Kleiden Sie sich bescheiden, besonders beim Besuch religiöser Stätten",
+          dressModestly:
+            "Kleiden Sie sich bescheiden, besonders beim Besuch religiöser Stätten",
           removeShoes: "Ziehen Sie die Schuhe aus, wenn Sie Moscheen betreten",
-          askPermission: "Fragen Sie um Erlaubnis, bevor Sie Menschen fotografieren",
+          askPermission:
+            "Fragen Sie um Erlaubnis, bevor Sie Menschen fotografieren",
           bargainRespectfully: "Handeln Sie respektvoll auf Märkten",
-          tipStaff: "Geben Sie Hotel- und Restaurantpersonal angemessenes Trinkgeld",
-          learnGreetings: "Lernen Sie grundlegende arabische Begrüßungen"
+          tipStaff:
+            "Geben Sie Hotel- und Restaurantpersonal angemessenes Trinkgeld",
+          learnGreetings: "Lernen Sie grundlegende arabische Begrüßungen",
         },
         healthSafety: {
           title: "Gesundheit & Sicherheit",
-          drinkBottledWater: "Trinken Sie nur Flaschen- oder gefiltertes Wasser",
-          useSunscreen: "Verwenden Sie hohen LSF-Sonnenschutz und tragen Sie schützende Kleidung",
-          packMedications: "Packen Sie alle verschreibungspflichtigen Medikamente ein, die Sie benötigen",
-          getTravelInsurance: "Schließen Sie eine umfassende Reiseversicherung ab",
+          drinkBottledWater:
+            "Trinken Sie nur Flaschen- oder gefiltertes Wasser",
+          useSunscreen:
+            "Verwenden Sie hohen LSF-Sonnenschutz und tragen Sie schützende Kleidung",
+          packMedications:
+            "Packen Sie alle verschreibungspflichtigen Medikamente ein, die Sie benötigen",
+          getTravelInsurance:
+            "Schließen Sie eine umfassende Reiseversicherung ab",
           keepCopies: "Bewahren Sie Kopien wichtiger Dokumente auf",
           useRegisteredGuides: "Verwenden Sie nur registrierte Reiseführer",
-          stayHydrated: "Bleiben Sie hydratisiert, besonders in den Sommermonaten"
-        }
-      }
-    }
+          stayHydrated:
+            "Bleiben Sie hydratisiert, besonders in den Sommermonaten",
+        },
+      },
+    },
   };
-  
+
   const currentContent = content[currentLanguage] || content.en;
 
   // Translation helper for city data
@@ -1064,104 +1238,179 @@ export default function NileValleyGuide() {
         "highlights.alexandria.qaitbayCitadel": "Qaitbay Citadel",
         "highlights.alexandria.mediterraneanBeaches": "Mediterranean Beaches",
         "highlights.alexandria.romanSites": "Roman Archaeological Sites",
-        
-        // Cairo highlights  
+
+        // Cairo highlights
         "highlights.cairo.pyramidsGiza": "Pyramids of Giza",
         "highlights.cairo.egyptianMuseum": "Egyptian Museum",
         "highlights.cairo.islamicCairo": "Islamic Cairo",
         "highlights.cairo.khanElKhalili": "Khan El-Khalili Bazaar",
-        
+
         // Luxor highlights
         "highlights.luxor.valleyKings": "Valley of the Kings",
         "highlights.luxor.karnakTemple": "Karnak Temple",
-        "highlights.luxor.luxorTemple": "Luxor Temple", 
+        "highlights.luxor.luxorTemple": "Luxor Temple",
         "highlights.luxor.westBankTombs": "West Bank Tombs",
-        
+
         // Aswan highlights
         "highlights.aswan.philaeTemple": "Philae Temple",
         "highlights.aswan.highDam": "High Dam",
         "highlights.aswan.nubianVillages": "Nubian Villages",
         "highlights.aswan.elephantineIsland": "Elephantine Island",
-        
+
         // Abu Simbel highlights
         "highlights.abuSimbel.greatTemple": "Great Temple of Ramses II",
         "highlights.abuSimbel.templeNefertari": "Temple of Nefertari",
         "highlights.abuSimbel.unescoSite": "UNESCO World Heritage Site",
-        
+
         // Attractions with details
         "attractions.alexandria.bibliotheca.name": "Bibliotheca Alexandrina",
-        "attractions.alexandria.bibliotheca.description": "Modern recreation of the ancient Library of Alexandria",
+        "attractions.alexandria.bibliotheca.description":
+          "Modern recreation of the ancient Library of Alexandria",
         "attractions.alexandria.bibliotheca.entryFee": "$3",
         "attractions.alexandria.bibliotheca.hours": "9:00 AM - 7:00 PM",
         "attractions.alexandria.qaitbayCitadel.name": "Qaitbay Citadel",
-        "attractions.alexandria.qaitbayCitadel.description": "15th-century fort on Mediterranean coast",
+        "attractions.alexandria.qaitbayCitadel.description":
+          "15th-century fort on Mediterranean coast",
         "attractions.alexandria.qaitbayCitadel.entryFee": "$4",
         "attractions.alexandria.qaitbayCitadel.hours": "9:00 AM - 5:00 PM",
         "attractions.alexandria.catacombs.name": "Catacombs of Kom el Shoqafa",
         "attractions.alexandria.catacombs.description": "Roman burial chambers",
         "attractions.alexandria.catacombs.entryFee": "$5",
         "attractions.alexandria.catacombs.hours": "9:00 AM - 4:00 PM",
-        
+
         "attractions.cairo.pyramidsGiza.name": "Pyramids of Giza",
-        "attractions.cairo.pyramidsGiza.description": "Last wonder of the ancient world",
+        "attractions.cairo.pyramidsGiza.description":
+          "Last wonder of the ancient world",
         "attractions.cairo.pyramidsGiza.entryFee": "$13",
         "attractions.cairo.pyramidsGiza.hours": "8:00 AM - 4:00 PM",
         "attractions.cairo.egyptianMuseum.name": "Egyptian Museum",
-        "attractions.cairo.egyptianMuseum.description": "World's largest collection of ancient Egyptian artifacts",
+        "attractions.cairo.egyptianMuseum.description":
+          "World's largest collection of ancient Egyptian artifacts",
         "attractions.cairo.egyptianMuseum.entryFee": "$12",
         "attractions.cairo.egyptianMuseum.hours": "9:00 AM - 7:00 PM",
-        
+
         "attractions.luxor.valleyKings.name": "Valley of the Kings",
         "attractions.luxor.valleyKings.description": "Royal tombs of pharaohs",
         "attractions.luxor.valleyKings.entryFee": "$12",
         "attractions.luxor.valleyKings.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.karnakTemple.name": "Karnak Temple Complex",
-        "attractions.luxor.karnakTemple.description": "Vast temple complex dedicated to Amun-Ra",
+        "attractions.luxor.karnakTemple.description":
+          "Vast temple complex dedicated to Amun-Ra",
         "attractions.luxor.karnakTemple.entryFee": "$10",
         "attractions.luxor.karnakTemple.hours": "6:00 AM - 5:30 PM",
         "attractions.luxor.luxorTemple.name": "Luxor Temple",
-        "attractions.luxor.luxorTemple.description": "Ancient Egyptian temple in city center",
+        "attractions.luxor.luxorTemple.description":
+          "Ancient Egyptian temple in city center",
         "attractions.luxor.luxorTemple.entryFee": "$8",
         "attractions.luxor.luxorTemple.hours": "6:00 AM - 9:00 PM",
-        
+
         // Budget tips
-        "budgetTips.alexandria.stayNearCorniche": "Stay near the Corniche for great sea views",
-        "budgetTips.alexandria.freshSeafood": "Try fresh seafood at local restaurants",
-        "budgetTips.alexandria.historicTram": "Use the historic tram for cheap transport",
+        "budgetTips.alexandria.stayNearCorniche":
+          "Stay near the Corniche for great sea views",
+        "budgetTips.alexandria.freshSeafood":
+          "Try fresh seafood at local restaurants",
+        "budgetTips.alexandria.historicTram":
+          "Use the historic tram for cheap transport",
         "budgetTips.cairo.useMetro": "Use the metro for cheap city transport",
-        "budgetTips.cairo.localRestaurants": "Eat at local restaurants for authentic cuisine",
-        "budgetTips.cairo.downtownAccommodation": "Stay downtown for budget accommodations",
+        "budgetTips.cairo.localRestaurants":
+          "Eat at local restaurants for authentic cuisine",
+        "budgetTips.cairo.downtownAccommodation":
+          "Stay downtown for budget accommodations",
         "budgetTips.cairo.freeMosquesMarkets": "Visit free mosques and markets",
-        "budgetTips.luxor.eastBankStay": "Stay on East Bank for budget accommodations",
-        "budgetTips.luxor.groupTickets": "Buy group tickets for temple discounts",
-        "budgetTips.luxor.earlyMorning": "Visit temples early morning to avoid crowds",
-        "budgetTips.luxor.localRestaurants": "Dine at local restaurants away from tourist areas",
-        "budgetTips.aswan.stayNearSouk": "Stay near the souk for local experience",
+        "budgetTips.luxor.eastBankStay":
+          "Stay on East Bank for budget accommodations",
+        "budgetTips.luxor.groupTickets":
+          "Buy group tickets for temple discounts",
+        "budgetTips.luxor.earlyMorning":
+          "Visit temples early morning to avoid crowds",
+        
+        // Time-related translations
+        "nile.bestTime.marchNovember": "March to November",
+        "nile.bestTime.octoberApril": "October to April",
+        "nile.bestTime.octoberMarch": "October to March",
+        "nile.stay.halfday": "Half day",
+        "nile.transport.flight_3h_drive": "3-hour flight + drive",
+        "nile.transport.12h_train_bus": "12 hours by train/bus",
+        "nile.transport.13h_train_bus": "13 hours by train/bus",
+        
+        // Beni Suef content
+        "highlights.beniSuef.meidumPyramid": "Meidum Pyramid",
+        "highlights.beniSuef.ruralNile": "Rural Nile Villages",
+        "highlights.beniSuef.traditionalMarkets": "Traditional Markets",
+        "attractions.beniSuef.meidumPyramid.name": "Meidum Pyramid",
+        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "budgetTips.beniSuef.affordableFood": "Affordable local food available",
+        "budgetTips.beniSuef.basicAccommodation": "Basic but clean accommodation options",
+        
+        // Edfu content
+        "highlights.edfu.templeHorus": "Temple of Horus",
+        "highlights.edfu.traditionalMarkets": "Traditional Markets",
+        "highlights.edfu.nileCruiseStop": "Popular Nile Cruise Stop",
+        "attractions.edfu.templeHorus.name": "Temple of Horus",
+        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.edfuMarket.name": "Edfu Traditional Market",
+        "attractions.edfu.edfuMarket.entryFee": "Free",
+        "budgetTips.edfu.nileCruiseStop": "Popular stop for Nile cruises",
+        "budgetTips.edfu.horseCartRide": "Take a horse cart ride to the temple",
+        "budgetTips.edfu.affordableFood": "Affordable local restaurants available",
+        
+        // Kom Ombo content
+        "highlights.komOmbo.doubleTemple": "Unique Double Temple",
+        "highlights.komOmbo.crocodileMuseum": "Crocodile Museum",
+        "highlights.komOmbo.sugarCaneFields": "Sugar Cane Fields",
+        "attractions.komOmbo.templeKomOmbo.name": "Temple of Kom Ombo",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.crocodileMuseum.name": "Crocodile Museum",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "budgetTips.komOmbo.combineWithEdfu": "Combine visit with Edfu Temple",
+        "budgetTips.komOmbo.sunsetViews": "Great sunset views over the Nile",
+        "budgetTips.komOmbo.basicTown": "Basic town with simple amenities",
+        
+        // Aswan additional content
+        "attractions.aswan.philaeTemple.name": "Philae Temple",
+        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.highDam.name": "Aswan High Dam",
+        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.nubianVillage.name": "Nubian Village",
+        "attractions.aswan.nubianVillage.entryFee": "$15",
+        "budgetTips.aswan.stayNearSouk":
+          "Stay near the souk for local experience",
         "budgetTips.aswan.feluccaRides": "Negotiate felucca rides at sunset",
-        "budgetTips.aswan.nubianVillages": "Visit Nubian villages for cultural experience",
+        "budgetTips.aswan.nubianVillages":
+          "Visit Nubian villages for cultural experience",
         "budgetTips.aswan.spiceShopping": "Buy spices at local markets",
-        "budgetTips.abuSimbel.dayTripFromAswan": "Take day trip from Aswan instead of staying overnight",
-        "budgetTips.abuSimbel.joinGroupTours": "Join group tours for better prices",
-        "budgetTips.abuSimbel.bringLunchWater": "Bring lunch and water from Aswan",
-        "budgetTips.abuSimbel.earlyMorningArrival": "Arrive early morning for cooler weather",
+        "budgetTips.abuSimbel.dayTripFromAswan":
+          "Take day trip from Aswan instead of staying overnight",
+        "budgetTips.abuSimbel.joinGroupTours":
+          "Join group tours for better prices",
+        "budgetTips.abuSimbel.bringLunchWater":
+          "Bring lunch and water from Aswan",
+        "budgetTips.abuSimbel.earlyMorningArrival":
+          "Arrive early morning for cooler weather",
 
         // Blog attractions - Cairo
         "attractions.cairo.citadelSaladin.name": "Citadel of Saladin",
-        "attractions.cairo.citadelSaladin.description": "Medieval Islamic fortification in Cairo",
+        "attractions.cairo.citadelSaladin.description":
+          "Medieval Islamic fortification in Cairo",
         "attractions.cairo.citadelSaladin.entryFee": "$8",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Alabaster Mosque",
-        "attractions.cairo.alabasterMosque.description": "Beautiful Ottoman-style mosque",
+        "attractions.cairo.alabasterMosque.description":
+          "Beautiful Ottoman-style mosque",
         "attractions.cairo.alabasterMosque.entryFee": "Free",
         "attractions.cairo.alabasterMosque.hours": "9:00 AM - 4:00 PM",
         "attractions.cairo.copticMuseum.name": "Coptic Museum",
-        "attractions.cairo.copticMuseum.description": "World's largest collection of Coptic artifacts",
+        "attractions.cairo.copticMuseum.description":
+          "World's largest collection of Coptic artifacts",
         "attractions.cairo.copticMuseum.entryFee": "$5",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
-        "attractions.luxor.medinet.description": "Mortuary temple of Ramesses III",
+        "attractions.luxor.medinet.description":
+          "Mortuary temple of Ramesses III",
         "attractions.luxor.medinet.entryFee": "$6",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
@@ -1169,32 +1418,36 @@ export default function NileValleyGuide() {
         "attractions.luxor.deir.entryFee": "$8",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
-        "attractions.luxor.ramesseum.description": "Memorial temple of Ramesses II",
+        "attractions.luxor.ramesseum.description":
+          "Memorial temple of Ramesses II",
         "attractions.luxor.ramesseum.entryFee": "$5",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Unfinished Obelisk",
-        "attractions.aswan.unfinishedObelisk.description": "Ancient granite quarry with unfinished obelisk",
+        "attractions.aswan.unfinishedObelisk.description":
+          "Ancient granite quarry with unfinished obelisk",
         "attractions.aswan.unfinishedObelisk.entryFee": "$4",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Nubian Museum",
-        "attractions.aswan.nubian.description": "Museum of Nubian culture and history",
+        "attractions.aswan.nubian.description":
+          "Museum of Nubian culture and history",
         "attractions.aswan.nubian.entryFee": "$7",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Botanical Garden",
-        "attractions.aswan.botanical.description": "Exotic plants on Kitchener's Island",
+        "attractions.aswan.botanical.description":
+          "Exotic plants on Kitchener's Island",
         "attractions.aswan.botanical.entryFee": "$3",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Time-related translations
         "nile.time.october_april": "October - April",
-        "nile.time.november_march": "November - March", 
+        "nile.time.november_march": "November - March",
         "nile.time.september_may": "September - May",
         "nile.stay.2_3days": "2-3 days",
         "nile.stay.3_4days": "3-4 days",
         "nile.stay.1day": "1 day",
-        "nile.transport.starting_point": "Starting point"
+        "nile.transport.starting_point": "Starting point",
       },
       es: {
         // Alexandria highlights
@@ -1202,145 +1455,231 @@ export default function NileValleyGuide() {
         "highlights.alexandria.qaitbayCitadel": "Ciudadela de Qaitbay",
         "highlights.alexandria.mediterraneanBeaches": "Playas del Mediterráneo",
         "highlights.alexandria.romanSites": "Sitios Arqueológicos Romanos",
-        
-        // Cairo highlights  
+
+        // Cairo highlights
         "highlights.cairo.pyramidsGiza": "Pirámides de Giza",
         "highlights.cairo.egyptianMuseum": "Museo Egipcio",
         "highlights.cairo.islamicCairo": "El Cairo Islámico",
         "highlights.cairo.khanElKhalili": "Bazar Khan El-Khalili",
-        
+
         // Luxor highlights
         "highlights.luxor.valleyKings": "Valle de los Reyes",
         "highlights.luxor.karnakTemple": "Templo de Karnak",
-        "highlights.luxor.luxorTemple": "Templo de Luxor", 
+        "highlights.luxor.luxorTemple": "Templo de Luxor",
         "highlights.luxor.westBankTombs": "Tumbas de la Orilla Oeste",
-        
+
         // Aswan highlights
         "highlights.aswan.philaeTemple": "Templo de Philae",
         "highlights.aswan.highDam": "Presa Alta",
         "highlights.aswan.nubianVillages": "Pueblos Nubios",
         "highlights.aswan.elephantineIsland": "Isla Elefantina",
-        
+
         // Abu Simbel highlights
         "highlights.abuSimbel.greatTemple": "Gran Templo de Ramsés II",
         "highlights.abuSimbel.templeNefertari": "Templo de Nefertari",
         "highlights.abuSimbel.unescoSite": "Sitio Patrimonio Mundial UNESCO",
-        
+
         // Attractions with details
         "attractions.alexandria.bibliotheca.name": "Biblioteca de Alejandría",
-        "attractions.alexandria.bibliotheca.description": "Recreación moderna de la antigua Biblioteca de Alejandría",
+        "attractions.alexandria.bibliotheca.description":
+          "Recreación moderna de la antigua Biblioteca de Alejandría",
         "attractions.alexandria.bibliotheca.entryFee": "$3",
         "attractions.alexandria.bibliotheca.hours": "9:00 AM - 7:00 PM",
         "attractions.alexandria.qaitbayCitadel.name": "Ciudadela de Qaitbay",
-        "attractions.alexandria.qaitbayCitadel.description": "Fuerte del siglo XV en la costa mediterránea",
+        "attractions.alexandria.qaitbayCitadel.description":
+          "Fuerte del siglo XV en la costa mediterránea",
         "attractions.alexandria.qaitbayCitadel.entryFee": "$4",
         "attractions.alexandria.qaitbayCitadel.hours": "9:00 AM - 5:00 PM",
         "attractions.alexandria.catacombs.name": "Catacumbas de Kom el Shoqafa",
-        "attractions.alexandria.catacombs.description": "Cámaras funerarias romanas",
+        "attractions.alexandria.catacombs.description":
+          "Cámaras funerarias romanas",
         "attractions.alexandria.catacombs.entryFee": "$5",
         "attractions.alexandria.catacombs.hours": "9:00 AM - 4:00 PM",
-        
+
         "attractions.cairo.pyramidsGiza.name": "Pirámides de Giza",
-        "attractions.cairo.pyramidsGiza.description": "Última maravilla del mundo antiguo",
+        "attractions.cairo.pyramidsGiza.description":
+          "Última maravilla del mundo antiguo",
         "attractions.cairo.pyramidsGiza.entryFee": "$13",
         "attractions.cairo.pyramidsGiza.hours": "8:00 AM - 4:00 PM",
         "attractions.cairo.egyptianMuseum.name": "Museo Egipcio",
-        "attractions.cairo.egyptianMuseum.description": "La colección más grande del mundo de artefactos del antiguo Egipto",
+        "attractions.cairo.egyptianMuseum.description":
+          "La colección más grande del mundo de artefactos del antiguo Egipto",
         "attractions.cairo.egyptianMuseum.entryFee": "$12",
         "attractions.cairo.egyptianMuseum.hours": "9:00 AM - 7:00 PM",
-        
+
         "attractions.luxor.valleyKings.name": "Valle de los Reyes",
-        "attractions.luxor.valleyKings.description": "Tumbas reales de faraones",
+        "attractions.luxor.valleyKings.description":
+          "Tumbas reales de faraones",
         "attractions.luxor.valleyKings.entryFee": "$12",
         "attractions.luxor.valleyKings.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.karnakTemple.name": "Complejo del Templo de Karnak",
-        "attractions.luxor.karnakTemple.description": "Vasto complejo de templos dedicado a Amón-Ra",
+        "attractions.luxor.karnakTemple.description":
+          "Vasto complejo de templos dedicado a Amón-Ra",
         "attractions.luxor.karnakTemple.entryFee": "$10",
         "attractions.luxor.karnakTemple.hours": "6:00 AM - 5:30 PM",
         "attractions.luxor.luxorTemple.name": "Templo de Luxor",
-        "attractions.luxor.luxorTemple.description": "Templo egipcio antiguo en el centro de la ciudad",
+        "attractions.luxor.luxorTemple.description":
+          "Templo egipcio antiguo en el centro de la ciudad",
         "attractions.luxor.luxorTemple.entryFee": "$8",
         "attractions.luxor.luxorTemple.hours": "6:00 AM - 9:00 PM",
-        
+
         // Budget tips
-        "budgetTips.alexandria.stayNearCorniche": "Alójate cerca de la Corniche para vistas al mar",
-        "budgetTips.alexandria.freshSeafood": "Prueba mariscos frescos en restaurantes locales",
-        "budgetTips.alexandria.historicTram": "Usa el tranvía histórico para transporte barato",
-        "budgetTips.cairo.useMetro": "Usa el metro para transporte urbano barato",
-        "budgetTips.cairo.localRestaurants": "Come en restaurantes locales para cocina auténtica",
-        "budgetTips.cairo.downtownAccommodation": "Quédate en el centro para alojamientos económicos",
-        "budgetTips.cairo.freeMosquesMarkets": "Visita mezquitas y mercados gratuitos",
-        "budgetTips.luxor.eastBankStay": "Alójate en East Bank para alojamientos económicos",
-        "budgetTips.luxor.groupTickets": "Compra boletos grupales para descuentos en templos",
-        "budgetTips.luxor.earlyMorning": "Visita templos temprano en la mañana para evitar multitudes",
-        "budgetTips.luxor.localRestaurants": "Cena en restaurantes locales lejos de áreas turísticas",
-        "budgetTips.aswan.stayNearSouk": "Quédate cerca del zoco para experiencia local",
-        "budgetTips.aswan.feluccaRides": "Negocia paseos en faluca al atardecer",
-        "budgetTips.aswan.nubianVillages": "Visita pueblos nubios para experiencia cultural",
+        "budgetTips.alexandria.stayNearCorniche":
+          "Alójate cerca de la Corniche para vistas al mar",
+        "budgetTips.alexandria.freshSeafood":
+          "Prueba mariscos frescos en restaurantes locales",
+        "budgetTips.alexandria.historicTram":
+          "Usa el tranvía histórico para transporte barato",
+        "budgetTips.cairo.useMetro":
+          "Usa el metro para transporte urbano barato",
+        "budgetTips.cairo.localRestaurants":
+          "Come en restaurantes locales para cocina auténtica",
+        "budgetTips.cairo.downtownAccommodation":
+          "Quédate en el centro para alojamientos económicos",
+        "budgetTips.cairo.freeMosquesMarkets":
+          "Visita mezquitas y mercados gratuitos",
+        "budgetTips.luxor.eastBankStay":
+          "Alójate en East Bank para alojamientos económicos",
+        "budgetTips.luxor.groupTickets":
+          "Compra boletos grupales para descuentos en templos",
+        "budgetTips.luxor.earlyMorning":
+          "Visita templos temprano en la mañana para evitar multitudes",
+        
+        // Time-related translations - Spanish
+        "nile.bestTime.marchNovember": "Marzo a Noviembre",
+        "nile.bestTime.octoberApril": "Octubre a Abril",
+        "nile.bestTime.octoberMarch": "Octubre a Marzo",
+        "nile.stay.halfday": "Medio día",
+        "nile.transport.flight_3h_drive": "3 horas de vuelo + viaje",
+        "nile.transport.12h_train_bus": "12 horas en tren/autobús",
+        "nile.transport.13h_train_bus": "13 horas en tren/autobús",
+        
+        // Beni Suef content - Spanish
+        "highlights.beniSuef.meidumPyramid": "Pirámide de Meidum",
+        "highlights.beniSuef.ruralNile": "Pueblos Rurales del Nilo",
+        "highlights.beniSuef.traditionalMarkets": "Mercados Tradicionales",
+        "attractions.beniSuef.meidumPyramid.name": "Pirámide de Meidum",
+        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.beniSuefMuseum.name": "Museo de Beni Suef",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "budgetTips.beniSuef.affordableFood": "Comida local asequible disponible",
+        "budgetTips.beniSuef.basicAccommodation": "Opciones de alojamiento básico pero limpio",
+        
+        // Edfu content - Spanish
+        "highlights.edfu.templeHorus": "Templo de Horus",
+        "highlights.edfu.traditionalMarkets": "Mercados Tradicionales",
+        "highlights.edfu.nileCruiseStop": "Parada Popular de Cruceros del Nilo",
+        "attractions.edfu.templeHorus.name": "Templo de Horus",
+        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.edfuMarket.name": "Mercado Tradicional de Edfu",
+        "attractions.edfu.edfuMarket.entryFee": "Gratis",
+        "budgetTips.edfu.nileCruiseStop": "Parada popular para cruceros del Nilo",
+        "budgetTips.edfu.horseCartRide": "Toma un paseo en carreta de caballos al templo",
+        "budgetTips.edfu.affordableFood": "Restaurantes locales asequibles disponibles",
+        
+        // Kom Ombo content - Spanish
+        "highlights.komOmbo.doubleTemple": "Templo Doble Único",
+        "highlights.komOmbo.crocodileMuseum": "Museo del Cocodrilo",
+        "highlights.komOmbo.sugarCaneFields": "Campos de Caña de Azúcar",
+        "attractions.komOmbo.templeKomOmbo.name": "Templo de Kom Ombo",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.crocodileMuseum.name": "Museo del Cocodrilo",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "budgetTips.komOmbo.combineWithEdfu": "Combina la visita con el Templo de Edfu",
+        "budgetTips.komOmbo.sunsetViews": "Excelentes vistas del atardecer sobre el Nilo",
+        "budgetTips.komOmbo.basicTown": "Pueblo básico con servicios simples",
+        
+        // Aswan additional content - Spanish
+        "attractions.aswan.philaeTemple.name": "Templo de Philae",
+        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.highDam.name": "Presa Alta de Asuán",
+        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.nubianVillage.name": "Pueblo Nubio",
+        "attractions.aswan.nubianVillage.entryFee": "$15",
+        "budgetTips.aswan.stayNearSouk":
+          "Quédate cerca del zoco para experiencia local",
+        "budgetTips.aswan.feluccaRides":
+          "Negocia paseos en faluca al atardecer",
+        "budgetTips.aswan.nubianVillages":
+          "Visita pueblos nubios para experiencia cultural",
         "budgetTips.aswan.spiceShopping": "Compra especias en mercados locales",
-        "budgetTips.abuSimbel.dayTripFromAswan": "Haz excursión de un día desde Asuán en lugar de quedarte",
-        "budgetTips.abuSimbel.joinGroupTours": "Únete a tours grupales para mejores precios",
-        "budgetTips.abuSimbel.bringLunchWater": "Trae almuerzo y agua desde Asuán",
-        "budgetTips.abuSimbel.earlyMorningArrival": "Llega temprano en la mañana para clima más fresco",
+        "budgetTips.abuSimbel.dayTripFromAswan":
+          "Haz excursión de un día desde Asuán en lugar de quedarte",
+        "budgetTips.abuSimbel.joinGroupTours":
+          "Únete a tours grupales para mejores precios",
+        "budgetTips.abuSimbel.bringLunchWater":
+          "Trae almuerzo y agua desde Asuán",
+        "budgetTips.abuSimbel.earlyMorningArrival":
+          "Llega temprano en la mañana para clima más fresco",
 
         // Blog attractions - Cairo
         "attractions.cairo.citadelSaladin.name": "Ciudadela de Saladino",
-        "attractions.cairo.citadelSaladin.description": "Fortificación islámica medieval en El Cairo",
+        "attractions.cairo.citadelSaladin.description":
+          "Fortificación islámica medieval en El Cairo",
         "attractions.cairo.citadelSaladin.entryFee": "$8",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Mezquita de Alabastro",
-        "attractions.cairo.alabasterMosque.description": "Hermosa mezquita de estilo otomano",
+        "attractions.cairo.alabasterMosque.description":
+          "Hermosa mezquita de estilo otomano",
         "attractions.cairo.alabasterMosque.entryFee": "Gratis",
         "attractions.cairo.alabasterMosque.hours": "9:00 AM - 4:00 PM",
         "attractions.cairo.copticMuseum.name": "Museo Copto",
-        "attractions.cairo.copticMuseum.description": "La colección más grande del mundo de artefactos coptos",
+        "attractions.cairo.copticMuseum.description":
+          "La colección más grande del mundo de artefactos coptos",
         "attractions.cairo.copticMuseum.entryFee": "$5",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
-        "attractions.luxor.medinet.description": "Templo funerario de Ramsés III",
+        "attractions.luxor.medinet.description":
+          "Templo funerario de Ramsés III",
         "attractions.luxor.medinet.entryFee": "$6",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
-        "attractions.luxor.deir.description": "Pueblo de constructores de tumbas reales",
+        "attractions.luxor.deir.description":
+          "Pueblo de constructores de tumbas reales",
         "attractions.luxor.deir.entryFee": "$8",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
-        "attractions.luxor.ramesseum.description": "Templo conmemorativo de Ramsés II",
+        "attractions.luxor.ramesseum.description":
+          "Templo conmemorativo de Ramsés II",
         "attractions.luxor.ramesseum.entryFee": "$5",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Obelisco Inacabado",
-        "attractions.aswan.unfinishedObelisk.description": "Cantera de granito antigua con obelisco inacabado",
+        "attractions.aswan.unfinishedObelisk.description":
+          "Cantera de granito antigua con obelisco inacabado",
         "attractions.aswan.unfinishedObelisk.entryFee": "$4",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Museo Nubio",
-        "attractions.aswan.nubian.description": "Museo de cultura e historia nubia",
+        "attractions.aswan.nubian.description":
+          "Museo de cultura e historia nubia",
         "attractions.aswan.nubian.entryFee": "$7",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Jardín Botánico",
-        "attractions.aswan.botanical.description": "Plantas exóticas en la Isla de Kitchener",
+        "attractions.aswan.botanical.description":
+          "Plantas exóticas en la Isla de Kitchener",
         "attractions.aswan.botanical.entryFee": "$3",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Time-related translations
         "nile.time.october_april": "Octubre - Abril",
-        "nile.time.november_march": "Noviembre - Marzo", 
+        "nile.time.november_march": "Noviembre - Marzo",
         "nile.time.september_may": "Septiembre - Mayo",
         "nile.stay.2_3days": "2-3 días",
         "nile.stay.3_4days": "3-4 días",
         "nile.stay.1day": "1 día",
-        "nile.transport.starting_point": "Punto de partida"
+        "nile.transport.starting_point": "Punto de partida",
       },
       fr: {
         // Alexandria highlights
         "highlights.alexandria.library": "Bibliothèque d'Alexandrie",
         "highlights.alexandria.qaitbayCitadel": "Citadelle de Qaitbay",
-        "highlights.alexandria.mediterraneanBeaches": "Plages de la Méditerranée",
+        "highlights.alexandria.mediterraneanBeaches":
+          "Plages de la Méditerranée",
         "highlights.alexandria.romanSites": "Sites Archéologiques Romains",
-        
+
         // Luxor attractions
         "attractions.luxor.valleyKings.name": "Vallée des Rois",
         "attractions.luxor.valleyKings.entryFee": "$12",
@@ -1348,56 +1687,70 @@ export default function NileValleyGuide() {
         "attractions.luxor.karnakTemple.entryFee": "$10",
         "attractions.luxor.luxorTemple.name": "Temple de Louxor",
         "attractions.luxor.luxorTemple.entryFee": "$8",
-        
+
         // Blog attractions - Cairo
         "attractions.cairo.citadelSaladin.name": "Citadelle de Saladin",
-        "attractions.cairo.citadelSaladin.description": "Fortification islamique médiévale au Caire",
+        "attractions.cairo.citadelSaladin.description":
+          "Fortification islamique médiévale au Caire",
         "attractions.cairo.citadelSaladin.entryFee": "$8",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Mosquée d'Albâtre",
-        "attractions.cairo.alabasterMosque.description": "Belle mosquée de style ottoman",
+        "attractions.cairo.alabasterMosque.description":
+          "Belle mosquée de style ottoman",
         "attractions.cairo.alabasterMosque.entryFee": "Gratuit",
         "attractions.cairo.alabasterMosque.hours": "9:00 AM - 4:00 PM",
         "attractions.cairo.copticMuseum.name": "Musée Copte",
-        "attractions.cairo.copticMuseum.description": "Plus grande collection d'artefacts coptes au monde",
+        "attractions.cairo.copticMuseum.description":
+          "Plus grande collection d'artefacts coptes au monde",
         "attractions.cairo.copticMuseum.entryFee": "$5",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
-        "attractions.luxor.medinet.description": "Temple funéraire de Ramsès III",
+        "attractions.luxor.medinet.description":
+          "Temple funéraire de Ramsès III",
         "attractions.luxor.medinet.entryFee": "$6",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
-        "attractions.luxor.deir.description": "Village des constructeurs de tombes royales",
+        "attractions.luxor.deir.description":
+          "Village des constructeurs de tombes royales",
         "attractions.luxor.deir.entryFee": "$8",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
-        "attractions.luxor.ramesseum.description": "Temple commémoratif de Ramsès II",
+        "attractions.luxor.ramesseum.description":
+          "Temple commémoratif de Ramsès II",
         "attractions.luxor.ramesseum.entryFee": "$5",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Obélisque Inachevé",
-        "attractions.aswan.unfinishedObelisk.description": "Ancienne carrière de granit avec obélisque inachevé",
+        "attractions.aswan.unfinishedObelisk.description":
+          "Ancienne carrière de granit avec obélisque inachevé",
         "attractions.aswan.unfinishedObelisk.entryFee": "$4",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Musée Nubien",
-        "attractions.aswan.nubian.description": "Musée de la culture et de l'histoire nubiennes",
+        "attractions.aswan.nubian.description":
+          "Musée de la culture et de l'histoire nubiennes",
         "attractions.aswan.nubian.entryFee": "$7",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Jardin Botanique",
-        "attractions.aswan.botanical.description": "Plantes exotiques sur l'île de Kitchener",
+        "attractions.aswan.botanical.description":
+          "Plantes exotiques sur l'île de Kitchener",
         "attractions.aswan.botanical.entryFee": "$3",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Budget tips
-        "budgetTips.alexandria.stayNearCorniche": "Séjournez près de la Corniche pour de superbes vues sur la mer",
-        "budgetTips.alexandria.freshSeafood": "Essayez les fruits de mer frais dans les restaurants locaux",
-        "budgetTips.alexandria.historicTram": "Utilisez le tramway historique pour un transport pas cher",
-        "budgetTips.luxor.eastBankStay": "Séjournez à East Bank pour des hébergements économiques",
-        "budgetTips.luxor.groupTickets": "Achetez des billets de groupe pour des réductions sur les temples",
-        
+        "budgetTips.alexandria.stayNearCorniche":
+          "Séjournez près de la Corniche pour de superbes vues sur la mer",
+        "budgetTips.alexandria.freshSeafood":
+          "Essayez les fruits de mer frais dans les restaurants locaux",
+        "budgetTips.alexandria.historicTram":
+          "Utilisez le tramway historique pour un transport pas cher",
+        "budgetTips.luxor.eastBankStay":
+          "Séjournez à East Bank pour des hébergements économiques",
+        "budgetTips.luxor.groupTickets":
+          "Achetez des billets de groupe pour des réductions sur les temples",
+
         // Time references
         "nile.bestTime.marchNovember": "Mars à Novembre",
         "nile.bestTime.octoberApril": "Octobre à Avril",
@@ -1405,7 +1758,54 @@ export default function NileValleyGuide() {
         "nile.stay.2_3days": "2-3 jours",
         "nile.stay.3_4days": "3-4 jours",
         "nile.stay.1day": "1 jour",
-        "nile.transport.starting_point": "Point de départ"
+        "nile.stay.halfday": "Demi-journée",
+        "nile.transport.starting_point": "Point de départ",
+        "nile.transport.flight_3h_drive": "3 heures de vol + trajet",
+        "nile.transport.12h_train_bus": "12 heures en train/bus",
+        "nile.transport.13h_train_bus": "13 heures en train/bus",
+        
+        // Beni Suef content - French
+        "highlights.beniSuef.meidumPyramid": "Pyramide de Meidum",
+        "highlights.beniSuef.ruralNile": "Villages Ruraux du Nil",
+        "highlights.beniSuef.traditionalMarkets": "Marchés Traditionnels",
+        "attractions.beniSuef.meidumPyramid.name": "Pyramide de Meidum",
+        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.beniSuefMuseum.name": "Musée de Beni Suef",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "budgetTips.beniSuef.affordableFood": "Nourriture locale abordable disponible",
+        "budgetTips.beniSuef.basicAccommodation": "Options d'hébergement de base mais propres",
+        
+        // Edfu content - French
+        "highlights.edfu.templeHorus": "Temple d'Horus",
+        "highlights.edfu.traditionalMarkets": "Marchés Traditionnels",
+        "highlights.edfu.nileCruiseStop": "Arrêt Populaire de Croisière sur le Nil",
+        "attractions.edfu.templeHorus.name": "Temple d'Horus",
+        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.edfuMarket.name": "Marché Traditionnel d'Edfu",
+        "attractions.edfu.edfuMarket.entryFee": "Gratuit",
+        "budgetTips.edfu.nileCruiseStop": "Arrêt populaire pour les croisières sur le Nil",
+        "budgetTips.edfu.horseCartRide": "Prenez une calèche jusqu'au temple",
+        "budgetTips.edfu.affordableFood": "Restaurants locaux abordables disponibles",
+        
+        // Kom Ombo content - French
+        "highlights.komOmbo.doubleTemple": "Temple Double Unique",
+        "highlights.komOmbo.crocodileMuseum": "Musée des Crocodiles",
+        "highlights.komOmbo.sugarCaneFields": "Champs de Canne à Sucre",
+        "attractions.komOmbo.templeKomOmbo.name": "Temple de Kom Ombo",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.crocodileMuseum.name": "Musée des Crocodiles",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "budgetTips.komOmbo.combineWithEdfu": "Combinez la visite avec le Temple d'Edfu",
+        "budgetTips.komOmbo.sunsetViews": "Excellentes vues du coucher de soleil sur le Nil",
+        "budgetTips.komOmbo.basicTown": "Ville de base avec des équipements simples",
+        
+        // Aswan additional content - French
+        "attractions.aswan.philaeTemple.name": "Temple de Philae",
+        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.highDam.name": "Haut Barrage d'Assouan",
+        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.nubianVillage.name": "Village Nubien",
+        "attractions.aswan.nubianVillage.entryFee": "$15"
       },
       de: {
         // Alexandria highlights
@@ -1413,7 +1813,7 @@ export default function NileValleyGuide() {
         "highlights.alexandria.qaitbayCitadel": "Qaitbay-Zitadelle",
         "highlights.alexandria.mediterraneanBeaches": "Mittelmeerstrände",
         "highlights.alexandria.romanSites": "Römische Archäologische Stätten",
-        
+
         // Luxor attractions
         "attractions.luxor.valleyKings.name": "Tal der Könige",
         "attractions.luxor.valleyKings.entryFee": "$12",
@@ -1421,18 +1821,21 @@ export default function NileValleyGuide() {
         "attractions.luxor.karnakTemple.entryFee": "$10",
         "attractions.luxor.luxorTemple.name": "Luxor-Tempel",
         "attractions.luxor.luxorTemple.entryFee": "$8",
-        
+
         // Blog attractions - Cairo
         "attractions.cairo.citadelSaladin.name": "Zitadelle von Saladin",
-        "attractions.cairo.citadelSaladin.description": "Mittelalterliche islamische Befestigung in Kairo",
+        "attractions.cairo.citadelSaladin.description":
+          "Mittelalterliche islamische Befestigung in Kairo",
         "attractions.cairo.citadelSaladin.entryFee": "$8",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Alabaster-Moschee",
-        "attractions.cairo.alabasterMosque.description": "Schöne Moschee im osmanischen Stil",
+        "attractions.cairo.alabasterMosque.description":
+          "Schöne Moschee im osmanischen Stil",
         "attractions.cairo.alabasterMosque.entryFee": "Kostenlos",
         "attractions.cairo.alabasterMosque.hours": "9:00 AM - 4:00 PM",
         "attractions.cairo.copticMuseum.name": "Koptisches Museum",
-        "attractions.cairo.copticMuseum.description": "Weltgrößte Sammlung koptischer Artefakte",
+        "attractions.cairo.copticMuseum.description":
+          "Weltgrößte Sammlung koptischer Artefakte",
         "attractions.cairo.copticMuseum.entryFee": "$5",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
@@ -1452,25 +1855,33 @@ export default function NileValleyGuide() {
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Unvollendeter Obelisk",
-        "attractions.aswan.unfinishedObelisk.description": "Alter Granitsteinbruch mit unvollendetem Obelisk",
+        "attractions.aswan.unfinishedObelisk.description":
+          "Alter Granitsteinbruch mit unvollendetem Obelisk",
         "attractions.aswan.unfinishedObelisk.entryFee": "$4",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Nubisches Museum",
-        "attractions.aswan.nubian.description": "Museum für nubische Kultur und Geschichte",
+        "attractions.aswan.nubian.description":
+          "Museum für nubische Kultur und Geschichte",
         "attractions.aswan.nubian.entryFee": "$7",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Botanischer Garten",
-        "attractions.aswan.botanical.description": "Exotische Pflanzen auf Kitchener's Insel",
+        "attractions.aswan.botanical.description":
+          "Exotische Pflanzen auf Kitchener's Insel",
         "attractions.aswan.botanical.entryFee": "$3",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Budget tips
-        "budgetTips.alexandria.stayNearCorniche": "Bleiben Sie in der Nähe der Corniche für tolle Meerblicke",
-        "budgetTips.alexandria.freshSeafood": "Probieren Sie frische Meeresfrüchte in lokalen Restaurants",
-        "budgetTips.alexandria.historicTram": "Nutzen Sie die historische Straßenbahn für günstigen Transport",
-        "budgetTips.luxor.eastBankStay": "Bleiben Sie am East Bank für günstige Unterkünfte",
-        "budgetTips.luxor.groupTickets": "Kaufen Sie Gruppentickets für Tempelrabatte",
-        
+        "budgetTips.alexandria.stayNearCorniche":
+          "Bleiben Sie in der Nähe der Corniche für tolle Meerblicke",
+        "budgetTips.alexandria.freshSeafood":
+          "Probieren Sie frische Meeresfrüchte in lokalen Restaurants",
+        "budgetTips.alexandria.historicTram":
+          "Nutzen Sie die historische Straßenbahn für günstigen Transport",
+        "budgetTips.luxor.eastBankStay":
+          "Bleiben Sie am East Bank für günstige Unterkünfte",
+        "budgetTips.luxor.groupTickets":
+          "Kaufen Sie Gruppentickets für Tempelrabatte",
+
         // Time references
         "nile.bestTime.marchNovember": "März bis November",
         "nile.bestTime.octoberApril": "Oktober bis April",
@@ -1478,29 +1889,103 @@ export default function NileValleyGuide() {
         "nile.stay.2_3days": "2-3 Tage",
         "nile.stay.3_4days": "3-4 Tage",
         "nile.stay.1day": "1 Tag",
-        "nile.transport.starting_point": "Ausgangspunkt"
-      }
+        "nile.stay.halfday": "Halber Tag",
+        "nile.transport.starting_point": "Ausgangspunkt",
+        "nile.transport.flight_3h_drive": "3-stündiger Flug + Fahrt",
+        "nile.transport.12h_train_bus": "12 Stunden mit Zug/Bus",
+        "nile.transport.13h_train_bus": "13 Stunden mit Zug/Bus",
+        
+        // Beni Suef content - German
+        "highlights.beniSuef.meidumPyramid": "Meidum-Pyramide",
+        "highlights.beniSuef.ruralNile": "Ländliche Nildörfer",
+        "highlights.beniSuef.traditionalMarkets": "Traditionelle Märkte",
+        "attractions.beniSuef.meidumPyramid.name": "Meidum-Pyramide",
+        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "budgetTips.beniSuef.affordableFood": "Erschwingliches lokales Essen verfügbar",
+        "budgetTips.beniSuef.basicAccommodation": "Grundlegende aber saubere Unterkunftsmöglichkeiten",
+        
+        // Edfu content - German
+        "highlights.edfu.templeHorus": "Horus-Tempel",
+        "highlights.edfu.traditionalMarkets": "Traditionelle Märkte",
+        "highlights.edfu.nileCruiseStop": "Beliebter Nilkreuzfahrt-Stopp",
+        "attractions.edfu.templeHorus.name": "Horus-Tempel",
+        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.edfuMarket.name": "Traditioneller Markt von Edfu",
+        "attractions.edfu.edfuMarket.entryFee": "Kostenlos",
+        "budgetTips.edfu.nileCruiseStop": "Beliebter Stopp für Nilkreuzfahrten",
+        "budgetTips.edfu.horseCartRide": "Nehmen Sie eine Pferdekutsche zum Tempel",
+        "budgetTips.edfu.affordableFood": "Erschwingliche lokale Restaurants verfügbar",
+        
+        // Kom Ombo content - German
+        "highlights.komOmbo.doubleTemple": "Einzigartiger Doppeltempel",
+        "highlights.komOmbo.crocodileMuseum": "Krokodilmuseum",
+        "highlights.komOmbo.sugarCaneFields": "Zuckerrohrfelder",
+        "attractions.komOmbo.templeKomOmbo.name": "Tempel von Kom Ombo",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.crocodileMuseum.name": "Krokodilmuseum",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "budgetTips.komOmbo.combineWithEdfu": "Kombinieren Sie den Besuch mit dem Edfu-Tempel",
+        "budgetTips.komOmbo.sunsetViews": "Tolle Sonnenuntergangssicht über den Nil",
+        "budgetTips.komOmbo.basicTown": "Einfache Stadt mit grundlegenden Annehmlichkeiten",
+        
+        // Aswan additional content - German  
+        "attractions.aswan.philaeTemple.name": "Philae-Tempel",
+        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.highDam.name": "Assuan-Hochdamm",
+        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.nubianVillage.name": "Nubisches Dorf",
+        "attractions.aswan.nubianVillage.entryFee": "$15",
+      },
     };
-    
-    return translations[currentLanguage]?.[key] || translations.en?.[key] || key;
+
+    return (
+      translations[currentLanguage]?.[key] || translations.en?.[key] || key
+    );
   };
 
   // Handle regions with multilingual content
-  const regions = currentLanguage === 'es' ? 
-    ["Todas las Regiones", "Bajo Egipto", "Egipto Medio", "Alto Egipto", "Nubia"] :
-    currentLanguage === 'fr' ?
-    ["Toutes les Régions", "Basse-Égypte", "Moyenne-Égypte", "Haute-Égypte", "Nubie"] :
-    currentLanguage === 'de' ?
-    ["Alle Regionen", "Unterägypten", "Mittelägypten", "Oberägypten", "Nubien"] :
-    ["All Regions", "Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
-  
+  const regions =
+    currentLanguage === "es"
+      ? [
+          "Todas las Regiones",
+          "Bajo Egipto",
+          "Egipto Medio",
+          "Alto Egipto",
+          "Nubia",
+        ]
+      : currentLanguage === "fr"
+        ? [
+            "Toutes les Régions",
+            "Basse-Égypte",
+            "Moyenne-Égypte",
+            "Haute-Égypte",
+            "Nubie",
+          ]
+        : currentLanguage === "de"
+          ? [
+              "Alle Regionen",
+              "Unterägypten",
+              "Mittelägypten",
+              "Oberägypten",
+              "Nubien",
+            ]
+          : [
+              "All Regions",
+              "Lower Egypt",
+              "Middle Egypt",
+              "Upper Egypt",
+              "Nubia",
+            ];
+
   // Create a mapping between translated regions and English region names
   const regionMap: { [key: string]: string } = {
     "All Regions": "All",
     "Lower Egypt": "Lower Egypt",
-    "Middle Egypt": "Middle Egypt", 
+    "Middle Egypt": "Middle Egypt",
     "Upper Egypt": "Upper Egypt",
-    "Nubia": "Nubia",
+    Nubia: "Nubia",
     // Spanish
     "Todas las Regiones": "All",
     "Bajo Egipto": "Lower Egypt",
@@ -1511,37 +1996,38 @@ export default function NileValleyGuide() {
     "Basse-Égypte": "Lower Egypt",
     "Moyenne-Égypte": "Middle Egypt",
     "Haute-Égypte": "Upper Egypt",
-    "Nubie": "Nubia",
+    Nubie: "Nubia",
     // German
     "Alle Regionen": "All",
-    "Unterägypten": "Lower Egypt",
-    "Mittelägypten": "Middle Egypt",
-    "Oberägypten": "Upper Egypt",
-    "Nubien": "Nubia"
+    Unterägypten: "Lower Egypt",
+    Mittelägypten: "Middle Egypt",
+    Oberägypten: "Upper Egypt",
+    Nubien: "Nubia",
   };
-  
+
   const englishRegion = regionMap[selectedRegion] || selectedRegion;
-  const filteredCities = englishRegion === "All" 
-    ? nileValleyCities 
-    : nileValleyCities.filter(city => city.region === englishRegion);
+  const filteredCities =
+    englishRegion === "All"
+      ? nileValleyCities
+      : nileValleyCities.filter((city) => city.region === englishRegion);
 
   const navigateToQuote = () => {
     // Navigate to the pricing tool page
-    window.location.href = '/pricing-tool';
+    window.location.href = "/pricing-tool";
   };
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       {/* Hero Section */}
-      <header 
+      <header
         className="min-h-[90vh] flex items-center justify-center relative"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-1.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
         }}
       >
         <div className="container mx-auto px-4 text-center">
@@ -1554,32 +2040,44 @@ export default function NileValleyGuide() {
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance text-center">
             {currentContent.description}
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-4 mt-12 mb-8">
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <MapPin className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">{currentContent.hero.features.cities.title}</h4>
-              <p className="text-sm text-white/80">{currentContent.hero.features.cities.description}</p>
+              <h4 className="font-semibold mb-2 text-green-primary">
+                {currentContent.hero.features.cities.title}
+              </h4>
+              <p className="text-sm text-white/80">
+                {currentContent.hero.features.cities.description}
+              </p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <Camera className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">{currentContent.hero.features.sites.title}</h4>
-              <p className="text-sm text-white/80">{currentContent.hero.features.sites.description}</p>
+              <h4 className="font-semibold mb-2 text-green-primary">
+                {currentContent.hero.features.sites.title}
+              </h4>
+              <p className="text-sm text-white/80">
+                {currentContent.hero.features.sites.description}
+              </p>
             </div>
             <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
               <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">
                 <Navigation className="w-5 h-5" />
               </div>
-              <h4 className="font-semibold mb-2 text-green-primary">{currentContent.hero.features.budget.title}</h4>
-              <p className="text-sm text-white/80">{currentContent.hero.features.budget.description}</p>
+              <h4 className="font-semibold mb-2 text-green-primary">
+                {currentContent.hero.features.budget.title}
+              </h4>
+              <p className="text-sm text-white/80">
+                {currentContent.hero.features.budget.description}
+              </p>
             </div>
           </div>
-          
-          <Button 
+
+          <Button
             onClick={navigateToQuote}
             className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1"
           >
@@ -1594,7 +2092,7 @@ export default function NileValleyGuide() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             {currentContent.map.title}
           </h2>
-          
+
           <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
             <div className="flex flex-wrap justify-center gap-2 mb-6">
               {regions.map((region) => (
@@ -1608,19 +2106,31 @@ export default function NileValleyGuide() {
                 </Button>
               ))}
             </div>
-            
+
             <div className="relative bg-gradient-to-b from-blue-50 to-amber-50 rounded-lg p-4 sm:p-8 min-h-[400px] sm:min-h-[500px] overflow-hidden">
               {/* Egypt Map SVG Background */}
               <div className="absolute inset-0 flex items-center justify-center opacity-20">
                 <svg viewBox="0 0 400 600" className="w-full h-full max-w-md">
                   <defs>
-                    <linearGradient id="egyptGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style={{stopColor:"#f4f1de", stopOpacity:1}} />
-                      <stop offset="100%" style={{stopColor:"#e07a5f", stopOpacity:0.3}} />
+                    <linearGradient
+                      id="egyptGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop
+                        offset="0%"
+                        style={{ stopColor: "#f4f1de", stopOpacity: 1 }}
+                      />
+                      <stop
+                        offset="100%"
+                        style={{ stopColor: "#e07a5f", stopOpacity: 0.3 }}
+                      />
                     </linearGradient>
                   </defs>
                   {/* Egypt country outline - simplified */}
-                  <path 
+                  <path
                     d="M 50 50 
                        L 350 50 
                        L 350 120
@@ -1664,13 +2174,13 @@ export default function NileValleyGuide() {
                        L 50 100
                        L 50 80
                        L 50 60
-                       Z" 
-                    fill="url(#egyptGradient)" 
-                    stroke="#d4a574" 
+                       Z"
+                    fill="url(#egyptGradient)"
+                    stroke="#d4a574"
                     strokeWidth="2"
                   />
                   {/* Red Sea */}
-                  <path 
+                  <path
                     d="M 350 120 
                        L 380 140
                        L 390 180
@@ -1704,13 +2214,13 @@ export default function NileValleyGuide() {
                        L 280 180
                        L 300 160
                        L 320 140
-                       Z" 
-                    fill="rgba(59, 130, 246, 0.2)" 
-                    stroke="rgba(59, 130, 246, 0.4)" 
+                       Z"
+                    fill="rgba(59, 130, 246, 0.2)"
+                    stroke="rgba(59, 130, 246, 0.4)"
                     strokeWidth="1"
                   />
                   {/* Nile River */}
-                  <path 
+                  <path
                     d="M 200 50 
                        Q 190 100 185 150
                        Q 180 200 175 250
@@ -1719,100 +2229,167 @@ export default function NileValleyGuide() {
                        Q 150 500 145 530
                        L 120 550
                        L 100 565
-                       L 85 580" 
-                    fill="none" 
-                    stroke="rgba(59, 130, 246, 0.6)" 
+                       L 85 580"
+                    fill="none"
+                    stroke="rgba(59, 130, 246, 0.6)"
                     strokeWidth="4"
                   />
                   {/* Nile Delta */}
-                  <path 
+                  <path
                     d="M 200 50 
                        Q 150 80 120 120
                        Q 160 90 200 50
                        Q 250 80 280 120
-                       Q 220 70 200 50" 
-                    fill="rgba(34, 197, 94, 0.3)" 
-                    stroke="rgba(34, 197, 94, 0.5)" 
+                       Q 220 70 200 50"
+                    fill="rgba(34, 197, 94, 0.3)"
+                    stroke="rgba(34, 197, 94, 0.5)"
                     strokeWidth="1"
                   />
-                  
+
                   {/* Desert Labels */}
-                  <text x="90" y="300" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                  <text
+                    x="90"
+                    y="300"
+                    fill="#8B4513"
+                    fontSize="12"
+                    fontWeight="bold"
+                    textAnchor="middle"
+                    opacity="0.7"
+                  >
                     Western
                   </text>
-                  <text x="90" y="315" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                  <text
+                    x="90"
+                    y="315"
+                    fill="#8B4513"
+                    fontSize="12"
+                    fontWeight="bold"
+                    textAnchor="middle"
+                    opacity="0.7"
+                  >
                     Desert
                   </text>
-                  
-                  <text x="310" y="300" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+
+                  <text
+                    x="310"
+                    y="300"
+                    fill="#8B4513"
+                    fontSize="12"
+                    fontWeight="bold"
+                    textAnchor="middle"
+                    opacity="0.7"
+                  >
                     Eastern
                   </text>
-                  <text x="310" y="315" fill="#8B4513" fontSize="12" fontWeight="bold" textAnchor="middle" opacity="0.7">
+                  <text
+                    x="310"
+                    y="315"
+                    fill="#8B4513"
+                    fontSize="12"
+                    fontWeight="bold"
+                    textAnchor="middle"
+                    opacity="0.7"
+                  >
                     Desert
                   </text>
-                  
+
                   {/* Desert terrain indicators */}
                   {/* Western Desert sand dunes */}
-                  <circle cx="70" cy="200" r="3" fill="#D2B48C" opacity="0.4"/>
-                  <circle cx="85" cy="210" r="2" fill="#D2B48C" opacity="0.4"/>
-                  <circle cx="75" cy="380" r="4" fill="#D2B48C" opacity="0.4"/>
-                  <circle cx="90" cy="370" r="2" fill="#D2B48C" opacity="0.4"/>
-                  <circle cx="60" cy="450" r="3" fill="#D2B48C" opacity="0.4"/>
-                  
+                  <circle cx="70" cy="200" r="3" fill="#D2B48C" opacity="0.4" />
+                  <circle cx="85" cy="210" r="2" fill="#D2B48C" opacity="0.4" />
+                  <circle cx="75" cy="380" r="4" fill="#D2B48C" opacity="0.4" />
+                  <circle cx="90" cy="370" r="2" fill="#D2B48C" opacity="0.4" />
+                  <circle cx="60" cy="450" r="3" fill="#D2B48C" opacity="0.4" />
+
                   {/* Eastern Desert rocky terrain */}
-                  <polygon points="320,200 325,195 330,200 325,205" fill="#8B7355" opacity="0.5"/>
-                  <polygon points="335,250 340,245 345,250 340,255" fill="#8B7355" opacity="0.5"/>
-                  <polygon points="315,380 320,375 325,380 320,385" fill="#8B7355" opacity="0.5"/>
-                  <polygon points="340,420 345,415 350,420 345,425" fill="#8B7355" opacity="0.5"/>
+                  <polygon
+                    points="320,200 325,195 330,200 325,205"
+                    fill="#8B7355"
+                    opacity="0.5"
+                  />
+                  <polygon
+                    points="335,250 340,245 345,250 340,255"
+                    fill="#8B7355"
+                    opacity="0.5"
+                  />
+                  <polygon
+                    points="315,380 320,375 325,380 320,385"
+                    fill="#8B7355"
+                    opacity="0.5"
+                  />
+                  <polygon
+                    points="340,420 345,415 350,420 345,425"
+                    fill="#8B7355"
+                    opacity="0.5"
+                  />
                 </svg>
               </div>
-              
+
               <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-2 rounded-lg border">
-                <p className="text-xs sm:text-sm font-medium text-gray-700">{currentContent.map.clickCities}</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-700">
+                  {currentContent.map.clickCities}
+                </p>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 {/* Simplified Nile River visualization */}
                 <div className="w-2 bg-blue-400 h-full absolute left-1/2 transform -translate-x-1/2 rounded-full opacity-40"></div>
-                
+
                 {/* City markers positioned along the "river" */}
                 <div className="relative w-full h-full">
                   {filteredCities.map((city, index) => (
                     <div
                       key={city.id}
                       className={`absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
-                        selectedCity?.id === city.id ? 'z-10' : 'z-0'
+                        selectedCity?.id === city.id ? "z-10" : "z-0"
                       }`}
                       style={{
-                        left: '50%',
-                        top: filteredCities.length === 1 
-                          ? '50%' 
-                          : `${(index / (filteredCities.length - 1)) * 70 + 15}%`
+                        left: "50%",
+                        top:
+                          filteredCities.length === 1
+                            ? "50%"
+                            : `${(index / (filteredCities.length - 1)) * 70 + 15}%`,
                       }}
                       onClick={() => {
                         setSelectedCity(city);
                         // Scroll to city details card after a short delay to allow state update
                         setTimeout(() => {
-                          const element = document.getElementById('selected-city-details');
+                          const element = document.getElementById(
+                            "selected-city-details",
+                          );
                           if (element) {
-                            element.scrollIntoView({ 
-                              behavior: 'smooth', 
-                              block: 'center',
-                              inline: 'nearest'
+                            element.scrollIntoView({
+                              behavior: "smooth",
+                              block: "center",
+                              inline: "nearest",
                             });
                           }
                         }, 100);
                       }}
                     >
-                      <div className={`
+                      <div
+                        className={`
                         flex items-center gap-1 sm:gap-2 p-2 sm:p-3 rounded-lg border-2 transition-all duration-300 shadow-lg
-                        ${selectedCity?.id === city.id 
-                          ? 'bg-primary text-white border-primary scale-110 shadow-xl' 
-                          : 'bg-white border-gray-300 hover:border-primary hover:scale-105 hover:shadow-xl hover:bg-primary/5'
+                        ${
+                          selectedCity?.id === city.id
+                            ? "bg-primary text-white border-primary scale-110 shadow-xl"
+                            : "bg-white border-gray-300 hover:border-primary hover:scale-105 hover:shadow-xl hover:bg-primary/5"
                         }
-                      `}>
-                        <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${selectedCity?.id === city.id ? 'animate-pulse' : ''}`} />
-                        <span className="font-medium text-xs sm:text-sm">{city.name}</span>
-                        <Badge variant={selectedCity?.id === city.id ? "outline" : "secondary"} className="text-xs hidden sm:block">
+                      `}
+                      >
+                        <MapPin
+                          className={`w-3 h-3 sm:w-4 sm:h-4 ${selectedCity?.id === city.id ? "animate-pulse" : ""}`}
+                        />
+                        <span className="font-medium text-xs sm:text-sm">
+                          {city.name}
+                        </span>
+                        <Badge
+                          variant={
+                            selectedCity?.id === city.id
+                              ? "outline"
+                              : "secondary"
+                          }
+                          className="text-xs hidden sm:block"
+                        >
                           {city.region}
                         </Badge>
                       </div>
@@ -1828,42 +2405,66 @@ export default function NileValleyGuide() {
 
           {/* Selected City Details */}
           {selectedCity && (
-            <Card id="selected-city-details" className="p-6 border-primary border-2">
+            <Card
+              id="selected-city-details"
+              className="p-6 border-primary border-2"
+            >
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">{selectedCity.name}</h3>
-                  <p className="text-gray-600 mb-1">{selectedCity.arabicName}</p>
-                  <Badge className="mb-4">{
-                    selectedCity.region === "Upper Egypt" ? currentContent.completeGuide.regions.upperEgypt :
-                    selectedCity.region === "Middle Egypt" ? currentContent.completeGuide.regions.middleEgypt :
-                    selectedCity.region === "Lower Egypt" ? currentContent.completeGuide.regions.lowerEgypt :
-                    selectedCity.region === "Nubia" ? currentContent.completeGuide.regions.nubia :
-                    selectedCity.region
-                  }</Badge>
-                  
+                  <h3 className="text-2xl font-bold mb-2">
+                    {selectedCity.name}
+                  </h3>
+                  <p className="text-gray-600 mb-1">
+                    {selectedCity.arabicName}
+                  </p>
+                  <Badge className="mb-4">
+                    {selectedCity.region === "Upper Egypt"
+                      ? currentContent.completeGuide.regions.upperEgypt
+                      : selectedCity.region === "Middle Egypt"
+                        ? currentContent.completeGuide.regions.middleEgypt
+                        : selectedCity.region === "Lower Egypt"
+                          ? currentContent.completeGuide.regions.lowerEgypt
+                          : selectedCity.region === "Nubia"
+                            ? currentContent.completeGuide.regions.nubia
+                            : selectedCity.region}
+                  </Badge>
+
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-primary" />
-                      <span>{currentContent.cityDetails.population} {selectedCity.population}</span>
+                      <span>
+                        {currentContent.cityDetails.population}{" "}
+                        {selectedCity.population}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
-                      <span>{currentContent.cityDetails.bestTime} {translateKey(selectedCity.bestTimeToVisit)}</span>
+                      <span>
+                        {currentContent.cityDetails.bestTime}{" "}
+                        {translateKey(selectedCity.bestTimeToVisit)}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-primary" />
-                      <span>{currentContent.cityDetails.recommendedStay} {translateKey(selectedCity.averageStay)}</span>
+                      <span>
+                        {currentContent.cityDetails.recommendedStay}{" "}
+                        {translateKey(selectedCity.averageStay)}
+                      </span>
                     </div>
                   </div>
 
-                  <h4 className="font-semibold mb-2">{currentContent.cityDetails.keyHighlights}</h4>
+                  <h4 className="font-semibold mb-2">
+                    {currentContent.cityDetails.keyHighlights}
+                  </h4>
                   <ul className="list-disc list-inside text-gray-700 mb-4">
                     {selectedCity.highlights.map((highlight, index) => (
                       <li key={index}>{translateKey(highlight)}</li>
                     ))}
                   </ul>
 
-                  <h4 className="font-semibold mb-2">{currentContent.cityDetails.budgetTips}</h4>
+                  <h4 className="font-semibold mb-2">
+                    {currentContent.cityDetails.budgetTips}
+                  </h4>
                   <ul className="list-disc list-inside text-gray-700">
                     {selectedCity.budgetTips.map((tip, index) => (
                       <li key={index}>{translateKey(tip)}</li>
@@ -1872,36 +2473,57 @@ export default function NileValleyGuide() {
                 </div>
 
                 <div>
-                  <img 
-                    src={selectedCity.detailImage || selectedCity.image} 
+                  <img
+                    src={selectedCity.detailImage || selectedCity.image}
                     alt={selectedCity.name}
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
-                  
-                  <h4 className="font-semibold mb-3">{currentContent.cityDetails.transportation}</h4>
+
+                  <h4 className="font-semibold mb-3">
+                    {currentContent.cityDetails.transportation}
+                  </h4>
                   <div className="bg-gray-50 p-3 rounded-lg mb-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Train className="w-4 h-4 text-primary" />
-                      <span className="text-sm">{selectedCity.transportation.fromCairo}</span>
+                      <span className="text-sm">
+                        {selectedCity.transportation.fromCairo}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Navigation className="w-4 h-4 text-primary" />
-                      <span className="text-sm">{currentContent.cityDetails.localTransport} {selectedCity.transportation.localTransport.join(', ')}</span>
+                      <span className="text-sm">
+                        {currentContent.cityDetails.localTransport}{" "}
+                        {selectedCity.transportation.localTransport.join(", ")}
+                      </span>
                     </div>
                   </div>
 
-                  <h4 className="font-semibold mb-2">{currentContent.cityDetails.topAttractions}</h4>
+                  <h4 className="font-semibold mb-2">
+                    {currentContent.cityDetails.topAttractions}
+                  </h4>
                   <div className="space-y-2">
-                    {selectedCity.keyAttractions.slice(0, 2).map((attraction, index) => (
-                      <div key={index} className="bg-gray-50 p-3 rounded-lg">
-                        <h5 className="font-medium">{translateKey(attraction.name)}</h5>
-                        <p className="text-sm text-gray-600 mb-1">{translateKey(attraction.description)}</p>
-                        <div className="flex justify-between text-xs text-gray-500">
-                          <span>{currentContent.cityDetails.entry} {translateKey(attraction.entryFee)}</span>
-                          <span>{currentContent.cityDetails.hours} {translateKey(attraction.hours)}</span>
+                    {selectedCity.keyAttractions
+                      .slice(0, 2)
+                      .map((attraction, index) => (
+                        <div key={index} className="bg-gray-50 p-3 rounded-lg">
+                          <h5 className="font-medium">
+                            {translateKey(attraction.name)}
+                          </h5>
+                          <p className="text-sm text-gray-600 mb-1">
+                            {translateKey(attraction.description)}
+                          </p>
+                          <div className="flex justify-between text-xs text-gray-500">
+                            <span>
+                              {currentContent.cityDetails.entry}{" "}
+                              {translateKey(attraction.entryFee)}
+                            </span>
+                            <span>
+                              {currentContent.cityDetails.hours}{" "}
+                              {translateKey(attraction.hours)}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>
@@ -1916,75 +2538,108 @@ export default function NileValleyGuide() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             {currentContent.completeGuide.title}
           </h2>
-          
+
           <div className="grid gap-8">
             {nileValleyCities.map((city) => (
-              <Card key={city.id} className="p-6 hover:shadow-lg transition-shadow">
+              <Card
+                key={city.id}
+                className="p-6 hover:shadow-lg transition-shadow"
+              >
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="md:col-span-1">
-                    <img 
-                      src={city.image} 
+                    <img
+                      src={city.image}
                       alt={city.name}
                       className="w-full h-64 object-cover rounded-lg"
                     />
                   </div>
-                  
+
                   <div className="md:col-span-2">
                     <div className="flex items-center gap-3 mb-3">
                       <h3 className="text-2xl font-bold">{city.name}</h3>
-                      <Badge>{
-                        city.region === "Upper Egypt" ? currentContent.completeGuide.regions.upperEgypt :
-                        city.region === "Middle Egypt" ? currentContent.completeGuide.regions.middleEgypt :
-                        city.region === "Lower Egypt" ? currentContent.completeGuide.regions.lowerEgypt :
-                        city.region === "Nubia" ? currentContent.completeGuide.regions.nubia :
-                        city.region
-                      }</Badge>
+                      <Badge>
+                        {city.region === "Upper Egypt"
+                          ? currentContent.completeGuide.regions.upperEgypt
+                          : city.region === "Middle Egypt"
+                            ? currentContent.completeGuide.regions.middleEgypt
+                            : city.region === "Lower Egypt"
+                              ? currentContent.completeGuide.regions.lowerEgypt
+                              : city.region === "Nubia"
+                                ? currentContent.completeGuide.regions.nubia
+                                : city.region}
+                      </Badge>
                     </div>
-                    
+
                     <p className="text-gray-600 mb-1">{city.arabicName}</p>
-                    
+
                     <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                       <div>
-                        <span className="font-medium">{currentContent.completeGuide.population}</span> {city.population}
+                        <span className="font-medium">
+                          {currentContent.completeGuide.population}
+                        </span>{" "}
+                        {city.population}
                       </div>
                       <div>
-                        <span className="font-medium">{currentContent.completeGuide.bestTime}</span> {translateKey(city.bestTimeToVisit)}
+                        <span className="font-medium">
+                          {currentContent.completeGuide.bestTime}
+                        </span>{" "}
+                        {translateKey(city.bestTimeToVisit)}
                       </div>
                       <div>
-                        <span className="font-medium">{currentContent.completeGuide.stayDuration}</span> {translateKey(city.averageStay)}
+                        <span className="font-medium">
+                          {currentContent.completeGuide.stayDuration}
+                        </span>{" "}
+                        {translateKey(city.averageStay)}
                       </div>
                       <div>
-                        <span className="font-medium">{currentContent.completeGuide.fromCairo}</span> {city.transportation.fromCairo}
+                        <span className="font-medium">
+                          {currentContent.completeGuide.fromCairo}
+                        </span>{" "}
+                        {city.transportation.fromCairo}
                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold mb-2">{currentContent.completeGuide.keyHighlights}</h4>
+                      <h4 className="font-semibold mb-2">
+                        {currentContent.completeGuide.keyHighlights}
+                      </h4>
                       <div className="flex flex-wrap gap-2">
                         {city.highlights.map((highlight, index) => (
-                          <Badge key={index} variant="outline">{translateKey(highlight)}</Badge>
+                          <Badge key={index} variant="outline">
+                            {translateKey(highlight)}
+                          </Badge>
                         ))}
                       </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold mb-2">{currentContent.completeGuide.topAttractions}</h4>
+                        <h4 className="font-semibold mb-2">
+                          {currentContent.completeGuide.topAttractions}
+                        </h4>
                         <ul className="text-sm space-y-1">
-                          {city.keyAttractions.slice(0, 3).map((attraction, index) => (
-                            <li key={index} className="flex justify-between">
-                              <span>{translateKey(attraction.name)}</span>
-                              <span className="text-primary">{translateKey(attraction.entryFee)}</span>
-                            </li>
-                          ))}
+                          {city.keyAttractions
+                            .slice(0, 3)
+                            .map((attraction, index) => (
+                              <li key={index} className="flex justify-between">
+                                <span>{translateKey(attraction.name)}</span>
+                                <span className="text-primary">
+                                  {translateKey(attraction.entryFee)}
+                                </span>
+                              </li>
+                            ))}
                         </ul>
                       </div>
-                      
+
                       <div>
-                        <h4 className="font-semibold mb-2">{currentContent.completeGuide.budgetTips}</h4>
+                        <h4 className="font-semibold mb-2">
+                          {currentContent.completeGuide.budgetTips}
+                        </h4>
                         <ul className="text-sm space-y-1">
                           {city.budgetTips.slice(0, 2).map((tip, index) => (
-                            <li key={index} className="text-gray-600">• {translateKey(tip)}</li>
+                            <li key={index} className="text-gray-600">
+                              • {translateKey(tip)}
+                            </li>
                           ))}
                         </ul>
                       </div>
@@ -2003,11 +2658,13 @@ export default function NileValleyGuide() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             {currentContent.transportation.title}
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-6 text-center">
               <Train className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{currentContent.transportation.train.title}</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                {currentContent.transportation.train.title}
+              </h3>
               <p className="text-gray-600 mb-4">
                 {currentContent.transportation.train.description}
               </p>
@@ -2021,7 +2678,9 @@ export default function NileValleyGuide() {
 
             <Card className="p-6 text-center">
               <Ship className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{currentContent.transportation.cruise.title}</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                {currentContent.transportation.cruise.title}
+              </h3>
               <p className="text-gray-600 mb-4">
                 {currentContent.transportation.cruise.description}
               </p>
@@ -2035,7 +2694,9 @@ export default function NileValleyGuide() {
 
             <Card className="p-6 text-center">
               <Plane className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{currentContent.transportation.flights.title}</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                {currentContent.transportation.flights.title}
+              </h3>
               <p className="text-gray-600 mb-4">
                 {currentContent.transportation.flights.description}
               </p>
@@ -2056,65 +2717,130 @@ export default function NileValleyGuide() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             {currentContent.travelTips.title}
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">{currentContent.travelTips.bestTime.title}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">
+                {currentContent.travelTips.bestTime.title}
+              </h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-medium">{currentContent.travelTips.bestTime.peakSeason}</h4>
-                  <p className="text-sm text-gray-600">{currentContent.travelTips.bestTime.peakDescription}</p>
+                  <h4 className="font-medium">
+                    {currentContent.travelTips.bestTime.peakSeason}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    {currentContent.travelTips.bestTime.peakDescription}
+                  </p>
                 </div>
                 <div>
-                  <h4 className="font-medium">{currentContent.travelTips.bestTime.shoulderSeason}</h4>
-                  <p className="text-sm text-gray-600">{currentContent.travelTips.bestTime.shoulderDescription}</p>
+                  <h4 className="font-medium">
+                    {currentContent.travelTips.bestTime.shoulderSeason}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    {currentContent.travelTips.bestTime.shoulderDescription}
+                  </p>
                 </div>
                 <div>
-                  <h4 className="font-medium">{currentContent.travelTips.bestTime.lowSeason}</h4>
-                  <p className="text-sm text-gray-600">{currentContent.travelTips.bestTime.lowDescription}</p>
+                  <h4 className="font-medium">
+                    {currentContent.travelTips.bestTime.lowSeason}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    {currentContent.travelTips.bestTime.lowDescription}
+                  </p>
                 </div>
               </div>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">{currentContent.travelTips.budgetBreakdown.title}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">
+                {currentContent.travelTips.budgetBreakdown.title}
+              </h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-medium">{currentContent.travelTips.budgetBreakdown.budget.title}</h4>
-                  <p className="text-sm text-gray-600">{currentContent.travelTips.budgetBreakdown.budget.description}</p>
+                  <h4 className="font-medium">
+                    {currentContent.travelTips.budgetBreakdown.budget.title}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    {
+                      currentContent.travelTips.budgetBreakdown.budget
+                        .description
+                    }
+                  </p>
                 </div>
                 <div>
-                  <h4 className="font-medium">{currentContent.travelTips.budgetBreakdown.midRange.title}</h4>
-                  <p className="text-sm text-gray-600">{currentContent.travelTips.budgetBreakdown.midRange.description}</p>
+                  <h4 className="font-medium">
+                    {currentContent.travelTips.budgetBreakdown.midRange.title}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    {
+                      currentContent.travelTips.budgetBreakdown.midRange
+                        .description
+                    }
+                  </p>
                 </div>
                 <div>
-                  <h4 className="font-medium">{currentContent.travelTips.budgetBreakdown.luxury.title}</h4>
-                  <p className="text-sm text-gray-600">{currentContent.travelTips.budgetBreakdown.luxury.description}</p>
+                  <h4 className="font-medium">
+                    {currentContent.travelTips.budgetBreakdown.luxury.title}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    {
+                      currentContent.travelTips.budgetBreakdown.luxury
+                        .description
+                    }
+                  </p>
                 </div>
               </div>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">{currentContent.travelTips.culturalEtiquette.title}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">
+                {currentContent.travelTips.culturalEtiquette.title}
+              </h3>
               <ul className="space-y-2 text-sm">
-                <li>• {currentContent.travelTips.culturalEtiquette.dressModestly}</li>
-                <li>• {currentContent.travelTips.culturalEtiquette.removeShoes}</li>
-                <li>• {currentContent.travelTips.culturalEtiquette.askPermission}</li>
-                <li>• {currentContent.travelTips.culturalEtiquette.bargainRespectfully}</li>
-                <li>• {currentContent.travelTips.culturalEtiquette.tipStaff}</li>
-                <li>• {currentContent.travelTips.culturalEtiquette.learnGreetings}</li>
+                <li>
+                  • {currentContent.travelTips.culturalEtiquette.dressModestly}
+                </li>
+                <li>
+                  • {currentContent.travelTips.culturalEtiquette.removeShoes}
+                </li>
+                <li>
+                  • {currentContent.travelTips.culturalEtiquette.askPermission}
+                </li>
+                <li>
+                  •{" "}
+                  {
+                    currentContent.travelTips.culturalEtiquette
+                      .bargainRespectfully
+                  }
+                </li>
+                <li>
+                  • {currentContent.travelTips.culturalEtiquette.tipStaff}
+                </li>
+                <li>
+                  • {currentContent.travelTips.culturalEtiquette.learnGreetings}
+                </li>
               </ul>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-primary">{currentContent.travelTips.healthSafety.title}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">
+                {currentContent.travelTips.healthSafety.title}
+              </h3>
               <ul className="space-y-2 text-sm">
-                <li>• {currentContent.travelTips.healthSafety.drinkBottledWater}</li>
+                <li>
+                  • {currentContent.travelTips.healthSafety.drinkBottledWater}
+                </li>
                 <li>• {currentContent.travelTips.healthSafety.useSunscreen}</li>
-                <li>• {currentContent.travelTips.healthSafety.packMedications}</li>
-                <li>• {currentContent.travelTips.healthSafety.getTravelInsurance}</li>
+                <li>
+                  • {currentContent.travelTips.healthSafety.packMedications}
+                </li>
+                <li>
+                  • {currentContent.travelTips.healthSafety.getTravelInsurance}
+                </li>
                 <li>• {currentContent.travelTips.healthSafety.keepCopies}</li>
-                <li>• {currentContent.travelTips.healthSafety.useRegisteredGuides}</li>
+                <li>
+                  • {currentContent.travelTips.healthSafety.useRegisteredGuides}
+                </li>
                 <li>• {currentContent.travelTips.healthSafety.stayHydrated}</li>
               </ul>
             </Card>
