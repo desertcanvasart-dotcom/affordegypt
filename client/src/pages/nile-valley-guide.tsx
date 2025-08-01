@@ -1233,6 +1233,24 @@ export default function NileValleyGuide() {
   const translateKey = (key: string): string => {
     const translations: Record<string, Record<string, string>> = {
       en: {
+        "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+        "attractions.minya.beniHassan.name": "Tombs of Beni Hassan",
+        "attractions.minya.tunaElGebel.name": "Necropolis of Tuna el-Gebel",
+
+        "attractions.asyut.copticMonasteries.name":
+          "Ancient Coptic Monasteries",
+        "attractions.asyut.traditionalCrafts.name": "Traditional Crafts",
+        "attractions.asyut.nileCorniche.name": "Nile Corniche Promenade",
+
+        "attractions.sohag.redWhiteMonasteries.name":
+          "Red and White Monasteries",
+        "attractions.sohag.akhmimTextiles.name": "Akhmim Textiles",
+        "attractions.sohag.ruralCulture.name": "Rural Culture",
+
+        "attractions.qena.gatewayDendera.name": "Gateway to Dendera Temple",
+        "attractions.qena.traditionalPottery.name": "Traditional Pottery",
+        "attractions.qena.nileIslands.name": "Nile Islands",
+
         // Alexandria highlights
         "highlights.alexandria.library": "Bibliotheca Alexandrina",
         "highlights.alexandria.qaitbayCitadel": "Qaitbay Citadel",
@@ -1261,6 +1279,26 @@ export default function NileValleyGuide() {
         "highlights.abuSimbel.greatTemple": "Great Temple of Ramses II",
         "highlights.abuSimbel.templeNefertari": "Temple of Nefertari",
         "highlights.abuSimbel.unescoSite": "UNESCO World Heritage Site",
+
+        // Minya highlights
+        "highlights.minya.tellElAmarna": "Tell el-Amarna",
+        "highlights.minya.beniHassan": "Beni Hassan Tombs",
+        "highlights.minya.tunaElGebel": "Tuna el-Gebel Necropolis",
+
+        // Asyut highlights
+        "highlights.asyut.copticMonasteries": "Ancient Coptic Monasteries",
+        "highlights.asyut.traditionalCrafts": "Traditional Handicrafts",
+        "highlights.asyut.nileCorniche": "Nile Corniche Walkway",
+
+        // Sohag highlights
+        "highlights.sohag.redWhiteMonasteries": "Red and White Monasteries",
+        "highlights.sohag.akhmimTextiles": "Akhmim Textiles Market",
+        "highlights.sohag.ruralCulture": "Rural Cultural Heritage",
+
+        // Qena highlights
+        "highlights.qena.gatewayDendera": "Gateway to Dendera Temple",
+        "highlights.qena.traditionalPottery": "Traditional Pottery Workshops",
+        "highlights.qena.nileIslands": "Nile River Islands",
 
         // Attractions with details
         "attractions.alexandria.bibliotheca.name": "Bibliotheca Alexandrina",
@@ -1323,7 +1361,7 @@ export default function NileValleyGuide() {
           "Buy group tickets for temple discounts",
         "budgetTips.luxor.earlyMorning":
           "Visit temples early morning to avoid crowds",
-        
+
         // Time-related translations
         "nile.bestTime.marchNovember": "March to November",
         "nile.bestTime.octoberApril": "October to April",
@@ -1332,7 +1370,7 @@ export default function NileValleyGuide() {
         "nile.transport.flight_3h_drive": "3-hour flight + drive",
         "nile.transport.12h_train_bus": "12 hours by train/bus",
         "nile.transport.13h_train_bus": "13 hours by train/bus",
-        
+
         // Beni Suef content
         "highlights.beniSuef.meidumPyramid": "Meidum Pyramid",
         "highlights.beniSuef.ruralNile": "Rural Nile Villages",
@@ -1342,8 +1380,9 @@ export default function NileValleyGuide() {
         "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
         "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
         "budgetTips.beniSuef.affordableFood": "Affordable local food available",
-        "budgetTips.beniSuef.basicAccommodation": "Basic but clean accommodation options",
-        
+        "budgetTips.beniSuef.basicAccommodation":
+          "Basic but clean accommodation options",
+
         // Edfu content
         "highlights.edfu.templeHorus": "Temple of Horus",
         "highlights.edfu.traditionalMarkets": "Traditional Markets",
@@ -1354,8 +1393,9 @@ export default function NileValleyGuide() {
         "attractions.edfu.edfuMarket.entryFee": "Free",
         "budgetTips.edfu.nileCruiseStop": "Popular stop for Nile cruises",
         "budgetTips.edfu.horseCartRide": "Take a horse cart ride to the temple",
-        "budgetTips.edfu.affordableFood": "Affordable local restaurants available",
-        
+        "budgetTips.edfu.affordableFood":
+          "Affordable local restaurants available",
+
         // Kom Ombo content
         "highlights.komOmbo.doubleTemple": "Unique Double Temple",
         "highlights.komOmbo.crocodileMuseum": "Crocodile Museum",
@@ -1367,7 +1407,7 @@ export default function NileValleyGuide() {
         "budgetTips.komOmbo.combineWithEdfu": "Combine visit with Edfu Temple",
         "budgetTips.komOmbo.sunsetViews": "Great sunset views over the Nile",
         "budgetTips.komOmbo.basicTown": "Basic town with simple amenities",
-        
+
         // Aswan additional content
         "attractions.aswan.philaeTemple.name": "Philae Temple",
         "attractions.aswan.philaeTemple.entryFee": "$10",
@@ -1448,8 +1488,85 @@ export default function NileValleyGuide() {
         "nile.stay.3_4days": "3-4 days",
         "nile.stay.1day": "1 day",
         "nile.transport.starting_point": "Starting point",
+        "attractions.minya.tellElAmarna.entryFee": "$5",
+        "attractions.minya.beniHassan.entryFee": "$7",
+        "attractions.minya.tunaElGebel.entryFee": "$9",
+        // Asyut
+        "attractions.asyut.monasteryVirginMary.name":
+          "Monastery of the Virgin Mary",
+        "attractions.asyut.monasteryVirginMary.entryFee": "Free",
+        "attractions.asyut.asyutBarrage.name": "Asyut Barrage",
+        "attractions.asyut.asyutBarrage.entryFee": "Free",
+
+        // Sohag
+        "attractions.sohag.redMonastery.name": "Red Monastery",
+        "attractions.sohag.redMonastery.entryFee": "$3",
+        "attractions.sohag.whiteMonastery.name": "White Monastery",
+        "attractions.sohag.whiteMonastery.entryFee": "$3",
+        "attractions.sohag.akhmim.name": "Akhmim Open-Air Museum",
+        "attractions.sohag.akhmim.entryFee": "$2",
+
+        // Qena
+        "attractions.qena.denderaTemple.name": "Dendera Temple Complex",
+        "attractions.qena.denderaTemple.entryFee": "$5",
+        "attractions.qena.qenaPotteryQuarter.name": "Qena Pottery Quarter",
+        "attractions.qena.qenaPotteryQuarter.entryFee": "Free",
+
+        // Abu Simbel
+        "attractions.abuSimbel.greatTempleRamesses.name":
+          "Great Temple of Ramesses II",
+        "attractions.abuSimbel.greatTempleRamesses.entryFee": "$10",
+        "attractions.abuSimbel.templeNefertari.name": "Temple of Nefertari",
+        "attractions.abuSimbel.templeNefertari.entryFee": "$10",
       },
       es: {
+        // Asyut
+        "attractions.asyut.monasteryVirginMary.name":
+          "Monasterio de la Virgen María",
+        "attractions.asyut.monasteryVirginMary.entryFee": "Gratis",
+        "attractions.asyut.asyutBarrage.name": "Presa de Asyut",
+        "attractions.asyut.asyutBarrage.entryFee": "Gratis",
+
+        // Sohag
+        "attractions.sohag.redMonastery.name": "Monasterio Rojo",
+        "attractions.sohag.redMonastery.entryFee": "$3",
+        "attractions.sohag.whiteMonastery.name": "Monasterio Blanco",
+        "attractions.sohag.whiteMonastery.entryFee": "$3",
+        "attractions.sohag.akhmim.name": "Museo al aire libre de Akhmim",
+        "attractions.sohag.akhmim.entryFee": "$2",
+
+        // Qena
+        "attractions.qena.denderaTemple.name": "Templo de Dendera",
+        "attractions.qena.denderaTemple.entryFee": "$5",
+        "attractions.qena.qenaPotteryQuarter.name":
+          "Barrio de la cerámica de Qena",
+        "attractions.qena.qenaPotteryQuarter.entryFee": "Gratis",
+
+        // Abu Simbel
+        "attractions.abuSimbel.greatTempleRamesses.name":
+          "Gran Templo de Ramsés II",
+        "attractions.abuSimbel.greatTempleRamesses.entryFee": "$10",
+        "attractions.abuSimbel.templeNefertari.name": "Templo de Nefertari",
+        "attractions.abuSimbel.templeNefertari.entryFee": "$10",
+
+        "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+        "attractions.minya.beniHassan.name": "Tumbas de Beni Hassan",
+        "attractions.minya.tunaElGebel.name": "Necrópolis de Tuna el-Gebel",
+
+        "attractions.asyut.copticMonasteries.name":
+          "Monasterios coptos antiguos",
+        "attractions.asyut.traditionalCrafts.name": "Artesanías tradicionales",
+        "attractions.asyut.nileCorniche.name": "Paseo Corniche del Nilo",
+
+        "attractions.sohag.redWhiteMonasteries.name":
+          "Monasterios Rojo y Blanco",
+        "attractions.sohag.akhmimTextiles.name": "Textiles de Akhmim",
+        "attractions.sohag.ruralCulture.name": "Cultura rural",
+
+        "attractions.qena.gatewayDendera.name": "Puerta al Templo de Dendera",
+        "attractions.qena.traditionalPottery.name": "Cerámica tradicional",
+        "attractions.qena.nileIslands.name": "Islas del Nilo",
+
         // Alexandria highlights
         "highlights.alexandria.library": "Biblioteca de Alejandría",
         "highlights.alexandria.qaitbayCitadel": "Ciudadela de Qaitbay",
@@ -1478,6 +1595,27 @@ export default function NileValleyGuide() {
         "highlights.abuSimbel.greatTemple": "Gran Templo de Ramsés II",
         "highlights.abuSimbel.templeNefertari": "Templo de Nefertari",
         "highlights.abuSimbel.unescoSite": "Sitio Patrimonio Mundial UNESCO",
+
+        // Minya highlights
+        "highlights.minya.tellElAmarna": "Tell el-Amarna",
+        "highlights.minya.beniHassan": "Tumbas de Beni Hassan",
+        "highlights.minya.tunaElGebel": "Necrópolis de Tuna el-Gebel",
+
+        // Asyut highlights
+        "highlights.asyut.copticMonasteries": "Antiguos Monasterios Coptos",
+        "highlights.asyut.traditionalCrafts": "Artesanías Tradicionales",
+        "highlights.asyut.nileCorniche": "Paseo por el Corniche del Nilo",
+
+        // Sohag highlights
+        "highlights.sohag.redWhiteMonasteries": "Monasterios Rojo y Blanco",
+        "highlights.sohag.akhmimTextiles": "Mercado Textil de Akhmim",
+        "highlights.sohag.ruralCulture": "Herencia Cultural Rural",
+
+        // Qena highlights
+        "highlights.qena.gatewayDendera": "Puerta al Templo de Dendera",
+        "highlights.qena.traditionalPottery":
+          "Talleres de Alfarería Tradicional",
+        "highlights.qena.nileIslands": "Islas del Río Nilo",
 
         // Attractions with details
         "attractions.alexandria.bibliotheca.name": "Biblioteca de Alejandría",
@@ -1544,7 +1682,7 @@ export default function NileValleyGuide() {
           "Compra boletos grupales para descuentos en templos",
         "budgetTips.luxor.earlyMorning":
           "Visita templos temprano en la mañana para evitar multitudes",
-        
+
         // Time-related translations - Spanish
         "nile.bestTime.marchNovember": "Marzo a Noviembre",
         "nile.bestTime.octoberApril": "Octubre a Abril",
@@ -1553,7 +1691,7 @@ export default function NileValleyGuide() {
         "nile.transport.flight_3h_drive": "3 horas de vuelo + viaje",
         "nile.transport.12h_train_bus": "12 horas en tren/autobús",
         "nile.transport.13h_train_bus": "13 horas en tren/autobús",
-        
+
         // Beni Suef content - Spanish
         "highlights.beniSuef.meidumPyramid": "Pirámide de Meidum",
         "highlights.beniSuef.ruralNile": "Pueblos Rurales del Nilo",
@@ -1562,9 +1700,11 @@ export default function NileValleyGuide() {
         "attractions.beniSuef.meidumPyramid.entryFee": "$6",
         "attractions.beniSuef.beniSuefMuseum.name": "Museo de Beni Suef",
         "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
-        "budgetTips.beniSuef.affordableFood": "Comida local asequible disponible",
-        "budgetTips.beniSuef.basicAccommodation": "Opciones de alojamiento básico pero limpio",
-        
+        "budgetTips.beniSuef.affordableFood":
+          "Comida local asequible disponible",
+        "budgetTips.beniSuef.basicAccommodation":
+          "Opciones de alojamiento básico pero limpio",
+
         // Edfu content - Spanish
         "highlights.edfu.templeHorus": "Templo de Horus",
         "highlights.edfu.traditionalMarkets": "Mercados Tradicionales",
@@ -1573,10 +1713,13 @@ export default function NileValleyGuide() {
         "attractions.edfu.templeHorus.entryFee": "$8",
         "attractions.edfu.edfuMarket.name": "Mercado Tradicional de Edfu",
         "attractions.edfu.edfuMarket.entryFee": "Gratis",
-        "budgetTips.edfu.nileCruiseStop": "Parada popular para cruceros del Nilo",
-        "budgetTips.edfu.horseCartRide": "Toma un paseo en carreta de caballos al templo",
-        "budgetTips.edfu.affordableFood": "Restaurantes locales asequibles disponibles",
-        
+        "budgetTips.edfu.nileCruiseStop":
+          "Parada popular para cruceros del Nilo",
+        "budgetTips.edfu.horseCartRide":
+          "Toma un paseo en carreta de caballos al templo",
+        "budgetTips.edfu.affordableFood":
+          "Restaurantes locales asequibles disponibles",
+
         // Kom Ombo content - Spanish
         "highlights.komOmbo.doubleTemple": "Templo Doble Único",
         "highlights.komOmbo.crocodileMuseum": "Museo del Cocodrilo",
@@ -1585,10 +1728,12 @@ export default function NileValleyGuide() {
         "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
         "attractions.komOmbo.crocodileMuseum.name": "Museo del Cocodrilo",
         "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
-        "budgetTips.komOmbo.combineWithEdfu": "Combina la visita con el Templo de Edfu",
-        "budgetTips.komOmbo.sunsetViews": "Excelentes vistas del atardecer sobre el Nilo",
+        "budgetTips.komOmbo.combineWithEdfu":
+          "Combina la visita con el Templo de Edfu",
+        "budgetTips.komOmbo.sunsetViews":
+          "Excelentes vistas del atardecer sobre el Nilo",
         "budgetTips.komOmbo.basicTown": "Pueblo básico con servicios simples",
-        
+
         // Aswan additional content - Spanish
         "attractions.aswan.philaeTemple.name": "Templo de Philae",
         "attractions.aswan.philaeTemple.entryFee": "$10",
@@ -1673,12 +1818,80 @@ export default function NileValleyGuide() {
         "nile.transport.starting_point": "Punto de partida",
       },
       fr: {
+        // Asyut
+        "attractions.asyut.monasteryVirginMary.name":
+          "Monastère de la Vierge Marie",
+        "attractions.asyut.monasteryVirginMary.entryFee": "Gratuit",
+        "attractions.asyut.asyutBarrage.name": "Barrage d'Asyut",
+        "attractions.asyut.asyutBarrage.entryFee": "Gratuit",
+
+        // Sohag
+        "attractions.sohag.redMonastery.name": "Monastère Rouge",
+        "attractions.sohag.redMonastery.entryFee": "3 $",
+        "attractions.sohag.whiteMonastery.name": "Monastère Blanc",
+        "attractions.sohag.whiteMonastery.entryFee": "3 $",
+        "attractions.sohag.akhmim.name": "Musée en plein air d'Akhmim",
+        "attractions.sohag.akhmim.entryFee": "2 $",
+
+        // Qena
+        "attractions.qena.denderaTemple.name": "Temple de Dendérah",
+        "attractions.qena.denderaTemple.entryFee": "5 $",
+        "attractions.qena.qenaPotteryQuarter.name":
+          "Quartier de la poterie de Qena",
+        "attractions.qena.qenaPotteryQuarter.entryFee": "Gratuit",
+
+        // Abu Simbel
+        "attractions.abuSimbel.greatTempleRamesses.name":
+          "Grand Temple de Ramsès II",
+        "attractions.abuSimbel.greatTempleRamesses.entryFee": "10 $",
+        "attractions.abuSimbel.templeNefertari.name": "Temple de Néfertari",
+        "attractions.abuSimbel.templeNefertari.entryFee": "10 $",
+
+        "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+        "attractions.minya.beniHassan.name": "Tombes de Beni Hassan",
+        "attractions.minya.tunaElGebel.name": "Nécropole de Tuna el-Gebel",
+
+        "attractions.asyut.copticMonasteries.name": "Anciens monastères coptes",
+        "attractions.asyut.traditionalCrafts.name": "Artisanat traditionnel",
+        "attractions.asyut.nileCorniche.name": "Corniche du Nil",
+
+        "attractions.sohag.redWhiteMonasteries.name":
+          "Monastères Rouge et Blanc",
+        "attractions.sohag.akhmimTextiles.name": "Textiles d'Akhmim",
+        "attractions.sohag.ruralCulture.name": "Culture rurale",
+
+        "attractions.qena.gatewayDendera.name":
+          "Porte vers le temple de Dendérah",
+        "attractions.qena.traditionalPottery.name": "Poterie traditionnelle",
+        "attractions.qena.nileIslands.name": "Îles du Nil",
+
         // Alexandria highlights
         "highlights.alexandria.library": "Bibliothèque d'Alexandrie",
         "highlights.alexandria.qaitbayCitadel": "Citadelle de Qaitbay",
         "highlights.alexandria.mediterraneanBeaches":
           "Plages de la Méditerranée",
         "highlights.alexandria.romanSites": "Sites Archéologiques Romains",
+
+        // Minya highlights
+        "highlights.minya.tellElAmarna": "Tell el-Amarna",
+        "highlights.minya.beniHassan": "Tombes de Beni Hassan",
+        "highlights.minya.tunaElGebel": "Nécropole de Tuna el-Gebel",
+
+        // Asyut highlights
+        "highlights.asyut.copticMonasteries": "Anciens Monastères Coptes",
+        "highlights.asyut.traditionalCrafts": "Artisanat Traditionnel",
+        "highlights.asyut.nileCorniche": "Promenade du Nil (Corniche)",
+
+        // Sohag highlights
+        "highlights.sohag.redWhiteMonasteries": "Monastères Rouge et Blanc",
+        "highlights.sohag.akhmimTextiles": "Marché de Textiles d’Akhmim",
+        "highlights.sohag.ruralCulture": "Patrimoine Culturel Rural",
+
+        // Qena highlights
+        "highlights.qena.gatewayDendera": "Porte vers le Temple de Dendérah",
+        "highlights.qena.traditionalPottery":
+          "Ateliers de Poterie Traditionnelle",
+        "highlights.qena.nileIslands": "Îles du Nil",
 
         // Luxor attractions
         "attractions.luxor.valleyKings.name": "Vallée des Rois",
@@ -1763,7 +1976,7 @@ export default function NileValleyGuide() {
         "nile.transport.flight_3h_drive": "3 heures de vol + trajet",
         "nile.transport.12h_train_bus": "12 heures en train/bus",
         "nile.transport.13h_train_bus": "13 heures en train/bus",
-        
+
         // Beni Suef content - French
         "highlights.beniSuef.meidumPyramid": "Pyramide de Meidum",
         "highlights.beniSuef.ruralNile": "Villages Ruraux du Nil",
@@ -1772,21 +1985,26 @@ export default function NileValleyGuide() {
         "attractions.beniSuef.meidumPyramid.entryFee": "$6",
         "attractions.beniSuef.beniSuefMuseum.name": "Musée de Beni Suef",
         "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
-        "budgetTips.beniSuef.affordableFood": "Nourriture locale abordable disponible",
-        "budgetTips.beniSuef.basicAccommodation": "Options d'hébergement de base mais propres",
-        
+        "budgetTips.beniSuef.affordableFood":
+          "Nourriture locale abordable disponible",
+        "budgetTips.beniSuef.basicAccommodation":
+          "Options d'hébergement de base mais propres",
+
         // Edfu content - French
         "highlights.edfu.templeHorus": "Temple d'Horus",
         "highlights.edfu.traditionalMarkets": "Marchés Traditionnels",
-        "highlights.edfu.nileCruiseStop": "Arrêt Populaire de Croisière sur le Nil",
+        "highlights.edfu.nileCruiseStop":
+          "Arrêt Populaire de Croisière sur le Nil",
         "attractions.edfu.templeHorus.name": "Temple d'Horus",
         "attractions.edfu.templeHorus.entryFee": "$8",
         "attractions.edfu.edfuMarket.name": "Marché Traditionnel d'Edfu",
         "attractions.edfu.edfuMarket.entryFee": "Gratuit",
-        "budgetTips.edfu.nileCruiseStop": "Arrêt populaire pour les croisières sur le Nil",
+        "budgetTips.edfu.nileCruiseStop":
+          "Arrêt populaire pour les croisières sur le Nil",
         "budgetTips.edfu.horseCartRide": "Prenez une calèche jusqu'au temple",
-        "budgetTips.edfu.affordableFood": "Restaurants locaux abordables disponibles",
-        
+        "budgetTips.edfu.affordableFood":
+          "Restaurants locaux abordables disponibles",
+
         // Kom Ombo content - French
         "highlights.komOmbo.doubleTemple": "Temple Double Unique",
         "highlights.komOmbo.crocodileMuseum": "Musée des Crocodiles",
@@ -1795,24 +2013,93 @@ export default function NileValleyGuide() {
         "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
         "attractions.komOmbo.crocodileMuseum.name": "Musée des Crocodiles",
         "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
-        "budgetTips.komOmbo.combineWithEdfu": "Combinez la visite avec le Temple d'Edfu",
-        "budgetTips.komOmbo.sunsetViews": "Excellentes vues du coucher de soleil sur le Nil",
-        "budgetTips.komOmbo.basicTown": "Ville de base avec des équipements simples",
-        
+        "budgetTips.komOmbo.combineWithEdfu":
+          "Combinez la visite avec le Temple d'Edfu",
+        "budgetTips.komOmbo.sunsetViews":
+          "Excellentes vues du coucher de soleil sur le Nil",
+        "budgetTips.komOmbo.basicTown":
+          "Ville de base avec des équipements simples",
+
         // Aswan additional content - French
         "attractions.aswan.philaeTemple.name": "Temple de Philae",
         "attractions.aswan.philaeTemple.entryFee": "$10",
         "attractions.aswan.highDam.name": "Haut Barrage d'Assouan",
         "attractions.aswan.highDam.entryFee": "$3",
         "attractions.aswan.nubianVillage.name": "Village Nubien",
-        "attractions.aswan.nubianVillage.entryFee": "$15"
+        "attractions.aswan.nubianVillage.entryFee": "$15",
       },
       de: {
+        // Asyut
+        "attractions.asyut.monasteryVirginMary.name":
+          "Kloster der Jungfrau Maria",
+        "attractions.asyut.monasteryVirginMary.entryFee": "Kostenlos",
+        "attractions.asyut.asyutBarrage.name": "Asyut-Staudamm",
+        "attractions.asyut.asyutBarrage.entryFee": "Kostenlos",
+
+        // Sohag
+        "attractions.sohag.redMonastery.name": "Rotes Kloster",
+        "attractions.sohag.redMonastery.entryFee": "3 $",
+        "attractions.sohag.whiteMonastery.name": "Weißes Kloster",
+        "attractions.sohag.whiteMonastery.entryFee": "3 $",
+        "attractions.sohag.akhmim.name": "Akhmim Freilichtmuseum",
+        "attractions.sohag.akhmim.entryFee": "2 $",
+
+        // Qena
+        "attractions.qena.denderaTemple.name": "Dendera-Tempelkomplex",
+        "attractions.qena.denderaTemple.entryFee": "5 $",
+        "attractions.qena.qenaPotteryQuarter.name": "Töpferviertel von Qena",
+        "attractions.qena.qenaPotteryQuarter.entryFee": "Kostenlos",
+
+        // Abu Simbel
+        "attractions.abuSimbel.greatTempleRamesses.name":
+          "Großer Tempel von Ramses II",
+        "attractions.abuSimbel.greatTempleRamesses.entryFee": "10 $",
+        "attractions.abuSimbel.templeNefertari.name": "Tempel der Nefertari",
+        "attractions.abuSimbel.templeNefertari.entryFee": "10 $",
+
+        "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
+        "attractions.minya.beniHassan.name": "Gräber von Beni Hassan",
+        "attractions.minya.tunaElGebel.name": "Nekropole von Tuna el-Gebel",
+
+        "attractions.asyut.copticMonasteries.name": "Alte koptische Klöster",
+        "attractions.asyut.traditionalCrafts.name": "Traditionelles Handwerk",
+        "attractions.asyut.nileCorniche.name": "Nil-Korniche-Promenade",
+
+        "attractions.sohag.redWhiteMonasteries.name":
+          "Rotes und Weißes Kloster",
+        "attractions.sohag.akhmimTextiles.name": "Akhmim-Textilien",
+        "attractions.sohag.ruralCulture.name": "Ländliche Kultur",
+
+        "attractions.qena.gatewayDendera.name": "Tor zum Dendera-Tempel",
+        "attractions.qena.traditionalPottery.name": "Traditionelle Töpferei",
+        "attractions.qena.nileIslands.name": "Nilinseln",
+
         // Alexandria highlights
         "highlights.alexandria.library": "Bibliothek von Alexandria",
         "highlights.alexandria.qaitbayCitadel": "Qaitbay-Zitadelle",
         "highlights.alexandria.mediterraneanBeaches": "Mittelmeerstrände",
         "highlights.alexandria.romanSites": "Römische Archäologische Stätten",
+
+        // Minya highlights
+        "highlights.minya.tellElAmarna": "Tell el-Amarna",
+        "highlights.minya.beniHassan": "Gräber von Beni Hassan",
+        "highlights.minya.tunaElGebel": "Nekropole von Tuna el-Gebel",
+
+        // Asyut highlights
+        "highlights.asyut.copticMonasteries": "Alte Koptische Klöster",
+        "highlights.asyut.traditionalCrafts": "Traditionelles Kunsthandwerk",
+        "highlights.asyut.nileCorniche": "Nil-Promenade (Corniche)",
+
+        // Sohag highlights
+        "highlights.sohag.redWhiteMonasteries": "Rotes und Weißes Kloster",
+        "highlights.sohag.akhmimTextiles": "Textilmarkt in Akhmim",
+        "highlights.sohag.ruralCulture": "Ländliches Kulturerbe",
+
+        // Qena highlights
+        "highlights.qena.gatewayDendera": "Tor zum Tempel von Dendera",
+        "highlights.qena.traditionalPottery":
+          "Traditionelle Töpferei-Werkstätten",
+        "highlights.qena.nileIslands": "Nilinseln",
 
         // Luxor attractions
         "attractions.luxor.valleyKings.name": "Tal der Könige",
@@ -1894,7 +2181,7 @@ export default function NileValleyGuide() {
         "nile.transport.flight_3h_drive": "3-stündiger Flug + Fahrt",
         "nile.transport.12h_train_bus": "12 Stunden mit Zug/Bus",
         "nile.transport.13h_train_bus": "13 Stunden mit Zug/Bus",
-        
+
         // Beni Suef content - German
         "highlights.beniSuef.meidumPyramid": "Meidum-Pyramide",
         "highlights.beniSuef.ruralNile": "Ländliche Nildörfer",
@@ -1903,9 +2190,11 @@ export default function NileValleyGuide() {
         "attractions.beniSuef.meidumPyramid.entryFee": "$6",
         "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
         "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
-        "budgetTips.beniSuef.affordableFood": "Erschwingliches lokales Essen verfügbar",
-        "budgetTips.beniSuef.basicAccommodation": "Grundlegende aber saubere Unterkunftsmöglichkeiten",
-        
+        "budgetTips.beniSuef.affordableFood":
+          "Erschwingliches lokales Essen verfügbar",
+        "budgetTips.beniSuef.basicAccommodation":
+          "Grundlegende aber saubere Unterkunftsmöglichkeiten",
+
         // Edfu content - German
         "highlights.edfu.templeHorus": "Horus-Tempel",
         "highlights.edfu.traditionalMarkets": "Traditionelle Märkte",
@@ -1915,9 +2204,11 @@ export default function NileValleyGuide() {
         "attractions.edfu.edfuMarket.name": "Traditioneller Markt von Edfu",
         "attractions.edfu.edfuMarket.entryFee": "Kostenlos",
         "budgetTips.edfu.nileCruiseStop": "Beliebter Stopp für Nilkreuzfahrten",
-        "budgetTips.edfu.horseCartRide": "Nehmen Sie eine Pferdekutsche zum Tempel",
-        "budgetTips.edfu.affordableFood": "Erschwingliche lokale Restaurants verfügbar",
-        
+        "budgetTips.edfu.horseCartRide":
+          "Nehmen Sie eine Pferdekutsche zum Tempel",
+        "budgetTips.edfu.affordableFood":
+          "Erschwingliche lokale Restaurants verfügbar",
+
         // Kom Ombo content - German
         "highlights.komOmbo.doubleTemple": "Einzigartiger Doppeltempel",
         "highlights.komOmbo.crocodileMuseum": "Krokodilmuseum",
@@ -1926,11 +2217,14 @@ export default function NileValleyGuide() {
         "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
         "attractions.komOmbo.crocodileMuseum.name": "Krokodilmuseum",
         "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
-        "budgetTips.komOmbo.combineWithEdfu": "Kombinieren Sie den Besuch mit dem Edfu-Tempel",
-        "budgetTips.komOmbo.sunsetViews": "Tolle Sonnenuntergangssicht über den Nil",
-        "budgetTips.komOmbo.basicTown": "Einfache Stadt mit grundlegenden Annehmlichkeiten",
-        
-        // Aswan additional content - German  
+        "budgetTips.komOmbo.combineWithEdfu":
+          "Kombinieren Sie den Besuch mit dem Edfu-Tempel",
+        "budgetTips.komOmbo.sunsetViews":
+          "Tolle Sonnenuntergangssicht über den Nil",
+        "budgetTips.komOmbo.basicTown":
+          "Einfache Stadt mit grundlegenden Annehmlichkeiten",
+
+        // Aswan additional content - German
         "attractions.aswan.philaeTemple.name": "Philae-Tempel",
         "attractions.aswan.philaeTemple.entryFee": "$10",
         "attractions.aswan.highDam.name": "Assuan-Hochdamm",
