@@ -33,6 +33,7 @@ import { Link } from "wouter";
 import AddItemModal from "@/components/add-item-modal";
 import AdminLogin from "@/components/admin-login";
 import { useToast } from "@/hooks/use-toast";
+import { refreshRouteData } from "@/lib/cacheUtils";
 
 export default function AdminPanel() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -163,8 +164,13 @@ export default function AdminPanel() {
       setEditingRow(null);
       setEditData({});
       
-      // Refresh the data
-      window.location.reload();
+      // Use enhanced cache invalidation for routes
+      if (type === 'route') {
+        refreshRouteData();
+      } else {
+        // For other types, still use reload for now 
+        window.location.reload();
+      }
     } catch (error) {
       toast({
         title: "Error",

@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar, Star } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
+import { refreshRouteData } from "@/lib/cacheUtils";
 import AdminLogin from "@/components/admin-login";
 import AdminBookings from "@/components/admin-bookings";
 import AdminReviews from "@/pages/admin-reviews";
@@ -89,7 +90,7 @@ export default function AdminSidebar() {
       queryClient.invalidateQueries({ queryKey: ['/api/vehicle-types'] });
       queryClient.invalidateQueries({ queryKey: ['/api/guide-rates'] });
       queryClient.invalidateQueries({ queryKey: ['/api/addons'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      refreshRouteData(); // Enhanced route cache invalidation
       queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
       toast({ title: "Deleted successfully" });
       setDeleteConfirm(null);
@@ -187,7 +188,7 @@ export default function AdminSidebar() {
 
       if (response.ok) {
         setImportResults(result);
-        queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+        refreshRouteData(); // Enhanced route cache invalidation for CSV import
         toast({
           title: "Import completed",
           description: `Successfully imported ${result.successCount} routes`
@@ -357,7 +358,7 @@ export default function AdminSidebar() {
       queryClient.invalidateQueries({ queryKey: ['/api/vehicle-types'] });
       queryClient.invalidateQueries({ queryKey: ['/api/guide-rates'] });
       queryClient.invalidateQueries({ queryKey: ['/api/addons'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+      refreshRouteData(); // Enhanced route cache invalidation for route CRUD operations
       queryClient.invalidateQueries({ queryKey: ['/api/attractions'] });
 
       toast({ title: editingItem ? "Updated successfully" : "Created successfully" });

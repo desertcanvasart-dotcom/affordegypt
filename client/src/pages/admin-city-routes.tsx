@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import RouteEditModal from "@/components/route-edit-modal";
 import { useToast } from "@/hooks/use-toast";
+import { refreshRouteData } from "@/lib/cacheUtils";
 
 export default function AdminCityRoutes() {
   const [match, params] = useRoute("/admin/routes/city/:citySlug/:category?");
@@ -112,11 +113,8 @@ export default function AdminCityRoutes() {
       return apiRequest("DELETE", `/api/routes/${id}`);
     },
     onSuccess: (_, deletedId) => {
-      // Update cache directly instead of invalidating all queries
-      queryClient.setQueryData(['/api/routes'], (oldData: any) => {
-        if (!oldData) return oldData;
-        return oldData.filter((route: any) => route.id !== deletedId);
-      });
+      // Use comprehensive cache invalidation
+      refreshRouteData();
       toast({
         title: "Route deleted successfully",
         description: "The route has been removed from the system.",

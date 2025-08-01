@@ -30,6 +30,7 @@ import {
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import RouteEditModal from "@/components/route-edit-modal";
+import { refreshRouteData } from "@/lib/cacheUtils";
 
 interface DashboardStats {
   totalQuotes: number;
@@ -89,7 +90,14 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       await apiRequest("PUT", `/api/${type}/${id}`, editData);
       setEditingRow(null);
       setEditData({});
-      queryClient.invalidateQueries({ queryKey: [`/api/${type}`] });
+      
+      // Use enhanced cache invalidation for routes
+      if (type === 'routes') {
+        refreshRouteData();
+      } else {
+        queryClient.invalidateQueries({ queryKey: [`/api/${type}`] });
+      }
+      
       toast({
         title: "Success",
         description: `${type} updated successfully`,
