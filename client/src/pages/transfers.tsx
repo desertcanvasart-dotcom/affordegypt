@@ -10,10 +10,153 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-
-
+import { useTranslation } from "react-i18next";
 
 import { RouteData, CityData } from "../../../shared/types";
+
+// Multilingual content for transfers page
+const transfersContent = {
+  en: {
+    title: "Transfer Only",
+    subtitle: "Simple point-to-point transportation across Egypt",
+    instantQuotes: "Instant quotes",
+    noHiddenFees: "No hidden fees", 
+    licensedDrivers: "Licensed drivers",
+    intercityTravel: "Intercity Travel",
+    localTours: "Local Tours",
+    intercityTransportation: "Intercity Transportation",
+    localToursTransportation: "Local Tours & Transportation",
+    fromCity: "From City",
+    toCity: "To City",
+    selectDepartureCity: "Select departure city",
+    selectDestinationCity: "Select destination city",
+    matchingRoutes: "Matching Routes",
+    popularRoutes: "Popular Routes",
+    clickToSeeVehicleOptions: "Click to see vehicle options",
+    selectCity: "Select City",
+    chooseACityForLocalTours: "Choose a city for local tours",
+    availableLocalRoutes: "Available Local Routes",
+    selectVehicle: "Select Vehicle",
+    choosePreferredVehicleType: "Choose your preferred vehicle type for this route",
+    backToRoutes: "← Back to Routes",
+    distance: "Distance",
+    duration: "Duration",
+    serviceType: "Service Type",
+    transferDropOff: "Transfer & Drop-off",
+    dayTrip: "Day Trip",
+    dayTripReturn: "Day Trip (Return Same Day)",
+    overnight: "Overnight",
+    overnightStay: "Overnight Stay (1 Night)",
+    multiDay: "Multi-Day",
+    multiDayTour: "Multi-Day Tour (2+ Nights)",
+    transfer: "Transfer"
+  },
+  es: {
+    title: "Solo Traslado",
+    subtitle: "Transporte simple punto a punto por Egipto",
+    instantQuotes: "Cotizaciones instantáneas",
+    noHiddenFees: "Sin costos ocultos",
+    licensedDrivers: "Conductores licenciados",
+    intercityTravel: "Viaje Interurbano",
+    localTours: "Tours Locales",
+    intercityTransportation: "Transporte Interurbano",
+    localToursTransportation: "Tours Locales y Transporte",
+    fromCity: "Ciudad de Origen",
+    toCity: "Ciudad de Destino",
+    selectDepartureCity: "Seleccionar ciudad de salida",
+    selectDestinationCity: "Seleccionar ciudad de destino",
+    matchingRoutes: "Rutas Coincidentes",
+    popularRoutes: "Rutas Populares",
+    clickToSeeVehicleOptions: "Haz clic para ver opciones de vehículos",
+    selectCity: "Seleccionar Ciudad",
+    chooseACityForLocalTours: "Elige una ciudad para tours locales",
+    availableLocalRoutes: "Rutas Locales Disponibles",
+    selectVehicle: "Seleccionar Vehículo",
+    choosePreferredVehicleType: "Elige tu tipo de vehículo preferido para esta ruta",
+    backToRoutes: "← Volver a Rutas",
+    distance: "Distancia",
+    duration: "Duración",
+    serviceType: "Tipo de Servicio",
+    transferDropOff: "Traslado y Entrega",
+    dayTrip: "Viaje de un Día",
+    dayTripReturn: "Viaje de un Día (Regreso el Mismo Día)",
+    overnight: "Pernoctar",
+    overnightStay: "Estancia de una Noche (1 Noche)",
+    multiDay: "Varios Días",
+    multiDayTour: "Tour de Varios Días (2+ Noches)",
+    transfer: "Traslado"
+  },
+  fr: {
+    title: "Transfert Uniquement",
+    subtitle: "Transport simple point à point à travers l'Égypte",
+    instantQuotes: "Devis instantanés",
+    noHiddenFees: "Pas de frais cachés",
+    licensedDrivers: "Chauffeurs agréés",
+    intercityTravel: "Voyage Intercité",
+    localTours: "Tours Locaux",
+    intercityTransportation: "Transport Intercité",
+    localToursTransportation: "Tours Locaux et Transport",
+    fromCity: "Ville de Départ",
+    toCity: "Ville de Destination",
+    selectDepartureCity: "Sélectionner la ville de départ",
+    selectDestinationCity: "Sélectionner la ville de destination",
+    matchingRoutes: "Itinéraires Correspondants",
+    popularRoutes: "Itinéraires Populaires",
+    clickToSeeVehicleOptions: "Cliquez pour voir les options de véhicules",
+    selectCity: "Sélectionner la Ville",
+    chooseACityForLocalTours: "Choisissez une ville pour les tours locaux",
+    availableLocalRoutes: "Itinéraires Locaux Disponibles",
+    selectVehicle: "Sélectionner le Véhicule",
+    choosePreferredVehicleType: "Choisissez votre type de véhicule préféré pour cet itinéraire",
+    backToRoutes: "← Retour aux Itinéraires",
+    distance: "Distance",
+    duration: "Durée",
+    serviceType: "Type de Service",
+    transferDropOff: "Transfert et Dépose",
+    dayTrip: "Excursion d'un Jour",
+    dayTripReturn: "Excursion d'un Jour (Retour le Même Jour)",
+    overnight: "Nuitée",
+    overnightStay: "Séjour d'une Nuit (1 Nuit)",
+    multiDay: "Plusieurs Jours",
+    multiDayTour: "Tour de Plusieurs Jours (2+ Nuits)",
+    transfer: "Transfert"
+  },
+  de: {
+    title: "Nur Transfer",
+    subtitle: "Einfacher Punkt-zu-Punkt-Transport durch Ägypten",
+    instantQuotes: "Sofortige Angebote",
+    noHiddenFees: "Keine versteckten Gebühren",
+    licensedDrivers: "Lizenzierte Fahrer",
+    intercityTravel: "Intercity-Reisen",
+    localTours: "Lokale Touren",
+    intercityTransportation: "Intercity-Transport",
+    localToursTransportation: "Lokale Touren und Transport",
+    fromCity: "Von Stadt",
+    toCity: "Nach Stadt",
+    selectDepartureCity: "Abfahrtsstadt auswählen",
+    selectDestinationCity: "Zielstadt auswählen",
+    matchingRoutes: "Passende Routen",
+    popularRoutes: "Beliebte Routen",
+    clickToSeeVehicleOptions: "Klicken Sie, um Fahrzeugoptionen zu sehen",
+    selectCity: "Stadt Auswählen",
+    chooseACityForLocalTours: "Wählen Sie eine Stadt für lokale Touren",
+    availableLocalRoutes: "Verfügbare Lokale Routen",
+    selectVehicle: "Fahrzeug Auswählen",
+    choosePreferredVehicleType: "Wählen Sie Ihren bevorzugten Fahrzeugtyp für diese Route",
+    backToRoutes: "← Zurück zu Routen",
+    distance: "Entfernung",
+    duration: "Dauer",
+    serviceType: "Service-Typ",
+    transferDropOff: "Transfer und Abgabe",
+    dayTrip: "Tagesausflug",
+    dayTripReturn: "Tagesausflug (Rückkehr am selben Tag)",
+    overnight: "Übernachtung",
+    overnightStay: "Übernachtung (1 Nacht)",
+    multiDay: "Mehrtägig",
+    multiDayTour: "Mehrtägige Tour (2+ Nächte)",
+    transfer: "Transfer"
+  }
+};
 
 export default function TransfersPage() {
   const [currentStep, setCurrentStep] = useState(1); // 1: Route Selection, 2: Vehicle Selection
@@ -30,6 +173,14 @@ export default function TransfersPage() {
   const [selectedCityForLocal, setSelectedCityForLocal] = useState("");
   const [showLocalRoutes, setShowLocalRoutes] = useState(false);
   const { toast } = useToast();
+  const { i18n } = useTranslation();
+  
+  // Get current language and ensure it's valid
+  const currentLanguage = i18n.language || 'en';
+  const language = ['en', 'es', 'fr', 'de'].includes(currentLanguage) ? currentLanguage : 'en';
+
+  // Get translated content based on current language
+  const t = transfersContent[language as keyof typeof transfersContent] || transfersContent.en;
 
   // Fetch cities
   const { data: cities = [] } = useTranslatedQuery<CityData[]>("/api/cities");
@@ -74,25 +225,25 @@ export default function TransfersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Transfer Only
+              {t.title}
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-teal-100">
-              Simple point-to-point transportation across Egypt
+              {t.subtitle}
             </p>
             
             {/* Key Benefits */}
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center">
                 <Zap className="w-4 h-4 mr-2" />
-                <span>Instant quotes</span>
+                <span>{t.instantQuotes}</span>
               </div>
               <div className="flex items-center">
                 <CheckCircle className="w-4 h-4 mr-2" />
-                <span>No hidden fees</span>
+                <span>{t.noHiddenFees}</span>
               </div>
               <div className="flex items-center">
                 <Car className="w-4 h-4 mr-2" />
-                <span>Licensed drivers</span>
+                <span>{t.licensedDrivers}</span>
               </div>
             </div>
           </div>
@@ -122,11 +273,11 @@ export default function TransfersPage() {
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="intercity" className="flex items-center space-x-2">
                   <Plane className="w-4 h-4" />
-                  <span>Intercity Travel</span>
+                  <span>{t.intercityTravel}</span>
                 </TabsTrigger>
                 <TabsTrigger value="local" className="flex items-center space-x-2">
                   <Building className="w-4 h-4" />
-                  <span>Local Tours</span>
+                  <span>{t.localTours}</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -135,7 +286,7 @@ export default function TransfersPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                       <Navigation className="w-5 h-5" />
-                      <span>Intercity Transportation</span>
+                      <span>{t.intercityTransportation}</span>
                     </CardTitle>
                   </CardHeader>
                   
@@ -143,10 +294,10 @@ export default function TransfersPage() {
                     {/* City Selection */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">From City</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">{t.fromCity}</label>
                         <Select value={fromCity} onValueChange={setFromCity}>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select departure city" />
+                            <SelectValue placeholder={t.selectDepartureCity} />
                           </SelectTrigger>
                           <SelectContent>
                             {cities.map((city) => (
@@ -159,10 +310,10 @@ export default function TransfersPage() {
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">To City</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">{t.toCity}</label>
                         <Select value={toCity} onValueChange={setToCity}>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select destination city" />
+                            <SelectValue placeholder={t.selectDestinationCity} />
                           </SelectTrigger>
                           <SelectContent>
                             {cities.map((city) => (
@@ -178,7 +329,7 @@ export default function TransfersPage() {
                     {/* Suggested Routes */}
                     <div>
                       <h3 className="text-lg font-semibold mb-4">
-                        {fromCity || toCity ? "Matching Routes" : "Popular Routes"}
+                        {fromCity || toCity ? t.matchingRoutes : t.popularRoutes}
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {(() => {
@@ -223,14 +374,14 @@ export default function TransfersPage() {
                                     {fromCityName} → {toCityName}
                                   </h4>
                                   <Badge variant="secondary" className="text-xs">
-                                    {route.tripMode === 'transfer' && 'Transfer & Drop-off'}
-                                    {route.tripMode === 'day_trip' && 'Day Trip'}
-                                    {route.tripMode === 'overnight' && 'Overnight'}
-                                    {route.tripMode === 'multi_day' && 'Multi-Day'}
+                                    {route.tripMode === 'transfer' && t.transferDropOff}
+                                    {route.tripMode === 'day_trip' && t.dayTrip}
+                                    {route.tripMode === 'overnight' && t.overnight}
+                                    {route.tripMode === 'multi_day' && t.multiDay}
                                   </Badge>
                                 </div>
                                 <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
-                                <p className="text-sm text-gray-500 mt-1">Click to see vehicle options</p>
+                                <p className="text-sm text-gray-500 mt-1">{t.clickToSeeVehicleOptions}</p>
                               </div>
                             );
                           });
@@ -246,20 +397,20 @@ export default function TransfersPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                       <Building className="w-5 h-5" />
-                      <span>Local Tours & Transportation</span>
+                      <span>{t.localToursTransportation}</span>
                     </CardTitle>
                   </CardHeader>
                   
                   <CardContent className="space-y-6">
                     {/* City Selection for Local */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Select City</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t.selectCity}</label>
                       <Select value={selectedCityForLocal} onValueChange={(value) => {
                         setSelectedCityForLocal(value);
                         setShowLocalRoutes(true);
                       }}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Choose a city for local tours" />
+                          <SelectValue placeholder={t.chooseACityForLocalTours} />
                         </SelectTrigger>
                         <SelectContent>
                           {cities.map((city) => (
@@ -275,7 +426,7 @@ export default function TransfersPage() {
                     {showLocalRoutes && (
                       <div>
                         <h3 className="text-lg font-semibold mb-4">
-                          Available Local Routes
+                          {t.availableLocalRoutes}
                           {selectedCityForLocal === '3' && (
                             <span className="text-sm text-red-500 ml-2">
                               (Debug: {routes.filter(route => route.fromCityId?.toString() === selectedCityForLocal).length} found)
@@ -305,14 +456,14 @@ export default function TransfersPage() {
                                       )}
                                     </h4>
                                     <Badge variant="secondary" className="text-xs">
-                                      {route.tripMode === 'transfer' && 'Transfer'}
-                                      {route.tripMode === 'day_trip' && 'Day Trip'}
-                                      {route.tripMode === 'overnight' && 'Overnight'}
-                                      {route.tripMode === 'multi_day' && 'Multi-Day'}
+                                      {route.tripMode === 'transfer' && t.transfer}
+                                      {route.tripMode === 'day_trip' && t.dayTrip}
+                                      {route.tripMode === 'overnight' && t.overnight}
+                                      {route.tripMode === 'multi_day' && t.multiDay}
                                     </Badge>
                                   </div>
                                   <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
-                                  <p className="text-sm text-gray-500 mt-1">Click to see vehicle options</p>
+                                  <p className="text-sm text-gray-500 mt-1">{t.clickToSeeVehicleOptions}</p>
                                 </div>
                               );
                             })}
@@ -329,14 +480,14 @@ export default function TransfersPage() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Select Vehicle</h2>
-                <p className="text-gray-600 mt-1">Choose your preferred vehicle type for this route</p>
+                <h2 className="text-2xl font-bold text-gray-900">{t.selectVehicle}</h2>
+                <p className="text-gray-600 mt-1">{t.choosePreferredVehicleType}</p>
               </div>
               <button
                 onClick={() => setCurrentStep(1)}
                 className="px-4 py-2 text-teal-600 hover:text-teal-700 font-medium"
               >
-                ← Back to Routes
+                {t.backToRoutes}
               </button>
             </div>
 
@@ -351,16 +502,16 @@ export default function TransfersPage() {
                   </CardTitle>
                   <div className="space-y-1">
                     <p className="text-sm text-gray-600">
-                      Distance: {selectedRoute.distanceKm || 0} km | 
-                      Duration: {selectedRoute.estimatedDuration || 'N/A'}
+                      {t.distance}: {selectedRoute.distanceKm || 0} km | 
+                      {t.duration}: {selectedRoute.estimatedDuration || 'N/A'}
                     </p>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-500">Service Type:</span>
+                      <span className="text-sm text-gray-500">{t.serviceType}:</span>
                       <Badge variant="secondary" className="text-xs">
-                        {selectedRoute.tripMode === 'transfer' && 'Transfer & Drop-off'}
-                        {selectedRoute.tripMode === 'day_trip' && 'Day Trip (Return Same Day)'}
-                        {selectedRoute.tripMode === 'overnight' && 'Overnight Stay (1 Night)'}
-                        {selectedRoute.tripMode === 'multi_day' && 'Multi-Day Tour (2+ Nights)'}
+                        {selectedRoute.tripMode === 'transfer' && t.transferDropOff}
+                        {selectedRoute.tripMode === 'day_trip' && t.dayTripReturn}
+                        {selectedRoute.tripMode === 'overnight' && t.overnightStay}
+                        {selectedRoute.tripMode === 'multi_day' && t.multiDayTour}
                       </Badge>
                     </div>
                   </div>
