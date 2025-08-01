@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,6 +41,7 @@ interface QuoteManagerProps {
 }
 
 export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManagerProps) {
+  const { t } = useTranslation();
   const [location, setLocation] = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"date" | "total" | "name">("date");
@@ -62,8 +64,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
     },
     onSuccess: () => {
       toast({
-        title: "Quote Saved",
-        description: "Your quote has been saved successfully!",
+        title: t('home.quoteSaved'),
+        description: t('home.quoteSavedDescription'),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/quotes"] });
       setShowSaveForm(false);
@@ -71,8 +73,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
     },
     onError: () => {
       toast({
-        title: "Save Failed",
-        description: "Failed to save quote. Please try again.",
+        title: t('home.saveFailed'),
+        description: t('home.saveFailedDescription'),
         variant: "destructive",
       });
     },
@@ -85,15 +87,15 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
     },
     onSuccess: () => {
       toast({
-        title: "Quote Deleted",
-        description: "Quote has been deleted successfully.",
+        title: t('home.quoteDeleted'),
+        description: t('home.quoteDeletedDescription'),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/quotes"] });
     },
     onError: () => {
       toast({
-        title: "Delete Failed",
-        description: "Failed to delete quote. Please try again.",
+        title: t('home.deleteFailed'),
+        description: t('home.deleteFailedDescription'),
         variant: "destructive",
       });
     },
@@ -109,8 +111,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
     },
     onSuccess: () => {
       toast({
-        title: "Quote Duplicated",
-        description: "Quote has been duplicated successfully.",
+        title: t('home.quoteDuplicated'),
+        description: t('home.quoteDuplicatedDescription'),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/quotes"] });
     },
@@ -130,8 +132,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
       const quoteData = JSON.parse(quote.jsonBlob);
       onLoadQuote(quoteData);
       toast({
-        title: "Quote Loaded",
-        description: "Quote has been loaded into the pricing tool.",
+        title: t('home.quoteLoaded'),
+        description: t('home.quoteLoadedDescription'),
       });
     }
   };
@@ -190,7 +192,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Save className="w-5 h-5" />
-            Quote Manager
+            {t('home.quoteManager')}
           </CardTitle>
           {currentQuote && (
             <Button 
@@ -198,7 +200,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
               size="sm"
               onClick={() => setShowSaveForm(!showSaveForm)}
             >
-              Save Current Quote
+              {t('home.saveCurrentQuote')}
             </Button>
           )}
         </div>
@@ -211,7 +213,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
             <CardContent className="pt-4">
               <div className="space-y-3">
                 <Input
-                  placeholder="Enter quote name..."
+                  placeholder={t('home.enterQuoteName')}
                   value={quoteName}
                   onChange={(e) => setQuoteName(e.target.value)}
                 />
@@ -221,14 +223,14 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                     disabled={!quoteName.trim() || saveQuoteMutation.isPending}
                     size="sm"
                   >
-                    {saveQuoteMutation.isPending ? "Saving..." : "Save Quote"}
+                    {saveQuoteMutation.isPending ? t('home.saving') : t('home.saveQuote')}
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={() => setShowSaveForm(false)}
                   >
-                    Cancel
+                    {t('home.cancel')}
                   </Button>
                 </div>
               </div>
@@ -242,7 +244,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
-                placeholder="Search quotes by name or city..."
+                placeholder={t('home.searchQuotesPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -258,7 +260,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
               className="flex items-center gap-1"
             >
               <Filter className="w-4 h-4" />
-              {sortBy === "date" ? "Date" : sortBy === "name" ? "Name" : "Price"}
+              {sortBy === "date" ? t('home.date') : sortBy === "name" ? t('home.name') : t('home.price')}
             </Button>
             
             <Button
@@ -279,7 +281,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
           </div>
         ) : filteredQuotes.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
-            {searchTerm ? "No quotes match your search." : "No saved quotes yet."}
+            {searchTerm ? t('home.noQuotesMatchSearch') : t('home.noSavedQuotesYet')}
           </div>
         ) : (
           <div className="space-y-3">
