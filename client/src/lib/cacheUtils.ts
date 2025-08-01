@@ -1,8 +1,11 @@
 import { queryClient } from './queryClient';
 
-// Enhanced cache invalidation for language-aware queries
+// Enhanced cache invalidation for both standard and language-aware queries
 export const refreshRouteData = () => {
-  // Invalidate all language variants of route data
+  // Invalidate standard route queries (used by routes admin page)
+  queryClient.invalidateQueries({ queryKey: ['/api/routes'] });
+  
+  // Invalidate all language variants of route data (used by translated components)
   ['en', 'es', 'fr', 'de'].forEach(lang => {
     queryClient.invalidateQueries({ queryKey: ['/api/routes', lang] });
   });
@@ -17,12 +20,13 @@ export const refreshRouteData = () => {
     }
   });
   
-  // Clear any related city data that might be cached with language
+  // Clear cities cache as well (standard and language variants)
+  queryClient.invalidateQueries({ queryKey: ['/api/cities'] });
   ['en', 'es', 'fr', 'de'].forEach(lang => {
     queryClient.invalidateQueries({ queryKey: ['/api/cities', lang] });
   });
   
-  console.log('Route data cache cleared for all languages and refresh triggered');
+  console.log('Route data cache cleared for all query patterns and refresh triggered');
 };
 
 // Clear all cached data
