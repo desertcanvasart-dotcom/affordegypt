@@ -26,7 +26,7 @@ export default function SinaiPeninsulaGuide() {
       duration: "3-7 days",
       difficulty: "Easy",
       image: "🏖️",
-      details: t('sinaiGuide.destinations.sharmElSheikh.details')
+      details: "The Red Sea's crown jewel, evolved from a Bedouin fishing settlement into one of the world's most celebrated diving destinations"
     },
     {
       name: t('sinaiGuide.destinations.dahab.name'),
@@ -36,7 +36,17 @@ export default function SinaiPeninsulaGuide() {
       duration: "2-5 days", 
       difficulty: "Moderate",
       image: "🤿",
-      details: t('sinaiGuide.destinations.dahab.details')
+      details: "A laid-back coastal town beloved by backpackers and divers, famous for the Blue Hole and relaxed atmosphere"
+    },
+    {
+      name: t('sinaiGuide.destinations.mountSinai.name'),
+      description: t('sinaiGuide.destinations.mountSinai.description'),
+      highlights: t('sinaiGuide.destinations.mountSinai.highlights', { returnObjects: true }),
+      bestTime: "Oct-Apr",
+      duration: "1-2 days",
+      difficulty: "Moderate",
+      image: "⛰️",
+      details: "Sacred mountain where Moses received the Ten Commandments, home to ancient monasteries and spiritual pilgrimage"
     },
     {
       name: t('sinaiGuide.destinations.nuweiba.name'),
@@ -46,35 +56,25 @@ export default function SinaiPeninsulaGuide() {
       duration: "2-3 days",
       difficulty: "Easy",
       image: "🏕️",
-      details: t('sinaiGuide.destinations.nuweiba.details')
-    },
-    {
-      name: t('sinaiGuide.destinations.taba.name'),
-      description: t('sinaiGuide.destinations.taba.description'),
-      highlights: t('sinaiGuide.destinations.taba.highlights', { returnObjects: true }),
-      bestTime: "Oct-Mar",
-      duration: "2-4 days",
-      difficulty: "Easy",
-      image: "🏰",
-      details: t('sinaiGuide.destinations.taba.details')
+      details: "Peaceful port town offering pristine beaches, coral reefs, and authentic Bedouin experiences"
     }
   ];
 
   const activities = [
     {
-      category: t('sinaiGuide.activities.waterSports.title'),
+      category: "Water Sports & Diving", 
       items: [
-        { name: t('sinaiGuide.activities.waterSports.scubaDiving.name'), price: t('sinaiGuide.activities.waterSports.scubaDiving.price'), description: t('sinaiGuide.activities.waterSports.scubaDiving.description') },
-        { name: t('sinaiGuide.activities.waterSports.snorkeling.name'), price: t('sinaiGuide.activities.waterSports.snorkeling.price'), description: t('sinaiGuide.activities.waterSports.snorkeling.description') },
-        { name: t('sinaiGuide.activities.waterSports.windsurfing.name'), price: t('sinaiGuide.activities.waterSports.windsurfing.price'), description: t('sinaiGuide.activities.waterSports.windsurfing.description') },
-        { name: t('sinaiGuide.activities.waterSports.kitesurfing.name'), price: t('sinaiGuide.activities.waterSports.kitesurfing.price'), description: t('sinaiGuide.activities.waterSports.kitesurfing.description') }
+        { name: t('sinaiGuide.activities.diving.name'), price: t('sinaiGuide.activities.diving.price'), description: t('sinaiGuide.activities.diving.description') },
+        { name: t('sinaiGuide.activities.snorkeling.name'), price: t('sinaiGuide.activities.snorkeling.price'), description: t('sinaiGuide.activities.snorkeling.description') },
+        { name: "Windsurfing", price: "From $35/hour", description: "Perfect wind conditions in Dahab make it ideal for windsurfing" },
+        { name: "Kitesurfing", price: "From $50/lesson", description: "Learn kitesurfing in ideal wind conditions" }
       ]
     },
     {
-      category: t('sinaiGuide.activities.desertAdventures.title'),
+      category: "Desert Adventures",
       items: [
-        { name: t('sinaiGuide.activities.desertAdventures.camelTrekking.name'), price: t('sinaiGuide.activities.desertAdventures.camelTrekking.price'), description: t('sinaiGuide.activities.desertAdventures.camelTrekking.description') },
-        { name: t('sinaiGuide.activities.desertAdventures.desertSafari.name'), price: t('sinaiGuide.activities.desertAdventures.desertSafari.price'), description: t('sinaiGuide.activities.desertAdventures.desertSafari.description') },
+        { name: t('sinaiGuide.activities.desertAdventures.camelTrek.name'), price: t('sinaiGuide.activities.desertAdventures.camelTrek.price'), description: t('sinaiGuide.activities.desertAdventures.camelTrek.description') },
+        { name: t('sinaiGuide.activities.desert.name'), price: t('sinaiGuide.activities.desert.price'), description: t('sinaiGuide.activities.desert.description') },
         { name: t('sinaiGuide.activities.desertAdventures.coloredCanyon.name'), price: t('sinaiGuide.activities.desertAdventures.coloredCanyon.price'), description: t('sinaiGuide.activities.desertAdventures.coloredCanyon.description') },
         { name: t('sinaiGuide.activities.desertAdventures.bedouinNight.name'), price: t('sinaiGuide.activities.desertAdventures.bedouinNight.price'), description: t('sinaiGuide.activities.desertAdventures.bedouinNight.description') }
       ]
@@ -82,7 +82,7 @@ export default function SinaiPeninsulaGuide() {
     {
       category: t('sinaiGuide.activities.cultural.title'),
       items: [
-        { name: t('sinaiGuide.activities.cultural.mountSinai.name'), price: t('sinaiGuide.activities.cultural.mountSinai.price'), description: t('sinaiGuide.activities.cultural.mountSinai.description') },
+        { name: t('sinaiGuide.activities.hiking.name'), price: t('sinaiGuide.activities.hiking.price'), description: t('sinaiGuide.activities.hiking.description') },
         { name: t('sinaiGuide.activities.cultural.monastery.name'), price: t('sinaiGuide.activities.cultural.monastery.price'), description: t('sinaiGuide.activities.cultural.monastery.description') },
         { name: t('sinaiGuide.activities.cultural.bedouinVillage.name'), price: t('sinaiGuide.activities.cultural.bedouinVillage.price'), description: t('sinaiGuide.activities.cultural.bedouinVillage.description') },
         { name: t('sinaiGuide.activities.cultural.wadiFeiran.name'), price: t('sinaiGuide.activities.cultural.wadiFeiran.price'), description: t('sinaiGuide.activities.cultural.wadiFeiran.description') }
