@@ -936,6 +936,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
           req.body.displayOrder !== undefined
             ? parseInt(req.body.displayOrder)
             : undefined,
+        // Synchronize km and distanceKm fields to fix frontend-backend data mismatch
+        ...(req.body.km !== undefined && {
+          km: req.body.km,
+          distanceKm: parseInt(req.body.km) || 0
+        }),
+        ...(req.body.distanceKm !== undefined && {
+          distanceKm: req.body.distanceKm,
+          km: req.body.distanceKm.toString()
+        }),
         // Handle vehiclePrices properly
         vehiclePrices:
           req.body.vehiclePrices ||
