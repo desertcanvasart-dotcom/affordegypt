@@ -5,6 +5,7 @@ This project is a full-stack travel platform for Egypt tourism, catering to budg
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
+Content approach: Replace translation function calls with direct dummy data in components rather than using JSON translation files.
 
 ## System Architecture
 
@@ -28,7 +29,7 @@ Preferred communication style: Simple, everyday language.
 - **Authentication**: JWT-based system with role-based access (User, Admin, Staff) and protected routes.
 - **Admin Management**: Tools for managing bookings, routes (CRUD operations and CSV import), and users.
 - **Booking Process**: Streamlined user flow from selection to payment and confirmation.
-- **Multilingual Support**: Full end-to-end translation system for UI, city names, attractions, and transportation routes across English, Spanish, French, and German. This includes translated slugs for all user-facing pages.
+- **Multilingual Support**: Comprehensive multilingual content system with dummy data implementation for English, Spanish, French, and German. Language switching works dynamically across all content including destinations, activities, practical information, and itineraries. Translation JSON files have been replaced with direct dummy data in components for improved performance and easier maintenance.
 
 ## External Dependencies
 
