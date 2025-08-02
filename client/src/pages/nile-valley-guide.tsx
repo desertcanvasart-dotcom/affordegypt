@@ -130,7 +130,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.starting_point",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Metro", "Taxi", "Uber", "Bus"],
     },
     budgetTips: [
@@ -174,7 +174,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.2h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Taxi", "Microbus", "Tuk-tuk"],
     },
     budgetTips: [
@@ -222,7 +222,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.4h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Taxi", "Microbus", "Felucca"],
     },
     budgetTips: [
@@ -264,7 +264,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.5h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Taxi", "Microbus", "Horse cart"],
     },
     budgetTips: [
@@ -310,7 +310,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.6h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Taxi", "Microbus", "Bicycle"],
     },
     budgetTips: [
@@ -351,7 +351,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.7h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Taxi", "Microbus", "Horse cart"],
     },
     budgetTips: [
@@ -405,7 +405,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.10h_train_1h_flight",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Taxi", "Bicycle", "Caleche", "Felucca"],
     },
     budgetTips: [
@@ -449,7 +449,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.12h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Horse cart", "Taxi", "Walking"],
     },
     budgetTips: [
@@ -489,7 +489,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.13h_train_bus",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Horse cart", "Taxi", "Walking"],
     },
     budgetTips: [
@@ -543,7 +543,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.14h_train_1.5h_flight",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Felucca", "Taxi", "Motorboat"],
     },
     budgetTips: [
@@ -585,7 +585,7 @@ const nileValleyCities: NileCity[] = [
       },
     ],
     transportation: {
-      fromCairo: "nile.transport.flight_3h_drive",
+      fromCairo: "2.5 hours by train/bus",
       localTransport: ["Tour bus", "Private car"],
     },
     budgetTips: [
@@ -723,16 +723,16 @@ export default function NileValleyGuide() {
         budgetBreakdown: {
           title: "Budget Breakdown",
           budget: {
-            title: "Budget Travel ($30-50/day)",
+            title: "Budget Travel (750-1250 EGP/day)",
             description: "Hostels, local food, public transport, group tours",
           },
           midRange: {
-            title: "Mid-range ($50-120/day)",
+            title: "Mid-range (1250-3000 EGP/day)",
             description:
               "Mid-range hotels, mix of local and tourist restaurants, private tours",
           },
           luxury: {
-            title: "Luxury ($120+/day)",
+            title: "Luxury (3000+ EGP/day)",
             description:
               "5-star hotels, fine dining, private guides, premium experiences",
           },
@@ -872,17 +872,17 @@ export default function NileValleyGuide() {
         budgetBreakdown: {
           title: "Desglose de Presupuesto",
           budget: {
-            title: "Viaje Económico ($30-50/día)",
+            title: "Viaje Económico (750-1250 EGP/día)",
             description:
               "Albergues, comida local, transporte público, tours grupales",
           },
           midRange: {
-            title: "Rango Medio ($50-120/día)",
+            title: "Rango Medio (1250-3000 EGP/día)",
             description:
               "Hoteles de rango medio, mezcla de restaurantes locales y turísticos, tours privados",
           },
           luxury: {
-            title: "Lujo ($120+/día)",
+            title: "Lujo (3000+ EGP/día)",
             description:
               "Hoteles 5 estrellas, alta gastronomía, guías privados, experiencias premium",
           },
@@ -1025,17 +1025,17 @@ export default function NileValleyGuide() {
         budgetBreakdown: {
           title: "Répartition du Budget",
           budget: {
-            title: "Voyage Économique ($30-50/jour)",
+            title: "Voyage Économique (750-1250 EGP/jour)",
             description:
               "Auberges, nourriture locale, transport public, tours de groupe",
           },
           midRange: {
-            title: "Gamme Moyenne ($50-120/jour)",
+            title: "Gamme Moyenne (1250-3000 EGP/jour)",
             description:
               "Hôtels de gamme moyenne, mélange de restaurants locaux et touristiques, tours privés",
           },
           luxury: {
-            title: "Luxe ($120+/jour)",
+            title: "Luxe (3000+ EGP/jour)",
             description:
               "Hôtels 5 étoiles, cuisine raffinée, guides privés, expériences premium",
           },
@@ -1181,17 +1181,17 @@ export default function NileValleyGuide() {
         budgetBreakdown: {
           title: "Budget-Aufschlüsselung",
           budget: {
-            title: "Budget-Reise ($30-50/Tag)",
+            title: "Budget-Reise (750-1250 EGP/Tag)",
             description:
               "Herbergen, lokales Essen, öffentliche Verkehrsmittel, Gruppentouren",
           },
           midRange: {
-            title: "Mittelklasse ($50-120/Tag)",
+            title: "Mittelklasse (1250-3000 EGP/Tag)",
             description:
               "Mittelklasse-Hotels, Mischung aus lokalen und touristischen Restaurants, private Touren",
           },
           luxury: {
-            title: "Luxus ($120+/Tag)",
+            title: "Luxus (3000+ EGP/Tag)",
             description:
               "5-Sterne-Hotels, gehobene Küche, private Reiseführer, Premium-Erlebnisse",
           },
@@ -1233,14 +1233,27 @@ export default function NileValleyGuide() {
   const translateKey = (key: string): string => {
     const translations: Record<string, Record<string, string>> = {
       en: {
+        "budgetTips.minya.dayTripFromCairo":
+          "Consider a day trip from Cairo to save on accommodation.",
+        "budgetTips.minya.localGuides":
+          "Hire local guides for affordable and insightful tours.",
         "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
         "attractions.minya.beniHassan.name": "Tombs of Beni Hassan",
         "attractions.minya.tunaElGebel.name": "Necropolis of Tuna el-Gebel",
+        "2.5 hours by train/bus": "2.5 hours by train/bus",
 
         "attractions.asyut.copticMonasteries.name":
           "Ancient Coptic Monasteries",
         "attractions.asyut.traditionalCrafts.name": "Traditional Crafts",
         "attractions.asyut.nileCorniche.name": "Nile Corniche Promenade",
+        "budgetTips.sohag.cheapAccommodation":
+          "Look for budget hotels near the city center.",
+        "budgetTips.sohag.localFood":
+          "Try local eateries for delicious, affordable meals.",
+        "budgetTips.qena.budgetFriendly":
+          "Explore Qena on foot to save transportation costs.",
+        "budgetTips.qena.localMarkets":
+          "Shop at local markets for inexpensive souvenirs.",
 
         "attractions.sohag.redWhiteMonasteries.name":
           "Red and White Monasteries",
@@ -1250,6 +1263,10 @@ export default function NileValleyGuide() {
         "attractions.qena.gatewayDendera.name": "Gateway to Dendera Temple",
         "attractions.qena.traditionalPottery.name": "Traditional Pottery",
         "attractions.qena.nileIslands.name": "Nile Islands",
+        "budgetTips.asyut.affordableStays":
+          "Choose budget hotels or guesthouses to save money.",
+        "budgetTips.asyut.localTransport":
+          "Use local transport like microbuses for cheap travel.",
 
         // Alexandria highlights
         "highlights.alexandria.library": "Bibliotheca Alexandrina",
@@ -1304,42 +1321,42 @@ export default function NileValleyGuide() {
         "attractions.alexandria.bibliotheca.name": "Bibliotheca Alexandrina",
         "attractions.alexandria.bibliotheca.description":
           "Modern recreation of the ancient Library of Alexandria",
-        "attractions.alexandria.bibliotheca.entryFee": "$3",
+        "attractions.alexandria.bibliotheca.entryFee": "75 EGP",
         "attractions.alexandria.bibliotheca.hours": "9:00 AM - 7:00 PM",
         "attractions.alexandria.qaitbayCitadel.name": "Qaitbay Citadel",
         "attractions.alexandria.qaitbayCitadel.description":
           "15th-century fort on Mediterranean coast",
-        "attractions.alexandria.qaitbayCitadel.entryFee": "$4",
+        "attractions.alexandria.qaitbayCitadel.entryFee": "100 EGP",
         "attractions.alexandria.qaitbayCitadel.hours": "9:00 AM - 5:00 PM",
         "attractions.alexandria.catacombs.name": "Catacombs of Kom el Shoqafa",
         "attractions.alexandria.catacombs.description": "Roman burial chambers",
-        "attractions.alexandria.catacombs.entryFee": "$5",
+        "attractions.alexandria.catacombs.entryFee": "125 EGP",
         "attractions.alexandria.catacombs.hours": "9:00 AM - 4:00 PM",
 
         "attractions.cairo.pyramidsGiza.name": "Pyramids of Giza",
         "attractions.cairo.pyramidsGiza.description":
           "Last wonder of the ancient world",
-        "attractions.cairo.pyramidsGiza.entryFee": "$13",
+        "attractions.cairo.pyramidsGiza.entryFee": "325 EGP",
         "attractions.cairo.pyramidsGiza.hours": "8:00 AM - 4:00 PM",
         "attractions.cairo.egyptianMuseum.name": "Egyptian Museum",
         "attractions.cairo.egyptianMuseum.description":
           "World's largest collection of ancient Egyptian artifacts",
-        "attractions.cairo.egyptianMuseum.entryFee": "$12",
+        "attractions.cairo.egyptianMuseum.entryFee": "300 EGP",
         "attractions.cairo.egyptianMuseum.hours": "9:00 AM - 7:00 PM",
 
         "attractions.luxor.valleyKings.name": "Valley of the Kings",
         "attractions.luxor.valleyKings.description": "Royal tombs of pharaohs",
-        "attractions.luxor.valleyKings.entryFee": "$12",
+        "attractions.luxor.valleyKings.entryFee": "300 EGP",
         "attractions.luxor.valleyKings.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.karnakTemple.name": "Karnak Temple Complex",
         "attractions.luxor.karnakTemple.description":
           "Vast temple complex dedicated to Amun-Ra",
-        "attractions.luxor.karnakTemple.entryFee": "$10",
+        "attractions.luxor.karnakTemple.entryFee": "250 EGP",
         "attractions.luxor.karnakTemple.hours": "6:00 AM - 5:30 PM",
         "attractions.luxor.luxorTemple.name": "Luxor Temple",
         "attractions.luxor.luxorTemple.description":
           "Ancient Egyptian temple in city center",
-        "attractions.luxor.luxorTemple.entryFee": "$8",
+        "attractions.luxor.luxorTemple.entryFee": "200 EGP",
         "attractions.luxor.luxorTemple.hours": "6:00 AM - 9:00 PM",
 
         // Budget tips
@@ -1376,9 +1393,9 @@ export default function NileValleyGuide() {
         "highlights.beniSuef.ruralNile": "Rural Nile Villages",
         "highlights.beniSuef.traditionalMarkets": "Traditional Markets",
         "attractions.beniSuef.meidumPyramid.name": "Meidum Pyramid",
-        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.meidumPyramid.entryFee": "150 EGP",
         "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
-        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "75 EGP",
         "budgetTips.beniSuef.affordableFood": "Affordable local food available",
         "budgetTips.beniSuef.basicAccommodation":
           "Basic but clean accommodation options",
@@ -1388,7 +1405,7 @@ export default function NileValleyGuide() {
         "highlights.edfu.traditionalMarkets": "Traditional Markets",
         "highlights.edfu.nileCruiseStop": "Popular Nile Cruise Stop",
         "attractions.edfu.templeHorus.name": "Temple of Horus",
-        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.templeHorus.entryFee": "200 EGP",
         "attractions.edfu.edfuMarket.name": "Edfu Traditional Market",
         "attractions.edfu.edfuMarket.entryFee": "Free",
         "budgetTips.edfu.nileCruiseStop": "Popular stop for Nile cruises",
@@ -1401,20 +1418,20 @@ export default function NileValleyGuide() {
         "highlights.komOmbo.crocodileMuseum": "Crocodile Museum",
         "highlights.komOmbo.sugarCaneFields": "Sugar Cane Fields",
         "attractions.komOmbo.templeKomOmbo.name": "Temple of Kom Ombo",
-        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "200 EGP",
         "attractions.komOmbo.crocodileMuseum.name": "Crocodile Museum",
-        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "125 EGP",
         "budgetTips.komOmbo.combineWithEdfu": "Combine visit with Edfu Temple",
         "budgetTips.komOmbo.sunsetViews": "Great sunset views over the Nile",
         "budgetTips.komOmbo.basicTown": "Basic town with simple amenities",
 
         // Aswan additional content
         "attractions.aswan.philaeTemple.name": "Philae Temple",
-        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.philaeTemple.entryFee": "250 EGP",
         "attractions.aswan.highDam.name": "Aswan High Dam",
-        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.highDam.entryFee": "75 EGP",
         "attractions.aswan.nubianVillage.name": "Nubian Village",
-        "attractions.aswan.nubianVillage.entryFee": "$15",
+        "attractions.aswan.nubianVillage.entryFee": "375 EGP",
         "budgetTips.aswan.stayNearSouk":
           "Stay near the souk for local experience",
         "budgetTips.aswan.feluccaRides": "Negotiate felucca rides at sunset",
@@ -1434,7 +1451,7 @@ export default function NileValleyGuide() {
         "attractions.cairo.citadelSaladin.name": "Citadel of Saladin",
         "attractions.cairo.citadelSaladin.description":
           "Medieval Islamic fortification in Cairo",
-        "attractions.cairo.citadelSaladin.entryFee": "$8",
+        "attractions.cairo.citadelSaladin.entryFee": "200 EGP",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Alabaster Mosque",
         "attractions.cairo.alabasterMosque.description":
@@ -1444,40 +1461,40 @@ export default function NileValleyGuide() {
         "attractions.cairo.copticMuseum.name": "Coptic Museum",
         "attractions.cairo.copticMuseum.description":
           "World's largest collection of Coptic artifacts",
-        "attractions.cairo.copticMuseum.entryFee": "$5",
+        "attractions.cairo.copticMuseum.entryFee": "125 EGP",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
         "attractions.luxor.medinet.description":
           "Mortuary temple of Ramesses III",
-        "attractions.luxor.medinet.entryFee": "$6",
+        "attractions.luxor.medinet.entryFee": "150 EGP",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
         "attractions.luxor.deir.description": "Village of royal tomb builders",
-        "attractions.luxor.deir.entryFee": "$8",
+        "attractions.luxor.deir.entryFee": "200 EGP",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
         "attractions.luxor.ramesseum.description":
           "Memorial temple of Ramesses II",
-        "attractions.luxor.ramesseum.entryFee": "$5",
+        "attractions.luxor.ramesseum.entryFee": "125 EGP",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Unfinished Obelisk",
         "attractions.aswan.unfinishedObelisk.description":
           "Ancient granite quarry with unfinished obelisk",
-        "attractions.aswan.unfinishedObelisk.entryFee": "$4",
+        "attractions.aswan.unfinishedObelisk.entryFee": "100 EGP",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Nubian Museum",
         "attractions.aswan.nubian.description":
           "Museum of Nubian culture and history",
-        "attractions.aswan.nubian.entryFee": "$7",
+        "attractions.aswan.nubian.entryFee": "175 EGP",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Botanical Garden",
         "attractions.aswan.botanical.description":
           "Exotic plants on Kitchener's Island",
-        "attractions.aswan.botanical.entryFee": "$3",
+        "attractions.aswan.botanical.entryFee": "75 EGP",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Time-related translations
@@ -1487,9 +1504,8 @@ export default function NileValleyGuide() {
         "nile.stay.2_3days": "2-3 days",
         "nile.stay.3_4days": "3-4 days",
         "nile.stay.1day": "1 day",
-        "nile.transport.starting_point": "Starting point",
-        "attractions.minya.tellElAmarna.entryFee": "$5",
-        "attractions.minya.beniHassan.entryFee": "$7",
+        "attractions.minya.tellElAmarna.entryFee": "125 EGP",
+        "attractions.minya.beniHassan.entryFee": "175 EGP",
         "attractions.minya.tunaElGebel.entryFee": "$9",
         // Asyut
         "attractions.asyut.monasteryVirginMary.name":
@@ -1500,44 +1516,53 @@ export default function NileValleyGuide() {
 
         // Sohag
         "attractions.sohag.redMonastery.name": "Red Monastery",
-        "attractions.sohag.redMonastery.entryFee": "$3",
+        "attractions.sohag.redMonastery.entryFee": "75 EGP",
         "attractions.sohag.whiteMonastery.name": "White Monastery",
-        "attractions.sohag.whiteMonastery.entryFee": "$3",
+        "attractions.sohag.whiteMonastery.entryFee": "75 EGP",
         "attractions.sohag.akhmim.name": "Akhmim Open-Air Museum",
         "attractions.sohag.akhmim.entryFee": "$2",
 
         // Qena
         "attractions.qena.denderaTemple.name": "Dendera Temple Complex",
-        "attractions.qena.denderaTemple.entryFee": "$5",
+        "attractions.qena.denderaTemple.entryFee": "125 EGP",
         "attractions.qena.qenaPotteryQuarter.name": "Qena Pottery Quarter",
         "attractions.qena.qenaPotteryQuarter.entryFee": "Free",
 
         // Abu Simbel
         "attractions.abuSimbel.greatTempleRamesses.name":
           "Great Temple of Ramesses II",
-        "attractions.abuSimbel.greatTempleRamesses.entryFee": "$10",
+        "attractions.abuSimbel.greatTempleRamesses.entryFee": "250 EGP",
         "attractions.abuSimbel.templeNefertari.name": "Temple of Nefertari",
-        "attractions.abuSimbel.templeNefertari.entryFee": "$10",
+        "attractions.abuSimbel.templeNefertari.entryFee": "250 EGP",
       },
       es: {
+        "budgetTips.minya.dayTripFromCairo":
+          "Considera una excursión de un día desde El Cairo para ahorrar en alojamiento.",
+        "budgetTips.minya.localGuides":
+          "Contrata guías locales para recorridos económicos y enriquecedores.",
         // Asyut
         "attractions.asyut.monasteryVirginMary.name":
           "Monasterio de la Virgen María",
         "attractions.asyut.monasteryVirginMary.entryFee": "Gratis",
         "attractions.asyut.asyutBarrage.name": "Presa de Asyut",
         "attractions.asyut.asyutBarrage.entryFee": "Gratis",
+        "2.5 hours by train/bus": "2,5 horas en tren/autobús",
+        "budgetTips.asyut.affordableStays":
+          "Elige hoteles económicos o casas de huéspedes para ahorrar dinero.",
+        "budgetTips.asyut.localTransport":
+          "Usa el transporte local como los microbuses para viajar barato.",
 
         // Sohag
         "attractions.sohag.redMonastery.name": "Monasterio Rojo",
-        "attractions.sohag.redMonastery.entryFee": "$3",
+        "attractions.sohag.redMonastery.entryFee": "75 EGP",
         "attractions.sohag.whiteMonastery.name": "Monasterio Blanco",
-        "attractions.sohag.whiteMonastery.entryFee": "$3",
+        "attractions.sohag.whiteMonastery.entryFee": "75 EGP",
         "attractions.sohag.akhmim.name": "Museo al aire libre de Akhmim",
         "attractions.sohag.akhmim.entryFee": "$2",
 
         // Qena
         "attractions.qena.denderaTemple.name": "Templo de Dendera",
-        "attractions.qena.denderaTemple.entryFee": "$5",
+        "attractions.qena.denderaTemple.entryFee": "125 EGP",
         "attractions.qena.qenaPotteryQuarter.name":
           "Barrio de la cerámica de Qena",
         "attractions.qena.qenaPotteryQuarter.entryFee": "Gratis",
@@ -1545,9 +1570,9 @@ export default function NileValleyGuide() {
         // Abu Simbel
         "attractions.abuSimbel.greatTempleRamesses.name":
           "Gran Templo de Ramsés II",
-        "attractions.abuSimbel.greatTempleRamesses.entryFee": "$10",
+        "attractions.abuSimbel.greatTempleRamesses.entryFee": "250 EGP",
         "attractions.abuSimbel.templeNefertari.name": "Templo de Nefertari",
-        "attractions.abuSimbel.templeNefertari.entryFee": "$10",
+        "attractions.abuSimbel.templeNefertari.entryFee": "250 EGP",
 
         "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
         "attractions.minya.beniHassan.name": "Tumbas de Beni Hassan",
@@ -1621,44 +1646,44 @@ export default function NileValleyGuide() {
         "attractions.alexandria.bibliotheca.name": "Biblioteca de Alejandría",
         "attractions.alexandria.bibliotheca.description":
           "Recreación moderna de la antigua Biblioteca de Alejandría",
-        "attractions.alexandria.bibliotheca.entryFee": "$3",
+        "attractions.alexandria.bibliotheca.entryFee": "75 EGP",
         "attractions.alexandria.bibliotheca.hours": "9:00 AM - 7:00 PM",
         "attractions.alexandria.qaitbayCitadel.name": "Ciudadela de Qaitbay",
         "attractions.alexandria.qaitbayCitadel.description":
           "Fuerte del siglo XV en la costa mediterránea",
-        "attractions.alexandria.qaitbayCitadel.entryFee": "$4",
+        "attractions.alexandria.qaitbayCitadel.entryFee": "100 EGP",
         "attractions.alexandria.qaitbayCitadel.hours": "9:00 AM - 5:00 PM",
         "attractions.alexandria.catacombs.name": "Catacumbas de Kom el Shoqafa",
         "attractions.alexandria.catacombs.description":
           "Cámaras funerarias romanas",
-        "attractions.alexandria.catacombs.entryFee": "$5",
+        "attractions.alexandria.catacombs.entryFee": "125 EGP",
         "attractions.alexandria.catacombs.hours": "9:00 AM - 4:00 PM",
 
         "attractions.cairo.pyramidsGiza.name": "Pirámides de Giza",
         "attractions.cairo.pyramidsGiza.description":
           "Última maravilla del mundo antiguo",
-        "attractions.cairo.pyramidsGiza.entryFee": "$13",
+        "attractions.cairo.pyramidsGiza.entryFee": "325 EGP",
         "attractions.cairo.pyramidsGiza.hours": "8:00 AM - 4:00 PM",
         "attractions.cairo.egyptianMuseum.name": "Museo Egipcio",
         "attractions.cairo.egyptianMuseum.description":
           "La colección más grande del mundo de artefactos del antiguo Egipto",
-        "attractions.cairo.egyptianMuseum.entryFee": "$12",
+        "attractions.cairo.egyptianMuseum.entryFee": "300 EGP",
         "attractions.cairo.egyptianMuseum.hours": "9:00 AM - 7:00 PM",
 
         "attractions.luxor.valleyKings.name": "Valle de los Reyes",
         "attractions.luxor.valleyKings.description":
           "Tumbas reales de faraones",
-        "attractions.luxor.valleyKings.entryFee": "$12",
+        "attractions.luxor.valleyKings.entryFee": "300 EGP",
         "attractions.luxor.valleyKings.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.karnakTemple.name": "Complejo del Templo de Karnak",
         "attractions.luxor.karnakTemple.description":
           "Vasto complejo de templos dedicado a Amón-Ra",
-        "attractions.luxor.karnakTemple.entryFee": "$10",
+        "attractions.luxor.karnakTemple.entryFee": "250 EGP",
         "attractions.luxor.karnakTemple.hours": "6:00 AM - 5:30 PM",
         "attractions.luxor.luxorTemple.name": "Templo de Luxor",
         "attractions.luxor.luxorTemple.description":
           "Templo egipcio antiguo en el centro de la ciudad",
-        "attractions.luxor.luxorTemple.entryFee": "$8",
+        "attractions.luxor.luxorTemple.entryFee": "200 EGP",
         "attractions.luxor.luxorTemple.hours": "6:00 AM - 9:00 PM",
 
         // Budget tips
@@ -1697,9 +1722,9 @@ export default function NileValleyGuide() {
         "highlights.beniSuef.ruralNile": "Pueblos Rurales del Nilo",
         "highlights.beniSuef.traditionalMarkets": "Mercados Tradicionales",
         "attractions.beniSuef.meidumPyramid.name": "Pirámide de Meidum",
-        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.meidumPyramid.entryFee": "150 EGP",
         "attractions.beniSuef.beniSuefMuseum.name": "Museo de Beni Suef",
-        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "75 EGP",
         "budgetTips.beniSuef.affordableFood":
           "Comida local asequible disponible",
         "budgetTips.beniSuef.basicAccommodation":
@@ -1710,7 +1735,7 @@ export default function NileValleyGuide() {
         "highlights.edfu.traditionalMarkets": "Mercados Tradicionales",
         "highlights.edfu.nileCruiseStop": "Parada Popular de Cruceros del Nilo",
         "attractions.edfu.templeHorus.name": "Templo de Horus",
-        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.templeHorus.entryFee": "200 EGP",
         "attractions.edfu.edfuMarket.name": "Mercado Tradicional de Edfu",
         "attractions.edfu.edfuMarket.entryFee": "Gratis",
         "budgetTips.edfu.nileCruiseStop":
@@ -1725,9 +1750,9 @@ export default function NileValleyGuide() {
         "highlights.komOmbo.crocodileMuseum": "Museo del Cocodrilo",
         "highlights.komOmbo.sugarCaneFields": "Campos de Caña de Azúcar",
         "attractions.komOmbo.templeKomOmbo.name": "Templo de Kom Ombo",
-        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "200 EGP",
         "attractions.komOmbo.crocodileMuseum.name": "Museo del Cocodrilo",
-        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "125 EGP",
         "budgetTips.komOmbo.combineWithEdfu":
           "Combina la visita con el Templo de Edfu",
         "budgetTips.komOmbo.sunsetViews":
@@ -1736,11 +1761,11 @@ export default function NileValleyGuide() {
 
         // Aswan additional content - Spanish
         "attractions.aswan.philaeTemple.name": "Templo de Philae",
-        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.philaeTemple.entryFee": "250 EGP",
         "attractions.aswan.highDam.name": "Presa Alta de Asuán",
-        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.highDam.entryFee": "75 EGP",
         "attractions.aswan.nubianVillage.name": "Pueblo Nubio",
-        "attractions.aswan.nubianVillage.entryFee": "$15",
+        "attractions.aswan.nubianVillage.entryFee": "375 EGP",
         "budgetTips.aswan.stayNearSouk":
           "Quédate cerca del zoco para experiencia local",
         "budgetTips.aswan.feluccaRides":
@@ -1761,7 +1786,7 @@ export default function NileValleyGuide() {
         "attractions.cairo.citadelSaladin.name": "Ciudadela de Saladino",
         "attractions.cairo.citadelSaladin.description":
           "Fortificación islámica medieval en El Cairo",
-        "attractions.cairo.citadelSaladin.entryFee": "$8",
+        "attractions.cairo.citadelSaladin.entryFee": "200 EGP",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Mezquita de Alabastro",
         "attractions.cairo.alabasterMosque.description":
@@ -1771,41 +1796,41 @@ export default function NileValleyGuide() {
         "attractions.cairo.copticMuseum.name": "Museo Copto",
         "attractions.cairo.copticMuseum.description":
           "La colección más grande del mundo de artefactos coptos",
-        "attractions.cairo.copticMuseum.entryFee": "$5",
+        "attractions.cairo.copticMuseum.entryFee": "125 EGP",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
         "attractions.luxor.medinet.description":
           "Templo funerario de Ramsés III",
-        "attractions.luxor.medinet.entryFee": "$6",
+        "attractions.luxor.medinet.entryFee": "150 EGP",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
         "attractions.luxor.deir.description":
           "Pueblo de constructores de tumbas reales",
-        "attractions.luxor.deir.entryFee": "$8",
+        "attractions.luxor.deir.entryFee": "200 EGP",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
         "attractions.luxor.ramesseum.description":
           "Templo conmemorativo de Ramsés II",
-        "attractions.luxor.ramesseum.entryFee": "$5",
+        "attractions.luxor.ramesseum.entryFee": "125 EGP",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Obelisco Inacabado",
         "attractions.aswan.unfinishedObelisk.description":
           "Cantera de granito antigua con obelisco inacabado",
-        "attractions.aswan.unfinishedObelisk.entryFee": "$4",
+        "attractions.aswan.unfinishedObelisk.entryFee": "100 EGP",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Museo Nubio",
         "attractions.aswan.nubian.description":
           "Museo de cultura e historia nubia",
-        "attractions.aswan.nubian.entryFee": "$7",
+        "attractions.aswan.nubian.entryFee": "175 EGP",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Jardín Botánico",
         "attractions.aswan.botanical.description":
           "Plantas exóticas en la Isla de Kitchener",
-        "attractions.aswan.botanical.entryFee": "$3",
+        "attractions.aswan.botanical.entryFee": "75 EGP",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Time-related translations
@@ -1815,15 +1840,35 @@ export default function NileValleyGuide() {
         "nile.stay.2_3days": "2-3 días",
         "nile.stay.3_4days": "3-4 días",
         "nile.stay.1day": "1 día",
-        "nile.transport.starting_point": "Punto de partida",
+        "budgetTips.sohag.cheapAccommodation":
+          "Busca hoteles económicos cerca del centro de la ciudad.",
+        "budgetTips.sohag.localFood":
+          "Prueba la comida local en lugares sencillos y económicos.",
+        "budgetTips.qena.budgetFriendly":
+          "Explora Qena a pie para ahorrar en transporte.",
+        "budgetTips.qena.localMarkets":
+          "Compra recuerdos baratos en los mercados locales.",
       },
       fr: {
         // Asyut
+        "budgetTips.minya.dayTripFromCairo":
+          "Envisagez une excursion d'une journée depuis Le Caire pour économiser sur l'hébergement.",
+        "budgetTips.minya.localGuides":
+          "Engagez des guides locaux pour des visites économiques et enrichissantes.",
         "attractions.asyut.monasteryVirginMary.name":
           "Monastère de la Vierge Marie",
         "attractions.asyut.monasteryVirginMary.entryFee": "Gratuit",
         "attractions.asyut.asyutBarrage.name": "Barrage d'Asyut",
         "attractions.asyut.asyutBarrage.entryFee": "Gratuit",
+        "2.5 hours by train/bus": "2,5 heures en train/bus",
+        "budgetTips.sohag.cheapAccommodation":
+          "Cherchez des hôtels bon marché près du centre-ville.",
+        "budgetTips.sohag.localFood":
+          "Essayez les petits restaurants locaux pour des repas savoureux et abordables.",
+        "budgetTips.qena.budgetFriendly":
+          "Explorez Qena à pied pour économiser sur les transports.",
+        "budgetTips.qena.localMarkets":
+          "Faites vos achats dans les marchés locaux pour des souvenirs à petit prix.",
 
         // Sohag
         "attractions.sohag.redMonastery.name": "Monastère Rouge",
@@ -1832,6 +1877,10 @@ export default function NileValleyGuide() {
         "attractions.sohag.whiteMonastery.entryFee": "3 $",
         "attractions.sohag.akhmim.name": "Musée en plein air d'Akhmim",
         "attractions.sohag.akhmim.entryFee": "2 $",
+        "budgetTips.asyut.affordableStays":
+          "Choisissez des hôtels bon marché ou des pensions pour économiser.",
+        "budgetTips.asyut.localTransport":
+          "Utilisez les transports locaux comme les minibus pour voyager à petit prix.",
 
         // Qena
         "attractions.qena.denderaTemple.name": "Temple de Dendérah",
@@ -1895,17 +1944,17 @@ export default function NileValleyGuide() {
 
         // Luxor attractions
         "attractions.luxor.valleyKings.name": "Vallée des Rois",
-        "attractions.luxor.valleyKings.entryFee": "$12",
+        "attractions.luxor.valleyKings.entryFee": "300 EGP",
         "attractions.luxor.karnakTemple.name": "Complexe du Temple de Karnak",
-        "attractions.luxor.karnakTemple.entryFee": "$10",
+        "attractions.luxor.karnakTemple.entryFee": "250 EGP",
         "attractions.luxor.luxorTemple.name": "Temple de Louxor",
-        "attractions.luxor.luxorTemple.entryFee": "$8",
+        "attractions.luxor.luxorTemple.entryFee": "200 EGP",
 
         // Blog attractions - Cairo
         "attractions.cairo.citadelSaladin.name": "Citadelle de Saladin",
         "attractions.cairo.citadelSaladin.description":
           "Fortification islamique médiévale au Caire",
-        "attractions.cairo.citadelSaladin.entryFee": "$8",
+        "attractions.cairo.citadelSaladin.entryFee": "200 EGP",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Mosquée d'Albâtre",
         "attractions.cairo.alabasterMosque.description":
@@ -1915,41 +1964,41 @@ export default function NileValleyGuide() {
         "attractions.cairo.copticMuseum.name": "Musée Copte",
         "attractions.cairo.copticMuseum.description":
           "Plus grande collection d'artefacts coptes au monde",
-        "attractions.cairo.copticMuseum.entryFee": "$5",
+        "attractions.cairo.copticMuseum.entryFee": "125 EGP",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
         "attractions.luxor.medinet.description":
           "Temple funéraire de Ramsès III",
-        "attractions.luxor.medinet.entryFee": "$6",
+        "attractions.luxor.medinet.entryFee": "150 EGP",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
         "attractions.luxor.deir.description":
           "Village des constructeurs de tombes royales",
-        "attractions.luxor.deir.entryFee": "$8",
+        "attractions.luxor.deir.entryFee": "200 EGP",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
         "attractions.luxor.ramesseum.description":
           "Temple commémoratif de Ramsès II",
-        "attractions.luxor.ramesseum.entryFee": "$5",
+        "attractions.luxor.ramesseum.entryFee": "125 EGP",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Obélisque Inachevé",
         "attractions.aswan.unfinishedObelisk.description":
           "Ancienne carrière de granit avec obélisque inachevé",
-        "attractions.aswan.unfinishedObelisk.entryFee": "$4",
+        "attractions.aswan.unfinishedObelisk.entryFee": "100 EGP",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Musée Nubien",
         "attractions.aswan.nubian.description":
           "Musée de la culture et de l'histoire nubiennes",
-        "attractions.aswan.nubian.entryFee": "$7",
+        "attractions.aswan.nubian.entryFee": "175 EGP",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Jardin Botanique",
         "attractions.aswan.botanical.description":
           "Plantes exotiques sur l'île de Kitchener",
-        "attractions.aswan.botanical.entryFee": "$3",
+        "attractions.aswan.botanical.entryFee": "75 EGP",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Budget tips
@@ -1972,7 +2021,6 @@ export default function NileValleyGuide() {
         "nile.stay.3_4days": "3-4 jours",
         "nile.stay.1day": "1 jour",
         "nile.stay.halfday": "Demi-journée",
-        "nile.transport.starting_point": "Point de départ",
         "nile.transport.flight_3h_drive": "3 heures de vol + trajet",
         "nile.transport.12h_train_bus": "12 heures en train/bus",
         "nile.transport.13h_train_bus": "13 heures en train/bus",
@@ -1982,9 +2030,9 @@ export default function NileValleyGuide() {
         "highlights.beniSuef.ruralNile": "Villages Ruraux du Nil",
         "highlights.beniSuef.traditionalMarkets": "Marchés Traditionnels",
         "attractions.beniSuef.meidumPyramid.name": "Pyramide de Meidum",
-        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
+        "attractions.beniSuef.meidumPyramid.entryFee": "150 EGP",
         "attractions.beniSuef.beniSuefMuseum.name": "Musée de Beni Suef",
-        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "75 EGP",
         "budgetTips.beniSuef.affordableFood":
           "Nourriture locale abordable disponible",
         "budgetTips.beniSuef.basicAccommodation":
@@ -1996,7 +2044,7 @@ export default function NileValleyGuide() {
         "highlights.edfu.nileCruiseStop":
           "Arrêt Populaire de Croisière sur le Nil",
         "attractions.edfu.templeHorus.name": "Temple d'Horus",
-        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.templeHorus.entryFee": "200 EGP",
         "attractions.edfu.edfuMarket.name": "Marché Traditionnel d'Edfu",
         "attractions.edfu.edfuMarket.entryFee": "Gratuit",
         "budgetTips.edfu.nileCruiseStop":
@@ -2010,9 +2058,9 @@ export default function NileValleyGuide() {
         "highlights.komOmbo.crocodileMuseum": "Musée des Crocodiles",
         "highlights.komOmbo.sugarCaneFields": "Champs de Canne à Sucre",
         "attractions.komOmbo.templeKomOmbo.name": "Temple de Kom Ombo",
-        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "200 EGP",
         "attractions.komOmbo.crocodileMuseum.name": "Musée des Crocodiles",
-        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "125 EGP",
         "budgetTips.komOmbo.combineWithEdfu":
           "Combinez la visite avec le Temple d'Edfu",
         "budgetTips.komOmbo.sunsetViews":
@@ -2022,20 +2070,47 @@ export default function NileValleyGuide() {
 
         // Aswan additional content - French
         "attractions.aswan.philaeTemple.name": "Temple de Philae",
-        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.philaeTemple.entryFee": "250 EGP",
         "attractions.aswan.highDam.name": "Haut Barrage d'Assouan",
-        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.highDam.entryFee": "75 EGP",
         "attractions.aswan.nubianVillage.name": "Village Nubien",
-        "attractions.aswan.nubianVillage.entryFee": "$15",
+        "attractions.aswan.nubianVillage.entryFee": "375 EGP",
+        "budgetTips.cairo.useMetro":
+          "Utilisez le métro pour un transport bon marché en ville",
+        "budgetTips.cairo.localRestaurants":
+          "Mangez dans des restaurants locaux pour une cuisine authentique",
+        "attractions.cairo.pyramidsGiza.name": "Pyramides de Gizeh",
+        "attractions.cairo.egyptianMuseum.name": "Musée égyptien",
+        "budgetTips.aswan.stayNearSouk":
+          "Séjournez près du souk pour une expérience locale",
+        "budgetTips.aswan.feluccaRides":
+          "Négociez les balades en felouque au coucher du soleil",
+        "budgetTips.abuSimbel.dayTripFromAswan":
+          "Faites une excursion d'une journée depuis Assouan au lieu d'y passer la nuit",
+        "budgetTips.abuSimbel.joinGroupTours":
+          "Rejoignez des visites de groupe pour de meilleurs prix",
       },
       de: {
         // Asyut
+        "budgetTips.minya.dayTripFromCairo":
+          "Erwägen Sie einen Tagesausflug von Kairo, um bei der Unterkunft zu sparen.",
+        "budgetTips.minya.localGuides":
+          "Nutzen Sie lokale Reiseleiter für preiswerte und informative Touren.",
         "attractions.asyut.monasteryVirginMary.name":
           "Kloster der Jungfrau Maria",
         "attractions.asyut.monasteryVirginMary.entryFee": "Kostenlos",
         "attractions.asyut.asyutBarrage.name": "Asyut-Staudamm",
         "attractions.asyut.asyutBarrage.entryFee": "Kostenlos",
-
+        "2.5 hours by train/bus": "2,5 Stunden mit dem Zug/Bus",
+        "attractions.cairo.pyramidsGiza.name": "Pyramiden von Gizeh",
+        "attractions.cairo.egyptianMuseum.name": "Ägyptisches Museum",
+        "attractions.cairo.citadelSaladin.name": "Zitadelle von Saladin",
+        "attractions.beniSuef.meidumPyramid.name": "Pyramide von Meidum",
+        "attractions.beniSuef.beniSuefMuseum.name": "Museum von Beni Suef",
+        "budgetTips.cairo.useMetro":
+          "Nutzen Sie die U-Bahn für günstige Fahrten in der Stadt",
+        "budgetTips.cairo.localRestaurants":
+          "Essen Sie in lokalen Restaurants, um authentische Küche zu genießen",
         // Sohag
         "attractions.sohag.redMonastery.name": "Rotes Kloster",
         "attractions.sohag.redMonastery.entryFee": "3 $",
@@ -2043,6 +2118,18 @@ export default function NileValleyGuide() {
         "attractions.sohag.whiteMonastery.entryFee": "3 $",
         "attractions.sohag.akhmim.name": "Akhmim Freilichtmuseum",
         "attractions.sohag.akhmim.entryFee": "2 $",
+        "budgetTips.asyut.affordableStays":
+          "Wählen Sie günstige Hotels oder Pensionen, um Geld zu sparen.",
+        "budgetTips.asyut.localTransport":
+          "Nutzen Sie lokale Verkehrsmittel wie Minibusse für günstige Fahrten.",
+        "budgetTips.aswan.stayNearSouk":
+          "Übernachten Sie in der Nähe des Souks für ein lokales Erlebnis",
+        "budgetTips.aswan.feluccaRides":
+          "Handeln Sie Felukkenfahrten zum Sonnenuntergang aus",
+        "budgetTips.abuSimbel.dayTripFromAswan":
+          "Machen Sie einen Tagesausflug von Assuan statt dort zu übernachten",
+        "budgetTips.abuSimbel.joinGroupTours":
+          "Schließen Sie sich Gruppentouren an, um bessere Preise zu erhalten",
 
         // Qena
         "attractions.qena.denderaTemple.name": "Dendera-Tempelkomplex",
@@ -2056,6 +2143,14 @@ export default function NileValleyGuide() {
         "attractions.abuSimbel.greatTempleRamesses.entryFee": "10 $",
         "attractions.abuSimbel.templeNefertari.name": "Tempel der Nefertari",
         "attractions.abuSimbel.templeNefertari.entryFee": "10 $",
+        "budgetTips.sohag.cheapAccommodation":
+          "Suchen Sie nach günstigen Hotels in der Nähe des Stadtzentrums.",
+        "budgetTips.sohag.localFood":
+          "Probieren Sie lokale Imbisse für leckere und günstige Mahlzeiten.",
+        "budgetTips.qena.budgetFriendly":
+          "Erkunden Sie Qena zu Fuß, um Transportkosten zu sparen.",
+        "budgetTips.qena.localMarkets":
+          "Kaufen Sie auf lokalen Märkten günstige Souvenirs ein.",
 
         "attractions.minya.tellElAmarna.name": "Tell el-Amarna",
         "attractions.minya.beniHassan.name": "Gräber von Beni Hassan",
@@ -2103,17 +2198,17 @@ export default function NileValleyGuide() {
 
         // Luxor attractions
         "attractions.luxor.valleyKings.name": "Tal der Könige",
-        "attractions.luxor.valleyKings.entryFee": "$12",
+        "attractions.luxor.valleyKings.entryFee": "300 EGP",
         "attractions.luxor.karnakTemple.name": "Karnak-Tempelkomplex",
-        "attractions.luxor.karnakTemple.entryFee": "$10",
+        "attractions.luxor.karnakTemple.entryFee": "250 EGP",
         "attractions.luxor.luxorTemple.name": "Luxor-Tempel",
-        "attractions.luxor.luxorTemple.entryFee": "$8",
+        "attractions.luxor.luxorTemple.entryFee": "200 EGP",
 
         // Blog attractions - Cairo
         "attractions.cairo.citadelSaladin.name": "Zitadelle von Saladin",
         "attractions.cairo.citadelSaladin.description":
           "Mittelalterliche islamische Befestigung in Kairo",
-        "attractions.cairo.citadelSaladin.entryFee": "$8",
+        "attractions.cairo.citadelSaladin.entryFee": "200 EGP",
         "attractions.cairo.citadelSaladin.hours": "8:00 AM - 5:00 PM",
         "attractions.cairo.alabasterMosque.name": "Alabaster-Moschee",
         "attractions.cairo.alabasterMosque.description":
@@ -2123,38 +2218,38 @@ export default function NileValleyGuide() {
         "attractions.cairo.copticMuseum.name": "Koptisches Museum",
         "attractions.cairo.copticMuseum.description":
           "Weltgrößte Sammlung koptischer Artefakte",
-        "attractions.cairo.copticMuseum.entryFee": "$5",
+        "attractions.cairo.copticMuseum.entryFee": "125 EGP",
         "attractions.cairo.copticMuseum.hours": "9:00 AM - 5:00 PM",
 
         // Blog attractions - Luxor
         "attractions.luxor.medinet.name": "Medinet Habu",
         "attractions.luxor.medinet.description": "Totentempel von Ramses III",
-        "attractions.luxor.medinet.entryFee": "$6",
+        "attractions.luxor.medinet.entryFee": "150 EGP",
         "attractions.luxor.medinet.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.deir.name": "Deir el-Medina",
         "attractions.luxor.deir.description": "Dorf der königlichen Grabbauer",
-        "attractions.luxor.deir.entryFee": "$8",
+        "attractions.luxor.deir.entryFee": "200 EGP",
         "attractions.luxor.deir.hours": "6:00 AM - 5:00 PM",
         "attractions.luxor.ramesseum.name": "Ramesseum",
         "attractions.luxor.ramesseum.description": "Gedenktempel von Ramses II",
-        "attractions.luxor.ramesseum.entryFee": "$5",
+        "attractions.luxor.ramesseum.entryFee": "125 EGP",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
 
         // Blog attractions - Aswan
         "attractions.aswan.unfinishedObelisk.name": "Unvollendeter Obelisk",
         "attractions.aswan.unfinishedObelisk.description":
           "Alter Granitsteinbruch mit unvollendetem Obelisk",
-        "attractions.aswan.unfinishedObelisk.entryFee": "$4",
+        "attractions.aswan.unfinishedObelisk.entryFee": "100 EGP",
         "attractions.aswan.unfinishedObelisk.hours": "7:00 AM - 5:00 PM",
         "attractions.aswan.nubian.name": "Nubisches Museum",
         "attractions.aswan.nubian.description":
           "Museum für nubische Kultur und Geschichte",
-        "attractions.aswan.nubian.entryFee": "$7",
+        "attractions.aswan.nubian.entryFee": "175 EGP",
         "attractions.aswan.nubian.hours": "9:00 AM - 6:00 PM",
         "attractions.aswan.botanical.name": "Botanischer Garten",
         "attractions.aswan.botanical.description":
           "Exotische Pflanzen auf Kitchener's Insel",
-        "attractions.aswan.botanical.entryFee": "$3",
+        "attractions.aswan.botanical.entryFee": "75 EGP",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Budget tips
@@ -2177,7 +2272,6 @@ export default function NileValleyGuide() {
         "nile.stay.3_4days": "3-4 Tage",
         "nile.stay.1day": "1 Tag",
         "nile.stay.halfday": "Halber Tag",
-        "nile.transport.starting_point": "Ausgangspunkt",
         "nile.transport.flight_3h_drive": "3-stündiger Flug + Fahrt",
         "nile.transport.12h_train_bus": "12 Stunden mit Zug/Bus",
         "nile.transport.13h_train_bus": "13 Stunden mit Zug/Bus",
@@ -2186,10 +2280,8 @@ export default function NileValleyGuide() {
         "highlights.beniSuef.meidumPyramid": "Meidum-Pyramide",
         "highlights.beniSuef.ruralNile": "Ländliche Nildörfer",
         "highlights.beniSuef.traditionalMarkets": "Traditionelle Märkte",
-        "attractions.beniSuef.meidumPyramid.name": "Meidum-Pyramide",
-        "attractions.beniSuef.meidumPyramid.entryFee": "$6",
-        "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
-        "attractions.beniSuef.beniSuefMuseum.entryFee": "$3",
+        "attractions.beniSuef.meidumPyramid.entryFee": "150 EGP",
+        "attractions.beniSuef.beniSuefMuseum.entryFee": "75 EGP",
         "budgetTips.beniSuef.affordableFood":
           "Erschwingliches lokales Essen verfügbar",
         "budgetTips.beniSuef.basicAccommodation":
@@ -2200,7 +2292,7 @@ export default function NileValleyGuide() {
         "highlights.edfu.traditionalMarkets": "Traditionelle Märkte",
         "highlights.edfu.nileCruiseStop": "Beliebter Nilkreuzfahrt-Stopp",
         "attractions.edfu.templeHorus.name": "Horus-Tempel",
-        "attractions.edfu.templeHorus.entryFee": "$8",
+        "attractions.edfu.templeHorus.entryFee": "200 EGP",
         "attractions.edfu.edfuMarket.name": "Traditioneller Markt von Edfu",
         "attractions.edfu.edfuMarket.entryFee": "Kostenlos",
         "budgetTips.edfu.nileCruiseStop": "Beliebter Stopp für Nilkreuzfahrten",
@@ -2214,9 +2306,9 @@ export default function NileValleyGuide() {
         "highlights.komOmbo.crocodileMuseum": "Krokodilmuseum",
         "highlights.komOmbo.sugarCaneFields": "Zuckerrohrfelder",
         "attractions.komOmbo.templeKomOmbo.name": "Tempel von Kom Ombo",
-        "attractions.komOmbo.templeKomOmbo.entryFee": "$8",
+        "attractions.komOmbo.templeKomOmbo.entryFee": "200 EGP",
         "attractions.komOmbo.crocodileMuseum.name": "Krokodilmuseum",
-        "attractions.komOmbo.crocodileMuseum.entryFee": "$5",
+        "attractions.komOmbo.crocodileMuseum.entryFee": "125 EGP",
         "budgetTips.komOmbo.combineWithEdfu":
           "Kombinieren Sie den Besuch mit dem Edfu-Tempel",
         "budgetTips.komOmbo.sunsetViews":
@@ -2226,11 +2318,11 @@ export default function NileValleyGuide() {
 
         // Aswan additional content - German
         "attractions.aswan.philaeTemple.name": "Philae-Tempel",
-        "attractions.aswan.philaeTemple.entryFee": "$10",
+        "attractions.aswan.philaeTemple.entryFee": "250 EGP",
         "attractions.aswan.highDam.name": "Assuan-Hochdamm",
-        "attractions.aswan.highDam.entryFee": "$3",
+        "attractions.aswan.highDam.entryFee": "75 EGP",
         "attractions.aswan.nubianVillage.name": "Nubisches Dorf",
-        "attractions.aswan.nubianVillage.entryFee": "$15",
+        "attractions.aswan.nubianVillage.entryFee": "375 EGP",
       },
     };
 
