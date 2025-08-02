@@ -143,7 +143,7 @@ export default function AttractionsSearch({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
           <Input
-            placeholder={t('attractions.searchPlaceholder')}
+            placeholder="Search attractions..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-9"
@@ -157,7 +157,7 @@ export default function AttractionsSearch({
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">{t('attractions.allCategories')}</SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
               {categories.map(category => (
                 <SelectItem key={category} value={category}>
                   {getCategoryIcon(category)} {category}
