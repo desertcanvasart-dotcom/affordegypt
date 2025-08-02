@@ -25,7 +25,7 @@
     "total": "Total",
     "perPerson": "par personne",
     "egp": "EGP",
-    "usd": "USD",
+
     "eur": "EUR",
     "gbp": "GBP",
     "egpPerDay": "EGP/jour",
@@ -147,7 +147,7 @@
     "deselectAllVisible": "Désélectionner Tout Visible",
     "finalTotalPerPerson": "Total Final Par Personne",
     "totalFor": "Total: 0 EGP pour 1 Voyageur",
-    "paymentAccepted": "Paiement accepté en Euro, GBP, ou USD",
+    "paymentAccepted": "Tous les prix en EGP • Cartes internationales acceptées",
     "continueToBooking": "Continuer vers la Réservation",
     "pricingBreakdown": "Répartition des Prix",
     "routes": "Itinéraires",
@@ -959,7 +959,7 @@
       },
       "currency": {
         "question": "Quelle devise dois-je apporter ?",
-        "answer": "Bien que l'Égypte utilise la Livre Égyptienne (EGP), USD et EUR sont largement acceptés. Nous recommandons d'apporter de l'argent liquide pour les petits achats et pourboires, bien que les cartes de crédit soient acceptées dans la plupart des hôtels et restaurants."
+        "answer": "L'Égypte utilise la Livre Égyptienne (EGP) comme monnaie officielle. Nous recommandons d'apporter de l'argent liquide pour les petits achats et pourboires, bien que les cartes de crédit soient acceptées dans la plupart des hôtels et restaurants."
       },
       "weather": {
         "question": "Quel est le meilleur moment pour visiter l'Égypte ?",

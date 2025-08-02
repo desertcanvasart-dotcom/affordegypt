@@ -344,7 +344,7 @@ export default function BookPage() {
                   
                   {/* Payment Currency Note */}
                   <p className="text-sm text-gray-600 text-center mb-4">
-                    Prices shown in EGP • Payment accepted in Euro, GBP, or USD
+                    All prices in EGP • International cards accepted
                   </p>
 
                   <Button 

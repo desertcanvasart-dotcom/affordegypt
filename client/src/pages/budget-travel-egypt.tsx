@@ -55,11 +55,11 @@ export default function BudgetTravelEgypt() {
   ];
 
   const budgetBreakdown = [
-    { category: "Accommodation", daily: "$6-30", details: "Hostels to budget hotels" },
-    { category: "Food", daily: "$3-15", details: "Street food to mid-range restaurants" },
-    { category: "Transport", daily: "$2-10", details: "Public transport and intercity buses" },
-    { category: "Attractions", daily: "$5-20", details: "Entry fees and activities" },
-    { category: "Miscellaneous", daily: "$5-15", details: "Tips, souvenirs, emergencies" }
+    { category: "Accommodation", daily: "150-750 EGP", details: "Hostels to budget hotels" },
+    { category: "Food", daily: "75-375 EGP", details: "Street food to mid-range restaurants" },
+    { category: "Transport", daily: "50-250 EGP", details: "Public transport and intercity buses" },
+    { category: "Attractions", daily: "125-500 EGP", details: "Entry fees and activities" },
+    { category: "Miscellaneous", daily: "125-375 EGP", details: "Tips, souvenirs, emergencies" }
   ];
 
   const moneySavingHacks = [
@@ -79,8 +79,8 @@ export default function BudgetTravelEgypt() {
       title: "Travel Documents",
       items: [
         "Passport valid for 6+ months with blank pages",
-        "e-Visa ($25 USD) - recommended online application",
-        "Visa on Arrival ($25 USD cash) for select nationalities",
+        "e-Visa (625 EGP) - recommended online application",
+        "Visa on Arrival (625 EGP cash) for select nationalities",
         "Verify current requirements via official channels"
       ]
     },
@@ -98,10 +98,10 @@ export default function BudgetTravelEgypt() {
       icon: <CreditCard className="w-5 h-5" />,
       title: "Money Matters",
       items: [
-        "Egyptian Pound (EGP) ~ 49.6 EGP to 1 USD",
-        "Carry cash in small denominations",
-        "Budget $50-80 USD/day for comprehensive travel",
-        "7-10 days: ~$800-1,100 USD including airfare"
+        "Egyptian Pound (EGP) is the local currency",
+        "Carry cash in small denominations", 
+        "Budget 1,250-2,000 EGP/day for comprehensive travel",
+        "7-10 days: ~20,000-27,500 EGP including airfare"
       ]
     }
   ];
@@ -177,7 +177,7 @@ export default function BudgetTravelEgypt() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700">
-                    The Egyptian Pound's favorable rates against USD, EUR, and GBP mean greater purchasing power. 
+                    The Egyptian Pound's favorable rates against international currencies mean greater purchasing power. 
                     Accommodation, meals, transport, and attraction tickets remain attractively affordable compared to Europe or North America.
                   </p>
                 </CardContent>
@@ -341,7 +341,7 @@ export default function BudgetTravelEgypt() {
 
               <div className="bg-teal-600 text-white p-8 rounded-xl text-center">
                 <h3 className="text-2xl font-bold mb-4">Total Daily Budget</h3>
-                <div className="text-4xl font-bold mb-2">$50 - $80 USD</div>
+                <div className="text-4xl font-bold mb-2">1,250 - 2,000 EGP</div>
                 <p className="text-teal-100">
                   Covers accommodation, meals, transport, and key attractions for a comprehensive Egypt experience
                 </p>

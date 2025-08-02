@@ -432,8 +432,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     <TableRow>
                       <TableHead>Language</TableHead>
                       <TableHead>City</TableHead>
-                      <TableHead>Hourly Rate (USD)</TableHead>
-                      <TableHead>Daily Rate (USD)</TableHead>
+                      <TableHead>Hourly Rate (EGP)</TableHead>
+                      <TableHead>Daily Rate (EGP)</TableHead>
                       <TableHead>Actions</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -441,8 +441,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     <TableRow>
                       <TableCell>English</TableCell>
                       <TableCell>Cairo</TableCell>
-                      <TableCell>$25</TableCell>
-                      <TableCell>$180</TableCell>
+                      <TableCell>625 EGP</TableCell>
+                      <TableCell>4,500 EGP</TableCell>
                       <TableCell>
                         <Button size="sm" variant="outline">
                           <Edit2 className="w-3 h-3" />
@@ -452,8 +452,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     <TableRow>
                       <TableCell>Spanish</TableCell>
                       <TableCell>Cairo</TableCell>
-                      <TableCell>$30</TableCell>
-                      <TableCell>$220</TableCell>
+                      <TableCell>750 EGP</TableCell>
+                      <TableCell>5,500 EGP</TableCell>
                       <TableCell>
                         <Button size="sm" variant="outline">
                           <Edit2 className="w-3 h-3" />
@@ -463,8 +463,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     <TableRow>
                       <TableCell>French</TableCell>
                       <TableCell>Luxor</TableCell>
-                      <TableCell>$28</TableCell>
-                      <TableCell>$200</TableCell>
+                      <TableCell>700 EGP</TableCell>
+                      <TableCell>5,000 EGP</TableCell>
                       <TableCell>
                         <Button size="sm" variant="outline">
                           <Edit2 className="w-3 h-3" />
@@ -474,8 +474,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     <TableRow>
                       <TableCell>Arabic</TableCell>
                       <TableCell>All Cities</TableCell>
-                      <TableCell>$20</TableCell>
-                      <TableCell>$150</TableCell>
+                      <TableCell>500 EGP</TableCell>
+                      <TableCell>3,750 EGP</TableCell>
                       <TableCell>
                         <Button size="sm" variant="outline">
                           <Edit2 className="w-3 h-3" />

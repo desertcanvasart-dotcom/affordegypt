@@ -208,7 +208,7 @@ export default function EgyptianStreetFoodGuide() {
                 <CardContent className="p-6">
                   <DollarSign className="w-12 h-12 text-teal-600 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-3">Extremely Affordable</h3>
-                  <p className="text-gray-700">Most items cost between 5–30 EGP (≈$0.15–$1 USD)</p>
+                  <p className="text-gray-700">Most items cost between 5–30 EGP</p>
                 </CardContent>
               </Card>
 
@@ -465,7 +465,7 @@ export default function EgyptianStreetFoodGuide() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Budget-Friendly Street Food Itinerary</h2>
               <p className="text-xl text-gray-600">
-                Cairo Day Trip: Full day of delicious street food for under $3 USD
+                Cairo Day Trip: Full day of delicious street food for under 75 EGP
               </p>
             </div>
 

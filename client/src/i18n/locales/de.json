@@ -25,7 +25,7 @@
     "total": "Gesamt",
     "perPerson": "pro Person",
     "egp": "EGP",
-    "usd": "USD",
+
     "eur": "EUR",
     "gbp": "GBP",
     "egpPerDay": "EGP/Tag",
@@ -147,7 +147,7 @@
     "deselectAllVisible": "Alle Sichtbaren Abwählen",
     "finalTotalPerPerson": "Gesamtsumme Pro Person",
     "totalFor": "Gesamt: 0 EGP für 1 Reisender",
-    "paymentAccepted": "Zahlung in Euro, GBP oder USD akzeptiert",
+    "paymentAccepted": "Alle Preise in EGP • Internationale Karten akzeptiert",
     "continueToBooking": "Zur Buchung Fortfahren",
     "pricingBreakdown": "Preisaufschlüsselung",
     "routes": "Routen",
@@ -587,8 +587,8 @@
         },
         "itinerary": {
           "title": "5-Tage Budget Wüstenabenteuer",
-          "subtitle": "Komplettes Wüstenerlebnis für unter 250 USD",
-          "total": "Gesamt: ~2200 EGP (~140 USD)",
+          "subtitle": "Komplettes Wüstenerlebnis für unter 6,250 EGP",
+          "total": "Gesamt: ~2,200 EGP",
           "days": [
             {
               "day": "Tag 1",
@@ -1110,7 +1110,7 @@
       },
       "currency": {
         "question": "Welche Währung sollte ich mitbringen?",
-        "answer": "Obwohl Ägypten das Ägyptische Pfund (EGP) verwendet, werden USD und EUR weithin akzeptiert. Wir empfehlen, etwas Bargeld für kleine Einkäufe und Trinkgelder mitzubringen, obwohl Kreditkarten in den meisten Hotels und Restaurants akzeptiert werden."
+        "answer": "Ägypten verwendet das Ägyptische Pfund (EGP) als offizielle Währung. Wir empfehlen, etwas Bargeld für kleine Einkäufe und Trinkgelder mitzubringen, obwohl Kreditkarten in den meisten Hotels und Restaurants akzeptiert werden."
       },
       "weather": {
         "question": "Wann ist die beste Zeit, Ägypten zu besuchen?",

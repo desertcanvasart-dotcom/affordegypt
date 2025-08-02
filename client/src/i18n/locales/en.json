@@ -25,7 +25,7 @@
     "total": "Total",
     "perPerson": "per person",
     "egp": "EGP",
-    "usd": "USD",
+
     "eur": "EUR",
     "gbp": "GBP",
     "egpPerDay": "EGP/day",
@@ -147,7 +147,7 @@
     "deselectAllVisible": "Deselect All Visible",
     "finalTotalPerPerson": "Final Total Per Person",
     "totalFor": "Total: 0 EGP for 1 Travelers",
-    "paymentAccepted": "Payment accepted in Euro, GBP, or USD",
+    "paymentAccepted": "All prices in EGP • International cards accepted",
     "continueToBooking": "Continue to Booking",
     "pricingBreakdown": "Pricing Breakdown",
     "routes": "Routes",
@@ -927,7 +927,7 @@
       },
       "currency": {
         "question": "What currency should I bring?",
-        "answer": "While Egypt uses the Egyptian Pound (EGP), USD and EUR are widely accepted. We recommend bringing some cash for small purchases and tips, though credit cards are accepted in most hotels and restaurants."
+        "answer": "Egypt uses the Egyptian Pound (EGP) as its official currency. We recommend bringing some cash for small purchases and tips, though credit cards are accepted in most hotels and restaurants."
       },
       "weather": {
         "question": "What's the best time to visit Egypt?",

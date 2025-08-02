@@ -121,7 +121,7 @@ export default function TravelTips() {
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">📖</div>
                 <h4 className="text-xl font-semibold mb-2">1. Passport & Visa</h4>
-                <p>Ensure your passport is valid for at least six months past your arrival. Most travelers need a visa. The <strong>e-Visa ($25 USD)</strong> is highly recommended and can be applied for online. Visa on Arrival is an option for some, but check rules as they can change.</p>
+                <p>Ensure your passport is valid for at least six months past your arrival. Most travelers need a visa. The <strong>e-Visa (625 EGP)</strong> is highly recommended and can be applied for online. Visa on Arrival is an option for some, but check rules as they can change.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🛡️</div>
@@ -148,12 +148,12 @@ export default function TravelTips() {
 
               <h3 className="text-2xl font-semibold mb-4">Your Daily Budget in Egypt</h3>
               <p className="text-lg leading-relaxed mb-6">
-                Most budget travelers in Egypt will find themselves spending somewhere between <strong>$50 and $80 USD a day.</strong> This sweet spot covers a hostel or budget hotel, local meals, public transport, and entrance fees to a major attraction or two.
+                Most budget travelers in Egypt will find themselves spending somewhere between <strong>1,250 and 2,000 EGP a day.</strong> This sweet spot covers a hostel or budget hotel, local meals, public transport, and entrance fees to a major attraction or two.
               </p>
 
               <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-8">
                 <p className="mb-0">
-                  <strong className="text-gray-800">Total Trip Cost (7-10 Days):</strong> Expect to spend around <strong>$800–$1,100 USD</strong> including flights from Europe/Asia. Flights from the U.S. or Australia will increase this total. Your flight will likely be your biggest single expense.
+                  <strong className="text-gray-800">Total Trip Cost (7-10 Days):</strong> Expect to spend around <strong>20,000–27,500 EGP</strong> including flights from Europe/Asia. Flights from the U.S. or Australia will increase this total. Your flight will likely be your biggest single expense.
                 </p>
               </div>
 
@@ -194,11 +194,11 @@ export default function TravelTips() {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <h4 className="text-xl font-semibold mb-2">Hostels</h4>
-                <p>The budget traveler's basecamp. Perfect for meeting others. Dorm beds start at <strong>$6–$12 USD</strong> per night in Cairo, Luxor, and Dahab.</p>
+                <p>The budget traveler's basecamp. Perfect for meeting others. Dorm beds start at <strong>150–300 EGP</strong> per night in Cairo, Luxor, and Dahab.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <h4 className="text-xl font-semibold mb-2">Budget Hotels</h4>
-                <p>For more privacy. You can find clean, private rooms for <strong>$15–$30 USD</strong> per night, often with an en-suite bathroom and A/C.</p>
+                <p>For more privacy. You can find clean, private rooms for <strong>375–750 EGP</strong> per night, often with an en-suite bathroom and A/C.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <h4 className="text-xl font-semibold mb-2">Nubian Stays</h4>
@@ -220,24 +220,24 @@ export default function TravelTips() {
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Koshari:</strong> The national dish. A hearty mix of rice, lentils, pasta, and spicy tomato sauce. <strong>Cost: &lt; $1 USD.</strong></span>
+                  <span><strong>Koshari:</strong> The national dish. A hearty mix of rice, lentils, pasta, and spicy tomato sauce. <strong>Cost: &lt; 25 EGP.</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Ta'ameya (Falafel):</strong> Made from fava beans, served in fresh pita bread. <strong>Cost: ~ $0.50 USD.</strong></span>
+                  <span><strong>Ta'ameya (Falafel):</strong> Made from fava beans, served in fresh pita bread. <strong>Cost: ~ 12 EGP.</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Ful Medames:</strong> Slow-cooked fava beans, the breakfast of champions. <strong>Cost: &lt; $1 USD.</strong></span>
+                  <span><strong>Ful Medames:</strong> Slow-cooked fava beans, the breakfast of champions. <strong>Cost: &lt; 25 EGP.</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Shawarma:</strong> Juicy, garlicky, and craveable chicken or beef wraps. <strong>Cost: ~ $1.50 USD.</strong></span>
+                  <span><strong>Shawarma:</strong> Juicy, garlicky, and craveable chicken or beef wraps. <strong>Cost: ~ 37 EGP.</strong></span>
                 </li>
               </ul>
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg">
                 <p className="mb-0">
-                  <strong className="text-foreground">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~$1.41, a loaf of bread is ~$0.58, and fresh produce is incredibly cheap. This is a great way to save on breakfasts and lunches.
+                  <strong className="text-foreground">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~35 EGP, a loaf of bread is ~14 EGP, and fresh produce is incredibly cheap. This is a great way to save on breakfasts and lunches.
                 </p>
               </div>
             </div>
@@ -255,12 +255,12 @@ export default function TravelTips() {
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚂</div>
                 <h4 className="text-xl font-semibold mb-2">Trains</h4>
-                <p>Scenic and economical for long distances. A 2nd Class AC seat from <strong>Cairo to Luxor costs foreigners ~$31 USD</strong>. It's a comfortable and classic way to travel.</p>
+                <p>Scenic and economical for long distances. A 2nd Class AC seat from <strong>Cairo to Luxor costs foreigners ~775 EGP</strong>. It's a comfortable and classic way to travel.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚌</div>
                 <h4 className="text-xl font-semibold mb-2">Buses</h4>
-                <p>The cheapest way to go. A bus from <strong>Cairo to Luxor can be as low as $8-$11 USD</strong>. Use companies like Go Bus or Blue Bus for reliable service.</p>
+                <p>The cheapest way to go. A bus from <strong>Cairo to Luxor can be as low as 200-275 EGP</strong>. Use companies like Go Bus or Blue Bus for reliable service.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚇</div>
