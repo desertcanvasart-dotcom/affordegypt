@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Calendar, Clock, CheckCircle, AlertCircle, MapPin, Mail, Phone, Eye } from "lucide-react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Calendar, Clock, CheckCircle, AlertCircle, MapPin, Mail, Phone, Eye, Trash2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 interface UserBooking {
   id: number;
@@ -31,6 +33,9 @@ interface UserBooking {
 
 export default function UserDashboard() {
   const [selectedBooking, setSelectedBooking] = useState<UserBooking | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
   
   // For demo purposes, using userId 1. In real app, this would come from auth context
   const userId = 1;
@@ -38,6 +43,39 @@ export default function UserDashboard() {
   const { data: bookings = [], isLoading } = useQuery<UserBooking[]>({
     queryKey: [`/api/user/${userId}/bookings`]
   });
+
+  const deleteBookingMutation = useMutation({
+    mutationFn: async (bookingId: number) => {
+      const response = await apiRequest("DELETE", `/api/bookings/${bookingId}`);
+      return response.json();
+    },
+    onMutate: (bookingId) => {
+      setDeletingId(bookingId);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/user/${userId}/bookings`] });
+      toast({
+        title: "Booking deleted",
+        description: "Your booking has been successfully deleted.",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to delete booking. Please try again.",
+        variant: "destructive",
+      });
+    },
+    onSettled: () => {
+      setDeletingId(null);
+    }
+  });
+
+  const handleDeleteBooking = (booking: UserBooking) => {
+    if (window.confirm(`Are you sure you want to delete booking ${booking.bookingReference}? This action cannot be undone.`)) {
+      deleteBookingMutation.mutate(booking.id);
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -197,19 +235,39 @@ export default function UserDashboard() {
             </TabsList>
 
             <TabsContent value="all">
-              <BookingsList bookings={bookings} onViewDetails={setSelectedBooking} />
+              <BookingsList 
+                bookings={bookings} 
+                onViewDetails={setSelectedBooking}
+                onDelete={handleDeleteBooking}
+                deletingId={deletingId}
+              />
             </TabsContent>
 
             <TabsContent value="upcoming">
-              <BookingsList bookings={upcomingBookings} onViewDetails={setSelectedBooking} />
+              <BookingsList 
+                bookings={upcomingBookings} 
+                onViewDetails={setSelectedBooking}
+                onDelete={handleDeleteBooking}
+                deletingId={deletingId}
+              />
             </TabsContent>
 
             <TabsContent value="past">
-              <BookingsList bookings={pastBookings} onViewDetails={setSelectedBooking} />
+              <BookingsList 
+                bookings={pastBookings} 
+                onViewDetails={setSelectedBooking}
+                onDelete={handleDeleteBooking}
+                deletingId={deletingId}
+              />
             </TabsContent>
 
             <TabsContent value="pending">
-              <BookingsList bookings={pendingBookings} onViewDetails={setSelectedBooking} />
+              <BookingsList 
+                bookings={pendingBookings} 
+                onViewDetails={setSelectedBooking}
+                onDelete={handleDeleteBooking}
+                deletingId={deletingId}
+              />
             </TabsContent>
           </Tabs>
         )}
@@ -228,10 +286,14 @@ export default function UserDashboard() {
 
 function BookingsList({ 
   bookings, 
-  onViewDetails 
+  onViewDetails,
+  onDelete,
+  deletingId
 }: { 
   bookings: UserBooking[], 
-  onViewDetails: (booking: UserBooking) => void 
+  onViewDetails: (booking: UserBooking) => void,
+  onDelete: (booking: UserBooking) => void,
+  deletingId: number | null
 }) {
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -336,6 +398,21 @@ function BookingsList({
                   onClick={() => window.location.href = `/booking/${booking.bookingReference}`}
                 >
                   View Confirmation
+                </Button>
+
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => onDelete(booking)}
+                  disabled={deletingId === booking.id}
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                >
+                  {deletingId === booking.id ? (
+                    <div className="w-4 h-4 mr-2 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
+                  ) : (
+                    <Trash2 className="w-4 h-4 mr-2" />
+                  )}
+                  {deletingId === booking.id ? "Deleting..." : "Delete"}
                 </Button>
               </div>
             </div>
