@@ -21,6 +21,7 @@ import TransportationSearch from "@/components/transportation-search";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
+import { trackEvent } from "@/lib/analytics";
 
 interface CityService {
   cityId: number;
@@ -184,6 +185,9 @@ export default function MultiCityPricingTool() {
 
   const handleContinueBooking = async () => {
     if (!totalPricing || cityServices.length === 0) return;
+    
+    // Track booking initiation event
+    trackEvent('initiate_checkout', 'ecommerce', 'multi_city_pricing_tool', totalPricing.totalAmount);
     
     try {
       // Enrich city services with full route data for proper display
@@ -1020,7 +1024,7 @@ Recommended
                     Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
-                    {t('pricing.paymentAccepted')}
+                    All prices in EGP • International cards accepted
                   </p>
                 </div>
               )}
@@ -1028,7 +1032,7 @@ Recommended
               {pricingMutation.isPending ? (
                 <Button size="lg" disabled className="flex items-center gap-2">
                   <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
-                  {t('pricing.calculating')}
+                  Calculating...
                 </Button>
               ) : (
                 <Button 
@@ -1037,7 +1041,7 @@ Recommended
                   disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
                   onClick={handleContinueBooking}
                 >
-                  {t('pricing.continueToBooking')}
+                  Continue to Booking
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               )}
