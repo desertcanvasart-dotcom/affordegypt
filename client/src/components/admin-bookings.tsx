@@ -12,7 +12,8 @@ import {
   Send,
   Filter,
   Download,
-  Trash2
+  Trash2,
+  CreditCard
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -72,6 +73,26 @@ export default function AdminBookings() {
       toast({
         title: "Error",
         description: error.message || "Failed to update booking status",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const updatePaymentStatusMutation = useMutation({
+    mutationFn: async ({ bookingId, paymentStatus }: { bookingId: number, paymentStatus: string }) => {
+      return await apiRequest("PUT", `/api/bookings/${bookingId}/payment-status`, { paymentStatus });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+      toast({
+        title: "Payment Status Updated",
+        description: "Payment status has been updated successfully",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update payment status",
         variant: "destructive",
       });
     }
@@ -393,6 +414,22 @@ export default function AdminBookings() {
                         <SelectItem value="in_progress">In Progress</SelectItem>
                         <SelectItem value="completed">Completed</SelectItem>
                         <SelectItem value="cancelled">Cancelled</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    
+                    <Select
+                      value={booking.paymentStatus}
+                      onValueChange={(paymentStatus) => updatePaymentStatusMutation.mutate({ bookingId: booking.id, paymentStatus })}
+                    >
+                      <SelectTrigger className="w-32">
+                        <CreditCard className="w-4 h-4 mr-2" />
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="paid">Paid</SelectItem>
+                        <SelectItem value="failed">Failed</SelectItem>
+                        <SelectItem value="refunded">Refunded</SelectItem>
                       </SelectContent>
                     </Select>
                     

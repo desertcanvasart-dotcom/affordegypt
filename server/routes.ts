@@ -1755,6 +1755,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register pricing routes for Transfer Only pricing endpoint
   await registerPricingRoutes(app);
 
+  // Update booking status endpoint
+  app.put("/api/bookings/:id/status", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+
+      const booking = await storage.getBooking(id);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+
+      await storage.updateBookingStatus(id, status);
+      res.json({ message: "Booking status updated successfully" });
+    } catch (error: any) {
+      console.error("Error updating booking status:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Update payment status endpoint
+  app.put("/api/bookings/:id/payment-status", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { paymentStatus } = req.body;
+
+      const booking = await storage.getBooking(id);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+
+      await storage.updateBookingPaymentStatus(id, paymentStatus);
+      res.json({ message: "Payment status updated successfully" });
+    } catch (error: any) {
+      console.error("Error updating payment status:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Email notification endpoints
   app.post("/api/bookings/:id/send-confirmation", async (req, res) => {
     try {

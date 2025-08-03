@@ -44,6 +44,7 @@ export interface IStorage {
   getBooking(id: number): Promise<Booking | undefined>;
   createBooking(booking: InsertBooking): Promise<Booking>;
   updateBookingPaymentStatus(id: number, status: string, paymentIntentId?: string): Promise<Booking>;
+  updateBookingStatus(id: number, status: string): Promise<Booking>;
   markEmailSent(id: number, emailType: 'confirmation' | 'reminder'): Promise<Booking>;
 
   // Commission Tiers
@@ -290,6 +291,19 @@ export class MemStorage implements IStorage {
       ...booking, 
       paymentStatus: status, 
       stripePaymentIntentId: paymentIntentId || booking.stripePaymentIntentId,
+      updatedAt: new Date()
+    };
+    this.bookings.set(id, updatedBooking);
+    return updatedBooking;
+  }
+
+  async updateBookingStatus(id: number, status: string): Promise<Booking> {
+    const booking = this.bookings.get(id);
+    if (!booking) throw new Error("Booking not found");
+    
+    const updatedBooking = { 
+      ...booking, 
+      bookingStatus: status,
       updatedAt: new Date()
     };
     this.bookings.set(id, updatedBooking);
