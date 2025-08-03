@@ -11,7 +11,8 @@ import {
   Edit3,
   Send,
   Filter,
-  Download
+  Download,
+  Trash2
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -91,6 +92,26 @@ export default function AdminBookings() {
       toast({
         title: "Error",
         description: error.message || "Failed to send reminder email",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const deleteBookingMutation = useMutation({
+    mutationFn: async (bookingId: number) => {
+      return await apiRequest("DELETE", `/api/bookings/${bookingId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+      toast({
+        title: "Booking Deleted",
+        description: "Booking has been deleted successfully",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to delete booking",
         variant: "destructive",
       });
     }
@@ -383,6 +404,20 @@ export default function AdminBookings() {
                     >
                       <Send className="w-4 h-4 mr-2" />
                       Send Reminder
+                    </Button>
+                    
+                    <Button 
+                      variant="destructive" 
+                      size="sm"
+                      onClick={() => {
+                        if (window.confirm(`Are you sure you want to delete booking ${booking.bookingReference}? This action cannot be undone.`)) {
+                          deleteBookingMutation.mutate(booking.id);
+                        }
+                      }}
+                      disabled={deleteBookingMutation.isPending}
+                    >
+                      <Trash2 className="w-4 h-4 mr-2" />
+                      Delete Booking
                     </Button>
                   </div>
                 </div>
