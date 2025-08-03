@@ -21,7 +21,7 @@ import TransportationSearch from "@/components/transportation-search";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackConversion } from "@/lib/analytics";
 
 interface CityService {
   cityId: number;
@@ -186,8 +186,11 @@ export default function MultiCityPricingTool() {
   const handleContinueBooking = async () => {
     if (!totalPricing || cityServices.length === 0) return;
     
-    // Track booking initiation event
+    // Track booking initiation event for Google Analytics
     trackEvent('initiate_checkout', 'ecommerce', 'multi_city_pricing_tool', totalPricing.totalAmount);
+    
+    // Track conversion for Google Ads (you can customize the conversion label)
+    trackConversion('booking_initiation', totalPricing.totalAmount, 'EGP');
     
     try {
       // Enrich city services with full route data for proper display

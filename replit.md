@@ -30,10 +30,10 @@ Content approach: Replace translation function calls with direct dummy data in c
 - **Admin Management**: Tools for managing bookings, routes (CRUD operations and CSV import), and users.
 - **Booking Process**: Streamlined user flow from selection to payment and confirmation.
 - **Multilingual Support**: Comprehensive multilingual content system with dummy data implementation for English, Spanish, French, and German. Language switching works dynamically across all content including destinations, activities, practical information, and itineraries. Translation JSON files have been replaced with direct dummy data in components for improved performance and easier maintenance.
-- **Analytics Tracking**: Google Analytics (G-MWY0T7465M) implementation with automatic page view tracking and event tracking for key user interactions like booking initiation and form submissions.
+- **Analytics Tracking**: Comprehensive tracking with Google Analytics (G-MWY0T7465M) and Google Ads (AW-17431672142) including automatic page view tracking, event tracking for user interactions, and conversion tracking for advertising campaigns.
 
 ## External Dependencies
 
-- **Environment Variables**: `DATABASE_URL`, `JWT_SECRET`, `SENDGRID_API_KEY`, `STRIPE_SECRET_KEY` (optional), `STRIPE_PUBLISHABLE_KEY` (optional), `VITE_GA_MEASUREMENT_ID` (Google Analytics).
-- **Third-Party Services**: Neon Database (serverless PostgreSQL), SendGrid, Stripe (optional), Google Analytics (G-MWY0T7465M).
+- **Environment Variables**: `DATABASE_URL`, `JWT_SECRET`, `SENDGRID_API_KEY`, `STRIPE_SECRET_KEY` (optional), `STRIPE_PUBLISHABLE_KEY` (optional), `VITE_GA_MEASUREMENT_ID` (Google Analytics), `VITE_GOOGLE_ADS_ID` (Google Ads).
+- **Third-Party Services**: Neon Database (serverless PostgreSQL), SendGrid, Stripe (optional), Google Analytics (G-MWY0T7465M), Google Ads (AW-17431672142).
 - **Key Node.js Dependencies**: Express, TypeScript, Drizzle ORM, React, Tailwind CSS, Radix UI, JWT, bcrypt, Multer, CSV parser, Zod.

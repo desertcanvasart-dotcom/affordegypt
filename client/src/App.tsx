@@ -107,11 +107,14 @@ function Router() {
 }
 
 function App() {
-  // Initialize Google Analytics when app loads
+  // Initialize Google Analytics and Google Ads when app loads
   useEffect(() => {
-    // Verify required environment variable is present
-    if (!import.meta.env.VITE_GA_MEASUREMENT_ID) {
-      console.warn('Missing required Google Analytics key: VITE_GA_MEASUREMENT_ID');
+    // Check for tracking IDs
+    const hasGA = import.meta.env.VITE_GA_MEASUREMENT_ID;
+    const hasAds = import.meta.env.VITE_GOOGLE_ADS_ID;
+    
+    if (!hasGA && !hasAds) {
+      console.warn('Missing tracking IDs: VITE_GA_MEASUREMENT_ID and VITE_GOOGLE_ADS_ID');
     } else {
       initGA();
     }
