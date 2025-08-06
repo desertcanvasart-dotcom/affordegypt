@@ -8,40 +8,32 @@ declare global {
 
 // Initialize Google Analytics and Google Ads
 export const initGA = () => {
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
   const googleAdsId = import.meta.env.VITE_GOOGLE_ADS_ID;
 
-  if (!measurementId && !googleAdsId) {
-    console.warn('Missing required tracking IDs: VITE_GA_MEASUREMENT_ID and VITE_GOOGLE_ADS_ID');
+  // Google Analytics is now loaded directly in HTML head, so we just need to handle Google Ads
+  if (!googleAdsId) {
+    console.warn('Missing Google Ads tracking ID: VITE_GOOGLE_ADS_ID');
     return;
   }
 
-  // Initialize dataLayer
+  // Initialize dataLayer if not already done
   window.dataLayer = window.dataLayer || [];
   function gtag(...args: any[]) { window.dataLayer.push(args); }
   
-  // Add gtag function to window
-  (window as any).gtag = gtag;
+  // Add gtag function to window if not already available
+  if (!(window as any).gtag) {
+    (window as any).gtag = gtag;
+  }
+
+  // Add Google Ads tracking
+  const adsScript = document.createElement('script');
+  adsScript.async = true;
+  adsScript.src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
+  document.head.appendChild(adsScript);
   
-  gtag('js', new Date());
-
-  // Add Google Analytics tracking if available
-  if (measurementId) {
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    document.head.appendChild(gaScript);
-    gtag('config', measurementId);
-  }
-
-  // Add Google Ads tracking if available
-  if (googleAdsId) {
-    const adsScript = document.createElement('script');
-    adsScript.async = true;
-    adsScript.src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
-    document.head.appendChild(adsScript);
-    gtag('config', googleAdsId);
-  }
+  adsScript.onload = () => {
+    (window as any).gtag('config', googleAdsId);
+  };
 };
 
 // Track page views - useful for single-page applications
