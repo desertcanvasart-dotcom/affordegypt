@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Debug</title>
+</head>
+<body>
+    <h1>Testing Analytics</h1>
+    <script>
+        console.log('Environment variables:');
+        console.log('VITE_GA_MEASUREMENT_ID:', 'G-MWY0T7465M');
+        console.log('VITE_GOOGLE_ADS_ID:', 'AW-17431672142');
+        
+        // Test the actual gtag loading
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MWY0T7465M');
+        
+        // Load the script
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MWY0T7465M';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+            console.log('Google Analytics script loaded successfully');
+        };
+        script.onerror = function() {
+            console.error('Failed to load Google Analytics script');
+        };
+    </script>
+</body>
+</html>
