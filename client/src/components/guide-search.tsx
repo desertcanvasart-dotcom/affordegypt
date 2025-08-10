@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
-import { ChevronDown, Search, User, Clock, Globe, Star } from "lucide-react";
+import { ChevronDown, Search, User, Clock, Globe, Star, X, Check } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
 interface GuideOption {
@@ -32,6 +32,7 @@ export function GuideSearch({
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDuration, setSelectedDuration] = useState<number>(8);
+  const [isOpen, setIsOpen] = useState(false);
 
   // Fetch actual guide rates from database
   const { data: guideRates = [] } = useQuery({
@@ -41,7 +42,7 @@ export function GuideSearch({
 
   // Get actual daily rate for a language from database
   const getDailyRate = (language: string): number => {
-    const guideRate = guideRates.find((rate: any) => 
+    const guideRate = (guideRates as any[]).find((rate: any) => 
       rate.language?.trim().toLowerCase() === language.trim().toLowerCase()
     );
     return guideRate ? Math.round(parseFloat(guideRate.hourlyPrice)) : 2500; // Default fallback
@@ -127,7 +128,7 @@ export function GuideSearch({
   };
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" className="w-full justify-between">
           <div className="flex items-center gap-2">
@@ -139,9 +140,19 @@ export function GuideSearch({
       </PopoverTrigger>
       <PopoverContent className="w-96 p-0">
         <div className="p-4 border-b">
-          <div className="flex items-center gap-2 mb-3">
-            <User className="h-5 w-5 text-teal-600" />
-            <h3 className="font-semibold">Tour Guide for {cityName}</h3>
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <User className="h-5 w-5 text-teal-600" />
+              <h3 className="font-semibold">Tour Guide for {cityName}</h3>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsOpen(false)}
+              className="h-6 w-6 p-0"
+            >
+              <X className="h-4 w-4" />
+            </Button>
           </div>
           
           {/* Search Input */}
@@ -249,6 +260,19 @@ export function GuideSearch({
               ))
             )}
           </div>
+        </div>
+        
+        {/* Done Button */}
+        <div className="p-4 border-t">
+          <Button
+            onClick={() => setIsOpen(false)}
+            className="w-full"
+            size="sm"
+          >
+            <Check className="w-4 h-4 mr-2" />
+            Done
+            {selectedGuide && ` (${selectedGuide.language} - ${selectedGuide.duration}h)`}
+          </Button>
         </div>
       </PopoverContent>
     </Popover>

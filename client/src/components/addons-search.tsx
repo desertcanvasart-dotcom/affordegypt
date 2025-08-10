@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronDown, Search, Plus, Minus, Package, Users, Calendar, Star } from "lucide-react";
+import { ChevronDown, Search, Plus, Minus, Package, Users, Calendar, Star, X, Check } from "lucide-react";
 
 interface AddOn {
   id: number;
@@ -45,6 +45,7 @@ export function AddOnsSearch({
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [isOpen, setIsOpen] = useState(false);
 
   // Filter add-ons based on criteria
   const filteredAddOns = useMemo(() => {
@@ -224,7 +225,7 @@ export function AddOnsSearch({
   };
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" className="w-full justify-between">
           <div className="flex items-center gap-2">
@@ -241,11 +242,26 @@ export function AddOnsSearch({
               <Package className="h-5 w-5 text-teal-600" />
               <h3 className="font-semibold">Add-ons for {cityName}</h3>
             </div>
-            {selectedAddOns.length > 0 && (
-              <Button size="sm" variant="ghost" onClick={clearAll}>
-                Clear All
+            <div className="flex items-center gap-2">
+              {selectedAddOns.length > 0 && (
+                <Badge variant="secondary" className="text-xs">
+                  {selectedAddOns.length} selected
+                </Badge>
+              )}
+              {selectedAddOns.length > 0 && (
+                <Button size="sm" variant="ghost" onClick={clearAll}>
+                  Clear All
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(false)}
+                className="h-6 w-6 p-0"
+              >
+                <X className="h-4 w-4" />
               </Button>
-            )}
+            </div>
           </div>
           
           {/* Search Input */}
@@ -335,6 +351,19 @@ export function AddOnsSearch({
               )}
             </div>
           )}
+        </div>
+        
+        {/* Done Button */}
+        <div className="p-4 border-t">
+          <Button
+            onClick={() => setIsOpen(false)}
+            className="w-full"
+            size="sm"
+          >
+            <Check className="w-4 h-4 mr-2" />
+            Done
+            {selectedAddOns.length > 0 && ` (${selectedAddOns.length} selected)`}
+          </Button>
         </div>
       </PopoverContent>
     </Popover>
