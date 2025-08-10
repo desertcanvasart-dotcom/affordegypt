@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Search, MapPin, Car, Plane, Ship, ChevronDown, X } from "lucide-react";
+import { Search, MapPin, Car, Plane, Ship, ChevronDown, X, Check } from "lucide-react";
 
 import { RouteData } from "../../../shared/types";
 
@@ -30,6 +30,7 @@ export default function TransportationSearch({
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
+  const [isOpen, setIsOpen] = useState(false);
 
   // Filter routes for the current city - only show routes that START from this city
   const cityRoutes = useMemo(() => {
@@ -68,6 +69,11 @@ export default function TransportationSearch({
       ? selectedRoutes.filter(id => id !== routeId)
       : [...selectedRoutes, routeId];
     onRoutesChange(updated);
+    
+    // Optional: Auto-close on mobile after selection (you can remove this if not desired)
+    // if (window.innerWidth < 768 && updated.length > selectedRoutes.length) {
+    //   setTimeout(() => setIsOpen(false), 500);
+    // }
   };
 
   const getRouteIcon = (tripType: string) => {
@@ -122,7 +128,7 @@ export default function TransportationSearch({
   };
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -137,11 +143,21 @@ export default function TransportationSearch({
           {/* Header */}
           <div className="flex items-center justify-between">
             <h4 className="font-medium text-sm">{cityName} Transportation</h4>
-            {selectedRoutes.length > 0 && (
-              <Badge variant="secondary" className="text-xs">
-                {selectedRoutes.length} selected
-              </Badge>
-            )}
+            <div className="flex items-center gap-2">
+              {selectedRoutes.length > 0 && (
+                <Badge variant="secondary" className="text-xs">
+                  {selectedRoutes.length} selected
+                </Badge>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(false)}
+                className="h-6 w-6 p-0"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Search */}
@@ -242,30 +258,45 @@ export default function TransportationSearch({
           </div>
 
           {/* Quick Selection Actions */}
-          {filteredRoutes.length > 0 && (
-            <div className="flex gap-2 pt-2 border-t">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const allRouteIds = filteredRoutes.map(r => r.id);
-                  const combined = [...selectedRoutes, ...allRouteIds];
-                  onRoutesChange(Array.from(new Set(combined)));
-                }}
-              >
-{t('common.selectAllVisible')}
-              </Button>
-              {selectedRoutes.length > 0 && (
+          <div className="flex flex-col gap-2 pt-2 border-t">
+            {filteredRoutes.length > 0 && (
+              <div className="flex gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => onRoutesChange([])}
+                  onClick={() => {
+                    const allRouteIds = filteredRoutes.map(r => r.id);
+                    const combined = [...selectedRoutes, ...allRouteIds];
+                    onRoutesChange(Array.from(new Set(combined)));
+                  }}
+                  className="flex-1"
                 >
-                  Clear All
+                  {t('common.selectAllVisible')}
                 </Button>
-              )}
-            </div>
-          )}
+                {selectedRoutes.length > 0 && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onRoutesChange([])}
+                    className="flex-1"
+                  >
+                    Clear All
+                  </Button>
+                )}
+              </div>
+            )}
+            
+            {/* Done Button */}
+            <Button
+              onClick={() => setIsOpen(false)}
+              className="w-full"
+              size="sm"
+            >
+              <Check className="w-4 h-4 mr-2" />
+              Done
+              {selectedRoutes.length > 0 && ` (${selectedRoutes.length} selected)`}
+            </Button>
+          </div>
         </div>
       </PopoverContent>
     </Popover>
