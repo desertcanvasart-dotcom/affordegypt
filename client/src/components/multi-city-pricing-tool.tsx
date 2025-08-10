@@ -468,40 +468,44 @@ export default function MultiCityPricingTool() {
   };
 
   return (
-    <div id="quote-builder" className="max-w-7xl mx-auto px-4 py-8">
+    <div id="quote-builder" className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
       <Tabs defaultValue="pricing" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-6">
+        <TabsList className="grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
           <TabsTrigger value="pricing" className="flex items-center gap-2">
             <Calculator className="w-4 h-4" />
-            Build Quote
+            <span className="hidden sm:inline">Build Quote</span>
+            <span className="sm:hidden">Quote</span>
           </TabsTrigger>
           <TabsTrigger value="saved" className="flex items-center gap-2">
             <BookOpen className="w-4 h-4" />
-            Saved Quotes
+            <span className="hidden sm:inline">Saved Quotes</span>
+            <span className="sm:hidden">Saved</span>
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="pricing">
           <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-2xl">
-                <Calculator className="w-6 h-6 text-primary" />
-                Multi-City Egypt Travel Tool
+            <CardHeader className="text-center">
+              <CardTitle className="flex items-center justify-center gap-2 text-xl sm:text-2xl">
+                <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                <span className="hidden sm:inline">Multi-City Egypt Travel Tool</span>
+                <span className="sm:hidden">Egypt Travel Tool</span>
               </CardTitle>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-sm sm:text-base">
                 Build your perfect Egypt itinerary with real-time pricing
               </p>
             </CardHeader>
             
             <CardContent>
               {/* Start Here Guide */}
-              <div className="relative mb-2">
-                <div className="flex items-start gap-3">
-                  <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium mt-2">
-                    Start by adding your first destination
+              <div className="relative mb-4">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-3 text-center sm:text-left">
+                  <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="hidden sm:inline">Start by adding your first destination</span>
+                    <span className="sm:hidden">Add your first destination</span>
                   </div>
                   <svg 
-                    className="w-16 h-16 text-primary mt-1" 
+                    className="w-12 h-12 sm:w-16 sm:h-16 text-primary" 
                     viewBox="0 0 64 64" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg"
@@ -529,10 +533,10 @@ export default function MultiCityPricingTool() {
               </div>
 
               {/* Main Travel Date and Travelers */}
-              <div className="flex items-center gap-6 mt-4 p-4 bg-muted rounded-lg">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 p-4 bg-muted rounded-lg">
+                <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
                   <Calendar className="w-4 h-4 text-primary" />
-                  <Label htmlFor="travel-date" className="font-medium">Trip Start Date</Label>
+                  <Label htmlFor="travel-date" className="font-medium text-center sm:text-left">Trip Start Date</Label>
                   <Input
                     id="travel-date"
                     type="date"
@@ -542,12 +546,12 @@ export default function MultiCityPricingTool() {
                       // Update all city services with the new date
                       setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
                     }}
-                    className="w-40"
+                    className="w-full sm:w-40"
                   />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
                   <Users className="w-4 h-4 text-primary" />
-                  <Label htmlFor="total-travelers" className="font-medium">Total Travelers</Label>
+                  <Label htmlFor="total-travelers" className="font-medium text-center sm:text-left">Total Travelers</Label>
                   <Select
                     value={globalTravelers.toString()}
                     onValueChange={(value) => {
@@ -557,7 +561,7 @@ export default function MultiCityPricingTool() {
                       setCityServices(prev => prev.map(city => ({ ...city, travelers })));
                     }}
                   >
-                    <SelectTrigger className="w-16">
+                    <SelectTrigger className="w-full sm:w-16">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
