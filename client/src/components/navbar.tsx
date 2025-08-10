@@ -114,19 +114,22 @@ export default function Navbar() {
       {/* Super Nav Bar */}
       <div className="bg-teal-50 border-b border-teal-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center h-7 text-xs text-teal-800">
-            <div className="flex items-center space-x-6">
+          <div className="flex items-center justify-center h-8 sm:h-7 text-xs text-teal-800 py-2 sm:py-0">
+            <div className="flex items-center space-x-3 sm:space-x-6 flex-wrap justify-center">
               <div className="flex items-center space-x-1">
                 <Shield className="w-3 h-3" />
-                <span>{t('home.features.noHiddenFees')}</span>
+                <span className="hidden sm:inline">{t('home.features.noHiddenFees')}</span>
+                <span className="sm:hidden">No Hidden Fees</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Star className="w-3 h-3 fill-current" />
-                <span>{t('home.features.rating')}</span>
+                <span className="hidden sm:inline">{t('home.features.rating')}</span>
+                <span className="sm:hidden">5★ Rated</span>
               </div>
               <div className="flex items-center space-x-1">
                 <CheckCircle className="w-3 h-3" />
-                <span>{t('home.features.localNetwork')}</span>
+                <span className="hidden sm:inline">{t('home.features.localNetwork')}</span>
+                <span className="sm:hidden">Local Network</span>
               </div>
             </div>
           </div>
@@ -326,6 +329,17 @@ export default function Navbar() {
                   className="w-full bg-teal-600 text-white px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium text-center"
                 >
                   Start Your Trip Quote
+                </button>
+                
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigateToTransfers();
+                  }}
+                  className="w-full border border-gray-300 text-gray-600 px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium text-center flex items-center justify-center gap-2"
+                >
+                  <Truck className="w-4 h-4" />
+                  Book a Transfer
                 </button>
               </div>
             </div>
