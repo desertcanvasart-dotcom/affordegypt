@@ -125,6 +125,8 @@ export function GuideSearch({
     } else {
       onGuideChange({ language, duration: selectedDuration });
     }
+    // Auto-close the popover after selection
+    setIsOpen(false);
   };
 
   return (
