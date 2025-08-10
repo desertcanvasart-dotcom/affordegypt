@@ -1,12 +1,13 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import { Search, MapPin, Clock, DollarSign, Star } from "lucide-react";
+import { Search, MapPin, Clock, DollarSign, Star, ChevronDown, X, Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface Attraction {
   id: number;
@@ -40,6 +41,7 @@ export default function AttractionsSearch({
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [priceRange, setPriceRange] = useState<string>("all");
+  const [isOpen, setIsOpen] = useState(false);
 
   // Filter attractions for the current city
   const cityAttractions = useMemo(() => {
@@ -127,171 +129,217 @@ export default function AttractionsSearch({
     return "text-red-600";
   };
 
+  const getDisplayText = () => {
+    if (selectedAttractions.length === 0) return "Select Attractions";
+    if (selectedAttractions.length === 1) {
+      return selectedAttractions[0];
+    }
+    return `${selectedAttractions.length} attractions selected`;
+  };
+
+  const clearAll = () => {
+    onAttractionsChange([]);
+  };
+
   return (
-    <div className="space-y-4">
-      {/* Search and Filters Header */}
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2">
-          <MapPin className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold">{cityName} Attractions</h3>
-          <Badge variant="outline" className="ml-auto">
-            {selectedAttractions.length} selected
-          </Badge>
-        </div>
-        
-        {/* Search Bar */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-          <Input
-            placeholder="Search attractions..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9"
-          />
-        </div>
-        
-        {/* Filter Controls */}
-        <div className="flex flex-wrap gap-2">
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="w-36">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              {categories.map(category => (
-                <SelectItem key={category} value={category}>
-                  {getCategoryIcon(category)} {category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          
-          <Select value={priceRange} onValueChange={setPriceRange}>
-            <SelectTrigger className="w-32">
-              <SelectValue placeholder="Price" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Prices</SelectItem>
-              <SelectItem value="free">Free</SelectItem>
-              <SelectItem value="budget">$1-15</SelectItem>
-              <SelectItem value="moderate">$16-30</SelectItem>
-              <SelectItem value="premium">$31+</SelectItem>
-            </SelectContent>
-          </Select>
-          
-          {(searchTerm || selectedCategory !== "all" || priceRange !== "all") && (
-            <Button variant="ghost" size="sm" onClick={clearAllFilters}>
-              Clear filters
-            </Button>
-          )}
-        </div>
-      </div>
-
-      {/* Results Count */}
-      <div className="text-sm text-muted-foreground">
-        Showing {filteredAttractions.length} of {cityAttractions.length} attractions
-      </div>
-
-      {/* Attractions Grid */}
-      <div className="grid grid-cols-1 gap-3 max-h-80 overflow-y-auto">
-        {filteredAttractions.length === 0 ? (
-          <div className="text-center py-8 text-muted-foreground">
-            <Search className="w-12 h-12 mx-auto mb-3 opacity-50" />
-            <p>No attractions found matching your criteria</p>
-            <Button variant="ghost" size="sm" onClick={clearAllFilters} className="mt-2">
-              Clear filters to see all attractions
-            </Button>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className="w-full justify-between">
+          <div className="flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-teal-600" />
+            {getDisplayText()}
           </div>
-        ) : (
-          filteredAttractions.map((attraction) => (
-            <Card 
-              key={attraction.id} 
-              className={`cursor-pointer transition-all hover:shadow-md ${
-                selectedAttractions.includes(attraction.name) 
-                  ? 'ring-2 ring-primary bg-primary/5' 
-                  : ''
-              }`}
-              onClick={() => handleAttractionToggle(attraction.name)}
-            >
-              <CardContent className="p-4">
-                <div className="flex items-start gap-3">
-                  <Checkbox
-                    checked={selectedAttractions.includes(attraction.name)}
-                    onChange={() => handleAttractionToggle(attraction.name)}
-                    className="mt-1"
-                  />
-                  
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="flex-1">
-                        <h4 className="font-medium text-sm leading-tight">
-                          {getCategoryIcon(attraction.category)} {attraction.name}
-                        </h4>
-                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                          {attraction.description}
-                        </p>
+          <ChevronDown className="h-4 w-4 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-96 p-0">
+        <div className="p-4 border-b">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-teal-600" />
+              <h3 className="font-semibold">Attractions in {cityName}</h3>
+            </div>
+            <div className="flex items-center gap-2">
+              {selectedAttractions.length > 0 && (
+                <Badge variant="secondary" className="text-xs">
+                  {selectedAttractions.length} selected
+                </Badge>
+              )}
+              {selectedAttractions.length > 0 && (
+                <Button size="sm" variant="ghost" onClick={clearAll}>
+                  Clear All
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(false)}
+                className="h-6 w-6 p-0"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+          
+          {/* Search Input */}
+          <div className="relative mb-3">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              placeholder="Search attractions..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+
+          {/* Filter Controls */}
+          <div className="flex flex-wrap gap-2">
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger className="w-36">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                {categories.map(category => (
+                  <SelectItem key={category} value={category}>
+                    {getCategoryIcon(category)} {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            
+            <Select value={priceRange} onValueChange={setPriceRange}>
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Price" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Prices</SelectItem>
+                <SelectItem value="free">Free</SelectItem>
+                <SelectItem value="budget">$1-15</SelectItem>
+                <SelectItem value="moderate">$16-30</SelectItem>
+                <SelectItem value="premium">$31+</SelectItem>
+              </SelectContent>
+            </Select>
+            
+            {(searchTerm || selectedCategory !== "all" || priceRange !== "all") && (
+              <Button variant="ghost" size="sm" onClick={clearAllFilters}>
+                Clear filters
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {/* Attractions Grid */}
+        <div className="max-h-80 overflow-y-auto">
+          <div className="p-3 space-y-3">
+            {filteredAttractions.length === 0 ? (
+              <div className="text-center py-6 text-gray-500">
+                <MapPin className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                <p>No attractions found matching your criteria</p>
+              </div>
+            ) : (
+              filteredAttractions.map((attraction) => (
+                <div
+                  key={attraction.id} 
+                  className={`border rounded-lg p-3 cursor-pointer transition-colors ${
+                    selectedAttractions.includes(attraction.name) 
+                      ? 'border-teal-200 bg-teal-50' 
+                      : 'border-gray-200 hover:bg-gray-50'
+                  }`}
+                  onClick={() => handleAttractionToggle(attraction.name)}
+                >
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      checked={selectedAttractions.includes(attraction.name)}
+                      onCheckedChange={() => handleAttractionToggle(attraction.name)}
+                      className="mt-1"
+                    />
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex-1">
+                          <h4 className="font-medium text-sm leading-tight">
+                            {getCategoryIcon(attraction.category)} {attraction.name}
+                          </h4>
+                          <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                            {attraction.description}
+                          </p>
+                        </div>
+                        
+                        <div className="text-right">
+                          <div className={`text-sm font-medium ${getPriceColor(attraction.ticketPrice)}`}>
+                            {parseInt(attraction.ticketPrice) === 0 ? 'Free' : `EGP ${attraction.ticketPrice}`}
+                          </div>
+                          <div className="text-xs text-gray-500">per person</div>
+                        </div>
                       </div>
                       
-                      <div className="text-right">
-                        <div className={`text-sm font-medium ${getPriceColor(attraction.ticketPrice)}`}>
-                          {parseInt(attraction.ticketPrice) === 0 ? 'Free' : `EGP ${attraction.ticketPrice}`}
-                        </div>
-                        <div className="text-xs text-muted-foreground">per person</div>
+                      <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                        {attraction.duration && (
+                          <div className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {attraction.duration}
+                          </div>
+                        )}
+                        {attraction.openingHours && (
+                          <div className="flex items-center gap-1">
+                            <Star className="w-3 h-3" />
+                            {attraction.openingHours}
+                          </div>
+                        )}
                       </div>
+                      
+                      <Badge variant="secondary" className="mt-2 text-xs">
+                        {attraction.category}
+                      </Badge>
                     </div>
-                    
-                    <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
-                      {attraction.duration && (
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          {attraction.duration}
-                        </div>
-                      )}
-                      {attraction.openingHours && (
-                        <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3" />
-                          {attraction.openingHours}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <Badge variant="secondary" className="mt-2 text-xs">
-                      {attraction.category}
-                    </Badge>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </div>
-      
-      {/* Quick Selection Actions */}
-      {filteredAttractions.length > 0 && (
-        <div className="flex gap-2 pt-2 border-t">
+              ))
+            )}
+
+            {/* Quick Selection Actions */}
+            {filteredAttractions.length > 0 && (
+              <div className="flex gap-2 pt-2 border-t">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const allNames = filteredAttractions.map(a => a.name);
+                    const combined = [...selectedAttractions, ...allNames];
+                    onAttractionsChange(Array.from(new Set(combined)));
+                  }}
+                >
+                  Select All Visible
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const visibleNames = filteredAttractions.map(a => a.name);
+                    onAttractionsChange(selectedAttractions.filter(name => !visibleNames.includes(name)));
+                  }}
+                >
+                  Clear All Visible
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Done Button */}
+        <div className="p-4 border-t">
           <Button
-            variant="outline"
+            onClick={() => setIsOpen(false)}
+            className="w-full"
             size="sm"
-            onClick={() => {
-              const allNames = filteredAttractions.map(a => a.name);
-              const combined = [...selectedAttractions, ...allNames];
-              onAttractionsChange(Array.from(new Set(combined)));
-            }}
           >
-{t('pricing.selectAllVisible')}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              const visibleNames = filteredAttractions.map(a => a.name);
-              onAttractionsChange(selectedAttractions.filter(name => !visibleNames.includes(name)));
-            }}
-          >
-{t('pricing.deselectAllVisible')}
+            <Check className="w-4 h-4 mr-2" />
+            Done
+            {selectedAttractions.length > 0 && ` (${selectedAttractions.length} selected)`}
           </Button>
         </div>
-      )}
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 }
