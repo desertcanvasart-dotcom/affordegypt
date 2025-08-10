@@ -314,26 +314,26 @@ Email: support@affordegypt.com
         <div className="min-h-screen bg-gray-50">
           <Navbar />
           
-          <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto px-4 py-6">
             {/* Success Header */}
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-3">
+                <CheckCircle className="w-6 h-6 text-green-600" />
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Booking Confirmed!</h1>
-              <p className="text-lg text-gray-600">Your transportation request has been submitted successfully</p>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">Booking Confirmed!</h1>
+              <p className="text-sm text-gray-600">Your transportation request has been submitted successfully</p>
             </div>
 
             {/* Booking Reference */}
-            <Card className="mb-6">
-              <CardContent className="p-6">
+            <Card className="mb-4">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold mb-1">Booking Reference</h3>
-                    <p className="text-2xl font-mono text-teal-600">{bookingData.bookingReference || 'RT-' + Date.now()}</p>
+                    <h3 className="text-sm font-semibold mb-1 text-gray-700">Booking Reference</h3>
+                    <p className="text-lg font-mono text-teal-600">{bookingData.bookingReference || 'RT-' + Date.now()}</p>
                   </div>
-                  <Button variant="outline" onClick={copyBookingReference} className="flex items-center gap-2">
-                    <Copy className="w-4 h-4" />
+                  <Button variant="outline" size="sm" onClick={copyBookingReference} className="flex items-center gap-1 text-xs">
+                    <Copy className="w-3 h-3" />
                     Copy
                   </Button>
                 </div>
@@ -341,35 +341,35 @@ Email: support@affordegypt.com
             </Card>
 
             {/* Booking Details */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-teal-600" />
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-sm">
+                    <MapPin className="w-4 h-4 text-teal-600" />
                     Route Details
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div>
-                      <span className="font-medium">From:</span> {getCityName(bookingData.route.fromCityId)}
+                <CardContent className="pt-0">
+                  <div className="space-y-2">
+                    <div className="text-sm">
+                      <span className="text-gray-600">From:</span> <span className="font-medium">{getCityName(bookingData.route.fromCityId)}</span>
                     </div>
-                    <div>
-                      <span className="font-medium">To:</span> {getCityName(bookingData.route.toCityId)}
+                    <div className="text-sm">
+                      <span className="text-gray-600">To:</span> <span className="font-medium">{getCityName(bookingData.route.toCityId)}</span>
                     </div>
                     {bookingData.route.name && (
-                      <div>
-                        <span className="font-medium">Route:</span> {bookingData.route.name}
+                      <div className="text-sm">
+                        <span className="text-gray-600">Route:</span> <span className="font-medium">{bookingData.route.name}</span>
                       </div>
                     )}
                     {bookingData.route.km && (
-                      <div>
-                        <span className="font-medium">Distance:</span> {bookingData.route.km} km
+                      <div className="text-sm">
+                        <span className="text-gray-600">Distance:</span> <span className="font-medium">{bookingData.route.km} km</span>
                       </div>
                     )}
                     {bookingData.route.estimatedDuration && (
-                      <div>
-                        <span className="font-medium">Duration:</span> {bookingData.route.estimatedDuration}
+                      <div className="text-sm">
+                        <span className="text-gray-600">Duration:</span> <span className="font-medium">{bookingData.route.estimatedDuration}</span>
                       </div>
                     )}
                   </div>
@@ -377,25 +377,25 @@ Email: support@affordegypt.com
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Car className="w-5 h-5 text-teal-600" />
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-sm">
+                    <Car className="w-4 h-4 text-teal-600" />
                     Booking Details
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div>
-                      <span className="font-medium">Vehicle:</span> {bookingData.vehicleType.charAt(0).toUpperCase() + bookingData.vehicleType.slice(1)}
+                <CardContent className="pt-0">
+                  <div className="space-y-2">
+                    <div className="text-sm">
+                      <span className="text-gray-600">Vehicle:</span> <span className="font-medium">{bookingData.vehicleType.charAt(0).toUpperCase() + bookingData.vehicleType.slice(1)}</span>
                     </div>
-                    <div>
-                      <span className="font-medium">Passengers:</span> {bookingData.passengers}
+                    <div className="text-sm">
+                      <span className="text-gray-600">Passengers:</span> <span className="font-medium">{bookingData.passengers}</span>
                     </div>
-                    <div>
-                      <span className="font-medium">Travel Date:</span> {new Date(bookingData.travelDate).toLocaleDateString()}
+                    <div className="text-sm">
+                      <span className="text-gray-600">Travel Date:</span> <span className="font-medium">{new Date(bookingData.travelDate).toLocaleDateString()}</span>
                     </div>
-                    <div>
-                      <span className="font-medium">Total Amount:</span> <span className="text-lg font-bold text-teal-600">${bookingData.totalAmount}</span>
+                    <div className="text-sm">
+                      <span className="text-gray-600">Total Amount:</span> <span className="text-lg font-bold text-teal-600">${bookingData.totalAmount}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -403,27 +403,27 @@ Email: support@affordegypt.com
             </div>
 
             {/* Customer Information */}
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-teal-600" />
+            <Card className="mb-4">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-sm">
+                  <Users className="w-4 h-4 text-teal-600" />
                   Customer Information
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <span className="font-medium">Name:</span> {bookingData.customerName}
+              <CardContent className="pt-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="text-sm">
+                    <span className="text-gray-600">Name:</span> <span className="font-medium">{bookingData.customerName}</span>
                   </div>
-                  <div>
-                    <span className="font-medium">Email:</span> {bookingData.customerEmail}
+                  <div className="text-sm">
+                    <span className="text-gray-600">Email:</span> <span className="font-medium">{bookingData.customerEmail}</span>
                   </div>
-                  <div>
-                    <span className="font-medium">Phone:</span> {bookingData.customerPhone}
+                  <div className="text-sm">
+                    <span className="text-gray-600">Phone:</span> <span className="font-medium">{bookingData.customerPhone}</span>
                   </div>
                   {bookingData.specialRequests && (
-                    <div className="md:col-span-2">
-                      <span className="font-medium">Special Requests:</span> {bookingData.specialRequests}
+                    <div className="md:col-span-2 text-sm">
+                      <span className="text-gray-600">Special Requests:</span> <span className="font-medium">{bookingData.specialRequests}</span>
                     </div>
                   )}
                 </div>
@@ -431,34 +431,34 @@ Email: support@affordegypt.com
             </Card>
 
             {/* Next Steps */}
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <ArrowRight className="w-5 h-5 text-teal-600" />
+            <Card className="mb-4">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-sm">
+                  <ArrowRight className="w-4 h-4 text-teal-600" />
                   What Happens Next?
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-sm font-medium">1</div>
+              <CardContent className="pt-0">
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2">
+                    <div className="flex-shrink-0 w-5 h-5 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-xs font-medium">1</div>
                     <div>
-                      <h4 className="font-medium">Confirmation Call</h4>
-                      <p className="text-gray-600">We'll contact you within 24 hours to confirm your booking details and arrange payment.</p>
+                      <h4 className="text-xs font-medium text-gray-800">Confirmation Call</h4>
+                      <p className="text-xs text-gray-600">We'll contact you within 24 hours to confirm your booking details and arrange payment.</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-sm font-medium">2</div>
+                  <div className="flex items-start gap-2">
+                    <div className="flex-shrink-0 w-5 h-5 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-xs font-medium">2</div>
                     <div>
-                      <h4 className="font-medium">Payment Processing</h4>
-                      <p className="text-gray-600">Payment will be processed securely upon booking confirmation.</p>
+                      <h4 className="text-xs font-medium text-gray-800">Payment Processing</h4>
+                      <p className="text-xs text-gray-600">Payment will be processed securely upon booking confirmation.</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-sm font-medium">3</div>
+                  <div className="flex items-start gap-2">
+                    <div className="flex-shrink-0 w-5 h-5 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-xs font-medium">3</div>
                     <div>
-                      <h4 className="font-medium">Driver Assignment</h4>
-                      <p className="text-gray-600">You'll receive driver details and contact information 24 hours before your trip.</p>
+                      <h4 className="text-xs font-medium text-gray-800">Driver Assignment</h4>
+                      <p className="text-xs text-gray-600">You'll receive driver details and contact information 24 hours before your trip.</p>
                     </div>
                   </div>
                 </div>
@@ -466,33 +466,33 @@ Email: support@affordegypt.com
             </Card>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={downloadConfirmation} className="bg-teal-600 hover:bg-teal-700 flex items-center gap-2">
-                <Download className="w-4 h-4" />
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
+              <Button onClick={downloadConfirmation} size="sm" className="bg-teal-600 hover:bg-teal-700 flex items-center gap-2 text-xs">
+                <Download className="w-3 h-3" />
                 Download Confirmation
               </Button>
-              <Button variant="outline" onClick={startNewBooking}>
+              <Button variant="outline" size="sm" onClick={startNewBooking} className="text-xs">
                 Book Another Route
               </Button>
               <Link href="/">
-                <Button variant="outline">
+                <Button variant="outline" size="sm" className="text-xs">
                   Return to Home
                 </Button>
               </Link>
             </div>
 
             {/* Contact Information */}
-            <Card className="mt-8">
-              <CardContent className="p-6 text-center">
-                <h3 className="font-semibold mb-2">Need Help?</h3>
-                <p className="text-gray-600 mb-4">Contact us for any questions or changes to your booking</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-teal-600" />
+            <Card>
+              <CardContent className="p-4 text-center">
+                <h3 className="text-sm font-semibold mb-2 text-gray-700">Need Help?</h3>
+                <p className="text-xs text-gray-600 mb-3">Contact us for any questions or changes to your booking</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center text-xs">
+                  <div className="flex items-center justify-center gap-2">
+                    <Phone className="w-3 h-3 text-teal-600" />
                     +20 123 456 7890
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-teal-600" />
+                  <div className="flex items-center justify-center gap-2">
+                    <Mail className="w-3 h-3 text-teal-600" />
                     bookings@affordegypt.com
                   </div>
                 </div>
@@ -514,98 +514,101 @@ Email: support@affordegypt.com
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto px-4 py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             {/* Route Details */}
             <Card>
-              <CardHeader className="bg-teal-50">
-                <CardTitle className="flex items-center gap-2">
-                  <Car className="w-6 h-6 text-teal-600" />
+              <CardHeader className="bg-teal-50 pb-4">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Car className="w-5 h-5 text-teal-600" />
                   Route Details
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-teal-600" />
+              <CardContent className="p-5">
+                <div className="space-y-3">
+                  {/* Main route info */}
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-teal-600 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold">
+                      <div className="font-semibold text-sm">
                         {getCityName(selectedRoute.fromCityId)} → {getCityName(selectedRoute.toCityId)}
                       </div>
                       {selectedRoute.name && (
-                        <div className="text-sm text-gray-600">{selectedRoute.name}</div>
+                        <div className="text-xs text-gray-600">{selectedRoute.name}</div>
                       )}
                     </div>
                   </div>
                   
-                  {selectedRoute.km && (
-                    <div className="flex items-center gap-3">
-                      <div className="w-5 h-5" />
-                      <div className="text-sm">
-                        <span className="font-medium">Distance:</span> {selectedRoute.km} km
+                  {/* Quick facts */}
+                  <div className="grid grid-cols-2 gap-3 bg-gray-50 rounded-lg p-3">
+                    {selectedRoute.km && (
+                      <div className="text-center">
+                        <div className="text-xs text-gray-500">Distance</div>
+                        <div className="text-sm font-medium">{selectedRoute.km} km</div>
                       </div>
-                    </div>
-                  )}
-                  
-                  {selectedRoute.estimatedDuration && (
-                    <div className="flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-teal-600" />
-                      <div className="text-sm">
-                        <span className="font-medium">Duration:</span> {selectedRoute.estimatedDuration}
+                    )}
+                    {selectedRoute.estimatedDuration && (
+                      <div className="text-center">
+                        <div className="text-xs text-gray-500">Duration</div>
+                        <div className="text-sm font-medium">{selectedRoute.estimatedDuration}</div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                   
                   {selectedRoute.description && (
-                    <div className="pt-2">
-                      <p className="text-gray-600 text-sm">{selectedRoute.description}</p>
+                    <div className="bg-blue-50 border-l-4 border-blue-300 p-3">
+                      <p className="text-xs text-gray-700 leading-relaxed">{selectedRoute.description}</p>
                     </div>
                   )}
                   
                   {selectedRoute.routeHighlights && (
-                    <div className="pt-3 border-t border-gray-100">
-                      <div className="flex items-start gap-3">
-                        <Star className="w-5 h-5 text-yellow-500 mt-0.5" />
+                    <div className="border border-yellow-200 rounded-lg p-3 bg-yellow-50">
+                      <div className="flex items-start gap-2">
+                        <Star className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
                         <div>
-                          <div className="font-medium text-sm mb-1">Route Highlights</div>
-                          <p className="text-gray-600 text-sm">{selectedRoute.routeHighlights}</p>
+                          <div className="font-medium text-xs text-yellow-800 mb-1">Route Highlights</div>
+                          <p className="text-xs text-yellow-700 leading-relaxed">{selectedRoute.routeHighlights}</p>
                         </div>
                       </div>
                     </div>
                   )}
                   
                   {selectedRoute.travelTips && (
-                    <div className="pt-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="border border-blue-200 rounded-lg p-3 bg-blue-50">
+                      <div className="flex items-start gap-2">
+                        <div className="w-4 h-4 bg-blue-200 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                         </div>
                         <div>
-                          <div className="font-medium text-sm mb-1">Travel Tips</div>
-                          <p className="text-gray-600 text-sm">{selectedRoute.travelTips}</p>
+                          <div className="font-medium text-xs text-blue-800 mb-1">Travel Tips</div>
+                          <p className="text-xs text-blue-700 leading-relaxed">{selectedRoute.travelTips}</p>
                         </div>
                       </div>
                     </div>
                   )}
                   
                   {(selectedRoute.pickupInstructions || selectedRoute.dropoffInstructions) && (
-                    <div className="pt-3">
+                    <div className="space-y-2">
                       {selectedRoute.pickupInstructions && (
-                        <div className="flex items-start gap-3 mb-2">
-                          <MapPin className="w-5 h-5 text-green-600 mt-0.5" />
-                          <div>
-                            <div className="font-medium text-sm mb-1">Pickup Instructions</div>
-                            <p className="text-gray-600 text-sm">{selectedRoute.pickupInstructions}</p>
+                        <div className="border border-green-200 rounded-lg p-3 bg-green-50">
+                          <div className="flex items-start gap-2">
+                            <MapPin className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                            <div>
+                              <div className="font-medium text-xs text-green-800 mb-1">Pickup</div>
+                              <p className="text-xs text-green-700 leading-relaxed">{selectedRoute.pickupInstructions}</p>
+                            </div>
                           </div>
                         </div>
                       )}
                       {selectedRoute.dropoffInstructions && (
-                        <div className="flex items-start gap-3">
-                          <MapPin className="w-5 h-5 text-red-600 mt-0.5" />
-                          <div>
-                            <div className="font-medium text-sm mb-1">Dropoff Instructions</div>
-                            <p className="text-gray-600 text-sm">{selectedRoute.dropoffInstructions}</p>
+                        <div className="border border-red-200 rounded-lg p-3 bg-red-50">
+                          <div className="flex items-start gap-2">
+                            <MapPin className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
+                            <div>
+                              <div className="font-medium text-xs text-red-800 mb-1">Dropoff</div>
+                              <p className="text-xs text-red-700 leading-relaxed">{selectedRoute.dropoffInstructions}</p>
+                            </div>
                           </div>
                         </div>
                       )}
@@ -617,167 +620,188 @@ Email: support@affordegypt.com
 
             {/* Booking Form */}
             <Card>
-              <CardHeader className="bg-orange-50">
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="w-6 h-6 text-orange-600" />
+              <CardHeader className="bg-orange-50 pb-4">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calendar className="w-5 h-5 text-orange-600" />
                   Book Your Transportation
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-5">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   
-                  {/* Vehicle Selection */}
-                  <div>
-                    <Label>Vehicle Type *</Label>
-                    <Select value={selectedVehicle} onValueChange={setSelectedVehicle}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Choose vehicle type" />
-                      </SelectTrigger>
-                      <SelectContent className="z-50">
-                        {selectedRoute?.sedanPrice && (
-                          <SelectItem value="sedan">
-                            Sedan - ${selectedRoute.sedanPrice}
-                          </SelectItem>
-                        )}
-                        {selectedRoute?.minivanPrice && (
-                          <SelectItem value="minivan">
-                            Minivan - ${selectedRoute.minivanPrice}
-                          </SelectItem>
-                        )}
-                        {selectedRoute?.vanPrice && (
-                          <SelectItem value="van">
-                            Van - ${selectedRoute.vanPrice}
-                          </SelectItem>
-                        )}
-                      </SelectContent>
-                    </Select>
+                  {/* Trip Details Section */}
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-1">
+                      Trip Details
+                    </h4>
+                    
+                    {/* Vehicle Selection & Passengers in one row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <Label className="text-xs font-medium text-gray-600">Vehicle Type *</Label>
+                        <Select value={selectedVehicle} onValueChange={setSelectedVehicle}>
+                          <SelectTrigger className="w-full h-9 text-sm">
+                            <SelectValue placeholder="Choose vehicle" />
+                          </SelectTrigger>
+                          <SelectContent className="z-50">
+                            {selectedRoute?.sedanPrice && (
+                              <SelectItem value="sedan" className="text-sm">
+                                Sedan - ${selectedRoute.sedanPrice}
+                              </SelectItem>
+                            )}
+                            {selectedRoute?.minivanPrice && (
+                              <SelectItem value="minivan" className="text-sm">
+                                Minivan - ${selectedRoute.minivanPrice}
+                              </SelectItem>
+                            )}
+                            {selectedRoute?.vanPrice && (
+                              <SelectItem value="van" className="text-sm">
+                                Van - ${selectedRoute.vanPrice}
+                              </SelectItem>
+                            )}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label className="text-xs font-medium text-gray-600">Passengers *</Label>
+                        <Input
+                          type="number"
+                          min="1"
+                          max="15"
+                          value={passengers}
+                          onChange={(e) => setPassengers(parseInt(e.target.value))}
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Travel Date */}
+                    <div>
+                      <Label className="text-xs font-medium text-gray-600">Travel Date *</Label>
+                      <Input
+                        type="date"
+                        value={travelDate}
+                        onChange={(e) => setTravelDate(e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
+                        className="h-9 text-sm"
+                      />
+                    </div>
                   </div>
 
-                  {/* Passengers */}
-                  <div>
-                    <Label>Number of Passengers *</Label>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="15"
-                      value={passengers}
-                      onChange={(e) => setPassengers(parseInt(e.target.value))}
-                    />
+                  {/* Customer Information Section */}
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-semibold text-gray-700 border-b border-gray-100 pb-1">
+                      Contact Information
+                    </h4>
+                    
+                    <div>
+                      <Label className="text-xs font-medium text-gray-600">Full Name *</Label>
+                      <Input
+                        value={customerName}
+                        onChange={(e) => setCustomerName(e.target.value)}
+                        placeholder="Enter your full name"
+                        className="h-9 text-sm"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <Label className="text-xs font-medium text-gray-600">Email *</Label>
+                        <Input
+                          type="email"
+                          value={customerEmail}
+                          onChange={(e) => setCustomerEmail(e.target.value)}
+                          placeholder="your@email.com"
+                          className="h-9 text-sm"
+                        />
+                      </div>
+
+                      <div>
+                        <Label className="text-xs font-medium text-gray-600">Phone</Label>
+                        <Input
+                          type="tel"
+                          value={customerPhone}
+                          onChange={(e) => setCustomerPhone(e.target.value)}
+                          placeholder="+20 123 456 7890"
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Special Requests */}
+                    <div>
+                      <Label className="text-xs font-medium text-gray-600">Special Requests</Label>
+                      <Textarea
+                        value={specialRequests}
+                        onChange={(e) => setSpecialRequests(e.target.value)}
+                        placeholder="Any special requirements..."
+                        rows={2}
+                        className="text-sm resize-none"
+                      />
+                    </div>
                   </div>
 
-                  {/* Travel Date */}
-                  <div>
-                    <Label>Travel Date *</Label>
-                    <Input
-                      type="date"
-                      value={travelDate}
-                      onChange={(e) => setTravelDate(e.target.value)}
-                      min={new Date().toISOString().split('T')[0]}
-                    />
-                  </div>
-
-                  {/* Customer Details */}
-                  <div>
-                    <Label>Full Name *</Label>
-                    <Input
-                      value={customerName}
-                      onChange={(e) => setCustomerName(e.target.value)}
-                      placeholder="Enter your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <Label>Email Address *</Label>
-                    <Input
-                      type="email"
-                      value={customerEmail}
-                      onChange={(e) => setCustomerEmail(e.target.value)}
-                      placeholder="Enter your email"
-                    />
-                  </div>
-
-                  <div>
-                    <Label>Phone Number</Label>
-                    <Input
-                      type="tel"
-                      value={customerPhone}
-                      onChange={(e) => setCustomerPhone(e.target.value)}
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-
-                  {/* Special Requests */}
-                  <div>
-                    <Label>Special Requests</Label>
-                    <Textarea
-                      value={specialRequests}
-                      onChange={(e) => setSpecialRequests(e.target.value)}
-                      placeholder="Any special requirements or requests..."
-                      rows={3}
-                    />
-                  </div>
-
-                  {/* Total */}
+                  {/* Pricing Summary */}
                   {selectedVehicle && (
-                    <div className="bg-teal-50 p-4 rounded-md">
+                    <div className="bg-teal-50 border border-teal-100 rounded-lg p-3">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Total Cost:</span>
-                        <span className="text-2xl font-bold text-teal-600">
+                        <span className="text-sm font-medium text-gray-700">Total Cost:</span>
+                        <span className="text-xl font-bold text-teal-600">
                           ${calculateTotal().toFixed(2)}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-xs text-gray-600 mt-1">
                         Transportation only • No hidden fees
                       </p>
                     </div>
                   )}
 
                   {/* Deposit Information */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                    <div className="flex items-start gap-3">
-                      <div className="text-2xl">💵</div>
-                      <div>
-                        <h4 className="font-semibold text-blue-900 mb-2">10% deposit required</h4>
-                        <p className="text-sm text-blue-800 mb-2">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <div className="flex items-start gap-2">
+                      <div className="text-lg">💵</div>
+                      <div className="flex-1">
+                        <h4 className="text-sm font-semibold text-blue-900 mb-1">10% deposit required</h4>
+                        <p className="text-xs text-blue-800 mb-1">
                           Our team will contact you to collect it and confirm your booking.
                         </p>
-                        <p className="text-sm text-blue-800">
+                        <p className="text-xs text-blue-800">
                           Pay the rest in cash to your guide after the tour.
                         </p>
-
                       </div>
                     </div>
                   </div>
 
                   {/* Payment Currency Note */}
-                  <p className="text-sm text-gray-600 text-center mb-4">
+                  <p className="text-xs text-gray-600 text-center">
                     All prices in EGP • International cards accepted
                   </p>
 
-                  {/* Terms of Service Checkbox */}
-                  <div className="flex items-start gap-3 mb-4">
+                  {/* Terms Agreement */}
+                  <div className="flex items-start gap-2 py-2">
                     <input
                       type="checkbox"
                       id="acceptTerms"
                       checked={acceptTerms}
                       onChange={(e) => setAcceptTerms(e.target.checked)}
-                      className="mt-1 h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                      className="mt-0.5 h-3.5 w-3.5 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                     />
-                    <label htmlFor="acceptTerms" className="text-sm text-gray-700">
-                      I have reviewed and accept the Terms of Service and Booking Agreement
+                    <label htmlFor="acceptTerms" className="text-xs text-gray-700 leading-tight">
+                      I agree to the Terms of Service and Booking Agreement
                     </label>
                   </div>
 
                   {/* Submit Button */}
                   <Button 
                     type="submit" 
-                    className="w-full bg-teal-600 hover:bg-teal-700"
+                    className="w-full bg-teal-600 hover:bg-teal-700 h-10 text-sm font-medium"
                     disabled={bookingMutation.isPending || !acceptTerms}
                   >
                     {bookingMutation.isPending ? "Submitting..." : "Book Transportation"}
                   </Button>
 
-                  <p className="text-xs text-gray-500 text-center">
+                  <p className="text-xs text-gray-500 text-center leading-tight">
                     By submitting this form, you agree to our booking terms. 
                     We'll contact you to confirm details and payment.
                   </p>
@@ -787,15 +811,15 @@ Email: support@affordegypt.com
           </div>
 
           {/* Need Full Service? */}
-          <Card className="mt-8 bg-gradient-to-r from-orange-50 to-yellow-50">
-            <CardContent className="p-6">
+          <Card className="mt-6 bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-200">
+            <CardContent className="p-4">
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-2">Need a Complete Travel Package?</h3>
-                <p className="text-gray-600 mb-4">
+                <h3 className="text-sm font-bold mb-2 text-gray-800">Need a Complete Travel Package?</h3>
+                <p className="text-xs text-gray-600 mb-3">
                   Add tour guides, attractions, and more with our comprehensive pricing tool
                 </p>
                 <Link href="/#quote-builder">
-                  <Button variant="outline" className="border-orange-200 hover:bg-orange-100">
+                  <Button variant="outline" size="sm" className="border-orange-300 hover:bg-orange-100 text-xs">
                     Build Complete Package
                   </Button>
                 </Link>
