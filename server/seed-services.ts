@@ -23,9 +23,7 @@ export async function seedServices() {
         vehicleCategory: "sedan",
         durationMinutes: 60,
         isActive: true,
-        cityId: 1,
-        unitType: "per_transfer",
-        category: "transportation"
+        cityId: 1
       },
       {
         title: "Inter-City Transfer",
@@ -36,9 +34,7 @@ export async function seedServices() {
         vehicleCategory: "suv",
         durationMinutes: 180,
         isActive: true,
-        cityId: 1,
-        unitType: "per_transfer",
-        category: "transportation"
+        cityId: 1
       },
       // Tours
       {
@@ -49,9 +45,7 @@ export async function seedServices() {
         basePrice: "350.00",
         durationMinutes: 240,
         isActive: true,
-        cityId: 1,
-        unitType: "per_person",
-        category: "sightseeing"
+        cityId: 1
       },
       {
         title: "Egyptian Museum Tour",
@@ -61,9 +55,7 @@ export async function seedServices() {
         basePrice: "280.00",
         durationMinutes: 180,
         isActive: true,
-        cityId: 1,
-        unitType: "per_person",
-        category: "cultural"
+        cityId: 1
       },
       {
         title: "Khan El Khalili Bazaar Walk",
@@ -73,9 +65,7 @@ export async function seedServices() {
         basePrice: "150.00", 
         durationMinutes: 120,
         isActive: true,
-        cityId: 1,
-        unitType: "per_person",
-        category: "cultural"
+        cityId: 1
       },
       // Guides
       {
@@ -86,9 +76,7 @@ export async function seedServices() {
         basePrice: "600.00",
         durationMinutes: 480,
         isActive: true,
-        cityId: 1,
-        unitType: "per_day", 
-        category: "guide"
+        cityId: 1
       },
       {
         title: "Multi-Language Guide",
@@ -98,9 +86,7 @@ export async function seedServices() {
         basePrice: "750.00",
         durationMinutes: 480,
         isActive: true,
-        cityId: 1,
-        unitType: "per_day",
-        category: "guide"
+        cityId: 1
       },
       // Add-ons
       {
@@ -110,9 +96,7 @@ export async function seedServices() {
         pricingMode: "per_person",
         basePrice: "250.00",
         isActive: true,
-        cityId: 1,
-        unitType: "per_person",
-        category: "tickets"
+        cityId: 1
       },
       {
         title: "Traditional Lunch",
@@ -121,9 +105,7 @@ export async function seedServices() {
         pricingMode: "per_person",
         basePrice: "180.00",
         isActive: true,
-        cityId: 1,
-        unitType: "per_person",
-        category: "dining"
+        cityId: 1
       },
       {
         title: "Photography Service",
@@ -133,9 +115,7 @@ export async function seedServices() {
         basePrice: "400.00",
         durationMinutes: 240,
         isActive: true,
-        cityId: 1,
-        unitType: "per_group",
-        category: "photography"
+        cityId: 1
       }
     ];
 
