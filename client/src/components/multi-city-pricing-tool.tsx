@@ -575,16 +575,16 @@ export default function MultiCityPricingTool() {
 
               {/* Advanced Search and Filtering Interface */}
               <div className="mt-6 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-4">
                   <div className="flex items-center gap-2">
                     <Filter className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg font-semibold text-primary">Smart Itinerary Builder</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-primary">Smart Itinerary Builder</h3>
                   </div>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-                    className="text-primary border-primary/30 hover:bg-primary/10"
+                    className="text-primary border-primary/30 hover:bg-primary/10 w-full sm:w-auto"
                   >
                     <Sliders className="w-4 h-4 mr-2" />
                     {showAdvancedFilters ? 'Hide Filters' : 'Show Filters'}
@@ -593,10 +593,10 @@ export default function MultiCityPricingTool() {
 
                 {showAdvancedFilters && (
                   <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                       {/* Budget Range */}
                       <div className="space-y-2">
-                        <Label className="flex items-center gap-2 font-medium">
+                        <Label className="flex items-center gap-2 font-medium text-sm">
                           <DollarSign className="w-4 h-4 text-primary" />
                           Budget per Day (EGP)
                         </Label>
@@ -609,7 +609,7 @@ export default function MultiCityPricingTool() {
                               ...prev,
                               budgetRange: { ...prev.budgetRange, min: Number(e.target.value) }
                             }))}
-                            className="w-20"
+                            className="flex-1 min-w-0"
                           />
                           <span className="text-muted-foreground">-</span>
                           <Input
@@ -620,14 +620,14 @@ export default function MultiCityPricingTool() {
                               ...prev,
                               budgetRange: { ...prev.budgetRange, max: Number(e.target.value) }
                             }))}
-                            className="w-20"
+                            className="flex-1 min-w-0"
                           />
                         </div>
                       </div>
 
                       {/* Travel Style */}
                       <div className="space-y-2">
-                        <Label className="flex items-center gap-2 font-medium">
+                        <Label className="flex items-center gap-2 font-medium text-sm">
                           <Star className="w-4 h-4 text-primary" />
                           Travel Style
                         </Label>
@@ -641,16 +641,16 @@ export default function MultiCityPricingTool() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="budget">Budget (Essential experiences)</SelectItem>
-                            <SelectItem value="balanced">Balanced (Comfort + Value)</SelectItem>
-                            <SelectItem value="luxury">Luxury (Premium experiences)</SelectItem>
+                            <SelectItem value="budget">Budget</SelectItem>
+                            <SelectItem value="balanced">Balanced</SelectItem>
+                            <SelectItem value="luxury">Luxury</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       {/* Trip Duration */}
                       <div className="space-y-2">
-                        <Label className="flex items-center gap-2 font-medium">
+                        <Label className="flex items-center gap-2 font-medium text-sm">
                           <Clock className="w-4 h-4 text-primary" />
                           Trip Duration (days)
                         </Label>
@@ -663,7 +663,7 @@ export default function MultiCityPricingTool() {
                               ...prev,
                               duration: { ...prev.duration, min: Number(e.target.value) }
                             }))}
-                            className="w-16"
+                            className="flex-1 min-w-0"
                           />
                           <span className="text-muted-foreground">-</span>
                           <Input
@@ -674,7 +674,7 @@ export default function MultiCityPricingTool() {
                               ...prev,
                               duration: { ...prev.duration, max: Number(e.target.value) }
                             }))}
-                            className="w-16"
+                            className="flex-1 min-w-0"
                           />
                         </div>
                       </div>
@@ -686,7 +686,7 @@ export default function MultiCityPricingTool() {
                         <MapPin className="w-4 h-4 text-primary" />
                         <Label className="font-medium">Recommended Itineraries</Label>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {getItinerarySuggestions().slice(0, 3).map((suggestion) => (
                           <div
                             key={suggestion.id}
@@ -744,24 +744,25 @@ export default function MultiCityPricingTool() {
               
               {/* Enhanced City Selection */}
               <div className="mt-6">
-                <p className="text-sm text-muted-foreground mb-3">
+                <p className="text-sm text-muted-foreground mb-3 text-center sm:text-left">
                   Type at least 2 letters of your destination, then click "Add Destination" to include it in your itinerary.
                 </p>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex-1 relative">
+                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
+                  <div className="w-full sm:flex-1 relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
                       placeholder="Search cities..."
                       value={citySearchTerm}
                       onChange={(e) => setCitySearchTerm(e.target.value)}
-                      className="pl-10"
+                      className="pl-10 w-full"
                     />
                   </div>
                   <Popover open={showCityPicker} onOpenChange={setShowCityPicker}>
                     <PopoverTrigger asChild>
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
                         <Plus className="w-4 h-4 mr-2" />
-                        Add Destination
+                        <span className="hidden sm:inline">Add Destination</span>
+                        <span className="sm:hidden">Add City</span>
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-96" align="start">
@@ -828,21 +829,28 @@ Recommended
                 </div>
               </div>
               
-              {/* Horizontal Layout Table */}
-              <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="min-w-[140px]">City</TableHead>
-                  <TableHead className="min-w-[200px]">Transportation</TableHead>
-                  <TableHead className="min-w-[140px]">Guide</TableHead>
-                  <TableHead className="min-w-[160px]">Attractions</TableHead>
-                  <TableHead className="min-w-[140px]">Per Person Add-ons</TableHead>
-                  <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
-                  <TableHead className="min-w-[100px]">Total/Person</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+              {/* Mobile-Friendly City Cards */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  Your Destinations
+                </h3>
+                
+                {/* Desktop Table View */}
+                <div className="hidden lg:block overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="min-w-[140px]">City</TableHead>
+                        <TableHead className="min-w-[200px]">Transportation</TableHead>
+                        <TableHead className="min-w-[140px]">Guide</TableHead>
+                        <TableHead className="min-w-[160px]">Attractions</TableHead>
+                        <TableHead className="min-w-[140px]">Per Person Add-ons</TableHead>
+                        <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
+                        <TableHead className="min-w-[100px]">Total/Person</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
                 {cityServices.map((cityService, index) => {
                   const cityRoutes = getCurrentCityRoutes(cityService.cityId);
                   const interCityRoutes = cityRoutes.filter((r: Route) => r.type === 'inter-city');
@@ -956,111 +964,206 @@ Recommended
                     </TableRow>
                   );
                 })}
-              </TableBody>
-            </Table>
-          </div>
+                    </TableBody>
+                  </Table>
+                </div>
+                
+                {/* Mobile Card View */}
+                <div className="lg:hidden space-y-4">
+                  {cityServices.map((cityService, index) => {
+                    const cityRoutes = getCurrentCityRoutes(cityService.cityId);
+                    const cityBreakdown = totalPricing?.breakdown?.find((b: any) => b.cityName === cityService.cityName);
+                    const cityTotal = cityBreakdown ? Math.round(cityBreakdown.amount / cityService.travelers) : 0;
 
-          {/* Action Buttons */}
-          <div className="flex justify-between items-center mt-6">
-            <div className="flex items-center gap-3">
-              {!showCityPicker ? (
-                <Button
-                  variant="outline"
-                  onClick={() => setShowCityPicker(true)}
-                  className="flex items-center gap-2"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add City
-                </Button>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <Select onValueChange={(value) => {
-                    const cityId = parseInt(value);
-                    const selectedCity = cities.find((c: any) => c.id === cityId);
-                    if (selectedCity && !cityServices.find(cs => cs.cityId === cityId)) {
-                      const newCityService: CityService = {
-                        cityId: selectedCity.id,
-                        cityName: selectedCity.name,
-                        date: travelDate || new Date().toISOString().split('T')[0],
-                        travelers: globalTravelers,
-                        selectedRoutes: [],
-                        attractions: "",
-                        selectedAttractions: [],
-                        selectedAddOns: []
-                      };
-                      setCityServices(prev => [...prev, newCityService]);
-                    }
-                    setShowCityPicker(false);
-                  }}>
-                    <SelectTrigger className="w-48">
-                      <SelectValue placeholder="Choose a city to visit" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {cities.filter((city: any) => !cityServices.find(cs => cs.cityId === city.id)).map((city: any) => (
-                        <SelectItem key={city.id} value={city.id.toString()}>
+                    return (
+                      <Card key={index} className="p-4 border-l-4 border-l-primary">
+                        <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-primary rounded-full"></div>
-                            {city.name}
-                            <span className="text-xs text-muted-foreground ml-auto">
-                              {city.description?.split('.')[0]?.substring(0, 30)}...
-                            </span>
+                            <h4 className="font-semibold text-lg">
+                              {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
+                            </h4>
+                            {index === cityServices.length - 1 && (
+                              <Badge variant="secondary" className="text-xs">Current</Badge>
+                            )}
                           </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setShowCityPicker(false)}
-                  >
-                    Cancel
-                  </Button>
+                          <div className="flex items-center gap-2">
+                            <div className="text-lg font-bold text-primary">{cityTotal} EGP</div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                const newCityServices = cityServices.filter((_, i) => i !== index);
+                                setCityServices(newCityServices);
+                              }}
+                              className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                              title="Remove city"
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-4">
+                          {/* Transportation */}
+                          <div>
+                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Transportation</Label>
+                            <TransportationSearch
+                              routes={routes || []}
+                              selectedRoutes={cityService.selectedRoutes}
+                              onRoutesChange={(routes) => updateCityService(index, { selectedRoutes: routes })}
+                              cityId={cityService.cityId}
+                              cityName={cityService.cityName}
+                            />
+                          </div>
+                          
+                          {/* Guide */}
+                          <div>
+                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Guide</Label>
+                            <GuideSearch
+                              languages={languages || []}
+                              selectedGuide={cityService.selectedGuide}
+                              onGuideChange={(guide) => updateCityService(index, { selectedGuide: guide })}
+                              cityName={cityService.cityName}
+                              cityId={cityService.cityId}
+                            />
+                          </div>
+                          
+                          {/* Attractions */}
+                          <div>
+                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Attractions</Label>
+                            <AttractionsSearch
+                              attractions={attractions || []}
+                              selectedAttractions={cityService.selectedAttractions || []}
+                              onAttractionsChange={(attractions) => updateCityService(index, { selectedAttractions: attractions })}
+                              cityId={cityService.cityId}
+                              cityName={cityService.cityName}
+                            />
+                          </div>
+                          
+                          {/* Add-ons */}
+                          <div>
+                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Add-ons</Label>
+                            <div className="space-y-2">
+                              <AddOnsSearch
+                                addOns={addOns || []}
+                                selectedAddOns={cityService.selectedAddOns}
+                                onAddOnsChange={(addons) => updateCityService(index, { selectedAddOns: addons })}
+                                cityId={cityService.cityId}
+                                cityName={cityService.cityName}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </Card>
+                    );
+                  })}
                 </div>
-              )}
-            </div>
+              </div>
 
-            <div className="flex items-center gap-4">
-              {totalPricing && (
-                <div className="text-right">
-                  <div className="text-sm text-muted-foreground">Final Total Per Person</div>
-                  <div className="text-2xl font-bold font-mono text-primary">
-                    {Math.round(totalPricing.perPersonAmount)} EGP
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                    {!showCityPicker ? (
+                      <Button
+                        variant="outline"
+                        onClick={() => setShowCityPicker(true)}
+                        className="flex items-center gap-2 w-full sm:w-auto"
+                      >
+                        <Plus className="w-4 h-4" />
+                        Add City
+                      </Button>
+                    ) : (
+                      <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+                        <Select onValueChange={(value) => {
+                          const cityId = parseInt(value);
+                          const selectedCity = cities.find((c: any) => c.id === cityId);
+                          if (selectedCity && !cityServices.find(cs => cs.cityId === cityId)) {
+                            const newCityService: CityService = {
+                              cityId: selectedCity.id,
+                              cityName: selectedCity.name,
+                              date: travelDate || new Date().toISOString().split('T')[0],
+                              travelers: globalTravelers,
+                              selectedRoutes: [],
+                              attractions: "",
+                              selectedAttractions: [],
+                              selectedAddOns: []
+                            };
+                            setCityServices(prev => [...prev, newCityService]);
+                          }
+                          setShowCityPicker(false);
+                        }}>
+                          <SelectTrigger className="w-full sm:w-48">
+                            <SelectValue placeholder="Choose a city to visit" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {cities.filter((city: any) => !cityServices.find(cs => cs.cityId === city.id)).map((city: any) => (
+                              <SelectItem key={city.id} value={city.id.toString()}>
+                                <div className="flex items-center gap-2">
+                                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                                  {city.name}
+                                  <span className="text-xs text-muted-foreground ml-auto">
+                                    {city.description?.split('.')[0]?.substring(0, 30)}...
+                                  </span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setShowCityPicker(false)}
+                          className="w-full sm:w-auto"
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    )}
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
+
+                  <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                    {totalPricing && (
+                      <div className="text-center sm:text-right w-full sm:w-auto">
+                        <div className="text-sm text-muted-foreground">Final Total Per Person</div>
+                        <div className="text-xl sm:text-2xl font-bold font-mono text-primary">
+                          {Math.round(totalPricing.perPersonAmount)} EGP
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          All prices in EGP • International cards accepted
+                        </p>
+                      </div>
+                    )}
+
+                    {pricingMutation.isPending ? (
+                      <Button size="lg" disabled className="flex items-center gap-2 w-full sm:w-auto">
+                        <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
+                        Calculating...
+                      </Button>
+                    ) : (
+                      <Button 
+                        size="lg"
+                        className="flex items-center gap-2 transition-all duration-200 w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
+                        disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
+                        onClick={handleContinueBooking}
+                      >
+                        <Calendar className="w-5 h-5 mr-2" />
+                        <span className="hidden sm:inline">Book Your Egypt Adventure</span>
+                        <span className="sm:hidden">Book Now</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    )}
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">
-                    All prices in EGP • International cards accepted
-                  </p>
                 </div>
-              )}
-
-              {pricingMutation.isPending ? (
-                <Button size="lg" disabled className="flex items-center gap-2">
-                  <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
-                  Calculating...
-                </Button>
-              ) : (
-                <Button 
-                  size="lg"
-                  className="flex items-center gap-2 transition-all duration-200"
-                  disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
-                  onClick={handleContinueBooking}
-                >
-                  Continue to Booking
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              )}
-            </div>
-          </div>
 
           {/* Pricing Breakdown */}
           {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
             <div className="mt-8">
               <Separator className="mb-4" />
               <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {totalPricing.breakdown.map((city: any, index: number) => (
                   <Card key={index} className="p-4">
                     <h4 className="font-medium mb-2">{city.city}</h4>
