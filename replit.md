@@ -3,6 +3,9 @@
 ## Overview
 This project is a full-stack travel platform for Egypt tourism, catering to budget-conscious travelers. Its main purpose is to offer transparent pricing for transfers, tours, and travel services across various Egyptian cities. The platform aims to provide a comprehensive booking and pricing management system, featuring dynamic pricing calculations, multi-vehicle options, and an easy-to-use interface. The business vision is to become a leading online travel resource for Egypt, emphasizing affordability and clarity in travel arrangements.
 
+## Recent Changes
+- **Aug 12, 2025**: **CRITICAL PRICING ALIGNMENT FIX** - Resolved major discrepancy where customer-facing prices (1500 EGP fallback) didn't match admin dashboard prices (2450-6550 EGP). Fixed 52 routes with inconsistent pricing data format. Now all pricing is synchronized across customer and admin interfaces.
+
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 Content approach: Replace translation function calls with direct dummy data in components rather than using JSON translation files.
@@ -25,7 +28,7 @@ Content approach: Replace translation function calls with direct dummy data in c
 
 ### Core System Features
 - **Data Models**: Comprehensive schema including Users, Cities, Routes, Vehicle Types, Guide Rates, Bookings, and Services.
-- **Pricing Engine**: Supports multi-vehicle pricing, dynamic calculations, and transparent breakdowns. Administrators can import routes via CSV.
+- **Pricing Engine**: Supports multi-vehicle pricing, dynamic calculations, and transparent breakdowns. Administrators can import routes via CSV. **CRITICAL FIX (Aug 12, 2025)**: Resolved major pricing inconsistency between customer interface and admin dashboard by standardizing all route pricing data to use consistent vehicle type naming format ({"sedan": 2450, "minivan": 2890, "van": 6550}) instead of mixed nested formats.
 - **Authentication**: JWT-based system with role-based access (User, Admin, Staff) and protected routes.
 - **Admin Management**: Tools for managing bookings, routes (CRUD operations and CSV import), and users.
 - **Booking Process**: Streamlined user flow from selection to payment and confirmation.
