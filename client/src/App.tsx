@@ -39,6 +39,9 @@ import Reviews from "@/pages/reviews";
 import SubmitReview from "@/pages/submit-review";
 import Transfers from "@/pages/transfers";
 import PricingTool from "@/pages/pricing-tool";
+import CairoAirportTransfers from "@/pages/cairo-airport-transfers";
+import LuxorAirportTransfers from "@/pages/luxor-airport-transfers";
+import AswanAirportTransfers from "@/pages/aswan-airport-transfers";
 
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
@@ -100,6 +103,11 @@ function Router() {
       {createMultilingualRoute("terms-of-service", TermsOfService)}
       {createMultilingualRoute("privacy-policy", PrivacyPolicy)}
       {createMultilingualRoute("cookie-policy", CookiePolicy)}
+
+      {/* Airport Transfer Service Pages */}
+      {createMultilingualRoute("cairo-airport-transfers", CairoAirportTransfers)}
+      {createMultilingualRoute("luxor-airport-transfers", LuxorAirportTransfers)}
+      {createMultilingualRoute("aswan-airport-transfers", AswanAirportTransfers)}
 
       <Route component={NotFound} />
     </Switch>

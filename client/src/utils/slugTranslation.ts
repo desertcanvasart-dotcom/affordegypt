@@ -21,7 +21,10 @@ const slugMappings = {
     "cookie-policy": "cookie-policy",
     "transfers": "transfers",
     "pricing-tool": "pricing-tool",
-    "attractions": "attractions"
+    "attractions": "attractions",
+    "cairo-airport-transfers": "cairo-airport-transfers",
+    "luxor-airport-transfers": "luxor-airport-transfers",
+    "aswan-airport-transfers": "aswan-airport-transfers"
   },
   es: {
     "destinations": "destinos",
@@ -42,7 +45,10 @@ const slugMappings = {
     "cookie-policy": "politica-de-cookies",
     "transfers": "traslados",
     "pricing-tool": "herramienta-de-precios",
-    "attractions": "atracciones"
+    "attractions": "atracciones",
+    "cairo-airport-transfers": "traslados-aeropuerto-cairo",
+    "luxor-airport-transfers": "traslados-aeropuerto-luxor",
+    "aswan-airport-transfers": "traslados-aeropuerto-asuán"
   },
   fr: {
     "destinations": "destinations",
@@ -63,7 +69,10 @@ const slugMappings = {
     "cookie-policy": "politique-cookies",
     "transfers": "transferts",
     "pricing-tool": "outil-de-prix",
-    "attractions": "attractions"
+    "attractions": "attractions",
+    "cairo-airport-transfers": "transferts-aeroport-caire",
+    "luxor-airport-transfers": "transferts-aeroport-louxor",
+    "aswan-airport-transfers": "transferts-aeroport-assouan"
   },
   de: {
     "destinations": "reiseziele",
@@ -84,7 +93,10 @@ const slugMappings = {
     "cookie-policy": "cookie-richtlinie",
     "transfers": "transfers",
     "pricing-tool": "preisrechner",
-    "attractions": "attraktionen"
+    "attractions": "attraktionen",
+    "cairo-airport-transfers": "kairo-flughafen-transfer",
+    "luxor-airport-transfers": "luxor-flughafen-transfer",
+    "aswan-airport-transfers": "assuan-flughafen-transfer"
   }
 };
 
