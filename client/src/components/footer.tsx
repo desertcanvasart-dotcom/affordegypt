@@ -106,41 +106,21 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">{t('footer.usefulLinks')}</h3>
+            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link href={getTranslatedLink("travel-tips")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.travelTips')}
+                <Link href={getTranslatedLink("cairo-airport-transfers")} className="text-gray-300 hover:text-primary transition-colors">
+                  Cairo Airport Transfers
                 </Link>
               </li>
               <li>
-                <Link href={getTranslatedLink("eastern-western-deserts-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.desertsGuide')}
+                <Link href={getTranslatedLink("luxor-airport-transfers")} className="text-gray-300 hover:text-primary transition-colors">
+                  Luxor Airport Transfers
                 </Link>
               </li>
               <li>
-                <Link href={getTranslatedLink("sinai-peninsula-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.sinaiGuide')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getTranslatedLink("nile-valley-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.nileGuide')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getTranslatedLink("budget-travel-egypt")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.budgetTravel')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getTranslatedLink("egyptian-street-food-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.streetFood')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.cuisinePassport')}
+                <Link href={getTranslatedLink("aswan-airport-transfers")} className="text-gray-300 hover:text-primary transition-colors">
+                  Aswan Airport Transfers
                 </Link>
               </li>
             </ul>
