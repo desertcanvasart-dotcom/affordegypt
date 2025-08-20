@@ -17,6 +17,8 @@ import {
   Waves,
   Mountain
 } from "lucide-react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function AswanAirportTransfers() {
   const vehicleTypes = [
@@ -92,6 +94,7 @@ export default function AswanAirportTransfers() {
       </Helmet>
 
       <div className="min-h-screen bg-background">
+        <Navbar />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">
@@ -107,7 +110,7 @@ export default function AswanAirportTransfers() {
                 with local knowledge and transparent pricing from 575 EGP.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/pricing-tool">
+                <Link href="/transfers">
                   <Button size="lg" className="text-lg px-8">
                     Book Now
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -280,7 +283,7 @@ export default function AswanAirportTransfers() {
                 <p className="text-sm text-muted-foreground mb-6">
                   Airport to hotel transfers • Nile expert driver • Local cultural knowledge
                 </p>
-                <Link href="/pricing-tool">
+                <Link href="/transfers">
                   <Button size="lg">
                     Get Instant Quote
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -314,6 +317,8 @@ export default function AswanAirportTransfers() {
             </div>
           </div>
         </section>
+        
+        <Footer />
       </div>
     </>
   );

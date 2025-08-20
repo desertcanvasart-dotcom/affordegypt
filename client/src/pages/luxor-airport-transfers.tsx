@@ -16,6 +16,8 @@ import {
   Phone,
   Camera
 } from "lucide-react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function LuxorAirportTransfers() {
   const vehicleTypes = [
@@ -91,6 +93,7 @@ export default function LuxorAirportTransfers() {
       </Helmet>
 
       <div className="min-h-screen bg-background">
+        <Navbar />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">
@@ -106,7 +109,7 @@ export default function LuxorAirportTransfers() {
                 with temple route knowledge and transparent pricing from 460 EGP.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/pricing-tool">
+                <Link href="/transfers">
                   <Button size="lg" className="text-lg px-8">
                     Book Now
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -279,7 +282,7 @@ export default function LuxorAirportTransfers() {
                 <p className="text-sm text-muted-foreground mb-6">
                   Airport to hotel transfers • Local expert driver • Temple route knowledge
                 </p>
-                <Link href="/pricing-tool">
+                <Link href="/transfers">
                   <Button size="lg">
                     Get Instant Quote
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -298,7 +301,7 @@ export default function LuxorAirportTransfers() {
               Start your journey to the world's greatest open-air museum with our reliable transfers
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/pricing-tool">
+              <Link href="/transfers">
                 <Button size="lg" variant="secondary" className="text-lg px-8">
                   Book Online Now
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -313,6 +316,8 @@ export default function LuxorAirportTransfers() {
             </div>
           </div>
         </section>
+        
+        <Footer />
       </div>
     </>
   );
