@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
 import { 
   Plane, 
   MapPin, 
@@ -19,6 +20,10 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function CairoAirportTransfers() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const vehicleTypes = [
     {
       name: "Sedan",
@@ -268,7 +273,7 @@ export default function CairoAirportTransfers() {
                 </Button>
               </Link>
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="outline" className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary bg-transparent">
                   <Phone className="w-5 h-5 mr-2" />
                   Call Now
                 </Button>

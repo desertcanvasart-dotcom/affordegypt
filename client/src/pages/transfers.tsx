@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { useLocation } from "wouter";
 import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building, Navigation } from "lucide-react";
@@ -159,6 +159,11 @@ const transfersContent = {
 };
 
 export default function TransfersPage() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const [currentStep, setCurrentStep] = useState(1); // 1: Route Selection, 2: Vehicle Selection
   const [activeTab, setActiveTab] = useState("intercity");
   const [fromCity, setFromCity] = useState("");
