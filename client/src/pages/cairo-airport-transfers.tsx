@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
+import { useSmartTranslation } from "@/hooks/useSmartTranslation";
 import { 
   Plane, 
   MapPin, 
@@ -20,30 +21,45 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function CairoAirportTransfers() {
+  const { t } = useSmartTranslation();
+  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   const vehicleTypes = [
     {
-      name: "Sedan",
-      capacity: "1-3 passengers",
-      price: "From 950 EGP",
-      features: ["Air conditioning", "Professional driver", "Meet & greet"],
+      name: t("airportTransfers.common.sedan"),
+      capacity: t("airportTransfers.common.passengers1to3"),
+      price: t("airportTransfers.cairo.priceFrom950"),
+      features: [
+        t("airportTransfers.common.airConditioning"),
+        t("airportTransfers.common.professionalDriver"),
+        t("airportTransfers.common.meetGreet")
+      ],
       icon: Car
     },
     {
-      name: "Minivan",
-      capacity: "4-7 passengers", 
-      price: "From 1,553 EGP",
-      features: ["Extra luggage space", "Family-friendly", "Comfortable seating"],
+      name: t("airportTransfers.common.minivan"),
+      capacity: t("airportTransfers.common.passengers4to7"), 
+      price: t("airportTransfers.cairo.priceFrom1553"),
+      features: [
+        t("airportTransfers.common.extraLuggageSpace"),
+        t("airportTransfers.common.familyFriendly"),
+        t("airportTransfers.common.comfortableSeating")
+      ],
       icon: Users
     },
     {
-      name: "Van",
-      capacity: "8+ passengers",
-      price: "From 2,406 EGP", 
-      features: ["Group travel", "Large luggage capacity", "Premium comfort"],
+      name: t("airportTransfers.common.van"),
+      capacity: t("airportTransfers.common.passengers8plus"),
+      price: t("airportTransfers.cairo.priceFrom2406"), 
+      features: [
+        t("airportTransfers.common.groupTravel"),
+        t("airportTransfers.common.largeLuggageCapacity"),
+        t("airportTransfers.common.premiumComfort")
+      ],
       icon: Users
     }
   ];
@@ -51,48 +67,39 @@ export default function CairoAirportTransfers() {
   const keyFeatures = [
     {
       icon: Shield,
-      title: "24/7 Service",
-      description: "Round-the-clock airport transfers available every day"
+      title: t("airportTransfers.cairo.service24_7"),
+      description: t("airportTransfers.cairo.service24_7Desc")
     },
     {
       icon: Clock,
-      title: "Flight Monitoring",
-      description: "We track your flight and adjust pickup times accordingly"
+      title: t("airportTransfers.common.flightMonitoring"),
+      description: t("airportTransfers.common.flightMonitoringDesc")
     },
     {
       icon: MapPin,
-      title: "Door-to-Door",
-      description: "Direct transfers from airport to your hotel or destination"
+      title: t("airportTransfers.cairo.doorToDoor"),
+      description: t("airportTransfers.cairo.doorToDoorDesc")
     },
     {
       icon: CheckCircle,
-      title: "Professional Drivers",
-      description: "Licensed, experienced drivers with local knowledge"
+      title: t("airportTransfers.common.professionalDrivers"),
+      description: t("airportTransfers.common.professionalDriversDesc")
     }
   ];
 
-  const airportAreas = [
-    "Cairo International Airport (CAI)",
-    "New Cairo Hotels",
-    "6th of October City",
-    "Giza Hotels",
-    "Downtown Cairo",
-    "Heliopolis",
-    "Maadi",
-    "Zamalek"
-  ];
+  const airportAreas = t("airportTransfers.cairo.areas") as string[];
 
   return (
     <>
       <Helmet>
-        <title>Cairo Airport Transfers - Reliable & Affordable | AffordEgypt</title>
+        <title>{t("airportTransfers.cairo.title")}</title>
         <meta 
           name="description" 
-          content="Book reliable Cairo airport transfers from 950 EGP. Professional drivers, 24/7 service, flight monitoring. Transfer to hotels in New Cairo, Giza, Downtown & more." 
+          content={t("airportTransfers.cairo.metaDescription")} 
         />
-        <meta name="keywords" content="Cairo airport transfer, CAI airport transport, Cairo taxi, Egypt airport shuttle, New Cairo transfer" />
-        <meta property="og:title" content="Cairo Airport Transfers - Reliable & Affordable" />
-        <meta property="og:description" content="Professional airport transfers in Cairo from 950 EGP. Book online with AffordEgypt." />
+        <meta name="keywords" content={t("airportTransfers.cairo.keywords")} />
+        <meta property="og:title" content={t("airportTransfers.cairo.title")} />
+        <meta property="og:description" content={t("airportTransfers.cairo.metaDescription")} />
         <meta property="og:type" content="website" />
       </Helmet>
 
@@ -105,24 +112,23 @@ export default function CairoAirportTransfers() {
               <div className="flex items-center justify-center gap-3 mb-6">
                 <Plane className="w-10 h-10 text-primary" />
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Cairo Airport Transfers
+                  {t("airportTransfers.cairo.heroTitle")}
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Reliable, comfortable, and affordable airport transfers in Cairo. Professional drivers, 
-                flight monitoring, and transparent pricing from 950 EGP.
+                {t("airportTransfers.cairo.heroSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
                   <Button size="lg" className="text-lg px-8">
-                    Book Now
+                    {t("airportTransfers.common.bookNow")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
                 <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="lg" className="text-lg px-8">
                     <Phone className="w-5 h-5 mr-2" />
-                    WhatsApp
+                    {t("airportTransfers.common.whatsapp")}
                   </Button>
                 </a>
               </div>
@@ -133,7 +139,7 @@ export default function CairoAirportTransfers() {
         {/* Key Features */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Cairo Airport Transfers?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.cairo.whyChooseTitle")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {keyFeatures.map((feature, index) => (
                 <Card key={index} className="text-center">
@@ -151,7 +157,7 @@ export default function CairoAirportTransfers() {
         {/* Vehicle Options */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Choose Your Vehicle</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.chooseVehicle")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {vehicleTypes.map((vehicle, index) => (
                 <Card key={index} className="relative hover:shadow-lg transition-shadow">
@@ -183,12 +189,12 @@ export default function CairoAirportTransfers() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Cairo Transfer Destinations</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.cairo.transferDestinationsTitle")}</h2>
               <p className="text-center text-muted-foreground mb-8">
-                We provide airport transfers to all major areas in and around Cairo
+                {t("airportTransfers.cairo.transferDestinationsDesc")}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {airportAreas.map((area, index) => (
+                {airportAreas.map((area: string, index: number) => (
                   <div key={index} className="flex items-center gap-2 p-3 bg-background rounded-lg">
                     <MapPin className="w-4 h-4 text-primary" />
                     <span className="text-sm font-medium">{area}</span>
@@ -202,28 +208,28 @@ export default function CairoAirportTransfers() {
         {/* How It Works */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.howItWorks")}</h2>
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">1</div>
-                  <h3 className="font-semibold mb-2">Book Online</h3>
+                  <h3 className="font-semibold mb-2">{t("airportTransfers.common.bookOnline")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Select your pickup time, destination, and vehicle type
+                    {t("airportTransfers.common.selectPickupTime")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">2</div>
-                  <h3 className="font-semibold mb-2">Meet Your Driver</h3>
+                  <h3 className="font-semibold mb-2">{t("airportTransfers.common.meetDriver")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Your driver will meet you at the designated pickup point
+                    {t("airportTransfers.cairo.stepMeetDriverDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">3</div>
-                  <h3 className="font-semibold mb-2">Enjoy Your Ride</h3>
+                  <h3 className="font-semibold mb-2">{t("airportTransfers.cairo.stepEnjoyRide")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Relax in comfort as we take you to your destination
+                    {t("airportTransfers.cairo.stepEnjoyRideDesc")}
                   </p>
                 </div>
               </div>
@@ -235,21 +241,21 @@ export default function CairoAirportTransfers() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Transparent Pricing</h2>
+              <h2 className="text-3xl font-bold mb-6">{t("airportTransfers.common.transparentPricing")}</h2>
               <p className="text-muted-foreground mb-8">
-                No hidden fees. What you see is what you pay. Prices include all taxes and fees.
+                {t("airportTransfers.common.noHiddenFees")}
               </p>
               <div className="bg-background p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Starting from 950 EGP</span>
+                  <span className="font-semibold">{t("airportTransfers.cairo.priceFrom950")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Airport to hotel transfers • Professional driver • Meet & greet service
+                  {t("airportTransfers.cairo.pricingInfoDesc")}
                 </p>
                 <Link href="/transfers">
                   <Button size="lg">
-                    Get Instant Quote
+                    {t("airportTransfers.common.getInstantQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
@@ -261,21 +267,21 @@ export default function CairoAirportTransfers() {
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Book Your Cairo Airport Transfer?</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("airportTransfers.cairo.ctaTitle")}</h2>
             <p className="text-lg mb-8 opacity-90">
-              Join thousands of satisfied customers who trust us for their Cairo airport transfers
+              {t("airportTransfers.cairo.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/transfers">
                 <Button size="lg" variant="secondary" className="text-lg px-8">
-                  Book Online Now
+                  {t("airportTransfers.common.bookOnlineNow")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary bg-transparent">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call Now
+                  {t("airportTransfers.common.callNow")}
                 </Button>
               </a>
             </div>
