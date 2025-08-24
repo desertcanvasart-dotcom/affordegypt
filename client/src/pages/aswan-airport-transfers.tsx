@@ -76,7 +76,16 @@ export default function AswanAirportTransfers() {
     }
   ];
 
-  const aswanAreas = t("airportTransfers.aswan.areas") as string[];
+  const aswanAreas = t("airportTransfers.aswan.areas", { fallbackToKey: false }) as string[] || [
+    "Aswan Airport (ASW)",
+    "Corniche Hotels",
+    "Elephantine Island",
+    "Nubian Villages",
+    "Philae Temple Area",
+    "High Dam District",
+    "Felucca Harbors",
+    "Abu Simbel Route"
+  ];
 
   return (
     <>

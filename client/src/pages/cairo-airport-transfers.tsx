@@ -87,7 +87,16 @@ export default function CairoAirportTransfers() {
     }
   ];
 
-  const airportAreas = t("airportTransfers.cairo.areas") as string[];
+  const airportAreas = t("airportTransfers.cairo.areas", { fallbackToKey: false }) as string[] || [
+    "Cairo International Airport (CAI)",
+    "New Cairo Hotels",
+    "6th of October City",
+    "Giza Hotels",
+    "Downtown Cairo",
+    "Heliopolis",
+    "Maadi",
+    "Zamalek"
+  ];
 
   return (
     <>

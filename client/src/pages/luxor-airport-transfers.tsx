@@ -75,7 +75,16 @@ export default function LuxorAirportTransfers() {
     }
   ];
 
-  const luxorAreas = t("airportTransfers.luxor.areas") as string[];
+  const luxorAreas = t("airportTransfers.luxor.areas", { fallbackToKey: false }) as string[] || [
+    "Luxor Airport (LXR)",
+    "East Bank Hotels",
+    "West Bank Hotels",
+    "Valley of the Kings",
+    "Karnak Temple Area",
+    "Luxor Temple District",
+    "Nile Cruise Terminals",
+    "Winter Palace Area"
+  ];
 
   return (
     <>
