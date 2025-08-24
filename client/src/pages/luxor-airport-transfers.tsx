@@ -75,16 +75,34 @@ export default function LuxorAirportTransfers() {
     }
   ];
 
-  const luxorAreas = t("airportTransfers.luxor.areas", { fallbackToKey: false }) as string[] || [
-    "Luxor Airport (LXR)",
-    "East Bank Hotels",
-    "West Bank Hotels",
-    "Valley of the Kings",
-    "Karnak Temple Area",
-    "Luxor Temple District",
-    "Nile Cruise Terminals",
-    "Winter Palace Area"
-  ];
+  // Luxor areas with fallback
+  const getLuxorAreas = () => {
+    try {
+      const areas = [
+        t("airportTransfers.luxor.area1") || "Luxor Airport (LXR)",
+        t("airportTransfers.luxor.area2") || "East Bank Hotels",
+        t("airportTransfers.luxor.area3") || "West Bank Hotels",
+        t("airportTransfers.luxor.area4") || "Valley of the Kings",
+        t("airportTransfers.luxor.area5") || "Karnak Temple Area",
+        t("airportTransfers.luxor.area6") || "Luxor Temple District",
+        t("airportTransfers.luxor.area7") || "Nile Cruise Terminals",
+        t("airportTransfers.luxor.area8") || "Winter Palace Area"
+      ];
+      return areas;
+    } catch {
+      return [
+        "Luxor Airport (LXR)",
+        "East Bank Hotels",
+        "West Bank Hotels",
+        "Valley of the Kings",
+        "Karnak Temple Area",
+        "Luxor Temple District", 
+        "Nile Cruise Terminals",
+        "Winter Palace Area"
+      ];
+    }
+  };
+  const luxorAreas = getLuxorAreas();
 
   return (
     <>

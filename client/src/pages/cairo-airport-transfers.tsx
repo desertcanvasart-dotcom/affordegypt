@@ -87,16 +87,34 @@ export default function CairoAirportTransfers() {
     }
   ];
 
-  const airportAreas = t("airportTransfers.cairo.areas", { fallbackToKey: false }) as string[] || [
-    "Cairo International Airport (CAI)",
-    "New Cairo Hotels",
-    "6th of October City",
-    "Giza Hotels",
-    "Downtown Cairo",
-    "Heliopolis",
-    "Maadi",
-    "Zamalek"
-  ];
+  // Airport areas with fallback
+  const getAirportAreas = () => {
+    try {
+      const areas = [
+        t("airportTransfers.cairo.area1") || "Cairo International Airport (CAI)",
+        t("airportTransfers.cairo.area2") || "New Cairo Hotels", 
+        t("airportTransfers.cairo.area3") || "6th of October City",
+        t("airportTransfers.cairo.area4") || "Giza Hotels",
+        t("airportTransfers.cairo.area5") || "Downtown Cairo",
+        t("airportTransfers.cairo.area6") || "Heliopolis",
+        t("airportTransfers.cairo.area7") || "Maadi", 
+        t("airportTransfers.cairo.area8") || "Zamalek"
+      ];
+      return areas;
+    } catch {
+      return [
+        "Cairo International Airport (CAI)",
+        "New Cairo Hotels",
+        "6th of October City", 
+        "Giza Hotels",
+        "Downtown Cairo",
+        "Heliopolis",
+        "Maadi",
+        "Zamalek"
+      ];
+    }
+  };
+  const airportAreas = getAirportAreas();
 
   return (
     <>

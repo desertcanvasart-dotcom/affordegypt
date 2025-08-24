@@ -76,16 +76,34 @@ export default function AswanAirportTransfers() {
     }
   ];
 
-  const aswanAreas = t("airportTransfers.aswan.areas", { fallbackToKey: false }) as string[] || [
-    "Aswan Airport (ASW)",
-    "Corniche Hotels",
-    "Elephantine Island",
-    "Nubian Villages",
-    "Philae Temple Area",
-    "High Dam District",
-    "Felucca Harbors",
-    "Abu Simbel Route"
-  ];
+  // Aswan areas with fallback
+  const getAswanAreas = () => {
+    try {
+      const areas = [
+        t("airportTransfers.aswan.area1") || "Aswan Airport (ASW)",
+        t("airportTransfers.aswan.area2") || "Corniche Hotels",
+        t("airportTransfers.aswan.area3") || "Elephantine Island",
+        t("airportTransfers.aswan.area4") || "Nubian Villages",
+        t("airportTransfers.aswan.area5") || "Philae Temple Area",
+        t("airportTransfers.aswan.area6") || "High Dam District",
+        t("airportTransfers.aswan.area7") || "Felucca Harbors",
+        t("airportTransfers.aswan.area8") || "Abu Simbel Route"
+      ];
+      return areas;
+    } catch {
+      return [
+        "Aswan Airport (ASW)",
+        "Corniche Hotels",
+        "Elephantine Island",
+        "Nubian Villages",
+        "Philae Temple Area",
+        "High Dam District",
+        "Felucca Harbors",
+        "Abu Simbel Route"
+      ];
+    }
+  };
+  const aswanAreas = getAswanAreas();
 
   return (
     <>
