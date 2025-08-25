@@ -125,17 +125,17 @@ export default function Footer() {
               </li>
               <li>
                 <Link href={getTranslatedLink("cairo-guide-services")} className="text-gray-300 hover:text-primary transition-colors">
-                  Cairo Guide Services
+                  Cairo Car & Tour Guide Services
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("luxor-guide-services")} className="text-gray-300 hover:text-primary transition-colors">
-                  Luxor Guide Services
+                  Luxor Car & Tour Guide Services
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("aswan-guide-services")} className="text-gray-300 hover:text-primary transition-colors">
-                  Aswan Guide Services
+                  Aswan Car & Tour Guide Services
                 </Link>
               </li>
             </ul>

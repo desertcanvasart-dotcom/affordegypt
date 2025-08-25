@@ -109,13 +109,13 @@ export default function CairoGuideServices() {
   return (
     <>
       <Helmet>
-        <title>Cairo Guide & Car Services - Expert Tours | AffordEgypt</title>
+        <title>Cairo Car & Tour Guide Services - Expert Tours | AffordEgypt</title>
         <meta 
           name="description" 
-          content="Professional Cairo guide services from 1,200 EGP. Licensed Egyptologists, luxury cars, multilingual guides. Pyramids, museums, Islamic Cairo tours." 
+          content="Professional Cairo car & tour guide services from 1,200 EGP. Licensed Egyptologists, luxury cars, multilingual guides. Pyramids, museums, Islamic Cairo tours." 
         />
         <meta name="keywords" content="Cairo guide, Egypt tour guide, Cairo car service, pyramid tours, Egyptian Museum guide, Islamic Cairo tours" />
-        <meta property="og:title" content="Cairo Guide & Car Services - Expert Tours" />
+        <meta property="og:title" content="Cairo Car & Tour Guide Services - Expert Tours" />
         <meta property="og:description" content="Professional guide services and luxury car rentals in Cairo from 1,200 EGP." />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -129,11 +129,11 @@ export default function CairoGuideServices() {
               <div className="flex items-center justify-center gap-3 mb-6">
                 <UserCheck className="w-10 h-10 text-primary" />
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Cairo Guide & Car Services
+                  Cairo Car & Tour Guide Services
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Expert Cairo guides and luxury car services. Licensed Egyptologists, 
+                Expert Cairo car & tour guide services. Licensed Egyptologists, 
                 multilingual support, and premium vehicles from 1,200 EGP.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -157,7 +157,7 @@ export default function CairoGuideServices() {
         {/* Key Features */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Cairo Guide Services?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Cairo Car & Tour Guide Services?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {keyFeatures.map((feature, index) => (
                 <Card key={index} className="text-center">
@@ -298,7 +298,7 @@ export default function CairoGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Affordable Cairo Guide Services</h2>
+              <h2 className="text-3xl font-bold mb-6">Affordable Cairo Car & Tour Guide Services</h2>
               <p className="text-muted-foreground mb-8">
                 Professional guides and luxury vehicles at competitive prices. No hidden costs.
               </p>

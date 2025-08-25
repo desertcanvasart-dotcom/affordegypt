@@ -109,13 +109,13 @@ export default function AswanGuideServices() {
   return (
     <>
       <Helmet>
-        <title>Aswan Guide & Car Services - Nubian Culture Tours | AffordEgypt</title>
+        <title>Aswan Car & Tour Guide Services - Nubian Culture Tours | AffordEgypt</title>
         <meta 
           name="description" 
-          content="Expert Aswan guide services from 1,000 EGP. Nubian culture tours, Abu Simbel trips, Philae Temple guides, felucca sailing." 
+          content="Expert Aswan car & tour guide services from 1,000 EGP. Nubian culture tours, Abu Simbel trips, Philae Temple guides, felucca sailing." 
         />
         <meta name="keywords" content="Aswan guide, Abu Simbel tour, Nubian village tour, Philae Temple guide, felucca sailing, Aswan car service" />
-        <meta property="og:title" content="Aswan Guide & Car Services - Nubian Culture Tours" />
+        <meta property="og:title" content="Aswan Car & Tour Guide Services - Nubian Culture Tours" />
         <meta property="og:description" content="Professional Nubian culture guides and desert expeditions in Aswan from 1,000 EGP." />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -129,11 +129,11 @@ export default function AswanGuideServices() {
               <div className="flex items-center justify-center gap-3 mb-6">
                 <UserCheck className="w-10 h-10 text-primary" />
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Aswan Guide & Car Services
+                  Aswan Car & Tour Guide Services
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Discover Nubian culture and southern Egypt treasures. Expert local guides, 
+                Discover Nubian culture and southern Egypt treasures. Expert car & tour guide services, 
                 desert expeditions, and cultural immersion from 1,000 EGP.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -157,7 +157,7 @@ export default function AswanGuideServices() {
         {/* Key Features */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Aswan Guide Services?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Aswan Car & Tour Guide Services?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {keyFeatures.map((feature, index) => (
                 <Card key={index} className="text-center">
@@ -298,7 +298,7 @@ export default function AswanGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Authentic Aswan Cultural Tours</h2>
+              <h2 className="text-3xl font-bold mb-6">Authentic Aswan Car & Tour Guide Services</h2>
               <p className="text-muted-foreground mb-8">
                 Genuine cultural experiences with local Nubian guides. Best value cultural tourism.
               </p>

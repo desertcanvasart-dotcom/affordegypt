@@ -24,7 +24,10 @@ const slugMappings = {
     "attractions": "attractions",
     "cairo-airport-transfers": "cairo-airport-transfers",
     "luxor-airport-transfers": "luxor-airport-transfers",
-    "aswan-airport-transfers": "aswan-airport-transfers"
+    "aswan-airport-transfers": "aswan-airport-transfers",
+    "cairo-guide-services": "cairo-guide-services",
+    "luxor-guide-services": "luxor-guide-services",
+    "aswan-guide-services": "aswan-guide-services"
   },
   es: {
     "destinations": "destinos",
@@ -48,7 +51,10 @@ const slugMappings = {
     "attractions": "atracciones",
     "cairo-airport-transfers": "traslados-aeropuerto-cairo",
     "luxor-airport-transfers": "traslados-aeropuerto-luxor",
-    "aswan-airport-transfers": "traslados-aeropuerto-asuán"
+    "aswan-airport-transfers": "traslados-aeropuerto-asuán",
+    "cairo-guide-services": "servicios-guia-cairo",
+    "luxor-guide-services": "servicios-guia-luxor",
+    "aswan-guide-services": "servicios-guia-asuán"
   },
   fr: {
     "destinations": "destinations",
@@ -72,7 +78,10 @@ const slugMappings = {
     "attractions": "attractions",
     "cairo-airport-transfers": "transferts-aeroport-caire",
     "luxor-airport-transfers": "transferts-aeroport-louxor",
-    "aswan-airport-transfers": "transferts-aeroport-assouan"
+    "aswan-airport-transfers": "transferts-aeroport-assouan",
+    "cairo-guide-services": "services-guide-caire",
+    "luxor-guide-services": "services-guide-louxor",
+    "aswan-guide-services": "services-guide-assouan"
   },
   de: {
     "destinations": "reiseziele",
@@ -96,7 +105,10 @@ const slugMappings = {
     "attractions": "attraktionen",
     "cairo-airport-transfers": "kairo-flughafen-transfer",
     "luxor-airport-transfers": "luxor-flughafen-transfer",
-    "aswan-airport-transfers": "assuan-flughafen-transfer"
+    "aswan-airport-transfers": "assuan-flughafen-transfer",
+    "cairo-guide-services": "kairo-reisefuehrer-service",
+    "luxor-guide-services": "luxor-reisefuehrer-service",
+    "aswan-guide-services": "assuan-reisefuehrer-service"
   }
 };
 
