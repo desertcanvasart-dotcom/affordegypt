@@ -57,23 +57,23 @@ export default function LuxorGuideServices() {
   const keyFeatures = [
     {
       icon: Compass,
-      title: "Temple Expertise",
-      description: "Specialized knowledge of Karnak, Luxor Temple, and Valley of the Kings"
+      title: t("guideServices.luxor.templeExpertise"),
+      description: t("guideServices.luxor.templeExpertiseDesc")
     },
     {
       icon: Shield,
-      title: "Licensed Archaeologists",
-      description: "Guides with formal archaeology training and excavation experience"
+      title: t("guideServices.luxor.licensedArchaeologists"),
+      description: t("guideServices.luxor.licensedArchaeologistsDesc")
     },
     {
       icon: Camera,
-      title: "Photography Tours",
-      description: "Special photo tours for best lighting and angles at temples"
+      title: t("guideServices.luxor.photographyTours"),
+      description: t("guideServices.luxor.photographyToursDesc")
     },
     {
       icon: Clock,
-      title: "Early Morning Access",
-      description: "Beat the crowds with sunrise temple visits and exclusive early access"
+      title: t("guideServices.luxor.earlyMorningAccess"),
+      description: t("guideServices.luxor.earlyMorningAccessDesc")
     }
   ];
 
@@ -109,14 +109,14 @@ export default function LuxorGuideServices() {
   return (
     <>
       <Helmet>
-        <title>Luxor Car & Tour Guide Services - Temple Tours | AffordEgypt</title>
+        <title>{t("guideServices.luxor.title")}</title>
         <meta 
           name="description" 
-          content="Expert Luxor car & tour guide services from 1,100 EGP. Temple specialists, Valley of Kings tours, ancient Egypt archaeology guides, luxury cars." 
+          content={t("guideServices.luxor.metaDescription")} 
         />
-        <meta name="keywords" content="Luxor guide, Valley of Kings tour, temple guide Luxor, Karnak guide, ancient Egypt tours, Luxor car service" />
-        <meta property="og:title" content="Luxor Car & Tour Guide Services - Temple Tours" />
-        <meta property="og:description" content="Professional temple guides and luxury cars in Luxor from 1,100 EGP." />
+        <meta name="keywords" content={t("guideServices.luxor.keywords")} />
+        <meta property="og:title" content={t("guideServices.luxor.title")} />
+        <meta property="og:description" content={t("guideServices.luxor.metaDescription")} />
         <meta property="og:type" content="website" />
       </Helmet>
 
@@ -129,12 +129,11 @@ export default function LuxorGuideServices() {
               <div className="flex items-center justify-center gap-3 mb-6">
                 <UserCheck className="w-10 h-10 text-primary" />
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Luxor Car & Tour Guide Services
+                  {t("guideServices.luxor.heroTitle")}
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Expert car & tour guide services in ancient Thebes. 
-                Licensed archaeologists and premium vehicles from 1,100 EGP.
+                {t("guideServices.luxor.heroSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
@@ -157,7 +156,7 @@ export default function LuxorGuideServices() {
         {/* Key Features */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Luxor Car & Tour Guide Services?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.luxor.whyChooseTitle")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {keyFeatures.map((feature, index) => (
                 <Card key={index} className="text-center">
@@ -298,9 +297,9 @@ export default function LuxorGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Expert Luxor Car & Tour Guide Services</h2>
+              <h2 className="text-3xl font-bold mb-6">{t("guideServices.luxor.pricingTitle")}</h2>
               <p className="text-muted-foreground mb-8">
-                Professional archaeological guides and luxury transport. Best value in Upper Egypt.
+                {t("guideServices.luxor.pricingDesc")}
               </p>
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
@@ -324,9 +323,9 @@ export default function LuxorGuideServices() {
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Discover Ancient Thebes?</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("guideServices.luxor.ctaTitle")}</h2>
             <p className="text-lg mb-8 opacity-90">
-              Experience Luxor's temples with expert archaeological guides
+              {t("guideServices.luxor.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/pricing-tool">

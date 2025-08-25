@@ -1800,5 +1800,229 @@
       "ctaTitle": "Ready to Experience the Jewel of the Nile?",
       "ctaSubtitle": "Begin your Aswan adventure with our reliable and knowledgeable transfer service"
     }
+  },
+  "guideServices": {
+    "common": {
+      "bookNow": "Book Guide Service",
+      "whatsapp": "WhatsApp",
+      "callNow": "Call Now",
+      "howItWorks": "How It Works",
+      "bookOnline": "Book Online",
+      "meetGuide": "Meet Your Guide",
+      "exploreCity": "Explore City",
+      "bookOnlineNow": "Book Online Now",
+      "getInstantQuote": "Get Instant Quote",
+      "licensedGuide": "Licensed guide",
+      "professionalDriver": "Professional driver",
+      "allEntranceFees": "All entrance fees",
+      "flexibleItinerary": "Flexible itinerary",
+      "multilingualGuide": "Multilingual guide",
+      "culturalExpertise": "Cultural expertise",
+      "professionalGuide": "Professional Guide",
+      "guideCarPackage": "Guide + Car Package",
+      "premiumCarService": "Premium Car Service",
+      "fullDay8Hours": "Full Day (8 hours)",
+      "fullDay": "Full Day",
+      "6to12Hours": "8-12 hours",
+      "12to14Hours": "12-14 hours"
+    },
+    "cairo": {
+      "title": "Cairo Car & Tour Guide Services - Expert Tours | AffordEgypt",
+      "metaDescription": "Professional Cairo car & tour guide services from 1,200 EGP. Licensed Egyptologists, luxury cars, multilingual guides. Pyramids, museums, Islamic Cairo tours.",
+      "keywords": "Cairo guide, Egypt tour guide, Cairo car service, pyramid tours, Egyptian Museum guide, Islamic Cairo tours",
+      "heroTitle": "Cairo Car & Tour Guide Services",
+      "heroSubtitle": "Expert Cairo car & tour guide services. Licensed Egyptologists, multilingual support, and premium vehicles from 1,200 EGP.",
+      "whyChooseTitle": "Why Choose Our Cairo Car & Tour Guide Services?",
+      "multilingualGuides": "Multilingual Guides",
+      "multilingualGuidesDesc": "Expert guides fluent in English, Arabic, French, German and Spanish",
+      "licensedInsured": "Licensed & Insured",
+      "licensedInsuredDesc": "All guides are officially licensed by Egyptian Ministry of Tourism",
+      "photographySupport": "Photography Support",
+      "photographySupportDesc": "Guides help you capture perfect photos at iconic Cairo landmarks",
+      "flexibleScheduling": "Flexible Scheduling",
+      "flexibleSchedulingDesc": "Customize your itinerary and timing to match your preferences",
+      "priceFrom1200": "From 1,200 EGP",
+      "priceFrom2400": "From 2,400 EGP",
+      "priceFrom1800": "From 1,800 EGP",
+      "serviceTypes": {
+        "professionalGuide": {
+          "name": "Professional Guide",
+          "duration": "Full Day (8 hours)",
+          "features": ["Licensed Egyptologist", "Fluent English/Arabic", "Historical expertise"]
+        },
+        "guideCarPackage": {
+          "name": "Guide + Car Package", 
+          "duration": "Full Day",
+          "features": ["Professional guide", "Private vehicle", "All entrance fees included"]
+        },
+        "premiumCarService": {
+          "name": "Premium Car Service",
+          "duration": "8-12 hours",
+          "features": ["Luxury sedan/SUV", "Professional driver", "Flexible itinerary"]
+        }
+      },
+      "serviceAreasTitle": "Popular Cairo Tour Destinations",
+      "serviceAreasDesc": "Our expert guides cover all major Cairo attractions and hidden gems",
+      "serviceAreas": [
+        "Giza Pyramids & Sphinx",
+        "Egyptian Museum",
+        "Islamic Cairo",
+        "Coptic Cairo", 
+        "Khan El Khalili Bazaar",
+        "Citadel of Saladin",
+        "Al-Azhar Mosque",
+        "Old Cairo Walking Tours"
+      ],
+      "specialtiesTitle": "Cairo Specialty Services",
+      "egyptologyExperts": "Egyptology Experts",
+      "egyptologyExpertsDesc": "Licensed Egyptologists with deep knowledge of pharaonic history, hieroglyphs, and archaeological discoveries. Perfect for museum tours and pyramid exploration.",
+      "islamicCairoSpecialists": "Islamic Cairo Specialists",
+      "islamicCairoSpecialistsDesc": "Expert guides for Islamic Cairo's medieval streets, historic mosques, and traditional bazaars. Experience authentic Egyptian culture and architecture.",
+      "howItWorksSteps": {
+        "step1": "Choose Your Service",
+        "step1Desc": "Select guide only, car only, or combined package based on your needs",
+        "step2": "Meet Your Guide", 
+        "step2Desc": "Professional licensed guide will meet you at your hotel or chosen location",
+        "step3": "Explore Cairo",
+        "step3Desc": "Discover Cairo's wonders with expert commentary and insider knowledge"
+      },
+      "pricingTitle": "Affordable Cairo Car & Tour Guide Services",
+      "pricingDesc": "Professional guides and luxury vehicles at competitive prices. No hidden costs.",
+      "pricingInfo": "Licensed guides • Luxury vehicles • Multilingual support • All entrance fees",
+      "ctaTitle": "Ready to Explore Ancient Cairo?",
+      "ctaSubtitle": "Book your expert guide and discover the secrets of the pharaohs"
+    },
+    "luxor": {
+      "title": "Luxor Car & Tour Guide Services - Temple Tours | AffordEgypt",
+      "metaDescription": "Expert Luxor car & tour guide services from 1,100 EGP. Temple specialists, Valley of Kings tours, ancient Egypt archaeology guides, luxury cars.",
+      "keywords": "Luxor guide, Valley of Kings tour, temple guide Luxor, Karnak guide, ancient Egypt tours, Luxor car service",
+      "heroTitle": "Luxor Car & Tour Guide Services",
+      "heroSubtitle": "Expert car & tour guide services in ancient Thebes. Licensed archaeologists and premium vehicles from 1,100 EGP.",
+      "whyChooseTitle": "Why Choose Our Luxor Car & Tour Guide Services?",
+      "templeExpertise": "Temple Expertise",
+      "templeExpertiseDesc": "Specialized knowledge of Karnak, Luxor Temple, and Valley of the Kings",
+      "licensedArchaeologists": "Licensed Archaeologists",
+      "licensedArchaeologistsDesc": "Guides with formal archaeology training and excavation experience",
+      "photographyTours": "Photography Tours",
+      "photographyToursDesc": "Special photo tours for best lighting and angles at temples",
+      "earlyMorningAccess": "Early Morning Access",
+      "earlyMorningAccessDesc": "Beat the crowds with sunrise temple visits and exclusive early access",
+      "priceFrom1100": "From 1,100 EGP",
+      "priceFrom2200": "From 2,200 EGP",
+      "priceFrom1600": "From 1,600 EGP",
+      "serviceTypes": {
+        "templeSpecialist": {
+          "name": "Temple Specialist Guide",
+          "duration": "Full Day (8 hours)",
+          "features": ["Ancient Egypt expert", "Valley of Kings specialist", "Hieroglyph interpreter"]
+        },
+        "eastWestBank": {
+          "name": "East & West Bank Tour",
+          "duration": "Full Day",
+          "features": ["Professional guide", "Private vehicle", "Both banks covered"]
+        },
+        "luxuryTemple": {
+          "name": "Luxury Temple Tours",
+          "duration": "6-10 hours",
+          "features": ["Premium vehicle", "Expert driver-guide", "Flexible temple visits"]
+        }
+      },
+      "serviceAreasTitle": "Ancient Luxor Temple Sites",
+      "serviceAreasDesc": "Professional guided tours of the world's greatest open-air museum",
+      "serviceAreas": [
+        "Valley of the Kings",
+        "Karnak Temple Complex",
+        "Luxor Temple",
+        "Queen Hatshepsut Temple",
+        "Valley of the Queens",
+        "Medinet Habu",
+        "Colossi of Memnon",
+        "Ramesseum Temple"
+      ],
+      "specialtiesTitle": "Luxor Temple Specialties",
+      "valleyKingsExpert": "Valley of Kings Expert",
+      "valleyKingsExpertDesc": "Specialized guides for the royal tombs with detailed knowledge of pharaonic burial practices, tomb art, and recent archaeological discoveries.",
+      "templeArchitecture": "Temple Architecture Tours",
+      "templeArchitectureDesc": "Expert architectural guides explaining the engineering marvels of Karnak and Luxor temples, including hieroglyphic translations and historical context.",
+      "howItWorksSteps": {
+        "step1": "Book Your Tour",
+        "step1Desc": "Choose East Bank, West Bank, or combined temple tour package",
+        "step2": "Meet Temple Expert",
+        "step2Desc": "Licensed archaeologist guide meets you with comfortable transport",
+        "step3": "Explore Ancient Thebes",
+        "step3Desc": "Discover pharaonic treasures with expert historical commentary"
+      },
+      "pricingTitle": "Expert Luxor Car & Tour Guide Services",
+      "pricingDesc": "Professional archaeological guides and luxury transport. Best value in Upper Egypt.",
+      "pricingInfo": "Licensed guides • Temple expertise • Premium vehicles • Entry tickets included",
+      "ctaTitle": "Ready to Discover Ancient Thebes?",
+      "ctaSubtitle": "Experience Luxor's temples with expert archaeological guides"
+    },
+    "aswan": {
+      "title": "Aswan Car & Tour Guide Services - Nubian Culture Tours | AffordEgypt",
+      "metaDescription": "Expert Aswan car & tour guide services from 1,000 EGP. Nubian culture tours, Abu Simbel trips, Philae Temple guides, felucca sailing.",
+      "keywords": "Aswan guide, Abu Simbel tour, Nubian village tour, Philae Temple guide, felucca sailing, Aswan car service",
+      "heroTitle": "Aswan Car & Tour Guide Services",
+      "heroSubtitle": "Discover Nubian culture and southern Egypt treasures. Expert car & tour guide services, desert expeditions, and cultural immersion from 1,000 EGP.",
+      "whyChooseTitle": "Why Choose Our Aswan Car & Tour Guide Services?",
+      "nileExpertise": "Nile Expertise", 
+      "nileExpertiseDesc": "Specialized knowledge of Nubian culture and Nile river traditions",
+      "culturalSensitivity": "Cultural Sensitivity",
+      "culturalSensitivityDesc": "Respectful guides trained in Nubian customs and traditions",
+      "desertExpeditions": "Desert Expeditions",
+      "desertExpeditionsDesc": "Expert guides for Abu Simbel and southern desert temple sites",
+      "flexibleItineraries": "Flexible Itineraries",
+      "flexibleItinerariesDesc": "Customized tours including felucca rides and village visits",
+      "priceFrom1000": "From 1,000 EGP",
+      "priceFrom2100": "From 2,100 EGP",
+      "priceFrom2800": "From 2,800 EGP",
+      "serviceTypes": {
+        "nubianCulture": {
+          "name": "Nubian Culture Guide",
+          "duration": "Full Day (8 hours)",
+          "features": ["Nubian heritage expert", "Local village guide", "Traditional culture focus"]
+        },
+        "nileTemples": {
+          "name": "Nile & Temples Package",
+          "duration": "Full Day",
+          "features": ["Professional guide", "Felucca included", "Philae Temple tour"]
+        },
+        "abuSimbelExpedition": {
+          "name": "Abu Simbel Expedition",
+          "duration": "12-14 hours",
+          "features": ["Long-distance vehicle", "Expert guide", "UNESCO site specialist"]
+        }
+      },
+      "serviceAreasTitle": "Southern Egypt Destinations",
+      "serviceAreasDesc": "Experience the jewels of the Nile with expert cultural guidance",
+      "serviceAreas": [
+        "Philae Temple",
+        "Abu Simbel Temples",
+        "Elephantine Island",
+        "Nubian Villages",
+        "Aswan High Dam",
+        "Unfinished Obelisk",
+        "Felucca Sailing",
+        "Kitchener's Island"
+      ],
+      "specialtiesTitle": "Aswan Cultural Specialties",
+      "nubianHeritage": "Nubian Heritage Tours",
+      "nubianHeritageDesc": "Authentic Nubian village visits with local community guides. Experience traditional crafts, music, and hospitality while respecting local customs.",
+      "abuSimbelExpeditions": "Abu Simbel Expeditions",
+      "abuSimbelExpeditionsDesc": "Professional desert guides for the ultimate UNESCO World Heritage site. Early departure options and expert commentary on Ramses II's masterpiece.",
+      "howItWorksSteps": {
+        "step1": "Choose Your Experience",
+        "step1Desc": "Select cultural tours, temple visits, or desert expeditions",
+        "step2": "Meet Cultural Guide",
+        "step2Desc": "Local Nubian guide with deep knowledge of traditions and history",
+        "step3": "Experience Nubia",
+        "step3Desc": "Immerse yourself in the unique culture of southern Egypt"
+      },
+      "pricingTitle": "Authentic Aswan Car & Tour Guide Services",
+      "pricingDesc": "Genuine cultural experiences with local Nubian guides. Best value cultural tourism.",
+      "pricingInfo": "Local guides • Cultural immersion • Premium transport • Authentic experiences",
+      "ctaTitle": "Ready to Experience Nubian Culture?",
+      "ctaSubtitle": "Discover the authentic traditions of southern Egypt with local experts"
+    }
   }
 }

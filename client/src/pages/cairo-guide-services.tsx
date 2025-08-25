@@ -32,24 +32,24 @@ export default function CairoGuideServices() {
   
   const serviceTypes = [
     {
-      name: "Professional Guide",
-      duration: "Full Day (8 hours)",
-      price: "From 1,200 EGP",
+      name: t("guideServices.common.professionalGuide"),
+      duration: t("guideServices.common.fullDay8Hours"),
+      price: t("guideServices.cairo.priceFrom1200"),
       features: ["Licensed Egyptologist", "Fluent English/Arabic", "Historical expertise"],
       icon: UserCheck
     },
     {
-      name: "Guide + Car Package",
-      duration: "Full Day", 
-      price: "From 2,400 EGP",
-      features: ["Professional guide", "Private vehicle", "All entrance fees included"],
+      name: t("guideServices.common.guideCarPackage"),
+      duration: t("guideServices.common.fullDay"), 
+      price: t("guideServices.cairo.priceFrom2400"),
+      features: [t("guideServices.common.licensedGuide"), "Private vehicle", t("guideServices.common.allEntranceFees")],
       icon: Users
     },
     {
-      name: "Premium Car Service",
-      duration: "8-12 hours",
-      price: "From 1,800 EGP", 
-      features: ["Luxury sedan/SUV", "Professional driver", "Flexible itinerary"],
+      name: t("guideServices.common.premiumCarService"),
+      duration: t("guideServices.common.6to12Hours"),
+      price: t("guideServices.cairo.priceFrom1800"), 
+      features: ["Luxury sedan/SUV", t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
       icon: Car
     }
   ];
@@ -57,23 +57,23 @@ export default function CairoGuideServices() {
   const keyFeatures = [
     {
       icon: Languages,
-      title: "Multilingual Guides",
-      description: "Expert guides fluent in English, Arabic, French, German and Spanish"
+      title: t("guideServices.cairo.multilingualGuides"),
+      description: t("guideServices.cairo.multilingualGuidesDesc")
     },
     {
       icon: Shield,
-      title: "Licensed & Insured",
-      description: "All guides are officially licensed by Egyptian Ministry of Tourism"
+      title: t("guideServices.cairo.licensedInsured"),
+      description: t("guideServices.cairo.licensedInsuredDesc")
     },
     {
       icon: Camera,
-      title: "Photography Support",
-      description: "Guides help you capture perfect photos at iconic Cairo landmarks"
+      title: t("guideServices.cairo.photographySupport"),
+      description: t("guideServices.cairo.photographySupportDesc")
     },
     {
       icon: Clock,
-      title: "Flexible Scheduling",
-      description: "Customize your itinerary and timing to match your preferences"
+      title: t("guideServices.cairo.flexibleScheduling"),
+      description: t("guideServices.cairo.flexibleSchedulingDesc")
     }
   ];
 
@@ -109,14 +109,14 @@ export default function CairoGuideServices() {
   return (
     <>
       <Helmet>
-        <title>Cairo Car & Tour Guide Services - Expert Tours | AffordEgypt</title>
+        <title>{t("guideServices.cairo.title")}</title>
         <meta 
           name="description" 
-          content="Professional Cairo car & tour guide services from 1,200 EGP. Licensed Egyptologists, luxury cars, multilingual guides. Pyramids, museums, Islamic Cairo tours." 
+          content={t("guideServices.cairo.metaDescription")} 
         />
-        <meta name="keywords" content="Cairo guide, Egypt tour guide, Cairo car service, pyramid tours, Egyptian Museum guide, Islamic Cairo tours" />
-        <meta property="og:title" content="Cairo Car & Tour Guide Services - Expert Tours" />
-        <meta property="og:description" content="Professional guide services and luxury car rentals in Cairo from 1,200 EGP." />
+        <meta name="keywords" content={t("guideServices.cairo.keywords")} />
+        <meta property="og:title" content={t("guideServices.cairo.title")} />
+        <meta property="og:description" content={t("guideServices.cairo.metaDescription")} />
         <meta property="og:type" content="website" />
       </Helmet>
 
@@ -129,24 +129,23 @@ export default function CairoGuideServices() {
               <div className="flex items-center justify-center gap-3 mb-6">
                 <UserCheck className="w-10 h-10 text-primary" />
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Cairo Car & Tour Guide Services
+                  {t("guideServices.cairo.heroTitle")}
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Expert Cairo car & tour guide services. Licensed Egyptologists, 
-                multilingual support, and premium vehicles from 1,200 EGP.
+                {t("guideServices.cairo.heroSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
                   <Button size="lg" className="text-lg px-8">
-                    Book Guide Service
+                    {t("guideServices.common.bookNow")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
                 <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="lg" className="text-lg px-8">
                     <Phone className="w-5 h-5 mr-2" />
-                    WhatsApp
+                    {t("guideServices.common.whatsapp")}
                   </Button>
                 </a>
               </div>
@@ -157,7 +156,7 @@ export default function CairoGuideServices() {
         {/* Key Features */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Cairo Car & Tour Guide Services?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.cairo.whyChooseTitle")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {keyFeatures.map((feature, index) => (
                 <Card key={index} className="text-center">
@@ -175,7 +174,7 @@ export default function CairoGuideServices() {
         {/* Service Options */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Choose Your Service</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.howItWorks")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {serviceTypes.map((service, index) => (
                 <Card key={index} className="relative hover:shadow-lg transition-shadow">
@@ -207,9 +206,9 @@ export default function CairoGuideServices() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Popular Cairo Tour Destinations</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.cairo.serviceAreasTitle")}</h2>
               <p className="text-center text-muted-foreground mb-8">
-                Our expert guides cover all major Cairo attractions and hidden gems
+                {t("guideServices.cairo.serviceAreasDesc")}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {serviceAreas.map((area, index) => (
@@ -227,19 +226,18 @@ export default function CairoGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Cairo Specialty Services</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.cairo.specialtiesTitle")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <UserCheck className="w-6 h-6 text-primary" />
-                      Egyptology Experts
+                      {t("guideServices.cairo.egyptologyExperts")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Licensed Egyptologists with deep knowledge of pharaonic history, 
-                      hieroglyphs, and archaeological discoveries. Perfect for museum tours and pyramid exploration.
+                      {t("guideServices.cairo.egyptologyExpertsDesc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -247,13 +245,12 @@ export default function CairoGuideServices() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Languages className="w-6 h-6 text-primary" />
-                      Islamic Cairo Specialists  
+                      {t("guideServices.cairo.islamicCairoSpecialists")}  
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Expert guides for Islamic Cairo's medieval streets, historic mosques, 
-                      and traditional bazaars. Experience authentic Egyptian culture and architecture.
+                      {t("guideServices.cairo.islamicCairoSpecialistsDesc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -265,7 +262,7 @@ export default function CairoGuideServices() {
         {/* How It Works */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.howItWorks")}</h2>
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
@@ -298,21 +295,21 @@ export default function CairoGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Affordable Cairo Car & Tour Guide Services</h2>
+              <h2 className="text-3xl font-bold mb-6">{t("guideServices.cairo.pricingTitle")}</h2>
               <p className="text-muted-foreground mb-8">
-                Professional guides and luxury vehicles at competitive prices. No hidden costs.
+                {t("guideServices.cairo.pricingDesc")}
               </p>
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Starting from 1,200 EGP</span>
+                  <span className="font-semibold">{t("guideServices.cairo.priceFrom1200")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Licensed guides • Luxury vehicles • Multilingual support • All entrance fees
+                  {t("guideServices.cairo.pricingInfo")}
                 </p>
                 <Link href="/transfers">
                   <Button size="lg">
-                    Get Instant Quote
+                    {t("guideServices.common.getInstantQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
@@ -324,9 +321,9 @@ export default function CairoGuideServices() {
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Explore Ancient Cairo?</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("guideServices.cairo.ctaTitle")}</h2>
             <p className="text-lg mb-8 opacity-90">
-              Book your expert guide and discover the secrets of the pharaohs
+              {t("guideServices.cairo.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/pricing-tool">
@@ -338,7 +335,7 @@ export default function CairoGuideServices() {
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary bg-transparent">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call Now
+                  {t("guideServices.common.callNow")}
                 </Button>
               </a>
             </div>
