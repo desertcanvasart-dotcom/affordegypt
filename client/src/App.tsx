@@ -42,6 +42,9 @@ import PricingTool from "@/pages/pricing-tool";
 import CairoAirportTransfers from "@/pages/cairo-airport-transfers";
 import LuxorAirportTransfers from "@/pages/luxor-airport-transfers";
 import AswanAirportTransfers from "@/pages/aswan-airport-transfers";
+import CairoGuideServices from "@/pages/cairo-guide-services";
+import LuxorGuideServices from "@/pages/luxor-guide-services";
+import AswanGuideServices from "@/pages/aswan-guide-services";
 
 import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
@@ -108,6 +111,11 @@ function Router() {
       {createMultilingualRoute("cairo-airport-transfers", CairoAirportTransfers)}
       {createMultilingualRoute("luxor-airport-transfers", LuxorAirportTransfers)}
       {createMultilingualRoute("aswan-airport-transfers", AswanAirportTransfers)}
+
+      {/* Guide & Car Service Pages */}
+      {createMultilingualRoute("cairo-guide-services", CairoGuideServices)}
+      {createMultilingualRoute("luxor-guide-services", LuxorGuideServices)}
+      {createMultilingualRoute("aswan-guide-services", AswanGuideServices)}
 
       <Route component={NotFound} />
     </Switch>
