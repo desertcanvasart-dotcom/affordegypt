@@ -945,27 +945,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
           distanceKm: req.body.distanceKm,
           km: req.body.distanceKm.toString()
         }),
-        // Handle vehiclePrices properly
-        vehiclePrices:
-          req.body.vehiclePrices ||
-          (req.body.sedanPrice || req.body.minivanPrice || req.body.vanPrice
-            ? {
-                sedan: req.body.sedanPrice || "0",
-                minivan: req.body.minivanPrice || "0",
-                van: req.body.vanPrice || "0",
-              }
-            : undefined),
-        // Ensure basePriceByVehicle is properly formatted if provided (legacy compatibility)
-        basePriceByVehicle:
-          req.body.basePriceByVehicle ||
-          (req.body.sedanPrice || req.body.minivanPrice || req.body.vanPrice
-            ? {
-                "1": { "1": req.body.sedanPrice || "0" },
-                "2": { "1": req.body.minivanPrice || "0" },
-                "3": { "1": req.body.vanPrice || "0" },
-              }
-            : undefined),
       };
+
+      // Handle pricing updates - ensure both fields are synchronized
+      if (req.body.basePriceByVehicle || req.body.sedanPrice || req.body.minivanPrice || req.body.vanPrice) {
+        let sedanPrice, minivanPrice, vanPrice;
+        
+        if (req.body.basePriceByVehicle) {
+          // Extract prices from basePriceByVehicle format
+          sedanPrice = req.body.basePriceByVehicle["1"]?.["1"] || "0";
+          minivanPrice = req.body.basePriceByVehicle["2"]?.["1"] || "0";
+          vanPrice = req.body.basePriceByVehicle["3"]?.["1"] || "0";
+        } else {
+          // Use individual price fields
+          sedanPrice = req.body.sedanPrice || "0";
+          minivanPrice = req.body.minivanPrice || "0";
+          vanPrice = req.body.vanPrice || "0";
+        }
+
+        // Set both pricing formats to ensure consistency
+        updateData.vehiclePrices = {
+          sedan: parseFloat(sedanPrice),
+          minivan: parseFloat(minivanPrice),
+          van: parseFloat(vanPrice),
+        };
+        
+        updateData.basePriceByVehicle = {
+          "1": { "1": sedanPrice.toString() },
+          "2": { "1": minivanPrice.toString() },
+          "3": { "1": vanPrice.toString() },
+        };
+      }
 
       // Remove undefined values to avoid overwriting existing data
       Object.keys(updateData).forEach(
