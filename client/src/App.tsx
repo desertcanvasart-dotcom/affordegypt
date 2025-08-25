@@ -113,9 +113,9 @@ function Router() {
       {createMultilingualRoute("aswan-airport-transfers", AswanAirportTransfers)}
 
       {/* Guide & Car Service Pages */}
-      {createMultilingualRoute("cairo-guide-services", CairoGuideServices)}
-      {createMultilingualRoute("luxor-guide-services", LuxorGuideServices)}
-      {createMultilingualRoute("aswan-guide-services", AswanGuideServices)}
+      {createMultilingualRoute("cairo-car-tour-guide-services", CairoGuideServices)}
+      {createMultilingualRoute("luxor-car-tour-guide-services", LuxorGuideServices)}
+      {createMultilingualRoute("aswan-car-tour-guide-services", AswanGuideServices)}
 
       <Route component={NotFound} />
     </Switch>

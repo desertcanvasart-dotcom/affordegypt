@@ -25,9 +25,9 @@ const slugMappings = {
     "cairo-airport-transfers": "cairo-airport-transfers",
     "luxor-airport-transfers": "luxor-airport-transfers",
     "aswan-airport-transfers": "aswan-airport-transfers",
-    "cairo-guide-services": "cairo-guide-services",
-    "luxor-guide-services": "luxor-guide-services",
-    "aswan-guide-services": "aswan-guide-services"
+    "cairo-car-tour-guide-services": "cairo-car-tour-guide-services",
+    "luxor-car-tour-guide-services": "luxor-car-tour-guide-services",
+    "aswan-car-tour-guide-services": "aswan-car-tour-guide-services"
   },
   es: {
     "destinations": "destinos",
@@ -52,9 +52,9 @@ const slugMappings = {
     "cairo-airport-transfers": "traslados-aeropuerto-cairo",
     "luxor-airport-transfers": "traslados-aeropuerto-luxor",
     "aswan-airport-transfers": "traslados-aeropuerto-asuán",
-    "cairo-guide-services": "servicios-guia-cairo",
-    "luxor-guide-services": "servicios-guia-luxor",
-    "aswan-guide-services": "servicios-guia-asuán"
+    "cairo-car-tour-guide-services": "servicios-auto-tour-guia-cairo",
+    "luxor-car-tour-guide-services": "servicios-auto-tour-guia-luxor",
+    "aswan-car-tour-guide-services": "servicios-auto-tour-guia-asuán"
   },
   fr: {
     "destinations": "destinations",
@@ -79,9 +79,9 @@ const slugMappings = {
     "cairo-airport-transfers": "transferts-aeroport-caire",
     "luxor-airport-transfers": "transferts-aeroport-louxor",
     "aswan-airport-transfers": "transferts-aeroport-assouan",
-    "cairo-guide-services": "services-guide-caire",
-    "luxor-guide-services": "services-guide-louxor",
-    "aswan-guide-services": "services-guide-assouan"
+    "cairo-car-tour-guide-services": "services-voiture-tour-guide-caire",
+    "luxor-car-tour-guide-services": "services-voiture-tour-guide-louxor",
+    "aswan-car-tour-guide-services": "services-voiture-tour-guide-assouan"
   },
   de: {
     "destinations": "reiseziele",
@@ -106,9 +106,9 @@ const slugMappings = {
     "cairo-airport-transfers": "kairo-flughafen-transfer",
     "luxor-airport-transfers": "luxor-flughafen-transfer",
     "aswan-airport-transfers": "assuan-flughafen-transfer",
-    "cairo-guide-services": "kairo-reisefuehrer-service",
-    "luxor-guide-services": "luxor-reisefuehrer-service",
-    "aswan-guide-services": "assuan-reisefuehrer-service"
+    "cairo-car-tour-guide-services": "kairo-auto-tour-reisefuehrer-service",
+    "luxor-car-tour-guide-services": "luxor-auto-tour-reisefuehrer-service",
+    "aswan-car-tour-guide-services": "assuan-auto-tour-reisefuehrer-service"
   }
 };
 
