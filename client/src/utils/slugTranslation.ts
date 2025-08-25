@@ -116,7 +116,7 @@ const slugMappings = {
 export function getTranslatedSlug(englishSlug: string): string {
   const { i18n } = useTranslation();
   const currentLang = i18n.language as keyof typeof slugMappings;
-  return slugMappings[currentLang]?.[englishSlug] || englishSlug;
+  return (slugMappings[currentLang] as any)?.[englishSlug] || englishSlug;
 }
 
 // Get original English slug from any translated slug
@@ -146,7 +146,7 @@ export function isValidSlug(slug: string): boolean {
 export function getAllSlugVariants(englishSlug: string): string[] {
   const variants = [];
   for (const mapping of Object.values(slugMappings)) {
-    const translatedSlug = mapping[englishSlug];
+    const translatedSlug = (mapping as any)[englishSlug];
     if (translatedSlug) {
       variants.push(translatedSlug);
     }
@@ -160,7 +160,7 @@ export function useTranslatedLink() {
   
   return function getTranslatedLink(englishSlug: string): string {
     const currentLang = i18n.language as keyof typeof slugMappings;
-    const translatedSlug = slugMappings[currentLang]?.[englishSlug] || englishSlug;
+    const translatedSlug = (slugMappings[currentLang] as any)?.[englishSlug] || englishSlug;
     return `/${translatedSlug}`;
   };
 }
