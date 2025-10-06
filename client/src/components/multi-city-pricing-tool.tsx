@@ -868,16 +868,23 @@ Recommended
                       {/* Day / City */}
                       <TableCell className="font-medium">
                         <div className="flex items-center justify-between">
-                          <div className="flex flex-col gap-1">
+                          <div className="flex flex-col gap-2 flex-1">
                             <div className="flex items-center gap-2">
                               <Badge variant="default" className="bg-primary text-xs">Day {cityService.dayNumber}</Badge>
                               {index === cityServices.length - 1 && (
                                 <Badge variant="secondary" className="text-xs">Current</Badge>
                               )}
                             </div>
-                            <div className="text-sm">
+                            <div className="text-sm font-medium">
                               {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
                             </div>
+                            <Input
+                              type="date"
+                              value={cityService.date}
+                              onChange={(e) => updateCityService(index, { date: e.target.value })}
+                              className="text-xs h-8"
+                              placeholder="Select date"
+                            />
                           </div>
                           <Button
                             variant="ghost"
@@ -990,7 +997,7 @@ Recommended
                     return (
                       <Card key={index} className="p-4 border-l-4 border-l-primary">
                         <div className="flex items-center justify-between mb-4">
-                          <div className="flex flex-col gap-2">
+                          <div className="flex flex-col gap-2 flex-1">
                             <div className="flex items-center gap-2">
                               <Badge variant="default" className="bg-primary text-xs">Day {cityService.dayNumber}</Badge>
                               {index === cityServices.length - 1 && (
@@ -1000,8 +1007,18 @@ Recommended
                             <h4 className="font-semibold text-lg">
                               {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
                             </h4>
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4 text-muted-foreground" />
+                              <Input
+                                type="date"
+                                value={cityService.date}
+                                onChange={(e) => updateCityService(index, { date: e.target.value })}
+                                className="text-sm h-9 flex-1"
+                                placeholder="Select date"
+                              />
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex flex-col items-end gap-2">
                             <div className="text-lg font-bold text-primary">{cityTotal} EGP</div>
                             <Button
                               variant="ghost"
