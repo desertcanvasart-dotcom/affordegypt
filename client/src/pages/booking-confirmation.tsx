@@ -474,18 +474,32 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             {quote && quote.jsonBlob && (quote.jsonBlob.cities || quote.jsonBlob.itinerary) && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Trip Itinerary</CardTitle>
+                  <CardTitle>Your Multi-Day Itinerary</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     {(quote.jsonBlob.cities || quote.jsonBlob.itinerary || []).map((city: any, index: number) => (
-                      <div key={index} className="border-l-4 border-teal-500 pl-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-lg">{city.cityName}</h3>
-                          <div className="text-sm text-muted-foreground">
-                            {city.date} • {city.travelers} travelers
+                      <Card key={index} className="border-l-4 border-l-teal-500">
+                        <CardContent className="pt-6">
+                          <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <div className="flex items-center gap-3 mb-2 md:mb-0">
+                              <Badge className="bg-teal-600 text-white px-3 py-1 text-sm">
+                                Day {city.dayNumber || index + 1}
+                              </Badge>
+                              <h3 className="font-semibold text-xl">{city.cityName}</h3>
+                            </div>
+                            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-4 h-4" />
+                                <span>{city.date || formatDate(booking.startDate || new Date().toISOString())}</span>
+                              </div>
+                              <div>
+                                {city.travelers} travelers
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                          
+                          <Separator className="mb-4" />
                         
                         {city.selectedRoutes && city.selectedRoutes.length > 0 && (
                           <div>
@@ -546,7 +560,8 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                             </div>
                           </div>
                         )}
-                      </div>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
                 </CardContent>
