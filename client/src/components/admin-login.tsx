@@ -99,9 +99,6 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
               )}
             </Button>
           </form>
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            Demo credentials: admin / admin123
-          </div>
         </CardContent>
       </Card>
     </div>
