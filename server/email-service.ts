@@ -5,6 +5,7 @@ export interface EmailService {
   sendBookingConfirmation(booking: Booking, quote: Quote): Promise<boolean>;
   sendBookingReminder(booking: Booking, quote: Quote): Promise<boolean>;
   sendBookingStatusUpdate(booking: Booking, status: string): Promise<boolean>;
+  sendEmailVerification(email: string, token: string, username: string): Promise<boolean>;
 }
 
 class SendGridEmailService implements EmailService {
@@ -110,6 +111,94 @@ class SendGridEmailService implements EmailService {
       console.error('Failed to send booking status update email:', error);
       return false;
     }
+  }
+
+  async sendEmailVerification(email: string, token: string, username: string): Promise<boolean> {
+    if (!process.env.SENDGRID_API_KEY) {
+      console.log('SendGrid API key not configured - verification email not sent');
+      return false;
+    }
+
+    const verificationUrl = `${process.env.REPLIT_DOMAINS ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}` : 'http://localhost:5000'}/verify-email?token=${token}`;
+    const emailContent = this.generateVerificationEmail(username, verificationUrl);
+
+    try {
+      console.log(`Sending verification email to: ${email}`);
+      
+      await this.mailService.send({
+        to: email,
+        from: {
+          email: this.fromEmail,
+          name: 'Afford Egypt'
+        },
+        subject: 'Verify Your Email - Afford Egypt',
+        html: emailContent,
+        text: this.stripHtml(emailContent)
+      });
+      
+      console.log(`Successfully sent verification email to ${email}`);
+      return true;
+    } catch (error: any) {
+      console.error('Failed to send verification email:', error);
+      if (error.response && error.response.body && error.response.body.errors) {
+        console.error('SendGrid error details:', JSON.stringify(error.response.body.errors, null, 2));
+      }
+      return false;
+    }
+  }
+
+  private generateVerificationEmail(username: string, verificationUrl: string): string {
+    return `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #0891b2; color: white; padding: 30px 20px; text-align: center; }
+            .content { padding: 30px 20px; background: #f9f9f9; }
+            .button { display: inline-block; padding: 15px 30px; background: #0891b2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
+            .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
+            .highlight { color: #0891b2; font-weight: bold; }
+            .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>Welcome to Afford Egypt!</h1>
+              <p>Please verify your email address</p>
+            </div>
+            
+            <div class="content">
+              <h2>Hello ${username},</h2>
+              <p>Thank you for registering with Afford Egypt! We're excited to help you explore the wonders of Egypt.</p>
+              
+              <p>To complete your registration and access all features, please verify your email address by clicking the button below:</p>
+              
+              <div style="text-align: center;">
+                <a href="${verificationUrl}" class="button">Verify Email Address</a>
+              </div>
+              
+              <p>Or copy and paste this link into your browser:</p>
+              <p style="word-break: break-all; color: #0891b2;">${verificationUrl}</p>
+              
+              <div class="warning">
+                <strong>⏰ Important:</strong> This verification link will expire in 24 hours for security reasons.
+              </div>
+              
+              <p>If you didn't create an account with Afford Egypt, you can safely ignore this email.</p>
+            </div>
+            
+            <div class="footer">
+              <p>Afford Egypt - Making Egypt Accessible</p>
+              <p>This is an automated email. Please do not reply directly to this message.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
   }
 
   private generateConfirmationEmail(booking: Booking, quoteData: any, totalAmount: string): string {
