@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRoute } from "wouter";
-import { CheckCircle, Clock, AlertCircle, Download, Mail, Phone } from "lucide-react";
+import { CheckCircle, Clock, AlertCircle, Download, Mail, Phone, DollarSign } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
