@@ -488,11 +488,11 @@ export default function MultiCityPricingTool() {
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center gap-2 text-xl sm:text-2xl">
                 <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                <span className="hidden sm:inline">Multi-City Egypt Travel Tool</span>
-                <span className="sm:hidden">Egypt Travel Tool</span>
+                <span className="hidden sm:inline">Design Your Egypt Adventure</span>
+                <span className="sm:hidden">Design Your Adventure</span>
               </CardTitle>
               <p className="text-muted-foreground text-sm sm:text-base">
-                Build your perfect Egypt itinerary with real-time pricing
+                Craft a journey through history, culture, and beauty — with transparent pricing at every step.
               </p>
             </CardHeader>
             
