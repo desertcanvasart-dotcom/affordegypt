@@ -2104,7 +2104,6 @@ export default function NileValleyGuide() {
         "2.5 hours by train/bus": "2,5 Stunden mit dem Zug/Bus",
         "attractions.cairo.pyramidsGiza.name": "Pyramiden von Gizeh",
         "attractions.cairo.egyptianMuseum.name": "Ägyptisches Museum",
-        "attractions.cairo.citadelSaladin.name": "Zitadelle von Saladin",
         "attractions.beniSuef.meidumPyramid.name": "Pyramide von Meidum",
         "attractions.beniSuef.beniSuefMuseum.name": "Museum von Beni Suef",
         "budgetTips.cairo.useMetro":
