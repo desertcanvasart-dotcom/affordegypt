@@ -39,6 +39,14 @@ export const passwordResetTokens = pgTable("password_reset_tokens", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const emailVerificationTokens = pgTable("email_verification_tokens", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  token: text("token").notNull().unique(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const cities = pgTable("cities", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
