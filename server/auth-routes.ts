@@ -133,8 +133,10 @@ export function setupAuthRoutes(app: Express) {
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role,
+          emailVerified: user.emailVerified,
         },
         token,
+        requiresVerification: !user.emailVerified,
       });
     } catch (error: any) {
       if (error instanceof z.ZodError) {
