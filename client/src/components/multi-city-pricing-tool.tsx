@@ -10,7 +10,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
@@ -1186,6 +1187,82 @@ Recommended
                       </div>
                     )}
                   </div>
+
+                  {/* Horizontal Itinerary Preview */}
+                  {cityServices.length > 0 && (
+                    <div className="mt-6 mb-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <MapPinned className="w-5 h-5 text-primary" />
+                        <h3 className="text-lg font-semibold">Your Itinerary Preview</h3>
+                      </div>
+                      <Carousel
+                        opts={{
+                          align: "start",
+                          loop: false,
+                        }}
+                        className="w-full"
+                      >
+                        <CarouselContent className="-ml-2 md:-ml-4">
+                          {cityServices.map((city, index) => (
+                            <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-colors">
+                                <CardContent className="p-4">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <Badge className="bg-teal-600 text-white">
+                                      Day {city.dayNumber}
+                                    </Badge>
+                                    <span className="text-xs text-muted-foreground">
+                                      {city.date ? new Date(city.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Date not set'}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <MapPin className="w-4 h-4 text-primary" />
+                                    <h4 className="font-semibold text-lg">{city.cityName}</h4>
+                                  </div>
+                                  <div className="space-y-2 text-sm">
+                                    {city.selectedRoutes.length > 0 && (
+                                      <div className="flex items-center gap-2 text-muted-foreground">
+                                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                                        <span>{city.selectedRoutes.length} transfer{city.selectedRoutes.length > 1 ? 's' : ''}</span>
+                                      </div>
+                                    )}
+                                    {city.selectedGuide && (
+                                      <div className="flex items-center gap-2 text-muted-foreground">
+                                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                                        <span>{city.selectedGuide.language} guide ({city.selectedGuide.duration}h)</span>
+                                      </div>
+                                    )}
+                                    {city.selectedAttractions.length > 0 && (
+                                      <div className="flex items-center gap-2 text-muted-foreground">
+                                        <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                                        <span>{city.selectedAttractions.length} attraction{city.selectedAttractions.length > 1 ? 's' : ''}</span>
+                                      </div>
+                                    )}
+                                    {city.selectedAddOns.length > 0 && (
+                                      <div className="flex items-center gap-2 text-muted-foreground">
+                                        <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                                        <span>{city.selectedAddOns.length} add-on{city.selectedAddOns.length > 1 ? 's' : ''}</span>
+                                      </div>
+                                    )}
+                                    <div className="flex items-center gap-2 text-muted-foreground mt-2 pt-2 border-t">
+                                      <Users className="w-3 h-3" />
+                                      <span>{city.travelers} traveler{city.travelers > 1 ? 's' : ''}</span>
+                                    </div>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        {cityServices.length > 3 && (
+                          <>
+                            <CarouselPrevious className="hidden md:flex" />
+                            <CarouselNext className="hidden md:flex" />
+                          </>
+                        )}
+                      </Carousel>
+                    </div>
+                  )}
 
                   <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                     {totalPricing && (

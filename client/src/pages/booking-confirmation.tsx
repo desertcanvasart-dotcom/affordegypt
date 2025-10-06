@@ -491,7 +491,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                             <div className="flex items-center gap-4 text-sm text-muted-foreground">
                               <div className="flex items-center gap-1">
                                 <Clock className="w-4 h-4" />
-                                <span>{city.date || formatDate(booking.startDate || new Date().toISOString())}</span>
+                                <span>{city.date ? formatDate(city.date) : formatDate(booking.startDate || new Date().toISOString())}</span>
                               </div>
                               <div>
                                 {city.travelers} travelers
