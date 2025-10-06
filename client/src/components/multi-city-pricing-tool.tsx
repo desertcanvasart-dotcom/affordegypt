@@ -1197,9 +1197,10 @@ Recommended
                         <div className="text-xs text-muted-foreground">
                           Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
                         </div>
-                        <p className="text-xs text-gray-500 mt-1">
-                          All prices in EGP • International cards accepted
-                        </p>
+                        <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-md px-2 py-1">
+                          <DollarSign className="w-3 h-3 text-blue-600" />
+                          <span>Payment accepted in: <strong>EGP, USD, GBP, EUR</strong></span>
+                        </div>
                       </div>
                     )}
 

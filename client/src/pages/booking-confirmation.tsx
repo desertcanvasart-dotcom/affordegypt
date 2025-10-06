@@ -594,6 +594,36 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
               </Card>
             )}
 
+            {/* Payment Information */}
+            <Card className="bg-blue-50 border-blue-200">
+              <CardHeader>
+                <CardTitle className="text-blue-900">Payment Information</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-1.5"></div>
+                    <p className="text-sm text-blue-900">
+                      <strong>10% deposit required</strong> - Our team will contact you to collect it and confirm your booking.
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-1.5"></div>
+                    <p className="text-sm text-blue-900">
+                      Pay the rest in cash to your guide after the tour.
+                    </p>
+                  </div>
+                  <Separator className="my-3" />
+                  <div className="flex items-center justify-center gap-2 bg-white border border-blue-300 rounded-md px-4 py-2">
+                    <DollarSign className="w-5 h-5 text-blue-600" />
+                    <span className="text-sm font-medium text-blue-900">
+                      Payment accepted in: <strong>EGP, USD, GBP, EUR</strong>
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Booking Success Notice */}
             <Card className="bg-green-50 border-green-200">
               <CardContent className="pt-6">
