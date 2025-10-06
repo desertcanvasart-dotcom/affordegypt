@@ -8,6 +8,7 @@ import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
 import { createTranslatedRoute } from "./translationMiddleware";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
+import { setupEmailVerificationRoutes } from "./email-verification-routes";
 import multer from "multer";
 import csv from "csv-parser";
 import fs from "fs";
@@ -38,6 +39,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Setup password reset routes
   setupPasswordResetRoutes(app);
+  
+  // Setup email verification routes
+  setupEmailVerificationRoutes(app);
 
   // Cities CRUD endpoints
   app.get(
