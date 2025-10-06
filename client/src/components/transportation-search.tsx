@@ -44,9 +44,9 @@ export default function TransportationSearch({
     return filteredRoutes;
   }, [routes, cityId]);
 
-  // Get unique trip types
+  // Get unique trip modes
   const tripTypes = useMemo(() => {
-    const types = Array.from(new Set(cityRoutes.map(r => r.tripType).filter(Boolean)));
+    const types = Array.from(new Set(cityRoutes.map(r => r.tripMode).filter(Boolean)));
     return types;
   }, [cityRoutes]);
 
@@ -58,7 +58,7 @@ export default function TransportationSearch({
         route.fromLocation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         route.toLocation?.toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesType = selectedType === "all" || route.tripType === selectedType;
+      const matchesType = selectedType === "all" || route.tripMode === selectedType;
       
       return matchesSearch && matchesType;
     });
@@ -228,7 +228,7 @@ export default function TransportationSearch({
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      {getRouteIcon(route.tripType || 'unknown')}
+                      {getRouteIcon(route.tripMode || 'transfer')}
                       <h5 className="font-medium text-sm truncate">
                         {route.name || 'Unnamed Route'}
                       </h5>
@@ -237,9 +237,9 @@ export default function TransportationSearch({
                     <div className="flex items-center gap-2 mb-2">
                       <Badge 
                         variant="secondary" 
-                        className={`text-xs ${getTypeColor(route.tripType || 'unknown')}`}
+                        className={`text-xs ${getTypeColor(route.tripMode || 'transfer')}`}
                       >
-                        {getTripTypeLabel(route.tripType || 'unknown')}
+                        {getTripTypeLabel(route.tripMode || 'transfer')}
                       </Badge>
                     </div>
 
