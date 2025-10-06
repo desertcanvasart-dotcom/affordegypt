@@ -790,11 +790,23 @@ export default function MultiCityPricingTool() {
                               }`}
                               onClick={() => {
                                 const nextDayNumber = cityServices.length + 1;
+                                
+                                // Calculate next date based on previous day
+                                let nextDate = travelDate || new Date().toISOString().split('T')[0];
+                                if (cityServices.length > 0) {
+                                  const lastDay = cityServices[cityServices.length - 1];
+                                  if (lastDay.date) {
+                                    const lastDate = new Date(lastDay.date);
+                                    lastDate.setDate(lastDate.getDate() + 1);
+                                    nextDate = lastDate.toISOString().split('T')[0];
+                                  }
+                                }
+                                
                                 const newCityService: CityService = {
                                   dayNumber: nextDayNumber,
                                   cityId: city.id,
                                   cityName: city.name,
-                                  date: travelDate,
+                                  date: nextDate,
                                   travelers: globalTravelers,
                                   selectedRoutes: [],
                                   attractions: "",
@@ -1144,11 +1156,23 @@ Recommended
                           const selectedCity = cities.find((c: any) => c.id === cityId);
                           if (selectedCity) {
                             const nextDayNumber = cityServices.length + 1;
+                            
+                            // Calculate next date based on previous day
+                            let nextDate = travelDate || new Date().toISOString().split('T')[0];
+                            if (cityServices.length > 0) {
+                              const lastDay = cityServices[cityServices.length - 1];
+                              if (lastDay.date) {
+                                const lastDate = new Date(lastDay.date);
+                                lastDate.setDate(lastDate.getDate() + 1);
+                                nextDate = lastDate.toISOString().split('T')[0];
+                              }
+                            }
+                            
                             const newCityService: CityService = {
                               dayNumber: nextDayNumber,
                               cityId: selectedCity.id,
                               cityName: selectedCity.name,
-                              date: travelDate || new Date().toISOString().split('T')[0],
+                              date: nextDate,
                               travelers: globalTravelers,
                               selectedRoutes: [],
                               attractions: "",
