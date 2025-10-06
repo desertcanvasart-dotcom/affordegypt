@@ -1,8 +1,11 @@
 import type { Express } from "express";
 import { storage } from "./database-storage";
 import { hashPassword, comparePassword, generateToken, authenticateToken, optionalAuth, type AuthRequest } from "./auth";
-import { insertUserSchema } from "@shared/schema";
+import { insertUserSchema, emailVerificationTokens } from "@shared/schema";
 import { z } from "zod";
+import crypto from 'crypto';
+import { db } from './db';
+import { emailService } from './email-service';
 
 const registerSchema = z.object({
   username: z.string().min(3).max(30),
@@ -52,11 +55,27 @@ export function setupAuthRoutes(app: Express) {
 
       const user = await storage.createUser(userData);
 
-      // Generate token
+      // Generate email verification token
+      const verificationToken = crypto.randomBytes(32).toString('hex');
+      const expiresAt = new Date();
+      expiresAt.setHours(expiresAt.getHours() + 24);
+
+      // Save verification token
+      await db.insert(emailVerificationTokens).values({
+        userId: user.id,
+        token: verificationToken,
+        expiresAt,
+      });
+
+      // Send verification email (don't block registration on email failure)
+      emailService.sendEmailVerification(user.email, verificationToken, user.username)
+        .catch(err => console.error('Failed to send verification email:', err));
+
+      // Generate auth token
       const token = generateToken(user.id, user.username, user.email, user.role);
 
       res.status(201).json({
-        message: "User registered successfully",
+        message: "User registered successfully. Please check your email to verify your account.",
         user: {
           id: user.id,
           username: user.username,
@@ -64,6 +83,7 @@ export function setupAuthRoutes(app: Express) {
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role,
+          emailVerified: user.emailVerified,
         },
         token,
       });
