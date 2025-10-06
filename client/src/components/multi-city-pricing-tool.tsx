@@ -117,12 +117,7 @@ export default function MultiCityPricingTool() {
     }
   });
 
-  // Initialize first city if none exist
-  useEffect(() => {
-    if (cityServices.length === 0) {
-      addNewCity();
-    }
-  }, []);
+  // Remove auto-initialization - let user add first city manually
 
   // Recalculate pricing when city services change
   useEffect(() => {
@@ -764,8 +759,17 @@ export default function MultiCityPricingTool() {
                     <PopoverTrigger asChild>
                       <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
                         <Plus className="w-4 h-4 mr-2" />
-                        <span className="hidden sm:inline">Add Another Day</span>
-                        <span className="sm:hidden">Add Day</span>
+                        {cityServices.length === 0 ? (
+                          <>
+                            <span className="hidden sm:inline">Add Destination</span>
+                            <span className="sm:hidden">Add</span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="hidden sm:inline">Add Another Day</span>
+                            <span className="sm:hidden">Add Day</span>
+                          </>
+                        )}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-96" align="start">
@@ -841,6 +845,30 @@ Recommended
                   Your Destinations
                 </h3>
                 
+                {/* Empty State */}
+                {cityServices.length === 0 ? (
+                  <Card className="p-12 text-center">
+                    <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
+                      <div className="rounded-full bg-primary/10 p-6">
+                        <MapPin className="w-12 h-12 text-primary" />
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-xl font-semibold">Start Planning Your Egypt Adventure</h4>
+                        <p className="text-muted-foreground">
+                          Search for your first destination above and click "Add Destination" to begin crafting your personalized itinerary.
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="w-4 h-4" />
+                        <span>Plan multi-day trips</span>
+                        <span>•</span>
+                        <DollarSign className="w-4 h-4" />
+                        <span>See transparent pricing</span>
+                      </div>
+                    </div>
+                  </Card>
+                ) : (
+                  <>
                 {/* Desktop Table View */}
                 <div className="hidden lg:block overflow-x-auto">
                   <Table>
@@ -1092,6 +1120,8 @@ Recommended
                     );
                   })}
                 </div>
+                </>
+                )}
               </div>
 
                 {/* Action Buttons */}
