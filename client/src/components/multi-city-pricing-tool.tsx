@@ -846,7 +846,7 @@ Recommended
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="min-w-[140px]">City</TableHead>
+                        <TableHead className="min-w-[140px]">Day / City</TableHead>
                         <TableHead className="min-w-[200px]">Transportation</TableHead>
                         <TableHead className="min-w-[140px]">Guide</TableHead>
                         <TableHead className="min-w-[160px]">Attractions</TableHead>
@@ -865,24 +865,31 @@ Recommended
 
                   return (
                     <TableRow key={index} className="border-b">
-                      {/* City */}
+                      {/* Day / City */}
                       <TableCell className="font-medium">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
-                            {index === cityServices.length - 1 && (
-                              <Badge variant="secondary" className="text-xs">Current</Badge>
-                            )}
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-2">
+                              <Badge variant="default" className="bg-primary text-xs">Day {cityService.dayNumber}</Badge>
+                              {index === cityServices.length - 1 && (
+                                <Badge variant="secondary" className="text-xs">Current</Badge>
+                              )}
+                            </div>
+                            <div className="text-sm">
+                              {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
+                            </div>
                           </div>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => {
-                              const newCityServices = cityServices.filter((_, i) => i !== index);
+                              const newCityServices = cityServices
+                                .filter((_, i) => i !== index)
+                                .map((service, i) => ({ ...service, dayNumber: i + 1 }));
                               setCityServices(newCityServices);
                             }}
                             className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                            title="Remove city"
+                            title="Remove day"
                           >
                             <X className="w-3 h-3" />
                           </Button>
@@ -983,13 +990,16 @@ Recommended
                     return (
                       <Card key={index} className="p-4 border-l-4 border-l-primary">
                         <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-2">
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <Badge variant="default" className="bg-primary text-xs">Day {cityService.dayNumber}</Badge>
+                              {index === cityServices.length - 1 && (
+                                <Badge variant="secondary" className="text-xs">Current</Badge>
+                              )}
+                            </div>
                             <h4 className="font-semibold text-lg">
                               {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
                             </h4>
-                            {index === cityServices.length - 1 && (
-                              <Badge variant="secondary" className="text-xs">Current</Badge>
-                            )}
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="text-lg font-bold text-primary">{cityTotal} EGP</div>
@@ -997,11 +1007,13 @@ Recommended
                               variant="ghost"
                               size="sm"
                               onClick={() => {
-                                const newCityServices = cityServices.filter((_, i) => i !== index);
+                                const newCityServices = cityServices
+                                  .filter((_, i) => i !== index)
+                                  .map((service, i) => ({ ...service, dayNumber: i + 1 }));
                                 setCityServices(newCityServices);
                               }}
                               className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                              title="Remove city"
+                              title="Remove day"
                             >
                               <X className="w-4 h-4" />
                             </Button>
