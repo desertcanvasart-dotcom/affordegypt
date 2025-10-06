@@ -744,49 +744,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
           // Transform routes to normalize all data for frontend consistency
           const transformedRoutes = routes.map((route) => {
-            let normalizedPricing = {};
             let sedanPrice = "0";
             let minivanPrice = "0";
             let vanPrice = "0";
 
-            // Handle pricing from both old and new formats
-            const pricingSource =
-              route.vehiclePrices || route.basePriceByVehicle;
-            if (pricingSource) {
-              const pricing =
-                typeof pricingSource === "string"
-                  ? JSON.parse(pricingSource)
-                  : pricingSource;
+            // Priority 1: Try vehicle_prices first (new format: {sedan: 4800, minivan: 6000, van: 7500})
+            if (route.vehiclePrices) {
+              const vp = typeof route.vehiclePrices === "string"
+                ? JSON.parse(route.vehiclePrices)
+                : route.vehiclePrices;
 
-              // Check if it's the old format with string keys
-              if (
-                pricing.sedan !== undefined ||
-                pricing.minivan !== undefined ||
-                pricing.van !== undefined
-              ) {
-                sedanPrice = (pricing.sedan || 0).toString();
-                minivanPrice = (pricing.minivan || 0).toString();
-                vanPrice = (pricing.van || 0).toString();
+              if (vp.sedan !== undefined) sedanPrice = vp.sedan.toString();
+              if (vp.minivan !== undefined) minivanPrice = vp.minivan.toString();
+              if (vp.van !== undefined) vanPrice = vp.van.toString();
+            }
 
-                normalizedPricing = {
-                  "1": { "1": sedanPrice },
-                  "2": { "1": minivanPrice },
-                  "3": { "1": vanPrice },
-                };
-              } else {
-                // Already in new format or handle new format
-                normalizedPricing = pricing;
-                sedanPrice = pricing["1"]?.["1"] || "0";
-                minivanPrice = pricing["2"]?.["1"] || "0";
-                vanPrice = pricing["3"]?.["1"] || "0";
-              }
+            // Priority 2: Fallback to base_price_by_vehicle if prices still zero (legacy format: {"1": {"1": "4800"}})
+            if ((sedanPrice === "0" || minivanPrice === "0" || vanPrice === "0") && route.basePriceByVehicle) {
+              const bp = typeof route.basePriceByVehicle === "string"
+                ? JSON.parse(route.basePriceByVehicle)
+                : route.basePriceByVehicle;
+
+              if (sedanPrice === "0" && bp["1"]?.["1"]) sedanPrice = bp["1"]["1"].toString();
+              if (minivanPrice === "0" && bp["2"]?.["1"]) minivanPrice = bp["2"]["1"].toString();
+              if (vanPrice === "0" && bp["3"]?.["1"]) vanPrice = bp["3"]["1"].toString();
             }
 
             // Comprehensive field transformation for frontend compatibility
             return {
               id: route.id,
               name: route.name,
-              tripType: route.tripType, // Already in camelCase from database
+              tripType: route.tripType,
               tripMode: route.tripMode || "transfer",
               routeCategory: route.routeCategory,
               fromCityId: route.fromCityId,
@@ -804,9 +792,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
               nights: route.nights || 0,
               displayOrder: route.displayOrder || 0,
 
-              // Pricing fields - normalized
-              basePriceByVehicle: normalizedPricing,
-              vehiclePrices: normalizedPricing,
+              // Keep original pricing formats for compatibility
+              basePriceByVehicle: route.basePriceByVehicle,
+              vehiclePrices: route.vehiclePrices,
+              
+              // Normalized prices for easy frontend access
               sedanPrice,
               minivanPrice,
               vanPrice,
