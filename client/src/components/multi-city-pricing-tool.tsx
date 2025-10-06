@@ -24,6 +24,7 @@ import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { trackEvent, trackConversion } from "@/lib/analytics";
 
 interface CityService {
+  dayNumber: number;
   cityId: number;
   cityName: string;
   date: string;
@@ -134,7 +135,9 @@ export default function MultiCityPricingTool() {
     const selectedCity = selectedCityId ? cities.find(c => c.id === selectedCityId) : cities[0];
     if (!selectedCity) return;
     
+    const nextDayNumber = cityServices.length + 1;
     const newCityService: CityService = {
+      dayNumber: nextDayNumber,
       cityId: selectedCity.id,
       cityName: selectedCity.name,
       date: travelDate || new Date().toISOString().split('T')[0],
@@ -761,8 +764,8 @@ export default function MultiCityPricingTool() {
                     <PopoverTrigger asChild>
                       <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
                         <Plus className="w-4 h-4 mr-2" />
-                        <span className="hidden sm:inline">Add Destination</span>
-                        <span className="sm:hidden">Add City</span>
+                        <span className="hidden sm:inline">Add Another Day</span>
+                        <span className="sm:hidden">Add Day</span>
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-96" align="start">
@@ -781,7 +784,9 @@ export default function MultiCityPricingTool() {
                                   : 'border-muted hover:border-primary/30 hover:bg-muted/50'
                               }`}
                               onClick={() => {
+                                const nextDayNumber = cityServices.length + 1;
                                 const newCityService: CityService = {
+                                  dayNumber: nextDayNumber,
                                   cityId: city.id,
                                   cityName: city.name,
                                   date: travelDate,
@@ -1070,15 +1075,17 @@ Recommended
                         className="flex items-center gap-2 w-full sm:w-auto"
                       >
                         <Plus className="w-4 h-4" />
-                        Add City
+                        Add Another Day
                       </Button>
                     ) : (
                       <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
                         <Select onValueChange={(value) => {
                           const cityId = parseInt(value);
                           const selectedCity = cities.find((c: any) => c.id === cityId);
-                          if (selectedCity && !cityServices.find(cs => cs.cityId === cityId)) {
+                          if (selectedCity) {
+                            const nextDayNumber = cityServices.length + 1;
                             const newCityService: CityService = {
+                              dayNumber: nextDayNumber,
                               cityId: selectedCity.id,
                               cityName: selectedCity.name,
                               date: travelDate || new Date().toISOString().split('T')[0],
@@ -1096,7 +1103,7 @@ Recommended
                             <SelectValue placeholder="Choose a city to visit" />
                           </SelectTrigger>
                           <SelectContent>
-                            {cities.filter((city: any) => !cityServices.find(cs => cs.cityId === city.id)).map((city: any) => (
+                            {cities.map((city: any) => (
                               <SelectItem key={city.id} value={city.id.toString()}>
                                 <div className="flex items-center gap-2">
                                   <div className="w-2 h-2 bg-primary rounded-full"></div>
