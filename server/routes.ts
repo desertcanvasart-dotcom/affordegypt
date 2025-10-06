@@ -537,27 +537,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
               const routes = await storage.getRoutes();
               const route = routes.find((r) => r.id === routeId);
 
-              if (route && route.basePriceByVehicle) {
-                // Parse the JSON pricing data
-                const pricing =
-                  typeof route.basePriceByVehicle === "string"
-                    ? JSON.parse(route.basePriceByVehicle)
-                    : route.basePriceByVehicle;
-
+              if (route) {
                 // Determine vehicle type name based on passenger count
                 let vehicleTypeName = "sedan"; // Default to sedan
-                if (travelers > 8) vehicleTypeName = "van";
-                else if (travelers > 2) vehicleTypeName = "minivan";
+                let vehicleId = "1";
+                if (travelers > 8) {
+                  vehicleTypeName = "van";
+                  vehicleId = "3";
+                } else if (travelers > 2) {
+                  vehicleTypeName = "minivan";
+                  vehicleId = "2";
+                }
 
-                // Get pricing for the appropriate vehicle type
-                const routePrice = pricing[vehicleTypeName]
-                  ? parseFloat(pricing[vehicleTypeName]) / travelers // Multi-city tour: divide by travelers
-                  : 1500 / travelers; // Fallback price divided by travelers
+                let routePrice = 0;
+
+                // Priority 1: Try vehicle_prices (new format: {sedan: 4800, minivan: 6000, van: 7500})
+                if (route.vehiclePrices) {
+                  const vp = typeof route.vehiclePrices === "string"
+                    ? JSON.parse(route.vehiclePrices)
+                    : route.vehiclePrices;
+                  
+                  if (vp[vehicleTypeName] !== undefined) {
+                    routePrice = parseFloat(vp[vehicleTypeName]) / travelers;
+                  }
+                }
+
+                // Priority 2: Fallback to base_price_by_vehicle (legacy format: {"1": {"1": "4800"}})
+                if (routePrice === 0 && route.basePriceByVehicle) {
+                  const bp = typeof route.basePriceByVehicle === "string"
+                    ? JSON.parse(route.basePriceByVehicle)
+                    : route.basePriceByVehicle;
+                  
+                  if (bp[vehicleId]?.["1"]) {
+                    routePrice = parseFloat(bp[vehicleId]["1"]) / travelers;
+                  }
+                }
+
+                // If still no price found, use fallback
+                if (routePrice === 0) {
+                  console.warn(`No price found for route ${routeId}, vehicle ${vehicleTypeName}. Using fallback.`);
+                  routePrice = 1500 / travelers;
+                }
 
                 routesTotal += routePrice;
               } else {
                 // Fallback pricing if route not found
-                routesTotal += 3000 / travelers; // Default price divided by travelers
+                console.warn(`Route ${routeId} not found. Using fallback price.`);
+                routesTotal += 3000 / travelers;
               }
             } catch (error) {
               console.error("Error calculating route price:", error);
