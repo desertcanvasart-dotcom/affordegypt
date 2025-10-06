@@ -52,6 +52,7 @@ import PrivacyPolicy from "@/pages/privacy-policy";
 import CookiePolicy from "@/pages/cookie-policy";
 import Login from "@/pages/login";
 import Register from "@/pages/register";
+import ResetPassword from "@/pages/reset-password";
 
 import NotFound from "@/pages/not-found";
 
@@ -85,6 +86,7 @@ function Router() {
       <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/reset-password" component={ResetPassword} />
 
       {/* Multilingual routes */}
       {createMultilingualRoute("transfers", Transfers)}
