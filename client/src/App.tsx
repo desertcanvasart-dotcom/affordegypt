@@ -53,6 +53,7 @@ import CookiePolicy from "@/pages/cookie-policy";
 import Login from "@/pages/login";
 import Register from "@/pages/register";
 import ResetPassword from "@/pages/reset-password";
+import VerifyEmail from "@/pages/verify-email";
 
 import NotFound from "@/pages/not-found";
 
@@ -87,6 +88,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/reset-password" component={ResetPassword} />
+      <Route path="/verify-email" component={VerifyEmail} />
 
       {/* Multilingual routes */}
       {createMultilingualRoute("transfers", Transfers)}
