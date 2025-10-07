@@ -1212,142 +1212,159 @@ Recommended
                     )}
                   </div>
 
-                  {/* Enhanced Itinerary Preview */}
+                  {/* Enhanced Itinerary Preview with Integrated Booking */}
                   {cityServices.length > 0 && (
-                    <div className="mt-6 mb-6 p-6 rounded-xl bg-gradient-to-br from-teal-50 via-blue-50 to-purple-50 border border-teal-100">
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-white rounded-lg shadow-sm">
-                            <MapPinned className="w-5 h-5 text-teal-600" />
+                    <div className="mt-6 mb-6">
+                      <div className="flex flex-col lg:flex-row gap-4">
+                        {/* Itinerary Cards - Left Side */}
+                        <div className="flex-1 p-6 rounded-xl bg-gradient-to-br from-teal-50 via-blue-50 to-purple-50 border border-teal-100">
+                          <div className="flex items-center gap-3 mb-5">
+                            <div className="p-2 bg-white rounded-lg shadow-sm">
+                              <MapPinned className="w-5 h-5 text-teal-600" />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-bold text-gray-800">Your Itinerary Preview</h3>
+                              <p className="text-xs text-gray-600">{cityServices.length} day{cityServices.length > 1 ? 's' : ''} planned</p>
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="text-xl font-bold text-gray-800">Your Itinerary Preview</h3>
-                            <p className="text-sm text-gray-600">{cityServices.length} day{cityServices.length > 1 ? 's' : ''} planned</p>
-                          </div>
+                          
+                          <Carousel
+                            opts={{
+                              align: "start",
+                              loop: false,
+                            }}
+                            className="w-full"
+                          >
+                            <CarouselContent className="-ml-3">
+                              {cityServices.map((city, index) => (
+                                <CarouselItem key={index} className="pl-3 basis-full md:basis-1/2">
+                                  <Card className="bg-white/80 backdrop-blur-sm border-2 border-white shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden">
+                                    {/* Compact Header */}
+                                    <div className="bg-gradient-to-r from-teal-600 to-blue-600 px-3 py-2 text-white flex items-center justify-between">
+                                      <div className="flex items-center gap-2">
+                                        <Badge className="bg-white/20 text-white border-white/30 text-xs px-2 py-0.5">
+                                          Day {city.dayNumber}
+                                        </Badge>
+                                        <span className="text-xs opacity-90">
+                                          {city.date ? new Date(city.date).toLocaleDateString('en-US', { 
+                                            month: 'short', 
+                                            day: 'numeric'
+                                          }) : 'TBD'}
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    {/* Compact Body */}
+                                    <CardContent className="p-3 space-y-2">
+                                      <div className="flex items-center gap-2">
+                                        <MapPin className="w-4 h-4 text-teal-600" />
+                                        <h4 className="font-bold text-sm text-gray-800 truncate">{city.cityName}</h4>
+                                      </div>
+
+                                      <div className="flex flex-wrap gap-1.5 text-xs">
+                                        {city.selectedRoutes.length > 0 && (
+                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">
+                                            <MapPinned className="w-3 h-3" />
+                                            <span>{city.selectedRoutes.length} transfer{city.selectedRoutes.length > 1 ? 's' : ''}</span>
+                                          </div>
+                                        )}
+                                        {city.selectedGuide && (
+                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-700 rounded-full">
+                                            <Star className="w-3 h-3" />
+                                            <span>{city.selectedGuide.language} ({city.selectedGuide.duration}h)</span>
+                                          </div>
+                                        )}
+                                        {city.selectedAttractions.length > 0 && (
+                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full">
+                                            <Star className="w-3 h-3" />
+                                            <span>{city.selectedAttractions.length} attraction{city.selectedAttractions.length > 1 ? 's' : ''}</span>
+                                          </div>
+                                        )}
+                                        {city.selectedAddOns.length > 0 && (
+                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full">
+                                            <Plus className="w-3 h-3" />
+                                            <span>{city.selectedAddOns.length} add-on{city.selectedAddOns.length > 1 ? 's' : ''}</span>
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      <div className="flex items-center gap-1.5 text-gray-600 pt-1 border-t">
+                                        <Users className="w-3 h-3" />
+                                        <span className="text-xs">{city.travelers} traveler{city.travelers > 1 ? 's' : ''}</span>
+                                      </div>
+                                    </CardContent>
+                                  </Card>
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                            {cityServices.length > 1 && (
+                              <>
+                                <CarouselPrevious className="hidden md:flex -left-3 h-8 w-8" />
+                                <CarouselNext className="hidden md:flex -right-3 h-8 w-8" />
+                              </>
+                            )}
+                          </Carousel>
                         </div>
-                      </div>
-                      <Carousel
-                        opts={{
-                          align: "start",
-                          loop: false,
-                        }}
-                        className="w-full"
-                      >
-                        <CarouselContent className="-ml-3 md:-ml-4">
-                          {cityServices.map((city, index) => (
-                            <CarouselItem key={index} className="pl-3 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                              <Card className="bg-white/80 backdrop-blur-sm border-2 border-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 overflow-hidden group">
-                                {/* Header */}
-                                <div className="bg-gradient-to-r from-teal-600 to-blue-600 p-4 text-white">
-                                  <div className="flex items-center justify-between mb-2">
-                                    <Badge className="bg-white/20 text-white border-white/30 hover:bg-white/30 px-3 py-1">
-                                      Day {city.dayNumber}
-                                    </Badge>
-                                    <Clock className="w-4 h-4 opacity-80" />
+
+                        {/* Booking Summary Card - Right Side */}
+                        {totalPricing && (
+                          <div className="lg:w-80">
+                            <Card className="sticky top-4 shadow-xl border-2 border-primary/20 overflow-hidden">
+                              <div className="bg-gradient-to-br from-primary/10 to-blue-600/10 px-4 py-3 border-b">
+                                <h4 className="font-semibold text-sm text-gray-800">Trip Summary</h4>
+                              </div>
+                              <CardContent className="p-4 space-y-4">
+                                <div className="space-y-2">
+                                  <div className="flex justify-between items-baseline">
+                                    <span className="text-xs text-muted-foreground">Per Person</span>
+                                    <div className="text-right">
+                                      <div className="text-2xl font-bold font-mono text-primary">
+                                        {Math.round(totalPricing.perPersonAmount)}
+                                      </div>
+                                      <div className="text-xs font-medium text-gray-600">EGP</div>
+                                    </div>
                                   </div>
-                                  <div className="text-sm font-medium opacity-90">
-                                    {city.date ? new Date(city.date).toLocaleDateString('en-US', { 
-                                      weekday: 'short',
-                                      month: 'short', 
-                                      day: 'numeric'
-                                    }) : 'Date not set'}
+                                  
+                                  <div className="bg-gray-50 rounded-lg p-2 space-y-1">
+                                    <div className="flex justify-between text-xs">
+                                      <span className="text-gray-600">Total Amount</span>
+                                      <span className="font-mono font-semibold">{Math.round(totalPricing.totalAmount)} EGP</span>
+                                    </div>
+                                    <div className="flex justify-between text-xs">
+                                      <span className="text-gray-600">Travelers</span>
+                                      <span className="font-semibold">{totalPricing.travelers}</span>
+                                    </div>
+                                  </div>
+
+                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-lg px-2 py-1.5">
+                                    <DollarSign className="w-3 h-3 text-blue-600 flex-shrink-0" />
+                                    <span>Accept: <strong>EGP, USD, GBP, EUR</strong></span>
                                   </div>
                                 </div>
 
-                                {/* Body */}
-                                <CardContent className="p-4 space-y-3">
-                                  {/* City Name */}
-                                  <div className="flex items-center gap-2">
-                                    <MapPin className="w-5 h-5 text-teal-600 flex-shrink-0" />
-                                    <h4 className="font-bold text-lg text-gray-800 truncate">{city.cityName}</h4>
-                                  </div>
-
-                                  {/* Service Pills */}
-                                  <div className="flex flex-wrap gap-2">
-                                    {city.selectedRoutes.length > 0 && (
-                                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
-                                        <MapPinned className="w-3 h-3" />
-                                        <span>{city.selectedRoutes.length} transfer{city.selectedRoutes.length > 1 ? 's' : ''}</span>
-                                      </div>
-                                    )}
-                                    {city.selectedGuide && (
-                                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-                                        <Star className="w-3 h-3" />
-                                        <span>{city.selectedGuide.language} ({city.selectedGuide.duration}h)</span>
-                                      </div>
-                                    )}
-                                    {city.selectedAttractions.length > 0 && (
-                                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
-                                        <Star className="w-3 h-3" />
-                                        <span>{city.selectedAttractions.length} attraction{city.selectedAttractions.length > 1 ? 's' : ''}</span>
-                                      </div>
-                                    )}
-                                    {city.selectedAddOns.length > 0 && (
-                                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">
-                                        <Plus className="w-3 h-3" />
-                                        <span>{city.selectedAddOns.length} add-on{city.selectedAddOns.length > 1 ? 's' : ''}</span>
-                                      </div>
-                                    )}
-                                  </div>
-
-                                  {/* Footer */}
-                                  <div className="pt-3 border-t border-gray-200 flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-gray-600">
-                                      <Users className="w-4 h-4" />
-                                      <span className="text-sm font-medium">{city.travelers} traveler{city.travelers > 1 ? 's' : ''}</span>
-                                    </div>
-                                    <div className="w-8 h-1 bg-gradient-to-r from-teal-400 to-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                  </div>
-                                </CardContent>
-                              </Card>
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        {cityServices.length > 2 && (
-                          <>
-                            <CarouselPrevious className="hidden md:flex -left-4 bg-white shadow-lg hover:bg-gray-50" />
-                            <CarouselNext className="hidden md:flex -right-4 bg-white shadow-lg hover:bg-gray-50" />
-                          </>
+                                {pricingMutation.isPending ? (
+                                  <Button disabled className="w-full">
+                                    <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full mr-2"></div>
+                                    Calculating...
+                                  </Button>
+                                ) : (
+                                  <Button 
+                                    className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
+                                    disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
+                                    onClick={handleContinueBooking}
+                                  >
+                                    <Calendar className="w-4 h-4 mr-2" />
+                                    Book Your Adventure
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                  </Button>
+                                )}
+                              </CardContent>
+                            </Card>
+                          </div>
                         )}
-                      </Carousel>
+                      </div>
                     </div>
                   )}
-
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-                    {totalPricing && (
-                      <div className="text-center sm:text-right w-full sm:w-auto">
-                        <div className="text-xs text-muted-foreground">Final Total Per Person</div>
-                        <div className="text-lg sm:text-xl font-bold font-mono text-primary">
-                          {Math.round(totalPricing.perPersonAmount)} EGP
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
-                        </div>
-                        <div className="flex items-center gap-1.5 mt-1 text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-md px-2 py-0.5">
-                          <DollarSign className="w-3 h-3 text-blue-600" />
-                          <span>Payment: <strong>EGP, USD, GBP, EUR</strong></span>
-                        </div>
-                      </div>
-                    )}
-
-                    {pricingMutation.isPending ? (
-                      <Button disabled className="flex items-center gap-2 w-full sm:w-auto">
-                        <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
-                        Calculating...
-                      </Button>
-                    ) : (
-                      <Button 
-                        className="flex items-center gap-1.5 transition-all duration-200 w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
-                        disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
-                        onClick={handleContinueBooking}
-                      >
-                        <Calendar className="w-4 h-4" />
-                        <span className="hidden sm:inline">Book Your Egypt Adventure</span>
-                        <span className="sm:hidden">Book Now</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    )}
-                  </div>
                 </div>
 
           {/* Pricing Breakdown */}
