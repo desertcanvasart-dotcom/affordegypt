@@ -779,14 +779,15 @@ export default function MultiCityPricingTool() {
                                   Transfer Routes
                                 </Label>
                                 <TransportationSearch
+                                  routes={routes || []}
                                   selectedRoutes={city.selectedRoutes}
                                   onRoutesChange={(routes) => {
                                     setCityServices(prev => prev.map((c, i) =>
                                       i === index ? { ...c, selectedRoutes: routes } : c
                                     ));
                                   }}
+                                  cityId={city.cityId}
                                   cityName={city.cityName}
-                                  travelers={city.travelers}
                                 />
                               </div>
 
@@ -797,7 +798,9 @@ export default function MultiCityPricingTool() {
                                   Tour Guide (Optional)
                                 </Label>
                                 <GuideSearch
+                                  languages={availableLanguages || []}
                                   cityId={city.cityId}
+                                  cityName={city.cityName}
                                   selectedGuide={city.selectedGuide}
                                   onGuideChange={(guide) => {
                                     setCityServices(prev => prev.map((c, i) =>
@@ -814,7 +817,9 @@ export default function MultiCityPricingTool() {
                                   Attractions & Sites
                                 </Label>
                                 <AttractionsSearch
+                                  attractions={attractions || []}
                                   cityId={city.cityId}
+                                  cityName={city.cityName}
                                   selectedAttractions={city.selectedAttractions}
                                   onAttractionsChange={(attractions) => {
                                     setCityServices(prev => prev.map((c, i) =>
