@@ -1,356 +1,459 @@
-# Pricing Synchronization Issue - Complete Analysis & Fix Plan
+# Instructions & Documentation
+
+## Table of Contents
+1. [Pricing Synchronization Fix](#pricing-synchronization-fix)
+2. [Booking Flow & UX Guide](#booking-flow--ux-guide)
+
+---
+
+# Pricing Synchronization Fix
 
 ## 🚨 Critical Problem  
 **Frontend displays 1500 EGP for Cairo ↔️ Alexandria, but database & admin dashboard show 4800-7500 EGP**
 
----
-
-## 📊 Investigation Results
-
-### Database State (✅ CORRECT):
-```sql
-Route ID 200: Cairo ↔ Alexandria
-├── vehicle_prices: {"sedan": 4800, "minivan": 6000, "van": 7500}
-└── base_price_by_vehicle: {"1": {"1": "4800"}, "2": {"1": "6000"}, "3": {"1": "7500"}}
-
-Route ID 138: Cairo ↔ Alexandria  
-├── vehicle_prices: {"sedan": 6210, "minivan": 9315, "van": 14438}
-└── base_price_by_vehicle: {"1": {"1": "6210"}, "2": {"1": "9315"}, "3": {"1": "14438"}}
-```
-
-### Frontend Display (❌ INCORRECT):
-- **Shows**: 1500 EGP total
-- **Expected**: 4800/6000/7500 EGP depending on vehicle type
-- **Issue**: Price not matching ANY database value
+[Previous pricing documentation content preserved above...]
 
 ---
 
-## 🔍 Root Cause Analysis
+# Booking Flow & UX Guide
 
-### Data Flow Chain:
-```
-Database (4800-7500 EGP) 
-    ↓ 
-Backend /api/routes → Transforms & normalizes pricing
-    ↓
-Frontend transfers.tsx → Lines 527-598 process pricing
-    ↓  
-Price Calculation → Lines 571: parseFloat(price)
-    ↓
-Navigation → Line 580: /book?price=${Math.round(priceValue)}
-    ↓
-Display → Shows 1500 EGP ❌
-```
+*Added: October 7, 2025*
 
-### Key Files & Issues:
+## Business Model Overview
 
-#### 1. **client/src/pages/transfers.tsx** (MAIN ISSUE)
-**Lines 527-598**: Vehicle price processing logic
+**AffordEgypt** is a commission-based travel platform specializing in **private services only** for Egypt tourism. The platform focuses on transparent pricing and comprehensive multi-day itinerary planning.
 
+### Core Service Types
+
+1. **Private Transportation**
+   - Inter-city transfers (Cairo ↔ Luxor, Cairo ↔ Aswan, etc.)
+   - Intra-city tours (pyramids tour, desert safari, etc.)
+   - Vehicle types: Sedan (1-2 pax), Minivan (3-8 pax), Van (9+ pax)
+   - Pricing varies by route type: Transfer, Day Trip, Overnight, Multi-day
+
+2. **Multilingual Tour Guides**
+   - Languages: English, Spanish, French, German, Italian, Japanese, Chinese, Arabic
+   - Pricing: Daily rates (typically 8-hour service)
+   - Specialties: Historical sites, cultural tours, archaeological sites, photography tours
+
+3. **Attractions & Site Visits**
+   - Entrance tickets to major attractions
+   - Per-person pricing
+   - Categories: Museums, Temples, Historical Sites, Natural Wonders
+
+4. **Add-ons & Experiences**
+   - Meals (breakfast, lunch, dinner packages)
+   - Activities (felucca rides, desert safaris, snorkeling)
+   - Equipment rentals
+   - Per-person or per-trip pricing
+
+### Revenue Model
+- Commission-based (commission percentage applied to total booking amount)
+- Transparent pricing shown to customers
+- No hidden fees
+
+---
+
+## 5-Step Booking Flow
+
+### **STEP 1: Trip Overview** ✅ COMPLETE
+**Purpose**: Capture basic trip parameters that apply to the entire journey
+
+**User Inputs:**
+- **Travel Start Date**: When the trip begins
+- **Number of Travelers**: Total passengers (1-10+)
+- **Trip Style**: Private services only (no shared option)
+
+**Validation:**
+- Date must be present
+- Travelers must be selected
+- Cannot proceed without both inputs
+
+**UX Pattern:**
+- Clean card-based layout
+- Large, easy-to-tap inputs
+- Clear call-to-action: "Continue to Destinations"
+
+**Technical Implementation:**
+- State: `travelDate`, `globalTravelers`, `tripStyle`
+- Component: `multi-city-pricing-tool.tsx` lines 606-684
+
+---
+
+### **STEP 2: Destinations** ✅ COMPLETE
+**Purpose**: Build a day-by-day itinerary with services for each destination
+
+**User Flow:**
+1. **Add Destination/Day**
+   - Click "Add Destination" to create a new day in the itinerary
+   - Each day has: City, Date, Number of travelers
+
+2. **Select City**
+   - Dropdown selector shows available cities (Cairo, Luxor, Aswan, Alexandria, etc.)
+   - Automatically filters services for that city
+
+3. **Add Services (Per Day)** - Collapsible accordion UI:
+
+   a. **Transfer Routes** (Required for meaningful pricing)
+      - Shows routes that START from the selected city
+      - Includes inter-city transfers (Cairo → Luxor) and intra-city tours (Pyramids Tour)
+      - Multi-select capability
+      - Displays: Route name, distance, trip type badge
+      - Automatic vehicle selection based on travelers:
+        - 1-2 travelers → Sedan
+        - 3-8 travelers → Minivan
+        - 9+ travelers → Van
+
+   b. **Tour Guide** (Optional)
+      - Select language from available options
+      - Choose duration (4-hour, 8-hour, or custom)
+      - Shows daily rate, guide rating, and specialties
+      - Single selection per day
+
+   c. **Attractions & Sites** (Optional)
+      - Filter by category (Museums, Temples, Historical Sites)
+      - Shows ticket price, duration, opening hours
+      - Multi-select capability
+      - City-specific attractions only
+
+4. **Remove Day**
+   - Option to delete a day from itinerary
+   - Recalculates pricing automatically
+
+**Validation:**
+- Must have at least one destination with city selected
+- Recommended to have at least one route for accurate pricing
+- Cannot proceed without destinations
+
+**UX Pattern:**
+- **Accordion-based collapsible cards** for each day
+- **Progressive disclosure**: Services only shown after city selection
+- **Visual hierarchy**: Day number, city, date → Services
+- **Add button** prominently displayed to add more days
+
+**Technical Implementation:**
+- State: `cityServices` array (one object per day)
+- Components:
+  - Main container: lines 696-938
+  - TransportationSearch: `transportation-search.tsx`
+  - GuideSearch: `guide-search.tsx`
+  - AttractionsSearch: `attractions-search.tsx`
+- Data fetching:
+  - Routes: `/api/routes` (filtered by city)
+  - Languages: `/api/pricing/languages`
+  - Attractions: `/api/attractions` (filtered by city)
+
+**Recent Fixes (Oct 7, 2025):**
+- ✅ FIXED: `availableLanguages` undefined → Changed to `languages`
+- ✅ FIXED: Props mismatch in child components
+- ✅ FIXED: Scroll navigation (now scrolls to step content, not page top)
+
+---
+
+### **STEP 3: Add-ons & Upgrades** ⏳ TO IMPLEMENT
+**Purpose**: Offer optional extras that enhance the trip experience
+
+**Planned Structure:**
+
+1. **Trip-Wide Add-ons** (Apply to entire booking)
+   - Travel insurance
+   - Airport meet & greet service
+   - 24/7 support hotline
+   - SIM card with data package
+
+2. **Per-Day Add-ons** (Can be added to specific days)
+   - **Meals**: Breakfast, lunch, dinner packages
+   - **Activities**: Felucca rides, camel rides, desert safaris, snorkeling
+   - **Upgrades**: Premium vehicle upgrade, private photographer
+   - **Equipment**: Audio guides, binoculars, safety gear
+
+**User Flow:**
+1. Display add-ons grouped by category
+2. Toggle to add/remove from booking
+3. For per-day add-ons, select which day(s) to apply
+4. Quantity selector for items like meals (per person)
+5. Real-time price update in summary panel
+
+**UX Pattern:**
+- **Toggle cards** with image, description, and price
+- **Quantity selectors** for per-person items
+- **Day assignment** for flexible add-ons
+- **Category filters** for easy browsing
+
+**Technical Implementation:**
+- Component: `AddOnsSearch` already exists at `addons-search.tsx`
+- Data: `/api/addons` endpoint already available
+- Integration: Hook into existing `cityServices` state
+
+**Validation:**
+- Add-ons are optional (can skip this step)
+- Quantity must be ≥ 1 for selected add-ons
+
+---
+
+### **STEP 4: Review & Pricing** ⏳ TO IMPLEMENT
+**Purpose**: Show complete itinerary summary and pricing breakdown before checkout
+
+**Display Structure:**
+
+1. **Trip Summary Card**
+   - Travel dates (start → end)
+   - Total travelers
+   - Number of destinations/days
+
+2. **Day-by-Day Breakdown** (Expandable accordions)
+   For each day show:
+   - Day number and date
+   - City/destination
+   - Selected routes with vehicle type
+   - Guide (if selected) with language and duration
+   - Attractions list
+   - Add-ons for this day
+   - **Day subtotal**
+
+3. **Pricing Breakdown**
+   ```
+   Transportation: X EGP
+   Tour Guides: X EGP
+   Attractions: X EGP
+   Add-ons: X EGP
+   ─────────────────────
+   Subtotal: X EGP
+   Commission (X%): X EGP
+   ─────────────────────
+   TOTAL: X EGP
+   ```
+
+4. **Edit Capabilities**
+   - "Edit" button on each section to go back to that step
+   - Preserve all selections when navigating back
+
+**UX Pattern:**
+- **Read-only summary** with edit options
+- **Visual breakdown** with icons for each service type
+- **Sticky CTA** at bottom: "Proceed to Checkout"
+- **Save Quote** option for later
+
+**Technical Implementation:**
+- Use existing `totalPricing` state (from `/api/pricing/calculate`)
+- Display `totalPricing.breakdown` array
+- Component location: `multi-city-pricing-tool.tsx`
+- Integrate with existing QuoteManager for save/load functionality
+
+---
+
+### **STEP 5: Checkout** ⏳ TO IMPLEMENT
+**Purpose**: Collect customer information and process payment
+
+**User Flow:**
+
+1. **Customer Information Form**
+   - Full Name (required)
+   - Email (required, validated format)
+   - Phone Number (required, international format)
+   - Nationality (optional)
+   - Special Requests (textarea, optional)
+
+2. **Terms & Conditions**
+   - Checkbox: "I agree to terms of service"
+   - Checkbox: "I agree to booking policy"
+   - Links to full terms/policy documents
+
+3. **Payment Method**
+   - Currently supports Stripe (if configured)
+   - Fallback: Manual booking (admin will contact)
+   - Display total amount prominently
+
+4. **Submit Booking**
+   - Creates quote in database
+   - Sends confirmation email
+   - Redirects to confirmation page
+
+**Post-Booking Flow:**
+1. Create booking record with status: 'pending'
+2. Create quote with itinerary JSON
+3. Send confirmation email via SendGrid
+4. Show confirmation page with:
+   - Booking reference number
+   - Trip summary
+   - Next steps
+   - Download/Print options
+
+**UX Pattern:**
+- **Single-page form** with sections
+- **Sticky summary panel** on right (desktop) or top (mobile)
+- **Progress indicator** at top
+- **Security badges** near payment section
+
+**Technical Implementation:**
+- Form validation: Zod schema from `shared/schema.ts`
+- API endpoint: POST `/api/bookings`
+- Email service: `server/email-service.ts` (SendGrid)
+- Payment: Stripe integration (if enabled)
+- Redirect to: `/booking-confirmation/:reference`
+
+---
+
+## Navigation & UX Patterns
+
+### Step Navigation
+- **Progress indicator** at top shows all 5 steps
+- **Forward navigation**: "Continue to [Next Step]" button (enabled when validation passes)
+- **Backward navigation**: "Back to [Previous Step]" button (always enabled)
+- **Direct navigation**: Click on completed steps in progress indicator
+- **Scroll behavior**: ✅ FIXED - Now scrolls to step content, not page top
+
+### Validation Rules
+- Step 1: Date + Travelers required
+- Step 2: At least 1 destination with city required
+- Step 3: Optional (can skip)
+- Step 4: Review only (cannot proceed without reviewing)
+- Step 5: Customer info + terms required
+
+### Responsive Design
+
+**Desktop (>1024px)**
+- 2-column layout: Form on left, sticky summary on right
+- Full accordions expanded by default
+- Hover states on all interactive elements
+
+**Tablet (768px - 1024px)**
+- Single column layout
+- Summary panel at top (collapsible)
+- Accordions start collapsed
+
+**Mobile (<768px)**
+- Simplified navigation (bottom bar with step dots)
+- Compact input fields
+- Native date/number pickers
+- Sticky summary as bottom sheet
+- One service section visible at a time
+
+---
+
+## Data Flow & State Management
+
+### State Structure
 ```typescript
-// Current logic (lines 538-563):
-if (vehiclePrices.sedan || vehiclePrices.minivan || vehiclePrices.van) {
-  // New format: Direct extraction
-  processedPrices = {
-    sedan: vehiclePrices.sedan || "0",
-    minivan: vehiclePrices.minivan || "0",
-    van: vehiclePrices.van || "0"
-  };
-} else {
-  // Old format: ID-based extraction
-  Object.entries(vehiclePrices).forEach(([id, priceData]) => {
-    const vehicleName = vehicleIdToName[id];
-    if (vehicleName && priceData) {
-      processedPrices[vehicleName] = priceData["1"] || "0";
-    }
-  });
+// Global state
+const [currentStep, setCurrentStep] = useState(1);
+const [travelDate, setTravelDate] = useState('');
+const [globalTravelers, setGlobalTravelers] = useState(1);
+const [tripStyle, setTripStyle] = useState('private');
+
+// Itinerary state (array of days)
+const [cityServices, setCityServices] = useState<CityService[]>([]);
+
+// Pricing state
+const [totalPricing, setTotalPricing] = useState(null);
+
+// Each CityService contains:
+{
+  dayNumber: number,
+  cityId: number,
+  cityName: string,
+  date: string,
+  travelers: number,
+  selectedRoutes: number[],
+  selectedGuide: { language: string, duration: number },
+  selectedAttractions: string[],
+  selectedAddOns: SelectedAddOn[]
 }
 ```
 
-**Problem**: When API returns data with BOTH formats or stringified JSON, the logic may:
-- Extract wrong values
-- Get undefined from nested access
-- Fall back to "0" incorrectly
-
-#### 2. **server/routes.ts** (Lines 730-783)
-Backend transformation attempts to normalize pricing but may return inconsistent format:
-
-```typescript
-// If vehiclePrices exists as {sedan: 4800}, it stays
-// If only basePriceByVehicle exists, it converts to {sedan: "4800"} (string!)
-```
-
-**Issue**: Mixing number and string types causes parseFloat inconsistencies
-
-#### 3. **Unused getValidPrice Function** (Line 219-222)
-```typescript
-const getValidPrice = (route: RouteData, vehicleType: string): number => {
-  const price = route.vehiclePrices?.[vehicleType] || route.basePriceByVehicle?.[vehicleType];
-  return typeof price === 'number' ? price : 0;
-};
-```
-
-**This function is DEFINED but NEVER USED!** Instead, inline logic (lines 527-598) is used.
+### API Endpoints
+- `GET /api/cities` - Available cities
+- `GET /api/routes` - Transportation routes
+- `GET /api/pricing/languages` - Available guide languages
+- `GET /api/attractions` - Available attractions
+- `GET /api/addons` - Available add-ons
+- `POST /api/pricing/calculate` - Calculate total price
+- `POST /api/quotes` - Save quote
+- `POST /api/bookings` - Create booking
 
 ---
 
-## 🛠️ Fix Plan
+## Known Issues & Solutions
 
-### Phase 1: IMMEDIATE FIX (Critical - Deploy Today)
+### ✅ FIXED Issues (Oct 7, 2025)
+1. **Scroll Navigation**
+   - Problem: Clicking "Continue" scrolled to top of page, not step content
+   - Solution: Added `stepContentRef` and scroll to `.scrollIntoView()`
+   - Files: `multi-city-pricing-tool.tsx`
 
-#### Fix 1.1: Replace inline pricing logic in transfers.tsx
+2. **Language Data Error**
+   - Problem: `availableLanguages is not defined` in GuideSearch
+   - Solution: Changed to `languages` (already fetched from API)
+   - Files: `multi-city-pricing-tool.tsx` line 804
 
-**Location**: `client/src/pages/transfers.tsx` lines 527-598
+3. **Component Props Errors**
+   - Problem: TransportationSearch, GuideSearch, AttractionsSearch missing required props
+   - Solution: Added `routes`, `languages`, `attractions`, `cityId`, `cityName` props
+   - Files: `multi-city-pricing-tool.tsx` lines 784-832
 
-**Replace with**:
-```typescript
-// Process vehicle prices with robust fallback logic
-const getProcessedPrices = (route: RouteData): Record<string, number> => {
-  const result: Record<string, number> = {};
-  
-  // Priority 1: Use normalized prices from backend (most reliable)
-  if (route.sedanPrice) result.sedan = parseFloat(route.sedanPrice) || 0;
-  if (route.minivanPrice) result.minivan = parseFloat(route.minivanPrice) || 0;
-  if (route.vanPrice) result.van = parseFloat(route.vanPrice) || 0;
-  
-  // Priority 2: Try vehicle_prices (new format)
-  if (Object.keys(result).length === 0 && route.vehiclePrices) {
-    const vp = typeof route.vehiclePrices === 'string' 
-      ? JSON.parse(route.vehiclePrices) 
-      : route.vehiclePrices;
-    
-    if (vp.sedan) result.sedan = typeof vp.sedan === 'number' ? vp.sedan : parseFloat(vp.sedan) || 0;
-    if (vp.minivan) result.minivan = typeof vp.minivan === 'number' ? vp.minivan : parseFloat(vp.minivan) || 0;
-    if (vp.van) result.van = typeof vp.van === 'number' ? vp.van : parseFloat(vp.van) || 0;
-  }
-  
-  // Priority 3: Fallback to base_price_by_vehicle (legacy format)
-  if (Object.keys(result).length === 0 && route.basePriceByVehicle) {
-    const bp = typeof route.basePriceByVehicle === 'string'
-      ? JSON.parse(route.basePriceByVehicle)
-      : route.basePriceByVehicle;
-    
-    // Map: 1=sedan, 2=minivan, 3=van
-    if (bp['1']?.['1']) result.sedan = parseFloat(bp['1']['1']) || 0;
-    if (bp['2']?.['1']) result.minivan = parseFloat(bp['2']['1']) || 0;
-    if (bp['3']?.['1']) result.van = parseFloat(bp['3']['1']) || 0;
-  }
-  
-  // Debug log if no prices found
-  if (Object.keys(result).length === 0) {
-    console.error('No prices found for route:', {
-      id: route.id,
-      name: route.name,
-      vehiclePrices: route.vehiclePrices,
-      basePriceByVehicle: route.basePriceByVehicle,
-      sedanPrice: route.sedanPrice
-    });
-  }
-  
-  return result;
-};
+### ⏳ TO IMPLEMENT
+1. **Step 3: Add-ons & Upgrades**
+   - Design toggle card UI
+   - Implement quantity selectors
+   - Add day assignment for per-day add-ons
 
-const processedPrices = getProcessedPrices(selectedRoute);
-```
+2. **Step 4: Review & Pricing**
+   - Build summary layout
+   - Add edit buttons to return to previous steps
+   - Implement save quote integration
 
-#### Fix 1.2: Add debug logging before navigation
+3. **Step 5: Checkout**
+   - Customer information form
+   - Payment integration (Stripe)
+   - Email confirmation flow
+   - Booking confirmation page
 
-**Location**: Line 580 in `client/src/pages/transfers.tsx`
-
-**Replace**:
-```typescript
-onClick={() => {
-  const priceValue = processedPrices[vehicleType] || 0;
-  
-  // Debug log
-  console.log('🚗 Booking Navigation:', {
-    routeId: selectedRoute.id,
-    routeName: selectedRoute.name,
-    vehicleType,
-    calculatedPrice: priceValue,
-    allPrices: processedPrices,
-    rawData: {
-      vehiclePrices: selectedRoute.vehiclePrices,
-      sedanPrice: selectedRoute.sedanPrice,
-      minivanPrice: selectedRoute.minivanPrice,
-      vanPrice: selectedRoute.vanPrice
-    }
-  });
-  
-  if (priceValue === 0) {
-    toast({
-      title: "Pricing Error",
-      description: "Unable to calculate price. Please contact support.",
-      variant: "destructive"
-    });
-    return;
-  }
-  
-  window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${Math.round(priceValue)}`;
-}}
-```
-
-#### Fix 1.3: Verify backend returns normalized prices
-
-**Location**: `server/routes.ts` lines 746-783
-
-**Ensure this logic is present**:
-```typescript
-const transformedRoutes = routes.map((route) => {
-  let sedanPrice = "0", minivanPrice = "0", vanPrice = "0";
-  
-  // Extract from vehicle_prices first
-  const vp = route.vehiclePrices 
-    ? (typeof route.vehiclePrices === 'string' ? JSON.parse(route.vehiclePrices) : route.vehiclePrices)
-    : null;
-  
-  if (vp) {
-    sedanPrice = (vp.sedan || vp['1']?.['1'] || "0").toString();
-    minivanPrice = (vp.minivan || vp['2']?.['1'] || "0").toString();
-    vanPrice = (vp.van || vp['3']?.['1'] || "0").toString();
-  }
-  
-  // Fallback to base_price_by_vehicle if needed
-  if (!vp || sedanPrice === "0") {
-    const bp = route.basePriceByVehicle
-      ? (typeof route.basePriceByVehicle === 'string' ? JSON.parse(route.basePriceByVehicle) : route.basePriceByVehicle)
-      : null;
-    
-    if (bp) {
-      if (!vp || sedanPrice === "0") sedanPrice = bp['1']?.['1'] || "0";
-      if (!vp || minivanPrice === "0") minivanPrice = bp['2']?.['1'] || "0";
-      if (!vp || vanPrice === "0") vanPrice = bp['3']?.['1'] || "0";
-    }
-  }
-  
-  return {
-    ...route,
-    sedanPrice,
-    minivanPrice,
-    vanPrice
-  };
-});
-```
-
-### Phase 2: DATA CONSISTENCY (Important - Within 24h)
-
-#### Fix 2.1: Standardize all route pricing in database
-
-**Run this SQL**:
-```sql
--- Check routes with inconsistent pricing
-SELECT 
-  id,
-  name,
-  vehicle_prices,
-  base_price_by_vehicle,
-  CASE 
-    WHEN vehicle_prices IS NULL AND base_price_by_vehicle IS NOT NULL THEN 'Missing vehicle_prices'
-    WHEN vehicle_prices IS NOT NULL AND base_price_by_vehicle IS NULL THEN 'Missing base_price_by_vehicle'
-    WHEN vehicle_prices IS NULL AND base_price_by_vehicle IS NULL THEN 'NO PRICING DATA'
-    ELSE 'OK'
-  END as status
-FROM routes
-ORDER BY 
-  CASE 
-    WHEN vehicle_prices IS NULL AND base_price_by_vehicle IS NULL THEN 1
-    WHEN vehicle_prices IS NULL OR base_price_by_vehicle IS NULL THEN 2
-    ELSE 3
-  END;
-
--- Fix routes missing vehicle_prices (extract from base_price_by_vehicle)
-UPDATE routes 
-SET vehicle_prices = jsonb_build_object(
-  'sedan', COALESCE((base_price_by_vehicle->'1'->>'1')::numeric, 0),
-  'minivan', COALESCE((base_price_by_vehicle->'2'->>'1')::numeric, 0),
-  'van', COALESCE((base_price_by_vehicle->'3'->>'1')::numeric, 0)
-)
-WHERE vehicle_prices IS NULL 
-  AND base_price_by_vehicle IS NOT NULL;
-
--- Fix routes missing base_price_by_vehicle (create from vehicle_prices)
-UPDATE routes
-SET base_price_by_vehicle = jsonb_build_object(
-  '1', jsonb_build_object('1', (vehicle_prices->>'sedan')::text),
-  '2', jsonb_build_object('1', (vehicle_prices->>'minivan')::text),
-  '3', jsonb_build_object('1', (vehicle_prices->>'van')::text)
-)
-WHERE base_price_by_vehicle IS NULL
-  AND vehicle_prices IS NOT NULL;
-```
-
-### Phase 3: TESTING CHECKLIST
-
-- [ ] **Test Cairo ↔️ Alexandria with sedan** → Should show 4800 EGP
-- [ ] **Test Cairo ↔️ Alexandria with minivan** → Should show 6000 EGP
-- [ ] **Test Cairo ↔️ Alexandria with van** → Should show 7500 EGP
-- [ ] **Verify admin dashboard matches frontend prices exactly**
-- [ ] **Check browser console for debug logs during booking**
-- [ ] **Test with browser cache cleared**
-- [ ] **Test other routes (10+ random routes)**
-- [ ] **Verify booking page receives correct price in URL**
+4. **Mobile Responsiveness**
+   - Bottom sheet summary panel
+   - Simplified navigation
+   - Touch-optimized controls
 
 ---
 
-## 📝 Expected Outcome
+## File Structure Reference
 
-### Before Fix:
-```
-Cairo ↔️ Alexandria
-├── Admin Dashboard: 4800/6000/7500 EGP ✅
-└── Frontend Booking: 1500 EGP ❌
-```
+### Main Components
+- `client/src/components/multi-city-pricing-tool.tsx` - Main booking flow container
+- `client/src/components/transportation-search.tsx` - Route selection
+- `client/src/components/guide-search.tsx` - Guide selection
+- `client/src/components/attractions-search.tsx` - Attractions selection
+- `client/src/components/addons-search.tsx` - Add-ons selection
+- `client/src/components/quote-manager.tsx` - Save/load quotes
 
-### After Fix:
-```
-Cairo ↔️ Alexandria  
-├── Admin Dashboard: 4800/6000/7500 EGP ✅
-└── Frontend Booking: 4800/6000/7500 EGP ✅ (matches admin!)
-```
-
----
-
-## 🔧 Quick Implementation Steps
-
-1. **Edit `client/src/pages/transfers.tsx`**:
-   - Replace lines 527-598 with robust price processing
-   - Add debug logging at line 580
-   - Add error handling for zero prices
-
-2. **Verify `server/routes.ts`**:
-   - Ensure lines 746-783 properly normalize all pricing formats
-   - Return `sedanPrice`, `minivanPrice`, `vanPrice` as strings
-
-3. **Run SQL fixes**:
-   - Standardize pricing format in database
-   - Ensure all routes have both `vehicle_prices` and `base_price_by_vehicle`
-
-4. **Test thoroughly**:
-   - Clear cache
-   - Test Cairo ↔️ Alexandria route
-   - Check console logs
-   - Verify prices match admin dashboard
+### Backend
+- `server/routes.ts` - API endpoints
+- `server/database-storage.ts` - Pricing calculation logic
+- `server/email-service.ts` - SendGrid integration
+- `shared/schema.ts` - Data models & validation schemas
 
 ---
 
-## 🎯 Success Criteria
+## Implementation Priority
 
-✅ Frontend displays exact same prices as admin dashboard  
-✅ No more 1500 EGP fallback errors  
-✅ Console logs show correct price calculations  
-✅ All vehicle types show accurate pricing  
-✅ Booking URL contains correct price parameter  
+### Phase 1: Core Flow ✅ COMPLETE
+- ✅ Step 1: Trip Overview
+- ✅ Step 2: Destinations
+- ✅ Fix scroll navigation
+- ✅ Fix component errors
+
+### Phase 2: Complete Steps (NEXT)
+- [ ] Step 3: Add-ons UI
+- [ ] Step 4: Review & Pricing
+- [ ] Step 5: Checkout Form
+- [ ] Email confirmation flow
+
+### Phase 3: UX Enhancements
+- [ ] Mobile responsive design
+- [ ] Sticky summary panel
+- [ ] Loading states & animations
+- [ ] Error handling & validation messages
 
 ---
 
-## 📌 Notes
-
-- The mysterious 1500 EGP is likely a hardcoded fallback when `priceValue` becomes NaN/undefined
-- Current system has complex dual-format pricing (new + legacy) causing confusion
-- Backend transformation is working, but frontend extraction has bugs
-- **Priority**: Fix frontend extraction logic first, then standardize database
-
----
-
-*Generated: October 6, 2025*  
-*Status: Ready for implementation*
+*Last Updated: October 7, 2025*
+*Status: Steps 1-2 Complete | Steps 3-5 In Progress*

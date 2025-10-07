@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -113,6 +113,7 @@ export default function MultiCityPricingTool() {
   // Step-based navigation
   const [currentStep, setCurrentStep] = useState(1);
   const [expandedCityIndex, setExpandedCityIndex] = useState<number | null>(0);
+  const stepContentRef = useRef<HTMLDivElement>(null);
   
   // Core state
   const [cityServices, setCityServices] = useState<CityService[]>([]);
@@ -546,14 +547,20 @@ export default function MultiCityPricingTool() {
   const goToNextStep = () => {
     if (currentStep < 5 && canProceedToStep(currentStep + 1)) {
       setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to step content area, not top of page
+      setTimeout(() => {
+        stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
   };
 
   const goToPreviousStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to step content area, not top of page
+      setTimeout(() => {
+        stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
   };
 
@@ -595,8 +602,10 @@ export default function MultiCityPricingTool() {
                 }}
               />
 
-              {/* STEP 1: Trip Overview */}
-              {currentStep === 1 && (
+              {/* Step Content Container - Scroll Target */}
+              <div ref={stepContentRef}>
+                {/* STEP 1: Trip Overview */}
+                {currentStep === 1 && (
                 <div className="space-y-6 animate-in fade-in duration-300">
                   <div className="text-center mb-6">
                     <h3 className="text-lg font-semibold mb-2">Let's Start Planning Your Adventure</h3>
@@ -798,7 +807,7 @@ export default function MultiCityPricingTool() {
                                   Tour Guide (Optional)
                                 </Label>
                                 <GuideSearch
-                                  languages={availableLanguages || []}
+                                  languages={languages || []}
                                   cityId={city.cityId}
                                   cityName={city.cityName}
                                   selectedGuide={city.selectedGuide}
@@ -937,43 +946,45 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
-          {/* Pricing Breakdown */}
-          {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
-            <div className="mt-8">
-              <Separator className="mb-4" />
-              <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {totalPricing.breakdown.map((city: any, index: number) => (
-                  <Card key={index} className="p-4">
-                    <h4 className="font-medium mb-2">{city.city}</h4>
-                    <div className="space-y-1 text-sm">
-                      <div className="flex justify-between">
-                        <span>Routes:</span>
-                        <span className="font-mono">{city.routes || 0} EGP</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Guide:</span>
-                        <span className="font-mono">{city.guide || 0} EGP</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Attractions:</span>
-                        <span className="font-mono">{city.attractions || 0} EGP</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Add-ons:</span>
-                        <span className="font-mono">{city.addOns || 0} EGP</span>
-                      </div>
-                      <Separator className="my-2" />
-                      <div className="flex justify-between font-semibold">
-                        <span>Total:</span>
-                        <span className="font-mono">{city.total || 0} EGP</span>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
+              {/* Pricing Breakdown */}
+              {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
+                <div className="mt-8">
+                  <Separator className="mb-4" />
+                  <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {totalPricing.breakdown.map((city: any, index: number) => (
+                      <Card key={index} className="p-4">
+                        <h4 className="font-medium mb-2">{city.city}</h4>
+                        <div className="space-y-1 text-sm">
+                          <div className="flex justify-between">
+                            <span>Routes:</span>
+                            <span className="font-mono">{city.routes || 0} EGP</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Guide:</span>
+                            <span className="font-mono">{city.guide || 0} EGP</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Attractions:</span>
+                            <span className="font-mono">{city.attractions || 0} EGP</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Add-ons:</span>
+                            <span className="font-mono">{city.addOns || 0} EGP</span>
+                          </div>
+                          <Separator className="my-2" />
+                          <div className="flex justify-between font-semibold">
+                            <span>Total:</span>
+                            <span className="font-mono">{city.total || 0} EGP</span>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              )}
               </div>
-            </div>
-          )}
+              {/* End Step Content Container */}
         </CardContent>
       </Card>
         </TabsContent>
