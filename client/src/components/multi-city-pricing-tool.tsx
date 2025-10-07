@@ -1313,36 +1313,35 @@ Recommended
                     </div>
                   )}
 
-                  <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                     {totalPricing && (
                       <div className="text-center sm:text-right w-full sm:w-auto">
-                        <div className="text-sm text-muted-foreground">Final Total Per Person</div>
-                        <div className="text-xl sm:text-2xl font-bold font-mono text-primary">
+                        <div className="text-xs text-muted-foreground">Final Total Per Person</div>
+                        <div className="text-lg sm:text-xl font-bold font-mono text-primary">
                           {Math.round(totalPricing.perPersonAmount)} EGP
                         </div>
                         <div className="text-xs text-muted-foreground">
                           Total: {Math.round(totalPricing.totalAmount)} EGP for {totalPricing.travelers} travelers
                         </div>
-                        <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-md px-2 py-1">
+                        <div className="flex items-center gap-1.5 mt-1 text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-md px-2 py-0.5">
                           <DollarSign className="w-3 h-3 text-blue-600" />
-                          <span>Payment accepted in: <strong>EGP, USD, GBP, EUR</strong></span>
+                          <span>Payment: <strong>EGP, USD, GBP, EUR</strong></span>
                         </div>
                       </div>
                     )}
 
                     {pricingMutation.isPending ? (
-                      <Button size="lg" disabled className="flex items-center gap-2 w-full sm:w-auto">
+                      <Button disabled className="flex items-center gap-2 w-full sm:w-auto">
                         <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full"></div>
                         Calculating...
                       </Button>
                     ) : (
                       <Button 
-                        size="lg"
-                        className="flex items-center gap-2 transition-all duration-200 w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
+                        className="flex items-center gap-1.5 transition-all duration-200 w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
                         disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
                         onClick={handleContinueBooking}
                       >
-                        <Calendar className="w-5 h-5 mr-2" />
+                        <Calendar className="w-4 h-4" />
                         <span className="hidden sm:inline">Book Your Egypt Adventure</span>
                         <span className="sm:hidden">Book Now</span>
                         <ArrowRight className="w-4 h-4" />
