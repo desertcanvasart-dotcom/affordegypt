@@ -10,7 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, Shield, CreditCard } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -62,14 +62,66 @@ interface AddOn {
   isActive: boolean;
 }
 
+// Progress Indicator Component
+function StepProgress({ currentStep, steps, onStepClick }: { 
+  currentStep: number; 
+  steps: Array<{ number: number; title: string; description: string }>; 
+  onStepClick?: (step: number) => void;
+}) {
+  return (
+    <div className="mb-8">
+      <div className="flex items-center justify-between max-w-4xl mx-auto">
+        {steps.map((step, index) => (
+          <div key={step.number} className="flex items-center flex-1">
+            <div className="flex flex-col items-center flex-1">
+              <button
+                onClick={() => onStepClick?.(step.number)}
+                disabled={step.number > currentStep + 1}
+                className={`
+                  w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all
+                  ${step.number < currentStep 
+                    ? 'bg-primary text-white' 
+                    : step.number === currentStep 
+                    ? 'bg-primary text-white ring-4 ring-primary/20' 
+                    : 'bg-gray-200 text-gray-500'}
+                  ${step.number <= currentStep ? 'cursor-pointer hover:scale-110' : 'cursor-not-allowed'}
+                `}
+              >
+                {step.number < currentStep ? <Check className="w-5 h-5" /> : step.number}
+              </button>
+              <div className="mt-2 text-center hidden sm:block">
+                <div className={`text-xs font-medium ${step.number === currentStep ? 'text-primary' : 'text-gray-600'}`}>
+                  {step.title}
+                </div>
+                <div className="text-xs text-muted-foreground hidden lg:block">{step.description}</div>
+              </div>
+            </div>
+            {index < steps.length - 1 && (
+              <div className={`flex-1 h-1 mx-2 rounded transition-all ${step.number < currentStep ? 'bg-primary' : 'bg-gray-200'}`} />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function MultiCityPricingTool() {
   const { t } = useTranslation();
+  
+  // Step-based navigation
+  const [currentStep, setCurrentStep] = useState(1);
+  const [expandedCityIndex, setExpandedCityIndex] = useState<number | null>(0);
+  
+  // Core state
   const [cityServices, setCityServices] = useState<CityService[]>([]);
   const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [totalPricing, setTotalPricing] = useState<any>(null);
   const [showCityPicker, setShowCityPicker] = useState(false);
   const [travelDate, setTravelDate] = useState<string>('');
   const [globalTravelers, setGlobalTravelers] = useState<number>(1);
+  const [tripStyle, setTripStyle] = useState<'private' | 'shared'>('private');
+  const [pickupCity, setPickupCity] = useState<string>('');
   const [, setLocation] = useLocation();
   
   // Enhanced search state
@@ -466,6 +518,44 @@ export default function MultiCityPricingTool() {
     setShowAdvancedFilters(false);
   };
 
+  // Step navigation helpers
+  const steps = [
+    { number: 1, title: 'Trip Overview', description: 'Start your journey' },
+    { number: 2, title: 'Destinations', description: 'Plan your stops' },
+    { number: 3, title: 'Add-ons & Upgrades', description: 'Enhance your trip' },
+    { number: 4, title: 'Review & Pricing', description: 'Check your itinerary' },
+    { number: 5, title: 'Checkout', description: 'Complete booking' }
+  ];
+
+  const canProceedToStep = (step: number) => {
+    switch (step) {
+      case 2:
+        return travelDate && globalTravelers > 0;
+      case 3:
+        return cityServices.length > 0;
+      case 4:
+        return true; // Can always review
+      case 5:
+        return totalPricing && totalPricing.totalAmount > 0;
+      default:
+        return true;
+    }
+  };
+
+  const goToNextStep = () => {
+    if (currentStep < 5 && canProceedToStep(currentStep + 1)) {
+      setCurrentStep(currentStep + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const goToPreviousStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div id="quote-builder" className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
       <Tabs defaultValue="pricing" className="w-full">
@@ -484,54 +574,137 @@ export default function MultiCityPricingTool() {
 
         <TabsContent value="pricing">
           <Card>
-            <CardHeader className="text-center">
+            <CardHeader className="text-center pb-4">
               <CardTitle className="flex items-center justify-center gap-2 text-xl sm:text-2xl">
                 <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                <span className="hidden sm:inline">Design Your Egypt Adventure</span>
-                <span className="sm:hidden">Design Your Adventure</span>
+                <span>Design Your Egypt Adventure</span>
               </CardTitle>
-              <p className="text-muted-foreground text-sm sm:text-base">
-                Craft a journey through history, culture, and beauty — with transparent pricing at every step.
+              <p className="text-muted-foreground text-sm">
+                Craft your perfect journey with transparent pricing at every step
               </p>
             </CardHeader>
             
             <CardContent>
-              {/* Start Here Guide */}
-              <div className="relative mb-4">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-3 text-center sm:text-left">
-                  <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                    <span className="hidden sm:inline">Start by adding your first destination</span>
-                    <span className="sm:hidden">Add your first destination</span>
-                  </div>
-                  <svg 
-                    className="w-12 h-12 sm:w-16 sm:h-16 text-primary" 
-                    viewBox="0 0 64 64" 
-                    fill="none" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* Main curved arrow body */}
-                    <path 
-                      d="M8 16C8 16 16 8 32 8C48 8 56 16 56 32C56 42 52 50 46 56" 
-                      stroke="currentColor" 
-                      strokeWidth="2.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      fill="none"
-                    />
-                    {/* Arrow head - clear triangular point */}
-                    <path 
-                      d="M40 50L46 56L52 50M46 56L46 48" 
-                      stroke="currentColor" 
-                      strokeWidth="2.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      fill="none"
-                    />
-                  </svg>
-                </div>
-              </div>
+              {/* Progress Indicator */}
+              <StepProgress 
+                currentStep={currentStep} 
+                steps={steps}
+                onStepClick={(step) => {
+                  if (step <= currentStep) setCurrentStep(step);
+                }}
+              />
 
-              {/* Main Travel Date and Travelers */}
+              {/* STEP 1: Trip Overview */}
+              {currentStep === 1 && (
+                <div className="space-y-6 animate-in fade-in duration-300">
+                  <div className="text-center mb-6">
+                    <h3 className="text-lg font-semibold mb-2">Let's Start Planning Your Adventure</h3>
+                    <p className="text-sm text-muted-foreground">Tell us about your trip basics</p>
+                  </div>
+
+                  <div className="max-w-2xl mx-auto space-y-4">
+                    {/* Travel Date */}
+                    <div className="p-4 bg-white border rounded-lg shadow-sm">
+                      <Label htmlFor="travel-date" className="text-sm font-medium mb-2 block">
+                        <Calendar className="w-4 h-4 inline mr-2" />
+                        When do you want to start your trip?
+                      </Label>
+                      <Input
+                        id="travel-date"
+                        type="date"
+                        value={travelDate}
+                        onChange={(e) => {
+                          setTravelDate(e.target.value);
+                          setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
+                        }}
+                        className="w-full"
+                        required
+                      />
+                    </div>
+
+                    {/* Number of Travelers */}
+                    <div className="p-4 bg-white border rounded-lg shadow-sm">
+                      <Label htmlFor="total-travelers" className="text-sm font-medium mb-2 block">
+                        <Users className="w-4 h-4 inline mr-2" />
+                        How many travelers?
+                      </Label>
+                      <Select
+                        value={globalTravelers.toString()}
+                        onValueChange={(value) => {
+                          const newTravelers = parseInt(value);
+                          setGlobalTravelers(newTravelers);
+                          setCityServices(prev => prev.map(city => ({ ...city, travelers: newTravelers })));
+                        }}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select number of travelers" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                            <SelectItem key={num} value={num.toString()}>{num} {num === 1 ? 'traveler' : 'travelers'}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Trip Style */}
+                    <div className="p-4 bg-white border rounded-lg shadow-sm">
+                      <Label className="text-sm font-medium mb-3 block">
+                        <Star className="w-4 h-4 inline mr-2" />
+                        Preferred trip style
+                      </Label>
+                      <div className="grid grid-cols-2 gap-3">
+                        <button
+                          onClick={() => setTripStyle('private')}
+                          className={`p-4 rounded-lg border-2 transition-all ${
+                            tripStyle === 'private' 
+                              ? 'border-primary bg-primary/5' 
+                              : 'border-gray-200 hover:border-primary/50'
+                          }`}
+                        >
+                          <div className="font-semibold mb-1">Private</div>
+                          <div className="text-xs text-muted-foreground">Your own vehicle & guide</div>
+                        </button>
+                        <button
+                          onClick={() => setTripStyle('shared')}
+                          className={`p-4 rounded-lg border-2 transition-all ${
+                            tripStyle === 'shared' 
+                              ? 'border-primary bg-primary/5' 
+                              : 'border-gray-200 hover:border-primary/50'
+                          }`}
+                        >
+                          <div className="font-semibold mb-1">Shared</div>
+                          <div className="text-xs text-muted-foreground">Join a group tour</div>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Trust Badge */}
+                    <div className="flex items-center justify-center gap-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                      <Shield className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm text-blue-900 font-medium">100% Secure & Transparent Pricing</span>
+                    </div>
+                  </div>
+
+                  {/* Navigation */}
+                  <div className="flex justify-end pt-4 border-t">
+                    <Button
+                      onClick={goToNextStep}
+                      disabled={!travelDate || !globalTravelers}
+                      size="lg"
+                      className="bg-gradient-to-r from-primary to-blue-600"
+                    >
+                      Continue to Destinations
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 2 onwards: Keep existing content temporarily */}
+              {currentStep === 2 && (
+                <div className="animate-in fade-in duration-300">
+                  {/* Main Travel Date and Travelers */}
               <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 p-4 bg-muted rounded-lg">
                 <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
                   <Calendar className="w-4 h-4 text-primary" />
@@ -1366,6 +1539,8 @@ Recommended
                     </div>
                   )}
                 </div>
+              </div>
+            )}
 
           {/* Pricing Breakdown */}
           {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
