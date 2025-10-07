@@ -753,7 +753,11 @@ export default function MultiCityPricingTool() {
 
                   {/* Destination Cards - Accordion Style */}
                   {cityServices.length > 0 && (
-                    <Accordion type="single" collapsible className="space-y-4">
+                    <Accordion 
+                      type="multiple" 
+                      defaultValue={cityServices.map((c) => `day-${c.dayNumber}`)}
+                      className="space-y-4"
+                    >
                     {cityServices.map((city, index) => {
                       const cityData = cities?.find((c: any) => c.id === city.cityId);
                       const cityRoutes = routes?.filter((route: any) => {
