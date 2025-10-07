@@ -648,35 +648,16 @@ export default function MultiCityPricingTool() {
                       </Select>
                     </div>
 
-                    {/* Trip Style */}
-                    <div className="p-4 bg-white border rounded-lg shadow-sm">
-                      <Label className="text-sm font-medium mb-3 block">
-                        <Star className="w-4 h-4 inline mr-2" />
-                        Preferred trip style
-                      </Label>
-                      <div className="grid grid-cols-2 gap-3">
-                        <button
-                          onClick={() => setTripStyle('private')}
-                          className={`p-4 rounded-lg border-2 transition-all ${
-                            tripStyle === 'private' 
-                              ? 'border-primary bg-primary/5' 
-                              : 'border-gray-200 hover:border-primary/50'
-                          }`}
-                        >
-                          <div className="font-semibold mb-1">Private</div>
-                          <div className="text-xs text-muted-foreground">Your own vehicle & guide</div>
-                        </button>
-                        <button
-                          onClick={() => setTripStyle('shared')}
-                          className={`p-4 rounded-lg border-2 transition-all ${
-                            tripStyle === 'shared' 
-                              ? 'border-primary bg-primary/5' 
-                              : 'border-gray-200 hover:border-primary/50'
-                          }`}
-                        >
-                          <div className="font-semibold mb-1">Shared</div>
-                          <div className="text-xs text-muted-foreground">Join a group tour</div>
-                        </button>
+                    {/* Service Type Notice */}
+                    <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-600 rounded-lg">
+                          <Star className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-blue-900">Private Service</div>
+                          <div className="text-sm text-blue-700">All our services are private with your own vehicle & guide</div>
+                        </div>
                       </div>
                     </div>
 
@@ -711,8 +692,59 @@ export default function MultiCityPricingTool() {
                     <p className="text-muted-foreground">Add destinations and select activities for each day of your trip</p>
                   </div>
 
+                  {/* City Selector - shown when no destinations yet */}
+                  {cityServices.length === 0 && (
+                    <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-dashed border-blue-200 rounded-lg">
+                      <div className="text-center mb-6">
+                        <MapPin className="w-12 h-12 mx-auto mb-3 text-blue-600" />
+                        <h3 className="text-lg font-semibold mb-2">Choose Your First Destination</h3>
+                        <p className="text-sm text-muted-foreground">Select a city to start planning your trip</p>
+                      </div>
+                      <div className="max-w-md mx-auto">
+                        <Label className="text-sm font-medium mb-2 block">Select Destination</Label>
+                        <Select
+                          onValueChange={(value) => {
+                            if (!cities || cities.length === 0) return;
+                            
+                            const selectedCity = cities.find((c: any) => c.id === parseInt(value));
+                            if (!selectedCity) return;
+                            
+                            const newCity: CityService = {
+                              dayNumber: 1,
+                              cityId: selectedCity.id,
+                              cityName: selectedCity.name,
+                              date: travelDate,
+                              travelers: globalTravelers,
+                              selectedRoutes: [],
+                              attractions: '',
+                              selectedAttractions: [],
+                              selectedAddOns: []
+                            };
+                            
+                            setCityServices([newCity]);
+                          }}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Choose a city to visit" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {cities?.map((city: any) => (
+                              <SelectItem key={city.id} value={city.id.toString()}>
+                                <div className="flex items-center gap-2">
+                                  <MapPin className="w-4 h-4 text-primary" />
+                                  {city.name}
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Destination Cards - Accordion Style */}
-                  <Accordion type="single" collapsible className="space-y-4">
+                  {cityServices.length > 0 && (
+                    <Accordion type="single" collapsible className="space-y-4">
                     {cityServices.map((city, index) => {
                       const cityData = cities?.find((c: any) => c.id === city.cityId);
                       const cityRoutes = routes?.filter((route: any) => {
@@ -813,36 +845,59 @@ export default function MultiCityPricingTool() {
                       );
                     })}
                   </Accordion>
+                  )}
 
-                  {/* Add Day Button */}
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      if (!cities || cities.length === 0) return;
-                      
-                      const nextDayNumber = cityServices.length + 1;
-                      const nextDate = travelDate ? 
-                        new Date(new Date(travelDate).getTime() + (nextDayNumber - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : '';
-                      
-                      const newCity: CityService = {
-                        dayNumber: nextDayNumber,
-                        cityId: cities[0].id,
-                        cityName: cities[0].name,
-                        date: nextDate,
-                        travelers: globalTravelers,
-                        selectedRoutes: [],
-                        attractions: '',
-                        selectedAttractions: [],
-                        selectedAddOns: []
-                      };
-                      
-                      setCityServices(prev => [...prev, newCity]);
-                    }}
-                    className="w-full border-dashed border-2 h-12 hover:border-primary hover:bg-primary/5"
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add Another Day
-                  </Button>
+                  {/* Add Another Day - City Selector */}
+                  {cityServices.length > 0 && (
+                    <div className="p-4 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg">
+                      <div className="flex items-center gap-4">
+                        <Label className="text-sm font-medium whitespace-nowrap">
+                          <Plus className="w-4 h-4 inline mr-2" />
+                          Add Day {cityServices.length + 1}
+                        </Label>
+                        <Select
+                          onValueChange={(value) => {
+                            if (!cities || cities.length === 0) return;
+                            
+                            const selectedCity = cities.find((c: any) => c.id === parseInt(value));
+                            if (!selectedCity) return;
+                            
+                            const nextDayNumber = cityServices.length + 1;
+                            const nextDate = travelDate ? 
+                              new Date(new Date(travelDate).getTime() + (nextDayNumber - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : '';
+                            
+                            const newCity: CityService = {
+                              dayNumber: nextDayNumber,
+                              cityId: selectedCity.id,
+                              cityName: selectedCity.name,
+                              date: nextDate,
+                              travelers: globalTravelers,
+                              selectedRoutes: [],
+                              attractions: '',
+                              selectedAttractions: [],
+                              selectedAddOns: []
+                            };
+                            
+                            setCityServices(prev => [...prev, newCity]);
+                          }}
+                        >
+                          <SelectTrigger className="flex-1">
+                            <SelectValue placeholder="Select destination for next day" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {cities?.map((city: any) => (
+                              <SelectItem key={city.id} value={city.id.toString()}>
+                                <div className="flex items-center gap-2">
+                                  <MapPin className="w-4 h-4 text-primary" />
+                                  {city.name}
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Navigation */}
                   <div className="flex justify-between pt-6 border-t">
