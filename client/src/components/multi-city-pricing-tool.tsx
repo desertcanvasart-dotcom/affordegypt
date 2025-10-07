@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -701,846 +702,180 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
-              {/* STEP 2 onwards: Keep existing content temporarily */}
+              {/* STEP 2: Destinations Selection */}
               {currentStep === 2 && (
-                <div className="animate-in fade-in duration-300">
-                  {/* Main Travel Date and Travelers */}
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 p-4 bg-muted rounded-lg">
-                <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-                  <Calendar className="w-4 h-4 text-primary" />
-                  <Label htmlFor="travel-date" className="font-medium text-center sm:text-left">Trip Start Date</Label>
-                  <Input
-                    id="travel-date"
-                    type="date"
-                    value={travelDate}
-                    onChange={(e) => {
-                      setTravelDate(e.target.value);
-                      // Update all city services with the new date
-                      setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
-                    }}
-                    className="w-full sm:w-40"
-                  />
-                </div>
-                <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-                  <Users className="w-4 h-4 text-primary" />
-                  <Label htmlFor="total-travelers" className="font-medium text-center sm:text-left">Total Travelers</Label>
-                  <Select
-                    value={globalTravelers.toString()}
-                    onValueChange={(value) => {
-                      const travelers = parseInt(value);
-                      setGlobalTravelers(travelers);
-                      // Update all city services with the new traveler count
-                      setCityServices(prev => prev.map(city => ({ ...city, travelers })));
-                    }}
-                  >
-                    <SelectTrigger className="w-full sm:w-16">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(num => (
-                        <SelectItem key={num} value={num.toString()}>{num}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              {/* Advanced Search and Filtering Interface */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-4">
-                  <div className="flex items-center gap-2">
-                    <Filter className="w-5 h-5 text-primary" />
-                    <h3 className="text-base sm:text-lg font-semibold text-primary">Smart Itinerary Builder</h3>
+                <div className="animate-in fade-in duration-300 space-y-6">
+                  {/* Header */}
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">Plan Your Destinations</h2>
+                    <p className="text-muted-foreground">Add destinations and select activities for each day of your trip</p>
                   </div>
+
+                  {/* Destination Cards - Accordion Style */}
+                  <Accordion type="single" collapsible className="space-y-4">
+                    {cityServices.map((city, index) => {
+                      const cityData = cities?.find((c: any) => c.id === city.cityId);
+                      const cityRoutes = routes?.filter((route: any) => {
+                        const routeName = route.name.toLowerCase();
+                        return routeName.includes(city.cityName.toLowerCase());
+                      });
+                      
+                      return (
+                        <AccordionItem key={index} value={`day-${city.dayNumber}`} className="border rounded-lg">
+                          <AccordionTrigger className="px-4 py-3 hover:no-underline">
+                            <div className="flex items-center gap-4 w-full">
+                              <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                              <div className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4 text-primary" />
+                                <span className="font-semibold">{city.cityName}</span>
+                              </div>
+                              <div className="flex items-center gap-2 ml-auto mr-2">
+                                <Calendar className="w-4 h-4 text-muted-foreground" />
+                                <span className="text-sm text-muted-foreground">
+                                  {city.date ? new Date(city.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Set date'}
+                                </span>
+                              </div>
+                            </div>
+                          </AccordionTrigger>
+                          
+                          <AccordionContent className="px-4 pb-4 pt-2">
+                            <div className="space-y-4">
+                              {/* Route Selection */}
+                              <div className="space-y-2">
+                                <Label className="text-sm font-medium flex items-center gap-2">
+                                  <MapPinned className="w-4 h-4" />
+                                  Transfer Routes
+                                </Label>
+                                <TransportationSearch
+                                  selectedRoutes={city.selectedRoutes}
+                                  onRoutesChange={(routes) => {
+                                    setCityServices(prev => prev.map((c, i) =>
+                                      i === index ? { ...c, selectedRoutes: routes } : c
+                                    ));
+                                  }}
+                                  cityName={city.cityName}
+                                  travelers={city.travelers}
+                                />
+                              </div>
+
+                              {/* Guide Selection */}
+                              <div className="space-y-2">
+                                <Label className="text-sm font-medium flex items-center gap-2">
+                                  <Users className="w-4 h-4" />
+                                  Tour Guide (Optional)
+                                </Label>
+                                <GuideSearch
+                                  cityId={city.cityId}
+                                  selectedGuide={city.selectedGuide}
+                                  onGuideChange={(guide) => {
+                                    setCityServices(prev => prev.map((c, i) =>
+                                      i === index ? { ...c, selectedGuide: guide } : c
+                                    ));
+                                  }}
+                                />
+                              </div>
+
+                              {/* Attractions */}
+                              <div className="space-y-2">
+                                <Label className="text-sm font-medium flex items-center gap-2">
+                                  <Star className="w-4 h-4" />
+                                  Attractions & Sites
+                                </Label>
+                                <AttractionsSearch
+                                  cityId={city.cityId}
+                                  selectedAttractions={city.selectedAttractions}
+                                  onAttractionsChange={(attractions) => {
+                                    setCityServices(prev => prev.map((c, i) =>
+                                      i === index ? { ...c, selectedAttractions: attractions } : c
+                                    ));
+                                  }}
+                                />
+                              </div>
+
+                              {/* Remove Day Button */}
+                              <div className="pt-2 border-t">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => {
+                                    setCityServices(prev => prev.filter((_, i) => i !== index)
+                                      .map((c, i) => ({ ...c, dayNumber: i + 1 })));
+                                  }}
+                                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                >
+                                  <X className="w-4 h-4 mr-2" />
+                                  Remove Day {city.dayNumber}
+                                </Button>
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      );
+                    })}
+                  </Accordion>
+
+                  {/* Add Day Button */}
                   <Button
                     variant="outline"
-                    size="sm"
-                    onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-                    className="text-primary border-primary/30 hover:bg-primary/10 w-full sm:w-auto"
+                    onClick={() => {
+                      if (!cities || cities.length === 0) return;
+                      
+                      const nextDayNumber = cityServices.length + 1;
+                      const nextDate = travelDate ? 
+                        new Date(new Date(travelDate).getTime() + (nextDayNumber - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : '';
+                      
+                      const newCity: CityService = {
+                        dayNumber: nextDayNumber,
+                        cityId: cities[0].id,
+                        cityName: cities[0].name,
+                        date: nextDate,
+                        travelers: globalTravelers,
+                        selectedRoutes: [],
+                        attractions: '',
+                        selectedAttractions: [],
+                        selectedAddOns: []
+                      };
+                      
+                      setCityServices(prev => [...prev, newCity]);
+                    }}
+                    className="w-full border-dashed border-2 h-12 hover:border-primary hover:bg-primary/5"
                   >
-                    <Sliders className="w-4 h-4 mr-2" />
-                    {showAdvancedFilters ? 'Hide Filters' : 'Show Filters'}
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Another Day
                   </Button>
-                </div>
 
-                {showAdvancedFilters && (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                      {/* Budget Range */}
-                      <div className="space-y-2">
-                        <Label className="flex items-center gap-2 font-medium text-sm">
-                          <DollarSign className="w-4 h-4 text-primary" />
-                          Budget per Day (EGP)
-                        </Label>
-                        <div className="flex items-center gap-2">
-                          <Input
-                            type="number"
-                            placeholder="Min"
-                            value={searchFilters.budgetRange.min}
-                            onChange={(e) => setSearchFilters(prev => ({
-                              ...prev,
-                              budgetRange: { ...prev.budgetRange, min: Number(e.target.value) }
-                            }))}
-                            className="flex-1 min-w-0"
-                          />
-                          <span className="text-muted-foreground">-</span>
-                          <Input
-                            type="number"
-                            placeholder="Max"
-                            value={searchFilters.budgetRange.max}
-                            onChange={(e) => setSearchFilters(prev => ({
-                              ...prev,
-                              budgetRange: { ...prev.budgetRange, max: Number(e.target.value) }
-                            }))}
-                            className="flex-1 min-w-0"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Travel Style */}
-                      <div className="space-y-2">
-                        <Label className="flex items-center gap-2 font-medium text-sm">
-                          <Star className="w-4 h-4 text-primary" />
-                          Travel Style
-                        </Label>
-                        <Select
-                          value={searchFilters.travelStyle}
-                          onValueChange={(value: 'budget' | 'balanced' | 'luxury') => 
-                            setSearchFilters(prev => ({ ...prev, travelStyle: value }))
-                          }
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="budget">Budget</SelectItem>
-                            <SelectItem value="balanced">Balanced</SelectItem>
-                            <SelectItem value="luxury">Luxury</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Trip Duration */}
-                      <div className="space-y-2">
-                        <Label className="flex items-center gap-2 font-medium text-sm">
-                          <Clock className="w-4 h-4 text-primary" />
-                          Trip Duration (days)
-                        </Label>
-                        <div className="flex items-center gap-2">
-                          <Input
-                            type="number"
-                            placeholder="Min"
-                            value={searchFilters.duration.min}
-                            onChange={(e) => setSearchFilters(prev => ({
-                              ...prev,
-                              duration: { ...prev.duration, min: Number(e.target.value) }
-                            }))}
-                            className="flex-1 min-w-0"
-                          />
-                          <span className="text-muted-foreground">-</span>
-                          <Input
-                            type="number"
-                            placeholder="Max"
-                            value={searchFilters.duration.max}
-                            onChange={(e) => setSearchFilters(prev => ({
-                              ...prev,
-                              duration: { ...prev.duration, max: Number(e.target.value) }
-                            }))}
-                            className="flex-1 min-w-0"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Smart Itinerary Suggestions */}
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <Label className="font-medium">Recommended Itineraries</Label>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {getItinerarySuggestions().slice(0, 3).map((suggestion) => (
-                          <div
-                            key={suggestion.id}
-                            className="p-4 border rounded-lg hover:border-primary/50 transition-colors cursor-pointer bg-card"
-                            onClick={() => applyItinerarySuggestion(suggestion)}
-                          >
-                            <div className="flex items-start justify-between mb-2">
-                              <h4 className="font-medium text-sm">{suggestion.name}</h4>
-                              <Badge variant="outline" className="text-xs">
-                                {suggestion.duration} days
-                              </Badge>
-                            </div>
-                            <p className="text-xs text-muted-foreground mb-3">{suggestion.description}</p>
-                            <div className="space-y-2 text-xs">
-                              <div className="flex items-center gap-1">
-                                <MapPin className="w-3 h-3 text-primary" />
-                                <span>{suggestion.cities.join(' → ')}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <DollarSign className="w-3 h-3 text-primary" />
-                                <span>{suggestion.estimatedCost} EGP total</span>
-                              </div>
-                              <div className="flex flex-wrap gap-1">
-                                {suggestion.highlights.slice(0, 2).map((highlight, idx) => (
-                                  <Badge key={idx} variant="secondary" className="text-xs">
-                                    {highlight}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-                            <Button 
-                              size="sm" 
-                              className="w-full mt-3 h-8 text-xs"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                applyItinerarySuggestion(suggestion);
-                              }}
-                            >
-                              Apply Itinerary
-                            </Button>
-                          </div>
-                        ))}
-                      </div>
-                      {getItinerarySuggestions().length === 0 && (
-                        <div className="text-center py-4 text-muted-foreground text-sm">
-                          No itineraries match your current filters. Try adjusting your budget or duration.
-                        </div>
-                      )}
-                    </div>
+                  {/* Navigation */}
+                  <div className="flex justify-between pt-6 border-t">
+                    <Button
+                      variant="outline"
+                      onClick={goToPreviousStep}
+                      size="lg"
+                    >
+                      <ChevronLeft className="w-4 h-4 mr-2" />
+                      Back to Overview
+                    </Button>
+                    <Button
+                      onClick={goToNextStep}
+                      disabled={cityServices.length === 0}
+                      size="lg"
+                      className="bg-gradient-to-r from-primary to-blue-600"
+                    >
+                      Continue to Add-ons
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
                   </div>
-                )}
+                </div>
+              )}
 
-
-              </div>
-              
-              {/* Enhanced City Selection */}
-              <div className="mt-6">
-                <p className="text-sm text-muted-foreground mb-3 text-center sm:text-left">
-                  Type at least 2 letters of your destination, then click "Add Destination" to include it in your itinerary.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
-                  <div className="w-full sm:flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                    <Input
-                      placeholder="Search cities..."
-                      value={citySearchTerm}
-                      onChange={(e) => setCitySearchTerm(e.target.value)}
-                      className="pl-10 w-full"
-                    />
+              {/* STEP 3-5: Coming soon */}
+              {currentStep > 2 && (
+                <div className="animate-in fade-in duration-300 space-y-6">
+                  <div className="text-center py-12">
+                    <h2 className="text-2xl font-bold mb-2">Steps 3-5 Coming Soon</h2>
+                    <p className="text-muted-foreground">Add-ons, Review, and Checkout steps will be implemented next</p>
                   </div>
-                  <Popover open={showCityPicker} onOpenChange={setShowCityPicker}>
-                    <PopoverTrigger asChild>
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
-                        <Plus className="w-4 h-4 mr-2" />
-                        {cityServices.length === 0 ? (
-                          <>
-                            <span className="hidden sm:inline">Add Destination</span>
-                            <span className="sm:hidden">Add</span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="hidden sm:inline">Add Another Day</span>
-                            <span className="sm:hidden">Add Day</span>
-                          </>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-96" align="start">
-                      <div className="space-y-4">
-                        <h4 className="font-medium text-lg flex items-center gap-2">
-                          <MapPin className="w-5 h-5 text-primary" />
-                          Choose Your Next Destination
-                        </h4>
-                        <div className="grid gap-3 max-h-80 overflow-y-auto">
-                          {getFilteredCities().map((city: any) => (
-                            <div
-                              key={city.id}
-                              className={`p-3 rounded-lg border cursor-pointer transition-colors ${
-                                city.isRecommended 
-                                  ? 'border-primary bg-primary/5 hover:bg-primary/10' 
-                                  : 'border-muted hover:border-primary/30 hover:bg-muted/50'
-                              }`}
-                              onClick={() => {
-                                const nextDayNumber = cityServices.length + 1;
-                                
-                                // Calculate next date based on previous day
-                                let nextDate = travelDate || new Date().toISOString().split('T')[0];
-                                if (cityServices.length > 0) {
-                                  const lastDay = cityServices[cityServices.length - 1];
-                                  if (lastDay.date) {
-                                    const lastDate = new Date(lastDay.date);
-                                    lastDate.setDate(lastDate.getDate() + 1);
-                                    nextDate = lastDate.toISOString().split('T')[0];
-                                  }
-                                }
-                                
-                                const newCityService: CityService = {
-                                  dayNumber: nextDayNumber,
-                                  cityId: city.id,
-                                  cityName: city.name,
-                                  date: nextDate,
-                                  travelers: globalTravelers,
-                                  selectedRoutes: [],
-                                  attractions: "",
-                                  selectedAttractions: [],
-                                  selectedAddOns: []
-                                };
-                                setCityServices([...cityServices, newCityService]);
-                                setShowCityPicker(false);
-                              }}
-                            >
-                              <div className="flex items-start justify-between">
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <h5 className="font-medium">{city.name}</h5>
-                                    {city.isRecommended && (
-                                      <Badge variant="default" className="bg-primary text-xs">
-Recommended
-                                      </Badge>
-                                    )}
-                                  </div>
-                                  <p className="text-sm text-muted-foreground mb-2">{city.description}</p>
-                                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                                    <span className="flex items-center gap-1">
-                                      <DollarSign className="w-3 h-3" />
-                                      {city.estimatedPrice} EGP/day
-                                    </span>
-                                    {city.activityScore > 0 && (
-                                      <span className="flex items-center gap-1">
-                                        <Star className="w-3 h-3" />
-                                        {city.activityScore} matching activities
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
                 </div>
-              </div>
-              
-              {/* Mobile-Friendly City Cards */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  Your Destinations
-                </h3>
-                
-                {/* Empty State */}
-                {cityServices.length === 0 ? (
-                  <Card className="p-12 text-center">
-                    <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
-                      <div className="rounded-full bg-primary/10 p-6">
-                        <MapPin className="w-12 h-12 text-primary" />
-                      </div>
-                      <div className="space-y-2">
-                        <h4 className="text-xl font-semibold">Start Planning Your Egypt Adventure</h4>
-                        <p className="text-muted-foreground">
-                          Search for your first destination above and click "Add Destination" to begin crafting your personalized itinerary.
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
-                        <span>Plan multi-day trips</span>
-                        <span>•</span>
-                        <DollarSign className="w-4 h-4" />
-                        <span>See transparent pricing</span>
-                      </div>
-                    </div>
-                  </Card>
-                ) : (
-                  <>
-                {/* Desktop Table View */}
-                <div className="hidden lg:block overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="min-w-[140px]">Day / City</TableHead>
-                        <TableHead className="min-w-[200px]">Transportation</TableHead>
-                        <TableHead className="min-w-[140px]">Guide</TableHead>
-                        <TableHead className="min-w-[160px]">Attractions</TableHead>
-                        <TableHead className="min-w-[140px]">Per Person Add-ons</TableHead>
-                        <TableHead className="min-w-[140px]">Per Unit Add-ons</TableHead>
-                        <TableHead className="min-w-[100px]">Total/Person</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                {cityServices.map((cityService, index) => {
-                  const cityRoutes = getCurrentCityRoutes(cityService.cityId);
-                  const interCityRoutes = cityRoutes.filter((r: Route) => r.type === 'inter-city');
-                  const intraCityRoutes = cityRoutes.filter((r: Route) => r.type === 'intra-city' || r.type === 'airport' || r.type === 'activity');
-                  const cityBreakdown = totalPricing?.breakdown?.find((b: any) => b.cityName === cityService.cityName);
-                  const cityTotal = cityBreakdown ? Math.round(cityBreakdown.amount / cityService.travelers) : 0;
-
-                  return (
-                    <TableRow key={index} className="border-b">
-                      {/* Day / City */}
-                      <TableCell className="font-medium">
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-col gap-2 flex-1">
-                            <div className="flex items-center gap-2">
-                              <Badge variant="default" className="bg-primary text-xs">Day {cityService.dayNumber}</Badge>
-                              {index === cityServices.length - 1 && (
-                                <Badge variant="secondary" className="text-xs">Current</Badge>
-                              )}
-                            </div>
-                            <div className="text-sm font-medium">
-                              {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
-                            </div>
-                            <Input
-                              type="date"
-                              value={cityService.date}
-                              onChange={(e) => updateCityService(index, { date: e.target.value })}
-                              className="text-xs h-8"
-                              placeholder="Select date"
-                            />
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => {
-                              const newCityServices = cityServices
-                                .filter((_, i) => i !== index)
-                                .map((service, i) => ({ ...service, dayNumber: i + 1 }));
-                              setCityServices(newCityServices);
-                            }}
-                            className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                            title="Remove day"
-                          >
-                            <X className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      </TableCell>
-
-                      {/* Transportation */}
-                      <TableCell>
-                        <TransportationSearch
-                          routes={routes || []}
-                          selectedRoutes={cityService.selectedRoutes}
-                          onRoutesChange={(routes) => updateCityService(index, { selectedRoutes: routes })}
-                          cityId={cityService.cityId}
-                          cityName={cityService.cityName}
-                        />
-                      </TableCell>
-
-                      {/* Guide */}
-                      <TableCell>
-                        <GuideSearch
-                          languages={languages || []}
-                          selectedGuide={cityService.selectedGuide}
-                          onGuideChange={(guide) => updateCityService(index, { selectedGuide: guide })}
-                          cityName={cityService.cityName}
-                          cityId={cityService.cityId}
-                        />
-                      </TableCell>
-
-                      {/* Attractions */}
-                      <TableCell>
-                        <AttractionsSearch
-                          attractions={attractions || []}
-                          selectedAttractions={cityService.selectedAttractions || []}
-                          onAttractionsChange={(attractions) => updateCityService(index, { selectedAttractions: attractions })}
-                          cityId={cityService.cityId}
-                          cityName={cityService.cityName}
-                        />
-                      </TableCell>
-
-                      {/* Per Person Add-ons */}
-                      <TableCell>
-                        <AddOnsSearch
-                          addOns={addOns || []}
-                          selectedAddOns={cityService.selectedAddOns.filter(a => 
-                            addOns.find(addon => addon.id === a.id && (addon.unitType === 'per_person' || addon.unitType === 'per_trip'))
-                          )}
-                          onAddOnsChange={(addons) => {
-                            const perUnitAddOns = cityService.selectedAddOns.filter(a => 
-                              addOns.find(addon => addon.id === a.id && addon.unitType === 'per_unit')
-                            );
-                            updateCityService(index, { selectedAddOns: [...addons, ...perUnitAddOns] });
-                          }}
-                          cityId={cityService.cityId}
-                          cityName={cityService.cityName}
-                          unitTypeFilter="per_person"
-                        />
-                      </TableCell>
-
-                      {/* Per Unit Add-ons */}
-                      <TableCell>
-                        <AddOnsSearch
-                          addOns={addOns || []}
-                          selectedAddOns={cityService.selectedAddOns.filter(a => 
-                            addOns.find(addon => addon.id === a.id && addon.unitType === 'per_unit')
-                          )}
-                          onAddOnsChange={(addons) => {
-                            const perPersonAddOns = cityService.selectedAddOns.filter(a => 
-                              addOns.find(addon => addon.id === a.id && (addon.unitType === 'per_person' || addon.unitType === 'per_trip'))
-                            );
-                            updateCityService(index, { selectedAddOns: [...perPersonAddOns, ...addons] });
-                          }}
-                          cityId={cityService.cityId}
-                          cityName={cityService.cityName}
-                          unitTypeFilter="per_unit"
-                        />
-                      </TableCell>
-
-                      {/* Total Per Person */}
-                      <TableCell>
-                        <div className="price-chip text-lg font-bold">
-                          {cityTotal} EGP
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-                    </TableBody>
-                  </Table>
-                </div>
-                
-                {/* Mobile Card View */}
-                <div className="lg:hidden space-y-4">
-                  {cityServices.map((cityService, index) => {
-                    const cityRoutes = getCurrentCityRoutes(cityService.cityId);
-                    const cityBreakdown = totalPricing?.breakdown?.find((b: any) => b.cityName === cityService.cityName);
-                    const cityTotal = cityBreakdown ? Math.round(cityBreakdown.amount / cityService.travelers) : 0;
-
-                    return (
-                      <Card key={index} className="p-4 border-l-4 border-l-primary">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex flex-col gap-2 flex-1">
-                            <div className="flex items-center gap-2">
-                              <Badge variant="default" className="bg-primary text-xs">Day {cityService.dayNumber}</Badge>
-                              {index === cityServices.length - 1 && (
-                                <Badge variant="secondary" className="text-xs">Current</Badge>
-                              )}
-                            </div>
-                            <h4 className="font-semibold text-lg">
-                              {cities.find(c => c.id === cityService.cityId)?.name || cityService.cityName}
-                            </h4>
-                            <div className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-muted-foreground" />
-                              <Input
-                                type="date"
-                                value={cityService.date}
-                                onChange={(e) => updateCityService(index, { date: e.target.value })}
-                                className="text-sm h-9 flex-1"
-                                placeholder="Select date"
-                              />
-                            </div>
-                          </div>
-                          <div className="flex flex-col items-end gap-2">
-                            <div className="text-lg font-bold text-primary">{cityTotal} EGP</div>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => {
-                                const newCityServices = cityServices
-                                  .filter((_, i) => i !== index)
-                                  .map((service, i) => ({ ...service, dayNumber: i + 1 }));
-                                setCityServices(newCityServices);
-                              }}
-                              className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                              title="Remove day"
-                            >
-                              <X className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-4">
-                          {/* Transportation */}
-                          <div>
-                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Transportation</Label>
-                            <TransportationSearch
-                              routes={routes || []}
-                              selectedRoutes={cityService.selectedRoutes}
-                              onRoutesChange={(routes) => updateCityService(index, { selectedRoutes: routes })}
-                              cityId={cityService.cityId}
-                              cityName={cityService.cityName}
-                            />
-                          </div>
-                          
-                          {/* Guide */}
-                          <div>
-                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Guide</Label>
-                            <GuideSearch
-                              languages={languages || []}
-                              selectedGuide={cityService.selectedGuide}
-                              onGuideChange={(guide) => updateCityService(index, { selectedGuide: guide })}
-                              cityName={cityService.cityName}
-                              cityId={cityService.cityId}
-                            />
-                          </div>
-                          
-                          {/* Attractions */}
-                          <div>
-                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Attractions</Label>
-                            <AttractionsSearch
-                              attractions={attractions || []}
-                              selectedAttractions={cityService.selectedAttractions || []}
-                              onAttractionsChange={(attractions) => updateCityService(index, { selectedAttractions: attractions })}
-                              cityId={cityService.cityId}
-                              cityName={cityService.cityName}
-                            />
-                          </div>
-                          
-                          {/* Add-ons */}
-                          <div>
-                            <Label className="text-sm font-medium text-muted-foreground mb-2 block">Add-ons</Label>
-                            <div className="space-y-2">
-                              <AddOnsSearch
-                                addOns={addOns || []}
-                                selectedAddOns={cityService.selectedAddOns}
-                                onAddOnsChange={(addons) => updateCityService(index, { selectedAddOns: addons })}
-                                cityId={cityService.cityId}
-                                cityName={cityService.cityName}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    );
-                  })}
-                </div>
-                </>
-                )}
-              </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6">
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-                    {!showCityPicker ? (
-                      <Button
-                        variant="outline"
-                        onClick={() => setShowCityPicker(true)}
-                        className="flex items-center gap-2 w-full sm:w-auto"
-                      >
-                        <Plus className="w-4 h-4" />
-                        Add Another Day
-                      </Button>
-                    ) : (
-                      <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-                        <Select onValueChange={(value) => {
-                          const cityId = parseInt(value);
-                          const selectedCity = cities.find((c: any) => c.id === cityId);
-                          if (selectedCity) {
-                            const nextDayNumber = cityServices.length + 1;
-                            
-                            // Calculate next date based on previous day
-                            let nextDate = travelDate || new Date().toISOString().split('T')[0];
-                            if (cityServices.length > 0) {
-                              const lastDay = cityServices[cityServices.length - 1];
-                              if (lastDay.date) {
-                                const lastDate = new Date(lastDay.date);
-                                lastDate.setDate(lastDate.getDate() + 1);
-                                nextDate = lastDate.toISOString().split('T')[0];
-                              }
-                            }
-                            
-                            const newCityService: CityService = {
-                              dayNumber: nextDayNumber,
-                              cityId: selectedCity.id,
-                              cityName: selectedCity.name,
-                              date: nextDate,
-                              travelers: globalTravelers,
-                              selectedRoutes: [],
-                              attractions: "",
-                              selectedAttractions: [],
-                              selectedAddOns: []
-                            };
-                            setCityServices(prev => [...prev, newCityService]);
-                          }
-                          setShowCityPicker(false);
-                        }}>
-                          <SelectTrigger className="w-full sm:w-48">
-                            <SelectValue placeholder="Choose a city to visit" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {cities.map((city: any) => (
-                              <SelectItem key={city.id} value={city.id.toString()}>
-                                <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                                  {city.name}
-                                  <span className="text-xs text-muted-foreground ml-auto">
-                                    {city.description?.split('.')[0]?.substring(0, 30)}...
-                                  </span>
-                                </div>
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setShowCityPicker(false)}
-                          className="w-full sm:w-auto"
-                        >
-                          Cancel
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Enhanced Itinerary Preview with Integrated Booking */}
-                  {cityServices.length > 0 && (
-                    <div className="mt-6 mb-6">
-                      <div className="flex flex-col lg:flex-row gap-4">
-                        {/* Itinerary Cards - Left Side */}
-                        <div className="flex-1 p-6 rounded-xl bg-gradient-to-br from-teal-50 via-blue-50 to-purple-50 border border-teal-100">
-                          <div className="flex items-center gap-3 mb-5">
-                            <div className="p-2 bg-white rounded-lg shadow-sm">
-                              <MapPinned className="w-5 h-5 text-teal-600" />
-                            </div>
-                            <div>
-                              <h3 className="text-lg font-bold text-gray-800">Your Itinerary Preview</h3>
-                              <p className="text-xs text-gray-600">{cityServices.length} day{cityServices.length > 1 ? 's' : ''} planned</p>
-                            </div>
-                          </div>
-                          
-                          <Carousel
-                            opts={{
-                              align: "start",
-                              loop: false,
-                            }}
-                            className="w-full"
-                          >
-                            <CarouselContent className="-ml-3">
-                              {cityServices.map((city, index) => (
-                                <CarouselItem key={index} className="pl-3 basis-full md:basis-1/2">
-                                  <Card className="bg-white/80 backdrop-blur-sm border-2 border-white shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden">
-                                    {/* Compact Header */}
-                                    <div className="bg-gradient-to-r from-teal-600 to-blue-600 px-3 py-2 text-white flex items-center justify-between">
-                                      <div className="flex items-center gap-2">
-                                        <Badge className="bg-white/20 text-white border-white/30 text-xs px-2 py-0.5">
-                                          Day {city.dayNumber}
-                                        </Badge>
-                                        <span className="text-xs opacity-90">
-                                          {city.date ? new Date(city.date).toLocaleDateString('en-US', { 
-                                            month: 'short', 
-                                            day: 'numeric'
-                                          }) : 'TBD'}
-                                        </span>
-                                      </div>
-                                    </div>
-
-                                    {/* Compact Body */}
-                                    <CardContent className="p-3 space-y-2">
-                                      <div className="flex items-center gap-2">
-                                        <MapPin className="w-4 h-4 text-teal-600" />
-                                        <h4 className="font-bold text-sm text-gray-800 truncate">{city.cityName}</h4>
-                                      </div>
-
-                                      <div className="flex flex-wrap gap-1.5 text-xs">
-                                        {city.selectedRoutes.length > 0 && (
-                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">
-                                            <MapPinned className="w-3 h-3" />
-                                            <span>{city.selectedRoutes.length} transfer{city.selectedRoutes.length > 1 ? 's' : ''}</span>
-                                          </div>
-                                        )}
-                                        {city.selectedGuide && (
-                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-700 rounded-full">
-                                            <Star className="w-3 h-3" />
-                                            <span>{city.selectedGuide.language} ({city.selectedGuide.duration}h)</span>
-                                          </div>
-                                        )}
-                                        {city.selectedAttractions.length > 0 && (
-                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full">
-                                            <Star className="w-3 h-3" />
-                                            <span>{city.selectedAttractions.length} attraction{city.selectedAttractions.length > 1 ? 's' : ''}</span>
-                                          </div>
-                                        )}
-                                        {city.selectedAddOns.length > 0 && (
-                                          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full">
-                                            <Plus className="w-3 h-3" />
-                                            <span>{city.selectedAddOns.length} add-on{city.selectedAddOns.length > 1 ? 's' : ''}</span>
-                                          </div>
-                                        )}
-                                      </div>
-
-                                      <div className="flex items-center gap-1.5 text-gray-600 pt-1 border-t">
-                                        <Users className="w-3 h-3" />
-                                        <span className="text-xs">{city.travelers} traveler{city.travelers > 1 ? 's' : ''}</span>
-                                      </div>
-                                    </CardContent>
-                                  </Card>
-                                </CarouselItem>
-                              ))}
-                            </CarouselContent>
-                            {cityServices.length > 1 && (
-                              <>
-                                <CarouselPrevious className="hidden md:flex -left-3 h-8 w-8" />
-                                <CarouselNext className="hidden md:flex -right-3 h-8 w-8" />
-                              </>
-                            )}
-                          </Carousel>
-                        </div>
-
-                        {/* Booking Summary Card - Right Side */}
-                        {totalPricing && (
-                          <div className="lg:w-80">
-                            <Card className="sticky top-4 shadow-xl border-2 border-primary/20 overflow-hidden">
-                              <div className="bg-gradient-to-br from-primary/10 to-blue-600/10 px-4 py-3 border-b">
-                                <h4 className="font-semibold text-sm text-gray-800">Trip Summary</h4>
-                              </div>
-                              <CardContent className="p-4 space-y-4">
-                                <div className="space-y-2">
-                                  <div className="flex justify-between items-baseline">
-                                    <span className="text-xs text-muted-foreground">Per Person</span>
-                                    <div className="text-right">
-                                      <div className="text-2xl font-bold font-mono text-primary">
-                                        {Math.round(totalPricing.perPersonAmount)}
-                                      </div>
-                                      <div className="text-xs font-medium text-gray-600">EGP</div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="bg-gray-50 rounded-lg p-2 space-y-1">
-                                    <div className="flex justify-between text-xs">
-                                      <span className="text-gray-600">Total Amount</span>
-                                      <span className="font-mono font-semibold">{Math.round(totalPricing.totalAmount)} EGP</span>
-                                    </div>
-                                    <div className="flex justify-between text-xs">
-                                      <span className="text-gray-600">Travelers</span>
-                                      <span className="font-semibold">{totalPricing.travelers}</span>
-                                    </div>
-                                  </div>
-
-                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-blue-50 border border-blue-200 rounded-lg px-2 py-1.5">
-                                    <DollarSign className="w-3 h-3 text-blue-600 flex-shrink-0" />
-                                    <span>Accept: <strong>EGP, USD, GBP, EUR</strong></span>
-                                  </div>
-                                </div>
-
-                                {pricingMutation.isPending ? (
-                                  <Button disabled className="w-full">
-                                    <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full mr-2"></div>
-                                    Calculating...
-                                  </Button>
-                                ) : (
-                                  <Button 
-                                    className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
-                                    disabled={cityServices.length === 0 || !totalPricing || totalPricing.totalAmount === 0}
-                                    onClick={handleContinueBooking}
-                                  >
-                                    <Calendar className="w-4 h-4 mr-2" />
-                                    Book Your Adventure
-                                    <ArrowRight className="w-4 h-4 ml-2" />
-                                  </Button>
-                                )}
-                              </CardContent>
-                            </Card>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+              )}
 
           {/* Pricing Breakdown */}
           {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
