@@ -962,24 +962,24 @@ export default function MultiCityPricingTool() {
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between">
                             <span>Routes:</span>
-                            <span className="font-mono">{city.routes || 0} EGP</span>
+                            <span className="font-mono">{Number(city.routes || 0).toFixed(1)} EGP</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Guide:</span>
-                            <span className="font-mono">{city.guide || 0} EGP</span>
+                            <span className="font-mono">{Number(city.guide || 0).toFixed(1)} EGP</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Attractions:</span>
-                            <span className="font-mono">{city.attractions || 0} EGP</span>
+                            <span className="font-mono">{Number(city.attractions || 0).toFixed(1)} EGP</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Add-ons:</span>
-                            <span className="font-mono">{city.addOns || 0} EGP</span>
+                            <span className="font-mono">{Number(city.addOns || 0).toFixed(1)} EGP</span>
                           </div>
                           <Separator className="my-2" />
                           <div className="flex justify-between font-semibold">
                             <span>Total:</span>
-                            <span className="font-mono">{city.total || 0} EGP</span>
+                            <span className="font-mono">{Number(city.total || 0).toFixed(1)} EGP</span>
                           </div>
                         </div>
                       </Card>
