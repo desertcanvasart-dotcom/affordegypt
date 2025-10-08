@@ -712,11 +712,12 @@ export default function MultiCityPricingTool() {
               {/* STEP 2: Destinations Selection */}
               {currentStep === 2 && (
                 <div className="animate-in fade-in duration-300 space-y-6">
-                  {/* Header */}
-                  <div>
-                    <h2 className="text-2xl font-bold mb-2">Plan Your Destinations</h2>
-                    <p className="text-muted-foreground">Add destinations and select activities for each day of your trip</p>
-                  </div>
+                  <div className="max-w-2xl mx-auto space-y-6">
+                    {/* Header */}
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold mb-2">Plan Your Destinations</h2>
+                      <p className="text-muted-foreground">Add destinations and select activities for each day of your trip</p>
+                    </div>
 
                   {/* City Selector - shown when no destinations yet */}
                   {cityServices.length === 0 && (
@@ -955,6 +956,7 @@ export default function MultiCityPricingTool() {
                       Continue to Add-ons
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
+                  </div>
                   </div>
                 </div>
               )}
