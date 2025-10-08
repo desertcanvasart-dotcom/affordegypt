@@ -1319,7 +1319,7 @@ export default function MultiCityPricingTool() {
 
                     {/* Order Summary - Right Side */}
                     <div className="lg:col-span-1">
-                      <Card className="p-6 sticky top-4">
+                      <Card className="p-6">
                         <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
                         
                         {/* Trip Details */}
