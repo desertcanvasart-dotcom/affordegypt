@@ -914,6 +914,8 @@ export default function MultiCityPricingTool() {
                             };
                             
                             setCityServices(prev => [...prev, newCity]);
+                            // Auto-expand the newly added day
+                            setExpandedCityIndex(cityServices.length);
                           }}
                         >
                           <SelectTrigger className="flex-1">
