@@ -42,6 +42,8 @@ interface CityService {
     id: number;
     name: string;
     quantity: number;
+    unitType?: string;
+    price?: string;
   }>;
 }
 
@@ -125,6 +127,19 @@ export default function MultiCityPricingTool() {
   const [tripStyle, setTripStyle] = useState<'private' | 'shared'>('private');
   const [pickupCity, setPickupCity] = useState<string>('');
   const [, setLocation] = useLocation();
+  
+  // Checkout form state
+  const [checkoutData, setCheckoutData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    nationality: '',
+    accommodation: '',
+    specialRequests: '',
+    termsAccepted: false,
+    bookingPolicyAccepted: false,
+    updatesConsent: false
+  });
   
   // Enhanced search state
   const [searchFilters, setSearchFilters] = useState({
@@ -1153,11 +1168,259 @@ export default function MultiCityPricingTool() {
               {/* STEP 5: Checkout */}
               {currentStep === 5 && (
                 <div className="animate-in fade-in duration-300 space-y-6">
-                  <div className="text-center py-12">
-                    <h2 className="text-2xl font-bold mb-2">Step 5: Checkout</h2>
-                    <p className="text-muted-foreground">Checkout implementation coming next</p>
+                  {/* Header */}
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">Complete Your Booking</h2>
+                    <p className="text-muted-foreground">Enter your details to finalize your reservation</p>
                   </div>
-                  
+
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Main Form - Left Side */}
+                    <div className="lg:col-span-2 space-y-6">
+                      {/* Contact Information */}
+                      <Card className="p-6">
+                        <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="md:col-span-2">
+                            <Label htmlFor="checkout-name">Full Name *</Label>
+                            <Input
+                              id="checkout-name"
+                              placeholder="John Doe"
+                              className="mt-1"
+                              value={checkoutData.name}
+                              onChange={(e) => setCheckoutData(prev => ({ ...prev, name: e.target.value }))}
+                              data-testid="input-customer-name"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="checkout-email">Email Address *</Label>
+                            <Input
+                              id="checkout-email"
+                              type="email"
+                              placeholder="john@example.com"
+                              className="mt-1"
+                              value={checkoutData.email}
+                              onChange={(e) => setCheckoutData(prev => ({ ...prev, email: e.target.value }))}
+                              data-testid="input-customer-email"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="checkout-phone">Phone Number *</Label>
+                            <Input
+                              id="checkout-phone"
+                              type="tel"
+                              placeholder="+1 234 567 8900"
+                              className="mt-1"
+                              value={checkoutData.phone}
+                              onChange={(e) => setCheckoutData(prev => ({ ...prev, phone: e.target.value }))}
+                              data-testid="input-customer-phone"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="checkout-nationality">Nationality (Optional)</Label>
+                            <Input
+                              id="checkout-nationality"
+                              placeholder="e.g., American"
+                              className="mt-1"
+                              value={checkoutData.nationality}
+                              onChange={(e) => setCheckoutData(prev => ({ ...prev, nationality: e.target.value }))}
+                              data-testid="input-customer-nationality"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="checkout-accommodation">Hotel/Accommodation (Optional)</Label>
+                            <Input
+                              id="checkout-accommodation"
+                              placeholder="Hotel name or address"
+                              className="mt-1"
+                              value={checkoutData.accommodation}
+                              onChange={(e) => setCheckoutData(prev => ({ ...prev, accommodation: e.target.value }))}
+                              data-testid="input-customer-accommodation"
+                            />
+                          </div>
+                        </div>
+                      </Card>
+
+                      {/* Special Requests */}
+                      <Card className="p-6">
+                        <h3 className="text-lg font-semibold mb-4">Special Requests</h3>
+                        <Label htmlFor="checkout-requests">Any special requirements or requests?</Label>
+                        <textarea
+                          id="checkout-requests"
+                          className="w-full mt-2 min-h-24 px-3 py-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                          placeholder="Dietary requirements, accessibility needs, preferences..."
+                          value={checkoutData.specialRequests}
+                          onChange={(e) => setCheckoutData(prev => ({ ...prev, specialRequests: e.target.value }))}
+                          data-testid="input-special-requests"
+                        />
+                      </Card>
+
+                      {/* Terms & Conditions */}
+                      <Card className="p-6">
+                        <h3 className="text-lg font-semibold mb-4">Terms & Conditions</h3>
+                        <div className="space-y-3">
+                          <div className="flex items-start gap-3">
+                            <Checkbox 
+                              id="terms-service" 
+                              checked={checkoutData.termsAccepted}
+                              onCheckedChange={(checked) => setCheckoutData(prev => ({ ...prev, termsAccepted: checked as boolean }))}
+                              data-testid="checkbox-terms" 
+                            />
+                            <Label htmlFor="terms-service" className="text-sm leading-relaxed cursor-pointer">
+                              I agree to the <a href="/terms" className="text-primary hover:underline" target="_blank">Terms of Service</a> and <a href="/privacy" className="text-primary hover:underline" target="_blank">Privacy Policy</a>
+                            </Label>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <Checkbox 
+                              id="booking-policy" 
+                              checked={checkoutData.bookingPolicyAccepted}
+                              onCheckedChange={(checked) => setCheckoutData(prev => ({ ...prev, bookingPolicyAccepted: checked as boolean }))}
+                              data-testid="checkbox-booking-policy" 
+                            />
+                            <Label htmlFor="booking-policy" className="text-sm leading-relaxed cursor-pointer">
+                              I understand and accept the <a href="/booking-policy" className="text-primary hover:underline" target="_blank">Booking Policy</a> and cancellation terms
+                            </Label>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <Checkbox 
+                              id="updates-consent" 
+                              checked={checkoutData.updatesConsent}
+                              onCheckedChange={(checked) => setCheckoutData(prev => ({ ...prev, updatesConsent: checked as boolean }))}
+                              data-testid="checkbox-updates" 
+                            />
+                            <Label htmlFor="updates-consent" className="text-sm leading-relaxed cursor-pointer">
+                              I'd like to receive updates and special offers via email (optional)
+                            </Label>
+                          </div>
+                        </div>
+                      </Card>
+
+                      {/* Payment Information */}
+                      <Card className="p-6">
+                        <h3 className="text-lg font-semibold mb-4">Payment Method</h3>
+                        <div className="space-y-4">
+                          <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div className="flex items-center gap-3 mb-2">
+                              <Shield className="w-5 h-5 text-blue-600" />
+                              <h4 className="font-semibold text-blue-900">Secure Booking Request</h4>
+                            </div>
+                            <p className="text-sm text-blue-800">
+                              Your booking request will be confirmed by our team. We'll send you payment instructions and booking confirmation via email within 24 hours.
+                            </p>
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            <p>✓ No payment required now</p>
+                            <p>✓ Flexible payment options available</p>
+                            <p>✓ Secure transaction processing</p>
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+
+                    {/* Order Summary - Right Side */}
+                    <div className="lg:col-span-1">
+                      <Card className="p-6 sticky top-4">
+                        <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
+                        
+                        {/* Trip Details */}
+                        <div className="space-y-3 mb-4 pb-4 border-b">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Travel Date</span>
+                            <span className="font-medium">{travelDate ? new Date(travelDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-'}</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Travelers</span>
+                            <span className="font-medium">{globalTravelers} {globalTravelers === 1 ? 'Person' : 'People'}</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Days</span>
+                            <span className="font-medium">{cityServices.length} {cityServices.length === 1 ? 'Day' : 'Days'}</span>
+                          </div>
+                        </div>
+
+                        {/* Price Breakdown */}
+                        <div className="space-y-2 mb-4 pb-4 border-b">
+                          <div className="flex justify-between text-sm">
+                            <span>Transportation</span>
+                            <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>Tour Guides</span>
+                            <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>Attractions</span>
+                            <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span>Add-ons</span>
+                            <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          </div>
+                        </div>
+
+                        {/* Total */}
+                        <div className="flex justify-between items-center mb-6">
+                          <span className="text-lg font-semibold">Total</span>
+                          <span className="text-2xl font-bold text-primary">{totalPricing?.totalAmount?.toFixed(1) || 0} EGP</span>
+                        </div>
+
+                        {/* Submit Button */}
+                        <Button
+                          className="w-full bg-gradient-to-r from-primary to-blue-600 text-lg py-6"
+                          size="lg"
+                          onClick={() => {
+                            // Validation
+                            if (!checkoutData.name.trim()) {
+                              alert('Please enter your full name');
+                              return;
+                            }
+                            if (!checkoutData.email.trim() || !checkoutData.email.includes('@')) {
+                              alert('Please enter a valid email address');
+                              return;
+                            }
+                            if (!checkoutData.phone.trim()) {
+                              alert('Please enter your phone number');
+                              return;
+                            }
+                            if (!checkoutData.termsAccepted) {
+                              alert('Please accept the Terms of Service and Privacy Policy');
+                              return;
+                            }
+                            if (!checkoutData.bookingPolicyAccepted) {
+                              alert('Please accept the Booking Policy');
+                              return;
+                            }
+                            
+                            // Success - in production, this would submit to backend
+                            alert(`Booking request submitted successfully!\n\nWe'll contact you at ${checkoutData.email} within 24 hours with payment instructions and confirmation.`);
+                            
+                            // Reset form and go back to step 1
+                            setCheckoutData({
+                              name: '',
+                              email: '',
+                              phone: '',
+                              nationality: '',
+                              accommodation: '',
+                              specialRequests: '',
+                              termsAccepted: false,
+                              bookingPolicyAccepted: false,
+                              updatesConsent: false
+                            });
+                            setCurrentStep(1);
+                          }}
+                          data-testid="button-submit-booking"
+                        >
+                          <CreditCard className="w-5 h-5 mr-2" />
+                          Request Booking
+                        </Button>
+
+                        <p className="text-xs text-center text-muted-foreground mt-3">
+                          By submitting, you agree to our terms and conditions
+                        </p>
+                      </Card>
+                    </div>
+                  </div>
+
                   {/* Navigation */}
                   <div className="flex justify-between pt-6 border-t">
                     <Button
