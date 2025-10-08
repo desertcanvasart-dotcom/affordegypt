@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Menu, X, MapPin, User, Lightbulb, Star, Truck, Shield, CheckCircle, ChefHat, LogOut } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, MapPin, User, HelpCircle, MessageCircle, Truck, LogOut, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -17,13 +17,22 @@ import {
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [location, setLocation] = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
   const { t } = useTranslation();
   const getTranslatedLink = useTranslatedLink();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navigateToSection = (sectionId: string) => {
-    // If we're on the homepage, scroll to the section
+    setIsMenuOpen(false);
     if (location === '/') {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -34,9 +43,7 @@ export default function Navbar() {
         });
       }
     } else {
-      // If we're on another page, navigate smoothly to homepage
       setLocation('/');
-      // Use a longer delay to ensure the page transition and DOM are ready
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -50,302 +57,297 @@ export default function Navbar() {
     }
   };
 
-
-
   const navigateToHome = () => {
     if (location === '/') {
-      // If already on homepage, scroll to top smoothly
-      window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Navigate to homepage and then scroll to top
       setLocation('/');
       setTimeout(() => {
-        window.scrollTo({ 
-          top: 0, 
-          behavior: 'smooth' 
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     }
   };
 
   const navigateToTransfers = () => {
+    setIsMenuOpen(false);
     if (location === '/transfers') {
-      // If already on transfers page, scroll to top smoothly
-      window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Navigate to transfers page and then scroll to top
       setLocation('/transfers');
       setTimeout(() => {
-        window.scrollTo({ 
-          top: 0, 
-          behavior: 'smooth' 
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     }
   };
 
   const navigateToDestinations = () => {
+    setIsMenuOpen(false);
     if (location === '/destinations') {
-      // If already on destinations page, scroll to top smoothly
-      window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Navigate to destinations page and then scroll to top
       setLocation('/destinations');
       setTimeout(() => {
-        window.scrollTo({ 
-          top: 0, 
-          behavior: 'smooth' 
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     }
   };
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-border">
-      {/* Super Nav Bar */}
-      <div className="bg-teal-50 border-b border-teal-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center h-8 sm:h-7 text-xs text-teal-800 py-2 sm:py-0">
-            <div className="flex items-center space-x-3 sm:space-x-6 flex-wrap justify-center">
-              <div className="flex items-center space-x-1">
-                <Shield className="w-3 h-3" />
-                <span className="hidden sm:inline">{t('home.features.noHiddenFees')}</span>
-                <span className="sm:hidden">No Hidden Fees</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Star className="w-3 h-3 fill-current" />
-                <span className="hidden sm:inline">{t('home.features.rating')}</span>
-                <span className="sm:hidden">5★ Rated</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <CheckCircle className="w-3 h-3" />
-                <span className="hidden sm:inline">{t('home.features.localNetwork')}</span>
-                <span className="sm:hidden">Local Network</span>
+    <header className={`bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
+      {/* Main Navigation Bar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <img 
+              src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
+              alt="Afford Egypt" 
+              className={`w-auto cursor-pointer hover:opacity-90 transition-all duration-300 ${isScrolled ? 'h-8' : 'h-10'}`}
+              onClick={navigateToHome}
+            />
+            <div className="hidden lg:block text-xs text-gray-600 border-l border-gray-300 pl-3">
+              Egypt-based experts since 2020
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            <button 
+              onClick={navigateToDestinations}
+              className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
+            >
+              <MapPin className="w-4 h-4" />
+              Destinations
+            </button>
+            
+            <button 
+              onClick={navigateToTransfers}
+              className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
+            >
+              <Truck className="w-4 h-4" />
+              Transfers
+            </button>
+            
+            <button 
+              onClick={() => navigateToSection('faq')}
+              className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
+            >
+              <HelpCircle className="w-4 h-4" />
+              FAQs
+            </button>
+
+            <div className="w-px h-6 bg-gray-300 mx-2"></div>
+
+            <div className="px-2">
+              <LanguageSelector />
+            </div>
+
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5">
+                    <User className="w-4 h-4" />
+                    <span>{user?.firstName || user?.username}</span>
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard" className="flex items-center">
+                      <User className="w-4 h-4 mr-2" />
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={logout} className="flex items-center text-red-600">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button variant="ghost" size="sm" asChild className="text-gray-700 hover:text-primary hover:bg-teal-50">
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button size="sm" variant="outline" asChild className="border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white">
+                  <Link href="/register">Sign Up</Link>
+                </Button>
+              </>
+            )}
+          </nav>
+
+          {/* Primary CTA - Desktop */}
+          <div className="hidden lg:block">
+            <button
+              onClick={() => navigateToSection('quote-builder')}
+              className="bg-[#008C86] text-white px-6 py-2.5 rounded-lg hover:bg-[#007570] transition-all font-semibold shadow-md hover:shadow-lg transform hover:scale-105 duration-200 animate-pulse"
+              style={{ animationDuration: '2s', animationIterationCount: '3' }}
+            >
+              Get Your Instant Quote
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 text-gray-700 hover:text-primary"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Trust Line - Sticky underneath header */}
+      {!isScrolled && (
+        <div className="bg-teal-50 border-t border-teal-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center h-9 text-xs sm:text-sm text-teal-800">
+              <div className="flex items-center gap-2 sm:gap-6">
+                <span className="flex items-center gap-1.5">
+                  💚 <span className="hidden sm:inline">Transparent pricing — what you see is what you pay</span><span className="sm:hidden">Real prices in EGP</span>
+                </span>
+                <span className="hidden sm:inline">·</span>
+                <span className="hidden sm:inline">Book directly with Egypt-based experts — no middlemen</span>
+                <span className="hidden sm:inline">·</span>
+                <span className="hidden sm:inline">Secure booking</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 pb-3">
-          {/* Logo with Social Icons */}
-          <div className="flex flex-col items-start">
-            {/* Social Media Icons */}
-            <div className="flex items-center space-x-2 mb-1">
+      )}
+
+      {/* Mobile Full-Screen Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-16 bg-white z-50 overflow-y-auto animate-in slide-in-from-top duration-300">
+          <div className="p-6">
+            {/* Hero Section */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Plan Your Egypt Trip</h2>
+              <p className="text-gray-600">Private tours with transparent pricing</p>
+            </div>
+
+            {/* Primary CTA on Top */}
+            <button
+              onClick={() => navigateToSection('quote-builder')}
+              className="w-full bg-[#008C86] text-white px-6 py-4 rounded-lg hover:bg-[#007570] transition-all font-semibold shadow-md mb-6 text-lg"
+            >
+              Get Your Instant Quote
+            </button>
+
+            {/* Navigation Sections */}
+            <div className="space-y-2 mb-6">
+              <button 
+                onClick={navigateToDestinations}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+              >
+                <MapPin className="w-5 h-5" />
+                Destinations
+              </button>
+              
+              <button 
+                onClick={navigateToTransfers}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+              >
+                <Truck className="w-5 h-5" />
+                Private Transfers
+              </button>
+              
+              <button 
+                onClick={() => navigateToSection('faq')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+              >
+                <HelpCircle className="w-5 h-5" />
+                FAQs
+              </button>
+
+              <button 
+                onClick={() => navigateToSection('contact')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Contact
+              </button>
+            </div>
+
+            {/* Language Selector */}
+            <div className="mb-6 px-4">
+              <LanguageSelector />
+            </div>
+
+            {/* Auth Buttons */}
+            {isAuthenticated ? (
+              <div className="space-y-3 border-t border-gray-200 pt-6">
+                <div className="flex items-center space-x-2 text-gray-700 px-4 py-2">
+                  <User className="w-5 h-5" />
+                  <span className="font-medium">{user?.firstName || user?.username}</span>
+                </div>
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-center border border-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all font-medium"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => {
+                    logout();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-center border border-red-200 text-red-600 px-4 py-3 rounded-lg hover:bg-red-50 transition-all font-medium"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3 border-t border-gray-200 pt-6">
+                <Link
+                  href="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-center border border-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all font-medium"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-center bg-gray-800 text-white px-4 py-3 rounded-lg hover:bg-gray-900 transition-all font-medium"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+
+            {/* Social Media */}
+            <div className="flex items-center justify-center space-x-4 mt-8 pt-6 border-t border-gray-200">
               <a 
                 href="https://www.facebook.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-5 h-5 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
-                aria-label="Follow us on Facebook"
+                className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
               >
-                <FaFacebookF className="w-2.5 h-2.5" />
+                <FaFacebookF className="w-4 h-4" />
               </a>
               <a 
                 href="https://www.instagram.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-5 h-5 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
-                aria-label="Follow us on Instagram"
+                className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
               >
-                <FaInstagram className="w-2.5 h-2.5" />
+                <FaInstagram className="w-4 h-4" />
               </a>
               <a 
                 href="https://www.youtube.com/@affordegypt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-5 h-5 rounded-full bg-white border border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
-                aria-label="Subscribe to our YouTube channel"
+                className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
               >
-                <FaYoutube className="w-2.5 h-2.5" />
+                <FaYoutube className="w-4 h-4" />
               </a>
             </div>
-            {/* Logo */}
-            <img 
-              src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
-              alt="Afford Egypt Logo" 
-              className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity pb-1"
-              onClick={navigateToHome}
-            />
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            <button 
-              onClick={navigateToDestinations}
-              className="text-muted-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
-            >
-              <MapPin className="w-4 h-4" />
-              {t('nav.destinations')}
-            </button>
-
-            <LanguageSelector />
-          </nav>
-
-          {/* Primary CTAs */}
-          <div className="hidden md:flex items-center space-x-3">
-            {isAuthenticated ? (
-              <div className="flex items-center space-x-3">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-gray-700 hover:text-gray-900">
-                      <User className="w-4 h-4" />
-                      <span>{user?.firstName || user?.username}</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
-                    <DropdownMenuItem asChild>
-                      <Link href="/dashboard" className="flex items-center">
-                        <User className="w-4 h-4 mr-2" />
-                        Dashboard
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={logout} className="flex items-center text-red-600">
-                      <LogOut className="w-4 h-4 mr-2" />
-                      Sign Out
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-2">
-                <Button variant="ghost" size="sm" asChild>
-                  <Link href="/login" className="text-gray-600 hover:text-gray-900">{t('nav.signIn')}</Link>
-                </Button>
-                <Button size="sm" className="bg-gray-800 hover:bg-gray-900 text-white" asChild>
-                  <Link href="/register">{t('nav.signUp')}</Link>
-                </Button>
-              </div>
-            )}
-            
-            <button
-              onClick={() => navigateToSection('quote-builder')}
-              className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors font-medium shadow-md"
-            >
-              {t('nav.startTrip')}
-            </button>
-
-            <button
-              onClick={navigateToTransfers}
-              className="border border-gray-300 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-            >
-              <Truck className="w-4 h-4 inline mr-1" />
-              {t('nav.bookTransfer')}
-            </button>
-          </div>
-
-
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col space-y-4">
-              <Link 
-                href={getTranslatedLink("destinations")}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-              >
-                <MapPin className="w-4 h-4" />
-                {t('nav.destinations')}
-              </Link>
-
-              <div className="px-4">
-                <LanguageSelector />
-              </div>
-              
-              {/* Mobile Authentication & CTAs */}
-              <div className="pt-4 space-y-3 border-t border-border">
-                {isAuthenticated ? (
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2 text-gray-700 py-2">
-                      <User className="w-4 h-4" />
-                      <span className="font-medium">{user?.firstName || user?.username}</span>
-                    </div>
-                    <Link
-                      href="/dashboard"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 py-2"
-                    >
-                      <User className="w-4 h-4" />
-                      <span>Dashboard</span>
-                    </Link>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setIsMenuOpen(false);
-                      }}
-                      className="flex items-center space-x-2 text-red-600 hover:text-red-700 py-2 w-full text-left"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Sign Out</span>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    <Link
-                      href="/login"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block w-full text-center border border-gray-300 text-gray-600 px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-                    >
-                      Sign In
-                    </Link>
-                    <Link
-                      href="/register"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block w-full text-center bg-gray-800 text-white px-4 py-3 rounded-lg hover:bg-gray-900 transition-colors font-medium"
-                    >
-                      Sign Up
-                    </Link>
-                  </div>
-                )}
-                
-                <button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    navigateToSection('quote-builder');
-                  }}
-                  className="w-full bg-teal-600 text-white px-4 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium text-center"
-                >
-                  Start Your Trip Quote
-                </button>
-                
-                <button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    navigateToTransfers();
-                  }}
-                  className="w-full border border-gray-300 text-gray-600 px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium text-center flex items-center justify-center gap-2"
-                >
-                  <Truck className="w-4 h-4" />
-                  Book a Transfer
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </header>
   );
 }
