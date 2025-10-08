@@ -635,17 +635,21 @@ export default function MultiCityPricingTool() {
               <div ref={stepContentRef}>
                 {/* STEP 1: Trip Overview */}
                 {currentStep === 1 && (
-                <div className="space-y-6 animate-in fade-in duration-300">
-                  <div className="text-center mb-6">
-                    <h3 className="text-lg font-semibold mb-2">Let's Start Planning Your Adventure</h3>
-                    <p className="text-sm text-muted-foreground">Tell us about your trip basics</p>
+                <div className="space-y-8 animate-in fade-in duration-500 p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-white rounded-xl">
+                  {/* Header */}
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
+                      ✨ Let's Plan Your Egypt Adventure
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-1">Tell us a few basics to begin building your journey</p>
+                    <p className="text-xs text-muted-foreground">Takes less than 30 seconds to start your quote</p>
                   </div>
 
-                  <div className="max-w-2xl mx-auto space-y-4">
+                  <div className="max-w-2xl mx-auto space-y-6">
                     {/* Travel Date */}
-                    <div className="p-4 bg-white border rounded-lg shadow-sm">
-                      <Label htmlFor="travel-date" className="text-sm font-medium mb-2 block">
-                        <Calendar className="w-4 h-4 inline mr-2" />
+                    <div className="p-6 bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                      <Label htmlFor="travel-date" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+                        <Calendar className="w-5 h-5 text-teal-600" />
                         When do you want to start your trip?
                       </Label>
                       <Input
@@ -656,15 +660,15 @@ export default function MultiCityPricingTool() {
                           setTravelDate(e.target.value);
                           setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
                         }}
-                        className="w-full"
+                        className="w-full border-2 border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 rounded-lg h-12"
                         required
                       />
                     </div>
 
                     {/* Number of Travelers */}
-                    <div className="p-4 bg-white border rounded-lg shadow-sm">
-                      <Label htmlFor="total-travelers" className="text-sm font-medium mb-2 block">
-                        <Users className="w-4 h-4 inline mr-2" />
+                    <div className="p-6 bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                      <Label htmlFor="total-travelers" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+                        <Users className="w-5 h-5 text-teal-600" />
                         How many travelers?
                       </Label>
                       <Select
@@ -675,7 +679,7 @@ export default function MultiCityPricingTool() {
                           setCityServices(prev => prev.map(city => ({ ...city, travelers: newTravelers })));
                         }}
                       >
-                        <SelectTrigger className="w-full">
+                        <SelectTrigger className="w-full border-2 border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 rounded-lg h-12">
                           <SelectValue placeholder="Select number of travelers" />
                         </SelectTrigger>
                         <SelectContent>
@@ -686,36 +690,45 @@ export default function MultiCityPricingTool() {
                       </Select>
                     </div>
 
-                    {/* Service Type Notice */}
-                    <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-blue-600 rounded-lg">
-                          <Star className="w-5 h-5 text-white" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-blue-900">Private Service</div>
-                          <div className="text-sm text-blue-700">All our services are private with your own vehicle & guide</div>
+                    {/* Trust Elements - Horizontal Badges */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Private Service Badge */}
+                      <div className="group p-4 bg-gradient-to-br from-teal-50 to-teal-100 border-2 border-teal-200 rounded-xl hover:shadow-lg transition-all duration-300 cursor-default">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2.5 bg-teal-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                            <Star className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <div className="font-bold text-teal-900 text-sm">Private Service</div>
+                            <div className="text-xs text-teal-700">Your own vehicle & guide</div>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Trust Badge */}
-                    <div className="flex items-center justify-center gap-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
-                      <Shield className="w-5 h-5 text-blue-600" />
-                      <span className="text-sm text-blue-900 font-medium">100% Secure & Transparent Pricing</span>
+                      {/* Transparent Pricing Badge */}
+                      <div className="group p-4 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-xl hover:shadow-lg transition-all duration-300 cursor-default">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2.5 bg-blue-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                            <Shield className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <div className="font-bold text-blue-900 text-sm">Transparent Pricing</div>
+                            <div className="text-xs text-blue-700">Real prices, no hidden fees</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex justify-center pt-4 border-t">
+                  <div className="flex justify-center pt-6">
                     <Button
                       onClick={goToNextStep}
                       disabled={!travelDate || !globalTravelers}
                       size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
+                      className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full sm:w-auto px-8 py-6 text-base font-semibold rounded-xl disabled:opacity-40 disabled:transform-none disabled:hover:shadow-lg"
                     >
-                      Continue to Destinations
-                      <ChevronRight className="w-4 h-4 ml-2" />
+                      Continue to Destinations →
                     </Button>
                   </div>
                 </div>
