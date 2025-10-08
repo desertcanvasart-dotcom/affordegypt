@@ -964,10 +964,11 @@ export default function MultiCityPricingTool() {
               {/* STEP 3: Add-ons & Upgrades */}
               {currentStep === 3 && (
                 <div className="animate-in fade-in duration-300 space-y-6">
+                  <div className="max-w-2xl mx-auto space-y-6">
                   {/* Header */}
                   <div>
-                    <h2 className="text-2xl font-bold mb-2">Add-ons & Upgrades</h2>
-                    <p className="text-muted-foreground">Enhance your trip with optional extras (you can skip this step)</p>
+                    <h2 className="text-2xl font-bold mb-2">Add-ons & Upgrades <span className="text-muted-foreground text-lg font-normal">(Optional)</span></h2>
+                    <p className="text-muted-foreground">Enhance your trip with optional extras - you can skip this step</p>
                   </div>
 
                   {/* Add-ons for each day */}
@@ -1015,12 +1016,14 @@ export default function MultiCityPricingTool() {
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
+                  </div>
                 </div>
               )}
 
               {/* STEP 4: Review & Pricing */}
               {currentStep === 4 && (
                 <div className="animate-in fade-in duration-300 space-y-6">
+                  <div className="max-w-2xl mx-auto space-y-6">
                   {/* Header */}
                   <div>
                     <h2 className="text-2xl font-bold mb-2">Review Your Itinerary</h2>
@@ -1165,6 +1168,7 @@ export default function MultiCityPricingTool() {
                       Proceed to Checkout
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
+                  </div>
                   </div>
                 </div>
               )}
@@ -1476,8 +1480,8 @@ export default function MultiCityPricingTool() {
                   </div>
                 </div>
               )}
-              </div>
               {/* End Step Content Container */}
+              </div>
         </CardContent>
       </Card>
         </TabsContent>
