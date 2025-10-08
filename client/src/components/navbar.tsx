@@ -181,8 +181,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <button
               onClick={() => navigateToSection('quote-builder')}
-              className="bg-[#008C86] text-white px-6 py-2.5 rounded-lg hover:bg-[#007570] transition-all font-semibold shadow-md hover:shadow-lg transform hover:scale-105 duration-200 animate-pulse"
-              style={{ animationDuration: '2s', animationIterationCount: '3' }}
+              className="bg-[#008C86] text-white px-4 py-2 rounded-lg hover:bg-[#007570] transition-all font-medium text-sm shadow-md hover:shadow-lg transform hover:scale-105 duration-200"
             >
               Get Your Instant Quote
             </button>
