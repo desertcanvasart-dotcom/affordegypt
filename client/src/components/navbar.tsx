@@ -167,10 +167,10 @@ export default function Navbar() {
               </DropdownMenu>
             ) : (
               <>
-                <Button variant="ghost" size="sm" asChild className="text-gray-700 hover:text-primary hover:bg-teal-50">
+                <Button variant="ghost" asChild className="text-gray-700 hover:text-primary hover:bg-teal-50 h-8 px-3 text-sm">
                   <Link href="/login">Sign In</Link>
                 </Button>
-                <Button size="sm" variant="outline" asChild className="border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white">
+                <Button variant="outline" asChild className="border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white h-8 px-3 text-sm">
                   <Link href="/register">Sign Up</Link>
                 </Button>
               </>
@@ -181,7 +181,7 @@ export default function Navbar() {
           <div className="hidden lg:block ml-3">
             <button
               onClick={() => navigateToSection('quote-builder')}
-              className="bg-[#008C86] text-white px-3 py-1.5 rounded-md hover:bg-[#007570] transition-all font-medium text-xs shadow-sm hover:shadow-md duration-200 whitespace-nowrap"
+              className="bg-[#008C86] text-white px-4 py-2 rounded-md hover:bg-[#007570] transition-all font-medium text-sm shadow-sm hover:shadow-md duration-200 whitespace-nowrap"
             >
               Get Instant Quote
             </button>
