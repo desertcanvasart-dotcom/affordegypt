@@ -178,12 +178,12 @@ export default function Navbar() {
           </nav>
 
           {/* Primary CTA - Desktop */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:block ml-3">
             <button
               onClick={() => navigateToSection('quote-builder')}
-              className="bg-[#008C86] text-white px-4 py-2 rounded-lg hover:bg-[#007570] transition-all font-medium text-sm shadow-md hover:shadow-lg transform hover:scale-105 duration-200"
+              className="bg-[#008C86] text-white px-3 py-1.5 rounded-md hover:bg-[#007570] transition-all font-medium text-xs shadow-sm hover:shadow-md duration-200 whitespace-nowrap"
             >
-              Get Your Instant Quote
+              Get Instant Quote
             </button>
           </div>
 
