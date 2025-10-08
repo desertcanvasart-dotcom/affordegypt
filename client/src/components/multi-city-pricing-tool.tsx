@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -151,7 +151,19 @@ export default function MultiCityPricingTool() {
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   // Fetch available cities from the database with translation
-  const { data: cities = [] } = useTranslatedQuery<{id: number, name: string, description?: string}[]>("/api/cities");
+  const { data: allCities = [] } = useTranslatedQuery<{id: number, name: string, description?: string}[]>("/api/cities");
+
+  // Filter out cities without services and sort alphabetically
+  const cities = useMemo(() => {
+    const excludedCities = [
+      'asyut', 'beni suef', 'esna', 'edfu', 'kom ombo', 'qena', 
+      'quseir', 'ain sokhna', 'dakhla oasis', 'kharga oasis', 'ras sudr'
+    ];
+    
+    return allCities
+      .filter((city: any) => !excludedCities.includes(city.name.toLowerCase().trim()))
+      .sort((a: any, b: any) => a.name.localeCompare(b.name));
+  }, [allCities]);
 
   // Fetch available languages
   const { data: languages = [] } = useQuery<string[]>({
