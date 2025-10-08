@@ -567,7 +567,7 @@ export default function MultiCityPricingTool() {
   return (
     <div id="quote-builder" className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
       <Tabs defaultValue="pricing" className="w-full">
-        <TabsList className="hidden sm:grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
+        <TabsList className="grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
           <TabsTrigger value="pricing" className="flex items-center gap-2">
             <Calculator className="w-4 h-4" />
             <span className="hidden sm:inline">Build Quote</span>
