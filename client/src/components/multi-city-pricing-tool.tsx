@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, Shield, CreditCard } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, Shield, CreditCard, Package } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -143,8 +143,10 @@ export default function MultiCityPricingTool() {
     queryKey: ["/api/pricing/languages"],
   });
 
-  // Fetch available add-ons with translation
-  const { data: addOns = [] } = useTranslatedQuery<AddOn[]>("/api/addons");
+  // Fetch available add-ons
+  const { data: addOns = [] } = useQuery<AddOn[]>({
+    queryKey: ["/api/addons"],
+  });
 
   // Fetch available routes with translation and shorter stale time for real-time updates
   const { data: routes = [], refetch: refetchRoutes } = useTranslatedQuery<any[]>("/api/routes", {
@@ -940,12 +942,232 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
-              {/* STEP 3-5: Coming soon */}
-              {currentStep > 2 && (
+              {/* STEP 3: Add-ons & Upgrades */}
+              {currentStep === 3 && (
+                <div className="animate-in fade-in duration-300 space-y-6">
+                  {/* Header */}
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">Add-ons & Upgrades</h2>
+                    <p className="text-muted-foreground">Enhance your trip with optional extras (you can skip this step)</p>
+                  </div>
+
+                  {/* Add-ons for each day */}
+                  {cityServices.length > 0 && (
+                    <div className="space-y-4">
+                      {cityServices.map((city, index) => (
+                        <Card key={index} className="p-4">
+                          <div className="flex items-center gap-2 mb-4">
+                            <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                            <span className="font-semibold">{city.cityName}</span>
+                          </div>
+                          
+                          <AddOnsSearch
+                            addOns={addOns || []}
+                            selectedAddOns={city.selectedAddOns || []}
+                            onAddOnsChange={(selectedAddOns) => {
+                              setCityServices(prev => prev.map((c, i) =>
+                                i === index ? { ...c, selectedAddOns } : c
+                              ));
+                            }}
+                            cityId={city.cityId}
+                            cityName={city.cityName}
+                          />
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Navigation */}
+                  <div className="flex justify-between pt-6 border-t">
+                    <Button
+                      variant="outline"
+                      onClick={goToPreviousStep}
+                      size="lg"
+                    >
+                      <ChevronLeft className="w-4 h-4 mr-2" />
+                      Back to Destinations
+                    </Button>
+                    <Button
+                      onClick={goToNextStep}
+                      size="lg"
+                      className="bg-gradient-to-r from-primary to-blue-600"
+                    >
+                      Continue to Review
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 4: Review & Pricing */}
+              {currentStep === 4 && (
+                <div className="animate-in fade-in duration-300 space-y-6">
+                  {/* Header */}
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">Review Your Itinerary</h2>
+                    <p className="text-muted-foreground">Check all details before proceeding to checkout</p>
+                  </div>
+
+                  {/* Trip Summary */}
+                  <Card className="p-6 bg-gradient-to-br from-blue-50 to-purple-50">
+                    <h3 className="text-lg font-semibold mb-4">Trip Summary</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Start Date</p>
+                        <p className="font-semibold">{travelDate ? new Date(travelDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '-'}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Travelers</p>
+                        <p className="font-semibold">{globalTravelers} {globalTravelers === 1 ? 'Person' : 'People'}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Days</p>
+                        <p className="font-semibold">{cityServices.length} {cityServices.length === 1 ? 'Day' : 'Days'}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Total Price</p>
+                        <p className="font-semibold text-primary">{totalPricing?.totalAmount?.toFixed(1) || 0} EGP</p>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Day-by-Day Breakdown */}
+                  <Accordion type="multiple" defaultValue={cityServices.map((c) => `review-day-${c.dayNumber}`)} className="space-y-4">
+                    {cityServices.map((city, index) => {
+                      const cityBreakdown = totalPricing?.breakdown?.find((b: any) => b.city === city.cityName);
+                      
+                      return (
+                        <AccordionItem key={index} value={`review-day-${city.dayNumber}`} className="border rounded-lg">
+                          <AccordionTrigger className="px-4 py-3 hover:no-underline">
+                            <div className="flex items-center gap-4 w-full">
+                              <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                              <div className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4 text-primary" />
+                                <span className="font-semibold">{city.cityName}</span>
+                              </div>
+                              <div className="ml-auto mr-2">
+                                <span className="text-sm font-semibold">{cityBreakdown?.total?.toFixed(1) || 0} EGP</span>
+                              </div>
+                            </div>
+                          </AccordionTrigger>
+                          
+                          <AccordionContent className="px-4 pb-4 pt-2">
+                            <div className="space-y-3">
+                              {/* Routes */}
+                              {city.selectedRoutes && city.selectedRoutes.length > 0 && (
+                                <div>
+                                  <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
+                                    <MapPinned className="w-4 h-4" />
+                                    Routes
+                                  </h4>
+                                  <ul className="text-sm space-y-1 ml-6">
+                                    {city.selectedRoutes.map(routeId => {
+                                      const route = routes?.find(r => r.id === routeId);
+                                      return route ? <li key={routeId}>• {route.name}</li> : null;
+                                    })}
+                                  </ul>
+                                </div>
+                              )}
+
+                              {/* Guide */}
+                              {city.selectedGuide && (
+                                <div>
+                                  <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
+                                    <Users className="w-4 h-4" />
+                                    Tour Guide
+                                  </h4>
+                                  <p className="text-sm ml-6">• {city.selectedGuide.language} guide ({city.selectedGuide.duration} hours)</p>
+                                </div>
+                              )}
+
+                              {/* Attractions */}
+                              {city.selectedAttractions && city.selectedAttractions.length > 0 && (
+                                <div>
+                                  <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
+                                    <Star className="w-4 h-4" />
+                                    Attractions
+                                  </h4>
+                                  <ul className="text-sm space-y-1 ml-6">
+                                    {city.selectedAttractions.map((attraction, i) => (
+                                      <li key={i}>• {attraction}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+
+                              {/* Add-ons */}
+                              {city.selectedAddOns && city.selectedAddOns.length > 0 && (
+                                <div>
+                                  <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
+                                    <Package className="w-4 h-4" />
+                                    Add-ons
+                                  </h4>
+                                  <ul className="text-sm space-y-1 ml-6">
+                                    {city.selectedAddOns.map((addon, i) => (
+                                      <li key={i}>• {addon.name} (x{addon.quantity})</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+
+                              {/* Edit Button */}
+                              <div className="pt-2 border-t">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => setCurrentStep(2)}
+                                  className="text-primary hover:text-primary/80"
+                                >
+                                  Edit Day {city.dayNumber}
+                                </Button>
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      );
+                    })}
+                  </Accordion>
+
+                  {/* Navigation */}
+                  <div className="flex justify-between pt-6 border-t">
+                    <Button
+                      variant="outline"
+                      onClick={goToPreviousStep}
+                      size="lg"
+                    >
+                      <ChevronLeft className="w-4 h-4 mr-2" />
+                      Back to Add-ons
+                    </Button>
+                    <Button
+                      onClick={goToNextStep}
+                      size="lg"
+                      className="bg-gradient-to-r from-primary to-blue-600"
+                    >
+                      Proceed to Checkout
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 5: Checkout */}
+              {currentStep === 5 && (
                 <div className="animate-in fade-in duration-300 space-y-6">
                   <div className="text-center py-12">
-                    <h2 className="text-2xl font-bold mb-2">Steps 3-5 Coming Soon</h2>
-                    <p className="text-muted-foreground">Add-ons, Review, and Checkout steps will be implemented next</p>
+                    <h2 className="text-2xl font-bold mb-2">Step 5: Checkout</h2>
+                    <p className="text-muted-foreground">Checkout implementation coming next</p>
+                  </div>
+                  
+                  {/* Navigation */}
+                  <div className="flex justify-between pt-6 border-t">
+                    <Button
+                      variant="outline"
+                      onClick={goToPreviousStep}
+                      size="lg"
+                    >
+                      <ChevronLeft className="w-4 h-4 mr-2" />
+                      Back to Review
+                    </Button>
                   </div>
                 </div>
               )}
