@@ -695,12 +695,12 @@ export default function MultiCityPricingTool() {
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex justify-end pt-4 border-t">
+                  <div className="flex justify-center pt-4 border-t">
                     <Button
                       onClick={goToNextStep}
                       disabled={!travelDate || !globalTravelers}
                       size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600"
+                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
                     >
                       Continue to Destinations
                       <ChevronRight className="w-4 h-4 ml-2" />
@@ -938,11 +938,12 @@ export default function MultiCityPricingTool() {
                   )}
 
                   {/* Navigation */}
-                  <div className="flex justify-between pt-6 border-t">
+                  <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
                     <Button
                       variant="outline"
                       onClick={goToPreviousStep}
                       size="lg"
+                      className="w-full sm:w-auto"
                     >
                       <ChevronLeft className="w-4 h-4 mr-2" />
                       Back to Overview
@@ -951,7 +952,7 @@ export default function MultiCityPricingTool() {
                       onClick={goToNextStep}
                       disabled={cityServices.length === 0}
                       size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600"
+                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
                     >
                       Continue to Add-ons
                       <ChevronRight className="w-4 h-4 ml-2" />
@@ -998,11 +999,12 @@ export default function MultiCityPricingTool() {
                   )}
 
                   {/* Navigation */}
-                  <div className="flex justify-between pt-6 border-t">
+                  <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
                     <Button
                       variant="outline"
                       onClick={goToPreviousStep}
                       size="lg"
+                      className="w-full sm:w-auto"
                     >
                       <ChevronLeft className="w-4 h-4 mr-2" />
                       Back to Destinations
@@ -1010,7 +1012,7 @@ export default function MultiCityPricingTool() {
                     <Button
                       onClick={goToNextStep}
                       size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600"
+                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
                     >
                       Continue to Review
                       <ChevronRight className="w-4 h-4 ml-2" />
@@ -1151,11 +1153,12 @@ export default function MultiCityPricingTool() {
                   </Accordion>
 
                   {/* Navigation */}
-                  <div className="flex justify-between pt-6 border-t">
+                  <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
                     <Button
                       variant="outline"
                       onClick={goToPreviousStep}
                       size="lg"
+                      className="w-full sm:w-auto"
                     >
                       <ChevronLeft className="w-4 h-4 mr-2" />
                       Back to Add-ons
@@ -1163,7 +1166,7 @@ export default function MultiCityPricingTool() {
                     <Button
                       onClick={goToNextStep}
                       size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600"
+                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
                     >
                       Proceed to Checkout
                       <ChevronRight className="w-4 h-4 ml-2" />
@@ -1440,10 +1443,11 @@ export default function MultiCityPricingTool() {
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex justify-between pt-4 border-t">
+                  <div className="flex justify-center pt-4 border-t">
                     <Button
                       variant="outline"
                       onClick={goToPreviousStep}
+                      className="w-full sm:w-auto"
                     >
                       <ChevronLeft className="w-4 h-4 mr-2" />
                       Back to Review
