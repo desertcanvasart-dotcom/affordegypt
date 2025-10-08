@@ -98,14 +98,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-col items-start">
             <img 
               src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
               alt="Afford Egypt" 
-              className={`w-auto cursor-pointer hover:opacity-90 transition-all duration-300 ${isScrolled ? 'h-8' : 'h-10'}`}
+              className={`w-auto cursor-pointer hover:opacity-90 transition-all duration-300 ${isScrolled ? 'h-6' : 'h-8'}`}
               onClick={navigateToHome}
             />
-            <div className="hidden lg:block text-xs text-gray-600 border-l border-gray-300 pl-3">
+            <div className={`hidden lg:block text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
               Egypt-based experts since 2020
             </div>
           </div>
