@@ -162,37 +162,30 @@ export function AddOnsSearch({
 
     return (
       <div className={`border rounded-lg p-3 ${isSelected ? 'border-teal-200 bg-teal-50' : 'border-gray-200'}`}>
-        <div className="flex items-start justify-between">
-          <div className="flex items-start gap-3 flex-1">
-            <Checkbox
-              checked={isSelected}
-              onCheckedChange={() => toggleAddOn(addOn)}
-              className="mt-1"
-            />
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-lg">{getCategoryIcon(addOn.category)}</span>
-                <h4 className="font-medium text-sm">{addOn.name}</h4>
-              </div>
-              
-              {addOn.description && (
-                <p className="text-xs text-gray-600 mb-2 line-clamp-2">{addOn.description}</p>
-              )}
-              
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className={`text-xs ${getUnitTypeColor(addOn.unitType)}`}>
-                  {getUnitTypeLabel(addOn.unitType)}
-                </Badge>
-                <Badge variant="outline" className="text-xs">
-                  {addOn.category}
-                </Badge>
-              </div>
+        <div className="flex items-start gap-3">
+          <Checkbox
+            checked={isSelected}
+            onCheckedChange={() => toggleAddOn(addOn)}
+            className="mt-1"
+          />
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-lg">{getCategoryIcon(addOn.category)}</span>
+              <h4 className="font-medium text-sm">{addOn.name}</h4>
             </div>
-          </div>
-          
-          <div className="text-right">
-            <div className="text-sm font-semibold text-teal-600">EGP {Math.round(parseFloat(addOn.price))}</div>
-            <div className="text-xs text-gray-500">{getUnitTypeLabel(addOn.unitType)}</div>
+            
+            {addOn.description && (
+              <p className="text-xs text-gray-600 mb-2 line-clamp-2">{addOn.description}</p>
+            )}
+            
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className={`text-xs ${getUnitTypeColor(addOn.unitType)}`}>
+                {getUnitTypeLabel(addOn.unitType)}
+              </Badge>
+              <Badge variant="outline" className="text-xs">
+                {addOn.category}
+              </Badge>
+            </div>
           </div>
         </div>
         
