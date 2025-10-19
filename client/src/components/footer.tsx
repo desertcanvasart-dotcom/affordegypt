@@ -56,6 +56,26 @@ export default function Footer() {
           </div>
 
           <div>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.legal')}</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href={getTranslatedLink("about")} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('footer.aboutUs')}
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("contact")} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('footer.contactUs')}
+                </Link>
+              </li>
+              <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.privacyPolicy')}</Link></li>
+              <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">{t('footer.termsOfService')}</Link></li>
+              <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.cookiePolicy')}</Link></li>
+              <li><Link href="/booking-agreement" className="text-gray-300 hover:text-primary transition-colors">{t('footer.bookingAgreement')}</Link></li>
+            </ul>
+          </div>
+
+          <div>
             <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2">
               <li>
@@ -88,26 +108,6 @@ export default function Footer() {
                   Aswan Car & Tour Guide Services
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">{t('footer.legal')}</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href={getTranslatedLink("about")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.aboutUs')}
-                </Link>
-              </li>
-              <li>
-                <Link href={getTranslatedLink("contact")} className="text-gray-300 hover:text-primary transition-colors">
-                  {t('footer.contactUs')}
-                </Link>
-              </li>
-              <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.privacyPolicy')}</Link></li>
-              <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">{t('footer.termsOfService')}</Link></li>
-              <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.cookiePolicy')}</Link></li>
-              <li><Link href="/booking-agreement" className="text-gray-300 hover:text-primary transition-colors">{t('footer.bookingAgreement')}</Link></li>
             </ul>
           </div>
 
