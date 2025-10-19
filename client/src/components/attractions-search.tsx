@@ -40,7 +40,6 @@ export default function AttractionsSearch({
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [priceRange, setPriceRange] = useState<string>("all");
   const [isOpen, setIsOpen] = useState(false);
 
   // Filter attractions for the current city
@@ -65,29 +64,9 @@ export default function AttractionsSearch({
       // Category filter
       const matchesCategory = selectedCategory === "all" || attraction.category === selectedCategory;
       
-      // Price range filter
-      let matchesPrice = true;
-      if (priceRange !== "all") {
-        const price = parseInt(attraction.ticketPrice) || 0;
-        switch (priceRange) {
-          case "free":
-            matchesPrice = price === 0;
-            break;
-          case "budget":
-            matchesPrice = price > 0 && price <= 15;
-            break;
-          case "moderate":
-            matchesPrice = price > 15 && price <= 30;
-            break;
-          case "premium":
-            matchesPrice = price > 30;
-            break;
-        }
-      }
-      
-      return matchesSearch && matchesCategory && matchesPrice;
+      return matchesSearch && matchesCategory;
     });
-  }, [cityAttractions, searchTerm, selectedCategory, priceRange]);
+  }, [cityAttractions, searchTerm, selectedCategory]);
 
   const handleAttractionToggle = (attractionName: string) => {
     const newSelected = selectedAttractions.includes(attractionName)
@@ -99,7 +78,6 @@ export default function AttractionsSearch({
   const clearAllFilters = () => {
     setSearchTerm("");
     setSelectedCategory("all");
-    setPriceRange("all");
   };
 
   const getCategoryIcon = (category: string) => {
@@ -119,14 +97,6 @@ export default function AttractionsSearch({
       default:
         return "📍";
     }
-  };
-
-  const getPriceColor = (price: string) => {
-    const priceNum = parseInt(price) || 0;
-    if (priceNum === 0) return "text-green-600";
-    if (priceNum <= 15) return "text-blue-600";
-    if (priceNum <= 30) return "text-orange-600";
-    return "text-red-600";
   };
 
   const getDisplayText = () => {
@@ -208,20 +178,7 @@ export default function AttractionsSearch({
               </SelectContent>
             </Select>
             
-            <Select value={priceRange} onValueChange={setPriceRange}>
-              <SelectTrigger className="w-32">
-                <SelectValue placeholder="Price" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Prices</SelectItem>
-                <SelectItem value="free">Free</SelectItem>
-                <SelectItem value="budget">$1-15</SelectItem>
-                <SelectItem value="moderate">$16-30</SelectItem>
-                <SelectItem value="premium">$31+</SelectItem>
-              </SelectContent>
-            </Select>
-            
-            {(searchTerm || selectedCategory !== "all" || priceRange !== "all") && (
+            {(searchTerm || selectedCategory !== "all") && (
               <Button variant="ghost" size="sm" onClick={clearAllFilters}>
                 Clear filters
               </Button>
@@ -264,13 +221,6 @@ export default function AttractionsSearch({
                           <p className="text-xs text-gray-600 mt-1 line-clamp-2">
                             {attraction.description}
                           </p>
-                        </div>
-                        
-                        <div className="text-right">
-                          <div className={`text-sm font-medium ${getPriceColor(attraction.ticketPrice)}`}>
-                            {parseInt(attraction.ticketPrice) === 0 ? 'Free' : `EGP ${attraction.ticketPrice}`}
-                          </div>
-                          <div className="text-xs text-gray-500">per person</div>
                         </div>
                       </div>
                       
