@@ -4,6 +4,7 @@ import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 import BlogGrid from "@/components/blog-grid";
 import FAQSection from "@/components/faq-section";
+import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
 import MobileStickyCTA from "@/components/mobile-sticky-cta";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <AnimatedReviewCarousel />
       <BlogGrid />
       <FAQSection />
+      <NewsletterSection />
       <Footer />
       <MobileStickyCTA />
     </div>

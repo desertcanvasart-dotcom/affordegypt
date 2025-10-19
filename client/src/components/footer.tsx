@@ -1,61 +1,11 @@
-import { Crown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Link } from "wouter";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 import { useTranslatedLink } from "@/utils/slugTranslation";
 
 export default function Footer() {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const { toast } = useToast();
   const getTranslatedLink = useTranslatedLink();
-
-  const newsletterMutation = useMutation({
-    mutationFn: async (email: string) => {
-      await apiRequest("POST", "/api/newsletter-subscribe", { email });
-    },
-    onSuccess: () => {
-      toast({
-        title: t('footer.newsletter.success'),
-        description: t('footer.newsletter.successDesc'),
-      });
-      setEmail("");
-    },
-    onError: (error: any) => {
-      toast({
-        title: t('footer.newsletter.failed'),
-        description: t('footer.newsletter.failedDesc'),
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) {
-      toast({
-        title: t('validation.required'),
-        description: t('footer.newsletter.emailRequired'),
-        variant: "destructive",
-      });
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast({
-        title: t('validation.invalidEmail'),
-        description: t('validation.invalidEmail'),
-        variant: "destructive",
-      });
-      return;
-    }
-    newsletterMutation.mutate(email);
-  };
 
   return (
     <footer className="bg-foreground text-white py-16">
@@ -162,25 +112,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">{t('footer.newsletter.title')}</h3>
-            <p className="text-gray-300 mb-4">{t('footer.newsletter.subtitle')}</p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <Input 
-                type="email" 
-                placeholder={t('footer.newsletter.placeholder')} 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-gray-700 text-white border-gray-600 sm:rounded-r-none focus:border-primary" 
-                disabled={newsletterMutation.isPending}
-              />
-              <Button 
-                type="submit"
-                className="btn-primary sm:rounded-l-none"
-                disabled={newsletterMutation.isPending}
-              >
-                {newsletterMutation.isPending ? t('footer.newsletter.subscribing') : t('footer.newsletter.subscribe')}
-              </Button>
-            </form>
+            <h3 className="text-lg font-semibold mb-4">Explore</h3>
+            <ul className="space-y-2">
+              {/* Pages will be added here */}
+            </ul>
           </div>
         </div>
 
