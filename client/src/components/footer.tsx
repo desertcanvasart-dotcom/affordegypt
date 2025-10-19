@@ -114,7 +114,26 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Explore</h3>
             <ul className="space-y-2">
-              {/* Pages will be added here */}
+              <li>
+                <Link href={getTranslatedLink("travel-tips")} className="text-gray-300 hover:text-primary transition-colors">
+                  Travel Tips
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("egyptian-street-food-guide")} className="text-gray-300 hover:text-primary transition-colors">
+                  Street Food Guide
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
+                  Egyptian Cuisine Passport
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("submit-review")} className="text-gray-300 hover:text-primary transition-colors">
+                  Submit a Review
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
