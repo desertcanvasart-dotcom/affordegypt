@@ -119,7 +119,8 @@ class SendGridEmailService implements EmailService {
       return false;
     }
 
-    const verificationUrl = `${process.env.REPLIT_DOMAINS ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}` : 'http://localhost:5000'}/verify-email?token=${token}`;
+    const appUrl = process.env.APP_URL || (process.env.REPLIT_DOMAINS ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}` : 'http://localhost:5000');
+    const verificationUrl = `${appUrl}/verify-email?token=${token}`;
     const emailContent = this.generateVerificationEmail(username, verificationUrl);
 
     try {

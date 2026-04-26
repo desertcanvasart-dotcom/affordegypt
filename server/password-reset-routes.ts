@@ -126,9 +126,8 @@ export function setupPasswordResetRoutes(app: Express) {
       });
 
       // Create reset link
-      const baseUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://affordegypt.com' 
-        : `http://localhost:5000`;
+      const baseUrl = process.env.APP_URL
+        || (process.env.NODE_ENV === 'production' ? 'https://affordegypt.com' : 'http://localhost:5000');
       const resetLink = `${baseUrl}/reset-password?selector=${selector}&token=${token}`;
 
       // Send email
