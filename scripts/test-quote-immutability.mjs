@@ -67,10 +67,11 @@ try {
   const lineTotalAfter = reread.lineItems?.[0]?.lineTotal;
   console.log(`Quote re-read. total=${totalAfter} lineTotal=${lineTotalAfter}`);
 
-  if (totalBefore !== totalAfter) {
+  const eq = (a, b) => parseFloat(a) === parseFloat(b);
+  if (!eq(totalBefore, totalAfter)) {
     throw new Error(`FAIL: quote total changed. before=${totalBefore} after=${totalAfter}`);
   }
-  if (lineTotalBefore !== lineTotalAfter) {
+  if (!eq(lineTotalBefore, lineTotalAfter)) {
     throw new Error(`FAIL: line total changed. before=${lineTotalBefore} after=${lineTotalAfter}`);
   }
 
