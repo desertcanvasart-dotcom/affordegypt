@@ -38,7 +38,7 @@ export async function registerPricingRoutes(app: Express): Promise<void> {
       const travelers = Math.max(1, Math.floor(parsed.travelers ?? 1));
 
       res.json({
-        subtotal: built.subtotal.toFixed(0),
+        subtotal: built.subtotal.toFixed(2),
         breakdown: {
           routes: built.breakdown.routes,
           guide: built.breakdown.guide,
@@ -46,7 +46,7 @@ export async function registerPricingRoutes(app: Express): Promise<void> {
           addons: built.breakdown.addons,
         },
         commissionPct: built.commissionPct,
-        total: built.total.toFixed(0),
+        total: built.total.toFixed(2),
         perPerson: (built.total / travelers).toFixed(2),
         currency: "EGP",
       });
