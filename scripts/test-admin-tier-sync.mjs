@@ -16,14 +16,27 @@ const pool = new pg.Pool({
 const BASE = process.env.APP_BASE_URL || "https://affordegypt-production.up.railway.app";
 
 async function api(path, body, method = "POST") {
-  const res = await fetch(`${BASE}${path}`, {
-    method,
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const text = await res.text();
-  if (!res.ok) throw new Error(`${method} ${path} ${res.status}: ${text}`);
-  try { return JSON.parse(text); } catch { return text; }
+  // Retry on transient connect timeouts (Railway cold-start window).
+  let lastErr;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      const res = await fetch(`${BASE}${path}`, {
+        method,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(45000),
+      });
+      const text = await res.text();
+      if (!res.ok) throw new Error(`${method} ${path} ${res.status}: ${text}`);
+      try { return JSON.parse(text); } catch { return text; }
+    } catch (err) {
+      lastErr = err;
+      if (attempt === 4) break;
+      await new Promise((r) => setTimeout(r, 8000));
+      console.log(`retry ${attempt}/3 for ${method} ${path}`);
+    }
+  }
+  throw lastErr;
 }
 
 const client = await pool.connect();
