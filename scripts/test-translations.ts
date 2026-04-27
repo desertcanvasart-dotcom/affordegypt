@@ -1,4 +1,5 @@
-import { db } from "./db";
+// One-shot script. Run via `tsx scripts/test-translations.ts`.
+import { db } from "../server/db";
 import { cities } from "@shared/schema";
 import { eq } from "drizzle-orm";
 

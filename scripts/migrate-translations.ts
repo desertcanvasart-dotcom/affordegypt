@@ -1,4 +1,5 @@
-import { migrateExistingDataToTranslations } from "./translationUtils";
+// One-shot script. Already run in production. Kept as audit trail.
+import { migrateExistingDataToTranslations } from "../server/translationUtils";
 
 async function main() {
   console.log("Starting translation migration...");
