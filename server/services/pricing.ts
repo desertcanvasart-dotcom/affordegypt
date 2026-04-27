@@ -22,11 +22,12 @@ import {
   routes as routesTable,
   timeBlocks,
   vehicleTypes,
+  licenseClasses,
   attractions,
   addOns,
   guideRates,
 } from "@shared/schema";
-import { and, eq, isNull, lte, gte, or } from "drizzle-orm";
+import { and, eq, isNull, lte, gte, or, sql } from "drizzle-orm";
 
 export type LineItemKind =
   | "route"
@@ -226,6 +227,83 @@ export class PricingService {
       .orderBy(vehicleTypes.paxMax);
     const fit = rows.find((r) => r.paxMax >= passengers);
     return fit?.id ?? null;
+  }
+
+  /**
+   * Sync pricing_tiers from the legacy basePriceByVehicle JSONB shape.
+   * Called when admin endpoints write to that column so the new pricing
+   * lookup stays in step with admin edits.
+   *
+   * Input shape: { "1": { "1": "150.50" }, "2": { "1": "210.70" }, ... }
+   * where the outer key is vehicleTypeId and "1" is the Normal license
+   * class (the only one the admin UI sets directly).
+   *
+   * Tourism (and any other class) prices are derived from the Normal base
+   * price times (1 + surcharge_pct) as defined in license_classes. This
+   * preserves the convention the seed data follows and means changing a
+   * surcharge updates downstream prices on the next sync.
+   *
+   * The previous tier for each (route, vehicle, license) combo is closed
+   * by setting effective_to = now(); a new tier is inserted with
+   * effective_from = now(). Old quotes referencing the old tier are
+   * unaffected — they have frozen line items.
+   */
+  async syncRouteTiers(
+    routeId: number,
+    basePriceByVehicle: Record<string, Record<string, string | number>> | null,
+  ): Promise<{ closed: number; inserted: number }> {
+    if (!basePriceByVehicle || typeof basePriceByVehicle !== "object") {
+      return { closed: 0, inserted: 0 };
+    }
+
+    const classes = await db
+      .select({ id: licenseClasses.id, surchargePct: licenseClasses.surchargePct })
+      .from(licenseClasses);
+
+    if (classes.length === 0) return { closed: 0, inserted: 0 };
+
+    const now = new Date();
+    let closed = 0;
+    let inserted = 0;
+
+    for (const [vehicleKey, byLicense] of Object.entries(basePriceByVehicle)) {
+      const vehicleId = parseInt(vehicleKey, 10);
+      if (!Number.isFinite(vehicleId)) continue;
+      const normalRaw = byLicense?.["1"];
+      const normalPrice = num(normalRaw);
+      if (normalPrice <= 0) continue;
+
+      for (const cls of classes) {
+        const surcharge = num(cls.surchargePct);
+        const newPrice = round2(normalPrice * (1 + surcharge));
+
+        const close = await db
+          .update(pricingTiers)
+          .set({ effectiveTo: now })
+          .where(
+            and(
+              eq(pricingTiers.routeId, routeId),
+              eq(pricingTiers.vehicleTypeId, vehicleId),
+              eq(pricingTiers.licenseClassId, cls.id),
+              isNull(pricingTiers.effectiveTo),
+            ),
+          )
+          .returning({ id: pricingTiers.id });
+        closed += close.length;
+
+        await db.insert(pricingTiers).values({
+          routeId,
+          vehicleTypeId: vehicleId,
+          licenseClassId: cls.id,
+          basePrice: newPrice.toFixed(2),
+          effectiveFrom: now,
+          notes: "Synced from admin edit",
+        });
+        inserted += 1;
+      }
+    }
+
+    return { closed, inserted };
   }
 
   static lineFromRoute(args: {
