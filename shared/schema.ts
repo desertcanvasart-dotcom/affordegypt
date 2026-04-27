@@ -8,7 +8,7 @@ export const sessions = pgTable(
   {
     sid: text("sid").primaryKey(),
     sess: jsonb("sess").notNull(),
-    expire: timestamp("expire").notNull(),
+    expire: timestamp("expire", { withTimezone: true }).notNull(),
   },
   (table) => [index("IDX_session_expire").on(table.expire)],
 );
@@ -25,8 +25,8 @@ export const users = pgTable("users", {
   emailVerified: boolean("email_verified").default(false),
   stripeCustomerId: text("stripe_customer_id"),
   stripeSubscriptionId: text("stripe_subscription_id"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
 
 export const passwordResetTokens = pgTable(
@@ -36,9 +36,9 @@ export const passwordResetTokens = pgTable(
     userId: integer("user_id").references(() => users.id).notNull(),
     token: text("token").notNull().unique(),
     selector: text("selector").notNull().unique(),
-    expiresAt: timestamp("expires_at").notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
     used: boolean("used").default(false),
-    createdAt: timestamp("created_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [index("idx_password_reset_user").on(t.userId)],
 );
@@ -49,8 +49,8 @@ export const emailVerificationTokens = pgTable(
     id: serial("id").primaryKey(),
     userId: integer("user_id").references(() => users.id).notNull(),
     token: text("token").notNull().unique(),
-    expiresAt: timestamp("expires_at").notNull(),
-    createdAt: timestamp("created_at").defaultNow(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [index("idx_email_verification_user").on(t.userId)],
 );
@@ -184,8 +184,8 @@ export const attractions = pgTable(
     coordinates: text("coordinates"),
     bestTimeToVisit: text("best_time_to_visit"),
     capacity: integer("capacity"),
-    createdAt: timestamp("created_at").defaultNow(),
-    updatedAt: timestamp("updated_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
     // Translation columns
     nameTranslations: jsonb("name_translations"),
     descriptionTranslations: jsonb("description_translations"),
@@ -203,8 +203,8 @@ export const quotes = pgTable("quotes", {
   total: decimal("total", { precision: 10, scale: 2 }).notNull(),
   commissionPct: decimal("commission_pct", { precision: 5, scale: 4 }).notNull(),
   version: integer("version").notNull().default(1),
-  frozenAt: timestamp("frozen_at"),
-  createdAt: timestamp("created_at").defaultNow(),
+  frozenAt: timestamp("frozen_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
 // Frozen snapshot of every priced line in a quote. Once written, never updated.
@@ -222,7 +222,7 @@ export const quoteLineItems = pgTable(
     lineTotal: decimal("line_total", { precision: 10, scale: 2 }).notNull(),
     sortOrder: integer("sort_order").default(0),
     meta: jsonb("meta"),
-    createdAt: timestamp("created_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [
     index("idx_quote_line_items_quote").on(t.quoteId),
@@ -241,10 +241,10 @@ export const pricingTiers = pgTable(
     vehicleTypeId: integer("vehicle_type_id").references(() => vehicleTypes.id),
     licenseClassId: integer("license_class_id").references(() => licenseClasses.id),
     basePrice: decimal("base_price", { precision: 10, scale: 2 }).notNull(),
-    effectiveFrom: timestamp("effective_from").notNull().defaultNow(),
-    effectiveTo: timestamp("effective_to"), // null = currently active
+    effectiveFrom: timestamp("effective_from", { withTimezone: true }).notNull().defaultNow(),
+    effectiveTo: timestamp("effective_to", { withTimezone: true }), // null = currently active
     notes: text("notes"),
-    createdAt: timestamp("created_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [
     index("idx_pricing_tiers_route").on(t.routeId),
@@ -260,12 +260,12 @@ export const seasonalModifiers = pgTable(
   {
     id: serial("id").primaryKey(),
     name: text("name").notNull(),
-    startDate: timestamp("start_date").notNull(),
-    endDate: timestamp("end_date").notNull(),
+    startDate: timestamp("start_date", { withTimezone: true }).notNull(),
+    endDate: timestamp("end_date", { withTimezone: true }).notNull(),
     multiplier: decimal("multiplier", { precision: 6, scale: 4 }).notNull(),
     appliesTo: text("applies_to").notNull().default("all"), // 'all', 'route', 'service', 'addon'
     isActive: boolean("is_active").default(true),
-    createdAt: timestamp("created_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [index("idx_seasonal_modifiers_active").on(t.isActive, t.startDate, t.endDate)],
 );
@@ -280,7 +280,7 @@ export const commissionRules = pgTable("commission_rules", {
   maxBookingValue: decimal("max_booking_value", { precision: 10, scale: 2 }),
   percentage: decimal("percentage", { precision: 5, scale: 4 }).notNull(),
   isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
 // Services catalog for Day-by-Day Custom Planner
@@ -298,8 +298,8 @@ export const services = pgTable(
     durationMinutes: integer("duration_minutes"),
     capacity: integer("capacity"),
     isActive: boolean("is_active").default(true),
-    createdAt: timestamp("created_at").defaultNow(),
-    updatedAt: timestamp("updated_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
     // Translation columns
     titleTranslations: jsonb("title_translations"),
     descriptionTranslations: jsonb("description_translations"),
@@ -329,8 +329,8 @@ export const bookings = pgTable(
     bookingReference: text("booking_reference").notNull(),
 
     // Trip Details
-    startDate: timestamp("start_date"),
-    endDate: timestamp("end_date"),
+    startDate: timestamp("start_date", { withTimezone: true }),
+    endDate: timestamp("end_date", { withTimezone: true }),
     totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
     module: text("module").notNull().default("multi_city"), // 'transfer_only', 'multi_city', 'day_by_day'
     currency: text("currency").notNull().default("EGP"),
@@ -339,8 +339,8 @@ export const bookings = pgTable(
     confirmationEmailSent: boolean("confirmation_email_sent").default(false),
     reminderEmailSent: boolean("reminder_email_sent").default(false),
 
-    createdAt: timestamp("created_at").defaultNow(),
-    updatedAt: timestamp("updated_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [
     index("idx_bookings_user").on(t.userId),
@@ -356,10 +356,10 @@ export const bookingDays = pgTable(
   {
     id: serial("id").primaryKey(),
     bookingId: integer("booking_id").references(() => bookings.id).notNull(),
-    date: timestamp("date").notNull(),
+    date: timestamp("date", { withTimezone: true }).notNull(),
     cityId: integer("city_id").references(() => cities.id),
     notes: text("notes"),
-    createdAt: timestamp("created_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [
     index("idx_booking_days_booking").on(t.bookingId),
@@ -381,8 +381,8 @@ export const bookingServices = pgTable(
     endTime: text("end_time"),
     meta: jsonb("meta"),
     sortOrder: integer("sort_order").default(0),
-    createdAt: timestamp("created_at").defaultNow(),
-    updatedAt: timestamp("updated_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [
     index("idx_booking_services_day").on(t.bookingDayId),
@@ -400,7 +400,7 @@ export const bookingAdjustments = pgTable(
     description: text("description").notNull(),
     amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
     percentage: decimal("percentage", { precision: 5, scale: 2 }),
-    createdAt: timestamp("created_at").defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (t) => [index("idx_booking_adjustments_booking").on(t.bookingId)],
 );
@@ -412,11 +412,11 @@ export const reviews = pgTable("reviews", {
   rating: integer("rating").notNull(),
   title: text("title").notNull(),
   content: text("content").notNull(),
-  tripDate: timestamp("trip_date"),
+  tripDate: timestamp("trip_date", { withTimezone: true }),
   isVerified: boolean("is_verified").default(false),
   isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
 
 // Insert schemas
