@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, decimal, timestamp, jsonb, index } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, decimal, timestamp, jsonb, index, uniqueIndex } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -29,23 +29,31 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const passwordResetTokens = pgTable("password_reset_tokens", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
-  token: text("token").notNull().unique(), // Hashed token for security
-  selector: text("selector").notNull().unique(), // Public token selector
-  expiresAt: timestamp("expires_at").notNull(),
-  used: boolean("used").default(false),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+export const passwordResetTokens = pgTable(
+  "password_reset_tokens",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").references(() => users.id).notNull(),
+    token: text("token").notNull().unique(),
+    selector: text("selector").notNull().unique(),
+    expiresAt: timestamp("expires_at").notNull(),
+    used: boolean("used").default(false),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [index("idx_password_reset_user").on(t.userId)],
+);
 
-export const emailVerificationTokens = pgTable("email_verification_tokens", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
-  token: text("token").notNull().unique(),
-  expiresAt: timestamp("expires_at").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+export const emailVerificationTokens = pgTable(
+  "email_verification_tokens",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").references(() => users.id).notNull(),
+    token: text("token").notNull().unique(),
+    expiresAt: timestamp("expires_at").notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [index("idx_email_verification_user").on(t.userId)],
+);
 
 export const cities = pgTable("cities", {
   id: serial("id").primaryKey(),
@@ -77,192 +85,331 @@ export const licenseClasses = pgTable("license_classes", {
   surchargePct: decimal("surcharge_pct", { precision: 5, scale: 4 }).notNull(),
 });
 
-export const routes = pgTable("routes", {
-  id: serial("id").primaryKey(),
-  fromCityId: integer("from_city_id").references(() => cities.id),
-  toCityId: integer("to_city_id").references(() => cities.id),
-  km: decimal("km", { precision: 8, scale: 2 }), // Keep existing column
-  basePriceByVehicle: jsonb("base_price_by_vehicle"), // Keep existing column
-  fromLocation: text("from_location"),
-  toLocation: text("to_location"),
-  name: text("name"),
-  displayOrder: integer("display_order").default(0),
-  estimatedDuration: text("estimated_duration"),
-  routeHighlights: text("route_highlights"),
-  travelTips: text("travel_tips"),
-  pickupInstructions: text("pickup_instructions"),
-  dropoffInstructions: text("dropoff_instructions"),
-  tripType: text("trip_type"), // Keep existing column
-  routeCategory: text("route_category"),
-  cityId: integer("city_id").references(() => cities.id),
-  tripMode: text("trip_mode").default("transfer"),
-  nights: integer("nights").default(0),
-  distanceKm: integer("distance_km"),
-  vehiclePrices: jsonb("vehicle_prices"),
-  // Translation columns
-  nameTranslations: jsonb("name_translations"),
-  fromLocationTranslations: jsonb("from_location_translations"),
-  toLocationTranslations: jsonb("to_location_translations"),
-  routeHighlightsTranslations: jsonb("route_highlights_translations"),
-  travelTipsTranslations: jsonb("travel_tips_translations"),
-  pickupInstructionsTranslations: jsonb("pickup_instructions_translations"),
-  dropoffInstructionsTranslations: jsonb("dropoff_instructions_translations"),
-});
+export const routes = pgTable(
+  "routes",
+  {
+    id: serial("id").primaryKey(),
+    fromCityId: integer("from_city_id").references(() => cities.id),
+    toCityId: integer("to_city_id").references(() => cities.id),
+    km: decimal("km", { precision: 8, scale: 2 }),
+    basePriceByVehicle: jsonb("base_price_by_vehicle"), // legacy; superseded by pricing_tiers
+    fromLocation: text("from_location"),
+    toLocation: text("to_location"),
+    name: text("name"),
+    displayOrder: integer("display_order").default(0),
+    estimatedDuration: text("estimated_duration"),
+    routeHighlights: text("route_highlights"),
+    travelTips: text("travel_tips"),
+    pickupInstructions: text("pickup_instructions"),
+    dropoffInstructions: text("dropoff_instructions"),
+    tripType: text("trip_type"),
+    routeCategory: text("route_category"),
+    cityId: integer("city_id").references(() => cities.id),
+    tripMode: text("trip_mode").default("transfer"),
+    nights: integer("nights").default(0),
+    distanceKm: integer("distance_km"),
+    vehiclePrices: jsonb("vehicle_prices"), // legacy; superseded by pricing_tiers
+    // Translation columns
+    nameTranslations: jsonb("name_translations"),
+    fromLocationTranslations: jsonb("from_location_translations"),
+    toLocationTranslations: jsonb("to_location_translations"),
+    routeHighlightsTranslations: jsonb("route_highlights_translations"),
+    travelTipsTranslations: jsonb("travel_tips_translations"),
+    pickupInstructionsTranslations: jsonb("pickup_instructions_translations"),
+    dropoffInstructionsTranslations: jsonb("dropoff_instructions_translations"),
+  },
+  (t) => [
+    index("idx_routes_from_city").on(t.fromCityId),
+    index("idx_routes_to_city").on(t.toCityId),
+    index("idx_routes_city").on(t.cityId),
+  ],
+);
 
-export const timeBlocks = pgTable("time_blocks", {
-  id: serial("id").primaryKey(),
-  cityId: integer("city_id").references(() => cities.id).notNull(),
-  hours: integer("hours").notNull(),
-  basePriceByVehicle: jsonb("base_price_by_vehicle").notNull(), // JSON: {vehicle_id: {license_class_id: price}}
-});
+export const timeBlocks = pgTable(
+  "time_blocks",
+  {
+    id: serial("id").primaryKey(),
+    cityId: integer("city_id").references(() => cities.id).notNull(),
+    hours: integer("hours").notNull(),
+    basePriceByVehicle: jsonb("base_price_by_vehicle").notNull(), // JSON: {vehicle_id: {license_class_id: price}}
+  },
+  (t) => [index("idx_time_blocks_city").on(t.cityId)],
+);
 
-export const guideRates = pgTable("guide_rates", {
-  id: serial("id").primaryKey(),
-  cityId: integer("city_id").references(() => cities.id).notNull(),
-  language: text("language").notNull(),
-  hourlyPrice: decimal("hourly_price", { precision: 10, scale: 2 }).notNull(),
-  name: text("name").notNull(),
-  rating: decimal("rating", { precision: 3, scale: 2 }),
-  image: text("image"),
-});
+export const guideRates = pgTable(
+  "guide_rates",
+  {
+    id: serial("id").primaryKey(),
+    cityId: integer("city_id").references(() => cities.id).notNull(),
+    language: text("language").notNull(),
+    hourlyPrice: decimal("hourly_price", { precision: 10, scale: 2 }).notNull(),
+    name: text("name").notNull(),
+    rating: decimal("rating", { precision: 3, scale: 2 }),
+    image: text("image"),
+  },
+  (t) => [index("idx_guide_rates_city").on(t.cityId)],
+);
 
-export const addOns = pgTable("add_ons", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  description: text("description"),
-  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-  unitType: text("unit_type").notNull(), // 'per_unit', 'per_person', 'per_trip'
-  cityId: integer("city_id").references(() => cities.id), // null = available everywhere
-  category: text("category").notNull(), // 'transport', 'experience', 'meal', 'ticket'
-  image: text("image"),
-  isActive: boolean("is_active").default(true),
-  // Translation columns
-  nameTranslations: jsonb("name_translations"),
-  descriptionTranslations: jsonb("description_translations"),
-});
+export const addOns = pgTable(
+  "add_ons",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    description: text("description"),
+    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+    unitType: text("unit_type").notNull(), // 'per_unit', 'per_person', 'per_trip'
+    cityId: integer("city_id").references(() => cities.id), // null = available everywhere
+    category: text("category").notNull(), // 'transport', 'experience', 'meal', 'ticket'
+    image: text("image"),
+    isActive: boolean("is_active").default(true),
+    // Translation columns
+    nameTranslations: jsonb("name_translations"),
+    descriptionTranslations: jsonb("description_translations"),
+  },
+  (t) => [index("idx_add_ons_city").on(t.cityId)],
+);
 
-export const attractions = pgTable("attractions", {
-  id: serial("id").primaryKey(),
-  cityId: integer("city_id").references(() => cities.id).notNull(),
-  name: text("name").notNull(),
-  description: text("description"),
-  category: text("category").notNull(),
-  duration: integer("duration").default(2), // hours
-  ticketPrice: decimal("ticket_price", { precision: 10, scale: 2 }).default("0"),
-  isActive: boolean("is_active").default(true),
-  image: text("image"),
-  coordinates: text("coordinates"),
-  bestTimeToVisit: text("best_time_to_visit"),
-  capacity: integer("capacity"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-  // Translation columns
-  nameTranslations: jsonb("name_translations"),
-  descriptionTranslations: jsonb("description_translations"),
-  bestTimeToVisitTranslations: jsonb("best_time_to_visit_translations"),
-});
+export const attractions = pgTable(
+  "attractions",
+  {
+    id: serial("id").primaryKey(),
+    cityId: integer("city_id").references(() => cities.id).notNull(),
+    name: text("name").notNull(),
+    description: text("description"),
+    category: text("category").notNull(),
+    duration: integer("duration").default(2),
+    ticketPrice: decimal("ticket_price", { precision: 10, scale: 2 }).default("0"),
+    isActive: boolean("is_active").default(true),
+    image: text("image"),
+    coordinates: text("coordinates"),
+    bestTimeToVisit: text("best_time_to_visit"),
+    capacity: integer("capacity"),
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at").defaultNow(),
+    // Translation columns
+    nameTranslations: jsonb("name_translations"),
+    descriptionTranslations: jsonb("description_translations"),
+    bestTimeToVisitTranslations: jsonb("best_time_to_visit_translations"),
+  },
+  (t) => [index("idx_attractions_city").on(t.cityId)],
+);
 
+// Quotes are immutable financial documents. Once `frozenAt` is set, line
+// items must not change. The `jsonBlob` column is retained for back-compat
+// during the pricing rewrite (Phase 2) and will be removed in Phase 3.
 export const quotes = pgTable("quotes", {
   id: serial("id").primaryKey(),
-  jsonBlob: jsonb("json_blob").notNull(), // Complete quote data
+  jsonBlob: jsonb("json_blob").notNull(),
   total: decimal("total", { precision: 10, scale: 2 }).notNull(),
   commissionPct: decimal("commission_pct", { precision: 5, scale: 4 }).notNull(),
+  version: integer("version").notNull().default(1),
+  frozenAt: timestamp("frozen_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Frozen snapshot of every priced line in a quote. Once written, never updated.
+export const quoteLineItems = pgTable(
+  "quote_line_items",
+  {
+    id: serial("id").primaryKey(),
+    quoteId: integer("quote_id").references(() => quotes.id).notNull(),
+    serviceId: integer("service_id").references(() => services.id), // nullable for ad-hoc lines
+    routeId: integer("route_id").references(() => routes.id),
+    kind: text("kind").notNull(), // 'route', 'service', 'addon', 'attraction', 'guide', 'adjustment'
+    description: text("description").notNull(),
+    unitPrice: decimal("unit_price", { precision: 10, scale: 2 }).notNull(),
+    quantity: decimal("quantity", { precision: 10, scale: 2 }).notNull().default("1"),
+    lineTotal: decimal("line_total", { precision: 10, scale: 2 }).notNull(),
+    sortOrder: integer("sort_order").default(0),
+    meta: jsonb("meta"),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [
+    index("idx_quote_line_items_quote").on(t.quoteId),
+    index("idx_quote_line_items_service").on(t.serviceId),
+    index("idx_quote_line_items_route").on(t.routeId),
+  ],
+);
+
+// Single source of truth for route + vehicle + license class pricing.
+// Effective-dated so price changes never overwrite history.
+export const pricingTiers = pgTable(
+  "pricing_tiers",
+  {
+    id: serial("id").primaryKey(),
+    routeId: integer("route_id").references(() => routes.id),
+    vehicleTypeId: integer("vehicle_type_id").references(() => vehicleTypes.id),
+    licenseClassId: integer("license_class_id").references(() => licenseClasses.id),
+    basePrice: decimal("base_price", { precision: 10, scale: 2 }).notNull(),
+    effectiveFrom: timestamp("effective_from").notNull().defaultNow(),
+    effectiveTo: timestamp("effective_to"), // null = currently active
+    notes: text("notes"),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [
+    index("idx_pricing_tiers_route").on(t.routeId),
+    index("idx_pricing_tiers_vehicle").on(t.vehicleTypeId),
+    index("idx_pricing_tiers_lookup").on(t.routeId, t.vehicleTypeId, t.licenseClassId),
+  ],
+);
+
+// Date-range multipliers (e.g. peak season +20% = multiplier 1.2000).
+// `appliesTo` scopes which line kinds receive the modifier.
+export const seasonalModifiers = pgTable(
+  "seasonal_modifiers",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    startDate: timestamp("start_date").notNull(),
+    endDate: timestamp("end_date").notNull(),
+    multiplier: decimal("multiplier", { precision: 6, scale: 4 }).notNull(),
+    appliesTo: text("applies_to").notNull().default("all"), // 'all', 'route', 'service', 'addon'
+    isActive: boolean("is_active").default(true),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [index("idx_seasonal_modifiers_active").on(t.isActive, t.startDate, t.endDate)],
+);
+
+// Commission applied at quote creation. Tiered by booking total.
+// No rows = no commission applied (the system runs without commission until
+// rules are added explicitly).
+export const commissionRules = pgTable("commission_rules", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  minBookingValue: decimal("min_booking_value", { precision: 10, scale: 2 }),
+  maxBookingValue: decimal("max_booking_value", { precision: 10, scale: 2 }),
+  percentage: decimal("percentage", { precision: 5, scale: 4 }).notNull(),
+  isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Services catalog for Day-by-Day Custom Planner
-export const services = pgTable("services", {
-  id: serial("id").primaryKey(),
-  type: text("type").notNull(), // 'transfer', 'tour', 'guide', 'addon'
-  title: text("title").notNull(),
-  description: text("description"),
-  cityId: integer("city_id").references(() => cities.id),
-  basePrice: decimal("base_price", { precision: 10, scale: 2 }).notNull(),
-  pricingMode: text("pricing_mode").notNull(), // 'per_group', 'per_person'
-  vehicleCategory: text("vehicle_category"), // 'sedan', 'minivan', 'van' (for transfers)
-  durationMinutes: integer("duration_minutes"), // for tours/guides
-  capacity: integer("capacity"),
-  isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-  // Translation columns
-  titleTranslations: jsonb("title_translations"),
-  descriptionTranslations: jsonb("description_translations"),
-});
+export const services = pgTable(
+  "services",
+  {
+    id: serial("id").primaryKey(),
+    type: text("type").notNull(), // 'transfer', 'tour', 'guide', 'addon'
+    title: text("title").notNull(),
+    description: text("description"),
+    cityId: integer("city_id").references(() => cities.id),
+    basePrice: decimal("base_price", { precision: 10, scale: 2 }).notNull(),
+    pricingMode: text("pricing_mode").notNull(), // 'per_group', 'per_person'
+    vehicleCategory: text("vehicle_category"), // 'sedan', 'minivan', 'van' (for transfers)
+    durationMinutes: integer("duration_minutes"),
+    capacity: integer("capacity"),
+    isActive: boolean("is_active").default(true),
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at").defaultNow(),
+    // Translation columns
+    titleTranslations: jsonb("title_translations"),
+    descriptionTranslations: jsonb("description_translations"),
+  },
+  (t) => [
+    index("idx_services_city").on(t.cityId),
+    index("idx_services_type").on(t.type),
+  ],
+);
 
-export const bookings = pgTable("bookings", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
-  quoteId: integer("quote_id").references(() => quotes.id),
-  customerName: text("customer_name").notNull(),
-  customerEmail: text("customer_email").notNull(),
-  customerPhone: text("customer_phone"),
-  
-  // Payment
-  stripePaymentIntentId: text("stripe_payment_intent_id"),
-  paymentStatus: text("payment_status").default("pending"), // 'pending', 'paid', 'failed', 'refunded'
-  
-  // Booking Status
-  bookingStatus: text("booking_status").default("confirmed"), // 'confirmed', 'in_progress', 'completed', 'cancelled'
-  bookingReference: text("booking_reference").notNull(), // Unique booking reference
-  
-  // Trip Details
-  startDate: timestamp("start_date"),
-  endDate: timestamp("end_date"),
-  totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
-  module: text("module").notNull().default("multi_city"), // 'transfer_only', 'multi_city', 'day_by_day'
-  currency: text("currency").notNull().default("EGP"),
-  
-  // Communication
-  confirmationEmailSent: boolean("confirmation_email_sent").default(false),
-  reminderEmailSent: boolean("reminder_email_sent").default(false),
-  
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
+export const bookings = pgTable(
+  "bookings",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").references(() => users.id),
+    quoteId: integer("quote_id").references(() => quotes.id),
+    customerName: text("customer_name").notNull(),
+    customerEmail: text("customer_email").notNull(),
+    customerPhone: text("customer_phone"),
+
+    // Payment
+    stripePaymentIntentId: text("stripe_payment_intent_id"),
+    paymentStatus: text("payment_status").default("pending"), // 'pending', 'paid', 'failed', 'refunded'
+
+    // Booking Status
+    bookingStatus: text("booking_status").default("confirmed"), // 'confirmed', 'in_progress', 'completed', 'cancelled'
+    bookingReference: text("booking_reference").notNull(),
+
+    // Trip Details
+    startDate: timestamp("start_date"),
+    endDate: timestamp("end_date"),
+    totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
+    module: text("module").notNull().default("multi_city"), // 'transfer_only', 'multi_city', 'day_by_day'
+    currency: text("currency").notNull().default("EGP"),
+
+    // Communication
+    confirmationEmailSent: boolean("confirmation_email_sent").default(false),
+    reminderEmailSent: boolean("reminder_email_sent").default(false),
+
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at").defaultNow(),
+  },
+  (t) => [
+    index("idx_bookings_user").on(t.userId),
+    index("idx_bookings_quote").on(t.quoteId),
+    index("idx_bookings_email").on(t.customerEmail),
+    uniqueIndex("uq_bookings_reference").on(t.bookingReference),
+  ],
+);
 
 // Daily breakdown for Day-by-Day bookings
-export const bookingDays = pgTable("booking_days", {
-  id: serial("id").primaryKey(),
-  bookingId: integer("booking_id").references(() => bookings.id).notNull(),
-  date: timestamp("date").notNull(),
-  cityId: integer("city_id").references(() => cities.id),
-  notes: text("notes"),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+export const bookingDays = pgTable(
+  "booking_days",
+  {
+    id: serial("id").primaryKey(),
+    bookingId: integer("booking_id").references(() => bookings.id).notNull(),
+    date: timestamp("date").notNull(),
+    cityId: integer("city_id").references(() => cities.id),
+    notes: text("notes"),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [
+    index("idx_booking_days_booking").on(t.bookingId),
+    index("idx_booking_days_city").on(t.cityId),
+  ],
+);
 
 // Individual services within each booking day
-export const bookingServices = pgTable("booking_services", {
-  id: serial("id").primaryKey(),
-  bookingDayId: integer("booking_day_id").references(() => bookingDays.id).notNull(),
-  serviceId: integer("service_id").references(() => services.id).notNull(),
-  passengers: integer("passengers").notNull().default(1),
-  unitPrice: decimal("unit_price", { precision: 10, scale: 2 }).notNull(),
-  subtotal: decimal("subtotal", { precision: 10, scale: 2 }).notNull(),
-  startTime: text("start_time"), // e.g., "09:00"
-  endTime: text("end_time"), // e.g., "17:00"
-  meta: jsonb("meta"), // origin/destination, guide language, pickup details, etc.
-  sortOrder: integer("sort_order").default(0), // for drag-and-drop ordering
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
+export const bookingServices = pgTable(
+  "booking_services",
+  {
+    id: serial("id").primaryKey(),
+    bookingDayId: integer("booking_day_id").references(() => bookingDays.id).notNull(),
+    serviceId: integer("service_id").references(() => services.id).notNull(),
+    passengers: integer("passengers").notNull().default(1),
+    unitPrice: decimal("unit_price", { precision: 10, scale: 2 }).notNull(),
+    subtotal: decimal("subtotal", { precision: 10, scale: 2 }).notNull(),
+    startTime: text("start_time"),
+    endTime: text("end_time"),
+    meta: jsonb("meta"),
+    sortOrder: integer("sort_order").default(0),
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at").defaultNow(),
+  },
+  (t) => [
+    index("idx_booking_services_day").on(t.bookingDayId),
+    index("idx_booking_services_service").on(t.serviceId),
+  ],
+);
 
 // Booking adjustments for discounts and surcharges
-export const bookingAdjustments = pgTable("booking_adjustments", {
-  id: serial("id").primaryKey(),
-  bookingId: integer("booking_id").references(() => bookings.id).notNull(),
-  type: text("type").notNull(), // 'discount', 'surcharge', 'tax'
-  description: text("description").notNull(),
-  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
-  percentage: decimal("percentage", { precision: 5, scale: 2 }),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+export const bookingAdjustments = pgTable(
+  "booking_adjustments",
+  {
+    id: serial("id").primaryKey(),
+    bookingId: integer("booking_id").references(() => bookings.id).notNull(),
+    type: text("type").notNull(), // 'discount', 'surcharge', 'tax'
+    description: text("description").notNull(),
+    amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+    percentage: decimal("percentage", { precision: 5, scale: 2 }),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (t) => [index("idx_booking_adjustments_booking").on(t.bookingId)],
+);
 
 export const reviews = pgTable("reviews", {
   id: serial("id").primaryKey(),
   customerName: text("customer_name").notNull(),
-  customerLocation: text("customer_location"), // e.g., "London, UK"
-  rating: integer("rating").notNull(), // 1-5 stars
+  customerLocation: text("customer_location"),
+  rating: integer("rating").notNull(),
   title: text("title").notNull(),
   content: text("content").notNull(),
   tripDate: timestamp("trip_date"),
@@ -303,12 +450,41 @@ export const insertTimeBlockSchema = createInsertSchema(timeBlocks).omit({ id: t
 export const insertGuideRateSchema = createInsertSchema(guideRates).omit({ id: true });
 export const insertAddOnSchema = createInsertSchema(addOns).omit({ id: true });
 export const insertAttractionSchema = createInsertSchema(attractions).omit({ id: true, createdAt: true, updatedAt: true });
-export const insertQuoteSchema = createInsertSchema(quotes).omit({ id: true, createdAt: true });
+export const insertQuoteSchema = createInsertSchema(quotes).omit({
+  id: true,
+  createdAt: true,
+  frozenAt: true,
+  version: true,
+});
 
-export const insertServiceSchema = createInsertSchema(services).omit({ 
-  id: true, 
-  createdAt: true, 
-  updatedAt: true 
+export const insertQuoteLineItemSchema = createInsertSchema(quoteLineItems).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  kind: z.enum(["route", "service", "addon", "attraction", "guide", "adjustment"]),
+});
+
+export const insertPricingTierSchema = createInsertSchema(pricingTiers).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertSeasonalModifierSchema = createInsertSchema(seasonalModifiers).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  appliesTo: z.enum(["all", "route", "service", "addon"]).default("all"),
+});
+
+export const insertCommissionRuleSchema = createInsertSchema(commissionRules).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertServiceSchema = createInsertSchema(services).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true
 }).extend({
   type: z.enum(["transfer", "tour", "guide", "addon"]),
   pricingMode: z.enum(["per_group", "per_person"]),
@@ -318,10 +494,10 @@ export const insertServiceSchema = createInsertSchema(services).omit({
   isActive: z.boolean().optional()
 });
 
-export const insertBookingSchema = createInsertSchema(bookings).omit({ 
-  id: true, 
+export const insertBookingSchema = createInsertSchema(bookings).omit({
+  id: true,
   userId: true,
-  createdAt: true, 
+  createdAt: true,
   updatedAt: true,
   confirmationEmailSent: true,
   reminderEmailSent: true
@@ -339,19 +515,19 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   currency: z.string().optional()
 });
 
-export const insertBookingDaySchema = createInsertSchema(bookingDays).omit({ 
-  id: true, 
-  createdAt: true 
+export const insertBookingDaySchema = createInsertSchema(bookingDays).omit({
+  id: true,
+  createdAt: true
 }).extend({
   date: z.date(),
   cityId: z.number().optional(),
   notes: z.string().optional()
 });
 
-export const insertBookingServiceSchema = createInsertSchema(bookingServices).omit({ 
-  id: true, 
-  createdAt: true, 
-  updatedAt: true 
+export const insertBookingServiceSchema = createInsertSchema(bookingServices).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true
 }).extend({
   passengers: z.number().min(1).default(1),
   unitPrice: z.string(),
@@ -361,19 +537,19 @@ export const insertBookingServiceSchema = createInsertSchema(bookingServices).om
   sortOrder: z.number().optional()
 });
 
-export const insertBookingAdjustmentSchema = createInsertSchema(bookingAdjustments).omit({ 
-  id: true, 
-  createdAt: true 
+export const insertBookingAdjustmentSchema = createInsertSchema(bookingAdjustments).omit({
+  id: true,
+  createdAt: true
 }).extend({
   type: z.enum(["discount", "surcharge", "tax"]),
   amount: z.string(),
   percentage: z.string().optional()
 });
 
-export const insertReviewSchema = createInsertSchema(reviews).omit({ 
-  id: true, 
-  createdAt: true, 
-  updatedAt: true 
+export const insertReviewSchema = createInsertSchema(reviews).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true
 }).extend({
   rating: z.number().min(1).max(5),
   tripDate: z.date().nullable().optional(),
@@ -411,6 +587,18 @@ export type InsertAttraction = z.infer<typeof insertAttractionSchema>;
 
 export type Quote = typeof quotes.$inferSelect;
 export type InsertQuote = z.infer<typeof insertQuoteSchema>;
+
+export type QuoteLineItem = typeof quoteLineItems.$inferSelect;
+export type InsertQuoteLineItem = z.infer<typeof insertQuoteLineItemSchema>;
+
+export type PricingTier = typeof pricingTiers.$inferSelect;
+export type InsertPricingTier = z.infer<typeof insertPricingTierSchema>;
+
+export type SeasonalModifier = typeof seasonalModifiers.$inferSelect;
+export type InsertSeasonalModifier = z.infer<typeof insertSeasonalModifierSchema>;
+
+export type CommissionRule = typeof commissionRules.$inferSelect;
+export type InsertCommissionRule = z.infer<typeof insertCommissionRuleSchema>;
 
 export type Service = typeof services.$inferSelect;
 export type InsertService = z.infer<typeof insertServiceSchema>;
