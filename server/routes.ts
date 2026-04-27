@@ -6,6 +6,11 @@ import { emailService } from "./email-service";
 import { setupAuthRoutes } from "./auth-routes";
 import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
+import {
+  buildQuoteFromRequest,
+  persistFrozenQuote,
+  getFrozenLineItems,
+} from "./services/quote-builder";
 import { createTranslatedRoute } from "./translationMiddleware";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
@@ -1237,28 +1242,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const bookingReference =
         req.body.bookingReference || storage.generateBookingReference();
 
-      // Create quote first if itinerary data is provided
+      // Server-side pricing: ignore client-supplied totalAmount and recompute
+      // from the same fields the live preview uses. Persisting the quote
+      // freezes the line items so this booking's total can never silently
+      // change later.
       let quoteId = req.body.quoteId;
-      if (!quoteId && req.body.itinerary) {
-        const quoteData = {
-          jsonBlob: {
+      let serverTotal: string | null = null;
+
+      if (!quoteId) {
+        const built = await buildQuoteFromRequest({
+          routeId: req.body.routeId ?? null,
+          vehicleTypeId: req.body.vehicleTypeId ?? null,
+          licenseClassId: req.body.licenseClassId ?? null,
+          cityId: req.body.cityId ?? null,
+          guideLanguage: req.body.guideLanguage ?? null,
+          guideHours: req.body.guideHours ?? null,
+          attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
+          addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
+          travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
+        });
+
+        if (built.lineItems.length > 0) {
+          const persisted = await persistFrozenQuote(built, {
             itinerary: req.body.itinerary,
             travelers: req.body.travelers || 1,
             travelDate: req.body.travelDate,
-          },
-          total: req.body.totalAmount || "0",
-          commissionPct: "0.15",
-        };
-        const quote = await storage.createQuote(quoteData);
-        quoteId = quote.id;
+            source: "POST /api/bookings",
+          });
+          quoteId = persisted.quoteId;
+          serverTotal = persisted.total;
+        }
       }
 
-      // Prepare booking data with required fields
+      // Prepare booking data with required fields. totalAmount is taken
+      // from the freshly priced quote when we computed one; otherwise we
+      // fall back to a passed-in quoteId's value (looked up below).
+      let totalAmount = serverTotal;
+      if (!totalAmount && quoteId) {
+        const existing = await storage.getQuote(quoteId);
+        totalAmount = existing?.total ?? "0";
+      }
+
       const bookingData = {
         ...req.body,
         bookingReference,
-        totalAmount: req.body.totalAmount || "0",
-        quoteId: quoteId,
+        totalAmount: totalAmount ?? "0",
+        quoteId,
         startDate: req.body.travelDate ? new Date(req.body.travelDate) : null,
         paymentStatus: "pending",
         bookingStatus: "confirmed",
@@ -1753,23 +1782,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Quote not found" });
       }
 
-      res.json(quote);
+      // Return frozen line items so callers can render an immutable
+      // breakdown without re-pricing. Empty for quotes created before
+      // Phase 2 — they only have jsonBlob.
+      const lineItems = await getFrozenLineItems(id);
+      res.json({ ...quote, lineItems });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
 
+  // Create a frozen quote. Server recomputes totals from the request
+  // fields; client-supplied total is ignored. Returns the new quote with
+  // its frozen line items.
   app.post("/api/quotes", async (req, res) => {
     try {
-      const quoteData = {
-        total: req.body.total,
-        commissionPct: req.body.commissionPct || "0",
-        jsonBlob: JSON.stringify(req.body.jsonBlob),
-        name: req.body.name || null,
-      };
+      const built = await buildQuoteFromRequest({
+        routeId: req.body.routeId ?? null,
+        vehicleTypeId: req.body.vehicleTypeId ?? null,
+        licenseClassId: req.body.licenseClassId ?? null,
+        cityId: req.body.cityId ?? null,
+        guideLanguage: req.body.guideLanguage ?? null,
+        guideHours: req.body.guideHours ?? null,
+        attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
+        addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
+        travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
+      });
 
-      const quote = await storage.createQuote(quoteData);
-      res.json(quote);
+      const persisted = await persistFrozenQuote(built, {
+        request: req.body,
+        source: "POST /api/quotes",
+      });
+
+      const quote = await storage.getQuote(persisted.quoteId);
+      res.json({
+        ...quote,
+        breakdown: built.breakdown,
+        lineItems: built.lineItems,
+      });
     } catch (error: any) {
       console.error("Error creating quote:", error);
       res.status(500).json({ message: error.message });

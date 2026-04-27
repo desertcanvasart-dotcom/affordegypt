@@ -1,96 +1,60 @@
 import type { Express } from "express";
-import { storage } from "./database-storage";
+import { z } from "zod";
+import { buildQuoteFromRequest } from "./services/quote-builder";
+
+// Server-side schema for /api/calculate-pricing. Bounds-check travelers
+// against a hard upper limit so a tampered request can't request a quote
+// for absurd numbers; tighten further once vehicle capacity is wired in.
+const calcPricingSchema = z.object({
+  routeId: z.number().int().positive().optional().nullable(),
+  vehicleTypeId: z.number().int().positive().optional().nullable(),
+  licenseClassId: z.number().int().positive().optional().nullable(),
+  cityId: z.number().int().positive().optional().nullable(),
+  guideLanguage: z.string().optional().nullable(),
+  guideHours: z.number().int().positive().max(24).optional(),
+  attractionIds: z.array(z.number().int().positive()).optional(),
+  addOnIds: z
+    .array(
+      z.union([
+        z.number().int().positive(),
+        z.object({
+          id: z.number().int().positive(),
+          quantity: z.number().int().positive().max(100).optional(),
+        }),
+      ]),
+    )
+    .optional(),
+  travelers: z.number().int().min(1).max(50).optional(),
+});
 
 export async function registerPricingRoutes(app: Express): Promise<void> {
-  // Transfer Only pricing calculation endpoint (used by pricing sidebar)
+  // Live pricing preview used by the booking sidebar. All math goes through
+  // PricingService → quote-builder so the breakdown matches what gets frozen
+  // when a quote is actually created.
   app.post("/api/calculate-pricing", async (req, res) => {
     try {
-      const { 
-        routeId,
-        vehicleTypeId, 
-        cityId,
-        guideLanguage,
-        guideHours = 8,
-        attractionIds = [],
-        addOnIds = [],
-        travelers = 1
-      } = req.body;
+      const parsed = calcPricingSchema.parse(req.body);
+      const built = await buildQuoteFromRequest(parsed);
+      const travelers = Math.max(1, Math.floor(parsed.travelers ?? 1));
 
-      let totalPrice = 0;
-      const breakdown = {
-        routes: 0,
-        guide: 0,
-        attractions: 0,
-        addons: 0
-      };
-
-      // Calculate route pricing (divided by travelers)
-      if (routeId && vehicleTypeId) {
-        const route = await storage.getRoute(routeId);
-        if (route && route.basePriceByVehicle) {
-          const vehicleType = await storage.getVehicleType(vehicleTypeId);
-          if (vehicleType) {
-            const priceData = route.basePriceByVehicle as any;
-            const vehicleKey = vehicleType.name.toLowerCase();
-            const routePrice = priceData[vehicleKey] || 0;
-            breakdown.routes = routePrice / travelers; // Divide by travelers
-            totalPrice += breakdown.routes;
-          }
-        }
-      }
-
-      // Calculate guide pricing (day-based, divided by travelers)
-      if (cityId && guideLanguage) {
-        console.log(`[/api/calculate-pricing] Looking for guide in city ${cityId}, language: "${guideLanguage}"`);
-        const guideRates = await storage.getGuideRates(cityId);
-        console.log(`[/api/calculate-pricing] Available guide rates:`, guideRates.map(r => ({ id: r.id, language: `"${r.language}"`, hourlyPrice: r.hourlyPrice })));
-        
-        const guideRate = guideRates.find(rate => rate.language.trim().toLowerCase() === guideLanguage.trim().toLowerCase());
-        console.log(`[/api/calculate-pricing] Found guide rate:`, guideRate);
-        
-        if (guideRate) {
-          const dailyRate = parseFloat(guideRate.hourlyPrice); // This is actually daily rate, not hourly
-          breakdown.guide = dailyRate / travelers; // Divide by travelers
-          totalPrice += breakdown.guide;
-          console.log(`[/api/calculate-pricing] Guide calculation: ${dailyRate} EGP daily rate ÷ ${travelers} travelers = ${breakdown.guide} per person`);
-        } else {
-          console.log(`[/api/calculate-pricing] No guide rate found for language "${guideLanguage}"`);
-        }
-      }
-
-      // Calculate attractions (direct database values - no calculations)
-      if (attractionIds.length > 0) {
-        for (const attractionId of attractionIds) {
-          const attraction = await storage.getAttraction(attractionId);
-          if (attraction) {
-            breakdown.attractions += parseFloat(attraction.ticketPrice || "0");
-          }
-        }
-        totalPrice += breakdown.attractions;
-      }
-
-      // Calculate add-ons (direct database values - no calculations)
-      if (addOnIds.length > 0) {
-        for (const addOnId of addOnIds) {
-          const addOn = await storage.getAddOn(addOnId);
-          if (addOn) {
-            breakdown.addons += parseFloat(addOn.price || "0");
-          }
-        }
-        totalPrice += breakdown.addons;
-      }
-
-      // Multiply by travelers to get the actual total cost for all guests
-      const actualTotal = totalPrice * travelers;
-      
       res.json({
-        subtotal: actualTotal.toFixed(0),
-        breakdown,
-        total: actualTotal.toFixed(0),
-        currency: "EGP"
+        subtotal: built.subtotal.toFixed(0),
+        breakdown: {
+          routes: built.breakdown.routes,
+          guide: built.breakdown.guide,
+          attractions: built.breakdown.attractions,
+          addons: built.breakdown.addons,
+        },
+        commissionPct: built.commissionPct,
+        total: built.total.toFixed(0),
+        perPerson: (built.total / travelers).toFixed(2),
+        currency: "EGP",
       });
     } catch (error: any) {
-      console.error('[/api/calculate-pricing] Error:', error);
+      if (error?.issues) {
+        return res.status(400).json({ message: "Invalid request", issues: error.issues });
+      }
+      console.error("[/api/calculate-pricing] Error:", error);
       res.status(500).json({ message: error.message });
     }
   });
