@@ -35,6 +35,11 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Admin auth chain. Declared at the top of registerRoutes so any
+  // app.X(path, ...adminAuth, handler) call below can use it without
+  // hitting a TDZ error.
+  const adminAuth = [authenticateToken, requireAdmin];
+
   // Health check endpoint
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
@@ -287,12 +292,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: error.message });
     }
   });
-  // Admin auth uses the real JWT pipeline imported above. Apply as
-  //   app.X(path, ...adminAuth, handler)
-  // The previous local requireAdmin was a string-comparison stub that
-  // accepted the literal token "admin-token", which made every admin
-  // endpoint effectively public.
-  const adminAuth = [authenticateToken, requireAdmin];
+  // adminAuth is declared at the top of registerRoutes.
 
   // Admin dashboard stats
   app.get("/api/admin/dashboard-stats", ...adminAuth, async (req, res) => {
