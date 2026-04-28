@@ -258,3 +258,40 @@ In rough priority order. Items higher up move the needle more.
 - Bundle is 162 KB (was 167 KB).
 
 The remaining work in section 3 is real but not on fire. The site can take real bookings today without the kind of silent mispricing that the original codebase was vulnerable to.
+
+---
+
+## Appendix — 2026-04-28 audit findings
+
+After the user reported "too many crashes and trash code", I ran a systematic API + source audit. Findings:
+
+### Fixed in this pass
+
+- **`/api/pricing/calculate`** (multi-city pricing tool) was a fifth, independent pricing engine — it read the dead `vehiclePrices` JSONB column with priority 1, then fell back to `basePriceByVehicle`, then to hardcoded `1500/3000` constants. Could disagree with `/api/calculate-pricing` and `/api/quotes` for the same input. Now routes through `PricingService` like everything else, and rounds to cents instead of whole EGP.
+- **`/api/route-bookings`** trusted client-supplied `totalAmount` (same vulnerability we'd fixed on `/api/bookings`), wrote three columns that don't exist in the schema (`status`, `bookingType`, `routeDetails` — Drizzle silently dropped them), and never persisted a real quote. Now recomputes server-side via `PricingService`, freezes a quote with line items, and uses the correct schema columns.
+
+### Found but not fixed in this pass
+
+| Severity | Finding | Why deferred |
+|---|---|---|
+| Medium | `attractions` table is empty in production. The customer-facing multi-city tool has an attractions selector that fetches `/api/attractions` and gets `[]`. The attraction prices used to live in a hardcoded map in the (now-deleted) `calculateQuotePrice` method. | Fixing requires content (attraction names, city assignments, ticket prices, slugs). I don't have authoritative data; you do. |
+| High | `/api/route-bookings` and `/api/admin/bookings` are unauthenticated. Anyone on the internet can list every booking via `GET /api/admin/bookings`. | Requires a decision: do admin endpoints use the existing JWT (`requireAdmin`), or is something else expected? Don't want to guess. |
+| Medium | `/api/routes/:id` PUT/POST/DELETE are also unauthenticated — anyone can edit route prices via the public endpoint. The auth'd duplicate at `/api/admin/routes/:id` has `requireAdmin`. The public one shouldn't exist as a write endpoint. | Same auth-model question. |
+| Medium | `/api/route-bookings` accepts a `vehicleType` field that can be a string ("sedan") or a number — the endpoint now resolves both, but the contract is still loose. | Cleaner fix is to lock the contract to `vehicleTypeId: number` and update the frontend caller, but that's a coordinated change. |
+| Low | Several admin pages still write to the legacy `routes.basePriceByVehicle` JSONB. We mirror those writes into `pricing_tiers` via `syncRouteTiers`, so pricing stays correct, but the admin UI is editing a deprecated shape. | Already in section 3 #1 of next steps. |
+| Low | Pre-existing TypeScript errors reported by `npm run check` (untyped `req.body`, missing fields in mock objects, `vite.ts` server type mismatch). esbuild bundles regardless and the runtime is fine. | Section 3 #10 of next steps. |
+| Low | `Math.round` (loses cents) appeared in several places I didn't touch — search for `Math.round(.*price\|total\|amount)` to find more. | Found and fixed the multi-city case; haven't audited every hit. |
+
+### How the audit was done
+
+- `scripts/probe-all-endpoints.mjs` — hits every public GET endpoint and records non-2xx, slow, or empty responses. Run: `node scripts/probe-all-endpoints.mjs`. Re-run anytime to spot regressions.
+- Manual code review of `server/routes.ts` to identify pricing logic outside `PricingService`.
+- Frontend grep for `.map(`/`.filter(` patterns without null guards. Most components default `data = []` from `useQuery` so this surface looks clean.
+
+### What I did not test
+
+- Stripe payments (`/api/create-payment-intent`, `/api/stripe-webhook`) — would need test cards and a real Stripe account.
+- Admin login + admin pages in a browser. Cannot launch a browser from this environment.
+- Email sending. Would need a real SendGrid API key and test recipient.
+- The booking confirmation PDF generator (jsPDF). Same — needs a browser.
+

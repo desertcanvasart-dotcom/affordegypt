@@ -11,6 +11,7 @@ import {
   persistFrozenQuote,
   getFrozenLineItems,
 } from "./services/quote-builder";
+import { pricingService } from "./services/pricing";
 import { createTranslatedRoute } from "./translationMiddleware";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
@@ -516,203 +517,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Multi-city pricing. All math goes through PricingService so this stays
+  // consistent with /api/calculate-pricing and /api/quotes. Routes pick a
+  // vehicle type by passenger count (sedan ≤2, minivan ≤8, van otherwise);
+  // guide/add-on/attraction lookups go to their canonical service methods.
   app.post("/api/pricing/calculate", async (req, res) => {
     try {
       const { cityServices } = req.body;
+      if (!Array.isArray(cityServices) || cityServices.length === 0) {
+        return res.status(400).json({ message: "cityServices required" });
+      }
 
-      console.log("=== PRICING CALCULATION DEBUG ===");
-      console.log("Request body:", JSON.stringify(req.body, null, 2));
-      console.log("Number of city services:", cityServices?.length || 0);
-
-      // Calculate pricing based on your specification
-      let totalAmount = 0;
+      const round2 = (n: number) => Math.round(n * 100) / 100;
+      let perPersonTotal = 0;
       const breakdown = [];
 
       for (const cityService of cityServices) {
-        let cityTotal = 0;
-        const travelers = cityService.travelers || 1;
+        const travelers = Math.max(1, Math.floor(cityService.travelers || 1));
+        const vehicleTypeId =
+          travelers > 8 ? 3 : travelers > 2 ? 2 : 1;
+        const licenseClassId = 1; // Normal — Tourism is a separate selector
 
-        // Vehicle pricing is already handled by selecting the correct vehicle type in the database
-
-        // Calculate routes using database pricing (MULTI-CITY TOUR: divided by travelers)
         let routesTotal = 0;
-        if (
-          cityService.selectedRoutes &&
-          cityService.selectedRoutes.length > 0
-        ) {
-          for (const routeId of cityService.selectedRoutes) {
-            try {
-              // Get route from database
-              const routes = await storage.getRoutes();
-              const route = routes.find((r) => r.id === routeId);
-
-              if (route) {
-                // Determine vehicle type name based on passenger count
-                let vehicleTypeName = "sedan"; // Default to sedan
-                let vehicleId = "1";
-                if (travelers > 8) {
-                  vehicleTypeName = "van";
-                  vehicleId = "3";
-                } else if (travelers > 2) {
-                  vehicleTypeName = "minivan";
-                  vehicleId = "2";
-                }
-
-                let routePrice = 0;
-
-                // Priority 1: Try vehicle_prices (new format: {sedan: 4800, minivan: 6000, van: 7500})
-                if (route.vehiclePrices) {
-                  const vp = typeof route.vehiclePrices === "string"
-                    ? JSON.parse(route.vehiclePrices)
-                    : route.vehiclePrices;
-                  
-                  if (vp[vehicleTypeName] !== undefined) {
-                    routePrice = parseFloat(vp[vehicleTypeName]) / travelers;
-                  }
-                }
-
-                // Priority 2: Fallback to base_price_by_vehicle (legacy format: {"1": {"1": "4800"}})
-                if (routePrice === 0 && route.basePriceByVehicle) {
-                  const bp = typeof route.basePriceByVehicle === "string"
-                    ? JSON.parse(route.basePriceByVehicle)
-                    : route.basePriceByVehicle;
-                  
-                  if (bp[vehicleId]?.["1"]) {
-                    routePrice = parseFloat(bp[vehicleId]["1"]) / travelers;
-                  }
-                }
-
-                // If still no price found, use fallback
-                if (routePrice === 0) {
-                  console.warn(`No price found for route ${routeId}, vehicle ${vehicleTypeName}. Using fallback.`);
-                  routePrice = 1500 / travelers;
-                }
-
-                routesTotal += routePrice;
-              } else {
-                // Fallback pricing if route not found
-                console.warn(`Route ${routeId} not found. Using fallback price.`);
-                routesTotal += 3000 / travelers;
-              }
-            } catch (error) {
-              console.error("Error calculating route price:", error);
-              routesTotal += 3000 / travelers; // Fallback price divided by travelers
-            }
-          }
+        for (const routeId of cityService.selectedRoutes ?? []) {
+          const total = await pricingService.getRoutePrice(
+            routeId,
+            vehicleTypeId,
+            licenseClassId,
+          );
+          routesTotal += total / travelers; // multi-city splits cost per traveler
         }
 
-        // Calculate guide pricing using database rates (day-based, shared cost divided by travelers)
         let guideTotal = 0;
-        if (cityService.selectedGuide) {
-          console.log(
-            `Looking for guide in city ${cityService.cityId}, language: "${cityService.selectedGuide.language}"`,
+        if (cityService.selectedGuide?.language && cityService.cityId) {
+          const daily = await pricingService.getGuideDailyRate(
+            cityService.cityId,
+            cityService.selectedGuide.language,
           );
-          const guideRates = await storage.getGuideRates(cityService.cityId);
-          console.log(
-            `Available guide rates:`,
-            guideRates.map((r) => ({
-              id: r.id,
-              language: `"${r.language}"`,
-              hourlyPrice: r.hourlyPrice,
-            })),
-          );
-
-          const guideRate = guideRates.find(
-            (rate) =>
-              rate.language.trim().toLowerCase() ===
-              cityService.selectedGuide.language.trim().toLowerCase(),
-          );
-          console.log(`Found guide rate:`, guideRate);
-
-          if (guideRate) {
-            const dailyRate = parseFloat(guideRate.hourlyPrice); // This is actually daily rate, not hourly
-            guideTotal = dailyRate / travelers; // Per-person share of total guide cost
-            console.log(
-              `Guide calculation: ${dailyRate} EGP daily rate ÷ ${travelers} travelers = ${guideTotal} per person`,
-            );
-          } else {
-            console.log(
-              `No guide rate found for language "${cityService.selectedGuide.language}"`,
-            );
-          }
+          guideTotal = daily / travelers;
         }
 
-        // Calculate attractions using database values (per person pricing)
         let attractionsTotal = 0;
-        if (cityService.selectedAttractions) {
-          for (const attractionItem of cityService.selectedAttractions) {
-            try {
-              // Handle both ID numbers and attraction names/objects
-              let attractionId;
-              if (typeof attractionItem === "number") {
-                attractionId = attractionItem;
-              } else if (typeof attractionItem === "string") {
-                // If it's a string name, find the attraction by name
-                const attractions = await storage.getAttractions();
-                const attraction = attractions.find(
-                  (a) => a.name === attractionItem,
-                );
-                attractionId = attraction ? attraction.id : null;
-              } else if (attractionItem.id) {
-                attractionId = attractionItem.id;
-              }
-
-              if (attractionId) {
-                const attraction = await storage.getAttraction(attractionId);
-                if (attraction) {
-                  attractionsTotal += parseFloat(attraction.ticketPrice || "0"); // Per person price
-                }
-              }
-            } catch (error) {
-              console.error(
-                "Error processing attraction:",
-                attractionItem,
-                error,
-              );
-            }
+        for (const item of cityService.selectedAttractions ?? []) {
+          let attractionId: number | null = null;
+          if (typeof item === "number") attractionId = item;
+          else if (item && typeof item === "object" && typeof item.id === "number") attractionId = item.id;
+          else if (typeof item === "string") {
+            const all = await storage.getAttractions();
+            attractionId = all.find((a) => a.name === item)?.id ?? null;
+          }
+          if (attractionId) {
+            attractionsTotal += await pricingService.getAttractionPrice(attractionId, 1);
           }
         }
 
-        // Calculate add-ons (per person pricing for Multi-City Tour)
         let addOnsTotal = 0;
-        if (cityService.selectedAddOns) {
-          for (const addOn of cityService.selectedAddOns) {
-            const addOnItem = await storage.getAddOn(addOn.id);
-            if (addOnItem) {
-              const basePriceEGP = parseFloat(addOnItem.price); // Per person price
-              addOnsTotal += basePriceEGP; // Per person
-            }
+        for (const ao of cityService.selectedAddOns ?? []) {
+          const id = typeof ao === "number" ? ao : ao?.id;
+          const qty = typeof ao === "number" ? 1 : Math.max(1, Math.floor(ao?.quantity ?? 1));
+          if (typeof id === "number") {
+            addOnsTotal += await pricingService.getAddOnPrice(id, qty, 1);
           }
         }
 
-        // Multi-city tour: all costs are per person, cityTotal is per person
-        cityTotal = routesTotal + guideTotal + attractionsTotal + addOnsTotal;
-        totalAmount += cityTotal; // cityTotal is already per person
+        const cityPerPerson = round2(routesTotal + guideTotal + attractionsTotal + addOnsTotal);
+        perPersonTotal += cityPerPerson;
 
         breakdown.push({
           city: cityService.cityName,
-          routes: routesTotal,
-          guide: guideTotal,
-          attractions: attractionsTotal,
-          addOns: addOnsTotal,
-          total: cityTotal,
+          routes: round2(routesTotal),
+          guide: round2(guideTotal),
+          attractions: round2(attractionsTotal),
+          addOns: round2(addOnsTotal),
+          total: cityPerPerson,
         });
       }
 
-      const firstService = cityServices[0];
-      const travelers = firstService?.travelers || 1;
-
-      // For Multi-City Tour module: totalAmount is sum of per-person costs, so multiply by travelers for actual total
-      const actualTotalAmount = Math.round(totalAmount * travelers);
-      const perPersonAmount = Math.round(totalAmount);
-
+      const travelers = Math.max(1, Math.floor(cityServices[0]?.travelers || 1));
       res.json({
-        totalAmount: actualTotalAmount,
-        perPersonAmount,
+        totalAmount: round2(perPersonTotal * travelers),
+        perPersonAmount: round2(perPersonTotal),
         travelers,
         breakdown,
+        currency: "EGP",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Pricing calculation error:", error);
       res.status(500).json({ message: "Failed to calculate pricing" });
     }
@@ -1431,87 +1320,98 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Route-only booking endpoint (transportation only)
+  // Simple single-route booking. Mirrors /api/bookings: server recomputes
+  // the total via PricingService and freezes a quote so the booking has an
+  // immutable financial record. Client-supplied totalAmount is ignored.
+  // The body's `vehicleType` field can be either a vehicle_type_id (number)
+  // or a category name ("sedan" | "minivan" | "van"); we resolve to an id.
   app.post("/api/route-bookings", async (req, res) => {
     try {
       const {
         routeId,
         vehicleType,
+        vehicleTypeId: rawVehicleTypeId,
+        licenseClassId,
         passengers,
+        travelers,
         travelDate,
         customerName,
         customerEmail,
         customerPhone,
         specialRequests,
-        totalAmount,
-        bookingType,
       } = req.body;
 
-      // Validate required fields
-      if (
-        !routeId ||
-        !vehicleType ||
-        !passengers ||
-        !customerName ||
-        !customerEmail ||
-        !totalAmount
-      ) {
+      if (!routeId || !customerName || !customerEmail) {
         return res.status(400).json({
           success: false,
           message: "Missing required booking information",
         });
       }
 
-      // Generate unique booking reference
-      const bookingReference =
-        `RT${Date.now()}${Math.random().toString(36).substr(2, 4)}`.toUpperCase();
+      // Resolve vehicleType (string category) to a vehicle_type_id if needed.
+      let vehicleTypeId = typeof rawVehicleTypeId === "number"
+        ? rawVehicleTypeId
+        : typeof vehicleType === "number"
+          ? vehicleType
+          : null;
+      if (vehicleTypeId === null && typeof vehicleType === "string") {
+        const all = await storage.getVehicleTypes();
+        const match = all.find(
+          (v) => v.name.toLowerCase() === vehicleType.toLowerCase(),
+        );
+        vehicleTypeId = match?.id ?? null;
+      }
+      const pax = Math.max(1, Math.floor(passengers ?? travelers ?? 1));
+      if (vehicleTypeId === null) {
+        vehicleTypeId = await pricingService.pickVehicleTypeForPassengers(pax);
+      }
+      if (vehicleTypeId === null) {
+        return res.status(400).json({ success: false, message: "Could not resolve a vehicle type" });
+      }
 
-      // Create simplified booking data for route-only bookings
-      const routeBookingData = {
+      const built = await buildQuoteFromRequest({
+        routeId,
+        vehicleTypeId,
+        licenseClassId: typeof licenseClassId === "number" ? licenseClassId : 1,
+        travelers: pax,
+      });
+
+      if (built.lineItems.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: "No price found for that route + vehicle combination",
+        });
+      }
+
+      const persisted = await persistFrozenQuote(built, {
+        source: "POST /api/route-bookings",
+        request: { routeId, vehicleType, passengers: pax, travelDate, specialRequests },
+      });
+
+      const bookingReference =
+        `RT${Date.now()}${Math.random().toString(36).slice(2, 6)}`.toUpperCase();
+
+      const booking = await storage.createBooking({
         bookingReference,
-        quoteId: null, // No quote needed for simple route bookings
+        quoteId: persisted.quoteId,
         customerName,
         customerEmail,
         customerPhone: customerPhone || null,
-        totalAmount: totalAmount.toString(),
-        status: "pending",
-        bookingType: "route-only",
-        routeDetails: {
-          routeId,
-          vehicleType,
-          passengers,
-          travelDate,
-          specialRequests: specialRequests || null,
-        },
-      };
-
-      const booking = await storage.createBooking(routeBookingData);
+        totalAmount: persisted.total,
+        startDate: travelDate ? new Date(travelDate) : null,
+        paymentStatus: "pending",
+        bookingStatus: "confirmed",
+        module: "transfer_only",
+      } as any);
 
       // Send confirmation email
       try {
-        // Create a mock quote for email purposes
-        const mockQuote = {
-          id: 0,
-          createdAt: null,
-          jsonBlob: routeBookingData.routeDetails,
-          total: totalAmount.toString(),
-          commissionPct: "0",
-        } as any;
-
-        const emailSent = await emailService.sendBookingConfirmation(
-          booking,
-          mockQuote,
-        );
-
-        if (emailSent) {
-          console.log(
-            `Confirmation email sent for booking ${bookingReference}`,
-          );
-          // Mark email as sent in the database
-          await storage.markEmailSent(booking.id, "confirmation");
-        } else {
-          console.log(
-            `Failed to send confirmation email for booking ${bookingReference}`,
-          );
+        const quote = await storage.getQuote(persisted.quoteId);
+        if (quote) {
+          const emailSent = await emailService.sendBookingConfirmation(booking, quote);
+          if (emailSent) {
+            await storage.markEmailSent(booking.id, "confirmation");
+          }
         }
       } catch (emailError) {
         console.error("Failed to send confirmation email:", emailError);
@@ -1521,8 +1421,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: true,
         bookingReference,
         booking,
-        message:
-          "Route booking submitted successfully. We'll contact you to confirm details.",
+        message: "Route booking submitted successfully. We'll contact you to confirm details.",
       });
     } catch (error: any) {
       console.error("Route booking error:", error);
