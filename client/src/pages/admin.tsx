@@ -56,11 +56,13 @@ export default function AdminPanel() {
 
   const handleLogin = (token: string) => {
     localStorage.setItem("admin-token", token);
+    localStorage.setItem("auth_token", token);
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("admin-token");
+    localStorage.removeItem("auth_token");
     setIsAuthenticated(false);
     toast({
       title: "Logged Out",
