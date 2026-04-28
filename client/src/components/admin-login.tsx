@@ -20,26 +20,45 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
     setIsLoading(true);
 
     try {
-      // Simple demo authentication - in production use proper auth
-      if (credentials.username === "admin" && credentials.password === "admin123") {
-        const token = "admin-token";
-        localStorage.setItem("admin-token", token);
-        onLogin(token);
-        toast({
-          title: "Login Successful",
-          description: "Welcome to the admin panel!",
-        });
-      } else {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
         toast({
           title: "Login Failed",
-          description: "Invalid credentials. Try admin/admin123",
+          description: data.message || "Invalid credentials",
           variant: "destructive",
         });
+        return;
       }
-    } catch (error) {
+
+      if (data.user?.role !== "admin") {
+        toast({
+          title: "Access Denied",
+          description: "This account is not an administrator.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Store under both keys: admin pages still read "admin-token", and the
+      // shared apiRequest helper reads "auth_token" to attach the JWT to
+      // requests it makes on behalf of the admin.
+      localStorage.setItem("admin-token", data.token);
+      localStorage.setItem("auth_token", data.token);
+      onLogin(data.token);
+      toast({
+        title: "Login Successful",
+        description: "Welcome to the admin panel.",
+      });
+    } catch (error: any) {
       toast({
         title: "Login Error",
-        description: "An error occurred during login",
+        description: error?.message || "An error occurred during login",
         variant: "destructive",
       });
     } finally {
@@ -81,8 +100,8 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
                 required
               />
             </div>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full"
               disabled={isLoading}
             >

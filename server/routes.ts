@@ -62,7 +62,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }, "cities"),
   );
 
-  app.post("/api/cities", async (req, res) => {
+  app.post("/api/cities", ...adminAuth, async (req, res) => {
     try {
       // Generate slug if not provided
       const slug =
@@ -101,7 +101,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/cities/:id", async (req, res) => {
+  app.put("/api/cities/:id", ...adminAuth, async (req, res) => {
     try {
       const city = await storage.updateCity(parseInt(req.params.id), req.body);
       res.json(city);
@@ -110,7 +110,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/cities/:id", async (req, res) => {
+  app.delete("/api/cities/:id", ...adminAuth, async (req, res) => {
     try {
       await storage.deleteCity(parseInt(req.params.id));
       res.json({ success: true });
@@ -132,7 +132,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }, "addOns"),
   );
 
-  app.post("/api/addons", async (req, res) => {
+  app.post("/api/addons", ...adminAuth, async (req, res) => {
     try {
       const addOn = await storage.createAddOn(req.body);
       res.json(addOn);
@@ -141,7 +141,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/addons/:id", async (req, res) => {
+  app.put("/api/addons/:id", ...adminAuth, async (req, res) => {
     try {
       const addOn = await storage.updateAddOn(
         parseInt(req.params.id),
@@ -153,7 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/addons/:id", async (req, res) => {
+  app.delete("/api/addons/:id", ...adminAuth, async (req, res) => {
     try {
       await storage.deleteAddOn(parseInt(req.params.id));
       res.json({ success: true });
@@ -175,7 +175,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }, "attractions"),
   );
 
-  app.post("/api/attractions", async (req, res) => {
+  app.post("/api/attractions", ...adminAuth, async (req, res) => {
     try {
       const attraction = await storage.createAttraction(req.body);
       res.json(attraction);
@@ -184,7 +184,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/attractions/:id", async (req, res) => {
+  app.put("/api/attractions/:id", ...adminAuth, async (req, res) => {
     try {
       const attraction = await storage.updateAttraction(
         parseInt(req.params.id),
@@ -196,7 +196,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/attractions/:id", async (req, res) => {
+  app.delete("/api/attractions/:id", ...adminAuth, async (req, res) => {
     try {
       await storage.deleteAttraction(parseInt(req.params.id));
       res.json({ success: true });
@@ -218,7 +218,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }, "vehicleTypes"),
   );
 
-  app.post("/api/vehicle-types", async (req, res) => {
+  app.post("/api/vehicle-types", ...adminAuth, async (req, res) => {
     try {
       const vehicle = await storage.createVehicleType(req.body);
       res.json(vehicle);
@@ -227,7 +227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/vehicle-types/:id", async (req, res) => {
+  app.put("/api/vehicle-types/:id", ...adminAuth, async (req, res) => {
     try {
       const vehicle = await storage.updateVehicleType(
         parseInt(req.params.id),
@@ -239,7 +239,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/vehicle-types/:id", async (req, res) => {
+  app.delete("/api/vehicle-types/:id", ...adminAuth, async (req, res) => {
     try {
       await storage.deleteVehicleType(parseInt(req.params.id));
       res.json({ success: true });
@@ -258,7 +258,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/guide-rates", async (req, res) => {
+  app.post("/api/guide-rates", ...adminAuth, async (req, res) => {
     try {
       const guide = await storage.createGuideRate(req.body);
       res.json(guide);
@@ -267,7 +267,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/guide-rates/:id", async (req, res) => {
+  app.put("/api/guide-rates/:id", ...adminAuth, async (req, res) => {
     try {
       const guide = await storage.updateGuideRate(
         parseInt(req.params.id),
@@ -279,7 +279,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/guide-rates/:id", async (req, res) => {
+  app.delete("/api/guide-rates/:id", ...adminAuth, async (req, res) => {
     try {
       await storage.deleteGuideRate(parseInt(req.params.id));
       res.json({ success: true });
@@ -287,18 +287,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: error.message });
     }
   });
-  // Admin authentication middleware
-  const requireAdmin = (req: any, res: any, next: any) => {
-    // Simple admin check - in production you'd want proper auth
-    const adminToken = req.headers.authorization;
-    if (!adminToken || adminToken !== "Bearer admin-token") {
-      return res.status(401).json({ message: "Admin access required" });
-    }
-    next();
-  };
+  // Admin auth uses the real JWT pipeline imported above. Apply as
+  //   app.X(path, ...adminAuth, handler)
+  // The previous local requireAdmin was a string-comparison stub that
+  // accepted the literal token "admin-token", which made every admin
+  // endpoint effectively public.
+  const adminAuth = [authenticateToken, requireAdmin];
 
   // Admin dashboard stats
-  app.get("/api/admin/dashboard-stats", requireAdmin, async (req, res) => {
+  app.get("/api/admin/dashboard-stats", ...adminAuth, async (req, res) => {
     try {
       const quotes = await storage.getQuotes();
       const bookings = await storage.getBookings();
@@ -338,7 +335,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin city management
-  app.put("/api/admin/cities/:id", requireAdmin, async (req, res) => {
+  app.put("/api/admin/cities/:id", ...adminAuth, async (req, res) => {
     try {
       const { id } = req.params;
       const { name, slug, description, isActive } = req.body;
@@ -352,7 +349,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin route management
-  app.put("/api/admin/routes/:id", requireAdmin, async (req, res) => {
+  app.put("/api/admin/routes/:id", ...adminAuth, async (req, res) => {
     try {
       const { id } = req.params;
       const updateData = req.body;
@@ -366,7 +363,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin add-on management
-  app.put("/api/admin/addons/:id", requireAdmin, async (req, res) => {
+  app.put("/api/admin/addons/:id", ...adminAuth, async (req, res) => {
     try {
       const { id } = req.params;
       const updateData = req.body;
@@ -380,7 +377,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // CSV Export endpoints
-  app.get("/api/admin/export/cities", requireAdmin, async (req, res) => {
+  app.get("/api/admin/export/cities", ...adminAuth, async (req, res) => {
     try {
       const cities = await storage.getCities();
       const csvData = [
@@ -401,7 +398,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Manual quote creation
-  app.post("/api/admin/quotes", requireAdmin, async (req, res) => {
+  app.post("/api/admin/quotes", ...adminAuth, async (req, res) => {
     try {
       const {
         customerName,
@@ -736,7 +733,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   );
 
   // Create route
-  app.post("/api/routes", async (req, res) => {
+  app.post("/api/routes", ...adminAuth, async (req, res) => {
     try {
       console.log("=== ROUTE POST REQUEST BODY ===");
       console.log("Full request body:", JSON.stringify(req.body, null, 2));
@@ -839,7 +836,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update route
-  app.put("/api/routes/:id", async (req, res) => {
+  app.put("/api/routes/:id", ...adminAuth, async (req, res) => {
     try {
       const { id } = req.params;
 
@@ -924,7 +921,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Delete route
-  app.delete("/api/routes/:id", async (req, res) => {
+  app.delete("/api/routes/:id", ...adminAuth, async (req, res) => {
     try {
       const { id } = req.params;
       await storage.deleteRoute(parseInt(id));
@@ -1264,7 +1261,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all bookings (admin endpoint)
-  app.get("/api/admin/bookings", async (req, res) => {
+  app.get("/api/admin/bookings", ...adminAuth, async (req, res) => {
     try {
       const bookings = await storage.getBookings();
 
@@ -1299,7 +1296,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Delete booking endpoint (admin only)
-  app.delete("/api/bookings/:id", async (req, res) => {
+  app.delete("/api/bookings/:id", ...adminAuth, async (req, res) => {
     try {
       const bookingId = parseInt(req.params.id);
 
@@ -1600,7 +1597,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/reviews/all", async (req, res) => {
+  app.get("/api/reviews/all", ...adminAuth, async (req, res) => {
     try {
       const reviews = await storage.getAllReviews();
       res.json(reviews);
@@ -1624,7 +1621,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/reviews/:id", async (req, res) => {
+  app.put("/api/reviews/:id", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const reviewData = {
@@ -1639,7 +1636,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/reviews/:id", async (req, res) => {
+  app.patch("/api/reviews/:id", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const updateData = req.body;
@@ -1651,7 +1648,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/reviews/:id", async (req, res) => {
+  app.delete("/api/reviews/:id", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       await storage.deleteReview(id);
@@ -1663,7 +1660,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Quotes API endpoints
-  app.get("/api/quotes", async (req, res) => {
+  app.get("/api/quotes", ...adminAuth, async (req, res) => {
     try {
       const quotes = await storage.getQuotes();
       res.json(quotes);
@@ -1725,7 +1722,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/quotes/:id", async (req, res) => {
+  app.delete("/api/quotes/:id", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       await storage.deleteQuote(id);
@@ -1739,7 +1736,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await registerPricingRoutes(app);
 
   // Update booking status endpoint
-  app.put("/api/bookings/:id/status", async (req, res) => {
+  app.put("/api/bookings/:id/status", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const { status } = req.body;
@@ -1758,7 +1755,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update payment status endpoint
-  app.put("/api/bookings/:id/payment-status", async (req, res) => {
+  app.put("/api/bookings/:id/payment-status", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const { paymentStatus } = req.body;
@@ -1777,7 +1774,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Email notification endpoints
-  app.post("/api/bookings/:id/send-confirmation", async (req, res) => {
+  app.post("/api/bookings/:id/send-confirmation", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const booking = await storage.getBooking(id);
@@ -1812,7 +1809,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/bookings/:id/send-reminder", async (req, res) => {
+  app.post("/api/bookings/:id/send-reminder", ...adminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const booking = await storage.getBooking(id);

@@ -175,7 +175,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
       return {
         travelers: data.totalTravelers || data.travelers || 1,
         cities: data.cityServices?.map((cs: any) => cs.cityName) || [],
-        totalWithCommission: Math.round(parseFloat(quote.total) * (1 + parseFloat(quote.commissionPct || "0") / 100)),
+        // commissionPct is stored as a fraction (0.15 = 15%). Don't divide by 100.
+        totalWithCommission: Math.round(parseFloat(quote.total) * (1 + parseFloat(quote.commissionPct || "0"))),
       };
     } catch {
       return {
