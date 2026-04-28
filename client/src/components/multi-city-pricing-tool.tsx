@@ -803,9 +803,17 @@ export default function MultiCityPricingTool() {
                     >
                     {cityServices.map((city, index) => {
                       const cityData = cities?.find((c: any) => c.id === city.cityId);
-                      const cityRoutes = routes?.filter((route: any) => {
-                        const routeName = route.name.toLowerCase();
-                        return routeName.includes(city.cityName.toLowerCase());
+                      // Many routes in production have name=null. Match by
+                      // either the route name (when present) or its
+                      // cityId / fromCityId so we don't drop them, and
+                      // never call .toLowerCase() on null.
+                      const cityNameLower = city.cityName?.toLowerCase() ?? "";
+                      const cityRoutes = (routes ?? []).filter((route: any) => {
+                        const nameMatch = typeof route?.name === "string"
+                          && route.name.toLowerCase().includes(cityNameLower);
+                        const idMatch = route?.cityId === city.cityId
+                          || route?.fromCityId === city.cityId;
+                        return nameMatch || idMatch;
                       });
                       
                       return (
