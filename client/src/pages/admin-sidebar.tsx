@@ -111,11 +111,25 @@ export default function AdminSidebar() {
     }
   };
 
-  const handleLogin = () => {
+  // Restore auth state on mount so navigating back to /admin doesn't kick
+  // the user back to the login screen on every page transition.
+  useEffect(() => {
+    if (localStorage.getItem("admin-token") || localStorage.getItem("auth_token")) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = (token: string) => {
+    if (token) {
+      localStorage.setItem("admin-token", token);
+      localStorage.setItem("auth_token", token);
+    }
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("admin-token");
+    localStorage.removeItem("auth_token");
     setIsAuthenticated(false);
   };
 
