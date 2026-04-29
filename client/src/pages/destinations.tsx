@@ -182,7 +182,7 @@ export default function Destinations() {
               <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100">
                 {t('destinations.cta.planTrip')}
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600">
+              <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary">
                 {t('destinations.cta.contactUs')}
               </Button>
             </div>

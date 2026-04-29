@@ -335,7 +335,7 @@ export default function LuxorGuideServices() {
                 </Button>
               </Link>
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary bg-transparent">
+                <Button size="lg" variant="outline" className="text-lg px-8 bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary">
                   <Phone className="w-5 h-5 mr-2" />
                   Call Now
                 </Button>

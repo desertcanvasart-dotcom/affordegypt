@@ -148,9 +148,11 @@ export default function BudgetTravelEgypt() {
                     Get Custom Quote
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg">
-                  Download PDF Guide
-                </Button>
+                <Link href="/travel-tips">
+                  <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                    Read Travel Tips
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -547,8 +549,8 @@ export default function BudgetTravelEgypt() {
                     Start Planning Your Trip
                   </Button>
                 </Link>
-                <Link href="/travel-guides">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600 px-8 py-4 text-lg">
+                <Link href="/travel-tips">
+                  <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
                     Explore Travel Guides
                   </Button>
                 </Link>
