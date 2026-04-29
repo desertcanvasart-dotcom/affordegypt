@@ -1,5 +1,5 @@
-import { MailService } from '@sendgrid/mail';
 import type { Booking, Quote } from '@shared/schema';
+import { mailService } from './email-client';
 
 export interface EmailService {
   sendBookingConfirmation(booking: Booking, quote: Quote): Promise<boolean>;
@@ -8,23 +8,14 @@ export interface EmailService {
   sendEmailVerification(email: string, token: string, username: string): Promise<boolean>;
 }
 
-class SendGridEmailService implements EmailService {
-  private mailService: MailService;
-  private fromEmail: string;
-
-  constructor() {
-    this.mailService = new MailService();
-    // Use the correct verified sender email address
-    this.fromEmail = 'info@affordegypt.com';
-    
-    if (process.env.SENDGRID_API_KEY) {
-      this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
-    }
-  }
+class TransactionalEmailService implements EmailService {
+  // Defaults to info@affordegypt.com but can be overridden via FROM_EMAIL
+  // so the verified Resend sender can change without a code release.
+  private fromEmail = process.env.FROM_EMAIL || 'info@affordegypt.com';
 
   async sendBookingConfirmation(booking: Booking, quote: Quote): Promise<boolean> {
-    if (!process.env.SENDGRID_API_KEY) {
-      console.log('SendGrid API key not configured - email not sent');
+    if (!process.env.RESEND_API_KEY) {
+      console.log('RESEND_API_KEY not configured - email not sent');
       return false;
     }
 
@@ -36,7 +27,7 @@ class SendGridEmailService implements EmailService {
     try {
       console.log(`Attempting to send confirmation email to: ${booking.customerEmail} from: ${this.fromEmail}`);
       
-      await this.mailService.send({
+      await mailService.send({
         to: booking.customerEmail,
         from: {
           email: this.fromEmail,
@@ -55,15 +46,15 @@ class SendGridEmailService implements EmailService {
     } catch (error: any) {
       console.error('Failed to send booking confirmation email:', error);
       if (error.response && error.response.body && error.response.body.errors) {
-        console.error('SendGrid error details:', JSON.stringify(error.response.body.errors, null, 2));
+        console.error('Resend error details:', JSON.stringify(error.response.body.errors, null, 2));
       }
       return false;
     }
   }
 
   async sendBookingReminder(booking: Booking, quote: Quote): Promise<boolean> {
-    if (!process.env.SENDGRID_API_KEY) {
-      console.log('SendGrid API key not configured - email not sent');
+    if (!process.env.RESEND_API_KEY) {
+      console.log('RESEND_API_KEY not configured - email not sent');
       return false;
     }
 
@@ -73,7 +64,7 @@ class SendGridEmailService implements EmailService {
     const emailContent = this.generateReminderEmail(booking, quoteData, daysUntilTrip);
 
     try {
-      await this.mailService.send({
+      await mailService.send({
         to: booking.customerEmail,
         from: this.fromEmail,
         subject: `Trip Reminder - ${booking.bookingReference} (${daysUntilTrip} days to go!)`,
@@ -91,15 +82,15 @@ class SendGridEmailService implements EmailService {
   }
 
   async sendBookingStatusUpdate(booking: Booking, status: string): Promise<boolean> {
-    if (!process.env.SENDGRID_API_KEY) {
-      console.log('SendGrid API key not configured - email not sent');
+    if (!process.env.RESEND_API_KEY) {
+      console.log('RESEND_API_KEY not configured - email not sent');
       return false;
     }
 
     const emailContent = this.generateStatusUpdateEmail(booking, status);
 
     try {
-      await this.mailService.send({
+      await mailService.send({
         to: booking.customerEmail,
         from: this.fromEmail,
         subject: `Booking Update - ${booking.bookingReference}`,
@@ -114,8 +105,8 @@ class SendGridEmailService implements EmailService {
   }
 
   async sendEmailVerification(email: string, token: string, username: string): Promise<boolean> {
-    if (!process.env.SENDGRID_API_KEY) {
-      console.log('SendGrid API key not configured - verification email not sent');
+    if (!process.env.RESEND_API_KEY) {
+      console.log('RESEND_API_KEY not configured - verification email not sent');
       return false;
     }
 
@@ -126,7 +117,7 @@ class SendGridEmailService implements EmailService {
     try {
       console.log(`Sending verification email to: ${email}`);
       
-      await this.mailService.send({
+      await mailService.send({
         to: email,
         from: {
           email: this.fromEmail,
@@ -142,7 +133,7 @@ class SendGridEmailService implements EmailService {
     } catch (error: any) {
       console.error('Failed to send verification email:', error);
       if (error.response && error.response.body && error.response.body.errors) {
-        console.error('SendGrid error details:', JSON.stringify(error.response.body.errors, null, 2));
+        console.error('Resend error details:', JSON.stringify(error.response.body.errors, null, 2));
       }
       return false;
     }
@@ -373,7 +364,7 @@ class SendGridEmailService implements EmailService {
       
       const emailContent = this.generateAdminNotificationEmail(booking, quote, jsonBlob, type);
       
-      await this.mailService.send({
+      await mailService.send({
         to: 'info@affordegypt.com',
         from: this.fromEmail,
         subject: 'New Book',
@@ -520,7 +511,7 @@ class SendGridEmailService implements EmailService {
   }
 }
 
-export const emailService = new SendGridEmailService();
+export const emailService = new TransactionalEmailService();
 
 // Contact form email function
 export async function sendContactFormEmail(contactData: {
@@ -530,14 +521,10 @@ export async function sendContactFormEmail(contactData: {
   subject: string;
   message: string;
 }): Promise<boolean> {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log('SendGrid API key not configured - contact email not sent');
+  if (!process.env.RESEND_API_KEY) {
+    console.log('RESEND_API_KEY not configured - contact email not sent');
     return false;
   }
-
-  const mailService = new MailService();
-  mailService.setApiKey(process.env.SENDGRID_API_KEY);
-
   const emailContent = `
     <!DOCTYPE html>
     <html>
@@ -629,14 +616,10 @@ ${contactData.message}
 
 // Newsletter subscription email function
 export async function sendNewsletterSubscriptionEmail(email: string): Promise<boolean> {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log('SendGrid API key not configured - newsletter email not sent');
+  if (!process.env.RESEND_API_KEY) {
+    console.log('RESEND_API_KEY not configured - newsletter email not sent');
     return false;
   }
-
-  const mailService = new MailService();
-  mailService.setApiKey(process.env.SENDGRID_API_KEY);
-
   // Send welcome email to subscriber
   const welcomeEmailContent = `
     <!DOCTYPE html>

@@ -4,16 +4,10 @@ import bcrypt from 'bcrypt';
 import { db } from './db';
 import { users, passwordResetTokens } from '@shared/schema';
 import { eq, and, gt } from 'drizzle-orm';
-import { MailService } from '@sendgrid/mail';
+import { mailService } from './email-client';
 
 const SALT_ROUNDS = 10;
 const TOKEN_EXPIRY_MINUTES = 30;
-
-// Initialize SendGrid
-const mailService = new MailService();
-if (process.env.SENDGRID_API_KEY) {
-  mailService.setApiKey(process.env.SENDGRID_API_KEY);
-}
 
 // Generate secure random token
 function generateToken(): { selector: string; token: string; hashedToken: string } {
@@ -26,8 +20,8 @@ function generateToken(): { selector: string; token: string; hashedToken: string
 
 // Send password reset email
 async function sendPasswordResetEmail(email: string, resetLink: string): Promise<boolean> {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log('SendGrid API key not configured - password reset email not sent');
+  if (!process.env.RESEND_API_KEY) {
+    console.log('RESEND_API_KEY not configured - password reset email not sent');
     return false;
   }
 
