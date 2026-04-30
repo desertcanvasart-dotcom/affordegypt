@@ -60,6 +60,7 @@ export default defineConfig({
         inject: { isPrerender: true },
         launchOptions: {
           args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         },
       },
       postProcess(renderedRoute) {
