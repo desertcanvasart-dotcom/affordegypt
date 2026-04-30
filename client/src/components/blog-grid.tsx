@@ -181,10 +181,6 @@ export default function BlogGrid() {
                   </Badge>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      {formatDate(post.publishDate)}
-                    </div>
-                    <div className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {post.readTime}
                     </div>
