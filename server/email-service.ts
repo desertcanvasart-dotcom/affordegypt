@@ -33,7 +33,7 @@ class TransactionalEmailService implements EmailService {
           email: this.fromEmail,
           name: 'Afford Egypt'
         },
-        subject: `Booking Confirmation - ${booking.bookingReference}`,
+        subject: `Booking received — your AffordEgypt deposit link is on the way (booking #${booking.bookingReference})`,
         html: emailContent,
         text: this.stripHtml(emailContent)
       });
@@ -212,19 +212,34 @@ class TransactionalEmailService implements EmailService {
         <body>
           <div class="container">
             <div class="header">
-              <h1>Booking Confirmed!</h1>
-              <p>Thank you for choosing Afford Egypt</p>
+              <h1>Booking received — thank you, ${booking.customerName}</h1>
+              <p>We've received your booking request. Here's what happens next.</p>
             </div>
-            
+
             <div class="content">
-              <h2>Dear ${booking.customerName},</h2>
-              <p>Your Egypt travel booking has been confirmed. Here are your booking details:</p>
-              
+              <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 14px;">
+                  <strong>We review your booking.</strong>
+                  Within 24 hours (usually much faster), our team confirms vehicle and guide availability for your dates.
+                </li>
+                <li style="margin-bottom: 14px;">
+                  <strong>We send your 10% deposit link.</strong>
+                  You'll receive a payment link via email — typically Tab.travel for international cards. The deposit is fully refundable up to 3 days before arrival.
+                </li>
+                <li style="margin-bottom: 14px;">
+                  <strong>Your booking is confirmed once the deposit clears.</strong>
+                  The remaining 90% is paid on arrival in cash (EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader.
+                </li>
+                <li style="margin-bottom: 14px;">
+                  <strong>We meet you.</strong>
+                  On the day of your trip, our driver and licensed Egyptologist meet you at the agreed pickup point. You're set.
+                </li>
+              </ol>
+
               <div class="booking-details">
                 <h3>Booking Information</h3>
                 <p><strong>Booking Reference:</strong> <span class="highlight">${booking.bookingReference}</span></p>
                 <p><strong>Total Amount:</strong> LE ${Math.round(parseFloat(totalAmount)).toLocaleString('en-US')}</p>
-                <p><strong>Payment Status:</strong> ${booking.paymentStatus}</p>
                 ${booking.startDate ? `<p><strong>Trip Start Date:</strong> ${new Date(booking.startDate).toLocaleDateString()}</p>` : ''}
                 ${booking.endDate ? `<p><strong>Trip End Date:</strong> ${new Date(booking.endDate).toLocaleDateString()}</p>` : ''}
               </div>
@@ -235,8 +250,7 @@ class TransactionalEmailService implements EmailService {
                 ${booking.customerPhone ? `<p><strong>Phone:</strong> ${booking.customerPhone}</p>` : ''}
               </div>
 
-              <p>You will receive additional details about your itinerary and travel arrangements shortly.</p>
-              <p>If you have any questions, please contact us using your booking reference.</p>
+              <p>If you have any questions, just reply to this email with your booking reference.</p>
             </div>
             
             <div class="footer">
@@ -367,7 +381,7 @@ class TransactionalEmailService implements EmailService {
       await mailService.send({
         to: 'info@affordegypt.com',
         from: this.fromEmail,
-        subject: 'New Book',
+        subject: `ACTION: send Tab.travel deposit link — booking ${booking.bookingReference}`,
         html: emailContent,
       });
       
@@ -408,11 +422,21 @@ class TransactionalEmailService implements EmailService {
       </head>
       <body>
         <div class="header">
-          <h1>🔔 New Booking ${type === 'confirmation' ? 'Confirmation' : 'Reminder'} Sent</h1>
-          <p>A ${type} email has been sent to a customer</p>
+          <h1>🔔 New booking — send Tab.travel deposit link</h1>
+          <p>${type === 'confirmation'
+            ? 'A new booking request was just received. Send the customer a Tab.travel deposit link for 10% of the total below.'
+            : 'A trip reminder was sent to a customer.'}</p>
         </div>
-        
+
         <div class="content">
+          ${type === 'confirmation' ? `
+          <div class="booking-details" style="background:#fff7e6; border-left:4px solid #f59e0b;">
+            <h3 style="margin-top:0;">Action required</h3>
+            <p><strong>1.</strong> Confirm vehicle and guide availability for the dates below.</p>
+            <p><strong>2.</strong> Send a Tab.travel payment link for 10% of the total to the customer's email.</p>
+            <p><strong>3.</strong> Booking is confirmed once the deposit clears.</p>
+          </div>
+          ` : ''}
           <div class="booking-details">
             <h3>Booking Information</h3>
             <div class="detail-row">
@@ -500,10 +524,10 @@ class TransactionalEmailService implements EmailService {
           </div>
 
           <div class="booking-details">
-            <h3>Action Required</h3>
-            <p><strong>Email Type:</strong> ${type === 'confirmation' ? 'Booking Confirmation' : 'Trip Reminder'}</p>
-            <p><strong>Sent to:</strong> ${booking.customerEmail}</p>
-            <p><strong>Next Steps:</strong> ${type === 'confirmation' ? 'Monitor payment status and prepare for trip' : 'Ensure all arrangements are confirmed for upcoming trip'}</p>
+            <h3>Next steps</h3>
+            <p><strong>Customer email:</strong> ${booking.customerEmail}</p>
+            ${booking.customerPhone ? `<p><strong>Customer phone:</strong> ${booking.customerPhone}</p>` : ''}
+            <p><strong>What to do:</strong> ${type === 'confirmation' ? 'Send a Tab.travel deposit link for 10% of the total above to the customer.' : 'Ensure all arrangements are confirmed for the upcoming trip.'}</p>
           </div>
         </div>
       </body>

@@ -364,15 +364,15 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
           <img src="/logo.png" alt="AffordEgypt Logo" className="h-12 mx-auto mb-4" />
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Booking Confirmed!
+            Booking received — thank you, {booking.customerName}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Your Egypt adventure is booked. Here are your details.
+            We've received your booking request. Here's what happens next.
           </p>
-          
+
           {/* Download Button */}
           <div className="flex justify-center mt-6">
-            <Button 
+            <Button
               onClick={downloadBookingPDF}
               className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3"
             >
@@ -381,6 +381,53 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             </Button>
           </div>
         </div>
+
+        {/* Next Steps */}
+        <Card className="mb-6 border-teal-200">
+          <CardHeader>
+            <CardTitle>What happens next</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ol className="space-y-5">
+              <li className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">1</div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">We review your booking</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Within 24 hours (usually much faster), our team confirms vehicle and guide availability for your dates.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">2</div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">We send your 10% deposit link</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You'll receive a payment link via email — typically Tab.travel for international cards. The deposit is fully refundable up to 3 days before arrival.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">3</div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Your booking is confirmed once the deposit clears</h4>
+                  <p className="text-sm text-muted-foreground">
+                    The remaining 90% is paid on arrival in cash (EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">4</div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">We meet you</h4>
+                  <p className="text-sm text-muted-foreground">
+                    On the day of your trip, our driver and licensed Egyptologist meet you at the agreed pickup point. You're set.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </CardContent>
+        </Card>
 
         {/* Main Booking Details - Full Width */}
         <div className="space-y-6">
