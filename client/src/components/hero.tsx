@@ -1,9 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Replace the placeholder once Islam confirms the real defensible floor
-// price. Used in hero subhead and the FAQ "absolute minimum" answer.
-const MIN_DAILY_PRICE_USD = "X";
+// Anchor price for hero subhead and FAQ "absolute minimum" answer.
+// EGP is the source of truth; USD/EUR are display-only hints.
+// Review monthly against current FX rates and update as needed.
+const MIN_DAILY_PRICE_EGP = 5000;
+const USD_DISPLAY_HINT = "$105";
+const EUR_DISPLAY_HINT = "€98";
 
 export default function Hero() {
   const scrollToQuote = () => {
@@ -35,11 +38,16 @@ export default function Hero() {
           <p className="text-lg md:text-xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
             AffordEgypt is the transparent budget tier from Travel2Egypt — an
             ETAA-licensed Cairo operator since 2020. Same licensed guides,
-            lighter inclusions, no hidden fees. Private car + Egyptologist from{" "}
+            lighter inclusions, no hidden fees.
+          </p>
+          <p className="text-lg md:text-xl mb-2 text-white/95 max-w-3xl mx-auto text-balance">
+            Private car + Egyptologist from{" "}
             <span className="font-semibold text-white">
-              ${MIN_DAILY_PRICE_USD}/day
+              LE {MIN_DAILY_PRICE_EGP.toLocaleString("en-US")} / day
             </span>
-            , all-in.
+          </p>
+          <p className="text-sm md:text-base mb-8 text-white/75 max-w-3xl mx-auto">
+            (~{USD_DISPLAY_HINT} USD / {EUR_DISPLAY_HINT} EUR)
           </p>
 
           <Button
