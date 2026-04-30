@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 import { useQuery } from "@tanstack/react-query";
+import { formatEGP } from "@/lib/utils";
 
 type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
@@ -129,7 +130,7 @@ export default function BookingConfirmation() {
           <h3 style="color: #0d9488; margin-top: 0;">Booking Information</h3>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
             <div>
-              <strong>Total Amount:</strong> ${parseFloat(booking.totalAmount).toLocaleString()} EGP<br>
+              <strong>Total Amount:</strong> ${formatEGP(booking.totalAmount)}<br>
               <strong>Status:</strong> ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
             </div>
             <div>
@@ -273,7 +274,7 @@ ${'='.repeat(50)}
 BOOKING INFORMATION
 Booking Reference: ${booking.bookingReference}
 Status: ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
-Total Amount: ${parseFloat(booking.totalAmount).toLocaleString()} EGP
+Total Amount: ${formatEGP(booking.totalAmount)}
 `;
 
     if (booking.startDate) {
@@ -403,7 +404,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                       Total Amount
                     </label>
                     <p className="text-lg font-semibold">
-                      {parseFloat(booking.totalAmount).toLocaleString()} EGP
+                      {formatEGP(booking.totalAmount)}
                     </p>
                   </div>
                   {booking.startDate && (
@@ -579,7 +580,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Total Amount</label>
-                        <p className="text-2xl font-bold text-primary">{booking.totalAmount} EGP</p>
+                        <p className="text-2xl font-bold text-primary">{formatEGP(booking.totalAmount)}</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Status</label>

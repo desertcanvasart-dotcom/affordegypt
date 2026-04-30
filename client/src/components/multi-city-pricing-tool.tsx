@@ -16,6 +16,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
+import { formatEGP } from "@/lib/utils";
 import { useLocation } from "wouter";
 import QuoteManager from "@/components/quote-manager";
 import AttractionsSearch from "@/components/attractions-search";
@@ -1083,7 +1084,7 @@ export default function MultiCityPricingTool() {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Total Price</p>
-                        <p className="font-semibold text-primary">{totalPricing?.totalAmount?.toFixed(1) || 0} EGP</p>
+                        <p className="font-semibold text-primary">{formatEGP(totalPricing?.totalAmount)}</p>
                       </div>
                     </div>
                   </Card>
@@ -1103,7 +1104,7 @@ export default function MultiCityPricingTool() {
                                 <span className="font-semibold">{city.cityName}</span>
                               </div>
                               <div className="ml-auto mr-2">
-                                <span className="text-sm font-semibold">{cityBreakdown?.total?.toFixed(1) || 0} EGP</span>
+                                <span className="text-sm font-semibold">{formatEGP(cityBreakdown?.total)}</span>
                               </div>
                             </div>
                           </AccordionTrigger>
@@ -1352,26 +1353,26 @@ export default function MultiCityPricingTool() {
                       <div className="space-y-1.5 mb-3 pb-3 border-b text-sm">
                         <div className="flex justify-between">
                           <span>Transportation</span>
-                          <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Tour Guides</span>
-                          <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Attractions</span>
-                          <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Add-ons</span>
-                          <span>{totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0)?.toFixed(1) || 0} EGP</span>
+                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0))}</span>
                         </div>
                       </div>
 
                       {/* Total */}
                       <div className="flex justify-between items-center mb-4">
                         <span className="font-semibold">Total</span>
-                        <span className="text-xl font-bold text-primary">{totalPricing?.totalAmount?.toFixed(1) || 0} EGP</span>
+                        <span className="text-xl font-bold text-primary">{formatEGP(totalPricing?.totalAmount)}</span>
                       </div>
 
                       {/* Submit Button */}
@@ -1502,24 +1503,24 @@ export default function MultiCityPricingTool() {
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between">
                             <span>Routes:</span>
-                            <span className="font-mono">{Number(city.routes || 0).toFixed(1)} EGP</span>
+                            <span className="font-mono">{formatEGP(city.routes)}</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Guide:</span>
-                            <span className="font-mono">{Number(city.guide || 0).toFixed(1)} EGP</span>
+                            <span className="font-mono">{formatEGP(city.guide)}</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Attractions:</span>
-                            <span className="font-mono">{Number(city.attractions || 0).toFixed(1)} EGP</span>
+                            <span className="font-mono">{formatEGP(city.attractions)}</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Add-ons:</span>
-                            <span className="font-mono">{Number(city.addOns || 0).toFixed(1)} EGP</span>
+                            <span className="font-mono">{formatEGP(city.addOns)}</span>
                           </div>
                           <Separator className="my-2" />
                           <div className="flex justify-between font-semibold">
                             <span>Total:</span>
-                            <span className="font-mono">{Number(city.total || 0).toFixed(1)} EGP</span>
+                            <span className="font-mono">{formatEGP(city.total)}</span>
                           </div>
                         </div>
                       </Card>

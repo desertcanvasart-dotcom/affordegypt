@@ -13,6 +13,7 @@ import { MapPin, Car, Clock, Star, Users, Calendar, Phone, Mail, MessageSquare, 
 import { useToast } from "@/hooks/use-toast";
 import { Link, useRoute } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
+import { formatEGP } from "@/lib/utils";
 
 interface Route {
   id: number;
@@ -226,7 +227,7 @@ BOOKING DETAILS
 Vehicle Type: ${bookingData.vehicleType.charAt(0).toUpperCase() + bookingData.vehicleType.slice(1)}
 Passengers: ${bookingData.passengers}
 Travel Date: ${new Date(bookingData.travelDate).toLocaleDateString()}
-Total Amount: $${bookingData.totalAmount}
+Total Amount: ${formatEGP(bookingData.totalAmount)}
 
 CUSTOMER INFORMATION
 Name: ${bookingData.customerName}
@@ -395,7 +396,7 @@ Email: support@affordegypt.com
                       <span className="text-gray-600">Travel Date:</span> <span className="font-medium">{new Date(bookingData.travelDate).toLocaleDateString()}</span>
                     </div>
                     <div className="text-sm">
-                      <span className="text-gray-600">Total Amount:</span> <span className="text-lg font-bold text-teal-600">${bookingData.totalAmount}</span>
+                      <span className="text-gray-600">Total Amount:</span> <span className="text-lg font-bold text-teal-600">{formatEGP(bookingData.totalAmount)}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -646,17 +647,17 @@ Email: support@affordegypt.com
                           <SelectContent className="z-50">
                             {selectedRoute?.sedanPrice && (
                               <SelectItem value="sedan" className="text-sm">
-                                Sedan - ${selectedRoute.sedanPrice}
+                                Sedan - {formatEGP(selectedRoute.sedanPrice)}
                               </SelectItem>
                             )}
                             {selectedRoute?.minivanPrice && (
                               <SelectItem value="minivan" className="text-sm">
-                                Minivan - ${selectedRoute.minivanPrice}
+                                Minivan - {formatEGP(selectedRoute.minivanPrice)}
                               </SelectItem>
                             )}
                             {selectedRoute?.vanPrice && (
                               <SelectItem value="van" className="text-sm">
-                                Van - ${selectedRoute.vanPrice}
+                                Van - {formatEGP(selectedRoute.vanPrice)}
                               </SelectItem>
                             )}
                           </SelectContent>
@@ -748,7 +749,7 @@ Email: support@affordegypt.com
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-medium text-gray-700">Total Cost:</span>
                         <span className="text-xl font-bold text-teal-600">
-                          ${calculateTotal().toFixed(2)}
+                          {formatEGP(calculateTotal())}
                         </span>
                       </div>
                       <p className="text-xs text-gray-600 mt-1">

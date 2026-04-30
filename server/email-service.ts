@@ -223,7 +223,7 @@ class TransactionalEmailService implements EmailService {
               <div class="booking-details">
                 <h3>Booking Information</h3>
                 <p><strong>Booking Reference:</strong> <span class="highlight">${booking.bookingReference}</span></p>
-                <p><strong>Total Amount:</strong> ${Math.round(parseFloat(totalAmount))} EGP</p>
+                <p><strong>Total Amount:</strong> LE ${Math.round(parseFloat(totalAmount)).toLocaleString('en-US')}</p>
                 <p><strong>Payment Status:</strong> ${booking.paymentStatus}</p>
                 ${booking.startDate ? `<p><strong>Trip Start Date:</strong> ${new Date(booking.startDate).toLocaleDateString()}</p>` : ''}
                 ${booking.endDate ? `<p><strong>Trip End Date:</strong> ${new Date(booking.endDate).toLocaleDateString()}</p>` : ''}
@@ -381,7 +381,8 @@ class TransactionalEmailService implements EmailService {
   private generateAdminNotificationEmail(booking: any, quote: any, jsonBlob: any, type: 'confirmation' | 'reminder'): string {
     const formatPrice = (price: number | string) => {
       const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-      return Math.round(numPrice).toLocaleString();
+      if (Number.isNaN(numPrice)) return '0';
+      return Math.round(numPrice).toLocaleString('en-US');
     };
 
     return `
@@ -488,14 +489,14 @@ class TransactionalEmailService implements EmailService {
             ${jsonBlob.addons.map((addon: any) => `
               <div class="detail-row">
                 <span class="detail-label">${addon.name}:</span>
-                <span>EGP ${formatPrice(addon.price)}</span>
+                <span>LE ${formatPrice(addon.price)}</span>
               </div>
             `).join('')}
           </div>
           ` : ''}
 
           <div class="total">
-            Total Amount: EGP ${formatPrice(booking.totalAmount)}
+            Total Amount: LE ${formatPrice(booking.totalAmount)}
           </div>
 
           <div class="booking-details">

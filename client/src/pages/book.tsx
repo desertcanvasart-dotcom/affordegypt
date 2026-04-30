@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
+import { formatEGP } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
 const bookingSchema = z.object({
@@ -358,7 +359,7 @@ export default function BookPage() {
                     ) : (
                       <>
                         <CreditCard className="w-4 h-4 mr-2" />
-                        Confirm Booking - {totalAmount} EGP
+                        Confirm Booking - {formatEGP(totalAmount)}
                       </>
                     )}
                   </Button>
@@ -530,16 +531,16 @@ export default function BookPage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>
-                  <span>{Math.round(totalAmount)} EGP</span>
+                  <span>{formatEGP(totalAmount)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Taxes & Fees</span>
-                  <span>0 EGP</span>
+                  <span>{formatEGP(0)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>{Math.round(totalAmount)} EGP</span>
+                  <span>{formatEGP(totalAmount)}</span>
                 </div>
               </div>
 
