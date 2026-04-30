@@ -1,4 +1,5 @@
 import SeoMeta from "@/components/seo-meta";
+import pricingSnapshot from "@/generated/pricing-snapshot.json";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,22 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function AswanAirportTransfers() {
+  const SERVICE_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Airport Transfer",
+    "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
+    "areaServed": "Aswan",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": pricingSnapshot.services["aswan-airport-transfer"].minPrice,
+        "priceCurrency": pricingSnapshot.currency,
+      },
+      "availability": "https://schema.org/InStock",
+    },
+  };
   const { t } = useSmartTranslation();
   
   // Scroll to top when component mounts
@@ -111,7 +128,7 @@ export default function AswanAirportTransfers() {
         title="Aswan Airport Transfers | Fixed Price | AffordEgypt"
         description="Private Aswan airport (ASW) transfers to any Aswan hotel or Nile cruise dock. Licensed drivers, fixed prices, no markup."
         canonical="https://affordegypt.com/aswan-airport-transfers"
-        schema={{"@context": "https://schema.org", "@type": "Service", "serviceType": "Airport Transfer", "provider": {"@type": "TravelAgency", "name": "AffordEgypt"}, "areaServed": "Aswan", "offers": {"@type": "Offer", "priceCurrency": "EGP", "price": "1500", "availability": "https://schema.org/InStock"}}}
+        schema={SERVICE_SCHEMA}
       />
 
       <div className="min-h-screen bg-background">
