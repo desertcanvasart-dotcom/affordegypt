@@ -31,7 +31,7 @@ const HOMEPAGE_FAQS: { question: string; answer: string }[] = [
   {
     question: "What's your cancellation policy?",
     answer:
-      "Our cancellation policy is being finalised. For now, please contact us on WhatsApp and we'll confirm the exact terms in writing before you commit. Industry standard is free cancellation up to 14 days out — we won't be more restrictive than that.",
+      "Free cancellation up to 3 days before your trip starts — you get the full deposit back. Inside 3 days, the deposit is non-refundable because we've already committed your guide and vehicle for those days. Anything paid beyond the deposit is refunded in full. If we have to cancel for any reason on our end (vehicle issue, guide illness, force majeure), we refund 100%, including the deposit, and help you rebook.",
   },
   {
     question: "Do I need a visa to enter Egypt?",
@@ -46,7 +46,7 @@ const HOMEPAGE_FAQS: { question: string; answer: string }[] = [
   {
     question: "What's the absolute minimum I could pay for a private Egypt trip?",
     answer:
-      "Our floor is LE 5,000/day for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. We'll send you a real quote in under a minute — no account, no commitment.",
+      "Our floor is LE 5,000/day for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. We'll send you a real quote in under a minute — no account, no commitment. Note: we don't sell shared minibus tours. Some operators advertise \"Egypt tours from $50/day\" — those are shared group tours, a different product. Ours is fully private.",
   },
 ];
 

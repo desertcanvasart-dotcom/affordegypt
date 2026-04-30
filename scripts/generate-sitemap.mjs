@@ -120,14 +120,15 @@ function escapeXml(s) {
     .replace(/'/g, "&apos;");
 }
 
+// TODO: emit hreflang alternates for es/fr/de when those routes are added to PRERENDER_ROUTES (Phase 3+).
 function buildEntry(route, lastmod) {
   const enSlug = route === "/" ? "" : route.slice(1);
   const langs = Object.keys(SLUG_MAPPINGS);
-  // Generate alternates for routes that are translated (skip "/" — homepage
-  // currently only renders as English).
   const hasTranslations = enSlug && SLUG_MAPPINGS.en[enSlug] !== undefined;
 
-  const alternateLinks = hasTranslations
+  const alternateLinks = route === "/"
+    ? `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/" />`
+    : hasTranslations
     ? langs
         .map((lang) => {
           const slug = SLUG_MAPPINGS[lang]?.[enSlug];

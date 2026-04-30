@@ -64,18 +64,15 @@ const FAQS: FAQ[] = [
   {
     id: 4,
     question: "What's your cancellation policy?",
-    // TODO: Islam to fill this in. Industry-standard is: free cancellation
-    // up to 14 or 30 days out, partial refund 7–14 days out, no refund
-    // inside 7 days. Whatever you actually do — write it here clearly.
-    // Hiding the cancellation policy is a major conversion blocker.
     answer: (
       <>
-        <em>
-          Our cancellation policy is being finalised. For now, please contact
-          us on WhatsApp and we'll confirm the exact terms in writing before
-          you commit. Industry standard is free cancellation up to 14 days out
-          — we won't be more restrictive than that.
-        </em>
+        Free cancellation up to 3 days before your trip starts — you get the
+        full deposit back. Inside 3 days, the deposit is non-refundable
+        because we've already committed your guide and vehicle for those
+        days. Anything paid beyond the deposit is refunded in full. If we
+        have to cancel for any reason on our end (vehicle issue, guide
+        illness, force majeure), we refund 100%, including the deposit, and
+        help you rebook.
       </>
     ),
   },
@@ -110,11 +107,12 @@ const FAQS: FAQ[] = [
     question: "What's the absolute minimum I could pay for a private Egypt trip?",
     answer: (
       <>
-        Our floor is <strong>$[X]/day</strong> for a private car + licensed
-        Egyptologist in Cairo, before tickets, meals, and hotel. A typical
-        3-day Cairo trip with all entrance tickets and one meal per day works
-        out to around <strong>$[Y] per person for a couple</strong>. We'll
-        send you a real quote in under a minute — no account, no commitment.
+        Our floor is <strong>LE 5,000/day</strong> for a private car +
+        licensed Egyptologist in Cairo, before tickets, meals, and hotel.
+        We'll send you a real quote in under a minute — no account, no
+        commitment. Note: we don't sell shared minibus tours. Some operators
+        advertise "Egypt tours from $50/day" — those are shared group tours,
+        a different product. Ours is fully private.
       </>
     ),
   },
