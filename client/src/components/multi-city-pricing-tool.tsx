@@ -339,7 +339,7 @@ export default function MultiCityPricingTool() {
         total: (totalPricing?.totalAmount || 0).toString(),
         travelers: (totalPricing?.travelers || 1).toString(),
         cities: cityServices.map(c => c.cityName).join(','),
-        travelDate: travelDate,
+        travelDate: travelDate ?? '',
         itinerary: encodeURIComponent(JSON.stringify(cityServices))
       });
       setLocation(`/book?${queryParams.toString()}`);
@@ -553,7 +553,7 @@ export default function MultiCityPricingTool() {
       return {
         cityId: city.id,
         cityName: city.name,
-        date: travelDate,
+        date: travelDate ?? '',
         travelers: globalTravelers,
         selectedRoutes: [],
         attractions: "",
@@ -878,7 +878,7 @@ export default function MultiCityPricingTool() {
                               dayNumber: 1,
                               cityId: selectedCity.id,
                               cityName: selectedCity.name,
-                              date: travelDate,
+                              date: travelDate ?? '',
                               travelers: globalTravelers,
                               selectedRoutes: [],
                               attractions: '',
