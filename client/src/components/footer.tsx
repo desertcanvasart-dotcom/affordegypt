@@ -161,7 +161,7 @@ export default function Footer() {
             Cairo, Egypt
           </p>
           <p className="text-xs">
-            &copy; {new Date().getFullYear()} AffordEgypt. {t('footer.copyright')}
+            {`© ${new Date().getFullYear()} AffordEgypt. ${t('footer.copyright')}`}
           </p>
         </div>
       </div>

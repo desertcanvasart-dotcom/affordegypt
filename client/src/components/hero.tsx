@@ -18,18 +18,13 @@ export default function Hero() {
 
   return (
     <section
-      className="min-h-[90vh] flex items-center justify-center relative"
-      style={{
-        backgroundImage: `linear-gradient(rgba(25, 169, 116, 0.3), rgba(31, 41, 55, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
+      className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg')]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(25,169,116,0.3)] to-[rgba(31,41,55,0.6)] pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center text-white max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance leading-tight">
-            Real Egypt tours, from a real Egyptian operator.{" "}
+            {"Real Egypt tours, from a real Egyptian operator. "}
             <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
               Real prices.
             </span>
@@ -41,13 +36,13 @@ export default function Hero() {
             lighter inclusions, no hidden fees.
           </p>
           <p className="text-lg md:text-xl mb-2 text-white/95 max-w-3xl mx-auto text-balance">
-            Private car + Egyptologist from{" "}
+            {"Private car + Egyptologist from "}
             <span className="font-semibold text-white">
-              LE {MIN_DAILY_PRICE_EGP.toLocaleString("en-US")} / day
+              {`LE ${MIN_DAILY_PRICE_EGP.toLocaleString("en-US")} / day`}
             </span>
           </p>
           <p className="text-sm md:text-base mb-8 text-white/75 max-w-3xl mx-auto">
-            (~{USD_DISPLAY_HINT} USD / {EUR_DISPLAY_HINT} EUR)
+            {`(~${USD_DISPLAY_HINT} USD / ${EUR_DISPLAY_HINT} EUR)`}
           </p>
 
           <Button

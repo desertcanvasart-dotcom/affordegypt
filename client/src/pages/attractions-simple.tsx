@@ -115,8 +115,8 @@ export default function AttractionsPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <p>Total Attractions: {Array.isArray(attractions) ? attractions.length : 0}</p>
-                <p>Total Cities: {Array.isArray(cities) ? cities.length : 0}</p>
+                <p>{`Total Attractions: ${Array.isArray(attractions) ? attractions.length : 0}`}</p>
+                <p>{`Total Cities: ${Array.isArray(cities) ? cities.length : 0}`}</p>
                 
                 <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                   <DialogTrigger asChild>

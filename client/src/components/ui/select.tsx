@@ -5,8 +5,21 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { ClientOnly } from "@/components/client-only"
 
-const Select = SelectPrimitive.Root
+// Radix Select renders different DOM on its first render vs. its second render
+// (the hidden BubbleSelect <select> only appears on first render before the
+// trigger ref is set). Build-time prerendering captures the second-render
+// output, so first-pass hydration mismatches. Gate every Select tree behind
+// ClientOnly so prerendered HTML never contains Select markup. The mount
+// delay is invisible on non-prerendered routes (already client-rendered).
+const Select = (
+  props: React.ComponentProps<typeof SelectPrimitive.Root>,
+) => (
+  <ClientOnly>
+    <SelectPrimitive.Root {...props} />
+  </ClientOnly>
+)
 
 const SelectGroup = SelectPrimitive.Group
 

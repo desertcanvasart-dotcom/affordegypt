@@ -40,15 +40,10 @@ export default function About() {
       <Navbar />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section 
-          className="relative text-white min-h-[90vh] flex items-center justify-center"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/pyramids-desert.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
+        <section
+          className="relative text-white min-h-[90vh] flex items-center justify-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/pyramids-desert.jpg')]"
         >
+          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-teal-600/30 to-teal-700/30" />
           <div className="relative max-w-6xl mx-auto px-4 text-center">
             <Badge className="bg-white/20 text-white mb-6 text-sm px-4 py-2">

@@ -4,6 +4,8 @@
 // (phone shot in Cairo or Siwa, daylight, looking at camera). DO NOT use
 // stock or AI-generated imagery here — that defeats the point of the block.
 
+import { ClientOnly } from "@/components/client-only";
+
 export default function FounderBlock() {
   return (
     <section className="bg-white py-16">
@@ -14,16 +16,18 @@ export default function FounderBlock() {
               className="w-48 h-48 md:w-full md:h-auto md:aspect-square rounded-full md:rounded-2xl overflow-hidden bg-gray-100 ring-4 ring-primary/10"
               aria-label="Photo of Islam, founder of AffordEgypt"
             >
-              <img
-                src="/islam-photo.jpg"
-                alt="Islam, founder of AffordEgypt"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  // Fallback: hide the broken image so the layout doesn't
-                  // show a placeholder icon if the photo isn't uploaded yet.
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
-              />
+              <ClientOnly>
+                <img
+                  src="/islam-photo.jpg"
+                  alt="Islam, founder of AffordEgypt"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback: hide the broken image so the layout doesn't
+                    // show a placeholder icon if the photo isn't uploaded yet.
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </ClientOnly>
             </div>
           </div>
 
@@ -33,11 +37,9 @@ export default function FounderBlock() {
             </h2>
 
             <p className="leading-relaxed">
-              I grew up in Siwa Oasis and have run{" "}
-              <span className="font-semibold">Travel2Egypt</span> — a licensed
-              Egyptian tour operator — since 2020. We've taken thousands of
-              travelers across Egypt: backpackers and families, honeymooners
-              and solo first-timers.
+              {"I grew up in Siwa Oasis and have run "}
+              <span className="font-semibold">Travel2Egypt</span>
+              {" — a licensed Egyptian tour operator — since 2020. We've taken thousands of travelers across Egypt: backpackers and families, honeymooners and solo first-timers."}
             </p>
 
             <p className="leading-relaxed">

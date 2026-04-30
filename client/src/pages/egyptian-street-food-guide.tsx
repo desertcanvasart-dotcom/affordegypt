@@ -154,14 +154,8 @@ export default function EgyptianStreetFoodGuide() {
         <Navbar />
         
         {/* Hero Section */}
-        <section 
-          className="relative text-white min-h-[80vh] flex items-center"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
+        <section
+          className="relative text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg')]"
         >
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative max-w-7xl mx-auto px-4 py-32">
@@ -452,7 +446,7 @@ export default function EgyptianStreetFoodGuide() {
                     <div className="text-center space-y-2">
                       <div className="text-lg font-semibold text-gray-900">{phrase.english}</div>
                       <div className="text-2xl text-teal-600 font-bold">{phrase.arabic}</div>
-                      <div className="text-sm text-gray-600 italic">({phrase.transliteration})</div>
+                      <div className="text-sm text-gray-600 italic">{`(${phrase.transliteration})`}</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -505,8 +499,8 @@ export default function EgyptianStreetFoodGuide() {
           {/* Final CTA */}
           <section className="bg-teal-600 text-white -mx-4 px-4 py-16 rounded-2xl">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6" style={{ color: '#ffffff' }}>Your Culinary Adventure Awaits</h2>
-              <p className="text-xl mb-8 leading-relaxed font-semibold" style={{ color: '#ffffff' }}>
+              <h2 className="text-4xl font-bold mb-6 text-white">Your Culinary Adventure Awaits</h2>
+              <p className="text-xl mb-8 leading-relaxed font-semibold text-white">
                 Egypt's street food is more than cheap eats—it's a window into the soul of the country. 
                 Every sandwich passed through a tuk-tuk window, every spicy bite eaten standing on a sidewalk, 
                 brings you closer to the people and their heritage.

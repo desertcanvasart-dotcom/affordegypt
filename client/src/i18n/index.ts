@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
 // Import translation files
 import enTranslations from './locales/en.json';
@@ -32,31 +31,26 @@ const resources = {
   }
 };
 
+// Hydration-safe init: lock first paint to English so prerendered HTML matches
+// what React renders on the client. Real language detection runs post-hydration
+// from main.tsx via applyDetectedLanguage().
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',                    // current language
-    fallbackLng: 'en',            // ALWAYS keep a fallback
-    ns: ['translation', 'blog', 'common'],          // namespaces we use
+    lng: 'en',
+    fallbackLng: 'en',
+    initImmediate: false,
+    ns: ['translation', 'blog', 'common'],
     defaultNS: 'translation',
-    keySeparator: '.',            // enable nested key lookup (blog.sinaiGuide.title)
-    debug: false, // Enable manually when needed for debugging translations
+    keySeparator: '.',
+    debug: false,
     returnObjects: false,
-    
+
     interpolation: {
       escapeValue: false, // React already escapes values
     },
-    
-    detection: {
-      order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'language',
-      lookupQuerystring: 'lng',
-    },
-    
-    // Add missing key handling
+
     saveMissing: process.env.NODE_ENV === 'development',
     parseMissingKeyHandler: (key: string) => {
       if (process.env.NODE_ENV === 'development') {
@@ -65,5 +59,51 @@ i18n
       return key;
     },
   });
+
+const SUPPORTED = ['en', 'es', 'fr', 'de'] as const;
+type Supported = (typeof SUPPORTED)[number];
+
+function normalize(raw: string | null | undefined): Supported | null {
+  if (!raw) return null;
+  const base = raw.toLowerCase().split('-')[0];
+  return (SUPPORTED as readonly string[]).includes(base) ? (base as Supported) : null;
+}
+
+// Reimplements i18next-browser-languagedetector's priority chain
+// (querystring 'lng' -> localStorage 'language' -> navigator.language) without
+// running synchronously during init. Caches the detected value to localStorage
+// to mirror the previous { caches: ['localStorage'] } behaviour.
+export function applyDetectedLanguage(): void {
+  if (typeof window === 'undefined') return;
+  let detected: Supported | null = null;
+
+  try {
+    const qs = new URLSearchParams(window.location.search).get('lng');
+    detected = normalize(qs);
+  } catch {}
+
+  if (!detected) {
+    try {
+      detected = normalize(window.localStorage.getItem('language'));
+    } catch {}
+  }
+
+  if (!detected) {
+    try {
+      detected = normalize(window.navigator.language);
+    } catch {}
+  }
+
+  if (detected && detected !== i18n.language) {
+    i18n.changeLanguage(detected);
+    try {
+      window.localStorage.setItem('language', detected);
+    } catch {}
+  } else if (detected) {
+    try {
+      window.localStorage.setItem('language', detected);
+    } catch {}
+  }
+}
 
 export default i18n;

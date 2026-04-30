@@ -2,8 +2,22 @@ import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 
 import { cn } from "@/lib/utils"
+import { ClientOnly } from "@/components/client-only"
 
-const Tabs = TabsPrimitive.Root
+// Radix Tabs Content emits an inline `style="animation-duration: 0s"` on the
+// active panel during first render to suppress the entry animation. The
+// browser-serialized prerender HTML preserves that attribute but React's
+// hydration walk does not always re-emit it identically, causing a mismatch.
+// Gating Tabs behind ClientOnly keeps the prerendered HTML free of Tabs
+// markup; tabs mount on hydration. None of the tabbed UIs in this app are
+// SEO-critical (pricing tool, filter panes, dashboards).
+const Tabs = (
+  props: React.ComponentProps<typeof TabsPrimitive.Root>,
+) => (
+  <ClientOnly>
+    <TabsPrimitive.Root {...props} />
+  </ClientOnly>
+)
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,

@@ -76,9 +76,27 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Serve prerendered <route>/index.html directly (no trailing-slash redirect)
+  // by rewriting /foo -> /foo/index.html when that file exists on disk.
+  app.use((req, res, next) => {
+    if (req.method !== "GET" && req.method !== "HEAD") return next();
+    if (req.path.endsWith("/") || path.extname(req.path)) return next();
+    const candidate = path.join(distPath, req.path, "index.html");
+    fs.stat(candidate, (err, stat) => {
+      if (err || !stat.isFile()) return next();
+      res.sendFile(candidate);
+    });
+  });
 
-  // fall through to index.html if the file doesn't exist
+  app.use(
+    express.static(distPath, {
+      index: "index.html",
+      extensions: ["html"],
+      redirect: false,
+    }),
+  );
+
+  // SPA fallback for routes without a prerendered file.
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });

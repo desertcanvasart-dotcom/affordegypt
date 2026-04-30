@@ -734,18 +734,13 @@ export default function CuisinePassport() {
         <Navbar />
         
         {/* Hero Section */}
-        <header 
-          className="min-h-[90vh] flex items-center justify-center relative"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('http://travel2egypt.org/wp-content/uploads/2025/06/egyptian-food.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
+        <header
+          className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/egyptian-food.jpg')]"
         >
-          <div className="container mx-auto px-4 text-center">
+          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+          <div className="container mx-auto px-4 text-center relative">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-              {t('cuisinePassport.hero.title')}{" "}
+              {`${t('cuisinePassport.hero.title')} `}
               <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
                 {t('cuisinePassport.hero.subtitle')}
               </span>
@@ -766,7 +761,7 @@ export default function CuisinePassport() {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>{t('cuisinePassport.progress.dishesTriedLabel')}</span>
-                    <span className="font-medium">{triedCount}/{dishes.length}</span>
+                    <span className="font-medium">{`${triedCount}/${dishes.length}`}</span>
                   </div>
                   <Progress value={progressPercentage} className="h-2" />
                   <p className="text-xs text-gray-600 text-center">
@@ -883,7 +878,7 @@ export default function CuisinePassport() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-1">
-                          <span className="text-xs text-gray-500">{t('cuisinePassport.dish.spiceLevel')}:</span>
+                          <span className="text-xs text-gray-500">{`${t('cuisinePassport.dish.spiceLevel')}:`}</span>
                           <div className="flex gap-1">
                             {getSpiceIcons(dish.spiceLevel)}
                           </div>
@@ -901,7 +896,7 @@ export default function CuisinePassport() {
                         </div>
                         <div className="flex items-center gap-1 text-xs text-primary">
                           <Leaf className="w-3 h-3" />
-                          {t('cuisinePassport.dish.healthLabel')}: {dish.nutritionScore}%
+                          {`${t('cuisinePassport.dish.healthLabel')}: ${dish.nutritionScore}%`}
                         </div>
                       </div>
 

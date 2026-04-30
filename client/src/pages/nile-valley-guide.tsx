@@ -2407,17 +2407,12 @@ export default function NileValleyGuide() {
 
       {/* Hero Section */}
       <header
-        className="min-h-[90vh] flex items-center justify-center relative"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-1.jpg')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
+        className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-1.jpg')]"
       >
-        <div className="container mx-auto px-4 text-center">
+        <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+        <div className="container mx-auto px-4 text-center relative">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-            {currentContent.title}{" "}
+            {`${currentContent.title} `}
             <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
               {currentContent.subtitle}
             </span>
@@ -2466,7 +2461,7 @@ export default function NileValleyGuide() {
             onClick={navigateToQuote}
             className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1"
           >
-            {currentContent.hero.cta} →
+            {`${currentContent.hero.cta} →`}
           </Button>
         </div>
       </header>
@@ -2506,11 +2501,13 @@ export default function NileValleyGuide() {
                     >
                       <stop
                         offset="0%"
-                        style={{ stopColor: "#f4f1de", stopOpacity: 1 }}
+                        stopColor="#f4f1de"
+                        stopOpacity={1}
                       />
                       <stop
                         offset="100%"
-                        style={{ stopColor: "#e07a5f", stopOpacity: 0.3 }}
+                        stopColor="#e07a5f"
+                        stopOpacity={0.3}
                       />
                     </linearGradient>
                   </defs>
@@ -2732,7 +2729,7 @@ export default function NileValleyGuide() {
                         top:
                           filteredCities.length === 1
                             ? "50%"
-                            : `${(index / (filteredCities.length - 1)) * 70 + 15}%`,
+                            : `${(((index / (filteredCities.length - 1)) * 70 + 15) * 10000 | 0) / 10000}%`,
                       }}
                       onClick={() => {
                         setSelectedCity(city);
@@ -2818,22 +2815,19 @@ export default function NileValleyGuide() {
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-primary" />
                       <span>
-                        {currentContent.cityDetails.population}{" "}
-                        {selectedCity.population}
+                        {`${currentContent.cityDetails.population} ${selectedCity.population}`}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
                       <span>
-                        {currentContent.cityDetails.bestTime}{" "}
-                        {translateKey(selectedCity.bestTimeToVisit)}
+                        {`${currentContent.cityDetails.bestTime} ${translateKey(selectedCity.bestTimeToVisit)}`}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-primary" />
                       <span>
-                        {currentContent.cityDetails.recommendedStay}{" "}
-                        {translateKey(selectedCity.averageStay)}
+                        {`${currentContent.cityDetails.recommendedStay} ${translateKey(selectedCity.averageStay)}`}
                       </span>
                     </div>
                   </div>
@@ -2877,8 +2871,7 @@ export default function NileValleyGuide() {
                     <div className="flex items-center gap-2">
                       <Navigation className="w-4 h-4 text-primary" />
                       <span className="text-sm">
-                        {currentContent.cityDetails.localTransport}{" "}
-                        {selectedCity.transportation.localTransport.join(", ")}
+                        {`${currentContent.cityDetails.localTransport} ${selectedCity.transportation.localTransport.join(", ")}`}
                       </span>
                     </div>
                   </div>
@@ -2899,12 +2892,10 @@ export default function NileValleyGuide() {
                           </p>
                           <div className="flex justify-between text-xs text-gray-500">
                             <span>
-                              {currentContent.cityDetails.entry}{" "}
-                              {translateKey(attraction.entryFee)}
+                              {`${currentContent.cityDetails.entry} ${translateKey(attraction.entryFee)}`}
                             </span>
                             <span>
-                              {currentContent.cityDetails.hours}{" "}
-                              {translateKey(attraction.hours)}
+                              {`${currentContent.cityDetails.hours} ${translateKey(attraction.hours)}`}
                             </span>
                           </div>
                         </div>
@@ -2959,27 +2950,19 @@ export default function NileValleyGuide() {
 
                     <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                       <div>
-                        <span className="font-medium">
-                          {currentContent.completeGuide.population}
-                        </span>{" "}
+                        <span className="font-medium">{`${currentContent.completeGuide.population} `}</span>
                         {city.population}
                       </div>
                       <div>
-                        <span className="font-medium">
-                          {currentContent.completeGuide.bestTime}
-                        </span>{" "}
+                        <span className="font-medium">{`${currentContent.completeGuide.bestTime} `}</span>
                         {translateKey(city.bestTimeToVisit)}
                       </div>
                       <div>
-                        <span className="font-medium">
-                          {currentContent.completeGuide.stayDuration}
-                        </span>{" "}
+                        <span className="font-medium">{`${currentContent.completeGuide.stayDuration} `}</span>
                         {translateKey(city.averageStay)}
                       </div>
                       <div>
-                        <span className="font-medium">
-                          {currentContent.completeGuide.fromCairo}
-                        </span>{" "}
+                        <span className="font-medium">{`${currentContent.completeGuide.fromCairo} `}</span>
                         {city.transportation.fromCairo}
                       </div>
                     </div>
@@ -3023,7 +3006,7 @@ export default function NileValleyGuide() {
                         <ul className="text-sm space-y-1">
                           {city.budgetTips.slice(0, 2).map((tip, index) => (
                             <li key={index} className="text-gray-600">
-                              • {translateKey(tip)}
+                              {`• ${translateKey(tip)}`}
                             </li>
                           ))}
                         </ul>
@@ -3054,10 +3037,10 @@ export default function NileValleyGuide() {
                 {currentContent.transportation.train.description}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• {currentContent.transportation.train.cairoLuxor}</li>
-                <li>• {currentContent.transportation.train.cairoAswan}</li>
-                <li>• {currentContent.transportation.train.acCoaches}</li>
-                <li>• {currentContent.transportation.train.nightTrains}</li>
+                <li>{`• ${currentContent.transportation.train.cairoLuxor}`}</li>
+                <li>{`• ${currentContent.transportation.train.cairoAswan}`}</li>
+                <li>{`• ${currentContent.transportation.train.acCoaches}`}</li>
+                <li>{`• ${currentContent.transportation.train.nightTrains}`}</li>
               </ul>
             </Card>
 
@@ -3070,10 +3053,10 @@ export default function NileValleyGuide() {
                 {currentContent.transportation.cruise.description}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• {currentContent.transportation.cruise.threeFourDays}</li>
-                <li>• {currentContent.transportation.cruise.allMeals}</li>
-                <li>• {currentContent.transportation.cruise.entranceFees}</li>
-                <li>• {currentContent.transportation.cruise.bestTime}</li>
+                <li>{`• ${currentContent.transportation.cruise.threeFourDays}`}</li>
+                <li>{`• ${currentContent.transportation.cruise.allMeals}`}</li>
+                <li>{`• ${currentContent.transportation.cruise.entranceFees}`}</li>
+                <li>{`• ${currentContent.transportation.cruise.bestTime}`}</li>
               </ul>
             </Card>
 
@@ -3086,10 +3069,10 @@ export default function NileValleyGuide() {
                 {currentContent.transportation.flights.description}
               </p>
               <ul className="text-sm text-left space-y-1">
-                <li>• {currentContent.transportation.flights.cairoLuxor}</li>
-                <li>• {currentContent.transportation.flights.cairoAswan}</li>
-                <li>• {currentContent.transportation.flights.abuSimbel}</li>
-                <li>• {currentContent.transportation.flights.flightTimes}</li>
+                <li>{`• ${currentContent.transportation.flights.cairoLuxor}`}</li>
+                <li>{`• ${currentContent.transportation.flights.cairoAswan}`}</li>
+                <li>{`• ${currentContent.transportation.flights.abuSimbel}`}</li>
+                <li>{`• ${currentContent.transportation.flights.flightTimes}`}</li>
               </ul>
             </Card>
           </div>
@@ -3183,26 +3166,22 @@ export default function NileValleyGuide() {
               </h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  • {currentContent.travelTips.culturalEtiquette.dressModestly}
+                  {`• ${currentContent.travelTips.culturalEtiquette.dressModestly}`}
                 </li>
                 <li>
-                  • {currentContent.travelTips.culturalEtiquette.removeShoes}
+                  {`• ${currentContent.travelTips.culturalEtiquette.removeShoes}`}
                 </li>
                 <li>
-                  • {currentContent.travelTips.culturalEtiquette.askPermission}
+                  {`• ${currentContent.travelTips.culturalEtiquette.askPermission}`}
                 </li>
                 <li>
-                  •{" "}
-                  {
-                    currentContent.travelTips.culturalEtiquette
-                      .bargainRespectfully
-                  }
+                  {`• ${currentContent.travelTips.culturalEtiquette.bargainRespectfully}`}
                 </li>
                 <li>
-                  • {currentContent.travelTips.culturalEtiquette.tipStaff}
+                  {`• ${currentContent.travelTips.culturalEtiquette.tipStaff}`}
                 </li>
                 <li>
-                  • {currentContent.travelTips.culturalEtiquette.learnGreetings}
+                  {`• ${currentContent.travelTips.culturalEtiquette.learnGreetings}`}
                 </li>
               </ul>
             </Card>
@@ -3213,20 +3192,20 @@ export default function NileValleyGuide() {
               </h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  • {currentContent.travelTips.healthSafety.drinkBottledWater}
+                  {`• ${currentContent.travelTips.healthSafety.drinkBottledWater}`}
                 </li>
-                <li>• {currentContent.travelTips.healthSafety.useSunscreen}</li>
+                <li>{`• ${currentContent.travelTips.healthSafety.useSunscreen}`}</li>
                 <li>
-                  • {currentContent.travelTips.healthSafety.packMedications}
+                  {`• ${currentContent.travelTips.healthSafety.packMedications}`}
                 </li>
                 <li>
-                  • {currentContent.travelTips.healthSafety.getTravelInsurance}
+                  {`• ${currentContent.travelTips.healthSafety.getTravelInsurance}`}
                 </li>
-                <li>• {currentContent.travelTips.healthSafety.keepCopies}</li>
+                <li>{`• ${currentContent.travelTips.healthSafety.keepCopies}`}</li>
                 <li>
-                  • {currentContent.travelTips.healthSafety.useRegisteredGuides}
+                  {`• ${currentContent.travelTips.healthSafety.useRegisteredGuides}`}
                 </li>
-                <li>• {currentContent.travelTips.healthSafety.stayHydrated}</li>
+                <li>{`• ${currentContent.travelTips.healthSafety.stayHydrated}`}</li>
               </ul>
             </Card>
           </div>

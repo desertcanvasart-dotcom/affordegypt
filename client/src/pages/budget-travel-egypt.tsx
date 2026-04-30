@@ -118,15 +118,10 @@ export default function BudgetTravelEgypt() {
         <Navbar />
         
         {/* Hero Section */}
-        <section 
-          className="relative text-white min-h-[80vh] flex items-center"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
+        <section
+          className="relative text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed bg-[url('https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80')]"
         >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           <div className="relative max-w-7xl mx-auto px-4 py-32">
             <div className="max-w-4xl">
@@ -277,7 +272,7 @@ export default function BudgetTravelEgypt() {
 
                     {time.tip && (
                       <div className="bg-blue-100 p-3 rounded-lg">
-                        <p className="text-sm text-blue-800"><strong>Tip:</strong> {time.tip}</p>
+                        <p className="text-sm text-blue-800"><strong>Tip:</strong>{` ${time.tip}`}</p>
                       </div>
                     )}
                   </CardContent>

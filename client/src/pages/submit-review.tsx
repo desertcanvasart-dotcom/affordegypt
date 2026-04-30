@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import ReviewForm from "@/components/review-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Users, MapPin } from "lucide-react";
+import { ClientOnly } from "@/components/client-only";
 
 export default function SubmitReview() {
   const stats = [
@@ -63,7 +64,9 @@ export default function SubmitReview() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Review Form */}
                 <div className="lg:col-span-2">
-                  <ReviewForm />
+                  <ClientOnly>
+                    <ReviewForm />
+                  </ClientOnly>
                 </div>
 
                 {/* Sidebar */}

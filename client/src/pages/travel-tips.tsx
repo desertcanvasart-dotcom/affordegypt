@@ -13,18 +13,13 @@ export default function TravelTips() {
       <div className="min-h-screen bg-white">
         <Navbar />
         {/* Hero Section */}
-        <header 
-          className="min-h-[90vh] flex items-center justify-center relative"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/beach-in-sinai.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
+        <header
+          className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/beach-in-sinai.jpg')]"
         >
-          <div className="container mx-auto px-4">
+          <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+          <div className="container mx-auto px-4 relative">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-              Egypt Budget Travel{" "}
+              {"Egypt Budget Travel "}
               <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
                 Made Simple
               </span>

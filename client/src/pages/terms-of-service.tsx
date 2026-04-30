@@ -113,7 +113,7 @@ export default function TermsOfService() {
               
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
-                  For questions about these terms, please contact us at{" "}
+                  {"For questions about these terms, please contact us at "}
                   <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">
                     info@affordegypt.com
                   </a>

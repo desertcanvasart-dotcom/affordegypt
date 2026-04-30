@@ -10,3 +10,7 @@ vite.config.ts.*
 .local/
 uploads/
 .claude/
+
+# Local prerender hydration diagnostic scripts (kept on disk, not committed)
+hydration-check.mjs
+dom-diff.mjs

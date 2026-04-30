@@ -77,7 +77,7 @@ export default function CookiePolicy() {
               
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
-                  For any questions, contact:{" "}
+                  {"For any questions, contact: "}
                   <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">
                     info@affordegypt.com
                   </a>

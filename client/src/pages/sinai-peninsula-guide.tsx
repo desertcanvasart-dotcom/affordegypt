@@ -569,15 +569,10 @@ export default function SinaiPeninsulaGuide() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50">
       <Navbar />
       {/* Hero Section */}
-      <div 
-        className="relative text-white min-h-screen flex items-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('http://travel2egypt.org/wp-content/uploads/2025/06/red-sea-diving.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
+      <div
+        className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/red-sea-diving.jpg')]"
       >
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 py-32 text-center">
           <div className="space-y-8">

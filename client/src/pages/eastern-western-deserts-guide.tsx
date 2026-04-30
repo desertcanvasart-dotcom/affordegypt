@@ -162,14 +162,8 @@ export default function EasternWesternDesertsGuide() {
       <Navbar />
       
       {/* Hero Section */}
-      <div 
-        className="relative text-white min-h-screen flex items-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
+      <div
+        className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg')]"
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 py-32 text-center">
@@ -349,7 +343,7 @@ export default function EasternWesternDesertsGuide() {
                         <span className="font-bold text-primary">{index + 1}</span>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-primary">{day.day}: {day.location}</h3>
+                        <h3 className="font-semibold text-primary">{`${day.day}: ${day.location}`}</h3>
                         <p className="text-slate-600">{day.activities}</p>
                       </div>
                     </div>

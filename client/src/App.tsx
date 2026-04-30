@@ -8,6 +8,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { AuthProvider } from "@/hooks/useAuth";
 import { getAllSlugVariants } from "@/utils/slugTranslation";
 import { useEffect } from "react";
+import { ClientOnly } from "@/components/client-only";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
@@ -130,11 +131,31 @@ function App() {
     // Check for tracking IDs
     const hasGA = import.meta.env.VITE_GA_MEASUREMENT_ID;
     const hasAds = import.meta.env.VITE_GOOGLE_ADS_ID;
-    
+
     if (!hasGA && !hasAds) {
       console.warn('Missing tracking IDs: VITE_GA_MEASUREMENT_ID and VITE_GOOGLE_ADS_ID');
     } else {
       initGA();
+    }
+  }, []);
+
+  // Signal the prerenderer (Puppeteer) that initial render is complete.
+  // Fires after first paint so prerendered HTML captures the mounted DOM.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      document.dispatchEvent(new Event("prerender-ready"));
+    });
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  // If this page was served from prerendered HTML, refetch live data so the
+  // user sees fresh content within a couple seconds of hydration.
+  useEffect(() => {
+    const wasPrerendered = document
+      .querySelector('meta[name="prerender-status"]')
+      ?.getAttribute("content") === "prerendered";
+    if (wasPrerendered) {
+      queryClient.invalidateQueries();
     }
   }, []);
 
@@ -143,7 +164,9 @@ function App() {
       <HelmetProvider>
         <AuthProvider>
           <TooltipProvider>
-            <Toaster />
+            <ClientOnly>
+              <Toaster />
+            </ClientOnly>
             <Router />
             
             {/* Floating WhatsApp Button */}
