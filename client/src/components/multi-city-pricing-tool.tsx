@@ -25,6 +25,7 @@ import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { trackEvent, trackConversion } from "@/lib/analytics";
+import { useAuth } from "@/hooks/useAuth";
 
 interface CityService {
   dayNumber: number;
@@ -112,6 +113,18 @@ function StepProgress({ currentStep, steps, onStepClick }: {
 
 export default function MultiCityPricingTool() {
   const { t } = useTranslation();
+  const { isAuthenticated } = useAuth();
+  const hasLocalSavedQuote = typeof window !== "undefined"
+    && !!localStorage.getItem("saved_quote_id");
+
+  // Saved Quotes tab is only meaningful for users who already have one.
+  // Logged-in users may have server-side quotes; anonymous users may have a
+  // saved-quote ID in localStorage from a previous session.
+  const { data: serverQuotes = [] } = useQuery<any[]>({
+    queryKey: ["/api/quotes"],
+    enabled: isAuthenticated,
+  });
+  const showSavedQuotesTab = (isAuthenticated && serverQuotes.length > 0) || hasLocalSavedQuote;
   
   // Step-based navigation
   const [currentStep, setCurrentStep] = useState(1);
@@ -600,19 +613,26 @@ export default function MultiCityPricingTool() {
 
   return (
     <div id="quote-builder" className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      {!showSavedQuotesTab && (
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6">
+          Design Your Egypt Adventure
+        </h2>
+      )}
       <Tabs defaultValue="pricing" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
-          <TabsTrigger value="pricing" className="flex items-center gap-2">
-            <Calculator className="w-4 h-4" />
-            <span className="hidden sm:inline">Build Quote</span>
-            <span className="sm:hidden">Quote</span>
-          </TabsTrigger>
-          <TabsTrigger value="saved" className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4" />
-            <span className="hidden sm:inline">Saved Quotes</span>
-            <span className="sm:hidden">Saved</span>
-          </TabsTrigger>
-        </TabsList>
+        {showSavedQuotesTab && (
+          <TabsList className="grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
+            <TabsTrigger value="pricing" className="flex items-center gap-2">
+              <Calculator className="w-4 h-4" />
+              <span className="hidden sm:inline">Build Quote</span>
+              <span className="sm:hidden">Quote</span>
+            </TabsTrigger>
+            <TabsTrigger value="saved" className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4" />
+              <span className="hidden sm:inline">Saved Quotes</span>
+              <span className="sm:hidden">Saved</span>
+            </TabsTrigger>
+          </TabsList>
+        )}
 
         <TabsContent value="pricing">
           <Card>
@@ -1626,12 +1646,14 @@ export default function MultiCityPricingTool() {
       </Card>
         </TabsContent>
 
-        <TabsContent value="saved">
-          <QuoteManager 
-            currentQuote={getCurrentQuoteData()}
-            onLoadQuote={loadQuoteData}
-          />
-        </TabsContent>
+        {showSavedQuotesTab && (
+          <TabsContent value="saved">
+            <QuoteManager
+              currentQuote={getCurrentQuoteData()}
+              onLoadQuote={loadQuoteData}
+            />
+          </TabsContent>
+        )}
       </Tabs>
     </div>
   );
