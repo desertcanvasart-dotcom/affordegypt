@@ -1,5 +1,8 @@
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
+import CredentialsStrip from "@/components/credentials-strip";
+import FounderBlock from "@/components/founder-block";
+import InclusionsComparison from "@/components/inclusions-comparison";
 import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 import BlogGrid from "@/components/blog-grid";
@@ -13,6 +16,9 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navbar />
       <Hero />
+      <CredentialsStrip />
+      <FounderBlock />
+      <InclusionsComparison />
       <MultiCityPricingTool />
       <AnimatedReviewCarousel />
       <BlogGrid />

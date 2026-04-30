@@ -106,7 +106,7 @@ export default function Navbar() {
               onClick={navigateToHome}
             />
             <div className={`hidden lg:block text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
-              Egypt-based experts since 2020
+              Operated by Travel2Egypt · ETAA-licensed since 2020
             </div>
           </div>
 
@@ -166,14 +166,19 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <>
-                <Button variant="ghost" asChild className="text-gray-700 hover:text-primary hover:bg-teal-50 h-8 px-3 text-sm">
-                  <Link href="/login">Sign In</Link>
-                </Button>
-                <Button variant="outline" asChild className="border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white h-8 px-3 text-sm">
-                  <Link href="/register">Sign Up</Link>
-                </Button>
-              </>
+              // Sign In / Sign Up intentionally removed: customer accounts
+              // weren't moving the conversion needle and the SaaS-style
+              // header was fighting the booking funnel. Use a magic-link
+              // flow if quote retrieval is needed later.
+              <a
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 h-8 inline-flex items-center justify-center text-sm font-medium text-green-700 hover:text-green-800 hover:bg-green-50 rounded-md transition-colors"
+                title="Message us on WhatsApp"
+              >
+                WhatsApp
+              </a>
             )}
           </nav>
 
@@ -300,20 +305,15 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="space-y-3 border-t border-gray-200 pt-6">
-                <Link
-                  href="/login"
+                <a
+                  href="https://wa.me/1234567890"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block w-full text-center border border-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all font-medium"
+                  className="block w-full text-center border border-green-600 text-green-700 px-4 py-3 rounded-lg hover:bg-green-50 transition-all font-medium"
                 >
-                  Sign In
-                </Link>
-                <Link
-                  href="/register"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block w-full text-center bg-gray-800 text-white px-4 py-3 rounded-lg hover:bg-gray-900 transition-all font-medium"
-                >
-                  Sign Up
-                </Link>
+                  Message us on WhatsApp
+                </a>
               </div>
             )}
 

@@ -61,11 +61,13 @@ export default function NewsletterSection() {
         </div>
         
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          {t('footer.newsletter.title')}
+          Get the Egypt Trip Calculator
         </h2>
-        
+
         <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-          {t('footer.newsletter.subtitle')}
+          A 1-page worksheet for planning your trip cost honestly. Plus
+          monthly insider notes from a Cairo operator — no fluff, no
+          spam, unsubscribe in one click.
         </p>
         
         <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">

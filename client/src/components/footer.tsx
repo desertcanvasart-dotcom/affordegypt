@@ -148,18 +148,20 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p className="text-xs sm:text-sm whitespace-nowrap overflow-hidden text-ellipsis">
-            &copy; 2025 Afford Egypt. {t('footer.copyright')} | {t('footer.poweredBy')}{' '}
-            <a 
-              href="https://traveldigitalera.com/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-primary font-semibold hover:text-primary/80 transition-all duration-300 hover:underline decoration-primary underline-offset-4 relative inline overflow-hidden"
-            >
-              <span className="relative z-10">Travel Digital Era</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full h-full animate-light-sweep"></span>
-            </a>
+        <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 space-y-3">
+          <p className="text-xs sm:text-sm leading-relaxed max-w-3xl mx-auto">
+            AffordEgypt is operated by Travel2Egypt LLC
+            <span className="mx-2 text-gray-500">·</span>
+            ETAA member
+            <span className="mx-2 text-gray-500">·</span>
+            Commercial Registration #148004
+            <span className="mx-2 text-gray-500">·</span>
+            Tax ID 597-702-308
+            <span className="mx-2 text-gray-500">·</span>
+            Cairo, Egypt
+          </p>
+          <p className="text-xs">
+            &copy; {new Date().getFullYear()} AffordEgypt. {t('footer.copyright')}
           </p>
         </div>
       </div>
