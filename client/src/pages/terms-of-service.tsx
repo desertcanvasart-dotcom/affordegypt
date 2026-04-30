@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SeoMeta from "@/components/seo-meta";
 
 export default function TermsOfService() {
   useEffect(() => {
@@ -10,6 +11,11 @@ export default function TermsOfService() {
   return (
     <>
       <Navbar />
+  <SeoMeta
+          title="Terms of Service | AffordEgypt"
+          description="Terms of service for AffordEgypt, the budget tier of Travel2Egypt. Use of the site, bookings, payments, and liability."
+          canonical="https://affordegypt.com/terms-of-service"
+        />
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">

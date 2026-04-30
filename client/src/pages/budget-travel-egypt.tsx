@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -108,11 +108,12 @@ export default function BudgetTravelEgypt() {
 
   return (
     <>
-      <Helmet>
-        <title>Budget Travel in Egypt: How to See More for Less | Egypt Travel Guide 2025</title>
-        <meta name="description" content="Complete budget travel guide to Egypt 2025. Learn how to explore pyramids, temples, and ancient sites affordably with insider tips on accommodation, food, transport, and money-saving strategies." />
-        <meta name="keywords" content="budget travel Egypt, cheap Egypt travel, Egypt on a budget, affordable Egypt travel, Egypt travel costs 2025" />
-      </Helmet>
+      <SeoMeta
+        title="Egypt on a Budget | A Cairo Operator's Honest Guide"
+        description="How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions."
+        canonical="https://affordegypt.com/budget-travel-egypt"
+        ogType="article"
+      />
 
       <div className="min-h-screen bg-white">
         <Navbar />

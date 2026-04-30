@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import type { Review } from "@shared/schema";
+import SeoMeta from "@/components/seo-meta";
 
 export default function ReviewsPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -106,6 +107,11 @@ export default function ReviewsPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 py-16">
+  <SeoMeta
+          title="Traveler Reviews | AffordEgypt"
+          description="Real reviews from travelers who toured Egypt with AffordEgypt and Travel2Egypt — Cairo, Luxor, Aswan, and beyond."
+          canonical="https://affordegypt.com/reviews"
+        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto mb-4"></div>

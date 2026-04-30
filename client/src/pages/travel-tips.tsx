@@ -1,14 +1,16 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function TravelTips() {
   return (
     <>
-      <Helmet>
-        <title>Budget Travel in Egypt: The Ultimate 2025 Guide</title>
-        <meta name="description" content="Your ultimate 2025 guide to exploring the wonders of Egypt without breaking the bank. Get insider tips on transport, food, accommodation, and attractions." />
-      </Helmet>
+      <SeoMeta
+        title="Egypt Travel Tips | What Locals Wish You Knew"
+        description="Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong."
+        canonical="https://affordegypt.com/travel-tips"
+        ogType="article"
+      />
       
       <div className="min-h-screen bg-white">
         <Navbar />

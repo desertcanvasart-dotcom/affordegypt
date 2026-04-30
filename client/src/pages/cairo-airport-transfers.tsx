@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -118,17 +118,12 @@ export default function CairoAirportTransfers() {
 
   return (
     <>
-      <Helmet>
-        <title>{t("airportTransfers.cairo.title")}</title>
-        <meta 
-          name="description" 
-          content={t("airportTransfers.cairo.metaDescription")} 
-        />
-        <meta name="keywords" content={t("airportTransfers.cairo.keywords")} />
-        <meta property="og:title" content={t("airportTransfers.cairo.title")} />
-        <meta property="og:description" content={t("airportTransfers.cairo.metaDescription")} />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SeoMeta
+        title="Cairo Airport Transfers | Fixed Price from LE 600 | AffordEgypt"
+        description="Private Cairo airport transfers (CAI) to/from any Cairo or Giza hotel. Licensed drivers, fixed transparent prices, no surge, no hidden fees. Book online or via WhatsApp."
+        canonical="https://affordegypt.com/cairo-airport-transfers"
+        schema={{"@context": "https://schema.org", "@type": "Service", "serviceType": "Airport Transfer", "provider": {"@type": "TravelAgency", "name": "AffordEgypt"}, "areaServed": "Cairo", "offers": {"@type": "Offer", "priceCurrency": "EGP", "price": "600", "availability": "https://schema.org/InStock"}}}
+      />
 
       <div className="min-h-screen bg-background">
         <Navbar />

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -108,17 +108,12 @@ export default function CairoGuideServices() {
 
   return (
     <>
-      <Helmet>
-        <title>{t("guideServices.cairo.title")}</title>
-        <meta 
-          name="description" 
-          content={t("guideServices.cairo.metaDescription")} 
-        />
-        <meta name="keywords" content={t("guideServices.cairo.keywords")} />
-        <meta property="og:title" content={t("guideServices.cairo.title")} />
-        <meta property="og:description" content={t("guideServices.cairo.metaDescription")} />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SeoMeta
+        title="Cairo Private Tour Guide & Car | LE 5,000/day"
+        description="Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From LE 5,000/day all-in. ETAA-licensed Travel2Egypt operator."
+        canonical="https://affordegypt.com/cairo-car-tour-guide-services"
+        schema={{"@context": "https://schema.org", "@type": "Service", "serviceType": "Private Tour Guide and Car", "provider": {"@type": "TravelAgency", "name": "AffordEgypt"}, "areaServed": "Cairo", "offers": {"@type": "Offer", "priceCurrency": "EGP", "price": "5000", "availability": "https://schema.org/InStock"}}}
+      />
 
       <div className="min-h-screen bg-background">
         <Navbar />

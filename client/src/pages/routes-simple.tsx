@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import Navbar from "@/components/navbar";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -57,10 +57,11 @@ export default function RoutesSimple() {
 
   return (
     <>
-      <Helmet>
-        <title>Transportation Routes - Affordable Egypt Travel</title>
-        <meta name="description" content="Discover Egypt's comprehensive transportation network. Book inter-city transfers and city tours with competitive pricing and reliable service." />
-      </Helmet>
+      <SeoMeta
+        title="Egypt Transfer Routes | Fixed-Price City-to-City Transfers"
+        description="Browse fixed-price city-to-city transfer routes across Egypt. Cairo, Luxor, Aswan, Alexandria, Hurghada, and more. Licensed drivers, transparent pricing."
+        canonical="https://affordegypt.com/routes"
+      />
       
       <Navbar />
       

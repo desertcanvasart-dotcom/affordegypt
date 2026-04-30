@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -144,11 +144,12 @@ export default function EgyptianStreetFoodGuide() {
 
   return (
     <>
-      <Helmet>
-        <title>Egyptian Street Food: A Culinary Adventure Guide | Authentic Egypt Food 2025</title>
-        <meta name="description" content="Complete guide to Egyptian street food - from koshari to ta'ameya. Discover authentic flavors, safety tips, prices, and the best spots across Egypt for budget travelers." />
-        <meta name="keywords" content="Egyptian street food, koshari, ta'ameya, ful medames, Egypt food guide, Cairo street food, authentic Egyptian cuisine" />
-      </Helmet>
+      <SeoMeta
+        title="Egyptian Street Food Guide | What to Eat & Where"
+        description="From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide."
+        canonical="https://affordegypt.com/egyptian-street-food-guide"
+        ogType="article"
+      />
 
       <div className="min-h-screen bg-white">
         <Navbar />

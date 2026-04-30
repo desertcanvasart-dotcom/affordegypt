@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -108,17 +108,12 @@ export default function LuxorGuideServices() {
 
   return (
     <>
-      <Helmet>
-        <title>{t("guideServices.luxor.title")}</title>
-        <meta 
-          name="description" 
-          content={t("guideServices.luxor.metaDescription")} 
-        />
-        <meta name="keywords" content={t("guideServices.luxor.keywords")} />
-        <meta property="og:title" content={t("guideServices.luxor.title")} />
-        <meta property="og:description" content={t("guideServices.luxor.metaDescription")} />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SeoMeta
+        title="Luxor Private Tour Guide & Car | LE 5,000/day"
+        description="Private licensed Egyptologist + vehicle for Luxor East and West Banks. Karnak, Valley of the Kings, Hatshepsut, and the Colossi. From LE 5,000/day."
+        canonical="https://affordegypt.com/luxor-car-tour-guide-services"
+        schema={{"@context": "https://schema.org", "@type": "Service", "serviceType": "Private Tour Guide and Car", "provider": {"@type": "TravelAgency", "name": "AffordEgypt"}, "areaServed": "Luxor", "offers": {"@type": "Offer", "priceCurrency": "EGP", "price": "5000", "availability": "https://schema.org/InStock"}}}
+      />
 
       <div className="min-h-screen bg-background">
         <Navbar />

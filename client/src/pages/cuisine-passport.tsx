@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -725,10 +725,11 @@ export default function CuisinePassport() {
 
   return (
     <>
-      <Helmet>
-        <title>{t('cuisinePassport.title')} - Afford Egypt</title>
-        <meta name="description" content={t('cuisinePassport.description')} />
-      </Helmet>
+      <SeoMeta
+        title="Egyptian Cuisine Passport | Try 25 Dishes Across Egypt"
+        description="An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."
+        canonical="https://affordegypt.com/cuisine-passport"
+      />
 
       <div className="min-h-screen bg-white">
         <Navbar />

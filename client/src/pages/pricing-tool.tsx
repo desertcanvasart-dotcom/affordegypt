@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
@@ -6,11 +6,11 @@ import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 export default function PricingTool() {
   return (
     <>
-      <Helmet>
-        <title>Travel Pricing Tool | Afford Egypt</title>
-        <meta name="description" content="Build your custom Egypt travel itinerary with our interactive pricing tool. Get instant quotes for transportation, guides, and attractions across multiple cities." />
-        <meta name="keywords" content="Egypt travel pricing, custom itinerary, travel calculator, Egypt tour prices, budget travel planner" />
-      </Helmet>
+      <SeoMeta
+        title="Build Your Egypt Trip Quote | Real-Time Pricing | AffordEgypt"
+        description="Build a multi-city Egypt trip with real-time transparent pricing. Pick destinations, vehicles, guides, attractions, and add-ons. See your price in EGP. Pay 10% deposit, balance on arrival."
+        canonical="https://affordegypt.com/pricing-tool"
+      />
       
       <div className="min-h-screen bg-gray-50">
         <Navbar />

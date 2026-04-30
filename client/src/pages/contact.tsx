@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Award, Shield } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -69,10 +69,11 @@ export default function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>Contact Us - Afford Egypt</title>
-        <meta name="description" content="Get in touch with Afford Egypt for travel inquiries, bookings, and support. We're here to help make your Egypt travel dreams come true." />
-      </Helmet>
+      <SeoMeta
+        title="Contact AffordEgypt | WhatsApp, Email, Phone"
+        description="Reach AffordEgypt's Cairo office on WhatsApp, email, or phone. We typically respond within an hour during Cairo business hours."
+        canonical="https://affordegypt.com/contact"
+      />
       
       <Navbar />
       

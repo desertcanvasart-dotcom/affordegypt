@@ -16,6 +16,7 @@ import Footer from "@/components/footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import SeoMeta from "@/components/seo-meta";
 
 interface NileCity {
   id: number;
@@ -2403,6 +2404,12 @@ export default function NileValleyGuide() {
 
   return (
     <div className="min-h-screen bg-white">
+  <SeoMeta
+          title="Nile Valley Travel Guide | Beyond Luxor & Aswan"
+          description="The hidden gems of the Nile Valley between Luxor and Aswan. Edfu, Kom Ombo, Dendera, Esna. How to see them on a budget with a private guide."
+          canonical="https://affordegypt.com/nile-valley-guide"
+          ogType="article"
+        />
       <Navbar />
 
       {/* Hero Section */}

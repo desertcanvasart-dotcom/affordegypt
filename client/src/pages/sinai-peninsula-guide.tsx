@@ -8,6 +8,7 @@ import { Link, useLocation } from "wouter";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
+import SeoMeta from "@/components/seo-meta";
 
 export default function SinaiPeninsulaGuide() {
   const { i18n } = useTranslation();
@@ -567,6 +568,12 @@ export default function SinaiPeninsulaGuide() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50">
+  <SeoMeta
+          title="Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
+          description="From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai."
+          canonical="https://affordegypt.com/sinai-peninsula-guide"
+          ogType="article"
+        />
       <Navbar />
       {/* Hero Section */}
       <div

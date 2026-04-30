@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -108,17 +108,12 @@ export default function AswanGuideServices() {
 
   return (
     <>
-      <Helmet>
-        <title>Aswan Car & Tour Guide Services - Nubian Culture Tours | AffordEgypt</title>
-        <meta 
-          name="description" 
-          content="Expert Aswan car & tour guide services from 1,000 EGP. Nubian culture tours, Abu Simbel trips, Philae Temple guides, felucca sailing." 
-        />
-        <meta name="keywords" content="Aswan guide, Abu Simbel tour, Nubian village tour, Philae Temple guide, felucca sailing, Aswan car service" />
-        <meta property="og:title" content="Aswan Car & Tour Guide Services - Nubian Culture Tours" />
-        <meta property="og:description" content="Professional Nubian culture guides and desert expeditions in Aswan from 1,000 EGP." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SeoMeta
+        title="Aswan Private Tour Guide & Car | LE 5,000/day"
+        description="Private licensed Egyptologist + vehicle for Aswan, Philae, the High Dam, and Abu Simbel. From LE 5,000/day. Same team as Travel2Egypt."
+        canonical="https://affordegypt.com/aswan-car-tour-guide-services"
+        schema={{"@context": "https://schema.org", "@type": "Service", "serviceType": "Private Tour Guide and Car", "provider": {"@type": "TravelAgency", "name": "AffordEgypt"}, "areaServed": "Aswan", "offers": {"@type": "Offer", "priceCurrency": "EGP", "price": "5000", "availability": "https://schema.org/InStock"}}}
+      />
 
       <div className="min-h-screen bg-background">
         <Navbar />

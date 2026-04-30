@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SeoMeta from "@/components/seo-meta";
 
 export default function PrivacyPolicy() {
   useEffect(() => {
@@ -10,6 +11,11 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Navbar />
+  <SeoMeta
+          title="Privacy Policy | AffordEgypt"
+          description="How AffordEgypt collects, uses, and protects your personal data when you browse, request quotes, or book a tour."
+          canonical="https://affordegypt.com/privacy-policy"
+        />
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">

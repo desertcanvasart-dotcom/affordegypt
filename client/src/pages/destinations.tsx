@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { MapPin, Clock, Users, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -49,12 +49,11 @@ export default function Destinations() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{t('destinations.meta.title')}</title>
-        <meta name="description" content={t('destinations.meta.description')} />
-        <meta property="og:title" content={t('destinations.meta.title')} />
-        <meta property="og:description" content={t('destinations.meta.description')} />
-      </Helmet>
+      <SeoMeta
+        title="Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
+        description="Plan your Egypt trip across Cairo, Alexandria, Luxor, Aswan, Hurghada, and Sharm El Sheikh. Local insights, transparent pricing, licensed Egyptologist guides from Travel2Egypt's team."
+        canonical="https://affordegypt.com/destinations"
+      />
 
       <Navbar />
       

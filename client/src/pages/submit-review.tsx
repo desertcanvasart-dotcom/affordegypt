@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import ReviewForm from "@/components/review-form";
@@ -15,11 +15,11 @@ export default function SubmitReview() {
 
   return (
     <>
-      <Helmet>
-        <title>Submit Your Review | Afford Egypt</title>
-        <meta name="description" content="Share your Egypt travel experience with us. Help other travelers discover the magic of Egypt through your authentic review." />
-        <meta name="keywords" content="Egypt travel review, customer feedback, travel testimonial, Egypt tour review" />
-      </Helmet>
+      <SeoMeta
+        title="Submit a Review | AffordEgypt"
+        description="Tell us how your AffordEgypt trip went. Your honest feedback helps future travelers make a better decision."
+        canonical="https://affordegypt.com/submit-review"
+      />
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />

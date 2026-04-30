@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,12 +30,11 @@ export default function About() {
 
   return (
     <>
-      <Helmet>
-        <title>About Us - Afford Egypt | Budget Travel Specialists</title>
-        <meta name="description" content="Learn about Afford Egypt's mission to make Egyptian travel accessible to everyone. Since 2020, we've helped thousands explore Egypt safely and affordably." />
-        <meta property="og:title" content="About Us - Afford Egypt | Budget Travel Specialists" />
-        <meta property="og:description" content="Discover how Afford Egypt revolutionizes budget travel in Egypt with transparent pricing, safety standards, and authentic local experiences." />
-      </Helmet>
+      <SeoMeta
+        title="About AffordEgypt | The Budget Tier from Travel2Egypt"
+        description="AffordEgypt is the transparent budget tier from Travel2Egypt, a Cairo-based ETAA-licensed operator since 2020. Founded by Islam, who grew up in Siwa Oasis, to give travelers an honest middle ground between $4,000 packages and unverifiable WhatsApp operators."
+        canonical="https://affordegypt.com/about"
+      />
 
       <Navbar />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">

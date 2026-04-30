@@ -13,6 +13,7 @@ import Footer from "@/components/footer";
 import { useTranslation } from "react-i18next";
 
 import { RouteData, CityData } from "../../../shared/types";
+import SeoMeta from "@/components/seo-meta";
 
 // Multilingual content for transfers page
 const transfersContent = {
@@ -223,6 +224,11 @@ export default function TransfersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+  <SeoMeta
+          title="Egypt Airport & Intercity Transfers | Private Car from LE 1,500"
+          description="Private airport transfers and intercity transfers across Egypt. Cairo, Luxor, Aswan, Alexandria, Hurghada, Sharm El Sheikh. Licensed drivers, fixed prices, no hidden fees. Book in 60 seconds."
+          canonical="https://affordegypt.com/transfers"
+        />
       <Navbar />
       
       {/* Header */}
