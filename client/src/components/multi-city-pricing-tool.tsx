@@ -123,7 +123,10 @@ export default function MultiCityPricingTool() {
   const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [totalPricing, setTotalPricing] = useState<any>(null);
   const [showCityPicker, setShowCityPicker] = useState(false);
-  const [travelDate, setTravelDate] = useState<string>('');
+  const [travelDate, setTravelDate] = useState<string | null>('');
+  const [justExploring, setJustExploring] = useState<boolean>(false);
+  const [tripDuration, setTripDuration] = useState<string>('');
+  const [step1DestinationId, setStep1DestinationId] = useState<string>('');
   const [globalTravelers, setGlobalTravelers] = useState<number>(1);
   const [tripStyle, setTripStyle] = useState<'private' | 'shared'>('private');
   const [pickupCity, setPickupCity] = useState<string>('');
@@ -562,7 +565,8 @@ export default function MultiCityPricingTool() {
   const canProceedToStep = (step: number) => {
     switch (step) {
       case 2:
-        return travelDate && globalTravelers > 0;
+        // Date is optional ("Just exploring" mode); destination + travelers required
+        return !!step1DestinationId && globalTravelers > 0;
       case 3:
         return cityServices.length > 0;
       case 4:
@@ -647,26 +651,78 @@ export default function MultiCityPricingTool() {
                   </div>
 
                   <div className="max-w-2xl mx-auto space-y-6">
-                    {/* Travel Date */}
+                    {/* 1. Destination */}
                     <div className="p-6 bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
-                      <Label htmlFor="travel-date" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
-                        <Calendar className="w-5 h-5 text-teal-600" />
-                        When do you want to start your trip?
+                      <Label htmlFor="step1-destination" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+                        <MapPin className="w-5 h-5 text-teal-600" />
+                        Where do you want to go?
                       </Label>
-                      <Input
-                        id="travel-date"
-                        type="date"
-                        value={travelDate}
-                        onChange={(e) => {
-                          setTravelDate(e.target.value);
-                          setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
+                      <Select
+                        value={step1DestinationId}
+                        onValueChange={(value) => {
+                          setStep1DestinationId(value);
+                          const selectedCity = cities.find((c: any) => c.id === parseInt(value));
+                          if (!selectedCity) return;
+                          // Seed first day if no city selected yet
+                          setCityServices(prev => {
+                            if (prev.length === 0) {
+                              return [{
+                                dayNumber: 1,
+                                cityId: selectedCity.id,
+                                cityName: selectedCity.name,
+                                date: travelDate || '',
+                                travelers: globalTravelers,
+                                selectedRoutes: [],
+                                attractions: '',
+                                selectedAttractions: [],
+                                selectedAddOns: []
+                              }];
+                            }
+                            // Replace day 1 with new selection
+                            const updated = [...prev];
+                            updated[0] = { ...updated[0], cityId: selectedCity.id, cityName: selectedCity.name };
+                            return updated;
+                          });
                         }}
-                        className="w-full border-2 border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 rounded-lg h-12"
-                        required
-                      />
+                      >
+                        <SelectTrigger className="w-full border-2 border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 rounded-lg h-12">
+                          <SelectValue placeholder="Choose a destination" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {cities?.map((city: any) => (
+                            <SelectItem key={city.id} value={city.id.toString()}>
+                              <div className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4 text-primary" />
+                                {city.name}
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
 
-                    {/* Number of Travelers */}
+                    {/* 2. How many days */}
+                    <div className="p-6 bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                      <Label htmlFor="trip-duration" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+                        <Clock className="w-5 h-5 text-teal-600" />
+                        How many days?
+                      </Label>
+                      <Select value={tripDuration} onValueChange={setTripDuration}>
+                        <SelectTrigger className="w-full border-2 border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 rounded-lg h-12">
+                          <SelectValue placeholder="Select trip length" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1-2">1-2 days</SelectItem>
+                          <SelectItem value="3-4">3-4 days</SelectItem>
+                          <SelectItem value="5-7">5-7 days</SelectItem>
+                          <SelectItem value="8-14">8-14 days</SelectItem>
+                          <SelectItem value="15+">More than 14 days</SelectItem>
+                          <SelectItem value="exploring">Just exploring</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* 3. Number of Travelers */}
                     <div className="p-6 bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
                       <Label htmlFor="total-travelers" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
                         <Users className="w-5 h-5 text-teal-600" />
@@ -689,6 +745,42 @@ export default function MultiCityPricingTool() {
                           ))}
                         </SelectContent>
                       </Select>
+                    </div>
+
+                    {/* 4. Travel Date with "Just exploring" toggle */}
+                    <div className="p-6 bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                      <div className="flex items-start gap-2 mb-3">
+                        <Checkbox
+                          id="just-exploring"
+                          checked={justExploring}
+                          onCheckedChange={(checked) => {
+                            const isChecked = checked === true;
+                            setJustExploring(isChecked);
+                            if (isChecked) {
+                              setTravelDate(null);
+                              setCityServices(prev => prev.map(city => ({ ...city, date: '' })));
+                            }
+                          }}
+                        />
+                        <Label htmlFor="just-exploring" className="text-sm cursor-pointer leading-tight">
+                          Just exploring, no date yet
+                        </Label>
+                      </div>
+                      <Label htmlFor="travel-date" className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+                        <Calendar className="w-5 h-5 text-teal-600" />
+                        When?
+                      </Label>
+                      <Input
+                        id="travel-date"
+                        type="date"
+                        value={travelDate ?? ''}
+                        disabled={justExploring}
+                        onChange={(e) => {
+                          setTravelDate(e.target.value);
+                          setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
+                        }}
+                        className="w-full border-2 border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 rounded-lg h-12 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      />
                     </div>
 
                     {/* Trust Elements - Horizontal Badges */}
@@ -725,11 +817,11 @@ export default function MultiCityPricingTool() {
                   <div className="flex justify-center pt-6">
                     <Button
                       onClick={goToNextStep}
-                      disabled={!travelDate || !globalTravelers}
+                      disabled={!step1DestinationId || !globalTravelers}
                       size="lg"
                       className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full sm:w-auto px-8 py-6 text-base font-semibold rounded-xl disabled:opacity-40 disabled:transform-none disabled:hover:shadow-lg"
                     >
-                      Continue to Destinations →
+                      See My Price →
                     </Button>
                   </div>
                 </div>
