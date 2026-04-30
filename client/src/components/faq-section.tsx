@@ -2,128 +2,68 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-interface FAQ {
-  id: number;
+export interface HomepageFaq {
   question: string;
-  // answer is React content so we can render multi-paragraph copy and links
-  answer: React.ReactNode;
+  answer: string;
 }
 
-// Conversion-blocker FAQs aligned with the homepage rewrite. Two original
-// SEO-friendly questions kept (visa + best time). Four blockers replaced.
-// Q7 is the explicit price-floor answer with the same $X/$Y placeholders
-// the hero uses; once the real numbers land, replace [X] and [Y] below.
-const FAQS: FAQ[] = [
+// Source-of-truth FAQ copy. Imported by client/src/pages/home.tsx to build
+// the FAQPage JSON-LD schema, so visible content and structured data can
+// never drift apart.
+export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
-    id: 1,
     question: "Why are you cheaper than other private Egypt tours?",
-    answer: (
-      <>
-        Because we don't pad the price with things you didn't ask for. Most
-        Egypt tour packages bundle hotels, meals, tickets, and concierge
-        service into a single number — even if you'd rather choose those
-        yourself. AffordEgypt charges only for the operational core: a private
-        car, a licensed Egyptologist, and a transparent base price. You add
-        what you need. Nothing else. Same operations as Travel2Egypt's premium
-        tier, with the markup and the inclusions you didn't choose stripped
-        out.
-      </>
-    ),
+    answer:
+      "Because we don't pad the price with things you didn't ask for. Most Egypt tour packages bundle hotels, meals, tickets, and concierge service into a single number — even if you'd rather choose those yourself. AffordEgypt charges only for the operational core: a private car, a licensed Egyptologist, and a transparent base price from LE 5,000/day. You add tickets, meals, and experiences only when you want them. Same operations as Travel2Egypt's premium tier, with the markup and the inclusions you didn't choose stripped out.",
   },
   {
-    id: 2,
     question: "How do I know AffordEgypt isn't one of the scam operators I've read about?",
-    answer: (
-      <>
-        Fair question — there are real scam operators in Egypt, and we don't
-        blame anyone for being cautious. AffordEgypt is operated by
-        Travel2Egypt, which is registered with the Egyptian Travel Agents
-        Association (ETAA), holds Commercial Registration #148004, and has
-        been operating in Cairo since 2020 with 2,500+ documented travelers.
-        Every guide we work with is a licensed Egyptologist with an active
-        Ministry of Tourism credential. You can verify our registration with
-        ETAA directly. We also publish our prices, our inclusions, and our
-        cancellation terms before you pay anything.
-      </>
-    ),
+    answer:
+      "Fair question — there are real scam operators in Egypt, and we don't blame anyone for being cautious. AffordEgypt is operated by Travel2Egypt, which is registered with the Egyptian Travel Agents Association (ETAA), holds Commercial Registration #148004, Tax ID 597-702-308, and has been operating in Cairo since 2020 with thousands of documented travelers. Every guide we work with is a licensed Egyptologist with an active Ministry of Tourism credential. You can verify our registration with ETAA directly. We also publish our prices, our inclusions, and our cancellation terms before you pay anything.",
   },
   {
-    id: 3,
     question: "Are your guides actually licensed Egyptologists?",
-    answer: (
-      <>
-        Yes — every guide we send is licensed by the Egyptian Ministry of
-        Tourism and Antiquities and carries a current Egyptologist credential.
-        This isn't a small thing: unlicensed guides can't take you past the
-        front gates of major sites, and many cheaper operators send them
-        anyway. Our guides are the same roster Travel2Egypt uses for premium
-        tours.
-      </>
-    ),
+    answer:
+      "Yes — every guide we send is licensed by the Egyptian Ministry of Tourism and Antiquities and carries a current Egyptologist credential. This isn't a small thing: unlicensed guides can't legally take you past the front gates of major sites, and many cheaper operators send them anyway. Our guides are the same roster Travel2Egypt uses for premium tours — they just deliver the lighter inclusions tier when working under AffordEgypt.",
   },
   {
-    id: 4,
+    question: "How does payment work? Do I have to pay everything up front?",
+    answer:
+      "No — that's part of the point. You pay a 10% deposit when you book (we send you a payment link, usually via Tab.travel, that works with any major card). Your booking is confirmed once the deposit clears. The remaining 90% is paid on arrival in cash (we accept EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader. Whatever's easiest for you.",
+  },
+  {
     question: "What's your cancellation policy?",
-    answer: (
-      <>
-        Free cancellation up to 3 days before your trip starts — you get the
-        full deposit back. Inside 3 days, the deposit is non-refundable
-        because we've already committed your guide and vehicle for those
-        days. Anything paid beyond the deposit is refunded in full. If we
-        have to cancel for any reason on our end (vehicle issue, guide
-        illness, force majeure), we refund 100%, including the deposit, and
-        help you rebook.
-      </>
-    ),
+    answer:
+      "Free cancellation up to 3 days before your trip starts — you get the full deposit back. Inside 3 days, the deposit is non-refundable because we've already committed your guide and vehicle for those days. Anything paid beyond the deposit is refunded in full. If we have to cancel for any reason on our end (vehicle issue, guide illness, force majeure), we refund 100%, including the deposit, and help you rebook.",
   },
   {
-    id: 5,
-    question: "Do I need a visa to enter Egypt?",
-    answer: (
-      <>
-        Most travelers can obtain an e-Visa online before arrival or purchase
-        one on arrival at major airports. We'll guide you through the process
-        after booking. Some nationalities require pre-approval — check with
-        your local embassy or ask us.
-      </>
-    ),
+    question: "Can I customize my itinerary?",
+    answer:
+      "Yes. Our entire model is modular — pick destinations, pick how many days in each, pick which attractions to include, add a guide for some days but not others, choose vehicle size by group. The pricing tool builds it live. If you want something the tool doesn't show, message us on WhatsApp and we'll quote it manually.",
   },
   {
-    id: 6,
-    question: "When is the best time to visit Egypt?",
-    answer: (
-      <>
-        October through April is the comfortable season — daytime
-        temperatures around 20–28°C across most of the country, with mild
-        evenings. November to February is peak season for Cairo and Luxor
-        (book early). May to September is hot, especially in Upper Egypt —
-        manageable if you start sightseeing at sunrise and rest mid-day, and
-        often the cheapest time to travel.
-      </>
-    ),
-  },
-  {
-    id: 7,
     question: "What's the absolute minimum I could pay for a private Egypt trip?",
-    answer: (
-      <>
-        Our floor is <strong>LE 5,000/day</strong> for a private car +
-        licensed Egyptologist in Cairo, before tickets, meals, and hotel.
-        We'll send you a real quote in under a minute — no account, no
-        commitment. Note: we don't sell shared minibus tours. Some operators
-        advertise "Egypt tours from $50/day" — those are shared group tours,
-        a different product. Ours is fully private.
-      </>
-    ),
+    answer:
+      "Our floor is LE 5,000/day (~$105 USD / €98 EUR) for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. A typical 3-day Cairo trip with all entrance tickets and one meal per day works out to around LE 13,000–17,000 per person for a couple, depending on which attractions you include. We'll send you a real quote in under a minute — no account, no commitment. Note: we don't sell shared minibus tours. Some operators advertise \"Egypt tours from $50/day\" — those are shared group tours, a different product. Ours is fully private.",
+  },
+  {
+    question: "Do I need a visa to enter Egypt?",
+    answer:
+      "Most travelers (US, UK, EU, Canada, Australia, and most other passports) need a visa to enter Egypt. The easiest option is the Egypt e-Visa at visa2egypt.gov.eg — apply online a week before travel, costs $25 USD for single entry, and the approval comes by email. You can also get a visa on arrival at most major airports (Cairo, Hurghada, Sharm El Sheikh) for the same fee in cash USD or EUR. A few nationalities (most African, some Asian) have different rules — check Egypt's MOFA website or just message us on WhatsApp and we'll point you to the right info.",
+  },
+  {
+    question: "When is the best time to visit Egypt?",
+    answer:
+      "October through April is the peak season — temperatures are pleasant (15–25°C / 60–77°F) across the whole country, including Upper Egypt (Luxor, Aswan, Abu Simbel). May through September gets very hot in Upper Egypt and the desert (40°C+ / 104°F+ is normal), though Cairo and the Mediterranean coast are still manageable. If you can travel in shoulder season (October–early November or late February–April), you get good weather with smaller crowds and better prices. We avoid sending travelers to Upper Egypt in July–August unless they specifically want the heat.",
   },
 ];
 
 export default function FAQSection() {
   const [openItems, setOpenItems] = useState<number[]>([]);
 
-  const toggleItem = (id: number) => {
+  const toggleItem = (index: number) => {
     setOpenItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
     );
   };
 
@@ -141,17 +81,17 @@ export default function FAQSection() {
         </div>
 
         <div className="space-y-4">
-          {FAQS.map((faq) => (
-            <Card key={faq.id} className="border border-gray-200 shadow-sm">
+          {HOMEPAGE_FAQS.map((faq, index) => (
+            <Card key={index} className="border border-gray-200 shadow-sm">
               <button
-                onClick={() => toggleItem(faq.id)}
+                onClick={() => toggleItem(index)}
                 className="w-full text-left p-6 hover:bg-gray-50 transition-colors duration-200"
               >
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-gray-900 pr-4">
                     {faq.question}
                   </h3>
-                  {openItems.includes(faq.id) ? (
+                  {openItems.includes(index) ? (
                     <ChevronUp className="w-5 h-5 text-teal-600 flex-shrink-0" />
                   ) : (
                     <ChevronDown className="w-5 h-5 text-teal-600 flex-shrink-0" />
@@ -159,9 +99,9 @@ export default function FAQSection() {
                 </div>
               </button>
 
-              {openItems.includes(faq.id) && (
+              {openItems.includes(index) && (
                 <CardContent className="px-6 pb-6 pt-0">
-                  <div className="border-t border-gray-100 pt-4 text-gray-700 leading-relaxed">
+                  <div className="border-t border-gray-100 pt-4 text-gray-700 leading-relaxed whitespace-pre-line">
                     {faq.answer}
                   </div>
                 </CardContent>
