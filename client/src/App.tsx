@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
-import Checkout from "@/pages/checkout";
 import BookPage from "@/pages/book";
 import AdminSidebar from "@/pages/admin-sidebar";
 import AdminBookings from "@/pages/admin-bookings";
@@ -73,7 +72,6 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/book/:id?" component={BookPage} />
-      <Route path="/checkout/:bookingId" component={Checkout} />
       <Route path="/booking-confirmation/:reference" component={BookingConfirmation} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin" component={AdminSidebar} />

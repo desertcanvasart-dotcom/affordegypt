@@ -1430,7 +1430,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Stripe payment route for one-time payments
+  // DEPRECATED: Stripe flow being removed (Tab.travel migration). Endpoint
+  // retained for now to avoid breaking historical clients; do not call from new code.
   app.post("/api/create-payment-intent", async (req, res) => {
+    console.warn("DEPRECATED: Stripe flow being removed");
     if (!stripe) {
       return res.status(500).json({
         message: "Payment processing not configured. Please contact support.",
@@ -1466,7 +1469,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Webhook to handle payment confirmation
+  // DEPRECATED: Stripe flow being removed (Tab.travel migration).
   app.post("/api/stripe-webhook", async (req, res) => {
+    console.warn("DEPRECATED: Stripe flow being removed");
     try {
       const event = req.body;
 
