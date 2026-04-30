@@ -22,37 +22,35 @@ export default function Register() {
     firstName: "",
     lastName: "",
   });
+  // Inline visible errors so users can see exactly which field is wrong;
+  // toast alone disappears too fast.
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validation
-    if (!formData.username || !formData.email || !formData.password) {
-      toast({
-        title: "Validation Error",
-        description: "Please fill in all required fields",
-        variant: "destructive",
-      });
-      return;
-    }
 
-    if (formData.password !== formData.confirmPassword) {
-      toast({
-        title: "Validation Error",
-        description: "Passwords do not match",
-        variant: "destructive",
-      });
-      return;
-    }
+    // Field-level validation
+    const errors: Record<string, string> = {};
+    if (!formData.username.trim()) errors.username = "Username is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      errors.email = "Enter a valid email address";
+    if (!formData.password) errors.password = "Password is required";
+    else if (formData.password.length < 6)
+      errors.password = "Password must be at least 6 characters";
+    if (formData.password && formData.password !== formData.confirmPassword)
+      errors.confirmPassword = "Passwords do not match";
 
-    if (formData.password.length < 6) {
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
       toast({
-        title: "Validation Error",
-        description: "Password must be at least 6 characters long",
+        title: "Please correct the highlighted fields",
+        description: "Check the form for missing or invalid entries.",
         variant: "destructive",
       });
       return;
     }
+    setFieldErrors({});
 
     setIsLoading(true);
     try {
@@ -133,7 +131,12 @@ export default function Register() {
                 onChange={handleInputChange}
                 placeholder="Choose a username"
                 required
+                aria-invalid={!!fieldErrors.username}
+                className={fieldErrors.username ? "border-red-500" : undefined}
               />
+              {fieldErrors.username && (
+                <p className="text-sm text-red-600">{fieldErrors.username}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -146,9 +149,14 @@ export default function Register() {
                 onChange={handleInputChange}
                 placeholder="your@email.com"
                 required
+                aria-invalid={!!fieldErrors.email}
+                className={fieldErrors.email ? "border-red-500" : undefined}
               />
+              {fieldErrors.email && (
+                <p className="text-sm text-red-600">{fieldErrors.email}</p>
+              )}
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Password *</Label>
               <div className="relative">
@@ -160,6 +168,8 @@ export default function Register() {
                   onChange={handleInputChange}
                   placeholder="At least 6 characters"
                   required
+                  aria-invalid={!!fieldErrors.password}
+                  className={fieldErrors.password ? "border-red-500 pr-10" : "pr-10"}
                 />
                 <Button
                   type="button"
@@ -175,6 +185,9 @@ export default function Register() {
                   )}
                 </Button>
               </div>
+              {fieldErrors.password && (
+                <p className="text-sm text-red-600">{fieldErrors.password}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -187,7 +200,12 @@ export default function Register() {
                 onChange={handleInputChange}
                 placeholder="Repeat your password"
                 required
+                aria-invalid={!!fieldErrors.confirmPassword}
+                className={fieldErrors.confirmPassword ? "border-red-500" : undefined}
               />
+              {fieldErrors.confirmPassword && (
+                <p className="text-sm text-red-600">{fieldErrors.confirmPassword}</p>
+              )}
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>

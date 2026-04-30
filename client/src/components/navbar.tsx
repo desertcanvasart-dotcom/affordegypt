@@ -171,7 +171,7 @@ export default function Navbar() {
               // header was fighting the booking funnel. Use a magic-link
               // flow if quote retrieval is needed later.
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/201100765283"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 h-8 inline-flex items-center justify-center text-sm font-medium text-green-700 hover:text-green-800 hover:bg-green-50 rounded-md transition-colors"
@@ -306,7 +306,7 @@ export default function Navbar() {
             ) : (
               <div className="space-y-3 border-t border-gray-200 pt-6">
                 <a
-                  href="https://wa.me/1234567890"
+                  href="https://wa.me/201100765283"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}

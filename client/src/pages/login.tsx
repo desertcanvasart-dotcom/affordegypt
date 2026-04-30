@@ -23,6 +23,10 @@ export default function Login() {
     username: "",
     password: "",
   });
+  // Inline visible errors. Toasts alone weren't enough — the QA audit
+  // reported empty submits produced no visible text change because
+  // toasts can dismiss before they're scraped.
+  const [fieldErrors, setFieldErrors] = useState<{ username?: string; password?: string }>({});
 
   const resetPasswordMutation = useMutation({
     mutationFn: async (email: string) => {
@@ -47,14 +51,19 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.username || !formData.password) {
+    const errors: { username?: string; password?: string } = {};
+    if (!formData.username.trim()) errors.username = "Username is required";
+    if (!formData.password) errors.password = "Password is required";
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
       toast({
-        title: "Validation Error",
-        description: "Please fill in all fields",
+        title: "Please fill in all fields",
+        description: "Username and password are both required.",
         variant: "destructive",
       });
       return;
     }
+    setFieldErrors({});
 
     setIsLoading(true);
     try {
@@ -103,9 +112,14 @@ export default function Login() {
                 onChange={handleInputChange}
                 placeholder="Enter your username"
                 required
+                aria-invalid={!!fieldErrors.username}
+                className={fieldErrors.username ? "border-red-500" : undefined}
               />
+              {fieldErrors.username && (
+                <p className="text-sm text-red-600">{fieldErrors.username}</p>
+              )}
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative">
@@ -117,6 +131,8 @@ export default function Login() {
                   onChange={handleInputChange}
                   placeholder="Enter your password"
                   required
+                  aria-invalid={!!fieldErrors.password}
+                  className={fieldErrors.password ? "border-red-500 pr-10" : "pr-10"}
                 />
                 <Button
                   type="button"
@@ -132,6 +148,9 @@ export default function Login() {
                   )}
                 </Button>
               </div>
+              {fieldErrors.password && (
+                <p className="text-sm text-red-600">{fieldErrors.password}</p>
+              )}
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading} data-testid="button-login">
