@@ -1,0 +1,21 @@
+node_modules
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+.local/
+dist
+.DS_Store
+.claude/
+*.tar.gz
+uploads/
+server/public
+
+# Local prerender hydration diagnostic scripts (gitignored)
+hydration-check.mjs
+dom-diff.mjs
+
+# Dev-only attached files
+attached_assets/
+README.md
