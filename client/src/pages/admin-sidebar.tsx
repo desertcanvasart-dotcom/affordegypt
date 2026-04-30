@@ -14,6 +14,7 @@ import { refreshRouteData } from "@/lib/cacheUtils";
 import AdminLogin from "@/components/admin-login";
 import AdminBookings from "@/components/admin-bookings";
 import AdminReviews from "@/pages/admin-reviews";
+import { adminFetch } from "@/lib/admin-fetch";
 
 export default function AdminSidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -80,7 +81,7 @@ export default function AdminSidebar() {
         route: '/api/routes',
         attraction: '/api/attractions'
       };
-      const response = await fetch(`${endpoints[type as keyof typeof endpoints]}/${id}`, {
+      const response = await adminFetch(`${endpoints[type as keyof typeof endpoints]}/${id}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to delete');
@@ -193,7 +194,7 @@ export default function AdminSidebar() {
     formData.append('csvFile', importFile);
 
     try {
-      const response = await fetch('/api/routes/import-csv', {
+      const response = await adminFetch('/api/routes/import-csv', {
         method: 'POST',
         body: formData
       });
@@ -357,15 +358,24 @@ export default function AdminSidebar() {
 
       console.log('Making request to:', url, 'with method:', method);
 
-      const response = await fetch(url, {
+      const response = await adminFetch(url, {
         method,
-        headers: {
-          'Content-Type': 'application/json'
-        },
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) throw new Error(editingItem ? 'Failed to update' : 'Failed to create');
+      if (!response.ok) {
+        // Surface server error message when present so 400s
+        // (e.g. duplicate name/slug) show the real reason.
+        let serverMessage = '';
+        try {
+          const data = await response.json();
+          serverMessage = data?.message || '';
+        } catch {}
+        throw new Error(
+          serverMessage ||
+            (editingItem ? 'Failed to update' : 'Failed to create'),
+        );
+      }
 
       // Invalidate queries to refresh data
       queryClient.invalidateQueries({ queryKey: ['/api/cities'] });
