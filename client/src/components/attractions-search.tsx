@@ -57,9 +57,12 @@ export default function AttractionsSearch({
   // Apply filters
   const filteredAttractions = useMemo(() => {
     return cityAttractions.filter(attraction => {
-      // Search term filter
-      const matchesSearch = attraction.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           attraction.description.toLowerCase().includes(searchTerm.toLowerCase());
+      // Search term filter — description is nullable in the DB, so guard it.
+      const term = searchTerm.toLowerCase();
+      const matchesSearch =
+        attraction.name?.toLowerCase().includes(term) ||
+        attraction.description?.toLowerCase().includes(term) ||
+        false;
       
       // Category filter
       const matchesCategory = selectedCategory === "all" || attraction.category === selectedCategory;

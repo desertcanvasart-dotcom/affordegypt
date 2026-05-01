@@ -9,6 +9,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { getAllSlugVariants } from "@/utils/slugTranslation";
 import { useEffect } from "react";
 import { ClientOnly } from "@/components/client-only";
+import { ErrorBoundary } from "@/components/error-boundary";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
@@ -160,32 +161,34 @@ function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <AuthProvider>
-          <TooltipProvider>
-            <ClientOnly>
-              <Toaster />
-            </ClientOnly>
-            <Router />
-            
-            {/* Floating WhatsApp Button */}
-            <div className="fixed bottom-6 right-6 z-50">
-              <a 
-                href="https://wa.me/201100765283" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
-                title="WhatsApp Us"
-              >
-                <FaWhatsapp className="w-5 h-5" />
-                <span className="text-sm font-medium">WhatsApp Us</span>
-              </a>
-            </div>
-          </TooltipProvider>
-        </AuthProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <AuthProvider>
+            <TooltipProvider>
+              <ClientOnly>
+                <Toaster />
+              </ClientOnly>
+              <Router />
+
+              {/* Floating WhatsApp Button */}
+              <div className="fixed bottom-6 right-6 z-50">
+                <a
+                  href="https://wa.me/201100765283"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
+                  title="WhatsApp Us"
+                >
+                  <FaWhatsapp className="w-5 h-5" />
+                  <span className="text-sm font-medium">WhatsApp Us</span>
+                </a>
+              </div>
+            </TooltipProvider>
+          </AuthProvider>
+        </HelmetProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
