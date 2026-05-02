@@ -41,12 +41,34 @@ Manual, every time. Don't rely on the deploy.
 
 1. **Confirm the migration is merged to `main`** and the auto-deploy has finished. If the new code is running but the schema isn't applied yet, the app will be broken until you finish step 4.
 
-2. **Get the production `DATABASE_URL`** from the Railway dashboard:
-   - Open the Railway project for AffordEgypt.
-   - Pick the `production` environment.
-   - Open the Postgres service (not the web service).
-   - Variables tab → copy the public `DATABASE_URL` (the one that uses the `*.proxy.rlwy.net` host, not the internal `*.railway.internal` host — the internal one only resolves from inside Railway).
-   - Treat the URL as a secret. Don't paste it into chat, don't commit it, don't put it in `.env.example`.
+2. **Get the production `DATABASE_URL`** from the Railway dashboard.
+
+   **Which service to copy from:** the **web service** (the one running affordegypt.com), not the Postgres service.
+   - The web service's `DATABASE_URL` is the value the deployed app actually reads at runtime. That's the source of truth.
+   - The Postgres service has its own `DATABASE_URL` in its Variables tab. In practice the web service's variable is set to `${{ Postgres.DATABASE_URL }}` — a reference — so the two values usually match. But the web service is what you trust: if someone overrode the reference with a literal value (e.g. pointing at a different Postgres instance during a migration), only the web service's view tells you what the app is actually using.
+   - Open the web service → Variables tab → resolve/reveal `DATABASE_URL` → copy it.
+   - Use the public `*.proxy.rlwy.net` host (the internal `*.railway.internal` host only resolves from inside Railway).
+
+   **Where to put it on your laptop:** a local `.env.production` file in the repo root, **not** an inline shell variable.
+   - `.env.production` keeps the secret out of your shell history and out of every command you ever scroll past.
+   - **Verify `.gitignore` ignores it before you save the file.** As of this writing, `.gitignore` lists `.env`, `.env.local`, `.env.*.local` — note that `.env.production` does **not** match those patterns. Either add `.env.production` (or a broader `.env*` line) to `.gitignore` *before* you create the file, or use a name that's already ignored such as `.env.local` or `.env.production.local`.
+   - Once it's saved, run migrations through it. Two ergonomic options:
+     ```bash
+     # Option A: export the file inline, run one command, then unset.
+     export $(grep -v '^\s*#' .env.production | xargs) && npm run db:push
+
+     # Option B: dotenv-cli (npm i -g dotenv-cli, one-time).
+     dotenv -e .env.production -- npm run db:push
+     dotenv -e .env.production -- psql "$DATABASE_URL" -f migrations/000X_name.sql
+     ```
+
+   **Handling rules — non-negotiable:**
+   - **Never commit** the file. Verify with `git status` before every commit on a branch where you may have created it.
+   - **Never paste** the URL into Slack, GitHub issues, PR descriptions, screenshots, or chat with an LLM (yes, including this one). If you need to share it with another teammate, share it via your password manager.
+   - **Don't put it in `.env.example`.** That file is committed.
+   - After you're done applying the migration, you have two reasonable choices:
+     - **Paranoid:** `rm .env.production` and re-fetch from the Railway dashboard next time. Removes the local copy entirely.
+     - **Pragmatic:** keep it for the next migration. Acceptable if your laptop disk is encrypted and the file is gitignored. Re-fetch if Railway rotates the credential or if you ever suspect leakage.
 
 3. **Apply the schema change** from your local machine, with the prod URL in the environment for that one command:
 
