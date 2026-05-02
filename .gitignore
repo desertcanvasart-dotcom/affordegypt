@@ -4,9 +4,10 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+# dotenv files — never commit real env values
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 .local/
 uploads/
 .claude/

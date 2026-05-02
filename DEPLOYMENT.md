@@ -51,7 +51,7 @@ Manual, every time. Don't rely on the deploy.
 
    **Where to put it on your laptop:** a local `.env.production` file in the repo root, **not** an inline shell variable.
    - `.env.production` keeps the secret out of your shell history and out of every command you ever scroll past.
-   - **Verify `.gitignore` ignores it before you save the file.** As of this writing, `.gitignore` lists `.env`, `.env.local`, `.env.*.local` — note that `.env.production` does **not** match those patterns. Either add `.env.production` (or a broader `.env*` line) to `.gitignore` *before* you create the file, or use a name that's already ignored such as `.env.local` or `.env.production.local`.
+   - All `.env.*` files are gitignored by default (the only exception is `.env.example`, which is committed as a template for new contributors). Name your file anything matching that pattern — `.env.production`, `.env.staging`, `.env.local` — and you don't need to touch `.gitignore`.
    - Once it's saved, run migrations through it. Two ergonomic options:
      ```bash
      # Option A: export the file inline, run one command, then unset.
