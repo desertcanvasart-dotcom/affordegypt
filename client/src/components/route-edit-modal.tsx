@@ -18,12 +18,35 @@ interface RouteEditModalProps {
   defaultToCityId?: number;
 }
 
-export default function RouteEditModal({ 
-  isOpen, 
-  onClose, 
-  route, 
-  defaultFromCityId, 
-  defaultToCityId 
+// Vehicle pricing keys are flat: `${slug}_${tripType}`. Empty string in
+// formData.prices means "not stored" — admin can leave any cell blank.
+const VEHICLE_SLUGS = ['sedan', 'minivan', 'van'] as const;
+const TRIP_TYPES = ['one_way', 'round_trip_same_day', 'round_trip_multi_day'] as const;
+type PriceKey = `${typeof VEHICLE_SLUGS[number]}_${typeof TRIP_TYPES[number]}`;
+
+const TRIP_TYPE_LABELS: Record<typeof TRIP_TYPES[number], string> = {
+  one_way: 'One-way',
+  round_trip_same_day: 'Round-trip same day',
+  round_trip_multi_day: 'Round-trip multi-day',
+};
+const VEHICLE_LABELS: Record<typeof VEHICLE_SLUGS[number], string> = {
+  sedan: 'Sedan',
+  minivan: 'Minivan',
+  van: 'Van',
+};
+
+const emptyPrices = (): Record<PriceKey, string> => {
+  const out = {} as Record<PriceKey, string>;
+  for (const v of VEHICLE_SLUGS) for (const t of TRIP_TYPES) out[`${v}_${t}` as PriceKey] = '';
+  return out;
+};
+
+export default function RouteEditModal({
+  isOpen,
+  onClose,
+  route,
+  defaultFromCityId,
+  defaultToCityId
 }: RouteEditModalProps) {
   const [formData, setFormData] = useState({
     name: '',
@@ -40,9 +63,7 @@ export default function RouteEditModal({
     travelTips: '',
     pickupInstructions: '',
     dropoffInstructions: '',
-    sedanPrice: '',
-    minivanPrice: '',
-    vanPrice: '',
+    prices: emptyPrices(),
     displayOrder: '',
     isActive: true
   });
@@ -65,8 +86,9 @@ export default function RouteEditModal({
   useEffect(() => {
     if (isOpen) {
       if (route) {
-        // Editing existing route
-        // Extract prices from vehiclePrices (new format) or basePriceByVehicle (legacy)
+        // Editing existing route — single source of truth is vehiclePrices
+        // with flat `${slug}_${tripType}` keys. Missing key = unpriced for
+        // that combo; the wizard hides it.
         let vehiclePrices = route.vehiclePrices;
         if (typeof vehiclePrices === 'string') {
           try {
@@ -75,17 +97,15 @@ export default function RouteEditModal({
             vehiclePrices = {};
           }
         }
-        
-        const sedanPrice = vehiclePrices?.sedan || 
-                          route.basePriceByVehicle?.['1']?.['1'] || 
-                          route.sedanPrice || '';
-        const minivanPrice = vehiclePrices?.minivan || 
-                            route.basePriceByVehicle?.['2']?.['1'] || 
-                            route.minivanPrice || '';
-        const vanPrice = vehiclePrices?.van || 
-                        route.basePriceByVehicle?.['3']?.['1'] || 
-                        route.vanPrice || '';
-        
+        const prices = emptyPrices();
+        for (const v of VEHICLE_SLUGS) {
+          for (const t of TRIP_TYPES) {
+            const k = `${v}_${t}` as PriceKey;
+            const val = vehiclePrices?.[k];
+            if (val !== undefined && val !== null && val !== '') prices[k] = String(val);
+          }
+        }
+
         setFormData({
           name: route.name || '',
           description: route.description || '',
@@ -101,9 +121,7 @@ export default function RouteEditModal({
           travelTips: route.travelTips || '',
           pickupInstructions: route.pickupInstructions || '',
           dropoffInstructions: route.dropoffInstructions || '',
-          sedanPrice: sedanPrice?.toString() || '',
-          minivanPrice: minivanPrice?.toString() || '',
-          vanPrice: vanPrice?.toString() || '',
+          prices,
           displayOrder: route.displayOrder?.toString() || '',
           isActive: route.isActive !== false
         });
@@ -124,9 +142,7 @@ export default function RouteEditModal({
           travelTips: '',
           pickupInstructions: '',
           dropoffInstructions: '',
-          sedanPrice: '',
-          minivanPrice: '',
-          vanPrice: '',
+          prices: emptyPrices(),
           displayOrder: '',
           isActive: true
         });
@@ -241,10 +257,28 @@ export default function RouteEditModal({
       }
     }
 
-    if (!formData.sedanPrice || !formData.minivanPrice || !formData.vanPrice) {
+    // Partial pricing is valid across the 9-cell grid: admin may fill in
+    // any subset over time. Wizard hides combinations with no price.
+    // Validation requires at least one cell across the entire grid so the
+    // route is bookable for someone.
+    const parsePrice = (raw: string): number | null => {
+      const trimmed = raw.trim();
+      if (!trimmed) return null;
+      const n = parseFloat(trimmed);
+      return Number.isFinite(n) && n > 0 ? n : null;
+    };
+    const vehiclePrices: Record<string, number> = {};
+    for (const v of VEHICLE_SLUGS) {
+      for (const t of TRIP_TYPES) {
+        const k = `${v}_${t}` as PriceKey;
+        const n = parsePrice(formData.prices[k]);
+        if (n !== null) vehiclePrices[k] = n;
+      }
+    }
+    if (Object.keys(vehiclePrices).length === 0) {
       toast({
         title: "Error",
-        description: "Please enter prices for all vehicle types.",
+        description: "Enter at least one price (any vehicle × trip type), or the route is unbookable.",
         variant: "destructive",
       });
       return;
@@ -265,20 +299,7 @@ export default function RouteEditModal({
       travelTips: formData.travelTips.trim() || null,
       pickupInstructions: formData.pickupInstructions.trim() || null,
       dropoffInstructions: formData.dropoffInstructions.trim() || null,
-      vehiclePrices: {
-        sedan: parseFloat(formData.sedanPrice),
-        minivan: parseFloat(formData.minivanPrice),
-        van: parseFloat(formData.vanPrice)
-      },
-      // Legacy field mapping for backward compatibility
-      sedanPrice: parseFloat(formData.sedanPrice),
-      minivanPrice: parseFloat(formData.minivanPrice),
-      vanPrice: parseFloat(formData.vanPrice),
-      basePriceByVehicle: {
-        sedan: parseFloat(formData.sedanPrice),
-        minivan: parseFloat(formData.minivanPrice),
-        van: parseFloat(formData.vanPrice)
-      },
+      vehiclePrices,
       displayOrder: formData.displayOrder ? parseInt(formData.displayOrder) : 0,
       isActive: formData.isActive
     };
@@ -689,55 +710,47 @@ export default function RouteEditModal({
             </div>
           </div>
 
-          {/* Pricing */}
+          {/* Pricing — 9-cell grid: vehicle × trip type. Each cell is
+              optional; missing cells = combo unavailable for users. At
+              least one cell across the grid is required to save. */}
           <div>
             <Label className="text-base font-medium">Vehicle Pricing *</Label>
-            <div className="grid grid-cols-3 gap-4 mt-2">
-              <div>
-                <Label htmlFor="sedan-price">Sedan Price (EGP) *</Label>
-                <Input
-                  id="sedan-price"
-                  type="number"
-                  step="0.01"
-                  placeholder="e.g., 50.00"
-                  value={formData.sedanPrice}
-                  onChange={(e) => setFormData(prev => ({...prev, sedanPrice: e.target.value}))}
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="minivan-price">Minivan Price (EGP)</Label>
-                <Input
-                  id="minivan-price"
-                  type="number"
-                  step="0.01"
-                  placeholder="Auto-calculated"
-                  value={formData.minivanPrice}
-                  onChange={(e) => setFormData(prev => ({...prev, minivanPrice: e.target.value}))}
-                />
-                {!formData.minivanPrice && formData.sedanPrice && (
-                  <p className="text-xs text-gray-500 mt-1">
-                    Will be ${(parseFloat(formData.sedanPrice) * 1.4).toFixed(2)}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <Label htmlFor="van-price">Van Price (EGP)</Label>
-                <Input
-                  id="van-price"
-                  type="number"
-                  step="0.01"
-                  placeholder="Auto-calculated"
-                  value={formData.vanPrice}
-                  onChange={(e) => setFormData(prev => ({...prev, vanPrice: e.target.value}))}
-                />
-                {!formData.vanPrice && formData.sedanPrice && (
-                  <p className="text-xs text-gray-500 mt-1">
-                    Will be ${(parseFloat(formData.sedanPrice) * 1.8).toFixed(2)}
-                  </p>
-                )}
-              </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Type only the prices you want to publish. Empty cells stay unbookable for customers until you fill them in.
+            </p>
+            <div className="space-y-4 mt-3">
+              {VEHICLE_SLUGS.map((slug) => (
+                <div key={slug} className="border rounded-md p-3">
+                  <div className="text-sm font-medium mb-2">{VEHICLE_LABELS[slug]}</div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {TRIP_TYPES.map((tt) => {
+                      const k = `${slug}_${tt}` as PriceKey;
+                      const id = `price-${k}`;
+                      return (
+                        <div key={tt}>
+                          <Label htmlFor={id} className="text-xs text-gray-700">
+                            {TRIP_TYPE_LABELS[tt]} (EGP)
+                          </Label>
+                          <Input
+                            id={id}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            placeholder="—"
+                            value={formData.prices[k]}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                prices: { ...prev.prices, [k]: e.target.value },
+                              }))
+                            }
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -764,9 +777,9 @@ export default function RouteEditModal({
                   <span className="ml-2 text-orange-600 font-medium">(City Tour)</span>
                 )}
               </p>
-              {formData.sedanPrice && (
+              {formData.prices.sedan_one_way && (
                 <p className="text-sm text-gray-600 mt-1">
-                  Starting from ${formData.sedanPrice} (Sedan)
+                  Starting from {formData.prices.sedan_one_way} EGP (Sedan, one-way)
                 </p>
               )}
             </div>

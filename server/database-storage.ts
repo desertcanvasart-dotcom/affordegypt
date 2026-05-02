@@ -15,7 +15,6 @@ import {
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
-import { pricingService } from "./services/pricing";
 
 export interface IStorage {
   // Users
@@ -423,12 +422,6 @@ export class DatabaseStorage implements IStorage {
 
   async createRoute(insertRoute: InsertRoute): Promise<Route> {
     const [route] = await db.insert(routes).values(insertRoute).returning();
-    if (route?.basePriceByVehicle) {
-      await pricingService.syncRouteTiers(
-        route.id,
-        route.basePriceByVehicle as Record<string, Record<string, string | number>>,
-      );
-    }
     return route;
   }
 
@@ -438,12 +431,6 @@ export class DatabaseStorage implements IStorage {
       .set(updateData)
       .where(eq(routes.id, id))
       .returning();
-    if (updateData.basePriceByVehicle && route) {
-      await pricingService.syncRouteTiers(
-        route.id,
-        updateData.basePriceByVehicle as Record<string, Record<string, string | number>>,
-      );
-    }
     return route;
   }
 

@@ -1,20 +1,32 @@
 // Quote builder — turns a booking request into a list of priced line items
 // using the PricingService, then writes those lines as immutable rows in
 // quote_line_items and marks the parent quote as frozen.
+//
+// Route prices are pure JSONB lookups keyed by vehicle slug. If the slug
+// isn't priced for the route, getRoutePrice returns null and we throw
+// RoutePriceNotSetError so the API can return 422 — never silently
+// substitute math or a fallback.
+//
+// Commission markup was killed in the pricing-simplification phase. Quote
+// total is now exactly the sum of line items.
 
 import { db } from "../db";
 import { quoteLineItems, quotes } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import {
   pricingService,
+  RoutePriceNotSetError,
   type LineItem,
+  type VehicleSlug,
+  type TripType,
   PricingService,
 } from "./pricing";
 
 export interface QuoteRequest {
   routeId?: number | null;
-  vehicleTypeId?: number | null;
-  licenseClassId?: number | null;
+  vehicleSlug?: VehicleSlug | null;
+  /** One-way is the default for back-compat with single-trip flows. */
+  tripType?: TripType | null;
   cityId?: number | null;
   guideLanguage?: string | null;
   guideHours?: number | null;
@@ -34,43 +46,41 @@ export interface BuiltQuote {
   lineItems: LineItem[];
   breakdown: QuoteBreakdown;
   subtotal: number;
-  commissionPct: number;
   total: number;
 }
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
 /**
- * Builds line items from a flat single-route quote request. The legacy
- * inline endpoints accepted this exact shape; this is the canonical
- * implementation that replaces them.
+ * Builds line items from a flat single-route quote request. Throws
+ * RoutePriceNotSetError if a route is requested with an unpriced
+ * vehicle slug — callers map that to a 422 with `{ unpriced: true }`.
  */
-export async function buildQuoteFromRequest(
-  req: QuoteRequest,
-): Promise<BuiltQuote> {
+export async function buildQuoteFromRequest(req: QuoteRequest): Promise<BuiltQuote> {
   const travelers = Math.max(1, Math.floor(req.travelers ?? 1));
   const lineItems: LineItem[] = [];
   const breakdown: QuoteBreakdown = { routes: 0, guide: 0, attractions: 0, addons: 0 };
 
   // Route
-  if (req.routeId && req.vehicleTypeId) {
-    const licenseClassId = req.licenseClassId ?? 1; // 1 = Normal by convention
+  if (req.routeId && req.vehicleSlug) {
+    const tripType: TripType = req.tripType ?? "one_way";
     const routeUnit = await pricingService.getRoutePrice(
       req.routeId,
-      req.vehicleTypeId,
-      licenseClassId,
+      req.vehicleSlug,
+      tripType,
     );
-    if (routeUnit > 0) {
-      const item = PricingService.lineFromRoute({
-        routeId: req.routeId,
-        description: `Route #${req.routeId} — vehicle ${req.vehicleTypeId}, license ${licenseClassId}`,
-        unitPrice: routeUnit,
-        quantity: 1,
-        meta: { vehicleTypeId: req.vehicleTypeId, licenseClassId, travelers },
-      });
-      lineItems.push(item);
-      breakdown.routes = item.lineTotal;
+    if (routeUnit === null) {
+      throw new RoutePriceNotSetError(req.routeId, req.vehicleSlug, tripType);
     }
+    const item = PricingService.lineFromRoute({
+      routeId: req.routeId,
+      description: `Route #${req.routeId} — ${req.vehicleSlug} (${tripType})`,
+      unitPrice: routeUnit,
+      quantity: 1,
+      meta: { vehicleSlug: req.vehicleSlug, tripType, travelers },
+    });
+    lineItems.push(item);
+    breakdown.routes = item.lineTotal;
   }
 
   // Guide (daily rate, charged once per booking)
@@ -131,33 +141,28 @@ export async function buildQuoteFromRequest(
   }
 
   const subtotal = round2(lineItems.reduce((s, l) => s + l.lineTotal, 0));
-  const commissionPct = await pricingService.getCommissionPct(subtotal);
-  const total = round2(subtotal * (1 + commissionPct));
-
-  return { lineItems, breakdown, subtotal, commissionPct, total };
+  // Total === subtotal. No commission, no markup. Sum of line items, period.
+  return { lineItems, breakdown, subtotal, total: subtotal };
 }
 
 /**
  * Persist a built quote: writes the parent quotes row plus one
  * quote_line_items row per line, and sets frozen_at = now() so the
- * snapshot is immutable.
- *
- * Existing quotes table requires jsonBlob and total + commissionPct, so
- * we keep filling those for back-compat. Phase 3 drops jsonBlob.
+ * snapshot is immutable. commission_pct is hard-zero (column not yet
+ * dropped — see docs/PRICING_CLEANUP.md).
  */
 export async function persistFrozenQuote(
   built: BuiltQuote,
   jsonBlob: Record<string, unknown>,
-): Promise<{ quoteId: number; total: string; commissionPct: string }> {
+): Promise<{ quoteId: number; total: string }> {
   const total = built.total.toFixed(2);
-  const commissionPct = built.commissionPct.toFixed(4);
 
   const [quote] = await db
     .insert(quotes)
     .values({
       jsonBlob,
       total,
-      commissionPct,
+      commissionPct: "0.0000",
       frozenAt: new Date(),
       version: 1,
     })
@@ -180,7 +185,7 @@ export async function persistFrozenQuote(
     );
   }
 
-  return { quoteId: quote.id, total, commissionPct };
+  return { quoteId: quote.id, total };
 }
 
 /**
