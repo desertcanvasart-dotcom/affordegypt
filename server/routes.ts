@@ -6,12 +6,21 @@ import { emailService } from "./email-service";
 import { setupAuthRoutes } from "./auth-routes";
 import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
+import { registerAdminCatalogRoutes } from "./admin-catalog-routes";
 import {
   buildQuoteFromRequest,
   persistFrozenQuote,
   getFrozenLineItems,
 } from "./services/quote-builder";
-import { pricingService } from "./services/pricing";
+import {
+  pricingService,
+  pickVehicleSlugForPassengers,
+  RoutePriceNotSetError,
+  isVehicleSlug,
+  isTripType,
+  type VehicleSlug,
+  type TripType,
+} from "./services/pricing";
 import { createTranslatedRoute } from "./translationMiddleware";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
@@ -531,18 +540,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       for (const cityService of cityServices) {
         const travelers = Math.max(1, Math.floor(cityService.travelers || 1));
-        const vehicleTypeId =
-          travelers > 8 ? 3 : travelers > 2 ? 2 : 1;
-        const licenseClassId = 1; // Normal — Tourism is a separate selector
+        const vehicleSlug = pickVehicleSlugForPassengers(travelers);
 
         let routesTotal = 0;
         for (const routeId of cityService.selectedRoutes ?? []) {
-          const total = await pricingService.getRoutePrice(
-            routeId,
-            vehicleTypeId,
-            licenseClassId,
-          );
-          routesTotal += total / travelers; // multi-city splits cost per traveler
+          // Multi-city composer is one-way per leg by definition.
+          const price = await pricingService.getRoutePrice(routeId, vehicleSlug, "one_way");
+          // No fallback: if a route in the multi-city plan isn't priced for
+          // this vehicle, it contributes 0. Frontend should already exclude
+          // unpriced routes from selection; this is just a defensive zero.
+          if (price !== null) routesTotal += price / travelers;
         }
 
         let guideTotal = 0;
@@ -663,35 +670,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
         } else {
           const routes = await storage.getRoutes();
 
-          // Transform routes to normalize all data for frontend consistency
+          // Transform routes to normalize all data for frontend consistency.
+          // Pure lookup against vehicle_prices (flat ${slug}_${tripType}
+          // keys). The normalized *Price fields surface the one-way price —
+          // that's what the legacy /transfers wizard reads. Other trip
+          // types are exposed via vehiclePrices passthrough.
           const transformedRoutes = routes.map((route) => {
-            let sedanPrice = "0";
-            let minivanPrice = "0";
-            let vanPrice = "0";
+            let sedanPrice = "";
+            let minivanPrice = "";
+            let vanPrice = "";
 
-            // Priority 1: Try vehicle_prices first (new format: {sedan: 4800, minivan: 6000, van: 7500})
             if (route.vehiclePrices) {
               const vp = typeof route.vehiclePrices === "string"
                 ? JSON.parse(route.vehiclePrices)
-                : route.vehiclePrices;
+                : (route.vehiclePrices as Record<string, unknown>);
 
-              if (vp.sedan !== undefined) sedanPrice = vp.sedan.toString();
-              if (vp.minivan !== undefined) minivanPrice = vp.minivan.toString();
-              if (vp.van !== undefined) vanPrice = vp.van.toString();
+              const pick = (k: string): string => {
+                const v = vp?.[k];
+                return v !== undefined && v !== null && v !== "" ? String(v) : "";
+              };
+              sedanPrice = pick("sedan_one_way");
+              minivanPrice = pick("minivan_one_way");
+              vanPrice = pick("van_one_way");
             }
 
-            // Priority 2: Fallback to base_price_by_vehicle if prices still zero (legacy format: {"1": {"1": "4800"}})
-            if ((sedanPrice === "0" || minivanPrice === "0" || vanPrice === "0") && route.basePriceByVehicle) {
-              const bp = typeof route.basePriceByVehicle === "string"
-                ? JSON.parse(route.basePriceByVehicle)
-                : route.basePriceByVehicle;
-
-              if (sedanPrice === "0" && bp["1"]?.["1"]) sedanPrice = bp["1"]["1"].toString();
-              if (minivanPrice === "0" && bp["2"]?.["1"]) minivanPrice = bp["2"]["1"].toString();
-              if (vanPrice === "0" && bp["3"]?.["1"]) vanPrice = bp["3"]["1"].toString();
-            }
-
-            // Comprehensive field transformation for frontend compatibility
             return {
               id: route.id,
               name: route.name,
@@ -1138,8 +1140,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!quoteId) {
         const built = await buildQuoteFromRequest({
           routeId: req.body.routeId ?? null,
-          vehicleTypeId: req.body.vehicleTypeId ?? null,
-          licenseClassId: req.body.licenseClassId ?? null,
+          vehicleSlug: isVehicleSlug(req.body.vehicleSlug) ? req.body.vehicleSlug : null,
+          tripType: isTripType(req.body.tripType) ? req.body.tripType : "one_way",
           cityId: req.body.cityId ?? null,
           guideLanguage: req.body.guideLanguage ?? null,
           guideHours: req.body.guideHours ?? null,
@@ -1211,6 +1213,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json(booking);
     } catch (error: any) {
+      if (error instanceof RoutePriceNotSetError) {
+        return res.status(422).json({
+          unpriced: true,
+          routeId: error.routeId,
+          vehicleSlug: error.vehicleSlug,
+          tripType: error.tripType,
+          message: error.message,
+        });
+      }
       console.error("Booking creation error:", error);
       res.status(400).json({ message: error.message });
     }
@@ -1320,15 +1331,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Simple single-route booking. Mirrors /api/bookings: server recomputes
   // the total via PricingService and freezes a quote so the booking has an
   // immutable financial record. Client-supplied totalAmount is ignored.
-  // The body's `vehicleType` field can be either a vehicle_type_id (number)
-  // or a category name ("sedan" | "minivan" | "van"); we resolve to an id.
+  // Accepts `vehicleSlug` ("sedan" | "minivan" | "van") directly, or
+  // legacy `vehicleType` string. If neither is supplied, picks by pax count.
   app.post("/api/route-bookings", async (req, res) => {
     try {
       const {
         routeId,
+        vehicleSlug: rawVehicleSlug,
         vehicleType,
-        vehicleTypeId: rawVehicleTypeId,
-        licenseClassId,
+        tripType: rawTripType,
         passengers,
         travelers,
         travelDate,
@@ -1345,33 +1356,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Resolve vehicleType (string category) to a vehicle_type_id if needed.
-      let vehicleTypeId = typeof rawVehicleTypeId === "number"
-        ? rawVehicleTypeId
-        : typeof vehicleType === "number"
-          ? vehicleType
-          : null;
-      if (vehicleTypeId === null && typeof vehicleType === "string") {
-        const all = await storage.getVehicleTypes();
-        const match = all.find(
-          (v) => v.name.toLowerCase() === vehicleType.toLowerCase(),
-        );
-        vehicleTypeId = match?.id ?? null;
-      }
       const pax = Math.max(1, Math.floor(passengers ?? travelers ?? 1));
-      if (vehicleTypeId === null) {
-        vehicleTypeId = await pricingService.pickVehicleTypeForPassengers(pax);
-      }
-      if (vehicleTypeId === null) {
-        return res.status(400).json({ success: false, message: "Could not resolve a vehicle type" });
-      }
+      const candidate =
+        typeof rawVehicleSlug === "string"
+          ? rawVehicleSlug.toLowerCase()
+          : typeof vehicleType === "string"
+            ? vehicleType.toLowerCase()
+            : null;
+      const vehicleSlug: VehicleSlug = isVehicleSlug(candidate)
+        ? candidate
+        : pickVehicleSlugForPassengers(pax);
+      const tripType: TripType = isTripType(rawTripType) ? rawTripType : "one_way";
 
-      const built = await buildQuoteFromRequest({
-        routeId,
-        vehicleTypeId,
-        licenseClassId: typeof licenseClassId === "number" ? licenseClassId : 1,
-        travelers: pax,
-      });
+      let built;
+      try {
+        built = await buildQuoteFromRequest({
+          routeId,
+          vehicleSlug,
+          tripType,
+          travelers: pax,
+        });
+      } catch (err) {
+        if (err instanceof RoutePriceNotSetError) {
+          return res.status(422).json({
+            success: false,
+            unpriced: true,
+            routeId: err.routeId,
+            vehicleSlug: err.vehicleSlug,
+            tripType: err.tripType,
+            message: err.message,
+          });
+        }
+        throw err;
+      }
 
       if (built.lineItems.length === 0) {
         return res.status(400).json({
@@ -1700,8 +1717,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const built = await buildQuoteFromRequest({
         routeId: req.body.routeId ?? null,
-        vehicleTypeId: req.body.vehicleTypeId ?? null,
-        licenseClassId: req.body.licenseClassId ?? null,
+        vehicleSlug: isVehicleSlug(req.body.vehicleSlug) ? req.body.vehicleSlug : null,
+        tripType: isTripType(req.body.tripType) ? req.body.tripType : "one_way",
         cityId: req.body.cityId ?? null,
         guideLanguage: req.body.guideLanguage ?? null,
         guideHours: req.body.guideHours ?? null,
@@ -1722,6 +1739,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         lineItems: built.lineItems,
       });
     } catch (error: any) {
+      if (error instanceof RoutePriceNotSetError) {
+        return res.status(422).json({
+          unpriced: true,
+          routeId: error.routeId,
+          vehicleSlug: error.vehicleSlug,
+          tripType: error.tripType,
+          message: error.message,
+        });
+      }
       console.error("Error creating quote:", error);
       res.status(500).json({ message: error.message });
     }
@@ -1739,6 +1765,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Register pricing routes for Transfer Only pricing endpoint
   await registerPricingRoutes(app);
+  registerAdminCatalogRoutes(app);
 
   // Update booking status endpoint
   app.put("/api/bookings/:id/status", ...adminAuth, async (req, res) => {

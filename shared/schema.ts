@@ -419,6 +419,112 @@ export const reviews = pgTable("reviews", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
 
+// =====================================================================
+// Phase 1.5 — Service Catalog
+// =====================================================================
+// New product-catalog model that supersedes the routes-based pricing.
+// See docs/SERVICES_ARCHITECTURE.md for the full design.
+//
+// Naming convention note: the canonical entity name is "services" but
+// that table name is taken by a legacy table (Day-by-Day Custom Planner)
+// that's still referenced by quote_line_items.service_id and a couple of
+// dead admin paths. The new catalog uses `service_catalog` for now and
+// will be renamed to `services` in Phase E when the legacy table is
+// dropped. To keep the eventual rename mechanical, *all* code references
+// in this phase use the `serviceCatalog` / `ServiceCatalogItem` /
+// `/admin/service-catalog` naming consistently. Don't mix in `services`.
+
+// Trip-type vocabulary. Globally extensible by admin. Slugs appear inside
+// service_catalog.vehicle_prices keys (`${vehicle_slug}_${trip_type_slug}`)
+// and are part of the durable contract — write-once. Renaming a slug
+// after a price has been keyed against it leaves orphan keys.
+//
+// Row type is `TripTypeRow` to avoid colliding with the literal
+// `TripType` union in server/services/pricing.ts. The literal stays as
+// the runtime-validated set of slugs that the pricing service accepts;
+// this table is the admin-editable master list. The two will be
+// reconciled in a later phase (pricing service loads slugs from the
+// table at startup instead of hard-coding them).
+export const tripTypes = pgTable(
+  "trip_types",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    name: text("name").notNull(),
+    description: text("description"),
+    isActive: boolean("is_active").notNull().default(true),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+  },
+  (t) => [
+    index("idx_trip_types_active").on(t.isActive),
+    index("idx_trip_types_sort").on(t.sortOrder),
+  ],
+);
+
+// Category vocabulary for service_catalog. Table (not enum) so admin can
+// add new product lines (cooking_class, balloon_ride, wellness_retreat)
+// without a deploy. Soft-delete via is_active.
+export const serviceCategories = pgTable(
+  "service_categories",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    name: text("name").notNull(),
+    description: text("description"),
+    isActive: boolean("is_active").notNull().default(true),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+  },
+  (t) => [
+    index("idx_service_categories_active").on(t.isActive),
+    index("idx_service_categories_sort").on(t.sortOrder),
+  ],
+);
+
+// The catalog of named, bookable travel products.
+//
+// vehicle_prices is JSONB with flat keys `${vehicleSlug}_${tripTypeSlug}`,
+// e.g. {"sedan_one_way": 600, "minivan_8hr": 2600}. Missing keys mean
+// "not priced for that combination" — same shape and rule as the
+// routes-based system shipped in commit bfde4a6, just on a richer entity.
+//
+// Translation columns are nullable JSONB and unused at Phase A; populated
+// when i18n is reactivated (kept in the schema to avoid a future
+// migration). image_url is nullable; multi-image support deferred.
+export const serviceCatalog = pgTable(
+  "service_catalog",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),         // write-once; URL-safe
+    name: text("name").notNull(),                  // customer-facing
+    city: text("city").notNull(),                  // 'Cairo' | 'Luxor' | ...
+    category: text("category").notNull(),          // FK by value to service_categories.slug
+    pickupZone: text("pickup_zone"),               // optional label
+    description: text("description"),              // free-form
+    includedStops: jsonb("included_stops"),        // tour-specific JSON array
+    vehiclePrices: jsonb("vehicle_prices").notNull().default({}), // flat keys
+    durationHours: integer("duration_hours"),      // for time-block products
+    imageUrl: text("image_url"),                   // single hero image
+    isActive: boolean("is_active").notNull().default(true),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+    // Translation columns (unused at Phase A; reserved for i18n revival)
+    nameTranslations: jsonb("name_translations"),
+    descriptionTranslations: jsonb("description_translations"),
+  },
+  (t) => [
+    index("idx_service_catalog_city").on(t.city),
+    index("idx_service_catalog_category").on(t.category),
+    index("idx_service_catalog_city_category").on(t.city, t.category),
+    index("idx_service_catalog_active").on(t.isActive),
+    index("idx_service_catalog_sort").on(t.sortOrder),
+  ],
+);
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -557,6 +663,48 @@ export const insertReviewSchema = createInsertSchema(reviews).omit({
   isActive: z.boolean().optional()
 });
 
+// Phase 1.5 — Service Catalog insert schemas
+export const insertTripTypeRowSchema = createInsertSchema(tripTypes).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  slug: z.string().regex(/^[a-z0-9_]+$/, "Slug must be lowercase letters, numbers, underscores"),
+  sortOrder: z.number().int().optional(),
+  isActive: z.boolean().optional(),
+});
+
+export const insertServiceCategorySchema = createInsertSchema(serviceCategories).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  slug: z.string().regex(/^[a-z0-9_]+$/, "Slug must be lowercase letters, numbers, underscores"),
+  sortOrder: z.number().int().optional(),
+  isActive: z.boolean().optional(),
+});
+
+export const insertServiceCatalogItemSchema = createInsertSchema(serviceCatalog).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  slug: z.string().regex(/^[a-z0-9-]+$/, "Slug must be lowercase letters, numbers, hyphens"),
+  vehiclePrices: z.record(z.string(), z.number().positive()).default({}),
+  includedStops: z.array(z.object({
+    name: z.string(),
+    durationMinutes: z.number().int().positive().optional(),
+  })).optional().nullable(),
+  durationHours: z.number().int().positive().optional().nullable(),
+  sortOrder: z.number().int().optional(),
+  isActive: z.boolean().optional(),
+  imageUrl: z.string().url().optional().nullable(),
+  pickupZone: z.string().optional().nullable(),
+  description: z.string().optional().nullable(),
+  nameTranslations: z.record(z.string(), z.string()).optional().nullable(),
+  descriptionTranslations: z.record(z.string(), z.string()).optional().nullable(),
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -620,3 +768,13 @@ export type InsertReview = z.infer<typeof insertReviewSchema>;
 
 export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
 export type InsertPasswordResetToken = z.infer<typeof insertPasswordResetTokenSchema>;
+
+// Phase 1.5 — Service Catalog types
+export type TripTypeRow = typeof tripTypes.$inferSelect;
+export type InsertTripTypeRow = z.infer<typeof insertTripTypeRowSchema>;
+
+export type ServiceCategory = typeof serviceCategories.$inferSelect;
+export type InsertServiceCategory = z.infer<typeof insertServiceCategorySchema>;
+
+export type ServiceCatalogItem = typeof serviceCatalog.$inferSelect;
+export type InsertServiceCatalogItem = z.infer<typeof insertServiceCatalogItemSchema>;

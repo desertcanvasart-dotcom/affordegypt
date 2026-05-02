@@ -217,9 +217,14 @@ export default function TransfersPage() {
     }
   };
 
-  const getValidPrice = (route: RouteData, vehicleType: string): number => {
-    const price = route.vehiclePrices?.[vehicleType] || route.basePriceByVehicle?.[vehicleType];
-    return typeof price === 'number' ? price : 0;
+  // Pure lookup against route.vehiclePrices. The /transfers wizard is
+  // a one-way flow, so the lookup key is `${slug}_one_way`. Returns null
+  // if not priced — caller renders "not available." No math.
+  const getValidPrice = (route: RouteData, vehicleType: string): number | null => {
+    const raw = route.vehiclePrices?.[`${vehicleType}_one_way`];
+    if (raw === undefined || raw === null || raw === '') return null;
+    const n = typeof raw === 'number' ? raw : parseFloat(String(raw));
+    return Number.isFinite(n) && n > 0 ? n : null;
   };
 
   return (
@@ -530,122 +535,43 @@ export default function TransfersPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {(() => {
-                      const vehicleNameToId = { sedan: "1", minivan: "2", van: "3", bus: "4" };
-                      
-                      const getProcessedPrices = (): Record<string, number> => {
-                        const result: Record<string, number> = {};
-                        
-                        // Priority 1: Use normalized prices from backend (most reliable)
-                        if (selectedRoute.sedanPrice) {
-                          const price = parseFloat(selectedRoute.sedanPrice);
-                          if (!isNaN(price) && price > 0) result.sedan = price;
-                        }
-                        if (selectedRoute.minivanPrice) {
-                          const price = parseFloat(selectedRoute.minivanPrice);
-                          if (!isNaN(price) && price > 0) result.minivan = price;
-                        }
-                        if (selectedRoute.vanPrice) {
-                          const price = parseFloat(selectedRoute.vanPrice);
-                          if (!isNaN(price) && price > 0) result.van = price;
-                        }
-                        
-                        // Priority 2: Try vehicle_prices (new format)
-                        if (Object.keys(result).length === 0 && selectedRoute.vehiclePrices) {
-                          const vp = typeof selectedRoute.vehiclePrices === 'string' 
-                            ? JSON.parse(selectedRoute.vehiclePrices) 
-                            : selectedRoute.vehiclePrices;
-                          
-                          if (vp.sedan) {
-                            const price = typeof vp.sedan === 'number' ? vp.sedan : parseFloat(vp.sedan);
-                            if (!isNaN(price) && price > 0) result.sedan = price;
-                          }
-                          if (vp.minivan) {
-                            const price = typeof vp.minivan === 'number' ? vp.minivan : parseFloat(vp.minivan);
-                            if (!isNaN(price) && price > 0) result.minivan = price;
-                          }
-                          if (vp.van) {
-                            const price = typeof vp.van === 'number' ? vp.van : parseFloat(vp.van);
-                            if (!isNaN(price) && price > 0) result.van = price;
-                          }
-                        }
-                        
-                        // Priority 3: Fallback to base_price_by_vehicle (legacy format)
-                        if (Object.keys(result).length === 0 && selectedRoute.basePriceByVehicle) {
-                          const bp = typeof selectedRoute.basePriceByVehicle === 'string'
-                            ? JSON.parse(selectedRoute.basePriceByVehicle)
-                            : selectedRoute.basePriceByVehicle;
-                          
-                          // Map: 1=sedan, 2=minivan, 3=van
-                          if (bp['1']?.['1']) {
-                            const price = parseFloat(bp['1']['1']);
-                            if (!isNaN(price) && price > 0) result.sedan = price;
-                          }
-                          if (bp['2']?.['1']) {
-                            const price = parseFloat(bp['2']['1']);
-                            if (!isNaN(price) && price > 0) result.minivan = price;
-                          }
-                          if (bp['3']?.['1']) {
-                            const price = parseFloat(bp['3']['1']);
-                            if (!isNaN(price) && price > 0) result.van = price;
-                          }
-                        }
-                        
-                        // Debug log if no prices found
-                        if (Object.keys(result).length === 0) {
-                          console.error('⚠️ No prices found for route:', {
-                            id: selectedRoute.id,
-                            name: selectedRoute.name,
-                            sedanPrice: selectedRoute.sedanPrice,
-                            minivanPrice: selectedRoute.minivanPrice,
-                            vanPrice: selectedRoute.vanPrice,
-                            vehiclePrices: selectedRoute.vehiclePrices,
-                            basePriceByVehicle: selectedRoute.basePriceByVehicle
-                          });
-                        }
-                        
-                        return result;
-                      };
+                      // /transfers is a one-way flow. Lookup key is
+                      // `${slug}_one_way`. Vehicles whose one-way price is
+                      // unset are omitted — the user can't book a combo the
+                      // admin hasn't priced.
+                      const vp =
+                        typeof selectedRoute.vehiclePrices === 'string'
+                          ? JSON.parse(selectedRoute.vehiclePrices)
+                          : (selectedRoute.vehiclePrices ?? {});
 
-                      const processedPrices = getProcessedPrices();
-                      
+                      const processedPrices: Record<string, number> = {};
+                      for (const slug of ['sedan', 'minivan', 'van'] as const) {
+                        const raw = vp?.[`${slug}_one_way`];
+                        if (raw === undefined || raw === null || raw === '') continue;
+                        const n = typeof raw === 'number' ? raw : parseFloat(String(raw));
+                        if (Number.isFinite(n) && n > 0) processedPrices[slug] = n;
+                      }
+
+                      if (Object.keys(processedPrices).length === 0) {
+                        return (
+                          <div className="col-span-full text-sm text-gray-500 p-4 border rounded-lg">
+                            Pricing not yet set for this route. Please contact us for a quote.
+                          </div>
+                        );
+                      }
+
                       return Object.entries(processedPrices)
                         .sort(([a], [b]) => {
-                          const order = { sedan: 1, minivan: 2, van: 3, bus: 4 };
+                          const order = { sedan: 1, minivan: 2, van: 3 };
                           return (order[a as keyof typeof order] || 999) - (order[b as keyof typeof order] || 999);
                         })
                         .map(([vehicleType, priceValue]) => {
-                          const vehicleId = vehicleNameToId[vehicleType as keyof typeof vehicleNameToId] || vehicleType;
-                          
                           return (
                             <div
                               key={vehicleType}
                               className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
                               onClick={() => {
-                                console.log('🚗 Booking Navigation:', {
-                                  routeId: selectedRoute.id,
-                                  routeName: selectedRoute.name,
-                                  vehicleType,
-                                  calculatedPrice: priceValue,
-                                  allPrices: processedPrices,
-                                  rawData: {
-                                    sedanPrice: selectedRoute.sedanPrice,
-                                    minivanPrice: selectedRoute.minivanPrice,
-                                    vanPrice: selectedRoute.vanPrice,
-                                    vehiclePrices: selectedRoute.vehiclePrices,
-                                    basePriceByVehicle: selectedRoute.basePriceByVehicle
-                                  }
-                                });
-                                
-                                if (!priceValue || priceValue === 0) {
-                                  toast({
-                                    title: "Pricing Error",
-                                    description: "Unable to calculate price. Please contact support.",
-                                    variant: "destructive"
-                                  });
-                                  return;
-                                }
-                                
-                                window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleId}&price=${Math.round(priceValue)}`;
+                                window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${Math.round(priceValue)}`;
                               }}
                             >
                               <div className="flex items-center justify-between mb-2">

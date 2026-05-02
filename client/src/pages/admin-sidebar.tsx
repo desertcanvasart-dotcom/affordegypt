@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar, Star } from "lucide-react";
+import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar, Star, Layers, Tag, ListChecks } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { refreshRouteData } from "@/lib/cacheUtils";
@@ -566,6 +566,32 @@ export default function AdminSidebar() {
             <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
               <Car className="w-4 h-4" />
               <span>Transfer Dashboard</span>
+            </button>
+          </Link>
+
+          {/* Phase 1.5 — Service Catalog admin (Phase B). New product-catalog
+              model that supersedes the routes-based admin above. Routes
+              section stays functional during the transition; Phase E will
+              delete it. See docs/SERVICES_ARCHITECTURE.md. */}
+          <div className="pt-4 pb-1 px-3 text-[11px] uppercase tracking-wide text-gray-400 font-semibold">
+            Catalog
+          </div>
+          <Link href="/admin/service-catalog" className="w-full">
+            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
+              <Layers className="w-4 h-4" />
+              <span>Service Catalog</span>
+            </button>
+          </Link>
+          <Link href="/admin/trip-types" className="w-full">
+            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
+              <ListChecks className="w-4 h-4" />
+              <span>Trip Types</span>
+            </button>
+          </Link>
+          <Link href="/admin/service-categories" className="w-full">
+            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
+              <Tag className="w-4 h-4" />
+              <span>Service Categories</span>
             </button>
           </Link>
 
