@@ -20,6 +20,10 @@ import AdminReviews from "@/pages/admin-reviews";
 import Routes from "@/pages/routes";
 import AdminRoutesOverview from "@/pages/admin-routes-overview";
 import AdminCityRoutes from "@/pages/admin-city-routes";
+import AdminServiceCatalog from "@/pages/admin-service-catalog";
+import AdminServiceCatalogEdit from "@/pages/admin-service-catalog-edit";
+import AdminTripTypes from "@/pages/admin-trip-types";
+import AdminServiceCategories from "@/pages/admin-service-categories";
 import RoutesSimple from "@/pages/routes-simple";
 import RouteCityPage from "@/pages/route-city-page";
 import RouteBooking from "@/pages/route-booking";
@@ -81,6 +85,12 @@ function Router() {
       <Route path="/admin/reviews" component={AdminReviews} />
       <Route path="/admin/routes" component={AdminRoutesOverview} />
       <Route path="/admin/routes/city/:citySlug/:category?" component={AdminCityRoutes} />
+      {/* Phase 1.5 — Service Catalog admin (Phase B) */}
+      <Route path="/admin/service-catalog" component={AdminServiceCatalog} />
+      <Route path="/admin/service-catalog/new" component={AdminServiceCatalogEdit} />
+      <Route path="/admin/service-catalog/:id/edit" component={AdminServiceCatalogEdit} />
+      <Route path="/admin/trip-types" component={AdminTripTypes} />
+      <Route path="/admin/service-categories" component={AdminServiceCategories} />
       <Route path="/routes" component={RoutesSimple} />
       <Route path="/routes/book/:routeId" component={RouteBooking} />
       <Route path="/route-booking" component={RouteBooking} />

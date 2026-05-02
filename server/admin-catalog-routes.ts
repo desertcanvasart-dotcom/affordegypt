@@ -1,0 +1,285 @@
+// Admin CRUD endpoints for the Phase 1.5 service catalog.
+// See docs/SERVICES_ARCHITECTURE.md §6 for the design.
+//
+// All endpoints sit behind [authenticateToken, requireAdmin] and never
+// touch the legacy `routes` / `services` tables. Phase E will rename
+// `service_catalog` to `services` once the legacy table is dropped; until
+// then this module deliberately uses the `service_catalog` naming
+// everywhere — types, DB columns, URLs.
+//
+// Validation goes through the insert schemas exported from shared/schema
+// so the wire format stays consistent with the Drizzle row shape. PATCH
+// accepts a subset (insert schema with everything optional) and rejects
+// any attempt to mutate `slug` after creation — slugs appear inside
+// vehicle_prices keys and in URLs and must stay stable.
+
+import type { Express, Request, Response } from "express";
+import { z } from "zod";
+import { and, asc, desc, eq, ilike, or, sql } from "drizzle-orm";
+import { db } from "./db";
+import { authenticateToken, requireAdmin } from "./auth";
+import {
+  serviceCatalog,
+  serviceCategories,
+  tripTypes,
+  insertServiceCatalogItemSchema,
+  insertServiceCategorySchema,
+  insertTripTypeRowSchema,
+} from "@shared/schema";
+
+const adminAuth = [authenticateToken, requireAdmin];
+
+// PATCH accepts the same shape as INSERT but every field optional, AND
+// it rejects `slug` outright — slugs are immutable post-create because
+// they appear inside vehicle_prices keys and in URLs.
+const stripSlug = <T extends z.ZodTypeAny>(schema: T) =>
+  z.preprocess((raw) => {
+    if (raw && typeof raw === "object" && "slug" in raw) {
+      // Don't silently drop — surface the error so admin UIs that try
+      // to send it know to stop. (Form already renders slug read-only.)
+      throw new z.ZodError([
+        {
+          code: "custom",
+          path: ["slug"],
+          message: "slug is immutable after create",
+        },
+      ]);
+    }
+    return raw;
+  }, schema);
+
+// Internal: 422 helper for unique-violation responses.
+const handleDbError = (res: Response, err: any, label: string): boolean => {
+  if (err?.code === "23505") {
+    // Postgres unique_violation
+    res.status(422).json({
+      message: `${label} with this slug already exists`,
+      code: "duplicate_slug",
+    });
+    return true;
+  }
+  return false;
+};
+
+export function registerAdminCatalogRoutes(app: Express): void {
+  // -----------------------------------------------------------------
+  // /api/admin/service-catalog
+  // -----------------------------------------------------------------
+
+  // List with optional filters: ?q=substring, ?category=slug, ?active=true|false|all
+  app.get("/api/admin/service-catalog", ...adminAuth, async (req, res) => {
+    try {
+      const q = typeof req.query.q === "string" ? req.query.q.trim() : "";
+      const category =
+        typeof req.query.category === "string" ? req.query.category.trim() : "";
+      const activeParam =
+        typeof req.query.active === "string" ? req.query.active : "all";
+
+      const conditions: any[] = [];
+      if (q) {
+        const like = `%${q}%`;
+        conditions.push(
+          or(
+            ilike(serviceCatalog.name, like),
+            ilike(serviceCatalog.slug, like),
+            ilike(serviceCatalog.pickupZone, like),
+          ),
+        );
+      }
+      if (category) conditions.push(eq(serviceCatalog.category, category));
+      if (activeParam === "true") conditions.push(eq(serviceCatalog.isActive, true));
+      else if (activeParam === "false") conditions.push(eq(serviceCatalog.isActive, false));
+
+      const rows = await db
+        .select()
+        .from(serviceCatalog)
+        .where(conditions.length > 0 ? and(...conditions) : undefined)
+        .orderBy(
+          asc(serviceCatalog.city),
+          asc(serviceCatalog.sortOrder),
+          asc(serviceCatalog.name),
+        );
+
+      res.json(rows);
+    } catch (error: any) {
+      console.error("[GET /api/admin/service-catalog] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/admin/service-catalog/:id", ...adminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id)) return res.status(400).json({ message: "Invalid id" });
+      const [row] = await db
+        .select()
+        .from(serviceCatalog)
+        .where(eq(serviceCatalog.id, id))
+        .limit(1);
+      if (!row) return res.status(404).json({ message: "Not found" });
+      res.json(row);
+    } catch (error: any) {
+      console.error("[GET /api/admin/service-catalog/:id] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/admin/service-catalog", ...adminAuth, async (req, res) => {
+    try {
+      const parsed = insertServiceCatalogItemSchema.parse(req.body);
+      const [row] = await db
+        .insert(serviceCatalog)
+        .values(parsed as any)
+        .returning();
+      res.status(201).json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      if (handleDbError(res, error, "Service catalog item")) return;
+      console.error("[POST /api/admin/service-catalog] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.patch("/api/admin/service-catalog/:id", ...adminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id)) return res.status(400).json({ message: "Invalid id" });
+      const patchSchema = stripSlug(insertServiceCatalogItemSchema.partial());
+      const parsed = patchSchema.parse(req.body);
+
+      const [row] = await db
+        .update(serviceCatalog)
+        .set({ ...(parsed as any), updatedAt: sql`now()` })
+        .where(eq(serviceCatalog.id, id))
+        .returning();
+
+      if (!row) return res.status(404).json({ message: "Not found" });
+      res.json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      console.error("[PATCH /api/admin/service-catalog/:id] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // -----------------------------------------------------------------
+  // /api/admin/trip-types
+  // -----------------------------------------------------------------
+
+  // Default returns ALL trip types (admin needs to see inactive too).
+  // Pass ?activeOnly=true to filter — used by the price grid which
+  // should only render columns for active types.
+  app.get("/api/admin/trip-types", ...adminAuth, async (req, res) => {
+    try {
+      const activeOnly = req.query.activeOnly === "true";
+      const conditions = activeOnly ? [eq(tripTypes.isActive, true)] : [];
+      const rows = await db
+        .select()
+        .from(tripTypes)
+        .where(conditions.length > 0 ? and(...conditions) : undefined)
+        .orderBy(asc(tripTypes.sortOrder), asc(tripTypes.name));
+      res.json(rows);
+    } catch (error: any) {
+      console.error("[GET /api/admin/trip-types] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/admin/trip-types", ...adminAuth, async (req, res) => {
+    try {
+      const parsed = insertTripTypeRowSchema.parse(req.body);
+      const [row] = await db.insert(tripTypes).values(parsed as any).returning();
+      res.status(201).json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      if (handleDbError(res, error, "Trip type")) return;
+      console.error("[POST /api/admin/trip-types] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.patch("/api/admin/trip-types/:id", ...adminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id)) return res.status(400).json({ message: "Invalid id" });
+      const patchSchema = stripSlug(insertTripTypeRowSchema.partial());
+      const parsed = patchSchema.parse(req.body);
+      const [row] = await db
+        .update(tripTypes)
+        .set({ ...(parsed as any), updatedAt: sql`now()` })
+        .where(eq(tripTypes.id, id))
+        .returning();
+      if (!row) return res.status(404).json({ message: "Not found" });
+      res.json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      console.error("[PATCH /api/admin/trip-types/:id] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // -----------------------------------------------------------------
+  // /api/admin/service-categories
+  // -----------------------------------------------------------------
+
+  app.get("/api/admin/service-categories", ...adminAuth, async (req, res) => {
+    try {
+      const activeOnly = req.query.activeOnly === "true";
+      const conditions = activeOnly ? [eq(serviceCategories.isActive, true)] : [];
+      const rows = await db
+        .select()
+        .from(serviceCategories)
+        .where(conditions.length > 0 ? and(...conditions) : undefined)
+        .orderBy(asc(serviceCategories.sortOrder), asc(serviceCategories.name));
+      res.json(rows);
+    } catch (error: any) {
+      console.error("[GET /api/admin/service-categories] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/admin/service-categories", ...adminAuth, async (req, res) => {
+    try {
+      const parsed = insertServiceCategorySchema.parse(req.body);
+      const [row] = await db.insert(serviceCategories).values(parsed as any).returning();
+      res.status(201).json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      if (handleDbError(res, error, "Service category")) return;
+      console.error("[POST /api/admin/service-categories] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.patch("/api/admin/service-categories/:id", ...adminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id)) return res.status(400).json({ message: "Invalid id" });
+      const patchSchema = stripSlug(insertServiceCategorySchema.partial());
+      const parsed = patchSchema.parse(req.body);
+      const [row] = await db
+        .update(serviceCategories)
+        .set({ ...(parsed as any), updatedAt: sql`now()` })
+        .where(eq(serviceCategories.id, id))
+        .returning();
+      if (!row) return res.status(404).json({ message: "Not found" });
+      res.json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      console.error("[PATCH /api/admin/service-categories/:id] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+}
