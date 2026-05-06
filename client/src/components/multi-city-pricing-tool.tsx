@@ -20,7 +20,10 @@ import { formatEGP } from "@/lib/utils";
 import { useLocation } from "wouter";
 import QuoteManager from "@/components/quote-manager";
 import AttractionsSearch from "@/components/attractions-search";
-import TransportationSearch from "@/components/transportation-search";
+import CatalogServicePicker, {
+  type SelectedCatalogService,
+  type CatalogRow,
+} from "@/components/catalog-service-picker";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
@@ -33,7 +36,12 @@ interface CityService {
   cityName: string;
   date: string;
   travelers: number;
-  selectedRoutes: number[];
+  // Phase C: catalog selections replace numeric route IDs. The server
+  // turns each entry into a frozen line item via /api/quotes
+  // (serviceSlugs key). The legacy `selectedRoutes` shape is gone from
+  // the planner; /api/routes still serves data but the planner no
+  // longer reads it.
+  selectedServices: SelectedCatalogService[];
   selectedGuide?: {
     language: string;
     duration: number;
@@ -227,6 +235,111 @@ export default function MultiCityPricingTool() {
     }
   }, [cityServices]);
 
+  // Phase C deep-link: ?service=<slug>&city=<city> on landing.
+  // The "Book this" buttons on the six service-area pages link here.
+  // Behavior: fetch the service, look up the cities-table id by name,
+  // pre-populate cityServices + selectedServices, jump to the right
+  // step based on the row's category. Runs once when cities have
+  // loaded; bails silently if anything is missing.
+  const [deepLinkApplied, setDeepLinkApplied] = useState(false);
+  useEffect(() => {
+    if (deepLinkApplied) return;
+    if (typeof window === "undefined") return;
+    if (!cities || cities.length === 0) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("service");
+    const cityParam = params.get("city");
+    if (!slug || !cityParam) return;
+
+    setDeepLinkApplied(true);
+
+    (async () => {
+      try {
+        const res = await fetch(`/api/services/${encodeURIComponent(slug)}`);
+        if (!res.ok) return;
+        const row: CatalogRow = await res.json();
+
+        // Map URL city slug to cities-table row by case-insensitive
+        // name match. The catalog row's city column is the canonical
+        // display form ("Cairo", "Marsa Alam") so we match against
+        // both the URL param and the row's city.
+        const wanted = cityParam.toLowerCase().replace(/-/g, " ");
+        const wantedFromRow = (row.city || "").toLowerCase();
+        const matched = cities.find(
+          (c: any) =>
+            c.name.toLowerCase() === wanted ||
+            c.name.toLowerCase() === wantedFromRow,
+        );
+        if (!matched) return;
+
+        // Pick a default vehicle + the row's single trip type.
+        const keys = Object.keys(row.vehicle_prices ?? {});
+        if (keys.length === 0) return;
+        let tripType: string | null = null;
+        for (const k of keys) {
+          for (const v of ["sedan", "minivan", "van"]) {
+            if (k.startsWith(`${v}_`)) {
+              tripType = k.slice(v.length + 1);
+              break;
+            }
+          }
+          if (tripType) break;
+        }
+        if (!tripType) return;
+        const defaultVehicle: SelectedCatalogService["vehicleSlug"] =
+          `sedan_${tripType}` in row.vehicle_prices
+            ? "sedan"
+            : `minivan_${tripType}` in row.vehicle_prices
+              ? "minivan"
+              : "van";
+
+        const selectedService: SelectedCatalogService = {
+          slug: row.slug,
+          vehicleSlug: defaultVehicle,
+          tripType,
+        };
+
+        const today = new Date().toISOString().split("T")[0];
+        const newCityService: CityService = {
+          dayNumber: 1,
+          cityId: matched.id,
+          cityName: matched.name,
+          date: today,
+          travelers: 1,
+          selectedServices: [selectedService],
+          attractions: "",
+          selectedAttractions: [],
+          selectedAddOns: [],
+        };
+
+        // Step-1 fields the canProceedToStep guards check.
+        setStep1DestinationId(String(matched.id));
+        setGlobalTravelers(1);
+        setTravelDate(today);
+        setCityServices([newCityService]);
+
+        const STEP3_CATEGORIES = new Set([
+          "sightseeing_tour",
+          "sound_light_show",
+          "dinner_transfer",
+        ]);
+        const targetStep = STEP3_CATEGORIES.has(row.category) ? 3 : 2;
+        setCurrentStep(targetStep);
+
+        // Scroll the planner into view.
+        setTimeout(() => {
+          stepContentRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 200);
+      } catch {
+        // Swallow — deep-link is best-effort.
+      }
+    })();
+  }, [cities, deepLinkApplied]);
+
   const addNewCity = (selectedCityId?: number) => {
     const selectedCity = selectedCityId ? cities.find(c => c.id === selectedCityId) : cities[0];
     if (!selectedCity) return;
@@ -238,7 +351,7 @@ export default function MultiCityPricingTool() {
       cityName: selectedCity.name,
       date: travelDate || new Date().toISOString().split('T')[0],
       travelers: globalTravelers,
-      selectedRoutes: [],
+      selectedServices: [],
       attractions: "",
       selectedAttractions: [],
       selectedAddOns: []
@@ -254,14 +367,8 @@ export default function MultiCityPricingTool() {
     );
   };
 
-  const toggleRoute = (cityIndex: number, routeId: number) => {
-    const cityService = cityServices[cityIndex];
-    const newRoutes = cityService.selectedRoutes.includes(routeId)
-      ? cityService.selectedRoutes.filter(id => id !== routeId)
-      : [...cityService.selectedRoutes, routeId];
-    
-    updateCityService(cityIndex, { selectedRoutes: newRoutes });
-  };
+  // toggleRoute removed in Phase C — the catalog picker mutates
+  // selectedServices through its own onChange callback.
 
   const toggleAddOn = (cityIndex: number, addOn: AddOn) => {
     const cityService = cityServices[cityIndex];
@@ -292,35 +399,36 @@ export default function MultiCityPricingTool() {
     trackConversion('booking_initiation', totalPricing.totalAmount, 'EGP');
     
     try {
-      // Enrich city services with full route data for proper display
-      const enrichedItinerary = await Promise.all(cityServices.map(async (cityService) => {
-        const enrichedRoutes = await Promise.all(cityService.selectedRoutes.map(async (routeId) => {
-          const route = routes.find(r => r.id === routeId);
-          return route ? {
-            id: routeId,
-            fromLocation: route.fromLocation,
-            toLocation: route.toLocation,
-            name: route.name
-          } : { id: routeId, fromLocation: 'Unknown', toLocation: 'Unknown', name: 'Route' };
-        }));
+      // Phase C: send catalog selections to /api/quotes as
+      // serviceSlugs. The server (see server/services/quote-builder)
+      // turns each entry into a frozen quote_line_items row with
+      // meta.serviceSlug. itinerary is preserved in jsonBlob for
+      // human-readable downstream display.
+      const flatServiceSlugs = cityServices.flatMap((c) =>
+        c.selectedServices.map((s) => ({
+          slug: s.slug,
+          vehicleSlug: s.vehicleSlug,
+          tripType: s.tripType,
+        })),
+      );
 
-        return {
-          ...cityService,
-          selectedRoutes: enrichedRoutes
-        };
+      const enrichedItinerary = cityServices.map((cityService) => ({
+        ...cityService,
       }));
 
-      // Create a quote in the database with proper structure
       const quoteData = {
-        total: totalPricing.totalAmount.toString(),
-        commissionPct: "0", // No commission added
+        // Server recomputes total from line items; this client value is
+        // metadata only.
+        clientComputedTotal: totalPricing.totalAmount.toString(),
+        travelers: totalPricing.travelers,
+        serviceSlugs: flatServiceSlugs,
         jsonBlob: {
           passengers: totalPricing.travelers,
           itinerary: enrichedItinerary,
           travelDate: travelDate,
-          totalAmount: totalPricing.totalAmount,
-          breakdown: totalPricing.breakdown || []
-        }
+          clientTotalAmount: totalPricing.totalAmount,
+          breakdown: totalPricing.breakdown || [],
+        },
       };
 
       const response = await apiRequest("POST", "/api/quotes", quoteData);
@@ -555,7 +663,7 @@ export default function MultiCityPricingTool() {
         cityName: city.name,
         date: travelDate ?? '',
         travelers: globalTravelers,
-        selectedRoutes: [],
+        selectedServices: [],
         attractions: "",
         selectedAttractions: [],
         selectedAddOns: []
@@ -692,7 +800,7 @@ export default function MultiCityPricingTool() {
                                 cityName: selectedCity.name,
                                 date: travelDate || '',
                                 travelers: globalTravelers,
-                                selectedRoutes: [],
+                                selectedServices: [],
                                 attractions: '',
                                 selectedAttractions: [],
                                 selectedAddOns: []
@@ -880,7 +988,7 @@ export default function MultiCityPricingTool() {
                               cityName: selectedCity.name,
                               date: travelDate ?? '',
                               travelers: globalTravelers,
-                              selectedRoutes: [],
+                              selectedServices: [],
                               attractions: '',
                               selectedAttractions: [],
                               selectedAddOns: []
@@ -949,22 +1057,27 @@ export default function MultiCityPricingTool() {
                           
                           <AccordionContent className="px-4 pb-4 pt-2">
                             <div className="space-y-4">
-                              {/* Route Selection */}
+                              {/* Phase C: catalog-driven transfer picker. */}
                               <div className="space-y-2">
                                 <Label className="text-sm font-medium flex items-center gap-2">
                                   <MapPinned className="w-4 h-4" />
-                                  Transfer Routes
+                                  Transfers
                                 </Label>
-                                <TransportationSearch
-                                  routes={routes || []}
-                                  selectedRoutes={city.selectedRoutes}
-                                  onRoutesChange={(routes) => {
-                                    setCityServices(prev => prev.map((c, i) =>
-                                      i === index ? { ...c, selectedRoutes: routes } : c
-                                    ));
+                                <CatalogServicePicker
+                                  city={city.cityName}
+                                  categories={[
+                                    "airport_transfer",
+                                    "intercity_transfer",
+                                    "local_transfer",
+                                  ]}
+                                  selected={city.selectedServices}
+                                  onChange={(next) => {
+                                    setCityServices((prev) =>
+                                      prev.map((c, i) =>
+                                        i === index ? { ...c, selectedServices: next } : c,
+                                      ),
+                                    );
                                   }}
-                                  cityId={city.cityId}
-                                  cityName={city.cityName}
                                 />
                               </div>
 
@@ -1054,7 +1167,7 @@ export default function MultiCityPricingTool() {
                               cityName: selectedCity.name,
                               date: nextDate,
                               travelers: globalTravelers,
-                              selectedRoutes: [],
+                              selectedServices: [],
                               attractions: '',
                               selectedAttractions: [],
                               selectedAddOns: []
@@ -1128,6 +1241,33 @@ export default function MultiCityPricingTool() {
                             <span className="font-semibold">{city.cityName}</span>
                           </div>
                           
+                          {/* Phase C: catalog-driven experience picker
+                              (sightseeing tours, sound & light, dinner
+                              transfers). Sits above the legacy
+                              AddOnsSearch so customers see catalog
+                              experiences first. */}
+                          <div className="space-y-3 mb-4">
+                            <Label className="text-sm font-medium">Experiences</Label>
+                            <CatalogServicePicker
+                              city={city.cityName}
+                              categories={[
+                                "sightseeing_tour",
+                                "sound_light_show",
+                                "dinner_transfer",
+                              ]}
+                              selected={city.selectedServices}
+                              onChange={(next) => {
+                                // Picker preserves out-of-scope entries
+                                // (step-2 transfers stay intact).
+                                setCityServices((prev) =>
+                                  prev.map((c, i) =>
+                                    i === index ? { ...c, selectedServices: next } : c,
+                                  ),
+                                );
+                              }}
+                            />
+                          </div>
+
                           <AddOnsSearch
                             addOns={addOns || []}
                             selectedAddOns={city.selectedAddOns || []}
@@ -1223,18 +1363,19 @@ export default function MultiCityPricingTool() {
                           
                           <AccordionContent className="px-4 pb-4 pt-2">
                             <div className="space-y-3">
-                              {/* Routes */}
-                              {city.selectedRoutes && city.selectedRoutes.length > 0 && (
+                              {/* Catalog services (Phase C) */}
+                              {city.selectedServices && city.selectedServices.length > 0 && (
                                 <div>
                                   <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                                     <MapPinned className="w-4 h-4" />
-                                    Routes
+                                    Services
                                   </h4>
                                   <ul className="text-sm space-y-1 ml-6">
-                                    {city.selectedRoutes.map(routeId => {
-                                      const route = routes?.find(r => r.id === routeId);
-                                      return route ? <li key={routeId}>• {route.name}</li> : null;
-                                    })}
+                                    {city.selectedServices.map((s) => (
+                                      <li key={s.slug}>
+                                        • {s.slug} — {s.vehicleSlug} ({s.tripType})
+                                      </li>
+                                    ))}
                                   </ul>
                                 </div>
                               )}
