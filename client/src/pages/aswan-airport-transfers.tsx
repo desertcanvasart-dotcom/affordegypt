@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import CatalogServiceGrid from "@/components/catalog-service-grid";
 
 export default function AswanAirportTransfers() {
   const SERVICE_SCHEMA = {
@@ -213,25 +214,12 @@ export default function AswanAirportTransfers() {
           </div>
         </section>
 
-        {/* Service Areas */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.aswan.transferDestinationsTitle")}</h2>
-              <p className="text-center text-muted-foreground mb-8">
-                {t("airportTransfers.aswan.transferDestinationsDesc")}
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {aswanAreas.map((area: string, index: number) => (
-                  <div key={index} className="flex items-center gap-2 p-3 bg-background rounded-lg">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium">{area}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Service Areas — catalog-driven (Phase C). */}
+        <CatalogServiceGrid
+          city="aswan"
+          categories={["airport_transfer"]}
+          heading="Aswan Transfer Destinations"
+        />
 
         {/* Special Aswan Features */}
         <section className="py-16">
