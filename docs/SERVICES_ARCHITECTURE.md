@@ -29,7 +29,7 @@ These are **products**, not routes. Some have a from→to (transfers). Some have
 - a stable **slug** (URL- and code-friendly, write-once)
 - a customer-facing **name**
 - a **city** it operates in (for grouping / filtering)
-- a **category** (`airport_transfer`, `sightseeing_tour`, `intercity_transfer`, `dinner_transfer`, `sound_light_show`, …)
+- a **category** (`airport_transfer`, `tour_transfer`, `intercity_transfer`, `dinner_transfer`, `sound_light_show`, …)
 - optional **pickup zone** for cases where pickup location materially changes price
 - optional **included stops** (for tours)
 - optional **duration** in hours (for time-block products)
@@ -43,7 +43,7 @@ We are not picking *one* of these — all three coexist and route through the sa
 
 1. **Search-driven** — "I know where I'm going." A traveler types `Cairo Airport to Pyramids` and expects the matching product to surface in one step. Power users, returning customers, agency users. Implementation: a typeahead over service names + slugs, hitting `/services/:slug`.
 
-2. **Filter-driven** — "I want to see specific things." A traveler picks a city + category (`Luxor` + `Sightseeing tour`) and expects a list of products that match. Common for first-time visitors who know they're going to Luxor but don't know the names of specific tours. Implementation: a list view with city/category facets that resolves to `/services?city=luxor&category=sightseeing_tour`.
+2. **Filter-driven** — "I want to see specific things." A traveler picks a city + category (`Luxor` + `Tour transfer`) and expects a list of products that match. Common for first-time visitors who know they're going to Luxor but don't know the names of specific tours. Implementation: a list view with city/category facets that resolves to `/services?city=luxor&category=tour_transfer`.
 
 3. **Browse / catalog-driven** — "Show me what you have." A traveler hits the homepage or `/services` cold and expects a curated catalog grouped by city or category. Inspirational, exploratory. Implementation: a paginated grid grouped by city → category → service, with images.
 
@@ -167,7 +167,7 @@ ALTER TABLE services
   ADD CONSTRAINT services_category_check
   CHECK (category IN (
     'airport_transfer',
-    'sightseeing_tour',
+    'tour_transfer',
     'intercity_transfer',
     'dinner_transfer',
     'sound_light_show'
@@ -194,7 +194,7 @@ Initial seed for `service_categories`:
 |-----------------------|------------------------|------------|
 | `airport_transfer`    | Airport transfer       | 10         |
 | `intercity_transfer`  | Intercity transfer     | 20         |
-| `sightseeing_tour`    | Sightseeing tour       | 30         |
+| `tour_transfer`       | Tour transfer          | 30         |
 | `dinner_transfer`     | Dinner transfer        | 40         |
 | `sound_light_show`    | Sound & light show     | 50         |
 
@@ -255,7 +255,7 @@ A new Drizzle migration creates `services`, `trip_types`, and `service_categorie
    - **`category`**: heuristic, based on substring matches:
      - if `fromLocation` or `toLocation` contains "airport" (case-insensitive) → `airport_transfer`
      - else if `routeCategory = 'inter_city'` → `intercity_transfer`
-     - else if `tripMode` is `day_trip` or `multi_day` or `overnight` → `sightseeing_tour`
+     - else if `tripMode` is `day_trip` or `multi_day` or `overnight` → `tour_transfer`
      - else → `airport_transfer` (defensive default)
    - **`pickup_zone`**: null. Pickup zones are a Luxor-specific concept that isn't represented in `routes`; admin will fill in on a per-service basis after migration.
    - **`description`**: copy `routes.routeHighlights` if present, else null.
@@ -320,7 +320,7 @@ A single form with these sections, top to bottom:
 
 4. **Tour-specific**
    - Duration in hours (number input; optional; only relevant for time-block products)
-   - Included stops (repeater: name + duration_minutes; optional; only relevant for sightseeing_tour)
+   - Included stops (repeater: name + duration_minutes; optional; only relevant for tour_transfer)
 
 5. **Vehicle pricing grid** — the centerpiece
    - Rows: every vehicle from `vehicle_types` (currently sedan, minivan, van).

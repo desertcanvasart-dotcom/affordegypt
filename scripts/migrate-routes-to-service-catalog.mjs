@@ -40,7 +40,7 @@ const deriveCategory = (route) => {
   }
   if (route.route_category === "inter_city") return "intercity_transfer";
   if (["day_trip", "multi_day", "overnight"].includes(route.trip_mode)) {
-    return "sightseeing_tour";
+    return "tour_transfer";
   }
   return "airport_transfer"; // defensive default per doc §3
 };
