@@ -129,6 +129,15 @@ export default function CatalogServicePicker({
     return m;
   }, [selected]);
 
+  // Slugs the picker is responsible for in this render. Other slugs
+  // in `selected` (e.g. step-2 transfers when this picker is rendered
+  // in step 3 for experiences) MUST be preserved by every onChange.
+  const inScopeSlugs = useMemo(() => {
+    const s = new Set<string>();
+    for (const r of data ?? []) s.add(r.slug);
+    return s;
+  }, [data]);
+
   if (isLoading) {
     return <p className="text-sm text-muted-foreground">Loading services…</p>;
   }
@@ -142,15 +151,6 @@ export default function CatalogServicePicker({
   if (!data || data.length === 0) {
     return <p className="text-sm text-muted-foreground">{emptyMessage}</p>;
   }
-
-  // Slugs the picker is responsible for in this render. Other slugs
-  // in `selected` (e.g. step-2 transfers when this picker is rendered
-  // in step 3 for experiences) MUST be preserved by every onChange.
-  const inScopeSlugs = useMemo(() => {
-    const s = new Set<string>();
-    for (const r of data ?? []) s.add(r.slug);
-    return s;
-  }, [data]);
 
   const handleToggle = (row: CatalogRow, checked: boolean) => {
     const tripType = rowTripType(row.vehicle_prices);
