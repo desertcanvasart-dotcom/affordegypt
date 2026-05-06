@@ -20,7 +20,7 @@ BEGIN;
 
 UPDATE service_categories
 SET slug = 'tour_transfer',
-    name = 'Tour transfer'
+    name = 'Tour Transportation'
 WHERE slug = 'sightseeing_tour';
 
 UPDATE service_catalog
