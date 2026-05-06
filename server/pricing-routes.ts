@@ -1,7 +1,15 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { buildQuoteFromRequest } from "./services/quote-builder";
-import { RoutePriceNotSetError, VEHICLE_SLUGS, TRIP_TYPES } from "./services/pricing";
+import {
+  RoutePriceNotSetError,
+  ServicePriceNotSetError,
+  VEHICLE_SLUGS,
+  TRIP_TYPES,
+  CATALOG_TRIP_TYPES,
+  isCatalogTripType,
+  isVehicleSlug,
+} from "./services/pricing";
 
 // Server-side schema for /api/calculate-pricing. Bounds-check travelers
 // against a hard upper limit so a tampered request can't request a quote
@@ -27,6 +35,15 @@ const calcPricingSchema = z.object({
     )
     .optional(),
   travelers: z.number().int().min(1).max(50).optional(),
+  serviceSlugs: z
+    .array(
+      z.object({
+        slug: z.string().min(1),
+        vehicleSlug: z.enum(VEHICLE_SLUGS as unknown as [string, ...string[]]),
+        tripType: z.enum(CATALOG_TRIP_TYPES as unknown as [string, ...string[]]),
+      }),
+    )
+    .optional(),
 });
 
 export async function registerPricingRoutes(app: Express): Promise<void> {
@@ -40,6 +57,7 @@ export async function registerPricingRoutes(app: Express): Promise<void> {
         ...parsed,
         vehicleSlug: parsed.vehicleSlug as any,
         tripType: parsed.tripType as any,
+        serviceSlugs: parsed.serviceSlugs as any,
       });
       const travelers = Math.max(1, Math.floor(parsed.travelers ?? 1));
 
@@ -61,6 +79,15 @@ export async function registerPricingRoutes(app: Express): Promise<void> {
           message: error.message,
           unpriced: true,
           routeId: error.routeId,
+          vehicleSlug: error.vehicleSlug,
+          tripType: error.tripType,
+        });
+      }
+      if (error instanceof ServicePriceNotSetError) {
+        return res.status(422).json({
+          message: error.message,
+          unpriced: true,
+          slug: error.slug,
           vehicleSlug: error.vehicleSlug,
           tripType: error.tripType,
         });

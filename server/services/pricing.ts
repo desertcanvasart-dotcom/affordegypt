@@ -26,15 +26,22 @@
 import { db } from "../db";
 import {
   routes as routesTable,
+  serviceCatalog,
   attractions,
   addOns,
   guideRates,
 } from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 export type VehicleSlug = "sedan" | "minivan" | "van";
 export type TripType = "one_way" | "round_trip_same_day" | "round_trip_multi_day";
+// Catalog rows can also be priced under hourly-rental trip types. Routes
+// don't (yet) support these — getRoutePrice will simply return null for
+// them, and callers will throw RoutePriceNotSetError. The new
+// service_catalog code path uses the wider union below.
+export type CatalogTripType = TripType | "4hr" | "8hr" | "12hr";
 export type VehiclePriceKey = `${VehicleSlug}_${TripType}`;
+export type CatalogPriceKey = `${VehicleSlug}_${CatalogTripType}`;
 export type VehiclePrices = Partial<Record<VehiclePriceKey, number>>;
 
 export const VEHICLE_SLUGS: readonly VehicleSlug[] = ["sedan", "minivan", "van"] as const;
@@ -43,6 +50,12 @@ export const TRIP_TYPES: readonly TripType[] = [
   "round_trip_same_day",
   "round_trip_multi_day",
 ] as const;
+export const CATALOG_TRIP_TYPES: readonly CatalogTripType[] = [
+  ...TRIP_TYPES,
+  "4hr",
+  "8hr",
+  "12hr",
+] as const;
 
 export const isVehicleSlug = (v: unknown): v is VehicleSlug =>
   typeof v === "string" && (VEHICLE_SLUGS as readonly string[]).includes(v);
@@ -50,8 +63,16 @@ export const isVehicleSlug = (v: unknown): v is VehicleSlug =>
 export const isTripType = (v: unknown): v is TripType =>
   typeof v === "string" && (TRIP_TYPES as readonly string[]).includes(v);
 
+export const isCatalogTripType = (v: unknown): v is CatalogTripType =>
+  typeof v === "string" && (CATALOG_TRIP_TYPES as readonly string[]).includes(v);
+
 export const priceKey = (slug: VehicleSlug, tripType: TripType): VehiclePriceKey =>
   `${slug}_${tripType}` as VehiclePriceKey;
+
+export const catalogPriceKey = (
+  slug: VehicleSlug,
+  tripType: CatalogTripType,
+): CatalogPriceKey => `${slug}_${tripType}` as CatalogPriceKey;
 
 export class RoutePriceNotSetError extends Error {
   constructor(
@@ -63,6 +84,22 @@ export class RoutePriceNotSetError extends Error {
       `Route ${routeId} has no price set for vehicle "${vehicleSlug}" and trip type "${tripType}"`,
     );
     this.name = "RoutePriceNotSetError";
+  }
+}
+
+// Parallel to RoutePriceNotSetError but keyed on a catalog slug instead
+// of a numeric route id. Service slugs are immutable post-create, so the
+// slug is a stable error identifier for callers / 422 mapping.
+export class ServicePriceNotSetError extends Error {
+  constructor(
+    public slug: string,
+    public vehicleSlug: VehicleSlug,
+    public tripType: CatalogTripType,
+  ) {
+    super(
+      `Service "${slug}" has no price set for vehicle "${vehicleSlug}" and trip type "${tripType}"`,
+    );
+    this.name = "ServicePriceNotSetError";
   }
 }
 
@@ -125,6 +162,36 @@ export class PricingService {
         : (route.vehiclePrices as Record<string, unknown>);
 
     const raw = blob?.[priceKey(vehicleSlug, tripType)];
+    if (raw === undefined || raw === null || raw === "") return null;
+    const price = num(raw as string | number);
+    return price > 0 ? price : null;
+  }
+
+  /**
+   * Catalog equivalent of getRoutePrice. Reads
+   * service_catalog.vehicle_prices keyed `${vehicleSlug}_${tripType}`.
+   * Only returns a price when the row is is_active=true, mirroring the
+   * public read API contract — admins shouldn't see prices for hidden
+   * rows quoted to customers.
+   */
+  async getServicePrice(
+    slug: string,
+    vehicleSlug: VehicleSlug,
+    tripType: CatalogTripType,
+  ): Promise<number | null> {
+    const [row] = await db
+      .select({ vehiclePrices: serviceCatalog.vehiclePrices })
+      .from(serviceCatalog)
+      .where(and(eq(serviceCatalog.slug, slug), eq(serviceCatalog.isActive, true)))
+      .limit(1);
+
+    if (!row?.vehiclePrices) return null;
+    const blob =
+      typeof row.vehiclePrices === "string"
+        ? (JSON.parse(row.vehiclePrices) as Record<string, unknown>)
+        : (row.vehiclePrices as Record<string, unknown>);
+
+    const raw = blob?.[catalogPriceKey(vehicleSlug, tripType)];
     if (raw === undefined || raw === null || raw === "") return null;
     const price = num(raw as string | number);
     return price > 0 ? price : null;

@@ -16,11 +16,15 @@ import {
   pricingService,
   pickVehicleSlugForPassengers,
   RoutePriceNotSetError,
+  ServicePriceNotSetError,
   isVehicleSlug,
   isTripType,
+  isCatalogTripType,
   type VehicleSlug,
   type TripType,
+  type CatalogTripType,
 } from "./services/pricing";
+import type { CatalogServiceRequest } from "./services/quote-builder";
 import { createTranslatedRoute } from "./translationMiddleware";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
@@ -42,6 +46,26 @@ const upload = multer({
     }
   },
 });
+
+// Parse and validate req.body.serviceSlugs from quote/booking endpoints.
+// Accepts an array of `{ slug, vehicleSlug, tripType }` and silently
+// drops malformed entries — bad shapes shouldn't 500 a legacy request
+// that doesn't carry catalog selections at all. Returns undefined when
+// the field is absent/empty so downstream sees the same "no catalog"
+// state as a pre-Phase-C client.
+function parseServiceSlugs(raw: unknown): CatalogServiceRequest[] | undefined {
+  if (!Array.isArray(raw) || raw.length === 0) return undefined;
+  const out: CatalogServiceRequest[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== "object") continue;
+    const { slug, vehicleSlug, tripType } = item as Record<string, unknown>;
+    if (typeof slug !== "string" || !slug) continue;
+    if (!isVehicleSlug(vehicleSlug)) continue;
+    if (!isCatalogTripType(tripType)) continue;
+    out.push({ slug, vehicleSlug, tripType });
+  }
+  return out.length > 0 ? out : undefined;
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Admin auth chain. Declared at the top of registerRoutes so any
@@ -1148,6 +1172,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
           addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
           travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
+          serviceSlugs: parseServiceSlugs(req.body.serviceSlugs),
         });
 
         if (built.lineItems.length > 0) {
@@ -1217,6 +1242,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(422).json({
           unpriced: true,
           routeId: error.routeId,
+          vehicleSlug: error.vehicleSlug,
+          tripType: error.tripType,
+          message: error.message,
+        });
+      }
+      if (error instanceof ServicePriceNotSetError) {
+        return res.status(422).json({
+          unpriced: true,
+          slug: error.slug,
           vehicleSlug: error.vehicleSlug,
           tripType: error.tripType,
           message: error.message,
@@ -1375,6 +1409,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           vehicleSlug,
           tripType,
           travelers: pax,
+          serviceSlugs: parseServiceSlugs(req.body.serviceSlugs),
         });
       } catch (err) {
         if (err instanceof RoutePriceNotSetError) {
@@ -1382,6 +1417,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
             success: false,
             unpriced: true,
             routeId: err.routeId,
+            vehicleSlug: err.vehicleSlug,
+            tripType: err.tripType,
+            message: err.message,
+          });
+        }
+        if (err instanceof ServicePriceNotSetError) {
+          return res.status(422).json({
+            success: false,
+            unpriced: true,
+            slug: err.slug,
             vehicleSlug: err.vehicleSlug,
             tripType: err.tripType,
             message: err.message,
@@ -1725,6 +1770,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
         addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
         travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
+        serviceSlugs: parseServiceSlugs(req.body.serviceSlugs),
       });
 
       const persisted = await persistFrozenQuote(built, {
@@ -1743,6 +1789,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(422).json({
           unpriced: true,
           routeId: error.routeId,
+          vehicleSlug: error.vehicleSlug,
+          tripType: error.tripType,
+          message: error.message,
+        });
+      }
+      if (error instanceof ServicePriceNotSetError) {
+        return res.status(422).json({
+          unpriced: true,
+          slug: error.slug,
           vehicleSlug: error.vehicleSlug,
           tripType: error.tripType,
           message: error.message,
