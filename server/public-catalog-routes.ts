@@ -22,26 +22,7 @@ import type { Express, Request, Response } from "express";
 import { and, asc, eq, ilike, inArray, or } from "drizzle-orm";
 import { db } from "./db";
 import { serviceCatalog, serviceCategories, tripTypes } from "@shared/schema";
-
-// Inlined for now — extracted into shared/city-detection.ts in C1.5.
-// Keeps C1 self-contained and lets the commit graph stay clean.
-const MULTI_WORD_CITIES = [
-  "Marsa Alam",
-  "Sharm El Sheikh",
-  "El Gouna",
-  "Sahl Hasheesh",
-  "Marsa Matruh",
-  "El Quseir",
-  "Abu Simbel",
-] as const;
-
-function deriveCity(routeName: string): string {
-  const lower = routeName.toLowerCase();
-  for (const city of MULTI_WORD_CITIES) {
-    if (lower.startsWith(city.toLowerCase())) return city;
-  }
-  return routeName.split(/\s/)[0] ?? "";
-}
+import { deriveCity } from "@shared/city-detection";
 
 // Convert "luxor-karnak-temple" → "Luxor Karnak Temple". Used as a
 // fallback display name when name_translations.en is missing.

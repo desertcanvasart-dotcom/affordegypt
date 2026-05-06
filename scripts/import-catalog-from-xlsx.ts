@@ -14,7 +14,9 @@
 // to /api/auth/login to obtain a JWT. Reads APP_URL for the target host.
 //
 // Usage:
-//   npx dotenv-cli -e .env.production -- node scripts/import-catalog-from-xlsx.mjs
+//   npx dotenv-cli -e .env.production -- npx tsx scripts/import-catalog-from-xlsx.ts
+//
+// (TS source — invoke with tsx so the import from `shared/` resolves.)
 //
 // Out of scope: translations beyond English, image URLs, update-on-conflict.
 
@@ -22,6 +24,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import XLSX from "xlsx";
+import { MULTI_WORD_CITIES, deriveCity } from "../shared/city-detection.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,8 +35,11 @@ const IMPORT_DIR = path.join(REPO_ROOT, "data", "catalog-import");
 // Egyptian cities used for intercity detection. Order doesn't matter;
 // the rule is "route name contains any of these other than origin".
 // Multi-word entries must be matched as substrings.
+//
+// MULTI_WORD_CITIES from shared/ is folded in plus the additional
+// single-word entries the destination side needs (Cairo, Luxor, etc.).
 // --------------------------------------------------------------------
-const EGYPTIAN_CITIES = [
+const EGYPTIAN_CITIES: readonly string[] = [
   "Cairo",
   "Giza",
   "Alexandria",
@@ -42,10 +48,7 @@ const EGYPTIAN_CITIES = [
   "Hurghada",
   "Safaga",
   "El-Quseir",
-  "El Quseir",
   "Quseir",
-  "Marsa Alam",
-  "Sharm El Sheikh",
   "Sharm",
   "Dahab",
   "Taba",
@@ -53,16 +56,16 @@ const EGYPTIAN_CITIES = [
   "Edfu",
   "Esna",
   "Kom Ombo",
-  "Abu Simbel",
+  ...MULTI_WORD_CITIES,
 ];
 
-const VEHICLE_COLUMNS = ["sedan", "minivan", "van"];
+const VEHICLE_COLUMNS = ["sedan", "minivan", "van"] as const;
 
 // --------------------------------------------------------------------
 // Trip-type derivation. Keyword matches are case-insensitive substring.
 // Order matters: first match wins. "Same Day Return" overrides arrow.
 // --------------------------------------------------------------------
-const TRIP_TYPE_KEYWORDS = [
+const TRIP_TYPE_KEYWORDS: ReadonlyArray<{ match: RegExp; tripType: string }> = [
   { match: /same\s*day\s*return/i, tripType: "round_trip_same_day" },
   { match: /overnight/i, tripType: "round_trip_multi_day" },
   { match: /\(\s*12\s*hrs?\s*\)/i, tripType: "12hr" },
@@ -71,14 +74,14 @@ const TRIP_TYPE_KEYWORDS = [
 ];
 
 // Parenthetical content that should NOT be treated as a pickup zone.
-const TRIP_TYPE_PAREN_PATTERNS = [
+const TRIP_TYPE_PAREN_PATTERNS: RegExp[] = [
   /^\s*\d+\s*hrs?\s*$/i,
   /^\s*full\s*day\s*$/i,
   /^\s*same\s*day\s*return\s*$/i,
   /^\s*overnight\s*$/i,
 ];
 
-function deriveTripType(routeName) {
+function deriveTripType(routeName: string): string | null {
   for (const { match, tripType } of TRIP_TYPE_KEYWORDS) {
     if (match.test(routeName)) return tripType;
   }
@@ -87,7 +90,7 @@ function deriveTripType(routeName) {
   return null;
 }
 
-function derivePickupZone(routeName, city) {
+function derivePickupZone(routeName: string, city: string): string {
   const parenMatch = routeName.match(/\(([^)]+)\)/);
   if (parenMatch) {
     const inner = parenMatch[1].trim();
@@ -97,17 +100,10 @@ function derivePickupZone(routeName, city) {
   return `${city} Center`;
 }
 
-function deriveCity(routeName) {
-  // First word of route name. Strips any leading whitespace.
-  const trimmed = routeName.trim();
-  const firstToken = trimmed.split(/\s+/)[0] ?? "";
-  return firstToken;
-}
-
 // Identify the full origin-city name that prefixes the route, if it
-// matches a known multi-word Egyptian city. Used to avoid treating the
-// origin's own name as evidence of an intercity transfer.
-function deriveOriginFullName(routeName) {
+// matches a known Egyptian city. Used to avoid treating the origin's
+// own name as evidence of an intercity transfer.
+function deriveOriginFullName(routeName: string): string | null {
   const lower = routeName.toLowerCase().trim();
   // Sort longest-first so "Sharm El Sheikh" wins over "Sharm".
   const sorted = [...EGYPTIAN_CITIES].sort((a, b) => b.length - a.length);
@@ -117,7 +113,7 @@ function deriveOriginFullName(routeName) {
   return null;
 }
 
-function deriveCategory(routeName, city) {
+function deriveCategory(routeName: string, city: string): string {
   const lower = routeName.toLowerCase();
   if (lower.includes("airport") || lower.includes("station / hotel"))
     return "airport_transfer";
@@ -139,7 +135,7 @@ function deriveCategory(routeName, city) {
   return "sightseeing_tour";
 }
 
-function deriveSlug(routeName) {
+function deriveSlug(routeName: string): string {
   let s = routeName.toLowerCase();
   s = s.replace(/↔/g, "-");
   s = s.replace(/→/g, "-");
@@ -149,8 +145,7 @@ function deriveSlug(routeName) {
   s = s.replace(/[()]/g, " ");
   // Replace any non-alphanum run with single hyphen.
   s = s.replace(/[^a-z0-9]+/g, "-");
-  // Strip leading/trailing hyphens, collapse repeats (regex above
-  // already prevents repeats but safe-guard).
+  // Strip leading/trailing hyphens, collapse repeats.
   s = s.replace(/-+/g, "-").replace(/^-|-$/g, "");
   return s;
 }
@@ -159,28 +154,36 @@ function deriveSlug(routeName) {
 // Sheet reading
 // --------------------------------------------------------------------
 
-function readSheetRows(filePath) {
+interface SheetData {
+  headers: string[];
+  rows: Array<{ rowNumber: number; cells: unknown[] }>;
+}
+
+function readSheetRows(filePath: string): SheetData {
   const wb = XLSX.readFile(filePath);
   const sheetName = wb.SheetNames[0];
   const ws = wb.Sheets[sheetName];
-  // header:1 → array of arrays. defval:"" → empty cells become "".
-  const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "", raw: true });
+  const aoa = XLSX.utils.sheet_to_json<unknown[]>(ws, {
+    header: 1,
+    defval: "",
+    raw: true,
+  });
   if (aoa.length < 3) return { headers: [], rows: [] };
 
-  const headers = aoa[0].map((h) => String(h ?? "").trim().toLowerCase());
-  // Skip row 1 (headers, idx 0) and row 2 (subheader, idx 1). Data
-  // starts at idx 2 → spreadsheet row 3.
-  const rows = [];
+  const headers = (aoa[0] as unknown[]).map((h) =>
+    String(h ?? "").trim().toLowerCase(),
+  );
+  const rows: SheetData["rows"] = [];
   for (let i = 2; i < aoa.length; i++) {
-    rows.push({ rowNumber: i + 1, cells: aoa[i] });
+    rows.push({ rowNumber: i + 1, cells: aoa[i] as unknown[] });
   }
   return { headers, rows };
 }
 
-function cellNumber(value) {
+function cellNumber(value: unknown): number | null {
   if (value === null || value === undefined || value === "") return null;
   if (typeof value === "number" && Number.isFinite(value)) return value;
-  const cleaned = String(value).replace(/[,  ]/g, "").trim();
+  const cleaned = String(value).replace(/[,  ]/g, "").trim();
   if (cleaned === "") return null;
   const n = Number(cleaned);
   return Number.isFinite(n) ? n : null;
@@ -190,7 +193,11 @@ function cellNumber(value) {
 // API client
 // --------------------------------------------------------------------
 
-async function login(appUrl, username, password) {
+async function login(
+  appUrl: string,
+  username: string,
+  password: string,
+): Promise<string> {
   const res = await fetch(`${appUrl}/api/auth/login`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -200,12 +207,16 @@ async function login(appUrl, username, password) {
     const text = await res.text();
     throw new Error(`login failed: ${res.status} ${text}`);
   }
-  const data = await res.json();
+  const data = (await res.json()) as { token?: string };
   if (!data.token) throw new Error("login response missing token");
   return data.token;
 }
 
-async function getBySlug(appUrl, token, slug) {
+async function getBySlug(
+  appUrl: string,
+  token: string,
+  slug: string,
+): Promise<{ slug: string } | null> {
   // The list endpoint doesn't accept ?slug= — use ?q= and exact-match
   // the slug client-side.
   const url = `${appUrl}/api/admin/service-catalog?q=${encodeURIComponent(slug)}`;
@@ -214,11 +225,15 @@ async function getBySlug(appUrl, token, slug) {
     const text = await res.text();
     throw new Error(`GET service-catalog failed: ${res.status} ${text}`);
   }
-  const rows = await res.json();
+  const rows = (await res.json()) as Array<{ slug: string }>;
   return Array.isArray(rows) ? rows.find((r) => r.slug === slug) ?? null : null;
 }
 
-async function postCatalog(appUrl, token, payload) {
+async function postCatalog(
+  appUrl: string,
+  token: string,
+  payload: Record<string, unknown>,
+): Promise<{ status: number; body: any }> {
   const res = await fetch(`${appUrl}/api/admin/service-catalog`, {
     method: "POST",
     headers: {
@@ -228,7 +243,7 @@ async function postCatalog(appUrl, token, payload) {
     body: JSON.stringify(payload),
   });
   const text = await res.text();
-  let body;
+  let body: any;
   try {
     body = JSON.parse(text);
   } catch {
@@ -240,6 +255,12 @@ async function postCatalog(appUrl, token, payload) {
 // --------------------------------------------------------------------
 // Main
 // --------------------------------------------------------------------
+
+interface FileCounts {
+  imported: number;
+  skipped: number;
+  errors: number;
+}
 
 async function main() {
   const appUrl = (process.env.APP_URL || "").replace(/\/$/, "");
@@ -267,17 +288,22 @@ async function main() {
   const token = await login(appUrl, username, password);
   console.log("Logged in.");
 
-  const summary = { imported: 0, skipped: 0, errors: 0, perFile: {} };
+  const summary = {
+    imported: 0,
+    skipped: 0,
+    errors: 0,
+    perFile: {} as Record<string, FileCounts>,
+  };
 
   for (const file of files) {
     const filePath = path.join(IMPORT_DIR, file);
     console.log(`\n=== ${file} ===`);
-    const counts = { imported: 0, skipped: 0, errors: 0 };
+    const counts: FileCounts = { imported: 0, skipped: 0, errors: 0 };
 
-    let parsed;
+    let parsed: SheetData;
     try {
       parsed = readSheetRows(filePath);
-    } catch (err) {
+    } catch (err: any) {
       console.error(`  ERROR reading sheet: ${err.message}`);
       summary.errors++;
       counts.errors++;
@@ -286,8 +312,7 @@ async function main() {
     }
 
     const { headers, rows } = parsed;
-    // Column index lookup (lowercase, trimmed).
-    const colIndex = {};
+    const colIndex: Record<string, number> = {};
     headers.forEach((h, i) => {
       colIndex[h] = i;
     });
@@ -295,7 +320,7 @@ async function main() {
 
     for (const { rowNumber, cells } of rows) {
       const routeName = String(cells[routeCol] ?? "").trim();
-      if (!routeName) continue; // blank row
+      if (!routeName) continue;
 
       const ctx = `${file}:row${rowNumber} "${routeName}"`;
 
@@ -313,7 +338,7 @@ async function main() {
         const pickupZone = derivePickupZone(routeName, city);
         const slug = deriveSlug(routeName);
 
-        const vehiclePrices = {};
+        const vehiclePrices: Record<string, number> = {};
         for (const v of VEHICLE_COLUMNS) {
           const idx = colIndex[v];
           if (idx === undefined) continue;
@@ -363,7 +388,7 @@ async function main() {
           summary.errors++;
           counts.errors++;
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error(`  ERROR ${ctx}: ${err.message}`);
         summary.errors++;
         counts.errors++;
