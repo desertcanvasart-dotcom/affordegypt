@@ -324,7 +324,7 @@ export default function MultiCityPricingTool() {
         setCityServices([newCityService]);
 
         const STEP3_CATEGORIES = new Set([
-          "sightseeing_tour",
+          "tour_transfer",
           "sound_light_show",
           "dinner_transfer",
         ]);
@@ -1255,7 +1255,7 @@ export default function MultiCityPricingTool() {
                             <CatalogServicePicker
                               city={city.cityName}
                               categories={[
-                                "sightseeing_tour",
+                                "tour_transfer",
                                 "sound_light_show",
                                 "dinner_transfer",
                               ]}

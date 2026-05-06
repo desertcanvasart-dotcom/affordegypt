@@ -153,7 +153,7 @@ export default function AdminServiceCategories() {
             <CardTitle>Category vocabulary</CardTitle>
             <p className="text-sm text-gray-500 mt-1">
               Categories group catalog items in the customer-facing browser
-              (<code>airport_transfer</code>, <code>sightseeing_tour</code>, …). Slugs are
+              (<code>airport_transfer</code>, <code>tour_transfer</code>, …). Slugs are
               write-once after create. Soft-delete via the active toggle.
             </p>
           </CardHeader>

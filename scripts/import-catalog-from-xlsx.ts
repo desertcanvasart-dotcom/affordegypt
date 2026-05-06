@@ -132,7 +132,7 @@ function deriveCategory(routeName: string, city: string): string {
     if (originFull && (o === originFull || originFull.includes(o))) continue;
     if (lower.includes(o)) return "intercity_transfer";
   }
-  return "sightseeing_tour";
+  return "tour_transfer";
 }
 
 function deriveSlug(routeName: string): string {
