@@ -565,15 +565,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       for (const cityService of cityServices) {
         const travelers = Math.max(1, Math.floor(cityService.travelers || 1));
-        const vehicleSlug = pickVehicleSlugForPassengers(travelers);
 
+        // Phase C: catalog services replace the legacy selectedRoutes
+        // path. Each entry carries its own vehicleSlug + tripType chosen
+        // in the picker, so we look up the price directly from
+        // service_catalog.vehicle_prices via pricingService.
+        // The breakdown field name stays `routes` for client compat.
         let routesTotal = 0;
-        for (const routeId of cityService.selectedRoutes ?? []) {
-          // Multi-city composer is one-way per leg by definition.
-          const price = await pricingService.getRoutePrice(routeId, vehicleSlug, "one_way");
-          // No fallback: if a route in the multi-city plan isn't priced for
-          // this vehicle, it contributes 0. Frontend should already exclude
-          // unpriced routes from selection; this is just a defensive zero.
+        for (const sel of cityService.selectedServices ?? []) {
+          if (!sel || typeof sel.slug !== "string") continue;
+          if (!isVehicleSlug(sel.vehicleSlug)) continue;
+          if (!isCatalogTripType(sel.tripType)) continue;
+          const price = await pricingService.getServicePrice(
+            sel.slug,
+            sel.vehicleSlug,
+            sel.tripType,
+          );
+          // Defensive zero: unpriced rows contribute nothing rather than
+          // crashing the breakdown. Picker excludes unpriced rows.
           if (price !== null) routesTotal += price / travelers;
         }
 

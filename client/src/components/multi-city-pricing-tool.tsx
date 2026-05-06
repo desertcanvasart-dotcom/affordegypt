@@ -23,6 +23,8 @@ import AttractionsSearch from "@/components/attractions-search";
 import CatalogServicePicker, {
   type SelectedCatalogService,
   type CatalogRow,
+  TRIP_TYPE_LABELS,
+  VEHICLE_LABELS,
 } from "@/components/catalog-service-picker";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
@@ -298,6 +300,8 @@ export default function MultiCityPricingTool() {
           slug: row.slug,
           vehicleSlug: defaultVehicle,
           tripType,
+          name: row.name,
+          price: row.vehicle_prices[`${defaultVehicle}_${tripType}`],
         };
 
         const today = new Date().toISOString().split("T")[0];
@@ -1373,7 +1377,14 @@ export default function MultiCityPricingTool() {
                                   <ul className="text-sm space-y-1 ml-6">
                                     {city.selectedServices.map((s) => (
                                       <li key={s.slug}>
-                                        • {s.slug} — {s.vehicleSlug} ({s.tripType})
+                                        • {s.name ?? s.slug} —{" "}
+                                        {VEHICLE_LABELS[s.vehicleSlug] ?? s.vehicleSlug}
+                                        {" "}({TRIP_TYPE_LABELS[s.tripType] ?? s.tripType})
+                                        {typeof s.price === "number" && (
+                                          <span className="text-muted-foreground">
+                                            {" "}— {formatEGP(s.price)}
+                                          </span>
+                                        )}
                                       </li>
                                     ))}
                                   </ul>
@@ -1605,7 +1616,7 @@ export default function MultiCityPricingTool() {
                       {/* Price Breakdown */}
                       <div className="space-y-1.5 mb-3 pb-3 border-b text-sm">
                         <div className="flex justify-between">
-                          <span>Transportation</span>
+                          <span>Services</span>
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
@@ -1755,7 +1766,7 @@ export default function MultiCityPricingTool() {
                         <h4 className="font-medium mb-2">{city.city}</h4>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between">
-                            <span>Routes:</span>
+                            <span>Services:</span>
                             <span className="font-mono">{formatEGP(city.routes)}</span>
                           </div>
                           <div className="flex justify-between">

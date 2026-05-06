@@ -31,6 +31,10 @@ export interface SelectedCatalogService {
   slug: string;
   vehicleSlug: VehicleSlug;
   tripType: string;
+  // Display fields captured at pick time so review/breakdown screens
+  // don't have to re-fetch the catalog row. The server ignores extras.
+  name?: string;
+  price?: number;
 }
 
 export interface CatalogRow {
@@ -52,16 +56,16 @@ interface Props {
   emptyMessage?: string;
 }
 
-const TRIP_TYPE_LABELS: Record<string, string> = {
-  one_way: "one-way",
-  round_trip_same_day: "round-trip (same day)",
-  round_trip_multi_day: "round-trip (multi-day)",
+export const TRIP_TYPE_LABELS: Record<string, string> = {
+  one_way: "One-way",
+  round_trip_same_day: "Round-trip (same day)",
+  round_trip_multi_day: "Round-trip (multi-day)",
   "4hr": "4-hour rental",
   "8hr": "8-hour rental",
   "12hr": "12-hour rental",
 };
 
-const VEHICLE_LABELS: Record<VehicleSlug, string> = {
+export const VEHICLE_LABELS: Record<VehicleSlug, string> = {
   sedan: "Sedan",
   minivan: "Minivan",
   van: "Van",
@@ -160,7 +164,11 @@ export default function CatalogServicePicker({
       const vs = vehiclesForRow(row.vehicle_prices, tripType);
       if (vs.length === 0) return;
       const vehicleSlug: VehicleSlug = vs.includes("sedan") ? "sedan" : vs[0];
-      onChange([...others, { slug: row.slug, vehicleSlug, tripType }]);
+      const price = row.vehicle_prices[`${vehicleSlug}_${tripType}`];
+      onChange([
+        ...others,
+        { slug: row.slug, vehicleSlug, tripType, name: row.name, price },
+      ]);
     } else {
       onChange(others);
     }
@@ -168,9 +176,18 @@ export default function CatalogServicePicker({
 
   const handleVehicleChange = (slug: string, vehicleSlug: VehicleSlug) => {
     // Only mutate the entry whose slug matches; out-of-scope entries
-    // pass through unchanged.
+    // pass through unchanged. Re-snapshot the per-vehicle price.
     void inScopeSlugs;
-    onChange(selected.map((s) => (s.slug === slug ? { ...s, vehicleSlug } : s)));
+    const row = data?.find((r) => r.slug === slug);
+    onChange(
+      selected.map((s) => {
+        if (s.slug !== slug) return s;
+        const price = row
+          ? row.vehicle_prices[`${vehicleSlug}_${s.tripType}`]
+          : s.price;
+        return { ...s, vehicleSlug, price };
+      }),
+    );
   };
 
   return (
