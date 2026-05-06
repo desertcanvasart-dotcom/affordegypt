@@ -16,11 +16,19 @@ import { eq } from "drizzle-orm";
 import {
   pricingService,
   RoutePriceNotSetError,
+  ServicePriceNotSetError,
   type LineItem,
   type VehicleSlug,
   type TripType,
+  type CatalogTripType,
   PricingService,
 } from "./pricing";
+
+export interface CatalogServiceRequest {
+  slug: string;
+  vehicleSlug: VehicleSlug;
+  tripType: CatalogTripType;
+}
 
 export interface QuoteRequest {
   routeId?: number | null;
@@ -33,6 +41,12 @@ export interface QuoteRequest {
   attractionIds?: number[];
   addOnIds?: Array<number | { id: number; quantity?: number }>;
   travelers?: number;
+  /**
+   * Catalog selections from the new planner. Each entry is priced as a
+   * separate line item against service_catalog.vehicle_prices. Throws
+   * ServicePriceNotSetError on any unpriced combination.
+   */
+  serviceSlugs?: CatalogServiceRequest[];
 }
 
 export interface QuoteBreakdown {
@@ -81,6 +95,38 @@ export async function buildQuoteFromRequest(req: QuoteRequest): Promise<BuiltQuo
     });
     lineItems.push(item);
     breakdown.routes = item.lineTotal;
+  }
+
+  // Catalog services (one line item per selection). Priced identically
+  // to routes — JSONB lookup keyed `${vehicleSlug}_${tripType}` against
+  // service_catalog.vehicle_prices. Each entry is its own line; the
+  // total accumulates into `breakdown.routes` since these are the new
+  // route-equivalent in the catalog model.
+  if (req.serviceSlugs && req.serviceSlugs.length > 0) {
+    for (const entry of req.serviceSlugs) {
+      const unit = await pricingService.getServicePrice(
+        entry.slug,
+        entry.vehicleSlug,
+        entry.tripType,
+      );
+      if (unit === null) {
+        throw new ServicePriceNotSetError(entry.slug, entry.vehicleSlug, entry.tripType);
+      }
+      const item = PricingService.lineGeneric({
+        kind: "service",
+        description: `Service: ${entry.slug} — ${entry.vehicleSlug} (${entry.tripType})`,
+        unitPrice: unit,
+        quantity: 1,
+        meta: {
+          serviceSlug: entry.slug,
+          vehicleSlug: entry.vehicleSlug,
+          tripType: entry.tripType,
+          travelers,
+        },
+      });
+      lineItems.push(item);
+      breakdown.routes += item.lineTotal;
+    }
   }
 
   // Guide (daily rate, charged once per booking)
