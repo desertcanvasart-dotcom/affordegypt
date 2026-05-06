@@ -7,6 +7,7 @@ import { setupAuthRoutes } from "./auth-routes";
 import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
 import { registerAdminCatalogRoutes } from "./admin-catalog-routes";
+import { registerPublicCatalogRoutes } from "./public-catalog-routes";
 import {
   buildQuoteFromRequest,
   persistFrozenQuote,
@@ -1821,6 +1822,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register pricing routes for Transfer Only pricing endpoint
   await registerPricingRoutes(app);
   registerAdminCatalogRoutes(app);
+  registerPublicCatalogRoutes(app);
 
   // Update booking status endpoint
   app.put("/api/bookings/:id/status", ...adminAuth, async (req, res) => {
