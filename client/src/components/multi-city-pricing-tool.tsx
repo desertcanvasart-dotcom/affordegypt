@@ -324,7 +324,6 @@ export default function MultiCityPricingTool() {
         setCityServices([newCityService]);
 
         const STEP3_CATEGORIES = new Set([
-          "tour_transfer",
           "sound_light_show",
           "dinner_transfer",
         ]);
@@ -1073,6 +1072,7 @@ export default function MultiCityPricingTool() {
                                     "airport_transfer",
                                     "intercity_transfer",
                                     "local_transfer",
+                                    "tour_transfer",
                                   ]}
                                   selected={city.selectedServices}
                                   onChange={(next) => {
@@ -1246,16 +1246,14 @@ export default function MultiCityPricingTool() {
                           </div>
                           
                           {/* Phase C: catalog-driven experience picker
-                              (sightseeing tours, sound & light, dinner
-                              transfers). Sits above the legacy
-                              AddOnsSearch so customers see catalog
-                              experiences first. */}
+                              (sound & light, dinner transfers). Sits
+                              above the legacy AddOnsSearch so customers
+                              see catalog experiences first. */}
                           <div className="space-y-3 mb-4">
                             <Label className="text-sm font-medium">Experiences</Label>
                             <CatalogServicePicker
                               city={city.cityName}
                               categories={[
-                                "tour_transfer",
                                 "sound_light_show",
                                 "dinner_transfer",
                               ]}
