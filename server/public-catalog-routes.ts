@@ -10,6 +10,9 @@
 //   GET /api/services/trip-types     — trip_types where is_active
 //   GET /api/services/:slug          — single row, 404 on missing/inactive
 //
+// Plus the entrance-fee surface:
+//   GET /api/entrance-fees           — per-person tickets (city filter optional)
+//
 // Note: the existing /api/cities endpoint (cities table) is left
 // untouched. Catalog-derived cities live under /api/services/cities to
 // avoid colliding with the legacy planner contract.
@@ -21,7 +24,7 @@
 import type { Express, Request, Response } from "express";
 import { and, asc, eq, ilike, inArray, or } from "drizzle-orm";
 import { db } from "./db";
-import { serviceCatalog, serviceCategories, tripTypes } from "@shared/schema";
+import { entranceFees, serviceCatalog, serviceCategories, tripTypes } from "@shared/schema";
 import { deriveCity } from "@shared/city-detection";
 
 // Convert "luxor-karnak-temple" → "Luxor Karnak Temple". Used as a
@@ -235,6 +238,53 @@ export function registerPublicCatalogRoutes(app: Express): void {
       );
     } catch (error: any) {
       console.error("[GET /api/services] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // ---------------------------------------------------------------
+  // GET /api/entrance-fees — per-person Egyptian site tickets.
+  // Query params:
+  //   city — optional city slug (matches entrance_fees.city exactly).
+  // Response: [{slug, name, city, price_per_person, currency, notes}]
+  // Active rows only, sorted by sort_order then name.
+  // ---------------------------------------------------------------
+  app.get("/api/entrance-fees", async (req: Request, res: Response) => {
+    try {
+      const cityParam =
+        typeof req.query.city === "string" ? req.query.city.trim() : "";
+
+      const conditions: any[] = [eq(entranceFees.isActive, true)];
+      if (cityParam) {
+        conditions.push(eq(entranceFees.city, cityParam));
+      }
+
+      const rows = await db
+        .select({
+          slug: entranceFees.slug,
+          city: entranceFees.city,
+          nameTranslations: entranceFees.nameTranslations,
+          pricePerPerson: entranceFees.pricePerPerson,
+          currency: entranceFees.currency,
+          notes: entranceFees.notes,
+          sortOrder: entranceFees.sortOrder,
+        })
+        .from(entranceFees)
+        .where(and(...conditions))
+        .orderBy(asc(entranceFees.sortOrder), asc(entranceFees.slug));
+
+      res.json(
+        rows.map((r) => ({
+          slug: r.slug,
+          name: pickName({ name: null, slug: r.slug, nameTranslations: r.nameTranslations }),
+          city: r.city,
+          price_per_person: Number(r.pricePerPerson),
+          currency: r.currency,
+          notes: r.notes,
+        })),
+      );
+    } catch (error: any) {
+      console.error("[GET /api/entrance-fees] Error:", error);
       res.status(500).json({ message: error.message });
     }
   });

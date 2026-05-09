@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, decimal, timestamp, jsonb, index, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, decimal, numeric, timestamp, jsonb, index, uniqueIndex } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -193,6 +193,33 @@ export const attractions = pgTable(
   },
   (t) => [index("idx_attractions_city").on(t.cityId)],
 );
+
+// Per-person entrance tickets to Egyptian heritage sites. Distinct from
+// `service_catalog` (per-vehicle transportation) and from the legacy
+// `attractions` table (which is wired into the old pricing path and will
+// be retired in PR-Path-B-3 once its callers are stripped).
+//
+// Pricing model: operator quotes a `base_price`, we apply a 5% markup,
+// store the marked-up `price_per_person` rounded to nearest 1. Both
+// columns are kept for audit transparency.
+export const entranceFees = pgTable("entrance_fees", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  nameTranslations: jsonb("name_translations").notNull().default({}),
+  city: text("city").notNull(),
+  basePrice: numeric("base_price", { precision: 10, scale: 2 }).notNull(),
+  markupPercent: numeric("markup_percent", { precision: 5, scale: 2 }).notNull().default("5"),
+  pricePerPerson: numeric("price_per_person", { precision: 10, scale: 2 }).notNull(),
+  currency: text("currency").notNull().default("EGP"),
+  notes: text("notes"),
+  isActive: boolean("is_active").notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type EntranceFee = typeof entranceFees.$inferSelect;
+export type InsertEntranceFee = typeof entranceFees.$inferInsert;
 
 // Quotes are immutable financial documents. Once `frozenAt` is set, line
 // items must not change. The `jsonBlob` column is retained for back-compat
