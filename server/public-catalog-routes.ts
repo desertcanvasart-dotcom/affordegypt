@@ -13,6 +13,9 @@
 // Plus the entrance-fee surface:
 //   GET /api/entrance-fees           — per-person tickets (city filter optional)
 //
+// Plus the experiences surface:
+//   GET /api/experiences             — packaged self-contained products (city filter optional)
+//
 // Note: the existing /api/cities endpoint (cities table) is left
 // untouched. Catalog-derived cities live under /api/services/cities to
 // avoid colliding with the legacy planner contract.
@@ -24,7 +27,7 @@
 import type { Express, Request, Response } from "express";
 import { and, asc, eq, ilike, inArray, or } from "drizzle-orm";
 import { db } from "./db";
-import { entranceFees, serviceCatalog, serviceCategories, tripTypes } from "@shared/schema";
+import { entranceFees, experiences, serviceCatalog, serviceCategories, tripTypes } from "@shared/schema";
 import { deriveCity } from "@shared/city-detection";
 
 // Convert "luxor-karnak-temple" → "Luxor Karnak Temple". Used as a
@@ -285,6 +288,54 @@ export function registerPublicCatalogRoutes(app: Express): void {
       );
     } catch (error: any) {
       console.error("[GET /api/entrance-fees] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // ---------------------------------------------------------------
+  // GET /api/experiences — packaged self-contained products
+  // (felucca, camel, balloon, photography, packaged sound & light).
+  // Query params:
+  //   city — optional city slug (matches experiences.city exactly).
+  // Response: [{slug, name, city, price, unit_type, image_url}]
+  // Active rows only, sorted by sort_order then slug.
+  // ---------------------------------------------------------------
+  app.get("/api/experiences", async (req: Request, res: Response) => {
+    try {
+      const cityParam =
+        typeof req.query.city === "string" ? req.query.city.trim() : "";
+
+      const conditions: any[] = [eq(experiences.isActive, true)];
+      if (cityParam) {
+        conditions.push(eq(experiences.city, cityParam));
+      }
+
+      const rows = await db
+        .select({
+          slug: experiences.slug,
+          city: experiences.city,
+          nameTranslations: experiences.nameTranslations,
+          price: experiences.price,
+          unitType: experiences.unitType,
+          imageUrl: experiences.imageUrl,
+          sortOrder: experiences.sortOrder,
+        })
+        .from(experiences)
+        .where(and(...conditions))
+        .orderBy(asc(experiences.sortOrder), asc(experiences.slug));
+
+      res.json(
+        rows.map((r) => ({
+          slug: r.slug,
+          name: pickName({ name: null, slug: r.slug, nameTranslations: r.nameTranslations }),
+          city: r.city,
+          price: Number(r.price),
+          unit_type: r.unitType,
+          image_url: r.imageUrl,
+        })),
+      );
+    } catch (error: any) {
+      console.error("[GET /api/experiences] Error:", error);
       res.status(500).json({ message: error.message });
     }
   });
