@@ -74,6 +74,44 @@ The two are deliberately separate:
 
 ---
 
+## 1.6. Experiences (packaged self-contained products) — PR-Path-B-3
+
+`experiences` is the third sibling table to `service_catalog` (transportation) and `entrance_fees` (per-person tickets), added in PR-Path-B-3. It holds **self-contained packaged products** — felucca rides, camel rides, balloon rides, photography sessions, packaged sound & light shows. Each row is a complete adventure the customer buys as one unit; there is no per-vehicle pricing matrix and no per-person ticket calculation.
+
+### Why split it out from `add_ons`
+
+Before this PR, packaged experiences were stored in `add_ons` alongside meals and miscellaneous extras, distinguished only by a `category` column ("experience" vs "meal" vs "ticket"). That conflation caused two concrete problems:
+
+- The **Skip-the-Line Pyramids** row in `add_ons` was actually a duplicate concept: skip-the-line is already packaged into `entrance_fees` pricing for those sites, so the row was misrepresented data the planner could double-charge against.
+- Treating "experience" as a category-flag inside an add-ons table means every customer surface that offers add-ons either has to filter the rows or has to display experiences inline with meals — both wrong.
+
+The four-table model below replaces it.
+
+### The four-table model
+
+| Table             | What it holds                                                  | Pricing unit             |
+|-------------------|----------------------------------------------------------------|--------------------------|
+| `service_catalog` | Transportation (transfers, tours, rentals)                     | per vehicle × trip-type  |
+| `entrance_fees`   | Per-person tickets to Egyptian heritage sites                  | per person               |
+| `experiences`     | Packaged self-contained products (felucca, camel, balloon, …)  | flat (per row's `unit_type`) |
+| `add_ons`         | Standalone meals and true extras (lunch, dinner, photography permits, …) | per row's `unit_type`    |
+
+Every row in every table is tied to a city — that's an operational rule, not a schema constraint everywhere yet. The planner uses city as the primary grouping dimension across all four tables.
+
+### Currency
+
+`experiences` displays prices in **EGP only**. There is no `currency` column; the planner renders the EGP symbol directly. If a future product needs USD pricing, add a `currency` column then — don't pre-pay the cost.
+
+### Data migration from `add_ons`
+
+[`scripts/migrate-experiences-from-addons.ts`](../scripts/migrate-experiences-from-addons.ts) moves the two misclassified experience rows (Felucca Ride, Horse Carriage) into `experiences`, deletes the misrepresented Skip-the-Line Pyramids row, and leaves the standalone Traditional Lunch row untouched in `add_ons`. The script is idempotent and atomic (single transaction).
+
+### Public API
+
+[`GET /api/experiences?city={slug}`](../server/public-catalog-routes.ts) — same shape and conventions as `/api/entrance-fees`. Returns active rows only. Response: `[{slug, name, city, price, unit_type, image_url}]`.
+
+---
+
 ## 2. Schema
 
 ### `services` table

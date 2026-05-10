@@ -221,6 +221,28 @@ export const entranceFees = pgTable("entrance_fees", {
 export type EntranceFee = typeof entranceFees.$inferSelect;
 export type InsertEntranceFee = typeof entranceFees.$inferInsert;
 
+// Self-contained packaged experiences: felucca rides, camel rides,
+// balloon rides, photography sessions, packaged sound & light shows.
+// Distinct from `add_ons` (extras + meals) and from `service_catalog`
+// (per-vehicle transportation). Currency is implicit EGP.
+export const experiences = pgTable("experiences", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  nameTranslations: jsonb("name_translations").notNull().default({}),
+  descriptionTranslations: jsonb("description_translations"),
+  city: text("city").notNull(),
+  price: numeric("price", { precision: 10, scale: 2 }).notNull(),
+  unitType: text("unit_type").notNull(),
+  imageUrl: text("image_url"),
+  isActive: boolean("is_active").notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type Experience = typeof experiences.$inferSelect;
+export type InsertExperience = typeof experiences.$inferInsert;
+
 // Quotes are immutable financial documents. Once `frozenAt` is set, line
 // items must not change. The `jsonBlob` column is retained for back-compat
 // during the pricing rewrite (Phase 2) and will be removed in Phase 3.
