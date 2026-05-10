@@ -43,6 +43,8 @@ import Contact from "@/pages/contact";
 import Reviews from "@/pages/reviews";
 import SubmitReview from "@/pages/submit-review";
 import Transfers from "@/pages/transfers";
+import ServicesList from "@/pages/services-list";
+import ServiceDetail from "@/pages/service-detail";
 import PricingTool from "@/pages/pricing-tool";
 import CairoAirportTransfers from "@/pages/cairo-airport-transfers";
 import LuxorAirportTransfers from "@/pages/luxor-airport-transfers";
@@ -102,6 +104,8 @@ function Router() {
 
       {/* Multilingual routes */}
       {createMultilingualRoute("transfers", Transfers)}
+      <Route path="/services" component={ServicesList} />
+      <Route path="/services/:slug" component={ServiceDetail} />
       {createMultilingualRoute("pricing-tool", PricingTool)}
       {createMultilingualRoute("attractions", AttractionsSimple)}
       {createMultilingualRoute("destinations", Destinations)}

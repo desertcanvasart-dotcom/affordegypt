@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
 // Anchor price for hero subhead and FAQ "absolute minimum" answer.
@@ -45,14 +46,25 @@ export default function Hero() {
             {`(~${USD_DISPLAY_HINT} USD / ${EUR_DISPLAY_HINT} EUR)`}
           </p>
 
-          <Button
-            onClick={scrollToQuote}
-            size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-lg font-semibold shadow-xl"
-          >
-            Build Your Quote in 60 Seconds
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button
+              onClick={scrollToQuote}
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-lg font-semibold shadow-xl"
+            >
+              Build Your Quote in 60 Seconds
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className="bg-white/95 text-gray-900 hover:bg-white text-lg px-8 py-6 rounded-lg font-semibold shadow-xl"
+            >
+              <Link href="/services">Just need a transfer? Browse here →</Link>
+            </Button>
+          </div>
 
           <p className="mt-4 text-sm text-white/75">
             No account needed. Get your price, then send to WhatsApp.

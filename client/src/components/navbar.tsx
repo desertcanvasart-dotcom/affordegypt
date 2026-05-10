@@ -70,10 +70,10 @@ export default function Navbar() {
 
   const navigateToTransfers = () => {
     setIsMenuOpen(false);
-    if (location === '/transfers') {
+    if (location === '/services') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setLocation('/transfers');
+      setLocation('/services');
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
