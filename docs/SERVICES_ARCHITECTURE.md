@@ -51,6 +51,29 @@ All three converge on the **same service-detail view** at `/services/:slug`: nam
 
 ---
 
+## 1.5. Entrance fees (PR-Path-B-2)
+
+`entrance_fees` is a sibling table to `service_catalog`, added in PR-Path-B-2. Where `service_catalog` represents per-vehicle transportation products (the catalog described in §1), `entrance_fees` represents **per-person tickets** to Egyptian heritage sites — Egyptian Museum, Karnak, Abu Simbel, Saint Catherine, etc.
+
+The two are deliberately separate:
+
+- **Different unit of pricing.** A transfer is priced per vehicle and trip-type. A site ticket is priced per person, multiplied by group size at quote time. Forcing them into one table would require a sentinel "vehicle" type and conditional pricing math.
+- **Different data lifecycle.** Transfer pricing is renegotiated per-route and lives in `vehicle_prices` JSON. Entrance fees come from operator-published price lists (currently `attached_assets/Entrance_Fees.xlsx`) and refresh in bulk via [scripts/import-entrance-fees-from-xlsx.ts](../scripts/import-entrance-fees-from-xlsx.ts).
+- **Different audit needs.** Each entrance-fee row stores both the operator's `base_price` and the marked-up `price_per_person`, so we can reconcile against the source sheet.
+
+**Markup pattern.** All entrance fees apply a 5% markup (`markup_percent`, defaulted at the column level so future rows can override per-row if needed). The marked-up price is rounded to the nearest 1 in the source currency at import time and stored in `price_per_person`. The planner reads `price_per_person` directly — no markup math at quote time.
+
+**Currency.** Most rows are `EGP`; a small number (TABA Saladin Citadel, Saint Catherine) are `USD`. The column is plain text; the planner switches the displayed symbol off this value.
+
+**Public API.** [`GET /api/entrance-fees?city={slug}`](../server/public-catalog-routes.ts) — same shape and conventions as `/api/services`. Returns active rows only.
+
+**Relationship to upcoming PRs.**
+
+- PR-Path-B-3 (add-ons restructure) will strip the dead `attractions` table and its callers (`getAttractionPrice`, the quote-builder line item, the legacy admin endpoints). Entrance fees are the replacement; this PR just lands them in parallel so the change set stays small.
+- PR-Path-B-4 (horizontal columns) will surface entrance-fee selection in the planner UI alongside the per-vehicle service columns.
+
+---
+
 ## 2. Schema
 
 ### `services` table

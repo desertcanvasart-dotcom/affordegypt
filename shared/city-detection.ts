@@ -21,6 +21,7 @@ export const MULTI_WORD_CITIES = [
   "Marsa Matruh",
   "El Quseir",
   "Abu Simbel",
+  "South Sinai",
 ] as const;
 
 export function deriveCity(routeName: string): string {
