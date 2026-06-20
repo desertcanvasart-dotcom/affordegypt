@@ -392,74 +392,9 @@ export default function MultiCityPricingTool() {
     }
   };
 
-  const handleContinueBooking = async () => {
-    if (!totalPricing || cityServices.length === 0) return;
-    
-    // Track booking initiation event for Google Analytics
-    trackEvent('initiate_checkout', 'ecommerce', 'multi_city_pricing_tool', totalPricing.totalAmount);
-    
-    // Track conversion for Google Ads (you can customize the conversion label)
-    trackConversion('booking_initiation', totalPricing.totalAmount, 'EGP');
-    
-    try {
-      // Phase C: send catalog selections to /api/quotes as
-      // serviceSlugs. The server (see server/services/quote-builder)
-      // turns each entry into a frozen quote_line_items row with
-      // meta.serviceSlug. itinerary is preserved in jsonBlob for
-      // human-readable downstream display.
-      const flatServiceSlugs = cityServices.flatMap((c) =>
-        c.selectedServices.map((s) => ({
-          slug: s.slug,
-          vehicleSlug: s.vehicleSlug,
-          tripType: s.tripType,
-        })),
-      );
-
-      const enrichedItinerary = cityServices.map((cityService) => ({
-        ...cityService,
-      }));
-
-      const quoteData = {
-        // Server recomputes total from line items; this client value is
-        // metadata only.
-        clientComputedTotal: totalPricing.totalAmount.toString(),
-        travelers: totalPricing.travelers,
-        serviceSlugs: flatServiceSlugs,
-        jsonBlob: {
-          passengers: totalPricing.travelers,
-          itinerary: enrichedItinerary,
-          travelDate: travelDate,
-          clientTotalAmount: totalPricing.totalAmount,
-          breakdown: totalPricing.breakdown || [],
-        },
-      };
-
-      const response = await apiRequest("POST", "/api/quotes", quoteData);
-      const quote = await response.json();
-      
-      // Navigate to booking form with quote ID and scroll to top
-      setLocation(`/book/${quote.id}`);
-      // Smooth scroll to top after navigation
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-    } catch (error) {
-      console.error('Error creating quote:', error);
-      // Fallback: navigate to booking form with quote data in URL params
-      const queryParams = new URLSearchParams({
-        total: (totalPricing?.totalAmount || 0).toString(),
-        travelers: (totalPricing?.travelers || 1).toString(),
-        cities: cityServices.map(c => c.cityName).join(','),
-        travelDate: travelDate ?? '',
-        itinerary: encodeURIComponent(JSON.stringify(cityServices))
-      });
-      setLocation(`/book?${queryParams.toString()}`);
-      // Smooth scroll to top after navigation
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-    }
-  };
+  // (removed dead handleContinueBooking — an unused /api/quotes checkout that
+  // froze only transfers; the live step-5 checkout below now freezes the full
+  // itinerary via cityServices.)
 
   const getCurrentCityRoutes = (cityId: number) => {
     if (!routes || routes.length === 0) return [];
@@ -1666,7 +1601,13 @@ export default function MultiCityPricingTool() {
                           try {
                             // Create quote first
                             const quoteData = {
-                              total: totalPricing?.totalAmount || 0,
+                              // Full itinerary priced + frozen server-side via
+                              // buildMultiCityQuote (the same engine as the live
+                              // preview), so the frozen/charged total matches
+                              // what the customer saw. The server ignores any
+                              // client total and recomputes from these.
+                              cityServices,
+                              travelers: globalTravelers,
                               jsonBlob: {
                                 cityServices,
                                 travelDate,
@@ -1687,7 +1628,7 @@ export default function MultiCityPricingTool() {
                             // Create booking with quote
                             const bookingData = {
                               quoteId: quote.id,
-                              startDate: travelDate,
+                              travelDate,
                               customerName: checkoutData.name,
                               customerEmail: checkoutData.email,
                               customerPhone: checkoutData.phone,

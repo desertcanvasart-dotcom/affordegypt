@@ -5,6 +5,7 @@ import { quoteRequestSchema } from "../request-schemas";
 import { adminAuth, parseServiceSlugs } from "./shared";
 import {
   buildQuoteFromRequest,
+  buildMultiCityQuote,
   persistFrozenQuote,
   getFrozenLineItems,
 } from "../services/quote-builder";
@@ -51,18 +52,26 @@ export function registerQuoteRoutes(app: Express): void {
   // its frozen line items.
   app.post("/api/quotes", validateBody(quoteRequestSchema), async (req, res) => {
     try {
-      const built = await buildQuoteFromRequest({
-        routeId: req.body.routeId ?? null,
-        vehicleSlug: isVehicleSlug(req.body.vehicleSlug) ? req.body.vehicleSlug : null,
-        tripType: isTripType(req.body.tripType) ? req.body.tripType : "one_way",
-        cityId: req.body.cityId ?? null,
-        guideLanguage: req.body.guideLanguage ?? null,
-        guideHours: req.body.guideHours ?? null,
-        attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
-        addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
-        travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
-        serviceSlugs: parseServiceSlugs(req.body.serviceSlugs),
-      });
+      // Multi-city planner sends a `cityServices` itinerary; price the whole
+      // thing through the shared builder (same one the preview uses) so the
+      // frozen total matches what was previewed. Otherwise fall back to the
+      // single-trip request shape.
+      const cityServices = req.body.cityServices;
+      const built =
+        Array.isArray(cityServices) && cityServices.length > 0
+          ? await buildMultiCityQuote(cityServices, req.body.travelers)
+          : await buildQuoteFromRequest({
+              routeId: req.body.routeId ?? null,
+              vehicleSlug: isVehicleSlug(req.body.vehicleSlug) ? req.body.vehicleSlug : null,
+              tripType: isTripType(req.body.tripType) ? req.body.tripType : "one_way",
+              cityId: req.body.cityId ?? null,
+              guideLanguage: req.body.guideLanguage ?? null,
+              guideHours: req.body.guideHours ?? null,
+              attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
+              addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
+              travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
+              serviceSlugs: parseServiceSlugs(req.body.serviceSlugs),
+            });
 
       const persisted = await persistFrozenQuote(built, {
         request: req.body,
