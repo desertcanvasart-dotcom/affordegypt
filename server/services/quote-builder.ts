@@ -11,7 +11,7 @@
 // total is now exactly the sum of line items.
 
 import { db } from "../db";
-import { quoteLineItems, quotes } from "@shared/schema";
+import { quoteLineItems, quotes, attractions } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import {
   pricingService,
@@ -189,6 +189,176 @@ export async function buildQuoteFromRequest(req: QuoteRequest): Promise<BuiltQuo
   const subtotal = round2(lineItems.reduce((s, l) => s + l.lineTotal, 0));
   // Total === subtotal. No commission, no markup. Sum of line items, period.
   return { lineItems, breakdown, subtotal, total: subtotal };
+}
+
+// One city's selections in a multi-city itinerary, as sent by the planner.
+export interface MultiCityCityInput {
+  cityId?: number | null;
+  cityName?: string | null;
+  travelers?: number | null;
+  selectedServices?: CatalogServiceRequest[];
+  selectedGuide?: { language?: string | null } | null;
+  selectedAttractions?: Array<number | string | { id?: number; name?: string }>;
+  selectedAddOns?: Array<number | { id: number; quantity?: number }>;
+}
+
+export interface PerCityBreakdown {
+  city: string;
+  routes: number;
+  guide: number;
+  attractions: number;
+  addOns: number;
+  total: number;
+}
+
+export interface BuiltMultiCityQuote extends BuiltQuote {
+  travelers: number;
+  perCity: PerCityBreakdown[];
+}
+
+/**
+ * Builds line items for a whole multi-city itinerary, pricing every city's
+ * transfers, guide, attractions, and add-ons through the SAME PricingService
+ * methods as buildQuoteFromRequest — so single-trip and multi-city stay
+ * consistent. Used by both the preview (/api/pricing/calculate) and the
+ * freeze (/api/quotes) so the previewed total always equals the frozen total.
+ * Throws ServicePriceNotSetError on an unpriced catalog combination (the
+ * picker already excludes those; surfacing 422 beats silently dropping it).
+ */
+export async function buildMultiCityQuote(
+  cityServices: MultiCityCityInput[],
+  travelersInput?: number | null,
+): Promise<BuiltMultiCityQuote> {
+  // One global travelers count: explicit arg, else the max any city carries.
+  const travelers = Math.max(
+    1,
+    Math.floor(
+      travelersInput ??
+        cityServices.reduce(
+          (m, c) => Math.max(m, Math.floor(c.travelers ?? 1)),
+          1,
+        ),
+    ),
+  );
+
+  const lineItems: LineItem[] = [];
+  const breakdown: QuoteBreakdown = { routes: 0, guide: 0, attractions: 0, addons: 0 };
+  const perCity: PerCityBreakdown[] = [];
+
+  // Resolve attraction names → ids lazily (the planner sends names; the
+  // attractions table may be empty, in which case nothing resolves).
+  let attractionByName: Map<string, number> | null = null;
+  const resolveAttraction = async (
+    raw: number | string | { id?: number; name?: string },
+  ): Promise<number | null> => {
+    if (typeof raw === "number") return raw;
+    if (raw && typeof raw === "object" && typeof raw.id === "number") return raw.id;
+    if (typeof raw === "string" || (raw && typeof raw === "object" && raw.name)) {
+      const name = (typeof raw === "string" ? raw : raw.name ?? "").trim().toLowerCase();
+      if (!name) return null;
+      if (!attractionByName) {
+        const rows = await db
+          .select({ id: attractions.id, name: attractions.name })
+          .from(attractions);
+        attractionByName = new Map(rows.map((r) => [r.name.trim().toLowerCase(), r.id]));
+      }
+      return attractionByName.get(name) ?? null;
+    }
+    return null;
+  };
+
+  for (const city of cityServices) {
+    const cityName = city.cityName ?? "Itinerary";
+    let cRoutes = 0, cGuide = 0, cAttractions = 0, cAddOns = 0;
+
+    // Catalog services (transfers/tours) — flat vehicle price, one line each.
+    for (const sel of city.selectedServices ?? []) {
+      if (!sel || typeof sel.slug !== "string") continue;
+      const unit = await pricingService.getServicePrice(sel.slug, sel.vehicleSlug, sel.tripType);
+      if (unit === null) {
+        throw new ServicePriceNotSetError(sel.slug, sel.vehicleSlug, sel.tripType);
+      }
+      const item = PricingService.lineGeneric({
+        kind: "service",
+        description: `Service: ${sel.slug} — ${sel.vehicleSlug} (${sel.tripType}) [${cityName}]`,
+        unitPrice: unit,
+        quantity: 1,
+        meta: { serviceSlug: sel.slug, vehicleSlug: sel.vehicleSlug, tripType: sel.tripType, cityName, travelers },
+      });
+      lineItems.push(item);
+      cRoutes += item.lineTotal;
+    }
+
+    // Guide — daily rate, charged once per city.
+    const lang = city.selectedGuide?.language;
+    if (city.cityId && lang) {
+      const daily = await pricingService.getGuideDailyRate(city.cityId, lang);
+      if (daily > 0) {
+        const item = PricingService.lineGeneric({
+          kind: "guide",
+          description: `Guide (${lang}) [${cityName}]`,
+          unitPrice: daily,
+          quantity: 1,
+          meta: { cityId: city.cityId, language: lang, cityName, travelers },
+        });
+        lineItems.push(item);
+        cGuide += item.lineTotal;
+      }
+    }
+
+    // Attractions — per-person (ticket × travelers).
+    for (const raw of city.selectedAttractions ?? []) {
+      const attractionId = await resolveAttraction(raw);
+      if (attractionId === null) continue;
+      const total = await pricingService.getAttractionPrice(attractionId, travelers);
+      if (total > 0) {
+        const item = PricingService.lineGeneric({
+          kind: "attraction",
+          description: `Attraction #${attractionId} [${cityName}]`,
+          unitPrice: total / travelers,
+          quantity: travelers,
+          meta: { attractionId, cityName, travelers },
+        });
+        lineItems.push(item);
+        cAttractions += item.lineTotal;
+      }
+    }
+
+    // Add-ons — per-person or flat, per getAddOnPrice's unitType.
+    for (const raw of city.selectedAddOns ?? []) {
+      const addOnId = typeof raw === "number" ? raw : raw?.id;
+      const quantity = typeof raw === "number" ? 1 : Math.max(1, Math.floor(raw?.quantity ?? 1));
+      if (typeof addOnId !== "number") continue;
+      const total = await pricingService.getAddOnPrice(addOnId, quantity, travelers);
+      if (total > 0) {
+        const item = PricingService.lineGeneric({
+          kind: "addon",
+          description: `Add-on #${addOnId} [${cityName}]`,
+          unitPrice: total / quantity,
+          quantity,
+          meta: { addOnId, cityName, travelers },
+        });
+        lineItems.push(item);
+        cAddOns += item.lineTotal;
+      }
+    }
+
+    breakdown.routes += cRoutes;
+    breakdown.guide += cGuide;
+    breakdown.attractions += cAttractions;
+    breakdown.addons += cAddOns;
+    perCity.push({
+      city: cityName,
+      routes: round2(cRoutes),
+      guide: round2(cGuide),
+      attractions: round2(cAttractions),
+      addOns: round2(cAddOns),
+      total: round2(cRoutes + cGuide + cAttractions + cAddOns),
+    });
+  }
+
+  const subtotal = round2(lineItems.reduce((s, l) => s + l.lineTotal, 0));
+  return { lineItems, breakdown, subtotal, total: subtotal, travelers, perCity };
 }
 
 /**

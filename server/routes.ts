@@ -12,11 +12,8 @@ import { registerBookingRoutes } from "./routes/bookings";
 import { registerRouteAdminRoutes } from "./routes/routes-admin";
 import { registerReferenceDataRoutes } from "./routes/reference-data";
 import { adminAuth } from "./routes/shared";
-import {
-  pricingService,
-  isVehicleSlug,
-  isCatalogTripType,
-} from "./services/pricing";
+import { ServicePriceNotSetError } from "./services/pricing";
+import { buildMultiCityQuote } from "./services/quote-builder";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
 // Stripe will be initialized later when keys are provided
@@ -275,87 +272,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "cityServices required" });
       }
 
-      const round2 = (n: number) => Math.round(n * 100) / 100;
-      let perPersonTotal = 0;
-      const breakdown = [];
-
-      for (const cityService of cityServices) {
-        const travelers = Math.max(1, Math.floor(cityService.travelers || 1));
-
-        // Phase C: catalog services replace the legacy selectedRoutes
-        // path. Each entry carries its own vehicleSlug + tripType chosen
-        // in the picker, so we look up the price directly from
-        // service_catalog.vehicle_prices via pricingService.
-        // The breakdown field name stays `routes` for client compat.
-        let routesTotal = 0;
-        for (const sel of cityService.selectedServices ?? []) {
-          if (!sel || typeof sel.slug !== "string") continue;
-          if (!isVehicleSlug(sel.vehicleSlug)) continue;
-          if (!isCatalogTripType(sel.tripType)) continue;
-          const price = await pricingService.getServicePrice(
-            sel.slug,
-            sel.vehicleSlug,
-            sel.tripType,
-          );
-          // Defensive zero: unpriced rows contribute nothing rather than
-          // crashing the breakdown. Picker excludes unpriced rows.
-          if (price !== null) routesTotal += price / travelers;
-        }
-
-        let guideTotal = 0;
-        if (cityService.selectedGuide?.language && cityService.cityId) {
-          const daily = await pricingService.getGuideDailyRate(
-            cityService.cityId,
-            cityService.selectedGuide.language,
-          );
-          guideTotal = daily / travelers;
-        }
-
-        let attractionsTotal = 0;
-        for (const item of cityService.selectedAttractions ?? []) {
-          let attractionId: number | null = null;
-          if (typeof item === "number") attractionId = item;
-          else if (item && typeof item === "object" && typeof item.id === "number") attractionId = item.id;
-          else if (typeof item === "string") {
-            const all = await storage.getAttractions();
-            attractionId = all.find((a) => a.name === item)?.id ?? null;
-          }
-          if (attractionId) {
-            attractionsTotal += await pricingService.getAttractionPrice(attractionId, 1);
-          }
-        }
-
-        let addOnsTotal = 0;
-        for (const ao of cityService.selectedAddOns ?? []) {
-          const id = typeof ao === "number" ? ao : ao?.id;
-          const qty = typeof ao === "number" ? 1 : Math.max(1, Math.floor(ao?.quantity ?? 1));
-          if (typeof id === "number") {
-            addOnsTotal += await pricingService.getAddOnPrice(id, qty, 1);
-          }
-        }
-
-        const cityPerPerson = round2(routesTotal + guideTotal + attractionsTotal + addOnsTotal);
-        perPersonTotal += cityPerPerson;
-
-        breakdown.push({
-          city: cityService.cityName,
-          routes: round2(routesTotal),
-          guide: round2(guideTotal),
-          attractions: round2(attractionsTotal),
-          addOns: round2(addOnsTotal),
-          total: cityPerPerson,
-        });
-      }
-
-      const travelers = Math.max(1, Math.floor(cityServices[0]?.travelers || 1));
+      // Single source of truth: the same builder the freeze path
+      // (/api/quotes) uses, so the previewed total always equals the
+      // frozen/charged total. Breakdown values are full per-city totals
+      // (not per-person), so summing them equals totalAmount.
+      const built = await buildMultiCityQuote(cityServices);
       res.json({
-        totalAmount: round2(perPersonTotal * travelers),
-        perPersonAmount: round2(perPersonTotal),
-        travelers,
-        breakdown,
+        totalAmount: built.total,
+        perPersonAmount: Math.round((built.total / built.travelers) * 100) / 100,
+        travelers: built.travelers,
+        breakdown: built.perCity,
         currency: "EGP",
       });
     } catch (error: any) {
+      if (error instanceof ServicePriceNotSetError) {
+        return res.status(422).json({
+          message: error.message,
+          unpriced: true,
+          slug: error.slug,
+          vehicleSlug: error.vehicleSlug,
+          tripType: error.tripType,
+        });
+      }
       console.error("Pricing calculation error:", error);
       res.status(500).json({ message: "Failed to calculate pricing" });
     }
