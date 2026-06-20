@@ -83,9 +83,8 @@ export const routeBookingRequestSchema = z.object({
 // and the required columns (customerName/rating/title/content are NOT NULL).
 // Looser than the client form (min lengths relaxed) so anything the form
 // accepts passes. NOTE: this does NOT strip isVerified/isActive — that
-// endpoint is shared with the admin CSV bulk importer, which sets them
-// legitimately. Closing that privileged-field hole needs an auth split
-// (public submit vs admin import); tracked as a follow-up.
+// endpoint forces these flags server-side; admins set them via the separate
+// adminReviewSchema below (POST /api/admin/reviews).
 export const reviewRequestSchema = z.object({
   customerName: z.string().min(1).max(120),
   customerLocation: z.string().max(120).nullish(),
@@ -93,4 +92,13 @@ export const reviewRequestSchema = z.object({
   title: z.string().min(1).max(200),
   content: z.string().min(1).max(5000),
   tripDate: z.union([z.string(), z.null()]).optional(),
+});
+
+// POST /api/admin/reviews — admin-only review creation / CSV bulk import.
+// Same fields as a public submission plus the moderation flags, which only an
+// authenticated admin may set. Gate-only, so the handler still receives the
+// booleans to persist.
+export const adminReviewSchema = reviewRequestSchema.extend({
+  isVerified: z.boolean().optional(),
+  isActive: z.boolean().optional(),
 });
