@@ -46,7 +46,9 @@ class ResendMailer {
       html: args.html,
       text: args.text,
       replyTo: args.replyTo,
-    });
+      // Resend's CreateEmailOptions is a discriminated union (html|text|react);
+      // our SendArgs carry optional html/text, so cast past the union check.
+    } as any);
     if (result.error) {
       const err: any = new Error(result.error.message || "Resend send failed");
       err.response = { body: { errors: [result.error] } };

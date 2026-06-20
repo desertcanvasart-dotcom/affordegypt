@@ -19,20 +19,20 @@ export default function BookingWizard() {
     resetBooking
   } = useBookingState();
 
-  const { data: cities = [] } = useQuery({
+  const { data: cities = [] } = useQuery<any[]>({
     queryKey: ["/api/cities"],
   });
 
-  const { data: vehicleTypes = [] } = useQuery({
+  const { data: vehicleTypes = [] } = useQuery<any[]>({
     queryKey: ["/api/vehicle-types"],
   });
 
-  const { data: tourGuides = [] } = useQuery({
+  const { data: tourGuides = [] } = useQuery<any[]>({
     queryKey: ["/api/tour-guides"],
     enabled: !!bookingData.fromCityId,
   });
 
-  const { data: addOns = [] } = useQuery({
+  const { data: addOns = [] } = useQuery<any[]>({
     queryKey: ["/api/add-ons"],
     enabled: !!bookingData.fromCityId,
   });

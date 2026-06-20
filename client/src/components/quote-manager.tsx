@@ -52,7 +52,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
   const queryClient = useQueryClient();
 
   // Fetch saved quotes
-  const { data: quotes = [], isLoading } = useQuery({
+  const { data: quotes = [], isLoading } = useQuery<any[]>({
     queryKey: ["/api/quotes"],
     refetchInterval: 30000, // Refresh every 30 seconds
   });
@@ -320,7 +320,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                         
                         {details.cities.length > 0 && (
                           <div className="flex flex-wrap gap-1">
-                            {details.cities.slice(0, 3).map((city, idx) => (
+                            {details.cities.slice(0, 3).map((city: any, idx: number) => (
                               <Badge key={idx} variant="secondary" className="text-xs">
                                 {city}
                               </Badge>

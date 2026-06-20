@@ -414,7 +414,7 @@ export default function BookPage() {
                     <div>
                       <div className="text-xs font-medium text-muted-foreground mb-1">Transportation</div>
                       <div className="text-xs text-muted-foreground">
-                        {fallbackQuote.vehicleType?.charAt(0).toUpperCase() + fallbackQuote.vehicleType?.slice(1)} - {routeData.distanceKm} km
+                        {fallbackQuote.vehicleType ? fallbackQuote.vehicleType.charAt(0).toUpperCase() + fallbackQuote.vehicleType.slice(1) : ""} - {routeData.distanceKm} km
                       </div>
                     </div>
 
