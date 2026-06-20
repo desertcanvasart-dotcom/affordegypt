@@ -302,17 +302,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // (duplicate GET /api/cities, /api/vehicle-types, /api/guide-rates removed —
   // they were shadowed by the registrations now in ./routes/reference-data.ts)
 
-  // Get license classes
-  app.get("/api/license-classes", async (req, res) => {
-    try {
-      const licenseClasses = await storage.getLicenseClasses();
-      res.json(licenseClasses);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  // Routes: read / admin CRUD / CSV import (extracted to ./routes/routes-admin.ts)
+  // Routes: read / admin CRUD / CSV import (extracted to ./routes/routes-admin.ts).
+  // The /api/license-classes handler was dropped in #7 (license_classes table
+  // removed); do not reintroduce it here.
   registerRouteAdminRoutes(app);
 
 
