@@ -1196,8 +1196,9 @@ export default function MultiCityPricingTool() {
 
               {/* STEP 3: Add-ons & Upgrades */}
               {currentStep === 3 && (
-                <div className="animate-in fade-in duration-300 space-y-6">
-                  <div className="max-w-2xl mx-auto space-y-6">
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+                  <div className="space-y-6 min-w-0">
                   {/* Header */}
                   <div>
                     <h2 className="text-2xl font-bold mb-2">Add-ons & Upgrades <span className="text-muted-foreground text-lg font-normal">(Optional)</span></h2>
@@ -1206,7 +1207,7 @@ export default function MultiCityPricingTool() {
 
                   {/* Add-ons for each day */}
                   {cityServices.length > 0 && (
-                    <div className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2 min-w-0">
                       {cityServices.map((city, index) => (
                         <Card key={index} className="p-4">
                           <div className="flex items-center gap-2 mb-4">
@@ -1275,6 +1276,12 @@ export default function MultiCityPricingTool() {
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
+                  </div>
+                  <LivePriceSummary
+                    totalPricing={totalPricing}
+                    onContinue={goToNextStep}
+                    ctaLabel="Continue to Review"
+                  />
                   </div>
                 </div>
               )}
