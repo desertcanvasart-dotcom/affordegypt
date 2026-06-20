@@ -8,13 +8,13 @@ import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
 import { registerAdminCatalogRoutes } from "./admin-catalog-routes";
 import { registerPublicCatalogRoutes } from "./public-catalog-routes";
+import { registerReviewRoutes } from "./routes/reviews";
+import { adminAuth } from "./routes/shared";
 import { validateBody } from "./middleware/validate";
 import {
   bookingRequestSchema,
   quoteRequestSchema,
   routeBookingRequestSchema,
-  reviewRequestSchema,
-  adminReviewSchema,
 } from "./request-schemas";
 import {
   buildQuoteFromRequest,
@@ -77,10 +77,8 @@ function parseServiceSlugs(raw: unknown): CatalogServiceRequest[] | undefined {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Admin auth chain. Declared at the top of registerRoutes so any
-  // app.X(path, ...adminAuth, handler) call below can use it without
-  // hitting a TDZ error.
-  const adminAuth = [authenticateToken, requireAdmin];
+  // adminAuth ([authenticateToken, requireAdmin]) is imported from
+  // ./routes/shared so the split route modules share one definition.
 
   // Health check endpoint
   app.get("/api/health", (req, res) => {
@@ -1623,108 +1621,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // first-registered handler for a path, so these never ran). The auth'd
   // versions are the live ones.
 
-  // Reviews endpoints
-  app.get("/api/reviews", async (req, res) => {
-    try {
-      const reviews = await storage.getActiveReviews();
-      res.json(reviews);
-    } catch (error: any) {
-      console.error("Error fetching reviews:", error);
-      res.status(500).json({ message: "Failed to fetch reviews" });
-    }
-  });
-
-  app.get("/api/reviews/all", ...adminAuth, async (req, res) => {
-    try {
-      const reviews = await storage.getAllReviews();
-      res.json(reviews);
-    } catch (error: any) {
-      console.error("Error fetching all reviews:", error);
-      res.status(500).json({ message: "Failed to fetch reviews" });
-    }
-  });
-
-  // Public review submission. Whitelist user-submittable fields and force the
-  // moderation flags server-side — a public caller must never be able to set
-  // isVerified/isActive (no self-"verified" reviews, no mass-assignment of
-  // other columns). Admins seed those via POST /api/admin/reviews below.
-  app.post("/api/reviews", validateBody(reviewRequestSchema), async (req, res) => {
-    try {
-      const review = await storage.createReview({
-        customerName: req.body.customerName,
-        customerLocation: req.body.customerLocation ?? null,
-        rating: Number(req.body.rating),
-        title: req.body.title,
-        content: req.body.content,
-        tripDate: req.body.tripDate ? new Date(req.body.tripDate) : null,
-        isVerified: false,
-        isActive: true,
-      });
-      res.json(review);
-    } catch (error: any) {
-      console.error("Error creating review:", error);
-      res.status(500).json({ message: "Failed to create review" });
-    }
-  });
-
-  // Admin review creation / CSV bulk import (admin-reviews page). Unlike the
-  // public endpoint, this is adminAuth-gated and accepts isVerified/isActive.
-  app.post(
-    "/api/admin/reviews",
-    ...adminAuth,
-    validateBody(adminReviewSchema),
-    async (req, res) => {
-      try {
-        const reviewData = {
-          ...req.body,
-          tripDate: req.body.tripDate ? new Date(req.body.tripDate) : null,
-        };
-        const review = await storage.createReview(reviewData);
-        res.json(review);
-      } catch (error: any) {
-        console.error("Error creating admin review:", error);
-        res.status(500).json({ message: "Failed to create review" });
-      }
-    },
-  );
-
-  app.put("/api/reviews/:id", ...adminAuth, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const reviewData = {
-        ...req.body,
-        tripDate: req.body.tripDate ? new Date(req.body.tripDate) : null,
-      };
-      const review = await storage.updateReview(id, reviewData);
-      res.json(review);
-    } catch (error: any) {
-      console.error("Error updating review:", error);
-      res.status(500).json({ message: "Failed to update review" });
-    }
-  });
-
-  app.patch("/api/reviews/:id", ...adminAuth, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const updateData = req.body;
-      const review = await storage.updateReview(id, updateData);
-      res.json(review);
-    } catch (error: any) {
-      console.error("Error patching review:", error);
-      res.status(500).json({ message: "Failed to update review" });
-    }
-  });
-
-  app.delete("/api/reviews/:id", ...adminAuth, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      await storage.deleteReview(id);
-      res.json({ message: "Review deleted successfully" });
-    } catch (error: any) {
-      console.error("Error deleting review:", error);
-      res.status(500).json({ message: "Failed to delete review" });
-    }
-  });
+  // Reviews endpoints (extracted to ./routes/reviews.ts)
+  registerReviewRoutes(app);
 
   // Quotes API endpoints
   app.get("/api/quotes", ...adminAuth, async (req, res) => {
