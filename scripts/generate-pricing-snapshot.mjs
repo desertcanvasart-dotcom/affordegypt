@@ -2,8 +2,8 @@
 /**
  * Build-time pricing snapshot generator.
  *
- * Queries pricing_tiers and guide_rates for the minimum price across each
- * service surface that the SEO Service+Offer schema renders. Writes the
+ * Queries routes.vehicle_prices and guide_rates for the minimum price across
+ * each service surface that the SEO Service+Offer schema renders. Writes the
  * result to:
  *
  *   - client/public/pricing-snapshot.json (copied to dist/public/ by Vite,
@@ -48,14 +48,15 @@ async function loadFallback() {
 }
 
 /**
- * Minimum airport-transfer price for a city, derived from active
- * pricing_tiers rows on routes flagged as airport-transfer (by category or
- * location string). Falls back to the legacy basePriceByVehicle JSONB if no
- * tier exists. Returns null if no candidate route is found.
+ * Minimum airport-transfer price for a city, derived from routes.vehicle_prices
+ * on routes flagged as airport-transfer (by category or location string).
+ * vehicle_prices is flat JSONB keyed `${vehicleSlug}_${tripType}` (e.g.
+ * "sedan_one_way"); we take the minimum positive value across every entry on
+ * every candidate route. Returns null if no candidate route or price is found.
  */
 async function getAirportTransferMin(c, cityId) {
   const routes = await c.query(
-    `SELECT id, base_price_by_vehicle FROM routes
+    `SELECT id, vehicle_prices FROM routes
      WHERE (
        route_category = 'airport_transfer'
        OR LOWER(COALESCE(name, '')) LIKE '%airport%'
@@ -67,31 +68,20 @@ async function getAirportTransferMin(c, cityId) {
   );
   if (routes.rows.length === 0) return null;
 
-  const routeIds = routes.rows.map((r) => r.id);
-  const tier = await c.query(
-    `SELECT MIN(CAST(base_price AS NUMERIC)) AS min
-     FROM pricing_tiers
-     WHERE route_id = ANY($1::int[])
-       AND effective_to IS NULL
-       AND CAST(base_price AS NUMERIC) > 0`,
-    [routeIds],
-  );
-  const tierMin = tier.rows[0]?.min;
-  if (tierMin !== null && tierMin !== undefined) {
-    return Math.round(Number(tierMin)).toString();
-  }
-
-  // Legacy JSONB fallback: nested {vehicleId: {licenseClassId: priceStr}}.
   let min = Infinity;
   for (const r of routes.rows) {
-    const blob = r.base_price_by_vehicle;
-    if (!blob || typeof blob !== "object") continue;
-    for (const byLicense of Object.values(blob)) {
-      if (!byLicense || typeof byLicense !== "object") continue;
-      for (const v of Object.values(byLicense)) {
-        const n = Number(v);
-        if (Number.isFinite(n) && n > 0 && n < min) min = n;
+    let blob = r.vehicle_prices;
+    if (typeof blob === "string") {
+      try {
+        blob = JSON.parse(blob);
+      } catch {
+        continue;
       }
+    }
+    if (!blob || typeof blob !== "object") continue;
+    for (const v of Object.values(blob)) {
+      const n = Number(v);
+      if (Number.isFinite(n) && n > 0 && n < min) min = n;
     }
   }
   if (min === Infinity) return null;
