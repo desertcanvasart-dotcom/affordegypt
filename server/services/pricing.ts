@@ -200,14 +200,14 @@ export class PricingService {
 
   async getAddOnPrice(addOnId: number, quantity: number, travelers: number): Promise<number> {
     const [a] = await db
-      .select({ price: addOns.price, unitType: addOns.unitType })
+      .select({ price: addOns.price })
       .from(addOns)
       .where(eq(addOns.id, addOnId))
       .limit(1);
     if (!a) return 0;
-    const base = num(a.price);
-    if (a.unitType === "per_person") return base * quantity * travelers;
-    return base * quantity;
+    // Business rule: all add-ons are per-person, regardless of the
+    // add_ons.unit_type column — base × quantity × travelers.
+    return num(a.price) * quantity * travelers;
   }
 
   async getAttractionPrice(attractionId: number, travelers: number): Promise<number> {
