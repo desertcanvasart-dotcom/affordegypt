@@ -55,11 +55,7 @@ export default function VerifyEmail() {
         return;
       }
 
-      const response = await apiRequest('/api/auth/resend-verification', {
-        method: 'POST',
-        body: JSON.stringify({ email: userEmail }),
-        headers: { 'Content-Type': 'application/json' }
-      });
+      const response = await apiRequest('POST', '/api/auth/resend-verification', { email: userEmail });
 
       if (response.ok) {
         setMessage('Verification email resent! Please check your inbox.');

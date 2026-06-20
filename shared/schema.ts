@@ -79,12 +79,6 @@ export const vehicleTypes = pgTable("vehicle_types", {
   descriptionTranslations: jsonb("description_translations"),
 });
 
-export const licenseClasses = pgTable("license_classes", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(), // 'Normal', 'Tourism'
-  surchargePct: decimal("surcharge_pct", { precision: 5, scale: 4 }).notNull(),
-});
-
 export const routes = pgTable(
   "routes",
   {
@@ -92,7 +86,7 @@ export const routes = pgTable(
     fromCityId: integer("from_city_id").references(() => cities.id),
     toCityId: integer("to_city_id").references(() => cities.id),
     km: decimal("km", { precision: 8, scale: 2 }),
-    basePriceByVehicle: jsonb("base_price_by_vehicle"), // legacy; superseded by pricing_tiers
+    basePriceByVehicle: jsonb("base_price_by_vehicle"), // legacy; superseded by vehicle_prices (deferred removal — still read by some legacy/admin pages)
     fromLocation: text("from_location"),
     toLocation: text("to_location"),
     name: text("name"),
@@ -108,7 +102,7 @@ export const routes = pgTable(
     tripMode: text("trip_mode").default("transfer"),
     nights: integer("nights").default(0),
     distanceKm: integer("distance_km"),
-    vehiclePrices: jsonb("vehicle_prices"), // legacy; superseded by pricing_tiers
+    vehiclePrices: jsonb("vehicle_prices"), // active route price source; flat JSONB keyed `${vehicleSlug}_${tripType}`
     // Translation columns
     nameTranslations: jsonb("name_translations"),
     fromLocationTranslations: jsonb("from_location_translations"),
@@ -280,57 +274,9 @@ export const quoteLineItems = pgTable(
   ],
 );
 
-// Single source of truth for route + vehicle + license class pricing.
-// Effective-dated so price changes never overwrite history.
-export const pricingTiers = pgTable(
-  "pricing_tiers",
-  {
-    id: serial("id").primaryKey(),
-    routeId: integer("route_id").references(() => routes.id),
-    vehicleTypeId: integer("vehicle_type_id").references(() => vehicleTypes.id),
-    licenseClassId: integer("license_class_id").references(() => licenseClasses.id),
-    basePrice: decimal("base_price", { precision: 10, scale: 2 }).notNull(),
-    effectiveFrom: timestamp("effective_from", { withTimezone: true }).notNull().defaultNow(),
-    effectiveTo: timestamp("effective_to", { withTimezone: true }), // null = currently active
-    notes: text("notes"),
-    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-  },
-  (t) => [
-    index("idx_pricing_tiers_route").on(t.routeId),
-    index("idx_pricing_tiers_vehicle").on(t.vehicleTypeId),
-    index("idx_pricing_tiers_lookup").on(t.routeId, t.vehicleTypeId, t.licenseClassId),
-  ],
-);
-
-// Date-range multipliers (e.g. peak season +20% = multiplier 1.2000).
-// `appliesTo` scopes which line kinds receive the modifier.
-export const seasonalModifiers = pgTable(
-  "seasonal_modifiers",
-  {
-    id: serial("id").primaryKey(),
-    name: text("name").notNull(),
-    startDate: timestamp("start_date", { withTimezone: true }).notNull(),
-    endDate: timestamp("end_date", { withTimezone: true }).notNull(),
-    multiplier: decimal("multiplier", { precision: 6, scale: 4 }).notNull(),
-    appliesTo: text("applies_to").notNull().default("all"), // 'all', 'route', 'service', 'addon'
-    isActive: boolean("is_active").default(true),
-    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-  },
-  (t) => [index("idx_seasonal_modifiers_active").on(t.isActive, t.startDate, t.endDate)],
-);
-
-// Commission applied at quote creation. Tiered by booking total.
-// No rows = no commission applied (the system runs without commission until
-// rules are added explicitly).
-export const commissionRules = pgTable("commission_rules", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  minBookingValue: decimal("min_booking_value", { precision: 10, scale: 2 }),
-  maxBookingValue: decimal("max_booking_value", { precision: 10, scale: 2 }),
-  percentage: decimal("percentage", { precision: 5, scale: 4 }).notNull(),
-  isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-});
+// NOTE: the pricing_tiers, seasonal_modifiers, and commission_rules tables
+// were dropped (see docs/PRICING_CLEANUP.md). Route pricing now reads only
+// routes.vehicle_prices; quote totals are the sum of frozen line items.
 
 // Services catalog for Day-by-Day Custom Planner
 export const services = pgTable(
@@ -588,7 +534,6 @@ export const insertPasswordResetTokenSchema = createInsertSchema(passwordResetTo
 
 export const insertCitySchema = createInsertSchema(cities).omit({ id: true });
 export const insertVehicleTypeSchema = createInsertSchema(vehicleTypes).omit({ id: true });
-export const insertLicenseClassSchema = createInsertSchema(licenseClasses).omit({ id: true });
 export const insertRouteSchema = createInsertSchema(routes).omit({ id: true }).extend({
   routeCategory: z.string().optional(),
   tripMode: z.string().optional(),
@@ -617,23 +562,6 @@ export const insertQuoteLineItemSchema = createInsertSchema(quoteLineItems).omit
   createdAt: true,
 }).extend({
   kind: z.enum(["route", "service", "addon", "attraction", "guide", "adjustment"]),
-});
-
-export const insertPricingTierSchema = createInsertSchema(pricingTiers).omit({
-  id: true,
-  createdAt: true,
-});
-
-export const insertSeasonalModifierSchema = createInsertSchema(seasonalModifiers).omit({
-  id: true,
-  createdAt: true,
-}).extend({
-  appliesTo: z.enum(["all", "route", "service", "addon"]).default("all"),
-});
-
-export const insertCommissionRuleSchema = createInsertSchema(commissionRules).omit({
-  id: true,
-  createdAt: true,
 });
 
 export const insertServiceSchema = createInsertSchema(services).omit({
@@ -764,9 +692,6 @@ export type InsertCity = z.infer<typeof insertCitySchema>;
 export type VehicleType = typeof vehicleTypes.$inferSelect;
 export type InsertVehicleType = z.infer<typeof insertVehicleTypeSchema>;
 
-export type LicenseClass = typeof licenseClasses.$inferSelect;
-export type InsertLicenseClass = z.infer<typeof insertLicenseClassSchema>;
-
 export type Route = typeof routes.$inferSelect;
 export type InsertRoute = z.infer<typeof insertRouteSchema>;
 
@@ -788,14 +713,6 @@ export type InsertQuote = z.infer<typeof insertQuoteSchema>;
 export type QuoteLineItem = typeof quoteLineItems.$inferSelect;
 export type InsertQuoteLineItem = z.infer<typeof insertQuoteLineItemSchema>;
 
-export type PricingTier = typeof pricingTiers.$inferSelect;
-export type InsertPricingTier = z.infer<typeof insertPricingTierSchema>;
-
-export type SeasonalModifier = typeof seasonalModifiers.$inferSelect;
-export type InsertSeasonalModifier = z.infer<typeof insertSeasonalModifierSchema>;
-
-export type CommissionRule = typeof commissionRules.$inferSelect;
-export type InsertCommissionRule = z.infer<typeof insertCommissionRuleSchema>;
 
 export type Service = typeof services.$inferSelect;
 export type InsertService = z.infer<typeof insertServiceSchema>;

@@ -15,3 +15,6 @@ data/
 # Local prerender hydration diagnostic scripts (kept on disk, not committed)
 hydration-check.mjs
 dom-diff.mjs
+
+# Local DB backups (point-in-time dumps; never commit)
+backups/

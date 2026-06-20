@@ -20,13 +20,13 @@ export default function AdminRoutesOverview() {
   const [showAddModal, setShowAddModal] = useState(false);
 
   // Fetch routes from API
-  const { data: routes = [], isLoading: routesLoading } = useQuery({
+  const { data: routes = [], isLoading: routesLoading } = useQuery<any[]>({
     queryKey: ['/api/routes'],
     retry: false,
   });
 
   // Fetch cities for displaying names
-  const { data: cities = [], isLoading: citiesLoading } = useQuery({
+  const { data: cities = [], isLoading: citiesLoading } = useQuery<any[]>({
     queryKey: ['/api/cities'],
     retry: false,
   });

@@ -524,11 +524,13 @@ See `docs/HANDOFF.md` for the full architecture context.
 
 Diagnostic and one-shot scripts in `scripts/`:
 - `probe-all-endpoints.mjs` — health-check every public endpoint
-- `test-quote-immutability.mjs` — proves quotes don't drift
-- `test-admin-tier-sync.mjs` — proves admin edits propagate
 - `test-booking-flow.mjs` — full e2e booking
-- `seed-pricing-tiers.mjs`, `seed-attractions.mjs` — data seeds
+- `seed-attractions.mjs` — data seeds
+- `generate-pricing-snapshot.mjs` — build-time SEO price snapshot (reads `routes.vehicle_prices` + `guide_rates`)
 - `promote-admin.mjs`, `reset-password.mjs` — user admin
 - `run-sql.mjs` — apply a SQL file to DB
-- `inspect-pricing.mjs`, `check-tz.mjs` — diagnostics
-- `verify-phase1.mjs`, `verify-phase1b.mjs` — schema migration verifications
+- `check-tz.mjs`, `verify-phase1b.mjs` — diagnostics
+
+> Removed 2026-06-20 with the pricing-tables cleanup (see PRICING_CLEANUP.md):
+> `seed-pricing-tiers.mjs`, `inspect-pricing.mjs`, `verify-phase1.mjs`,
+> `test-quote-immutability.mjs`, `test-admin-tier-sync.mjs`.
