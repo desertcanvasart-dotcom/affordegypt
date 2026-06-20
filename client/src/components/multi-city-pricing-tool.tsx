@@ -1288,8 +1288,9 @@ export default function MultiCityPricingTool() {
 
               {/* STEP 4: Review & Pricing */}
               {currentStep === 4 && (
-                <div className="animate-in fade-in duration-300 space-y-6">
-                  <div className="max-w-2xl mx-auto space-y-6">
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+                  <div className="space-y-6 min-w-0">
                   {/* Header */}
                   <div>
                     <h2 className="text-2xl font-bold mb-2">Review Your Itinerary</h2>
@@ -1445,13 +1446,20 @@ export default function MultiCityPricingTool() {
                     </Button>
                   </div>
                   </div>
+                  <LivePriceSummary
+                    totalPricing={totalPricing}
+                    onContinue={goToNextStep}
+                    ctaLabel="Proceed to Checkout"
+                  />
+                  </div>
                 </div>
               )}
 
               {/* STEP 5: Checkout */}
               {currentStep === 5 && (
-                <div className="animate-in fade-in duration-300 space-y-4">
-                  <div className="max-w-2xl mx-auto space-y-4">
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+                  <div className="space-y-4 min-w-0">
                   {/* Header */}
                   <div className="text-center">
                     <h2 className="text-xl font-bold mb-1">Complete Your Booking</h2>
@@ -1731,6 +1739,8 @@ export default function MultiCityPricingTool() {
                       Back to Review
                     </Button>
                   </div>
+                  </div>
+                  <LivePriceSummary totalPricing={totalPricing} />
                   </div>
                 </div>
               )}
