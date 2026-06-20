@@ -30,6 +30,7 @@ import {
   attractions,
   addOns,
   guideRates,
+  entranceFees,
 } from "@shared/schema";
 import { and, eq } from "drizzle-orm";
 
@@ -216,6 +217,18 @@ export class PricingService {
       .where(eq(attractions.id, attractionId))
       .limit(1);
     return a ? num(a.ticketPrice) * travelers : 0;
+  }
+
+  // Entrance/admission fees (entrance_fees), keyed by slug, charged per person.
+  // price_per_person already includes the markup baked in by the importer.
+  async getEntranceFeePrice(slug: string, travelers: number): Promise<number> {
+    const [f] = await db
+      .select({ price: entranceFees.pricePerPerson, isActive: entranceFees.isActive })
+      .from(entranceFees)
+      .where(eq(entranceFees.slug, slug))
+      .limit(1);
+    if (!f || !f.isActive) return 0;
+    return num(f.price) * travelers;
   }
 
   /**

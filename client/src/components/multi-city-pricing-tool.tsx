@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, Shield, CreditCard, Package } from "lucide-react";
+import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, Shield, CreditCard, Package, Ticket } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -28,6 +28,7 @@ import CatalogServicePicker, {
 } from "@/components/catalog-service-picker";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
+import EntranceFeesSearch from "@/components/entrance-fees-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { trackEvent, trackConversion } from "@/lib/analytics";
 import { useAuth } from "@/hooks/useAuth";
@@ -50,6 +51,7 @@ interface CityService {
   };
   attractions: string;
   selectedAttractions: string[];
+  selectedEntranceFees?: string[];
   selectedAddOns: Array<{
     id: number;
     name: string;
@@ -275,6 +277,7 @@ export default function MultiCityPricingTool() {
 
   // Fetch available attractions with translation
   const { data: attractions = [] } = useTranslatedQuery<any[]>("/api/attractions");
+  const { data: entranceFees = [] } = useTranslatedQuery<any[]>("/api/entrance-fees");
 
   // Calculate pricing mutation
   const pricingMutation = useMutation({
@@ -1084,20 +1087,19 @@ export default function MultiCityPricingTool() {
                             />
                           </div>
 
-                          {/* Attractions */}
+                          {/* Entrance fees */}
                           <div className="space-y-2">
                             <Label className="text-sm font-medium flex items-center gap-2">
-                              <Star className="w-4 h-4" />
-                              Attractions & Sites
+                              <Ticket className="w-4 h-4" />
+                              Entrance Fees
                             </Label>
-                            <AttractionsSearch
-                              attractions={attractions || []}
-                              cityId={city.cityId}
+                            <EntranceFeesSearch
+                              entranceFees={entranceFees || []}
                               cityName={city.cityName}
-                              selectedAttractions={city.selectedAttractions}
-                              onAttractionsChange={(attractions) => {
+                              selectedEntranceFees={city.selectedEntranceFees || []}
+                              onEntranceFeesChange={(slugs) => {
                                 setCityServices(prev => prev.map((c, i) =>
-                                  i === index ? { ...c, selectedAttractions: attractions } : c
+                                  i === index ? { ...c, selectedEntranceFees: slugs } : c
                                 ));
                               }}
                             />
@@ -1606,7 +1608,7 @@ export default function MultiCityPricingTool() {
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span>Attractions</span>
+                          <span>Entrance fees</span>
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
@@ -1764,7 +1766,7 @@ export default function MultiCityPricingTool() {
                             <span className="font-mono">{formatEGP(city.guide)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span>Attractions:</span>
+                            <span>Entrance fees:</span>
                             <span className="font-mono">{formatEGP(city.attractions)}</span>
                           </div>
                           <div className="flex justify-between">
