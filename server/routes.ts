@@ -679,16 +679,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get license classes
-  app.get("/api/license-classes", async (req, res) => {
-    try {
-      const licenseClasses = await storage.getLicenseClasses();
-      res.json(licenseClasses);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
   // Get routes
   app.get(
     "/api/routes",

@@ -1,8 +1,8 @@
 import { 
-  users, cities, vehicleTypes, licenseClasses, routes, timeBlocks, guideRates, addOns, attractions, quotes, bookings, reviews,
+  users, cities, vehicleTypes, routes, timeBlocks, guideRates, addOns, attractions, quotes, bookings, reviews,
   services, bookingDays, bookingServices, bookingAdjustments,
   type User, type InsertUser, type City, type InsertCity,
-  type VehicleType, type InsertVehicleType, type LicenseClass, type InsertLicenseClass,
+  type VehicleType, type InsertVehicleType,
   type Route, type InsertRoute, type TimeBlock, type InsertTimeBlock,
   type GuideRate, type InsertGuideRate, type AddOn, type InsertAddOn,
   type Attraction, type InsertAttraction,
@@ -42,13 +42,6 @@ export interface IStorage {
   createVehicleType(vehicleType: InsertVehicleType): Promise<VehicleType>;
   updateVehicleType(id: number, vehicleType: Partial<InsertVehicleType>): Promise<VehicleType>;
   deleteVehicleType(id: number): Promise<void>;
-
-  // License Classes
-  getLicenseClasses(): Promise<LicenseClass[]>;
-  getLicenseClass(id: number): Promise<LicenseClass | undefined>;
-  createLicenseClass(licenseClass: InsertLicenseClass): Promise<LicenseClass>;
-  updateLicenseClass(id: number, licenseClass: Partial<InsertLicenseClass>): Promise<LicenseClass>;
-  deleteLicenseClass(id: number): Promise<void>;
 
   // Routes
   getRoutes(): Promise<Route[]>;
@@ -144,14 +137,6 @@ export class DatabaseStorage implements IStorage {
 
     const createdVehicles = await db.insert(vehicleTypes).values(vehicleData).returning();
 
-    // Seed license classes
-    const licenseData = [
-      { name: "Normal", surchargePct: "0.0000" },
-      { name: "Tourism", surchargePct: "0.2000" } // 20% surcharge
-    ];
-
-    const createdLicenses = await db.insert(licenseClasses).values(licenseData).returning();
-
     // Seed routes with pricing matrix
     const routeData = [];
     for (let i = 0; i < createdCities.length; i++) {
@@ -159,16 +144,15 @@ export class DatabaseStorage implements IStorage {
         if (i !== j) {
           const distance = Math.floor(Math.random() * 500) + 50; // Random distance 50-550km
           const basePrices: any = {};
-          
+
           createdVehicles.forEach(vehicle => {
-            basePrices[vehicle.id] = {};
-            createdLicenses.forEach(license => {
-              // Base price calculation: $0.50 per km for sedan, scale up for larger vehicles
-              const multiplier = vehicle.name === "Sedan" ? 0.5 : vehicle.name === "Minivan" ? 0.7 : 0.9;
-              const basePrice = distance * multiplier;
-              const licenseMultiplier = 1 + parseFloat(license.surchargePct);
-              basePrices[vehicle.id][license.id] = (basePrice * licenseMultiplier).toFixed(2);
-            });
+            // Base price calculation: $0.50 per km for sedan, scale up for larger vehicles
+            const multiplier = vehicle.name === "Sedan" ? 0.5 : vehicle.name === "Minivan" ? 0.7 : 0.9;
+            const basePrice = distance * multiplier;
+            // Legacy basePriceByVehicle shape: {vehicleId: {"1": price}}. The
+            // license-class dimension was removed; "1" is a literal key kept
+            // for back-compat with old frontend fallback readers.
+            basePrices[vehicle.id] = { "1": basePrice.toFixed(2) };
           });
 
           routeData.push({
@@ -190,16 +174,13 @@ export class DatabaseStorage implements IStorage {
     createdCities.forEach(city => {
       hourOptions.forEach(hours => {
         const basePrices: any = {};
-        
+
         createdVehicles.forEach(vehicle => {
-          basePrices[vehicle.id] = {};
-          createdLicenses.forEach(license => {
-            // Hourly rate: $15-25 per hour depending on vehicle
-            const hourlyRate = vehicle.name === "Sedan" ? 15 : vehicle.name === "Minivan" ? 20 : 25;
-            const basePrice = hourlyRate * hours;
-            const licenseMultiplier = 1 + parseFloat(license.surchargePct);
-            basePrices[vehicle.id][license.id] = (basePrice * licenseMultiplier).toFixed(2);
-          });
+          // Hourly rate: $15-25 per hour depending on vehicle
+          const hourlyRate = vehicle.name === "Sedan" ? 15 : vehicle.name === "Minivan" ? 20 : 25;
+          const basePrice = hourlyRate * hours;
+          // Legacy shape {vehicleId: {"1": price}}; license dimension removed.
+          basePrices[vehicle.id] = { "1": basePrice.toFixed(2) };
         });
 
         timeBlockData.push({
@@ -380,33 +361,6 @@ export class DatabaseStorage implements IStorage {
 
   async deleteVehicleType(id: number): Promise<void> {
     await db.delete(vehicleTypes).where(eq(vehicleTypes.id, id));
-  }
-
-  // License class methods
-  async getLicenseClasses(): Promise<LicenseClass[]> {
-    return await db.select().from(licenseClasses);
-  }
-
-  async getLicenseClass(id: number): Promise<LicenseClass | undefined> {
-    const [licenseClass] = await db.select().from(licenseClasses).where(eq(licenseClasses.id, id));
-    return licenseClass;
-  }
-
-  async createLicenseClass(insertLicenseClass: InsertLicenseClass): Promise<LicenseClass> {
-    const [licenseClass] = await db.insert(licenseClasses).values(insertLicenseClass).returning();
-    return licenseClass;
-  }
-
-  async updateLicenseClass(id: number, updateData: Partial<InsertLicenseClass>): Promise<LicenseClass> {
-    const [licenseClass] = await db.update(licenseClasses)
-      .set(updateData)
-      .where(eq(licenseClasses.id, id))
-      .returning();
-    return licenseClass;
-  }
-
-  async deleteLicenseClass(id: number): Promise<void> {
-    await db.delete(licenseClasses).where(eq(licenseClasses.id, id));
   }
 
   // Route methods

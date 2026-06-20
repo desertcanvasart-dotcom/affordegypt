@@ -1,5 +1,25 @@
 # Pricing cleanup — later phase
 
+> **Status — 2026-06-20: DONE (tables) / DEFERRED (column).**
+> Dropped `pricing_tiers`, `license_classes`, `seasonal_modifiers`, and
+> `commission_rules` via `migrations/0006_drop_legacy_pricing_tables.sql`
+> (applied to production; the four tables were backed up to
+> `backups/pricing-tables-backup-2026-06-20.sql` first — all empty except
+> `license_classes`, which held 2 rows). Schema defs, types, insert-schemas,
+> the dead `GET /api/license-classes` endpoint, its storage CRUD, and the
+> license dimension in the legacy `seedData()` were removed. The build-time
+> `scripts/generate-pricing-snapshot.mjs` was repointed from `pricing_tiers`
+> to `routes.vehicle_prices`. Deleted obsolete scripts: `seed-pricing-tiers`,
+> `inspect-pricing`, `verify-phase1`, `test-quote-immutability`,
+> `test-admin-tier-sync`.
+>
+> **Still deferred:** the `routes.base_price_by_vehicle` column. It is still
+> read by live routed pages (`/routes`, `/route-booking`, `/admin`,
+> `/admin/routes/city/...`), so dropping it is blocked on migrating those
+> pages onto `vehicle_prices` (HANDOFF.md §3 #1). Note: on the production DB
+> the `routes` table itself is now empty — pricing lives in `service_catalog`.
+
+
 This phase collapsed all route pricing onto a single read path:
 `routes.vehicle_prices` JSONB, slug-keyed (`sedan` / `minivan` / `van`).
 Pure lookup, no math, no multipliers. If a slug isn't set, the vehicle
