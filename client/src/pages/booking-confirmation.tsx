@@ -38,13 +38,13 @@ export default function BookingConfirmation() {
   const [, params] = useRoute("/booking-confirmation/:reference");
   const reference = params?.reference;
 
-  const { data: bookingData, isLoading, error } = useQuery({
+  const { data: bookingData, isLoading, error } = useQuery<any>({
     queryKey: [`/api/bookings/reference/${reference}`],
     enabled: !!reference,
   });
 
   // Fetch routes to resolve route IDs to names
-  const { data: routes = [] } = useQuery({
+  const { data: routes = [] } = useQuery<any[]>({
     queryKey: ["/api/routes"],
   });
 
