@@ -9,7 +9,8 @@ import { registerPricingRoutes } from "./pricing-routes";
 import { registerAdminCatalogRoutes } from "./admin-catalog-routes";
 import { registerPublicCatalogRoutes } from "./public-catalog-routes";
 import { registerReviewRoutes } from "./routes/reviews";
-import { adminAuth } from "./routes/shared";
+import { registerQuoteRoutes } from "./routes/quotes";
+import { adminAuth, parseServiceSlugs } from "./routes/shared";
 import { validateBody } from "./middleware/validate";
 import {
   bookingRequestSchema,
@@ -55,26 +56,6 @@ const upload = multer({
     }
   },
 });
-
-// Parse and validate req.body.serviceSlugs from quote/booking endpoints.
-// Accepts an array of `{ slug, vehicleSlug, tripType }` and silently
-// drops malformed entries — bad shapes shouldn't 500 a legacy request
-// that doesn't carry catalog selections at all. Returns undefined when
-// the field is absent/empty so downstream sees the same "no catalog"
-// state as a pre-Phase-C client.
-function parseServiceSlugs(raw: unknown): CatalogServiceRequest[] | undefined {
-  if (!Array.isArray(raw) || raw.length === 0) return undefined;
-  const out: CatalogServiceRequest[] = [];
-  for (const item of raw) {
-    if (!item || typeof item !== "object") continue;
-    const { slug, vehicleSlug, tripType } = item as Record<string, unknown>;
-    if (typeof slug !== "string" || !slug) continue;
-    if (!isVehicleSlug(vehicleSlug)) continue;
-    if (!isCatalogTripType(tripType)) continue;
-    out.push({ slug, vehicleSlug, tripType });
-  }
-  return out.length > 0 ? out : undefined;
-}
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // adminAuth ([authenticateToken, requireAdmin]) is imported from
@@ -1624,97 +1605,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Reviews endpoints (extracted to ./routes/reviews.ts)
   registerReviewRoutes(app);
 
-  // Quotes API endpoints
-  app.get("/api/quotes", ...adminAuth, async (req, res) => {
-    try {
-      const quotes = await storage.getQuotes();
-      res.json(quotes);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  app.get("/api/quotes/:id", async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const quote = await storage.getQuote(id);
-
-      if (!quote) {
-        return res.status(404).json({ message: "Quote not found" });
-      }
-
-      // Return frozen line items so callers can render an immutable
-      // breakdown without re-pricing. Empty for quotes created before
-      // Phase 2 — they only have jsonBlob.
-      const lineItems = await getFrozenLineItems(id);
-      res.json({ ...quote, lineItems });
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  // Create a frozen quote. Server recomputes totals from the request
-  // fields; client-supplied total is ignored. Returns the new quote with
-  // its frozen line items.
-  app.post("/api/quotes", validateBody(quoteRequestSchema), async (req, res) => {
-    try {
-      const built = await buildQuoteFromRequest({
-        routeId: req.body.routeId ?? null,
-        vehicleSlug: isVehicleSlug(req.body.vehicleSlug) ? req.body.vehicleSlug : null,
-        tripType: isTripType(req.body.tripType) ? req.body.tripType : "one_way",
-        cityId: req.body.cityId ?? null,
-        guideLanguage: req.body.guideLanguage ?? null,
-        guideHours: req.body.guideHours ?? null,
-        attractionIds: req.body.attractionIds ?? req.body.selectedAttractions ?? [],
-        addOnIds: req.body.addOnIds ?? req.body.selectedAddOns ?? [],
-        travelers: req.body.travelers ?? req.body.passengerCount ?? 1,
-        serviceSlugs: parseServiceSlugs(req.body.serviceSlugs),
-      });
-
-      const persisted = await persistFrozenQuote(built, {
-        request: req.body,
-        source: "POST /api/quotes",
-      });
-
-      const quote = await storage.getQuote(persisted.quoteId);
-      res.json({
-        ...quote,
-        breakdown: built.breakdown,
-        lineItems: built.lineItems,
-      });
-    } catch (error: any) {
-      if (error instanceof RoutePriceNotSetError) {
-        return res.status(422).json({
-          unpriced: true,
-          routeId: error.routeId,
-          vehicleSlug: error.vehicleSlug,
-          tripType: error.tripType,
-          message: error.message,
-        });
-      }
-      if (error instanceof ServicePriceNotSetError) {
-        return res.status(422).json({
-          unpriced: true,
-          slug: error.slug,
-          vehicleSlug: error.vehicleSlug,
-          tripType: error.tripType,
-          message: error.message,
-        });
-      }
-      console.error("Error creating quote:", error);
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  app.delete("/api/quotes/:id", ...adminAuth, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      await storage.deleteQuote(id);
-      res.json({ message: "Quote deleted successfully" });
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
+  // Quotes API endpoints (extracted to ./routes/quotes.ts)
+  registerQuoteRoutes(app);
 
   // Register pricing routes for Transfer Only pricing endpoint
   await registerPricingRoutes(app);
