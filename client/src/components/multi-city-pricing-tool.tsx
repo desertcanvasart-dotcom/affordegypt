@@ -121,6 +121,67 @@ function StepProgress({ currentStep, steps, onStepClick }: {
   );
 }
 
+// Sticky live-price panel shown in the right pane of the planner steps.
+// Reads the same `totalPricing` the preview produces; full per-city totals
+// (server breakdown is full, not per-person) so the rows sum to the total.
+function LivePriceSummary({
+  totalPricing,
+  onContinue,
+  ctaLabel,
+  ctaDisabled,
+}: {
+  totalPricing: any;
+  onContinue?: () => void;
+  ctaLabel?: string;
+  ctaDisabled?: boolean;
+}) {
+  const hasPricing = totalPricing && totalPricing.totalAmount > 0;
+  return (
+    <div className="lg:sticky lg:top-4 h-fit">
+      <Card className="p-4">
+        <div className="flex items-center gap-2 mb-3">
+          <DollarSign className="w-4 h-4 text-primary" />
+          <h3 className="font-semibold">Your trip — live price</h3>
+        </div>
+        {hasPricing ? (
+          <>
+            <div className="space-y-1.5 text-sm">
+              {(totalPricing.breakdown ?? []).map((b: any, i: number) => (
+                <div key={i} className="flex justify-between gap-3">
+                  <span className="text-muted-foreground truncate">{b.city}</span>
+                  <span className="whitespace-nowrap">{formatEGP(b.total)}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-between items-baseline mt-3 pt-3 border-t">
+              <span className="text-sm text-muted-foreground">
+                Total · {totalPricing.travelers} {totalPricing.travelers === 1 ? "traveler" : "travelers"}
+              </span>
+              <span className="text-xl font-bold text-primary">{formatEGP(totalPricing.totalAmount)}</span>
+            </div>
+            <p className="text-xs text-muted-foreground">{formatEGP(totalPricing.perPersonAmount)} per person</p>
+          </>
+        ) : (
+          <p className="text-sm text-muted-foreground">Add destinations to see your live price.</p>
+        )}
+        {onContinue && (
+          <Button
+            onClick={onContinue}
+            disabled={ctaDisabled}
+            className="w-full mt-4 bg-gradient-to-r from-primary to-blue-600"
+          >
+            {ctaLabel ?? "Continue"}
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
+        )}
+        <p className="text-xs text-center text-muted-foreground mt-2">
+          Transparent pricing — updates as you build.
+        </p>
+      </Card>
+    </div>
+  );
+}
+
 export default function MultiCityPricingTool() {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
@@ -895,10 +956,11 @@ export default function MultiCityPricingTool() {
 
               {/* STEP 2: Destinations Selection */}
               {currentStep === 2 && (
-                <div className="animate-in fade-in duration-300 space-y-6">
-                  <div className="max-w-2xl mx-auto space-y-6">
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+                  <div className="space-y-6 min-w-0">
                     {/* Header */}
-                    <div className="text-center">
+                    <div className="text-center lg:text-left">
                       <h2 className="text-2xl font-bold mb-2">Plan Your Destinations</h2>
                       <p className="text-muted-foreground">Add destinations and select activities for each day of your trip</p>
                     </div>
@@ -953,132 +1015,97 @@ export default function MultiCityPricingTool() {
                     </div>
                   )}
 
-                  {/* Destination Cards - Accordion Style */}
+                  {/* Destination cards — side-by-side grid (horizontal layout) */}
                   {cityServices.length > 0 && (
-                    <Accordion 
-                      type="multiple" 
-                      defaultValue={cityServices.map((c) => `day-${c.dayNumber}`)}
-                      className="space-y-4"
-                    >
-                    {cityServices.map((city, index) => {
-                      const cityData = cities?.find((c: any) => c.id === city.cityId);
-                      // Many routes in production have name=null. Match by
-                      // either the route name (when present) or its
-                      // cityId / fromCityId so we don't drop them, and
-                      // never call .toLowerCase() on null.
-                      const cityNameLower = city.cityName?.toLowerCase() ?? "";
-                      const cityRoutes = (routes ?? []).filter((route: any) => {
-                        const nameMatch = typeof route?.name === "string"
-                          && route.name.toLowerCase().includes(cityNameLower);
-                        const idMatch = route?.cityId === city.cityId
-                          || route?.fromCityId === city.cityId;
-                        return nameMatch || idMatch;
-                      });
-                      
-                      return (
-                        <AccordionItem key={index} value={`day-${city.dayNumber}`} className="border rounded-lg">
-                          <AccordionTrigger className="px-4 py-3 hover:no-underline">
-                            <div className="flex items-center gap-4 w-full">
-                              <Badge className="bg-primary">Day {city.dayNumber}</Badge>
-                              <div className="flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-primary" />
-                                <span className="font-semibold">{city.cityName}</span>
-                              </div>
-                              <div className="flex items-center gap-2 ml-auto mr-2">
-                                <Calendar className="w-4 h-4 text-muted-foreground" />
-                                <span className="text-sm text-muted-foreground">
-                                  {city.date ? new Date(city.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Set date'}
-                                </span>
-                              </div>
-                            </div>
-                          </AccordionTrigger>
-                          
-                          <AccordionContent className="px-4 pb-4 pt-2">
-                            <div className="space-y-4">
-                              {/* Phase C: catalog-driven transfer picker. */}
-                              <div className="space-y-2">
-                                <Label className="text-sm font-medium flex items-center gap-2">
-                                  <MapPinned className="w-4 h-4" />
-                                  Transfers
-                                </Label>
-                                <CatalogServicePicker
-                                  city={city.cityName}
-                                  categories={[
-                                    "airport_transfer",
-                                    "intercity_transfer",
-                                    "local_transfer",
-                                    "tour_transfer",
-                                  ]}
-                                  selected={city.selectedServices}
-                                  onChange={(next) => {
-                                    setCityServices((prev) =>
-                                      prev.map((c, i) =>
-                                        i === index ? { ...c, selectedServices: next } : c,
-                                      ),
-                                    );
-                                  }}
-                                />
-                              </div>
+                    <div className="grid gap-4 sm:grid-cols-2 min-w-0">
+                    {cityServices.map((city, index) => (
+                      <Card key={index} className="p-4 flex flex-col">
+                        <div className="flex items-center gap-2 mb-3 pb-3 border-b">
+                          <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                          <div className="flex items-center gap-1 font-semibold min-w-0">
+                            <MapPin className="w-4 h-4 text-primary shrink-0" />
+                            <span className="truncate">{city.cityName}</span>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => {
+                              setCityServices(prev => prev.filter((_, i) => i !== index)
+                                .map((c, i) => ({ ...c, dayNumber: i + 1 })));
+                            }}
+                            className="ml-auto h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50"
+                            aria-label={`Remove day ${city.dayNumber}`}
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+                        <div className="space-y-4">
+                          {/* Phase C: catalog-driven transfer picker. */}
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium flex items-center gap-2">
+                              <MapPinned className="w-4 h-4" />
+                              Transfers
+                            </Label>
+                            <CatalogServicePicker
+                              city={city.cityName}
+                              categories={[
+                                "airport_transfer",
+                                "intercity_transfer",
+                                "local_transfer",
+                                "tour_transfer",
+                              ]}
+                              selected={city.selectedServices}
+                              onChange={(next) => {
+                                setCityServices((prev) =>
+                                  prev.map((c, i) =>
+                                    i === index ? { ...c, selectedServices: next } : c,
+                                  ),
+                                );
+                              }}
+                            />
+                          </div>
 
-                              {/* Guide Selection */}
-                              <div className="space-y-2">
-                                <Label className="text-sm font-medium flex items-center gap-2">
-                                  <Users className="w-4 h-4" />
-                                  Tour Guide (Optional)
-                                </Label>
-                                <GuideSearch
-                                  languages={languages || []}
-                                  cityId={city.cityId}
-                                  cityName={city.cityName}
-                                  selectedGuide={city.selectedGuide}
-                                  onGuideChange={(guide) => {
-                                    setCityServices(prev => prev.map((c, i) =>
-                                      i === index ? { ...c, selectedGuide: guide } : c
-                                    ));
-                                  }}
-                                />
-                              </div>
+                          {/* Guide Selection */}
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium flex items-center gap-2">
+                              <Users className="w-4 h-4" />
+                              Tour Guide (Optional)
+                            </Label>
+                            <GuideSearch
+                              languages={languages || []}
+                              cityId={city.cityId}
+                              cityName={city.cityName}
+                              selectedGuide={city.selectedGuide}
+                              onGuideChange={(guide) => {
+                                setCityServices(prev => prev.map((c, i) =>
+                                  i === index ? { ...c, selectedGuide: guide } : c
+                                ));
+                              }}
+                            />
+                          </div>
 
-                              {/* Attractions */}
-                              <div className="space-y-2">
-                                <Label className="text-sm font-medium flex items-center gap-2">
-                                  <Star className="w-4 h-4" />
-                                  Attractions & Sites
-                                </Label>
-                                <AttractionsSearch
-                                  attractions={attractions || []}
-                                  cityId={city.cityId}
-                                  cityName={city.cityName}
-                                  selectedAttractions={city.selectedAttractions}
-                                  onAttractionsChange={(attractions) => {
-                                    setCityServices(prev => prev.map((c, i) =>
-                                      i === index ? { ...c, selectedAttractions: attractions } : c
-                                    ));
-                                  }}
-                                />
-                              </div>
-
-                              {/* Remove Day Button */}
-                              <div className="pt-2 border-t">
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => {
-                                    setCityServices(prev => prev.filter((_, i) => i !== index)
-                                      .map((c, i) => ({ ...c, dayNumber: i + 1 })));
-                                  }}
-                                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                                >
-                                  <X className="w-4 h-4 mr-2" />
-                                  Remove Day {city.dayNumber}
-                                </Button>
-                              </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      );
-                    })}
-                  </Accordion>
+                          {/* Attractions */}
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium flex items-center gap-2">
+                              <Star className="w-4 h-4" />
+                              Attractions & Sites
+                            </Label>
+                            <AttractionsSearch
+                              attractions={attractions || []}
+                              cityId={city.cityId}
+                              cityName={city.cityName}
+                              selectedAttractions={city.selectedAttractions}
+                              onAttractionsChange={(attractions) => {
+                                setCityServices(prev => prev.map((c, i) =>
+                                  i === index ? { ...c, selectedAttractions: attractions } : c
+                                ));
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                    </div>
                   )}
 
                   {/* Add Another Day - City Selector */}
@@ -1156,6 +1183,13 @@ export default function MultiCityPricingTool() {
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
+                  </div>
+                  <LivePriceSummary
+                    totalPricing={totalPricing}
+                    onContinue={goToNextStep}
+                    ctaLabel="Continue to Add-ons"
+                    ctaDisabled={cityServices.length === 0}
+                  />
                   </div>
                 </div>
               )}
