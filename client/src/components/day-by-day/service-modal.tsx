@@ -52,7 +52,7 @@ export function ServiceModal({ isOpen, onClose, dayId, cities, onServiceAdded }:
   const { toast } = useToast();
 
   // Get services based on selected tab and filters
-  const { data: services = [], isLoading } = useQuery({
+  const { data: services = [], isLoading } = useQuery<any[]>({
     queryKey: ["/api/services", { type: selectedTab === "transfers" ? "transfer" : selectedTab === "tours" ? "tour" : selectedTab === "guides" ? "guide" : "addon", cityId: selectedCity || undefined }],
     enabled: isOpen,
   });

@@ -168,7 +168,7 @@ export class DatabaseStorage implements IStorage {
     await db.insert(routes).values(routeData);
 
     // Seed time blocks
-    const timeBlockData = [];
+    const timeBlockData: any[] = [];
     const hourOptions = [2, 4, 6, 8, 12, 24];
     
     createdCities.forEach(city => {
@@ -559,7 +559,7 @@ export class DatabaseStorage implements IStorage {
       bookingReference: insertBooking.bookingReference || this.generateBookingReference(),
       quoteId: insertBooking.quoteId || null
     };
-    const [booking] = await db.insert(bookings).values(bookingData).returning();
+    const [booking] = await db.insert(bookings).values(bookingData as any).returning();
     return booking;
   }
 
