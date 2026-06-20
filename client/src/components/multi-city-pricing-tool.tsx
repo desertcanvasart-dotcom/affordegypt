@@ -387,12 +387,9 @@ export default function MultiCityPricingTool() {
         setTravelDate(today);
         setCityServices([newCityService]);
 
-        const STEP3_CATEGORIES = new Set([
-          "sound_light_show",
-          "dinner_transfer",
-        ]);
-        const targetStep = STEP3_CATEGORIES.has(row.category) ? 3 : 2;
-        setCurrentStep(targetStep);
+        // Everything is built in step 2 now (one-window itinerary), so all
+        // deep-links land there.
+        setCurrentStep(2);
 
         // Scroll the planner into view.
         setTimeout(() => {
@@ -679,10 +676,9 @@ export default function MultiCityPricingTool() {
   // Step navigation helpers
   const steps = [
     { number: 1, title: 'Trip Overview', description: 'Start your journey' },
-    { number: 2, title: 'Destinations', description: 'Plan your stops' },
-    { number: 3, title: 'Add-ons & Upgrades', description: 'Enhance your trip' },
-    { number: 4, title: 'Review & Pricing', description: 'Check your itinerary' },
-    { number: 5, title: 'Checkout', description: 'Complete booking' }
+    { number: 2, title: 'Build your itinerary', description: 'Days, transport & extras' },
+    { number: 3, title: 'Review & Pricing', description: 'Check your itinerary' },
+    { number: 4, title: 'Checkout', description: 'Complete booking' }
   ];
 
   const canProceedToStep = (step: number) => {
@@ -691,10 +687,8 @@ export default function MultiCityPricingTool() {
         // Date is optional ("Just exploring" mode); destination + travelers required
         return !!step1DestinationId && globalTravelers > 0;
       case 3:
-        return cityServices.length > 0;
+        return cityServices.length > 0; // need at least one day to review
       case 4:
-        return true; // Can always review
-      case 5:
         return totalPricing && totalPricing.totalAmount > 0;
       default:
         return true;
@@ -702,7 +696,7 @@ export default function MultiCityPricingTool() {
   };
 
   const goToNextStep = () => {
-    if (currentStep < 5 && canProceedToStep(currentStep + 1)) {
+    if (currentStep < 4 && canProceedToStep(currentStep + 1)) {
       setCurrentStep(currentStep + 1);
       // Scroll to step content area, not top of page
       setTimeout(() => {
@@ -959,32 +953,28 @@ export default function MultiCityPricingTool() {
 
               {/* STEP 2: Destinations Selection */}
               {currentStep === 2 && (
-                <div className="animate-in fade-in duration-300">
-                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-                  <div className="space-y-6 min-w-0">
-                    {/* Header */}
-                    <div className="text-center lg:text-left">
-                      <h2 className="text-2xl font-bold mb-2">Plan Your Destinations</h2>
-                      <p className="text-muted-foreground">Add destinations and select activities for each day of your trip</p>
-                    </div>
+                <div className="animate-in fade-in duration-300 space-y-6">
+                  {/* Header */}
+                  <div className="text-center lg:text-left">
+                    <h2 className="text-2xl font-bold mb-2">Build your itinerary</h2>
+                    <p className="text-muted-foreground">Pick transport, guide, entrance fees and add-ons for each day — add more days as you go.</p>
+                  </div>
 
-                  {/* City Selector - shown when no destinations yet */}
+                  {/* First-destination selector (empty state) */}
                   {cityServices.length === 0 && (
                     <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-dashed border-blue-200 rounded-lg">
                       <div className="text-center mb-6">
                         <MapPin className="w-12 h-12 mx-auto mb-3 text-blue-600" />
-                        <h3 className="text-lg font-semibold mb-2">Choose Your First Destination</h3>
+                        <h3 className="text-lg font-semibold mb-2">Choose your first destination</h3>
                         <p className="text-sm text-muted-foreground">Select a city to start planning your trip</p>
                       </div>
                       <div className="max-w-md mx-auto">
-                        <Label className="text-sm font-medium mb-2 block">Select Destination</Label>
+                        <Label className="text-sm font-medium mb-2 block">Select destination</Label>
                         <Select
                           onValueChange={(value) => {
                             if (!cities || cities.length === 0) return;
-                            
                             const selectedCity = cities.find((c: any) => c.id === parseInt(value));
                             if (!selectedCity) return;
-                            
                             const newCity: CityService = {
                               dayNumber: 1,
                               cityId: selectedCity.id,
@@ -994,9 +984,9 @@ export default function MultiCityPricingTool() {
                               selectedServices: [],
                               attractions: '',
                               selectedAttractions: [],
+                              selectedEntranceFees: [],
                               selectedAddOns: []
                             };
-                            
                             setCityServices([newCity]);
                           }}
                         >
@@ -1018,117 +1008,131 @@ export default function MultiCityPricingTool() {
                     </div>
                   )}
 
-                  {/* Destination cards — side-by-side grid (horizontal layout) */}
+                  {/* Day strips — one row per day, columns left→right */}
                   {cityServices.length > 0 && (
-                    <div className="grid gap-4 sm:grid-cols-2 min-w-0">
-                    {cityServices.map((city, index) => (
-                      <Card key={index} className="p-4 flex flex-col">
-                        <div className="flex items-center gap-2 mb-3 pb-3 border-b">
-                          <Badge className="bg-primary">Day {city.dayNumber}</Badge>
-                          <div className="flex items-center gap-1 font-semibold min-w-0">
-                            <MapPin className="w-4 h-4 text-primary shrink-0" />
-                            <span className="truncate">{city.cityName}</span>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => {
-                              setCityServices(prev => prev.filter((_, i) => i !== index)
-                                .map((c, i) => ({ ...c, dayNumber: i + 1 })));
-                            }}
-                            className="ml-auto h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50"
-                            aria-label={`Remove day ${city.dayNumber}`}
-                          >
-                            <X className="w-4 h-4" />
-                          </Button>
-                        </div>
-                        <div className="space-y-4">
-                          {/* Phase C: catalog-driven transfer picker. */}
-                          <div className="space-y-2">
-                            <Label className="text-sm font-medium flex items-center gap-2">
-                              <MapPinned className="w-4 h-4" />
-                              Transfers
-                            </Label>
-                            <CatalogServicePicker
-                              city={city.cityName}
-                              categories={[
-                                "airport_transfer",
-                                "intercity_transfer",
-                                "local_transfer",
-                                "tour_transfer",
-                              ]}
-                              selected={city.selectedServices}
-                              onChange={(next) => {
-                                setCityServices((prev) =>
-                                  prev.map((c, i) =>
-                                    i === index ? { ...c, selectedServices: next } : c,
-                                  ),
-                                );
-                              }}
-                            />
-                          </div>
+                    <div className="space-y-4">
+                      {cityServices.map((city, index) => {
+                        const dayTotal = totalPricing?.breakdown?.[index]?.total;
+                        const tCount = city.selectedServices?.length || 0;
+                        const transferSummary = tCount === 0
+                          ? "Select transfer"
+                          : tCount === 1
+                            ? (city.selectedServices[0]?.name || "1 transfer")
+                            : `${tCount} transfers`;
+                        return (
+                          <Card key={index} className="p-4">
+                            {/* strip header */}
+                            <div className="flex items-center gap-2 mb-3 pb-3 border-b">
+                              <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                              <div className="flex items-center gap-1 font-semibold min-w-0">
+                                <MapPin className="w-4 h-4 text-primary shrink-0" />
+                                <span className="truncate">{city.cityName}</span>
+                              </div>
+                              {dayTotal !== undefined && dayTotal > 0 && (
+                                <span className="ml-auto text-sm font-semibold text-primary">{formatEGP(dayTotal)}</span>
+                              )}
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => setCityServices(prev => prev.filter((_, i) => i !== index).map((c, i) => ({ ...c, dayNumber: i + 1 })))}
+                                className={`${dayTotal ? '' : 'ml-auto'} h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50`}
+                                aria-label={`Remove day ${city.dayNumber}`}
+                              >
+                                <X className="w-4 h-4" />
+                              </Button>
+                            </div>
 
-                          {/* Guide Selection */}
-                          <div className="space-y-2">
-                            <Label className="text-sm font-medium flex items-center gap-2">
-                              <Users className="w-4 h-4" />
-                              Tour Guide (Optional)
-                            </Label>
-                            <GuideSearch
-                              languages={languages || []}
-                              cityId={city.cityId}
-                              cityName={city.cityName}
-                              selectedGuide={city.selectedGuide}
-                              onGuideChange={(guide) => {
-                                setCityServices(prev => prev.map((c, i) =>
-                                  i === index ? { ...c, selectedGuide: guide } : c
-                                ));
-                              }}
-                            />
-                          </div>
+                            {/* 5 columns: Date · Transfer · Guide · Entrance fees · Add-ons */}
+                            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                              {/* Date */}
+                              <div className="space-y-1.5">
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />Date</Label>
+                                <Input
+                                  type="date"
+                                  value={city.date || ''}
+                                  onChange={(e) => setCityServices(prev => prev.map((c, i) => i === index ? { ...c, date: e.target.value } : c))}
+                                  className="h-9 text-sm"
+                                />
+                              </div>
 
-                          {/* Entrance fees */}
-                          <div className="space-y-2">
-                            <Label className="text-sm font-medium flex items-center gap-2">
-                              <Ticket className="w-4 h-4" />
-                              Entrance Fees
-                            </Label>
-                            <EntranceFeesSearch
-                              entranceFees={entranceFees || []}
-                              cityName={city.cityName}
-                              selectedEntranceFees={city.selectedEntranceFees || []}
-                              onEntranceFeesChange={(slugs) => {
-                                setCityServices(prev => prev.map((c, i) =>
-                                  i === index ? { ...c, selectedEntranceFees: slugs } : c
-                                ));
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </Card>
-                    ))}
+                              {/* Transfer (inline picker wrapped in a popover so it fits a column) */}
+                              <div className="space-y-1.5">
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><MapPinned className="w-3.5 h-3.5" />Transfer</Label>
+                                <Popover>
+                                  <PopoverTrigger asChild>
+                                    <Button variant="outline" className="w-full justify-between h-9 text-sm font-normal">
+                                      <span className="truncate">{transferSummary}</span>
+                                      <ChevronDown className="h-4 w-4 opacity-50 shrink-0" />
+                                    </Button>
+                                  </PopoverTrigger>
+                                  <PopoverContent className="w-96 p-3" align="start">
+                                    <CatalogServicePicker
+                                      city={city.cityName}
+                                      categories={["airport_transfer","intercity_transfer","local_transfer","tour_transfer"]}
+                                      selected={city.selectedServices}
+                                      onChange={(next) => setCityServices(prev => prev.map((c, i) => i === index ? { ...c, selectedServices: next } : c))}
+                                    />
+                                  </PopoverContent>
+                                </Popover>
+                              </div>
+
+                              {/* Guide */}
+                              <div className="space-y-1.5">
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Users className="w-3.5 h-3.5" />Guide</Label>
+                                <GuideSearch
+                                  languages={languages || []}
+                                  cityId={city.cityId}
+                                  cityName={city.cityName}
+                                  selectedGuide={city.selectedGuide}
+                                  onGuideChange={(guide) => setCityServices(prev => prev.map((c, i) => i === index ? { ...c, selectedGuide: guide } : c))}
+                                />
+                              </div>
+
+                              {/* Entrance fees */}
+                              <div className="space-y-1.5">
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Ticket className="w-3.5 h-3.5" />Entrance fees</Label>
+                                <EntranceFeesSearch
+                                  entranceFees={entranceFees || []}
+                                  cityName={city.cityName}
+                                  selectedEntranceFees={city.selectedEntranceFees || []}
+                                  onEntranceFeesChange={(slugs) => setCityServices(prev => prev.map((c, i) => i === index ? { ...c, selectedEntranceFees: slugs } : c))}
+                                />
+                              </div>
+
+                              {/* Add-ons */}
+                              <div className="space-y-1.5">
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Package className="w-3.5 h-3.5" />Add-ons</Label>
+                                <AddOnsSearch
+                                  addOns={addOns || []}
+                                  selectedAddOns={city.selectedAddOns || []}
+                                  onAddOnsChange={(next) => setCityServices(prev => prev.map((c, i) => i === index ? { ...c, selectedAddOns: next } : c))}
+                                  cityId={city.cityId}
+                                  cityName={city.cityName}
+                                />
+                              </div>
+                            </div>
+                          </Card>
+                        );
+                      })}
                     </div>
                   )}
 
-                  {/* Add Another Day - City Selector */}
+                  {/* Add day */}
                   {cityServices.length > 0 && (
                     <div className="p-4 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg">
                       <div className="flex items-center gap-4">
                         <Label className="text-sm font-medium whitespace-nowrap">
                           <Plus className="w-4 h-4 inline mr-2" />
-                          Add Day {cityServices.length + 1}
+                          Add day {cityServices.length + 1}
                         </Label>
                         <Select
                           onValueChange={(value) => {
                             if (!cities || cities.length === 0) return;
-                            
                             const selectedCity = cities.find((c: any) => c.id === parseInt(value));
                             if (!selectedCity) return;
-                            
                             const nextDayNumber = cityServices.length + 1;
-                            const nextDate = travelDate ? 
+                            const nextDate = travelDate ?
                               new Date(new Date(travelDate).getTime() + (nextDayNumber - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : '';
-                            
                             const newCity: CityService = {
                               dayNumber: nextDayNumber,
                               cityId: selectedCity.id,
@@ -1138,11 +1142,10 @@ export default function MultiCityPricingTool() {
                               selectedServices: [],
                               attractions: '',
                               selectedAttractions: [],
+                              selectedEntranceFees: [],
                               selectedAddOns: []
                             };
-                            
                             setCityServices(prev => [...prev, newCity]);
-                            // Auto-expand the newly added day
                             setExpandedCityIndex(cityServices.length);
                           }}
                         >
@@ -1164,132 +1167,33 @@ export default function MultiCityPricingTool() {
                     </div>
                   )}
 
-                  {/* Navigation */}
-                  <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
-                    <Button
-                      variant="outline"
-                      onClick={goToPreviousStep}
-                      size="lg"
-                      className="w-full sm:w-auto"
-                    >
-                      <ChevronLeft className="w-4 h-4 mr-2" />
-                      Back to Overview
-                    </Button>
-                    <Button
-                      onClick={goToNextStep}
-                      disabled={cityServices.length === 0}
-                      size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
-                    >
-                      Continue to Add-ons
-                      <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </div>
-                  </div>
-                  <LivePriceSummary
-                    totalPricing={totalPricing}
-                    onContinue={goToNextStep}
-                    ctaLabel="Continue to Add-ons"
-                    ctaDisabled={cityServices.length === 0}
-                  />
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 3: Add-ons & Upgrades */}
-              {currentStep === 3 && (
-                <div className="animate-in fade-in duration-300">
-                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-                  <div className="space-y-6 min-w-0">
-                  {/* Header */}
-                  <div>
-                    <h2 className="text-2xl font-bold mb-2">Add-ons & Upgrades <span className="text-muted-foreground text-lg font-normal">(Optional)</span></h2>
-                    <p className="text-muted-foreground">Enhance your trip with optional extras - you can skip this step</p>
-                  </div>
-
-                  {/* Add-ons for each day */}
-                  {cityServices.length > 0 && (
-                    <div className="grid gap-4 sm:grid-cols-2 min-w-0">
-                      {cityServices.map((city, index) => (
-                        <Card key={index} className="p-4">
-                          <div className="flex items-center gap-2 mb-4">
-                            <Badge className="bg-primary">Day {city.dayNumber}</Badge>
-                            <span className="font-semibold">{city.cityName}</span>
-                          </div>
-                          
-                          {/* Phase C: catalog-driven experience picker
-                              (sound & light, dinner transfers). Sits
-                              above the legacy AddOnsSearch so customers
-                              see catalog experiences first. */}
-                          <div className="space-y-3 mb-4">
-                            <Label className="text-sm font-medium">Experiences</Label>
-                            <CatalogServicePicker
-                              city={city.cityName}
-                              categories={[
-                                "sound_light_show",
-                                "dinner_transfer",
-                              ]}
-                              selected={city.selectedServices}
-                              onChange={(next) => {
-                                // Picker preserves out-of-scope entries
-                                // (step-2 transfers stay intact).
-                                setCityServices((prev) =>
-                                  prev.map((c, i) =>
-                                    i === index ? { ...c, selectedServices: next } : c,
-                                  ),
-                                );
-                              }}
-                            />
-                          </div>
-
-                          <AddOnsSearch
-                            addOns={addOns || []}
-                            selectedAddOns={city.selectedAddOns || []}
-                            onAddOnsChange={(selectedAddOns) => {
-                              setCityServices(prev => prev.map((c, i) =>
-                                i === index ? { ...c, selectedAddOns } : c
-                              ));
-                            }}
-                            cityId={city.cityId}
-                            cityName={city.cityName}
-                          />
-                        </Card>
-                      ))}
+                  {/* Bottom total bar */}
+                  {cityServices.length > 0 && totalPricing && totalPricing.totalAmount > 0 && (
+                    <div className="flex items-center justify-between gap-4 p-4 bg-primary/5 rounded-lg border">
+                      <div>
+                        <div className="text-sm text-muted-foreground">Total · {totalPricing.travelers} {totalPricing.travelers === 1 ? 'traveler' : 'travelers'}</div>
+                        <div className="text-xs text-muted-foreground">{formatEGP(totalPricing.perPersonAmount)} per person</div>
+                      </div>
+                      <div className="text-2xl font-bold text-primary">{formatEGP(totalPricing.totalAmount)}</div>
                     </div>
                   )}
 
                   {/* Navigation */}
                   <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
-                    <Button
-                      variant="outline"
-                      onClick={goToPreviousStep}
-                      size="lg"
-                      className="w-full sm:w-auto"
-                    >
+                    <Button variant="outline" onClick={goToPreviousStep} size="lg" className="w-full sm:w-auto">
                       <ChevronLeft className="w-4 h-4 mr-2" />
-                      Back to Destinations
+                      Back to Overview
                     </Button>
-                    <Button
-                      onClick={goToNextStep}
-                      size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
-                    >
+                    <Button onClick={goToNextStep} disabled={cityServices.length === 0} size="lg" className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto">
                       Continue to Review
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
-                  </div>
-                  <LivePriceSummary
-                    totalPricing={totalPricing}
-                    onContinue={goToNextStep}
-                    ctaLabel="Continue to Review"
-                  />
-                  </div>
                 </div>
               )}
 
-              {/* STEP 4: Review & Pricing */}
-              {currentStep === 4 && (
+              {/* STEP 3: Review & Pricing */}
+              {currentStep === 3 && (
                 <div className="animate-in fade-in duration-300">
                   <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
                   <div className="space-y-6 min-w-0">
@@ -1436,7 +1340,7 @@ export default function MultiCityPricingTool() {
                       className="w-full sm:w-auto"
                     >
                       <ChevronLeft className="w-4 h-4 mr-2" />
-                      Back to Add-ons
+                      Back to itinerary
                     </Button>
                     <Button
                       onClick={goToNextStep}
@@ -1457,8 +1361,8 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
-              {/* STEP 5: Checkout */}
-              {currentStep === 5 && (
+              {/* STEP 4: Checkout */}
+              {currentStep === 4 && (
                 <div className="animate-in fade-in duration-300">
                   <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
                   <div className="space-y-4 min-w-0">
