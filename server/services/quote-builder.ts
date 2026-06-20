@@ -199,6 +199,7 @@ export interface MultiCityCityInput {
   selectedServices?: CatalogServiceRequest[];
   selectedGuide?: { language?: string | null } | null;
   selectedAttractions?: Array<number | string | { id?: number; name?: string }>;
+  selectedEntranceFees?: string[];
   selectedAddOns?: Array<number | { id: number; quantity?: number }>;
 }
 
@@ -318,6 +319,25 @@ export async function buildMultiCityQuote(
           unitPrice: total / travelers,
           quantity: travelers,
           meta: { attractionId, cityName, travelers },
+        });
+        lineItems.push(item);
+        cAttractions += item.lineTotal;
+      }
+    }
+
+    // Entrance fees — per-person (price_per_person × travelers), slug-keyed.
+    // Accumulated into the attractions bucket (admission tickets); the planner
+    // labels this "Entrance fees".
+    for (const slug of city.selectedEntranceFees ?? []) {
+      if (typeof slug !== "string" || !slug) continue;
+      const total = await pricingService.getEntranceFeePrice(slug, travelers);
+      if (total > 0) {
+        const item = PricingService.lineGeneric({
+          kind: "attraction",
+          description: `Entrance: ${slug} [${cityName}]`,
+          unitPrice: total / travelers,
+          quantity: travelers,
+          meta: { entranceFeeSlug: slug, cityName, travelers },
         });
         lineItems.push(item);
         cAttractions += item.lineTotal;

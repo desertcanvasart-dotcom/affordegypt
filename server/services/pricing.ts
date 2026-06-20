@@ -30,6 +30,7 @@ import {
   attractions,
   addOns,
   guideRates,
+  entranceFees,
 } from "@shared/schema";
 import { and, eq } from "drizzle-orm";
 
@@ -199,14 +200,14 @@ export class PricingService {
 
   async getAddOnPrice(addOnId: number, quantity: number, travelers: number): Promise<number> {
     const [a] = await db
-      .select({ price: addOns.price, unitType: addOns.unitType })
+      .select({ price: addOns.price })
       .from(addOns)
       .where(eq(addOns.id, addOnId))
       .limit(1);
     if (!a) return 0;
-    const base = num(a.price);
-    if (a.unitType === "per_person") return base * quantity * travelers;
-    return base * quantity;
+    // Business rule: all add-ons are per-person, regardless of the
+    // add_ons.unit_type column — base × quantity × travelers.
+    return num(a.price) * quantity * travelers;
   }
 
   async getAttractionPrice(attractionId: number, travelers: number): Promise<number> {
@@ -216,6 +217,18 @@ export class PricingService {
       .where(eq(attractions.id, attractionId))
       .limit(1);
     return a ? num(a.ticketPrice) * travelers : 0;
+  }
+
+  // Entrance/admission fees (entrance_fees), keyed by slug, charged per person.
+  // price_per_person already includes the markup baked in by the importer.
+  async getEntranceFeePrice(slug: string, travelers: number): Promise<number> {
+    const [f] = await db
+      .select({ price: entranceFees.pricePerPerson, isActive: entranceFees.isActive })
+      .from(entranceFees)
+      .where(eq(entranceFees.slug, slug))
+      .limit(1);
+    if (!f || !f.isActive) return 0;
+    return num(f.price) * travelers;
   }
 
   /**
