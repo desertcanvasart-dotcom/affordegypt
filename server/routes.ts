@@ -8,6 +8,14 @@ import { authenticateToken, requireAdmin, type AuthRequest } from "./auth";
 import { registerPricingRoutes } from "./pricing-routes";
 import { registerAdminCatalogRoutes } from "./admin-catalog-routes";
 import { registerPublicCatalogRoutes } from "./public-catalog-routes";
+import { validateBody } from "./middleware/validate";
+import {
+  bookingRequestSchema,
+  quoteRequestSchema,
+  routeBookingRequestSchema,
+  reviewRequestSchema,
+  adminReviewSchema,
+} from "./request-schemas";
 import {
   buildQuoteFromRequest,
   persistFrozenQuote,
@@ -1148,7 +1156,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create booking
-  app.post("/api/bookings", async (req, res) => {
+  app.post("/api/bookings", validateBody(bookingRequestSchema), async (req, res) => {
     try {
       // Generate booking reference if not provided
       const bookingReference =
@@ -1367,7 +1375,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // immutable financial record. Client-supplied totalAmount is ignored.
   // Accepts `vehicleSlug` ("sedan" | "minivan" | "van") directly, or
   // legacy `vehicleType` string. If neither is supplied, picks by pax count.
-  app.post("/api/route-bookings", async (req, res) => {
+  app.post("/api/route-bookings", validateBody(routeBookingRequestSchema), async (req, res) => {
     try {
       const {
         routeId,
@@ -1599,59 +1607,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/attractions", async (req, res) => {
-    try {
-      // Validate and clean the incoming data
-      const attractionData = {
-        cityId: parseInt(req.body.cityId),
-        name: req.body.name,
-        description: req.body.description || null,
-        category: req.body.category || "General",
-        duration: parseInt(req.body.duration) || 2,
-        ticketPrice: req.body.ticketPrice
-          ? parseFloat(req.body.ticketPrice).toString()
-          : "0",
-        isActive: req.body.isActive !== false,
-        image: req.body.image || null,
-        coordinates: req.body.coordinates || null,
-        bestTimeToVisit: req.body.bestTimeToVisit || null,
-        capacity: req.body.capacity ? parseInt(req.body.capacity) : null,
-      };
-
-      // Validate required fields
-      if (!attractionData.name || !attractionData.cityId) {
-        return res.status(400).json({ message: "Name and city are required" });
-      }
-
-      const attraction = await storage.createAttraction(attractionData);
-      res.json(attraction);
-    } catch (error: any) {
-      console.error("Attraction creation error:", error);
-      res.status(500).json({ message: "Failed to create attraction" });
-    }
-  });
-
-  app.put("/api/attractions/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const attraction = await storage.updateAttraction(parseInt(id), req.body);
-      res.json(attraction);
-    } catch (error: any) {
-      console.error("Attraction update error:", error);
-      res.status(500).json({ message: "Failed to update attraction" });
-    }
-  });
-
-  app.delete("/api/attractions/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      await storage.deleteAttraction(parseInt(id));
-      res.json({ message: "Attraction deleted successfully" });
-    } catch (error: any) {
-      console.error("Attraction deletion error:", error);
-      res.status(500).json({ message: "Failed to delete attraction" });
-    }
-  });
+  // NOTE: the public (unauth) POST/PUT/DELETE /api/attractions handlers that
+  // lived here were removed — they were dead code, shadowed by the
+  // adminAuth-guarded registrations earlier in this file (Express serves the
+  // first-registered handler for a path, so these never ran). The auth'd
+  // versions are the live ones.
 
   // Reviews endpoints
   app.get("/api/reviews", async (req, res) => {
@@ -1674,19 +1634,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/reviews", async (req, res) => {
+  // Public review submission. Whitelist user-submittable fields and force the
+  // moderation flags server-side — a public caller must never be able to set
+  // isVerified/isActive (no self-"verified" reviews, no mass-assignment of
+  // other columns). Admins seed those via POST /api/admin/reviews below.
+  app.post("/api/reviews", validateBody(reviewRequestSchema), async (req, res) => {
     try {
-      const reviewData = {
-        ...req.body,
+      const review = await storage.createReview({
+        customerName: req.body.customerName,
+        customerLocation: req.body.customerLocation ?? null,
+        rating: Number(req.body.rating),
+        title: req.body.title,
+        content: req.body.content,
         tripDate: req.body.tripDate ? new Date(req.body.tripDate) : null,
-      };
-      const review = await storage.createReview(reviewData);
+        isVerified: false,
+        isActive: true,
+      });
       res.json(review);
     } catch (error: any) {
       console.error("Error creating review:", error);
       res.status(500).json({ message: "Failed to create review" });
     }
   });
+
+  // Admin review creation / CSV bulk import (admin-reviews page). Unlike the
+  // public endpoint, this is adminAuth-gated and accepts isVerified/isActive.
+  app.post(
+    "/api/admin/reviews",
+    ...adminAuth,
+    validateBody(adminReviewSchema),
+    async (req, res) => {
+      try {
+        const reviewData = {
+          ...req.body,
+          tripDate: req.body.tripDate ? new Date(req.body.tripDate) : null,
+        };
+        const review = await storage.createReview(reviewData);
+        res.json(review);
+      } catch (error: any) {
+        console.error("Error creating admin review:", error);
+        res.status(500).json({ message: "Failed to create review" });
+      }
+    },
+  );
 
   app.put("/api/reviews/:id", ...adminAuth, async (req, res) => {
     try {
@@ -1758,7 +1748,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create a frozen quote. Server recomputes totals from the request
   // fields; client-supplied total is ignored. Returns the new quote with
   // its frozen line items.
-  app.post("/api/quotes", async (req, res) => {
+  app.post("/api/quotes", validateBody(quoteRequestSchema), async (req, res) => {
     try {
       const built = await buildQuoteFromRequest({
         routeId: req.body.routeId ?? null,

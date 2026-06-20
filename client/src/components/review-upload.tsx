@@ -123,7 +123,7 @@ export default function ReviewUpload() {
       
       for (const review of reviews) {
         try {
-          await apiRequest("POST", "/api/reviews", review);
+          await apiRequest("POST", "/api/admin/reviews", review);
           results.push({ status: 'success', review });
         } catch (error: any) {
           console.error('Review upload error:', error, 'Review data:', review);
