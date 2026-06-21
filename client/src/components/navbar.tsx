@@ -106,7 +106,7 @@ export default function Navbar() {
               onClick={navigateToHome}
             />
             <div className={`hidden lg:block text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
-              Operated by Travel2Egypt · ETAA-licensed since 2020
+              Operated by Travel2Egypt · ETAA-licensed since 2003
             </div>
           </div>
 

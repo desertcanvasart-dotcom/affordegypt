@@ -20,7 +20,8 @@ const ORGANIZATION_SCHEMA = {
   url: "https://affordegypt.com",
   logo: "https://affordegypt.com/logo.png",
   description:
-    "The transparent budget tier of Travel2Egypt, a Cairo-based ETAA-licensed tour operator since 2020.",
+    "The transparent budget tier of Travel2Egypt, a Cairo-based ETAA-licensed tour operator since 2003.",
+  foundingDate: "2003",
   parentOrganization: {
     "@type": "Organization",
     name: "Travel2Egypt",
@@ -40,10 +41,16 @@ const LOCAL_BUSINESS_SCHEMA = {
   url: "https://affordegypt.com",
   telephone: "+20 110 0765283",
   priceRange: "$$",
+  foundingDate: "2003",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Cairo",
     addressCountry: "EG",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "30.0444",
+    longitude: "31.2357",
   },
   areaServed: [
     "Cairo",
@@ -88,7 +95,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <SeoMeta
         title="Egypt Tours from a Real Egyptian Operator | AffordEgypt"
-        description="Private car + licensed Egyptologist from LE 5,000/day. Operated by Travel2Egypt, ETAA-licensed since 2020. Transparent prices, no hidden fees, no online payment required — pay 10% deposit, balance on arrival."
+        description="Private car + licensed Egyptologist from LE 5,000/day. Operated by Travel2Egypt, ETAA-licensed since 2003. Transparent prices, no hidden fees, no online payment required — pay 10% deposit, balance on arrival."
         canonical="https://affordegypt.com/"
         schema={[ORGANIZATION_SCHEMA, LOCAL_BUSINESS_SCHEMA, FAQ_SCHEMA]}
       />

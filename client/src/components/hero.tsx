@@ -32,7 +32,7 @@ export default function Hero() {
 
           <p className="text-lg md:text-xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
             AffordEgypt is the transparent budget tier from Travel2Egypt — an
-            ETAA-licensed Cairo operator since 2020. Same licensed guides,
+            ETAA-licensed Egypt operator since 2003. Same licensed guides,
             lighter inclusions, no hidden fees.
           </p>
           <p className="text-lg md:text-xl mb-2 text-white/95 max-w-3xl mx-auto text-balance">
