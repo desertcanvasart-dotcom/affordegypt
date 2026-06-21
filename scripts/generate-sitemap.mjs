@@ -26,7 +26,6 @@ const ROUTES = [
   "/transfers",
   "/destinations",
   "/attractions",
-  "/routes",
   "/pricing-tool",
   "/budget-travel-egypt",
   "/egyptian-street-food-guide",

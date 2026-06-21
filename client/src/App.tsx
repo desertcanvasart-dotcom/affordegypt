@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -17,16 +17,12 @@ import BookPage from "@/pages/book";
 import AdminSidebar from "@/pages/admin-sidebar";
 import AdminBookings from "@/pages/admin-bookings";
 import AdminReviews from "@/pages/admin-reviews";
-import Routes from "@/pages/routes";
 import AdminRoutesOverview from "@/pages/admin-routes-overview";
 import AdminCityRoutes from "@/pages/admin-city-routes";
 import AdminServiceCatalog from "@/pages/admin-service-catalog";
 import AdminServiceCatalogEdit from "@/pages/admin-service-catalog-edit";
 import AdminTripTypes from "@/pages/admin-trip-types";
 import AdminServiceCategories from "@/pages/admin-service-categories";
-import RoutesSimple from "@/pages/routes-simple";
-import RouteCityPage from "@/pages/route-city-page";
-import RouteBooking from "@/pages/route-booking";
 import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
@@ -91,10 +87,13 @@ function Router() {
       <Route path="/admin/service-catalog/:id/edit" component={AdminServiceCatalogEdit} />
       <Route path="/admin/trip-types" component={AdminTripTypes} />
       <Route path="/admin/service-categories" component={AdminServiceCategories} />
-      <Route path="/routes" component={RoutesSimple} />
-      <Route path="/routes/book/:routeId" component={RouteBooking} />
-      <Route path="/route-booking" component={RouteBooking} />
-      <Route path="/routes/:category/:citySlug" component={RouteCityPage} />
+      {/* Legacy route-booking pages priced off the (now empty) routes table
+          and showed $0. Redirect to the real booking flow so old links and
+          indexed URLs land on the planner instead of a dead $0 page. */}
+      <Route path="/routes/book/:routeId"><Redirect to="/pricing-tool" /></Route>
+      <Route path="/routes/:category/:citySlug"><Redirect to="/pricing-tool" /></Route>
+      <Route path="/routes"><Redirect to="/pricing-tool" /></Route>
+      <Route path="/route-booking"><Redirect to="/pricing-tool" /></Route>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/reset-password" component={ResetPassword} />
