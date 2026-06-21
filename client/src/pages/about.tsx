@@ -32,7 +32,7 @@ export default function About() {
     <>
       <SeoMeta
         title="About AffordEgypt | The Budget Tier from Travel2Egypt"
-        description="AffordEgypt is the transparent budget tier from Travel2Egypt, a Cairo-based ETAA-licensed operator since 2020. Founded by Islam, who grew up in Siwa Oasis, to give travelers an honest middle ground between $4,000 packages and unverifiable WhatsApp operators."
+        description="AffordEgypt is the transparent budget tier from Travel2Egypt, a Cairo-based ETAA-licensed operator since 2003. Founded by Islam, who grew up in Siwa Oasis, to give travelers an honest middle ground between $4,000 packages and unverifiable WhatsApp operators."
         canonical="https://affordegypt.com/about"
       />
 
@@ -65,7 +65,7 @@ export default function About() {
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Afford Egypt is more than just a travel company; we are a dedicated team of passionate Egypt travel specialists who believe that everyone should have the opportunity to experience the magic of Egypt, regardless of their budget. Since our inception in 2020, we've proudly assisted thousands of travelers in exploring Egypt's unparalleled wonders without breaking the bank.
+                  Afford Egypt is more than just a travel company; we are a dedicated team of passionate Egypt travel specialists who believe that everyone should have the opportunity to experience the magic of Egypt, regardless of their budget. Since our inception in 2003, we've proudly assisted thousands of travelers in exploring Egypt's unparalleled wonders without breaking the bank.
                 </p>
               </div>
             </div>

@@ -39,7 +39,7 @@ export default function FounderBlock() {
             <p className="leading-relaxed">
               {"I grew up in Siwa Oasis and have run "}
               <span className="font-semibold">Travel2Egypt</span>
-              {" — a licensed Egyptian tour operator — since 2020. We've taken thousands of travelers across Egypt: backpackers and families, honeymooners and solo first-timers."}
+              {" — a licensed Egyptian tour operator — since 2003. We've taken thousands of travelers across Egypt: backpackers and families, honeymooners and solo first-timers."}
             </p>
 
             <p className="leading-relaxed">

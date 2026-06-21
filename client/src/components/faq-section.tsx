@@ -19,7 +19,7 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     question: "How do I know AffordEgypt isn't one of the scam operators I've read about?",
     answer:
-      "Fair question — there are real scam operators in Egypt, and we don't blame anyone for being cautious. AffordEgypt is operated by Travel2Egypt, which is registered with the Egyptian Travel Agents Association (ETAA), holds Commercial Registration #148004, Tax ID 597-702-308, and has been operating in Cairo since 2020 with thousands of documented travelers. Every guide we work with is a licensed Egyptologist with an active Ministry of Tourism credential. You can verify our registration with ETAA directly. We also publish our prices, our inclusions, and our cancellation terms before you pay anything.",
+      "Fair question — there are real scam operators in Egypt, and we don't blame anyone for being cautious. AffordEgypt is operated by Travel2Egypt, which is registered with the Egyptian Travel Agents Association (ETAA), holds Commercial Registration #148004, Tax ID 597-702-308, and has been operating in Cairo since 2003 with thousands of documented travelers. Every guide we work with is a licensed Egyptologist with an active Ministry of Tourism credential. You can verify our registration with ETAA directly. We also publish our prices, our inclusions, and our cancellation terms before you pay anything.",
   },
   {
     question: "Are your guides actually licensed Egyptologists?",

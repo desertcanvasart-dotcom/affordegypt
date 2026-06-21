@@ -17,7 +17,7 @@ export default function CredentialsStrip() {
           <span className="mx-2 text-gray-400">·</span>
           Tax ID 597-702-308
           <span className="mx-2 text-gray-400">·</span>
-          Licensed since 2020
+          Licensed since 2003
           <span className="mx-2 text-gray-400">·</span>
           2,500+ travelers across Egypt
         </p>
