@@ -58,6 +58,8 @@ export function GuideSearch({
       'Italian': [t('guides.specialties.artCollections'), t('guides.specialties.religiousHistory'), t('guides.specialties.renaissanceCulture')],
       'Japanese': [t('guides.specialties.culturalExchange'), t('guides.specialties.photography'), t('guides.specialties.spiritualSites')],
       'Chinese': [t('guides.specialties.ancientHistory'), t('guides.specialties.culturalTraditions'), t('guides.specialties.silkRoad')],
+      'Dutch': [t('guides.specialties.historicalSites'), t('guides.specialties.culturalTours'), t('guides.specialties.photography')],
+      'Korean': [t('guides.specialties.culturalExchange'), t('guides.specialties.photography'), t('guides.specialties.spiritualSites')],
       'Arabic': [t('guides.specialties.islamicHeritage'), t('guides.specialties.localCustoms'), t('guides.specialties.traditionalCrafts')]
     };
 
@@ -69,6 +71,8 @@ export function GuideSearch({
       'Italian': 4.6,
       'Japanese': 4.9,
       'Chinese': 4.7,
+      'Dutch': 4.7,
+      'Korean': 4.8,
       'Arabic': 4.9
     };
 
@@ -102,6 +106,8 @@ export function GuideSearch({
       'Italian': '🇮🇹',
       'Japanese': '🇯🇵',
       'Chinese': '🇨🇳',
+      'Dutch': '🇳🇱',
+      'Korean': '🇰🇷',
       'Arabic': '🇸🇦'
     };
     return icons[language as keyof typeof icons] || '🌍';

@@ -25,7 +25,6 @@
     "total": "Total",
     "perPerson": "per person",
     "egp": "EGP",
-
     "eur": "EUR",
     "gbp": "GBP",
     "egpPerDay": "EGP/day",
@@ -115,7 +114,7 @@
     "duration": "Duration",
     "vehicleTypes": {
       "sedan": "Sedan",
-      "minivan": "Minivan", 
+      "minivan": "Minivan",
       "van": "Van",
       "coach": "Coach",
       "bus": "Bus"
@@ -123,7 +122,7 @@
     "passengerCapacity": {
       "sedan": "1-2 passengers",
       "minivan": "3-8 passengers",
-      "van": "9-15 passengers", 
+      "van": "9-15 passengers",
       "coach": "16-35 passengers",
       "bus": "16-35 passengers"
     },
@@ -155,7 +154,7 @@
     "attractions": "Attractions",
     "guideLanguages": {
       "english": "English",
-      "spanish": "Spanish", 
+      "spanish": "Spanish",
       "french": "French",
       "german": "German",
       "arabic": "Arabic"
@@ -169,8 +168,6 @@
     "totalTravelers": "Total Travelers:",
     "city": "City",
     "transportation": "Transportation",
-    "guide": "Guide",
-    "attractions": "Attractions",
     "perPersonAddOns": "Per Person Add-ons",
     "perUnitAddOns": "Per Unit Add-ons",
     "totalPerPerson": "Total/Person",
@@ -207,7 +204,9 @@
       "italian": "Italian",
       "japanese": "Japanese",
       "chinese": "Chinese",
-      "arabic": "Arabic"
+      "arabic": "Arabic",
+      "dutch": "Dutch",
+      "korean": "Korean"
     },
     "specialties": {
       "historicalSites": "Historical sites",
@@ -239,743 +238,6 @@
   "addons": {
     "selectAddOns": "Select add-ons...",
     "addOnsSelected": "{{count}} add-ons selected ({{items}} items)"
-  },
-  "attractions": {
-    "searchPlaceholder": "Search attractions...",
-    "allCategories": "All Categories",
-    "noAttractionsFound": "No attractions found matching your criteria",
-    "clearFilters": "Clear filters to see all attractions",
-    "showing": "Showing"
-  },
-  "booking": {
-    "title": "Complete Your Booking",
-    "customerInfo": "Customer Information",
-    "firstName": "First Name",
-    "lastName": "Last Name", 
-    "email": "Email",
-    "phone": "Phone",
-    "nationality": "Nationality",
-    "travelDetails": "Travel Details",
-    "travelDate": "Travel Date",
-    "notes": "Special Requests (Optional)",
-    "bookingConfirmation": "Booking Confirmation",
-    "thankYou": "Thank you for your booking!",
-    "confirmationSent": "A confirmation email has been sent to your email address.",
-    "bookingReference": "Booking Reference"
-  },
-  "footer": {
-    "aboutUs": "About Us",
-    "contactUs": "Contact Us", 
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "cookiePolicy": "Cookie Policy",
-    "bookingAgreement": "Booking Agreement",
-    "followUs": "Follow Us",
-    "description": "Budget-friendly Egypt travel with transparent pricing and expert local guides.",
-    "usefulLinks": "Useful Links",
-    "travelTips": "Travel Tips",
-    "desertsGuide": "Eastern & Western Deserts Travel Guide",
-    "sinaiGuide": "Sinai Peninsula Travel Guide",
-    "nileGuide": "Nile Valley Travel Guide",
-    "budgetTravel": "Budget Travel in Egypt",
-    "streetFood": "Egyptian Street Food",
-    "cuisinePassport": "Cuisine Passport",
-    "legal": "Legal",
-    "copyright": "All rights reserved.",
-    "poweredBy": "Powered and Polished by",
-    "newsletter": {
-      "title": "Newsletter",
-      "subtitle": "Get travel tips and special offers",
-      "placeholder": "Your email",
-      "subscribe": "Subscribe",
-      "subscribing": "Subscribing...",
-      "success": "Successfully subscribed!",
-      "successDesc": "You'll receive travel tips and special offers in your inbox.",
-      "failed": "Subscription failed",
-      "failedDesc": "Please try again or contact us directly.",
-      "emailRequired": "Please enter your email address."
-    }
-  },
-  "about": {
-    "title": "Why Travel With Us",
-    "description1": "At Afford Egypt, we're a new generation of Egypt travel specialists redefining what budget travel means—transparent, flexible, and rich in experience.",
-    "description2": "Since 2020, we've helped thousands explore the real Egypt with zero hidden fees and maximum peace of mind. From intercity rides to full-day guided adventures, everything is built to fit your plan and your budget.",
-    "description3": "Whether you're navigating the ancient streets of Cairo, sailing down the Nile, or uncovering Luxor's temple secrets, our platform connects you directly to reliable transport, trusted local guides, and essential attractions—all in just a few clicks.",
-    "description4": "Backed by outstanding customer support and built by young people who actually understand modern travelers, Afford Egypt makes exploring Egypt easy, affordable, and unforgettable.",
-    "stats": {
-      "travelers": "5000+ Travelers",
-      "travelersDesc": "Served since 2020",
-      "destinations": "15+ Destinations", 
-      "destinationsDesc": "Across Egypt",
-      "support": "24/7 Support",
-      "supportDesc": "During your trip",
-      "guarantee": "100% Guarantee",
-      "guaranteeDesc": "Money back promise"
-    },
-    "cta": "Start Planning"
-  },
-  "validation": {
-    "required": "This field is required",
-    "invalidEmail": "Please enter a valid email address",
-    "invalidPhone": "Please enter a valid phone number",
-    "selectDate": "Please select a travel date",
-    "selectRoute": "Please select at least one route"
-  },
-  "slugs": {
-    "destinations": "destinations",
-    "travel-tips": "travel-tips",
-    "reviews": "reviews",
-    "submit-review": "submit-review",
-    "about": "about",
-    "contact": "contact",
-    "budget-travel-egypt": "budget-travel-egypt",
-    "egyptian-street-food-guide": "egyptian-street-food-guide",
-    "nile-valley-guide": "nile-valley-guide",
-    "sinai-peninsula-guide": "sinai-peninsula-guide",
-    "eastern-western-deserts-guide": "eastern-western-deserts-guide",
-    "cuisine-passport": "cuisine-passport",
-    "booking-agreement": "booking-agreement",
-    "terms-of-service": "terms-of-service",
-    "privacy-policy": "privacy-policy",
-    "cookie-policy": "cookie-policy",
-    "transfers": "transfers",
-    "pricing-tool": "pricing-tool",
-    "attractions": "attractions"
-  },
-  "reviews": {
-    "title": "What Our Travelers Say",
-    "subtitle": "Real experiences from thousands of travelers",
-    "totalReviews": "Total Reviews",
-    "averageRating": "Average Rating",
-    "fiveStarReviews": "5-Star Reviews"
-  },
-  "blog": {
-    "title": "Travel Insights & Tips",
-    "subtitle": "Expert guides, hidden gems, and practical advice for your Egypt journey",
-    "viewAll": "View All Articles",
-    "readMore": "Read More",
-    "minRead": "min read",
-    "loadMore": "Load More Articles",
-    "noArticles": "No articles found in this category.",
-    "categories": {
-      "all": "All",
-      "destinations": "Destinations",
-      "budgetTravel": "Budget Travel",
-      "foodCulture": "Food & Culture",
-      "travelTips": "Travel Tips"
-    },
-    "readTime": "{{time}} min read",
-    "posts": {
-      "sinaiGuide": {
-        "title": "Sinai Peninsula Travel Guide",
-        "excerpt": "Sinai Peninsula Travel Guide: Best Places to Visit, Dive & Hike in Egypt"
-      },
-      "cairoTransport": {
-        "title": "Navigating Cairo: Transportation Tips for First-Time Visitors",
-        "excerpt": "Everything you need to know about getting around Cairo safely and efficiently, from metro systems to ride-sharing apps."
-      },
-      "desertsGuide": {
-        "title": "Eastern & Western Deserts Travel Guide",
-        "excerpt": "Egypt Desert Travel Guide: Explore Siwa, White Desert & Eastern Trails"
-      },
-      "nileValley": {
-        "title": "Nile Valley Travel Guide",
-        "excerpt": "Nile Valley Egypt: Top Destinations, Nile Cruises & Ancient Sites Guide"
-      },
-      "budgetTravel": {
-        "title": "Budget Travel in Egypt: How to See More for Less",
-        "excerpt": "Smart strategies for experiencing Egypt's wonders without breaking the bank, including accommodation and dining tips."
-      },
-      "streetFood": {
-        "title": "Egyptian Street Food: A Culinary Adventure Guide",
-        "excerpt": "Navigate the delicious world of Egyptian street food with safety tips and must-try dishes in every major city."
-      }
-    },
-    "sinaiGuide": {
-      "title": "Sinai Peninsula Travel Guide",
-      "subtitle": "Your gateway to where ancient history meets the Red Sea's pristine beauty",
-      "description": "Discover the world's most renowned coral reefs, ascend the sacred Mount Sinai at sunrise, and traverse wind-carved dunes alongside Bedouin guides who know every hidden oasis. This is where Moses received the Ten Commandments, where world-class diving meets authentic desert culture, and where budget-conscious travelers find experiences that rival any luxury adventure.",
-      "destinations": {
-        "title": "Understanding Sinai's Four Great Destinations",
-        "description": "From red-rock canyon landscapes to crystal-clear waters, each destination offers a unique way to experience the Sinai Peninsula's magic.",
-        "sharmElSheikh": {
-          "name": "Sharm El Sheikh",
-          "description": "The Red Sea's crown jewel, evolved from a Bedouin fishing settlement into one of the world's most celebrated diving destinations",
-          "highlights": ["Ras Muhammad National Park", "SS Thistlegorm Wreck", "Naama Bay Marina", "Soho Square"]
-        },
-        "dahab": {
-          "name": "Dahab",
-          "description": "A laid-back coastal town beloved by backpackers and divers, famous for the Blue Hole and relaxed atmosphere",
-          "highlights": ["Blue Hole", "Canyon dive site", "Assalah beachfront", "Camel treks"]
-        },
-        "mountSinai": {
-          "name": "Mount Sinai & St. Catherine",
-          "description": "Sacred mountain where Moses received the Ten Commandments, home to ancient monasteries and spiritual pilgrimage",
-          "highlights": ["Sunrise hike to summit", "St. Catherine's Monastery", "Burning Bush", "Ancient manuscripts"]
-        },
-        "nuweiba": {
-          "name": "Nuweiba",
-          "description": "Peaceful port town offering pristine beaches, coral reefs, and authentic Bedouin experiences",
-          "highlights": ["Colored Canyon", "Fjord Bay", "Tarabin beach", "Desert safaris"]
-        }
-      },
-      "activities": {
-        "title": "Adventures & Experiences",
-        "description": "From underwater exploration to desert adventures, the Sinai offers experiences for every type of traveler.",
-        "diving": {
-          "name": "World-Class Diving",
-          "price": "From $45/day",
-          "description": "Explore legendary dive sites with pristine coral reefs and historic wrecks in crystal-clear Red Sea waters."
-        },
-        "hiking": {
-          "name": "Mount Sinai Sunrise Trek",
-          "price": "From $35/person",
-          "description": "Climb the sacred mountain in darkness to witness a breathtaking sunrise over the desert landscape."
-        },
-        "desert": {
-          "name": "Desert Safari Adventures",
-          "price": "From $50/day",
-          "description": "Explore dramatic canyons, oases, and Bedouin camps with local guides who share ancient desert wisdom."
-        },
-        "snorkeling": {
-          "name": "Coral Reef Snorkeling",
-          "price": "From $25/day",
-          "description": "Discover colorful marine life in shallow reefs perfect for beginners and experienced snorkelers alike."
-        },
-        "cultural": {
-          "title": "Cultural Experiences",
-          "mountSinai": {
-            "name": "Mount Sinai Pilgrimage",
-            "price": "From $40/person",
-            "description": "Follow ancient pilgrimage routes to the summit where Moses received the Ten Commandments."
-          },
-          "monastery": {
-            "name": "St. Catherine's Monastery",
-            "price": "From $20/person",
-            "description": "Visit one of the world's oldest continuously operating monasteries with priceless manuscripts and art."
-          },
-          "bedouinVillage": {
-            "name": "Bedouin Village Experience",
-            "price": "From $30/person",
-            "description": "Share traditional meals and stories with Bedouin families in authentic desert settlements."
-          },
-          "wadiFeiran": {
-            "name": "Wadi Feiran Oasis",
-            "price": "From $35/person",
-            "description": "Explore the biblical wilderness where the Israelites wandered, now a lush oasis with date palms."
-          }
-        },
-        "desertAdventures": {
-          "coloredCanyon": {
-            "name": "Colored Canyon Trek",
-            "price": "From $45/person",
-            "description": "Hike through spectacular multicolored rock formations carved by millennia of wind and water."
-          },
-          "whiteCanyon": {
-            "name": "White Canyon Adventure",
-            "price": "From $40/person",
-            "description": "Navigate narrow limestone corridors and natural bridges in this hidden desert wonder."
-          },
-          "camelTrek": {
-            "name": "Multi-Day Camel Trek",
-            "price": "From $80/day",
-            "description": "Journey deep into the desert on traditional camel caravans with overnight camping under stars."
-          },
-          "bedouinNight": {
-            "name": "Bedouin Desert Camp",
-            "price": "From $55/night",
-            "description": "Sleep under brilliant desert stars while enjoying traditional music, food, and storytelling."
-          }
-        }
-      },
-      "practical": {
-        "title": "Practical Information",
-        "description": "Essential information for planning your Sinai adventure, from weather to safety tips.",
-        "bestTime": {
-          "title": "Best Time to Visit",
-          "content": "October to April offers perfect weather with warm days and cool nights. Avoid summer months (June-August) when temperatures exceed 40°C. Spring (March-May) is ideal for hiking and diving."
-        },
-        "gettingThere": {
-          "title": "Getting There",
-          "content": "Fly to Sharm El Sheikh (SSH) for southern Sinai or Taba for northern areas. Overland transfers from Cairo take 6-7 hours through stunning desert landscapes."
-        },
-        "safety": {
-          "title": "Safety & Health",
-          "content": "Sinai is safe for tourists with basic precautions. Stay hydrated, use sun protection, and follow local guide advice, especially in desert areas."
-        },
-        "packing": {
-          "title": "Packing Essentials",
-          "content": "Sun protection, reef shoes for rocky beaches, warm clothes for mountain hikes, water bottle, and underwater camera for unforgettable marine moments."
-        }
-      },
-      "itineraries": {
-        "title": "Sample Itineraries",
-        "description": "Complete travel plans with transparent pricing and local insights for different types of Sinai adventures.",
-        "highlights": {
-          "title": "Sinai Highlights (5 Days)",
-          "days": [
-            "Day 1: Arrival in Sharm El Sheikh, Naama Bay exploration",
-            "Day 2: Ras Muhammad diving/snorkeling, sunset dinner",
-            "Day 3: Mount Sinai sunrise trek, St. Catherine's Monastery",
-            "Day 4: Dahab relaxation, Blue Hole diving",
-            "Day 5: Desert safari, Colored Canyon, departure"
-          ],
-          "price": "From $385 per person"
-        },
-        "adventure": {
-          "title": "Desert Adventure (7 Days)",
-          "days": [
-            "Day 1-2: Sharm El Sheikh diving and marine exploration",
-            "Day 3: Mount Sinai trek and monastery visit",
-            "Day 4-5: Multi-day camel trek with Bedouin guides",  
-            "Day 6: Colored Canyon and White Canyon exploration",
-            "Day 7: Nuweiba relaxation and departure"
-          ],
-          "price": "From $620 per person"
-        },
-        "relaxed": {
-          "title": "Relaxed Explorer (4 Days)",
-          "days": [
-            "Day 1: Arrival, beachfront relaxation",
-            "Day 2: Easy snorkeling, local culture",
-            "Day 3: St. Catherine's Monastery day trip",
-            "Day 4: Sunset camel ride, departure"
-          ],
-          "price": "From $285 per person"
-        }
-      },
-      "cta": {
-        "title": "Ready to Explore the Sinai?",
-        "description": "Let us plan your perfect Sinai adventure with transparent pricing and local expertise",
-        "button": "Plan Sinai Trip"
-      }
-    },
-    "nileValley": {
-      "title": "Nile Valley",
-      "subtitle": "Complete Guide",
-      "description": "Journey through 5,000 years of history along the world's longest river. From Cairo's pyramids to Abu Simbel's temples - your complete Nile adventure.",
-      "hero": {
-        "features": {
-          "cities": {
-            "title": "12 Historic Cities",
-            "description": "From Alexandria to Abu Simbel along the Nile"
-          },
-          "sites": {
-            "title": "50+ Ancient Sites",
-            "description": "Temples, tombs, and archaeological wonders"
-          },
-          "budget": {
-            "title": "Budget Planning",
-            "description": "Transportation, accommodation & dining tips"
-          }
-        },
-        "cta": "Plan Your Nile Journey"
-      },
-      "regions": [
-        "All",
-        "Lower Egypt",
-        "Middle Egypt",
-        "Upper Egypt",
-        "Nubia"
-      ],
-      "map": {
-        "title": "Interactive Nile Valley Map",
-        "clickCities": "📍 Click cities to explore"
-      },
-      "cityDetails": {
-        "population": "Population:",
-        "bestTime": "Best time:",
-        "recommendedStay": "Recommended stay:",
-        "keyHighlights": "Key Highlights:",
-        "budgetTips": "Budget Tips:",
-        "transportation": "Transportation:",
-        "localTransport": "Local:",
-        "topAttractions": "Top Attractions:",
-        "entry": "Entry:",
-        "hours": "Hours:"
-      },
-      "completeGuide": {
-        "title": "Complete Nile Valley City Guide",
-        "population": "Population:",
-        "bestTime": "Best time:",
-        "stayDuration": "Stay duration:",
-        "fromCairo": "From Cairo:",
-        "keyHighlights": "Key Highlights:",
-        "topAttractions": "Top Attractions:",
-        "budgetTips": "Budget Tips:",
-        "readMore": "Read More",
-        "showLess": "Show Less",
-        "regions": {
-          "upperEgypt": "Upper Egypt",
-          "middleEgypt": "Middle Egypt",
-          "lowerEgypt": "Lower Egypt",
-          "nubia": "Nubia"
-        }
-      },
-      "transportation": {
-        "title": "Nile Valley Transportation Guide",
-        "train": {
-          "title": "Train Travel",
-          "description": "Comfortable overnight trains connect Cairo to Luxor and Aswan. Book sleeping cars for long journeys.",
-          "cairoLuxor": "Cairo-Luxor: 1000-1250 EGP",
-          "cairoAswan": "Cairo-Aswan: 1100-1450 EGP",
-          "acCoaches": "AC coaches available",
-          "nightTrains": "Night trains include meals"
-        },
-        "cruise": {
-          "title": "Nile Cruises",
-          "description": "Luxor to Aswan cruises stop at Edfu and Kom Ombo. 3-7 day options available.",
-          "threeFourDays": "3-4 days: 14500-17000 EGP",
-          "allMeals": "All meals included",
-          "entranceFees": "Site entrance fees extra",
-          "bestTime": "Best Oct-Apr weather"
-        },
-        "flights": {
-          "title": "Domestic Flights",
-          "description": "Quick flights to Luxor, Aswan, and Abu Simbel. Book early for better prices.",
-          "cairoLuxor": "Cairo-Luxor: 4300-6000 EGP",
-          "cairoAswan": "Cairo-Aswan: 5200-7000 EGP",
-          "abuSimbel": "Abu Simbel day trips",
-          "flightTimes": "1-2 hour flight times"
-        }
-      },
-      "travelTips": {
-        "title": "Essential Planning Tips",
-        "bestTime": {
-          "title": "Best Time to Visit",
-          "peakSeason": "October - March (Peak Season)",
-          "peakDescription": "Perfect weather, comfortable temperatures (20-25°C), higher prices",
-          "shoulderSeason": "April - May (Shoulder Season)",
-          "shoulderDescription": "Warm but manageable (25-30°C), fewer crowds, good prices",
-          "lowSeason": "June - September (Low Season)",
-          "lowDescription": "Very hot (35-45°C), lowest prices, early morning visits essential"
-        },
-        "budgetBreakdown": {
-          "title": "Budget Breakdown (Per Day)",
-          "budget": {
-            "title": "Budget Traveler",
-            "description": "Hostel/guesthouse, local food, public transport: 800-1200 EGP"
-          },
-          "midRange": {
-            "title": "Mid-Range Traveler", 
-            "description": "3-star hotel, mix of restaurants, private transport: 2300-3500 EGP"
-          },
-          "luxury": {
-            "title": "Luxury Traveler",
-            "description": "5-star hotels, fine dining, guided tours: 9000+ EGP"
-          }
-        },
-        "culturalEtiquette": {
-          "title": "Cultural Etiquette",
-          "dressModestly": "Dress modestly, especially at religious sites",
-          "removeShoes": "Remove shoes when entering mosques",
-          "askPermission": "Ask permission before photographing people",
-          "bargainRespectfully": "Bargain respectfully at markets",
-          "tipStaff": "Tip service staff (10-15%)",
-          "learnGreetings": "Learn basic Arabic greetings"
-        },
-        "healthSafety": {
-          "title": "Health & Safety",
-          "drinkBottledWater": "Drink bottled water only",
-          "useSunscreen": "Use sunscreen and hat in summer",
-          "packMedications": "Pack basic medications",
-          "getTravelInsurance": "Get travel insurance",
-          "keepCopies": "Keep copies of documents",
-          "useRegisteredGuides": "Use registered tour guides",
-          "stayHydrated": "Stay hydrated in desert climate"
-        }
-      }
-    }
-  },
-  "budgetTips": {
-    "alexandria": {
-      "stayNearCorniche": "Stay near the Corniche for sea views",
-      "freshSeafood": "Try fresh seafood at local restaurants",
-      "historicTram": "Use the historic tram system for cheap transport"
-    },
-    "cairo": {
-      "useMetro": "Use metro for cheap transportation (5-15 EGP)",
-      "localRestaurants": "Eat at local restaurants (50-100 EGP per meal)",
-      "downtownAccommodation": "Stay in Downtown Cairo for budget accommodation",
-      "freeMosquesMarkets": "Visit free mosques and markets"
-    },
-    "beniSuef": {
-      "affordableFood": "Very affordable local food (20-50 EGP)",
-      "basicAccommodation": "Basic accommodation available (200-400 EGP/night)",
-      "bargainMarkets": "Bargain at local markets"
-    },
-    "minya": {
-      "akhenatonHotel": "Stay at Akhenaten Hotel for budget option",
-      "sharedTaxis": "Take shared taxis between sites",
-      "affordableRestaurants": "Local restaurants very affordable (30-70 EGP)"
-    },
-    "asyut": {
-      "budgetFriendly": "Very budget-friendly destination",
-      "traditionalWorkshops": "Traditional workshops for handicrafts",
-      "cheapBoatRides": "Cheap Nile boat rides"
-    },
-    "aswan": {
-      "stayNearSouk": "Stay near the souk for atmosphere",
-      "feluccaRides": "Take felucca rides at sunset",
-      "nubianVillages": "Visit Nubian villages for authentic culture",
-      "spiceShopping": "Excellent value spice shopping"
-    },
-    "abuSimbel": {
-      "dayTripFromAswan": "Day trip from Aswan is most economical",
-      "joinGroupTours": "Join group tours to split costs",
-      "bringLunchWater": "Bring lunch and water",
-      "earlyMorningArrival": "Early morning arrival for best photos"
-    }
-  },
-  "attractions": {
-    "alexandria": {
-      "bibliotheca": {
-        "name": "Library of Alexandria",
-        "description": "Modern revival of the ancient Library of Alexandria with stunning architecture",
-        "entryFee": "100 EGP",
-        "hours": "10:00 AM - 7:00 PM"
-      },
-      "qaitbayCitadel": {
-        "name": "Qaitbay Citadel",
-        "description": "15th-century fortress built on the site of the ancient Lighthouse of Alexandria",
-        "entryFee": "200 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      },
-      "catacombs": {
-        "name": "Catacombs of Kom el Shoqafa",
-        "description": "Largest Roman burial site in Egypt with unique Greco-Roman-Egyptian fusion",
-        "entryFee": "80 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      }
-    },
-    "cairo": {
-      "pyramidsGiza": {
-        "name": "Pyramids of Giza",
-        "description": "The last surviving Wonder of the Ancient World, including the Great Pyramid and Sphinx",
-        "entryFee": "700 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "egyptianMuseum": {
-        "name": "Egyptian Museum",
-        "description": "World's finest collection of ancient Egyptian artifacts including Tutankhamun's treasures",
-        "entryFee": "550 EGP",
-        "hours": "9:00 AM - 5:00 PM"
-      },
-      "citadelSaladin": {
-        "name": "Citadel of Saladin",
-        "description": "Medieval Islamic fortification with stunning views of Cairo",
-        "entryFee": "550 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      }
-    },
-    "luxor": {
-      "valleyKings": {
-        "name": "Valley of the Kings",
-        "description": "Royal burial ground with elaborately decorated tombs",
-        "entryFee": "750 EGP for 3 tombs",
-        "hours": "6:00 AM - 4:00 PM"
-      },
-      "karnakTemple": {
-        "name": "Karnak Temple",
-        "description": "Massive temple complex dedicated to Amun-Ra",
-        "entryFee": "600 EGP",
-        "hours": "6:00 AM - 5:30 PM"
-      },
-      "luxorTemple": {
-        "name": "Luxor Temple",
-        "description": "Beautiful temple in the heart of modern Luxor",
-        "entryFee": "500 EGP",
-        "hours": "6:00 AM - 9:00 PM"
-      },
-      "hatshepsutTemple": {
-        "name": "Temple of Hatshepsut",
-        "description": "Mortuary temple of Egypt's famous female pharaoh",
-        "entryFee": "140 EGP",
-        "hours": "6:00 AM - 4:00 PM"
-      }
-    },
-    "beniSuef": {
-      "meidumPyramid": {
-        "name": "Meidum Pyramid",
-        "description": "Unique collapsed pyramid showing ancient construction techniques",
-        "entryFee": "180 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "beniSuefMuseum": {
-        "name": "Beni Suef Museum",
-        "description": "Local artifacts and Pharaonic remains from the region",
-        "entryFee": "120 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      }
-    },
-    "asyut": {
-      "monasteryVirginMary": {
-        "name": "Monastery of the Virgin Mary",
-        "description": "Important Coptic Christian pilgrimage site",
-        "entryFee": "Free",
-        "hours": "6:00 AM - 6:00 PM"
-      },
-      "asyutBarrage": {
-        "name": "Asyut Barrage",
-        "description": "Historic Nile dam with scenic views",
-        "entryFee": "Free",
-        "hours": "24 hours"
-      }
-    },
-    "sohag": {
-      "redMonastery": {
-        "name": "Red Monastery",
-        "description": "5th-century Coptic monastery with stunning frescoes",
-        "entryFee": "50 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      },
-      "whiteMonastery": {
-        "name": "White Monastery",
-        "description": "Ancient Coptic monastery with unique architecture",
-        "entryFee": "50 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      },
-      "akhmim": {
-        "name": "Akhmim",
-        "description": "Traditional textile weaving town on the Nile",
-        "entryFee": "Free",
-        "hours": "Daylight hours"
-      }
-    },
-    "qena": {
-      "denderaTemple": {
-        "name": "Dendera Temple",
-        "description": "Best-preserved temple complex dedicated to goddess Hathor",
-        "entryFee": "300 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "qenaPotteryQuarter": {
-        "name": "Qena Pottery Quarter",
-        "description": "Traditional pottery workshops using ancient techniques",
-        "entryFee": "Free",
-        "hours": "8:00 AM - 6:00 PM"
-      }
-    },
-    "abuSimbel": {
-      "greatTempleRamesses": {
-        "name": "Great Temple of Ramesses II",
-        "description": "Massive rock-cut temple relocated to save from flooding",
-        "entryFee": "875 EGP",
-        "hours": "6:00 AM - 5:00 PM"
-      },
-      "templeNefertari": {
-        "name": "Temple of Nefertari",
-        "description": "Smaller temple dedicated to Ramesses II's beloved queen",
-        "entryFee": "Free",
-        "hours": "6:00 AM - 5:00 PM"
-      }
-    },
-    "aswan": {
-      "philaeTemple": {
-        "name": "Philae Temple",
-        "description": "Beautiful temple complex on an island, dedicated to Isis",
-        "entryFee": "550 EGP + boat fees",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "highDam": {
-        "name": "High Dam",
-        "description": "Engineering marvel that created Lake Nasser",
-        "entryFee": "200 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      },
-      "unfinishedObelisk": {
-        "name": "Unfinished Obelisk",
-        "description": "Ancient granite quarry showing obelisk carving techniques",
-        "entryFee": "220 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "nubianVillage": {
-        "name": "Nubian Village",
-        "description": "Colorful traditional villages showcasing Nubian culture",
-        "entryFee": "Boat ride 200-300 EGP",
-        "hours": "Daylight hours"
-      }
-    }
-  },
-  "highlights": {
-    "aswan": {
-      "philaeTemple": "Philae Temple",
-      "highDam": "High Dam",
-      "nubianVillages": "Nubian villages",
-      "elephantineIsland": "Elephantine Island"
-    }
-  },
-  "faq": {
-    "title": "Egypt Travel FAQs",
-    "subtitle": "Answers to your most common questions—clear, honest, and up-to-date",
-    "questions": {
-      "safety": {
-        "question": "Is Egypt safe for tourists right now?",
-        "answer": "Yes, Egypt is generally safe for tourists, especially in major destinations like Cairo, Luxor, Aswan, and the Red Sea resorts. We monitor all regions closely and tailor each itinerary to ensure your comfort and safety, with private transport and local support at every step."
-      },
-      "visa": {
-        "question": "Do I need a visa to enter Egypt?",
-        "answer": "Most travelers can obtain an e-Visa online before arrival or purchase one on arrival at major airports. We'll guide you through the process after booking. Some nationalities require pre-approval—check with your local embassy or ask us."
-      },
-      "price": {
-        "question": "What's included in my tour price?",
-        "answer": "All our itineraries are fully transparent, with no hidden fees. Inclusions typically cover private transportation, expert guides, entrance tickets, bottled water, and all mentioned activities. Optional extras or personal spending are clearly listed before booking."
-      },
-      "customise": {
-        "question": "Can I customise my itinerary?",
-        "answer": "Absolutely! Our trips are designed around you. Whether you're a couple, a solo traveler, or a family, you can customise everything—hotel category, pace, guides, and even destinations."
-      },
-      "currency": {
-        "question": "What currency should I bring?",
-        "answer": "Egypt uses the Egyptian Pound (EGP) as its official currency. We recommend bringing some cash for small purchases and tips, though credit cards are accepted in most hotels and restaurants."
-      },
-      "weather": {
-        "question": "What's the best time to visit Egypt?",
-        "answer": "October to April offers the most comfortable weather with cooler temperatures perfect for sightseeing. Summer (May-September) is hotter but ideal for Red Sea activities and comes with lower accommodation prices."
-      }
-    },
-    "support": {
-      "question": "Still have questions? We're here to help!",
-      "whatsapp": "WhatsApp Support",
-      "email": "Email Us"
-    }
-  },
-  "luxorBestTime": "October - March",
-  "luxorStay": "3-4 days", 
-  "luxorTransport": "10 hours by train, 1 hour flight",
-  "nile.bestTime.octoberMarch": "October - March",
-  "nile.bestTime.octoberApril": "October - April", 
-  "nile.bestTime.marchNovember": "March - November",
-  "nile.stay.1day": "1 day",
-  "nile.stay.2_3days": "2-3 days",
-  "nile.stay.3_4days": "3-4 days", 
-  "nile.stay.4_5days": "4-5 days",
-  "nile.transport.10h_train_1h_flight": "10 hours by train, 1 hour flight",
-  "nile.transport.2h_train_bus": "2 hours by train/bus",
-  "nile.transport.4h_train_bus": "4 hours by train/bus",
-  "nile.transport.5h_train_bus": "5 hours by train/bus",
-  "nile.transport.6h_train_bus": "6 hours by train/bus",
-  "nile.transport.7h_train_bus": "7 hours by train/bus",
-  "nile.transport.starting_point": "Starting point",
-  "nile.transport.flight_3h_drive": "Flight to Aswan + 3-hour drive",
-  "nile.stay.2days": "2 days",
-  "nile.stay.1_2days": "1-2 days",
-  "nile.stay.halfday": "Half day",
-  "nile.transport.12h_train_bus": "12 hours by train/bus",
-  "nile.transport.13h_train_bus": "13 hours by train/bus",
-  "nile.transport.14h_train_1.5h_flight": "14 hours by train, 1.5 hours flight",
-  "budgetTips": {
-    "cairo": {
-      "useMetro": "Use Metro for cheap transport (5-15 EGP)",
-      "localRestaurants": "Eat at local restaurants (50-100 EGP per meal)",
-      "downtownAccommodation": "Stay in Downtown for budget accommodation",
-      "freeMosquesMarkets": "Free visits to mosques and markets"
-    },
-    "beniSuef": {
-      "affordableFood": "Very affordable food and accommodation",
-      "basicAccommodation": "Basic but clean accommodation available",
-      "bargainMarkets": "Great bargains at traditional markets"
-    }
   },
   "attractions": {
     "cairo": {
@@ -1033,6 +295,338 @@
       }
     }
   },
+  "booking": {
+    "title": "Complete Your Booking",
+    "customerInfo": "Customer Information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "nationality": "Nationality",
+    "travelDetails": "Travel Details",
+    "travelDate": "Travel Date",
+    "notes": "Special Requests (Optional)",
+    "bookingConfirmation": "Booking Confirmation",
+    "thankYou": "Thank you for your booking!",
+    "confirmationSent": "A confirmation email has been sent to your email address.",
+    "bookingReference": "Booking Reference"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "bookingAgreement": "Booking Agreement",
+    "followUs": "Follow Us",
+    "description": "Budget-friendly Egypt travel with transparent pricing and expert local guides.",
+    "usefulLinks": "Useful Links",
+    "travelTips": "Travel Tips",
+    "desertsGuide": "Eastern & Western Deserts Travel Guide",
+    "sinaiGuide": "Sinai Peninsula Travel Guide",
+    "nileGuide": "Nile Valley Travel Guide",
+    "budgetTravel": "Budget Travel in Egypt",
+    "streetFood": "Egyptian Street Food",
+    "cuisinePassport": "Cuisine Passport",
+    "legal": "Legal",
+    "copyright": "All rights reserved.",
+    "poweredBy": "Powered and Polished by",
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "Get travel tips and special offers",
+      "placeholder": "Your email",
+      "subscribe": "Subscribe",
+      "subscribing": "Subscribing...",
+      "success": "Successfully subscribed!",
+      "successDesc": "You'll receive travel tips and special offers in your inbox.",
+      "failed": "Subscription failed",
+      "failedDesc": "Please try again or contact us directly.",
+      "emailRequired": "Please enter your email address."
+    }
+  },
+  "about": {
+    "title": "Why Travel With Us",
+    "description1": "At Afford Egypt, we're a new generation of Egypt travel specialists redefining what budget travel means—transparent, flexible, and rich in experience.",
+    "description2": "Since 2020, we've helped thousands explore the real Egypt with zero hidden fees and maximum peace of mind. From intercity rides to full-day guided adventures, everything is built to fit your plan and your budget.",
+    "description3": "Whether you're navigating the ancient streets of Cairo, sailing down the Nile, or uncovering Luxor's temple secrets, our platform connects you directly to reliable transport, trusted local guides, and essential attractions—all in just a few clicks.",
+    "description4": "Backed by outstanding customer support and built by young people who actually understand modern travelers, Afford Egypt makes exploring Egypt easy, affordable, and unforgettable.",
+    "stats": {
+      "travelers": "5000+ Travelers",
+      "travelersDesc": "Served since 2020",
+      "destinations": "15+ Destinations",
+      "destinationsDesc": "Across Egypt",
+      "support": "24/7 Support",
+      "supportDesc": "During your trip",
+      "guarantee": "100% Guarantee",
+      "guaranteeDesc": "Money back promise"
+    },
+    "cta": "Start Planning"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "selectDate": "Please select a travel date",
+    "selectRoute": "Please select at least one route"
+  },
+  "slugs": {
+    "destinations": "destinations",
+    "travel-tips": "travel-tips",
+    "reviews": "reviews",
+    "submit-review": "submit-review",
+    "about": "about",
+    "contact": "contact",
+    "budget-travel-egypt": "budget-travel-egypt",
+    "egyptian-street-food-guide": "egyptian-street-food-guide",
+    "nile-valley-guide": "nile-valley-guide",
+    "sinai-peninsula-guide": "sinai-peninsula-guide",
+    "eastern-western-deserts-guide": "eastern-western-deserts-guide",
+    "cuisine-passport": "cuisine-passport",
+    "booking-agreement": "booking-agreement",
+    "terms-of-service": "terms-of-service",
+    "privacy-policy": "privacy-policy",
+    "cookie-policy": "cookie-policy",
+    "transfers": "transfers",
+    "pricing-tool": "pricing-tool",
+    "attractions": "attractions"
+  },
+  "reviews": {
+    "title": "What Our Travelers Say",
+    "subtitle": "Real experiences from thousands of travelers",
+    "totalReviews": "Total Reviews",
+    "averageRating": "Average Rating",
+    "fiveStarReviews": "5-Star Reviews"
+  },
+  "blog": {
+    "title": "Travel Stories & Guides",
+    "subtitle": "Discover insider tips, hidden gems, and authentic experiences across Egypt",
+    "readTime": "{{time}} min read",
+    "readMore": "Read More",
+    "loadMore": "Load More",
+    "categories": {
+      "all": "All",
+      "destinations": "Destinations",
+      "budgetTravel": "Budget Travel",
+      "foodCulture": "Food & Culture",
+      "travelTips": "Travel Tips"
+    },
+    "posts": {
+      "sinaiGuide": {
+        "title": "Sinai Peninsula Travel Guide",
+        "excerpt": "Discover the rugged beauty and spiritual significance of Egypt's Sinai Peninsula with our comprehensive travel guide."
+      },
+      "cairoTransport": {
+        "title": "Navigating Cairo's Transportation",
+        "excerpt": "Master Cairo's busy streets with our insider tips for using metro, taxis, and public transport efficiently."
+      },
+      "desertsGuide": {
+        "title": "Eastern & Western Deserts Guide",
+        "excerpt": "Explore Egypt's magnificent desert landscapes, from the White Desert's formations to ancient oases."
+      },
+      "nileValley": {
+        "title": "Nile Valley Hidden Gems",
+        "excerpt": "Journey beyond the famous sites to discover lesser-known treasures along the life-giving Nile."
+      },
+      "budgetTravel": {
+        "title": "Budget Travel Tips for Egypt",
+        "excerpt": "Travel Egypt affordably with our money-saving tips, local insights, and budget-friendly recommendations."
+      },
+      "streetFood": {
+        "title": "Egyptian Street Food Guide",
+        "excerpt": "Taste authentic Egypt through its vibrant street food scene, from koshari to fresh juices."
+      }
+    },
+    "desertsGuide": {
+      "title": "Eastern & Western Deserts",
+      "subtitle": "The Gateway to Budget-Friendly Adventures in Egypt's Untamed Wilderness",
+      "description": "Egypt's deserts offer unique treasures, majestic landscapes, spiritual experiences, and unique geology - and all at a fraction of the cost of typical tourist activities. Ideal for budget-conscious adventurers, authentic experiences await.",
+      "buttons": {
+        "planAdventure": "Plan Your Adventure",
+        "viewBudgetGuide": "View Budget Guide"
+      },
+      "sections": {
+        "comparison": {
+          "title": "Eastern vs. Western Deserts: A Comparison",
+          "subtitle": "Choose your adventure based on your interests and budget",
+          "eastern": {
+            "title": "Eastern Desert",
+            "location": "Location: Between Nile and Red Sea",
+            "terrain": "Terrain: Rocky mountains, wadis, and coastal plains",
+            "bestFor": "Best for: Mining history, Bedouin culture, and Red Sea access",
+            "access": "Access: Via Qena or Hurghada",
+            "highlights": "Highlights: Emerald mines, monasteries, and desert wildlife"
+          },
+          "western": {
+            "title": "Western Desert",
+            "location": "Location: West of the Nile Valley",
+            "terrain": "Terrain: Sand dunes, oases, and unique rock formations",
+            "bestFor": "Best for: Oasis hopping, White Desert camping, and stargazing",
+            "access": "Access: Via Cairo or Bahariya",
+            "highlights": "Highlights: Black & White Desert, hot springs, and ancient settlements"
+          }
+        },
+        "destinations": {
+          "title": "Desert Destinations: Budget-Friendly Exploration",
+          "subtitle": "Top destinations for authentic desert experiences"
+        },
+        "budgetTips": {
+          "title": "Budget Travel Tips",
+          "subtitle": "Essential tips for budget-conscious desert travelers",
+          "tips": [
+            "Join local safari groups instead of private trips to save up to 60%",
+            "Travel during November and March for shoulder season pricing",
+            "Use minibuses and shared taxis between oases",
+            "Stay in family-run guesthouses over hotels",
+            "Eat where locals gather for authentic, affordable meals",
+            "Negotiate prices in person, especially in off-seasons"
+          ]
+        },
+        "itinerary": {
+          "title": "5-Day Budget Desert Adventure",
+          "subtitle": "Complete itinerary with transparent pricing",
+          "total": "Total: 2,850 EGP per person"
+        },
+        "packing": {
+          "title": "Desert Packing Essentials",
+          "subtitle": "What to pack for your desert adventure",
+          "items": [
+            {
+              "item": "Power bank",
+              "reason": "No electricity during camping"
+            },
+            {
+              "item": "Scarf/keffiyeh",
+              "reason": "Sun, dust, and sand protection"
+            },
+            {
+              "item": "Flip flops & hiking shoes",
+              "reason": "For springs and rugged walks"
+            },
+            {
+              "item": "Thermal layer",
+              "reason": "Desert nights can be cold"
+            },
+            {
+              "item": "Flashlight",
+              "reason": "Minimal lighting in camps"
+            },
+            {
+              "item": "Refillable water bottle",
+              "reason": "Eco-friendly and refillable in oases"
+            }
+          ]
+        },
+        "bestTime": {
+          "title": "Best Time to Visit",
+          "subtitle": "Plan your desert adventure for optimal weather and budget",
+          "bestSeason": {
+            "title": "Best Season",
+            "period": "Oct - Mar",
+            "description": "Perfect weather, clear skies, and comfortable camping temperatures"
+          },
+          "budgetSpot": {
+            "title": "Budget Sweet Spot",
+            "period": "Nov & Mar",
+            "description": "Shoulder season pricing with excellent weather conditions"
+          },
+          "avoid": {
+            "title": "Avoid",
+            "period": "Jun - Aug",
+            "description": "Extreme heat makes desert camping uncomfortable and dangerous"
+          }
+        }
+      },
+      "cta": {
+        "title": "Ready to Explore Egypt's Deserts?",
+        "subtitle": "Get personalized quotes for your desert adventure",
+        "description": "Plan your perfect desert escape with our expert local guides",
+        "buttons": {
+          "startPlanning": "Start Planning",
+          "findGuides": "Find Local Guides"
+        }
+      }
+    }
+  },
+  "budgetTips": {
+    "cairo": {
+      "useMetro": "Use Metro for cheap transport (5-15 EGP)",
+      "localRestaurants": "Eat at local restaurants (50-100 EGP per meal)",
+      "downtownAccommodation": "Stay in Downtown for budget accommodation",
+      "freeMosquesMarkets": "Free visits to mosques and markets"
+    },
+    "beniSuef": {
+      "affordableFood": "Very affordable food and accommodation",
+      "basicAccommodation": "Basic but clean accommodation available",
+      "bargainMarkets": "Great bargains at traditional markets"
+    }
+  },
+  "highlights": {
+    "aswan": {
+      "philaeTemple": "Philae Temple",
+      "highDam": "High Dam",
+      "nubianVillages": "Nubian villages",
+      "elephantineIsland": "Elephantine Island"
+    }
+  },
+  "faq": {
+    "title": "Egypt Travel FAQs",
+    "subtitle": "Answers to your most common questions—clear, honest, and up-to-date",
+    "questions": {
+      "safety": {
+        "question": "Is Egypt safe for tourists right now?",
+        "answer": "Yes, Egypt is generally safe for tourists, especially in major destinations like Cairo, Luxor, Aswan, and the Red Sea resorts. We monitor all regions closely and tailor each itinerary to ensure your comfort and safety, with private transport and local support at every step."
+      },
+      "visa": {
+        "question": "Do I need a visa to enter Egypt?",
+        "answer": "Most travelers can obtain an e-Visa online before arrival or purchase one on arrival at major airports. We'll guide you through the process after booking. Some nationalities require pre-approval—check with your local embassy or ask us."
+      },
+      "price": {
+        "question": "What's included in my tour price?",
+        "answer": "All our itineraries are fully transparent, with no hidden fees. Inclusions typically cover private transportation, expert guides, entrance tickets, bottled water, and all mentioned activities. Optional extras or personal spending are clearly listed before booking."
+      },
+      "customise": {
+        "question": "Can I customise my itinerary?",
+        "answer": "Absolutely! Our trips are designed around you. Whether you're a couple, a solo traveler, or a family, you can customise everything—hotel category, pace, guides, and even destinations."
+      },
+      "currency": {
+        "question": "What currency should I bring?",
+        "answer": "Egypt uses the Egyptian Pound (EGP) as its official currency. We recommend bringing some cash for small purchases and tips, though credit cards are accepted in most hotels and restaurants."
+      },
+      "weather": {
+        "question": "What's the best time to visit Egypt?",
+        "answer": "October to April offers the most comfortable weather with cooler temperatures perfect for sightseeing. Summer (May-September) is hotter but ideal for Red Sea activities and comes with lower accommodation prices."
+      }
+    },
+    "support": {
+      "question": "Still have questions? We're here to help!",
+      "whatsapp": "WhatsApp Support",
+      "email": "Email Us"
+    }
+  },
+  "luxorBestTime": "October - March",
+  "luxorStay": "3-4 days",
+  "luxorTransport": "10 hours by train, 1 hour flight",
+  "nile.bestTime.octoberMarch": "October - March",
+  "nile.bestTime.octoberApril": "October - April",
+  "nile.bestTime.marchNovember": "March - November",
+  "nile.stay.1day": "1 day",
+  "nile.stay.2_3days": "2-3 days",
+  "nile.stay.3_4days": "3-4 days",
+  "nile.stay.4_5days": "4-5 days",
+  "nile.transport.10h_train_1h_flight": "10 hours by train, 1 hour flight",
+  "nile.transport.2h_train_bus": "2 hours by train/bus",
+  "nile.transport.4h_train_bus": "4 hours by train/bus",
+  "nile.transport.5h_train_bus": "5 hours by train/bus",
+  "nile.transport.6h_train_bus": "6 hours by train/bus",
+  "nile.transport.7h_train_bus": "7 hours by train/bus",
+  "nile.transport.starting_point": "Starting point",
+  "nile.transport.flight_3h_drive": "Flight to Aswan + 3-hour drive",
+  "nile.stay.2days": "2 days",
+  "nile.stay.1_2days": "1-2 days",
+  "nile.stay.halfday": "Half day",
+  "nile.transport.12h_train_bus": "12 hours by train/bus",
+  "nile.transport.13h_train_bus": "13 hours by train/bus",
+  "nile.transport.14h_train_1.5h_flight": "14 hours by train, 1.5 hours flight",
   "attractions.beniSuef.meidumPyramid.name": "Meidum Pyramid",
   "attractions.beniSuef.meidumPyramid.description": "Collapsed pyramid showing early construction techniques",
   "attractions.beniSuef.meidumPyramid.entryFee": "100 EGP",
@@ -1375,138 +969,6 @@
       }
     }
   },
-  "blog": {
-    "title": "Travel Stories & Guides",
-    "subtitle": "Discover insider tips, hidden gems, and authentic experiences across Egypt",
-    "readTime": "{{time}} min read",
-    "readMore": "Read More",
-    "loadMore": "Load More",
-    "categories": {
-      "all": "All",
-      "destinations": "Destinations", 
-      "budgetTravel": "Budget Travel",
-      "foodCulture": "Food & Culture",
-      "travelTips": "Travel Tips"
-    },
-    "posts": {
-      "sinaiGuide": {
-        "title": "Sinai Peninsula Travel Guide", 
-        "excerpt": "Discover the rugged beauty and spiritual significance of Egypt's Sinai Peninsula with our comprehensive travel guide."
-      },
-      "cairoTransport": {
-        "title": "Navigating Cairo's Transportation",
-        "excerpt": "Master Cairo's busy streets with our insider tips for using metro, taxis, and public transport efficiently."
-      },
-      "desertsGuide": {
-        "title": "Eastern & Western Deserts Guide",
-        "excerpt": "Explore Egypt's magnificent desert landscapes, from the White Desert's formations to ancient oases."
-      },
-      "nileValley": {
-        "title": "Nile Valley Hidden Gems",
-        "excerpt": "Journey beyond the famous sites to discover lesser-known treasures along the life-giving Nile."
-      },
-      "budgetTravel": {
-        "title": "Budget Travel Tips for Egypt",
-        "excerpt": "Travel Egypt affordably with our money-saving tips, local insights, and budget-friendly recommendations."
-      },
-      "streetFood": {
-        "title": "Egyptian Street Food Guide",
-        "excerpt": "Taste authentic Egypt through its vibrant street food scene, from koshari to fresh juices."
-      }
-    },
-    "desertsGuide": {
-      "title": "Eastern & Western Deserts",
-      "subtitle": "The Gateway to Budget-Friendly Adventures in Egypt's Untamed Wilderness",
-      "description": "Egypt's deserts offer unique treasures, majestic landscapes, spiritual experiences, and unique geology - and all at a fraction of the cost of typical tourist activities. Ideal for budget-conscious adventurers, authentic experiences await.",
-      "buttons": {
-        "planAdventure": "Plan Your Adventure",
-        "viewBudgetGuide": "View Budget Guide"
-      },
-      "sections": {
-        "comparison": {
-          "title": "Eastern vs. Western Deserts: A Comparison",
-          "subtitle": "Choose your adventure based on your interests and budget",
-          "eastern": {
-            "title": "Eastern Desert",
-            "location": "Location: Between Nile and Red Sea",
-            "terrain": "Terrain: Rocky mountains, wadis, and coastal plains",
-            "bestFor": "Best for: Mining history, Bedouin culture, and Red Sea access",
-            "access": "Access: Via Qena or Hurghada",
-            "highlights": "Highlights: Emerald mines, monasteries, and desert wildlife"
-          },
-          "western": {
-            "title": "Western Desert",
-            "location": "Location: West of the Nile Valley",
-            "terrain": "Terrain: Sand dunes, oases, and unique rock formations",
-            "bestFor": "Best for: Oasis hopping, White Desert camping, and stargazing",
-            "access": "Access: Via Cairo or Bahariya",
-            "highlights": "Highlights: Black & White Desert, hot springs, and ancient settlements"
-          }
-        },
-        "destinations": {
-          "title": "Desert Destinations: Budget-Friendly Exploration",
-          "subtitle": "Top destinations for authentic desert experiences"
-        },
-        "budgetTips": {
-          "title": "Budget Travel Tips",
-          "subtitle": "Essential tips for budget-conscious desert travelers",
-          "tips": [
-            "Join local safari groups instead of private trips to save up to 60%",
-            "Travel during November and March for shoulder season pricing",
-            "Use minibuses and shared taxis between oases",
-            "Stay in family-run guesthouses over hotels",
-            "Eat where locals gather for authentic, affordable meals",
-            "Negotiate prices in person, especially in off-seasons"
-          ]
-        },
-        "itinerary": {
-          "title": "5-Day Budget Desert Adventure",
-          "subtitle": "Complete itinerary with transparent pricing",
-          "total": "Total: 2,850 EGP per person"
-        },
-        "packing": {
-          "title": "Desert Packing Essentials",
-          "subtitle": "What to pack for your desert adventure",
-          "items": [
-            { "item": "Power bank", "reason": "No electricity during camping" },
-            { "item": "Scarf/keffiyeh", "reason": "Sun, dust, and sand protection" },
-            { "item": "Flip flops & hiking shoes", "reason": "For springs and rugged walks" },
-            { "item": "Thermal layer", "reason": "Desert nights can be cold" },
-            { "item": "Flashlight", "reason": "Minimal lighting in camps" },
-            { "item": "Refillable water bottle", "reason": "Eco-friendly and refillable in oases" }
-          ]
-        },
-        "bestTime": {
-          "title": "Best Time to Visit",
-          "subtitle": "Plan your desert adventure for optimal weather and budget",
-          "bestSeason": {
-            "title": "Best Season",
-            "period": "Oct - Mar",
-            "description": "Perfect weather, clear skies, and comfortable camping temperatures"
-          },
-          "budgetSpot": {
-            "title": "Budget Sweet Spot",
-            "period": "Nov & Mar",
-            "description": "Shoulder season pricing with excellent weather conditions"
-          },
-          "avoid": {
-            "title": "Avoid",
-            "period": "Jun - Aug",
-            "description": "Extreme heat makes desert camping uncomfortable and dangerous"
-          }
-        }
-      },
-      "cta": {
-        "title": "Ready to Explore Egypt's Deserts?",
-        "subtitle": "Get personalized quotes for your desert adventure",
-        "description": "Plan your perfect desert escape with our expert local guides",
-        "buttons": {
-          "startPlanning": "Start Planning",
-          "findGuides": "Find Local Guides"
-        }
-      }
-    }
-  },
   "cuisinePassport": {
     "title": "Egyptian Cuisine Flavor Passport",
     "description": "Discover authentic Egyptian cuisine with our interactive flavor passport. Track your culinary journey, explore traditional dishes, and experience AR menu previews.",
@@ -1554,7 +1016,7 @@
     "dish": {
       "spiceLevel": "Spice Level",
       "difficulty": "Difficulty",
-      "cookingTime": "Cook Time",
+      "cookingTime": "Cooking Time",
       "priceRange": "Price Range",
       "tried": "Tried",
       "markAsTried": "Mark as Tried",
@@ -1579,12 +1041,6 @@
       "details": "Details",
       "explore": "Explore",
       "healthLabel": "Health",
-      "spiceLevel": "Spice Level",
-      "cookingTime": "Cooking Time",
-      "priceRange": "Price Range",
-      "culturalStory": "Cultural Story",
-      "ingredients": "Ingredients",
-      "tried": "Tried",
       "healthyScore": "Healthy Score",
       "bestPlacesToTry": "Best Places to Try"
     },
@@ -1689,7 +1145,7 @@
       "doorToDoor": "Door-to-Door",
       "doorToDoorDesc": "Direct transfers from airport to your hotel or destination",
       "priceFrom950": "From 950 EGP",
-      "priceFrom1553": "From 1,553 EGP", 
+      "priceFrom1553": "From 1,553 EGP",
       "priceFrom2406": "From 2,406 EGP",
       "transferDestinationsTitle": "Cairo Transfer Destinations",
       "transferDestinationsDesc": "We provide airport transfers to all major areas in and around Cairo",
@@ -1759,7 +1215,7 @@
       "title": "Aswan Airport Transfers - Nile City Transport | AffordEgypt",
       "metaDescription": "Book Aswan airport transfers from 575 EGP. Expert Nile city drivers, Nubian culture knowledge, desert routes to Abu Simbel. Reliable southern Egypt transport.",
       "keywords": "Aswan airport transfer, ASW airport transport, Abu Simbel transfer, Nubian village transport, Aswan taxi, Nile transport",
-      "heroTitle": "Aswan Airport Transfers", 
+      "heroTitle": "Aswan Airport Transfers",
       "heroSubtitle": "Professional airport transfers in beautiful Aswan. Expert Nile city drivers with local knowledge and transparent pricing from 575 EGP.",
       "whyChooseTitle": "Why Choose Our Aswan Airport Transfers?",
       "nileExpertise": "Nile Expertise",
@@ -1848,17 +1304,29 @@
         "professionalGuide": {
           "name": "Professional Guide",
           "duration": "Full Day (8 hours)",
-          "features": ["Licensed Egyptologist", "Fluent English/Arabic", "Historical expertise"]
+          "features": [
+            "Licensed Egyptologist",
+            "Fluent English/Arabic",
+            "Historical expertise"
+          ]
         },
         "guideCarPackage": {
-          "name": "Guide + Car Package", 
+          "name": "Guide + Car Package",
           "duration": "Full Day",
-          "features": ["Professional guide", "Private vehicle", "All entrance fees included"]
+          "features": [
+            "Professional guide",
+            "Private vehicle",
+            "All entrance fees included"
+          ]
         },
         "premiumCarService": {
           "name": "Premium Car Service",
           "duration": "8-12 hours",
-          "features": ["Luxury sedan/SUV", "Professional driver", "Flexible itinerary"]
+          "features": [
+            "Luxury sedan/SUV",
+            "Professional driver",
+            "Flexible itinerary"
+          ]
         }
       },
       "serviceAreasTitle": "Popular Cairo Tour Destinations",
@@ -1867,7 +1335,7 @@
         "Giza Pyramids & Sphinx",
         "Egyptian Museum",
         "Islamic Cairo",
-        "Coptic Cairo", 
+        "Coptic Cairo",
         "Khan El Khalili Bazaar",
         "Citadel of Saladin",
         "Al-Azhar Mosque",
@@ -1881,7 +1349,7 @@
       "howItWorksSteps": {
         "step1": "Choose Your Service",
         "step1Desc": "Select guide only, car only, or combined package based on your needs",
-        "step2": "Meet Your Guide", 
+        "step2": "Meet Your Guide",
         "step2Desc": "Professional licensed guide will meet you at your hotel or chosen location",
         "step3": "Explore Cairo",
         "step3Desc": "Discover Cairo's wonders with expert commentary and insider knowledge"
@@ -1914,17 +1382,29 @@
         "templeSpecialist": {
           "name": "Temple Specialist Guide",
           "duration": "Full Day (8 hours)",
-          "features": ["Ancient Egypt expert", "Valley of Kings specialist", "Hieroglyph interpreter"]
+          "features": [
+            "Ancient Egypt expert",
+            "Valley of Kings specialist",
+            "Hieroglyph interpreter"
+          ]
         },
         "eastWestBank": {
           "name": "East & West Bank Tour",
           "duration": "Full Day",
-          "features": ["Professional guide", "Private vehicle", "Both banks covered"]
+          "features": [
+            "Professional guide",
+            "Private vehicle",
+            "Both banks covered"
+          ]
         },
         "luxuryTemple": {
           "name": "Luxury Temple Tours",
           "duration": "6-10 hours",
-          "features": ["Premium vehicle", "Expert driver-guide", "Flexible temple visits"]
+          "features": [
+            "Premium vehicle",
+            "Expert driver-guide",
+            "Flexible temple visits"
+          ]
         }
       },
       "serviceAreasTitle": "Ancient Luxor Temple Sites",
@@ -1965,7 +1445,7 @@
       "heroTitle": "Aswan Car & Tour Guide Services",
       "heroSubtitle": "Discover Nubian culture and southern Egypt treasures. Expert car & tour guide services, desert expeditions, and cultural immersion from 1,000 EGP.",
       "whyChooseTitle": "Why Choose Our Aswan Car & Tour Guide Services?",
-      "nileExpertise": "Nile Expertise", 
+      "nileExpertise": "Nile Expertise",
       "nileExpertiseDesc": "Specialized knowledge of Nubian culture and Nile river traditions",
       "culturalSensitivity": "Cultural Sensitivity",
       "culturalSensitivityDesc": "Respectful guides trained in Nubian customs and traditions",
@@ -1980,17 +1460,29 @@
         "nubianCulture": {
           "name": "Nubian Culture Guide",
           "duration": "Full Day (8 hours)",
-          "features": ["Nubian heritage expert", "Local village guide", "Traditional culture focus"]
+          "features": [
+            "Nubian heritage expert",
+            "Local village guide",
+            "Traditional culture focus"
+          ]
         },
         "nileTemples": {
           "name": "Nile & Temples Package",
           "duration": "Full Day",
-          "features": ["Professional guide", "Felucca included", "Philae Temple tour"]
+          "features": [
+            "Professional guide",
+            "Felucca included",
+            "Philae Temple tour"
+          ]
         },
         "abuSimbelExpedition": {
           "name": "Abu Simbel Expedition",
           "duration": "12-14 hours",
-          "features": ["Long-distance vehicle", "Expert guide", "UNESCO site specialist"]
+          "features": [
+            "Long-distance vehicle",
+            "Expert guide",
+            "UNESCO site specialist"
+          ]
         }
       },
       "serviceAreasTitle": "Southern Egypt Destinations",
