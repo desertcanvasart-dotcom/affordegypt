@@ -17,8 +17,6 @@ import BookPage from "@/pages/book";
 import AdminSidebar from "@/pages/admin-sidebar";
 import AdminBookings from "@/pages/admin-bookings";
 import AdminReviews from "@/pages/admin-reviews";
-import AdminRoutesOverview from "@/pages/admin-routes-overview";
-import AdminCityRoutes from "@/pages/admin-city-routes";
 import AdminServiceCatalog from "@/pages/admin-service-catalog";
 import AdminServiceCatalogEdit from "@/pages/admin-service-catalog-edit";
 import AdminTripTypes from "@/pages/admin-trip-types";
@@ -79,8 +77,6 @@ function Router() {
       <Route path="/admin" component={AdminSidebar} />
       <Route path="/admin/bookings" component={AdminBookings} />
       <Route path="/admin/reviews" component={AdminReviews} />
-      <Route path="/admin/routes" component={AdminRoutesOverview} />
-      <Route path="/admin/routes/city/:citySlug/:category?" component={AdminCityRoutes} />
       {/* Phase 1.5 — Service Catalog admin (Phase B) */}
       <Route path="/admin/service-catalog" component={AdminServiceCatalog} />
       <Route path="/admin/service-catalog/new" component={AdminServiceCatalogEdit} />
