@@ -302,9 +302,12 @@ export function registerRouteAdminRoutes(app: Express): void {
     }
   });
 
-  // CSV Import endpoint for bulk route upload
+  // CSV Import endpoint for bulk route upload.
+  // adminAuth runs before the file upload so unauthenticated requests are
+  // rejected before any multipart parsing — matches POST/PUT/DELETE /api/routes.
   app.post(
     "/api/routes/import-csv",
+    ...adminAuth,
     upload.single("csvFile"),
     async (req, res) => {
       if (!req.file) {
