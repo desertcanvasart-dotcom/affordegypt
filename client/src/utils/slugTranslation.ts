@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 // Original English slug to translated slug mapping
-const slugMappings = {
+export const slugMappings = {
   en: {
     "destinations": "destinations",
     "travel-tips": "travel-tips",
@@ -154,13 +154,65 @@ export function getAllSlugVariants(englishSlug: string): string[] {
   return variants;
 }
 
-// Hook to get translated link for navigation
+// Hook to get translated link for navigation (locale-aware, prefixed)
 export function useTranslatedLink() {
   const { i18n } = useTranslation();
-  
+
   return function getTranslatedLink(englishSlug: string): string {
-    const currentLang = i18n.language as keyof typeof slugMappings;
-    const translatedSlug = (slugMappings[currentLang] as any)?.[englishSlug] || englishSlug;
-    return `/${translatedSlug}`;
+    return pathForSlug(englishSlug, normalizeLang(i18n.language));
   };
+}
+
+// ---------------------------------------------------------------------------
+// URL-prefix scheme. Non-English locales live under a path prefix
+// (/es/<translated-slug>, /fr/..., /de/...); English stays at the root
+// (/<english-slug>, and / for home). The prefix — not the slug — determines
+// locale, which keeps every URL unambiguous even when a translated slug
+// happens to equal the English one (e.g. fr "contact" == en "contact").
+// ---------------------------------------------------------------------------
+
+export const PREFIX_LANGS = ["es", "fr", "de"] as const;
+export const ALL_LANGS = ["en", "es", "fr", "de"] as const;
+export type Lang = (typeof ALL_LANGS)[number];
+
+function normalizeLang(raw: string | null | undefined): Lang {
+  const base = (raw || "en").toLowerCase().split("-")[0];
+  return (ALL_LANGS as readonly string[]).includes(base) ? (base as Lang) : "en";
+}
+
+/** Locale from a pathname: first segment "es"|"fr"|"de" → that lang, else "en". */
+export function localeFromPath(pathname: string): Lang {
+  const seg = pathname.split("/").filter(Boolean)[0];
+  return (PREFIX_LANGS as readonly string[]).includes(seg as any) ? (seg as Lang) : "en";
+}
+
+/** Localized path for an English slug. "" / "/" = home. */
+export function pathForSlug(englishSlug: string, lang: Lang): string {
+  const clean = englishSlug.replace(/^\//, "");
+  if (clean === "") return lang === "en" ? "/" : `/${lang}`;
+  if (lang === "en") return `/${clean}`;
+  const translated = (slugMappings[lang] as any)?.[clean] || clean;
+  return `/${lang}/${translated}`;
+}
+
+/** The English slug for whatever page a (possibly prefixed) path points at. */
+export function englishSlugFromPath(pathname: string): string {
+  let segs = pathname.split("/").filter(Boolean);
+  if (segs.length && (PREFIX_LANGS as readonly string[]).includes(segs[0] as any)) {
+    segs = segs.slice(1);
+  }
+  if (segs.length === 0) return ""; // home
+  return getOriginalSlug(segs[0]);
+}
+
+/** hreflang alternates for a page: one entry per language + x-default (en). */
+export function localizedAlternates(
+  englishSlug: string,
+): { hreflang: string; path: string }[] {
+  const out: { hreflang: string; path: string }[] = ALL_LANGS.map((l) => ({
+    hreflang: l as string,
+    path: pathForSlug(englishSlug, l),
+  }));
+  out.push({ hreflang: "x-default", path: pathForSlug(englishSlug, "en") });
+  return out;
 }

@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { localeFromPath } from '@/utils/slugTranslation';
 
 // Import translation files
 import enTranslations from './locales/en.json';
@@ -31,14 +32,16 @@ const resources = {
   }
 };
 
-// Hydration-safe init: lock first paint to English so prerendered HTML matches
-// what React renders on the client. Real language detection runs post-hydration
-// from main.tsx via applyDetectedLanguage().
+// Hydration-safe init: the locale is derived from the URL path prefix
+// (/es,/fr,/de → that language; otherwise English). The prerenderer and the
+// client read the same URL, so first paint matches the prerendered HTML.
+const initialLng =
+  typeof window !== 'undefined' ? localeFromPath(window.location.pathname) : 'en';
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
+    lng: initialLng,
     fallbackLng: 'en',
     initImmediate: false,
     ns: ['translation', 'blog', 'common'],
@@ -60,50 +63,14 @@ i18n
     },
   });
 
-const SUPPORTED = ['en', 'es', 'fr', 'de'] as const;
-type Supported = (typeof SUPPORTED)[number];
-
-function normalize(raw: string | null | undefined): Supported | null {
-  if (!raw) return null;
-  const base = raw.toLowerCase().split('-')[0];
-  return (SUPPORTED as readonly string[]).includes(base) ? (base as Supported) : null;
-}
-
-// Reimplements i18next-browser-languagedetector's priority chain
-// (querystring 'lng' -> localStorage 'language' -> navigator.language) without
-// running synchronously during init. Caches the detected value to localStorage
-// to mirror the previous { caches: ['localStorage'] } behaviour.
+// Locale is determined solely by the URL path prefix (see localeFromPath), so
+// rendered language always matches the URL — a hard requirement for hreflang.
+// Runs post-hydration to confirm; ongoing client navigations are handled by the
+// effect in <Router>.
 export function applyDetectedLanguage(): void {
   if (typeof window === 'undefined') return;
-  let detected: Supported | null = null;
-
-  try {
-    const qs = new URLSearchParams(window.location.search).get('lng');
-    detected = normalize(qs);
-  } catch {}
-
-  if (!detected) {
-    try {
-      detected = normalize(window.localStorage.getItem('language'));
-    } catch {}
-  }
-
-  if (!detected) {
-    try {
-      detected = normalize(window.navigator.language);
-    } catch {}
-  }
-
-  if (detected && detected !== i18n.language) {
-    i18n.changeLanguage(detected);
-    try {
-      window.localStorage.setItem('language', detected);
-    } catch {}
-  } else if (detected) {
-    try {
-      window.localStorage.setItem('language', detected);
-    } catch {}
-  }
+  const detected = localeFromPath(window.location.pathname);
+  if (detected !== i18n.language) i18n.changeLanguage(detected);
 }
 
 export default i18n;

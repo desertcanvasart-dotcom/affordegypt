@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from "wouter";
+import { Switch, Route, Redirect, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -6,7 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FaWhatsapp } from "react-icons/fa";
 import { AuthProvider } from "@/hooks/useAuth";
-import { getAllSlugVariants } from "@/utils/slugTranslation";
+import { slugMappings, PREFIX_LANGS, localeFromPath } from "@/utils/slugTranslation";
+import i18n from "@/i18n";
 import { useEffect } from "react";
 import { ClientOnly } from "@/components/client-only";
 import { ErrorBoundary } from "@/components/error-boundary";
@@ -58,21 +59,51 @@ import VerifyEmail from "@/pages/verify-email";
 
 import NotFound from "@/pages/not-found";
 
-// Helper function to create routes for all language variants
+// Register a page across locales. English lives at the root (/<english-slug>);
+// each non-English locale lives under its prefix (/es/<translated>, /fr/..., /de/...).
+// The old non-prefixed translated slug redirects to the new prefixed URL.
 function createMultilingualRoute(englishSlug: string, Component: React.ComponentType<any>) {
-  const variants = getAllSlugVariants(englishSlug);
-  return variants.map((slug) => (
-    <Route key={slug} path={`/${slug}`} component={Component} />
-  ));
+  const routes = [
+    <Route key={`en-${englishSlug}`} path={`/${englishSlug}`} component={Component} />,
+  ];
+  for (const lang of PREFIX_LANGS) {
+    const translated =
+      (slugMappings[lang] as Record<string, string>)[englishSlug] || englishSlug;
+    routes.push(
+      <Route key={`${lang}-${englishSlug}`} path={`/${lang}/${translated}`} component={Component} />,
+    );
+    // Back-compat redirect from the old non-prefixed translated slug. Skipped on
+    // collisions (translated === english) — that root path is the English page.
+    if (translated !== englishSlug) {
+      routes.push(
+        <Route key={`redir-${translated}`} path={`/${translated}`}>
+          <Redirect to={`/${lang}/${translated}`} />
+        </Route>,
+      );
+    }
+  }
+  return routes;
 }
 
 function Router() {
   // Track page views when routes change
   useAnalytics();
-  
+
+  // URL is the single source of truth for locale: the path prefix (/es,/fr,/de)
+  // sets the language on first paint (via i18n init) and on every client-side
+  // navigation here. Keeps rendered language === URL, which hreflang requires.
+  const [location] = useLocation();
+  useEffect(() => {
+    const lng = localeFromPath(location);
+    if (i18n.language !== lng) i18n.changeLanguage(lng);
+  }, [location]);
+
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/es" component={Home} />
+      <Route path="/fr" component={Home} />
+      <Route path="/de" component={Home} />
       <Route path="/book/:id?" component={BookPage} />
       <Route path="/booking-confirmation/:reference" component={BookingConfirmation} />
       <Route path="/dashboard" component={UserDashboard} />
