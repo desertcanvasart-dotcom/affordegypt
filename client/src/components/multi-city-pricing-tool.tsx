@@ -771,7 +771,7 @@ export default function MultiCityPricingTool() {
                       <h3 className="text-2xl sm:text-3xl font-bold mb-2 bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
                         Start Your Private Egypt Journey
                       </h3>
-                      <p className="text-sm text-muted-foreground">A few details are enough to begin your tailored quote.</p>
+                      <p className="text-sm text-muted-foreground">Answer a few questions and see your full price instantly — right here on screen, no waiting.</p>
                     </div>
 
                     {/* Compact 2-up field grid — stacks to one column on mobile */}
@@ -913,8 +913,8 @@ export default function MultiCityPricingTool() {
                     {/* Trust row */}
                     <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-7 text-sm text-gray-600">
                       <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Private vehicle &amp; guide</span>
-                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Clear pricing</span>
-                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Fast reply</span>
+                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Transparent pricing</span>
+                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Instant price on screen</span>
                     </div>
 
                     {/* CTA */}
@@ -925,7 +925,7 @@ export default function MultiCityPricingTool() {
                         size="lg"
                         className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto px-10 py-6 text-base font-semibold rounded-xl disabled:opacity-40 disabled:hover:shadow-lg"
                       >
-                        Start My Quote →
+                        See My Price →
                       </Button>
                     </div>
                   </div>
