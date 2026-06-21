@@ -25,7 +25,6 @@
     "total": "Total",
     "perPerson": "par personne",
     "egp": "EGP",
-
     "eur": "EUR",
     "gbp": "GBP",
     "egpPerDay": "EGP/jour",
@@ -169,8 +168,6 @@
     "totalTravelers": "Nombre Total de Voyageurs :",
     "city": "Ville",
     "transportation": "Transport",
-    "guide": "Guide",
-    "attractions": "Attractions",
     "perPersonAddOns": "Suppléments par Personne",
     "perUnitAddOns": "Suppléments par Unité",
     "totalPerPerson": "Total/Personne",
@@ -207,7 +204,9 @@
       "italian": "Italien",
       "japanese": "Japonais",
       "chinese": "Chinois",
-      "arabic": "Arabe"
+      "arabic": "Arabe",
+      "dutch": "Néerlandais",
+      "korean": "Coréen"
     },
     "specialties": {
       "historicalSites": "Sites historiques",
@@ -241,11 +240,60 @@
     "addOnsSelected": "{{count}} services sélectionnés ({{items}} articles)"
   },
   "attractions": {
-    "searchPlaceholder": "Rechercher des attractions...",
-    "allCategories": "Toutes les Catégories",
-    "noAttractionsFound": "Aucune attraction trouvée",
-    "clearFilters": "Effacer les filtres pour tout voir",
-    "showing": "Affichage"
+    "cairo": {
+      "pyramidsGiza": {
+        "name": "Pyramides de Gizeh",
+        "description": "La dernière merveille du monde antique survivante",
+        "entryFee": "700 EGP",
+        "hours": "8:00 AM - 4:00 PM"
+      },
+      "egyptianMuseum": {
+        "name": "Musée Égyptien",
+        "description": "La plus belle collection d'artefacts de l'Égypte ancienne",
+        "entryFee": "550 EGP",
+        "hours": "9:00 AM - 5:00 PM"
+      },
+      "citadelSaladin": {
+        "name": "Citadelle de Saladin",
+        "description": "Fortification islamique médiévale avec vues magnifiques",
+        "entryFee": "550 EGP",
+        "hours": "8:00 AM - 5:00 PM"
+      }
+    },
+    "alexandria": {
+      "bibliotheca": {
+        "name": "Bibliothèque d'Alexandrie",
+        "description": "Renaissance moderne de l'ancienne Bibliothèque d'Alexandrie",
+        "entryFee": "100 EGP",
+        "hours": "10:00 AM - 7:00 PM"
+      },
+      "qaitbayCitadel": {
+        "name": "Citadelle de Qaitbay",
+        "description": "Forteresse du XVe siècle sur l'ancien site du Phare",
+        "entryFee": "200 EGP",
+        "hours": "9:00 AM - 4:00 PM"
+      }
+    },
+    "luxor": {
+      "valleyKings": {
+        "name": "Vallée des Rois",
+        "description": "Cimetière royal avec tombes décorées",
+        "entryFee": "750 EGP",
+        "hours": "6:00 AM - 4:00 PM"
+      },
+      "karnakTemple": {
+        "name": "Temple de Karnak",
+        "description": "Le plus grand site religieux antique au monde",
+        "entryFee": "550 EGP",
+        "hours": "6:00 AM - 5:00 PM"
+      },
+      "luxorTemple": {
+        "name": "Temple de Louxor",
+        "description": "Complexe de temples de l'Égypte ancienne",
+        "entryFee": "300 EGP",
+        "hours": "6:00 AM - 9:00 PM"
+      }
+    }
   },
   "booking": {
     "title": "Complétez Votre Réservation",
@@ -350,583 +398,166 @@
     "fiveStarReviews": "Avis 5 Étoiles"
   },
   "blog": {
-    "title": "Conseils et Guides de Voyage",
-    "subtitle": "Guides d'experts, joyaux cachés et conseils pratiques pour votre voyage en Égypte",
-    "viewAll": "Voir Tous les Articles",
-    "readMore": "Lire Plus",
-    "loadMore": "Charger Plus d'Articles",
-    "noArticles": "Aucun article trouvé dans cette catégorie.",
-    "categories": {
-      "all": "Tous",
-      "destinations": "Destinations",
-      "budgetTravel": "Voyage à Petit Budget",
-      "foodCulture": "Nourriture et Culture",
-      "travelTips": "Conseils de Voyage"
-    },
+    "title": "Récits de Voyage et Guides",
+    "subtitle": "Découvrez des conseils d'initiés, des joyaux cachés et des expériences authentiques à travers l'Égypte",
     "readTime": "{{time}} min de lecture",
+    "readMore": "Lire Plus",
+    "loadMore": "Charger Plus",
+    "categories": {
+      "all": "Tout",
+      "destinations": "Destinations",
+      "budgetTravel": "Voyage Économique",
+      "foodCulture": "Nourriture et Culture",
+      "travelTips": "Conseils Voyage"
+    },
     "posts": {
       "sinaiGuide": {
         "title": "Guide de Voyage de la Péninsule du Sinaï",
-        "excerpt": "Guide de voyage de la Péninsule du Sinaï : Meilleurs endroits à visiter, plonger et faire de la randonnée en Égypte"
+        "excerpt": "Découvrez la beauté sauvage et la signification spirituelle de la péninsule du Sinaï d'Égypte avec notre guide complet."
       },
       "cairoTransport": {
-        "title": "Naviguer au Caire : Conseils de Transport pour les Visiteurs Novices",
-        "excerpt": "Tout ce que vous devez savoir pour vous déplacer au Caire en toute sécurité et efficacement, des systèmes de métro aux applications de covoiturage."
+        "title": "Naviguer dans les Transports du Caire",
+        "excerpt": "Maîtrisez les rues animées du Caire avec nos conseils d'initiés pour utiliser le métro, les taxis et les transports publics efficacement."
       },
       "desertsGuide": {
-        "title": "Guide de Voyage des Déserts Oriental et Occidental",
-        "excerpt": "Guide de Voyage du Désert d'Égypte : Explorez Siwa, le Désert Blanc et les Sentiers de l'Est"
+        "title": "Guide des Déserts Oriental et Occidental",
+        "excerpt": "Explorez les magnifiques paysages désertiques d'Égypte, des formations du Désert Blanc aux oasis anciennes."
       },
       "nileValley": {
-        "title": "Guide de Voyage de la Vallée du Nil",
-        "excerpt": "Vallée du Nil Égypte : Principales Destinations, Croisières sur le Nil et Guide des Sites Antiques"
+        "title": "Joyaux Cachés de la Vallée du Nil",
+        "excerpt": "Voyagez au-delà des sites célèbres pour découvrir des trésors moins connus le long du Nil donneur de vie."
       },
       "budgetTravel": {
-        "title": "Voyage Économique en Égypte : Comment Voir Plus pour Moins",
-        "excerpt": "Stratégies intelligentes pour découvrir les merveilles de l'Égypte sans se ruiner, incluant conseils d'hébergement et de restauration."
+        "title": "Conseils de Voyage Économique pour l'Égypte",
+        "excerpt": "Voyagez en Égypte à moindre coût avec nos conseils d'économie, perspectives locales et recommandations économiques."
       },
       "streetFood": {
-        "title": "Cuisine de Rue Égyptienne : Un Guide d'Aventure Culinaire",
-        "excerpt": "Naviguez dans le délicieux monde de la cuisine de rue égyptienne avec des conseils de sécurité et des plats incontournables dans chaque grande ville."
+        "title": "Guide de la Street Food Égyptienne",
+        "excerpt": "Goûtez l'Égypte authentique à travers sa scène vibrante de street food, du koshari aux jus frais."
       }
     },
-    "sinaiGuide": {
-      "title": "Guide de Voyage dans la Péninsule du Sinaï",
-      "subtitle": "Votre porte d'entrée vers une région où l'histoire ancienne rencontre la beauté préservée de la mer Rouge",
-      "description": "Découvrez les récifs coralliens les plus célèbres du monde, grimpez au sommet du mont Sinaï au lever du soleil et parcourez les dunes balayées par le vent avec des guides bédouins. La péninsule du Sinaï offre un fabuleux mélange de montagnes escarpées, de plages immaculées et de culture désertique intemporelle.",
-      "destinations": {
-        "title": "Principales Destinations du Sinaï",
-        "description": "Des paysages de canyons de roche rouge aux eaux cristallines, chaque destination offre une façon unique de découvrir la magie de la Péninsule du Sinaï.",
-        "sharmElSheikh": {
-          "name": "Sharm El Sheikh",
-          "description": "Le joyau de la couronne de la mer Rouge, évoluant d'un village de pêcheurs bédouins vers l'une des destinations de plongée les plus célébrées au monde",
-          "highlights": ["Parc National de Ras Muhammad", "Épave SS Thistlegorm", "Marina de Naama Bay", "Place Soho"],
-          "details": "Perché à la pointe sud du Sinaï, cette station balnéaire offre des récifs coralliens de classe mondiale, des hébergements de luxe et une vie nocturne animée. Vivez la plongée nocturne avec plancton dans la baie de Nabq où les organismes bioluminescents créent des traînées de lumière scintillante."
-        },
-        "dahab": {
-          "name": "Dahab",
-          "description": "Une ville côtière bohème où le nom 'or' reflète à la fois les sables du désert et les teintes du coucher de soleil, aimée des plongeurs et des esprits libres",
-          "highlights": ["Plongée au Blue Hole", "Trois Piscines", "Plage Masbat", "Le Lagon"],
-          "details": "Autrefois un modeste camp de pêche bédouin, l'atmosphère décontractée de Dahab attire les aventuriers du monde entier. Les parois verticales du Blue Hole et les chutes dramatiques du Canyon présentent une vie marine vibrante, tandis que les vents constants en font un endroit parfait pour la planche à voile."
-        },
-        "nuweiba": {
-          "name": "Nuweiba",
-          "description": "Une porte d'entrée tranquille où les anciennes routes commerciales rencontrent le littoral vierge, offrant une culture bédouine authentique et des plages préservées",
-          "highlights": ["Canyon Coloré", "Baie d'Aya", "Île du Pharaon", "Camps Bédouins"],
-          "details": "Les rivages de Nuweiba ont été témoins de millénaires de passage, des caravanes nabatéennes aux voyageurs modernes. Profitez des rituels du thé bédouin au coucher de soleil sur les dunes de la baie d'Aya et explorez les parois de grès du Canyon Coloré qui brillent en bandes d'ocre et de cramoisi."
-        },
-        "taba": {
-          "name": "Taba",
-          "description": "La porte nord du Sinaï, où les carrefours stratégiques rencontrent les stations de luxe surplombant le golfe d'Aqaba",
-          "highlights": ["Taba Heights", "Passage Frontalier", "Stations sur Falaise", "Île du Pharaon"],
-          "details": "Servant longtemps comme carrefour entre l'Égypte et le Levant, Taba combine importance historique et luxe moderne. Les élégantes stations au sommet des falaises offrent des vues panoramiques sur le golfe tout en conservant les motifs architecturaux bédouins traditionnels."
-        }
+    "desertsGuide": {
+      "title": "Déserts Oriental et Occidental",
+      "subtitle": "La Porte d'Entrée aux Aventures Économiques dans la Nature Sauvage d'Égypte",
+      "description": "Les déserts d'Égypte offrent des trésors uniques, des paysages majestueux, des expériences spirituelles et une géologie unique - le tout à une fraction du coût des activités touristiques typiques. Idéal pour les aventuriers soucieux du budget, des expériences authentiques vous attendent.",
+      "buttons": {
+        "planAdventure": "Planifiez Votre Aventure",
+        "viewBudgetGuide": "Voir le Guide Budget"
       },
-      "activities": {
-        "title": "Aventures Désertiques à Prix Abordable",
-        "description": "Conseils de Voyage Économique : Comment vivre les aventures du Sinaï sans trop dépenser",
-        "waterSports": {
-          "title": "Sports Nautiques",
-          "scubaDiving": {
-            "name": "Plongée Sous-Marine",
-            "price": "À partir de 45$/plongée",
-            "description": "Explorez les récifs coralliens de renommée mondiale"
+      "sections": {
+        "comparison": {
+          "title": "Déserts Oriental vs. Occidental : Une Comparaison",
+          "subtitle": "Choisissez votre aventure selon vos intérêts et votre budget",
+          "eastern": {
+            "title": "Désert Oriental",
+            "location": "Emplacement : Entre le Nil et la Mer Rouge",
+            "terrain": "Terrain : Montagnes rocheuses, wadis et plaines côtières",
+            "bestFor": "Meilleur pour : Histoire minière, culture bédouine et accès à la Mer Rouge",
+            "access": "Accès : Via Qena ou Hurghada",
+            "highlights": "Points forts : Mines d'émeraudes, monastères et faune du désert"
           },
-          "snorkeling": {
-            "name": "Tours de Snorkeling",
-            "price": "À partir de 25$/voyage",
-            "description": "Découvrez la vie marine en eaux peu profondes"
-          },
-          "windsurfing": {
-            "name": "Planche à Voile",
-            "price": "À partir de 35$/heure",
-            "description": "Conditions parfaites à Dahab"
-          },
-          "kitesurfing": {
-            "name": "Kitesurf",
-            "price": "À partir de 50$/leçon",
-            "description": "Apprenez dans des conditions de vent idéales"
+          "western": {
+            "title": "Désert Occidental",
+            "location": "Emplacement : Ouest de la Vallée du Nil",
+            "terrain": "Terrain : Dunes de sable, oasis et formations rocheuses uniques",
+            "bestFor": "Meilleur pour : Saut d'oasis, camping dans le Désert Blanc et observation des étoiles",
+            "access": "Accès : Via Le Caire ou Bahariya",
+            "highlights": "Points forts : Désert Noir et Blanc, sources chaudes et anciens établissements"
           }
         },
-        "desertAdventures": {
-          "title": "Aventures Désertiques",
-          "camelTrekking": {
-            "name": "Randonnée à Dos de Chameau",
-            "price": "À partir de 30$/jour",
-            "description": "Transport bédouin traditionnel"
-          },
-          "desertSafari": {
-            "name": "Safari Désertique",
-            "price": "À partir de 60$/voyage",
-            "description": "Exploration 4x4 du désert du Sinaï"
-          },
-          "coloredCanyon": {
-            "name": "Randonnée Canyon Coloré",
-            "price": "À partir de 40$/voyage",
-            "description": "Formations géologiques époustouflantes"
-          },
-          "bedouinNight": {
-            "name": "Nuit Bédouine",
-            "price": "À partir de 45$/nuit",
-            "description": "Expérience authentique de camping dans le désert"
-          }
+        "destinations": {
+          "title": "Destinations Désertiques : Exploration Économique",
+          "subtitle": "Principales destinations pour des expériences désertiques authentiques"
         },
-        "cultural": {
-          "title": "Culturel et Spirituel",
-          "mountSinai": {
-            "name": "Randonnée Lever de Soleil Mont Sinaï",
-            "price": "À partir de 35$/personne",
-            "description": "Pèlerinage de montagne biblique"
-          },
-          "monastery": {
-            "name": "Monastère Sainte-Catherine",
-            "price": "À partir de 25$/visite",
-            "description": "Ancien monastère chrétien"
-          },
-          "bedouinVillage": {
-            "name": "Visite Village Bédouin",
-            "price": "À partir de 30$/voyage",
-            "description": "Culture traditionnelle du désert"
-          },
-          "wadiFeiran": {
-            "name": "Oasis Wadi Feiran",
-            "price": "À partir de 55$/voyage",
-            "description": "Oasis biblique historique"
-          }
-        }
-      },
-      "practical": {
-        "title": "Essentiels pour l'Emballage Désertique",
-        "description": "Voici ce qu'il faut emballer pour votre aventure au Sinaï quand les températures chutent la nuit",
-        "bestTime": {
-          "title": "Meilleur Moment pour Visiter",
-          "content": "Octobre à avril offre un temps parfait (20-25°C). Les mois d'été (mai-septembre) sont extrêmement chauds (35-45°C) mais excellents pour la plongée."
+        "budgetTips": {
+          "title": "Conseils de Voyage Économique",
+          "subtitle": "Conseils essentiels pour les voyageurs du désert soucieux du budget",
+          "tips": [
+            "Rejoignez des groupes de safari locaux au lieu de voyages privés pour économiser jusqu'à 60%",
+            "Voyagez en novembre et mars pour les prix de saison intermédiaire",
+            "Utilisez des minibus et des taxis partagés entre les oasis",
+            "Séjournez dans des maisons d'hôtes familiales plutôt qu'à l'hôtel",
+            "Mangez où se rassemblent les locaux pour des repas authentiques et abordables",
+            "Négociez les prix en personne, surtout en basse saison"
+          ]
         },
-        "gettingThere": {
-          "title": "Comment S'y Rendre",
-          "content": "Volez vers l'aéroport de Sharm El Sheikh (SSH) ou conduisez depuis Le Caire (6-7 heures). Le passage frontalier de Taba connecte à Israël/Jordanie."
-        },
-        "safety": {
-          "title": "Considérations de Sécurité",
-          "content": "Généralement sûr pour les touristes. Restez dans les stations établies et les opérateurs de tours. Vérifiez les avis de voyage actuels pour les zones désertiques."
+        "itinerary": {
+          "title": "Aventure Désertique de 5 Jours avec Budget",
+          "subtitle": "Itinéraire complet avec prix transparents",
+          "total": "Total : 2 850 EGP par personne"
         },
         "packing": {
-          "title": "Que Emballer",
-          "content": "Crème solaire respectueuse des récifs, équipement de plongée (ou louez localement), vêtements de désert, couches chaudes pour les randonnées en montagne, chaussures de randonnée confortables."
-        }
-      },
-      "itineraries": {
-        "title": "Quand Visiter pour le Meilleur Rapport Qualité-Prix",
-        "description": "Conseils de timing intelligent pour des expériences incroyables au Sinaï",
-        "highlights": {
-          "title": "Points Forts du Sinaï (5 Jours)",
-          "days": [
-            "Jour 1-2 : Sharm El Sheikh - Plongée et détente",
-            "Jour 3 : Randonnée lever de soleil Mont Sinaï et Sainte-Catherine",
-            "Jour 4 : Transfert à Dahab, plongée Blue Hole",
-            "Jour 5 : Excursion d'une journée Canyon Coloré depuis Dahab"
-          ],
-          "price": "À partir de 380$/personne"
+          "title": "Éléments Essentiels pour le Désert",
+          "subtitle": "Que emporter pour votre aventure dans le désert",
+          "items": [
+            {
+              "item": "Batterie externe",
+              "reason": "Pas d'électricité pendant le camping"
+            },
+            {
+              "item": "Écharpe/keffiyeh",
+              "reason": "Protection contre le soleil, la poussière et le sable"
+            },
+            {
+              "item": "Tongs et chaussures de randonnée",
+              "reason": "Pour les sources et les marches accidentées"
+            },
+            {
+              "item": "Couche thermique",
+              "reason": "Les nuits du désert peuvent être froides"
+            },
+            {
+              "item": "Lampe de poche",
+              "reason": "Éclairage minimal dans les camps"
+            },
+            {
+              "item": "Bouteille d'eau réutilisable",
+              "reason": "Écologique et rechargeable dans les oasis"
+            }
+          ]
         },
-        "adventure": {
-          "title": "Aventure Sinaï (7 Jours)",
-          "days": [
-            "Jour 1-2 : Sharm El Sheikh - Plongée Ras Mohammed",
-            "Jour 3-4 : Dahab - Plongée avancée et planche à voile",
-            "Jour 5 : Randonnée Mont Sinaï et visite monastère",
-            "Jour 6 : Nuweiba - Canyon Coloré et expérience bédouine",
-            "Jour 7 : Retour via safari désertique à Sharm"
-          ],
-          "price": "À partir de 590$/personne"
-        },
-        "relaxed": {
-          "title": "Sinaï Détendu (10 Jours)",
-          "days": [
-            "Jour 1-4 : Sharm El Sheikh - Détente en station et plongée",
-            "Jour 5-7 : Dahab - Plongée tranquille et voyages désertiques",
-            "Jour 8 : Voyage spirituel Mont Sinaï",
-            "Jour 9-10 : Nuweiba - Détente à la plage et expériences culturelles"
-          ],
-          "price": "À partir de 720$/personne"
+        "bestTime": {
+          "title": "Meilleure Période pour Visiter",
+          "subtitle": "Planifiez votre aventure dans le désert pour un climat et un budget optimaux",
+          "bestSeason": {
+            "title": "Meilleure Saison",
+            "period": "Oct - Mar",
+            "description": "Temps parfait, ciel clair et températures confortables pour camper"
+          },
+          "budgetSpot": {
+            "title": "Point Idéal Budget",
+            "period": "Nov & Mar",
+            "description": "Prix de saison intermédiaire avec d'excellentes conditions météorologiques"
+          },
+          "avoid": {
+            "title": "À Éviter",
+            "period": "Jun - Aoû",
+            "description": "La chaleur extrême rend le camping dans le désert inconfortable et dangereux"
+          }
         }
       },
       "cta": {
-        "title": "Prêt à Explorer la Nature Sauvage du Désert du Sinaï ?",
-        "description": "Connectez-vous avec nos experts en voyage au Sinaï pour des itinéraires personnalisés et des prix compétitifs sur les transferts, activités et hébergements.",
-        "button": "Planifiez Votre Aventure au Sinaï"
-      }
-    },
-    "nileValley": {
-      "title": "Vallée du Nil",
-      "subtitle": "Guide Complet",
-      "description": "Voyagez à travers 5 000 ans d'histoire le long du plus long fleuve du monde. Des pyramides du Caire aux temples d'Abou Simbel - votre aventure complète sur le Nil.",
-      "hero": {
-        "features": {
-          "cities": {
-            "title": "12 Villes Historiques",
-            "description": "D'Alexandrie à Abou Simbel le long du Nil"
-          },
-          "sites": {
-            "title": "50+ Sites Antiques",
-            "description": "Temples, tombes et merveilles archéologiques"
-          },
-          "budget": {
-            "title": "Planification Budgétaire",
-            "description": "Conseils de transport, hébergement et restauration"
-          }
-        },
-        "cta": "Planifiez votre Voyage sur le Nil"
-      },
-      "regions": [
-        "Tous",
-        "Basse-Égypte",
-        "Moyenne-Égypte",
-        "Haute-Égypte",
-        "Nubie"
-      ],
-      "map": {
-        "title": "Carte Interactive de la Vallée du Nil",
-        "clickCities": "📍 Cliquez sur les villes pour explorer"
-      },
-      "cityDetails": {
-        "population": "Population :",
-        "bestTime": "Meilleure période :",
-        "recommendedStay": "Séjour recommandé :",
-        "keyHighlights": "Points Forts :",
-        "budgetTips": "Conseils Budget :",
-        "transportation": "Transport :",
-        "localTransport": "Local :",
-        "topAttractions": "Principales Attractions :",
-        "entry": "Entrée :",
-        "hours": "Horaires :"
-      },
-      "completeGuide": {
-        "title": "Guide Complet des Villes de la Vallée du Nil",
-        "population": "Population :",
-        "bestTime": "Meilleure période :",
-        "stayDuration": "Durée de séjour :",
-        "fromCairo": "Depuis Le Caire :",
-        "keyHighlights": "Points Forts :",
-        "topAttractions": "Principales Attractions :",
-        "budgetTips": "Conseils Budget :",
-        "readMore": "Lire Plus",
-        "showLess": "Afficher Moins",
-        "regions": {
-          "upperEgypt": "Haute-Égypte",
-          "middleEgypt": "Égypte Moyenne",
-          "lowerEgypt": "Basse-Égypte",
-          "nubia": "Nubie"
-        },
-        "cardValues": {
-          "bestTime": {
-            "octoberMarch": "Octobre - Mars",
-            "octoberApril": "Octobre - Avril"
-          },
-          "stay": {
-            "threeToFourDays": "3-4 jours",
-            "twoToThreeDays": "2-3 jours",
-            "oneToTwoDays": "1-2 jours",
-            "oneDay": "1 jour",
-            "halfDay": "Demi-journée"
-          },
-          "transportation": {
-            "luxor": "10 heures en train, 1 heure de vol",
-            "alexandria": "2.5 heures en train/bus",
-            "cairo": "Point de départ",
-            "beniSuef": "2 heures en train/bus",
-            "minya": "4 heures en train/bus",
-            "asyut": "5 heures en train/bus",
-            "sohag": "6 heures en train/bus",
-            "qena": "7 heures en train/bus",
-            "edfu": "12 heures en train/bus",
-            "komOmbo": "13 heures en train/bus",
-            "aswan": "14 heures en train/bus, 1.5 heures de vol"
-          }
-        }
-      },
-      "transportation": {
-        "title": "Guide du Transport de la Vallée du Nil",
-        "train": {
-          "title": "Voyage en Train",
-          "description": "Les trains de nuit confortables relient Le Caire à Louxor et Assouan. Réservez les wagons-lits pour les longs trajets.",
-          "cairoLuxor": "Le Caire-Louxor : 1000-1250 EGP",
-          "cairoAswan": "Le Caire-Assouan : 1100-1450 EGP",
-          "acCoaches": "Wagons climatisés disponibles",
-          "nightTrains": "Trains de nuit incluent les repas"
-        },
-        "cruise": {
-          "title": "Croisières sur le Nil",
-          "description": "Les croisières Louxor-Assouan s'arrêtent à Edfou et Kom Ombo. Options de 3-7 jours disponibles.",
-          "threeFourDays": "3-4 jours : 14500-17000 EGP",
-          "allMeals": "Tous les repas inclus",
-          "entranceFees": "Droits d'entrée aux sites en supplément",
-          "bestTime": "Meilleur climat oct-avr"
-        },
-        "flights": {
-          "title": "Vols Domestiques",
-          "description": "Vols rapides vers Louxor, Assouan et Abou Simbel. Réservez tôt pour de meilleurs prix.",
-          "cairoLuxor": "Le Caire-Louxor : 4300-6000 EGP",
-          "cairoAswan": "Le Caire-Assouan : 5200-7000 EGP",
-          "abuSimbel": "Excursions d'une journée à Abou Simbel",
-          "flightTimes": "1-2 heures de vol"
-        }
-      },
-      "travelTips": {
-        "title": "Conseils de Planification Essentiels",
-        "bestTime": {
-          "title": "Meilleure Période pour Visiter",
-          "peakSeason": "Octobre - Mars (Haute Saison)",
-          "peakDescription": "Temps parfait, températures confortables (20-25°C), prix plus élevés",
-          "shoulderSeason": "Avril - Mai (Saison Intermédiaire)",
-          "shoulderDescription": "Chaud mais gérable (25-30°C), moins de foule, bons prix",
-          "lowSeason": "Juin - Septembre (Basse Saison)",
-          "lowDescription": "Très chaud (35-45°C), prix les plus bas, visites matinales essentielles"
-        },
-        "budgetBreakdown": {
-          "title": "Répartition du Budget (Par Jour)",
-          "budget": {
-            "title": "Voyageur Économique",
-            "description": "Auberge/pension, nourriture locale, transport public : 800-1200 EGP"
-          },
-          "midRange": {
-            "title": "Voyageur Milieu de Gamme", 
-            "description": "Hôtel 3 étoiles, mélange de restaurants, transport privé : 2300-3500 EGP"
-          },
-          "luxury": {
-            "title": "Voyageur de Luxe",
-            "description": "Hôtels 5 étoiles, restauration fine, visites guidées : 9000+ EGP"
-          }
-        },
-        "culturalEtiquette": {
-          "title": "Étiquette Culturelle",
-          "dressModestly": "S'habiller modestement, surtout dans les sites religieux",
-          "removeShoes": "Retirer ses chaussures en entrant dans les mosquées",
-          "askPermission": "Demander la permission avant de photographier les gens",
-          "bargainRespectfully": "Marchander respectueusement dans les marchés",
-          "tipStaff": "Donner un pourboire au personnel de service (10-15%)",
-          "learnGreetings": "Apprendre les salutations de base en arabe"
-        },
-        "healthSafety": {
-          "title": "Santé et Sécurité",
-          "drinkBottledWater": "Boire uniquement de l'eau en bouteille",
-          "useSunscreen": "Utiliser crème solaire et chapeau en été",
-          "packMedications": "Emporter des médicaments de base",
-          "getTravelInsurance": "Souscrire une assurance voyage",
-          "keepCopies": "Garder des copies des documents",
-          "useRegisteredGuides": "Utiliser des guides touristiques enregistrés",
-          "stayHydrated": "Rester hydraté dans le climat désertique"
+        "title": "Prêt à Explorer les Déserts d'Égypte ?",
+        "subtitle": "Obtenez des devis personnalisés pour votre aventure dans le désert",
+        "description": "Planifiez votre évasion parfaite dans le désert avec nos guides locaux experts",
+        "buttons": {
+          "startPlanning": "Commencer la Planification",
+          "findGuides": "Trouver des Guides Locaux"
         }
       }
     }
   },
   "budgetTips": {
-    "alexandria": {
-      "stayNearCorniche": "Séjournez près de la Corniche pour les vues sur la mer",
-      "freshSeafood": "Essayez les fruits de mer frais dans les restaurants locaux",
-      "historicTram": "Utilisez le système de tramway historique pour un transport pas cher"
-    },
     "cairo": {
-      "useMetro": "Utilisez le métro pour un transport pas cher (5-15 EGP)",
-      "localRestaurants": "Mangez dans les restaurants locaux (50-100 EGP par repas)",
-      "downtownAccommodation": "Séjournez au centre-ville du Caire pour un hébergement économique",
-      "freeMosquesMarkets": "Visitez les mosquées et marchés gratuits"
+      "useMetro": "Utilisez le métro pour un transport bon marché (5-15 EGP)",
+      "localRestaurants": "Mangez dans des restaurants locaux (50-100 EGP par repas)",
+      "downtownAccommodation": "Séjournez au centre-ville pour un hébergement économique",
+      "freeMosquesMarkets": "Visites gratuites des mosquées et marchés"
     },
     "beniSuef": {
-      "affordableFood": "Nourriture locale très abordable (20-50 EGP)",
-      "basicAccommodation": "Hébergement de base disponible (200-400 EGP/nuit)",
-      "bargainMarkets": "Marchandez dans les marchés locaux"
-    },
-    "minya": {
-      "akhenatonHotel": "Séjournez à l'hôtel Akhenaten pour une option économique",
-      "sharedTaxis": "Prenez des taxis partagés entre les sites",
-      "affordableRestaurants": "Restaurants locaux très abordables (30-70 EGP)"
-    },
-    "asyut": {
-      "budgetFriendly": "Destination très économique",
-      "traditionalWorkshops": "Ateliers traditionnels pour l'artisanat",
-      "cheapBoatRides": "Promenades en bateau sur le Nil pas chères"
-    },
-    "aswan": {
-      "stayNearSouk": "Séjournez près du souk pour l'atmosphère",
-      "feluccaRides": "Promenades en felouque au coucher du soleil",
-      "nubianVillages": "Visitez les villages nubiens pour une culture authentique",
-      "spiceShopping": "Excellent rapport qualité-prix pour les épices"
-    },
-    "abuSimbel": {
-      "dayTripFromAswan": "Excursion d'une journée depuis Assouan est plus économique",
-      "joinGroupTours": "Rejoignez des tours de groupe pour partager les coûts",
-      "bringLunchWater": "Apportez déjeuner et eau",
-      "earlyMorningArrival": "Arrivée tôt le matin pour les meilleures photos"
-    }
-  },
-  "attractions": {
-    "alexandria": {
-      "bibliotheca": {
-        "name": "Bibliothèque d'Alexandrie",
-        "description": "Renaissance moderne de l'ancienne Bibliothèque d'Alexandrie avec une architecture époustouflante",
-        "entryFee": "100 EGP",
-        "hours": "10:00 AM - 7:00 PM"
-      },
-      "qaitbayCitadel": {
-        "name": "Citadelle de Qaitbay",
-        "description": "Forteresse du XVe siècle construite sur le site de l'ancien Phare d'Alexandrie",
-        "entryFee": "200 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      },
-      "catacombs": {
-        "name": "Catacombes de Kom el Shoqafa",
-        "description": "Plus grand site funéraire romain d'Égypte avec une fusion unique gréco-romaine-égyptienne",
-        "entryFee": "80 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      }
-    },
-    "cairo": {
-      "pyramidsGiza": {
-        "name": "Pyramides de Gizeh",
-        "description": "La dernière merveille survivante du monde antique, incluant la Grande Pyramide et le Sphinx",
-        "entryFee": "700 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "egyptianMuseum": {
-        "name": "Musée Égyptien",
-        "description": "La plus belle collection mondiale d'artefacts égyptiens antiques incluant les trésors de Toutânkhamon",
-        "entryFee": "550 EGP",
-        "hours": "9:00 AM - 5:00 PM"
-      },
-      "citadelSaladin": {
-        "name": "Citadelle de Saladin",
-        "description": "Fortification islamique médiévale avec des vues imprenables sur Le Caire",
-        "entryFee": "550 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      }
-    },
-    "luxor": {
-      "valleyKings": {
-        "name": "Vallée des Rois",
-        "description": "Lieu de sépulture royal avec des tombes élaborément décorées",
-        "entryFee": "750 EGP pour 3 tombes",
-        "hours": "6:00 AM - 4:00 PM"
-      },
-      "karnakTemple": {
-        "name": "Temple de Karnak",
-        "description": "Complexe de temples massif dédié à Amon-Rê",
-        "entryFee": "600 EGP",
-        "hours": "6:00 AM - 5:30 PM"
-      },
-      "luxorTemple": {
-        "name": "Temple de Louxor",
-        "description": "Magnifique temple au cœur du Louxor moderne",
-        "entryFee": "500 EGP",
-        "hours": "6:00 AM - 9:00 PM"
-      },
-      "hatshepsutTemple": {
-        "name": "Temple d'Hatshepsout",
-        "description": "Temple funéraire de la célèbre pharaonne femme d'Égypte",
-        "entryFee": "140 EGP",
-        "hours": "6:00 AM - 4:00 PM"
-      }
-    },
-    "beniSuef": {
-      "meidumPyramid": {
-        "name": "Pyramide de Meidum",
-        "description": "Pyramide effondrée unique montrant les techniques de construction antiques",
-        "entryFee": "180 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "beniSuefMuseum": {
-        "name": "Musée de Beni Suef",
-        "description": "Artefacts locaux et vestiges pharaoniques de la région",
-        "entryFee": "120 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      }
-    },
-    "asyut": {
-      "monasteryVirginMary": {
-        "name": "Monastère de la Vierge Marie",
-        "description": "Important site de pèlerinage chrétien copte",
-        "entryFee": "Gratuit",
-        "hours": "6:00 AM - 6:00 PM"
-      },
-      "asyutBarrage": {
-        "name": "Barrage d'Asyut",
-        "description": "Barrage historique du Nil avec vues pittoresques",
-        "entryFee": "Gratuit",
-        "hours": "24 heures"
-      }
-    },
-    "sohag": {
-      "redMonastery": {
-        "name": "Monastère Rouge",
-        "description": "Monastère copte du 5ème siècle avec des fresques magnifiques",
-        "entryFee": "50 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      },
-      "whiteMonastery": {
-        "name": "Monastère Blanc",
-        "description": "Ancien monastère copte avec architecture unique",
-        "entryFee": "50 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      },
-      "akhmim": {
-        "name": "Akhmim",
-        "description": "Ville traditionnelle de tissage textile sur le Nil",
-        "entryFee": "Gratuit",
-        "hours": "Heures de jour"
-      }
-    },
-    "qena": {
-      "denderaTemple": {
-        "name": "Temple de Dendera",
-        "description": "Complexe de temples le mieux conservé dédié à la déesse Hathor",
-        "entryFee": "300 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "qenaPotteryQuarter": {
-        "name": "Quartier de Poterie de Qena",
-        "description": "Ateliers de poterie traditionnels utilisant des techniques anciennes",
-        "entryFee": "Gratuit",
-        "hours": "8:00 AM - 6:00 PM"
-      }
-    },
-    "abuSimbel": {
-      "greatTempleRamesses": {
-        "name": "Grand Temple de Ramsès II",
-        "description": "Temple massif taillé dans le roc relocalisé pour échapper aux inondations",
-        "entryFee": "875 EGP",
-        "hours": "6:00 AM - 5:00 PM"
-      },
-      "templeNefertari": {
-        "name": "Temple de Néfertari",
-        "description": "Temple plus petit dédié à la reine bien-aimée de Ramsès II",
-        "entryFee": "Gratuit",
-        "hours": "6:00 AM - 5:00 PM"
-      }
-    },
-    "aswan": {
-      "philaeTemple": {
-        "name": "Temple de Philae",
-        "description": "Magnifique complexe de temples sur une île, dédié à Isis",
-        "entryFee": "550 EGP + frais de bateau",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "highDam": {
-        "name": "Haut Barrage",
-        "description": "Merveille d'ingénierie qui a créé le lac Nasser",
-        "entryFee": "200 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      },
-      "unfinishedObelisk": {
-        "name": "Obélisque Inachevé",
-        "description": "Ancienne carrière de granit montrant les techniques de sculpture d'obélisques",
-        "entryFee": "220 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "nubianVillage": {
-        "name": "Village Nubien",
-        "description": "Villages traditionnels colorés présentant la culture nubienne",
-        "entryFee": "Balade en bateau 200-300 EGP",
-        "hours": "Heures de jour"
-      }
+      "affordableFood": "Nourriture et hébergement très abordables",
+      "basicAccommodation": "Hébergement de base mais propre disponible",
+      "bargainMarkets": "Bonnes affaires aux marchés traditionnels"
     }
   },
   "highlights": {
@@ -973,7 +604,7 @@
     }
   },
   "luxorBestTime": "Octobre - Mars",
-  "luxorStay": "3-4 jours", 
+  "luxorStay": "3-4 jours",
   "luxorTransport": "10 heures en train, 1 heure en avion",
   "nile.bestTime.octoberMarch": "Octobre - Mars",
   "nile.bestTime.octoberApril": "Octobre - Avril",
@@ -996,75 +627,6 @@
   "nile.transport.12h_train_bus": "12 heures en train/bus",
   "nile.transport.13h_train_bus": "13 heures en train/bus",
   "nile.transport.14h_train_1.5h_flight": "14 heures en train, 1.5 heures en avion",
-  "budgetTips": {
-    "cairo": {
-      "useMetro": "Utilisez le métro pour un transport bon marché (5-15 EGP)",
-      "localRestaurants": "Mangez dans des restaurants locaux (50-100 EGP par repas)",
-      "downtownAccommodation": "Séjournez au centre-ville pour un hébergement économique",
-      "freeMosquesMarkets": "Visites gratuites des mosquées et marchés"
-    },
-    "beniSuef": {
-      "affordableFood": "Nourriture et hébergement très abordables",
-      "basicAccommodation": "Hébergement de base mais propre disponible",
-      "bargainMarkets": "Bonnes affaires aux marchés traditionnels"
-    }
-  },
-  "attractions": {
-    "cairo": {
-      "pyramidsGiza": {
-        "name": "Pyramides de Gizeh",
-        "description": "La dernière merveille du monde antique survivante",
-        "entryFee": "700 EGP",
-        "hours": "8:00 AM - 4:00 PM"
-      },
-      "egyptianMuseum": {
-        "name": "Musée Égyptien",
-        "description": "La plus belle collection d'artefacts de l'Égypte ancienne",
-        "entryFee": "550 EGP",
-        "hours": "9:00 AM - 5:00 PM"
-      },
-      "citadelSaladin": {
-        "name": "Citadelle de Saladin",
-        "description": "Fortification islamique médiévale avec vues magnifiques",
-        "entryFee": "550 EGP",
-        "hours": "8:00 AM - 5:00 PM"
-      }
-    },
-    "alexandria": {
-      "bibliotheca": {
-        "name": "Bibliothèque d'Alexandrie",
-        "description": "Renaissance moderne de l'ancienne Bibliothèque d'Alexandrie",
-        "entryFee": "100 EGP",
-        "hours": "10:00 AM - 7:00 PM"
-      },
-      "qaitbayCitadel": {
-        "name": "Citadelle de Qaitbay",
-        "description": "Forteresse du XVe siècle sur l'ancien site du Phare",
-        "entryFee": "200 EGP",
-        "hours": "9:00 AM - 4:00 PM"
-      }
-    },
-    "luxor": {
-      "valleyKings": {
-        "name": "Vallée des Rois",
-        "description": "Cimetière royal avec tombes décorées",
-        "entryFee": "750 EGP",
-        "hours": "6:00 AM - 4:00 PM"
-      },
-      "karnakTemple": {
-        "name": "Temple de Karnak",
-        "description": "Le plus grand site religieux antique au monde",
-        "entryFee": "550 EGP",
-        "hours": "6:00 AM - 5:00 PM"
-      },
-      "luxorTemple": {
-        "name": "Temple de Louxor",
-        "description": "Complexe de temples de l'Égypte ancienne",
-        "entryFee": "300 EGP",
-        "hours": "6:00 AM - 9:00 PM"
-      }
-    }
-  },
   "attractions.beniSuef.meidumPyramid.name": "Pyramide de Meidoum",
   "attractions.beniSuef.meidumPyramid.description": "Pyramide effondrée montrant les techniques de construction primitives",
   "attractions.beniSuef.meidumPyramid.entryFee": "100 EGP",
@@ -1407,138 +969,6 @@
       }
     }
   },
-  "blog": {
-    "title": "Récits de Voyage et Guides",
-    "subtitle": "Découvrez des conseils d'initiés, des joyaux cachés et des expériences authentiques à travers l'Égypte",
-    "readTime": "{{time}} min de lecture",
-    "readMore": "Lire Plus",
-    "loadMore": "Charger Plus",
-    "categories": {
-      "all": "Tout",
-      "destinations": "Destinations",
-      "budgetTravel": "Voyage Économique",
-      "foodCulture": "Nourriture et Culture", 
-      "travelTips": "Conseils Voyage"
-    },
-    "posts": {
-      "sinaiGuide": {
-        "title": "Guide de Voyage de la Péninsule du Sinaï",
-        "excerpt": "Découvrez la beauté sauvage et la signification spirituelle de la péninsule du Sinaï d'Égypte avec notre guide complet."
-      },
-      "cairoTransport": {
-        "title": "Naviguer dans les Transports du Caire",
-        "excerpt": "Maîtrisez les rues animées du Caire avec nos conseils d'initiés pour utiliser le métro, les taxis et les transports publics efficacement."
-      },
-      "desertsGuide": {
-        "title": "Guide des Déserts Oriental et Occidental",
-        "excerpt": "Explorez les magnifiques paysages désertiques d'Égypte, des formations du Désert Blanc aux oasis anciennes."
-      },
-      "nileValley": {
-        "title": "Joyaux Cachés de la Vallée du Nil",
-        "excerpt": "Voyagez au-delà des sites célèbres pour découvrir des trésors moins connus le long du Nil donneur de vie."
-      },
-      "budgetTravel": {
-        "title": "Conseils de Voyage Économique pour l'Égypte",
-        "excerpt": "Voyagez en Égypte à moindre coût avec nos conseils d'économie, perspectives locales et recommandations économiques."
-      },
-      "streetFood": {
-        "title": "Guide de la Street Food Égyptienne",
-        "excerpt": "Goûtez l'Égypte authentique à travers sa scène vibrante de street food, du koshari aux jus frais."
-      }
-    },
-    "desertsGuide": {
-      "title": "Déserts Oriental et Occidental",
-      "subtitle": "La Porte d'Entrée aux Aventures Économiques dans la Nature Sauvage d'Égypte",
-      "description": "Les déserts d'Égypte offrent des trésors uniques, des paysages majestueux, des expériences spirituelles et une géologie unique - le tout à une fraction du coût des activités touristiques typiques. Idéal pour les aventuriers soucieux du budget, des expériences authentiques vous attendent.",
-      "buttons": {
-        "planAdventure": "Planifiez Votre Aventure",
-        "viewBudgetGuide": "Voir le Guide Budget"
-      },
-      "sections": {
-        "comparison": {
-          "title": "Déserts Oriental vs. Occidental : Une Comparaison",
-          "subtitle": "Choisissez votre aventure selon vos intérêts et votre budget",
-          "eastern": {
-            "title": "Désert Oriental",
-            "location": "Emplacement : Entre le Nil et la Mer Rouge",
-            "terrain": "Terrain : Montagnes rocheuses, wadis et plaines côtières",
-            "bestFor": "Meilleur pour : Histoire minière, culture bédouine et accès à la Mer Rouge",
-            "access": "Accès : Via Qena ou Hurghada",
-            "highlights": "Points forts : Mines d'émeraudes, monastères et faune du désert"
-          },
-          "western": {
-            "title": "Désert Occidental",
-            "location": "Emplacement : Ouest de la Vallée du Nil",
-            "terrain": "Terrain : Dunes de sable, oasis et formations rocheuses uniques",
-            "bestFor": "Meilleur pour : Saut d'oasis, camping dans le Désert Blanc et observation des étoiles",
-            "access": "Accès : Via Le Caire ou Bahariya",
-            "highlights": "Points forts : Désert Noir et Blanc, sources chaudes et anciens établissements"
-          }
-        },
-        "destinations": {
-          "title": "Destinations Désertiques : Exploration Économique",
-          "subtitle": "Principales destinations pour des expériences désertiques authentiques"
-        },
-        "budgetTips": {
-          "title": "Conseils de Voyage Économique",
-          "subtitle": "Conseils essentiels pour les voyageurs du désert soucieux du budget",
-          "tips": [
-            "Rejoignez des groupes de safari locaux au lieu de voyages privés pour économiser jusqu'à 60%",
-            "Voyagez en novembre et mars pour les prix de saison intermédiaire",
-            "Utilisez des minibus et des taxis partagés entre les oasis",
-            "Séjournez dans des maisons d'hôtes familiales plutôt qu'à l'hôtel",
-            "Mangez où se rassemblent les locaux pour des repas authentiques et abordables",
-            "Négociez les prix en personne, surtout en basse saison"
-          ]
-        },
-        "itinerary": {
-          "title": "Aventure Désertique de 5 Jours avec Budget",
-          "subtitle": "Itinéraire complet avec prix transparents",
-          "total": "Total : 2 850 EGP par personne"
-        },
-        "packing": {
-          "title": "Éléments Essentiels pour le Désert",
-          "subtitle": "Que emporter pour votre aventure dans le désert",
-          "items": [
-            { "item": "Batterie externe", "reason": "Pas d'électricité pendant le camping" },
-            { "item": "Écharpe/keffiyeh", "reason": "Protection contre le soleil, la poussière et le sable" },
-            { "item": "Tongs et chaussures de randonnée", "reason": "Pour les sources et les marches accidentées" },
-            { "item": "Couche thermique", "reason": "Les nuits du désert peuvent être froides" },
-            { "item": "Lampe de poche", "reason": "Éclairage minimal dans les camps" },
-            { "item": "Bouteille d'eau réutilisable", "reason": "Écologique et rechargeable dans les oasis" }
-          ]
-        },
-        "bestTime": {
-          "title": "Meilleure Période pour Visiter",
-          "subtitle": "Planifiez votre aventure dans le désert pour un climat et un budget optimaux",
-          "bestSeason": {
-            "title": "Meilleure Saison",
-            "period": "Oct - Mar",
-            "description": "Temps parfait, ciel clair et températures confortables pour camper"
-          },
-          "budgetSpot": {
-            "title": "Point Idéal Budget",
-            "period": "Nov & Mar",
-            "description": "Prix de saison intermédiaire avec d'excellentes conditions météorologiques"
-          },
-          "avoid": {
-            "title": "À Éviter",
-            "period": "Jun - Aoû",
-            "description": "La chaleur extrême rend le camping dans le désert inconfortable et dangereux"
-          }
-        }
-      },
-      "cta": {
-        "title": "Prêt à Explorer les Déserts d'Égypte ?",
-        "subtitle": "Obtenez des devis personnalisés pour votre aventure dans le désert",
-        "description": "Planifiez votre évasion parfaite dans le désert avec nos guides locaux experts",
-        "buttons": {
-          "startPlanning": "Commencer la Planification",
-          "findGuides": "Trouver des Guides Locaux"
-        }
-      }
-    }
-  },
   "cuisinePassport": {
     "title": "Passeport des Saveurs de la Cuisine Égyptienne",
     "description": "Découvrez la cuisine égyptienne authentique avec notre passeport des saveurs interactif. Suivez votre voyage culinaire, explorez les plats traditionnels et expérimentez les aperçus AR des menus.",
@@ -1584,7 +1014,7 @@
       }
     },
     "dish": {
-      "spiceLevel": "Niveau d'Épices",
+      "spiceLevel": "Niveau d'Épice",
       "difficulty": "Difficulté",
       "cookingTime": "Temps de Cuisson",
       "priceRange": "Gamme de Prix",
@@ -1611,12 +1041,6 @@
       "details": "Détails",
       "explore": "Explorer",
       "healthLabel": "Santé",
-      "spiceLevel": "Niveau d'Épice",
-      "cookingTime": "Temps de Cuisson",
-      "priceRange": "Gamme de Prix",
-      "culturalStory": "Histoire Culturelle",
-      "ingredients": "Ingrédients",
-      "tried": "Essayé",
       "healthyScore": "Score Santé",
       "bestPlacesToTry": "Meilleurs Endroits pour Essayer"
     },
@@ -1721,7 +1145,7 @@
       "doorToDoor": "Porte à Porte",
       "doorToDoorDesc": "Transferts directs de l'aéroport à votre hôtel ou destination",
       "priceFrom950": "À partir de 950 EGP",
-      "priceFrom1553": "À partir de 1 553 EGP", 
+      "priceFrom1553": "À partir de 1 553 EGP",
       "priceFrom2406": "À partir de 2 406 EGP",
       "transferDestinationsTitle": "Destinations de Transfert au Caire",
       "transferDestinationsDesc": "Nous fournissons des transferts d'aéroport vers toutes les principales zones du Caire et environs",
@@ -1791,7 +1215,7 @@
       "title": "Transferts Aéroport d'Assouan - Transport Ville du Nil | AffordEgypt",
       "metaDescription": "Réservez des transferts d'aéroport d'Assouan à partir de 575 EGP. Chauffeurs experts de la ville du Nil, connaissance de la culture nubienne, routes du désert vers Abou Simbel. Transport fiable du sud de l'Égypte.",
       "keywords": "transfert aéroport Assouan, transport aéroport ASW, transfert Abou Simbel, transport village nubien, taxi Assouan, transport Nil",
-      "heroTitle": "Transferts Aéroport d'Assouan", 
+      "heroTitle": "Transferts Aéroport d'Assouan",
       "heroSubtitle": "Transferts d'aéroport professionnels dans la belle Assouan. Chauffeurs experts de la ville du Nil avec connaissance locale et tarification transparente à partir de 575 EGP.",
       "whyChooseTitle": "Pourquoi Choisir Nos Transferts Aéroport d'Assouan ?",
       "nileExpertise": "Expertise du Nil",

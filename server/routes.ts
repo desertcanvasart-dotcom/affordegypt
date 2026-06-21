@@ -13,6 +13,7 @@ import { registerRouteAdminRoutes } from "./routes/routes-admin";
 import { registerReferenceDataRoutes } from "./routes/reference-data";
 import { adminAuth } from "./routes/shared";
 import { ServicePriceNotSetError } from "./services/pricing";
+import { GUIDE_LANGUAGES } from "@shared/guide-pricing";
 import { buildMultiCityQuote } from "./services/quote-builder";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
@@ -226,17 +227,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/pricing/languages", async (req, res) => {
     try {
-      const languages = [
-        "English",
-        "Spanish",
-        "French",
-        "German",
-        "Italian",
-        "Japanese",
-        "Chinese",
-        "Arabic",
-      ];
-      res.json(languages);
+      // Languages we actually staff guides for — derived from the same
+      // pricing map that seeds guide_rates, so the picker can never offer a
+      // language we don't price.
+      res.json(GUIDE_LANGUAGES);
     } catch (error) {
       console.error("Languages fetch error:", error);
       res.status(500).json({ message: "Failed to fetch languages" });

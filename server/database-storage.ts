@@ -13,6 +13,7 @@ import {
   type BookingService, type InsertBookingService,
   type BookingAdjustment, type InsertBookingAdjustment
 } from "@shared/schema";
+import { GUIDE_DAILY_PRICE_BY_LANGUAGE } from "@shared/guide-pricing";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
 
@@ -193,13 +194,16 @@ export class DatabaseStorage implements IStorage {
 
     await db.insert(timeBlocks).values(timeBlockData);
 
-    // Seed guide rates
-    const guideData = [
-      { cityId: createdCities[0].id, language: "English", hourlyPrice: "8.00", name: "Ahmed Hassan", rating: "4.9", image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0" },
-      { cityId: createdCities[0].id, language: "French", hourlyPrice: "10.00", name: "Fatima Al-Zahra", rating: "4.8", image: "https://images.unsplash.com/photo-1494790108755-2616b5b2e9cc" },
-      { cityId: createdCities[2].id, language: "English", hourlyPrice: "9.00", name: "Omar Mahmoud", rating: "4.7", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" },
-      { cityId: createdCities[3].id, language: "Spanish", hourlyPrice: "7.00", name: "Nadia Abdel", rating: "4.9", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80" }
-    ];
+    // Seed guide rates — standard daily price per language, same across every
+    // city. NB: the column is named hourly_price but holds the DAILY rate.
+    const guideData = createdCities.flatMap((city) =>
+      Object.entries(GUIDE_DAILY_PRICE_BY_LANGUAGE).map(([language, price]) => ({
+        cityId: city.id,
+        language,
+        hourlyPrice: price,
+        name: `${language} Guide`,
+      })),
+    );
 
     await db.insert(guideRates).values(guideData);
 
