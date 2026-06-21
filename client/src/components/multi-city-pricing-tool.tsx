@@ -717,11 +717,9 @@ export default function MultiCityPricingTool() {
 
   return (
     <div id="quote-builder" className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-      {!showSavedQuotesTab && (
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6">
-          Design Your Egypt Adventure
-        </h2>
-      )}
+      {/* Section heading lives in the card's CardTitle below (with the
+          calculator icon + subline) — no separate outer <h2>, which used to
+          duplicate "Design Your Egypt Adventure". */}
       <Tabs defaultValue="pricing" className="w-full">
         {showSavedQuotesTab && (
           <TabsList className="grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
