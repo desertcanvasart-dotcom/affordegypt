@@ -98,14 +98,16 @@ export function registerPublicCatalogRoutes(app: Express): void {
         .from(serviceCatalog)
         .where(eq(serviceCatalog.isActive, true));
 
-      // Re-derive city from name (rather than trusting the stored
-      // city column) so multi-word cities like "Marsa Alam" surface
-      // as one bucket even if some rows happened to be saved with
-      // city="Marsa". Falls back to the column when name is empty.
+      // Bucket by the stored city column — it is the source of truth and is
+      // what GET /api/services filters on (ilike on serviceCatalog.city).
+      // Deriving from the route name breaks when names don't start with the
+      // city (e.g. "Hotel → …", "Airport ↔ …"). Fall back to name-derivation
+      // only when the column is empty.
       const counts = new Map<string, number>();
       for (const r of rows) {
-        const derived = r.name ? deriveCity(r.name) : r.city;
-        const key = (derived || r.city || "").trim();
+        const key = (
+          (r.city && r.city.trim()) || (r.name ? deriveCity(r.name) : "")
+        ).trim();
         if (!key) continue;
         counts.set(key, (counts.get(key) ?? 0) + 1);
       }
