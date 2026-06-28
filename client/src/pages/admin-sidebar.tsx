@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Edit2, Trash2, Plus, LogOut, MapPin, Building2, Car, Users, Package, Map, Calendar, Star, Layers, Tag, ListChecks } from "lucide-react";
+import { Edit2, Trash2, Plus, LogOut, Building2, Car, Users, Package, Map, Calendar, Star, Layers, Tag, ListChecks, Ticket } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { refreshRouteData } from "@/lib/cacheUtils";
@@ -68,7 +68,6 @@ export default function AdminSidebar() {
   const { data: guides = [] } = useQuery({ queryKey: ['/api/guide-rates'] });
   const { data: addOns = [] } = useQuery({ queryKey: ['/api/addons'] });
   const { data: routes = [] } = useQuery({ queryKey: ['/api/routes'] });
-  const { data: attractions = [] } = useQuery({ queryKey: ['/api/attractions'] });
 
   // Delete mutation
   const deleteMutation = useMutation({
@@ -490,18 +489,6 @@ export default function AdminSidebar() {
           </button>
 
           <button
-            onClick={() => setActiveSection('attractions')}
-            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeSection === 'attractions' 
-                ? 'bg-teal-100 text-teal-700' 
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-          >
-            <MapPin className="w-4 h-4" />
-            <span>Attractions</span>
-          </button>
-
-          <button
             onClick={() => setActiveSection('reviews')}
             className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
               activeSection === 'reviews' 
@@ -512,13 +499,6 @@ export default function AdminSidebar() {
             <Star className="w-4 h-4" />
             <span>Reviews</span>
           </button>
-
-          <Link href="/attractions" className="w-full">
-            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
-              <MapPin className="w-4 h-4" />
-              <span>Attractions Portal</span>
-            </button>
-          </Link>
 
           {/* Service Catalog admin — the product-catalog model that replaced
               the legacy Routes admin (now removed from this dashboard).
@@ -544,6 +524,12 @@ export default function AdminSidebar() {
               <span>Service Categories</span>
             </button>
           </Link>
+          <Link href="/admin/entrance-fees" className="w-full">
+            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
+              <Ticket className="w-4 h-4" />
+              <span>Entrance Fees</span>
+            </button>
+          </Link>
 
           {/* Logout */}
           <div className="pt-2">
@@ -565,14 +551,12 @@ export default function AdminSidebar() {
         <div className="bg-white border-b border-gray-200 px-6 py-4">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900 capitalize">{activeSection}</h2>
-            {activeSection !== 'addons' && (
-              <Button 
+            {['cities', 'vehicles', 'guides'].includes(activeSection) && (
+              <Button
                 className="bg-teal-600 hover:bg-teal-700"
                 onClick={() => {
-                  setModalType(activeSection === 'cities' ? 'city' : 
-                             activeSection === 'vehicles' ? 'vehicle' :
-                             activeSection === 'guides' ? 'guide' :
-                             activeSection === 'routes' ? 'route' : 'attraction');
+                  setModalType(activeSection === 'cities' ? 'city' :
+                             activeSection === 'vehicles' ? 'vehicle' : 'guide');
                   setEditingItem(null);
                   setIsAddModalOpen(true);
                   resetForm();
@@ -1131,63 +1115,6 @@ export default function AdminSidebar() {
               </Card>
             )}
 
-            {activeSection === 'attractions' && (
-              <Card>
-                <CardContent>
-                  <Table>
-                    <TableHeader className="sticky top-0 bg-white z-10">
-                      <TableRow>
-                        <TableHead>Attraction</TableHead>
-                        <TableHead>City</TableHead>
-                        <TableHead>Ticket Price</TableHead>
-                        <TableHead>Duration</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {(attractions as any[]).map((attraction: any) => (
-                        <TableRow key={attraction.id} className="h-12">
-                          <TableCell>
-                            <div className="font-medium text-sm">{attraction.name}</div>
-                            <div className="text-xs text-gray-500">{attraction.location}</div>
-                          </TableCell>
-                          <TableCell>
-                            <Badge className="bg-blue-100 text-blue-700 text-xs">
-                              {(cities as any[]).find((city: any) => city.id === attraction.cityId)?.name || 'Unknown'}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="font-mono text-sm">EGP {attraction.ticketPrice}</TableCell>
-                          <TableCell className="text-xs text-gray-600">{attraction.duration}</TableCell>
-                          <TableCell className="text-right">
-                            <div className="flex items-center justify-end space-x-1">
-                              <Button 
-                                size="sm" 
-                                variant="outline"
-                                onClick={() => handleEdit(attraction, 'attraction')}
-                                className="h-8 w-8 p-0"
-                                title="Edit attraction"
-                              >
-                                <Edit2 className="w-3 h-3" />
-                              </Button>
-                              <Button 
-                                size="sm" 
-                                variant="outline" 
-                                className="text-red-600 h-8 w-8 p-0"
-                                onClick={() => handleDeleteClick(attraction, 'attraction')}
-                                title="Delete attraction"
-                              >
-                                <Trash2 className="w-3 h-3" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
-            )}
-
             {activeSection === 'bookings' && (
               <AdminBookings />
             )}
@@ -1204,7 +1131,7 @@ export default function AdminSidebar() {
         <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>{editingItem ? 'Edit' : 'Add'} {modalType === 'city' ? 'City' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'addon' ? 'Add-on' : modalType === 'route' ? 'Route' : 'Attraction'}</DialogTitle>
+              <DialogTitle>{editingItem ? 'Edit' : 'Add'} {modalType === 'city' ? 'City' : modalType === 'vehicle' ? 'Vehicle' : modalType === 'guide' ? 'Guide' : modalType === 'addon' ? 'Add-on' : modalType === 'route' ? 'Route' : ''}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               {/* Common fields */}
@@ -1342,58 +1269,6 @@ export default function AdminSidebar() {
                         <option key={city.id} value={city.id}>{city.name}</option>
                       ))}
                     </select>
-                  </div>
-                </div>
-              )}
-
-              {/* Attraction specific fields */}
-              {modalType === 'attraction' && (
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">City</label>
-                    <select
-                      className="w-full px-3 py-2 border rounded-md"
-                      value={formData.cityId}
-                      onChange={(e) => setFormData({...formData, cityId: e.target.value})}
-                    >
-                      <option value="">Select City</option>
-                      {(cities as any[]).map((city: any) => (
-                        <option key={city.id} value={city.id}>{city.name}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Ticket Price (EGP)</label>
-                    <Input
-                      type="number"
-                      value={formData.ticketPrice}
-                      onChange={(e) => setFormData({...formData, ticketPrice: e.target.value})}
-                      placeholder="500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Duration</label>
-                    <Input
-                      value={formData.duration}
-                      onChange={(e) => setFormData({...formData, duration: e.target.value})}
-                      placeholder="2 hours"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Location</label>
-                    <Input
-                      value={formData.location}
-                      onChange={(e) => setFormData({...formData, location: e.target.value})}
-                      placeholder="Giza Plateau"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Opening Hours</label>
-                    <Input
-                      value={formData.openingHours}
-                      onChange={(e) => setFormData({...formData, openingHours: e.target.value})}
-                      placeholder="9:00 AM - 5:00 PM"
-                    />
                   </div>
                 </div>
               )}
