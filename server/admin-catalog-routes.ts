@@ -22,6 +22,7 @@ import {
   serviceCatalog,
   serviceCategories,
   tripTypes,
+  entranceFees,
   insertServiceCatalogItemSchema,
   insertServiceCategorySchema,
   insertTripTypeRowSchema,
@@ -60,6 +61,52 @@ const handleDbError = (res: Response, err: any, label: string): boolean => {
   }
   return false;
 };
+
+// ---- entrance_fees helpers ---------------------------------------------
+// city is stored lowercased (NOT slugified) so it matches the planner's
+// `entrance_fees.city.toLowerCase() === cityName.toLowerCase()` filter —
+// e.g. "Marsa Alam" -> "marsa alam", not "marsa-alam".
+const efSlugify = (s: string) =>
+  String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
+    .replace(/['"`]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+// Student price is folded into `notes` (no dedicated column) as
+// "Student: N EGP", joined to any free-text note with " | ".
+const efJoinNotes = (studentPrice: number | null | undefined, freeNotes: string | null | undefined) => {
+  const parts: string[] = [];
+  if (studentPrice != null && Number.isFinite(Number(studentPrice))) {
+    parts.push(`Student: ${Number(studentPrice)} EGP`);
+  }
+  if (freeNotes && freeNotes.trim()) parts.push(freeNotes.trim());
+  return parts.length ? parts.join(" | ") : null;
+};
+const efSplitNotes = (notes: string | null | undefined) => {
+  if (!notes) return { studentPrice: null as number | null, freeNotes: "" };
+  let studentPrice: number | null = null;
+  const rest: string[] = [];
+  for (const part of notes.split("|").map((s) => s.trim()).filter(Boolean)) {
+    const m = part.match(/^Student:\s*([\d.]+)\s*EGP$/i);
+    if (m && studentPrice === null) studentPrice = Number(m[1]);
+    else rest.push(part);
+  }
+  return { studentPrice, freeNotes: rest.join(" | ") };
+};
+
+// Friendly admin payload (the form shape) — server derives slug,
+// name_translations, price_per_person, and the notes string.
+// One flat price per person, including profit (no markup math — too coarse
+// for high-value tickets). It's stored in price_per_person; the legacy
+// base_price/markup_percent columns are notNull, so we mirror price into
+// base_price and set markup to 0.
+const entranceFeeInput = z.object({
+  name: z.string().trim().min(1),
+  city: z.string().trim().min(1),
+  pricePerPerson: z.coerce.number().positive(),
+  studentPrice: z.coerce.number().positive().nullable().optional(),
+  notes: z.string().nullable().optional(),
+  isActive: z.boolean().optional(),
+  sortOrder: z.coerce.number().int().optional(),
+});
 
 export function registerAdminCatalogRoutes(app: Express): void {
   // -----------------------------------------------------------------
@@ -279,6 +326,131 @@ export function registerAdminCatalogRoutes(app: Express): void {
         return res.status(400).json({ message: "Validation error", issues: error.issues });
       }
       console.error("[PATCH /api/admin/service-categories/:id] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // -----------------------------------------------------------------
+  // /api/admin/entrance-fees — per-person site tickets (admin CRUD).
+  // The public GET /api/entrance-fees stays read-only + active-only.
+  // -----------------------------------------------------------------
+
+  // List ALL (active + inactive). Returns the raw row plus a derived
+  // `name` (en) and split-out `studentPrice`/`freeNotes` for the form.
+  app.get("/api/admin/entrance-fees", ...adminAuth, async (_req, res) => {
+    try {
+      const rows = await db
+        .select()
+        .from(entranceFees)
+        .orderBy(asc(entranceFees.city), asc(entranceFees.sortOrder), asc(entranceFees.id));
+      res.json(
+        rows.map((r) => {
+          const { studentPrice, freeNotes } = efSplitNotes(r.notes);
+          const name = (r.nameTranslations as any)?.en ?? r.slug;
+          return {
+            id: r.id,
+            slug: r.slug,
+            name,
+            city: r.city,
+            pricePerPerson: Number(r.pricePerPerson),
+            studentPrice,
+            freeNotes,
+            currency: r.currency,
+            isActive: r.isActive,
+            sortOrder: r.sortOrder,
+          };
+        }),
+      );
+    } catch (error: any) {
+      console.error("[GET /api/admin/entrance-fees] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/admin/entrance-fees", ...adminAuth, async (req, res) => {
+    try {
+      const input = entranceFeeInput.parse(req.body);
+      const city = input.city.toLowerCase();
+      const slug = `${efSlugify(city)}-${efSlugify(input.name)}`;
+      const [row] = await db
+        .insert(entranceFees)
+        .values({
+          slug,
+          nameTranslations: { en: input.name },
+          city,
+          basePrice: String(input.pricePerPerson),
+          markupPercent: "0",
+          pricePerPerson: String(input.pricePerPerson),
+          currency: "EGP",
+          notes: efJoinNotes(input.studentPrice, input.notes),
+          isActive: input.isActive ?? true,
+          sortOrder: input.sortOrder ?? 0,
+        } as any)
+        .returning();
+      res.status(201).json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      if (handleDbError(res, error, "Entrance fee")) return;
+      console.error("[POST /api/admin/entrance-fees] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.patch("/api/admin/entrance-fees/:id", ...adminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id)) return res.status(400).json({ message: "Invalid id" });
+      const input = entranceFeeInput.partial().parse(req.body);
+
+      const [existing] = await db.select().from(entranceFees).where(eq(entranceFees.id, id));
+      if (!existing) return res.status(404).json({ message: "Not found" });
+
+      // Merge against current notes so partial updates preserve the other part.
+      const prevSplit = efSplitNotes(existing.notes);
+      const studentPrice = input.studentPrice !== undefined ? input.studentPrice : prevSplit.studentPrice;
+      const freeNotes = input.notes !== undefined ? input.notes : prevSplit.freeNotes;
+
+      const set: Record<string, unknown> = { updatedAt: sql`now()` };
+      if (input.name !== undefined) set.nameTranslations = { en: input.name };
+      if (input.city !== undefined) set.city = input.city.toLowerCase();
+      if (input.pricePerPerson !== undefined) {
+        // Keep base_price mirrored to the flat price, markup neutralized.
+        set.pricePerPerson = String(input.pricePerPerson);
+        set.basePrice = String(input.pricePerPerson);
+        set.markupPercent = "0";
+      }
+      if (input.studentPrice !== undefined || input.notes !== undefined) {
+        set.notes = efJoinNotes(studentPrice, freeNotes);
+      }
+      if (input.isActive !== undefined) set.isActive = input.isActive;
+      if (input.sortOrder !== undefined) set.sortOrder = input.sortOrder;
+
+      const [row] = await db
+        .update(entranceFees)
+        .set(set as any)
+        .where(eq(entranceFees.id, id))
+        .returning();
+      res.json(row);
+    } catch (error: any) {
+      if (error?.issues) {
+        return res.status(400).json({ message: "Validation error", issues: error.issues });
+      }
+      console.error("[PATCH /api/admin/entrance-fees/:id] Error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/admin/entrance-fees/:id", ...adminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id)) return res.status(400).json({ message: "Invalid id" });
+      const [row] = await db.delete(entranceFees).where(eq(entranceFees.id, id)).returning();
+      if (!row) return res.status(404).json({ message: "Not found" });
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error("[DELETE /api/admin/entrance-fees/:id] Error:", error);
       res.status(500).json({ message: error.message });
     }
   });

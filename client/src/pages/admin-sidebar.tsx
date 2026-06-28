@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Edit2, Trash2, Plus, LogOut, Building2, Car, Users, Package, Map, Calendar, Star, Layers, Tag, ListChecks } from "lucide-react";
+import { Edit2, Trash2, Plus, LogOut, Building2, Car, Users, Package, Map, Calendar, Star, Layers, Tag, ListChecks, Ticket } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { refreshRouteData } from "@/lib/cacheUtils";
@@ -522,6 +522,12 @@ export default function AdminSidebar() {
             <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
               <Tag className="w-4 h-4" />
               <span>Service Categories</span>
+            </button>
+          </Link>
+          <Link href="/admin/entrance-fees" className="w-full">
+            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
+              <Ticket className="w-4 h-4" />
+              <span>Entrance Fees</span>
             </button>
           </Link>
 

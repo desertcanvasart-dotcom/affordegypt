@@ -21,6 +21,7 @@ import AdminServiceCatalog from "@/pages/admin-service-catalog";
 import AdminServiceCatalogEdit from "@/pages/admin-service-catalog-edit";
 import AdminTripTypes from "@/pages/admin-trip-types";
 import AdminServiceCategories from "@/pages/admin-service-categories";
+import AdminEntranceFees from "@/pages/admin-entrance-fees";
 import AttractionsSimple from "@/pages/attractions-simple";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
@@ -83,6 +84,7 @@ function Router() {
       <Route path="/admin/service-catalog/:id/edit" component={AdminServiceCatalogEdit} />
       <Route path="/admin/trip-types" component={AdminTripTypes} />
       <Route path="/admin/service-categories" component={AdminServiceCategories} />
+      <Route path="/admin/entrance-fees" component={AdminEntranceFees} />
       {/* Legacy route-booking pages priced off the (now empty) routes table
           and showed $0. Redirect to the real booking flow so old links and
           indexed URLs land on the planner instead of a dead $0 page. */}
