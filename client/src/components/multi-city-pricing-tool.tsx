@@ -1049,6 +1049,7 @@ export default function MultiCityPricingTool() {
                                       city={city.cityName}
                                       categories={["airport_transfer","intercity_transfer","local_transfer","tour_transfer"]}
                                       selected={city.selectedServices}
+                                      travelers={city.travelers || globalTravelers}
                                       onChange={(next) => setCityServices(prev => prev.map((c, i) => i === index ? { ...c, selectedServices: next } : c))}
                                     />
                                   </PopoverContent>

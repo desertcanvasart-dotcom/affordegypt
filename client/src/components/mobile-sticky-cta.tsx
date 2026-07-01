@@ -17,7 +17,10 @@ export default function MobileStickyCTA() {
   }, []);
 
   const scrollToBooking = () => {
-    const bookingSection = document.getElementById('booking-wizard');
+    // The live planner section renders id="quote-builder"
+    // (components/multi-city-pricing-tool.tsx). The old "booking-wizard"
+    // id belonged to a since-removed component, so this used to no-op.
+    const bookingSection = document.getElementById('quote-builder');
     if (bookingSection) {
       bookingSection.scrollIntoView({ behavior: 'smooth' });
     }
