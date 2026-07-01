@@ -11,10 +11,12 @@
 // comes from whichever `${vehicle}_${tripType}` keys exist in
 // vehicle_prices for that row.
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -54,6 +56,10 @@ interface Props {
   selected: SelectedCatalogService[];
   onChange: (next: SelectedCatalogService[]) => void;
   emptyMessage?: string;
+  // Number of travelers. Drives automatic vehicle selection: the picker
+  // pre-selects the smallest vehicle that seats the group instead of
+  // always defaulting to sedan. The customer can still override per row.
+  travelers?: number;
 }
 
 export const TRIP_TYPE_LABELS: Record<string, string> = {
@@ -96,6 +102,32 @@ function vehiclesForRow(prices: Record<string, number>, tripType: string): Vehic
   return out;
 }
 
+// Seating capacity per vehicle. Mirrors the server rule in
+// server/services/pricing.ts (pickVehicleSlugForPassengers): sedan ≤2,
+// minivan ≤8, van otherwise. Kept in sync so the pre-selected vehicle
+// matches what the pricing engine would pick for the same group size.
+const VEHICLE_CAPACITY: Record<VehicleSlug, number> = {
+  sedan: 2,
+  minivan: 8,
+  van: 15,
+};
+
+// Pick the vehicle for a group of `travelers`, constrained to the vehicles
+// this row actually prices. Chooses the smallest vehicle that seats the
+// group; if none is large enough, falls back to the largest available.
+function pickVehicleForPassengers(
+  available: VehicleSlug[],
+  travelers: number,
+): VehicleSlug {
+  const sorted = [...available].sort(
+    (a, b) => VEHICLE_CAPACITY[a] - VEHICLE_CAPACITY[b],
+  );
+  for (const v of sorted) {
+    if (VEHICLE_CAPACITY[v] >= travelers) return v;
+  }
+  return sorted[sorted.length - 1];
+}
+
 function isDefaultZone(zone: string | null | undefined, city: string): boolean {
   if (!zone) return true;
   return zone.trim().toLowerCase() === `${city} center`.toLowerCase();
@@ -110,7 +142,9 @@ export default function CatalogServicePicker({
   selected,
   onChange,
   emptyMessage = "No catalog services available for this combination yet.",
+  travelers = 1,
 }: Props) {
+  const [search, setSearch] = useState("");
   const cityLower = city.toLowerCase();
   const queryUrl = `/api/services?city=${encodeURIComponent(cityLower)}&category=${encodeURIComponent(categories.join(","))}`;
 
@@ -142,6 +176,35 @@ export default function CatalogServicePicker({
     return s;
   }, [data]);
 
+  // When the traveler count changes, re-derive the vehicle on every
+  // already-selected row so the pre-selection keeps matching the group
+  // size. Only fires on an actual travelers change (guarded by a ref) so
+  // it never stomps a manual override on an unrelated re-render, and only
+  // touches in-scope rows. Out-of-scope selections pass through untouched.
+  const prevTravelers = useRef(travelers);
+  useEffect(() => {
+    if (prevTravelers.current === travelers) return;
+    prevTravelers.current = travelers;
+    if (!data) return;
+    let changed = false;
+    const next = selected.map((s) => {
+      if (!inScopeSlugs.has(s.slug)) return s;
+      const row = data.find((r) => r.slug === s.slug);
+      if (!row) return s;
+      const vs = vehiclesForRow(row.vehicle_prices, s.tripType);
+      if (vs.length === 0) return s;
+      const vehicleSlug = pickVehicleForPassengers(vs, travelers);
+      if (vehicleSlug === s.vehicleSlug) return s;
+      changed = true;
+      return {
+        ...s,
+        vehicleSlug,
+        price: row.vehicle_prices[`${vehicleSlug}_${s.tripType}`],
+      };
+    });
+    if (changed) onChange(next);
+  }, [travelers, data, selected, inScopeSlugs, onChange]);
+
   if (isLoading) {
     return <p className="text-sm text-muted-foreground">Loading services…</p>;
   }
@@ -163,7 +226,9 @@ export default function CatalogServicePicker({
     if (checked) {
       const vs = vehiclesForRow(row.vehicle_prices, tripType);
       if (vs.length === 0) return;
-      const vehicleSlug: VehicleSlug = vs.includes("sedan") ? "sedan" : vs[0];
+      // Auto-select the vehicle that seats this group instead of always
+      // defaulting to sedan. The customer can still change it per row.
+      const vehicleSlug: VehicleSlug = pickVehicleForPassengers(vs, travelers);
       const price = row.vehicle_prices[`${vehicleSlug}_${tripType}`];
       onChange([
         ...others,
@@ -190,9 +255,36 @@ export default function CatalogServicePicker({
     );
   };
 
+  const q = search.trim().toLowerCase();
+  const filtered = q
+    ? data.filter(
+        (r) =>
+          r.name.toLowerCase().includes(q) ||
+          (r.pickup_zone ?? "").toLowerCase().includes(q),
+      )
+    : data;
+
   return (
     <div className="space-y-2">
-      {data.map((row) => {
+      {data.length > 5 && (
+        <div className="relative">
+          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search transfers…"
+            className="h-9 pl-8 text-sm"
+            data-testid="catalog-search"
+          />
+        </div>
+      )}
+      <div className="max-h-72 space-y-2 overflow-y-auto pr-1">
+      {filtered.length === 0 && (
+        <p className="py-2 text-sm text-muted-foreground">
+          No transfers match “{search}”.
+        </p>
+      )}
+      {filtered.map((row) => {
         const tripType = rowTripType(row.vehicle_prices);
         if (!tripType) return null;
         const vs = vehiclesForRow(row.vehicle_prices, tripType);
@@ -267,6 +359,7 @@ export default function CatalogServicePicker({
           </Card>
         );
       })}
+      </div>
     </div>
   );
 }
