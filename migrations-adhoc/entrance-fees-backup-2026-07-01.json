@@ -1,0 +1,2484 @@
+[
+  {
+    "id": 1,
+    "slug": "alexandria-alshatbi-tombs",
+    "name_translations": {
+      "en": "Alshatbi Tombs"
+    },
+    "city": "alexandria",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:06.727Z",
+    "updated_at": "2026-05-10T05:50:06.727Z"
+  },
+  {
+    "id": 2,
+    "slug": "alexandria-anfoushi-tombs",
+    "name_translations": {
+      "en": "Anfoushi Tombs"
+    },
+    "city": "alexandria",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:06.969Z",
+    "updated_at": "2026-05-10T05:50:06.969Z"
+  },
+  {
+    "id": 3,
+    "slug": "alexandria-catacomb",
+    "name_translations": {
+      "en": "CataComb"
+    },
+    "city": "alexandria",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:07.200Z",
+    "updated_at": "2026-05-10T05:50:07.200Z"
+  },
+  {
+    "id": 4,
+    "slug": "alexandria-greco-roman-museum",
+    "name_translations": {
+      "en": "Greco Roman Museum"
+    },
+    "city": "alexandria",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:07.429Z",
+    "updated_at": "2026-05-10T05:50:07.429Z"
+  },
+  {
+    "id": 5,
+    "slug": "alexandria-jewllery-museum",
+    "name_translations": {
+      "en": "Jewllery Museum"
+    },
+    "city": "alexandria",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:07.660Z",
+    "updated_at": "2026-05-10T05:50:07.660Z"
+  },
+  {
+    "id": 6,
+    "slug": "alexandria-montazah-park",
+    "name_translations": {
+      "en": "Montazah Park"
+    },
+    "city": "alexandria",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:07.889Z",
+    "updated_at": "2026-05-10T05:50:07.889Z"
+  },
+  {
+    "id": 7,
+    "slug": "alexandria-mostafa-kamel-tombs",
+    "name_translations": {
+      "en": "Mostafa Kamel Tombs"
+    },
+    "city": "alexandria",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:08.117Z",
+    "updated_at": "2026-05-10T05:50:08.117Z"
+  },
+  {
+    "id": 8,
+    "slug": "alexandria-national-museum",
+    "name_translations": {
+      "en": "National Museum"
+    },
+    "city": "alexandria",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:08.348Z",
+    "updated_at": "2026-05-10T05:50:08.348Z"
+  },
+  {
+    "id": 9,
+    "slug": "alexandria-pompeys-pillar",
+    "name_translations": {
+      "en": "Pompey's Pillar"
+    },
+    "city": "alexandria",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:08.578Z",
+    "updated_at": "2026-05-10T05:50:08.578Z"
+  },
+  {
+    "id": 10,
+    "slug": "alexandria-qitbay-citadel",
+    "name_translations": {
+      "en": "Qitbay Citadel"
+    },
+    "city": "alexandria",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:08.810Z",
+    "updated_at": "2026-05-10T05:50:08.810Z"
+  },
+  {
+    "id": 11,
+    "slug": "alexandria-qitbay-citadel-night-visit",
+    "name_translations": {
+      "en": "Qitbay Citadel \"night visit\""
+    },
+    "city": "alexandria",
+    "base_price": "50.00",
+    "markup_percent": "5.00",
+    "price_per_person": "53.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:09.042Z",
+    "updated_at": "2026-05-10T05:50:09.042Z"
+  },
+  {
+    "id": 12,
+    "slug": "alexandria-romiel-cave-museum",
+    "name_translations": {
+      "en": "Romiel Cave Museum"
+    },
+    "city": "alexandria",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:09.275Z",
+    "updated_at": "2026-05-10T05:50:09.275Z"
+  },
+  {
+    "id": 13,
+    "slug": "alexandria-roman-amphitheatre",
+    "name_translations": {
+      "en": "Roman Amphitheatre"
+    },
+    "city": "alexandria",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:09.520Z",
+    "updated_at": "2026-05-10T05:50:09.520Z"
+  },
+  {
+    "id": 14,
+    "slug": "al-fayoum-al-lahoun-pyramid",
+    "name_translations": {
+      "en": "Al- Lahoun Pyramid"
+    },
+    "city": "al-fayoum",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:09.751Z",
+    "updated_at": "2026-05-10T05:50:09.751Z"
+  },
+  {
+    "id": 15,
+    "slug": "al-fayoum-hawara-pyramid",
+    "name_translations": {
+      "en": "Hawara Pyramid"
+    },
+    "city": "al-fayoum",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:09.985Z",
+    "updated_at": "2026-05-10T05:50:09.985Z"
+  },
+  {
+    "id": 16,
+    "slug": "al-fayoum-karanis-area",
+    "name_translations": {
+      "en": "Karanis Area"
+    },
+    "city": "al-fayoum",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:10.215Z",
+    "updated_at": "2026-05-10T05:50:10.215Z"
+  },
+  {
+    "id": 17,
+    "slug": "al-fayoum-kom-osheem-museum",
+    "name_translations": {
+      "en": "Kom Osheem Museum"
+    },
+    "city": "al-fayoum",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:10.447Z",
+    "updated_at": "2026-05-10T05:50:10.447Z"
+  },
+  {
+    "id": 18,
+    "slug": "al-fayoum-qaroun-temple",
+    "name_translations": {
+      "en": "Qaroun Temple"
+    },
+    "city": "al-fayoum",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:10.677Z",
+    "updated_at": "2026-05-10T05:50:10.677Z"
+  },
+  {
+    "id": 19,
+    "slug": "al-menya-al-ashmonnien-tuna-al-gabal",
+    "name_translations": {
+      "en": "Al ashmonnien - Tuna Al-Gabal"
+    },
+    "city": "al-menya",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:10.908Z",
+    "updated_at": "2026-05-10T05:50:10.908Z"
+  },
+  {
+    "id": 20,
+    "slug": "al-menya-bani-hassan-tombs",
+    "name_translations": {
+      "en": "Bani Hassan Tombs"
+    },
+    "city": "al-menya",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:11.140Z",
+    "updated_at": "2026-05-10T05:50:11.140Z"
+  },
+  {
+    "id": 21,
+    "slug": "al-menya-ekhnaton-tomb",
+    "name_translations": {
+      "en": "Ekhnaton Tomb"
+    },
+    "city": "al-menya",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:11.367Z",
+    "updated_at": "2026-05-10T05:50:11.367Z"
+  },
+  {
+    "id": 22,
+    "slug": "al-menya-frayzer-tomb",
+    "name_translations": {
+      "en": "Frayzer Tomb"
+    },
+    "city": "al-menya",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:11.599Z",
+    "updated_at": "2026-05-10T05:50:11.599Z"
+  },
+  {
+    "id": 23,
+    "slug": "al-menya-tal-al-amarna",
+    "name_translations": {
+      "en": "Tal AL Amarna"
+    },
+    "city": "al-menya",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:11.830Z",
+    "updated_at": "2026-05-10T05:50:11.830Z"
+  },
+  {
+    "id": 24,
+    "slug": "al-menya-zawet-sultan",
+    "name_translations": {
+      "en": "Zawet Sultan"
+    },
+    "city": "al-menya",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:12.059Z",
+    "updated_at": "2026-05-10T05:50:12.059Z"
+  },
+  {
+    "id": 25,
+    "slug": "assuit-al-hamameya",
+    "name_translations": {
+      "en": "Al Hamameya"
+    },
+    "city": "assuit",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:12.288Z",
+    "updated_at": "2026-05-10T05:50:12.288Z"
+  },
+  {
+    "id": 26,
+    "slug": "assuit-mir-tombs",
+    "name_translations": {
+      "en": "Mir Tombs"
+    },
+    "city": "assuit",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:12.516Z",
+    "updated_at": "2026-05-10T05:50:12.516Z"
+  },
+  {
+    "id": 27,
+    "slug": "aswan-al-kab-tombs",
+    "name_translations": {
+      "en": "Al Kab tombs"
+    },
+    "city": "aswan",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:12.743Z",
+    "updated_at": "2026-05-10T05:50:12.743Z"
+  },
+  {
+    "id": 28,
+    "slug": "aswan-abu-simbel-temple",
+    "name_translations": {
+      "en": "Abu Simbel Temple"
+    },
+    "city": "aswan",
+    "base_price": "160.00",
+    "markup_percent": "5.00",
+    "price_per_person": "168.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:13.009Z",
+    "updated_at": "2026-05-10T05:50:13.009Z"
+  },
+  {
+    "id": 29,
+    "slug": "aswan-amada-area",
+    "name_translations": {
+      "en": "Amada Area"
+    },
+    "city": "aswan",
+    "base_price": "70.00",
+    "markup_percent": "5.00",
+    "price_per_person": "74.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:13.249Z",
+    "updated_at": "2026-05-10T05:50:13.249Z"
+  },
+  {
+    "id": 30,
+    "slug": "aswan-aswan-museum",
+    "name_translations": {
+      "en": "Aswan Museum"
+    },
+    "city": "aswan",
+    "base_price": "70.00",
+    "markup_percent": "5.00",
+    "price_per_person": "74.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:13.479Z",
+    "updated_at": "2026-05-10T05:50:13.479Z"
+  },
+  {
+    "id": 31,
+    "slug": "aswan-high-dam",
+    "name_translations": {
+      "en": "High Dam"
+    },
+    "city": "aswan",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:13.707Z",
+    "updated_at": "2026-05-10T05:50:13.707Z"
+  },
+  {
+    "id": 32,
+    "slug": "aswan-kalabsha",
+    "name_translations": {
+      "en": "Kalabsha"
+    },
+    "city": "aswan",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:13.939Z",
+    "updated_at": "2026-05-10T05:50:13.939Z"
+  },
+  {
+    "id": 33,
+    "slug": "aswan-kom-ombo-temple-including-crocodile-museum",
+    "name_translations": {
+      "en": "Kom Ombo Temple Including Crocodile Museum"
+    },
+    "city": "aswan",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:14.167Z",
+    "updated_at": "2026-05-10T05:50:14.167Z"
+  },
+  {
+    "id": 34,
+    "slug": "aswan-noble-tombs",
+    "name_translations": {
+      "en": "Noble Tombs"
+    },
+    "city": "aswan",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:14.394Z",
+    "updated_at": "2026-05-10T05:50:14.394Z"
+  },
+  {
+    "id": 35,
+    "slug": "aswan-nubian-museum",
+    "name_translations": {
+      "en": "Nubian Museum"
+    },
+    "city": "aswan",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:14.624Z",
+    "updated_at": "2026-05-10T05:50:14.624Z"
+  },
+  {
+    "id": 36,
+    "slug": "aswan-philea-temple",
+    "name_translations": {
+      "en": "Philea Temple"
+    },
+    "city": "aswan",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:14.852Z",
+    "updated_at": "2026-05-10T05:50:14.852Z"
+  },
+  {
+    "id": 37,
+    "slug": "aswan-unfinished-obelisk",
+    "name_translations": {
+      "en": "Unfinished Obelisk"
+    },
+    "city": "aswan",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:15.080Z",
+    "updated_at": "2026-05-10T05:50:15.080Z"
+  },
+  {
+    "id": 38,
+    "slug": "aswan-sainte-simon-monastery",
+    "name_translations": {
+      "en": "Sainte Simon Monastery"
+    },
+    "city": "aswan",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:15.309Z",
+    "updated_at": "2026-05-10T05:50:15.309Z"
+  },
+  {
+    "id": 39,
+    "slug": "aswan-wadi-al-sebou",
+    "name_translations": {
+      "en": "Wadi Al Sebou"
+    },
+    "city": "aswan",
+    "base_price": "70.00",
+    "markup_percent": "5.00",
+    "price_per_person": "74.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:15.537Z",
+    "updated_at": "2026-05-10T05:50:15.537Z"
+  },
+  {
+    "id": 40,
+    "slug": "bahariya-ain-al-meftulla-temple",
+    "name_translations": {
+      "en": "Ain Al Meftulla Temple"
+    },
+    "city": "bahariya",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:15.764Z",
+    "updated_at": "2026-05-10T05:50:15.764Z"
+  },
+  {
+    "id": 41,
+    "slug": "beni-suif-beni-suif-museum",
+    "name_translations": {
+      "en": "Beni Suif Museum"
+    },
+    "city": "beni-suif",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:15.992Z",
+    "updated_at": "2026-05-10T05:50:15.992Z"
+  },
+  {
+    "id": 42,
+    "slug": "beni-suif-maydeum-pyramid",
+    "name_translations": {
+      "en": "Maydeum Pyramid"
+    },
+    "city": "beni-suif",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:16.221Z",
+    "updated_at": "2026-05-10T05:50:16.221Z"
+  },
+  {
+    "id": 43,
+    "slug": "cairo-al-ghorey-group",
+    "name_translations": {
+      "en": "Al Ghorey Group"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:16.481Z",
+    "updated_at": "2026-05-10T05:50:16.481Z"
+  },
+  {
+    "id": 44,
+    "slug": "cairo-al-harrawy-house",
+    "name_translations": {
+      "en": "Al Harrawy House"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:16.712Z",
+    "updated_at": "2026-05-10T05:50:16.712Z"
+  },
+  {
+    "id": 45,
+    "slug": "cairo-al-matareya-obelisk",
+    "name_translations": {
+      "en": "Al Matareya Obelisk"
+    },
+    "city": "cairo",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:16.941Z",
+    "updated_at": "2026-05-10T05:50:16.941Z"
+  },
+  {
+    "id": 46,
+    "slug": "cairo-al-set-waselas-house",
+    "name_translations": {
+      "en": "Al Set Wasela's House"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:17.169Z",
+    "updated_at": "2026-05-10T05:50:17.169Z"
+  },
+  {
+    "id": 47,
+    "slug": "cairo-ashraf-bersbay-school",
+    "name_translations": {
+      "en": "Ashraf Bersbay School"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:17.399Z",
+    "updated_at": "2026-05-10T05:50:17.399Z"
+  },
+  {
+    "id": 48,
+    "slug": "cairo-bab-zewila",
+    "name_translations": {
+      "en": "Bab Zewila"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:17.629Z",
+    "updated_at": "2026-05-10T05:50:17.629Z"
+  },
+  {
+    "id": 49,
+    "slug": "cairo-bashtak-palace",
+    "name_translations": {
+      "en": "Bashtak Palace"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:17.857Z",
+    "updated_at": "2026-05-10T05:50:17.857Z"
+  },
+  {
+    "id": 50,
+    "slug": "cairo-coptic-museum",
+    "name_translations": {
+      "en": "Coptic Museum"
+    },
+    "city": "cairo",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:18.084Z",
+    "updated_at": "2026-05-10T05:50:18.084Z"
+  },
+  {
+    "id": 51,
+    "slug": "cairo-egyptian-museum",
+    "name_translations": {
+      "en": "Egyptian Museum"
+    },
+    "city": "cairo",
+    "base_price": "120.00",
+    "markup_percent": "5.00",
+    "price_per_person": "126.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:18.313Z",
+    "updated_at": "2026-05-10T05:50:18.313Z"
+  },
+  {
+    "id": 52,
+    "slug": "cairo-egyptian-museum-mummies-room",
+    "name_translations": {
+      "en": "Egyptian Museum + Mummies Room"
+    },
+    "city": "cairo",
+    "base_price": "240.00",
+    "markup_percent": "5.00",
+    "price_per_person": "252.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:18.543Z",
+    "updated_at": "2026-05-10T05:50:18.543Z"
+  },
+  {
+    "id": 53,
+    "slug": "cairo-el-sehemy-house",
+    "name_translations": {
+      "en": "El Sehemy House"
+    },
+    "city": "cairo",
+    "base_price": "50.00",
+    "markup_percent": "5.00",
+    "price_per_person": "53.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:18.771Z",
+    "updated_at": "2026-05-10T05:50:18.771Z"
+  },
+  {
+    "id": 54,
+    "slug": "cairo-el-senari-house",
+    "name_translations": {
+      "en": "El Senari House"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:18.999Z",
+    "updated_at": "2026-05-10T05:50:18.999Z"
+  },
+  {
+    "id": 55,
+    "slug": "cairo-fostat-city",
+    "name_translations": {
+      "en": "Fostat City"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:19.228Z",
+    "updated_at": "2026-05-10T05:50:19.228Z"
+  },
+  {
+    "id": 56,
+    "slug": "cairo-gamal-al-deen-al-zahaby-house",
+    "name_translations": {
+      "en": "Gamal Al Deen Al Zahaby House"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:19.456Z",
+    "updated_at": "2026-05-10T05:50:19.456Z"
+  },
+  {
+    "id": 57,
+    "slug": "cairo-gayer-andesron-museum",
+    "name_translations": {
+      "en": "Gayer Andesron Museum"
+    },
+    "city": "cairo",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:19.686Z",
+    "updated_at": "2026-05-10T05:50:19.686Z"
+  },
+  {
+    "id": 58,
+    "slug": "cairo-ibn-toloun-mosque",
+    "name_translations": {
+      "en": "Ibn Toloun Mosque"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:19.938Z",
+    "updated_at": "2026-05-10T05:50:19.938Z"
+  },
+  {
+    "id": 59,
+    "slug": "cairo-islamic-art-museum",
+    "name_translations": {
+      "en": "Islamic Art Museum"
+    },
+    "city": "cairo",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:20.166Z",
+    "updated_at": "2026-05-10T05:50:20.166Z"
+  },
+  {
+    "id": 60,
+    "slug": "cairo-josefs-well",
+    "name_translations": {
+      "en": "Josef's Well"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:20.395Z",
+    "updated_at": "2026-05-10T05:50:20.395Z"
+  },
+  {
+    "id": 61,
+    "slug": "cairo-mahka-al-qalaa",
+    "name_translations": {
+      "en": "Mahka Al-qalaa"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:20.624Z",
+    "updated_at": "2026-05-10T05:50:20.624Z"
+  },
+  {
+    "id": 62,
+    "slug": "cairo-manial-palace",
+    "name_translations": {
+      "en": "Manial' Palace"
+    },
+    "city": "cairo",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:20.852Z",
+    "updated_at": "2026-05-10T05:50:20.852Z"
+  },
+  {
+    "id": 63,
+    "slug": "cairo-mariams-tree",
+    "name_translations": {
+      "en": "Mariam\"s Tree"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:21.081Z",
+    "updated_at": "2026-05-10T05:50:21.081Z"
+  },
+  {
+    "id": 64,
+    "slug": "cairo-mataryas-obelisk",
+    "name_translations": {
+      "en": "Matarya's Obelisk"
+    },
+    "city": "cairo",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:21.311Z",
+    "updated_at": "2026-05-10T05:50:21.311Z"
+  },
+  {
+    "id": 65,
+    "slug": "cairo-miss-waseela-house",
+    "name_translations": {
+      "en": "Miss Waseela House"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:21.539Z",
+    "updated_at": "2026-05-10T05:50:21.539Z"
+  },
+  {
+    "id": 66,
+    "slug": "cairo-mohamed-alis-family-tombs",
+    "name_translations": {
+      "en": "Mohamed Ali's Family Tombs"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:21.767Z",
+    "updated_at": "2026-05-10T05:50:21.767Z"
+  },
+  {
+    "id": 67,
+    "slug": "cairo-mohamed-bek-abu-al-dahab-group",
+    "name_translations": {
+      "en": "Mohamed Bek Abu Al Dahab Group"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:21.996Z",
+    "updated_at": "2026-05-10T05:50:21.996Z"
+  },
+  {
+    "id": 68,
+    "slug": "cairo-nafessa-al-bidaa-house",
+    "name_translations": {
+      "en": "Nafessa Al Bidaa House"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:22.226Z",
+    "updated_at": "2026-05-10T05:50:22.226Z"
+  },
+  {
+    "id": 69,
+    "slug": "cairo-nile-meter",
+    "name_translations": {
+      "en": "Nile Meter"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:22.455Z",
+    "updated_at": "2026-05-10T05:50:22.455Z"
+  },
+  {
+    "id": 70,
+    "slug": "cairo-qasr-abdeen-museum",
+    "name_translations": {
+      "en": "Qasr Abdeen Museum"
+    },
+    "city": "cairo",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:22.685Z",
+    "updated_at": "2026-05-10T05:50:22.685Z"
+  },
+  {
+    "id": 71,
+    "slug": "cairo-sabil-kottab-abd-al-rahman-katkhoda",
+    "name_translations": {
+      "en": "Sabil & Kottab Abd Al Rahman Katkhoda"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:22.913Z",
+    "updated_at": "2026-05-10T05:50:22.913Z"
+  },
+  {
+    "id": 72,
+    "slug": "cairo-sabil-kottab-qaitbay",
+    "name_translations": {
+      "en": "Sabil & Kottab Qaitbay"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:23.140Z",
+    "updated_at": "2026-05-10T05:50:23.140Z"
+  },
+  {
+    "id": 73,
+    "slug": "cairo-sabil-agha-al-selehdar",
+    "name_translations": {
+      "en": "Sabil Agha Al Selehdar"
+    },
+    "city": "cairo",
+    "base_price": "20.00",
+    "markup_percent": "5.00",
+    "price_per_person": "21.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:23.431Z",
+    "updated_at": "2026-05-10T05:50:23.431Z"
+  },
+  {
+    "id": 74,
+    "slug": "cairo-saladin-citadel-including-all-mosques",
+    "name_translations": {
+      "en": "Saladin Citadel \"including All Mosques \""
+    },
+    "city": "cairo",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:23.659Z",
+    "updated_at": "2026-05-10T05:50:23.659Z"
+  },
+  {
+    "id": 75,
+    "slug": "cairo-sultan-hassan-el-refaay",
+    "name_translations": {
+      "en": "Sultan Hassan & El Refaay"
+    },
+    "city": "cairo",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:23.886Z",
+    "updated_at": "2026-05-10T05:50:23.886Z"
+  },
+  {
+    "id": 76,
+    "slug": "cairo-wekalet-al-ghorey",
+    "name_translations": {
+      "en": "Wekalet Al Ghorey"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:24.116Z",
+    "updated_at": "2026-05-10T05:50:24.116Z"
+  },
+  {
+    "id": 77,
+    "slug": "cairo-wekalet-bazraa",
+    "name_translations": {
+      "en": "Wekalet Bazraa"
+    },
+    "city": "cairo",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:24.344Z",
+    "updated_at": "2026-05-10T05:50:24.344Z"
+  },
+  {
+    "id": 78,
+    "slug": "cairo-zeinab-khaton-house",
+    "name_translations": {
+      "en": "Zeinab Khaton House"
+    },
+    "city": "cairo",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:24.574Z",
+    "updated_at": "2026-05-10T05:50:24.574Z"
+  },
+  {
+    "id": 79,
+    "slug": "giza-abu-sir-area",
+    "name_translations": {
+      "en": "Abu Sir Area"
+    },
+    "city": "giza",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:24.802Z",
+    "updated_at": "2026-05-10T05:50:24.802Z"
+  },
+  {
+    "id": 80,
+    "slug": "giza-al-serapuim-temple",
+    "name_translations": {
+      "en": "Al Serapuim Temple"
+    },
+    "city": "giza",
+    "base_price": "120.00",
+    "markup_percent": "5.00",
+    "price_per_person": "126.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:25.032Z",
+    "updated_at": "2026-05-10T05:50:25.032Z"
+  },
+  {
+    "id": 81,
+    "slug": "giza-bent-pyramid",
+    "name_translations": {
+      "en": "Bent Pyramid"
+    },
+    "city": "giza",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:25.259Z",
+    "updated_at": "2026-05-10T05:50:25.259Z"
+  },
+  {
+    "id": 82,
+    "slug": "giza-first-pyramid-khufu",
+    "name_translations": {
+      "en": "First Pyramid \"Khufu\""
+    },
+    "city": "giza",
+    "base_price": "300.00",
+    "markup_percent": "5.00",
+    "price_per_person": "315.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:25.486Z",
+    "updated_at": "2026-05-10T05:50:25.486Z"
+  },
+  {
+    "id": 83,
+    "slug": "giza-giza-area-sun-boat-first-pyramid-khufu",
+    "name_translations": {
+      "en": "Giza Area - Sun Boat - First Pyramid \"Khufu\""
+    },
+    "city": "giza",
+    "base_price": "400.00",
+    "markup_percent": "5.00",
+    "price_per_person": "420.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:25.715Z",
+    "updated_at": "2026-05-10T05:50:25.715Z"
+  },
+  {
+    "id": 84,
+    "slug": "giza-meriruka-tomb",
+    "name_translations": {
+      "en": "MeriRuka Tomb"
+    },
+    "city": "giza",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:25.945Z",
+    "updated_at": "2026-05-10T05:50:25.945Z"
+  },
+  {
+    "id": 85,
+    "slug": "giza-mit-rahina-memphis",
+    "name_translations": {
+      "en": "Mit Rahina \"Memphis\""
+    },
+    "city": "giza",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:26.173Z",
+    "updated_at": "2026-05-10T05:50:26.173Z"
+  },
+  {
+    "id": 86,
+    "slug": "giza-noble-tombs-in-sakkara",
+    "name_translations": {
+      "en": "Noble Tombs in Sakkara"
+    },
+    "city": "giza",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:26.402Z",
+    "updated_at": "2026-05-10T05:50:26.402Z"
+  },
+  {
+    "id": 87,
+    "slug": "giza-pyramids-sphinx-area",
+    "name_translations": {
+      "en": "Pyramids & Sphinx Area"
+    },
+    "city": "giza",
+    "base_price": "120.00",
+    "markup_percent": "5.00",
+    "price_per_person": "126.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:26.631Z",
+    "updated_at": "2026-05-10T05:50:26.631Z"
+  },
+  {
+    "id": 88,
+    "slug": "giza-sakkara-area",
+    "name_translations": {
+      "en": "Sakkara Area"
+    },
+    "city": "giza",
+    "base_price": "120.00",
+    "markup_percent": "5.00",
+    "price_per_person": "126.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:26.859Z",
+    "updated_at": "2026-05-10T05:50:26.859Z"
+  },
+  {
+    "id": 89,
+    "slug": "giza-second-pyramid",
+    "name_translations": {
+      "en": "Second Pyramid"
+    },
+    "city": "giza",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:27.097Z",
+    "updated_at": "2026-05-10T05:50:27.097Z"
+  },
+  {
+    "id": 90,
+    "slug": "giza-sun-boat-in-giza",
+    "name_translations": {
+      "en": "Sun Boat In Giza"
+    },
+    "city": "giza",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:27.326Z",
+    "updated_at": "2026-05-10T05:50:27.326Z"
+  },
+  {
+    "id": 91,
+    "slug": "giza-third-pyramid",
+    "name_translations": {
+      "en": "Third Pyramid"
+    },
+    "city": "giza",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:27.554Z",
+    "updated_at": "2026-05-10T05:50:27.554Z"
+  },
+  {
+    "id": 92,
+    "slug": "luxor-abd-el-qurna",
+    "name_translations": {
+      "en": "Abd El Qurna"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:27.782Z",
+    "updated_at": "2026-05-10T05:50:27.782Z"
+  },
+  {
+    "id": 93,
+    "slug": "luxor-ai-tombs",
+    "name_translations": {
+      "en": "Ai Tombs"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:28.010Z",
+    "updated_at": "2026-05-10T05:50:28.010Z"
+  },
+  {
+    "id": 94,
+    "slug": "luxor-al-asaseef-tombs",
+    "name_translations": {
+      "en": "Al Asaseef Tombs"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:28.244Z",
+    "updated_at": "2026-05-10T05:50:28.244Z"
+  },
+  {
+    "id": 95,
+    "slug": "luxor-al-kap-area",
+    "name_translations": {
+      "en": "AL Kap Area"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:28.473Z",
+    "updated_at": "2026-05-10T05:50:28.473Z"
+  },
+  {
+    "id": 96,
+    "slug": "luxor-al-khokha-tombs",
+    "name_translations": {
+      "en": "Al Khokha Tombs"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:28.702Z",
+    "updated_at": "2026-05-10T05:50:28.702Z"
+  },
+  {
+    "id": 97,
+    "slug": "luxor-al-maalla-temple",
+    "name_translations": {
+      "en": "Al Maalla temple"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:28.931Z",
+    "updated_at": "2026-05-10T05:50:28.931Z"
+  },
+  {
+    "id": 98,
+    "slug": "luxor-al-tood-temple",
+    "name_translations": {
+      "en": "AL Tood Temple"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:29.159Z",
+    "updated_at": "2026-05-10T05:50:29.159Z"
+  },
+  {
+    "id": 99,
+    "slug": "luxor-auserhat-khonsu-tomb",
+    "name_translations": {
+      "en": "Auserhat & Khonsu Tomb"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:29.388Z",
+    "updated_at": "2026-05-10T05:50:29.388Z"
+  },
+  {
+    "id": 100,
+    "slug": "luxor-babaza-tomb",
+    "name_translations": {
+      "en": "Babaza Tomb"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:29.618Z",
+    "updated_at": "2026-05-10T05:50:29.618Z"
+  },
+  {
+    "id": 101,
+    "slug": "luxor-dair-el-madina",
+    "name_translations": {
+      "en": "Dair El Madina"
+    },
+    "city": "luxor",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:29.847Z",
+    "updated_at": "2026-05-10T05:50:29.847Z"
+  },
+  {
+    "id": 102,
+    "slug": "luxor-edfu-temple",
+    "name_translations": {
+      "en": "Edfu Temple"
+    },
+    "city": "luxor",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:30.078Z",
+    "updated_at": "2026-05-10T05:50:30.078Z"
+  },
+  {
+    "id": 103,
+    "slug": "luxor-esna-temple",
+    "name_translations": {
+      "en": "Esna Temple"
+    },
+    "city": "luxor",
+    "base_price": "50.00",
+    "markup_percent": "5.00",
+    "price_per_person": "53.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:30.309Z",
+    "updated_at": "2026-05-10T05:50:30.309Z"
+  },
+  {
+    "id": 104,
+    "slug": "luxor-habu-temple",
+    "name_translations": {
+      "en": "Habu Temple"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:30.541Z",
+    "updated_at": "2026-05-10T05:50:30.541Z"
+  },
+  {
+    "id": 105,
+    "slug": "luxor-hatshepsout-temple",
+    "name_translations": {
+      "en": "Hatshepsout Temple"
+    },
+    "city": "luxor",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:30.773Z",
+    "updated_at": "2026-05-10T05:50:30.773Z"
+  },
+  {
+    "id": 106,
+    "slug": "luxor-karnak-temple-open-museum",
+    "name_translations": {
+      "en": "Karnak Temple & Open Museum"
+    },
+    "city": "luxor",
+    "base_price": "150.00",
+    "markup_percent": "5.00",
+    "price_per_person": "158.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:31.002Z",
+    "updated_at": "2026-05-10T05:50:31.002Z"
+  },
+  {
+    "id": 107,
+    "slug": "luxor-karnak-temple",
+    "name_translations": {
+      "en": "Karnak Temple"
+    },
+    "city": "luxor",
+    "base_price": "120.00",
+    "markup_percent": "5.00",
+    "price_per_person": "126.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:31.232Z",
+    "updated_at": "2026-05-10T05:50:31.232Z"
+  },
+  {
+    "id": 108,
+    "slug": "luxor-luxor-temple",
+    "name_translations": {
+      "en": "Luxor Temple"
+    },
+    "city": "luxor",
+    "base_price": "100.00",
+    "markup_percent": "5.00",
+    "price_per_person": "105.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:31.459Z",
+    "updated_at": "2026-05-10T05:50:31.459Z"
+  },
+  {
+    "id": 109,
+    "slug": "luxor-luxor-museum",
+    "name_translations": {
+      "en": "Luxor Museum"
+    },
+    "city": "luxor",
+    "base_price": "120.00",
+    "markup_percent": "5.00",
+    "price_per_person": "126.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:31.688Z",
+    "updated_at": "2026-05-10T05:50:31.688Z"
+  },
+  {
+    "id": 110,
+    "slug": "luxor-menna-nakht-tomb",
+    "name_translations": {
+      "en": "Menna & Nakht Tomb"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:31.915Z",
+    "updated_at": "2026-05-10T05:50:31.915Z"
+  },
+  {
+    "id": 111,
+    "slug": "luxor-mern-betah-temple",
+    "name_translations": {
+      "en": "Mern Betah Temple"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:32.144Z",
+    "updated_at": "2026-05-10T05:50:32.144Z"
+  },
+  {
+    "id": 112,
+    "slug": "luxor-mumification-museum",
+    "name_translations": {
+      "en": "Mumification Museum"
+    },
+    "city": "luxor",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:32.375Z",
+    "updated_at": "2026-05-10T05:50:32.375Z"
+  },
+  {
+    "id": 113,
+    "slug": "luxor-nefertari-tombs",
+    "name_translations": {
+      "en": "Nefertari Tombs"
+    },
+    "city": "luxor",
+    "base_price": "1000.00",
+    "markup_percent": "5.00",
+    "price_per_person": "1050.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:32.603Z",
+    "updated_at": "2026-05-10T05:50:32.603Z"
+  },
+  {
+    "id": 114,
+    "slug": "luxor-open-museum-in-karnak-temple",
+    "name_translations": {
+      "en": "Open Museum in Karnak Temple"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:32.834Z",
+    "updated_at": "2026-05-10T05:50:32.834Z"
+  },
+  {
+    "id": 115,
+    "slug": "luxor-ra-mosatombs",
+    "name_translations": {
+      "en": "Ra MosaTombs"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:33.063Z",
+    "updated_at": "2026-05-10T05:50:33.063Z"
+  },
+  {
+    "id": 116,
+    "slug": "luxor-ramses-iv-tomb",
+    "name_translations": {
+      "en": "Ramses IV Tomb"
+    },
+    "city": "luxor",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:33.291Z",
+    "updated_at": "2026-05-10T05:50:33.291Z"
+  },
+  {
+    "id": 117,
+    "slug": "luxor-ramseum-temple",
+    "name_translations": {
+      "en": "Ramseum Temple"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:33.520Z",
+    "updated_at": "2026-05-10T05:50:33.520Z"
+  },
+  {
+    "id": 118,
+    "slug": "luxor-roi-shiroi-tomb",
+    "name_translations": {
+      "en": "Roi & Shiroi Tomb"
+    },
+    "city": "luxor",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:33.749Z",
+    "updated_at": "2026-05-10T05:50:33.749Z"
+  },
+  {
+    "id": 119,
+    "slug": "luxor-seti-i-tomb",
+    "name_translations": {
+      "en": "Seti I Tomb"
+    },
+    "city": "luxor",
+    "base_price": "1000.00",
+    "markup_percent": "5.00",
+    "price_per_person": "1050.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:33.998Z",
+    "updated_at": "2026-05-10T05:50:33.998Z"
+  },
+  {
+    "id": 120,
+    "slug": "luxor-seti-i-temple",
+    "name_translations": {
+      "en": "Seti I Temple"
+    },
+    "city": "luxor",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:34.230Z",
+    "updated_at": "2026-05-10T05:50:34.230Z"
+  },
+  {
+    "id": 121,
+    "slug": "luxor-tut-tombs",
+    "name_translations": {
+      "en": "Tut Tombs"
+    },
+    "city": "luxor",
+    "base_price": "200.00",
+    "markup_percent": "5.00",
+    "price_per_person": "210.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:34.459Z",
+    "updated_at": "2026-05-10T05:50:34.459Z"
+  },
+  {
+    "id": 122,
+    "slug": "luxor-valley-of-kings",
+    "name_translations": {
+      "en": "Valley of Kings"
+    },
+    "city": "luxor",
+    "base_price": "160.00",
+    "markup_percent": "5.00",
+    "price_per_person": "168.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:34.690Z",
+    "updated_at": "2026-05-10T05:50:34.690Z"
+  },
+  {
+    "id": 123,
+    "slug": "luxor-valley-of-queens",
+    "name_translations": {
+      "en": "Valley of Queens"
+    },
+    "city": "luxor",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:34.918Z",
+    "updated_at": "2026-05-10T05:50:34.918Z"
+  },
+  {
+    "id": 124,
+    "slug": "malawee-malawee-museum",
+    "name_translations": {
+      "en": "Malawee Museum"
+    },
+    "city": "malawee",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:35.145Z",
+    "updated_at": "2026-05-10T05:50:35.145Z"
+  },
+  {
+    "id": 125,
+    "slug": "new-valley-ain-aseel-el-daba-citadle",
+    "name_translations": {
+      "en": "Ain Aseel & el Daba Citadle"
+    },
+    "city": "new-valley",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:35.373Z",
+    "updated_at": "2026-05-10T05:50:35.373Z"
+  },
+  {
+    "id": 126,
+    "slug": "new-valley-al-ghoyata-area",
+    "name_translations": {
+      "en": "Al Ghoyata Area"
+    },
+    "city": "new-valley",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:35.602Z",
+    "updated_at": "2026-05-10T05:50:35.602Z"
+  },
+  {
+    "id": 127,
+    "slug": "new-valley-al-mezawaqa-tombs",
+    "name_translations": {
+      "en": "Al Mezawaqa Tombs"
+    },
+    "city": "new-valley",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:35.833Z",
+    "updated_at": "2026-05-10T05:50:35.833Z"
+  },
+  {
+    "id": 128,
+    "slug": "new-valley-bashendi-village",
+    "name_translations": {
+      "en": "Bashendi Village"
+    },
+    "city": "new-valley",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:36.062Z",
+    "updated_at": "2026-05-10T05:50:36.062Z"
+  },
+  {
+    "id": 129,
+    "slug": "new-valley-dier-al-hagar-temple",
+    "name_translations": {
+      "en": "Dier Al Hagar Temple"
+    },
+    "city": "new-valley",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:36.291Z",
+    "updated_at": "2026-05-10T05:50:36.291Z"
+  },
+  {
+    "id": 130,
+    "slug": "new-valley-dosh-temple",
+    "name_translations": {
+      "en": "Dosh Temple"
+    },
+    "city": "new-valley",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:36.519Z",
+    "updated_at": "2026-05-10T05:50:36.519Z"
+  },
+  {
+    "id": 131,
+    "slug": "new-valley-new-valley-museum",
+    "name_translations": {
+      "en": "New Valley Museum"
+    },
+    "city": "new-valley",
+    "base_price": "60.00",
+    "markup_percent": "5.00",
+    "price_per_person": "63.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:36.747Z",
+    "updated_at": "2026-05-10T05:50:36.747Z"
+  },
+  {
+    "id": 132,
+    "slug": "new-valley-al-bagawat",
+    "name_translations": {
+      "en": "AL Bagawat"
+    },
+    "city": "new-valley",
+    "base_price": "50.00",
+    "markup_percent": "5.00",
+    "price_per_person": "53.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:36.976Z",
+    "updated_at": "2026-05-10T05:50:36.976Z"
+  },
+  {
+    "id": 133,
+    "slug": "new-valley-hibis-temple",
+    "name_translations": {
+      "en": "Hibis Temple"
+    },
+    "city": "new-valley",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:37.204Z",
+    "updated_at": "2026-05-10T05:50:37.204Z"
+  },
+  {
+    "id": 134,
+    "slug": "qena-dendara-temple",
+    "name_translations": {
+      "en": "Dendara Temple"
+    },
+    "city": "qena",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:37.456Z",
+    "updated_at": "2026-05-10T05:50:37.456Z"
+  },
+  {
+    "id": 135,
+    "slug": "rossetta-rosetta-national-museum",
+    "name_translations": {
+      "en": "Rosetta National Museum"
+    },
+    "city": "rossetta",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:37.684Z",
+    "updated_at": "2026-05-10T05:50:37.684Z"
+  },
+  {
+    "id": 136,
+    "slug": "rossetta-qaitbay-fort",
+    "name_translations": {
+      "en": "Qaitbay Fort"
+    },
+    "city": "rossetta",
+    "base_price": "30.00",
+    "markup_percent": "5.00",
+    "price_per_person": "32.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:37.912Z",
+    "updated_at": "2026-05-10T05:50:37.912Z"
+  },
+  {
+    "id": 137,
+    "slug": "rossetta-all-other-area",
+    "name_translations": {
+      "en": "All Other Area"
+    },
+    "city": "rossetta",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:38.141Z",
+    "updated_at": "2026-05-10T05:50:38.141Z"
+  },
+  {
+    "id": 138,
+    "slug": "siwa-deads-mountain",
+    "name_translations": {
+      "en": "Dead's mountain"
+    },
+    "city": "siwa",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:38.369Z",
+    "updated_at": "2026-05-10T05:50:38.369Z"
+  },
+  {
+    "id": 139,
+    "slug": "siwa-wahi-temple",
+    "name_translations": {
+      "en": "Wahi Temple"
+    },
+    "city": "siwa",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:38.599Z",
+    "updated_at": "2026-05-10T05:50:38.599Z"
+  },
+  {
+    "id": 140,
+    "slug": "souhag-kom-al-sultan",
+    "name_translations": {
+      "en": "Kom Al Sultan"
+    },
+    "city": "souhag",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:38.828Z",
+    "updated_at": "2026-05-10T05:50:38.828Z"
+  },
+  {
+    "id": 141,
+    "slug": "souhag-merit-amun-statue",
+    "name_translations": {
+      "en": "Merit Amun Statue"
+    },
+    "city": "souhag",
+    "base_price": "40.00",
+    "markup_percent": "5.00",
+    "price_per_person": "42.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:39.057Z",
+    "updated_at": "2026-05-10T05:50:39.057Z"
+  },
+  {
+    "id": 142,
+    "slug": "souhag-seti-i-abydous-temple",
+    "name_translations": {
+      "en": "Seti I - Abydous Temple"
+    },
+    "city": "souhag",
+    "base_price": "80.00",
+    "markup_percent": "5.00",
+    "price_per_person": "84.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:39.286Z",
+    "updated_at": "2026-05-10T05:50:39.286Z"
+  },
+  {
+    "id": 143,
+    "slug": "taba-saladin-citadel",
+    "name_translations": {
+      "en": "Saladin Citadel"
+    },
+    "city": "taba",
+    "base_price": "12.00",
+    "markup_percent": "5.00",
+    "price_per_person": "13.00",
+    "currency": "USD",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:39.515Z",
+    "updated_at": "2026-05-10T05:50:39.515Z"
+  },
+  {
+    "id": 144,
+    "slug": "south_sinai-saint-catherine-protected-area-access-includes-monastery",
+    "name_translations": {
+      "en": "Saint Catherine Protected Area Access (includes Monastery)"
+    },
+    "city": "south_sinai",
+    "base_price": "5.00",
+    "markup_percent": "5.00",
+    "price_per_person": "5.00",
+    "currency": "USD",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T05:50:39.744Z",
+    "updated_at": "2026-05-10T05:50:39.744Z"
+  },
+  {
+    "id": 145,
+    "slug": "aswan-abu-simbel-sun-festival",
+    "name_translations": {
+      "en": "Abu Simbel Temple — Sun Festival (Oct 22 / Feb 22 only)"
+    },
+    "city": "aswan",
+    "base_price": "240.00",
+    "markup_percent": "5.00",
+    "price_per_person": "252.00",
+    "currency": "EGP",
+    "notes": "Sun festival pricing — applies Oct 22 (departure) / Feb 22 (rebirth) only",
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T06:10:47.209Z",
+    "updated_at": "2026-05-10T06:10:47.209Z"
+  },
+  {
+    "id": 146,
+    "slug": "bahariya-all-open-sites-bundle",
+    "name_translations": {
+      "en": "Bahariya All Open Sites + Desert Entry (includes Valley of Golden Mummies, Banatiu Tomb, Temple of Alexander)"
+    },
+    "city": "bahariya",
+    "base_price": "150.00",
+    "markup_percent": "5.00",
+    "price_per_person": "158.00",
+    "currency": "EGP",
+    "notes": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2026-05-10T06:12:12.021Z",
+    "updated_at": "2026-05-10T06:12:12.021Z"
+  }
+]
