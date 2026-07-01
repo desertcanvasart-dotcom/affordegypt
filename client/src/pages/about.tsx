@@ -32,7 +32,7 @@ export default function About() {
     <>
       <SeoMeta
         title="About AffordEgypt | The Budget Tier from Travel2Egypt"
-        description="AffordEgypt is the transparent budget tier from Travel2Egypt, a Cairo-based ETAA-licensed operator since 2003. Founded by Islam, who grew up in Siwa Oasis, to give travelers an honest middle ground between $4,000 packages and unverifiable WhatsApp operators."
+        description="AffordEgypt is the transparent budget tier from Travel2Egypt, a Cairo-based ETAA-licensed operator since 2003. Founded by Islam, who grew up in Aswan, to give travelers an honest middle ground between $4,000 packages and unverifiable WhatsApp operators."
         canonical="https://affordegypt.com/about"
       />
 
