@@ -1,56 +1,76 @@
-import { useState, useEffect } from "react";
-import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
-import { useLocation } from "wouter";
-import { Car, MapPin, Clock, Users, CheckCircle, Zap, Plane, Building, Navigation } from "lucide-react";
+// /transfers — the "Transfer Only" module: book a single transfer
+// (intercity / airport / local) without building a full itinerary.
+//
+// Data source is the service_catalog via GET /api/services — the same
+// catalog the homepage planner prices from. The legacy `routes` table
+// this page used to read is empty in production and no longer consulted.
+//
+// Booking goes through the catalog quote path: POST /api/quotes freezes
+// the price server-side (single-city cityServices payload), then
+// POST /api/bookings books against the frozen quote — identical to the
+// planner's checkout, so the charged total can never drift from the
+// catalog price shown here.
+import { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import {
+  Car,
+  CheckCircle,
+  Zap,
+  Plane,
+  Building,
+  Navigation,
+  Search,
+  ChevronLeft,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useToast } from "@/hooks/use-toast";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { useTranslation } from "react-i18next";
-
-import { RouteData, CityData } from "../../../shared/types";
 import SeoMeta from "@/components/seo-meta";
+import { formatEGP } from "@/lib/utils";
+import {
+  type CatalogRow,
+  type VehicleSlug,
+  TRIP_TYPE_LABELS,
+  VEHICLE_LABELS,
+} from "@/components/catalog-service-picker";
 
-// Multilingual content for transfers page
+// Hero + step labels in the four site languages. Booking-form labels and
+// legal fine print stay English, matching the planner checkout.
 const transfersContent = {
   en: {
     title: "Transfer Only",
     subtitle: "Simple point-to-point transportation across Egypt",
     instantQuotes: "Instant quotes",
-    noHiddenFees: "No hidden fees", 
+    noHiddenFees: "No hidden fees",
     licensedDrivers: "Licensed drivers",
-    intercityTravel: "Intercity Travel",
-    localTours: "Local Tours",
-    intercityTransportation: "Intercity Transportation",
-    localToursTransportation: "Local Tours & Transportation",
-    fromCity: "From City",
-    toCity: "To City",
-    selectDepartureCity: "Select departure city",
-    selectDestinationCity: "Select destination city",
-    matchingRoutes: "Matching Routes",
-    popularRoutes: "Popular Routes",
-    clickToSeeVehicleOptions: "Click to see vehicle options",
-    selectCity: "Select City",
-    chooseACityForLocalTours: "Choose a city for local tours",
-    availableLocalRoutes: "Available Local Routes",
+    intercity: "Intercity",
+    airport: "Airport",
+    local: "Local",
+    city: "City",
+    allCities: "All cities",
+    travelers: "Travelers",
+    searchPlaceholder: "Search transfers…",
+    from: "From",
     selectVehicle: "Select Vehicle",
-    choosePreferredVehicleType: "Choose your preferred vehicle type for this route",
-    backToRoutes: "← Back to Routes",
-    distance: "Distance",
-    duration: "Duration",
+    chooseVehicle: "Choose your vehicle for this transfer",
+    back: "← Back to transfers",
     serviceType: "Service Type",
-    transferDropOff: "Transfer & Drop-off",
-    dayTrip: "Day Trip",
-    dayTripReturn: "Day Trip (Return Same Day)",
-    overnight: "Overnight",
-    overnightStay: "Overnight Stay (1 Night)",
-    multiDay: "Multi-Day",
-    multiDayTour: "Multi-Day Tour (2+ Nights)",
-    transfer: "Transfer"
+    pickup: "Pickup",
   },
   es: {
     title: "Solo Traslado",
@@ -58,34 +78,19 @@ const transfersContent = {
     instantQuotes: "Cotizaciones instantáneas",
     noHiddenFees: "Sin costos ocultos",
     licensedDrivers: "Conductores licenciados",
-    intercityTravel: "Viaje Interurbano",
-    localTours: "Tours Locales",
-    intercityTransportation: "Transporte Interurbano",
-    localToursTransportation: "Tours Locales y Transporte",
-    fromCity: "Ciudad de Origen",
-    toCity: "Ciudad de Destino",
-    selectDepartureCity: "Seleccionar ciudad de salida",
-    selectDestinationCity: "Seleccionar ciudad de destino",
-    matchingRoutes: "Rutas Coincidentes",
-    popularRoutes: "Rutas Populares",
-    clickToSeeVehicleOptions: "Haz clic para ver opciones de vehículos",
-    selectCity: "Seleccionar Ciudad",
-    chooseACityForLocalTours: "Elige una ciudad para tours locales",
-    availableLocalRoutes: "Rutas Locales Disponibles",
+    intercity: "Interurbano",
+    airport: "Aeropuerto",
+    local: "Local",
+    city: "Ciudad",
+    allCities: "Todas las ciudades",
+    travelers: "Viajeros",
+    searchPlaceholder: "Buscar traslados…",
+    from: "Desde",
     selectVehicle: "Seleccionar Vehículo",
-    choosePreferredVehicleType: "Elige tu tipo de vehículo preferido para esta ruta",
-    backToRoutes: "← Volver a Rutas",
-    distance: "Distancia",
-    duration: "Duración",
+    chooseVehicle: "Elige tu vehículo para este traslado",
+    back: "← Volver a traslados",
     serviceType: "Tipo de Servicio",
-    transferDropOff: "Traslado y Entrega",
-    dayTrip: "Viaje de un Día",
-    dayTripReturn: "Viaje de un Día (Regreso el Mismo Día)",
-    overnight: "Pernoctar",
-    overnightStay: "Estancia de una Noche (1 Noche)",
-    multiDay: "Varios Días",
-    multiDayTour: "Tour de Varios Días (2+ Noches)",
-    transfer: "Traslado"
+    pickup: "Recogida",
   },
   fr: {
     title: "Transfert Uniquement",
@@ -93,34 +98,19 @@ const transfersContent = {
     instantQuotes: "Devis instantanés",
     noHiddenFees: "Pas de frais cachés",
     licensedDrivers: "Chauffeurs agréés",
-    intercityTravel: "Voyage Intercité",
-    localTours: "Tours Locaux",
-    intercityTransportation: "Transport Intercité",
-    localToursTransportation: "Tours Locaux et Transport",
-    fromCity: "Ville de Départ",
-    toCity: "Ville de Destination",
-    selectDepartureCity: "Sélectionner la ville de départ",
-    selectDestinationCity: "Sélectionner la ville de destination",
-    matchingRoutes: "Itinéraires Correspondants",
-    popularRoutes: "Itinéraires Populaires",
-    clickToSeeVehicleOptions: "Cliquez pour voir les options de véhicules",
-    selectCity: "Sélectionner la Ville",
-    chooseACityForLocalTours: "Choisissez une ville pour les tours locaux",
-    availableLocalRoutes: "Itinéraires Locaux Disponibles",
+    intercity: "Intercité",
+    airport: "Aéroport",
+    local: "Local",
+    city: "Ville",
+    allCities: "Toutes les villes",
+    travelers: "Voyageurs",
+    searchPlaceholder: "Rechercher des transferts…",
+    from: "À partir de",
     selectVehicle: "Sélectionner le Véhicule",
-    choosePreferredVehicleType: "Choisissez votre type de véhicule préféré pour cet itinéraire",
-    backToRoutes: "← Retour aux Itinéraires",
-    distance: "Distance",
-    duration: "Durée",
+    chooseVehicle: "Choisissez votre véhicule pour ce transfert",
+    back: "← Retour aux transferts",
     serviceType: "Type de Service",
-    transferDropOff: "Transfert et Dépose",
-    dayTrip: "Excursion d'un Jour",
-    dayTripReturn: "Excursion d'un Jour (Retour le Même Jour)",
-    overnight: "Nuitée",
-    overnightStay: "Séjour d'une Nuit (1 Nuit)",
-    multiDay: "Plusieurs Jours",
-    multiDayTour: "Tour de Plusieurs Jours (2+ Nuits)",
-    transfer: "Transfert"
+    pickup: "Prise en charge",
   },
   de: {
     title: "Nur Transfer",
@@ -128,126 +118,344 @@ const transfersContent = {
     instantQuotes: "Sofortige Angebote",
     noHiddenFees: "Keine versteckten Gebühren",
     licensedDrivers: "Lizenzierte Fahrer",
-    intercityTravel: "Intercity-Reisen",
-    localTours: "Lokale Touren",
-    intercityTransportation: "Intercity-Transport",
-    localToursTransportation: "Lokale Touren und Transport",
-    fromCity: "Von Stadt",
-    toCity: "Nach Stadt",
-    selectDepartureCity: "Abfahrtsstadt auswählen",
-    selectDestinationCity: "Zielstadt auswählen",
-    matchingRoutes: "Passende Routen",
-    popularRoutes: "Beliebte Routen",
-    clickToSeeVehicleOptions: "Klicken Sie, um Fahrzeugoptionen zu sehen",
-    selectCity: "Stadt Auswählen",
-    chooseACityForLocalTours: "Wählen Sie eine Stadt für lokale Touren",
-    availableLocalRoutes: "Verfügbare Lokale Routen",
+    intercity: "Intercity",
+    airport: "Flughafen",
+    local: "Lokal",
+    city: "Stadt",
+    allCities: "Alle Städte",
+    travelers: "Reisende",
+    searchPlaceholder: "Transfers suchen…",
+    from: "Ab",
     selectVehicle: "Fahrzeug Auswählen",
-    choosePreferredVehicleType: "Wählen Sie Ihren bevorzugten Fahrzeugtyp für diese Route",
-    backToRoutes: "← Zurück zu Routen",
-    distance: "Entfernung",
-    duration: "Dauer",
+    chooseVehicle: "Wählen Sie Ihr Fahrzeug für diesen Transfer",
+    back: "← Zurück zu Transfers",
     serviceType: "Service-Typ",
-    transferDropOff: "Transfer und Abgabe",
-    dayTrip: "Tagesausflug",
-    dayTripReturn: "Tagesausflug (Rückkehr am selben Tag)",
-    overnight: "Übernachtung",
-    overnightStay: "Übernachtung (1 Nacht)",
-    multiDay: "Mehrtägig",
-    multiDayTour: "Mehrtägige Tour (2+ Nächte)",
-    transfer: "Transfer"
-  }
+    pickup: "Abholung",
+  },
 };
 
+const CATEGORY_TABS = [
+  { slug: "intercity_transfer", labelKey: "intercity", icon: Navigation },
+  { slug: "airport_transfer", labelKey: "airport", icon: Plane },
+  { slug: "local_transfer", labelKey: "local", icon: Building },
+] as const;
+
+const VEHICLE_SLUGS = ["sedan", "minivan", "van"] as const;
+
+// Mirrors the server rule in server/services/pricing.ts
+// (pickVehicleSlugForPassengers): sedan ≤2, minivan ≤8, van otherwise.
+const VEHICLE_CAPACITY: Record<VehicleSlug, number> = {
+  sedan: 2,
+  minivan: 8,
+  van: 15,
+};
+
+const VEHICLE_SEATS_LABEL: Record<VehicleSlug, string> = {
+  sedan: "1–2 passengers",
+  minivan: "3–8 passengers",
+  van: "9–15 passengers",
+};
+
+interface CatalogCity {
+  slug: string;
+  name: string;
+  count: number;
+}
+
+// vehicle_prices keys are `${vehicleSlug}_${tripTypeSlug}` (trip types
+// themselves contain underscores, so split on the known vehicle prefixes).
+// Returns tripType → vehicle → price, positive prices only.
+function parseVehiclePrices(
+  prices: Record<string, number> | null | undefined,
+): Map<string, Partial<Record<VehicleSlug, number>>> {
+  const out = new Map<string, Partial<Record<VehicleSlug, number>>>();
+  for (const [key, raw] of Object.entries(prices ?? {})) {
+    const vehicle = VEHICLE_SLUGS.find((v) => key.startsWith(`${v}_`));
+    if (!vehicle) continue;
+    const tripType = key.slice(vehicle.length + 1);
+    const n = typeof raw === "number" ? raw : parseFloat(String(raw));
+    if (!Number.isFinite(n) || n <= 0) continue;
+    const byVehicle = out.get(tripType) ?? {};
+    byVehicle[vehicle] = n;
+    out.set(tripType, byVehicle);
+  }
+  return out;
+}
+
+// Smallest priced vehicle that seats the group; largest available if none.
+function pickVehicleForPassengers(
+  available: VehicleSlug[],
+  travelers: number,
+): VehicleSlug | null {
+  const sorted = [...available].sort(
+    (a, b) => VEHICLE_CAPACITY[a] - VEHICLE_CAPACITY[b],
+  );
+  if (sorted.length === 0) return null;
+  for (const v of sorted) {
+    if (VEHICLE_CAPACITY[v] >= travelers) return v;
+  }
+  return sorted[sorted.length - 1];
+}
+
+function isDefaultZone(zone: string | null | undefined, city: string): boolean {
+  if (!zone) return true;
+  return zone.trim().toLowerCase() === `${city} center`.toLowerCase();
+}
+
+interface BookingSuccess {
+  reference: string;
+  total: string;
+  email: string;
+}
+
 export default function TransfersPage() {
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
-  const [currentStep, setCurrentStep] = useState(1); // 1: Route Selection, 2: Vehicle Selection
-  const [activeTab, setActiveTab] = useState("intercity");
-  const [fromCity, setFromCity] = useState("");
-  const [toCity, setToCity] = useState("");
-  const [vehicleType, setVehicleType] = useState("");
-  const [passengers, setPassengers] = useState("2");
-  const [selectedRoute, setSelectedRoute] = useState<RouteData | null>(null);
-  const [selectedVehicleType, setSelectedVehicleType] = useState("");
-  const [routeOptions, setRouteOptions] = useState<RouteData[]>([]);
+
+  const [activeTab, setActiveTab] = useState<string>("intercity_transfer");
+  const [citySlug, setCitySlug] = useState<string>("all");
+  const [travelers, setTravelers] = useState(2);
+  const [search, setSearch] = useState("");
+  const [selectedRow, setSelectedRow] = useState<CatalogRow | null>(null);
+  const [tripType, setTripType] = useState<string>("");
+  const [vehicleSlug, setVehicleSlug] = useState<VehicleSlug | null>(null);
   const [travelDate, setTravelDate] = useState("");
-  const [travelTime, setTravelTime] = useState("");
-  const [selectedCityForLocal, setSelectedCityForLocal] = useState("");
-  const [showLocalRoutes, setShowLocalRoutes] = useState(false);
-  const { toast } = useToast();
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    specialRequests: "",
+    termsAccepted: false,
+    bookingPolicyAccepted: false,
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<BookingSuccess | null>(null);
+
   const { i18n } = useTranslation();
-  
-  // Get current language and ensure it's valid
-  const currentLanguage = i18n.language || 'en';
-  const language = ['en', 'es', 'fr', 'de'].includes(currentLanguage) ? currentLanguage : 'en';
+  const currentLanguage = i18n.language || "en";
+  const language = ["en", "es", "fr", "de"].includes(currentLanguage)
+    ? currentLanguage
+    : "en";
+  const t =
+    transfersContent[language as keyof typeof transfersContent] ||
+    transfersContent.en;
 
-  // Get translated content based on current language
-  const t = transfersContent[language as keyof typeof transfersContent] || transfersContent.en;
+  // Cities that actually have catalog rows (unlike the legacy /api/cities).
+  const { data: cities = [] } = useQuery<CatalogCity[]>({
+    queryKey: ["/api/services/cities"],
+    queryFn: async () => {
+      const res = await fetch("/api/services/cities");
+      if (!res.ok) throw new Error(`${res.status}`);
+      return res.json();
+    },
+    staleTime: 60_000,
+  });
 
-  // Fetch cities
-  const { data: cities = [] } = useTranslatedQuery<CityData[]>("/api/cities");
+  const servicesUrl = `/api/services?category=${encodeURIComponent(activeTab)}${
+    citySlug !== "all" ? `&city=${encodeURIComponent(citySlug)}` : ""
+  }`;
+  const {
+    data: services = [],
+    isLoading,
+    isError,
+  } = useQuery<CatalogRow[]>({
+    queryKey: [servicesUrl],
+    queryFn: async () => {
+      const res = await fetch(servicesUrl);
+      if (!res.ok) throw new Error(`${res.status}`);
+      return res.json();
+    },
+    staleTime: 60_000,
+  });
 
-  // Fetch routes
-  const { data: routes = [] } = useTranslatedQuery<RouteData[]>("/api/routes");
+  const q = search.trim().toLowerCase();
+  const filtered = useMemo(() => {
+    const rows = q
+      ? services.filter(
+          (r) =>
+            r.name.toLowerCase().includes(q) ||
+            r.city.toLowerCase().includes(q) ||
+            (r.pickup_zone ?? "").toLowerCase().includes(q),
+        )
+      : services;
+    // Stable, scannable order: by city, then name.
+    return [...rows].sort(
+      (a, b) => a.city.localeCompare(b.city) || a.name.localeCompare(b.name),
+    );
+  }, [services, q]);
 
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-    setFromCity("");
-    setToCity("");
-    setSelectedCityForLocal("");
-    setShowLocalRoutes(false);
-    setCurrentStep(1);
-    setSelectedRoute(null);
+  const priceMap = useMemo(
+    () => parseVehiclePrices(selectedRow?.vehicle_prices),
+    [selectedRow],
+  );
+  const tripTypes = useMemo(() => Array.from(priceMap.keys()), [priceMap]);
+  const vehiclesForTripType = useMemo(() => {
+    const byVehicle = priceMap.get(tripType) ?? {};
+    return VEHICLE_SLUGS.filter((v) => byVehicle[v] !== undefined);
+  }, [priceMap, tripType]);
+  const selectedPrice =
+    vehicleSlug !== null
+      ? priceMap.get(tripType)?.[vehicleSlug] ?? null
+      : null;
+
+  const handleSelectTransfer = (row: CatalogRow) => {
+    const map = parseVehiclePrices(row.vehicle_prices);
+    const firstTripType = Array.from(map.keys())[0] ?? "";
+    const available = VEHICLE_SLUGS.filter(
+      (v) => map.get(firstTripType)?.[v] !== undefined,
+    );
+    setSelectedRow(row);
+    setTripType(firstTripType);
+    setVehicleSlug(pickVehicleForPassengers(available, travelers));
+    setSubmitError(null);
+    window.scrollTo(0, 0);
   };
 
-  const handleRouteSelection = (route: RouteData) => {
-    setSelectedRoute(route);
-    setCurrentStep(2);
-    
-    if (activeTab === "intercity") {
-      setFromCity(route.fromCityId?.toString() || "");
-      setToCity(route.toCityId?.toString() || "");
-    } else {
-      setSelectedCityForLocal(route.fromCityId?.toString() || "");
-      setShowLocalRoutes(true);
+  const handleTripTypeChange = (next: string) => {
+    setTripType(next);
+    const available = VEHICLE_SLUGS.filter(
+      (v) => priceMap.get(next)?.[v] !== undefined,
+    );
+    setVehicleSlug(pickVehicleForPassengers(available, travelers));
+  };
+
+  const handleTravelersChange = (value: string) => {
+    const n = parseInt(value, 10);
+    setTravelers(n);
+    // Keep the pre-selected vehicle matching the group size (the
+    // customer can still override by clicking a different card).
+    if (selectedRow) {
+      setVehicleSlug(pickVehicleForPassengers(vehiclesForTripType, n));
     }
   };
 
-  // Pure lookup against route.vehiclePrices. The /transfers wizard is
-  // a one-way flow, so the lookup key is `${slug}_one_way`. Returns null
-  // if not priced — caller renders "not available." No math.
-  const getValidPrice = (route: RouteData, vehicleType: string): number | null => {
-    const raw = route.vehiclePrices?.[`${vehicleType}_one_way`];
-    if (raw === undefined || raw === null || raw === '') return null;
-    const n = typeof raw === 'number' ? raw : parseFloat(String(raw));
-    return Number.isFinite(n) && n > 0 ? n : null;
+  const resetToList = () => {
+    setSelectedRow(null);
+    setTripType("");
+    setVehicleSlug(null);
+    setSubmitError(null);
   };
+
+  const handleSubmit = async () => {
+    if (!selectedRow || !vehicleSlug || selectedPrice === null) return;
+    if (!travelDate) {
+      setSubmitError("Please choose a travel date.");
+      return;
+    }
+    if (!form.name.trim()) {
+      setSubmitError("Please enter your full name.");
+      return;
+    }
+    if (!form.email.trim() || !form.email.includes("@")) {
+      setSubmitError("Please enter a valid email address.");
+      return;
+    }
+    if (!form.phone.trim()) {
+      setSubmitError("Please enter your phone number.");
+      return;
+    }
+    if (!form.termsAccepted || !form.bookingPolicyAccepted) {
+      setSubmitError("Please accept the terms and the booking policy.");
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      // Freeze the price server-side. Same single-source pricing engine
+      // as the planner (buildMultiCityQuote); the server ignores any
+      // client-side price and recomputes from the catalog.
+      const cityServices = [
+        {
+          dayNumber: 1,
+          cityName: selectedRow.city,
+          date: travelDate,
+          travelers,
+          selectedServices: [
+            {
+              slug: selectedRow.slug,
+              vehicleSlug,
+              tripType,
+              name: selectedRow.name,
+              price: selectedPrice,
+            },
+          ],
+          attractions: "",
+          selectedAttractions: [],
+          selectedAddOns: [],
+        },
+      ];
+
+      const quoteResponse = await fetch("/api/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cityServices,
+          travelers,
+          jsonBlob: {
+            cityServices,
+            travelDate,
+            travelers,
+            source: "transfers-page",
+          },
+        }),
+      });
+      if (!quoteResponse.ok) throw new Error("Failed to create quote");
+      const quote = await quoteResponse.json();
+
+      const bookingResponse = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          quoteId: quote.id,
+          travelDate,
+          travelers,
+          customerName: form.name,
+          customerEmail: form.email,
+          customerPhone: form.phone,
+          specialRequests: form.specialRequests,
+          paymentMethod: "pending",
+          paymentStatus: "pending",
+        }),
+      });
+      if (!bookingResponse.ok) throw new Error("Failed to create booking");
+      const booking = await bookingResponse.json();
+
+      setSuccess({
+        reference: booking.bookingReference,
+        total: quote.total ?? String(selectedPrice),
+        email: form.email,
+      });
+      window.scrollTo(0, 0);
+    } catch (err) {
+      console.error("Transfer booking error:", err);
+      setSubmitError("Failed to submit booking. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const currentStep = success ? 3 : selectedRow ? 2 : 1;
 
   return (
     <div className="min-h-screen bg-gray-50">
-  <SeoMeta
-          title="Egypt Airport & Intercity Transfers | Private Car from LE 1,500"
-          description="Private airport transfers and intercity transfers across Egypt. Cairo, Luxor, Aswan, Alexandria, Hurghada, Sharm El Sheikh. Licensed drivers, fixed prices, no hidden fees. Book in 60 seconds."
-          canonical="https://affordegypt.com/transfers"
-        />
+      <SeoMeta
+        title="Egypt Airport & Intercity Transfers | Private Car from LE 1,500"
+        description="Private airport transfers and intercity transfers across Egypt. Cairo, Luxor, Aswan, Hurghada, Marsa Alam. Licensed drivers, fixed prices, no hidden fees. Book in 60 seconds."
+        canonical="https://affordegypt.com/transfers"
+      />
       <Navbar />
-      
+
       {/* Header */}
       <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              {t.title}
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{t.title}</h1>
             <p className="text-xl md:text-2xl mb-8 text-teal-100">
               {t.subtitle}
             </p>
-            
-            {/* Key Benefits */}
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center">
                 <Zap className="w-4 h-4 mr-2" />
@@ -271,329 +479,512 @@ export default function TransfersPage() {
         {/* Step Indicator */}
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-4">
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${currentStep === 1 ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
-              1
-            </div>
-            <div className="w-12 h-0.5 bg-gray-200"></div>
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${currentStep === 2 ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
-              2
-            </div>
+            {[1, 2].map((step, i) => (
+              <div key={step} className="flex items-center space-x-4">
+                {i > 0 && <div className="w-12 h-0.5 bg-gray-200"></div>}
+                <div
+                  className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                    currentStep >= step
+                      ? "bg-teal-600 text-white"
+                      : "bg-gray-200 text-gray-600"
+                  }`}
+                >
+                  {step}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {currentStep === 1 ? (
-          // Step 1: Route Selection
-          <>
-            {/* Tab Interface */}
-            <Tabs value={activeTab} onValueChange={handleTabChange} className="mb-8">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="intercity" className="flex items-center space-x-2">
-                  <Plane className="w-4 h-4" />
-                  <span>{t.intercityTravel}</span>
-                </TabsTrigger>
-                <TabsTrigger value="local" className="flex items-center space-x-2">
-                  <Building className="w-4 h-4" />
-                  <span>{t.localTours}</span>
-                </TabsTrigger>
+        {success ? (
+          // Confirmation
+          <Card data-testid="transfer-booking-success">
+            <CardContent className="py-12 text-center space-y-4">
+              <CheckCircle className="w-14 h-14 text-teal-600 mx-auto" />
+              <h2 className="text-2xl font-bold text-gray-900">
+                Booking request submitted!
+              </h2>
+              <p className="text-gray-600">
+                Booking reference:{" "}
+                <span className="font-mono font-semibold">
+                  {success.reference}
+                </span>
+              </p>
+              <p className="text-gray-600">
+                Total:{" "}
+                <span className="font-semibold text-teal-700">
+                  {formatEGP(success.total)}
+                </span>
+              </p>
+              <p className="text-sm text-gray-500">
+                A confirmation email has been sent to {success.email}. We'll
+                contact you shortly to confirm pickup details.
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSuccess(null);
+                  resetToList();
+                  setForm({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    specialRequests: "",
+                    termsAccepted: false,
+                    bookingPolicyAccepted: false,
+                  });
+                  setTravelDate("");
+                }}
+                data-testid="button-book-another"
+              >
+                Book another transfer
+              </Button>
+            </CardContent>
+          </Card>
+        ) : !selectedRow ? (
+          // Step 1: Browse transfers
+          <div className="space-y-6">
+            <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v)}>
+              <TabsList className="grid w-full grid-cols-3">
+                {CATEGORY_TABS.map(({ slug, labelKey, icon: Icon }) => (
+                  <TabsTrigger
+                    key={slug}
+                    value={slug}
+                    className="flex items-center space-x-2"
+                    data-testid={`tab-${slug}`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{t[labelKey]}</span>
+                  </TabsTrigger>
+                ))}
               </TabsList>
-
-              <TabsContent value="intercity" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Navigation className="w-5 h-5" />
-                      <span>{t.intercityTransportation}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-6">
-                    {/* City Selection */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">{t.fromCity}</label>
-                        <Select value={fromCity} onValueChange={setFromCity}>
-                          <SelectTrigger>
-                            <SelectValue placeholder={t.selectDepartureCity} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {cities.map((city) => (
-                              <SelectItem key={city.id} value={city.id.toString()}>
-                                {city.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">{t.toCity}</label>
-                        <Select value={toCity} onValueChange={setToCity}>
-                          <SelectTrigger>
-                            <SelectValue placeholder={t.selectDestinationCity} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {cities.map((city) => (
-                              <SelectItem key={city.id} value={city.id.toString()}>
-                                {city.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    {/* Suggested Routes */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-4">
-                        {fromCity || toCity ? t.matchingRoutes : t.popularRoutes}
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {(() => {
-                          let suggestedRoutes = [];
-                          
-                          if (fromCity && toCity) {
-                            suggestedRoutes = routes.filter(route => 
-                              route.fromCityId?.toString() === fromCity && 
-                              route.toCityId?.toString() === toCity &&
-                              route.fromCityId !== route.toCityId
-                            );
-                          } else if (fromCity) {
-                            suggestedRoutes = routes.filter(route => 
-                              route.fromCityId?.toString() === fromCity && 
-                              route.toCityId?.toString() !== toCity &&
-                              route.fromCityId !== route.toCityId
-                            );
-                          } else if (toCity) {
-                            suggestedRoutes = routes.filter(route => 
-                              route.toCityId?.toString() === toCity && 
-                              route.fromCityId?.toString() !== fromCity &&
-                              route.fromCityId !== route.toCityId
-                            );
-                          } else {
-                            suggestedRoutes = routes.filter(route => 
-                              route.fromCityId !== route.toCityId
-                            );
-                          }
-                          
-                          return suggestedRoutes.slice(0, 6).map((route) => {
-                            const fromCityName = cities.find(c => c.id === route.fromCityId)?.name;
-                            const toCityName = cities.find(c => c.id === route.toCityId)?.name;
-                            
-                            return (
-                              <div
-                                key={route.id}
-                                className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
-                                onClick={() => handleRouteSelection(route)}
-                              >
-                                <div className="flex items-center justify-between mb-2">
-                                  <h4 className="font-semibold text-sm">
-                                    {fromCityName} → {toCityName}
-                                  </h4>
-                                  <Badge variant="secondary" className="text-xs">
-                                    {route.tripMode === 'transfer' && t.transferDropOff}
-                                    {route.tripMode === 'day_trip' && t.dayTrip}
-                                    {route.tripMode === 'overnight' && t.overnight}
-                                    {route.tripMode === 'multi_day' && t.multiDay}
-                                  </Badge>
-                                </div>
-                                <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
-                                <p className="text-sm text-gray-500 mt-1">{t.clickToSeeVehicleOptions}</p>
-                              </div>
-                            );
-                          });
-                        })()}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="local" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Building className="w-5 h-5" />
-                      <span>{t.localToursTransportation}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-6">
-                    {/* City Selection for Local */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">{t.selectCity}</label>
-                      <Select value={selectedCityForLocal} onValueChange={(value) => {
-                        setSelectedCityForLocal(value);
-                        setShowLocalRoutes(true);
-                      }}>
-                        <SelectTrigger>
-                          <SelectValue placeholder={t.chooseACityForLocalTours} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {cities.map((city) => (
-                            <SelectItem key={city.id} value={city.id.toString()}>
-                              {city.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Local Routes */}
-                    {showLocalRoutes && (
-                      <div>
-                        <h3 className="text-lg font-semibold mb-4">
-                          {t.availableLocalRoutes}
-                          {selectedCityForLocal === '3' && (
-                            <span className="text-sm text-red-500 ml-2">
-                              (Debug: {routes.filter(route => route.fromCityId?.toString() === selectedCityForLocal).length} found)
-                            </span>
-                          )}
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {routes
-                            .filter(route => 
-                              route.fromCityId?.toString() === selectedCityForLocal
-                            )
-                            .map((route) => {
-                              const cityName = cities.find(c => c.id === route.fromCityId)?.name;
-                              const toCityName = cities.find(c => c.id === route.toCityId)?.name;
-                              
-                              return (
-                                <div
-                                  key={route.id}
-                                  className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
-                                  onClick={() => handleRouteSelection(route)}
-                                >
-                                  <div className="flex items-center justify-between mb-2">
-                                    <h4 className="font-semibold text-sm">
-                                      {route.name || (route.fromCityId === route.toCityId 
-                                        ? `${route.fromLocation} → ${route.toLocation}`
-                                        : `${cityName} → ${toCityName}`
-                                      )}
-                                    </h4>
-                                    <Badge variant="secondary" className="text-xs">
-                                      {route.tripMode === 'transfer' && t.transfer}
-                                      {route.tripMode === 'day_trip' && t.dayTrip}
-                                      {route.tripMode === 'overnight' && t.overnight}
-                                      {route.tripMode === 'multi_day' && t.multiDay}
-                                    </Badge>
-                                  </div>
-                                  <p className="text-sm text-gray-600">{route.distanceKm || 0} km</p>
-                                  <p className="text-sm text-gray-500 mt-1">{t.clickToSeeVehicleOptions}</p>
-                                </div>
-                              );
-                            })}
-                        </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </TabsContent>
             </Tabs>
-          </>
+
+            <Card>
+              <CardContent className="pt-6 space-y-6">
+                {/* Filters */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t.city}
+                    </label>
+                    <Select value={citySlug} onValueChange={setCitySlug}>
+                      <SelectTrigger data-testid="select-city">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">{t.allCities}</SelectItem>
+                        {cities.map((city) => (
+                          <SelectItem key={city.slug} value={city.slug}>
+                            {city.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t.travelers}
+                    </label>
+                    <Select
+                      value={String(travelers)}
+                      onValueChange={handleTravelersChange}
+                    >
+                      <SelectTrigger data-testid="select-travelers">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Array.from({ length: 15 }, (_, i) => i + 1).map(
+                          (n) => (
+                            <SelectItem key={n} value={String(n)}>
+                              {n}
+                            </SelectItem>
+                          ),
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* Search */}
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder={t.searchPlaceholder}
+                    className="pl-9"
+                    data-testid="transfers-search"
+                  />
+                </div>
+
+                {/* Transfer list */}
+                {isLoading ? (
+                  <p className="text-sm text-gray-500 py-4">Loading transfers…</p>
+                ) : isError ? (
+                  <p className="text-sm text-gray-500 py-4">
+                    Couldn't load transfers. Try refreshing.
+                  </p>
+                ) : filtered.length === 0 ? (
+                  <p className="text-sm text-gray-500 py-4">
+                    No transfers available for this selection yet. Try another
+                    city or category, or contact us for a custom quote.
+                  </p>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {filtered.map((row) => {
+                      const map = parseVehiclePrices(row.vehicle_prices);
+                      const rowTripTypes = Array.from(map.keys());
+                      if (rowTripTypes.length === 0) return null;
+                      const showZone = !isDefaultZone(row.pickup_zone, row.city);
+                      return (
+                        <div
+                          key={row.slug}
+                          className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors bg-white"
+                          onClick={() => handleSelectTransfer(row)}
+                          data-testid={`transfer-card-${row.slug}`}
+                        >
+                          <div className="flex items-start justify-between gap-2 mb-2">
+                            <h4 className="font-semibold text-sm">{row.name}</h4>
+                            <Badge variant="secondary" className="text-xs shrink-0">
+                              {row.city}
+                            </Badge>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            {rowTripTypes.map((tt) => (
+                              <Badge key={tt} variant="outline" className="text-xs">
+                                {TRIP_TYPE_LABELS[tt] ?? tt}
+                              </Badge>
+                            ))}
+                            {showZone && row.pickup_zone && (
+                              <span className="text-xs text-gray-500">
+                                {t.pickup}: {row.pickup_zone}
+                              </span>
+                            )}
+                          </div>
+                          {row.cheapest_price !== null && (
+                            <p className="text-sm mt-2">
+                              <span className="text-gray-500">{t.from} </span>
+                              <span className="font-semibold text-teal-700">
+                                {formatEGP(row.cheapest_price)}
+                              </span>
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
         ) : (
-          // Step 2: Vehicle Selection
+          // Step 2: Vehicle + booking details
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">{t.selectVehicle}</h2>
-                <p className="text-gray-600 mt-1">{t.choosePreferredVehicleType}</p>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {t.selectVehicle}
+                </h2>
+                <p className="text-gray-600 mt-1">{t.chooseVehicle}</p>
               </div>
               <button
-                onClick={() => setCurrentStep(1)}
+                onClick={resetToList}
                 className="px-4 py-2 text-teal-600 hover:text-teal-700 font-medium"
+                data-testid="button-back-to-list"
               >
-                {t.backToRoutes}
+                {t.back}
               </button>
             </div>
 
-            {selectedRoute && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">
-                    {activeTab === "intercity" 
-                      ? `${cities.find(c => c.id === selectedRoute.fromCityId)?.name} → ${cities.find(c => c.id === selectedRoute.toCityId)?.name}`
-                      : selectedRoute.name || `${selectedRoute.fromLocation} → ${selectedRoute.toLocation}`
-                    }
-                  </CardTitle>
-                  <div className="space-y-1">
-                    <p className="text-sm text-gray-600">
-                      {t.distance}: {selectedRoute.distanceKm || 0} km | 
-                      {t.duration}: {selectedRoute.estimatedDuration || 'N/A'}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-500">{t.serviceType}:</span>
-                      <Badge variant="secondary" className="text-xs">
-                        {selectedRoute.tripMode === 'transfer' && t.transferDropOff}
-                        {selectedRoute.tripMode === 'day_trip' && t.dayTripReturn}
-                        {selectedRoute.tripMode === 'overnight' && t.overnightStay}
-                        {selectedRoute.tripMode === 'multi_day' && t.multiDayTour}
-                      </Badge>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">{selectedRow.name}</CardTitle>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="secondary" className="text-xs">
+                    {selectedRow.city}
+                  </Badge>
+                  {tripTypes.length === 1 && (
+                    <Badge variant="outline" className="text-xs">
+                      {TRIP_TYPE_LABELS[tripType] ?? tripType}
+                    </Badge>
+                  )}
+                  {!isDefaultZone(selectedRow.pickup_zone, selectedRow.city) &&
+                    selectedRow.pickup_zone && (
+                      <span className="text-xs text-gray-500">
+                        {t.pickup}: {selectedRow.pickup_zone}
+                      </span>
+                    )}
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Trip type selector — only when the row prices several */}
+                {tripTypes.length > 1 && (
+                  <div className="max-w-xs">
+                    <Label className="mb-2 block">{t.serviceType}</Label>
+                    <Select value={tripType} onValueChange={handleTripTypeChange}>
+                      <SelectTrigger data-testid="select-trip-type">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {tripTypes.map((tt) => (
+                          <SelectItem key={tt} value={tt}>
+                            {TRIP_TYPE_LABELS[tt] ?? tt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {/* Vehicle cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {vehiclesForTripType.length === 0 ? (
+                    <div className="col-span-full text-sm text-gray-500 p-4 border rounded-lg">
+                      Pricing not yet set for this transfer. Please contact us
+                      for a quote.
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {(() => {
-                      // /transfers is a one-way flow. Lookup key is
-                      // `${slug}_one_way`. Vehicles whose one-way price is
-                      // unset are omitted — the user can't book a combo the
-                      // admin hasn't priced.
-                      const vp =
-                        typeof selectedRoute.vehiclePrices === 'string'
-                          ? JSON.parse(selectedRoute.vehiclePrices)
-                          : (selectedRoute.vehiclePrices ?? {});
-
-                      const processedPrices: Record<string, number> = {};
-                      for (const slug of ['sedan', 'minivan', 'van'] as const) {
-                        const raw = vp?.[`${slug}_one_way`];
-                        if (raw === undefined || raw === null || raw === '') continue;
-                        const n = typeof raw === 'number' ? raw : parseFloat(String(raw));
-                        if (Number.isFinite(n) && n > 0) processedPrices[slug] = n;
-                      }
-
-                      if (Object.keys(processedPrices).length === 0) {
-                        return (
-                          <div className="col-span-full text-sm text-gray-500 p-4 border rounded-lg">
-                            Pricing not yet set for this route. Please contact us for a quote.
+                  ) : (
+                    vehiclesForTripType.map((v) => {
+                      const price = priceMap.get(tripType)?.[v];
+                      const isSelected = vehicleSlug === v;
+                      return (
+                        <div
+                          key={v}
+                          className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                            isSelected
+                              ? "border-teal-600 ring-2 ring-teal-600/20 bg-teal-50/50"
+                              : "hover:border-teal-300"
+                          }`}
+                          onClick={() => setVehicleSlug(v)}
+                          data-testid={`vehicle-card-${v}`}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="font-semibold">{VEHICLE_LABELS[v]}</h3>
+                            <Car
+                              className={`w-5 h-5 ${
+                                isSelected ? "text-teal-600" : "text-gray-400"
+                              }`}
+                            />
                           </div>
-                        );
-                      }
+                          <p className="text-2xl font-bold text-teal-600">
+                            {formatEGP(price ?? 0)}
+                          </p>
+                          <p className="text-sm text-gray-500 mt-1">
+                            {VEHICLE_SEATS_LABEL[v]}
+                          </p>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
 
-                      return Object.entries(processedPrices)
-                        .sort(([a], [b]) => {
-                          const order = { sedan: 1, minivan: 2, van: 3 };
-                          return (order[a as keyof typeof order] || 999) - (order[b as keyof typeof order] || 999);
-                        })
-                        .map(([vehicleType, priceValue]) => {
-                          return (
-                            <div
-                              key={vehicleType}
-                              className="border rounded-lg p-4 hover:border-teal-300 cursor-pointer transition-colors"
-                              onClick={() => {
-                                window.location.href = `/book?route=${selectedRoute.id}&vehicle=${vehicleType}&price=${Math.round(priceValue)}`;
-                              }}
-                            >
-                              <div className="flex items-center justify-between mb-2">
-                                <h3 className="font-semibold capitalize">{vehicleType.replace('_', ' ')}</h3>
-                                <Car className="w-5 h-5 text-teal-600" />
-                              </div>
-                              <p className="text-2xl font-bold text-teal-600">{Math.round(priceValue)} EGP</p>
-                              <p className="text-sm text-gray-500 mt-1">
-                                {vehicleType === 'sedan' && '1-2 passengers'}
-                                {vehicleType === 'minivan' && '3-8 passengers'}
-                                {vehicleType === 'van' && '9-15 passengers'}
-                                {vehicleType === 'coach' && '16-35 passengers'}
-                                {vehicleType === 'bus' && '16-35 passengers'}
-                              </p>
-                            </div>
-                          );
-                        });
-                    })()}
+                {/* Booking details */}
+                {vehiclesForTripType.length > 0 && (
+                  <div className="space-y-4 pt-4 border-t">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="transfer-date" className="mb-2 block">
+                          Travel date *
+                        </Label>
+                        <Input
+                          id="transfer-date"
+                          type="date"
+                          value={travelDate}
+                          min={new Date().toISOString().split("T")[0]}
+                          onChange={(e) => setTravelDate(e.target.value)}
+                          data-testid="input-travel-date"
+                        />
+                      </div>
+                      <div>
+                        <Label className="mb-2 block">{t.travelers}</Label>
+                        <Select
+                          value={String(travelers)}
+                          onValueChange={handleTravelersChange}
+                        >
+                          <SelectTrigger data-testid="select-travelers-step2">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Array.from({ length: 15 }, (_, i) => i + 1).map(
+                              (n) => (
+                                <SelectItem key={n} value={String(n)}>
+                                  {n}
+                                </SelectItem>
+                              ),
+                            )}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="transfer-name" className="mb-2 block">
+                          Full name *
+                        </Label>
+                        <Input
+                          id="transfer-name"
+                          value={form.name}
+                          onChange={(e) =>
+                            setForm((p) => ({ ...p, name: e.target.value }))
+                          }
+                          data-testid="input-name"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="transfer-email" className="mb-2 block">
+                          Email *
+                        </Label>
+                        <Input
+                          id="transfer-email"
+                          type="email"
+                          value={form.email}
+                          onChange={(e) =>
+                            setForm((p) => ({ ...p, email: e.target.value }))
+                          }
+                          data-testid="input-email"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="transfer-phone" className="mb-2 block">
+                          Phone / WhatsApp *
+                        </Label>
+                        <Input
+                          id="transfer-phone"
+                          value={form.phone}
+                          onChange={(e) =>
+                            setForm((p) => ({ ...p, phone: e.target.value }))
+                          }
+                          data-testid="input-phone"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="transfer-requests" className="mb-2 block">
+                        Special requests (pickup time, hotel name, flight
+                        number…)
+                      </Label>
+                      <Textarea
+                        id="transfer-requests"
+                        value={form.specialRequests}
+                        onChange={(e) =>
+                          setForm((p) => ({
+                            ...p,
+                            specialRequests: e.target.value,
+                          }))
+                        }
+                        rows={3}
+                        data-testid="input-special-requests"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <Checkbox
+                          id="transfer-terms"
+                          checked={form.termsAccepted}
+                          onCheckedChange={(c) =>
+                            setForm((p) => ({
+                              ...p,
+                              termsAccepted: c === true,
+                            }))
+                          }
+                          className="mt-0.5"
+                          data-testid="checkbox-terms"
+                        />
+                        <Label
+                          htmlFor="transfer-terms"
+                          className="text-xs leading-tight cursor-pointer"
+                        >
+                          I agree to the{" "}
+                          <a
+                            href="/terms"
+                            className="text-teal-700 hover:underline"
+                            target="_blank"
+                          >
+                            Terms of Service
+                          </a>{" "}
+                          and{" "}
+                          <a
+                            href="/privacy"
+                            className="text-teal-700 hover:underline"
+                            target="_blank"
+                          >
+                            Privacy Policy
+                          </a>
+                        </Label>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Checkbox
+                          id="transfer-policy"
+                          checked={form.bookingPolicyAccepted}
+                          onCheckedChange={(c) =>
+                            setForm((p) => ({
+                              ...p,
+                              bookingPolicyAccepted: c === true,
+                            }))
+                          }
+                          className="mt-0.5"
+                          data-testid="checkbox-booking-policy"
+                        />
+                        <Label
+                          htmlFor="transfer-policy"
+                          className="text-xs leading-tight cursor-pointer"
+                        >
+                          I understand and accept the{" "}
+                          <a
+                            href="/booking-policy"
+                            className="text-teal-700 hover:underline"
+                            target="_blank"
+                          >
+                            Booking Policy
+                          </a>{" "}
+                          and cancellation terms
+                        </Label>
+                      </div>
+                    </div>
+
+                    {submitError && (
+                      <p
+                        className="text-sm text-red-600"
+                        data-testid="submit-error"
+                      >
+                        {submitError}
+                      </p>
+                    )}
+
+                    <div className="flex items-center justify-between pt-2 border-t">
+                      <div>
+                        <p className="text-sm text-gray-500">Total</p>
+                        <p
+                          className="text-2xl font-bold text-teal-700"
+                          data-testid="transfer-total"
+                        >
+                          {formatEGP(selectedPrice ?? 0)}
+                        </p>
+                      </div>
+                      <Button
+                        onClick={handleSubmit}
+                        disabled={submitting || selectedPrice === null}
+                        className="bg-teal-600 hover:bg-teal-700 h-11 px-8"
+                        data-testid="button-submit-transfer"
+                      >
+                        {submitting ? "Submitting…" : "Request Booking"}
+                      </Button>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      No prepayment required — we confirm availability first.
+                    </p>
                   </div>
-                </CardContent>
-              </Card>
-            )}
+                )}
+              </CardContent>
+            </Card>
+
+            <button
+              onClick={resetToList}
+              className="flex items-center text-sm text-gray-500 hover:text-gray-700"
+            >
+              <ChevronLeft className="w-4 h-4 mr-1" />
+              {t.back.replace("← ", "")}
+            </button>
           </div>
         )}
       </div>
