@@ -1,0 +1,37 @@
+# CI — every PR and every push to main must type-check, pass the pricing
+# unit tests, and produce a full production build (including the Puppeteer
+# prerender, which already runs --no-sandbox) BEFORE it can auto-deploy
+# via Railway. Until this workflow existed, nothing gated merges at all.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run check
+
+      - name: Unit tests (pricing engine)
+        run: npm test
+
+      # Full production build: pricing snapshot (falls back without
+      # DATABASE_URL by design), vite build + prerender, sitemap, server
+      # bundle. Catches build-only breakage before Railway does.
+      - name: Production build
+        run: npm run build
