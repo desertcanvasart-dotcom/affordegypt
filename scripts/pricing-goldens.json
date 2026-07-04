@@ -1,0 +1,172 @@
+{
+  "_comment": "Pinned expectations for scripts/check-invariants.mjs. When prices or inventory change ON PURPOSE, re-pin with: node scripts/check-invariants.mjs --update. A drift the operator did not intend is a production incident.",
+  "categoryCounts": {
+    "intercity_transfer": 52,
+    "airport_transfer": 29,
+    "local_transfer": 3,
+    "tour_transfer": 71,
+    "dinner_transfer": 3,
+    "sound_light_show": 6
+  },
+  "citySlugs": [
+    "aswan",
+    "cairo",
+    "hurghada",
+    "luxor",
+    "marsa-alam"
+  ],
+  "entranceFeeCount": 103,
+  "guideLanguages": [
+    "English",
+    "Spanish",
+    "French",
+    "German",
+    "Italian",
+    "Japanese",
+    "Chinese",
+    "Dutch",
+    "Korean"
+  ],
+  "itineraries": [
+    {
+      "name": "transfers-only: Aswan hotel to Luxor, minivan one-way, 4 pax",
+      "expectedTotal": 8075,
+      "payload": {
+        "travelers": 4,
+        "cityServices": [
+          {
+            "dayNumber": 1,
+            "cityName": "Aswan",
+            "travelers": 4,
+            "selectedServices": [
+              {
+                "slug": "aswan-hotel-luxor",
+                "vehicleSlug": "minivan",
+                "tripType": "one_way"
+              }
+            ],
+            "selectedAttractions": [],
+            "selectedAddOns": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "planner day: Aswan sedan transfer + English guide + Abu Simbel entrance, 3 pax",
+      "expectedTotal": 12181,
+      "payload": {
+        "travelers": 3,
+        "cityServices": [
+          {
+            "dayNumber": 1,
+            "cityId": 4,
+            "cityName": "Aswan",
+            "travelers": 3,
+            "selectedServices": [
+              {
+                "slug": "aswan-hotel-luxor",
+                "vehicleSlug": "sedan",
+                "tripType": "one_way"
+              }
+            ],
+            "selectedGuide": {
+              "language": "English"
+            },
+            "selectedEntranceFees": [
+              "aswan-abu-simbel-temple"
+            ],
+            "selectedAttractions": [],
+            "selectedAddOns": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "airport transfer: Cairo airport to station, sedan one-way, 2 pax",
+      "expectedTotal": 2025,
+      "payload": {
+        "travelers": 2,
+        "cityServices": [
+          {
+            "dayNumber": 1,
+            "cityName": "Cairo",
+            "travelers": 2,
+            "selectedServices": [
+              {
+                "slug": "cairo-airport-station",
+                "vehicleSlug": "sedan",
+                "tripType": "one_way"
+              }
+            ],
+            "selectedAttractions": [],
+            "selectedAddOns": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "airport round-trip: Aswan airport to hotel, van, 9 pax",
+      "expectedTotal": 3010,
+      "payload": {
+        "travelers": 9,
+        "cityServices": [
+          {
+            "dayNumber": 1,
+            "cityName": "Aswan",
+            "travelers": 9,
+            "selectedServices": [
+              {
+                "slug": "aswan-airport-hotel",
+                "vehicleSlug": "van",
+                "tripType": "round_trip_same_day"
+              }
+            ],
+            "selectedAttractions": [],
+            "selectedAddOns": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "multi-city: Aswan minivan transfer + guide, then Cairo airport sedan, 4 pax",
+      "expectedTotal": 13850,
+      "payload": {
+        "travelers": 4,
+        "cityServices": [
+          {
+            "dayNumber": 1,
+            "cityId": 4,
+            "cityName": "Aswan",
+            "travelers": 4,
+            "selectedServices": [
+              {
+                "slug": "aswan-hotel-luxor",
+                "vehicleSlug": "minivan",
+                "tripType": "one_way"
+              }
+            ],
+            "selectedGuide": {
+              "language": "German"
+            },
+            "selectedAttractions": [],
+            "selectedAddOns": []
+          },
+          {
+            "dayNumber": 2,
+            "cityName": "Cairo",
+            "travelers": 4,
+            "selectedServices": [
+              {
+                "slug": "cairo-airport-station",
+                "vehicleSlug": "sedan",
+                "tripType": "one_way"
+              }
+            ],
+            "selectedAttractions": [],
+            "selectedAddOns": []
+          }
+        ]
+      }
+    }
+  ]
+}

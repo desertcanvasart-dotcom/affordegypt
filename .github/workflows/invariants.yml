@@ -1,0 +1,33 @@
+# Nightly production data-invariant + golden-pricing checks.
+#
+# Asserts against the LIVE site that every service category is populated,
+# no catalog row is silently unpriced, entrance fees / guide languages are
+# intact, and the golden itineraries still price to their pinned totals
+# (scripts/pricing-goldens.json). A failure here means customers are
+# likely seeing missing inventory or wrong prices RIGHT NOW.
+#
+# When prices change on purpose, re-pin locally and commit:
+#   node scripts/check-invariants.mjs --update
+#
+# Also runnable on demand from the Actions tab (workflow_dispatch).
+name: Prod invariants
+
+on:
+  schedule:
+    - cron: "17 3 * * *" # daily 03:17 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # No npm ci — the script uses only Node built-ins and global fetch.
+      - name: Check invariants against production
+        run: node scripts/check-invariants.mjs

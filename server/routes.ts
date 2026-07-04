@@ -17,6 +17,9 @@ import { GUIDE_LANGUAGES } from "@shared/guide-pricing";
 import { buildMultiCityQuote } from "./services/quote-builder";
 import { setupPasswordResetRoutes } from "./password-reset-routes";
 import { setupEmailVerificationRoutes } from "./email-verification-routes";
+import { db } from "./db";
+import { serviceCatalog } from "@shared/schema";
+import { sql } from "drizzle-orm";
 // Stripe will be initialized later when keys are provided
 let stripe: any = null;
 
@@ -24,9 +27,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // adminAuth ([authenticateToken, requireAdmin]) is imported from
   // ./routes/shared so the split route modules share one definition.
 
-  // Health check endpoint
-  app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", timestamp: new Date().toISOString() });
+  // Health check endpoint. Deep check: a process that can't reach the
+  // database — or sees an EMPTY service catalog — can't price or book
+  // anything, so it reports degraded (503). railway.json points its
+  // healthcheckPath here, so a deploy in that state never replaces a
+  // working one, and uptime monitors alarm on data loss, not just crashes.
+  app.get("/api/health", async (req, res) => {
+    try {
+      const [row] = await db
+        .select({ count: sql<number>`count(*)::int` })
+        .from(serviceCatalog);
+      const catalogCount = row?.count ?? 0;
+      if (catalogCount === 0) {
+        return res.status(503).json({
+          status: "degraded",
+          reason: "service_catalog is empty — nothing can be priced",
+          timestamp: new Date().toISOString(),
+        });
+      }
+      res.json({
+        status: "ok",
+        catalogCount,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (error: any) {
+      res.status(503).json({
+        status: "degraded",
+        reason: `database unreachable: ${error.message}`,
+        timestamp: new Date().toISOString(),
+      });
+    }
   });
 
   // Setup authentication routes
