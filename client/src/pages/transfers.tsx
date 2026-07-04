@@ -202,6 +202,27 @@ function isDefaultZone(zone: string | null | undefined, city: string): boolean {
   return zone.trim().toLowerCase() === `${city} center`.toLowerCase();
 }
 
+// The rate a group of `travelers` would actually pay for a row: for each
+// trip type, the smallest priced vehicle that seats the group; across
+// trip types, the cheapest such option. This is what browse cards show —
+// NOT the row's cheapest_price, which is always the smallest vehicle
+// (a sedan rate is meaningless for a group of 4).
+function bestOptionForTravelers(
+  map: Map<string, Partial<Record<VehicleSlug, number>>>,
+  travelers: number,
+): { tripType: string; vehicle: VehicleSlug; price: number } | null {
+  let best: { tripType: string; vehicle: VehicleSlug; price: number } | null = null;
+  map.forEach((byVehicle, tripType) => {
+    const available = VEHICLE_SLUGS.filter((v) => byVehicle[v] !== undefined);
+    const vehicle = pickVehicleForPassengers(available, travelers);
+    if (!vehicle) return;
+    const price = byVehicle[vehicle];
+    if (price === undefined) return;
+    if (!best || price < best.price) best = { tripType, vehicle, price };
+  });
+  return best;
+}
+
 interface BookingSuccess {
   reference: string;
   total: string;
@@ -662,14 +683,27 @@ export default function TransfersPage() {
                               </span>
                             )}
                           </div>
-                          {row.cheapest_price !== null && (
-                            <p className="text-sm mt-2">
-                              <span className="text-gray-500">{t.from} </span>
-                              <span className="font-semibold text-teal-700">
-                                {formatEGP(row.cheapest_price)}
-                              </span>
-                            </p>
-                          )}
+                          {(() => {
+                            const best = bestOptionForTravelers(map, travelers);
+                            if (!best) return null;
+                            return (
+                              <p
+                                className="text-sm mt-2"
+                                data-testid={`transfer-price-${row.slug}`}
+                              >
+                                {rowTripTypes.length > 1 && (
+                                  <span className="text-gray-500">{t.from} </span>
+                                )}
+                                <span className="font-semibold text-teal-700">
+                                  {formatEGP(best.price)}
+                                </span>
+                                <span className="text-gray-500">
+                                  {" "}
+                                  · {VEHICLE_LABELS[best.vehicle]}
+                                </span>
+                              </p>
+                            );
+                          })()}
                         </div>
                       );
                     })}

@@ -290,7 +290,11 @@ export default function CatalogServicePicker({
         const vs = vehiclesForRow(row.vehicle_prices, tripType);
         const sel = selectedBySlug.get(row.slug);
         const isChecked = !!sel;
-        const currentVehicle: VehicleSlug = sel?.vehicleSlug ?? (vs[0] ?? "sedan");
+        // Unchecked rows preview the vehicle this group would actually
+        // get (and its price), not the smallest/cheapest one — a sedan
+        // rate is misleading for a group the sedan can't seat.
+        const currentVehicle: VehicleSlug =
+          sel?.vehicleSlug ?? pickVehicleForPassengers(vs, travelers) ?? "sedan";
         const currentPrice = row.vehicle_prices[`${currentVehicle}_${tripType}`];
         const showZone = !isDefaultZone(row.pickup_zone, city);
 
