@@ -174,9 +174,14 @@ export function registerAdminCatalogRoutes(app: Express): void {
   app.post("/api/admin/service-catalog", ...adminAuth, async (req, res) => {
     try {
       const parsed = insertServiceCatalogItemSchema.parse(req.body);
+      // Seed name_translations.en from name (same lockstep rule as PATCH).
+      const values: Record<string, unknown> = { ...(parsed as any) };
+      if (typeof parsed.name === "string" && parsed.nameTranslations == null) {
+        values.nameTranslations = { en: parsed.name };
+      }
       const [row] = await db
         .insert(serviceCatalog)
-        .values(parsed as any)
+        .values(values as any)
         .returning();
       res.status(201).json(row);
     } catch (error: any) {
@@ -196,9 +201,19 @@ export function registerAdminCatalogRoutes(app: Express): void {
       const patchSchema = stripSlug(insertServiceCatalogItemSchema.partial());
       const parsed = patchSchema.parse(req.body);
 
+      // Renames must reach name_translations.en too: the import scripts
+      // stamp {en: name} on every row, and a stale en copy shadowed
+      // admin renames on the customer site until pickName was fixed to
+      // prefer `name`. Keep the two in lockstep (preserving any other
+      // language keys) unless the caller set nameTranslations explicitly.
+      const set: Record<string, unknown> = { ...(parsed as any), updatedAt: sql`now()` };
+      if (typeof parsed.name === "string" && parsed.nameTranslations === undefined) {
+        set.nameTranslations = sql`COALESCE(${serviceCatalog.nameTranslations}, '{}'::jsonb) || jsonb_build_object('en', ${parsed.name}::text)`;
+      }
+
       const [row] = await db
         .update(serviceCatalog)
-        .set({ ...(parsed as any), updatedAt: sql`now()` })
+        .set(set)
         .where(eq(serviceCatalog.id, id))
         .returning();
 

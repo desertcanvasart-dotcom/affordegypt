@@ -40,19 +40,24 @@ function humanizeSlug(slug: string): string {
     .join(" ");
 }
 
-// Pull the English display name out of name_translations.en, falling
-// back to the row's `name` column, then to a humanised slug.
-function pickName(row: {
+// English display name. The `name` column is the canonical English
+// text — it's what the admin dashboard edits — so it wins when set.
+// name_translations.en is only a fallback for rows that have no name
+// column (entrance fees, experiences); preferring it over `name` made
+// admin renames invisible on the customer site, because the import
+// scripts stamped {en: name} onto every row and edits only touch `name`.
+// Exported for unit tests.
+export function pickName(row: {
   name: string | null;
   slug: string;
   nameTranslations: unknown;
 }): string {
+  if (typeof row.name === "string" && row.name.trim()) return row.name;
   const t = row.nameTranslations;
   if (t && typeof t === "object") {
     const en = (t as Record<string, unknown>).en;
     if (typeof en === "string" && en.trim()) return en;
   }
-  if (typeof row.name === "string" && row.name.trim()) return row.name;
   return humanizeSlug(row.slug);
 }
 
