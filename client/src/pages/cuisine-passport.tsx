@@ -78,7 +78,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 95,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/koshary.jpg",
+    image: "/images/koshary.jpg",
     nutritionScore: 85,
     culturalStory: "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food.",
     bestLocations: ["Abou Tarek - Downtown Cairo", "Koshari El Tahrir", "Koshari Hind", "Street stalls throughout Egypt"],
@@ -124,7 +124,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 90,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/fool-medames.jpg",
+    image: "/images/fool-medames.jpg",
     nutritionScore: 92,
     culturalStory: "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots. Enjoyed daily by millions of Egyptians, from simple street carts in Cairo to home kitchens across the country.",
     bestLocations: ["Al Malky Restaurant", "Traditional street carts", "Local cafes", "Street breakfast vendors"],
@@ -176,7 +176,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 80,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/molo5eya.jpg",
+    image: "/images/molo5eya.jpg",
     nutritionScore: 88,
     culturalStory: "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt's most ancient and beloved dishes, representing the ultimate comfort food for Egyptians across generations.",
     bestLocations: ["Naguib Mahfouz Cafe", "Traditional family restaurants", "Hotel restaurants", "Rural Egyptian households"],
@@ -228,7 +228,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 75,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/mashi.jpg",
+    image: "/images/mashi.jpg",
     nutritionScore: 90,
     culturalStory: "Ottoman influence dish that became deeply rooted in Egyptian family traditions. Often prepared in large trays for sharing at family gatherings, feasts, and celebrations. The name literally means 'stuffed' in Arabic.",
     bestLocations: ["Alexandrian family restaurants", "Traditional homes", "Coastal restaurants", "Friday family lunch gatherings"],
@@ -280,7 +280,7 @@ const egyptianDishes: Dish[] = [
     category: "Appetizer",
     popularity: 100,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/3esh.jpg",
+    image: "/images/3esh.jpg",
     nutritionScore: 70,
     culturalStory: "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life. Simple, hearty, and deeply rooted in Egyptian culture, this bread truly embodies the traditional local spirit.",
     bestLocations: ["Local bakeries", "Street vendors", "Every Egyptian table", "Furn baladi (clay ovens)"],
@@ -332,7 +332,7 @@ const egyptianDishes: Dish[] = [
     category: "Dessert",
     popularity: 85,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/om-3aly.jpg",
+    image: "/images/om-3aly.jpg",
     nutritionScore: 60,
     culturalStory: "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory. Often called the Egyptian version of bread pudding with Middle Eastern flair, loaded with nuts, coconut, and sometimes raisins.",
     bestLocations: ["Groppi Cafe", "Traditional cafes", "Hotel restaurants", "Ramadan iftar tables"],
@@ -384,7 +384,7 @@ const egyptianDishes: Dish[] = [
     category: "Main",
     popularity: 78,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Rice-Muammar-رز-معمر.jpg",
+    image: "/images/rice-muammar-.jpg",
     nutritionScore: 75,
     culturalStory: "The name 'muammar' means 'enriched,' referring to the rich milk and cream used. Traditional clay tajin cooking gives the best crispy crust and is especially popular in rural Egyptian kitchens.",
     bestLocations: ["Upper Egypt restaurants", "Rural family kitchens", "Traditional Egyptian homes", "Friday lunch tables"],
@@ -436,7 +436,7 @@ const egyptianDishes: Dish[] = [
     category: "Street Food",
     popularity: 85,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/7awawshy.jpg",
+    image: "/images/7awawshy.jpg",
     nutritionScore: 75,
     culturalStory: "Created in Cairo's working-class neighborhoods as a quick, filling meal that's become one of Egypt's most beloved street foods. Often compared to a Middle Eastern-style meat pie or spiced burger in pita, it's popular as a street snack, family meal, or party dish.",
     bestLocations: ["El Refai Restaurant", "Street food vendors", "Local grills", "Cairo street food stalls"],
@@ -477,7 +477,7 @@ const egyptianDishes: Dish[] = [
     category: "Beverage",
     popularity: 70,
     tried: false,
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/karkade.jpg",
+    image: "/images/karkade.jpg",
     nutritionScore: 95,
     culturalStory: "Also spelled Karkaday or Karkadi, this traditional drink holds deep cultural significance in Egypt. Served during weddings and festive gatherings, it's a Ramadan favorite for breaking the fast. Known for medicinal benefits including lowering blood pressure, aiding digestion, and boosting liver health. Can be prepared as cold brew (traditional Egyptian method for smoother taste) or hot brew for stronger flavor.",
     bestLocations: ["Aswan street vendors", "Traditional cafes", "Cairo street cafés with shisha", "Wedding celebrations", "Ramadan iftar tables"],
@@ -736,7 +736,7 @@ export default function CuisinePassport() {
         
         {/* Hero Section */}
         <header
-          className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/egyptian-food.jpg')]"
+          className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('/images/egyptian-food.jpg')]"
         >
           <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           <div className="container mx-auto px-4 text-center relative">

@@ -170,7 +170,7 @@ export default function EasternWesternDesertsGuide() {
       
       {/* Hero Section */}
       <div
-        className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg')]"
+        className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('/images/egypt-siwa-salt-pools.jpg')]"
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 py-32 text-center">

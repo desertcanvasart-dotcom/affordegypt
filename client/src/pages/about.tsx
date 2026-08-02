@@ -40,7 +40,7 @@ export default function About() {
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section
-          className="relative text-white min-h-[90vh] flex items-center justify-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/pyramids-desert.jpg')]"
+          className="relative text-white min-h-[90vh] flex items-center justify-center bg-cover bg-center bg-fixed bg-[url('/images/pyramids-desert.jpg')]"
         >
           <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-teal-600/30 to-teal-700/30" />

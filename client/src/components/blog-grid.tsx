@@ -25,7 +25,7 @@ const getBlogPosts = (t: any): BlogPost[] => [
     category: "Destinations",
     readTime: t('blog.readTime', { time: "5" }),
     publishDate: "2024-03-15",
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/sinai-monastery.jpg",
+    image: "/images/sinai-monastery.jpg",
     slug: "sinai-peninsula-travel-guide"
   },
   {
@@ -45,7 +45,7 @@ const getBlogPosts = (t: any): BlogPost[] => [
     category: "Destinations",
     readTime: t('blog.readTime', { time: "8" }),
     publishDate: "2024-03-01",
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Egypt-Siwa-Salt-Pools.jpg",
+    image: "/images/egypt-siwa-salt-pools.jpg",
     slug: "eastern-western-deserts-travel-guide"
   },
   {
@@ -55,7 +55,7 @@ const getBlogPosts = (t: any): BlogPost[] => [
     category: "Destinations",
     readTime: t('blog.readTime', { time: "7" }),
     publishDate: "2024-03-10",
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley.jpg",
+    image: "/images/nile-valley.jpg",
     slug: "nile-valley-travel-guide"
   },
   {
@@ -75,7 +75,7 @@ const getBlogPosts = (t: any): BlogPost[] => [
     category: "Food & Culture",
     readTime: t('blog.readTime', { time: "4" }),
     publishDate: "2024-03-05",
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg",
+    image: "/images/street-food-egypt.jpg",
     slug: "egyptian-street-food-guide"
   },
   {
@@ -85,7 +85,7 @@ const getBlogPosts = (t: any): BlogPost[] => [
     category: "Destinations",
     readTime: t('blog.readTime', { time: "8" }),
     publishDate: "2024-03-01",
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/eastern-desert.jpg",
+    image: "/images/eastern-desert.jpg",
     slug: "eastern-western-deserts-travel-guide"
   }
 ];

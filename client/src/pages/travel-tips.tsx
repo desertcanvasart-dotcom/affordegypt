@@ -16,7 +16,7 @@ export default function TravelTips() {
         <Navbar />
         {/* Hero Section */}
         <header
-          className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/beach-in-sinai.jpg')]"
+          className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('/images/beach-in-sinai.jpg')]"
         >
           <div className="absolute inset-0 bg-black/50 pointer-events-none" />
           <div className="container mx-auto px-4 relative">

@@ -156,7 +156,7 @@ export default function EgyptianStreetFoodGuide() {
         
         {/* Hero Section */}
         <section
-          className="relative text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/street-food-egypt.jpg')]"
+          className="relative text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed bg-[url('/images/street-food-egypt.jpg')]"
         >
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative max-w-7xl mx-auto px-4 py-32">
