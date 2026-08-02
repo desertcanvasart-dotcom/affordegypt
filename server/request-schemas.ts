@@ -102,3 +102,19 @@ export const adminReviewSchema = reviewRequestSchema.extend({
   isVerified: z.boolean().optional(),
   isActive: z.boolean().optional(),
 });
+
+// POST /api/contact — public contact form. Email delivery is the only sink
+// (there is no contact_messages table), so the handler must fail loudly when
+// the email can't be sent rather than letting the form pretend success.
+export const contactRequestSchema = z.object({
+  name: z.string().min(1).max(200),
+  email: z.string().email().max(320),
+  phone: z.string().max(64).optional().default(""),
+  subject: z.string().min(1).max(300),
+  message: z.string().min(1).max(5000),
+});
+
+// POST /api/newsletter-subscribe — public newsletter opt-in.
+export const newsletterSubscribeSchema = z.object({
+  email: z.string().email().max(320),
+});

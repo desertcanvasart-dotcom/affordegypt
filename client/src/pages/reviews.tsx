@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import type { Review } from "@shared/schema";
 import SeoMeta from "@/components/seo-meta";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function ReviewsPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -106,6 +108,8 @@ export default function ReviewsPage() {
 
   if (isLoading) {
     return (
+      <>
+      <Navbar />
       <div className="min-h-screen bg-gray-50 py-16">
   <SeoMeta
           title="Traveler Reviews | AffordEgypt"
@@ -124,10 +128,14 @@ export default function ReviewsPage() {
           </div>
         </div>
       </div>
+      <Footer />
+      </>
     );
   }
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -465,5 +473,7 @@ export default function ReviewsPage() {
         )}
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

@@ -3,10 +3,13 @@ import { Helmet } from "react-helmet-async";
 export interface SeoMetaProps {
   title: string;
   description: string;
-  canonical: string;
+  /** Omit only for noindex pages (admin tools) — public pages must set it. */
+  canonical?: string;
   ogImage?: string;
   ogType?: "website" | "article";
   schema?: object | object[];
+  /** Ask crawlers to stay out (admin/internal pages). */
+  noindex?: boolean;
 }
 
 const DEFAULT_OG_IMAGE = "https://affordegypt.com/og-default.jpg";
@@ -18,6 +21,7 @@ export default function SeoMeta({
   ogImage,
   ogType,
   schema,
+  noindex,
 }: SeoMetaProps) {
   const image = ogImage ?? DEFAULT_OG_IMAGE;
   const type = ogType ?? "website";
@@ -31,10 +35,11 @@ export default function SeoMeta({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonical} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {canonical && <link rel="canonical" href={canonical} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonical} />
+      {canonical && <meta property="og:url" content={canonical} />}
       <meta property="og:type" content={type} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content="AffordEgypt" />

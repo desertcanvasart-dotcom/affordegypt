@@ -1164,7 +1164,15 @@
       "stepEnjoyRideDesc": "Relájate cómodamente mientras te llevamos a tu destino",
       "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor profesional • Servicio de encuentro y saludo",
       "ctaTitle": "¿Listo para Reservar Tu Traslado del Aeropuerto de El Cairo?",
-      "ctaSubtitle": "Únete a miles de clientes satisfechos que confían en nosotros para sus traslados del aeropuerto de El Cairo"
+      "ctaSubtitle": "Únete a miles de clientes satisfechos que confían en nosotros para sus traslados del aeropuerto de El Cairo",
+      "area1": "Aeropuerto Internacional de El Cairo (CAI)",
+      "area2": "Hoteles de Nuevo Cairo",
+      "area3": "Ciudad 6 de Octubre",
+      "area4": "Hoteles de Giza",
+      "area5": "Centro de El Cairo",
+      "area6": "Heliópolis",
+      "area7": "Maadi",
+      "area8": "Zamalek"
     },
     "luxor": {
       "title": "Traslados del Aeropuerto de Luxor - Profesionales y Confiables | AffordEgypt",
@@ -1209,7 +1217,15 @@
       "affordableDesc": "Tarifas competitivas para traslados en la ciudad antigua. Sin tarifas ocultas ni sobrecargos turísticos.",
       "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor local experto • Conocimiento de rutas de templos",
       "ctaTitle": "¿Listo para Explorar el Antiguo Luxor?",
-      "ctaSubtitle": "Comienza tu viaje al museo al aire libre más grande del mundo con nuestros traslados confiables"
+      "ctaSubtitle": "Comienza tu viaje al museo al aire libre más grande del mundo con nuestros traslados confiables",
+      "area1": "Aeropuerto de Lúxor (LXR)",
+      "area2": "Hoteles de la Orilla Este",
+      "area3": "Hoteles de la Orilla Oeste",
+      "area4": "Valle de los Reyes",
+      "area5": "Zona del Templo de Karnak",
+      "area6": "Distrito del Templo de Lúxor",
+      "area7": "Terminales de Cruceros por el Nilo",
+      "area8": "Zona del Winter Palace"
     },
     "aswan": {
       "title": "Traslados del Aeropuerto de Asuán - Transporte Ciudad del Nilo | AffordEgypt",
@@ -1254,7 +1270,15 @@
       "affordableDesc": "La mejor relación calidad-precio en traslados del sur de Egipto. Precios transparentes sin costos ocultos.",
       "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor experto del Nilo • Conocimiento cultural local",
       "ctaTitle": "¿Listo para Experimentar la Joya del Nilo?",
-      "ctaSubtitle": "Comienza tu aventura en Asuán con nuestro servicio de traslado confiable y conocedor"
+      "ctaSubtitle": "Comienza tu aventura en Asuán con nuestro servicio de traslado confiable y conocedor",
+      "area1": "Aeropuerto de Asuán (ASW)",
+      "area2": "Hoteles de la Corniche",
+      "area3": "Isla Elefantina",
+      "area4": "Pueblos Nubios",
+      "area5": "Zona del Templo de Filae",
+      "area6": "Distrito de la Alta Presa",
+      "area7": "Puertos de Falucas",
+      "area8": "Ruta de Abu Simbel"
     }
   },
   "guideServices": {

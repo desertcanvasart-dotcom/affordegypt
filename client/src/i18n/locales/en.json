@@ -1164,7 +1164,15 @@
       "stepEnjoyRideDesc": "Relax in comfort as we take you to your destination",
       "pricingInfoDesc": "Airport to hotel transfers • Professional driver • Meet & greet service",
       "ctaTitle": "Ready to Book Your Cairo Airport Transfer?",
-      "ctaSubtitle": "Join thousands of satisfied customers who trust us for their Cairo airport transfers"
+      "ctaSubtitle": "Join thousands of satisfied customers who trust us for their Cairo airport transfers",
+      "area1": "Cairo International Airport (CAI)",
+      "area2": "New Cairo Hotels",
+      "area3": "6th of October City",
+      "area4": "Giza Hotels",
+      "area5": "Downtown Cairo",
+      "area6": "Heliopolis",
+      "area7": "Maadi",
+      "area8": "Zamalek"
     },
     "luxor": {
       "title": "Luxor Airport Transfers - Professional & Reliable | AffordEgypt",
@@ -1209,7 +1217,15 @@
       "affordableDesc": "Competitive rates for ancient city transfers. No hidden fees or tourist markup.",
       "pricingInfoDesc": "Airport to hotel transfers • Local expert driver • Temple route knowledge",
       "ctaTitle": "Ready to Explore Ancient Luxor?",
-      "ctaSubtitle": "Start your journey to the world's greatest open-air museum with our reliable transfers"
+      "ctaSubtitle": "Start your journey to the world's greatest open-air museum with our reliable transfers",
+      "area1": "Luxor Airport (LXR)",
+      "area2": "East Bank Hotels",
+      "area3": "West Bank Hotels",
+      "area4": "Valley of the Kings",
+      "area5": "Karnak Temple Area",
+      "area6": "Luxor Temple District",
+      "area7": "Nile Cruise Terminals",
+      "area8": "Winter Palace Area"
     },
     "aswan": {
       "title": "Aswan Airport Transfers - Nile City Transport | AffordEgypt",
@@ -1254,7 +1270,15 @@
       "affordableDesc": "Best value transfers in southern Egypt. Transparent pricing with no hidden costs.",
       "pricingInfoDesc": "Airport to hotel transfers • Nile expert driver • Local cultural knowledge",
       "ctaTitle": "Ready to Experience the Jewel of the Nile?",
-      "ctaSubtitle": "Begin your Aswan adventure with our reliable and knowledgeable transfer service"
+      "ctaSubtitle": "Begin your Aswan adventure with our reliable and knowledgeable transfer service",
+      "area1": "Aswan Airport (ASW)",
+      "area2": "Corniche Hotels",
+      "area3": "Elephantine Island",
+      "area4": "Nubian Villages",
+      "area5": "Philae Temple Area",
+      "area6": "High Dam District",
+      "area7": "Felucca Harbors",
+      "area8": "Abu Simbel Route"
     }
   },
   "guideServices": {

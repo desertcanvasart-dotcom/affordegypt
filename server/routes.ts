@@ -7,6 +7,7 @@ import { registerPricingRoutes } from "./pricing-routes";
 import { registerAdminCatalogRoutes } from "./admin-catalog-routes";
 import { registerPublicCatalogRoutes } from "./public-catalog-routes";
 import { registerReviewRoutes } from "./routes/reviews";
+import { registerContactRoutes } from "./routes/contact";
 import { registerQuoteRoutes } from "./routes/quotes";
 import { registerBookingRoutes } from "./routes/bookings";
 import { registerRouteAdminRoutes } from "./routes/routes-admin";
@@ -421,6 +422,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Reviews endpoints (extracted to ./routes/reviews.ts)
   registerReviewRoutes(app);
+
+  // Contact form + newsletter subscription (./routes/contact.ts)
+  registerContactRoutes(app);
 
   // Quotes API endpoints (extracted to ./routes/quotes.ts)
   registerQuoteRoutes(app);
