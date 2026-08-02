@@ -154,7 +154,7 @@ export default function Footer() {
             <span className="mx-2 text-gray-500">·</span>
             ETAA 2179
             <span className="mx-2 text-gray-500">·</span>
-            Cairo, Egypt
+            Giza, Egypt
           </p>
           <p className="text-xs">
             {`© ${new Date().getFullYear()} AffordEgypt. ${t('footer.copyright')}`}

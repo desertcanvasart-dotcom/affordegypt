@@ -36,7 +36,7 @@ export default function TermsOfService() {
                     1. Acceptance of Terms
                   </h2>
                   <p className="text-gray-700">
-                    By using <a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a> — operated by Capital Travel Service, trading as Afford Egypt ("we", "us", "our") — you agree to abide by these Terms of Service.
+                    By using <a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a> — operated by Capital Travel Service (ETAA 2179), Flat 6, Floor 1, Block 1, Panorama Pyramids Building, El-Ahramat St., Giza, Egypt, trading as Afford Egypt ("we", "us", "our") — you agree to abide by these Terms of Service.
                   </p>
                 </section>
 
