@@ -150,13 +150,9 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 space-y-3">
           <p className="text-xs sm:text-sm leading-relaxed max-w-3xl mx-auto">
-            AffordEgypt is operated by Travel2Egypt LLC
+            AffordEgypt is operated by Capital Travel Service
             <span className="mx-2 text-gray-500">·</span>
-            ETAA member
-            <span className="mx-2 text-gray-500">·</span>
-            Commercial Registration #148004
-            <span className="mx-2 text-gray-500">·</span>
-            Tax ID 597-702-308
+            ETAA 2179
             <span className="mx-2 text-gray-500">·</span>
             Cairo, Egypt
           </p>

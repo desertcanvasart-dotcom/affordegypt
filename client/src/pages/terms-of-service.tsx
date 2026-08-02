@@ -13,7 +13,7 @@ export default function TermsOfService() {
       <Navbar />
   <SeoMeta
           title="Terms of Service | AffordEgypt"
-          description="Terms of service for AffordEgypt, the budget tier of Travel2Egypt. Use of the site, bookings, payments, and liability."
+          description="Terms of service for AffordEgypt, operated by Capital Travel Service (ETAA 2179). Use of the site, bookings, payments, and liability."
           canonical="https://affordegypt.com/terms-of-service"
         />
       <div className="min-h-screen bg-gray-50 py-12">

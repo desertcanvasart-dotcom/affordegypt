@@ -13,7 +13,7 @@ export default function BookingAgreement() {
       <Navbar />
   <SeoMeta
           title="Booking Agreement | AffordEgypt"
-          description="AffordEgypt's booking agreement: deposit terms, cancellation, refunds, and traveler responsibilities for tours operated by Travel2Egypt."
+          description="AffordEgypt's booking agreement: deposit terms, cancellation, refunds, and traveler responsibilities for tours operated by Capital Travel Service (ETAA 2179)."
           canonical="https://affordegypt.com/booking-agreement"
         />
       <div className="min-h-screen bg-gray-50 py-12">
