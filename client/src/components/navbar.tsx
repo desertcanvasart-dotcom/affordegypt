@@ -100,7 +100,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex flex-col items-start">
             <img 
-              src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
+              src="/images/logo-afford-egypt.png" 
               alt="Afford Egypt" 
               className={`w-auto cursor-pointer hover:opacity-90 transition-all duration-300 ${isScrolled ? 'h-6' : 'h-8'}`}
               onClick={navigateToHome}

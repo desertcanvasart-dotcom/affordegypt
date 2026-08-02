@@ -577,7 +577,7 @@ export default function SinaiPeninsulaGuide() {
       <Navbar />
       {/* Hero Section */}
       <div
-        className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/red-sea-diving.jpg')]"
+        className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('/images/red-sea-diving.jpg')]"
       >
         <div className="absolute inset-0 bg-black/40 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />

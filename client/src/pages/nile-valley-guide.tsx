@@ -90,9 +90,9 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.alexandria.freshSeafood",
       "budgetTips.alexandria.historicTram",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg",
+    image: "/images/alexandria.jpg",
     detailImage:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/Alexandria.jpg",
+      "/images/alexandria.jpg",
   },
   {
     id: 2,
@@ -141,9 +141,9 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.cairo.freeMosquesMarkets",
     ],
     image:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/pyramid-of-giza.jpg",
+      "/images/pyramid-of-giza.jpg",
     detailImage:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/giza-pyramids.jpg",
+      "/images/giza-pyramids.jpg",
   },
   {
     id: 3,
@@ -183,9 +183,9 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.beniSuef.basicAccommodation",
       "budgetTips.beniSuef.bargainMarkets",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/beni-suef-1.jpg",
+    image: "/images/beni-suef-1.jpg",
     detailImage:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/Beni-Suef-.jpg",
+      "/images/beni-suef-.jpg",
   },
   {
     id: 4,
@@ -231,9 +231,9 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.minya.localGuides",
       "budgetTips.minya.groupTours",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
+    image: "/images/el-minya.jpg",
     detailImage:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/el-minya.jpg",
+      "/images/el-minya.jpg",
   },
   {
     id: 5,
@@ -273,7 +273,7 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.asyut.localTransport",
       "budgetTips.asyut.traditionalFood",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/asyut.jpg",
+    image: "/images/asyut.jpg",
   },
   {
     id: 6,
@@ -320,7 +320,7 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.sohag.walkingTours",
     ],
     image:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/abydos-temple.jpg",
+      "/images/abydos-temple.jpg",
   },
   {
     id: 7,
@@ -361,7 +361,7 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.qena.basicHotels",
     ],
     image:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/dendera-temple.jpg",
+      "/images/dendera-temple.jpg",
   },
   {
     id: 8,
@@ -416,9 +416,9 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.luxor.localRestaurants",
     ],
     image:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/balloon-in-luxor.jpg",
+      "/images/balloon-in-luxor.jpg",
     detailImage:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg",
+      "/images/karnak-temple.jpg",
   },
   {
     id: 9,
@@ -458,7 +458,7 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.edfu.horseCartRide",
       "budgetTips.edfu.affordableFood",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/edfu.jpg",
+    image: "/images/edfu.jpg",
   },
   {
     id: 10,
@@ -499,7 +499,7 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.komOmbo.basicTown",
     ],
     image:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/ko-mombo-temple.jpg",
+      "/images/ko-mombo-temple.jpg",
   },
   {
     id: 11,
@@ -554,7 +554,7 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.aswan.spiceShopping",
     ],
     image:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/philae-temple.jpg",
+      "/images/philae-temple.jpg",
   },
   {
     id: 12,
@@ -595,9 +595,9 @@ const nileValleyCities: NileCity[] = [
       "budgetTips.abuSimbel.bringLunchWater",
       "budgetTips.abuSimbel.earlyMorningArrival",
     ],
-    image: "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel.jpg",
+    image: "/images/abu-simbel.jpg",
     detailImage:
-      "http://travel2egypt.org/wp-content/uploads/2025/06/abu-simbel-1.jpg",
+      "/images/abu-simbel-1.jpg",
   },
 ];
 
@@ -2414,7 +2414,7 @@ export default function NileValleyGuide() {
 
       {/* Hero Section */}
       <header
-        className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/nile-valley-1.jpg')]"
+        className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('/images/nile-valley-1.jpg')]"
       >
         <div className="absolute inset-0 bg-black/50 pointer-events-none" />
         <div className="container mx-auto px-4 text-center relative">

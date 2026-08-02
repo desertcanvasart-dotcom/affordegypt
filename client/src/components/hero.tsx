@@ -18,7 +18,7 @@ export default function Hero() {
 
   return (
     <section
-      className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('http://travel2egypt.org/wp-content/uploads/2025/06/karnak-temple.jpg')]"
+      className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('/images/karnak-temple.jpg')]"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(25,169,116,0.3)] to-[rgba(31,41,55,0.6)] pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

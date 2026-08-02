@@ -15,7 +15,7 @@ export default function Footer() {
             <div className="flex items-center mb-6">
               <Link href="/">
                 <img 
-                  src="http://travel2egypt.org/wp-content/uploads/2025/06/logo-afford-egypt.png" 
+                  src="/images/logo-afford-egypt.png" 
                   alt="Afford Egypt Logo" 
                   className="h-8 w-auto cursor-pointer hover:opacity-90 transition-opacity"
                 />
