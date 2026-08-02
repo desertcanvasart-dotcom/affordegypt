@@ -67,8 +67,8 @@ export default function ContactSection() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-2">General inquiries</p>
-                <a href="mailto:info@affordegypt.com" className="text-primary hover:underline">
-                  info@affordegypt.com
+                <a href="mailto:hello@affordegypt.com" className="text-primary hover:underline">
+                  hello@affordegypt.com
                 </a>
                 <p className="text-muted-foreground mt-3 mb-2">Bookings & support</p>
                 <a href="mailto:bookings@affordegypt.com" className="text-primary hover:underline">

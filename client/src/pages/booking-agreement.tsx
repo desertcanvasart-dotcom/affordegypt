@@ -27,7 +27,7 @@ export default function BookingAgreement() {
               <div className="mb-8 text-gray-600">
                 <p><strong>Effective Date:</strong> March 2, 2020</p>
                 <p><strong>Last Updated:</strong> June 6, 2025</p>
-                <p><strong>Contact Email:</strong> <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">info@affordegypt.com</a></p>
+                <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <p className="text-lg text-gray-700 mb-8">
@@ -85,7 +85,7 @@ export default function BookingAgreement() {
                     6. Complaints & Disputes
                   </h2>
                   <p className="text-gray-700">
-                    If something goes wrong, please notify us immediately so we can try to resolve it. Formal complaints must be emailed to <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">info@affordegypt.com</a> within 7 days of the trip's end.
+                    If something goes wrong, please notify us immediately so we can try to resolve it. Formal complaints must be emailed to <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a> within 7 days of the trip's end.
                   </p>
                 </section>
               </div>
@@ -95,8 +95,8 @@ export default function BookingAgreement() {
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
                   {"For questions about this booking agreement, please contact us at "}
-                  <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">
-                    info@affordegypt.com
+                  <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">
+                    hello@affordegypt.com
                   </a>
                 </p>
               </div>

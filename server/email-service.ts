@@ -9,9 +9,9 @@ export interface EmailService {
 }
 
 class TransactionalEmailService implements EmailService {
-  // Defaults to info@affordegypt.com but can be overridden via FROM_EMAIL
+  // Defaults to hello@affordegypt.com but can be overridden via FROM_EMAIL
   // so the verified Resend sender can change without a code release.
-  private fromEmail = process.env.FROM_EMAIL || 'info@affordegypt.com';
+  private fromEmail = process.env.FROM_EMAIL || 'hello@affordegypt.com';
 
   async sendBookingConfirmation(booking: Booking, quote: Quote): Promise<boolean> {
     if (!process.env.RESEND_API_KEY) {
@@ -379,7 +379,7 @@ class TransactionalEmailService implements EmailService {
       const emailContent = this.generateAdminNotificationEmail(booking, quote, jsonBlob, type);
       
       await mailService.send({
-        to: 'info@affordegypt.com',
+        to: 'hello@affordegypt.com',
         from: this.fromEmail,
         subject: `ACTION: send Tab.travel deposit link — booking ${booking.bookingReference}`,
         html: emailContent,
@@ -612,9 +612,9 @@ export async function sendContactFormEmail(contactData: {
 
   try {
     await mailService.send({
-      to: 'info@affordegypt.com',
+      to: 'hello@affordegypt.com',
       from: {
-        email: 'info@affordegypt.com',
+        email: 'hello@affordegypt.com',
         name: 'Afford Egypt Contact Form'
       },
       replyTo: contactData.email,
@@ -717,7 +717,7 @@ export async function sendNewsletterSubscriptionEmail(email: string): Promise<bo
           
           <div class="footer">
             <div class="footer-text">Afford Egypt - Making Egypt Accessible to Everyone</div>
-            <div class="footer-text">📧 info@affordegypt.com | 📱 +20 110 076 5283</div>
+            <div class="footer-text">📧 hello@affordegypt.com | 📱 +20 110 076 5283</div>
             <div class="unsubscribe">
               You're receiving this because you subscribed to our newsletter. 
               You can unsubscribe at any time by replying to this email.
@@ -782,7 +782,7 @@ export async function sendNewsletterSubscriptionEmail(email: string): Promise<bo
     await mailService.send({
       to: email,
       from: {
-        email: 'info@affordegypt.com',
+        email: 'hello@affordegypt.com',
         name: 'Afford Egypt'
       },
       subject: 'Welcome to Afford Egypt - Your Egypt Travel Journey Begins!',
@@ -811,15 +811,15 @@ The Afford Egypt Team
 
 ---
 Afford Egypt - Making Egypt Accessible to Everyone
-📧 info@affordegypt.com | 📱 +20 110 076 5283
+📧 hello@affordegypt.com | 📱 +20 110 076 5283
       `.trim()
     });
 
     // Send notification to admin
     await mailService.send({
-      to: 'info@affordegypt.com',
+      to: 'hello@affordegypt.com',
       from: {
-        email: 'info@affordegypt.com',
+        email: 'hello@affordegypt.com',
         name: 'Afford Egypt Newsletter'
       },
       subject: `New Newsletter Subscription - ${email}`,

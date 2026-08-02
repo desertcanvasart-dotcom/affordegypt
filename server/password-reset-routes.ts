@@ -68,7 +68,7 @@ async function sendPasswordResetEmail(email: string, resetLink: string): Promise
     await mailService.send({
       to: email,
       from: {
-        email: 'info@affordegypt.com',
+        email: 'hello@affordegypt.com',
         name: 'AffordEgypt'
       },
       subject: 'Reset Your Password - AffordEgypt',
