@@ -23,6 +23,7 @@ import AdminTripTypes from "@/pages/admin-trip-types";
 import AdminServiceCategories from "@/pages/admin-service-categories";
 import AdminEntranceFees from "@/pages/admin-entrance-fees";
 import AttractionsSimple from "@/pages/attractions-simple";
+import Attractions from "@/pages/attractions";
 import BookingConfirmation from "@/pages/booking-confirmation";
 import UserDashboard from "@/pages/user-dashboard";
 import TravelTips from "@/pages/travel-tips";
@@ -85,6 +86,9 @@ function Router() {
       <Route path="/admin/trip-types" component={AdminTripTypes} />
       <Route path="/admin/service-categories" component={AdminServiceCategories} />
       <Route path="/admin/entrance-fees" component={AdminEntranceFees} />
+      {/* Admin attraction management (used to squat on the public
+          /attractions URL — that now renders the visitor-facing page) */}
+      <Route path="/admin/attractions" component={AttractionsSimple} />
       {/* Legacy route-booking pages priced off the (now empty) routes table
           and showed $0. Redirect to the real booking flow so old links and
           indexed URLs land on the planner instead of a dead $0 page. */}
@@ -100,7 +104,7 @@ function Router() {
       {/* Multilingual routes */}
       {createMultilingualRoute("transfers", Transfers)}
       {createMultilingualRoute("pricing-tool", PricingTool)}
-      {createMultilingualRoute("attractions", AttractionsSimple)}
+      {createMultilingualRoute("attractions", Attractions)}
       {createMultilingualRoute("destinations", Destinations)}
       {createMultilingualRoute("travel-tips", TravelTips)}
       {createMultilingualRoute("reviews", Reviews)}

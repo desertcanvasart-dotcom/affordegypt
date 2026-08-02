@@ -91,9 +91,9 @@ export default function AttractionsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
   <SeoMeta
-          title="Egypt Attractions & Entrance Fees | Real Prices, No Markup"
-          description="Pyramids, Karnak, Valley of the Kings, Abu Simbel, and dozens more. Real ticket prices, average duration, and how to combine attractions into an efficient itinerary. Book private guide service from LE 5,000/day."
-          canonical="https://affordegypt.com/attractions"
+          title="Attractions Management | Admin | AffordEgypt"
+          description="Internal admin tool for managing attractions."
+          noindex
         />
       {/* Header with navigation */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">

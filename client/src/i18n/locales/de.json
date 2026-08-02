@@ -1164,7 +1164,15 @@
       "stepEnjoyRideDesc": "Entspannen Sie sich komfortabel, während wir Sie zu Ihrem Ziel bringen",
       "pricingInfoDesc": "Flughafen zu Hotel Transfers • Professioneller Fahrer • Empfangsservice",
       "ctaTitle": "Bereit, Ihren Kairo Flughafentransfer zu Buchen?",
-      "ctaSubtitle": "Schließen Sie sich Tausenden von zufriedenen Kunden an, die uns für ihre Kairo Flughafentransfers vertrauen"
+      "ctaSubtitle": "Schließen Sie sich Tausenden von zufriedenen Kunden an, die uns für ihre Kairo Flughafentransfers vertrauen",
+      "area1": "Internationaler Flughafen Kairo (CAI)",
+      "area2": "Hotels in Neu-Kairo",
+      "area3": "Stadt des 6. Oktober",
+      "area4": "Hotels in Gizeh",
+      "area5": "Innenstadt von Kairo",
+      "area6": "Heliopolis",
+      "area7": "Maadi",
+      "area8": "Zamalek"
     },
     "luxor": {
       "title": "Luxor Flughafentransfers - Professionell & Zuverlässig | AffordEgypt",
@@ -1209,7 +1217,15 @@
       "affordableDesc": "Wettbewerbsfähige Preise für Transfers in der antiken Stadt. Keine versteckten Gebühren oder Touristenaufschläge.",
       "pricingInfoDesc": "Flughafen zu Hotel Transfers • Ortskundiger Expertenfahrer • Tempelroutenwissen",
       "ctaTitle": "Bereit, das Antike Luxor zu Erkunden?",
-      "ctaSubtitle": "Beginnen Sie Ihre Reise zum größten Freilichtmuseum der Welt mit unseren zuverlässigen Transfers"
+      "ctaSubtitle": "Beginnen Sie Ihre Reise zum größten Freilichtmuseum der Welt mit unseren zuverlässigen Transfers",
+      "area1": "Flughafen Luxor (LXR)",
+      "area2": "Hotels am Ostufer",
+      "area3": "Hotels am Westufer",
+      "area4": "Tal der Könige",
+      "area5": "Bereich Karnak-Tempel",
+      "area6": "Viertel am Luxor-Tempel",
+      "area7": "Nilkreuzfahrt-Terminals",
+      "area8": "Bereich Winter Palace"
     },
     "aswan": {
       "title": "Assuan Flughafentransfers - Nilstadt Transport | AffordEgypt",
@@ -1254,7 +1270,15 @@
       "affordableDesc": "Bestes Preis-Leistungs-Verhältnis für Transfers in Südägypten. Transparente Preise ohne versteckte Kosten.",
       "pricingInfoDesc": "Flughafen zu Hotel Transfers • Nil-Expertenfahrer • Lokales Kulturwissen",
       "ctaTitle": "Bereit, das Juwel des Nils zu Erleben?",
-      "ctaSubtitle": "Beginnen Sie Ihr Assuan-Abenteuer mit unserem zuverlässigen und sachkundigen Transfer-Service"
+      "ctaSubtitle": "Beginnen Sie Ihr Assuan-Abenteuer mit unserem zuverlässigen und sachkundigen Transfer-Service",
+      "area1": "Flughafen Assuan (ASW)",
+      "area2": "Hotels an der Corniche",
+      "area3": "Elephantine-Insel",
+      "area4": "Nubische Dörfer",
+      "area5": "Bereich Philae-Tempel",
+      "area6": "Viertel am Hochdamm",
+      "area7": "Feluken-Häfen",
+      "area8": "Route nach Abu Simbel"
     }
   },
   "guideServices": {

@@ -204,7 +204,7 @@ export default function AdminPanel() {
                 <span>Routes & Pricing</span>
               </Button>
             </Link>
-            <Link href="/attractions">
+            <Link href="/admin/attractions">
               <Button className="bg-teal-600 hover:bg-teal-700 flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
                 <span>Attractions</span>

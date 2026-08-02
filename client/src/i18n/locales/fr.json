@@ -1164,7 +1164,15 @@
       "stepEnjoyRideDesc": "Détendez-vous confortablement pendant que nous vous emmenons à votre destination",
       "pricingInfoDesc": "Transferts aéroport vers hôtel • Chauffeur professionnel • Service d'accueil",
       "ctaTitle": "Prêt à Réserver Votre Transfert Aéroport du Caire ?",
-      "ctaSubtitle": "Rejoignez des milliers de clients satisfaits qui nous font confiance pour leurs transferts d'aéroport du Caire"
+      "ctaSubtitle": "Rejoignez des milliers de clients satisfaits qui nous font confiance pour leurs transferts d'aéroport du Caire",
+      "area1": "Aéroport international du Caire (CAI)",
+      "area2": "Hôtels du Nouveau Caire",
+      "area3": "Ville du 6 Octobre",
+      "area4": "Hôtels de Gizeh",
+      "area5": "Centre-ville du Caire",
+      "area6": "Héliopolis",
+      "area7": "Maadi",
+      "area8": "Zamalek"
     },
     "luxor": {
       "title": "Transferts Aéroport de Louxor - Professionnels et Fiables | AffordEgypt",
@@ -1209,7 +1217,15 @@
       "affordableDesc": "Tarifs compétitifs pour les transferts dans la ville antique. Pas de frais cachés ni de supplément touristique.",
       "pricingInfoDesc": "Transferts aéroport vers hôtel • Chauffeur local expert • Connaissance des routes des temples",
       "ctaTitle": "Prêt à Explorer l'Ancien Louxor ?",
-      "ctaSubtitle": "Commencez votre voyage vers le plus grand musée en plein air du monde avec nos transferts fiables"
+      "ctaSubtitle": "Commencez votre voyage vers le plus grand musée en plein air du monde avec nos transferts fiables",
+      "area1": "Aéroport de Louxor (LXR)",
+      "area2": "Hôtels de la rive est",
+      "area3": "Hôtels de la rive ouest",
+      "area4": "Vallée des Rois",
+      "area5": "Zone du temple de Karnak",
+      "area6": "Quartier du temple de Louxor",
+      "area7": "Terminaux des croisières sur le Nil",
+      "area8": "Quartier du Winter Palace"
     },
     "aswan": {
       "title": "Transferts Aéroport d'Assouan - Transport Ville du Nil | AffordEgypt",
@@ -1254,7 +1270,15 @@
       "affordableDesc": "Meilleur rapport qualité-prix pour les transferts dans le sud de l'Égypte. Tarification transparente sans coûts cachés.",
       "pricingInfoDesc": "Transferts aéroport vers hôtel • Chauffeur expert du Nil • Connaissance culturelle locale",
       "ctaTitle": "Prêt à Découvrir le Joyau du Nil ?",
-      "ctaSubtitle": "Commencez votre aventure à Assouan avec notre service de transfert fiable et expert"
+      "ctaSubtitle": "Commencez votre aventure à Assouan avec notre service de transfert fiable et expert",
+      "area1": "Aéroport d'Assouan (ASW)",
+      "area2": "Hôtels de la Corniche",
+      "area3": "Île Éléphantine",
+      "area4": "Villages nubiens",
+      "area5": "Zone du temple de Philae",
+      "area6": "Quartier du Haut Barrage",
+      "area7": "Ports de felouques",
+      "area8": "Route d'Abou Simbel"
     }
   },
   "guideServices": {
