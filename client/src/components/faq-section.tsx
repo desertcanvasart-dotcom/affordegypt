@@ -120,7 +120,7 @@ export default function FAQSection() {
               Message us on WhatsApp
             </a>
             <a
-              href="mailto:info@affordegypt.com"
+              href="mailto:hello@affordegypt.com"
               className="inline-flex items-center justify-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg transition-colors duration-200"
             >
               Email us

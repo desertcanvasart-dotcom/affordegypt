@@ -220,7 +220,7 @@ export default function BookingConfirmation() {
           <h3 style="color: #0d9488; margin: 0 0 10px 0;">Contact Information</h3>
           <p style="margin: 5px 0; color: #374151;"><strong>Phone:</strong> +20 110 076 5283</p>
           <p style="margin: 5px 0; color: #374151;"><strong>WhatsApp:</strong> +20 110 076 5283</p>
-          <p style="margin: 5px 0; color: #374151;"><strong>Email:</strong> info@affordegypt.com</p>
+          <p style="margin: 5px 0; color: #374151;"><strong>Email:</strong> hello@affordegypt.com</p>
           <p style="margin: 15px 0 0 0; color: #6b7280; font-style: italic;">Thank you for choosing AffordEgypt for your Egypt adventure!</p>
         </div>
       `;
@@ -348,7 +348,7 @@ CONTACT INFORMATION
 ${'='.repeat(30)}
 Phone: +20 110 076 5283
 WhatsApp: +20 110 076 5283
-Email: info@affordegypt.com
+Email: hello@affordegypt.com
 
 Thank you for choosing AffordEgypt for your Egypt adventure!
 `;

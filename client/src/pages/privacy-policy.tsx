@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
               <div className="mb-8 text-gray-600">
                 <p><strong>Effective Date:</strong> March 2, 2020</p>
                 <p><strong>Last Updated:</strong> June 6, 2025</p>
-                <p><strong>Contact Email:</strong> <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">info@affordegypt.com</a></p>
+                <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <div className="space-y-8">
@@ -79,7 +79,7 @@ export default function PrivacyPolicy() {
                     <li>Request a copy of your data in portable format</li>
                   </ul>
                   <p className="text-gray-700 mt-4">
-                    To exercise these rights, email us at: <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">info@affordegypt.com</a>
+                    To exercise these rights, email us at: <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a>
                   </p>
                 </section>
 
@@ -116,8 +116,8 @@ export default function PrivacyPolicy() {
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
                   {"For questions about this privacy policy, please contact us at "}
-                  <a href="mailto:info@affordegypt.com" className="text-teal-600 hover:text-teal-700">
-                    info@affordegypt.com
+                  <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">
+                    hello@affordegypt.com
                   </a>
                 </p>
               </div>
