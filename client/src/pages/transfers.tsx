@@ -60,7 +60,7 @@ const transfersContent = {
     licensedDrivers: "Licensed drivers",
     intercity: "Intercity",
     airport: "Airport",
-    local: "Local",
+    local: "In-town",
     city: "City",
     allCities: "All cities",
     travelers: "Travelers",
@@ -71,6 +71,9 @@ const transfersContent = {
     back: "← Back to transfers",
     serviceType: "Service Type",
     pickup: "Pickup",
+    dropoff: "Drop-off",
+    eitherDirection: "either direction",
+    anywhereInTown: "anywhere in town",
   },
   es: {
     title: "Solo Traslado",
@@ -80,7 +83,7 @@ const transfersContent = {
     licensedDrivers: "Conductores licenciados",
     intercity: "Interurbano",
     airport: "Aeropuerto",
-    local: "Local",
+    local: "En la ciudad",
     city: "Ciudad",
     allCities: "Todas las ciudades",
     travelers: "Viajeros",
@@ -91,6 +94,9 @@ const transfersContent = {
     back: "← Volver a traslados",
     serviceType: "Tipo de Servicio",
     pickup: "Recogida",
+    dropoff: "Destino",
+    eitherDirection: "en ambas direcciones",
+    anywhereInTown: "cualquier lugar de la ciudad",
   },
   fr: {
     title: "Transfert Uniquement",
@@ -100,7 +106,7 @@ const transfersContent = {
     licensedDrivers: "Chauffeurs agréés",
     intercity: "Intercité",
     airport: "Aéroport",
-    local: "Local",
+    local: "En ville",
     city: "Ville",
     allCities: "Toutes les villes",
     travelers: "Voyageurs",
@@ -111,6 +117,9 @@ const transfersContent = {
     back: "← Retour aux transferts",
     serviceType: "Type de Service",
     pickup: "Prise en charge",
+    dropoff: "Dépose",
+    eitherDirection: "dans les deux sens",
+    anywhereInTown: "n'importe où en ville",
   },
   de: {
     title: "Nur Transfer",
@@ -120,7 +129,7 @@ const transfersContent = {
     licensedDrivers: "Lizenzierte Fahrer",
     intercity: "Intercity",
     airport: "Flughafen",
-    local: "Lokal",
+    local: "In der Stadt",
     city: "Stadt",
     allCities: "Alle Städte",
     travelers: "Reisende",
@@ -131,6 +140,9 @@ const transfersContent = {
     back: "← Zurück zu Transfers",
     serviceType: "Service-Typ",
     pickup: "Abholung",
+    dropoff: "Ziel",
+    eitherDirection: "in beide Richtungen",
+    anywhereInTown: "überall in der Stadt",
   },
 };
 
@@ -200,6 +212,69 @@ function pickVehicleForPassengers(
 function isDefaultZone(zone: string | null | undefined, city: string): boolean {
   if (!zone) return true;
   return zone.trim().toLowerCase() === `${city} center`.toLowerCase();
+}
+
+// Pickup/drop-off endpoints parsed from the route name. Names are
+// "A → B", "A → stops → B", or "A ↔ B" (either direction); the first
+// segment is the pickup and the last the drop-off. Trip-mode
+// parentheticals ("Next Day Return", "Over Day") are stripped; zone
+// parentheticals ("South City", "Aswan Bridge") are kept — they locate
+// the endpoint.
+const TRIP_MODE_PARENS =
+  /\s*\((?:[^)]*(?:same day|next day|over\s?day|overnight|full day|with visits?|\d+\s?hrs?)[^)]*)\)\s*$/i;
+
+function parseEndpoints(
+  name: string,
+): { pickup: string; dropoff: string; bidirectional: boolean } | null {
+  const bidirectional = name.includes("↔");
+  const parts = name
+    .split(/[↔→]/)
+    .map((p) => p.replace(TRIP_MODE_PARENS, "").trim())
+    .filter(Boolean);
+  if (parts.length < 2) return null;
+  return { pickup: parts[0], dropoff: parts[parts.length - 1], bidirectional };
+}
+
+// One line of pickup/drop-off info for a catalog row. Falls back to the
+// bare pickup zone when the name has no parseable endpoints. The
+// operator's zone (when it isn't the "<City> Center" default) refines
+// the pickup endpoint unless it just repeats it.
+// "Hotel → Local Transfer" names describe a ride anywhere within town —
+// the last segment is a service descriptor, not a destination.
+const SERVICE_DESCRIPTOR = /^((?:local|city)\s+transfer)\s*(\(.+\))?$/i;
+
+function endpointsLine(
+  row: { name: string; pickup_zone?: string | null; city: string },
+  t: {
+    pickup: string;
+    dropoff: string;
+    eitherDirection: string;
+    anywhereInTown: string;
+  },
+  includesOneWay: boolean,
+): string | null {
+  const zone = !isDefaultZone(row.pickup_zone, row.city) ? row.pickup_zone! : null;
+  const ep = parseEndpoints(row.name);
+  if (!ep) return zone ? `${t.pickup}: ${zone}` : null;
+  // Zones lifted from a parenthetical in the name ("(to Acacia)",
+  // "(Sphinx)") are already visible at the endpoint they describe —
+  // appending them to the pickup would misplace them.
+  const pickup =
+    zone &&
+    zone.trim().toLowerCase() !== ep.pickup.toLowerCase() &&
+    !row.name.toLowerCase().includes(zone.trim().toLowerCase())
+      ? `${ep.pickup} (${zone})`
+      : ep.pickup;
+  const dm = ep.dropoff.match(SERVICE_DESCRIPTOR);
+  const dropoff = dm
+    ? dm[2]
+      ? `${t.anywhereInTown} ${dm[2]}`
+      : t.anywhereInTown
+    : ep.dropoff;
+  const base = `${t.pickup}: ${pickup} · ${t.dropoff}: ${dropoff}`;
+  // "either direction" only makes sense for one-way ↔ rows — on a round
+  // trip the ↔ in the name is just notation, the customer returns anyway.
+  return ep.bidirectional && includesOneWay ? `${base} · ${t.eitherDirection}` : base;
 }
 
 // The rate a group of `travelers` would actually pay for a row: for each
@@ -657,7 +732,11 @@ export default function TransfersPage() {
                       const map = parseVehiclePrices(row.vehicle_prices);
                       const rowTripTypes = Array.from(map.keys());
                       if (rowTripTypes.length === 0) return null;
-                      const showZone = !isDefaultZone(row.pickup_zone, row.city);
+                      const endpoints = endpointsLine(
+                        row,
+                        t,
+                        rowTripTypes.includes("one_way"),
+                      );
                       return (
                         <div
                           key={row.slug}
@@ -677,9 +756,9 @@ export default function TransfersPage() {
                                 {TRIP_TYPE_LABELS[tt] ?? tt}
                               </Badge>
                             ))}
-                            {showZone && row.pickup_zone && (
+                            {endpoints && (
                               <span className="text-xs text-gray-500">
-                                {t.pickup}: {row.pickup_zone}
+                                {endpoints}
                               </span>
                             )}
                           </div>
@@ -743,12 +822,16 @@ export default function TransfersPage() {
                       {TRIP_TYPE_LABELS[tripType] ?? tripType}
                     </Badge>
                   )}
-                  {!isDefaultZone(selectedRow.pickup_zone, selectedRow.city) &&
-                    selectedRow.pickup_zone && (
-                      <span className="text-xs text-gray-500">
-                        {t.pickup}: {selectedRow.pickup_zone}
-                      </span>
-                    )}
+                  {(() => {
+                    const line = endpointsLine(
+                      selectedRow,
+                      t,
+                      tripTypes.includes("one_way"),
+                    );
+                    return line ? (
+                      <span className="text-xs text-gray-500">{line}</span>
+                    ) : null;
+                  })()}
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
