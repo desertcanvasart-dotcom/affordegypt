@@ -30,7 +30,6 @@ import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
 import EntranceFeesSearch from "@/components/entrance-fees-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
-import { trackEvent, trackConversion } from "@/lib/analytics";
 import { useAuth } from "@/hooks/useAuth";
 import {
   blockersForStep as sharedBlockersForStep,

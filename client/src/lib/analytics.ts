@@ -95,20 +95,69 @@ export const trackEvent = (
   });
 };
 
+/**
+ * Google Ads conversion label for a completed booking.
+ *
+ * Unlike the account-level IDs above, this cannot be recovered from the repo —
+ * it is generated per conversion action inside the Google Ads UI
+ * (Goals > Conversions > the action > "Tag setup"), and looks like `AbC-D_efGhIjKl`.
+ *
+ * Until it is filled in, trackConversion refuses to send. That is deliberate:
+ * gtag will happily fire an event with a bogus send_to, Google will silently
+ * discard it, and the site would look instrumented while reporting nothing —
+ * which is exactly the failure mode that hid the broken analytics wiring for
+ * months. A loud warning beats a silent no-op.
+ */
+export const ADS_CONVERSION_LABEL_BOOKING = '';
+
+/**
+ * Whether a booking should be reported as a conversion right now.
+ *
+ * Pure so the policy is testable without a live booking — creating one would
+ * mean writing to the production database.
+ */
+export function shouldSendBookingConversion(
+  booking: { bookingReference?: string; bookingStatus?: string } | undefined | null,
+  alreadySent: boolean,
+): boolean {
+  if (!booking?.bookingReference) return false;
+  // A cancelled booking is not a conversion. Every other status — including
+  // `pending`, the normal state immediately after checkout — means a real
+  // booking was placed.
+  if (booking.bookingStatus === 'cancelled') return false;
+  return !alreadySent;
+}
+
 // Track conversion events for Google Ads
 export const trackConversion = (
   conversionLabel: string,
   value?: number,
-  currency: string = 'EGP'
+  currency: string = 'EGP',
+  /**
+   * Stable unique id for the conversion (we pass the booking reference).
+   * Google Ads de-duplicates on this, so a visitor reloading, bookmarking or
+   * sharing the confirmation URL cannot inflate the conversion count.
+   */
+  transactionId?: string,
 ) => {
   if (typeof window === 'undefined' || !window.gtag) return;
-  
+
   const googleAdsId = GOOGLE_ADS_ID;
   if (!googleAdsId) return;
-  
+
+  if (!conversionLabel) {
+    console.warn(
+      '[analytics] Google Ads conversion NOT sent: no conversion label configured. ' +
+        'Set ADS_CONVERSION_LABEL_BOOKING in client/src/lib/analytics.ts to the label ' +
+        'from Google Ads > Goals > Conversions > (action) > Tag setup.',
+    );
+    return;
+  }
+
   window.gtag('event', 'conversion', {
     send_to: `${googleAdsId}/${conversionLabel}`,
     value: value,
     currency: currency,
+    transaction_id: transactionId,
   });
 };

@@ -12,6 +12,12 @@ import { Separator } from "@/components/ui/separator";
 
 import { useQuery } from "@tanstack/react-query";
 import { formatEGP } from "@/lib/utils";
+import {
+  ADS_CONVERSION_LABEL_BOOKING,
+  shouldSendBookingConversion,
+  trackConversion,
+  trackEvent,
+} from "@/lib/analytics";
 
 type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
@@ -47,6 +53,48 @@ export default function BookingConfirmation() {
   const { data: routes = [] } = useQuery<any[]>({
     queryKey: ["/api/routes"],
   });
+
+  // Report the booking as a conversion, exactly once per booking reference.
+  //
+  // This page is a permalink: customers reload it, bookmark it, and get it by
+  // email, so firing on every mount would inflate the conversion count. Two
+  // independent guards prevent that — a localStorage marker keyed by reference
+  // (stops the send locally) and transaction_id (lets Google Ads de-duplicate
+  // even across devices, where localStorage can't help).
+  //
+  // Cancelled bookings are excluded; everything else means a real booking was
+  // placed, including `pending`, which is the normal state right after checkout.
+  useEffect(() => {
+    const booking = bookingData?.booking;
+    if (!booking?.bookingReference) return;
+
+    const storageKey = `conversion_sent:${booking.bookingReference}`;
+    let alreadySent = false;
+    try {
+      alreadySent = !!localStorage.getItem(storageKey);
+    } catch {
+      // Private mode / storage disabled — treat as not-yet-sent and rely on
+      // transaction_id de-duplication rather than dropping the conversion.
+    }
+
+    if (!shouldSendBookingConversion(booking, alreadySent)) return;
+
+    const value = Number(booking.totalAmount);
+
+    trackEvent("booking_confirmed", "ecommerce", booking.bookingReference,
+      Number.isFinite(value) ? value : undefined);
+
+    trackConversion(
+      ADS_CONVERSION_LABEL_BOOKING,
+      Number.isFinite(value) && value > 0 ? value : undefined,
+      "EGP",
+      booking.bookingReference,
+    );
+
+    try {
+      localStorage.setItem(storageKey, "1");
+    } catch {}
+  }, [bookingData]);
 
   const getStatusIcon = (status: BookingStatus) => {
     switch (status) {
