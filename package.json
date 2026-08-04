@@ -14,6 +14,7 @@
     "test": "vitest run",
     "check:invariants": "node scripts/check-invariants.mjs",
     "check:pricing-drift": "node scripts/check-pricing-drift.mjs",
+    "check:routes": "node scripts/check-routes.mjs",
     "db:push": "drizzle-kit push"
   },
   "dependencies": {

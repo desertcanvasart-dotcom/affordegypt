@@ -30,6 +30,13 @@ jobs:
       - name: Unit tests (pricing engine)
         run: npm test
 
+      # Catches internal links pointing at paths no route serves. TypeScript
+      # cannot check a string against a wouter route table, so this class of bug
+      # ships silently — #46 found two dead links by accident, and this run
+      # found six more in the checkout consent copy.
+      - name: Route audit (dead internal links)
+        run: npm run check:routes
+
       # Full production build: pricing snapshot (falls back without
       # DATABASE_URL by design), vite build + prerender, sitemap, server
       # bundle. Catches build-only breakage before Railway does.

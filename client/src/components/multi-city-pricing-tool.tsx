@@ -1527,7 +1527,7 @@ export default function MultiCityPricingTool() {
                               className="mt-0.5"
                             />
                             <Label htmlFor="terms-service" className="text-xs leading-tight cursor-pointer">
-                              I agree to the <a href="/terms" className="text-primary hover:underline" target="_blank">Terms of Service</a> and <a href="/privacy" className="text-primary hover:underline" target="_blank">Privacy Policy</a>
+                              I agree to the <a href="/terms-of-service" className="text-primary hover:underline" target="_blank">Terms of Service</a> and <a href="/privacy-policy" className="text-primary hover:underline" target="_blank">Privacy Policy</a>
                             </Label>
                           </div>
                           <div className="flex items-start gap-2">
@@ -1539,7 +1539,7 @@ export default function MultiCityPricingTool() {
                               className="mt-0.5"
                             />
                             <Label htmlFor="booking-policy" className="text-xs leading-tight cursor-pointer">
-                              I understand and accept the <a href="/booking-policy" className="text-primary hover:underline" target="_blank">Booking Policy</a> and cancellation terms
+                              I understand and accept the <a href="/booking-agreement" className="text-primary hover:underline" target="_blank">Booking Policy</a> and cancellation terms
                             </Label>
                           </div>
                         </div>

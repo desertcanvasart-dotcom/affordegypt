@@ -1013,7 +1013,7 @@ export default function TransfersPage() {
                         >
                           I agree to the{" "}
                           <a
-                            href="/terms"
+                            href="/terms-of-service"
                             className="text-teal-700 hover:underline"
                             target="_blank"
                           >
@@ -1021,7 +1021,7 @@ export default function TransfersPage() {
                           </a>{" "}
                           and{" "}
                           <a
-                            href="/privacy"
+                            href="/privacy-policy"
                             className="text-teal-700 hover:underline"
                             target="_blank"
                           >
@@ -1048,7 +1048,7 @@ export default function TransfersPage() {
                         >
                           I understand and accept the{" "}
                           <a
-                            href="/booking-policy"
+                            href="/booking-agreement"
                             className="text-teal-700 hover:underline"
                             target="_blank"
                           >
