@@ -1,6 +1,10 @@
 // Single-line trust strip directly under the hero. Replaces the generic
 // stat row (4.9/5 / 2,500+ / Verified Guides / All Egypt) — those numbers
 // don't do as much trust work as the registered-operator framing here.
+//
+// Figures come from lib/operator-facts so this strip and the review page can't
+// disagree, which they previously did (2,500+ here vs 2,000+ there).
+import { OPERATOR, TRAVELLERS_SERVED } from "@/lib/operator-facts";
 
 export default function CredentialsStrip() {
   return (
@@ -8,14 +12,14 @@ export default function CredentialsStrip() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm text-gray-700 leading-relaxed">
           <span className="font-semibold text-gray-900">
-            Operated by Capital Travel Service
+            Operated by {OPERATOR.legalName}
           </span>
           <span className="mx-2 text-gray-400">·</span>
-          ETAA 2179
+          {OPERATOR.etaaLicence}
           <span className="mx-2 text-gray-400">·</span>
-          Licensed since 2003
+          Licensed since {OPERATOR.licensedSince}
           <span className="mx-2 text-gray-400">·</span>
-          2,500+ travelers across Egypt
+          {TRAVELLERS_SERVED} travellers across Egypt
         </p>
       </div>
     </section>
