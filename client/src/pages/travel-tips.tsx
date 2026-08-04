@@ -1,4 +1,5 @@
 import SeoMeta from "@/components/seo-meta";
+import { articleSchema } from "@/lib/article-schema";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -9,6 +10,16 @@ export default function TravelTips() {
         title="Egypt Travel Tips | What Locals Wish You Knew"
         description="Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong."
         canonical="https://affordegypt.com/travel-tips"
+        ogImage="https://affordegypt.com/images/giza-pyramids.jpg"
+        schema={articleSchema({
+          headline: "Egypt Travel Tips | What Locals Wish You Knew",
+          description:
+            "Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong.",
+          canonical: "https://affordegypt.com/travel-tips",
+          image: "https://affordegypt.com/images/giza-pyramids.jpg",
+          datePublished: "2025-06-07",
+          dateModified: "2026-08-02",
+        })}
         ogType="article"
       />
       

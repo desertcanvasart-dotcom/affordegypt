@@ -5,6 +5,7 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
+import { isKnownPublicPath } from "@shared/public-routes";
 
 const viteLogger = createLogger();
 
@@ -96,8 +97,12 @@ export function serveStatic(app: Express) {
     }),
   );
 
-  // SPA fallback for routes without a prerendered file.
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+  // SPA fallback for routes without a prerendered file. Unknown paths get
+  // the SPA shell too (the client renders the not-found page) but with a
+  // real 404 status — a 200 here is a soft-404 that keeps dead URLs (and
+  // missing assets like a bad og:image path) alive in search indexes.
+  app.use("*", (req, res) => {
+    const status = isKnownPublicPath(req.originalUrl) ? 200 : 404;
+    res.status(status).sendFile(path.resolve(distPath, "index.html"));
   });
 }

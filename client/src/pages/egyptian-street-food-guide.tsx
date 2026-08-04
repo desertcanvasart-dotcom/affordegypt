@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import SeoMeta from "@/components/seo-meta";
+import { articleSchema } from "@/lib/article-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -148,6 +149,16 @@ export default function EgyptianStreetFoodGuide() {
         title="Egyptian Street Food Guide | What to Eat & Where"
         description="From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide."
         canonical="https://affordegypt.com/egyptian-street-food-guide"
+        ogImage="https://affordegypt.com/images/street-food-egypt.jpg"
+        schema={articleSchema({
+          headline: "Egyptian Street Food Guide | What to Eat & Where",
+          description:
+            "From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide.",
+          canonical: "https://affordegypt.com/egyptian-street-food-guide",
+          image: "https://affordegypt.com/images/street-food-egypt.jpg",
+          datePublished: "2025-06-07",
+          dateModified: "2026-08-02",
+        })}
         ogType="article"
       />
 

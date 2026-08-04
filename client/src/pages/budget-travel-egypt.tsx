@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import SeoMeta from "@/components/seo-meta";
+import { articleSchema } from "@/lib/article-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -112,6 +113,16 @@ export default function BudgetTravelEgypt() {
         title="Egypt on a Budget | A Cairo Operator's Honest Guide"
         description="How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions."
         canonical="https://affordegypt.com/budget-travel-egypt"
+        ogImage="https://affordegypt.com/images/pyramid-of-giza.jpg"
+        schema={articleSchema({
+          headline: "Egypt on a Budget | A Cairo Operator's Honest Guide",
+          description:
+            "How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions.",
+          canonical: "https://affordegypt.com/budget-travel-egypt",
+          image: "https://affordegypt.com/images/pyramid-of-giza.jpg",
+          datePublished: "2025-06-07",
+          dateModified: "2026-04-30",
+        })}
         ogType="article"
       />
 

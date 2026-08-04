@@ -1,0 +1,36 @@
+# AffordEgypt
+
+> Budget-focused private travel services in Egypt, operated by Capital Travel Service (ETAA license 2179, operating since 2003; same team as Travel2Egypt). Transparent pricing in Egyptian pounds (EGP): a private car, a licensed Egyptologist guide, and per-person entrance tickets are priced separately, with no bundled markup. No online payment required — 10% deposit, balance on arrival.
+
+Key facts:
+- Private airport, intercity, and in-town transfers in Cairo, Luxor, Aswan, Hurghada, and Marsa Alam. Fixed prices by vehicle (sedan 1–2 passengers, minivan 3–8, van 9–15) and trip type (one-way, round trip, hourly).
+- Licensed Egyptologist guides from 2,750 EGP/day (English; other languages priced higher).
+- Guide + private car day packages from 5,625 EGP/day in Cairo.
+- Live prices are quoted by the trip planner; the booked total always equals the quoted total.
+- Contact: hello@affordegypt.com, or WhatsApp via the site.
+
+## Booking
+- [Trip planner](https://affordegypt.com/pricing-tool): build a multi-city itinerary with live per-item prices.
+- [Transfers](https://affordegypt.com/transfers): book a single transfer without an itinerary.
+
+## Services
+- [Cairo airport transfers](https://affordegypt.com/cairo-airport-transfers)
+- [Luxor airport transfers](https://affordegypt.com/luxor-airport-transfers)
+- [Aswan airport transfers](https://affordegypt.com/aswan-airport-transfers)
+- [Cairo guide & car](https://affordegypt.com/cairo-car-tour-guide-services)
+- [Luxor guide & car](https://affordegypt.com/luxor-car-tour-guide-services)
+- [Aswan guide & car](https://affordegypt.com/aswan-car-tour-guide-services)
+
+## Guides
+- [Egypt on a budget](https://affordegypt.com/budget-travel-egypt)
+- [Egyptian street food](https://affordegypt.com/egyptian-street-food-guide)
+- [Nile Valley](https://affordegypt.com/nile-valley-guide)
+- [Sinai Peninsula](https://affordegypt.com/sinai-peninsula-guide)
+- [Eastern & Western Deserts](https://affordegypt.com/eastern-western-deserts-guide)
+- [Cuisine passport](https://affordegypt.com/cuisine-passport)
+- [Travel tips](https://affordegypt.com/travel-tips)
+
+## Policies
+- [Booking agreement](https://affordegypt.com/booking-agreement)
+- [Terms of service](https://affordegypt.com/terms-of-service)
+- [Privacy policy](https://affordegypt.com/privacy-policy)

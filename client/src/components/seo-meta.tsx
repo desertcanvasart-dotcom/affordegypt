@@ -12,7 +12,9 @@ export interface SeoMetaProps {
   noindex?: boolean;
 }
 
-const DEFAULT_OG_IMAGE = "https://affordegypt.com/og-default.jpg";
+// Must be a real file under client/public/ — /og-default.jpg never existed,
+// so every share preview silently got the SPA shell HTML instead of an image.
+const DEFAULT_OG_IMAGE = "https://affordegypt.com/images/giza-pyramids.jpg";
 
 export default function SeoMeta({
   title,

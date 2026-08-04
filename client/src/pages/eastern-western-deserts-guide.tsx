@@ -9,6 +9,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
 import SeoMeta from "@/components/seo-meta";
+import { articleSchema } from "@/lib/article-schema";
 
 export default function EasternWesternDesertsGuide() {
   const { t } = useTranslation();
@@ -164,6 +165,16 @@ export default function EasternWesternDesertsGuide() {
           title="Egypt's Deserts | White Desert, Black Desert, Siwa Oasis"
           description="The deserts most Egypt itineraries skip. White Desert, Black Desert, Bahariya, Farafra, and Siwa Oasis. Logistics, costs, and what's worth the trip — written by a guide who grew up in Aswan."
           canonical="https://affordegypt.com/eastern-western-deserts-guide"
+          ogImage="https://affordegypt.com/images/eastern-desert.jpg"
+          schema={articleSchema({
+            headline: "Egypt's Deserts | White Desert, Black Desert, Siwa Oasis",
+            description:
+              "The deserts most Egypt itineraries skip. White Desert, Black Desert, Bahariya, Farafra, and Siwa Oasis. Logistics, costs, and what's worth the trip — written by a guide who grew up in Aswan.",
+            canonical: "https://affordegypt.com/eastern-western-deserts-guide",
+            image: "https://affordegypt.com/images/eastern-desert.jpg",
+            datePublished: "2025-06-07",
+            dateModified: "2026-08-02",
+          })}
           ogType="article"
         />
       <Navbar />
