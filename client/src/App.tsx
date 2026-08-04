@@ -168,17 +168,14 @@ function Router() {
 }
 
 function App() {
-  // Initialize Google Analytics and Google Ads when app loads
+  // Initialize Google Analytics and Google Ads when app loads.
+  // This used to be gated on VITE_GA_MEASUREMENT_ID / VITE_GOOGLE_ADS_ID being
+  // set, which they never were in the Railway build — so initGA() was simply
+  // never called, and the gate only ever produced a console warning. The IDs now
+  // have defaults in lib/analytics.ts, which owns that decision; duplicating the
+  // check here is what kept it switched off.
   useEffect(() => {
-    // Check for tracking IDs
-    const hasGA = import.meta.env.VITE_GA_MEASUREMENT_ID;
-    const hasAds = import.meta.env.VITE_GOOGLE_ADS_ID;
-
-    if (!hasGA && !hasAds) {
-      console.warn('Missing tracking IDs: VITE_GA_MEASUREMENT_ID and VITE_GOOGLE_ADS_ID');
-    } else {
-      initGA();
-    }
+    initGA();
   }, []);
 
   // Signal the prerenderer (Puppeteer) that initial render is complete.
