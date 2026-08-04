@@ -1,5 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
+import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -51,21 +52,21 @@ export default function LuxorGuideServices() {
     {
       name: "Temple Specialist Guide",
       duration: "Full Day (8 hours)",
-      price: "From 2,750 EGP",
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-guide-services") } }),
       features: ["Ancient Egypt expert", "Valley of Kings specialist", "Hieroglyph interpreter"],
       icon: UserCheck
     },
     {
       name: "East & West Bank Tour",
       duration: "Full Day", 
-      price: "From 6,875 EGP",
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-guide-car") } }),
       features: ["Professional guide", "Private vehicle", "Both banks covered"],
       icon: Users
     },
     {
       name: "Luxury Temple Tours",
       duration: "6-10 hours",
-      price: "From 4,125 EGP", 
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-tour-car") } }), 
       features: ["Premium vehicle", "Expert driver-guide", "Flexible temple visits"],
       icon: Car
     }
@@ -126,8 +127,8 @@ export default function LuxorGuideServices() {
   return (
     <>
       <SeoMeta
-        title="Luxor Private Tour Guide & Car | From LE 6,875/day"
-        description="Private licensed Egyptologist + vehicle for Luxor East and West Banks. Karnak, Valley of the Kings, Hatshepsut, and the Colossi. From LE 6,875/day for guide + private car."
+        title={`Luxor Private Tour Guide & Car | From ${formatLEPerDay("luxor-guide-car")}`}
+        description={`Private licensed Egyptologist + vehicle for Luxor East and West Banks. Karnak, Valley of the Kings, Hatshepsut, and the Colossi. From ${formatLEPerDay("luxor-guide-car")} for guide + private car.`}
         canonical="https://affordegypt.com/luxor-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />
@@ -145,7 +146,7 @@ export default function LuxorGuideServices() {
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                {t("guideServices.luxor.heroSubtitle")}
+                {t("guideServices.luxor.heroSubtitle", { interpolation: { guidePrice: formatLE("luxor-guide-services"), guideCarPrice: formatLE("luxor-guide-car") } })}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
@@ -316,7 +317,7 @@ export default function LuxorGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Licensed guide from LE 2,750/day — guide + private car from LE 6,875/day</span>
+                  <span className="font-semibold">Licensed guide from {formatLEPerDay("luxor-guide-services")} — guide + private car from {formatLEPerDay("luxor-guide-car")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   Licensed guides • Temple expertise • Private air-conditioned car on the guide + car package • Entrance tickets billed separately

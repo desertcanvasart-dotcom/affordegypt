@@ -1303,14 +1303,15 @@
       "fullDay8Hours": "Full Day (8 hours)",
       "fullDay": "Full Day",
       "6to12Hours": "8-12 hours",
-      "12to14Hours": "12-14 hours"
+      "12to14Hours": "12-14 hours",
+      "priceFrom": "From {{price}}"
     },
     "cairo": {
       "title": "Cairo Car & Tour Guide Services - Expert Tours | AffordEgypt",
-      "metaDescription": "Professional Cairo car & tour guide services. Licensed Egyptologist from LE 2,750/day, or guide + private air-conditioned car from LE 5,625/day. Entrance tickets not included.",
+      "metaDescription": "Expert Cairo car & tour guide services. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "keywords": "Cairo guide, Egypt tour guide, Cairo car service, pyramid tours, Egyptian Museum guide, Islamic Cairo tours",
       "heroTitle": "Cairo Car & Tour Guide Services",
-      "heroSubtitle": "Expert Cairo car & tour guide services. Licensed Egyptologist from LE 2,750/day, or guide + private air-conditioned car from LE 5,625/day. Entrance tickets are billed separately.",
+      "heroSubtitle": "Expert Cairo car & tour guide services. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "whyChooseTitle": "Why Choose Our Cairo Car & Tour Guide Services?",
       "multilingualGuides": "Multilingual Guides",
       "multilingualGuidesDesc": "Expert guides fluent in English, Arabic, French, German and Spanish",
@@ -1320,9 +1321,6 @@
       "photographySupportDesc": "Guides help you capture perfect photos at iconic Cairo landmarks",
       "flexibleScheduling": "Flexible Scheduling",
       "flexibleSchedulingDesc": "Customize your itinerary and timing to match your preferences",
-      "guidePriceFrom": "From 2,750 EGP",
-      "guideCarPriceFrom": "From 5,625 EGP",
-      "carPriceFrom": "From 2,875 EGP",
       "serviceTypes": {
         "professionalGuide": {
           "name": "Professional Guide",
@@ -1385,10 +1383,10 @@
     },
     "luxor": {
       "title": "Luxor Car & Tour Guide Services - Temple Tours | AffordEgypt",
-      "metaDescription": "Expert Luxor car & tour guide services. Licensed archaeologist guide from LE 2,750/day, or guide + private car from LE 6,875/day. Valley of the Kings, Karnak and the West Bank.",
+      "metaDescription": "Expert car & tour guide services in ancient Thebes. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "keywords": "Luxor guide, Valley of Kings tour, temple guide Luxor, Karnak guide, ancient Egypt tours, Luxor car service",
       "heroTitle": "Luxor Car & Tour Guide Services",
-      "heroSubtitle": "Expert car & tour guide services in ancient Thebes. Licensed archaeologist from LE 2,750/day, or guide + private car from LE 6,875/day. Entrance tickets are billed separately.",
+      "heroSubtitle": "Expert car & tour guide services in ancient Thebes. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "whyChooseTitle": "Why Choose Our Luxor Car & Tour Guide Services?",
       "templeExpertise": "Temple Expertise",
       "templeExpertiseDesc": "Specialized knowledge of Karnak, Luxor Temple, and Valley of the Kings",
@@ -1460,10 +1458,10 @@
     },
     "aswan": {
       "title": "Aswan Car & Tour Guide Services - Nubian Culture Tours | AffordEgypt",
-      "metaDescription": "Expert Aswan car & tour guide services. Licensed guide from LE 2,750/day, or guide + private car from LE 7,755/day. Nubian culture, Abu Simbel and Philae Temple.",
+      "metaDescription": "Discover Nubian culture and southern Egypt. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "keywords": "Aswan guide, Abu Simbel tour, Nubian village tour, Philae Temple guide, felucca sailing, Aswan car service",
       "heroTitle": "Aswan Car & Tour Guide Services",
-      "heroSubtitle": "Discover Nubian culture and southern Egypt. Licensed local guide from LE 2,750/day, or guide + private car from LE 7,755/day. Entrance tickets are billed separately.",
+      "heroSubtitle": "Discover Nubian culture and southern Egypt. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "whyChooseTitle": "Why Choose Our Aswan Car & Tour Guide Services?",
       "nileExpertise": "Nile Expertise",
       "nileExpertiseDesc": "Specialized knowledge of Nubian culture and Nile river traditions",

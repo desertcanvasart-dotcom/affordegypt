@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T10:12:24.816Z",
+  "generatedAt": "2026-08-04T22:50:09.392Z",
   "source": "db",
   "currency": "EGP",
   "services": {
@@ -20,6 +20,30 @@
     },
     "aswan-guide-services": {
       "minPrice": "2750"
+    },
+    "cairo-tour-car": {
+      "minPrice": "2875"
+    },
+    "luxor-tour-car": {
+      "minPrice": "4125"
+    },
+    "aswan-tour-car": {
+      "minPrice": "5005"
+    },
+    "cairo-guide-car": {
+      "minPrice": "5625"
+    },
+    "luxor-guide-car": {
+      "minPrice": "6875"
+    },
+    "aswan-guide-car": {
+      "minPrice": "7755"
+    },
+    "aswan-abu-simbel-car": {
+      "minPrice": "11275"
+    },
+    "aswan-abu-simbel-guide-car": {
+      "minPrice": "14025"
     }
   }
 }

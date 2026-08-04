@@ -40,6 +40,20 @@ const SERVICE_KEYS = {
   cairoGuide: "cairo-guide-services",
   luxorGuide: "luxor-guide-services",
   aswanGuide: "aswan-guide-services",
+  // Full-day private car only (no guide).
+  cairoCar: "cairo-tour-car",
+  luxorCar: "luxor-tour-car",
+  aswanCar: "aswan-tour-car",
+  // Guide + full-day private car — the headline rate on the guide-service
+  // pages. Derived as guide + car rather than stored, so it cannot disagree
+  // with its own two components.
+  cairoGuideCar: "cairo-guide-car",
+  luxorGuideCar: "luxor-guide-car",
+  aswanGuideCar: "aswan-guide-car",
+  // Aswan's Abu Simbel day trip is a 280 km round trip filed under
+  // intercity_transfer, not a tour_transfer — priced separately for that reason.
+  aswanAbuSimbelCar: "aswan-abu-simbel-car",
+  aswanAbuSimbelGuideCar: "aswan-abu-simbel-guide-car",
 };
 
 async function loadFallback() {
@@ -103,6 +117,67 @@ async function getGuideMin(c, cityId) {
   return Math.round(Number(min)).toString();
 }
 
+/**
+ * The specific catalog rows the guide-service pages advertise.
+ *
+ * Pinned by slug, deliberately, rather than taking a MIN across everything that
+ * looks like a full day. Each page card names a concrete product, and a blind
+ * minimum prices the wrong one: Luxor's cheapest full-day car is the West-Bank
+ * half of the city (LE 3,020), so a MIN would advertise the "East & West Bank
+ * Tour" at a rate that doesn't buy both banks. Aswan is worse — its Abu Simbel
+ * card is an intercity_transfer, so a tour_transfer MIN would have advertised a
+ * 280 km round trip at the in-town day rate.
+ *
+ * slug is documented write-once in shared/schema.ts, so pinning is stable. If a
+ * slug ever disappears the value falls back and the build logs it, rather than
+ * silently substituting a different product's price.
+ *
+ * duration_hours would be the principled filter, but it is NULL on all 71
+ * tour_transfer rows in production — the column exists and was never populated.
+ */
+const PINNED_SLUGS = {
+  cairoCar: "cairo-hotel-full-day-pyramids-hotel-8-hrs-3-visits",
+  luxorCar: "luxor-hotel-city-full-day-8-hrs",
+  aswanCar: "aswan-hotel-full-day-in-town-8-hrs",
+  aswanAbuSimbelCar: "aswan-hotel-abu-simbel-hotel-same-day",
+};
+
+/** Cheapest vehicle price on one pinned catalog row. */
+async function getSlugMin(c, slug) {
+  const rows = await c.query(
+    `SELECT vehicle_prices FROM service_catalog
+     WHERE slug = $1 AND is_active = true`,
+    [slug],
+  );
+  if (rows.rows.length === 0) return null;
+
+  let min = Infinity;
+  for (const r of rows.rows) {
+    let blob = r.vehicle_prices;
+    if (typeof blob === "string") {
+      try {
+        blob = JSON.parse(blob);
+      } catch {
+        continue;
+      }
+    }
+    if (!blob || typeof blob !== "object") continue;
+    for (const v of Object.values(blob)) {
+      const n = Number(v);
+      if (Number.isFinite(n) && n > 0 && n < min) min = n;
+    }
+  }
+  if (min === Infinity) return null;
+  return Math.round(min).toString();
+}
+
+/** guide day rate + full-day car, or null if either side is missing. */
+function sumPrices(a, b) {
+  if (!a || !b) return null;
+  const total = Number(a) + Number(b);
+  return Number.isFinite(total) && total > 0 ? Math.round(total).toString() : null;
+}
+
 async function deriveFromDb() {
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL not set");
@@ -117,6 +192,21 @@ async function deriveFromDb() {
     out[SERVICE_KEYS.cairoGuide] = await getGuideMin(c, CITY_IDS.cairo);
     out[SERVICE_KEYS.luxorGuide] = await getGuideMin(c, CITY_IDS.luxor);
     out[SERVICE_KEYS.aswanGuide] = await getGuideMin(c, CITY_IDS.aswan);
+
+    out[SERVICE_KEYS.cairoCar] = await getSlugMin(c, PINNED_SLUGS.cairoCar);
+    out[SERVICE_KEYS.luxorCar] = await getSlugMin(c, PINNED_SLUGS.luxorCar);
+    out[SERVICE_KEYS.aswanCar] = await getSlugMin(c, PINNED_SLUGS.aswanCar);
+    out[SERVICE_KEYS.aswanAbuSimbelCar] = await getSlugMin(c, PINNED_SLUGS.aswanAbuSimbelCar);
+
+    out[SERVICE_KEYS.cairoGuideCar] = sumPrices(
+      out[SERVICE_KEYS.cairoGuide], out[SERVICE_KEYS.cairoCar]);
+    out[SERVICE_KEYS.luxorGuideCar] = sumPrices(
+      out[SERVICE_KEYS.luxorGuide], out[SERVICE_KEYS.luxorCar]);
+    out[SERVICE_KEYS.aswanGuideCar] = sumPrices(
+      out[SERVICE_KEYS.aswanGuide], out[SERVICE_KEYS.aswanCar]);
+    out[SERVICE_KEYS.aswanAbuSimbelGuideCar] = sumPrices(
+      out[SERVICE_KEYS.aswanGuide], out[SERVICE_KEYS.aswanAbuSimbelCar]);
+
     return out;
   } finally {
     await c.end();

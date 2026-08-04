@@ -11,6 +11,7 @@ import FAQSection, { HOMEPAGE_FAQS } from "@/components/faq-section";
 import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
 import MobileStickyCTA from "@/components/mobile-sticky-cta";
+import { formatLEPerDay } from "@/lib/service-pricing";
 
 const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
@@ -93,7 +94,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <SeoMeta
         title="Egypt Tours from a Real Egyptian Operator | AffordEgypt"
-        description="Private car + licensed Egyptologist from LE 5,625/day. Operated by Capital Travel Service (ETAA 2179), licensed since 2003. Transparent prices, no hidden fees, no online payment required — pay 10% deposit, balance on arrival."
+        description={`Private car + licensed Egyptologist from ${formatLEPerDay("cairo-guide-car")}. Operated by Capital Travel Service (ETAA 2179), licensed since 2003. Transparent prices, no hidden fees, no online payment required — pay 10% deposit, balance on arrival.`}
         canonical="https://affordegypt.com/"
         schema={[ORGANIZATION_SCHEMA, LOCAL_BUSINESS_SCHEMA, FAQ_SCHEMA]}
       />

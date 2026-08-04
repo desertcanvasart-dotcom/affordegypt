@@ -1303,12 +1303,13 @@
       "fullDay8Hours": "Día Completo (8 horas)",
       "fullDay": "Día Completo",
       "6to12Hours": "8-12 horas",
-      "12to14Hours": "12-14 horas"
+      "12to14Hours": "12-14 horas",
+      "priceFrom": "Desde {{price}}"
     },
     "cairo": {
       "title": "Servicios de Auto y Guía Turístico en El Cairo | AffordEgypt",
       "heroTitle": "Servicios de Auto y Guía Turístico en El Cairo",
-      "heroSubtitle": "Servicios expertos de auto y guía turístico en El Cairo. Egiptólogos licenciados, soporte multilingüe y vehículos premium desde 2,750 EGP.",
+      "heroSubtitle": "Servicios expertos de auto y guía turístico en El Cairo. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en El Cairo?",
       "multilingualGuides": "Guías Multilingües",
       "multilingualGuidesDesc": "Guías expertos fluentes en inglés, árabe, francés, alemán y español",
@@ -1318,9 +1319,6 @@
       "photographySupportDesc": "Los guías ayudan a capturar fotos perfectas en los lugares emblemáticos de El Cairo",
       "flexibleScheduling": "Programación Flexible",
       "flexibleSchedulingDesc": "Personaliza tu itinerario y horarios según tus preferencias",
-      "guidePriceFrom": "Desde 2,750 EGP",
-      "guideCarPriceFrom": "Desde 5,625 EGP",
-      "carPriceFrom": "Desde 2,875 EGP",
       "serviceAreasTitle": "Destinos Populares de Tours en El Cairo",
       "serviceAreasDesc": "Nuestros guías expertos cubren todas las principales atracciones de El Cairo y gemas ocultas",
       "specialtiesTitle": "Servicios Especializados de El Cairo",
@@ -1337,7 +1335,7 @@
     "luxor": {
       "title": "Servicios de Auto y Guía Turístico en Luxor | AffordEgypt",
       "heroTitle": "Servicios de Auto y Guía Turístico en Luxor",
-      "heroSubtitle": "Servicios expertos de auto y guía turístico en la antigua Tebas. Arqueólogos licenciados y vehículos premium desde 2,750 EGP.",
+      "heroSubtitle": "Servicios expertos de auto y guía turístico en la antigua Tebas. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en Luxor?",
       "templeExpertise": "Experiencia en Templos",
       "templeExpertiseDesc": "Conocimiento especializado de Karnak, Templo de Luxor y Valle de los Reyes",
@@ -1363,7 +1361,7 @@
     "aswan": {
       "title": "Servicios de Auto y Guía Turístico en Asuán | AffordEgypt",
       "heroTitle": "Servicios de Auto y Guía Turístico en Asuán",
-      "heroSubtitle": "Descubre la cultura nubia y tesoros del sur de Egipto. Servicios expertos de auto y guía turístico, expediciones del desierto e inmersión cultural desde 2,750 EGP.",
+      "heroSubtitle": "Descubre la cultura nubia y tesoros del sur de Egipto. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en Asuán?",
       "nileExpertise": "Experiencia del Nilo",
       "nileExpertiseDesc": "Conocimiento especializado de la cultura nubia y tradiciones del río Nilo",

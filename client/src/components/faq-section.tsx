@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { formatLEPerDay } from "@/lib/service-pricing";
+
+// Cairo guide + full-day private car — the cheapest guide+car day we sell, and
+// the number this copy calls "our floor". Read from the build-time pricing
+// snapshot so the FAQ (and the FAQPage schema built from it) cannot quote a
+// rate the pricing engine no longer charges.
+const FLOOR_PER_DAY = formatLEPerDay("cairo-guide-car");
 
 export interface HomepageFaq {
   question: string;
@@ -14,7 +21,7 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     question: "Why are you cheaper than other private Egypt tours?",
     answer:
-      "Because we don't pad the price with things you didn't ask for. Most Egypt tour packages bundle hotels, meals, tickets, and concierge service into a single number — even if you'd rather choose those yourself. AffordEgypt charges only for the operational core: a private car, a licensed Egyptologist, and a transparent base price from LE 5,625/day. You add tickets, meals, and experiences only when you want them. Same operations as Travel2Egypt's premium tier, with the markup and the inclusions you didn't choose stripped out.",
+      `Because we don't pad the price with things you didn't ask for. Most Egypt tour packages bundle hotels, meals, tickets, and concierge service into a single number — even if you'd rather choose those yourself. AffordEgypt charges only for the operational core: a private car, a licensed Egyptologist, and a transparent base price from ${FLOOR_PER_DAY}. You add tickets, meals, and experiences only when you want them. Same operations as Travel2Egypt's premium tier, with the markup and the inclusions you didn't choose stripped out.`,
   },
   {
     question: "How do I know AffordEgypt isn't one of the scam operators I've read about?",
@@ -44,7 +51,7 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     question: "What's the absolute minimum I could pay for a private Egypt trip?",
     answer:
-      "Our floor is LE 5,625/day (~$118 USD / €110 EUR) for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. A typical 3-day Cairo trip with all entrance tickets and one meal per day works out to around LE 14,000–18,000 per person for a couple, depending on which attractions you include. We'll send you a real quote in under a minute — no account, no commitment. Note: we don't sell shared minibus tours. Some operators advertise \"Egypt tours from $50/day\" — those are shared group tours, a different product. Ours is fully private.",
+      `Our floor is ${FLOOR_PER_DAY} for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. A typical 3-day Cairo trip with all entrance tickets and one meal per day works out to around LE 14,000–18,000 per person for a couple, depending on which attractions you include. We'll send you a real quote in under a minute — no account, no commitment. Note: we don't sell shared minibus tours. Some operators advertise \"Egypt tours from $50/day\" — those are shared group tours, a different product. Ours is fully private.`,
   },
   {
     question: "Do I need a visa to enter Egypt?",
