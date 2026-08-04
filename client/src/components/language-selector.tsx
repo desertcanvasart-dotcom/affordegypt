@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import { Globe } from 'lucide-react';
+import { setLanguage } from '@/i18n';
 import {
   Select,
   SelectContent,
@@ -21,12 +22,10 @@ export function LanguageSelector() {
   const queryClient = useQueryClient();
 
   const handleLanguageChange = (languageCode: string) => {
-    // Change language
-    i18n.changeLanguage(languageCode);
-    
-    // Store the language preference
-    localStorage.setItem('language', languageCode);
-    
+    // Switches i18next, persists the choice, and syncs <html lang>. This is the
+    // only place a language preference is recorded — see client/src/i18n/index.ts.
+    setLanguage(languageCode);
+
     // Clear all cached queries to force refetch with new language
     queryClient.invalidateQueries();
     
@@ -40,10 +39,15 @@ export function LanguageSelector() {
 
   return (
     <Select value={i18n.language} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-auto border-none bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800">
+      {/* The visible trigger is a flag emoji, which gives screen readers an
+          accessible name like "flag: Germany". aria-label supplies the real one. */}
+      <SelectTrigger
+        aria-label={`Language: ${currentLanguage.name}`}
+        className="w-auto min-h-11 border-none bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+      >
         <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="text-sm font-medium">{currentLanguage.flag}</span>
+          <Globe className="h-4 w-4" aria-hidden="true" />
+          <span className="text-sm font-medium" aria-hidden="true">{currentLanguage.flag}</span>
         </div>
       </SelectTrigger>
       <SelectContent>
