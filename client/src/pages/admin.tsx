@@ -395,11 +395,11 @@ export default function AdminPanel() {
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center font-mono">1–3</TableCell>
+                      <TableCell className="text-center font-mono">1–2</TableCell>
                       <TableCell className="text-gray-600">Comfortable car for small groups</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(1, {name: 'Sedan', min: 1, max: 3})}>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(1, {name: 'Sedan', min: 1, max: 2})}>
                             <Edit2 className="w-3 h-3" />
                           </Button>
                           <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle" onClick={() => handleDelete(1, 'vehicle')}>
@@ -418,11 +418,11 @@ export default function AdminPanel() {
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center font-mono">4–8</TableCell>
+                      <TableCell className="text-center font-mono">3–8</TableCell>
                       <TableCell className="text-gray-600">Spacious vehicle for medium groups</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
-                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(2, {name: 'Minivan', min: 4, max: 8})}>
+                          <Button size="sm" variant="outline" className="h-8 w-8 p-0" title="Edit Vehicle" onClick={() => handleEdit(2, {name: 'Minivan', min: 3, max: 8})}>
                             <Edit2 className="w-3 h-3" />
                           </Button>
                           <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" title="Delete Vehicle" onClick={() => handleDelete(2, 'vehicle')}>

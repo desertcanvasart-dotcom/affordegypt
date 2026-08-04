@@ -49,21 +49,21 @@ export default function AswanAirportTransfers() {
   const vehicleTypes = [
     {
       name: t("airportTransfers.common.sedan"),
-      capacity: t("airportTransfers.common.passengers1to3"),
+      capacity: t("airportTransfers.common.passengers1to2"),
       price: t("airportTransfers.aswan.sedanPriceFrom"),
       features: [t("airportTransfers.common.airConditioning"), t("airportTransfers.common.professionalDriver"), t("airportTransfers.aswan.nileRouteExpertise")],
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
-      capacity: t("airportTransfers.common.passengers4to7"), 
+      capacity: t("airportTransfers.common.passengers3to8"), 
       price: t("airportTransfers.aswan.minivanPriceFrom"),
       features: [t("airportTransfers.common.extraLuggageSpace"), t("airportTransfers.common.familyFriendly"), t("airportTransfers.aswan.nubianCultureKnowledge")],
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
-      capacity: t("airportTransfers.common.passengers8plus"),
+      capacity: t("airportTransfers.common.passengers9to15"),
       price: t("airportTransfers.aswan.vanPriceFrom"), 
       features: [t("airportTransfers.common.groupTravel"), t("airportTransfers.common.largeLuggageCapacity"), t("airportTransfers.aswan.abuSimbelRouteReady")],
       icon: Users

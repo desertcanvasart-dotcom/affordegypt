@@ -48,7 +48,7 @@ export default function CairoAirportTransfers() {
   const vehicleTypes = [
     {
       name: t("airportTransfers.common.sedan"),
-      capacity: t("airportTransfers.common.passengers1to3"),
+      capacity: t("airportTransfers.common.passengers1to2"),
       price: t("airportTransfers.cairo.sedanPriceFrom"),
       features: [
         t("airportTransfers.common.airConditioning"),
@@ -59,7 +59,7 @@ export default function CairoAirportTransfers() {
     },
     {
       name: t("airportTransfers.common.minivan"),
-      capacity: t("airportTransfers.common.passengers4to7"), 
+      capacity: t("airportTransfers.common.passengers3to8"), 
       price: t("airportTransfers.cairo.minivanPriceFrom"),
       features: [
         t("airportTransfers.common.extraLuggageSpace"),
@@ -70,7 +70,7 @@ export default function CairoAirportTransfers() {
     },
     {
       name: t("airportTransfers.common.van"),
-      capacity: t("airportTransfers.common.passengers8plus"),
+      capacity: t("airportTransfers.common.passengers9to15"),
       price: t("airportTransfers.cairo.vanPriceFrom"), 
       features: [
         t("airportTransfers.common.groupTravel"),

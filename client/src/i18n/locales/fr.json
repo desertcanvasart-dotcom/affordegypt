@@ -1129,9 +1129,9 @@
       "sedan": "Berline",
       "minivan": "Minivan",
       "van": "Fourgon",
-      "passengers1to3": "1-3 passagers",
-      "passengers4to7": "4-7 passagers",
-      "passengers8plus": "8+ passagers"
+      "passengers1to2": "1–2 passagers",
+      "passengers3to8": "3–8 passagers",
+      "passengers9to15": "9–15 passagers"
     },
     "cairo": {
       "title": "Transferts Aéroport du Caire - Fiables et Abordables | AffordEgypt",
