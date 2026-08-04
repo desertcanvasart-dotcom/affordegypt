@@ -1,5 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
+import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -51,21 +52,21 @@ export default function CairoGuideServices() {
     {
       name: t("guideServices.common.professionalGuide"),
       duration: t("guideServices.common.fullDay8Hours"),
-      price: t("guideServices.cairo.guidePriceFrom"),
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-guide-services") } }),
       features: ["Licensed Egyptologist", "Fluent English/Arabic", "Historical expertise"],
       icon: UserCheck
     },
     {
       name: t("guideServices.common.guideCarPackage"),
       duration: t("guideServices.common.fullDay"), 
-      price: t("guideServices.cairo.guideCarPriceFrom"),
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-guide-car") } }),
       features: [t("guideServices.common.licensedGuide"), "Private vehicle", t("guideServices.common.entranceFeesExcluded")],
       icon: Users
     },
     {
       name: t("guideServices.common.premiumCarService"),
       duration: t("guideServices.common.6to12Hours"),
-      price: t("guideServices.cairo.carPriceFrom"), 
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-tour-car") } }),
       features: ["Luxury sedan/SUV", t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
       icon: Car
     }
@@ -126,8 +127,8 @@ export default function CairoGuideServices() {
   return (
     <>
       <SeoMeta
-        title="Cairo Private Tour Guide & Car | From LE 5,625/day"
-        description="Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From LE 5,625/day for guide + private car (entrance tickets separate). ETAA-licensed Travel2Egypt operator."
+        title={`Cairo Private Tour Guide & Car | From ${formatLEPerDay("cairo-guide-car")}`}
+        description={`Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From ${formatLEPerDay("cairo-guide-car")} for guide + private car (entrance tickets separate). ETAA-licensed Travel2Egypt operator.`}
         canonical="https://affordegypt.com/cairo-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />
@@ -145,7 +146,7 @@ export default function CairoGuideServices() {
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                {t("guideServices.cairo.heroSubtitle")}
+                {t("guideServices.cairo.heroSubtitle", { interpolation: { guidePrice: formatLE("cairo-guide-services"), guideCarPrice: formatLE("cairo-guide-car") } })}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">

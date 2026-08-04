@@ -1303,12 +1303,13 @@
       "fullDay8Hours": "Ganztägig (8 Stunden)",
       "fullDay": "Ganztägig",
       "6to12Hours": "8-12 Stunden",
-      "12to14Hours": "12-14 Stunden"
+      "12to14Hours": "12-14 Stunden",
+      "priceFrom": "Ab {{price}}"
     },
     "cairo": {
       "title": "Kairo Auto & Reiseführer-Services | AffordEgypt",
       "heroTitle": "Kairo Auto & Reiseführer-Services",
-      "heroSubtitle": "Expertenhafter Auto- und Reiseführer-Service in Kairo. Lizenzierte Ägyptologen, mehrsprachiger Support und Premium-Fahrzeuge ab 2.750 EGP.",
+      "heroSubtitle": "Expertenhafter Auto- und Reiseführer-Service in Kairo. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
       "whyChooseTitle": "Warum Unsere Kairo Auto & Reiseführer-Services Wählen?",
       "multilingualGuides": "Mehrsprachige Reiseführer",
       "multilingualGuidesDesc": "Experten-Reiseführer fließend in Englisch, Arabisch, Französisch, Deutsch und Spanisch",
@@ -1318,9 +1319,6 @@
       "photographySupportDesc": "Reiseführer helfen bei perfekten Fotos an Kairos ikonischen Sehenswürdigkeiten",
       "flexibleScheduling": "Flexible Terminplanung",
       "flexibleSchedulingDesc": "Passen Sie Ihren Reiseplan und Timing an Ihre Vorlieben an",
-      "guidePriceFrom": "Ab 2.750 EGP",
-      "guideCarPriceFrom": "Ab 5.625 EGP",
-      "carPriceFrom": "Ab 2.875 EGP",
       "serviceAreasTitle": "Beliebte Kairo Tour-Ziele",
       "serviceAreasDesc": "Unsere Experten-Reiseführer decken alle wichtigen Kairo-Attraktionen und versteckten Juwelen ab",
       "specialtiesTitle": "Kairo Spezial-Services",
@@ -1337,7 +1335,7 @@
     "luxor": {
       "title": "Luxor Auto & Reiseführer-Services | AffordEgypt",
       "heroTitle": "Luxor Auto & Reiseführer-Services",
-      "heroSubtitle": "Expertenhafter Auto- und Reiseführer-Service im antiken Theben. Lizenzierte Archäologen und Premium-Fahrzeuge ab 2.750 EGP.",
+      "heroSubtitle": "Expertenhafter Auto- und Reiseführer-Service im antiken Theben. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
       "whyChooseTitle": "Warum Unsere Luxor Auto & Reiseführer-Services Wählen?",
       "templeExpertise": "Tempel-Expertise",
       "templeExpertiseDesc": "Spezialisiertes Wissen über Karnak, Luxor-Tempel und Tal der Könige",
@@ -1363,7 +1361,7 @@
     "aswan": {
       "title": "Assuan Auto & Reiseführer-Services | AffordEgypt",
       "heroTitle": "Assuan Auto & Reiseführer-Services",
-      "heroSubtitle": "Entdecken Sie nubische Kultur und südägyptische Schätze. Expertenhafter Auto- und Reiseführer-Service, Wüsten-Expeditionen und kulturelle Immersion ab 2.750 EGP.",
+      "heroSubtitle": "Entdecken Sie nubische Kultur und südägyptische Schätze. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
       "whyChooseTitle": "Warum Unsere Assuan Auto & Reiseführer-Services Wählen?",
       "nileExpertise": "Nil-Expertise",
       "nileExpertiseDesc": "Spezialisiertes Wissen über nubische Kultur und Nil-Flusstraditionen",

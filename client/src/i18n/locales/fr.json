@@ -1303,12 +1303,13 @@
       "fullDay8Hours": "Journée Complète (8 heures)",
       "fullDay": "Journée Complète",
       "6to12Hours": "8-12 heures",
-      "12to14Hours": "12-14 heures"
+      "12to14Hours": "12-14 heures",
+      "priceFrom": "À partir de {{price}}"
     },
     "cairo": {
       "title": "Services Voiture et Guide Touristique au Caire | AffordEgypt",
       "heroTitle": "Services Voiture et Guide Touristique au Caire",
-      "heroSubtitle": "Services experts de voiture et guide touristique au Caire. Égyptologues licenciés, support multilingue et véhicules premium à partir de 2 750 EGP.",
+      "heroSubtitle": "Services experts de voiture et guide touristique au Caire. Guide licencié à partir de {{guidePrice}}/jour, ou guide + voiture privée à partir de {{guideCarPrice}}/jour. Les billets d'entrée sont facturés séparément.",
       "whyChooseTitle": "Pourquoi Choisir Nos Services Voiture et Guide Touristique au Caire ?",
       "multilingualGuides": "Guides Multilingues",
       "multilingualGuidesDesc": "Guides experts parlant couramment anglais, arabe, français, allemand et espagnol",
@@ -1318,9 +1319,6 @@
       "photographySupportDesc": "Les guides aident à capturer des photos parfaites aux sites emblématiques du Caire",
       "flexibleScheduling": "Planification Flexible",
       "flexibleSchedulingDesc": "Personnalisez votre itinéraire et timing selon vos préférences",
-      "guidePriceFrom": "À partir de 2 750 EGP",
-      "guideCarPriceFrom": "À partir de 5 625 EGP",
-      "carPriceFrom": "À partir de 2 875 EGP",
       "serviceAreasTitle": "Destinations Populaires de Tours du Caire",
       "serviceAreasDesc": "Nos guides experts couvrent toutes les principales attractions du Caire et joyaux cachés",
       "specialtiesTitle": "Services Spécialisés du Caire",
@@ -1337,7 +1335,7 @@
     "luxor": {
       "title": "Services Voiture et Guide Touristique à Louxor | AffordEgypt",
       "heroTitle": "Services Voiture et Guide Touristique à Louxor",
-      "heroSubtitle": "Services experts de voiture et guide touristique dans l'ancienne Thèbes. Archéologues licenciés et véhicules premium à partir de 2 750 EGP.",
+      "heroSubtitle": "Services experts de voiture et guide touristique dans l'ancienne Thèbes. Guide licencié à partir de {{guidePrice}}/jour, ou guide + voiture privée à partir de {{guideCarPrice}}/jour. Les billets d'entrée sont facturés séparément.",
       "whyChooseTitle": "Pourquoi Choisir Nos Services Voiture et Guide Touristique à Louxor ?",
       "templeExpertise": "Expertise des Temples",
       "templeExpertiseDesc": "Connaissance spécialisée de Karnak, Temple de Louxor et Vallée des Rois",
@@ -1363,7 +1361,7 @@
     "aswan": {
       "title": "Services Voiture et Guide Touristique à Assouan | AffordEgypt",
       "heroTitle": "Services Voiture et Guide Touristique à Assouan",
-      "heroSubtitle": "Découvrez la culture nubienne et les trésors du sud de l'Égypte. Services experts de voiture et guide touristique, expéditions du désert et immersion culturelle à partir de 2 750 EGP.",
+      "heroSubtitle": "Découvrez la culture nubienne et les trésors du sud de l'Égypte. Guide licencié à partir de {{guidePrice}}/jour, ou guide + voiture privée à partir de {{guideCarPrice}}/jour. Les billets d'entrée sont facturés séparément.",
       "whyChooseTitle": "Pourquoi Choisir Nos Services Voiture et Guide Touristique à Assouan ?",
       "nileExpertise": "Expertise du Nil",
       "nileExpertiseDesc": "Connaissance spécialisée de la culture nubienne et des traditions du fleuve Nil",

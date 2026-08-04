@@ -1,5 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
+import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -51,21 +52,21 @@ export default function AswanGuideServices() {
     {
       name: "Nubian Culture Guide",
       duration: "Full Day (8 hours)",
-      price: "From 2,750 EGP",
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-guide-services") } }),
       features: ["Nubian heritage expert", "Local village guide", "Traditional culture focus"],
       icon: UserCheck
     },
     {
       name: "Nile & Temples Package",
       duration: "Full Day", 
-      price: "From 7,755 EGP",
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-guide-car") } }),
       features: ["Professional guide", "Private vehicle", "Philae Temple tour"],
       icon: Users
     },
     {
       name: "Abu Simbel Expedition",
       duration: "12-14 hours",
-      price: "From 14,025 EGP", 
+      price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-abu-simbel-guide-car") } }), 
       features: ["Long-distance vehicle", "Expert guide", "UNESCO site specialist"],
       icon: Car
     }
@@ -126,8 +127,8 @@ export default function AswanGuideServices() {
   return (
     <>
       <SeoMeta
-        title="Aswan Private Tour Guide & Car | From LE 7,755/day"
-        description="Private licensed Egyptologist + vehicle for Aswan, Philae, the High Dam, and Abu Simbel. From LE 7,755/day for guide + private car. Same team as Travel2Egypt."
+        title={`Aswan Private Tour Guide & Car | From ${formatLEPerDay("aswan-guide-car")}`}
+        description={`Private licensed Egyptologist + vehicle for Aswan, Philae, the High Dam, and Abu Simbel. From ${formatLEPerDay("aswan-guide-car")} for guide + private car. Same team as Travel2Egypt.`}
         canonical="https://affordegypt.com/aswan-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />
@@ -145,7 +146,7 @@ export default function AswanGuideServices() {
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                {t("guideServices.aswan.heroSubtitle")}
+                {t("guideServices.aswan.heroSubtitle", { interpolation: { guidePrice: formatLE("aswan-guide-services"), guideCarPrice: formatLE("aswan-guide-car") } })}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
@@ -316,7 +317,7 @@ export default function AswanGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Licensed guide from LE 2,750/day — guide + private car from LE 7,755/day</span>
+                  <span className="font-semibold">Licensed guide from {formatLEPerDay("aswan-guide-services")} — guide + private car from {formatLEPerDay("aswan-guide-car")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   Local guides • Cultural immersion • Private car on the guide + car package • Entrance tickets billed separately
