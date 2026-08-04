@@ -95,20 +95,55 @@ export const trackEvent = (
   });
 };
 
-// Track conversion events for Google Ads
-export const trackConversion = (
-  conversionLabel: string,
-  value?: number,
-  currency: string = 'EGP'
-) => {
+/**
+ * Whether a booking should be reported as a conversion right now.
+ *
+ * Pure so the policy is testable without a live booking — creating one would
+ * mean writing to the production database.
+ */
+export function shouldSendBookingConversion(
+  booking: { bookingReference?: string; bookingStatus?: string } | undefined | null,
+  alreadySent: boolean,
+): boolean {
+  if (!booking?.bookingReference) return false;
+  // A cancelled booking is not a conversion. Every other status — including
+  // `pending`, the normal state immediately after checkout — means a real
+  // booking was placed.
+  if (booking.bookingStatus === 'cancelled') return false;
+  return !alreadySent;
+}
+
+/**
+ * Reports a completed booking as a GA4 `purchase` event.
+ *
+ * This account imports its conversions from GA4 rather than firing Google Ads
+ * website tags: in Ads, "Afford Egypt (web) purchase" has conversion source
+ * "Website (Google Analytics (GA4))". Google auto-names imported actions
+ * `<property> (web) <event_name>`, so the event below MUST stay named exactly
+ * `purchase` — that string is the join key between the site and the Ads
+ * conversion action. Renaming it silently detaches the conversion.
+ *
+ * There is deliberately no `send_to`/conversion-label here. Labels belong to
+ * Ads-native website tags; for a GA4 import the event travels GA4 -> Ads on its
+ * own, and a send_to aimed at a made-up label would simply be discarded.
+ *
+ * `transaction_id` is the booking reference. GA4 de-duplicates purchases on it,
+ * so a customer reloading, bookmarking or sharing the confirmation URL — or
+ * opening it on a second device, where localStorage cannot help — still counts
+ * once.
+ */
+export const trackPurchase = (args: {
+  transactionId: string;
+  value?: number;
+  currency?: string;
+  items?: Array<Record<string, unknown>>;
+}) => {
   if (typeof window === 'undefined' || !window.gtag) return;
-  
-  const googleAdsId = GOOGLE_ADS_ID;
-  if (!googleAdsId) return;
-  
-  window.gtag('event', 'conversion', {
-    send_to: `${googleAdsId}/${conversionLabel}`,
-    value: value,
-    currency: currency,
+
+  window.gtag('event', 'purchase', {
+    transaction_id: args.transactionId,
+    value: args.value,
+    currency: args.currency ?? 'EGP',
+    items: args.items ?? [],
   });
 };

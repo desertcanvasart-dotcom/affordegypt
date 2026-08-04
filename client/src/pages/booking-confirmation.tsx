@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 
 import { useQuery } from "@tanstack/react-query";
 import { formatEGP } from "@/lib/utils";
+import { shouldSendBookingConversion, trackPurchase } from "@/lib/analytics";
 
 type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
@@ -47,6 +48,55 @@ export default function BookingConfirmation() {
   const { data: routes = [] } = useQuery<any[]>({
     queryKey: ["/api/routes"],
   });
+
+  // Report the booking as a GA4 `purchase`, exactly once per booking reference.
+  // Google Ads imports that event as the "Afford Egypt (web) purchase"
+  // conversion action — see trackPurchase for why the event name is load-bearing.
+  //
+  // This page is a permalink: customers reload it, bookmark it, and get it by
+  // email, so firing on every mount would inflate the count. Two independent
+  // guards prevent that — a localStorage marker keyed by reference (stops the
+  // send locally) and transaction_id (lets GA4 de-duplicate even across
+  // devices, where localStorage can't help).
+  //
+  // Cancelled bookings are excluded; everything else means a real booking was
+  // placed, including `pending`, which is the normal state right after checkout.
+  useEffect(() => {
+    const booking = bookingData?.booking;
+    if (!booking?.bookingReference) return;
+
+    const storageKey = `conversion_sent:${booking.bookingReference}`;
+    let alreadySent = false;
+    try {
+      alreadySent = !!localStorage.getItem(storageKey);
+    } catch {
+      // Private mode / storage disabled — treat as not-yet-sent and rely on
+      // transaction_id de-duplication rather than dropping the conversion.
+    }
+
+    if (!shouldSendBookingConversion(booking, alreadySent)) return;
+
+    const value = Number(booking.totalAmount);
+
+    trackPurchase({
+      transactionId: booking.bookingReference,
+      value: Number.isFinite(value) && value > 0 ? value : undefined,
+      currency: "EGP",
+      items: [
+        {
+          item_id: booking.bookingReference,
+          item_name: "Egypt trip booking",
+          item_category: "trip",
+          price: Number.isFinite(value) && value > 0 ? value : undefined,
+          quantity: 1,
+        },
+      ],
+    });
+
+    try {
+      localStorage.setItem(storageKey, "1");
+    } catch {}
+  }, [bookingData]);
 
   const getStatusIcon = (status: BookingStatus) => {
     switch (status) {
