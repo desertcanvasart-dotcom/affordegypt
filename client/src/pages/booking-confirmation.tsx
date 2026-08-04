@@ -12,7 +12,12 @@ import { Separator } from "@/components/ui/separator";
 
 import { useQuery } from "@tanstack/react-query";
 import { formatEGP } from "@/lib/utils";
-import { shouldSendBookingConversion, trackPurchase } from "@/lib/analytics";
+import {
+  hasSentConversion,
+  markConversionSent,
+  shouldSendBookingConversion,
+  trackPurchase,
+} from "@/lib/analytics";
 
 type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
@@ -65,16 +70,11 @@ export default function BookingConfirmation() {
     const booking = bookingData?.booking;
     if (!booking?.bookingReference) return;
 
-    const storageKey = `conversion_sent:${booking.bookingReference}`;
-    let alreadySent = false;
-    try {
-      alreadySent = !!localStorage.getItem(storageKey);
-    } catch {
-      // Private mode / storage disabled — treat as not-yet-sent and rely on
-      // transaction_id de-duplication rather than dropping the conversion.
-    }
-
-    if (!shouldSendBookingConversion(booking, alreadySent)) return;
+    // The quote builder already reports the purchase at checkout, so for the
+    // common path this marker is set before the customer ever opens this page
+    // from their email — this call is the fallback for the /book flow and for
+    // anyone whose checkout-time event didn't get through.
+    if (!shouldSendBookingConversion(booking, hasSentConversion(booking.bookingReference))) return;
 
     const value = Number(booking.totalAmount);
 
@@ -93,9 +93,7 @@ export default function BookingConfirmation() {
       ],
     });
 
-    try {
-      localStorage.setItem(storageKey, "1");
-    } catch {}
+    markConversionSent(booking.bookingReference);
   }, [bookingData]);
 
   const getStatusIcon = (status: BookingStatus) => {

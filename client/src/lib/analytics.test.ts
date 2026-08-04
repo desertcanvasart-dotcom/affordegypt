@@ -1,5 +1,88 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { shouldSendBookingConversion, trackPurchase } from "./analytics";
+import {
+  hasSentConversion,
+  markConversionSent,
+  shouldSendBookingConversion,
+  trackPurchase,
+  trackQualifiedLead,
+} from "./analytics";
+
+/** Minimal localStorage so the marker helpers can run under the node env. */
+function installStorage(throwing = false) {
+  const map = new Map<string, string>();
+  (globalThis as any).localStorage = {
+    getItem: (k: string) => {
+      if (throwing) throw new Error("storage disabled");
+      return map.get(k) ?? null;
+    },
+    setItem: (k: string, v: string) => {
+      if (throwing) throw new Error("storage disabled");
+      map.set(k, v);
+    },
+    removeItem: (k: string) => map.delete(k),
+  };
+}
+
+describe("conversion de-duplication markers", () => {
+  beforeEach(() => installStorage());
+  afterEach(() => delete (globalThis as any).localStorage);
+
+  it("reports a reference as unsent until it is marked", () => {
+    expect(hasSentConversion("AE-1")).toBe(false);
+    markConversionSent("AE-1");
+    expect(hasSentConversion("AE-1")).toBe(true);
+  });
+
+  it("keeps references independent", () => {
+    markConversionSent("AE-1");
+    expect(hasSentConversion("AE-2")).toBe(false);
+  });
+
+  // The quote builder and the confirmation page must agree on the key, or a
+  // booking gets counted twice.
+  it("is the shared gate both report paths consult", () => {
+    markConversionSent("AE-SHARED");
+    expect(shouldSendBookingConversion(
+      { bookingReference: "AE-SHARED", bookingStatus: "pending" },
+      hasSentConversion("AE-SHARED"),
+    )).toBe(false);
+  });
+
+  it("treats disabled storage as not-yet-sent rather than dropping the conversion", () => {
+    installStorage(true);
+    expect(hasSentConversion("AE-1")).toBe(false);
+    expect(() => markConversionSent("AE-1")).not.toThrow();
+  });
+});
+
+describe("trackQualifiedLead", () => {
+  let calls: any[][];
+
+  beforeEach(() => {
+    calls = [];
+    (globalThis as any).window = globalThis;
+    (globalThis as any).gtag = (...args: any[]) => calls.push(args);
+  });
+
+  afterEach(() => delete (globalThis as any).gtag);
+
+  it('fires a GA4 event named exactly "qualify_lead"', () => {
+    trackQualifiedLead({ quoteId: 7, value: 5625 });
+    expect(calls[0][0]).toBe("event");
+    expect(calls[0][1]).toBe("qualify_lead");
+  });
+
+  it("carries the quote value and defaults currency to EGP", () => {
+    trackQualifiedLead({ quoteId: 7, value: 5625 });
+    expect(calls[0][2].value).toBe(5625);
+    expect(calls[0][2].currency).toBe("EGP");
+  });
+
+  it("is a no-op when gtag has not loaded", () => {
+    delete (globalThis as any).gtag;
+    expect(() => trackQualifiedLead({ quoteId: 1 })).not.toThrow();
+  });
+});
 
 describe("shouldSendBookingConversion", () => {
   const booking = { bookingReference: "AE-2026-0001", bookingStatus: "pending" };

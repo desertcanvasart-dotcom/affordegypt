@@ -32,6 +32,12 @@ import EntranceFeesSearch from "@/components/entrance-fees-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { useAuth } from "@/hooks/useAuth";
 import {
+  hasSentConversion,
+  markConversionSent,
+  trackPurchase,
+  trackQualifiedLead,
+} from "@/lib/analytics";
+import {
   blockersForStep as sharedBlockersForStep,
   type QuoteState,
 } from "@shared/quote-validation";
@@ -1637,6 +1643,14 @@ export default function MultiCityPricingTool() {
                             if (!quoteResponse.ok) throw new Error('Failed to create quote');
                             const quote = await quoteResponse.json();
 
+                            // "Request quotes" goal in Google Ads, via the
+                            // imported GA4 event `qualify_lead`.
+                            trackQualifiedLead({
+                              quoteId: quote.id,
+                              value: totalPricing?.totalAmount,
+                              currency: 'EGP',
+                            });
+
                             // Create booking with quote
                             const bookingData = {
                               quoteId: quote.id,
@@ -1658,6 +1672,37 @@ export default function MultiCityPricingTool() {
 
                             if (!bookingResponse.ok) throw new Error('Failed to create booking');
                             const booking = await bookingResponse.json();
+
+                            // Report the purchase HERE, not only on
+                            // booking-confirmation.tsx. This flow never
+                            // navigates there — it alerts and resets to step 1
+                            // — so relying on that page alone would miss every
+                            // booking made through the main funnel, counting
+                            // only the customers who later open the link in
+                            // their email. markConversionSent keeps the
+                            // confirmation page from reporting it a second time
+                            // when they do.
+                            if (booking?.bookingReference
+                                && !hasSentConversion(booking.bookingReference)) {
+                              const bookedValue = Number(totalPricing?.totalAmount);
+                              trackPurchase({
+                                transactionId: booking.bookingReference,
+                                value: Number.isFinite(bookedValue) && bookedValue > 0
+                                  ? bookedValue
+                                  : undefined,
+                                currency: 'EGP',
+                                items: [{
+                                  item_id: booking.bookingReference,
+                                  item_name: 'Egypt trip booking',
+                                  item_category: 'trip',
+                                  price: Number.isFinite(bookedValue) && bookedValue > 0
+                                    ? bookedValue
+                                    : undefined,
+                                  quantity: 1,
+                                }],
+                              });
+                              markConversionSent(booking.bookingReference);
+                            }
 
                             alert(`Booking request submitted successfully!\n\nConfirmation email sent to ${checkoutData.email}.\nBooking reference: ${booking.bookingReference}`);
                             
