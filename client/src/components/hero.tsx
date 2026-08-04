@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 // Anchor price for hero subhead and FAQ "absolute minimum" answer.
 // EGP is the source of truth; USD/EUR are display-only hints.
 // Review monthly against current FX rates and update as needed.
-const MIN_DAILY_PRICE_EGP = 5000;
+const MIN_DAILY_PRICE_EGP = 5625;
 const USD_DISPLAY_HINT = "$105";
 const EUR_DISPLAY_HINT = "€98";
 
