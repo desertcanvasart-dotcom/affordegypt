@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
+import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
 import { 
   DollarSign, 
@@ -129,6 +130,7 @@ export default function BudgetTravelEgypt() {
       <div className="min-h-screen bg-white">
         <Navbar />
         
+        <GuideToc />
         {/* Hero Section */}
         <section
           className="relative text-white min-h-[80vh] flex items-center bg-cover bg-center bg-fixed bg-[url('https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80')]"

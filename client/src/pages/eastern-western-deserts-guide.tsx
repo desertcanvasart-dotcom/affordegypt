@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, Star, Camera, Mountain, Sun, Compass, DollarSign, Calendar, Users, Tent } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import Navbar from "@/components/navbar";
+import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
 import SeoMeta from "@/components/seo-meta";
@@ -179,6 +180,7 @@ export default function EasternWesternDesertsGuide() {
         />
       <Navbar />
       
+      <GuideToc />
       {/* Hero Section */}
       <div
         className="relative text-white min-h-screen flex items-center bg-cover bg-center bg-fixed bg-[url('/images/egypt-siwa-salt-pools.jpg')]"

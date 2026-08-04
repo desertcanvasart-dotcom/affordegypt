@@ -12,6 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import Navbar from "@/components/navbar";
+import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -2423,6 +2424,7 @@ export default function NileValleyGuide() {
         />
       <Navbar />
 
+      <GuideToc />
       {/* Hero Section */}
       <header
         className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('/images/nile-valley-1.jpg')]"
