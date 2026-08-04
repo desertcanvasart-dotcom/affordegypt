@@ -96,6 +96,57 @@ export const trackEvent = (
 };
 
 /**
+ * Cross-page de-duplication for booking conversions.
+ *
+ * A booking can be reported from two places: the quote builder, immediately
+ * after checkout succeeds, and booking-confirmation.tsx, if the customer later
+ * opens the link from their email. Both must agree on whether a reference has
+ * already been reported, so the marker key lives here rather than being spelled
+ * out at each call site.
+ *
+ * This is only the local half. transaction_id is the half that survives a
+ * different device or cleared storage.
+ */
+const conversionMarkerKey = (reference: string) => `conversion_sent:${reference}`;
+
+export function hasSentConversion(reference: string): boolean {
+  try {
+    return !!localStorage.getItem(conversionMarkerKey(reference));
+  } catch {
+    // Private mode / storage disabled — treat as not yet sent and let
+    // transaction_id de-duplicate, rather than dropping the conversion.
+    return false;
+  }
+}
+
+export function markConversionSent(reference: string): void {
+  try {
+    localStorage.setItem(conversionMarkerKey(reference), '1');
+  } catch {}
+}
+
+/**
+ * Reports a quote request as a GA4 `qualify_lead` event.
+ *
+ * Ads imports this as "Afford Egypt (web) qualify_lead", the action behind the
+ * "Request quotes" goal. As with `purchase`, the event name is the join key —
+ * it must stay exactly `qualify_lead`.
+ */
+export const trackQualifiedLead = (args: {
+  quoteId?: number | string;
+  value?: number;
+  currency?: string;
+}) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
+
+  window.gtag('event', 'qualify_lead', {
+    value: args.value,
+    currency: args.currency ?? 'EGP',
+    quote_id: args.quoteId,
+  });
+};
+
+/**
  * Whether a booking should be reported as a conversion right now.
  *
  * Pure so the policy is testable without a live booking — creating one would
