@@ -463,7 +463,7 @@ export default function TransfersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <SeoMeta
-        title="Egypt Airport & Intercity Transfers | Private Car from LE 1,500"
+        title="Egypt Airport & Intercity Transfers | Private Car from LE 595"
         description="Private airport transfers and intercity transfers across Egypt. Cairo, Luxor, Aswan, Hurghada, Marsa Alam. Licensed drivers, fixed prices, no hidden fees. Book in 60 seconds."
         canonical="https://affordegypt.com/transfers"
       />

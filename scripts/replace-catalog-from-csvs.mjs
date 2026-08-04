@@ -70,15 +70,23 @@ function parseFile(filePath) {
 }
 
 // Trip type — order matters. Returns {tripType, why}.
+//
+// "↔" in the operator's workbooks means a point-to-point transfer bookable in
+// either direction — a ONE-WAY product (Airport ↔ Hotel, Station ↔ Hotel).
+// It does NOT mean round trip; genuine round trips are written
+// "Hotel → X → Hotel", "Same Day Return", "Over Day", etc. Excursion-shaped
+// names (City Tour, Sea & Return, ... Trip) include the return leg by nature
+// and stay round-trip regardless of the arrow used.
 function deriveTripType(route) {
   const n = route.toLowerCase();
   const hr = n.match(/\(\s*(\d+)\s*hrs?\b/);
   if (hr) return { tripType: `${hr[1]}hr`, why: `(${hr[1]} hrs)` };
   if (/next day return|overnight|over\s*night/.test(n)) return { tripType: "round_trip_multi_day", why: "overnight/next-day" };
   if (/same day return|\(\s*same day\s*\)/.test(n)) return { tripType: "round_trip_same_day", why: "same-day-return" };
-  if (route.includes("↔")) return { tripType: "round_trip_same_day", why: "↔" };
-  if (/→\s*(hotels?|airport)\b\s*(\(|$|→)/i.test(route)) return { tripType: "round_trip_same_day", why: "returns to origin" };
   if (/over\s*day/.test(n)) return { tripType: "round_trip_same_day", why: "over-day" };
+  if (/city tour|&\s*return|\btrip\b|sound\s*&?\s*(and\s*)?light|sharm el-luli/.test(n)) return { tripType: "round_trip_same_day", why: "excursion" };
+  if (/→\s*(hotels?|airport)\b\s*(\(|$|→)/i.test(route)) return { tripType: "round_trip_same_day", why: "returns to origin" };
+  if (route.includes("↔")) return { tripType: "one_way", why: "↔ = either direction" };
   if (route.includes("→")) return { tripType: "one_way", why: "→" };
   return { tripType: "one_way", why: "default" };
 }

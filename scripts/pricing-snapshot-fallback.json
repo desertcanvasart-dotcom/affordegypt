@@ -1,11 +1,11 @@
 {
   "currency": "EGP",
   "services": {
-    "cairo-airport-transfer": { "minPrice": "600" },
-    "luxor-airport-transfer": { "minPrice": "1500" },
-    "aswan-airport-transfer": { "minPrice": "1500" },
-    "cairo-guide-services": { "minPrice": "5000" },
-    "luxor-guide-services": { "minPrice": "5000" },
-    "aswan-guide-services": { "minPrice": "5000" }
+    "cairo-airport-transfer": { "minPrice": "2025" },
+    "luxor-airport-transfer": { "minPrice": "1115" },
+    "aswan-airport-transfer": { "minPrice": "1125" },
+    "cairo-guide-services": { "minPrice": "2750" },
+    "luxor-guide-services": { "minPrice": "2750" },
+    "aswan-guide-services": { "minPrice": "2750" }
   }
 }

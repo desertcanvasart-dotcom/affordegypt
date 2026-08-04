@@ -50,21 +50,21 @@ export default function AswanAirportTransfers() {
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to3"),
-      price: t("airportTransfers.aswan.priceFrom575"),
+      price: t("airportTransfers.aswan.sedanPriceFrom"),
       features: [t("airportTransfers.common.airConditioning"), t("airportTransfers.common.professionalDriver"), t("airportTransfers.aswan.nileRouteExpertise")],
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
       capacity: t("airportTransfers.common.passengers4to7"), 
-      price: t("airportTransfers.aswan.priceFrom950"),
+      price: t("airportTransfers.aswan.minivanPriceFrom"),
       features: [t("airportTransfers.common.extraLuggageSpace"), t("airportTransfers.common.familyFriendly"), t("airportTransfers.aswan.nubianCultureKnowledge")],
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers8plus"),
-      price: t("airportTransfers.aswan.priceFrom1283"), 
+      price: t("airportTransfers.aswan.vanPriceFrom"), 
       features: [t("airportTransfers.common.groupTravel"), t("airportTransfers.common.largeLuggageCapacity"), t("airportTransfers.aswan.abuSimbelRouteReady")],
       icon: Users
     }
@@ -313,7 +313,7 @@ export default function AswanAirportTransfers() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.aswan.priceFrom575")}</span>
+                  <span className="font-semibold">{t("airportTransfers.aswan.sedanPriceFrom")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("airportTransfers.aswan.pricingInfoDesc")}
