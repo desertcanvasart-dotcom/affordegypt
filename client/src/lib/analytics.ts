@@ -96,21 +96,6 @@ export const trackEvent = (
 };
 
 /**
- * Google Ads conversion label for a completed booking.
- *
- * Unlike the account-level IDs above, this cannot be recovered from the repo —
- * it is generated per conversion action inside the Google Ads UI
- * (Goals > Conversions > the action > "Tag setup"), and looks like `AbC-D_efGhIjKl`.
- *
- * Until it is filled in, trackConversion refuses to send. That is deliberate:
- * gtag will happily fire an event with a bogus send_to, Google will silently
- * discard it, and the site would look instrumented while reporting nothing —
- * which is exactly the failure mode that hid the broken analytics wiring for
- * months. A loud warning beats a silent no-op.
- */
-export const ADS_CONVERSION_LABEL_BOOKING = '';
-
-/**
  * Whether a booking should be reported as a conversion right now.
  *
  * Pure so the policy is testable without a live booking — creating one would
@@ -128,36 +113,37 @@ export function shouldSendBookingConversion(
   return !alreadySent;
 }
 
-// Track conversion events for Google Ads
-export const trackConversion = (
-  conversionLabel: string,
-  value?: number,
-  currency: string = 'EGP',
-  /**
-   * Stable unique id for the conversion (we pass the booking reference).
-   * Google Ads de-duplicates on this, so a visitor reloading, bookmarking or
-   * sharing the confirmation URL cannot inflate the conversion count.
-   */
-  transactionId?: string,
-) => {
+/**
+ * Reports a completed booking as a GA4 `purchase` event.
+ *
+ * This account imports its conversions from GA4 rather than firing Google Ads
+ * website tags: in Ads, "Afford Egypt (web) purchase" has conversion source
+ * "Website (Google Analytics (GA4))". Google auto-names imported actions
+ * `<property> (web) <event_name>`, so the event below MUST stay named exactly
+ * `purchase` — that string is the join key between the site and the Ads
+ * conversion action. Renaming it silently detaches the conversion.
+ *
+ * There is deliberately no `send_to`/conversion-label here. Labels belong to
+ * Ads-native website tags; for a GA4 import the event travels GA4 -> Ads on its
+ * own, and a send_to aimed at a made-up label would simply be discarded.
+ *
+ * `transaction_id` is the booking reference. GA4 de-duplicates purchases on it,
+ * so a customer reloading, bookmarking or sharing the confirmation URL — or
+ * opening it on a second device, where localStorage cannot help — still counts
+ * once.
+ */
+export const trackPurchase = (args: {
+  transactionId: string;
+  value?: number;
+  currency?: string;
+  items?: Array<Record<string, unknown>>;
+}) => {
   if (typeof window === 'undefined' || !window.gtag) return;
 
-  const googleAdsId = GOOGLE_ADS_ID;
-  if (!googleAdsId) return;
-
-  if (!conversionLabel) {
-    console.warn(
-      '[analytics] Google Ads conversion NOT sent: no conversion label configured. ' +
-        'Set ADS_CONVERSION_LABEL_BOOKING in client/src/lib/analytics.ts to the label ' +
-        'from Google Ads > Goals > Conversions > (action) > Tag setup.',
-    );
-    return;
-  }
-
-  window.gtag('event', 'conversion', {
-    send_to: `${googleAdsId}/${conversionLabel}`,
-    value: value,
-    currency: currency,
-    transaction_id: transactionId,
+  window.gtag('event', 'purchase', {
+    transaction_id: args.transactionId,
+    value: args.value,
+    currency: args.currency ?? 'EGP',
+    items: args.items ?? [],
   });
 };
