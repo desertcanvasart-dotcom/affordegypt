@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   hasSentConversion,
+  hasSentLead,
   markConversionSent,
+  markLeadSent,
   shouldSendBookingConversion,
   trackPurchase,
   trackQualifiedLead,
@@ -52,6 +54,45 @@ describe("conversion de-duplication markers", () => {
     installStorage(true);
     expect(hasSentConversion("AE-1")).toBe(false);
     expect(() => markConversionSent("AE-1")).not.toThrow();
+  });
+});
+
+describe("lead de-duplication markers", () => {
+  beforeEach(() => installStorage());
+  afterEach(() => delete (globalThis as any).localStorage);
+
+  it("reports a quote as unsent until it is marked", () => {
+    expect(hasSentLead(42)).toBe(false);
+    markLeadSent(42);
+    expect(hasSentLead(42)).toBe(true);
+  });
+
+  // The builder creates the quote and reports the lead; /book only loads a
+  // quote by id. Without a shared marker, checking out and then opening
+  // /book/:id for that quote would count two leads for one request.
+  it("stops /book re-reporting a quote the builder already reported", () => {
+    markLeadSent(999);
+    expect(hasSentLead(999)).toBe(true);
+  });
+
+  it("keeps quote ids independent", () => {
+    markLeadSent(1);
+    expect(hasSentLead(2)).toBe(false);
+  });
+
+  // Distinct namespaces: a booking reference and a quote id could otherwise
+  // collide and silently suppress one another's conversion.
+  it("does not collide with the booking-conversion namespace", () => {
+    markLeadSent("7");
+    expect(hasSentConversion("7")).toBe(false);
+    markConversionSent("8");
+    expect(hasSentLead("8")).toBe(false);
+  });
+
+  it("treats disabled storage as not-yet-sent", () => {
+    installStorage(true);
+    expect(hasSentLead(1)).toBe(false);
+    expect(() => markLeadSent(1)).not.toThrow();
   });
 });
 

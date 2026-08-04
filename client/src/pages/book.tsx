@@ -18,6 +18,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { apiRequest } from "@/lib/queryClient";
 import { formatEGP } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { hasSentLead, markLeadSent, trackQualifiedLead } from "@/lib/analytics";
 
 const bookingSchema = z.object({
   customerName: z.string().min(2, "Name must be at least 2 characters"),
@@ -102,6 +103,29 @@ export default function BookPage() {
       form.setValue('travelDate', quote.jsonBlob.travelDate);
     }
   }, [quote, form]);
+
+  // Report the quote as a lead ("Request quotes" goal in Ads, via the imported
+  // GA4 event `qualify_lead`).
+  //
+  // This page does not create the quote — it loads one by id — so the lead may
+  // already have been reported when the quote was created in the builder. The
+  // shared per-quote marker makes this a no-op in that case, and the only
+  // reports that get through are quotes that reached /book without ever being
+  // counted (a saved quote opened later, or a shared /book/:id link).
+  useEffect(() => {
+    if (!quote?.id) return;
+    if (hasSentLead(quote.id)) return;
+
+    const quoteValue = Number(
+      quote?.jsonBlob?.totalAmount ?? quote?.total ?? NaN,
+    );
+    trackQualifiedLead({
+      quoteId: quote.id,
+      value: Number.isFinite(quoteValue) && quoteValue > 0 ? quoteValue : undefined,
+      currency: 'EGP',
+    });
+    markLeadSent(quote.id);
+  }, [quote]);
 
   // Scroll to top when component mounts
   useEffect(() => {

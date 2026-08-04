@@ -33,7 +33,9 @@ import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { useAuth } from "@/hooks/useAuth";
 import {
   hasSentConversion,
+  hasSentLead,
   markConversionSent,
+  markLeadSent,
   trackPurchase,
   trackQualifiedLead,
 } from "@/lib/analytics";
@@ -1644,12 +1646,17 @@ export default function MultiCityPricingTool() {
                             const quote = await quoteResponse.json();
 
                             // "Request quotes" goal in Google Ads, via the
-                            // imported GA4 event `qualify_lead`.
-                            trackQualifiedLead({
-                              quoteId: quote.id,
-                              value: totalPricing?.totalAmount,
-                              currency: 'EGP',
-                            });
+                            // imported GA4 event `qualify_lead`. Marked so that
+                            // opening /book/:id for this same quote later does
+                            // not report a second lead.
+                            if (quote?.id && !hasSentLead(quote.id)) {
+                              trackQualifiedLead({
+                                quoteId: quote.id,
+                                value: totalPricing?.totalAmount,
+                                currency: 'EGP',
+                              });
+                              markLeadSent(quote.id);
+                            }
 
                             // Create booking with quote
                             const bookingData = {

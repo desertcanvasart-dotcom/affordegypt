@@ -126,6 +126,31 @@ export function markConversionSent(reference: string): void {
 }
 
 /**
+ * The same idea for `qualify_lead`, keyed by quote id.
+ *
+ * A quote can be reported from the builder (which creates it) and from /book
+ * (which only reads one someone else created). Without a shared marker, a
+ * visitor who checks out and then opens /book for that quote would be counted
+ * as two leads. Separate namespace from the booking marker so the two can never
+ * mask each other.
+ */
+const leadMarkerKey = (quoteId: number | string) => `lead_sent:${quoteId}`;
+
+export function hasSentLead(quoteId: number | string): boolean {
+  try {
+    return !!localStorage.getItem(leadMarkerKey(quoteId));
+  } catch {
+    return false;
+  }
+}
+
+export function markLeadSent(quoteId: number | string): void {
+  try {
+    localStorage.setItem(leadMarkerKey(quoteId), '1');
+  } catch {}
+}
+
+/**
  * Reports a quote request as a GA4 `qualify_lead` event.
  *
  * Ads imports this as "Afford Egypt (web) qualify_lead", the action behind the
