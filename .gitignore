@@ -4,9 +4,12 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+# Ignore every .env variant EXCEPT the placeholder template. The old rules
+# only covered .env/.env.local/.env.*.local, which left .env.production and
+# .env.production.save one `git add .` away from being published.
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 .local/
 uploads/
 .claude/
