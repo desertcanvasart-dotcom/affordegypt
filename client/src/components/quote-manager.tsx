@@ -139,7 +139,9 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
   };
 
   const handleBookNow = (quote: SavedQuote) => {
-    setLocation(`/booking/${quote.id}`);
+    // The route is /book/:id — there is no /booking/:id, so this used to send
+    // every "Book Now" click on a saved quote straight to the 404 page.
+    setLocation(`/book/${quote.id}`);
   };
 
   // Filter and sort quotes

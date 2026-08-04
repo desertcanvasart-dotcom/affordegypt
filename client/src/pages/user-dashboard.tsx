@@ -395,7 +395,9 @@ function BookingsList({
                 <Button 
                   variant="outline" 
                   size="sm"
-                  onClick={() => window.location.href = `/booking/${booking.bookingReference}`}
+                  // Was /booking/:reference, which matches no route — "View
+                  // Confirmation" landed on the 404 page every time.
+                  onClick={() => window.location.href = `/booking-confirmation/${booking.bookingReference}`}
                 >
                   View Confirmation
                 </Button>
