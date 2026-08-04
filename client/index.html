@@ -9,7 +9,10 @@
     })(window,document,'script','dataLayer','GTM-WJ597P5W');</script>
     <!-- End Google Tag Manager -->
     
-    <!-- Google Analytics -->
+    <!-- Google Analytics. G-MWY0T7465M is duplicated in client/src/lib/analytics.ts,
+         which handles SPA route changes and Google Ads conversions — keep both in
+         sync. This tag only fires the initial pageview; wouter navigations do not
+         reload the document, so they are reported from analytics.ts instead. -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWY0T7465M"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
