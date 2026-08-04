@@ -51,21 +51,21 @@ export default function LuxorGuideServices() {
     {
       name: "Temple Specialist Guide",
       duration: "Full Day (8 hours)",
-      price: "From 1,100 EGP",
+      price: "From 2,750 EGP",
       features: ["Ancient Egypt expert", "Valley of Kings specialist", "Hieroglyph interpreter"],
       icon: UserCheck
     },
     {
       name: "East & West Bank Tour",
       duration: "Full Day", 
-      price: "From 2,200 EGP",
+      price: "From 6,875 EGP",
       features: ["Professional guide", "Private vehicle", "Both banks covered"],
       icon: Users
     },
     {
       name: "Luxury Temple Tours",
       duration: "6-10 hours",
-      price: "From 1,600 EGP", 
+      price: "From 4,125 EGP", 
       features: ["Premium vehicle", "Expert driver-guide", "Flexible temple visits"],
       icon: Car
     }
@@ -126,8 +126,8 @@ export default function LuxorGuideServices() {
   return (
     <>
       <SeoMeta
-        title="Luxor Private Tour Guide & Car | LE 5,000/day"
-        description="Private licensed Egyptologist + vehicle for Luxor East and West Banks. Karnak, Valley of the Kings, Hatshepsut, and the Colossi. From LE 5,000/day."
+        title="Luxor Private Tour Guide & Car | From LE 6,875/day"
+        description="Private licensed Egyptologist + vehicle for Luxor East and West Banks. Karnak, Valley of the Kings, Hatshepsut, and the Colossi. From LE 6,875/day for guide + private car."
         canonical="https://affordegypt.com/luxor-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />
@@ -316,7 +316,7 @@ export default function LuxorGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Starting from 1,100 EGP</span>
+                  <span className="font-semibold">Starting from 2,750 EGP</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   Licensed guides • Temple expertise • Premium vehicles • Entry tickets included

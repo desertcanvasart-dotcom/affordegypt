@@ -93,7 +93,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <SeoMeta
         title="Egypt Tours from a Real Egyptian Operator | AffordEgypt"
-        description="Private car + licensed Egyptologist from LE 5,000/day. Operated by Capital Travel Service (ETAA 2179), licensed since 2003. Transparent prices, no hidden fees, no online payment required — pay 10% deposit, balance on arrival."
+        description="Private car + licensed Egyptologist from LE 5,625/day. Operated by Capital Travel Service (ETAA 2179), licensed since 2003. Transparent prices, no hidden fees, no online payment required — pay 10% deposit, balance on arrival."
         canonical="https://affordegypt.com/"
         schema={[ORGANIZATION_SCHEMA, LOCAL_BUSINESS_SCHEMA, FAQ_SCHEMA]}
       />

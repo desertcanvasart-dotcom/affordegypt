@@ -51,21 +51,21 @@ export default function CairoGuideServices() {
     {
       name: t("guideServices.common.professionalGuide"),
       duration: t("guideServices.common.fullDay8Hours"),
-      price: t("guideServices.cairo.priceFrom1200"),
+      price: t("guideServices.cairo.guidePriceFrom"),
       features: ["Licensed Egyptologist", "Fluent English/Arabic", "Historical expertise"],
       icon: UserCheck
     },
     {
       name: t("guideServices.common.guideCarPackage"),
       duration: t("guideServices.common.fullDay"), 
-      price: t("guideServices.cairo.priceFrom2400"),
-      features: [t("guideServices.common.licensedGuide"), "Private vehicle", t("guideServices.common.allEntranceFees")],
+      price: t("guideServices.cairo.guideCarPriceFrom"),
+      features: [t("guideServices.common.licensedGuide"), "Private vehicle", t("guideServices.common.entranceFeesExcluded")],
       icon: Users
     },
     {
       name: t("guideServices.common.premiumCarService"),
       duration: t("guideServices.common.6to12Hours"),
-      price: t("guideServices.cairo.priceFrom1800"), 
+      price: t("guideServices.cairo.carPriceFrom"), 
       features: ["Luxury sedan/SUV", t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
       icon: Car
     }
@@ -126,8 +126,8 @@ export default function CairoGuideServices() {
   return (
     <>
       <SeoMeta
-        title="Cairo Private Tour Guide & Car | LE 5,000/day"
-        description="Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From LE 5,000/day all-in. ETAA-licensed Travel2Egypt operator."
+        title="Cairo Private Tour Guide & Car | From LE 5,625/day"
+        description="Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From LE 5,625/day for guide + private car (entrance tickets separate). ETAA-licensed Travel2Egypt operator."
         canonical="https://affordegypt.com/cairo-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />
@@ -314,7 +314,7 @@ export default function CairoGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("guideServices.cairo.priceFrom1200")}</span>
+                  <span className="font-semibold">{t("guideServices.cairo.guidePriceFrom")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("guideServices.cairo.pricingInfo")}

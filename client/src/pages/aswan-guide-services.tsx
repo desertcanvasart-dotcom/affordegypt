@@ -51,21 +51,21 @@ export default function AswanGuideServices() {
     {
       name: "Nubian Culture Guide",
       duration: "Full Day (8 hours)",
-      price: "From 1,000 EGP",
+      price: "From 2,750 EGP",
       features: ["Nubian heritage expert", "Local village guide", "Traditional culture focus"],
       icon: UserCheck
     },
     {
       name: "Nile & Temples Package",
       duration: "Full Day", 
-      price: "From 2,100 EGP",
-      features: ["Professional guide", "Felucca included", "Philae Temple tour"],
+      price: "From 7,755 EGP",
+      features: ["Professional guide", "Private vehicle", "Philae Temple tour"],
       icon: Users
     },
     {
       name: "Abu Simbel Expedition",
       duration: "12-14 hours",
-      price: "From 2,800 EGP", 
+      price: "From 14,025 EGP", 
       features: ["Long-distance vehicle", "Expert guide", "UNESCO site specialist"],
       icon: Car
     }
@@ -126,8 +126,8 @@ export default function AswanGuideServices() {
   return (
     <>
       <SeoMeta
-        title="Aswan Private Tour Guide & Car | LE 5,000/day"
-        description="Private licensed Egyptologist + vehicle for Aswan, Philae, the High Dam, and Abu Simbel. From LE 5,000/day. Same team as Travel2Egypt."
+        title="Aswan Private Tour Guide & Car | From LE 7,755/day"
+        description="Private licensed Egyptologist + vehicle for Aswan, Philae, the High Dam, and Abu Simbel. From LE 7,755/day for guide + private car. Same team as Travel2Egypt."
         canonical="https://affordegypt.com/aswan-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />
@@ -146,7 +146,7 @@ export default function AswanGuideServices() {
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Discover Nubian culture and southern Egypt treasures. Expert car & tour guide services, 
-                desert expeditions, and cultural immersion from 1,000 EGP.
+                desert expeditions, and cultural immersion from 2,750 EGP.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
@@ -317,7 +317,7 @@ export default function AswanGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Starting from 1,000 EGP</span>
+                  <span className="font-semibold">Starting from 2,750 EGP</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   Local guides • Cultural immersion • Premium transport • Authentic experiences
