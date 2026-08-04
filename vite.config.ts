@@ -48,6 +48,9 @@ export default defineConfig({
           ),
         ]
       : []),
+    ...(process.env.SKIP_PRERENDER === "1"
+      ? []
+      : [
     prerender({
       routes: PRERENDER_ROUTES,
       renderer: "@prerenderer/renderer-puppeteer",
@@ -86,6 +89,7 @@ export default defineConfig({
         );
       },
     }),
+        ]),
   ],
   resolve: {
     alias: {
@@ -99,5 +103,51 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     sourcemap: true,
+    // Two chunks legitimately exceed Rollup's 500 kB default and can't
+    // shrink further: the entry (~550 kB min / 123 kB gzip — every
+    // prerendered public page must be statically imported, because
+    // "prerender-ready" fires on first paint and a lazy page would be
+    // captured as its loading fallback) and the pdf chunk (~730 kB,
+    // loaded only by the lazy booking-confirmation page). 750 keeps the
+    // build quiet for those while still flagging any new oversized chunk.
+    chunkSizeWarningLimit: 750,
+    rollupOptions: {
+      output: {
+        // Split stable vendor code out of the app chunk so page edits don't
+        // re-download the framework, and the entry chunk stays well under
+        // the 500 kB warning. App code (incl. lazy admin/auth pages) is
+        // chunked by Rollup's defaults.
+        manualChunks(id: string) {
+          // Shared helper virtuals must live in the base chunk. Left
+          // unassigned they land in whatever chunk Rollup meets first (the
+          // pdf chunk here), and every chunk that needs the helper then
+          // statically imports pdf — either dragging ~700 kB into the eager
+          // graph (preload helper) or creating a react → pdf → vendor →
+          // react cycle that evaluates vendor before React exists and
+          // silently blanks the app (CJS interop helper). ONLY these exact
+          // helpers — other \0 virtuals (per-module CJS proxies) must stay
+          // with the module they belong to.
+          if (id.includes("commonjsHelpers") || id.includes("vite/preload-helper") || id.includes("vite/modulepreload-polyfill")) return "react";
+          if (!id.includes("node_modules")) {
+            // The four locale JSONs are ~300 kB of source that every page
+            // pays for but only the language switcher needs at once.
+            if (id.includes("/i18n/locales/")) return "locales";
+            return undefined;
+          }
+          // Only packages with zero runtime deps may share the react chunk —
+          // anything that imports from another vendor package (e.g. wouter)
+          // would create a react↔vendor cycle, and the half-initialized
+          // chunk silently renders a blank page.
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return "react";
+          // PDF stack — only the lazy booking-confirmation page imports it,
+          // so its own chunk keeps ~1 MB out of the eager vendor graph.
+          if (/node_modules\/(jspdf|html2canvas|canvg|fflate|dompurify|core-js|stackblur-canvas|svg-pathdata|rgbcolor|raf|performance-now)\//.test(id)) return "pdf";
+          if (id.includes("node_modules/@radix-ui/")) return "radix";
+          if (/node_modules\/(lucide-react|react-icons)\//.test(id)) return "icons";
+          if (/node_modules\/(i18next|react-i18next|i18next-browser-languagedetector)\//.test(id)) return "i18n";
+          return "vendor";
+        },
+      },
+    },
   },
 });
