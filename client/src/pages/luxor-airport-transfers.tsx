@@ -49,21 +49,21 @@ export default function LuxorAirportTransfers() {
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to3"),
-      price: t("airportTransfers.luxor.priceFrom460"),
+      price: t("airportTransfers.luxor.sedanPriceFrom"),
       features: [t("airportTransfers.common.airConditioning"), t("airportTransfers.common.professionalDriver"), t("airportTransfers.luxor.templeRouteKnowledge")],
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
       capacity: t("airportTransfers.common.passengers4to7"), 
-      price: t("airportTransfers.luxor.priceFrom805"),
+      price: t("airportTransfers.luxor.minivanPriceFrom"),
       features: [t("airportTransfers.common.extraLuggageSpace"), t("airportTransfers.common.familyFriendly"), t("airportTransfers.luxor.touristFriendly")],
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers8plus"),
-      price: t("airportTransfers.luxor.priceFrom1248"), 
+      price: t("airportTransfers.luxor.vanPriceFrom"), 
       features: [t("airportTransfers.common.groupTravel"), t("airportTransfers.common.largeLuggageCapacity"), t("airportTransfers.luxor.tourGroupFriendly")],
       icon: Users
     }
@@ -312,7 +312,7 @@ export default function LuxorAirportTransfers() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.luxor.priceFrom460")}</span>
+                  <span className="font-semibold">{t("airportTransfers.luxor.sedanPriceFrom")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("airportTransfers.luxor.pricingInfoDesc")}

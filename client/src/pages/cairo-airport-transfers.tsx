@@ -49,7 +49,7 @@ export default function CairoAirportTransfers() {
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to3"),
-      price: t("airportTransfers.cairo.priceFrom950"),
+      price: t("airportTransfers.cairo.sedanPriceFrom"),
       features: [
         t("airportTransfers.common.airConditioning"),
         t("airportTransfers.common.professionalDriver"),
@@ -60,7 +60,7 @@ export default function CairoAirportTransfers() {
     {
       name: t("airportTransfers.common.minivan"),
       capacity: t("airportTransfers.common.passengers4to7"), 
-      price: t("airportTransfers.cairo.priceFrom1553"),
+      price: t("airportTransfers.cairo.minivanPriceFrom"),
       features: [
         t("airportTransfers.common.extraLuggageSpace"),
         t("airportTransfers.common.familyFriendly"),
@@ -71,7 +71,7 @@ export default function CairoAirportTransfers() {
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers8plus"),
-      price: t("airportTransfers.cairo.priceFrom2406"), 
+      price: t("airportTransfers.cairo.vanPriceFrom"), 
       features: [
         t("airportTransfers.common.groupTravel"),
         t("airportTransfers.common.largeLuggageCapacity"),
@@ -136,7 +136,7 @@ export default function CairoAirportTransfers() {
   return (
     <>
       <SeoMeta
-        title="Cairo Airport Transfers | Fixed Price from LE 600 | AffordEgypt"
+        title="Cairo Airport Transfers | Fixed Price from LE 2,025 | AffordEgypt"
         description="Private Cairo airport transfers (CAI) to/from any Cairo or Giza hotel. Licensed drivers, fixed transparent prices, no surge, no hidden fees. Book online or via WhatsApp."
         canonical="https://affordegypt.com/cairo-airport-transfers"
         schema={SERVICE_SCHEMA}
@@ -287,7 +287,7 @@ export default function CairoAirportTransfers() {
               <div className="bg-background p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.cairo.priceFrom950")}</span>
+                  <span className="font-semibold">{t("airportTransfers.cairo.sedanPriceFrom")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("airportTransfers.cairo.pricingInfoDesc")}

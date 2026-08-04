@@ -48,23 +48,21 @@ async function loadFallback() {
 }
 
 /**
- * Minimum airport-transfer price for a city, derived from routes.vehicle_prices
- * on routes flagged as airport-transfer (by category or location string).
- * vehicle_prices is flat JSONB keyed `${vehicleSlug}_${tripType}` (e.g.
- * "sedan_one_way"); we take the minimum positive value across every entry on
- * every candidate route. Returns null if no candidate route or price is found.
+ * Minimum airport-transfer price for a city, derived from
+ * service_catalog.vehicle_prices on active airport_transfer rows. (The legacy
+ * routes table is empty in prod — querying it always fell back to the stale
+ * fallback file, which is how the schema advertised LE 600 transfers that
+ * don't exist.) vehicle_prices is flat JSONB keyed `${vehicleSlug}_${tripType}`
+ * (e.g. "sedan_one_way"); we take the minimum positive value across every
+ * entry on every candidate row. Returns null if no candidate row or price.
  */
-async function getAirportTransferMin(c, cityId) {
+async function getAirportTransferMin(c, cityName) {
   const routes = await c.query(
-    `SELECT id, vehicle_prices FROM routes
-     WHERE (
-       route_category = 'airport_transfer'
-       OR LOWER(COALESCE(name, '')) LIKE '%airport%'
-       OR LOWER(COALESCE(from_location, '')) LIKE '%airport%'
-       OR LOWER(COALESCE(to_location, '')) LIKE '%airport%'
-     )
-     AND (from_city_id = $1 OR to_city_id = $1 OR city_id = $1)`,
-    [cityId],
+    `SELECT vehicle_prices FROM service_catalog
+     WHERE category = 'airport_transfer'
+       AND is_active = true
+       AND LOWER(city) = LOWER($1)`,
+    [cityName],
   );
   if (routes.rows.length === 0) return null;
 
@@ -113,9 +111,9 @@ async function deriveFromDb() {
   await c.connect();
   try {
     const out = {};
-    out[SERVICE_KEYS.cairoAirport] = await getAirportTransferMin(c, CITY_IDS.cairo);
-    out[SERVICE_KEYS.luxorAirport] = await getAirportTransferMin(c, CITY_IDS.luxor);
-    out[SERVICE_KEYS.aswanAirport] = await getAirportTransferMin(c, CITY_IDS.aswan);
+    out[SERVICE_KEYS.cairoAirport] = await getAirportTransferMin(c, "Cairo");
+    out[SERVICE_KEYS.luxorAirport] = await getAirportTransferMin(c, "Luxor");
+    out[SERVICE_KEYS.aswanAirport] = await getAirportTransferMin(c, "Aswan");
     out[SERVICE_KEYS.cairoGuide] = await getGuideMin(c, CITY_IDS.cairo);
     out[SERVICE_KEYS.luxorGuide] = await getGuideMin(c, CITY_IDS.luxor);
     out[SERVICE_KEYS.aswanGuide] = await getGuideMin(c, CITY_IDS.aswan);

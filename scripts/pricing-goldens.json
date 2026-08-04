@@ -105,7 +105,7 @@
       }
     },
     {
-      "name": "airport round-trip: Aswan airport to hotel, van, 9 pax",
+      "name": "airport transfer: Aswan airport to hotel, van one-way, 9 pax",
       "expectedTotal": 3010,
       "payload": {
         "travelers": 9,
@@ -118,7 +118,7 @@
               {
                 "slug": "aswan-airport-hotel",
                 "vehicleSlug": "van",
-                "tripType": "round_trip_same_day"
+                "tripType": "one_way"
               }
             ],
             "selectedAttractions": [],
