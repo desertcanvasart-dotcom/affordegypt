@@ -7,25 +7,45 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { FaWhatsapp } from "react-icons/fa";
 import { AuthProvider } from "@/hooks/useAuth";
 import { getAllSlugVariants } from "@/utils/slugTranslation";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense, type ComponentType } from "react";
 import { ClientOnly } from "@/components/client-only";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
-import BookPage from "@/pages/book";
-import AdminSidebar from "@/pages/admin-sidebar";
-import AdminBookings from "@/pages/admin-bookings";
-import AdminReviews from "@/pages/admin-reviews";
-import AdminServiceCatalog from "@/pages/admin-service-catalog";
-import AdminServiceCatalogEdit from "@/pages/admin-service-catalog-edit";
-import AdminTripTypes from "@/pages/admin-trip-types";
-import AdminServiceCategories from "@/pages/admin-service-categories";
-import AdminEntranceFees from "@/pages/admin-entrance-fees";
-import AttractionsSimple from "@/pages/attractions-simple";
 import Attractions from "@/pages/attractions";
-import BookingConfirmation from "@/pages/booking-confirmation";
-import UserDashboard from "@/pages/user-dashboard";
+
+// Never-prerendered surfaces (admin, auth, booking flow) load lazily so the
+// public bundle stays small. Prerendered routes MUST stay statically
+// imported: the "prerender-ready" event fires on first paint, and a lazy
+// page would be captured as its Suspense fallback.
+//
+// Each lazy page carries its own Suspense boundary instead of one wrapper
+// around the whole <Switch> — a top-level boundary changes the hydration
+// tree of the prerendered public pages and triggers React #418/#423
+// hydration mismatches on every one of them.
+function withSuspense(Component: ComponentType<any>) {
+  return function SuspendedPage(props: any) {
+    return (
+      <Suspense fallback={<PageLoading />}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
+}
+
+const BookPage = withSuspense(lazy(() => import("@/pages/book")));
+const AdminSidebar = withSuspense(lazy(() => import("@/pages/admin-sidebar")));
+const AdminBookings = withSuspense(lazy(() => import("@/pages/admin-bookings")));
+const AdminReviews = withSuspense(lazy(() => import("@/pages/admin-reviews")));
+const AdminServiceCatalog = withSuspense(lazy(() => import("@/pages/admin-service-catalog")));
+const AdminServiceCatalogEdit = withSuspense(lazy(() => import("@/pages/admin-service-catalog-edit")));
+const AdminTripTypes = withSuspense(lazy(() => import("@/pages/admin-trip-types")));
+const AdminServiceCategories = withSuspense(lazy(() => import("@/pages/admin-service-categories")));
+const AdminEntranceFees = withSuspense(lazy(() => import("@/pages/admin-entrance-fees")));
+const AttractionsSimple = withSuspense(lazy(() => import("@/pages/attractions-simple")));
+const BookingConfirmation = withSuspense(lazy(() => import("@/pages/booking-confirmation")));
+const UserDashboard = withSuspense(lazy(() => import("@/pages/user-dashboard")));
 import TravelTips from "@/pages/travel-tips";
 import Destinations from "@/pages/destinations";
 import BudgetTravelEgypt from "@/pages/budget-travel-egypt";
@@ -51,10 +71,10 @@ import BookingAgreement from "@/pages/booking-agreement";
 import TermsOfService from "@/pages/terms-of-service";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import CookiePolicy from "@/pages/cookie-policy";
-import Login from "@/pages/login";
-import Register from "@/pages/register";
-import ResetPassword from "@/pages/reset-password";
-import VerifyEmail from "@/pages/verify-email";
+const Login = withSuspense(lazy(() => import("@/pages/login")));
+const Register = withSuspense(lazy(() => import("@/pages/register")));
+const ResetPassword = withSuspense(lazy(() => import("@/pages/reset-password")));
+const VerifyEmail = withSuspense(lazy(() => import("@/pages/verify-email")));
 
 import NotFound from "@/pages/not-found";
 
@@ -66,10 +86,20 @@ function createMultilingualRoute(englishSlug: string, Component: React.Component
   ));
 }
 
+// Shown while a lazy page chunk downloads (admin/auth/booking surfaces only —
+// public prerendered pages are in the main bundle and never hit this).
+function PageLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-teal-600 border-t-transparent" />
+    </div>
+  );
+}
+
 function Router() {
   // Track page views when routes change
   useAnalytics();
-  
+
   return (
     <Switch>
       <Route path="/" component={Home} />
