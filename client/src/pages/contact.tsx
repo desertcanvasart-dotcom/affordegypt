@@ -222,7 +222,15 @@ export default function Contact() {
                           <FormItem>
                             <FormLabel>Full Name *</FormLabel>
                             <FormControl>
-                              <Input placeholder="Your full name" {...field} />
+                              {/* The asterisk is decoration; `required` is what the
+                                  browser and assistive tech actually act on. Zod
+                                  still validates — this is belt and braces. */}
+                              <Input
+                                placeholder="Your full name"
+                                required
+                                autoComplete="name"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -236,7 +244,13 @@ export default function Contact() {
                           <FormItem>
                             <FormLabel>Email Address *</FormLabel>
                             <FormControl>
-                              <Input placeholder="your.email@example.com" type="email" {...field} />
+                              <Input
+                                placeholder="your.email@example.com"
+                                type="email"
+                                required
+                                autoComplete="email"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -251,7 +265,12 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel>Phone Number (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="+1 (555) 123-4567" {...field} />
+                            <Input
+                              placeholder="+1 (555) 123-4567"
+                              type="tel"
+                              autoComplete="tel"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -265,7 +284,7 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel>Subject *</FormLabel>
                           <FormControl>
-                            <Input placeholder="What can we help you with?" {...field} />
+                            <Input placeholder="What can we help you with?" required {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -282,6 +301,7 @@ export default function Contact() {
                             <Textarea
                               placeholder="Tell us about your travel plans, questions, or how we can assist you..."
                               className="min-h-[120px]"
+                              required
                               {...field}
                             />
                           </FormControl>

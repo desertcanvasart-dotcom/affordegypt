@@ -316,10 +316,10 @@ export default function LuxorGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Starting from 2,750 EGP</span>
+                  <span className="font-semibold">Licensed guide from LE 2,750/day — guide + private car from LE 6,875/day</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Licensed guides • Temple expertise • Premium vehicles • Entry tickets included
+                  Licensed guides • Temple expertise • Private air-conditioned car on the guide + car package • Entrance tickets billed separately
                 </p>
                 <Link href="/transfers">
                   <Button size="lg">

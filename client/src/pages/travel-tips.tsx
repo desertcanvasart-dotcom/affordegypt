@@ -18,7 +18,7 @@ export default function TravelTips() {
           canonical: "https://affordegypt.com/travel-tips",
           image: "https://affordegypt.com/images/giza-pyramids.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-08-02",
+          dateModified: "2026-08-04",
         })}
         ogType="article"
       />
@@ -38,7 +38,7 @@ export default function TravelTips() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance text-center">
-              Your ultimate 2025 guide to budget travel in Egypt.<br/>
+              Your ultimate 2026 guide to budget travel in Egypt.<br/>
               Get insider tips on transport, food, accommodation, and attractions.
             </p>
             
@@ -72,10 +72,10 @@ export default function TravelTips() {
           {/* Introduction */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-              Why Egypt in 2025 Is a Budget Traveler's Dream
+              Why Egypt in 2026 Is a Budget Traveler's Dream
             </h2>
             <p className="text-lg leading-relaxed mb-6">
-              So, why does Egypt top the list for affordable travel in 2025? Let's start with the exchange rate. If you're arriving with US dollars, euros, or pounds, your money can go a long way here. The Egyptian Pound has seen some ups and downs over the past few years, and while inflation remains a concern locally, it often works in your favour as a visitor. Hotels, meals, transport, and even museum tickets can feel surprisingly affordable—especially when compared to what you'd spend for a similar experience in Europe or North America.
+              So, why does Egypt top the list for affordable travel in 2026? Let's start with the exchange rate. If you're arriving with US dollars, euros, or pounds, your money can go a long way here. The Egyptian Pound has seen some ups and downs over the past few years, and while inflation remains a concern locally, it often works in your favour as a visitor. Hotels, meals, transport, and even museum tickets can feel surprisingly affordable—especially when compared to what you'd spend for a similar experience in Europe or North America.
             </p>
             <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-6">
               <p className="mb-0">
@@ -148,7 +148,7 @@ export default function TravelTips() {
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-                Crafting Your Budget: What to Expect in 2025 💰
+                Crafting Your Budget: What to Expect in 2026 💰
               </h2>
               <p className="text-lg leading-relaxed mb-6">
                 Let's talk numbers. A smart budget is your best travel companion. We'll use an estimated rate of <strong>1 USD = 49.6 EGP</strong>, but always check current rates.
@@ -371,7 +371,7 @@ export default function TravelTips() {
               Your Egyptian Dream Awaits!
             </h2>
             <p className="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
-              Traveling to Egypt in 2025 on a budget is not only feasible but incredibly rewarding. With careful planning, an adventurous spirit, and a willingness to embrace the local culture, the timeless wonders of this ancient land are well within your reach.
+              Traveling to Egypt in 2026 on a budget is not only feasible but incredibly rewarding. With careful planning, an adventurous spirit, and a willingness to embrace the local culture, the timeless wonders of this ancient land are well within your reach.
             </p>
             <a href="#" onClick={() => window.scrollTo(0, 0)} className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
               Back to Top ↑

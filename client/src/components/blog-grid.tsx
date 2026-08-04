@@ -17,6 +17,16 @@ interface BlogPost {
   slug: string;
 }
 
+// Single source of truth for slug -> route. This mapping used to be inlined as
+// a ternary chain in three separate places, which is how they drifted apart.
+const POST_ROUTES: Record<string, string> = {
+  "sinai-peninsula-travel-guide": "/sinai-peninsula-guide",
+  "nile-valley-travel-guide": "/nile-valley-guide",
+  "eastern-western-deserts-travel-guide": "/eastern-western-deserts-guide",
+  "budget-travel-egypt": "/budget-travel-egypt",
+  "egyptian-street-food-guide": "/egyptian-street-food-guide",
+};
+
 const getBlogPosts = (t: any): BlogPost[] => [
   {
     id: 1,
@@ -155,15 +165,10 @@ export default function BlogGrid() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {filteredPosts.slice(0, visiblePosts).map((post) => (
             <Card key={post.id} className="group card-hover overflow-hidden">
-              <Link href={post.slug === "sinai-peninsula-travel-guide" ? "/sinai-peninsula-guide" :
-                          post.slug === "nile-valley-travel-guide" ? "/nile-valley-guide" :
-                          post.slug === "eastern-western-deserts-travel-guide" ? "/eastern-western-deserts-guide" :
-                          post.slug === "budget-travel-egypt" ? "/budget-travel-egypt" :
-                          post.slug === "egyptian-street-food-guide" ? "/egyptian-street-food-guide" :
-                          "#"}>
+              <Link href={POST_ROUTES[post.slug] ?? "#"} aria-hidden="true" tabIndex={-1}>
                 <div className="aspect-video overflow-hidden cursor-pointer">
-                  <img 
-                    src={post.image} 
+                  <img
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
@@ -194,47 +199,23 @@ export default function BlogGrid() {
                 <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                   {post.excerpt}
                 </p>
-                {post.slug === "nile-valley-travel-guide" ? (
-                  <Link href="/nile-valley-guide">
-                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
+                {/* asChild makes the Button render AS the link, so each card has
+                    exactly one interactive element instead of a <button> nested
+                    inside an <a>. The article title is folded into the
+                    accessible name so "Read more" isn't the whole label. */}
+                {POST_ROUTES[post.slug] ? (
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="p-0 h-auto font-medium text-primary hover:text-primary/80"
+                  >
+                    <Link href={POST_ROUTES[post.slug]} aria-label={`${t('blog.readMore')}: ${post.title}`}>
                       {t('blog.readMore')}
                       <ArrowRight className="ml-1 w-3 h-3" />
-                    </Button>
-                  </Link>
-                ) : post.slug === "sinai-peninsula-travel-guide" ? (
-                  <Link href="/sinai-peninsula-guide">
-                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      {t('blog.readMore')}
-                      <ArrowRight className="ml-1 w-3 h-3" />
-                    </Button>
-                  </Link>
-                ) : post.slug === "eastern-western-deserts-travel-guide" ? (
-                  <Link href="/eastern-western-deserts-guide">
-                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      {t('blog.readMore')}
-                      <ArrowRight className="ml-1 w-3 h-3" />
-                    </Button>
-                  </Link>
-                ) : post.slug === "budget-travel-egypt" ? (
-                  <Link href="/budget-travel-egypt">
-                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      {t('blog.readMore')}
-                      <ArrowRight className="ml-1 w-3 h-3" />
-                    </Button>
-                  </Link>
-                ) : post.slug === "egyptian-street-food-guide" ? (
-                  <Link href="/egyptian-street-food-guide">
-                    <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                      {t('blog.readMore')}
-                      <ArrowRight className="ml-1 w-3 h-3" />
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button variant="ghost" size="sm" className="p-0 h-auto font-medium text-primary hover:text-primary/80">
-                    {t('blog.readMore')}
-                    <ArrowRight className="ml-1 w-3 h-3" />
+                    </Link>
                   </Button>
-                )}
+                ) : null}
               </CardContent>
             </Card>
           ))}

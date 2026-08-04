@@ -32,6 +32,10 @@ import EntranceFeesSearch from "@/components/entrance-fees-search";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
 import { trackEvent, trackConversion } from "@/lib/analytics";
 import { useAuth } from "@/hooks/useAuth";
+import {
+  blockersForStep as sharedBlockersForStep,
+  type QuoteState,
+} from "@shared/quote-validation";
 
 interface CityService {
   dayNumber: number;
@@ -87,15 +91,19 @@ function StepProgress({ currentStep, steps, onStepClick }: {
 }) {
   return (
     <div className="mb-8">
-      <div className="flex items-center justify-between max-w-4xl mx-auto">
+      <nav aria-label="Quote builder progress" className="flex items-center justify-between max-w-4xl mx-auto">
         {steps.map((step, index) => (
           <div key={step.number} className="flex items-center flex-1">
             <div className="flex flex-col items-center flex-1">
               <button
                 onClick={() => onStepClick?.(step.number)}
                 disabled={step.number > currentStep + 1}
+                // The visible label is a bare digit (or a checkmark once done),
+                // which tells a screen-reader user nothing about the step.
+                aria-label={`Step ${step.number}: ${step.title}${step.number < currentStep ? ' (completed)' : ''}`}
+                aria-current={step.number === currentStep ? 'step' : undefined}
                 className={`
-                  w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all
+                  w-11 h-11 rounded-full flex items-center justify-center font-semibold transition-all
                   ${step.number < currentStep 
                     ? 'bg-primary text-white' 
                     : step.number === currentStep 
@@ -114,12 +122,26 @@ function StepProgress({ currentStep, steps, onStepClick }: {
               </div>
             </div>
             {index < steps.length - 1 && (
-              <div className={`flex-1 h-1 mx-2 rounded transition-all ${step.number < currentStep ? 'bg-primary' : 'bg-gray-200'}`} />
+              <div aria-hidden="true" className={`flex-1 h-1 mx-2 rounded transition-all ${step.number < currentStep ? 'bg-primary' : 'bg-gray-200'}`} />
             )}
           </div>
         ))}
-      </div>
+      </nav>
     </div>
+  );
+}
+
+/**
+ * Inline validation message rendered directly beneath the field it belongs to.
+ * role="alert" so screen readers announce it when it appears after a blocked
+ * submit; the id lets the field point at it via aria-describedby.
+ */
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null;
+  return (
+    <p id={id} role="alert" className="mt-1.5 text-xs font-medium text-red-600">
+      {message}
+    </p>
   );
 }
 
@@ -212,6 +234,8 @@ export default function MultiCityPricingTool() {
   const [travelDate, setTravelDate] = useState<string | null>('');
   const [justExploring, setJustExploring] = useState<boolean>(false);
   const [tripDuration, setTripDuration] = useState<string>('');
+  // Field-keyed validation messages for the step the user is trying to leave.
+  const [stepErrors, setStepErrors] = useState<Record<string, string>>({});
   const [step1DestinationId, setStep1DestinationId] = useState<string>('');
   const [globalTravelers, setGlobalTravelers] = useState<number>(1);
   const [tripStyle, setTripStyle] = useState<'private' | 'shared'>('private');
@@ -681,32 +705,41 @@ export default function MultiCityPricingTool() {
     { number: 4, title: 'Checkout', description: 'Complete booking' }
   ];
 
-  const canProceedToStep = (step: number) => {
-    switch (step) {
-      case 2:
-        // Date is optional ("Just exploring" mode); destination + travelers required
-        return !!step1DestinationId && globalTravelers > 0;
-      case 3:
-        return cityServices.length > 0; // need at least one day to review
-      case 4:
-        return totalPricing && totalPricing.totalAmount > 0;
-      default:
-        return true;
-    }
+  // Rules live in @shared/quote-validation so they can be unit-tested without
+  // a browser — see shared/quote-validation.test.ts.
+  const validationState: QuoteState = {
+    destinationId: step1DestinationId,
+    tripDuration,
+    travelers: globalTravelers,
+    travelDate,
+    justExploring,
+    days: cityServices,
+    totalAmount: totalPricing?.totalAmount ?? 0,
   };
 
+  const blockersForStep = (step: number) => sharedBlockersForStep(step, validationState);
+  const canProceedToStep = (step: number) => Object.keys(blockersForStep(step)).length === 0;
+
   const goToNextStep = () => {
-    if (currentStep < 4 && canProceedToStep(currentStep + 1)) {
-      setCurrentStep(currentStep + 1);
-      // Scroll to step content area, not top of page
-      setTimeout(() => {
-        stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+    if (currentStep >= 4) return;
+    const next = currentStep + 1;
+    const blockers = blockersForStep(next);
+    if (Object.keys(blockers).length > 0) {
+      // Previously this silently did nothing, so the CTA read as broken.
+      setStepErrors(blockers);
+      return;
     }
+    setStepErrors({});
+    setCurrentStep(next);
+    // Scroll to step content area, not top of page
+    setTimeout(() => {
+      stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const goToPreviousStep = () => {
     if (currentStep > 1) {
+      setStepErrors({});
       setCurrentStep(currentStep - 1);
       // Scroll to step content area, not top of page
       setTimeout(() => {
@@ -784,6 +817,7 @@ export default function MultiCityPricingTool() {
                           value={step1DestinationId}
                           onValueChange={(value) => {
                             setStep1DestinationId(value);
+                            setStepErrors(prev => ({ ...prev, destination: '' }));
                             const selectedCity = cities.find((c: any) => c.id === parseInt(value));
                             if (!selectedCity) return;
                             // Seed first day if no city selected yet
@@ -808,7 +842,13 @@ export default function MultiCityPricingTool() {
                             });
                           }}
                         >
-                          <SelectTrigger className="w-full h-11 rounded-lg border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200">
+                          <SelectTrigger
+                            id="step1-destination"
+                            aria-label="Where do you want to go?"
+                            aria-invalid={!!stepErrors.destination}
+                            aria-describedby={stepErrors.destination ? 'step1-destination-error' : undefined}
+                            className={`w-full h-11 rounded-lg focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 ${stepErrors.destination ? 'border-red-500' : 'border-gray-300'}`}
+                          >
                             <SelectValue placeholder="Choose a destination" />
                           </SelectTrigger>
                           <SelectContent>
@@ -822,6 +862,7 @@ export default function MultiCityPricingTool() {
                             ))}
                           </SelectContent>
                         </Select>
+                        <FieldError id="step1-destination-error" message={stepErrors.destination} />
                       </div>
 
                       {/* How many days */}
@@ -830,8 +871,20 @@ export default function MultiCityPricingTool() {
                           <Clock className="w-4 h-4 text-teal-600" />
                           How many days?
                         </Label>
-                        <Select value={tripDuration} onValueChange={setTripDuration}>
-                          <SelectTrigger className="w-full h-11 rounded-lg border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200">
+                        <Select
+                          value={tripDuration}
+                          onValueChange={(value) => {
+                            setTripDuration(value);
+                            setStepErrors(prev => ({ ...prev, duration: '' }));
+                          }}
+                        >
+                          <SelectTrigger
+                            id="trip-duration"
+                            aria-label="How many days?"
+                            aria-invalid={!!stepErrors.duration}
+                            aria-describedby={stepErrors.duration ? 'trip-duration-error' : undefined}
+                            className={`w-full h-11 rounded-lg focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 ${stepErrors.duration ? 'border-red-500' : 'border-gray-300'}`}
+                          >
                             <SelectValue placeholder="Select trip length" />
                           </SelectTrigger>
                           <SelectContent>
@@ -843,6 +896,7 @@ export default function MultiCityPricingTool() {
                             <SelectItem value="exploring">Just exploring</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FieldError id="trip-duration-error" message={stepErrors.duration} />
                       </div>
 
                       {/* Travelers */}
@@ -859,7 +913,11 @@ export default function MultiCityPricingTool() {
                             setCityServices(prev => prev.map(city => ({ ...city, travelers: newTravelers })));
                           }}
                         >
-                          <SelectTrigger className="w-full h-11 rounded-lg border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200">
+                          <SelectTrigger
+                            id="total-travelers"
+                            aria-label="How many travelers?"
+                            className="w-full h-11 rounded-lg border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200"
+                          >
                             <SelectValue placeholder="Select number of travelers" />
                           </SelectTrigger>
                           <SelectContent>
@@ -880,6 +938,10 @@ export default function MultiCityPricingTool() {
                           <label htmlFor="just-exploring" className="flex items-center gap-1.5 text-xs text-gray-500 cursor-pointer select-none">
                             <Checkbox
                               id="just-exploring"
+                              // Radix renders a <button role="checkbox">, whose only
+                              // text child is the label's — which the wrapping <label>
+                              // does not supply to it. Name it explicitly.
+                              aria-label="Not sure yet — I don't have a travel date"
                               className="h-3.5 w-3.5"
                               checked={justExploring}
                               onCheckedChange={(checked) => {
@@ -889,6 +951,7 @@ export default function MultiCityPricingTool() {
                                   setTravelDate(null);
                                   setCityServices(prev => prev.map(city => ({ ...city, date: '' })));
                                 }
+                                if (isChecked) setStepErrors(prev => ({ ...prev, date: '' }));
                               }}
                             />
                             Not sure yet
@@ -899,12 +962,16 @@ export default function MultiCityPricingTool() {
                           type="date"
                           value={travelDate ?? ''}
                           disabled={justExploring}
+                          aria-invalid={!!stepErrors.date}
+                          aria-describedby={stepErrors.date ? 'travel-date-error' : undefined}
                           onChange={(e) => {
                             setTravelDate(e.target.value);
+                            setStepErrors(prev => ({ ...prev, date: '' }));
                             setCityServices(prev => prev.map(city => ({ ...city, date: e.target.value })));
                           }}
-                          className="w-full h-11 rounded-lg border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                          className={`w-full h-11 rounded-lg focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed ${stepErrors.date ? 'border-red-500' : 'border-gray-300'}`}
                         />
+                        <FieldError id="travel-date-error" message={stepErrors.date} />
                       </div>
                     </div>
 
@@ -917,11 +984,12 @@ export default function MultiCityPricingTool() {
 
                     {/* CTA */}
                     <div className="flex justify-center mt-8">
+                      {/* Deliberately not disabled: a dead button explains nothing.
+                          goToNextStep surfaces per-field errors instead. */}
                       <Button
                         onClick={goToNextStep}
-                        disabled={!step1DestinationId || !globalTravelers}
                         size="lg"
-                        className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto px-10 py-6 text-base font-semibold rounded-xl disabled:opacity-40 disabled:hover:shadow-lg"
+                        className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto px-10 py-6 text-base font-semibold rounded-xl"
                       >
                         See My Price →
                       </Button>
@@ -1159,15 +1227,18 @@ export default function MultiCityPricingTool() {
                   )}
 
                   {/* Navigation */}
-                  <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
-                    <Button variant="outline" onClick={goToPreviousStep} size="lg" className="w-full sm:w-auto">
-                      <ChevronLeft className="w-4 h-4 mr-2" />
-                      Back to Overview
-                    </Button>
-                    <Button onClick={goToNextStep} disabled={cityServices.length === 0} size="lg" className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto">
-                      Continue to Review
-                      <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
+                  <div className="pt-6 border-t">
+                    <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3">
+                      <Button variant="outline" onClick={goToPreviousStep} size="lg" className="w-full sm:w-auto">
+                        <ChevronLeft className="w-4 h-4 mr-2" />
+                        Back to Overview
+                      </Button>
+                      <Button onClick={goToNextStep} size="lg" className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto">
+                        Continue to Review
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                    <FieldError id="step2-itinerary-error" message={stepErrors.itinerary} />
                   </div>
                 </div>
               )}
@@ -1311,32 +1382,39 @@ export default function MultiCityPricingTool() {
                     })}
                   </Accordion>
 
-                  {/* Navigation */}
-                  <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3 pt-6 border-t">
-                    <Button
-                      variant="outline"
-                      onClick={goToPreviousStep}
-                      size="lg"
-                      className="w-full sm:w-auto"
-                    >
-                      <ChevronLeft className="w-4 h-4 mr-2" />
-                      Back to itinerary
-                    </Button>
-                    <Button
-                      onClick={goToNextStep}
-                      size="lg"
-                      className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
-                    >
-                      Proceed to Checkout
-                      <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
+                  {/* Navigation — the single checkout CTA for this step. The
+                      price panel deliberately renders no button here so there
+                      is exactly one "Proceed to Checkout" on screen. */}
+                  <div className="pt-6 border-t">
+                    <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3">
+                      <Button
+                        variant="outline"
+                        onClick={goToPreviousStep}
+                        size="lg"
+                        className="w-full sm:w-auto"
+                      >
+                        <ChevronLeft className="w-4 h-4 mr-2" />
+                        Back to itinerary
+                      </Button>
+                      <Button
+                        onClick={goToNextStep}
+                        disabled={!(totalPricing && totalPricing.totalAmount > 0)}
+                        size="lg"
+                        className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
+                      >
+                        Proceed to Checkout
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                    {!(totalPricing && totalPricing.totalAmount > 0) && (
+                      <p role="status" className="mt-3 text-sm text-red-600 text-center sm:text-right">
+                        Your itinerary totals LE 0. Go back and add at least one service to check out.
+                      </p>
+                    )}
+                    <FieldError id="step3-total-error" message={stepErrors.total} />
                   </div>
                   </div>
-                  <LivePriceSummary
-                    totalPricing={totalPricing}
-                    onContinue={goToNextStep}
-                    ctaLabel="Proceed to Checkout"
-                  />
+                  <LivePriceSummary totalPricing={totalPricing} />
                   </div>
                 </div>
               )}

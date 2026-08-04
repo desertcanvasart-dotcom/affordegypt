@@ -68,28 +68,21 @@ export default function Navbar() {
     }
   };
 
+  // These now hang off <Link>, which performs the navigation itself — so these
+  // handlers must NOT call setLocation as well, or every click pushes the same
+  // path onto history twice and breaks the back button.
   const navigateToTransfers = () => {
     setIsMenuOpen(false);
-    if (location === '/transfers') {
+    setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      setLocation('/transfers');
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-    }
+    }, location === '/transfers' ? 0 : 100);
   };
 
   const navigateToDestinations = () => {
     setIsMenuOpen(false);
-    if (location === '/destinations') {
+    setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      setLocation('/destinations');
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-    }
+    }, location === '/destinations' ? 0 : 100);
   };
 
   return (
@@ -112,21 +105,26 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            <button 
+            {/* Real anchors, not buttons: these navigate to another page, so
+                middle-click, cmd-click, "copy link" and screen-reader link
+                semantics all have to work. The onClick only adds scroll-to-top. */}
+            <Link
+              href="/destinations"
               onClick={navigateToDestinations}
               className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
             >
               <MapPin className="w-4 h-4" />
               Destinations
-            </button>
-            
-            <button 
+            </Link>
+
+            <Link
+              href="/transfers"
               onClick={navigateToTransfers}
               className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
             >
               <Truck className="w-4 h-4" />
               Transfers
-            </button>
+            </Link>
             
             <button 
               onClick={() => navigateToSection('faq')}
@@ -241,21 +239,23 @@ export default function Navbar() {
 
             {/* Navigation Sections */}
             <div className="space-y-2 mb-6">
-              <button 
+              <Link
+                href="/destinations"
                 onClick={navigateToDestinations}
                 className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
               >
                 <MapPin className="w-5 h-5" />
                 Destinations
-              </button>
-              
-              <button 
+              </Link>
+
+              <Link
+                href="/transfers"
                 onClick={navigateToTransfers}
                 className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
               >
                 <Truck className="w-5 h-5" />
                 Private Transfers
-              </button>
+              </Link>
               
               <button 
                 onClick={() => navigateToSection('faq')}

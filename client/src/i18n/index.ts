@@ -63,46 +63,71 @@ i18n
 const SUPPORTED = ['en', 'es', 'fr', 'de'] as const;
 type Supported = (typeof SUPPORTED)[number];
 
+// Deliberately NOT the legacy 'language' key. That key was written by the old
+// navigator.language auto-detection, so millions of returning visitors have a
+// non-English value cached that they never actually chose. Reading a fresh key
+// makes every one of them fall back to English until they pick a language
+// themselves. Do not repoint this at 'language'.
+const PREF_KEY = 'af_lang_pref';
+
 function normalize(raw: string | null | undefined): Supported | null {
   if (!raw) return null;
   const base = raw.toLowerCase().split('-')[0];
   return (SUPPORTED as readonly string[]).includes(base) ? (base as Supported) : null;
 }
 
-// Reimplements i18next-browser-languagedetector's priority chain
-// (querystring 'lng' -> localStorage 'language' -> navigator.language) without
-// running synchronously during init. Caches the detected value to localStorage
-// to mirror the previous { caches: ['localStorage'] } behaviour.
+/** Keeps <html lang> in sync so assistive tech and crawlers see the truth. */
+function syncDocumentLang(lang: string): void {
+  if (typeof document === 'undefined') return;
+  document.documentElement.setAttribute('lang', lang);
+}
+
+i18n.on('languageChanged', syncDocumentLang);
+
+/**
+ * Persists an explicit user choice and switches to it.
+ * This is the ONLY path that may write a language preference.
+ */
+export function setLanguage(raw: string): void {
+  const lang = normalize(raw);
+  if (!lang) return;
+  if (lang !== i18n.language) i18n.changeLanguage(lang);
+  syncDocumentLang(lang);
+  try {
+    window.localStorage.setItem(PREF_KEY, lang);
+  } catch {}
+}
+
+/**
+ * Applies a previously *chosen* language after hydration.
+ *
+ * Only two sources count as a choice: an explicit `?lng=` in the URL, and a
+ * preference this user set via the language selector. Browser locale is
+ * intentionally ignored — the site is authored in English, only ~14% of
+ * components are wired to i18next, and every page is prerendered in English,
+ * so honouring navigator.language produced half-translated pages plus a
+ * visible English→German flip a second after load (the hydration mismatch
+ * behind the React #418/#423 error flood). English-by-default is correct
+ * until translation coverage and per-locale prerendering exist.
+ */
 export function applyDetectedLanguage(): void {
   if (typeof window === 'undefined') return;
-  let detected: Supported | null = null;
+  let chosen: Supported | null = null;
 
   try {
-    const qs = new URLSearchParams(window.location.search).get('lng');
-    detected = normalize(qs);
+    chosen = normalize(new URLSearchParams(window.location.search).get('lng'));
   } catch {}
 
-  if (!detected) {
+  if (!chosen) {
     try {
-      detected = normalize(window.localStorage.getItem('language'));
+      chosen = normalize(window.localStorage.getItem(PREF_KEY));
     } catch {}
   }
 
-  if (!detected) {
-    try {
-      detected = normalize(window.navigator.language);
-    } catch {}
-  }
-
-  if (detected && detected !== i18n.language) {
-    i18n.changeLanguage(detected);
-    try {
-      window.localStorage.setItem('language', detected);
-    } catch {}
-  } else if (detected) {
-    try {
-      window.localStorage.setItem('language', detected);
-    } catch {}
+  if (chosen) {
+    setLanguage(chosen);
+  } else {
+    syncDocumentLang(i18n.language || 'en');
   }
 }
 

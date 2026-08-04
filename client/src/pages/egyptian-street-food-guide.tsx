@@ -157,7 +157,7 @@ export default function EgyptianStreetFoodGuide() {
           canonical: "https://affordegypt.com/egyptian-street-food-guide",
           image: "https://affordegypt.com/images/street-food-egypt.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-08-02",
+          dateModified: "2026-08-04",
         })}
         ogType="article"
       />
@@ -174,7 +174,7 @@ export default function EgyptianStreetFoodGuide() {
             <div className="max-w-4xl">
               <Badge className="bg-teal-600 text-white mb-6 text-sm px-4 py-2">
                 <Utensils className="w-4 h-4 mr-2" />
-                Culinary Adventure Guide 2025
+                Culinary Adventure Guide 2026
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Egyptian Street Food

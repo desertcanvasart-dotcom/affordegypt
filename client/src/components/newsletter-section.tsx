@@ -72,12 +72,21 @@ export default function NewsletterSection() {
         
         <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
           <div className="flex flex-col sm:flex-row gap-3">
-            <Input 
-              type="email" 
-              placeholder={t('footer.newsletter.placeholder')} 
+            {/* Visually hidden rather than absent: the placeholder disappears
+                the moment the user types, taking the field's only label with it. */}
+            <label htmlFor="newsletter-email" className="sr-only">
+              {t('footer.newsletter.placeholder')}
+            </label>
+            <Input
+              id="newsletter-email"
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder={t('footer.newsletter.placeholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-12 bg-white/95 text-gray-900 border-0 placeholder:text-gray-500 focus:ring-2 focus:ring-white" 
+              className="flex-1 h-12 bg-white/95 text-gray-900 border-0 placeholder:text-gray-500 focus:ring-2 focus:ring-white"
               disabled={newsletterMutation.isPending}
             />
             <Button 

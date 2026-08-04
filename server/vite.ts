@@ -97,12 +97,42 @@ export function serveStatic(app: Express) {
     }),
   );
 
+  const shellPath = path.resolve(distPath, "index.html");
+
+  // dist/public/index.html is the PRERENDERED HOMEPAGE, not a blank shell — it
+  // carries the homepage <title>, its canonical, and its og:url. Serving it
+  // verbatim on a 404 advertises a dead URL as a duplicate of "/", which is a
+  // soft-404 signal even though the status code is right. So we derive a
+  // dedicated 404 shell once at boot: drop the homepage's canonical/og:url and
+  // stamp a noindex + a truthful title. React then hydrates the not-found page
+  // over the top, and crawlers that don't execute JS still see the truth.
+  const notFoundShell = (() => {
+    try {
+      return fs
+        .readFileSync(shellPath, "utf8")
+        .replace(/<link[^>]+rel="canonical"[^>]*>/gi, "")
+        .replace(/<meta[^>]+property="og:url"[^>]*>/gi, "")
+        .replace(/<title>[^<]*<\/title>/i, "<title>Page Not Found | AffordEgypt</title>")
+        .replace(/<head>/i, '<head>\n    <meta name="robots" content="noindex, nofollow" />');
+    } catch {
+      return null;
+    }
+  })();
+
   // SPA fallback for routes without a prerendered file. Unknown paths get
   // the SPA shell too (the client renders the not-found page) but with a
   // real 404 status — a 200 here is a soft-404 that keeps dead URLs (and
   // missing assets like a bad og:image path) alive in search indexes.
   app.use("*", (req, res) => {
-    const status = isKnownPublicPath(req.originalUrl) ? 200 : 404;
-    res.status(status).sendFile(path.resolve(distPath, "index.html"));
+    if (isKnownPublicPath(req.originalUrl)) {
+      return res.status(200).sendFile(shellPath);
+    }
+    if (notFoundShell) {
+      return res
+        .status(404)
+        .set({ "Content-Type": "text/html; charset=utf-8" })
+        .send(notFoundShell);
+    }
+    return res.status(404).sendFile(shellPath);
   });
 }

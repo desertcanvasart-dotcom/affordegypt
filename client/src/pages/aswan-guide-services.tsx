@@ -145,8 +145,7 @@ export default function AswanGuideServices() {
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Discover Nubian culture and southern Egypt treasures. Expert car & tour guide services, 
-                desert expeditions, and cultural immersion from 2,750 EGP.
+                {t("guideServices.aswan.heroSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/transfers">
@@ -317,10 +316,10 @@ export default function AswanGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Starting from 2,750 EGP</span>
+                  <span className="font-semibold">Licensed guide from LE 2,750/day — guide + private car from LE 7,755/day</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Local guides • Cultural immersion • Premium transport • Authentic experiences
+                  Local guides • Cultural immersion • Private car on the guide + car package • Entrance tickets billed separately
                 </p>
                 <Link href="/transfers">
                   <Button size="lg">

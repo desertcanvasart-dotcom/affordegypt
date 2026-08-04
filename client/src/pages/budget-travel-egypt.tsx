@@ -121,7 +121,7 @@ export default function BudgetTravelEgypt() {
           canonical: "https://affordegypt.com/budget-travel-egypt",
           image: "https://affordegypt.com/images/pyramid-of-giza.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-04-30",
+          dateModified: "2026-08-04",
         })}
         ogType="article"
       />
@@ -139,7 +139,7 @@ export default function BudgetTravelEgypt() {
             <div className="max-w-4xl">
               <Badge className="bg-teal-600 text-white mb-6 text-sm px-4 py-2">
                 <DollarSign className="w-4 h-4 mr-2" />
-                Budget Travel Guide 2025
+                Budget Travel Guide 2026
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Budget Travel in Egypt
@@ -167,10 +167,10 @@ export default function BudgetTravelEgypt() {
 
         <div className="max-w-7xl mx-auto px-4 py-16 space-y-20">
           
-          {/* Why Egypt in 2025 */}
+          {/* Why Egypt in 2026 */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Egypt in 2025 is Perfect for Budget Travellers</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Egypt in 2026 is Perfect for Budget Travellers</h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
                 Egypt stands out as an exceptional budget travel destination, offering incredible value and unforgettable experiences.
               </p>
