@@ -31,3 +31,41 @@ jobs:
       # No npm ci — the script uses only Node built-ins and global fetch.
       - name: Check invariants against production
         run: node scripts/check-invariants.mjs
+
+  # Does the committed pricing fallback still match the catalog?
+  #
+  # This matters more than it looks. The Dockerfile runs `npm run build` inside
+  # the image build, where Railway does not inject service variables, so
+  # DATABASE_URL is undefined and the snapshot generator falls back on EVERY
+  # deploy. scripts/pricing-snapshot-fallback.json is therefore the real source
+  # of every advertised price on the site — and nothing else notices when the
+  # catalog moves underneath it.
+  #
+  # Separate job because it needs pg from node_modules, unlike the checks above.
+  pricing-drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Surfaced as a workflow annotation rather than a silent skip: an
+      # unconfigured drift check looks identical to a passing one otherwise.
+      - name: Warn when the check is not configured
+        if: env.DATABASE_URL == ''
+        run: |
+          echo "::warning title=Pricing drift check inactive::DATABASE_URL secret is not set, so advertised prices are NOT being verified against the catalog. Add it in Settings > Secrets and variables > Actions."
+
+      - name: Install dependencies
+        if: env.DATABASE_URL != ''
+        run: npm ci
+
+      - name: Check advertised prices against the catalog
+        if: env.DATABASE_URL != ''
+        run: npm run check:pricing-drift
