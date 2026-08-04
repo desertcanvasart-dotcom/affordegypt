@@ -9,6 +9,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { useTranslation } from 'react-i18next';
 import SeoMeta from "@/components/seo-meta";
+import { articleSchema } from "@/lib/article-schema";
 
 export default function SinaiPeninsulaGuide() {
   const { i18n } = useTranslation();
@@ -572,6 +573,16 @@ export default function SinaiPeninsulaGuide() {
           title="Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
           description="From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai."
           canonical="https://affordegypt.com/sinai-peninsula-guide"
+          ogImage="https://affordegypt.com/images/sinai-monastery.jpg"
+          schema={articleSchema({
+            headline: "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine",
+            description:
+              "From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai.",
+            canonical: "https://affordegypt.com/sinai-peninsula-guide",
+            image: "https://affordegypt.com/images/sinai-monastery.jpg",
+            datePublished: "2025-06-07",
+            dateModified: "2026-08-02",
+          })}
           ogType="article"
         />
       <Navbar />

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import SeoMeta from "@/components/seo-meta";
+import { articleSchema } from "@/lib/article-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -729,6 +730,17 @@ export default function CuisinePassport() {
         title="Egyptian Cuisine Passport | Try 25 Dishes Across Egypt"
         description="An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."
         canonical="https://affordegypt.com/cuisine-passport"
+        ogImage="https://affordegypt.com/images/egyptian-food.jpg"
+        schema={articleSchema({
+          headline: "Egyptian Cuisine Passport | Try 25 Dishes Across Egypt",
+          description:
+            "An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories.",
+          canonical: "https://affordegypt.com/cuisine-passport",
+          image: "https://affordegypt.com/images/egyptian-food.jpg",
+          datePublished: "2025-06-14",
+          dateModified: "2026-08-02",
+        })}
+        ogType="article"
       />
 
       <div className="min-h-screen bg-white">
