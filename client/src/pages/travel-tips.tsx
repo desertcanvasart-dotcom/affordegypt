@@ -1,6 +1,7 @@
 import SeoMeta from "@/components/seo-meta";
 import { articleSchema } from "@/lib/article-schema";
 import Navbar from "@/components/navbar";
+import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
 
 export default function TravelTips() {
@@ -25,6 +26,7 @@ export default function TravelTips() {
       
       <div className="min-h-screen bg-white">
         <Navbar />
+        <GuideToc />
         {/* Hero Section */}
         <header
           className="min-h-[90vh] flex items-center justify-center relative bg-cover bg-center bg-fixed bg-[url('/images/beach-in-sinai.jpg')]"
