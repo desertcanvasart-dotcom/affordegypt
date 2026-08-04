@@ -5,12 +5,55 @@ import ReviewForm from "@/components/review-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Users, MapPin } from "lucide-react";
 import { ClientOnly } from "@/components/client-only";
+import { useQuery } from "@tanstack/react-query";
+import { TRAVELLERS_SERVED } from "@/lib/operator-facts";
+
+interface PublicReview {
+  rating: number;
+}
 
 export default function SubmitReview() {
+  // These three numbers used to be hardcoded as "4.8/5 from 500+ reviews",
+  // "2,000+ happy travelers" and "15+ destinations". None held up: the reviews
+  // table is empty, the destinations list has 7 entries, and the traveller
+  // count contradicted the "2,500+" on the homepage credentials strip.
+  // Anything derivable is now derived, so it cannot drift again.
+  const { data: reviews = [] } = useQuery<PublicReview[]>({
+    queryKey: ["/api/reviews"],
+  });
+  const { data: cities = [] } = useQuery<unknown[]>({
+    queryKey: ["/api/cities"],
+  });
+
+  const averageRating =
+    reviews.length > 0
+      ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+      : null;
+
   const stats = [
-    { icon: Star, label: "Average Rating", value: "4.8/5", description: "From 500+ reviews" },
-    { icon: Users, label: "Happy Travelers", value: "2,000+", description: "Satisfied customers" },
-    { icon: MapPin, label: "Destinations", value: "15+", description: "Cities covered" },
+    {
+      icon: Star,
+      label: "Average Rating",
+      // With no reviews yet, inviting the first one is honest and still useful.
+      // Asserting a rating nobody has given is neither.
+      value: averageRating !== null ? `${averageRating.toFixed(1)}/5` : "Be the first",
+      description:
+        reviews.length > 0
+          ? `From ${reviews.length} ${reviews.length === 1 ? "review" : "reviews"}`
+          : "No reviews published yet",
+    },
+    {
+      icon: Users,
+      label: "Travellers Served",
+      value: TRAVELLERS_SERVED,
+      description: "Since 2003, across the operator's trips",
+    },
+    {
+      icon: MapPin,
+      label: "Destinations",
+      value: cities.length > 0 ? `${cities.length}` : "—",
+      description: "Cities covered",
+    },
   ];
 
   return (
