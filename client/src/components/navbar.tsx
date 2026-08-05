@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "@/components/language-selector";
+import { MULTILINGUAL_ENABLED } from "@/config/features";
 import { useTranslatedLink } from "@/utils/slugTranslation";
 import {
   DropdownMenu,
@@ -152,11 +153,15 @@ export default function Navbar() {
               FAQs
             </button>
 
-            <div className="w-px h-6 bg-gray-300 mx-2"></div>
+            {MULTILINGUAL_ENABLED && (
+              <>
+                <div className="w-px h-6 bg-gray-300 mx-2"></div>
 
-            <div className="px-2">
-              <LanguageSelector />
-            </div>
+                <div className="px-2">
+                  <LanguageSelector />
+                </div>
+              </>
+            )}
 
             {isAuthenticated ? (
               <DropdownMenu>
@@ -303,9 +308,11 @@ export default function Navbar() {
           </div>
 
           {/* Language Selector */}
-          <div className="mb-6 px-4">
-            <LanguageSelector />
-          </div>
+          {MULTILINGUAL_ENABLED && (
+            <div className="mb-6 px-4">
+              <LanguageSelector />
+            </div>
+          )}
 
           {/* Auth Buttons */}
           {isAuthenticated ? (

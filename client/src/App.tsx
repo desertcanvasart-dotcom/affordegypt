@@ -1,4 +1,5 @@
 import { Switch, Route, Redirect } from "wouter";
+import { MULTILINGUAL_ENABLED } from "@/config/features";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -81,6 +82,24 @@ import NotFound from "@/pages/not-found";
 // Helper function to create routes for all language variants
 function createMultilingualRoute(englishSlug: string, Component: React.ComponentType<any>) {
   const variants = getAllSlugVariants(englishSlug);
+
+  // With language switching off, a translated slug would render English content
+  // under e.g. /destinos — the worst of both. Redirect to the English URL so an
+  // already-shared link still lands on the right page, and the address bar
+  // agrees with what is on screen. The mappings stay intact for phase 2.
+  if (!MULTILINGUAL_ENABLED) {
+    return [
+      <Route key={englishSlug} path={`/${englishSlug}`} component={Component} />,
+      ...variants
+        .filter((slug) => slug !== englishSlug)
+        .map((slug) => (
+          <Route key={slug} path={`/${slug}`}>
+            <Redirect to={`/${englishSlug}`} replace />
+          </Route>
+        )),
+    ];
+  }
+
   return variants.map((slug) => (
     <Route key={slug} path={`/${slug}`} component={Component} />
   ));
