@@ -261,7 +261,7 @@ export default function BookingConfirmation() {
           <h3 style="color: #0d9488; margin-top: 0;">Payment Information</h3>
           <p style="margin: 5px 0; color: #374151;"><strong>10% deposit required</strong></p>
           <p style="margin: 5px 0; color: #6b7280;">Our team will contact you to collect it and confirm your booking.</p>
-          <p style="margin: 5px 0; color: #6b7280;">Pay the rest in cash to your guide after the tour.</p>
+          <p style="margin: 5px 0; color: #6b7280;">Pay the rest on arrival, in cash or by credit card.</p>
         </div>
         
         <div style="text-align: center; padding: 20px; border-top: 2px solid #0d9488; margin-top: 30px;">
@@ -390,7 +390,7 @@ PAYMENT INFORMATION
 ${'='.repeat(30)}
 10% deposit required
 Our team will contact you to collect it and confirm your booking.
-Pay the rest in cash to your guide after the tour.
+Pay the rest on arrival, in cash or by credit card.
 
 CONTACT INFORMATION
 ${'='.repeat(30)}
@@ -451,7 +451,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">We send your 10% deposit link</h4>
                   <p className="text-sm text-muted-foreground">
-                    You'll receive a payment link via email — typically Tab.travel for international cards. The deposit is fully refundable up to 3 days before arrival.
+                    You'll receive a payment link via email — typically Tab.travel for international cards. The deposit is fully refundable up to 48 hours before arrival.
                   </p>
                 </div>
               </li>
@@ -706,7 +706,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full mt-1.5"></div>
                     <p className="text-sm text-blue-900">
-                      Pay the rest in cash to your guide after the tour.
+                      Pay the rest on arrival, in cash or by credit card.
                     </p>
                   </div>
                   <Separator className="my-3" />

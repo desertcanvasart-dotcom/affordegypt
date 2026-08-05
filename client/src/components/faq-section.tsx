@@ -41,7 +41,7 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     question: "What's your cancellation policy?",
     answer:
-      "Free cancellation up to 3 days before your trip starts — you get the full deposit back. Inside 3 days, the deposit is non-refundable because we've already committed your guide and vehicle for those days. Anything paid beyond the deposit is refunded in full. If we have to cancel for any reason on our end (vehicle issue, guide illness, force majeure), we refund 100%, including the deposit, and help you rebook.",
+      "Free cancellation up to 48 hours before your trip starts — you get the full deposit back. Inside 48 hours, the deposit is non-refundable because we've already committed your guide and vehicle for those days. Anything paid beyond the deposit is refunded in full. If we have to cancel for any reason on our end (vehicle issue, guide illness, force majeure), we refund 100%, including the deposit, and help you rebook.",
   },
   {
     question: "Can I customize my itinerary?",

@@ -361,7 +361,7 @@ export default function BookPage() {
                           Our team will contact you to collect it and confirm your booking.
                         </p>
                         <p className="text-sm text-blue-800">
-                          Pay the rest in cash to your guide after the tour.
+                          Pay the rest on arrival, in cash or by credit card.
                         </p>
                       </div>
                     </div>
@@ -571,7 +571,7 @@ export default function BookPage() {
               <div className="bg-muted p-3 rounded-md text-xs text-muted-foreground">
                 <p className="mb-1">💵 10% deposit required</p>
                 <p>Our team will contact you to collect it and confirm your booking.</p>
-                <p>Pay the rest in cash to your guide after the tour.</p>
+                <p>Pay the rest on arrival, in cash or by credit card.</p>
               </div>
             </CardContent>
           </Card>
