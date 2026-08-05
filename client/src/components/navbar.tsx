@@ -288,13 +288,18 @@ export default function Navbar() {
               FAQs
             </button>
 
-            <button 
-              onClick={() => navigateToSection('contact')}
+            {/* Was navigateToSection('contact'), which scrolled to #contact —
+                an id that only exists in contact-section.tsx, a component the
+                homepage never renders. getElementById returned null and the tap
+                silently did nothing. /contact is a real page; link to it. */}
+            <Link
+              href={getTranslatedLink("contact")}
+              onClick={() => setIsMenuOpen(false)}
               className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >
               <MessageCircle className="w-5 h-5" />
               Contact
-            </button>
+            </Link>
           </div>
 
           {/* Language Selector */}
