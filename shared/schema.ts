@@ -320,7 +320,14 @@ export const bookings = pgTable(
     paymentStatus: text("payment_status").default("pending"), // 'pending', 'paid', 'failed', 'refunded'
 
     // Booking Status
-    bookingStatus: text("booking_status").default("confirmed"), // 'confirmed', 'in_progress', 'completed', 'cancelled'
+    // 'pending', 'confirmed', 'in_progress', 'completed', 'cancelled'.
+    // Defaults to 'pending', NOT 'confirmed': a booking is confirmed once the
+    // 10% deposit clears, which is exactly what the customer's confirmation
+    // email promises. Defaulting to 'confirmed' meant every unpaid request was
+    // recorded as confirmed the instant the form was submitted, so the row
+    // contradicted the promise and the ops alert announced
+    // "PAYMENT: PENDING / BOOKING: CONFIRMED" on the same booking.
+    bookingStatus: text("booking_status").default("pending"),
     bookingReference: text("booking_reference").notNull(),
 
     // Trip Details

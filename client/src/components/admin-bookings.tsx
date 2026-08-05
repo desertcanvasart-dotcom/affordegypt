@@ -150,6 +150,7 @@ export default function AdminBookings() {
 
   const getBookingStatusColor = (status: string) => {
     switch (status) {
+      case 'pending': return 'bg-amber-100 text-amber-800';
       case 'confirmed': return 'bg-blue-100 text-blue-800';
       case 'in_progress': return 'bg-orange-100 text-orange-800';
       case 'completed': return 'bg-green-100 text-green-800';
@@ -182,6 +183,8 @@ export default function AdminBookings() {
 
   const stats = {
     total: bookings.length,
+    // paymentStatus-based, deliberately: this card answers "who still owes a
+    // deposit". `confirmed` below now means the deposit actually cleared.
     pending: bookings.filter(b => b.paymentStatus === 'pending').length,
     confirmed: bookings.filter(b => b.bookingStatus === 'confirmed').length,
     completed: bookings.filter(b => b.bookingStatus === 'completed').length,
@@ -298,6 +301,7 @@ export default function AdminBookings() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Bookings</SelectItem>
+                  <SelectItem value="pending">Awaiting Deposit</SelectItem>
                   <SelectItem value="payment">Pending Payment</SelectItem>
                   <SelectItem value="confirmed">Confirmed</SelectItem>
                   <SelectItem value="upcoming">Upcoming</SelectItem>
@@ -410,6 +414,10 @@ export default function AdminBookings() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
+                        {/* Without 'pending' here the trigger renders blank for
+                            every new booking — Radix shows nothing when the
+                            current value has no matching item. */}
+                        <SelectItem value="pending">Pending</SelectItem>
                         <SelectItem value="confirmed">Confirmed</SelectItem>
                         <SelectItem value="in_progress">In Progress</SelectItem>
                         <SelectItem value="completed">Completed</SelectItem>
