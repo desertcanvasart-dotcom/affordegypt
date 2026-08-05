@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from "wouter";
+import { Switch, Route, Redirect, useLocation } from "wouter";
 import { MULTILINGUAL_ENABLED } from "@/config/features";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -103,6 +103,83 @@ function createMultilingualRoute(englishSlug: string, Component: React.Component
   return variants.map((slug) => (
     <Route key={slug} path={`/${slug}`} component={Component} />
   ));
+}
+
+/**
+ * Resets scroll on navigation.
+ *
+ * wouter does no scroll management, and 20 of the 44 pages had each grown their
+ * own `window.scrollTo(0, 0)` mount effect. The other 24 — including
+ * /destinations, /submit-review, /contact and /reviews — had none, so following
+ * a footer link from the bottom of a long page left you looking at the footer
+ * of the *next* page, which reads as "the link didn't work".
+ *
+ * Hash targets are honoured rather than overridden: /#faq from another page has
+ * to scroll to the FAQ, not to the top. The hashchange listener covers clicking
+ * the same hash link twice, or from the page it already points at, where the
+ * path never changes and the effect would not re-run.
+ */
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    let timer: number | undefined;
+
+    const scrollToHash = () => {
+      if (timer !== undefined) clearTimeout(timer);
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) {
+        window.scrollTo(0, 0);
+        return;
+      }
+      // The target may not exist on the first tick — the destination page has
+      // to mount first, and lazy routes arrive a few frames later still. Poll
+      // briefly rather than assuming, and fall back to the top so a stale or
+      // misspelled hash still lands somewhere sensible instead of nowhere.
+      let tries = 0;
+      const attempt = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        if (++tries > 10) {
+          window.scrollTo(0, 0);
+          return;
+        }
+        timer = window.setTimeout(attempt, 50);
+      };
+      attempt();
+    };
+
+    // Clicking a hash link for the hash you are already on fires no hashchange
+    // and no navigation, and wouter's <Link> has preventDefault-ed the browser's
+    // own anchor scroll — so without this, the footer's FAQ link is a dead click
+    // for anyone already sitting on /#faq.
+    const onDocumentClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest?.('a[href*="#"]');
+      if (!(anchor instanceof HTMLAnchorElement)) return;
+      const url = new URL(anchor.href, window.location.origin);
+      if (
+        url.pathname === window.location.pathname &&
+        url.hash &&
+        url.hash === window.location.hash
+      ) {
+        scrollToHash();
+      }
+    };
+
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    document.addEventListener("click", onDocumentClick);
+    return () => {
+      window.removeEventListener("hashchange", scrollToHash);
+      document.removeEventListener("click", onDocumentClick);
+      if (timer !== undefined) clearTimeout(timer);
+    };
+  }, [location]);
+
+  return null;
 }
 
 // Shown while a lazy page chunk downloads (admin/auth/booking surfaces only —
@@ -226,6 +303,7 @@ function App() {
               <ClientOnly>
                 <Toaster />
               </ClientOnly>
+              <ScrollToTop />
               <Router />
 
               {/* Floating WhatsApp button.
