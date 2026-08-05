@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 
 export default function PrivacyPolicy() {
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,63 +22,74 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-8">
-              Privacy Policy – Afford Egypt
+              {t("privacyPolicy.title")}
             </h1>
+
+              {/* Translated legal text carries real risk: a mistranslated
+                  cancellation or data-protection term has consequences a
+                  mistranslated headline does not. Standard mitigation — name
+                  one authoritative version. Hidden in English, where it would
+                  be meaningless. */}
+              {i18n.language !== "en" && (
+                <p className="mb-6 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                  {t("legal.prevailing")}
+                </p>
+              )}
             
             <div className="prose prose-lg max-w-none">
               <div className="mb-8 text-gray-600">
-                <p><strong>Effective Date:</strong> March 2, 2020</p>
-                <p><strong>Last Updated:</strong> June 6, 2025</p>
+                <p><strong>{t("legal.effectiveDate")}</strong> March 2, 2020</p>
+                <p><strong>{t("legal.lastUpdated")}</strong> June 6, 2025</p>
                 <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <div className="space-y-8">
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    1. Introduction
+                    {t("privacyPolicy.s1")}
                   </h2>
                   <p className="text-gray-700">
-                    Afford Egypt ("we", "our", or "us") values your privacy and is committed to protecting your personal data. This policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a>.
+                    {t("privacyPolicy.s1b")}{" "} <a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a>.
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    2. What Personal Data We Collect
+                    {t("privacyPolicy.s2")}
                   </h2>
                   <p className="text-gray-700 mb-4">We may collect:</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
-                    <li><strong>Identity Data:</strong> Name, nationality, passport info</li>
-                    <li><strong>Contact Data:</strong> Email, phone number, address</li>
-                    <li><strong>Travel Data:</strong> Itinerary preferences, special requests</li>
-                    <li><strong>Payment Data:</strong> Processed securely via third-party platforms</li>
-                    <li><strong>Technical Data:</strong> IP address, browser type, cookies</li>
+                    <li><strong>{t("privacyPolicy.s2a")}</strong> {t("privacyPolicy.s2av")}</li>
+                    <li><strong>{t("privacyPolicy.s2b")}</strong> {t("privacyPolicy.s2bv")}</li>
+                    <li><strong>{t("privacyPolicy.s2c")}</strong> {t("privacyPolicy.s2cv")}</li>
+                    <li><strong>{t("privacyPolicy.s2d")}</strong> {t("privacyPolicy.s2dv")}</li>
+                    <li><strong>{t("privacyPolicy.s2e")}</strong> {t("privacyPolicy.s2ev")}</li>
                   </ul>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    3. Legal Basis for Processing (GDPR)
+                    {t("privacyPolicy.s3")}
                   </h2>
                   <p className="text-gray-700 mb-4">Under the General Data Protection Regulation (GDPR), we process your data based on:</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Contractual necessity</li>
-                    <li>Your consent</li>
-                    <li>Legal obligations</li>
-                    <li>Our legitimate interests (e.g., improving services)</li>
+                    <li>{t("privacyPolicy.s3a")}</li>
+                    <li>{t("privacyPolicy.s3b")}</li>
+                    <li>{t("privacyPolicy.s3c")}</li>
+                    <li>{t("privacyPolicy.s3d")}</li>
                   </ul>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    4. Your Rights
+                    {t("privacyPolicy.s4")}
                   </h2>
                   <p className="text-gray-700 mb-4">You have the right to:</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Access, correct, or delete your personal data</li>
-                    <li>Restrict or object to our processing</li>
-                    <li>Withdraw your consent at any time</li>
-                    <li>Request a copy of your data in portable format</li>
+                    <li>{t("privacyPolicy.s4a")}</li>
+                    <li>{t("privacyPolicy.s4b")}</li>
+                    <li>{t("privacyPolicy.s4c")}</li>
+                    <li>{t("privacyPolicy.s4d")}</li>
                   </ul>
                   <p className="text-gray-700 mt-4">
                     To exercise these rights, email us at: <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a>
@@ -85,28 +98,28 @@ export default function PrivacyPolicy() {
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    5. Data Retention
+                    {t("privacyPolicy.s5")}
                   </h2>
                   <p className="text-gray-700">
-                    We keep your data only as long as necessary to fulfil your bookings and legal obligations.
+                    {t("privacyPolicy.s5b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    6. Security
+                    {t("privacyPolicy.s6")}
                   </h2>
                   <p className="text-gray-700">
-                    We take appropriate technical and organisational measures to safeguard your personal data.
+                    {t("privacyPolicy.s6b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    7. International Transfers
+                    {t("privacyPolicy.s7")}
                   </h2>
                   <p className="text-gray-700">
-                    We may transfer data outside the EU (e.g., to Egypt), using Standard Contractual Clauses or other legal safeguards.
+                    {t("privacyPolicy.s7b")}
                   </p>
                 </section>
               </div>
@@ -115,7 +128,7 @@ export default function PrivacyPolicy() {
               
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
-                  {"For questions about this privacy policy, please contact us at "}
+                  {t("legal.privacyContact")}
                   <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">
                     hello@affordegypt.com
                   </a>
