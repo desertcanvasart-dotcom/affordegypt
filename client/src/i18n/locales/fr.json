@@ -1889,5 +1889,252 @@
     ],
     "titleSub": "Comment voir plus en dépensant moins",
     "whyH2": "Pourquoi l'Égypte est idéale en 2026 pour les petits budgets"
+  },
+  "streetFoodGuide": {
+    "seoTitle": "Guide de la street food égyptienne | Quoi manger et où",
+    "seoDescription": "Du koshari au ful medames en passant par le hawawshi : quoi manger, où le trouver et comment éviter le surcoût touristique. Le guide culinaire d'un opérateur du Caire.",
+    "badge": "Guide de l'aventure culinaire 2026",
+    "titleA": "Street food égyptienne",
+    "titleB": "Une aventure culinaire",
+    "heroBody": "La street food égyptienne est une symphonie de saveurs, mêlant traditions culinaires millénaires et plaisir rapide d'aujourd'hui. Votre passeport le plus savoureux — et le plus économique — pour comprendre l'Égypte.",
+    "ctaPlan": "Planifier un tour culinaire",
+    "ctaDownload": "Télécharger le guide",
+    "whyH2": "Pourquoi la street food est idéale pour les voyageurs",
+    "whySub": "Découvrez les saveurs authentiques de l'Égypte sans faire exploser votre budget",
+    "why1H": "Très abordable",
+    "why1B": "La plupart des plats coûtent entre 5 et 30 EGP",
+    "why2H": "Frais et rapide",
+    "why2B": "Préparé devant vous, souvent brûlant et prêt à déguster",
+    "why3H": "Profondément local",
+    "why3B": "Des recettes transmises de génération en génération, une vraie expérience culturelle",
+    "why4H": "Adapté aux végétariens",
+    "why4B": "De nombreuses options sans viande, parfaites pour tous les régimes",
+    "why5H": "Immersion culturelle",
+    "why5B": "C'est autour de la street food que les Égyptiens se retrouvent, discutent et se détendent",
+    "why6H": "Saveurs authentiques",
+    "why6B": "Goûtez à la vraie Égypte à travers les plats préférés des habitants",
+    "whereH2": "Où trouver la street food égyptienne",
+    "whereSub": "Les meilleures adresses à travers l'Égypte pour une expérience authentique",
+    "proTipLabel": "Astuce :",
+    "proTip": "Repérez les longues files d'habitants — c'est le signe que la nourriture est à la fois bonne et sûre !",
+    "foodsH2": "Les meilleurs plats de rue à goûter en Égypte",
+    "foodsSub": "Les plats incontournables de la culture culinaire de rue égyptienne",
+    "costLabel": "Prix",
+    "bestInLabel": "Meilleur à",
+    "drinksH2": "Boissons à associer à la street food",
+    "drinksSub": "Rafraîchissez-vous avec d'authentiques boissons égyptiennes",
+    "noteLabel": "Remarque importante :",
+    "noteBody": "Évitez l'eau du robinet et les glaçons ; préférez une bouteille d'eau scellée (environ 5 EGP)",
+    "safetyH2": "Conseils de sécurité pour la street food",
+    "safetySub": "Profitez des saveurs authentiques de l'Égypte en toute sérénité",
+    "packH3": "Que emporter pour une aventure street food",
+    "packItems": [
+      "Mouchoirs et lingettes",
+      "Gel hydroalcoolique",
+      "Gourde réutilisable",
+      "Comprimés antidiarrhéiques",
+      "Petites coupures et pièces"
+    ],
+    "phrasesH2": "Expressions arabes utiles",
+    "phrasesSub": "Les phrases essentielles pour enrichir votre expérience culinaire",
+    "itineraryH2": "Itinéraire street food à petit budget",
+    "itinerarySub": "Journée au Caire : une journée entière de délicieuse street food pour moins de 75 EGP",
+    "itineraryTitle": "Journée street food au Caire",
+    "totalLabel": "Coût total de la journée :",
+    "finalH2": "Votre aventure culinaire vous attend",
+    "finalBody": "La street food égyptienne, c'est bien plus que manger pour pas cher : c'est une fenêtre sur l'âme du pays. Chaque sandwich tendu par la fenêtre d'un tuk-tuk, chaque bouchée épicée avalée debout sur le trottoir vous rapproche des gens et de leur héritage.",
+    "ctaBook": "Réserver un tour culinaire",
+    "ctaMore": "Plus de guides sur l'Égypte",
+    "cities": [
+      {
+        "name": "Le Caire",
+        "spots": [
+          "Centre-ville (place Tahrir, El-Mounira)",
+          "Gizeh",
+          "Sayeda Zeinab",
+          "El Hussein"
+        ]
+      },
+      {
+        "name": "Alexandrie",
+        "spots": [
+          "Mansheya",
+          "Corniche de Bahary",
+          "Quartier Miami",
+          "Gare El-Raml"
+        ]
+      },
+      {
+        "name": "Louxor",
+        "spots": [
+          "Souk de Louxor",
+          "Rue Salah El Din",
+          "Corniche du Nil"
+        ]
+      },
+      {
+        "name": "Assouan",
+        "spots": [
+          "Quartier du souk",
+          "Corniche El Nil",
+          "Rue El Tahrir"
+        ]
+      },
+      {
+        "name": "Oasis de Siwa",
+        "spots": [
+          "Marché de Siwa",
+          "Quartier El Maraqi"
+        ]
+      }
+    ],
+    "streetFoods": [
+      {
+        "name": "Koshari",
+        "description": "Un plat nourrissant de riz, lentilles, pois chiches, pâtes, oignons frits et sauce tomate-vinaigre",
+        "cost": "15–25 EGP",
+        "bestIn": "Le Caire (Abou Tarek, Koshary El Tahrir)",
+        "tip": "Demandez de la « shatta » (sauce piquante) si vous aimez le relevé",
+        "arabicName": "كشري"
+      },
+      {
+        "name": "Ta'ameya",
+        "description": "Le falafel égyptien, à base de fèves (et non de pois chiches), aux herbes et enrobé de sésame",
+        "cost": "1–2 EGP la pièce",
+        "bestIn": "Les charrettes de petit-déjeuner du Caire et d'Alexandrie",
+        "tip": "100 % végétal et rassasiant",
+        "arabicName": "طعمية"
+      },
+      {
+        "name": "Ful Medames",
+        "description": "Fèves mijotées longuement à l'huile d'olive, au cumin et au jus de citron",
+        "cost": "5–10 EGP le sandwich",
+        "bestIn": "Charrettes de petit-déjeuner et cafés populaires",
+        "tip": "Le petit-déjeuner national égyptien",
+        "arabicName": "فول مدمس"
+      },
+      {
+        "name": "Shawarma",
+        "description": "Bœuf ou poulet mariné, tranché à la broche verticale",
+        "cost": "15–30 EGP le wrap",
+        "bestIn": "Les kiosques à shawarma de style syrien du Caire, d'Alexandrie et d'Hurghada",
+        "tip": "Sauce à l'ail pour le poulet, tahini pour le bœuf",
+        "arabicName": "شاورما"
+      },
+      {
+        "name": "Hawawshi",
+        "description": "Viande de bœuf hachée et épicée, cuite dans du pain baladi",
+        "cost": "15–25 EGP le sandwich",
+        "bestIn": "Boulangeries traditionnelles et vendeurs de rue",
+        "tip": "Demandez la version « balady » : plus traditionnelle et plus parfumée",
+        "arabicName": "حواوشي"
+      },
+      {
+        "name": "Patate douce",
+        "description": "Rôtie et vendue sur des charrettes, souvent nappée de miel ou de fruits secs",
+        "cost": "5–15 EGP",
+        "bestIn": "Charrettes de rue partout en Égypte",
+        "tip": "L'en-cas d'hiver parfait, naturellement sucré",
+        "arabicName": "بطاطا"
+      }
+    ],
+    "drinks": [
+      {
+        "name": "Sobia",
+        "description": "Boisson au lait de coco et au riz",
+        "where": "Charrettes du Ramadan, marchés"
+      },
+      {
+        "name": "Jus de canne à sucre (Asab)",
+        "description": "Pressé minute, très désaltérant",
+        "where": "Bars à jus, charrettes de rue"
+      },
+      {
+        "name": "Tamarin (Tamr Hindi)",
+        "description": "Boisson aigre-douce aux dattes et au tamarin",
+        "where": "Période du Ramadan, vieux cafés"
+      },
+      {
+        "name": "Hibiscus (Karkadeh)",
+        "description": "Boisson florale rouge profond et acidulée",
+        "where": "Particulièrement appréciée à Assouan"
+      },
+      {
+        "name": "Thé à la menthe",
+        "description": "La boisson chaude de rue par excellence en Égypte",
+        "where": "Partout — il suffit de demander !"
+      }
+    ],
+    "safetyTips": [
+      {
+        "tip": "Mangez là où les habitants font la queue",
+        "reason": "Signe d'une forte rotation et de produits frais"
+      },
+      {
+        "tip": "Évitez les produits laitiers en été",
+        "reason": "La chaleur gâte vite le fromage et le yaourt"
+      },
+      {
+        "tip": "Choisissez des plats brûlants",
+        "reason": "La chaleur détruit la plupart des bactéries"
+      },
+      {
+        "tip": "Emportez vos lingettes et votre gel",
+        "reason": "Les vendeurs de rue n'ont souvent pas de point d'eau"
+      },
+      {
+        "tip": "Préférez les légumes cuits",
+        "reason": "Les crudités peuvent être lavées à l'eau du robinet"
+      }
+    ],
+    "phrases": [
+      {
+        "english": "Combien ça coûte ?",
+        "arabic": "بكام ده؟",
+        "transliteration": "bekam dah?"
+      },
+      {
+        "english": "Sans piment, s'il vous plaît",
+        "arabic": "من غير شطة",
+        "transliteration": "men gheer shatta"
+      },
+      {
+        "english": "Merci",
+        "arabic": "شكراً",
+        "transliteration": "shokran"
+      },
+      {
+        "english": "Délicieux !",
+        "arabic": "لذيذ جداً!",
+        "transliteration": "lazeez gidan!"
+      }
+    ],
+    "itinerary": [
+      {
+        "time": "9h00",
+        "activity": "Sandwich petit-déjeuner ful et ta'ameya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "11h00",
+        "activity": "Jus de canne à sucre frais",
+        "cost": "5 EGP"
+      },
+      {
+        "time": "13h00",
+        "activity": "Déjeuner koshari chez Abu Tarek",
+        "cost": "25 EGP"
+      },
+      {
+        "time": "15h00",
+        "activity": "Dessert : zalabya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "18h00",
+        "activity": "Wrap shawarma et thé dans un café local",
+        "cost": "25 EGP"
+      }
+    ]
   }
 }

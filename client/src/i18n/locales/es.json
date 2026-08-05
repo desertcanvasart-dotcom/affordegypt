@@ -1889,5 +1889,252 @@
     ],
     "titleSub": "Cómo ver más gastando menos",
     "whyH2": "Por qué Egipto es ideal en 2026 para viajar con poco presupuesto"
+  },
+  "streetFoodGuide": {
+    "seoTitle": "Guía de comida callejera egipcia | Qué comer y dónde",
+    "seoDescription": "Del koshari al ful medames y el hawawshi: qué comer, dónde encontrarlo y cómo evitar el sobreprecio para turistas. La guía gastronómica de un operador de El Cairo.",
+    "badge": "Guía de aventura culinaria 2026",
+    "titleA": "Comida callejera egipcia",
+    "titleB": "Una aventura culinaria",
+    "heroBody": "La comida callejera de Egipto es una sinfonía de sabores que combina tradiciones culinarias milenarias con el placer rápido de hoy. Su pasaporte más delicioso —y más económico— para entender Egipto.",
+    "ctaPlan": "Planificar tour gastronómico",
+    "ctaDownload": "Descargar guía",
+    "whyH2": "Por qué la comida callejera es perfecta para viajeros",
+    "whySub": "Descubra los sabores auténticos de Egipto sin arruinar su presupuesto",
+    "why1H": "Extremadamente económica",
+    "why1B": "La mayoría de los platos cuesta entre 5 y 30 EGP",
+    "why2H": "Fresca y rápida",
+    "why2B": "Preparada delante de usted, casi siempre muy caliente y lista para comer",
+    "why3H": "Profundamente local",
+    "why3B": "Recetas transmitidas de generación en generación, una experiencia cultural auténtica",
+    "why4H": "Apta para vegetarianos",
+    "why4B": "Muchas opciones sin carne, perfectas para cualquier tipo de dieta",
+    "why5H": "Inmersión cultural",
+    "why5B": "En los puestos callejeros los egipcios se encuentran, conversan y se relajan",
+    "why6H": "Sabores auténticos",
+    "why6B": "Pruebe el sabor real de Egipto a través de los platos favoritos de los locales",
+    "whereH2": "Dónde encontrar comida callejera egipcia",
+    "whereSub": "Los mejores sitios de todo Egipto para una experiencia auténtica",
+    "proTipLabel": "Consejo:",
+    "proTip": "Busque las colas largas de gente local: es señal de que la comida es buena y segura.",
+    "foodsH2": "Los mejores platos callejeros de Egipto",
+    "foodsSub": "Los platos esenciales que definen la cultura callejera egipcia",
+    "costLabel": "Precio",
+    "bestInLabel": "Mejor en",
+    "drinksH2": "Bebidas para acompañar la comida callejera",
+    "drinksSub": "Refrésquese con bebidas egipcias auténticas",
+    "noteLabel": "Nota importante:",
+    "noteBody": "Evite el agua del grifo y el hielo; elija agua embotellada precintada (aprox. 5 EGP)",
+    "safetyH2": "Consejos de seguridad para comer en la calle",
+    "safetySub": "Disfrute de los sabores auténticos de Egipto con tranquilidad",
+    "packH3": "Qué llevar a una aventura de comida callejera",
+    "packItems": [
+      "Pañuelos y toallitas húmedas",
+      "Gel desinfectante de manos",
+      "Botella de agua reutilizable",
+      "Pastillas antidiarreicas",
+      "Billetes pequeños y monedas"
+    ],
+    "phrasesH2": "Frases árabes útiles",
+    "phrasesSub": "Frases esenciales para enriquecer su experiencia gastronómica",
+    "itineraryH2": "Itinerario de comida callejera económico",
+    "itinerarySub": "Día en El Cairo: una jornada entera de comida callejera deliciosa por menos de 75 EGP",
+    "itineraryTitle": "Día de comida callejera en El Cairo",
+    "totalLabel": "Coste total del día:",
+    "finalH2": "Su aventura culinaria le espera",
+    "finalBody": "La comida callejera de Egipto es mucho más que comer barato: es una ventana al alma del país. Cada bocadillo que pasa por la ventanilla de un tuk-tuk, cada bocado picante comido de pie en la acera, le acerca a la gente y a su herencia.",
+    "ctaBook": "Reservar tour culinario",
+    "ctaMore": "Más guías de Egipto",
+    "cities": [
+      {
+        "name": "El Cairo",
+        "spots": [
+          "Centro (plaza Tahrir, El-Mounira)",
+          "Guiza",
+          "Sayeda Zeinab",
+          "El Hussein"
+        ]
+      },
+      {
+        "name": "Alejandría",
+        "spots": [
+          "Mansheya",
+          "Corniche de Bahary",
+          "Zona de Miami",
+          "Estación El-Raml"
+        ]
+      },
+      {
+        "name": "Luxor",
+        "spots": [
+          "Zoco de Luxor",
+          "Calle Salah El Din",
+          "Corniche del Nilo"
+        ]
+      },
+      {
+        "name": "Asuán",
+        "spots": [
+          "Zona del zoco",
+          "Corniche El Nile",
+          "Calle El Tahrir"
+        ]
+      },
+      {
+        "name": "Oasis de Siwa",
+        "spots": [
+          "Mercado de Siwa",
+          "Barrio El Maraqi"
+        ]
+      }
+    ],
+    "streetFoods": [
+      {
+        "name": "Koshari",
+        "description": "Un plato contundente de arroz, lentejas, garbanzos, pasta, cebolla crujiente y salsa de tomate y vinagre",
+        "cost": "15–25 EGP",
+        "bestIn": "El Cairo (Abou Tarek, Koshary El Tahrir)",
+        "tip": "Pida «shatta» (salsa picante) si le gusta el picante",
+        "arabicName": "كشري"
+      },
+      {
+        "name": "Ta'ameya",
+        "description": "Falafel egipcio hecho de habas (no de garbanzos), con hierbas y una capa de sésamo",
+        "cost": "1–2 EGP por pieza",
+        "bestIn": "Carritos de desayuno de El Cairo y Alejandría",
+        "tip": "100 % vegetal y saciante",
+        "arabicName": "طعمية"
+      },
+      {
+        "name": "Ful Medames",
+        "description": "Habas cocidas a fuego lento con aceite de oliva, comino y zumo de limón",
+        "cost": "5–10 EGP por bocadillo",
+        "bestIn": "Carritos de desayuno y cafés populares",
+        "tip": "El desayuno nacional de Egipto",
+        "arabicName": "فول مدمس"
+      },
+      {
+        "name": "Shawarma",
+        "description": "Ternera o pollo marinado y cortado de un asador vertical",
+        "cost": "15–30 EGP por wrap",
+        "bestIn": "Puestos de shawarma de estilo sirio en El Cairo, Alejandría y Hurgada",
+        "tip": "Salsa de ajo para el pollo, tahini para la ternera",
+        "arabicName": "شاورما"
+      },
+      {
+        "name": "Hawawshi",
+        "description": "Carne picada de ternera especiada y horneada dentro de pan baladi",
+        "cost": "15–25 EGP por bocadillo",
+        "bestIn": "Panaderías tradicionales y vendedores callejeros",
+        "tip": "Pida la versión «balady»: más tradicional y sabrosa",
+        "arabicName": "حواوشي"
+      },
+      {
+        "name": "Boniato",
+        "description": "Asado y vendido en carritos ambulantes, a menudo con miel o frutos secos",
+        "cost": "5–15 EGP",
+        "bestIn": "Carritos callejeros por todo Egipto",
+        "tip": "El aperitivo perfecto de invierno, dulce por naturaleza",
+        "arabicName": "بطاطا"
+      }
+    ],
+    "drinks": [
+      {
+        "name": "Sobia",
+        "description": "Bebida de leche de coco y arroz",
+        "where": "Carritos de Ramadán, mercados"
+      },
+      {
+        "name": "Zumo de caña de azúcar (Asab)",
+        "description": "Recién exprimido, muy refrescante",
+        "where": "Zumerías, carritos callejeros"
+      },
+      {
+        "name": "Tamarindo (Tamr Hindi)",
+        "description": "Bebida agridulce con dátiles y tamarindo",
+        "where": "Época de Ramadán, cafés antiguos"
+      },
+      {
+        "name": "Hibisco (Karkadeh)",
+        "description": "Bebida de flores, roja intensa y ácida",
+        "where": "Especialmente popular en Asuán"
+      },
+      {
+        "name": "Té con menta",
+        "description": "La bebida caliente por excelencia de la calle egipcia",
+        "where": "En todas partes: basta con pedirlo"
+      }
+    ],
+    "safetyTips": [
+      {
+        "tip": "Coma donde hagan cola los locales",
+        "reason": "Indica mucha rotación y comida fresca"
+      },
+      {
+        "tip": "Evite los lácteos en verano",
+        "reason": "El calor estropea rápido el queso y el yogur"
+      },
+      {
+        "tip": "Elija comida bien caliente",
+        "reason": "Elimina la mayoría de las bacterias"
+      },
+      {
+        "tip": "Lleve sus propias toallitas y gel",
+        "reason": "Los puestos callejeros rara vez tienen dónde lavarse las manos"
+      },
+      {
+        "tip": "Quédese con la verdura cocinada",
+        "reason": "La verdura cruda puede lavarse con agua del grifo"
+      }
+    ],
+    "phrases": [
+      {
+        "english": "¿Cuánto cuesta esto?",
+        "arabic": "بكام ده؟",
+        "transliteration": "bekam dah?"
+      },
+      {
+        "english": "Sin picante, por favor",
+        "arabic": "من غير شطة",
+        "transliteration": "men gheer shatta"
+      },
+      {
+        "english": "Gracias",
+        "arabic": "شكراً",
+        "transliteration": "shokran"
+      },
+      {
+        "english": "¡Delicioso!",
+        "arabic": "لذيذ جداً!",
+        "transliteration": "lazeez gidan!"
+      }
+    ],
+    "itinerary": [
+      {
+        "time": "9:00",
+        "activity": "Bocadillo de desayuno de ful y ta'ameya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "11:00",
+        "activity": "Zumo de caña de azúcar recién hecho",
+        "cost": "5 EGP"
+      },
+      {
+        "time": "13:00",
+        "activity": "Koshari para comer en Abu Tarek",
+        "cost": "25 EGP"
+      },
+      {
+        "time": "15:00",
+        "activity": "Postre: zalabya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "18:00",
+        "activity": "Wrap de shawarma y té en un café local",
+        "cost": "25 EGP"
+      }
+    ]
   }
 }

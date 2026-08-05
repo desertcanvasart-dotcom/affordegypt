@@ -2036,5 +2036,252 @@
     ],
     "titleSub": "How to See More for Less",
     "whyH2": "Why Egypt in 2026 is Perfect for Budget Travellers"
+  },
+  "streetFoodGuide": {
+    "seoTitle": "Egyptian Street Food Guide | What to Eat & Where",
+    "seoDescription": "From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide.",
+    "badge": "Culinary Adventure Guide 2026",
+    "titleA": "Egyptian Street Food",
+    "titleB": "A Culinary Adventure",
+    "heroBody": "Egypt's street food scene is a symphony of flavors, combining ancient culinary traditions with quick, modern-day indulgence. Your most delicious—and budget-friendly—passport to understanding Egypt.",
+    "ctaPlan": "Plan Food Tour",
+    "ctaDownload": "Download Guide",
+    "whyH2": "Why Street Food is Perfect for Travellers",
+    "whySub": "Discover the authentic flavors of Egypt without breaking your budget",
+    "why1H": "Extremely Affordable",
+    "why1B": "Most items cost between 5–30 EGP",
+    "why2H": "Fresh & Fast",
+    "why2B": "Cooked in front of you, often piping hot and ready to eat",
+    "why3H": "Deeply Local",
+    "why3B": "Recipes passed down for generations, authentic cultural experience",
+    "why4H": "Vegetarian-Friendly",
+    "why4B": "Many meat-free options available, perfect for all dietary needs",
+    "why5H": "Cultural Immersion",
+    "why5B": "Street food is how Egyptians connect, talk, and relax",
+    "why6H": "Authentic Flavors",
+    "why6B": "Experience the real taste of Egypt through local favorites",
+    "whereH2": "Where to Find Egyptian Street Food",
+    "whereSub": "The best spots across Egypt for authentic street food experiences",
+    "proTipLabel": "Pro Tip:",
+    "proTip": "Look for long queues of locals — it's a sign the food is both good and safe!",
+    "foodsH2": "Top Street Foods to Try in Egypt",
+    "foodsSub": "Essential dishes that define Egyptian street food culture",
+    "costLabel": "Cost",
+    "bestInLabel": "Best In",
+    "drinksH2": "Drinks to Pair with Street Food",
+    "drinksSub": "Refresh yourself with authentic Egyptian beverages",
+    "noteLabel": "Important Note:",
+    "noteBody": "Avoid tap water and ice; opt for sealed bottled water (≈5 EGP)",
+    "safetyH2": "Street Food Safety Tips",
+    "safetySub": "Stay safe while enjoying authentic Egyptian flavors",
+    "packH3": "What to Pack for a Street Food Adventure",
+    "packItems": [
+      "Tissues/wet wipes",
+      "Hand sanitizer",
+      "Reusable water bottle",
+      "Anti-diarrhea tablets",
+      "Small notes and coins"
+    ],
+    "phrasesH2": "Useful Arabic Phrases",
+    "phrasesSub": "Essential phrases to enhance your street food experience",
+    "itineraryH2": "Budget-Friendly Street Food Itinerary",
+    "itinerarySub": "Cairo Day Trip: Full day of delicious street food for under 75 EGP",
+    "itineraryTitle": "Cairo Street Food Day Trip",
+    "totalLabel": "Total Daily Cost:",
+    "finalH2": "Your Culinary Adventure Awaits",
+    "finalBody": "Egypt's street food is more than cheap eats—it's a window into the soul of the country. Every sandwich passed through a tuk-tuk window, every spicy bite eaten standing on a sidewalk, brings you closer to the people and their heritage.",
+    "ctaBook": "Book Culinary Tour",
+    "ctaMore": "More Egypt Guides",
+    "cities": [
+      {
+        "name": "Cairo",
+        "spots": [
+          "Downtown (Tahrir Sq., El-Mounira)",
+          "Giza",
+          "Sayeda Zeinab",
+          "El Hussein"
+        ]
+      },
+      {
+        "name": "Alexandria",
+        "spots": [
+          "Mansheya",
+          "Bahary Corniche",
+          "Miami Area",
+          "El-Raml Station"
+        ]
+      },
+      {
+        "name": "Luxor",
+        "spots": [
+          "Luxor Souq",
+          "Salah El Din Street",
+          "Nile Corniche"
+        ]
+      },
+      {
+        "name": "Aswan",
+        "spots": [
+          "Souq Area",
+          "Corniche El Nile",
+          "El Tahrir Street"
+        ]
+      },
+      {
+        "name": "Siwa Oasis",
+        "spots": [
+          "Siwa Market",
+          "El Maraqi District"
+        ]
+      }
+    ],
+    "streetFoods": [
+      {
+        "name": "Koshari",
+        "description": "A carb-packed dish of rice, lentils, chickpeas, pasta, crispy onions, and tomato-vinegar sauce",
+        "cost": "15–25 EGP",
+        "bestIn": "Cairo (Abou Tarek, Koshary El Tahrir)",
+        "tip": "Ask for 'shatta' (spicy sauce) if you enjoy heat",
+        "arabicName": "كشري"
+      },
+      {
+        "name": "Ta'ameya",
+        "description": "Egyptian falafel made of fava beans (not chickpeas), with herbs and sesame coating",
+        "cost": "1–2 EGP per piece",
+        "bestIn": "Local breakfast carts across Cairo and Alexandria",
+        "tip": "100% plant-based and filling",
+        "arabicName": "طعمية"
+      },
+      {
+        "name": "Ful Medames",
+        "description": "Slow-cooked fava beans with olive oil, cumin, lemon juice",
+        "cost": "5–10 EGP per sandwich",
+        "bestIn": "Breakfast carts and working-class cafés",
+        "tip": "Egypt's national breakfast dish",
+        "arabicName": "فول مدمس"
+      },
+      {
+        "name": "Shawarma",
+        "description": "Marinated beef or chicken sliced from a vertical rotisserie",
+        "cost": "15–30 EGP per wrap",
+        "bestIn": "Syrian-style shawarma kiosks in Cairo, Alexandria, and Hurghada",
+        "tip": "Garlic sauce for chicken, tahini for beef",
+        "arabicName": "شاورما"
+      },
+      {
+        "name": "Hawawshi",
+        "description": "Spiced minced beef baked inside baladi bread",
+        "cost": "15–25 EGP per sandwich",
+        "bestIn": "Traditional bakeries and street vendors",
+        "tip": "Ask for 'balady' version – more traditional and flavourful",
+        "arabicName": "حواوشي"
+      },
+      {
+        "name": "Sweet Potato",
+        "description": "Roasted and sold from push carts, often topped with honey or nuts",
+        "cost": "5–15 EGP",
+        "bestIn": "Street carts throughout Egypt",
+        "tip": "Perfect winter snack, naturally sweet",
+        "arabicName": "بطاطا"
+      }
+    ],
+    "drinks": [
+      {
+        "name": "Sobia",
+        "description": "Coconut milk & rice drink",
+        "where": "Ramadan carts, markets"
+      },
+      {
+        "name": "Sugarcane Juice (Asab)",
+        "description": "Fresh-pressed, hydrating",
+        "where": "Juice shops, street carts"
+      },
+      {
+        "name": "Tamarind (Tamr Hindi)",
+        "description": "Sweet-sour drink with dates & tamarind",
+        "where": "Ramadan time, old cafés"
+      },
+      {
+        "name": "Hibiscus (Karkadeh)",
+        "description": "Deep red, tangy flower-based drink",
+        "where": "Particularly popular in Aswan"
+      },
+      {
+        "name": "Tea with Mint",
+        "description": "Egypt's go-to warm street drink",
+        "where": "Everywhere—just ask!"
+      }
+    ],
+    "safetyTips": [
+      {
+        "tip": "Eat where locals queue",
+        "reason": "Indicates high turnover and freshness"
+      },
+      {
+        "tip": "Avoid dairy-heavy foods in summer",
+        "reason": "Heat may spoil cheese/yogurt quickly"
+      },
+      {
+        "tip": "Choose piping hot food",
+        "reason": "Kills most bacteria"
+      },
+      {
+        "tip": "Bring your own wipes/sanitizer",
+        "reason": "Street vendors often lack handwashing"
+      },
+      {
+        "tip": "Stick to cooked vegetables",
+        "reason": "Raw veg may be washed with tap water"
+      }
+    ],
+    "phrases": [
+      {
+        "english": "How much is this?",
+        "arabic": "بكام ده؟",
+        "transliteration": "bekam dah?"
+      },
+      {
+        "english": "No spice, please",
+        "arabic": "من غير شطة",
+        "transliteration": "men gheer shatta"
+      },
+      {
+        "english": "Thank you",
+        "arabic": "شكراً",
+        "transliteration": "shokran"
+      },
+      {
+        "english": "Delicious!",
+        "arabic": "لذيذ جداً!",
+        "transliteration": "lazeez gidan!"
+      }
+    ],
+    "itinerary": [
+      {
+        "time": "9:00 AM",
+        "activity": "Ful + Ta'ameya breakfast sandwich",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "11:00 AM",
+        "activity": "Fresh Sugarcane Juice",
+        "cost": "5 EGP"
+      },
+      {
+        "time": "1:00 PM",
+        "activity": "Koshari lunch at Abu Tarek",
+        "cost": "25 EGP"
+      },
+      {
+        "time": "3:00 PM",
+        "activity": "Dessert: Zalabya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "6:00 PM",
+        "activity": "Shawarma wrap + tea in local cafe",
+        "cost": "25 EGP"
+      }
+    ]
   }
 }
