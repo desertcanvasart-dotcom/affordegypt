@@ -785,7 +785,12 @@ export default function SinaiPeninsulaGuide() {
             </p>
             <Button 
               size="lg" 
-              className="bg-white text-teal-600 hover:bg-teal-50 text-lg px-8 py-4 font-semibold"
+              // Buttons are white-space:nowrap. This label is 270px in English but
+              // 338px in German ("Beginnen Sie Ihre Reiseplanung"), which pushed
+              // past a 375px viewport and made the page scroll sideways. Sentence
+              // -length CTAs must be allowed to wrap, or every longer translation
+              // becomes a layout bug.
+              className="bg-white text-teal-600 hover:bg-teal-50 text-base sm:text-lg px-6 sm:px-8 py-4 font-semibold whitespace-normal max-w-full"
               onClick={() => setLocation('/contact')}
             >
               {currentContent.cta.button}

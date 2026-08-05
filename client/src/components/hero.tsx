@@ -48,7 +48,11 @@ export default function Hero() {
           <Button
             onClick={scrollToQuote}
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-lg font-semibold shadow-xl"
+            // Buttons are white-space:nowrap by default. At text-lg/px-8 this label is
+            // 370px wide and cannot wrap, which set the hero container's min-content
+            // width to 402px — wider than a 375px phone — so the whole homepage
+            // scrolled sideways. Scaled down below sm so it fits; full size from sm up.
+            className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-6 sm:text-lg sm:px-8 py-6 rounded-lg font-semibold shadow-xl"
           >
             Build Your Quote in 60 Seconds
             <ArrowRight className="ml-2 w-5 h-5" />
