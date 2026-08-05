@@ -209,17 +209,24 @@ function App() {
               </ClientOnly>
               <Router />
 
-              {/* Floating WhatsApp Button */}
-              <div className="fixed bottom-6 right-6 z-50">
+              {/* Floating WhatsApp button.
+                  Sat at bottom-6 with a full label, which put it directly on
+                  top of MobileStickyCTA (fixed bottom-0, ~56px tall) on every
+                  phone, and gave the page two equally loud persistent CTAs.
+                  On mobile it now clears the sticky bar and shrinks to the icon
+                  alone, so "Build My Trip" stays the primary action and chat
+                  reads as the secondary one. Desktop, where there is no sticky
+                  bar, keeps the labelled pill. */}
+              <div className="fixed bottom-20 right-4 z-50 md:bottom-6 md:right-6">
                 <a
                   href="https://wa.me/201100765283"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
-                  title="WhatsApp Us"
+                  aria-label="Message us on WhatsApp"
+                  className="flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-full bg-green-500 p-3 text-white shadow-lg transition-all duration-200 hover:bg-green-600 hover:shadow-xl md:px-4 md:py-3"
                 >
-                  <FaWhatsapp className="w-5 h-5" />
-                  <span className="text-sm font-medium">WhatsApp Us</span>
+                  <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
+                  <span className="hidden text-sm font-medium md:inline">WhatsApp Us</span>
                 </a>
               </div>
             </TooltipProvider>

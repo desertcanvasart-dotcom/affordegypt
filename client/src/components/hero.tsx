@@ -1,12 +1,17 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { formatLE } from "@/lib/service-pricing";
 
-// Anchor price for hero subhead and FAQ "absolute minimum" answer.
-// EGP is the source of truth; USD/EUR are display-only hints.
-// Review monthly against current FX rates and update as needed.
-const MIN_DAILY_PRICE_EGP = 5625;
-const USD_DISPLAY_HINT = "$105";
-const EUR_DISPLAY_HINT = "€98";
+// Cairo guide + full-day private car, from the build-time pricing snapshot.
+// This was `const MIN_DAILY_PRICE_EGP = 5625` — the most prominent price on the
+// site, and the one literal that survived #48 because that sweep grepped for
+// the formatted "5,625" rather than the bare number.
+//
+// The USD/EUR hints that used to sit here are gone. They were "$105 / €98"
+// while the FAQ quoted "$118 / €110" for the same EGP figure, their comment
+// asked for a monthly FX review that never happened, and a stale conversion is
+// exactly the kind of number a transparent-pricing pitch cannot afford.
+const HERO_PRICE = formatLE("cairo-guide-car");
 
 export default function Hero() {
   const scrollToQuote = () => {
@@ -35,14 +40,9 @@ export default function Hero() {
             ETAA-licensed Egypt operator since 2003. Same licensed guides,
             lighter inclusions, no hidden fees.
           </p>
-          <p className="text-lg md:text-xl mb-2 text-white/95 max-w-3xl mx-auto text-balance">
+          <p className="text-lg md:text-xl mb-8 text-white/95 max-w-3xl mx-auto text-balance">
             {"Private car + Egyptologist from "}
-            <span className="font-semibold text-white">
-              {`LE ${MIN_DAILY_PRICE_EGP.toLocaleString("en-US")} / day`}
-            </span>
-          </p>
-          <p className="text-sm md:text-base mb-8 text-white/75 max-w-3xl mx-auto">
-            {`(~${USD_DISPLAY_HINT} USD / ${EUR_DISPLAY_HINT} EUR)`}
+            <span className="font-semibold text-white">{`${HERO_PRICE} / day`}</span>
           </p>
 
           <Button
