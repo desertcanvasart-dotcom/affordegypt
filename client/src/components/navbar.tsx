@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "@/components/language-selector";
 import { MULTILINGUAL_ENABLED } from "@/config/features";
-import { OPERATOR } from "@/lib/operator-facts";
+import { OPERATOR } from "@shared/operator-facts";
 import { useTranslatedLink } from "@/utils/slugTranslation";
 import {
   DropdownMenu,
