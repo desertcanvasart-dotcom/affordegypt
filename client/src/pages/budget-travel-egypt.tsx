@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 import { articleSchema } from "@/lib/article-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -26,93 +27,37 @@ import {
 import { Link } from "wouter";
 
 export default function BudgetTravelEgypt() {
+  const { t } = useTranslation();
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const bestTimes = [
-    {
-      season: "Spring & Autumn",
-      months: "March–May & September–November",
-      temperature: "20°C–28°C",
-      advantages: ["Pleasant temperatures", "Fewer crowds", "Favorable accommodation rates"],
-      ideal: "Perfect for exploring archaeological sites comfortably"
-    },
-    {
-      season: "Winter",
-      months: "December–February", 
-      temperature: "15°C–25°C",
-      advantages: ["Delightful weather", "Clear skies"],
-      drawbacks: ["Higher demand", "Increased accommodation costs", "Premium pricing"]
-    },
-    {
-      season: "Summer",
-      months: "June–August",
-      temperature: "40°C+ (inland)",
-      advantages: ["Drastically lower prices", "Fewer tourists"],
-      drawbacks: ["Intense heat in Luxor/Aswan"],
-      tip: "Choose coastal locations like Alexandria or Dahab"
-    }
-  ];
+  // Structured content lives in the locale files and is read with
+  // returnObjects, rather than exploded into dozens of flat keys — these are
+  // lists whose shape is part of the content.
+  const bestTimes = t("budgetGuide.bestTimes", { returnObjects: true }) as any[];
 
-  const budgetBreakdown = [
-    { category: "Accommodation", daily: "150-750 EGP", details: "Hostels to budget hotels" },
-    { category: "Food", daily: "75-375 EGP", details: "Street food to mid-range restaurants" },
-    { category: "Transport", daily: "50-250 EGP", details: "Public transport and intercity buses" },
-    { category: "Attractions", daily: "125-500 EGP", details: "Entry fees and activities" },
-    { category: "Miscellaneous", daily: "125-375 EGP", details: "Tips, souvenirs, emergencies" }
-  ];
+  const budgetBreakdown = t("budgetGuide.budgetBreakdown", { returnObjects: true }) as any[];
 
-  const moneySavingHacks = [
-    "Book accommodations early during shoulder seasons",
-    "Eat local street food (koshari, shawarma, ta'ameya)",
-    "Use public transport (metro, buses, shared taxis)",
-    "Carry an ISIC card for student discounts (up to 50%)",
-    "Bargain respectfully in markets",
-    "Stay in Nubian-style accommodations in Aswan",
-    "Shop at local markets for self-catering",
-    "Use Uber/Careem for safe, affordable city travel"
-  ];
+  const moneySavingHacks = t("budgetGuide.moneySavingHacks", { returnObjects: true }) as string[];
 
-  const checklist = [
-    {
-      icon: <Shield className="w-5 h-5" />,
-      title: "Travel Documents",
-      items: [
-        "Passport valid for 6+ months with blank pages",
-        "e-Visa (625 EGP) - recommended online application",
-        "Visa on Arrival (625 EGP cash) for select nationalities",
-        "Verify current requirements via official channels"
-      ]
-    },
-    {
-      icon: <Heart className="w-5 h-5" />,
-      title: "Health & Safety",
-      items: [
-        "Travel insurance covering medical emergencies",
-        "Recommended vaccines: Hepatitis A, Typhoid, Tetanus",
-        "Bottled water only, avoid uncooked street food",
-        "Basic medical kit with essential medications"
-      ]
-    },
-    {
-      icon: <CreditCard className="w-5 h-5" />,
-      title: "Money Matters",
-      items: [
-        "Egyptian Pound (EGP) is the local currency",
-        "Carry cash in small denominations", 
-        "Budget 1,250-2,000 EGP/day for comprehensive travel",
-        "7-10 days: ~20,000-27,500 EGP including airfare"
-      ]
-    }
+  const checklistIcons = [
+    <Shield className="w-5 h-5" />,
+    <Heart className="w-5 h-5" />,
+    <CreditCard className="w-5 h-5" />,
   ];
+  // Icons stay in the component (they are not content); titles and items come
+  // from the locale files.
+  const checklist = (t("budgetGuide.checklist", { returnObjects: true }) as any[]).map(
+    (section: any, i: number) => ({ ...section, icon: checklistIcons[i] }),
+  );
 
   return (
     <>
       <SeoMeta
-        title="Egypt on a Budget | A Cairo Operator's Honest Guide"
-        description="How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions."
+        title={t("budgetGuide.seoTitle")}
+        description={t("budgetGuide.seoDescription")}
         canonical="https://affordegypt.com/budget-travel-egypt"
         ogImage="https://affordegypt.com/images/pyramid-of-giza.jpg"
         schema={articleSchema({
@@ -141,20 +86,19 @@ export default function BudgetTravelEgypt() {
             <div className="max-w-4xl">
               <Badge className="bg-teal-600 text-white mb-6 text-sm px-4 py-2">
                 <DollarSign className="w-4 h-4 mr-2" />
-                Budget Travel Guide 2026
+                {t("budgetGuide.badge")}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Budget Travel in Egypt
-                <span className="block text-teal-400">How to See More for Less</span>
+                {t("budgetGuide.title")}
+                <span className="block text-teal-400">{t("budgetGuide.titleSub")}</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl">
-                Discover Egypt's extraordinary cultural heritage, vibrant local life, and timeless attractions 
-                without breaking the bank. Your complete guide to affordable Egyptian adventures.
+                {t("budgetGuide.heroLead")}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
                   <Link href="/#pricing-tool">
-                    Get Custom Quote
+                    {t("budgetGuide.heroCta")}
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
@@ -172,9 +116,9 @@ export default function BudgetTravelEgypt() {
           {/* Why Egypt in 2026 */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Egypt in 2026 is Perfect for Budget Travellers</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("budgetGuide.whyH2")}</h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Egypt stands out as an exceptional budget travel destination, offering incredible value and unforgettable experiences.
+                {t("budgetGuide.whyLead")}
               </p>
             </div>
 
@@ -183,13 +127,12 @@ export default function BudgetTravelEgypt() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-teal-700">
                     <DollarSign className="w-6 h-6" />
-                    Favorable Exchange Rates
+                    {t("budgetGuide.why1")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700">
-                    The Egyptian Pound's favorable rates against international currencies mean greater purchasing power. 
-                    Accommodation, meals, transport, and attraction tickets remain attractively affordable compared to Europe or North America.
+                    {t("budgetGuide.why1b")}
                   </p>
                 </CardContent>
               </Card>
@@ -198,13 +141,12 @@ export default function BudgetTravelEgypt() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-teal-700">
                     <Camera className="w-6 h-6" />
-                    Enhanced Infrastructure
+                    {t("budgetGuide.why2")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700">
-                    Egypt is heavily investing in tourism infrastructure. New museums, interactive exhibitions, 
-                    and immersive digital experiences offer engaging ways to explore history, often at introductory prices.
+                    {t("budgetGuide.why2b")}
                   </p>
                 </CardContent>
               </Card>
@@ -213,13 +155,12 @@ export default function BudgetTravelEgypt() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-teal-700">
                     <Shield className="w-6 h-6" />
-                    Improved Experience
+                    {t("budgetGuide.why3")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700">
-                    Streamlined airport procedures, upgraded safety standards, and welcoming hospitality make Egypt 
-                    exceptionally appealing for budget-conscious adventurers seeking memorable, affordable experiences.
+                    {t("budgetGuide.why3b")}
                   </p>
                 </CardContent>
               </Card>
@@ -231,7 +172,7 @@ export default function BudgetTravelEgypt() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Best Times for Budget Travel</h2>
               <p className="text-xl text-gray-600">
-                Timing your visit can significantly impact your budget and experience
+                {t("budgetGuide.timingLead")}
               </p>
             </div>
 
@@ -255,7 +196,7 @@ export default function BudgetTravelEgypt() {
                     <div>
                       <h4 className="font-semibold text-green-700 mb-2">Advantages:</h4>
                       <ul className="space-y-1">
-                        {time.advantages.map((advantage, i) => (
+                        {time.advantages.map((advantage: string, i: number) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                             <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
                             {advantage}
@@ -268,7 +209,7 @@ export default function BudgetTravelEgypt() {
                       <div>
                         <h4 className="font-semibold text-amber-700 mb-2">Consider:</h4>
                         <ul className="space-y-1">
-                          {time.drawbacks.map((drawback, i) => (
+                          {time.drawbacks.map((drawback: string, i: number) => (
                             <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                               <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
                               {drawback}
@@ -300,7 +241,7 @@ export default function BudgetTravelEgypt() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Essential Pre-Travel Checklist</h2>
               <p className="text-xl text-gray-600">
-                Get prepared before you go to ensure a smooth, stress-free Egyptian adventure
+                {t("budgetGuide.checklistLead")}
               </p>
             </div>
 
@@ -315,7 +256,7 @@ export default function BudgetTravelEgypt() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3">
-                      {section.items.map((item, i) => (
+                      {section.items.map((item: string, i: number) => (
                         <li key={i} className="flex items-start gap-3 text-gray-700">
                           <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5 flex-shrink-0" />
                           <span className="text-sm leading-relaxed">{item}</span>
@@ -333,7 +274,7 @@ export default function BudgetTravelEgypt() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Daily Budget Breakdown</h2>
               <p className="text-xl text-gray-600">
-                Plan your spending with realistic daily budget expectations
+                {t("budgetGuide.budgetLead")}
               </p>
             </div>
 
@@ -354,7 +295,7 @@ export default function BudgetTravelEgypt() {
                 <h3 className="text-2xl font-bold mb-4">Total Daily Budget</h3>
                 <div className="text-4xl font-bold mb-2">1,250 - 2,000 EGP</div>
                 <p className="text-teal-100">
-                  Covers accommodation, meals, transport, and key attractions for a comprehensive Egypt experience
+                  {t("budgetGuide.budgetNote")}
                 </p>
               </div>
             </div>
@@ -365,7 +306,7 @@ export default function BudgetTravelEgypt() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Top Money-Saving Hacks</h2>
               <p className="text-xl text-gray-600">
-                Insider tips to maximize your budget and get the most value from your Egyptian adventure
+                {t("budgetGuide.hacksLead")}
               </p>
             </div>
 
@@ -392,7 +333,7 @@ export default function BudgetTravelEgypt() {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
                 <Bed className="w-8 h-8 text-teal-600" />
-                Affordable Accommodation Options
+                {t("budgetGuide.stayTitle")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Card className="border-t-4 border-teal-600">
@@ -431,7 +372,7 @@ export default function BudgetTravelEgypt() {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
                 <Utensils className="w-8 h-8 text-teal-600" />
-                Economical Eating Tips
+                {t("budgetGuide.eatTitle")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="bg-teal-50 border-0">
@@ -492,7 +433,7 @@ export default function BudgetTravelEgypt() {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
                 <Bus className="w-8 h-8 text-teal-600" />
-                Transportation on a Budget
+                {t("budgetGuide.moveTitle")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Card className="text-center">
@@ -555,12 +496,12 @@ export default function BudgetTravelEgypt() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">
                   <Link href="/#pricing-tool">
-                    Start Planning Your Trip
+                    {t("budgetGuide.cta1")}
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
                   <Link href="/travel-tips">
-                    Explore Travel Guides
+                    {t("budgetGuide.cta2")}
                   </Link>
                 </Button>
               </div>
