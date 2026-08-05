@@ -12,6 +12,7 @@ import { useEffect, lazy, Suspense, type ComponentType } from "react";
 import { ClientOnly } from "@/components/client-only";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { initGA } from "./lib/analytics";
+import { signalPrerenderReady } from "./lib/prerender";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
 import Attractions from "@/pages/attractions";
@@ -278,7 +279,7 @@ function App() {
   // Fires after first paint so prerendered HTML captures the mounted DOM.
   useEffect(() => {
     const id = requestAnimationFrame(() => {
-      document.dispatchEvent(new Event("prerender-ready"));
+      signalPrerenderReady();
     });
     return () => cancelAnimationFrame(id);
   }, []);

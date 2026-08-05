@@ -11,7 +11,7 @@ export default function NotFound() {
       <SeoMeta
         title="Page Not Found | AffordEgypt"
         description="This page doesn't exist. Head back to AffordEgypt to plan your Egypt trip with transparent pricing."
-        noindex
+        noindex="follow"
       />
       <Navbar />
       <div className="min-h-[60vh] w-full flex items-center justify-center bg-gray-50 py-20">

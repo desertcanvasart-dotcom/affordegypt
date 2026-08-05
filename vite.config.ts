@@ -67,22 +67,15 @@ export default defineConfig({
         },
       },
       postProcess(renderedRoute) {
-        // Normalize inline style attributes from the browser's whitespaced/
-        // trailing-semicolon serialization to React's compact form, so
-        // hydration string comparison succeeds. Browser emits:
-        //   style="background-size: cover; background-position: center;"
-        // React emits:
-        //   style="background-size:cover;background-position:center"
-        renderedRoute.html = renderedRoute.html.replace(
-          /style="([^"]*)"/g,
-          (_match, css: string) => {
-            const compact = css
-              .replace(/:\s+/g, ":")
-              .replace(/;\s+/g, ";")
-              .replace(/;$/, "");
-            return `style="${compact}"`;
-          },
-        );
+        // NOTE: this used to rewrite inline styles to a compact
+        // "background-size:cover;background-position:center" form, on the
+        // premise that it was "React's form". It isn't. React applies styles
+        // through the CSSOM, so the attribute React leaves in the DOM is the
+        // browser's own "background-size: cover; background-position: center;"
+        // serialization — which is exactly what the snapshot already captured.
+        // Rewriting it made the static HTML differ from what React produces;
+        // restoring the spaced form was measurably worth two fewer hydration
+        // errors on /sinai-peninsula-guide. Serialize faithfully, don't "fix".
         renderedRoute.html = renderedRoute.html.replace(
           /<head>/,
           `<head>\n    <meta name="prerender-status" content="prerendered" />`,

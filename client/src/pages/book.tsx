@@ -235,7 +235,9 @@ export default function BookPage() {
             </CardHeader>
             <CardContent>
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* noValidate: the `required` attributes are there for
+                    assistive tech, but zod owns the user-facing messages. */}
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
                   <FormField
                     control={form.control}
                     name="customerName"
@@ -243,7 +245,7 @@ export default function BookPage() {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" required autoComplete="name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -257,7 +259,7 @@ export default function BookPage() {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john@example.com" {...field} />
+                          <Input type="email" placeholder="john@example.com" required autoComplete="email" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -271,7 +273,7 @@ export default function BookPage() {
                       <FormItem>
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="+1 (555) 123-4567" {...field} />
+                          <Input type="tel" placeholder="+1 (555) 123-4567" required autoComplete="tel" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

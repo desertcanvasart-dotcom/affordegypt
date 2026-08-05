@@ -113,7 +113,9 @@ export function serveStatic(app: Express) {
         .replace(/<link[^>]+rel="canonical"[^>]*>/gi, "")
         .replace(/<meta[^>]+property="og:url"[^>]*>/gi, "")
         .replace(/<title>[^<]*<\/title>/i, "<title>Page Not Found | AffordEgypt</title>")
-        .replace(/<head>/i, '<head>\n    <meta name="robots" content="noindex, nofollow" />');
+        // "follow", not "nofollow": the page is worthless to index, but the
+        // home and quote links on it are worth crawling from here.
+        .replace(/<head>/i, '<head>\n    <meta name="robots" content="noindex, follow" />');
     } catch {
       return null;
     }

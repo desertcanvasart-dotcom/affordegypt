@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { isPrerendering } from "@/lib/prerender";
 
 /**
  * "On this page" navigation for the long-form guide pages.
@@ -52,6 +53,16 @@ export default function GuideToc({
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
+    // "Empty on the server" only held if the snapshot were taken before this
+    // effect. It isn't — prerender-ready fires a frame after effects run, so
+    // under Puppeteer this scan populated the nav AND stamped id/style onto
+    // headings React renders bare. All of it was captured into the static HTML,
+    // and on the client React found a <nav> and heading attributes its first
+    // render doesn't produce: a mismatch outside any Suspense boundary, which
+    // threw away the server HTML for the entire root (#418 then #423). Skipping
+    // under prerender keeps the promise the comment above makes.
+    if (isPrerendering()) return;
+
     const headings = Array.from(document.querySelectorAll("h2")).filter(
       // Navbar/footer headings are not page sections. [data-guide-toc] excludes
       // this component's own markup.
