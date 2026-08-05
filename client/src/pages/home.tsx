@@ -25,7 +25,7 @@ const ORGANIZATION_SCHEMA = {
   foundingDate: "2003",
   parentOrganization: {
     "@type": "Organization",
-    name: "Travel2Egypt",
+    name: "Capital Travel Service",
   },
   sameAs: [
     "https://www.facebook.com/affordegypt/",

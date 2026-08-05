@@ -1,6 +1,6 @@
-// Three-column "what's included / what's not / what Travel2Egypt adds"
+// Three-column "what's included / what's not / what Capital Travel Service adds"
 // section. Trust grenade in a market built on opacity: pre-frames
-// Travel2Egypt as an honest upgrade rather than a hidden parent brand.
+// Capital Travel Service as an honest upgrade rather than a hidden parent brand.
 
 import { Check, X, Sparkles } from "lucide-react";
 
@@ -21,7 +21,7 @@ const notIncludedAffordEgypt = [
   "Optional experiences (camel ride, felucca, etc.)",
 ];
 
-const travel2EgyptAdds = [
+const capitalTravelAdds = [
   "Multilingual guides (Spanish, Japanese, Finnish, Arabic)",
   "Premium hotel partnerships",
   "Concierge planning",
@@ -82,11 +82,11 @@ export default function InclusionsComparison() {
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-amber-600" />
               <h3 className="text-lg font-bold text-gray-900">
-                What Travel2Egypt adds at the premium tier
+                What Capital Travel Service adds at the premium tier
               </h3>
             </div>
             <ul className="space-y-3">
-              {travel2EgyptAdds.map((item) => (
+              {capitalTravelAdds.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
                   <Sparkles className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
                   <span>{item}</span>

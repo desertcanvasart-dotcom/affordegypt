@@ -51,7 +51,7 @@ export default function Destinations() {
     <div className="min-h-screen bg-background">
       <SeoMeta
         title="Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
-        description="Plan your Egypt trip across Cairo, Alexandria, Luxor, Aswan, Hurghada, and Sharm El Sheikh. Local insights, transparent pricing, licensed Egyptologist guides from Travel2Egypt's team."
+        description="Plan your Egypt trip across Cairo, Alexandria, Luxor, Aswan, Hurghada, and Sharm El Sheikh. Local insights, transparent pricing, licensed Egyptologist guides from Capital Travel Service's team."
         canonical="https://affordegypt.com/destinations"
       />
 

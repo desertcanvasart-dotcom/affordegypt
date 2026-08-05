@@ -128,7 +128,7 @@ export default function CairoGuideServices() {
     <>
       <SeoMeta
         title={`Cairo Private Tour Guide & Car | From ${formatLEPerDay("cairo-guide-car")}`}
-        description={`Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From ${formatLEPerDay("cairo-guide-car")} for guide + private car (entrance tickets separate). ETAA-licensed Travel2Egypt operator.`}
+        description={`Private licensed Egyptologist + air-conditioned vehicle for Cairo, Giza, Saqqara, and Memphis. From ${formatLEPerDay("cairo-guide-car")} for guide + private car (entrance tickets separate). Operated by Capital Travel Service (ETAA 2179).`}
         canonical="https://affordegypt.com/cairo-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />

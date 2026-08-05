@@ -119,9 +119,7 @@ export default function Navbar() {
               onClick={navigateToHome}
             />
             {/* Sourced from OPERATOR rather than retyped: this line names the
-                legal entity and licence number, and it previously said
-                "Travel2Egypt" while the terms, booking agreement and structured
-                data all named Capital Travel Service. */}
+                legal entity and licence number. */}
             <div className={`hidden lg:block mt-1.5 text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
               Operated by {OPERATOR.legalName} · {OPERATOR.etaaLicence}
             </div>

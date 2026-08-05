@@ -36,7 +36,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
-            AffordEgypt is the transparent budget tier from Travel2Egypt — an
+            AffordEgypt is the transparent budget tier from Capital Travel Service — an
             ETAA-licensed Egypt operator since 2003. Same licensed guides,
             lighter inclusions, no hidden fees.
           </p>
