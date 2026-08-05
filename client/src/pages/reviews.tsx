@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import type { Review } from "@shared/schema";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 export default function ReviewsPage() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [ratingFilter, setRatingFilter] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
@@ -112,8 +114,8 @@ export default function ReviewsPage() {
       <Navbar />
       <div className="min-h-screen bg-gray-50 py-16">
   <SeoMeta
-          title="Traveler Reviews | AffordEgypt"
-          description="Real reviews from travelers who toured Egypt with AffordEgypt and Travel2Egypt — Cairo, Luxor, Aswan, and beyond."
+          title={t("reviewsPage.seoTitle")}
+          description={t("reviewsPage.seoDescription")}
           canonical="https://affordegypt.com/reviews"
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -141,10 +143,10 @@ export default function ReviewsPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Customer Reviews
+            {t("reviewsPage.title")}
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-            Real experiences from travelers who explored Egypt with us
+            {t("reviewsPage.subtitle")}
           </p>
           
           <div className="flex items-center justify-center gap-4 mb-8">
@@ -162,7 +164,7 @@ export default function ReviewsPage() {
 
         {/* Rating Distribution */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Rating Distribution</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("reviewsPage.distribution")}</h3>
           <div className="space-y-2">
             {ratingDistribution.map(({ rating, count, percentage }) => (
               <div key={rating} className="flex items-center gap-3">
@@ -190,7 +192,7 @@ export default function ReviewsPage() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   type="text"
-                  placeholder="Search reviews..."
+                  placeholder={t("reviewsPage.searchPlaceholder")}
                   value={searchTerm}
                   onChange={(e) => handleFilterChange("search", e.target.value)}
                   className="pl-10"
@@ -202,10 +204,10 @@ export default function ReviewsPage() {
               <Select value={ratingFilter} onValueChange={(value) => handleFilterChange("rating", value)}>
                 <SelectTrigger className="w-40">
                   <Filter className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder="Filter by rating" />
+                  <SelectValue placeholder={t("reviewsPage.filterRating")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Ratings</SelectItem>
+                  <SelectItem value="all">{t("reviewsPage.allRatings")}</SelectItem>
                   <SelectItem value="5">5 Stars</SelectItem>
                   <SelectItem value="4">4 Stars</SelectItem>
                   <SelectItem value="3">3 Stars</SelectItem>
@@ -216,19 +218,19 @@ export default function ReviewsPage() {
 
               <Select value={sortBy} onValueChange={(value) => handleFilterChange("sort", value)}>
                 <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Sort by" />
+                  <SelectValue placeholder={t("reviewsPage.sortBy")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="newest">Newest First</SelectItem>
-                  <SelectItem value="oldest">Oldest First</SelectItem>
-                  <SelectItem value="highest">Highest Rating</SelectItem>
-                  <SelectItem value="lowest">Lowest Rating</SelectItem>
+                  <SelectItem value="newest">{t("reviewsPage.newest")}</SelectItem>
+                  <SelectItem value="oldest">{t("reviewsPage.oldest")}</SelectItem>
+                  <SelectItem value="highest">{t("reviewsPage.highest")}</SelectItem>
+                  <SelectItem value="lowest">{t("reviewsPage.lowest")}</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={itemsPerPage.toString()} onValueChange={(value) => setItemsPerPage(parseInt(value))}>
                 <SelectTrigger className="w-32">
-                  <SelectValue placeholder="Per page" />
+                  <SelectValue placeholder={t("reviewsPage.perPage")} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="6">6 per page</SelectItem>
@@ -242,7 +244,7 @@ export default function ReviewsPage() {
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
-                  aria-label="Grid view"
+                  aria-label={t("reviewsPage.gridView")}
                   aria-pressed={viewMode === "grid"}
                   onClick={() => setViewMode("grid")}
                   className="min-h-11 min-w-11 rounded-r-none"
@@ -252,7 +254,7 @@ export default function ReviewsPage() {
                 <Button
                   variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
-                  aria-label="List view"
+                  aria-label={t("reviewsPage.listView")}
                   aria-pressed={viewMode === "list"}
                   onClick={() => setViewMode("list")}
                   className="min-h-11 min-w-11 rounded-l-none"
@@ -304,7 +306,7 @@ export default function ReviewsPage() {
                           onClick={() => toggleCardExpansion(review.id)}
                           className="text-primary hover:text-primary/80 text-sm font-medium mt-2 transition-colors"
                         >
-                          {isExpanded ? "Read less" : "Read more"}
+                          {isExpanded ? t("reviewsPage.readLess") : t("reviewsPage.readMore")}
                         </button>
                       )}
                     </div>
@@ -396,7 +398,7 @@ export default function ReviewsPage() {
         {paginatedReviews.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-600 text-lg">
-              No reviews found matching your criteria.
+              {t("reviewsPage.noneFound")}
             </p>
           </div>
         )}
@@ -421,7 +423,7 @@ export default function ReviewsPage() {
               <Button
                 variant="outline"
                 size="sm"
-                aria-label="Previous page"
+                aria-label={t("reviewsPage.prevPage")}
                 className="min-h-11 min-w-11"
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -460,7 +462,7 @@ export default function ReviewsPage() {
               <Button
                 variant="outline"
                 size="sm"
-                aria-label="Next page"
+                aria-label={t("reviewsPage.nextPage")}
                 className="min-h-11 min-w-11"
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === totalPages}

@@ -1,4 +1,5 @@
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import ReviewForm from "@/components/review-form";
@@ -13,6 +14,7 @@ interface PublicReview {
 }
 
 export default function SubmitReview() {
+  const { t } = useTranslation();
   // These three numbers used to be hardcoded as "4.8/5 from 500+ reviews",
   // "2,000+ happy travelers" and "15+ destinations". None held up: the reviews
   // table is empty, the destinations list has 7 entries, and the traveller
@@ -33,26 +35,26 @@ export default function SubmitReview() {
   const stats = [
     {
       icon: Star,
-      label: "Average Rating",
+      label: t("submitReviewPage.avgRating"),
       // With no reviews yet, inviting the first one is honest and still useful.
       // Asserting a rating nobody has given is neither.
-      value: averageRating !== null ? `${averageRating.toFixed(1)}/5` : "Be the first",
+      value: averageRating !== null ? `${averageRating.toFixed(1)}/5` : t("submitReviewPage.beFirst"),
       description:
         reviews.length > 0
           ? `From ${reviews.length} ${reviews.length === 1 ? "review" : "reviews"}`
-          : "No reviews published yet",
+          : t("submitReviewPage.noneYet"),
     },
     {
       icon: Users,
-      label: "Travellers Served",
+      label: t("submitReviewPage.travellers"),
       value: TRAVELLERS_SERVED,
-      description: "Since 2003, across the operator's trips",
+      description: t("submitReviewPage.travellersNote"),
     },
     {
       icon: MapPin,
-      label: "Destinations",
+      label: t("submitReviewPage.destinations"),
       value: cities.length > 0 ? `${cities.length}` : "—",
-      description: "Cities covered",
+      description: t("submitReviewPage.destinationsNote"),
     },
   ];
 
@@ -71,11 +73,10 @@ export default function SubmitReview() {
         <section className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Share Your Egypt Adventure
+              {t("submitReviewPage.title")}
             </h1>
             <p className="text-xl text-teal-100 max-w-2xl mx-auto">
-              Your authentic experiences help fellow travelers discover the magic of Egypt. 
-              Share your story and inspire others to explore this incredible destination.
+              {t("submitReviewPage.subtitle")}
             </p>
           </div>
         </section>
@@ -118,24 +119,24 @@ export default function SubmitReview() {
                   <Card>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                        Why Your Review Matters
+                        {t("submitReviewPage.whyTitle")}
                       </h3>
                       <ul className="space-y-3 text-gray-700">
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          <span>Help future travelers make informed decisions</span>
+                          <span>{t("submitReviewPage.why1")}</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          <span>Share insider tips and hidden gems</span>
+                          <span>{t("submitReviewPage.why2")}</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          <span>Support our local guides and team</span>
+                          <span>{t("submitReviewPage.why3")}</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          <span>Help us improve our services</span>
+                          <span>{t("submitReviewPage.why4")}</span>
                         </li>
                       </ul>
                     </CardContent>
@@ -145,20 +146,20 @@ export default function SubmitReview() {
                   <Card>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                        Review Guidelines
+                        {t("submitReviewPage.guidelinesTitle")}
                       </h3>
                       <div className="space-y-3 text-sm text-gray-700">
                         <p>
-                          <strong>Be Authentic:</strong> Share your genuine experience, both highlights and challenges.
+                          <strong>{t("submitReviewPage.g1Label")}</strong> {t("submitReviewPage.g1")}
                         </p>
                         <p>
-                          <strong>Be Specific:</strong> Mention specific destinations, guides, or activities that stood out.
+                          <strong>{t("submitReviewPage.g2Label")}</strong> {t("submitReviewPage.g2")}
                         </p>
                         <p>
-                          <strong>Be Helpful:</strong> Include practical tips that might help future travelers.
+                          <strong>{t("submitReviewPage.g3Label")}</strong> {t("submitReviewPage.g3")}
                         </p>
                         <p>
-                          <strong>Be Respectful:</strong> Keep your review constructive and respectful to all parties.
+                          <strong>{t("submitReviewPage.g4Label")}</strong> {t("submitReviewPage.g4")}
                         </p>
                       </div>
                     </CardContent>
@@ -168,7 +169,7 @@ export default function SubmitReview() {
                   <Card>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                        Need Help?
+                        {t("submitReviewPage.needHelp")}
                       </h3>
                       <div className="space-y-2 text-sm text-gray-700">
                         <p>
@@ -182,7 +183,7 @@ export default function SubmitReview() {
                         </p>
                       </div>
                       <p className="text-xs text-gray-600 mt-4">
-                        All reviews are manually verified before publication to ensure authenticity.
+                        {t("submitReviewPage.verifiedNote")}
                       </p>
                     </CardContent>
                   </Card>
