@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, MapPin, User, HelpCircle, MessageCircle, Truck, LogOut, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
@@ -19,6 +19,23 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location, setLocation] = useLocation();
+  // The mobile menu is rendered OUTSIDE <header> on purpose. The header carries
+  // backdrop-blur, and an element with backdrop-filter becomes the containing
+  // block for its position:fixed descendants — so `fixed inset-0` resolved
+  // against the 118px header instead of the viewport and the menu rendered 53px
+  // tall. Being a sibling makes `fixed` viewport-relative again.
+  const headerRef = useRef<HTMLElement>(null);
+  const [menuTop, setMenuTop] = useState(64);
+
+  // Offset the panel by the header's real height rather than a hardcoded 64px:
+  // the bar is 80px tall with a 36px trust line until you scroll, then 64px.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const measure = () => setMenuTop(headerRef.current?.offsetHeight ?? 64);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [isMenuOpen, isScrolled]);
   const { user, isAuthenticated, logout } = useAuth();
   const { t } = useTranslation();
   const getTranslatedLink = useTranslatedLink();
@@ -86,7 +103,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
+    <>
+    <header ref={headerRef} className={`bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
@@ -221,134 +239,137 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile Full-Screen Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 bg-white z-50 overflow-y-auto animate-in slide-in-from-top duration-300">
-          <div className="p-6">
-            {/* Hero Section */}
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Plan Your Egypt Trip</h2>
-              <p className="text-gray-600">Private tours with transparent pricing</p>
-            </div>
+    </header>
 
-            {/* Primary CTA on Top */}
-            <button
-              onClick={() => navigateToSection('quote-builder')}
-              className="w-full bg-[#008C86] text-white px-6 py-4 rounded-lg hover:bg-[#007570] transition-all font-semibold shadow-md mb-6 text-lg"
+    {/* Mobile Full-Screen Menu */}
+    {isMenuOpen && (
+      <div className="lg:hidden fixed left-0 right-0 bottom-0 bg-white z-40 overflow-y-auto animate-in slide-in-from-top duration-300"
+        style={{ top: menuTop }}>
+        <div className="p-6">
+          {/* Hero Section */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Plan Your Egypt Trip</h2>
+            <p className="text-gray-600">Private tours with transparent pricing</p>
+          </div>
+
+          {/* Primary CTA on Top */}
+          <button
+            onClick={() => navigateToSection('quote-builder')}
+            className="w-full bg-[#008C86] text-white px-6 py-4 rounded-lg hover:bg-[#007570] transition-all font-semibold shadow-md mb-6 text-lg"
+          >
+            Get Your Instant Quote
+          </button>
+
+          {/* Navigation Sections */}
+          <div className="space-y-2 mb-6">
+            <Link
+              href="/destinations"
+              onClick={navigateToDestinations}
+              className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >
-              Get Your Instant Quote
+              <MapPin className="w-5 h-5" />
+              Destinations
+            </Link>
+
+            <Link
+              href="/transfers"
+              onClick={navigateToTransfers}
+              className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+            >
+              <Truck className="w-5 h-5" />
+              Private Transfers
+            </Link>
+            
+            <button 
+              onClick={() => navigateToSection('faq')}
+              className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+            >
+              <HelpCircle className="w-5 h-5" />
+              FAQs
             </button>
 
-            {/* Navigation Sections */}
-            <div className="space-y-2 mb-6">
-              <Link
-                href="/destinations"
-                onClick={navigateToDestinations}
-                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
-              >
-                <MapPin className="w-5 h-5" />
-                Destinations
-              </Link>
+            <button 
+              onClick={() => navigateToSection('contact')}
+              className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Contact
+            </button>
+          </div>
 
-              <Link
-                href="/transfers"
-                onClick={navigateToTransfers}
-                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
-              >
-                <Truck className="w-5 h-5" />
-                Private Transfers
-              </Link>
-              
-              <button 
-                onClick={() => navigateToSection('faq')}
-                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
-              >
-                <HelpCircle className="w-5 h-5" />
-                FAQs
-              </button>
+          {/* Language Selector */}
+          <div className="mb-6 px-4">
+            <LanguageSelector />
+          </div>
 
-              <button 
-                onClick={() => navigateToSection('contact')}
-                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Contact
-              </button>
-            </div>
-
-            {/* Language Selector */}
-            <div className="mb-6 px-4">
-              <LanguageSelector />
-            </div>
-
-            {/* Auth Buttons */}
-            {isAuthenticated ? (
-              <div className="space-y-3 border-t border-gray-200 pt-6">
-                <div className="flex items-center space-x-2 text-gray-700 px-4 py-2">
-                  <User className="w-5 h-5" />
-                  <span className="font-medium">{user?.firstName || user?.username}</span>
-                </div>
-                <Link
-                  href="/dashboard"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block w-full text-center border border-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all font-medium"
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={() => {
-                    logout();
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full text-center border border-red-200 text-red-600 px-4 py-3 rounded-lg hover:bg-red-50 transition-all font-medium"
-                >
-                  Sign Out
-                </button>
+          {/* Auth Buttons */}
+          {isAuthenticated ? (
+            <div className="space-y-3 border-t border-gray-200 pt-6">
+              <div className="flex items-center space-x-2 text-gray-700 px-4 py-2">
+                <User className="w-5 h-5" />
+                <span className="font-medium">{user?.firstName || user?.username}</span>
               </div>
-            ) : (
-              <div className="space-y-3 border-t border-gray-200 pt-6">
-                <a
-                  href="https://wa.me/201100765283"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block w-full text-center border border-green-600 text-green-700 px-4 py-3 rounded-lg hover:bg-green-50 transition-all font-medium"
-                >
-                  Message us on WhatsApp
-                </a>
-              </div>
-            )}
-
-            {/* Social Media */}
-            <div className="flex items-center justify-center space-x-4 mt-8 pt-6 border-t border-gray-200">
-              <a 
-                href="https://www.facebook.com/affordegypt/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+              <Link
+                href="/dashboard"
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-center border border-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all font-medium"
               >
-                <FaFacebookF className="w-4 h-4" />
-              </a>
-              <a 
-                href="https://www.instagram.com/affordegypt/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  logout();
+                  setIsMenuOpen(false);
+                }}
+                className="w-full text-center border border-red-200 text-red-600 px-4 py-3 rounded-lg hover:bg-red-50 transition-all font-medium"
               >
-                <FaInstagram className="w-4 h-4" />
-              </a>
-              <a 
-                href="https://www.youtube.com/@affordegypt" 
-                target="_blank" 
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-3 border-t border-gray-200 pt-6">
+              <a
+                href="https://wa.me/201100765283"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-center border border-green-600 text-green-700 px-4 py-3 rounded-lg hover:bg-green-50 transition-all font-medium"
               >
-                <FaYoutube className="w-4 h-4" />
+                Message us on WhatsApp
               </a>
             </div>
+          )}
+
+          {/* Social Media */}
+          <div className="flex items-center justify-center space-x-4 mt-8 pt-6 border-t border-gray-200">
+            <a 
+              href="https://www.facebook.com/affordegypt/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+            >
+              <FaFacebookF className="w-4 h-4" />
+            </a>
+            <a 
+              href="https://www.instagram.com/affordegypt/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+            >
+              <FaInstagram className="w-4 h-4" />
+            </a>
+            <a 
+              href="https://www.youtube.com/@affordegypt" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200"
+            >
+              <FaYoutube className="w-4 h-4" />
+            </a>
           </div>
         </div>
-      )}
-    </header>
+      </div>
+    )}
+    </>
   );
 }
