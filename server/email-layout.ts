@@ -73,10 +73,15 @@ export interface EmailShellOptions {
   lede?: string;
   /** Main body, built from the block helpers below. */
   body: string;
+  /**
+   * "internal" drops the customer footer. An ops alert to our own inbox
+   * telling us why we are receiving it reads as a template nobody proofread.
+   */
+  audience?: 'customer' | 'internal';
 }
 
 export function renderEmail(opts: EmailShellOptions): string {
-  const { title, preheader, eyebrow, heading, lede, body } = opts;
+  const { title, preheader, eyebrow, heading, lede, body, audience = 'customer' } = opts;
 
   return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -157,7 +162,7 @@ export function renderEmail(opts: EmailShellOptions): string {
           </td>
         </tr>
 
-        ${renderFooter()}
+        ${renderFooter(audience)}
 
       </table>
 
@@ -300,6 +305,46 @@ export function button(href: string, label: string, paddingTop = 28): string {
 </table>`;
 }
 
+/**
+ * The single number the reader acts on, sized so it survives a phone glance.
+ * `sub` carries the context (what the figure is a percentage of).
+ */
+export function heroStat(label: string, value: string, sub?: string): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td class="ae-pad" style="padding:24px 40px 0 40px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${BRAND.ink}; border-radius:10px;">
+        <tr>
+          <td align="center" style="padding:22px 24px;">
+            <p style="margin:0 0 6px 0; font-family:${FONT}; font-size:12px; line-height:16px; letter-spacing:1px; text-transform:uppercase; font-weight:700; color:#8FD6BC;">${esc(label)}</p>
+            <p style="margin:0; font-family:${FONT}; font-size:32px; line-height:40px; font-weight:700; color:${BRAND.white};">${esc(value)}</p>
+            ${sub ? `<p style="margin:6px 0 0 0; font-family:${FONT}; font-size:13px; line-height:20px; color:#B7DED0;">${esc(sub)}</p>` : ''}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>`;
+}
+
+/** Left-bordered callout for the do-this-now block. */
+export function callout(title: string, innerHtml: string): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td class="ae-pad" style="padding:24px 40px 0 40px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFF8E8; border-left:4px solid #E9A23B; border-radius:6px;">
+        <tr>
+          <td style="padding:18px 20px;">
+            <p style="margin:0 0 10px 0; font-family:${FONT}; font-size:12px; line-height:16px; letter-spacing:1px; text-transform:uppercase; font-weight:700; color:#9A6510;">${esc(title)}</p>
+            <div style="font-family:${FONT}; font-size:15px; line-height:24px; color:${BRAND.body};">${innerHtml}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>`;
+}
+
 /** Hairline separator between sections. */
 export function divider(paddingTop = 28): string {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -326,7 +371,17 @@ export function cardEnd(padding = 36): string {
  * it came from an unnamed reseller. Figures come from shared/operator-facts so
  * the mail and the site cannot drift apart.
  */
-function renderFooter(): string {
+function renderFooter(audience: 'customer' | 'internal'): string {
+  if (audience === 'internal') {
+    return `<tr>
+  <td class="ae-pad" style="padding:24px 40px 8px 40px; text-align:center;">
+    <p style="margin:0; font-family:${FONT}; font-size:12px; line-height:18px; color:${BRAND.muted};">
+      Internal notification &middot; AffordEgypt operations
+    </p>
+  </td>
+</tr>`;
+  }
+
   return `<tr>
   <td class="ae-pad" style="padding:28px 40px 8px 40px; text-align:center;">
     <p style="margin:0 0 8px 0; font-family:${FONT}; font-size:14px; line-height:22px; font-weight:600; color:${BRAND.ink};">
