@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,20 +12,27 @@ import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Award, Shield }
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+// A factory, not a module constant: the validation messages are translated, so
+// the schema must be built after i18next is available and rebuilt when the
+// visitor switches language.
+const makeContactSchema = (t: (key: string) => string) =>
+  z.object({
+    name: z.string().min(2, t("contactPage.vName")),
+    email: z.string().email(t("contactPage.vEmail")),
+    phone: z.string().optional(),
+    subject: z.string().min(5, t("contactPage.vSubject")),
+    message: z.string().min(10, t("contactPage.vMessage")),
+  });
 
-type ContactFormData = z.infer<typeof contactSchema>;
+type ContactFormData = z.infer<ReturnType<typeof makeContactSchema>>;
 
 export default function Contact() {
+  const { t, i18n } = useTranslation();
+  const contactSchema = useMemo(() => makeContactSchema(t), [t, i18n.language]);
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -46,16 +53,16 @@ export default function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
+        title: t("contactPage.okTitle"),
+        description: t("contactPage.okBody"),
       });
       form.reset();
       setIsSubmitting(false);
     },
     onError: (error: any) => {
       toast({
-        title: "Failed to send message",
-        description: error.message || "Please try again later.",
+        title: t("contactPage.errTitle"),
+        description: error.message || t("contactPage.errBody"),
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -70,8 +77,8 @@ export default function Contact() {
   return (
     <>
       <SeoMeta
-        title="Contact AffordEgypt | WhatsApp, Email, Phone"
-        description="Reach AffordEgypt's Cairo office on WhatsApp, email, or phone. We typically respond within an hour during Cairo business hours."
+        title={t("contactPage.seoTitle")}
+        description={t("contactPage.seoDescription")}
         canonical="https://affordegypt.com/contact"
       />
       
@@ -83,29 +90,28 @@ export default function Contact() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-5xl font-bold text-foreground mb-6 leading-tight">
-              Let's Plan Your
-              <span className="text-primary block">Egypt Adventure</span>
+              {t("contactPage.heroTitle")}
+              <span className="text-primary block">{t("contactPage.heroTitleAccent")}</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Connect with our travel experts who know Egypt inside and out. From ancient wonders to hidden gems, 
-              we'll help you create memories that last a lifetime.
+              {t("contactPage.heroSubtitle")}
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
                 <MessageCircle className="w-4 h-4 text-primary" />
-                <span>Instant Response</span>
+                <span>{t("contactPage.badgeInstant")}</span>
               </div>
               <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-4 h-4 text-primary" />
-                <span>Local Experts</span>
+                <span>{t("contactPage.badgeExperts")}</span>
               </div>
               <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
                 <Award className="w-4 h-4 text-primary" />
-                <span>Best Prices</span>
+                <span>{t("contactPage.badgePrices")}</span>
               </div>
               <div className="flex items-center gap-2 bg-background/80 px-4 py-2 rounded-full shadow-sm">
                 <Shield className="w-4 h-4 text-primary" />
-                <span>Secure Booking</span>
+                <span>{t("contactPage.badgeSecure")}</span>
               </div>
             </div>
           </div>
@@ -120,12 +126,10 @@ export default function Contact() {
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-semibold text-foreground mb-6">
-                Get in Touch
+                {t("contactPage.getInTouch")}
               </h2>
               <p className="text-muted-foreground mb-8">
-                Our team is here to help you plan the perfect Egyptian adventure. 
-                Whether you have questions about our services, need a custom itinerary, 
-                or want to know more about destinations, we're ready to assist.
+                {t("contactPage.getInTouchBody")}
               </p>
             </div>
 
@@ -138,10 +142,10 @@ export default function Contact() {
                       <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                      <h3 className="font-semibold text-foreground mb-1">{t("contactPage.email")}</h3>
                       <p className="text-muted-foreground">hello@affordegypt.com</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        We respond within 24 hours
+                        {t("contactPage.emailNote")}
                       </p>
                     </div>
                   </div>
@@ -155,10 +159,10 @@ export default function Contact() {
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Phone</h3>
+                      <h3 className="font-semibold text-foreground mb-1">{t("contactPage.phone")}</h3>
                       <p className="text-muted-foreground">+20 110 076 5283</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        Available 24/7
+                        {t("contactPage.phoneNote")}
                       </p>
                     </div>
                   </div>
@@ -172,10 +176,10 @@ export default function Contact() {
                       <MapPin className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Office</h3>
+                      <h3 className="font-semibold text-foreground mb-1">{t("contactPage.office")}</h3>
                       <p className="text-muted-foreground">
-                        Cairo, Egypt<br />
-                        Downtown Area
+                        {t("contactPage.officeCity")}<br />
+                        {t("contactPage.officeArea")}
                       </p>
                     </div>
                   </div>
@@ -189,11 +193,11 @@ export default function Contact() {
                       <Clock className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
+                      <h3 className="font-semibold text-foreground mb-1">{t("contactPage.businessHours")}</h3>
                       <p className="text-muted-foreground">
-                        Sunday - Thursday: 9 AM - 8 PM<br />
-                        Friday - Saturday: 10 AM - 6 PM<br />
-                        <span className="text-sm">(Egypt Standard Time)</span>
+                        {t("contactPage.hoursWeekdays")}<br />
+                        {t("contactPage.hoursWeekend")}<br />
+                        <span className="text-sm">{t("contactPage.hoursTimezone")}</span>
                       </p>
                     </div>
                   </div>
@@ -206,9 +210,9 @@ export default function Contact() {
           <div>
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                <CardTitle className="text-2xl">{t("contactPage.formTitle")}</CardTitle>
                 <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  {t("contactPage.formSubtitle")}
                 </p>
               </CardHeader>
               <CardContent>
@@ -220,13 +224,13 @@ export default function Contact() {
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Full Name *</FormLabel>
+                            <FormLabel>{t("contactPage.labelName")}</FormLabel>
                             <FormControl>
                               {/* The asterisk is decoration; `required` is what the
                                   browser and assistive tech actually act on. Zod
                                   still validates — this is belt and braces. */}
                               <Input
-                                placeholder="Your full name"
+                                placeholder={t("contactPage.phName")}
                                 required
                                 autoComplete="name"
                                 {...field}
@@ -242,10 +246,10 @@ export default function Contact() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email Address *</FormLabel>
+                            <FormLabel>{t("contactPage.labelEmail")}</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="your.email@example.com"
+                                placeholder={t("contactPage.phEmail")}
                                 type="email"
                                 required
                                 autoComplete="email"
@@ -263,10 +267,10 @@ export default function Contact() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone Number (Optional)</FormLabel>
+                          <FormLabel>{t("contactPage.labelPhone")}</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="+1 (555) 123-4567"
+                              placeholder={t("contactPage.phPhone")}
                               type="tel"
                               autoComplete="tel"
                               {...field}
@@ -282,9 +286,9 @@ export default function Contact() {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Subject *</FormLabel>
+                          <FormLabel>{t("contactPage.labelSubject")}</FormLabel>
                           <FormControl>
-                            <Input placeholder="What can we help you with?" required {...field} />
+                            <Input placeholder={t("contactPage.phSubject")} required {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -296,10 +300,10 @@ export default function Contact() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Message *</FormLabel>
+                          <FormLabel>{t("contactPage.labelMessage")}</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell us about your travel plans, questions, or how we can assist you..."
+                              placeholder={t("contactPage.phMessage")}
                               className="min-h-[120px]"
                               required
                               {...field}
@@ -318,12 +322,12 @@ export default function Contact() {
                       {isSubmitting || contactMutation.isPending ? (
                         <div className="flex items-center space-x-2">
                           <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                          <span>Sending...</span>
+                          <span>{t("contactPage.sending")}</span>
                         </div>
                       ) : (
                         <div className="flex items-center space-x-2">
                           <Send className="w-4 h-4" />
-                          <span>Send Message</span>
+                          <span>{t("contactPage.sendMessage")}</span>
                         </div>
                       )}
                     </Button>
@@ -335,25 +339,25 @@ export default function Contact() {
             {/* FAQ Section */}
             <Card className="mt-8">
               <CardHeader>
-                <CardTitle className="text-xl">Frequently Asked Questions</CardTitle>
+                <CardTitle className="text-xl">{t("contactPage.faqTitle")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">How quickly do you respond?</h4>
+                  <h4 className="font-semibold text-foreground mb-2">{t("contactPage.faqQ1")}</h4>
                   <p className="text-sm text-muted-foreground">
-                    We typically respond to all inquiries within 24 hours during business days.
+                    {t("contactPage.faqA1")}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">Do you offer custom itineraries?</h4>
+                  <h4 className="font-semibold text-foreground mb-2">{t("contactPage.faqQ2")}</h4>
                   <p className="text-sm text-muted-foreground">
-                    Yes! We specialize in creating personalized travel experiences based on your interests and budget.
+                    {t("contactPage.faqA2")}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">What languages do you support?</h4>
+                  <h4 className="font-semibold text-foreground mb-2">{t("contactPage.faqQ3")}</h4>
                   <p className="text-sm text-muted-foreground">
-                    We offer services in English, Arabic, Spanish, French, German, Italian, Japanese, and Chinese.
+                    {t("contactPage.faqA3")}
                   </p>
                 </div>
               </CardContent>
@@ -367,9 +371,9 @@ export default function Contact() {
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Find Us in Cairo</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t("contactPage.findUs")}</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Located in the heart of Cairo, we're perfectly positioned to help you explore all of Egypt.
+              {t("contactPage.findUsBody")}
             </p>
           </div>
           
@@ -384,7 +388,7 @@ export default function Contact() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
-                title="Afford Egypt Location in Cairo"
+                title={t("contactPage.mapTitle")}
               ></iframe>
             </div>
             
@@ -392,17 +396,17 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <h3 className="font-semibold text-foreground mb-1">Our Location</h3>
-                  <p className="text-sm text-muted-foreground">Downtown Cairo, Egypt</p>
+                  <h3 className="font-semibold text-foreground mb-1">{t("contactPage.ourLocation")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("contactPage.ourLocationValue")}</p>
                 </div>
                 <div className="text-center">
                   <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <h3 className="font-semibold text-foreground mb-1">Office Hours</h3>
-                  <p className="text-sm text-muted-foreground">24/7 Support Available</p>
+                  <h3 className="font-semibold text-foreground mb-1">{t("contactPage.officeHours")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("contactPage.officeHoursValue")}</p>
                 </div>
                 <div className="text-center">
                   <Phone className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <h3 className="font-semibold text-foreground mb-1">Contact</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t("contactPage.contactLabel")}</h3>
                   <p className="text-sm text-muted-foreground">+20 110 076 5283</p>
                 </div>
               </div>
