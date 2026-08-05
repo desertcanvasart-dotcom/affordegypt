@@ -1503,6 +1503,8 @@ export default function MultiCityPricingTool() {
                           <Input
                             id="checkout-name"
                             placeholder="John Doe"
+                            required
+                            autoComplete="name"
                             className="mt-1 h-9"
                             value={checkoutData.name}
                             onChange={(e) => setCheckoutData(prev => ({ ...prev, name: e.target.value }))}
@@ -1515,6 +1517,8 @@ export default function MultiCityPricingTool() {
                             id="checkout-email"
                             type="email"
                             placeholder="john@example.com"
+                            required
+                            autoComplete="email"
                             className="mt-1 h-9"
                             value={checkoutData.email}
                             onChange={(e) => setCheckoutData(prev => ({ ...prev, email: e.target.value }))}
@@ -1527,6 +1531,8 @@ export default function MultiCityPricingTool() {
                             id="checkout-phone"
                             type="tel"
                             placeholder="+1 234 567 8900"
+                            required
+                            autoComplete="tel"
                             className="mt-1 h-9"
                             value={checkoutData.phone}
                             onChange={(e) => setCheckoutData(prev => ({ ...prev, phone: e.target.value }))}
@@ -1538,6 +1544,7 @@ export default function MultiCityPricingTool() {
                           <Input
                             id="checkout-nationality"
                             placeholder="e.g., American"
+                            autoComplete="country-name"
                             className="mt-1 h-9"
                             value={checkoutData.nationality}
                             onChange={(e) => setCheckoutData(prev => ({ ...prev, nationality: e.target.value }))}
@@ -1816,8 +1823,14 @@ export default function MultiCityPricingTool() {
                 </div>
               )}
 
-              {/* Pricing Breakdown */}
+              {/* Pricing Breakdown.
+                  Gated on a non-zero total, not just on a destination being
+                  picked: a full breakdown of LE 0 / LE 0 / LE 0 the moment you
+                  choose a city reads as a broken calculator, and it is the
+                  loudest thing on screen at exactly the point where the user
+                  has not told us anything to price yet. */}
               {cityServices.length > 0 && totalPricing && totalPricing.breakdown && (
+                totalPricing.totalAmount > 0 ? (
                 <div className="mt-8">
                   <Separator className="mb-4" />
                   <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
@@ -1852,6 +1865,14 @@ export default function MultiCityPricingTool() {
                     ))}
                   </div>
                 </div>
+                ) : (
+                <div className="mt-8">
+                  <Separator className="mb-4" />
+                  <p className="text-sm text-muted-foreground">
+                    Add services to see your price.
+                  </p>
+                </div>
+                )
               )}
               {/* End Step Content Container */}
               </div>

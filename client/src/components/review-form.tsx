@@ -23,6 +23,14 @@ const reviewFormSchema = z.object({
 
 type ReviewFormData = z.infer<typeof reviewFormSchema>;
 
+const RATING_OPTIONS = [
+  { value: 1, label: "1 star — poor" },
+  { value: 2, label: "2 stars — fair" },
+  { value: 3, label: "3 stars — good" },
+  { value: 4, label: "4 stars — very good" },
+  { value: 5, label: "5 stars — excellent" },
+];
+
 interface ReviewFormProps {
   onSuccess?: () => void;
 }
@@ -76,21 +84,55 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
     createReviewMutation.mutate(data);
   };
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }).map((_, i) => (
-      <Star
-        key={i}
-        className={`w-6 h-6 cursor-pointer transition-colors ${
-          i < (hoveredRating || rating) 
-            ? "fill-yellow-400 text-yellow-400" 
-            : "text-gray-300 hover:text-yellow-300"
-        }`}
-        onMouseEnter={() => setHoveredRating(i + 1)}
-        onMouseLeave={() => setHoveredRating(0)}
-        onClick={() => form.setValue("rating", i + 1)}
-      />
-    ));
-  };
+  /**
+   * The stars used to be bare SVGs with an onClick — unreachable by keyboard,
+   * and a screen reader heard only the "5/5 stars" summary with no way to
+   * change it. Native radios in a fieldset give arrow-key selection, the
+   * "Rating, 4 stars — very good, radio button 4 of 5" announcement and the
+   * required state for free; the SVG is decorative on top of them.
+   */
+  const renderStars = (rating: number) => (
+    <fieldset
+      className="m-0 border-0 p-0"
+      onMouseLeave={() => setHoveredRating(0)}
+    >
+      {/* The legend is the group's visible label. A <FormLabel> here would
+          render `for="…-form-item"` pointing at a control that no longer
+          exists, which is worse than no label at all. */}
+      <legend className="text-sm font-medium leading-none mb-2">Rating *</legend>
+      <div className="flex items-center gap-1">
+        {RATING_OPTIONS.map(({ value, label }) => (
+          <label
+            key={value}
+            className="cursor-pointer rounded p-0.5 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary has-[:focus-visible]:ring-offset-1"
+            onMouseEnter={() => setHoveredRating(value)}
+          >
+            <input
+              type="radio"
+              name="rating"
+              value={value}
+              required
+              checked={rating === value}
+              onChange={() => form.setValue("rating", value, { shouldValidate: true })}
+              className="sr-only"
+            />
+            <span className="sr-only">{label}</span>
+            <Star
+              aria-hidden="true"
+              className={`w-6 h-6 transition-colors ${
+                value <= (hoveredRating || rating)
+                  ? "fill-yellow-400 text-yellow-400"
+                  : "text-gray-300"
+              }`}
+            />
+          </label>
+        ))}
+        <span className="ml-2 text-sm text-gray-600" aria-hidden="true">
+          {rating}/5 stars
+        </span>
+      </div>
+    </fieldset>
+  );
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -102,7 +144,10 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* noValidate keeps the `required` attributes as semantics for
+              assistive tech without letting the browser's bubble preempt the
+              zod messages, which say more ("at least 20 characters"). */}
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -111,7 +156,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
                   <FormItem>
                     <FormLabel>Your Name *</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Enter your name" />
+                      <Input {...field} placeholder="Enter your name" required autoComplete="name" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -124,7 +169,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
                   <FormItem>
                     <FormLabel>Your Location</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="e.g., London, UK" />
+                      <Input {...field} placeholder="e.g., London, UK" autoComplete="address-level2" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -151,15 +196,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
               name="rating"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Rating *</FormLabel>
-                  <FormControl>
-                    <div className="flex items-center gap-2">
-                      {renderStars(field.value)}
-                      <span className="ml-2 text-sm text-gray-600">
-                        {field.value}/5 stars
-                      </span>
-                    </div>
-                  </FormControl>
+                  {renderStars(field.value)}
                   <FormMessage />
                 </FormItem>
               )}
@@ -172,7 +209,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
                 <FormItem>
                   <FormLabel>Review Title *</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Summarize your experience" />
+                    <Input {...field} placeholder="Summarize your experience" required autoComplete="off" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -189,6 +226,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
                     <Textarea 
                       {...field} 
                       placeholder="Tell us about your Egypt experience. What did you enjoy most? Any tips for future travelers?"
+                      required
                       rows={5}
                       className="resize-none"
                     />

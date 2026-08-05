@@ -8,8 +8,12 @@ export interface SeoMetaProps {
   ogImage?: string;
   ogType?: "website" | "article";
   schema?: object | object[];
-  /** Ask crawlers to stay out (admin/internal pages). */
-  noindex?: boolean;
+  /**
+   * Ask crawlers to stay out (admin/internal pages). Pass "follow" on pages
+   * that shouldn't be indexed but still link somewhere useful — a 404 wants
+   * crawlers to keep walking to the home and quote links, not dead-end.
+   */
+  noindex?: boolean | "follow";
 }
 
 // Must be a real file under client/public/ — /og-default.jpg never existed,
@@ -37,7 +41,12 @@ export default function SeoMeta({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {noindex && (
+        <meta
+          name="robots"
+          content={noindex === "follow" ? "noindex, follow" : "noindex, nofollow"}
+        />
+      )}
       {canonical && <link rel="canonical" href={canonical} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
