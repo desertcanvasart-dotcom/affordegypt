@@ -19,7 +19,8 @@ import {
   CheckCircle,
   AlertTriangle,
   Coffee,
-  Camera
+  Camera,
+  Printer
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -97,11 +98,18 @@ export default function EgyptianStreetFoodGuide() {
                     {t("streetFoodGuide.ctaPlan")}
                   </Link>
                 </Button>
-                {/* NOTE: this button has no handler and no destination — it has
-                    never done anything. Left as-is rather than inventing a
-                    target that would not match its label. */}
-                <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
-                  {t("streetFoodGuide.ctaDownload")}
+                {/* Opens the browser print dialog, whose "Save as PDF" gives a
+                    real file. No PDF asset exists to link to, and jsPDF (already
+                    a dependency) cannot render the Arabic dish names and phrases
+                    that are half the point of this guide. */}
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => window.print()}
+                  className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg"
+                >
+                  <Printer className="w-5 h-5 mr-2" />
+                  {t("streetFoodGuide.ctaPrint")}
                 </Button>
               </div>
             </div>
