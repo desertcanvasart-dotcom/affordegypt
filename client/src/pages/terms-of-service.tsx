@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 
 export default function TermsOfService() {
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,97 +22,108 @@ export default function TermsOfService() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-8">
-              Terms of Service – Afford Egypt
+              {t("termsOfService.title")}
             </h1>
+
+              {/* Translated legal text carries real risk: a mistranslated
+                  cancellation or data-protection term has consequences a
+                  mistranslated headline does not. Standard mitigation — name
+                  one authoritative version. Hidden in English, where it would
+                  be meaningless. */}
+              {i18n.language !== "en" && (
+                <p className="mb-6 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                  {t("legal.prevailing")}
+                </p>
+              )}
             
             <div className="prose prose-lg max-w-none">
               <div className="mb-8 text-gray-600">
-                <p><strong>Effective Date:</strong> March 2, 2020</p>
-                <p><strong>Last Updated:</strong> June 6, 2025</p>
+                <p><strong>{t("legal.effectiveDate")}</strong> March 2, 2020</p>
+                <p><strong>{t("legal.lastUpdated")}</strong> June 6, 2025</p>
                 <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <div className="space-y-8">
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    1. Acceptance of Terms
+                    {t("termsOfService.s1")}
                   </h2>
                   <p className="text-gray-700">
-                    By using <a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a> — operated by Capital Travel Service (ETAA 2179), Flat 6, Floor 1, Block 1, Panorama Pyramids Building, El-Ahramat St., Giza, Egypt, trading as Afford Egypt ("we", "us", "our") — you agree to abide by these Terms of Service.
+                    {t("termsOfService.s1pre")}{" "}<a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a> {" "}{t("termsOfService.s1b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    2. Services Offered
+                    {t("termsOfService.s2")}
                   </h2>
                   <p className="text-gray-700">
-                    We provide travel planning, guided tours, transportation, and package bookings within Egypt.
+                    {t("termsOfService.s2b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    3. Booking & Payments
+                    {t("termsOfService.s3")}
                   </h2>
                   <p className="text-gray-700">
-                    Bookings require either full or partial payment in advance. Payments are handled securely.
+                    {t("termsOfService.s3b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    4. Cancellations & Refunds
+                    {t("termsOfService.s4")}
                   </h2>
                   <div className="text-gray-700 space-y-2">
-                    <p><strong>30+ days:</strong> deposit retained</p>
-                    <p><strong>15–29 days:</strong> 50% refund</p>
-                    <p><strong>&lt;15 days:</strong> no refund (unless stated otherwise in your package)</p>
+                    <p><strong>{t("termsOfService.s4a")}</strong> {t("termsOfService.s4av")}</p>
+                    <p><strong>{t("termsOfService.s4b")}</strong> {t("termsOfService.s4bv")}</p>
+                    <p><strong>{t("termsOfService.s4c")}</strong> {t("termsOfService.s4cv")}</p>
                   </div>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    5. User Responsibilities
+                    {t("termsOfService.s5")}
                   </h2>
                   <p className="text-gray-700">
-                    You must provide accurate information and comply with local laws and regulations during travel.
+                    {t("termsOfService.s5b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    6. Intellectual Property
+                    {t("termsOfService.s6")}
                   </h2>
                   <p className="text-gray-700">
-                    All site content belongs to Afford Egypt or its partners and cannot be copied without written permission.
+                    {t("termsOfService.s6b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    7. Disclaimers
+                    {t("termsOfService.s7")}
                   </h2>
                   <p className="text-gray-700">
-                    We are not responsible for disruptions caused by force majeure, third-party service providers, or local conditions.
+                    {t("termsOfService.s7b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    8. Limitation of Liability
+                    {t("termsOfService.s8")}
                   </h2>
                   <p className="text-gray-700">
-                    Our liability is limited to the total amount you paid for the service in question.
+                    {t("termsOfService.s8b")}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    9. Governing Law
+                    {t("termsOfService.s9")}
                   </h2>
                   <p className="text-gray-700">
-                    These terms are governed by Egyptian law. Disputes will be handled in Egyptian courts.
+                    {t("termsOfService.s9b")}
                   </p>
                 </section>
               </div>
@@ -119,7 +132,7 @@ export default function TermsOfService() {
               
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
-                  {"For questions about these terms, please contact us at "}
+                  {t("legal.termsContact")}
                   <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">
                     hello@affordegypt.com
                   </a>
