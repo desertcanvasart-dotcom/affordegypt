@@ -187,11 +187,11 @@ export default function EgyptianStreetFoodGuide() {
                 with quick, modern-day indulgence. Your most delicious—and budget-friendly—passport to understanding Egypt.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/#pricing-tool">
-                  <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
+                <Button asChild size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
+                  <Link href="/#pricing-tool">
                     Plan Food Tour
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
                 <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
                   Download Guide
                 </Button>
@@ -520,16 +520,16 @@ export default function EgyptianStreetFoodGuide() {
                 brings you closer to the people and their heritage.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/#pricing-tool">
-                  <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">
+                <Button asChild size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">
+                  <Link href="/#pricing-tool">
                     Book Culinary Tour
-                  </Button>
-                </Link>
-                <Link href="/travel-tips">
-                  <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                  <Link href="/travel-tips">
                     More Egypt Guides
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </section>

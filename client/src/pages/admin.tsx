@@ -198,18 +198,18 @@ export default function AdminPanel() {
             </Badge>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/routes">
-              <Button variant="outline" className="flex items-center space-x-2">
+            <Button asChild variant="outline" className="flex items-center space-x-2">
+              <Link href="/routes">
                 <Route className="w-4 h-4" />
                 <span>Routes & Pricing</span>
-              </Button>
-            </Link>
-            <Link href="/admin/attractions">
-              <Button className="bg-teal-600 hover:bg-teal-700 flex items-center space-x-2">
+              </Link>
+            </Button>
+            <Button asChild className="bg-teal-600 hover:bg-teal-700 flex items-center space-x-2">
+              <Link href="/admin/attractions">
                 <MapPin className="w-4 h-4" />
                 <span>Attractions</span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <Button variant="outline" size="sm" className="text-gray-600 hover:text-gray-900">
               <Download className="w-4 h-4 mr-2" />
               Export Data

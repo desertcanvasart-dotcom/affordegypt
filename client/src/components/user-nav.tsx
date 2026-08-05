@@ -33,16 +33,16 @@ export default function UserNav() {
   if (!isAuthenticated) {
     return (
       <div className="flex items-center space-x-2">
-        <Link href="/login">
-          <Button variant="ghost" size="sm">
+        <Button asChild variant="ghost" size="sm">
+          <Link href="/login">
             Sign In
-          </Button>
-        </Link>
-        <Link href="/register">
-          <Button size="sm">
+          </Link>
+        </Button>
+        <Button asChild size="sm">
+          <Link href="/register">
             Sign Up
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     );
   }

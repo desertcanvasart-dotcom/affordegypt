@@ -50,14 +50,14 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <Link href="/about">
-            <Button 
+          <Button asChild 
               variant="outline" 
               size="lg"
             >
+            <Link href="/about">
               {t('about.cta')}
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
