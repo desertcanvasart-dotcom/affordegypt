@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { MULTILINGUAL_ENABLED } from '@/config/features';
 
 // Import translation files
 import enTranslations from './locales/en.json';
@@ -112,6 +113,16 @@ export function setLanguage(raw: string): void {
  */
 export function applyDetectedLanguage(): void {
   if (typeof window === 'undefined') return;
+
+  // Language switching is off for launch (see config/features). Ignore both a
+  // stored preference and ?lng= so an old localStorage value from before the
+  // switch was disabled cannot strand someone on a half-translated page with
+  // no visible way back — the selector that set it is no longer rendered.
+  if (!MULTILINGUAL_ENABLED) {
+    setLanguage('en');
+    return;
+  }
+
   let chosen: Supported | null = null;
 
   try {
