@@ -10,13 +10,13 @@ A complete inventory of every page, route, component, button, function, and API 
 
 ### The business
 
-**AffordEgypt** is the budget-tier brand of **Travel2Egypt**, a Cairo-based licensed tour operator (ETAA member, Commercial Registration #148004, operating since 2020). Travel2Egypt has been serving premium Egypt tours for years — multilingual guides, hotel partnerships, concierge planning, the whole package. AffordEgypt is the same operation stripped to its operational core: a private car, a licensed Egyptologist guide, and transparent base pricing.
+**AffordEgypt** is the budget-tier brand of **Capital Travel Service**, a Cairo-based licensed tour operator (ETAA 2179, Commercial Registration #148004, operating since 2003). Capital Travel Service has been serving premium Egypt tours for years — multilingual guides, hotel partnerships, concierge planning, the whole package. AffordEgypt is the same operation stripped to its operational core: a private car, a licensed Egyptologist guide, and transparent base pricing.
 
 The founder, Islam, grew up in Siwa Oasis. He built AffordEgypt because of a pattern he kept seeing: travelers were either booking $4,000 packaged tours they couldn't really afford, or rolling the dice with unverifiable WhatsApp operators. There was no honest middle ground — a real, licensed Egyptian operator selling exactly the operational essentials with no padding. That's the gap this site fills.
 
 ### The promise to the customer
 
-> "Same licensed guides as Travel2Egypt's premium tours. Same vehicles. Same standards. Stripped down to what you actually need. Add tickets, meals, and experiences only when you want them."
+> "Same licensed guides as Capital Travel Service's premium tours. Same vehicles. Same standards. Stripped down to what you actually need. Add tickets, meals, and experiences only when you want them."
 
 Three commitments that drive every design decision:
 
@@ -89,7 +89,7 @@ Composed of these sections in order:
 
 1. **Navbar** (`components/navbar.tsx`)
    - Logo (clicking returns home)
-   - Tagline under logo: "Operated by Travel2Egypt · ETAA-licensed since 2020"
+   - Tagline under logo: "Operated by Capital Travel Service · ETAA 2179" (rendered from `OPERATOR` in `lib/operator-facts.ts`)
    - Desktop nav: **Destinations**, **Transfers**, **FAQs** (scrolls to `#faq`), **Language selector**
    - **WhatsApp** link (right side) — opens chat with `+20 110 0765283`
    - **Get Instant Quote** button (primary, scrolls to `#quote-builder`)
@@ -102,7 +102,7 @@ Composed of these sections in order:
    - Sub-text: "No account needed. Get your price, then send to WhatsApp."
 3. **CredentialsStrip** (`components/credentials-strip.tsx`) — single-line trust strip with operator, ETAA, Commercial Reg, Tax ID, since-2020, 2,500+ travelers.
 4. **FounderBlock** (`components/founder-block.tsx`) — Islam's 5-paragraph note + photo at `/islam-photo.jpg` (gracefully hidden if file missing).
-5. **InclusionsComparison** (`components/inclusions-comparison.tsx`) — 3-column grid: included / not included / Travel2Egypt premium adds.
+5. **InclusionsComparison** (`components/inclusions-comparison.tsx`) — 3-column grid: included / not included / Capital Travel Service premium adds.
 6. **MultiCityPricingTool** (`components/multi-city-pricing-tool.tsx`) — see [§5](#5-multi-city-pricing-tool-design-your-egypt-adventure).
 7. **AnimatedReviewCarousel** (`components/animated-review-carousel.tsx`) — auto-scrolling 5-star reviews fetched from `/api/reviews`.
 8. **BlogGrid** (`components/blog-grid.tsx`) — links to the 5 long-form guides (Budget Travel, Street Food, Nile Valley, Sinai, Eastern/Western Deserts).

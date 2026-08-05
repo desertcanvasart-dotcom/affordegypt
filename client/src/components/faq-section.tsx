@@ -21,7 +21,7 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     question: "Why are you cheaper than other private Egypt tours?",
     answer:
-      `Because we don't pad the price with things you didn't ask for. Most Egypt tour packages bundle hotels, meals, tickets, and concierge service into a single number — even if you'd rather choose those yourself. AffordEgypt charges only for the operational core: a private car, a licensed Egyptologist, and a transparent base price from ${FLOOR_PER_DAY}. You add tickets, meals, and experiences only when you want them. Same operations as Travel2Egypt's premium tier, with the markup and the inclusions you didn't choose stripped out.`,
+      `Because we don't pad the price with things you didn't ask for. Most Egypt tour packages bundle hotels, meals, tickets, and concierge service into a single number — even if you'd rather choose those yourself. AffordEgypt charges only for the operational core: a private car, a licensed Egyptologist, and a transparent base price from ${FLOOR_PER_DAY}. You add tickets, meals, and experiences only when you want them. Same operations as Capital Travel Service's premium tier, with the markup and the inclusions you didn't choose stripped out.`,
   },
   {
     question: "How do I know AffordEgypt isn't one of the scam operators I've read about?",
@@ -31,7 +31,7 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
   {
     question: "Are your guides actually licensed Egyptologists?",
     answer:
-      "Yes — every guide we send is licensed by the Egyptian Ministry of Tourism and Antiquities and carries a current Egyptologist credential. This isn't a small thing: unlicensed guides can't legally take you past the front gates of major sites, and many cheaper operators send them anyway. Our guides are the same roster Travel2Egypt uses for premium tours — they just deliver the lighter inclusions tier when working under AffordEgypt.",
+      "Yes — every guide we send is licensed by the Egyptian Ministry of Tourism and Antiquities and carries a current Egyptologist credential. This isn't a small thing: unlicensed guides can't legally take you past the front gates of major sites, and many cheaper operators send them anyway. Our guides are the same roster Capital Travel Service uses for premium tours — they just deliver the lighter inclusions tier when working under AffordEgypt.",
   },
   {
     question: "How does payment work? Do I have to pay everything up front?",

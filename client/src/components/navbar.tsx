@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "@/components/language-selector";
 import { MULTILINGUAL_ENABLED } from "@/config/features";
+import { OPERATOR } from "@/lib/operator-facts";
 import { useTranslatedLink } from "@/utils/slugTranslation";
 import {
   DropdownMenu,
@@ -117,8 +118,10 @@ export default function Navbar() {
               className={`w-auto cursor-pointer hover:opacity-90 transition-all duration-300 ${isScrolled ? 'h-6' : 'h-8'}`}
               onClick={navigateToHome}
             />
-            <div className={`hidden lg:block text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
-              Operated by Travel2Egypt · ETAA-licensed since 2003
+            {/* Sourced from OPERATOR rather than retyped: this line names the
+                legal entity and licence number. */}
+            <div className={`hidden lg:block mt-1.5 text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
+              Operated by {OPERATOR.legalName} · {OPERATOR.etaaLicence}
             </div>
           </div>
 

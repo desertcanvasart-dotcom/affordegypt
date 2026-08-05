@@ -1,5 +1,5 @@
 // Founder note from Islam. Highest-leverage piece of writing on the page —
-// origin story + Travel2Egypt history + AffordEgypt thesis in 5 paragraphs.
+// origin story + Capital Travel Service history + AffordEgypt thesis in 5 paragraphs.
 // Photo placeholder: replace /islam-photo.jpg with a real photo of Islam
 // (phone shot in Cairo or Siwa, daylight, looking at camera). DO NOT use
 // stock or AI-generated imagery here — that defeats the point of the block.
@@ -38,7 +38,7 @@ export default function FounderBlock() {
 
             <p className="leading-relaxed">
               {"I grew up in Aswan and have run "}
-              <span className="font-semibold">Travel2Egypt</span>
+              <span className="font-semibold">Capital Travel Service</span>
               {" — a licensed Egyptian tour operator — since 2003. We've taken thousands of travelers across Egypt: backpackers and families, honeymooners and solo first-timers."}
             </p>
 
@@ -52,7 +52,7 @@ export default function FounderBlock() {
 
             <p className="leading-relaxed">
               AffordEgypt is the third option. Same licensed guides as
-              Travel2Egypt, same vehicles, same standards — stripped down to
+              Capital Travel Service, same vehicles, same standards — stripped down to
               what you actually need. A private car. A real Egyptologist.
               And the freedom to add tickets, meals, and experiences only
               when you want them.
