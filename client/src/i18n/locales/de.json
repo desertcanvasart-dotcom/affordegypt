@@ -1889,5 +1889,252 @@
     ],
     "titleSub": "Mehr erleben für weniger Geld",
     "whyH2": "Warum Ägypten 2026 ideal für Sparreisende ist"
+  },
+  "streetFoodGuide": {
+    "seoTitle": "Ägyptisches Streetfood | Was man essen sollte und wo",
+    "seoDescription": "Von Koshari über Ful Medames bis Hawawshi — was man isst, wo man es findet und wie man den Touristenaufschlag vermeidet. Der Food-Guide eines Veranstalters aus Kairo.",
+    "badge": "Kulinarischer Guide 2026",
+    "titleA": "Ägyptisches Streetfood",
+    "titleB": "Ein kulinarisches Abenteuer",
+    "heroBody": "Ägyptens Streetfood ist eine Symphonie der Aromen – uralte Kochtraditionen treffen auf schnellen, modernen Genuss. Ihr köstlichster und günstigster Zugang zum Verständnis Ägyptens.",
+    "ctaPlan": "Food-Tour planen",
+    "ctaDownload": "Guide herunterladen",
+    "whyH2": "Warum Streetfood perfekt für Reisende ist",
+    "whySub": "Entdecken Sie die authentischen Aromen Ägyptens, ohne Ihr Budget zu sprengen",
+    "why1H": "Äußerst günstig",
+    "why1B": "Die meisten Gerichte kosten zwischen 5 und 30 EGP",
+    "why2H": "Frisch & schnell",
+    "why2B": "Vor Ihren Augen zubereitet, meist dampfend heiß und sofort essfertig",
+    "why3H": "Zutiefst lokal",
+    "why3B": "Über Generationen weitergegebene Rezepte, echtes kulturelles Erlebnis",
+    "why4H": "Vegetarierfreundlich",
+    "why4B": "Viele fleischlose Optionen, passend für jede Ernährungsweise",
+    "why5H": "Kulturelles Eintauchen",
+    "why5B": "Beim Streetfood kommen Ägypter zusammen, reden und entspannen",
+    "why6H": "Authentische Aromen",
+    "why6B": "Erleben Sie den echten Geschmack Ägyptens durch lokale Lieblingsgerichte",
+    "whereH2": "Wo Sie ägyptisches Streetfood finden",
+    "whereSub": "Die besten Orte in ganz Ägypten für authentisches Streetfood",
+    "proTipLabel": "Profi-Tipp:",
+    "proTip": "Achten Sie auf lange Schlangen von Einheimischen — ein Zeichen dafür, dass das Essen gut und sicher ist!",
+    "foodsH2": "Die besten Streetfood-Gerichte in Ägypten",
+    "foodsSub": "Gerichte, die die ägyptische Streetfood-Kultur ausmachen",
+    "costLabel": "Preis",
+    "bestInLabel": "Am besten in",
+    "drinksH2": "Getränke zum Streetfood",
+    "drinksSub": "Erfrischen Sie sich mit authentischen ägyptischen Getränken",
+    "noteLabel": "Wichtiger Hinweis:",
+    "noteBody": "Meiden Sie Leitungswasser und Eiswürfel; greifen Sie zu verschlossenem Flaschenwasser (ca. 5 EGP)",
+    "safetyH2": "Sicherheitstipps für Streetfood",
+    "safetySub": "Bleiben Sie sicher, während Sie authentische ägyptische Aromen genießen",
+    "packH3": "Was Sie zum Streetfood-Abenteuer mitnehmen sollten",
+    "packItems": [
+      "Taschentücher/Feuchttücher",
+      "Handdesinfektionsmittel",
+      "Wiederverwendbare Trinkflasche",
+      "Tabletten gegen Durchfall",
+      "Kleine Scheine und Münzen"
+    ],
+    "phrasesH2": "Nützliche arabische Redewendungen",
+    "phrasesSub": "Wichtige Sätze, die Ihr Streetfood-Erlebnis bereichern",
+    "itineraryH2": "Günstige Streetfood-Tagesroute",
+    "itinerarySub": "Tagesausflug in Kairo: ein ganzer Tag voller köstlichem Streetfood für unter 75 EGP",
+    "itineraryTitle": "Streetfood-Tagesausflug in Kairo",
+    "totalLabel": "Gesamtkosten pro Tag:",
+    "finalH2": "Ihr kulinarisches Abenteuer wartet",
+    "finalBody": "Ägyptens Streetfood ist mehr als günstiges Essen – es ist ein Fenster zur Seele des Landes. Jedes Sandwich, das durch ein Tuk-Tuk-Fenster gereicht wird, jeder scharfe Bissen im Stehen am Straßenrand bringt Sie den Menschen und ihrem Erbe näher.",
+    "ctaBook": "Kulinarische Tour buchen",
+    "ctaMore": "Weitere Ägypten-Guides",
+    "cities": [
+      {
+        "name": "Kairo",
+        "spots": [
+          "Innenstadt (Tahrir-Platz, El-Mounira)",
+          "Gizeh",
+          "Sayeda Zeinab",
+          "El Hussein"
+        ]
+      },
+      {
+        "name": "Alexandria",
+        "spots": [
+          "Mansheya",
+          "Bahary-Corniche",
+          "Miami-Viertel",
+          "Bahnhof El-Raml"
+        ]
+      },
+      {
+        "name": "Luxor",
+        "spots": [
+          "Souk von Luxor",
+          "Salah-El-Din-Straße",
+          "Nil-Corniche"
+        ]
+      },
+      {
+        "name": "Assuan",
+        "spots": [
+          "Souk-Viertel",
+          "Corniche El Nil",
+          "El-Tahrir-Straße"
+        ]
+      },
+      {
+        "name": "Oase Siwa",
+        "spots": [
+          "Markt von Siwa",
+          "Viertel El Maraqi"
+        ]
+      }
+    ],
+    "streetFoods": [
+      {
+        "name": "Koshari",
+        "description": "Ein sättigendes Gericht aus Reis, Linsen, Kichererbsen, Nudeln, knusprigen Zwiebeln und Tomaten-Essig-Sauce",
+        "cost": "15–25 EGP",
+        "bestIn": "Kairo (Abou Tarek, Koshary El Tahrir)",
+        "tip": "Fragen Sie nach „Shatta“ (scharfe Sauce), wenn Sie es scharf mögen",
+        "arabicName": "كشري"
+      },
+      {
+        "name": "Ta'ameya",
+        "description": "Ägyptische Falafel aus Saubohnen (nicht Kichererbsen), mit Kräutern und Sesamkruste",
+        "cost": "1–2 EGP pro Stück",
+        "bestIn": "Frühstückskarren in Kairo und Alexandria",
+        "tip": "Zu 100 % pflanzlich und sättigend",
+        "arabicName": "طعمية"
+      },
+      {
+        "name": "Ful Medames",
+        "description": "Langsam gegarte Saubohnen mit Olivenöl, Kreuzkümmel und Zitronensaft",
+        "cost": "5–10 EGP pro Sandwich",
+        "bestIn": "Frühstückskarren und einfache Cafés",
+        "tip": "Ägyptens Nationalgericht zum Frühstück",
+        "arabicName": "فول مدمس"
+      },
+      {
+        "name": "Shawarma",
+        "description": "Mariniertes Rind- oder Hähnchenfleisch, vom vertikalen Drehspieß geschnitten",
+        "cost": "15–30 EGP pro Wrap",
+        "bestIn": "Shawarma-Kioske syrischer Art in Kairo, Alexandria und Hurghada",
+        "tip": "Knoblauchsauce zu Hähnchen, Tahini zu Rind",
+        "arabicName": "شاورما"
+      },
+      {
+        "name": "Hawawshi",
+        "description": "Gewürztes Rinderhack, im Baladi-Brot gebacken",
+        "cost": "15–25 EGP pro Sandwich",
+        "bestIn": "Traditionelle Bäckereien und Straßenverkäufer",
+        "tip": "Fragen Sie nach der „Balady“-Variante – traditioneller und aromatischer",
+        "arabicName": "حواوشي"
+      },
+      {
+        "name": "Süßkartoffel",
+        "description": "Geröstet und vom Schubkarren verkauft, oft mit Honig oder Nüssen",
+        "cost": "5–15 EGP",
+        "bestIn": "Straßenkarren in ganz Ägypten",
+        "tip": "Perfekter Wintersnack, von Natur aus süß",
+        "arabicName": "بطاطا"
+      }
+    ],
+    "drinks": [
+      {
+        "name": "Sobia",
+        "description": "Getränk aus Kokosmilch und Reis",
+        "where": "Ramadan-Karren, Märkte"
+      },
+      {
+        "name": "Zuckerrohrsaft (Asab)",
+        "description": "Frisch gepresst, erfrischend",
+        "where": "Saftläden, Straßenkarren"
+      },
+      {
+        "name": "Tamarinde (Tamr Hindi)",
+        "description": "Süßsaures Getränk mit Datteln und Tamarinde",
+        "where": "Ramadan, alte Cafés"
+      },
+      {
+        "name": "Hibiskus (Karkadeh)",
+        "description": "Tiefrotes, säuerliches Blütengetränk",
+        "where": "Besonders beliebt in Assuan"
+      },
+      {
+        "name": "Tee mit Minze",
+        "description": "Ägyptens liebstes warmes Straßengetränk",
+        "where": "Überall – fragen Sie einfach!"
+      }
+    ],
+    "safetyTips": [
+      {
+        "tip": "Essen Sie dort, wo Einheimische anstehen",
+        "reason": "Zeigt hohen Durchsatz und frische Ware"
+      },
+      {
+        "tip": "Meiden Sie im Sommer Milchprodukte",
+        "reason": "Hitze lässt Käse und Joghurt schnell verderben"
+      },
+      {
+        "tip": "Wählen Sie kochend heißes Essen",
+        "reason": "Tötet die meisten Bakterien ab"
+      },
+      {
+        "tip": "Nehmen Sie eigene Tücher und Desinfektionsmittel mit",
+        "reason": "Straßenverkäufern fehlt oft eine Waschgelegenheit"
+      },
+      {
+        "tip": "Bleiben Sie bei gegartem Gemüse",
+        "reason": "Rohes Gemüse wird womöglich mit Leitungswasser gewaschen"
+      }
+    ],
+    "phrases": [
+      {
+        "english": "Was kostet das?",
+        "arabic": "بكام ده؟",
+        "transliteration": "bekam dah?"
+      },
+      {
+        "english": "Bitte ohne scharfe Sauce",
+        "arabic": "من غير شطة",
+        "transliteration": "men gheer shatta"
+      },
+      {
+        "english": "Danke",
+        "arabic": "شكراً",
+        "transliteration": "shokran"
+      },
+      {
+        "english": "Sehr lecker!",
+        "arabic": "لذيذ جداً!",
+        "transliteration": "lazeez gidan!"
+      }
+    ],
+    "itinerary": [
+      {
+        "time": "9:00 Uhr",
+        "activity": "Frühstückssandwich mit Ful und Ta'ameya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "11:00 Uhr",
+        "activity": "Frischer Zuckerrohrsaft",
+        "cost": "5 EGP"
+      },
+      {
+        "time": "13:00 Uhr",
+        "activity": "Koshari-Mittagessen bei Abu Tarek",
+        "cost": "25 EGP"
+      },
+      {
+        "time": "15:00 Uhr",
+        "activity": "Nachtisch: Zalabya",
+        "cost": "10 EGP"
+      },
+      {
+        "time": "18:00 Uhr",
+        "activity": "Shawarma-Wrap und Tee im lokalen Café",
+        "cost": "25 EGP"
+      }
+    ]
   }
 }

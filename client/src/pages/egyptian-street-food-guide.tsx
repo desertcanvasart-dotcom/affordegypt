@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 import { articleSchema } from "@/lib/article-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,133 +23,38 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 
+// Presentation, not content — zipped onto the translated arrays by index.
+const cityIcons = ["🏛️", "🌊", "🏺", "⛵", "🌴"];
+const foodIcons = ["🍚", "🧆", "🫘", "🌯", "🥙", "🍠"];
+
 export default function EgyptianStreetFoodGuide() {
+  const { t } = useTranslation();
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const cities = [
-    {
-      name: "Cairo",
-      spots: ["Downtown (Tahrir Sq., El-Mounira)", "Giza", "Sayeda Zeinab", "El Hussein"],
-      icon: "🏛️"
-    },
-    {
-      name: "Alexandria", 
-      spots: ["Mansheya", "Bahary Corniche", "Miami Area", "El-Raml Station"],
-      icon: "🌊"
-    },
-    {
-      name: "Luxor",
-      spots: ["Luxor Souq", "Salah El Din Street", "Nile Corniche"],
-      icon: "🏺"
-    },
-    {
-      name: "Aswan",
-      spots: ["Souq Area", "Corniche El Nile", "El Tahrir Street"],
-      icon: "⛵"
-    },
-    {
-      name: "Siwa Oasis",
-      spots: ["Siwa Market", "El Maraqi District"],
-      icon: "🌴"
-    }
-  ];
-
-  const streetFoods = [
-    {
-      name: "Koshari",
-      arabicName: "كشري",
-      description: "A carb-packed dish of rice, lentils, chickpeas, pasta, crispy onions, and tomato-vinegar sauce",
-      cost: "15–25 EGP",
-      bestIn: "Cairo (Abou Tarek, Koshary El Tahrir)",
-      tip: "Ask for 'shatta' (spicy sauce) if you enjoy heat",
-      icon: "🍚"
-    },
-    {
-      name: "Ta'ameya",
-      arabicName: "طعمية",
-      description: "Egyptian falafel made of fava beans (not chickpeas), with herbs and sesame coating",
-      cost: "1–2 EGP per piece",
-      bestIn: "Local breakfast carts across Cairo and Alexandria",
-      tip: "100% plant-based and filling",
-      icon: "🧆"
-    },
-    {
-      name: "Ful Medames",
-      arabicName: "فول مدمس",
-      description: "Slow-cooked fava beans with olive oil, cumin, lemon juice",
-      cost: "5–10 EGP per sandwich",
-      bestIn: "Breakfast carts and working-class cafés",
-      tip: "Egypt's national breakfast dish",
-      icon: "🫘"
-    },
-    {
-      name: "Shawarma",
-      arabicName: "شاورما",
-      description: "Marinated beef or chicken sliced from a vertical rotisserie",
-      cost: "15–30 EGP per wrap",
-      bestIn: "Syrian-style shawarma kiosks in Cairo, Alexandria, and Hurghada",
-      tip: "Garlic sauce for chicken, tahini for beef",
-      icon: "🌯"
-    },
-    {
-      name: "Hawawshi",
-      arabicName: "حواوشي",
-      description: "Spiced minced beef baked inside baladi bread",
-      cost: "15–25 EGP per sandwich",
-      bestIn: "Traditional bakeries and street vendors",
-      tip: "Ask for 'balady' version – more traditional and flavourful",
-      icon: "🥙"
-    },
-    {
-      name: "Sweet Potato",
-      arabicName: "بطاطا",
-      description: "Roasted and sold from push carts, often topped with honey or nuts",
-      cost: "5–15 EGP",
-      bestIn: "Street carts throughout Egypt",
-      tip: "Perfect winter snack, naturally sweet",
-      icon: "🍠"
-    }
-  ];
-
-  const drinks = [
-    { name: "Sobia", description: "Coconut milk & rice drink", where: "Ramadan carts, markets" },
-    { name: "Sugarcane Juice (Asab)", description: "Fresh-pressed, hydrating", where: "Juice shops, street carts" },
-    { name: "Tamarind (Tamr Hindi)", description: "Sweet-sour drink with dates & tamarind", where: "Ramadan time, old cafés" },
-    { name: "Hibiscus (Karkadeh)", description: "Deep red, tangy flower-based drink", where: "Particularly popular in Aswan" },
-    { name: "Tea with Mint", description: "Egypt's go-to warm street drink", where: "Everywhere—just ask!" }
-  ];
-
-  const safetyTips = [
-    { tip: "Eat where locals queue", reason: "Indicates high turnover and freshness" },
-    { tip: "Avoid dairy-heavy foods in summer", reason: "Heat may spoil cheese/yogurt quickly" },
-    { tip: "Choose piping hot food", reason: "Kills most bacteria" },
-    { tip: "Bring your own wipes/sanitizer", reason: "Street vendors often lack handwashing" },
-    { tip: "Stick to cooked vegetables", reason: "Raw veg may be washed with tap water" }
-  ];
-
-  const phrases = [
-    { english: "How much is this?", arabic: "بكام ده؟", transliteration: "bekam dah?" },
-    { english: "No spice, please", arabic: "من غير شطة", transliteration: "men gheer shatta" },
-    { english: "Thank you", arabic: "شكراً", transliteration: "shokran" },
-    { english: "Delicious!", arabic: "لذيذ جداً!", transliteration: "lazeez gidan!" }
-  ];
-
-  const itinerary = [
-    { time: "9:00 AM", activity: "Ful + Ta'ameya breakfast sandwich", cost: "10 EGP" },
-    { time: "11:00 AM", activity: "Fresh Sugarcane Juice", cost: "5 EGP" },
-    { time: "1:00 PM", activity: "Koshari lunch at Abu Tarek", cost: "25 EGP" },
-    { time: "3:00 PM", activity: "Dessert: Zalabya", cost: "10 EGP" },
-    { time: "6:00 PM", activity: "Shawarma wrap + tea in local cafe", cost: "25 EGP" }
-  ];
+  // Structured content lives in the locale files and is read with
+  // returnObjects. The Arabic dish names and phrases inside these arrays are
+  // deliberately identical in every locale — they are the subject matter, not
+  // copy to translate.
+  const cities = (t("streetFoodGuide.cities", { returnObjects: true }) as any[]).map(
+    (city: any, i: number) => ({ ...city, icon: cityIcons[i] })
+  );
+  const streetFoods = (t("streetFoodGuide.streetFoods", { returnObjects: true }) as any[]).map(
+    (food: any, i: number) => ({ ...food, icon: foodIcons[i] })
+  );
+  const drinks = t("streetFoodGuide.drinks", { returnObjects: true }) as any[];
+  const safetyTips = t("streetFoodGuide.safetyTips", { returnObjects: true }) as any[];
+  const phrases = t("streetFoodGuide.phrases", { returnObjects: true }) as any[];
+  const itinerary = t("streetFoodGuide.itinerary", { returnObjects: true }) as any[];
+  const packItems = t("streetFoodGuide.packItems", { returnObjects: true }) as string[];
 
   return (
     <>
       <SeoMeta
-        title="Egyptian Street Food Guide | What to Eat & Where"
-        description="From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide."
+        title={t("streetFoodGuide.seoTitle")}
+        description={t("streetFoodGuide.seoDescription")}
         canonical="https://affordegypt.com/egyptian-street-food-guide"
         ogImage="https://affordegypt.com/images/street-food-egypt.jpg"
         schema={articleSchema({
@@ -176,24 +82,26 @@ export default function EgyptianStreetFoodGuide() {
             <div className="max-w-4xl">
               <Badge className="bg-teal-600 text-white mb-6 text-sm px-4 py-2">
                 <Utensils className="w-4 h-4 mr-2" />
-                Culinary Adventure Guide 2026
+                {t("streetFoodGuide.badge")}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Egyptian Street Food
-                <span className="block text-teal-400">A Culinary Adventure</span>
+                {t("streetFoodGuide.titleA")}
+                <span className="block text-teal-400">{t("streetFoodGuide.titleB")}</span>
               </h1>
               <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl font-semibold drop-shadow-lg">
-                Egypt's street food scene is a symphony of flavors, combining ancient culinary traditions 
-                with quick, modern-day indulgence. Your most delicious—and budget-friendly—passport to understanding Egypt.
+                {t("streetFoodGuide.heroBody")}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
                   <Link href="/#pricing-tool">
-                    Plan Food Tour
+                    {t("streetFoodGuide.ctaPlan")}
                   </Link>
                 </Button>
+                {/* NOTE: this button has no handler and no destination — it has
+                    never done anything. Left as-is rather than inventing a
+                    target that would not match its label. */}
                 <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
-                  Download Guide
+                  {t("streetFoodGuide.ctaDownload")}
                 </Button>
               </div>
             </div>
@@ -205,9 +113,9 @@ export default function EgyptianStreetFoodGuide() {
           {/* Why Street Food Section */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Street Food is Perfect for Travellers</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.whyH2")}</h2>
               <p className="text-xl text-gray-600">
-                Discover the authentic flavors of Egypt without breaking your budget
+                {t("streetFoodGuide.whySub")}
               </p>
             </div>
 
@@ -215,48 +123,48 @@ export default function EgyptianStreetFoodGuide() {
               <Card className="border-t-4 border-teal-600 text-center">
                 <CardContent className="p-6">
                   <DollarSign className="w-12 h-12 text-teal-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Extremely Affordable</h3>
-                  <p className="text-gray-700">Most items cost between 5–30 EGP</p>
+                  <h3 className="text-xl font-semibold mb-3">{t("streetFoodGuide.why1H")}</h3>
+                  <p className="text-gray-700">{t("streetFoodGuide.why1B")}</p>
                 </CardContent>
               </Card>
 
               <Card className="border-t-4 border-teal-600 text-center">
                 <CardContent className="p-6">
                   <Clock className="w-12 h-12 text-teal-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Fresh & Fast</h3>
-                  <p className="text-gray-700">Cooked in front of you, often piping hot and ready to eat</p>
+                  <h3 className="text-xl font-semibold mb-3">{t("streetFoodGuide.why2H")}</h3>
+                  <p className="text-gray-700">{t("streetFoodGuide.why2B")}</p>
                 </CardContent>
               </Card>
 
               <Card className="border-t-4 border-teal-600 text-center">
                 <CardContent className="p-6">
                   <Heart className="w-12 h-12 text-teal-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Deeply Local</h3>
-                  <p className="text-gray-700">Recipes passed down for generations, authentic cultural experience</p>
+                  <h3 className="text-xl font-semibold mb-3">{t("streetFoodGuide.why3H")}</h3>
+                  <p className="text-gray-700">{t("streetFoodGuide.why3B")}</p>
                 </CardContent>
               </Card>
 
               <Card className="border-t-4 border-teal-600 text-center">
                 <CardContent className="p-6">
                   <Utensils className="w-12 h-12 text-teal-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Vegetarian-Friendly</h3>
-                  <p className="text-gray-700">Many meat-free options available, perfect for all dietary needs</p>
+                  <h3 className="text-xl font-semibold mb-3">{t("streetFoodGuide.why4H")}</h3>
+                  <p className="text-gray-700">{t("streetFoodGuide.why4B")}</p>
                 </CardContent>
               </Card>
 
               <Card className="border-t-4 border-teal-600 text-center">
                 <CardContent className="p-6">
                   <Camera className="w-12 h-12 text-teal-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Cultural Immersion</h3>
-                  <p className="text-gray-700">Street food is how Egyptians connect, talk, and relax</p>
+                  <h3 className="text-xl font-semibold mb-3">{t("streetFoodGuide.why5H")}</h3>
+                  <p className="text-gray-700">{t("streetFoodGuide.why5B")}</p>
                 </CardContent>
               </Card>
 
               <Card className="border-t-4 border-teal-600 text-center">
                 <CardContent className="p-6">
                   <Star className="w-12 h-12 text-teal-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Authentic Flavors</h3>
-                  <p className="text-gray-700">Experience the real taste of Egypt through local favorites</p>
+                  <h3 className="text-xl font-semibold mb-3">{t("streetFoodGuide.why6H")}</h3>
+                  <p className="text-gray-700">{t("streetFoodGuide.why6B")}</p>
                 </CardContent>
               </Card>
             </div>
@@ -265,9 +173,9 @@ export default function EgyptianStreetFoodGuide() {
           {/* Where to Find Street Food */}
           <section className="bg-teal-50 -mx-4 px-4 py-16 rounded-2xl">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Where to Find Egyptian Street Food</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.whereH2")}</h2>
               <p className="text-xl text-gray-600">
-                The best spots across Egypt for authentic street food experiences
+                {t("streetFoodGuide.whereSub")}
               </p>
             </div>
 
@@ -282,7 +190,7 @@ export default function EgyptianStreetFoodGuide() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
-                      {city.spots.map((spot, i) => (
+                      {city.spots.map((spot: string, i: number) => (
                         <li key={i} className="flex items-start gap-2 text-gray-700">
                           <MapPin className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
                           <span className="text-sm">{spot}</span>
@@ -300,7 +208,7 @@ export default function EgyptianStreetFoodGuide() {
                   <span className="text-sm font-bold">💡</span>
                 </div>
                 <p className="text-teal-800 font-medium">
-                  <strong>Pro Tip:</strong> Look for long queues of locals — it's a sign the food is both good and safe!
+                  <strong>{t("streetFoodGuide.proTipLabel")}</strong> {t("streetFoodGuide.proTip")}
                 </p>
               </div>
             </div>
@@ -309,9 +217,9 @@ export default function EgyptianStreetFoodGuide() {
           {/* Top Street Foods */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Top Street Foods to Try in Egypt</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.foodsH2")}</h2>
               <p className="text-xl text-gray-600">
-                Essential dishes that define Egyptian street food culture
+                {t("streetFoodGuide.foodsSub")}
               </p>
             </div>
 
@@ -332,12 +240,12 @@ export default function EgyptianStreetFoodGuide() {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div className="bg-green-50 p-3 rounded-lg">
-                        <div className="font-semibold text-green-800 mb-1">Cost</div>
+                        <div className="font-semibold text-green-800 mb-1">{t("streetFoodGuide.costLabel")}</div>
                         <div className="text-green-700">{food.cost}</div>
                       </div>
                       
                       <div className="bg-blue-50 p-3 rounded-lg">
-                        <div className="font-semibold text-blue-800 mb-1">Best In</div>
+                        <div className="font-semibold text-blue-800 mb-1">{t("streetFoodGuide.bestInLabel")}</div>
                         <div className="text-blue-700">{food.bestIn}</div>
                       </div>
                     </div>
@@ -357,9 +265,9 @@ export default function EgyptianStreetFoodGuide() {
           {/* Drinks Section */}
           <section className="bg-gray-50 -mx-4 px-4 py-16 rounded-2xl">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Drinks to Pair with Street Food</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.drinksH2")}</h2>
               <p className="text-xl text-gray-600">
-                Refresh yourself with authentic Egyptian beverages
+                {t("streetFoodGuide.drinksSub")}
               </p>
             </div>
 
@@ -382,8 +290,8 @@ export default function EgyptianStreetFoodGuide() {
               <div className="flex items-start gap-3">
                 <Shield className="w-6 h-6 text-blue-600 mt-0.5" />
                 <div>
-                  <p className="text-blue-800 font-medium mb-1">Important Note:</p>
-                  <p className="text-blue-700 text-sm">Avoid tap water and ice; opt for sealed bottled water (≈5 EGP)</p>
+                  <p className="text-blue-800 font-medium mb-1">{t("streetFoodGuide.noteLabel")}</p>
+                  <p className="text-blue-700 text-sm">{t("streetFoodGuide.noteBody")}</p>
                 </div>
               </div>
             </div>
@@ -392,9 +300,9 @@ export default function EgyptianStreetFoodGuide() {
           {/* Safety Tips */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Street Food Safety Tips</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.safetyH2")}</h2>
               <p className="text-xl text-gray-600">
-                Stay safe while enjoying authentic Egyptian flavors
+                {t("streetFoodGuide.safetySub")}
               </p>
             </div>
 
@@ -417,29 +325,15 @@ export default function EgyptianStreetFoodGuide() {
             <div className="mt-8 bg-amber-50 p-6 rounded-lg">
               <h3 className="font-semibold text-amber-800 mb-4 flex items-center gap-2">
                 <Utensils className="w-5 h-5" />
-                What to Pack for a Street Food Adventure
+                {t("streetFoodGuide.packH3")}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-gray-700">Tissues/wet wipes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-gray-700">Hand sanitizer</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-gray-700">Reusable water bottle</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-gray-700">Anti-diarrhea tablets</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-gray-700">Small notes and coins</span>
-                </div>
+                {packItems.map((item: string, i: number) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -447,9 +341,9 @@ export default function EgyptianStreetFoodGuide() {
           {/* Useful Phrases */}
           <section className="bg-teal-50 -mx-4 px-4 py-16 rounded-2xl">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Useful Arabic Phrases</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.phrasesH2")}</h2>
               <p className="text-xl text-gray-600">
-                Essential phrases to enhance your street food experience
+                {t("streetFoodGuide.phrasesSub")}
               </p>
             </div>
 
@@ -471,16 +365,16 @@ export default function EgyptianStreetFoodGuide() {
           {/* Budget Itinerary */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Budget-Friendly Street Food Itinerary</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("streetFoodGuide.itineraryH2")}</h2>
               <p className="text-xl text-gray-600">
-                Cairo Day Trip: Full day of delicious street food for under 75 EGP
+                {t("streetFoodGuide.itinerarySub")}
               </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
               <Card className="shadow-lg">
                 <CardHeader className="bg-teal-600 text-white text-center">
-                  <CardTitle className="text-2xl">Cairo Street Food Day Trip</CardTitle>
+                  <CardTitle className="text-2xl">{t("streetFoodGuide.itineraryTitle")}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   {itinerary.map((item, index) => (
@@ -501,7 +395,7 @@ export default function EgyptianStreetFoodGuide() {
                   ))}
                   <div className="bg-teal-50 p-6">
                     <div className="flex justify-between items-center">
-                      <span className="text-xl font-bold text-gray-900">Total Daily Cost:</span>
+                      <span className="text-xl font-bold text-gray-900">{t("streetFoodGuide.totalLabel")}</span>
                       <span className="text-2xl font-bold text-teal-600">75 EGP</span>
                     </div>
                   </div>
@@ -513,21 +407,19 @@ export default function EgyptianStreetFoodGuide() {
           {/* Final CTA */}
           <section className="bg-teal-600 text-white -mx-4 px-4 py-16 rounded-2xl">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6 text-white">Your Culinary Adventure Awaits</h2>
+              <h2 className="text-4xl font-bold mb-6 text-white">{t("streetFoodGuide.finalH2")}</h2>
               <p className="text-xl mb-8 leading-relaxed font-semibold text-white">
-                Egypt's street food is more than cheap eats—it's a window into the soul of the country. 
-                Every sandwich passed through a tuk-tuk window, every spicy bite eaten standing on a sidewalk, 
-                brings you closer to the people and their heritage.
+                {t("streetFoodGuide.finalBody")}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">
                   <Link href="/#pricing-tool">
-                    Book Culinary Tour
+                    {t("streetFoodGuide.ctaBook")}
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
                   <Link href="/travel-tips">
-                    More Egypt Guides
+                    {t("streetFoodGuide.ctaMore")}
                   </Link>
                 </Button>
               </div>
