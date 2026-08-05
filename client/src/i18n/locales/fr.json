@@ -1898,7 +1898,6 @@
     "titleB": "Une aventure culinaire",
     "heroBody": "La street food égyptienne est une symphonie de saveurs, mêlant traditions culinaires millénaires et plaisir rapide d'aujourd'hui. Votre passeport le plus savoureux — et le plus économique — pour comprendre l'Égypte.",
     "ctaPlan": "Planifier un tour culinaire",
-    "ctaDownload": "Télécharger le guide",
     "whyH2": "Pourquoi la street food est idéale pour les voyageurs",
     "whySub": "Découvrez les saveurs authentiques de l'Égypte sans faire exploser votre budget",
     "why1H": "Très abordable",
@@ -2135,6 +2134,7 @@
         "activity": "Wrap shawarma et thé dans un café local",
         "cost": "25 EGP"
       }
-    ]
+    ],
+    "ctaPrint": "Imprimer / Enregistrer en PDF"
   }
 }

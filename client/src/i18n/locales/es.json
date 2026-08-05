@@ -1898,7 +1898,6 @@
     "titleB": "Una aventura culinaria",
     "heroBody": "La comida callejera de Egipto es una sinfonía de sabores que combina tradiciones culinarias milenarias con el placer rápido de hoy. Su pasaporte más delicioso —y más económico— para entender Egipto.",
     "ctaPlan": "Planificar tour gastronómico",
-    "ctaDownload": "Descargar guía",
     "whyH2": "Por qué la comida callejera es perfecta para viajeros",
     "whySub": "Descubra los sabores auténticos de Egipto sin arruinar su presupuesto",
     "why1H": "Extremadamente económica",
@@ -2135,6 +2134,7 @@
         "activity": "Wrap de shawarma y té en un café local",
         "cost": "25 EGP"
       }
-    ]
+    ],
+    "ctaPrint": "Imprimir / Guardar como PDF"
   }
 }

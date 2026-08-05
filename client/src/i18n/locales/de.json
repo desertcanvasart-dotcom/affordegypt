@@ -1898,7 +1898,6 @@
     "titleB": "Ein kulinarisches Abenteuer",
     "heroBody": "Ägyptens Streetfood ist eine Symphonie der Aromen – uralte Kochtraditionen treffen auf schnellen, modernen Genuss. Ihr köstlichster und günstigster Zugang zum Verständnis Ägyptens.",
     "ctaPlan": "Food-Tour planen",
-    "ctaDownload": "Guide herunterladen",
     "whyH2": "Warum Streetfood perfekt für Reisende ist",
     "whySub": "Entdecken Sie die authentischen Aromen Ägyptens, ohne Ihr Budget zu sprengen",
     "why1H": "Äußerst günstig",
@@ -2135,6 +2134,7 @@
         "activity": "Shawarma-Wrap und Tee im lokalen Café",
         "cost": "25 EGP"
       }
-    ]
+    ],
+    "ctaPrint": "Drucken / als PDF speichern"
   }
 }
