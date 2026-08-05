@@ -1902,5 +1902,139 @@
     "h1a": "Egypt Budget Travel ",
     "h1b": "Made Simple",
     "heroTagline": "Your ultimate 2026 guide to budget travel in Egypt."
+  },
+  "budgetGuide": {
+    "seoTitle": "Egypt on a Budget | A Cairo Operator's Honest Guide",
+    "seoDescription": "How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions.",
+    "badge": "Budget Travel Guide 2026",
+    "title": "Budget Travel in Egypt",
+    "heroLead": "Discover Egypt's extraordinary cultural heritage, vibrant local life, and timeless attractions without breaking the bank. Your complete guide to affordable Egyptian adventures.",
+    "heroCta": "Get Custom Quote",
+    "whyLead": "Egypt stands out as an exceptional budget travel destination, offering incredible value and unforgettable experiences.",
+    "why1": "Favorable Exchange Rates",
+    "why1b": "The Egyptian Pound's favorable rates against international currencies mean greater purchasing power. Accommodation, meals, transport, and attraction tickets remain attractively affordable compared to Europe or North America.",
+    "why2": "Enhanced Infrastructure",
+    "why2b": "Egypt is heavily investing in tourism infrastructure. New museums, interactive exhibitions, and immersive digital experiences offer engaging ways to explore history, often at introductory prices.",
+    "why3": "Improved Experience",
+    "why3b": "Streamlined airport procedures, upgraded safety standards, and welcoming hospitality make Egypt exceptionally appealing for budget-conscious adventurers seeking memorable, affordable experiences.",
+    "timingLead": "Timing your visit can significantly impact your budget and experience",
+    "checklistLead": "Get prepared before you go to ensure a smooth, stress-free Egyptian adventure",
+    "budgetLead": "Plan your spending with realistic daily budget expectations",
+    "budgetNote": "Covers accommodation, meals, transport, and key attractions for a comprehensive Egypt experience",
+    "hacksLead": "Insider tips to maximize your budget and get the most value from your Egyptian adventure",
+    "stayTitle": "Affordable Accommodation Options",
+    "eatTitle": "Economical Eating Tips",
+    "moveTitle": "Transportation on a Budget",
+    "closing": "With strategic planning and mindful budgeting, experiencing Egypt's extraordinary cultural heritage is well within reach.",
+    "cta1": "Start Planning Your Trip",
+    "cta2": "Explore Travel Guides",
+    "bestTimes": [
+      {
+        "season": "Spring & Autumn",
+        "months": "March–May & September–November",
+        "temperature": "20°C–28°C",
+        "advantages": [
+          "Pleasant temperatures",
+          "Fewer crowds",
+          "Favorable accommodation rates"
+        ],
+        "ideal": "Perfect for exploring archaeological sites comfortably"
+      },
+      {
+        "season": "Winter",
+        "months": "December–February",
+        "temperature": "15°C–25°C",
+        "advantages": [
+          "Delightful weather",
+          "Clear skies"
+        ],
+        "drawbacks": [
+          "Higher demand",
+          "Increased accommodation costs",
+          "Premium pricing"
+        ]
+      },
+      {
+        "season": "Summer",
+        "months": "June–August",
+        "temperature": "40°C+ (inland)",
+        "advantages": [
+          "Drastically lower prices",
+          "Fewer tourists"
+        ],
+        "drawbacks": [
+          "Intense heat in Luxor/Aswan"
+        ],
+        "tip": "Choose coastal locations like Alexandria or Dahab"
+      }
+    ],
+    "budgetBreakdown": [
+      {
+        "category": "Accommodation",
+        "daily": "150-750 EGP",
+        "details": "Hostels to budget hotels"
+      },
+      {
+        "category": "Food",
+        "daily": "75-375 EGP",
+        "details": "Street food to mid-range restaurants"
+      },
+      {
+        "category": "Transport",
+        "daily": "50-250 EGP",
+        "details": "Public transport and intercity buses"
+      },
+      {
+        "category": "Attractions",
+        "daily": "125-500 EGP",
+        "details": "Entry fees and activities"
+      },
+      {
+        "category": "Miscellaneous",
+        "daily": "125-375 EGP",
+        "details": "Tips, souvenirs, emergencies"
+      }
+    ],
+    "moneySavingHacks": [
+      "Book accommodations early during shoulder seasons",
+      "Eat local street food (koshari, shawarma, ta'ameya)",
+      "Use public transport (metro, buses, shared taxis)",
+      "Carry an ISIC card for student discounts (up to 50%)",
+      "Bargain respectfully in markets",
+      "Stay in Nubian-style accommodations in Aswan",
+      "Shop at local markets for self-catering",
+      "Use Uber/Careem for safe, affordable city travel"
+    ],
+    "checklist": [
+      {
+        "title": "Travel Documents",
+        "items": [
+          "Passport valid for 6+ months with blank pages",
+          "e-Visa (625 EGP) - recommended online application",
+          "Visa on Arrival (625 EGP cash) for select nationalities",
+          "Verify current requirements via official channels"
+        ]
+      },
+      {
+        "title": "Health & Safety",
+        "items": [
+          "Travel insurance covering medical emergencies",
+          "Recommended vaccines: Hepatitis A, Typhoid, Tetanus",
+          "Bottled water only, avoid uncooked street food",
+          "Basic medical kit with essential medications"
+        ]
+      },
+      {
+        "title": "Money Matters",
+        "items": [
+          "Egyptian Pound (EGP) is the local currency",
+          "Carry cash in small denominations",
+          "Budget 1,250-2,000 EGP/day for comprehensive travel",
+          "7-10 days: ~20,000-27,500 EGP including airfare"
+        ]
+      }
+    ],
+    "titleSub": "How to See More for Less",
+    "whyH2": "Why Egypt in 2026 is Perfect for Budget Travellers"
   }
 }

@@ -1755,5 +1755,139 @@
     "h1a": "Ägypten günstig bereisen – ",
     "h1b": "ganz einfach",
     "heroTagline": "Ihr umfassender Leitfaden 2026 für günstiges Reisen in Ägypten."
+  },
+  "budgetGuide": {
+    "seoTitle": "Ägypten mit kleinem Budget | Der ehrliche Leitfaden eines Kairoer Veranstalters",
+    "seoDescription": "Wie Sie Ägypten günstig bereisen, ohne in Touristenfallen oder an unseriöse Anbieter zu geraten. Echte Kosten und Tipps von einem lizenzierten Veranstalter in Kairo: Tagesbudget, Transport, Essen, Sehenswürdigkeiten.",
+    "badge": "Budget-Reiseführer 2026",
+    "title": "Günstig reisen in Ägypten",
+    "heroLead": "Entdecken Sie Ägyptens außergewöhnliches Kulturerbe, das lebendige Alltagsleben und zeitlose Sehenswürdigkeiten, ohne Ihr Budget zu sprengen. Ihr kompletter Leitfaden für bezahlbare Ägypten-Abenteuer.",
+    "heroCta": "Individuelles Angebot",
+    "whyLead": "Ägypten ist ein herausragendes Reiseziel für kleines Budget und bietet großartiges Preis-Leistungs-Verhältnis und unvergessliche Erlebnisse.",
+    "why1": "Günstige Wechselkurse",
+    "why1b": "Die günstigen Kurse des ägyptischen Pfunds gegenüber internationalen Währungen bedeuten mehr Kaufkraft. Unterkunft, Mahlzeiten, Transport und Eintrittskarten bleiben im Vergleich zu Europa oder Nordamerika attraktiv günstig.",
+    "why2": "Bessere Infrastruktur",
+    "why2b": "Ägypten investiert stark in die Tourismus-Infrastruktur. Neue Museen, interaktive Ausstellungen und immersive digitale Erlebnisse bieten spannende Zugänge zur Geschichte – oft zu Einführungspreisen.",
+    "why3": "Angenehmeres Reisen",
+    "why3b": "Vereinfachte Abläufe an Flughäfen, höhere Sicherheitsstandards und herzliche Gastfreundschaft machen Ägypten besonders attraktiv für preisbewusste Reisende, die unvergessliche und bezahlbare Erlebnisse suchen.",
+    "timingLead": "Der richtige Reisezeitpunkt beeinflusst Budget und Erlebnis erheblich",
+    "checklistLead": "Bereiten Sie sich vor der Abreise vor, damit Ihr Ägypten-Abenteuer entspannt verläuft",
+    "budgetLead": "Planen Sie Ihre Ausgaben mit realistischen Tagesbudgets",
+    "budgetNote": "Deckt Unterkunft, Mahlzeiten, Transport und wichtige Sehenswürdigkeiten für ein umfassendes Ägypten-Erlebnis ab",
+    "hacksLead": "Insidertipps, um Ihr Budget optimal zu nutzen und das Meiste aus Ihrer Reise herauszuholen",
+    "stayTitle": "Günstige Unterkunftsmöglichkeiten",
+    "eatTitle": "Tipps zum günstigen Essen",
+    "moveTitle": "Günstig unterwegs",
+    "closing": "Mit guter Planung und bewusstem Budget ist Ägyptens außergewöhnliches Kulturerbe gut erreichbar.",
+    "cta1": "Reiseplanung starten",
+    "cta2": "Reiseführer entdecken",
+    "bestTimes": [
+      {
+        "season": "Frühling & Herbst",
+        "months": "März–Mai & September–November",
+        "temperature": "20 °C–28 °C",
+        "advantages": [
+          "Angenehme Temperaturen",
+          "Weniger Andrang",
+          "Günstige Übernachtungspreise"
+        ],
+        "ideal": "Ideal, um archäologische Stätten in Ruhe zu erkunden"
+      },
+      {
+        "season": "Winter",
+        "months": "Dezember–Februar",
+        "temperature": "15 °C–25 °C",
+        "advantages": [
+          "Herrliches Wetter",
+          "Klarer Himmel"
+        ],
+        "drawbacks": [
+          "Höhere Nachfrage",
+          "Höhere Übernachtungskosten",
+          "Aufpreise"
+        ]
+      },
+      {
+        "season": "Sommer",
+        "months": "Juni–August",
+        "temperature": "über 40 °C (im Landesinneren)",
+        "advantages": [
+          "Deutlich niedrigere Preise",
+          "Weniger Touristen"
+        ],
+        "drawbacks": [
+          "Große Hitze in Luxor/Assuan"
+        ],
+        "tip": "Wählen Sie Küstenorte wie Alexandria oder Dahab"
+      }
+    ],
+    "budgetBreakdown": [
+      {
+        "category": "Unterkunft",
+        "daily": "150–750 EGP",
+        "details": "Hostels bis günstige Hotels"
+      },
+      {
+        "category": "Essen",
+        "daily": "75–375 EGP",
+        "details": "Streetfood bis Restaurants mittlerer Preisklasse"
+      },
+      {
+        "category": "Transport",
+        "daily": "50–250 EGP",
+        "details": "Nahverkehr und Fernbusse"
+      },
+      {
+        "category": "Sehenswürdigkeiten",
+        "daily": "125–500 EGP",
+        "details": "Eintritte und Aktivitäten"
+      },
+      {
+        "category": "Sonstiges",
+        "daily": "125–375 EGP",
+        "details": "Trinkgeld, Souvenirs, Notfälle"
+      }
+    ],
+    "moneySavingHacks": [
+      "Unterkünfte in der Nebensaison früh buchen",
+      "Lokales Streetfood essen (Koshari, Schawarma, Ta'ameya)",
+      "Öffentliche Verkehrsmittel nutzen (Metro, Busse, Sammeltaxis)",
+      "ISIC-Karte für Studierendenrabatte mitnehmen (bis zu 50 %)",
+      "Auf Märkten respektvoll handeln",
+      "In Assuan in nubischen Unterkünften übernachten",
+      "Auf lokalen Märkten für die Selbstverpflegung einkaufen",
+      "Uber/Careem für sichere, günstige Fahrten in der Stadt nutzen"
+    ],
+    "checklist": [
+      {
+        "title": "Reisedokumente",
+        "items": [
+          "Reisepass mit mindestens 6 Monaten Gültigkeit und freien Seiten",
+          "E-Visum (625 EGP) – Online-Antrag empfohlen",
+          "Visum bei Ankunft (625 EGP in bar) für ausgewählte Nationalitäten",
+          "Aktuelle Bestimmungen über offizielle Stellen prüfen"
+        ]
+      },
+      {
+        "title": "Gesundheit & Sicherheit",
+        "items": [
+          "Reiseversicherung mit Deckung medizinischer Notfälle",
+          "Empfohlene Impfungen: Hepatitis A, Typhus, Tetanus",
+          "Nur Wasser aus Flaschen, kein rohes Streetfood",
+          "Kleine Reiseapotheke mit den wichtigsten Medikamenten"
+        ]
+      },
+      {
+        "title": "Geld & Zahlung",
+        "items": [
+          "Landeswährung ist das ägyptische Pfund (EGP)",
+          "Bargeld in kleinen Scheinen mitführen",
+          "1.250–2.000 EGP pro Tag für eine umfassende Reise einplanen",
+          "7–10 Tage: ca. 20.000–27.500 EGP inklusive Flug"
+        ]
+      }
+    ],
+    "titleSub": "Mehr erleben für weniger Geld",
+    "whyH2": "Warum Ägypten 2026 ideal für Sparreisende ist"
   }
 }

@@ -1755,5 +1755,139 @@
     "h1a": "Viajar barato por Egipto, ",
     "h1b": "sin complicaciones",
     "heroTagline": "Tu guía definitiva de 2026 para viajar barato por Egipto."
+  },
+  "budgetGuide": {
+    "seoTitle": "Egipto con poco presupuesto | La guía honesta de un operador de El Cairo",
+    "seoDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni operadores fraudulentos. Costes y consejos reales de un operador con licencia en El Cairo: gasto diario, transporte, comida y atracciones.",
+    "badge": "Guía de viaje económico 2026",
+    "title": "Viajar barato por Egipto",
+    "heroLead": "Descubre el extraordinario patrimonio cultural de Egipto, su vida local vibrante y sus atracciones atemporales sin arruinarte. Tu guía completa para aventuras egipcias asequibles.",
+    "heroCta": "Pedir presupuesto",
+    "whyLead": "Egipto destaca como un destino excepcional para viajar con poco presupuesto, con una relación calidad-precio inmejorable y experiencias inolvidables.",
+    "why1": "Tipos de cambio favorables",
+    "why1b": "Los tipos favorables de la libra egipcia frente a las monedas internacionales se traducen en mayor poder adquisitivo. El alojamiento, las comidas, el transporte y las entradas siguen siendo muy asequibles en comparación con Europa o Norteamérica.",
+    "why2": "Mejores infraestructuras",
+    "why2b": "Egipto está invirtiendo con fuerza en infraestructura turística. Nuevos museos, exposiciones interactivas y experiencias digitales inmersivas ofrecen formas atractivas de descubrir la historia, a menudo con precios de lanzamiento.",
+    "why3": "Mejor experiencia",
+    "why3b": "Trámites aeroportuarios más ágiles, mejores estándares de seguridad y una hospitalidad acogedora hacen de Egipto un destino especialmente atractivo para viajeros que buscan experiencias memorables y asequibles.",
+    "timingLead": "Elegir bien las fechas influye mucho en tu presupuesto y en tu experiencia",
+    "checklistLead": "Prepárate antes de salir para que tu aventura egipcia transcurra sin contratiempos",
+    "budgetLead": "Planifica tus gastos con presupuestos diarios realistas",
+    "budgetNote": "Cubre alojamiento, comidas, transporte y las principales atracciones para una experiencia completa en Egipto",
+    "hacksLead": "Consejos de quien vive allí para aprovechar al máximo tu presupuesto",
+    "stayTitle": "Opciones de alojamiento asequibles",
+    "eatTitle": "Consejos para comer barato",
+    "moveTitle": "Transporte con poco presupuesto",
+    "closing": "Con una planificación estratégica y un presupuesto bien pensado, el extraordinario patrimonio cultural de Egipto está perfectamente a tu alcance.",
+    "cta1": "Empieza a planificar tu viaje",
+    "cta2": "Explorar guías de viaje",
+    "bestTimes": [
+      {
+        "season": "Primavera y otoño",
+        "months": "Marzo–mayo y septiembre–noviembre",
+        "temperature": "20 °C–28 °C",
+        "advantages": [
+          "Temperaturas agradables",
+          "Menos gente",
+          "Precios de alojamiento favorables"
+        ],
+        "ideal": "Ideal para recorrer los yacimientos arqueológicos con comodidad"
+      },
+      {
+        "season": "Invierno",
+        "months": "Diciembre–febrero",
+        "temperature": "15 °C–25 °C",
+        "advantages": [
+          "Clima estupendo",
+          "Cielos despejados"
+        ],
+        "drawbacks": [
+          "Mayor demanda",
+          "Alojamiento más caro",
+          "Precios premium"
+        ]
+      },
+      {
+        "season": "Verano",
+        "months": "Junio–agosto",
+        "temperature": "más de 40 °C (interior)",
+        "advantages": [
+          "Precios mucho más bajos",
+          "Menos turistas"
+        ],
+        "drawbacks": [
+          "Calor intenso en Luxor y Asuán"
+        ],
+        "tip": "Elige zonas costeras como Alejandría o Dahab"
+      }
+    ],
+    "budgetBreakdown": [
+      {
+        "category": "Alojamiento",
+        "daily": "150-750 EGP",
+        "details": "De albergues a hoteles económicos"
+      },
+      {
+        "category": "Comida",
+        "daily": "75-375 EGP",
+        "details": "De comida callejera a restaurantes de gama media"
+      },
+      {
+        "category": "Transporte",
+        "daily": "50-250 EGP",
+        "details": "Transporte público y autobuses interurbanos"
+      },
+      {
+        "category": "Atracciones",
+        "daily": "125-500 EGP",
+        "details": "Entradas y actividades"
+      },
+      {
+        "category": "Varios",
+        "daily": "125-375 EGP",
+        "details": "Propinas, recuerdos, imprevistos"
+      }
+    ],
+    "moneySavingHacks": [
+      "Reserva alojamiento con antelación en temporada media",
+      "Come comida callejera local (koshari, shawarma, ta'ameya)",
+      "Usa el transporte público (metro, autobuses, taxis compartidos)",
+      "Lleva la tarjeta ISIC para descuentos de estudiante (hasta el 50 %)",
+      "Regatea con respeto en los mercados",
+      "Alójate en casas de estilo nubio en Asuán",
+      "Compra en mercados locales para cocinar tú",
+      "Usa Uber/Careem para desplazamientos urbanos seguros y baratos"
+    ],
+    "checklist": [
+      {
+        "title": "Documentación de viaje",
+        "items": [
+          "Pasaporte con validez de más de 6 meses y páginas en blanco",
+          "Visado electrónico (625 EGP): se recomienda solicitarlo online",
+          "Visado a la llegada (625 EGP en efectivo) para algunas nacionalidades",
+          "Verifica los requisitos vigentes por canales oficiales"
+        ]
+      },
+      {
+        "title": "Salud y seguridad",
+        "items": [
+          "Seguro de viaje que cubra urgencias médicas",
+          "Vacunas recomendadas: hepatitis A, fiebre tifoidea, tétanos",
+          "Solo agua embotellada; evita la comida callejera cruda",
+          "Botiquín básico con los medicamentos esenciales"
+        ]
+      },
+      {
+        "title": "Dinero",
+        "items": [
+          "La moneda local es la libra egipcia (EGP)",
+          "Lleva efectivo en billetes pequeños",
+          "Presupuesta 1.250-2.000 EGP al día para un viaje completo",
+          "7-10 días: unos 20.000-27.500 EGP con vuelo incluido"
+        ]
+      }
+    ],
+    "titleSub": "Cómo ver más gastando menos",
+    "whyH2": "Por qué Egipto es ideal en 2026 para viajar con poco presupuesto"
   }
 }
