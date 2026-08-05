@@ -89,6 +89,7 @@ export default function UserDashboard() {
 
   const getBookingStatusColor = (status: string) => {
     switch (status) {
+      case 'pending': return 'bg-amber-100 text-amber-800';
       case 'confirmed': return 'bg-blue-100 text-blue-800';
       case 'in_progress': return 'bg-orange-100 text-orange-800';
       case 'completed': return 'bg-green-100 text-green-800';
@@ -134,8 +135,12 @@ export default function UserDashboard() {
     booking.bookingStatus === 'completed'
   );
 
-  const pendingBookings = bookings.filter(booking => 
-    booking.paymentStatus === 'pending' || booking.bookingStatus === 'confirmed'
+  // "Pending" here means the traveller still owes us something, so it keys off
+  // payment. The old `|| bookingStatus === 'confirmed'` was a proxy for that
+  // back when every booking was written as confirmed; now that confirmed means
+  // the deposit cleared, keeping it would list fully-paid trips as pending.
+  const pendingBookings = bookings.filter(booking =>
+    booking.paymentStatus === 'pending'
   );
 
   if (isLoading) {
@@ -307,6 +312,7 @@ function BookingsList({
 
   const getBookingStatusColor = (status: string) => {
     switch (status) {
+      case 'pending': return 'bg-amber-100 text-amber-800';
       case 'confirmed': return 'bg-blue-100 text-blue-800';
       case 'in_progress': return 'bg-orange-100 text-orange-800';
       case 'completed': return 'bg-green-100 text-green-800';

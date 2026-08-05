@@ -77,7 +77,9 @@ export function registerBookingRoutes(app: Express): void {
         quoteId,
         startDate: req.body.travelDate ? new Date(req.body.travelDate) : null,
         paymentStatus: "pending",
-        bookingStatus: "confirmed",
+        // Confirmed means the deposit cleared — see shared/schema.ts. At this
+        // point nothing has been paid, so the request is pending.
+        bookingStatus: "pending",
       };
 
       const validatedData = insertBookingSchema.parse(bookingData);
@@ -333,7 +335,9 @@ export function registerBookingRoutes(app: Express): void {
         totalAmount: persisted.total,
         startDate: travelDate ? new Date(travelDate) : null,
         paymentStatus: "pending",
-        bookingStatus: "confirmed",
+        // Confirmed means the deposit cleared — see shared/schema.ts. At this
+        // point nothing has been paid, so the request is pending.
+        bookingStatus: "pending",
         module: "transfer_only",
       } as any);
 
