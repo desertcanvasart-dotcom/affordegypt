@@ -1,5 +1,44 @@
 import type { Booking, Quote } from '@shared/schema';
 import { mailService } from './email-client';
+import {
+  renderEmail,
+  paragraph,
+  summaryPanel,
+  stepList,
+  checkList,
+  button,
+  divider,
+  cardEnd,
+  esc,
+  emailLinks,
+  BRAND,
+} from './email-layout';
+
+/** "15,290" — no currency symbol, callers prefix "LE". */
+function formatMoney(amount: number | string | null | undefined): string {
+  const n = typeof amount === 'string' ? parseFloat(amount) : Number(amount);
+  if (!Number.isFinite(n)) return '0';
+  return Math.round(n).toLocaleString('en-US');
+}
+
+/**
+ * "26 August 2026" rather than toLocaleDateString()'s "8/26/2026".
+ *
+ * Most of these travellers are not American, and 8/26 vs 26/8 is exactly the
+ * ambiguity you do not want on the one line telling someone which day to be at
+ * the pickup point. Spelling the month removes the guess.
+ */
+function formatTripDate(date: Date | string | null | undefined): string {
+  if (!date) return '';
+  const d = new Date(date);
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
 
 export interface EmailService {
   sendBookingConfirmation(booking: Booking, quote: Quote): Promise<boolean>;
@@ -140,179 +179,130 @@ class TransactionalEmailService implements EmailService {
   }
 
   private generateVerificationEmail(username: string, verificationUrl: string): string {
-    return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #0891b2; color: white; padding: 30px 20px; text-align: center; }
-            .content { padding: 30px 20px; background: #f9f9f9; }
-            .button { display: inline-block; padding: 15px 30px; background: #0891b2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
-            .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
-            .highlight { color: #0891b2; font-weight: bold; }
-            .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Welcome to Afford Egypt!</h1>
-              <p>Please verify your email address</p>
-            </div>
-            
-            <div class="content">
-              <h2>Hello ${username},</h2>
-              <p>Thank you for registering with Afford Egypt! We're excited to help you explore the wonders of Egypt.</p>
-              
-              <p>To complete your registration and access all features, please verify your email address by clicking the button below:</p>
-              
-              <div style="text-align: center;">
-                <a href="${verificationUrl}" class="button">Verify Email Address</a>
-              </div>
-              
-              <p>Or copy and paste this link into your browser:</p>
-              <p style="word-break: break-all; color: #0891b2;">${verificationUrl}</p>
-              
-              <div class="warning">
-                <strong>⏰ Important:</strong> This verification link will expire in 24 hours for security reasons.
-              </div>
-              
-              <p>If you didn't create an account with Afford Egypt, you can safely ignore this email.</p>
-            </div>
-            
-            <div class="footer">
-              <p>Afford Egypt - Making Egypt Accessible</p>
-              <p>This is an automated email. Please do not reply directly to this message.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    const body =
+      paragraph(
+        'Confirm your email address and your account is ready to use.',
+        26,
+      ) +
+      button(verificationUrl, 'Verify my email') +
+      paragraph(
+        `<span style="color:${BRAND.muted}; font-size:14px;">Button not working? Paste this into your browser:</span><br /><a href="${verificationUrl}" style="color:${BRAND.brandDeep}; font-size:14px; word-break:break-all;">${esc(verificationUrl)}</a>`,
+        24,
+      ) +
+      divider() +
+      paragraph(
+        `<span style="color:${BRAND.muted}; font-size:14px;">This link expires in 24 hours. If you didn't create an AffordEgypt account, you can ignore this email — nothing will happen.</span>`,
+        24,
+      ) +
+      cardEnd();
+
+    return renderEmail({
+      title: 'Verify your email — AffordEgypt',
+      preheader: 'One click to confirm your email address. The link expires in 24 hours.',
+      eyebrow: 'Confirm your email',
+      heading: `Welcome, ${String(username || '').trim().split(/\s+/)[0] || 'there'}`,
+      body,
+    });
   }
 
   private generateConfirmationEmail(booking: Booking, quoteData: any, totalAmount: string): string {
-    return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #0891b2; color: white; padding: 20px; text-align: center; }
-            .content { padding: 20px; background: #f9f9f9; }
-            .booking-details { background: white; padding: 15px; margin: 15px 0; border-radius: 5px; }
-            .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
-            .highlight { color: #0891b2; font-weight: bold; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Booking received — thank you, ${booking.customerName}</h1>
-              <p>We've received your booking request. Here's what happens next.</p>
-            </div>
+    const firstName = String(booking.customerName || '').trim().split(/\s+/)[0] || 'there';
+    const bookingUrl = `${emailLinks.SITE_URL}/booking-confirmation/${encodeURIComponent(booking.bookingReference)}`;
 
-            <div class="content">
-              <ol style="padding-left: 20px;">
-                <li style="margin-bottom: 14px;">
-                  <strong>We review your booking.</strong>
-                  Within 24 hours (usually much faster), our team confirms vehicle and guide availability for your dates.
-                </li>
-                <li style="margin-bottom: 14px;">
-                  <strong>We send your 10% deposit link.</strong>
-                  You'll receive a payment link via email — typically Tab.travel for international cards. The deposit is fully refundable up to 3 days before arrival.
-                </li>
-                <li style="margin-bottom: 14px;">
-                  <strong>Your booking is confirmed once the deposit clears.</strong>
-                  The remaining 90% is paid on arrival in cash (EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader.
-                </li>
-                <li style="margin-bottom: 14px;">
-                  <strong>We meet you.</strong>
-                  On the day of your trip, our driver and licensed Egyptologist meet you at the agreed pickup point. You're set.
-                </li>
-              </ol>
+    const body =
+      // Reference and total first. These are the two things someone opens this
+      // mail to find, and they used to sit below a four-step explainer.
+      summaryPanel('Your booking', [
+        { label: 'Booking reference', value: booking.bookingReference, emphasis: true },
+        { label: 'Total', value: `LE ${formatMoney(totalAmount)}`, emphasis: true },
+        { label: 'Trip start', value: formatTripDate(booking.startDate) },
+        { label: 'Trip end', value: formatTripDate(booking.endDate) },
+      ]) +
+      button(bookingUrl, 'View your booking') +
+      divider() +
+      paragraph(
+        `<strong style="color:${BRAND.ink}; font-size:17px;">What happens next</strong>`,
+        26,
+      ) +
+      stepList([
+        {
+          title: 'We review your booking',
+          body: 'Within 24 hours — usually much faster — we confirm vehicle and guide availability for your dates.',
+        },
+        {
+          title: 'We send your 10% deposit link',
+          body: 'A payment link by email, typically Tab.travel for international cards. The deposit is fully refundable up to 3 days before arrival.',
+        },
+        {
+          title: 'Your booking is confirmed once the deposit clears',
+          body: 'The remaining 90% is paid on arrival — cash in EGP, USD, EUR or GBP, a second payment link, or by card on our mobile reader.',
+        },
+        {
+          title: 'We meet you',
+          body: 'On the day, your driver and licensed Egyptologist meet you at the agreed pickup point.',
+        },
+      ]) +
+      divider() +
+      summaryPanel('Your details', [
+        { label: 'Name', value: booking.customerName },
+        { label: 'Email', value: booking.customerEmail },
+        { label: 'Phone', value: booking.customerPhone || '' },
+      ]) +
+      // The old footer said "do not reply" two lines after inviting a reply.
+      // hello@affordegypt.com is a monitored inbox, so the invitation is the
+      // true half and the boilerplate was the wrong half.
+      paragraph(
+        `Something look wrong, or want to change a detail? Reply to this email — it reaches a real person — or message us on <a href="${emailLinks.WHATSAPP_URL}" style="color:${BRAND.brandDeep}; font-weight:600; text-decoration:none;">WhatsApp</a>. Quote <strong style="color:${BRAND.ink};">${esc(booking.bookingReference)}</strong> and we'll pick it straight up.`,
+        26,
+      ) +
+      cardEnd();
 
-              <div class="booking-details">
-                <h3>Booking Information</h3>
-                <p><strong>Booking Reference:</strong> <span class="highlight">${booking.bookingReference}</span></p>
-                <p><strong>Total Amount:</strong> LE ${Math.round(parseFloat(totalAmount)).toLocaleString('en-US')}</p>
-                ${booking.startDate ? `<p><strong>Trip Start Date:</strong> ${new Date(booking.startDate).toLocaleDateString()}</p>` : ''}
-                ${booking.endDate ? `<p><strong>Trip End Date:</strong> ${new Date(booking.endDate).toLocaleDateString()}</p>` : ''}
-              </div>
-
-              <div class="booking-details">
-                <h3>Contact Information</h3>
-                <p><strong>Email:</strong> ${booking.customerEmail}</p>
-                ${booking.customerPhone ? `<p><strong>Phone:</strong> ${booking.customerPhone}</p>` : ''}
-              </div>
-
-              <p>If you have any questions, just reply to this email with your booking reference.</p>
-            </div>
-            
-            <div class="footer">
-              <p>Afford Egypt - Making Egypt Accessible</p>
-              <p>This is an automated email. Please do not reply directly to this message.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    return renderEmail({
+      title: `Booking received — ${booking.bookingReference}`,
+      preheader: `Reference ${booking.bookingReference} · LE ${formatMoney(totalAmount)}. Your 10% deposit link follows within 24 hours.`,
+      eyebrow: 'Booking received',
+      heading: `Thank you, ${firstName} — we have your booking`,
+      lede: 'Nothing to pay yet. We check availability first, then send your deposit link.',
+      body,
+    });
   }
 
   private generateReminderEmail(booking: Booking, quoteData: any, daysUntilTrip: number): string {
-    return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #0891b2; color: white; padding: 20px; text-align: center; }
-            .content { padding: 20px; background: #f9f9f9; }
-            .countdown { background: #0891b2; color: white; padding: 15px; text-align: center; border-radius: 5px; margin: 15px 0; }
-            .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Your Egypt Adventure Awaits!</h1>
-            </div>
-            
-            <div class="content">
-              <h2>Dear ${booking.customerName},</h2>
-              
-              <div class="countdown">
-                <h2>${daysUntilTrip} Days Until Your Trip!</h2>
-                <p>Booking Reference: ${booking.bookingReference}</p>
-              </div>
+    const firstName = String(booking.customerName || '').trim().split(/\s+/)[0] || 'there';
+    const dayWord = daysUntilTrip === 1 ? 'day' : 'days';
 
-              <p>We're excited that your Egypt adventure is approaching! Here are some important reminders:</p>
-              
-              <ul>
-                <li>Ensure your passport is valid for at least 6 months</li>
-                <li>Check visa requirements for your nationality</li>
-                <li>Pack comfortable walking shoes for sightseeing</li>
-                <li>Bring sun protection (hat, sunscreen, sunglasses)</li>
-                <li>Have some Egyptian pounds for small purchases</li>
-              </ul>
+    const body =
+      summaryPanel('Your trip', [
+        { label: 'Starts in', value: `${daysUntilTrip} ${dayWord}`, emphasis: true },
+        { label: 'Booking reference', value: booking.bookingReference },
+        { label: 'Trip start', value: formatTripDate(booking.startDate) },
+      ]) +
+      paragraph(
+        `<strong style="color:${BRAND.ink}; font-size:17px;">Before you fly</strong>`,
+        28,
+      ) +
+      checkList([
+        'Passport valid for at least 6 months beyond your arrival date',
+        'Visa requirements checked for your nationality',
+        'Comfortable walking shoes — the sites are bigger than they look',
+        'Sun protection: hat, sunscreen, sunglasses',
+        'Some Egyptian pounds for small purchases and tips',
+      ]) +
+      divider() +
+      paragraph(
+        `We'll be in touch with your final pickup point and timings closer to the day. Questions before then? Reply here or message us on <a href="${emailLinks.WHATSAPP_URL}" style="color:${BRAND.brandDeep}; font-weight:600; text-decoration:none;">WhatsApp</a>.`,
+        26,
+      ) +
+      cardEnd();
 
-              <p>We'll contact you with final arrangements and meeting points closer to your travel date.</p>
-              <p>Safe travels!</p>
-            </div>
-            
-            <div class="footer">
-              <p>Afford Egypt - Making Egypt Accessible</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    return renderEmail({
+      title: `${daysUntilTrip} ${dayWord} until your trip — ${booking.bookingReference}`,
+      preheader: `${daysUntilTrip} ${dayWord} to go. A short checklist before you travel.`,
+      eyebrow: 'Trip reminder',
+      heading: `${firstName}, Egypt is ${daysUntilTrip} ${dayWord} away`,
+      lede: 'A few things worth sorting before you fly.',
+      body,
+    });
   }
 
   private generateStatusUpdateEmail(booking: Booking, status: string): string {
@@ -324,40 +314,31 @@ class TransactionalEmailService implements EmailService {
     };
 
     const message = statusMessages[status as keyof typeof statusMessages] || `Your booking status has been updated to: ${status}`;
+    const firstName = String(booking.customerName || '').trim().split(/\s+/)[0] || 'there';
+    const statusLabel = status.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+    const bookingUrl = `${emailLinks.SITE_URL}/booking-confirmation/${encodeURIComponent(booking.bookingReference)}`;
 
-    return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #0891b2; color: white; padding: 20px; text-align: center; }
-            .content { padding: 20px; background: #f9f9f9; }
-            .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Booking Status Update</h1>
-            </div>
-            
-            <div class="content">
-              <h2>Dear ${booking.customerName},</h2>
-              <p>${message}</p>
-              <p><strong>Booking Reference:</strong> ${booking.bookingReference}</p>
-              <p>If you have any questions about this update, please contact us with your booking reference.</p>
-            </div>
-            
-            <div class="footer">
-              <p>Afford Egypt - Making Egypt Accessible</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    const body =
+      summaryPanel('Your booking', [
+        { label: 'Status', value: statusLabel, emphasis: true },
+        { label: 'Booking reference', value: booking.bookingReference },
+        { label: 'Trip start', value: formatTripDate(booking.startDate) },
+      ]) +
+      button(bookingUrl, 'View your booking') +
+      divider() +
+      paragraph(
+        `Questions about this update? Reply to this email or message us on <a href="${emailLinks.WHATSAPP_URL}" style="color:${BRAND.brandDeep}; font-weight:600; text-decoration:none;">WhatsApp</a>, quoting <strong style="color:${BRAND.ink};">${esc(booking.bookingReference)}</strong>.`,
+        26,
+      ) +
+      cardEnd();
+
+    return renderEmail({
+      title: `Booking update — ${booking.bookingReference}`,
+      preheader: `${message}. Reference ${booking.bookingReference}.`,
+      eyebrow: 'Booking update',
+      heading: `${firstName}, ${message.charAt(0).toLowerCase()}${message.slice(1)}`,
+      body,
+    });
   }
 
   private calculateDaysUntilTrip(startDate: Date | null): number {
@@ -368,8 +349,45 @@ class TransactionalEmailService implements EmailService {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
 
+  /**
+   * Plain-text alternative.
+   *
+   * The old version was `replace(/<[^>]*>/g,'')` collapsed to one line. Against
+   * the table-based templates that yields a single unreadable paragraph that
+   * also leaks the <style> rules, the hidden preheader and a run of &nbsp;
+   * spacers — and the text part is what plain-text clients, some
+   * accessibility tooling and several spam filters actually read. Drop the
+   * non-content first, then map block boundaries to newlines.
+   */
   private stripHtml(html: string): string {
-    return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    return html
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/<head[\s\S]*?<\/head>/gi, '')
+      .replace(/<style[\s\S]*?<\/style>/gi, '')
+      // Hidden preheader/spacer divs: useful in the inbox, noise in the text part.
+      .replace(/<div[^>]*display:\s*none[\s\S]*?<\/div>/gi, '')
+      .replace(/<a\b[^>]*href="(mailto:)?([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_m, _mail, href, label) => {
+        const text = String(label).replace(/<[^>]*>/g, '').trim();
+        // Image-only links (the logo) have no text. Emitting the bare URL put a
+        // naked link on line 1 of every message, which reads as a broken email.
+        if (!text) return '';
+        return href.includes(text) ? href : `${text} (${href})`;
+      })
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/(p|h1|h2|h3|tr|li|div|table)>/gi, '\n')
+      .replace(/<[^>]*>/g, '')
+      .replace(/&nbsp;|&#8203;|&#847;/g, ' ')
+      .replace(/&middot;/g, '·')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&#10003;/g, '-')
+      .replace(/[ \t]+/g, ' ')
+      .replace(/ *\n */g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
   }
 
   async sendAdminNotification(booking: any, quote: any, type: 'confirmation' | 'reminder'): Promise<boolean> {

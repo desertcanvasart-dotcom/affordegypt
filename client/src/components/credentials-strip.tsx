@@ -2,9 +2,10 @@
 // stat row (4.9/5 / 2,500+ / Verified Guides / All Egypt) — those numbers
 // don't do as much trust work as the registered-operator framing here.
 //
-// Figures come from lib/operator-facts so this strip and the review page can't
-// disagree, which they previously did (2,500+ here vs 2,000+ there).
-import { OPERATOR, TRAVELLERS_SERVED } from "@/lib/operator-facts";
+// Figures come from shared/operator-facts so this strip, the review page and
+// the transactional emails can't disagree, which they previously did
+// (2,500+ here vs 2,000+ there).
+import { OPERATOR, TRAVELLERS_SERVED } from "@shared/operator-facts";
 
 export default function CredentialsStrip() {
   return (

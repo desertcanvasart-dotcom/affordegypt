@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Star, Users, MapPin } from "lucide-react";
 import { ClientOnly } from "@/components/client-only";
 import { useQuery } from "@tanstack/react-query";
-import { TRAVELLERS_SERVED } from "@/lib/operator-facts";
+import { TRAVELLERS_SERVED } from "@shared/operator-facts";
 
 interface PublicReview {
   rating: number;
