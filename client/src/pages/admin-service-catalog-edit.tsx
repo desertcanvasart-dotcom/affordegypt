@@ -245,12 +245,12 @@ export default function AdminServiceCatalogEdit() {
       <div className="max-w-4xl mx-auto p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/admin/service-catalog">
-              <Button variant="outline" size="sm">
+            <Button asChild variant="outline" size="sm">
+              <Link href="/admin/service-catalog">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to catalog
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <h1 className="text-2xl font-bold">
               {isEdit ? "Edit service" : "New service"}
             </h1>

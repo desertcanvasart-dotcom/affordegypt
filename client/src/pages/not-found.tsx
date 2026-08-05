@@ -25,16 +25,16 @@ export default function NotFound() {
             home or build your trip quote in 60 seconds.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/">
-              <Button variant="outline" className="gap-2 w-full sm:w-auto">
+            <Button asChild variant="outline" className="gap-2 w-full sm:w-auto">
+              <Link href="/">
                 <Home className="w-4 h-4" /> Back to Home
-              </Button>
-            </Link>
-            <Link href="/pricing-tool">
-              <Button className="gap-2 w-full sm:w-auto">
+              </Link>
+            </Button>
+            <Button asChild className="gap-2 w-full sm:w-auto">
+              <Link href="/pricing-tool">
                 <Calculator className="w-4 h-4" /> Build Your Quote
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

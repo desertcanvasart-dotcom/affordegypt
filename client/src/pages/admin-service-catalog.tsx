@@ -89,20 +89,20 @@ export default function AdminServiceCatalog() {
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <Link href="/admin">
-              <Button variant="outline" size="sm">
+            <Button asChild variant="outline" size="sm">
+              <Link href="/admin">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to admin
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <h1 className="text-2xl font-bold">Service Catalog</h1>
           </div>
-          <Link href="/admin/service-catalog/new">
-            <Button size="sm">
+          <Button asChild size="sm">
+            <Link href="/admin/service-catalog/new">
               <Plus className="w-4 h-4 mr-2" />
               New service
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
 
         <Card>
@@ -197,9 +197,8 @@ export default function AdminServiceCatalog() {
                           {formatTimestamp(item.updatedAt)}
                         </TableCell>
                         <TableCell className="text-right">
-                          <Link href={`/admin/service-catalog/${item.id}/edit`}>
-                            <Button size="sm" variant="outline">Edit</Button>
-                          </Link>
+                          <Button asChild size="sm" variant="outline">
+                            <Link href={`/admin/service-catalog/${item.id}/edit`}>Edit</Link></Button>
                         </TableCell>
                       </TableRow>
                     );

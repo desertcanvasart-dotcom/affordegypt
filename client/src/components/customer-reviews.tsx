@@ -149,11 +149,11 @@ export default function CustomerReviews() {
 
         {reviews.length > 9 && (
           <div className="text-center">
-            <Link href="/reviews">
-              <Button variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg">
+              <Link href="/reviews">
                 View All Reviews ({reviews.length})
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         )}
       </div>

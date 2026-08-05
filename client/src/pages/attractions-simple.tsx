@@ -99,12 +99,12 @@ export default function AttractionsPage() {
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link href="/admin">
-              <Button variant="outline" size="sm" className="flex items-center space-x-2">
+            <Button asChild variant="outline" size="sm" className="flex items-center space-x-2">
+              <Link href="/admin">
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back to Dashboard</span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Attractions Management</h1>
               <p className="text-sm text-gray-600">Manage attractions and link them to specific cities</p>

@@ -152,16 +152,16 @@ export default function BudgetTravelEgypt() {
                 without breaking the bank. Your complete guide to affordable Egyptian adventures.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/#pricing-tool">
-                  <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
+                <Button asChild size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 text-lg">
+                  <Link href="/#pricing-tool">
                     Get Custom Quote
-                  </Button>
-                </Link>
-                <Link href="/travel-tips">
-                  <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                  <Link href="/travel-tips">
                     Read Travel Tips
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -553,16 +553,16 @@ export default function BudgetTravelEgypt() {
                 opt for economical accommodations and meals, and use public transportation wisely.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/#pricing-tool">
-                  <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">
+                <Button asChild size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">
+                  <Link href="/#pricing-tool">
                     Start Planning Your Trip
-                  </Button>
-                </Link>
-                <Link href="/travel-tips">
-                  <Button size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
+                  <Link href="/travel-tips">
                     Explore Travel Guides
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </section>
