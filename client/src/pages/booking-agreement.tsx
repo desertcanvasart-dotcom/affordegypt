@@ -38,8 +38,8 @@ export default function BookingAgreement() {
             
             <div className="prose prose-lg max-w-none">
               <div className="mb-8 text-gray-600">
-                <p><strong>{t("legal.effectiveDate")}</strong> March 2, 2020</p>
-                <p><strong>{t("legal.lastUpdated")}</strong> June 6, 2025</p>
+                <p><strong>{t("legal.effectiveDate")}</strong> August 5, 2026</p>
+                <p><strong>{t("legal.lastUpdated")}</strong> August 5, 2026</p>
                 <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
