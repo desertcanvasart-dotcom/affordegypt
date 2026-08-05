@@ -7,6 +7,7 @@ import { Ticket, MapPin, ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 
 interface EntranceFee {
   slug: string;
@@ -24,6 +25,7 @@ const titleCase = (s: string) =>
 // used to render the admin "Attractions Management" screen by mistake — the
 // admin tool now lives at /admin/attractions.
 export default function AttractionsPage() {
+  const { t } = useTranslation();
   const { data: fees = [], isLoading } = useQuery<EntranceFee[]>({
     queryKey: ["/api/entrance-fees"],
   });
@@ -37,8 +39,8 @@ export default function AttractionsPage() {
   return (
     <>
       <SeoMeta
-        title="Egypt Attractions & Entrance Fees | Real Prices, No Markup"
-        description="Official entrance fees for Egypt's attractions — pyramids, temples, museums — listed at real EGP prices with no markup. Plan your budget before you go."
+        title={t("attractionsPage.seoTitle")}
+        description={t("attractionsPage.seoDescription")}
         canonical="https://affordegypt.com/attractions"
       />
       <Navbar />
@@ -48,15 +50,13 @@ export default function AttractionsPage() {
         <section className="bg-gradient-to-br from-primary/10 via-primary/5 to-background py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Egypt Attractions & Entrance Fees
+              {t("attractionsPage.title")}
             </h1>
             <p className="text-xl text-muted-foreground mb-2">
-              The real, official ticket prices — the same ones we use in your
-              quote. No markup, no surprises at the gate.
+              {t("attractionsPage.subtitle")}
             </p>
             <p className="text-sm text-muted-foreground">
-              Entrance tickets are not included in AffordEgypt day rates — you
-              pay these prices directly, or add them to your quote.
+              {t("attractionsPage.note")}
             </p>
           </div>
         </section>
@@ -123,11 +123,10 @@ export default function AttractionsPage() {
           <div className="max-w-3xl mx-auto px-4 text-center">
             <Ticket className="w-10 h-10 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold mb-4">
-              Add tickets to your trip quote
+              {t("attractionsPage.ctaTitle")}
             </h2>
             <p className="text-muted-foreground mb-8">
-              Build your itinerary with a private car and licensed Egyptologist,
-              then add entrance fees only where you want them.
+              {t("attractionsPage.ctaBody")}
             </p>
             {/* asChild: a <button> inside an <a> is invalid HTML and left the
                 anchor a 20px-tall inline target. */}
