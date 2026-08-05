@@ -243,6 +243,9 @@ export default function MultiCityPricingTool() {
   const [tripDuration, setTripDuration] = useState<string>('');
   // Field-keyed validation messages for the step the user is trying to leave.
   const [stepErrors, setStepErrors] = useState<Record<string, string>>({});
+  // Day the user asked to edit from the review step, so we can scroll to it and
+  // mark it. Cleared once the highlight has served its purpose.
+  const [focusedDay, setFocusedDay] = useState<number | null>(null);
   const [step1DestinationId, setStep1DestinationId] = useState<string>('');
   const [globalTravelers, setGlobalTravelers] = useState<number>(1);
   const [tripStyle, setTripStyle] = useState<'private' | 'shared'>('private');
@@ -744,6 +747,36 @@ export default function MultiCityPricingTool() {
     }, 100);
   };
 
+  /**
+   * "Edit Day N" from the review step.
+   *
+   * Previously this was a bare setCurrentStep(2): the itinerary data survived
+   * (nothing clears cityServices), but the user landed at the top of step 2
+   * with no indication of which of their days they had asked to edit — on a
+   * five-day trip that means hunting for it. Scrolling to the card and marking
+   * it briefly is what makes the return *legible*, which is the part the audit
+   * was actually pointing at.
+   */
+  const editDay = (dayNumber: number) => {
+    setStepErrors({});
+    setFocusedDay(dayNumber);
+    setCurrentStep(2);
+    // After the step-2 tree has mounted.
+    setTimeout(() => {
+      document
+        .getElementById(`day-card-${dayNumber}`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
+  };
+
+  // Drop the highlight once it has done its job, so it doesn't linger as
+  // permanent decoration on a card the user has moved on from.
+  useEffect(() => {
+    if (focusedDay === null) return;
+    const id = setTimeout(() => setFocusedDay(null), 2500);
+    return () => clearTimeout(id);
+  }, [focusedDay]);
+
   const goToPreviousStep = () => {
     if (currentStep > 1) {
       setStepErrors({});
@@ -794,7 +827,14 @@ export default function MultiCityPricingTool() {
                 currentStep={currentStep} 
                 steps={steps}
                 onStepClick={(step) => {
-                  if (step <= currentStep) setCurrentStep(step);
+                  if (step > currentStep) return;
+                  setStepErrors({});
+                  setCurrentStep(step);
+                  // goToNextStep/goToPreviousStep both scroll; jumping via the
+                  // progress bar did not, so it could leave you mid-page.
+                  setTimeout(() => {
+                    stepContentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 100);
                 }}
               />
 
@@ -1082,7 +1122,15 @@ export default function MultiCityPricingTool() {
                             ? (city.selectedServices[0]?.name || "1 transfer")
                             : `${tCount} transfers`;
                         return (
-                          <Card key={index} className="p-4">
+                          <Card
+                            key={index}
+                            id={`day-card-${city.dayNumber}`}
+                            className={`p-4 transition-shadow duration-500 ${
+                              focusedDay === city.dayNumber
+                                ? "ring-2 ring-teal-500 ring-offset-2"
+                                : ""
+                            }`}
+                          >
                             {/* strip header */}
                             <div className="flex items-center gap-2 mb-3 pb-3 border-b">
                               <Badge className="bg-primary">Day {city.dayNumber}</Badge>
@@ -1384,7 +1432,7 @@ export default function MultiCityPricingTool() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  onClick={() => setCurrentStep(2)}
+                                  onClick={() => editDay(city.dayNumber)}
                                   className="text-primary hover:text-primary/80"
                                 >
                                   Edit Day {city.dayNumber}
