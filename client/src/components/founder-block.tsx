@@ -1,5 +1,8 @@
 // Founder note from Islam. Highest-leverage piece of writing on the page —
-// origin story + Capital Travel Service history + AffordEgypt thesis in 5 paragraphs.
+// origin story + operator history + AffordEgypt thesis in 5 paragraphs.
+// The parent operator is deliberately NOT named here: this block is a personal
+// note, and the legal entity and licence number are carried by the header, the
+// FAQ and the legal pages, which is where a reader goes to verify them.
 // Photo placeholder: replace /islam-photo.jpg with a real photo of Islam
 // (phone shot in Cairo or Siwa, daylight, looking at camera). DO NOT use
 // stock or AI-generated imagery here — that defeats the point of the block.
@@ -37,9 +40,9 @@ export default function FounderBlock() {
             </h2>
 
             <p className="leading-relaxed">
-              {"I grew up in Aswan and have run "}
-              <span className="font-semibold">Capital Travel Service</span>
-              {" — a licensed Egyptian tour operator — since 2003. We've taken thousands of travelers across Egypt: backpackers and families, honeymooners and solo first-timers."}
+              I grew up in Aswan and have run a licensed Egyptian tour operator
+              since 2003. We've taken thousands of travelers across Egypt:
+              backpackers and families, honeymooners and solo first-timers.
             </p>
 
             <p className="leading-relaxed">
@@ -51,11 +54,11 @@ export default function FounderBlock() {
             </p>
 
             <p className="leading-relaxed">
-              AffordEgypt is the third option. Same licensed guides as
-              Capital Travel Service, same vehicles, same standards — stripped down to
-              what you actually need. A private car. A real Egyptologist.
-              And the freedom to add tickets, meals, and experiences only
-              when you want them.
+              AffordEgypt is the third option. The same licensed guides we send
+              on our premium tours, the same vehicles, the same standards —
+              stripped down to what you actually need. A private car. A real
+              Egyptologist. And the freedom to add tickets, meals, and
+              experiences only when you want them.
             </p>
 
             <p className="text-lg font-semibold text-gray-900 pt-2">
