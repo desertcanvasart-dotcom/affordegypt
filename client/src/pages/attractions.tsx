@@ -129,11 +129,13 @@ export default function AttractionsPage() {
               Build your itinerary with a private car and licensed Egyptologist,
               then add entrance fees only where you want them.
             </p>
-            <Link href="/pricing-tool">
-              <Button size="lg" className="gap-2">
+            {/* asChild: a <button> inside an <a> is invalid HTML and left the
+                anchor a 20px-tall inline target. */}
+            <Button asChild size="lg" className="gap-2">
+              <Link href="/pricing-tool">
                 Build Your Quote <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </section>
       </div>

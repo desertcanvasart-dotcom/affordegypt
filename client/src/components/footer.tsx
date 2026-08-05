@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-6">
-              <Link href="/">
+              <Link href="/" className="flex min-h-11 items-center" aria-label="AffordEgypt home">
                 <img 
                   src="/images/logo-afford-egypt.png" 
                   alt="Afford Egypt Logo" 
@@ -29,7 +29,7 @@ export default function Footer() {
                 href="https://www.facebook.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center -m-2.5 text-gray-400 hover:text-primary transition-colors"
                 aria-label="Follow us on Facebook"
               >
                 <FaFacebookF className="w-5 h-5" />
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://www.instagram.com/affordegypt/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center -m-2.5 text-gray-400 hover:text-primary transition-colors"
                 aria-label="Follow us on Instagram"
               >
                 <FaInstagram className="w-5 h-5" />
@@ -47,7 +47,7 @@ export default function Footer() {
                 href="https://www.youtube.com/@affordegypt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center -m-2.5 text-gray-400 hover:text-primary transition-colors"
                 aria-label="Subscribe to our YouTube channel"
               >
                 <FaYoutube className="w-5 h-5" />

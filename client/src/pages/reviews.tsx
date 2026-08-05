@@ -242,16 +242,20 @@ export default function ReviewsPage() {
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
+                  aria-label="Grid view"
+                  aria-pressed={viewMode === "grid"}
                   onClick={() => setViewMode("grid")}
-                  className="rounded-r-none"
+                  className="min-h-11 min-w-11 rounded-r-none"
                 >
                   <Grid className="w-4 h-4" />
                 </Button>
                 <Button
                   variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
+                  aria-label="List view"
+                  aria-pressed={viewMode === "list"}
                   onClick={() => setViewMode("list")}
-                  className="rounded-l-none"
+                  className="min-h-11 min-w-11 rounded-l-none"
                 >
                   <List className="w-4 h-4" />
                 </Button>
@@ -417,6 +421,8 @@ export default function ReviewsPage() {
               <Button
                 variant="outline"
                 size="sm"
+                aria-label="Previous page"
+                className="min-h-11 min-w-11"
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
               >
@@ -454,6 +460,8 @@ export default function ReviewsPage() {
               <Button
                 variant="outline"
                 size="sm"
+                aria-label="Next page"
+                className="min-h-11 min-w-11"
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >

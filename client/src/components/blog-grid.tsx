@@ -150,11 +150,13 @@ export default function BlogGrid() {
               key={category.key}
               variant={selectedCategory === category.key ? "default" : "outline"}
               size="sm"
+              // size="sm" is 36px; the audit's 44px floor wins on a filter row
+              // that is thumb-operated on mobile.
               onClick={() => {
                 setSelectedCategory(category.key);
                 setVisiblePosts(3);
               }}
-              className={selectedCategory === category.key ? "bg-primary text-primary-foreground" : ""}
+              className={`min-h-11 min-w-11 ${selectedCategory === category.key ? "bg-primary text-primary-foreground" : ""}`}
             >
               {category.label}
             </Button>
@@ -208,7 +210,7 @@ export default function BlogGrid() {
                     asChild
                     variant="ghost"
                     size="sm"
-                    className="p-0 h-auto font-medium text-primary hover:text-primary/80"
+                    className="inline-flex min-h-11 items-center p-0 font-medium text-primary hover:text-primary/80"
                   >
                     <Link href={POST_ROUTES[post.slug]} aria-label={`${t('blog.readMore')}: ${post.title}`}>
                       {t('blog.readMore')}
@@ -227,7 +229,7 @@ export default function BlogGrid() {
             <Button 
               variant="outline" 
               onClick={loadMore}
-              className="flex items-center gap-2"
+              className="flex min-h-11 items-center gap-2"
             >
 {t('blog.loadMore')}
               <ChevronDown className="w-4 h-4" />

@@ -149,12 +149,12 @@ export default function CairoGuideServices() {
                 {t("guideServices.cairo.heroSubtitle", { interpolation: { guidePrice: formatLE("cairo-guide-services"), guideCarPrice: formatLE("cairo-guide-car") } })}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/transfers">
-                  <Button size="lg" className="text-lg px-8">
+                <Button asChild size="lg" className="text-lg px-8">
+                  <Link href="/transfers">
                     {t("guideServices.common.bookNow")}
                     <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
                 <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="lg" className="text-lg px-8">
                     <Phone className="w-5 h-5 mr-2" />
@@ -320,12 +320,12 @@ export default function CairoGuideServices() {
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("guideServices.cairo.pricingInfo")}
                 </p>
-                <Link href="/transfers">
-                  <Button size="lg">
+                <Button asChild size="lg">
+                  <Link href="/transfers">
                     {t("guideServices.common.getInstantQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -339,12 +339,13 @@ export default function CairoGuideServices() {
               {t("guideServices.cairo.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/pricing-tool">
-                <Button size="lg" variant="secondary" className="text-lg px-8">
+              <Button asChild size="lg" variant="secondary" className="text-lg px-8">
+                <Link href="/pricing-tool">
                   Book Online Now
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
+                </Link>
+
+              </Button>
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="text-lg px-8 bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary">
                   <Phone className="w-5 h-5 mr-2" />

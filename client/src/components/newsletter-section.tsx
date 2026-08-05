@@ -86,7 +86,11 @@ export default function NewsletterSection() {
               placeholder={t('footer.newsletter.placeholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-12 bg-white/95 text-gray-900 border-0 placeholder:text-gray-500 focus:ring-2 focus:ring-white"
+              // sm:flex-1, not flex-1. The wrapper is `flex flex-col sm:flex-row`,
+              // so on mobile the main axis is VERTICAL and `flex: 1 1 0%` was
+              // collapsing h-12 to a 35.5px content-height box. Scoping the
+              // flex to the row breakpoint lets the 48px height stand on phones.
+              className="sm:flex-1 h-12 bg-white/95 text-gray-900 border-0 placeholder:text-gray-500 focus:ring-2 focus:ring-white"
               disabled={newsletterMutation.isPending}
             />
             <Button 
