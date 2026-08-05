@@ -6,6 +6,8 @@ import {
   summaryPanel,
   stepList,
   checkList,
+  heroStat,
+  callout,
   button,
   divider,
   cardEnd,
@@ -411,146 +413,88 @@ class TransactionalEmailService implements EmailService {
   }
 
   private generateAdminNotificationEmail(booking: any, quote: any, jsonBlob: any, type: 'confirmation' | 'reminder'): string {
-    const formatPrice = (price: number | string) => {
-      const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-      if (Number.isNaN(numPrice)) return '0';
-      return Math.round(numPrice).toLocaleString('en-US');
-    };
+    const total = typeof booking.totalAmount === 'string' ? parseFloat(booking.totalAmount) : Number(booking.totalAmount);
+    const deposit = Number.isFinite(total) ? total * 0.1 : NaN;
+    const phoneDigits = String(booking.customerPhone || '').replace(/\D/g, '');
 
-    return `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>New Booking Notification</title>
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: #0d9488; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-          .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
-          .booking-details { background: white; padding: 15px; border-radius: 6px; margin: 15px 0; }
-          .detail-row { display: flex; justify-content: space-between; margin: 8px 0; padding: 8px 0; border-bottom: 1px solid #eee; }
-          .detail-label { font-weight: bold; color: #0d9488; }
-          .total { background: #0d9488; color: white; padding: 15px; text-align: center; border-radius: 6px; font-size: 18px; font-weight: bold; }
-          .status { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
-          .status.paid { background: #dcfce7; color: #16a34a; }
-          .status.pending { background: #fef3c7; color: #d97706; }
-          .status.failed { background: #fee2e2; color: #dc2626; }
-        </style>
-      </head>
-      <body>
-        <div class="header">
-          <h1>🔔 New booking — send Tab.travel deposit link</h1>
-          <p>${type === 'confirmation'
-            ? 'A new booking request was just received. Send the customer a Tab.travel deposit link for 10% of the total below.'
-            : 'A trip reminder was sent to a customer.'}</p>
-        </div>
+    /**
+     * The operational truth is the payment state, not bookingStatus.
+     *
+     * Every booking is written with bookingStatus "confirmed" at creation
+     * (server/routes/bookings.ts, and the column default), so this email used
+     * to announce "PAYMENT: PENDING / BOOKING: CONFIRMED" on a booking nobody
+     * had paid for — while the customer's own email says it is confirmed once
+     * the deposit clears. Showing the derived state stops the alert
+     * contradicting the promise; the underlying default is a separate fix.
+     */
+    const awaitingDeposit = booking.paymentStatus !== 'paid';
+    const stateLabel = awaitingDeposit ? 'Awaiting deposit' : 'Deposit received';
 
-        <div class="content">
-          ${type === 'confirmation' ? `
-          <div class="booking-details" style="background:#fff7e6; border-left:4px solid #f59e0b;">
-            <h3 style="margin-top:0;">Action required</h3>
-            <p><strong>1.</strong> Confirm vehicle and guide availability for the dates below.</p>
-            <p><strong>2.</strong> Send a Tab.travel payment link for 10% of the total to the customer's email.</p>
-            <p><strong>3.</strong> Booking is confirmed once the deposit clears.</p>
-          </div>
-          ` : ''}
-          <div class="booking-details">
-            <h3>Booking Information</h3>
-            <div class="detail-row">
-              <span class="detail-label">Booking Reference:</span>
-              <span>${booking.bookingReference}</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Customer Name:</span>
-              <span>${booking.customerName}</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Email:</span>
-              <span>${booking.customerEmail}</span>
-            </div>
-            ${booking.customerPhone ? `
-            <div class="detail-row">
-              <span class="detail-label">Phone:</span>
-              <span>${booking.customerPhone}</span>
-            </div>
-            ` : ''}
-            <div class="detail-row">
-              <span class="detail-label">Payment Status:</span>
-              <span class="status ${booking.paymentStatus}">${booking.paymentStatus.toUpperCase()}</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Booking Status:</span>
-              <span class="status ${booking.bookingStatus}">${booking.bookingStatus.toUpperCase()}</span>
-            </div>
-            ${booking.startDate ? `
-            <div class="detail-row">
-              <span class="detail-label">Travel Date:</span>
-              <span>${new Date(booking.startDate).toLocaleDateString('en-GB')}</span>
-            </div>
-            ` : ''}
-          </div>
+    const body =
+      (type === 'confirmation'
+        ? callout(
+            'Action required',
+            `<strong style="color:${BRAND.ink};">1.</strong> Confirm vehicle and guide availability for the dates below.<br />
+             <strong style="color:${BRAND.ink};">2.</strong> Send a Tab.travel payment link for the deposit amount to the customer.<br />
+             <strong style="color:${BRAND.ink};">3.</strong> Booking is confirmed once the deposit clears.`,
+          )
+        : '') +
+      (type === 'confirmation' && Number.isFinite(deposit)
+        ? heroStat('Deposit to collect (10%)', `LE ${formatMoney(deposit)}`, `of LE ${formatMoney(total)} total`)
+        : heroStat('Trip total', `LE ${formatMoney(total)}`)) +
+      // mailto:/wa.me turn "read the address, retype it elsewhere" into one tap.
+      button(`mailto:${booking.customerEmail}?subject=${encodeURIComponent(`Your AffordEgypt deposit link — booking ${booking.bookingReference}`)}`, 'Email the customer') +
+      (phoneDigits
+        ? paragraph(
+            `<a href="https://wa.me/${phoneDigits}" style="color:${BRAND.brandDeep}; font-weight:600; text-decoration:none;">WhatsApp ${esc(booking.customerPhone)}</a>`,
+            14,
+          )
+        : '') +
+      summaryPanel('Booking', [
+        { label: 'Reference', value: booking.bookingReference, emphasis: true },
+        { label: 'State', value: stateLabel },
+        { label: 'Travel date', value: formatTripDate(booking.startDate) },
+        { label: 'Travellers', value: jsonBlob?.travelers ? String(jsonBlob.travelers) : '' },
+        { label: 'Guide language', value: jsonBlob?.language || '' },
+        { label: 'Vehicle', value: jsonBlob?.vehicleType || '' },
+      ]) +
+      summaryPanel('Customer', [
+        { label: 'Name', value: booking.customerName },
+        { label: 'Email', value: booking.customerEmail },
+        { label: 'Phone', value: booking.customerPhone || '' },
+      ]) +
+      (Array.isArray(jsonBlob?.itinerary) && jsonBlob.itinerary.length > 0
+        ? summaryPanel(
+            'Itinerary',
+            jsonBlob.itinerary.map((item: any, i: number) => ({
+              label: item.city || item.route || `Day ${i + 1}`,
+              value: item.description || item.date || 'Service included',
+            })),
+          )
+        : '') +
+      (Array.isArray(jsonBlob?.addons) && jsonBlob.addons.length > 0
+        ? summaryPanel(
+            'Add-ons',
+            jsonBlob.addons.map((a: any) => ({ label: a.name, value: `LE ${formatMoney(a.price)}` })),
+          )
+        : '') +
+      cardEnd();
 
-          ${jsonBlob?.travelers ? `
-          <div class="booking-details">
-            <h3>Trip Details</h3>
-            <div class="detail-row">
-              <span class="detail-label">Number of Travelers:</span>
-              <span>${jsonBlob.travelers}</span>
-            </div>
-            ${jsonBlob.language ? `
-            <div class="detail-row">
-              <span class="detail-label">Guide Language:</span>
-              <span>${jsonBlob.language}</span>
-            </div>
-            ` : ''}
-            ${jsonBlob.vehicleType ? `
-            <div class="detail-row">
-              <span class="detail-label">Vehicle Type:</span>
-              <span>${jsonBlob.vehicleType}</span>
-            </div>
-            ` : ''}
-          </div>
-          ` : ''}
-
-          ${jsonBlob?.itinerary && Array.isArray(jsonBlob.itinerary) && jsonBlob.itinerary.length > 0 ? `
-          <div class="booking-details">
-            <h3>Itinerary</h3>
-            ${jsonBlob.itinerary.map((item: any, index: number) => `
-              <div class="detail-row">
-                <span class="detail-label">${item.city || item.route || `Day ${index + 1}`}:</span>
-                <span>${item.description || item.date || 'Service included'}</span>
-              </div>
-            `).join('')}
-          </div>
-          ` : ''}
-
-          ${jsonBlob?.addons && jsonBlob.addons.length > 0 ? `
-          <div class="booking-details">
-            <h3>Add-ons</h3>
-            ${jsonBlob.addons.map((addon: any) => `
-              <div class="detail-row">
-                <span class="detail-label">${addon.name}:</span>
-                <span>LE ${formatPrice(addon.price)}</span>
-              </div>
-            `).join('')}
-          </div>
-          ` : ''}
-
-          <div class="total">
-            Total Amount: LE ${formatPrice(booking.totalAmount)}
-          </div>
-
-          <div class="booking-details">
-            <h3>Next steps</h3>
-            <p><strong>Customer email:</strong> ${booking.customerEmail}</p>
-            ${booking.customerPhone ? `<p><strong>Customer phone:</strong> ${booking.customerPhone}</p>` : ''}
-            <p><strong>What to do:</strong> ${type === 'confirmation' ? 'Send a Tab.travel deposit link for 10% of the total above to the customer.' : 'Ensure all arrangements are confirmed for the upcoming trip.'}</p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
+    return renderEmail({
+      audience: 'internal',
+      title: `New booking ${booking.bookingReference} — send deposit link`,
+      preheader: `${booking.customerName} · LE ${formatMoney(total)} · deposit LE ${formatMoney(deposit)} · ${formatTripDate(booking.startDate) || 'no date'}`,
+      eyebrow: type === 'confirmation' ? 'New booking' : 'Reminder sent',
+      heading:
+        type === 'confirmation'
+          ? `New booking from ${booking.customerName}`
+          : `Trip reminder sent to ${booking.customerName}`,
+      lede:
+        type === 'confirmation'
+          ? 'Check availability, then send the Tab.travel deposit link.'
+          : 'No action needed — logged for reference.',
+      body,
+    });
   }
 }
 
