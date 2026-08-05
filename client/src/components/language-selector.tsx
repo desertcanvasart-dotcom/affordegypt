@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
+import { useLocation } from 'wouter';
 import { Globe } from 'lucide-react';
 import { setLanguage } from '@/i18n';
+import { SLUG_MAPPINGS } from '@shared/public-routes';
 import {
   Select,
   SelectContent,
@@ -17,14 +19,54 @@ const languages = [
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
 ];
 
+type Lang = keyof typeof SLUG_MAPPINGS;
+
+/**
+ * The same page's path in another language.
+ *
+ * Public pages are served under translated slugs — /destinations, /reiseziele,
+ * /destinos, /destinations-fr and so on, all registered by
+ * createMultilingualRoute. Switching language used to change only the i18next
+ * state, leaving you on the previous language's URL: pick German on
+ * /destinations and you stayed on /destinations, which is both the wrong
+ * canonical and the reason it looked like nothing had happened.
+ *
+ * Returns null when the current path is not a translated public page (the
+ * planner, admin, booking flows), so those stay put.
+ */
+function translatePath(pathname: string, target: Lang): string | null {
+  const [, first, ...rest] = pathname.split('/');
+  if (!first) return null;
+
+  // Find the canonical English slug this path segment corresponds to, in any
+  // language — the visitor could be switching from any locale to any other.
+  let canonical: string | null = null;
+  for (const mapping of Object.values(SLUG_MAPPINGS)) {
+    for (const [en, translated] of Object.entries(mapping)) {
+      if (translated === first) { canonical = en; break; }
+    }
+    if (canonical) break;
+  }
+  if (!canonical) return null;
+
+  const next = (SLUG_MAPPINGS[target] as Record<string, string>)[canonical];
+  if (!next || next === first) return null;
+  return '/' + [next, ...rest].join('/');
+}
+
 export function LanguageSelector() {
   const { i18n } = useTranslation();
   const queryClient = useQueryClient();
+  const [location, setLocation] = useLocation();
 
   const handleLanguageChange = (languageCode: string) => {
     // Switches i18next, persists the choice, and syncs <html lang>. This is the
     // only place a language preference is recorded — see client/src/i18n/index.ts.
     setLanguage(languageCode);
+
+    // Then move to that language's URL for this page, if one exists.
+    const next = translatePath(location, languageCode as Lang);
+    if (next) setLocation(next);
 
     // Clear all cached queries to force refetch with new language
     queryClient.invalidateQueries();
