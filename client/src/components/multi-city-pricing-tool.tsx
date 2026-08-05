@@ -942,7 +942,15 @@ export default function MultiCityPricingTool() {
                             <Calendar className="w-4 h-4 text-teal-600" />
                             When?
                           </Label>
-                          <label htmlFor="just-exploring" className="flex items-center gap-1.5 text-xs text-gray-500 cursor-pointer select-none">
+                          {/* The Radix checkbox renders 14x14. The label is the
+                              real hit area, and at 89x16 it was far under the
+                              44px minimum — on a control in the quote builder's
+                              critical path. Padding lifts the combined target
+                              without moving the checkbox visually. */}
+                          <label
+                            htmlFor="just-exploring"
+                            className="flex min-h-11 items-center gap-1.5 px-2 -mr-2 text-xs text-gray-500 cursor-pointer select-none"
+                          >
                             <Checkbox
                               id="just-exploring"
                               // Radix renders a <button role="checkbox">, whose only

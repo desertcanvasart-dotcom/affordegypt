@@ -19,11 +19,17 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
+      // 44px is the touch-target floor the audit asked for (Apple HIG / WCAG
+      // AAA 2.5.5; WCAG 2.2 AA only requires 24px). Raising the primitive fixes
+      // every call site at once — the alternative was patching ~30 buttons
+      // individually and missing the next one.
+      // `sm` stays compact for dense desktop UI; the touch-critical `sm` call
+      // sites carry min-h-11 locally.
       size: {
-        default: "h-10 px-4 py-2",
+        default: "h-11 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {
