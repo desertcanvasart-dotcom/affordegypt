@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 /**
  * "On this page" navigation for the long-form guide pages.
@@ -41,6 +42,12 @@ export default function GuideToc({
 }: {
   minHeadings?: number;
 }) {
+  // Language is a dependency, not decoration. Headings render from translated
+  // content, and i18n applies the visitor's language AFTER first paint (see
+  // client/src/i18n/index.ts). Scanning only on mount captured the English
+  // headings and never re-read them, so every guide in a non-English locale
+  // showed a German/French/Spanish article under an English table of contents.
+  const { i18n } = useTranslation();
   const [items, setItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -73,8 +80,8 @@ export default function GuideToc({
       found.push({ id: h.id, text });
     }
 
-    if (found.length >= minHeadings) setItems(found);
-  }, [minHeadings]);
+    setItems(found.length >= minHeadings ? found : []);
+  }, [minHeadings, i18n.language]);
 
   // Active section = the last heading whose top has scrolled past the sticky
   // chrome. A plain scroll listener rather than IntersectionObserver: an

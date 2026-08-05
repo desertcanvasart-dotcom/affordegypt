@@ -1,15 +1,17 @@
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 import { articleSchema } from "@/lib/article-schema";
 import Navbar from "@/components/navbar";
 import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
 
 export default function TravelTips() {
+  const { t } = useTranslation();
   return (
     <>
       <SeoMeta
-        title="Egypt Travel Tips | What Locals Wish You Knew"
-        description="Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong."
+        title={t("travelTips.seoTitle")}
+        description={t("travelTips.seoDescription")}
         canonical="https://affordegypt.com/travel-tips"
         ogImage="https://affordegypt.com/images/giza-pyramids.jpg"
         schema={articleSchema({
@@ -34,31 +36,31 @@ export default function TravelTips() {
           <div className="absolute inset-0 bg-black/50 pointer-events-none" />
           <div className="container mx-auto px-4 relative">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
-              {"Egypt Budget Travel "}
+              {t("travelTips.h1a")}
               <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
-                Made Simple
+                {t("travelTips.h1b")}
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-balance text-center">
-              Your ultimate 2026 guide to budget travel in Egypt.<br/>
-              Get insider tips on transport, food, accommodation, and attractions.
+              {t("travelTips.heroTagline")}<br/>
+              {t("travelTips.heroLead")}
             </p>
             
             {/* Process Steps */}
             <div className="flex flex-wrap justify-center gap-4 mt-12 mb-8">
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
-                <h4 className="font-semibold mb-2 text-green-primary">Plan & Prepare</h4>
+                <h4 className="font-semibold mb-2 text-green-primary">{t("travelTips.step1")}</h4>
                 <p className="text-sm text-white/80">Visas, timing, and essential checklists.</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
-                <h4 className="font-semibold mb-2 text-green-primary">Budget & Book</h4>
+                <h4 className="font-semibold mb-2 text-green-primary">{t("travelTips.step2")}</h4>
                 <p className="text-sm text-white/80">Master your spending and find great deals.</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
-                <h4 className="font-semibold mb-2 text-green-primary">Explore Smartly</h4>
+                <h4 className="font-semibold mb-2 text-green-primary">{t("travelTips.step3")}</h4>
                 <p className="text-sm text-white/80">Navigate like a local and see the best sights.</p>
               </div>
             </div>
@@ -74,10 +76,10 @@ export default function TravelTips() {
           {/* Introduction */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-              Why Egypt in 2026 Is a Budget Traveler's Dream
+              {t("travelTips.whyTitle")}
             </h2>
             <p className="text-lg leading-relaxed mb-6">
-              So, why does Egypt top the list for affordable travel in 2026? Let's start with the exchange rate. If you're arriving with US dollars, euros, or pounds, your money can go a long way here. The Egyptian Pound has seen some ups and downs over the past few years, and while inflation remains a concern locally, it often works in your favour as a visitor. Hotels, meals, transport, and even museum tickets can feel surprisingly affordable—especially when compared to what you'd spend for a similar experience in Europe or North America.
+              {t("travelTips.whyP1")}
             </p>
             <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-6">
               <p className="mb-0">
@@ -85,7 +87,7 @@ export default function TravelTips() {
               </p>
             </div>
             <p className="text-lg leading-relaxed">
-              Another bonus? Egypt is actively investing in its tourism scene. Beyond the timeless pyramids and temple ruins, you'll now find cutting-edge museums, interactive exhibitions, and even digital experiences that blend ancient history with modern storytelling. And since many of these are newly launched, they often come with introductory pricing—a win for travelers who want more for less.
+              {t("travelTips.whyP2")}
             </p>
           </section>
 
@@ -93,20 +95,20 @@ export default function TravelTips() {
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-                Best Times to Visit on a Budget
+                {t("travelTips.bestTimesTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-8">
-                When it comes to visiting Egypt, timing really is everything—especially if you're trying to stretch your budget without compromising comfort or adventure. Choosing the right season can make all the difference.
+                {t("travelTips.bestTimesLead")}
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                   <div className="text-2xl text-primary mb-4">🌿</div>
-                  <h4 className="text-xl font-semibold mb-2">Spring & Autumn: The Sweet Spot</h4>
+                  <h4 className="text-xl font-semibold mb-2">{t("travelTips.seasonA")}</h4>
                   <p><strong>(Mar–May & Sep–Nov)</strong> The perfect mix of decent weather, manageable crowds, and affordable prices. Airlines and hotels are often more generous with their deals. This is the best value for money.</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                   <div className="text-2xl text-primary mb-4">☀️</div>
-                  <h4 className="text-xl font-semibold mb-2">Summer: Low Prices, High Heat</h4>
+                  <h4 className="text-xl font-semibold mb-2">{t("travelTips.seasonB")}</h4>
                   <p><strong>(Jun–Aug)</strong> If you don't mind serious heat, this could be your budget jackpot. Tailor your itinerary wisely with coastal time in Alexandria or Dahab. You'll find some of the lowest prices of the year.</p>
                 </div>
               </div>
@@ -121,27 +123,27 @@ export default function TravelTips() {
           {/* Pre-Travel Checklist */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-              Essential Pre-Travel Checklist
+              {t("travelTips.checklistTitle")}
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              Getting your travel documents sorted in advance is one of the smartest (and easiest!) ways to keep your Egyptian adventure stress-free.
+              {t("travelTips.checklistLead")}
             </p>
             
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">📖</div>
                 <h4 className="text-xl font-semibold mb-2">1. Passport & Visa</h4>
-                <p>Ensure your passport is valid for at least six months past your arrival. Most travelers need a visa. The <strong>e-Visa (625 EGP)</strong> is highly recommended and can be applied for online. Visa on Arrival is an option for some, but check rules as they can change.</p>
+                <p>{t("travelTips.visaBody")} <strong>{t("travelTips.visaStrong")}</strong> {t("travelTips.visaBody2")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🛡️</div>
                 <h4 className="text-xl font-semibold mb-2">2. Travel Insurance</h4>
-                <p>Non-negotiable. It's your safety net for medical emergencies, trip cancellations, or lost baggage. Make sure your policy covers adventure activities like diving or hot air ballooning if they are on your itinerary.</p>
+                <p>{t("travelTips.insuranceBody")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">💉</div>
                 <h4 className="text-xl font-semibold mb-2">3. Health & Vaccinations</h4>
-                <p>No vaccines are mandatory for most, but Hepatitis A, Typhoid, and Tetanus are strongly recommended. Always drink bottled water and be mindful of food safety. Pack a small first-aid kit with essentials.</p>
+                <p>{t("travelTips.healthBody")}</p>
               </div>
             </div>
           </section>
@@ -150,13 +152,13 @@ export default function TravelTips() {
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-                Crafting Your Budget: What to Expect in 2026 💰
+                {t("travelTips.budgetTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-6">
                 Let's talk numbers. A smart budget is your best travel companion. We'll use an estimated rate of <strong>1 USD = 49.6 EGP</strong>, but always check current rates.
               </p>
 
-              <h3 className="text-2xl font-semibold mb-4">Your Daily Budget in Egypt</h3>
+              <h3 className="text-2xl font-semibold mb-4">{t("travelTips.dailyBudget")}</h3>
               <p className="text-lg leading-relaxed mb-6">
                 Most budget travelers in Egypt will find themselves spending somewhere between <strong>1,250 and 2,000 EGP a day.</strong> This sweet spot covers a hostel or budget hotel, local meals, public transport, and entrance fees to a major attraction or two.
               </p>
@@ -167,27 +169,27 @@ export default function TravelTips() {
                 </p>
               </div>
 
-              <h3 className="text-2xl font-semibold mb-4">Top Money-Saving Hacks 💡</h3>
+              <h3 className="text-2xl font-semibold mb-4">{t("travelTips.hacksTitle")}</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Eat Like a Local:</strong> A delicious meal of Koshary or a Falafel sandwich can cost as little as $1.</span>
+                  <span><strong>{t("travelTips.hack1L")}</strong> {t("travelTips.hack1")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Use Public Transport:</strong> The Cairo Metro is efficient, safe, and incredibly cheap (under $0.50 per ride).</span>
+                  <span><strong>{t("travelTips.hack2L")}</strong> {t("travelTips.hack2")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Get an ISIC Card:</strong> If you're a student under 30, this card can get you 50% off at most historical sites.</span>
+                  <span><strong>{t("travelTips.hack3L")}</strong> {t("travelTips.hack3")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Haggle with a Smile:</strong> In local markets (souks), friendly bargaining is part of the culture.</span>
+                  <span><strong>{t("travelTips.hack4L")}</strong> {t("travelTips.hack4")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Buy Water in Bulk:</strong> Purchase 1.5L bottles from supermarkets, not small ones from tourist stalls.</span>
+                  <span><strong>{t("travelTips.hack5L")}</strong> {t("travelTips.hack5")}</span>
                 </li>
               </ul>
             </div>
@@ -196,23 +198,23 @@ export default function TravelTips() {
           {/* Accommodation */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-              Affordable Accommodation 🛏️
+              {t("travelTips.stayTitle")}
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              Finding the right place to rest your head in Egypt doesn't have to drain your wallet. From social hostels to private guesthouses, you have great options.
+              {t("travelTips.stayLead")}
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
-                <h4 className="text-xl font-semibold mb-2">Hostels</h4>
-                <p>The budget traveler's basecamp. Perfect for meeting others. Dorm beds start at <strong>150–300 EGP</strong> per night in Cairo, Luxor, and Dahab.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.hostels")}</h4>
+                <p>{t("travelTips.hostelsBody")} <strong>{t("travelTips.hostelsStrong")}</strong> {t("travelTips.hostelsBody2")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
-                <h4 className="text-xl font-semibold mb-2">Budget Hotels</h4>
-                <p>For more privacy. You can find clean, private rooms for <strong>375–750 EGP</strong> per night, often with an en-suite bathroom and A/C.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.hotels")}</h4>
+                <p>{t("travelTips.hotelsBody")} <strong>{t("travelTips.hotelsStrong")}</strong> {t("travelTips.hotelsBody2")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
-                <h4 className="text-xl font-semibold mb-2">Nubian Stays</h4>
-                <p>In Aswan, stay in a colorful, family-run Nubian guesthouse for a unique cultural experience. Rates are modest and the memories are priceless.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.nubian")}</h4>
+                <p>{t("travelTips.nubianBody")}</p>
               </div>
             </div>
           </section>
@@ -221,24 +223,24 @@ export default function TravelTips() {
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-                Economical Eating: Savoring Egypt 🍲
+                {t("travelTips.eatTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-6">
-                Some of the most delicious meals you'll have in Egypt will be the cheapest. The golden rule is to follow the locals and embrace street food.
+                {t("travelTips.eatLead")}
               </p>
-              <h4 className="text-xl font-semibold mb-4">Must-Try Budget Eats:</h4>
+              <h4 className="text-xl font-semibold mb-4">{t("travelTips.eatsTitle")}</h4>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Koshari:</strong> The national dish. A hearty mix of rice, lentils, pasta, and spicy tomato sauce. <strong>Cost: &lt; 25 EGP.</strong></span>
+                  <span><strong>{t("travelTips.food1L")}</strong> {t("travelTips.food1")} <strong>{t("travelTips.food1C")}</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Ta'ameya (Falafel):</strong> Made from fava beans, served in fresh pita bread. <strong>Cost: ~ 12 EGP.</strong></span>
+                  <span><strong>{t("travelTips.food2L")}</strong> {t("travelTips.food2")} <strong>{t("travelTips.food2C")}</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Ful Medames:</strong> Slow-cooked fava beans, the breakfast of champions. <strong>Cost: &lt; 25 EGP.</strong></span>
+                  <span><strong>{t("travelTips.food3L")}</strong> {t("travelTips.food3")} <strong>{t("travelTips.food3C")}</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
@@ -256,31 +258,31 @@ export default function TravelTips() {
           {/* Transportation */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-              Getting Around Egypt Affordably 🚍
+              {t("travelTips.moveTitle")}
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              Egypt is a large country, but its network of trains, buses, and local transport makes it easy to explore on a budget.
+              {t("travelTips.moveLead")}
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚂</div>
-                <h4 className="text-xl font-semibold mb-2">Trains</h4>
-                <p>Scenic and economical for long distances. A 2nd Class AC seat from <strong>Cairo to Luxor costs foreigners ~775 EGP</strong>. It's a comfortable and classic way to travel.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.trains")}</h4>
+                <p>{t("travelTips.trainsBody")} <strong>{t("travelTips.trainsStrong")}</strong>. {t("travelTips.trainsBody2")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚌</div>
-                <h4 className="text-xl font-semibold mb-2">Buses</h4>
-                <p>The cheapest way to go. A bus from <strong>Cairo to Luxor can be as low as 200-275 EGP</strong>. Use companies like Go Bus or Blue Bus for reliable service.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.buses")}</h4>
+                <p>{t("travelTips.busesBody")} <strong>{t("travelTips.busesStrong")}</strong>. {t("travelTips.busesBody2")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚇</div>
-                <h4 className="text-xl font-semibold mb-2">Local Transport</h4>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.localTransport")}</h4>
                 <p>In Cairo, the <strong>Metro</strong> is your best friend. For taxis, use ride-hailing apps like <strong>Uber or Careem</strong> to get fair, transparent pricing and avoid haggling.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚐</div>
-                <h4 className="text-xl font-semibold mb-2">Microbuses</h4>
-                <p>For the truly adventurous. These are super cheap but challenging to navigate without Arabic. Best for short, common routes where you can follow the locals' lead.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.microbuses")}</h4>
+                <p>{t("travelTips.microBody")}</p>
               </div>
             </div>
           </section>
@@ -289,47 +291,47 @@ export default function TravelTips() {
           <section className="mb-16 bg-gray-50 -mx-4 px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-                Experiencing Egypt's Wonders on a Budget 🏛️
+                {t("travelTips.wondersTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-8">
                 Entrance fees can add up, but with smart planning, you can see the icons without emptying your wallet.
               </p>
 
-              <h3 className="text-2xl font-semibold mb-4">Free and Low-Cost Activities</h3>
+              <h3 className="text-2xl font-semibold mb-4">{t("travelTips.freeTitle")}</h3>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Wander the Souks:</strong> Get lost in the sights and sounds of Khan el-Khalili in Cairo or the Aswan Old Souk. Window shopping is free!</span>
+                  <span><strong>{t("travelTips.free1L")}</strong> {t("travelTips.free1")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Stroll the Corniche:</strong> Walk along the Nile promenade in Cairo, Luxor, or Aswan for beautiful sunset views.</span>
+                  <span><strong>{t("travelTips.free2L")}</strong> {t("travelTips.free2")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Explore Coptic & Islamic Cairo:</strong> Many of Cairo's oldest churches and mosques can be visited for free or a small donation.</span>
+                  <span><strong>{t("travelTips.free3L")}</strong> {t("travelTips.free3")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Visit Elephantine Island:</strong> Take the cheap public ferry in Aswan to wander through colourful Nubian villages.</span>
+                  <span><strong>{t("travelTips.free4L")}</strong> {t("travelTips.free4")}</span>
                 </li>
               </ul>
 
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg" id="itinerary">
-                <h3 className="text-2xl font-semibold mb-4">Sample 10-Day Budget Itinerary</h3>
+                <h3 className="text-2xl font-semibold mb-4">{t("travelTips.itinTitle")}</h3>
                 <p className="mb-4">This classic "Golden Triangle" route maximizes sights and minimizes costs.</p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
-                    <span><strong>Days 1-3: Cairo.</strong> See the Pyramids, Egyptian Museum, and Khan el-Khalili. Take overnight bus/train to Luxor.</span>
+                    <span><strong>{t("travelTips.itin1L")}</strong> {t("travelTips.itin1")}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
-                    <span><strong>Days 4-6: Luxor.</strong> Explore Karnak and Luxor Temples on the East Bank; Valley of the Kings and Hatshepsut Temple on the West Bank.</span>
+                    <span><strong>{t("travelTips.itin2L")}</strong> {t("travelTips.itin2")}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
-                    <span><strong>Days 7-8: Aswan.</strong> Visit Philae Temple, explore Nubian villages, and take a sunset felucca ride. Consider a budget tour to Abu Simbel.</span>
+                    <span><strong>{t("travelTips.itin3L")}</strong> {t("travelTips.itin3")}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
@@ -343,26 +345,26 @@ export default function TravelTips() {
           {/* Safety */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6">
-              Staying Safe, Healthy & Culturally Aware
+              {t("travelTips.safeTitle")}
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              A little preparation and respect go a long way in making your trip smooth and memorable.
+              {t("travelTips.safeLead")}
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">👗</div>
-                <h4 className="text-xl font-semibold mb-2">Respect Local Customs</h4>
-                <p>Dress modestly, especially when visiting religious sites. A simple "Salam Alaikum" (hello) is always appreciated. Be respectful when taking photos of people.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.customs")}</h4>
+                <p>{t("travelTips.customsBody")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">💵</div>
-                <h4 className="text-xl font-semibold mb-2">Understand Tipping</h4>
-                <p>Tipping (baksheesh) is a part of life. Carry small notes (5, 10, 20 EGP) for tour guides, hotel staff, and bathroom attendants. A good tip for a full-day guide is 80-100 EGP.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.tipping")}</h4>
+                <p>{t("travelTips.tippingBody")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">💡</div>
-                <h4 className="text-xl font-semibold mb-2">General Safety</h4>
-                <p>Stay aware in crowded areas, avoid demonstrations, and use ride-hailing apps at night. For women's safety, dressing modestly and joining group tours can help minimize unwanted attention.</p>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.safety")}</h4>
+                <p>{t("travelTips.safetyBody")}</p>
               </div>
             </div>
           </section>
@@ -370,10 +372,10 @@ export default function TravelTips() {
           {/* Conclusion */}
           <section className="text-center py-12">
             <h2 className="text-3xl font-bold text-foreground border-b-4 border-primary pb-2 mb-6 inline-block">
-              Your Egyptian Dream Awaits!
+              {t("travelTips.ctaTitle")}
             </h2>
             <p className="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
-              Traveling to Egypt in 2026 on a budget is not only feasible but incredibly rewarding. With careful planning, an adventurous spirit, and a willingness to embrace the local culture, the timeless wonders of this ancient land are well within your reach.
+              {t("travelTips.ctaBody")}
             </p>
             <a href="#" onClick={() => window.scrollTo(0, 0)} className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
               Back to Top ↑
