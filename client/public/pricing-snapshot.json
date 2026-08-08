@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-04T23:02:52.330Z",
+  "generatedAt": "2026-08-08T16:29:30.086Z",
   "source": "db",
   "currency": "EGP",
   "services": {
     "cairo-airport-transfer": {
-      "minPrice": "2025"
+      "minPrice": "1950"
     },
     "luxor-airport-transfer": {
-      "minPrice": "1115"
+      "minPrice": "1200"
     },
     "aswan-airport-transfer": {
-      "minPrice": "1125"
+      "minPrice": "1450"
     },
     "cairo-guide-services": {
       "minPrice": "2750"
@@ -22,28 +22,28 @@
       "minPrice": "2750"
     },
     "cairo-tour-car": {
-      "minPrice": "2875"
+      "minPrice": "2700"
     },
     "luxor-tour-car": {
-      "minPrice": "4125"
+      "minPrice": "3700"
     },
     "aswan-tour-car": {
-      "minPrice": "5005"
+      "minPrice": "4600"
     },
     "cairo-guide-car": {
-      "minPrice": "5625"
+      "minPrice": "5450"
     },
     "luxor-guide-car": {
-      "minPrice": "6875"
+      "minPrice": "6450"
     },
     "aswan-guide-car": {
-      "minPrice": "7755"
+      "minPrice": "7350"
     },
     "aswan-abu-simbel-car": {
-      "minPrice": "11275"
+      "minPrice": "8500"
     },
     "aswan-abu-simbel-guide-car": {
-      "minPrice": "14025"
+      "minPrice": "11250"
     }
   }
 }
