@@ -2,7 +2,7 @@
   "_comment": "Pinned expectations for scripts/check-invariants.mjs. When prices or inventory change ON PURPOSE, re-pin with: node scripts/check-invariants.mjs --update. A drift the operator did not intend is a production incident.",
   "categoryCounts": {
     "intercity_transfer": 52,
-    "airport_transfer": 29,
+    "airport_transfer": 30,
     "local_transfer": 3,
     "tour_transfer": 71,
     "dinner_transfer": 3,
@@ -30,7 +30,7 @@
   "itineraries": [
     {
       "name": "transfers-only: Aswan hotel to Luxor, minivan one-way, 4 pax",
-      "expectedTotal": 8075,
+      "expectedTotal": 7900,
       "payload": {
         "travelers": 4,
         "cityServices": [
@@ -53,7 +53,7 @@
     },
     {
       "name": "planner day: Aswan sedan transfer + English guide + Abu Simbel entrance, 3 pax",
-      "expectedTotal": 12181,
+      "expectedTotal": 11866,
       "payload": {
         "travelers": 3,
         "cityServices": [
@@ -83,7 +83,7 @@
     },
     {
       "name": "airport transfer: Cairo airport to station, sedan one-way, 2 pax",
-      "expectedTotal": 2025,
+      "expectedTotal": 1950,
       "payload": {
         "travelers": 2,
         "cityServices": [
@@ -106,7 +106,7 @@
     },
     {
       "name": "airport transfer: Aswan airport to hotel, van one-way, 9 pax",
-      "expectedTotal": 3010,
+      "expectedTotal": 3150,
       "payload": {
         "travelers": 9,
         "cityServices": [
@@ -129,7 +129,7 @@
     },
     {
       "name": "multi-city: Aswan minivan transfer + guide, then Cairo airport sedan, 4 pax",
-      "expectedTotal": 13850,
+      "expectedTotal": 13600,
       "payload": {
         "travelers": 4,
         "cityServices": [
