@@ -67,7 +67,7 @@ export default function BudgetTravelEgypt() {
           canonical: "https://affordegypt.com/budget-travel-egypt",
           image: "https://affordegypt.com/images/pyramid-of-giza.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-08-04",
+          dateModified: "2026-08-11",
         })}
         ogType="article"
       />
@@ -293,7 +293,7 @@ export default function BudgetTravelEgypt() {
 
               <div className="bg-teal-600 text-white p-8 rounded-xl text-center">
                 <h3 className="text-2xl font-bold mb-4">Total Daily Budget</h3>
-                <div className="text-4xl font-bold mb-2">1,250 - 2,000 EGP</div>
+                <div className="text-4xl font-bold mb-2">2,500 - 3,000 EGP</div>
                 <p className="text-teal-100">
                   {t("budgetGuide.budgetNote")}
                 </p>
@@ -341,8 +341,8 @@ export default function BudgetTravelEgypt() {
                     <CardTitle>Hostels</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-teal-600 mb-2">$6-12/night</div>
-                    <p className="text-gray-700">Dorm beds with sociable atmosphere. Perfect for meeting fellow travelers and sharing experiences.</p>
+                    <div className="text-2xl font-bold text-teal-600 mb-2">1,000–1,500 EGP+/night</div>
+                    <p className="text-gray-700">Useful for meeting fellow travelers, but availability is limited outside the main hubs and quality varies — vet each place before booking.</p>
                   </CardContent>
                 </Card>
                 
@@ -351,8 +351,8 @@ export default function BudgetTravelEgypt() {
                     <CardTitle>Budget Hotels</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-teal-600 mb-2">$15-30/night</div>
-                    <p className="text-gray-700">Private rooms, often family-run guesthouses offering authentic local hospitality.</p>
+                    <div className="text-2xl font-bold text-teal-600 mb-2">2,000 EGP+/night</div>
+                    <p className="text-gray-700">Private rooms, often family-run guesthouses — prices depend on the city, location, facilities, and season.</p>
                   </CardContent>
                 </Card>
                 
@@ -361,8 +361,8 @@ export default function BudgetTravelEgypt() {
                     <CardTitle>Nubian Stays</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-teal-600 mb-2">$12-25/night</div>
-                    <p className="text-gray-700">Cultural immersion in Aswan with traditional Nubian-style accommodations and warm hospitality.</p>
+                    <div className="text-2xl font-bold text-teal-600 mb-2">Rates vary</div>
+                    <p className="text-gray-700">Cultural immersion in Aswan with traditional Nubian-style accommodations — check current rates before booking.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -383,19 +383,19 @@ export default function BudgetTravelEgypt() {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Koshari</span>
-                        <span className="text-teal-600 font-bold">Under $1</span>
+                        <span className="text-teal-600 font-bold">&lt; 60 EGP</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Ta'ameya (Falafel)</span>
-                        <span className="text-teal-600 font-bold">Under $1</span>
+                        <span className="text-teal-600 font-bold">~17 EGP</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Ful Medames</span>
-                        <span className="text-teal-600 font-bold">Under $1</span>
+                        <span className="text-teal-600 font-bold">&lt; 25 EGP</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Shawarma</span>
-                        <span className="text-teal-600 font-bold">$1-2</span>
+                        <span className="text-teal-600 font-bold">~120 EGP</span>
                       </div>
                     </div>
                   </CardContent>
@@ -442,8 +442,8 @@ export default function BudgetTravelEgypt() {
                       <Bus className="w-6 h-6 text-teal-600" />
                     </div>
                     <h3 className="font-semibold mb-2">Trains</h3>
-                    <p className="text-sm text-gray-600 mb-3">Second-class AC for comfort and value</p>
-                    <div className="text-lg font-bold text-teal-600">Best Value</div>
+                    <p className="text-sm text-gray-600 mb-3">Second-class AC; Cairo–Luxor ~3,763 EGP for foreigners</p>
+                    <div className="text-lg font-bold text-teal-600">Comfortable</div>
                   </CardContent>
                 </Card>
                 
@@ -453,7 +453,7 @@ export default function BudgetTravelEgypt() {
                       <Bus className="w-6 h-6 text-teal-600" />
                     </div>
                     <h3 className="font-semibold mb-2">Buses</h3>
-                    <p className="text-sm text-gray-600 mb-3">Go Bus and SuperJet for intercity travel</p>
+                    <p className="text-sm text-gray-600 mb-3">Go Bus and Blue Bus; Cairo–Luxor 500–600 EGP</p>
                     <div className="text-lg font-bold text-teal-600">Cheapest</div>
                   </CardContent>
                 </Card>
@@ -465,7 +465,7 @@ export default function BudgetTravelEgypt() {
                     </div>
                     <h3 className="font-semibold mb-2">Metro</h3>
                     <p className="text-sm text-gray-600 mb-3">Cairo's efficient metro system</p>
-                    <div className="text-lg font-bold text-teal-600">$0.25</div>
+                    <div className="text-lg font-bold text-teal-600">Inexpensive</div>
                   </CardContent>
                 </Card>
                 
