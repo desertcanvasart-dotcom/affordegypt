@@ -3,9 +3,9 @@
 // The parent operator is deliberately NOT named here: this block is a personal
 // note, and the legal entity and licence number are carried by the header, the
 // FAQ and the legal pages, which is where a reader goes to verify them.
-// Photo placeholder: replace /islam-photo.jpg with a real photo of Islam
-// (phone shot in Cairo or Siwa, daylight, looking at camera). DO NOT use
-// stock or AI-generated imagery here — that defeats the point of the block.
+// /islam-photo.jpg lives in client/public — an 800×800 stylized portrait of
+// Islam (his choice of treatment). If it's ever replaced, keep it a picture
+// of Islam himself — stock imagery here defeats the point of the block.
 
 import { ClientOnly } from "@/components/client-only";
 
