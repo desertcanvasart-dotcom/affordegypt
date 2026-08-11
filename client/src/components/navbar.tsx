@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "@/components/language-selector";
 import { MULTILINGUAL_ENABLED } from "@/config/features";
+import { nextCollapsed } from "@/lib/header-collapse";
 import { OPERATOR } from "@shared/operator-facts";
 import { useTranslatedLink } from "@/utils/slugTranslation";
 import {
@@ -43,10 +44,17 @@ export default function Navbar() {
   const getTranslatedLink = useTranslatedLink();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        setIsScrolled((prev) => nextCollapsed(prev, window.scrollY));
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
