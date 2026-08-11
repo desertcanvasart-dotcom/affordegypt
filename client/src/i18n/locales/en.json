@@ -1971,27 +1971,27 @@
     "budgetBreakdown": [
       {
         "category": "Accommodation",
-        "daily": "150-750 EGP",
-        "details": "Hostels to budget hotels"
+        "daily": "~2,000 EGP",
+        "details": "Budget hotels; hostels 1,000–1,500 EGP where available"
       },
       {
         "category": "Food",
-        "daily": "75-375 EGP",
-        "details": "Street food to mid-range restaurants"
+        "daily": "200–400 EGP",
+        "details": "Street food to casual restaurants"
       },
       {
         "category": "Transport",
-        "daily": "50-250 EGP",
-        "details": "Public transport and intercity buses"
+        "daily": "50–200 EGP",
+        "details": "Metro and ride apps; intercity buses extra"
       },
       {
         "category": "Attractions",
-        "daily": "125-500 EGP",
-        "details": "Entry fees and activities"
+        "daily": "150–750 EGP",
+        "details": "Entry fees vary by site (major sites 440–750 EGP)"
       },
       {
         "category": "Miscellaneous",
-        "daily": "125-375 EGP",
+        "daily": "100–300 EGP",
         "details": "Tips, souvenirs, emergencies"
       }
     ],
@@ -1999,19 +1999,19 @@
       "Book accommodations early during shoulder seasons",
       "Eat local street food (koshari, shawarma, ta'ameya)",
       "Use public transport (metro, buses, shared taxis)",
-      "Carry an ISIC card for student discounts (up to 50%)",
+      "Student tickets at state-run sites: commonly age 24 or younger with valid student ID and an ISIC card — check each attraction",
       "Bargain respectfully in markets",
       "Stay in Nubian-style accommodations in Aswan",
       "Shop at local markets for self-catering",
-      "Use Uber/Careem for safe, affordable city travel"
+      "Use Uber, inDrive, or DiDi for city travel"
     ],
     "checklist": [
       {
         "title": "Travel Documents",
         "items": [
           "Passport valid for 6+ months with blank pages",
-          "e-Visa (625 EGP) - recommended online application",
-          "Visa on Arrival (625 EGP cash) for select nationalities",
+          "e-Visa (30 USD) - recommended online application",
+          "Visa on Arrival (USD cash) for select nationalities",
           "Verify current requirements via official channels"
         ]
       },
@@ -2019,7 +2019,7 @@
         "title": "Health & Safety",
         "items": [
           "Travel insurance covering medical emergencies",
-          "Recommended vaccines: Hepatitis A, Typhoid, Tetanus",
+          "Get destination-specific medical advice; yellow-fever proof required if arriving from risk countries",
           "Bottled water only, avoid uncooked street food",
           "Basic medical kit with essential medications"
         ]
@@ -2029,8 +2029,8 @@
         "items": [
           "Egyptian Pound (EGP) is the local currency",
           "Carry cash in small denominations",
-          "Budget 1,250-2,000 EGP/day for comprehensive travel",
-          "7-10 days: ~20,000-27,500 EGP including airfare"
+          "Budget 2,500-3,000 EGP/day for comprehensive travel",
+          "7-10 days: total depends on accommodation, activities, and flights"
         ]
       }
     ],
