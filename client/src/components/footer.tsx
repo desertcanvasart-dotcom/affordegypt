@@ -113,10 +113,21 @@ export default function Footer() {
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Explore</h3>
+            {/* Alphabetical, except Submit a Review stays pinned last. */}
             <ul className="space-y-2">
+              <li>
+                <Link href={getTranslatedLink("budget-travel-egypt")} className="text-gray-300 hover:text-primary transition-colors">
+                  Budget Travel Guide
+                </Link>
+              </li>
               <li>
                 <Link href={getTranslatedLink("destinations")} className="text-gray-300 hover:text-primary transition-colors">
                   Destinations
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
+                  Egyptian Cuisine Passport
                 </Link>
               </li>
               <li>
@@ -125,18 +136,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href={getTranslatedLink("travel-tips")} className="text-gray-300 hover:text-primary transition-colors">
-                  Travel Tips
-                </Link>
-              </li>
-              <li>
                 <Link href={getTranslatedLink("egyptian-street-food-guide")} className="text-gray-300 hover:text-primary transition-colors">
                   Street Food Guide
                 </Link>
               </li>
               <li>
-                <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
-                  Egyptian Cuisine Passport
+                <Link href={getTranslatedLink("travel-tips")} className="text-gray-300 hover:text-primary transition-colors">
+                  Travel Tips
                 </Link>
               </li>
               <li>
