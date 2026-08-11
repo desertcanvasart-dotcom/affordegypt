@@ -35,10 +35,11 @@ export default function Hero() {
             </span>
           </h1>
 
+          {/* One line on purpose: the header already carries the legal entity
+              and license number, and the trust bar covers pricing honesty —
+              this only adds what the rest of the screen doesn't say. */}
           <p className="text-lg md:text-xl mb-8 text-white/90 max-w-3xl mx-auto text-balance">
-            AffordEgypt is the transparent budget tier from Capital Travel Service — an
-            ETAA-licensed Egypt operator since 2003. Same licensed guides,
-            lighter inclusions, no hidden fees.
+            Same expert guides, lighter inclusions — from an operator licensed since 2003.
           </p>
           <p className="text-lg md:text-xl mb-8 text-white/95 max-w-3xl mx-auto text-balance">
             {"Private car + Egyptologist from "}

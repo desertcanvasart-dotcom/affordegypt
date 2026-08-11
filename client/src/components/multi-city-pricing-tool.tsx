@@ -1046,7 +1046,9 @@ export default function MultiCityPricingTool() {
                         size="lg"
                         className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto px-10 py-6 text-base font-semibold rounded-xl"
                       >
-                        See My Price →
+                        {/* Step 2 is where the price forms — promising a price
+                            on this click was a small untruth. */}
+                        Build My Itinerary →
                       </Button>
                     </div>
                   </div>

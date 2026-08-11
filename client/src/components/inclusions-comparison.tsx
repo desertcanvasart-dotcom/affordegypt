@@ -82,7 +82,7 @@ export default function InclusionsComparison() {
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-amber-600" />
               <h3 className="text-lg font-bold text-gray-900">
-                What Capital Travel Service adds at the premium tier
+                What we can add at the premium tier
               </h3>
             </div>
             <ul className="space-y-3">

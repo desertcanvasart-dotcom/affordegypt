@@ -35,7 +35,7 @@ export default function TravelTips() {
         >
           <div className="absolute inset-0 bg-black/50 pointer-events-none" />
           <div className="container mx-auto px-4 relative">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white text-center">
               {t("travelTips.h1a")}
               <span className="text-primary-foreground bg-primary px-3 py-1 rounded-lg inline-block">
                 {t("travelTips.h1b")}

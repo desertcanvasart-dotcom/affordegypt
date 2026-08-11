@@ -12,6 +12,10 @@ const FLOOR_PER_DAY = formatLEPerDay("cairo-guide-car");
 export interface HomepageFaq {
   question: string;
   answer: string;
+  /** Phrases in `answer` to render as external links. The answer itself stays
+   *  a plain string because home.tsx builds the FAQPage JSON-LD from it —
+   *  these decorate the on-screen rendering only. */
+  links?: { text: string; href: string }[];
 }
 
 // Source-of-truth FAQ copy. Imported by client/src/pages/home.tsx to build
@@ -27,6 +31,12 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
     question: "How do I know AffordEgypt isn't one of the scam operators I've read about?",
     answer:
       "Fair question — there are real scam operators in Egypt, and we don't blame anyone for being cautious. AffordEgypt is operated by Capital Travel Service, which is registered with the Egyptian Travel Agents Association (ETAA 2179) and has been operating in Cairo since 2003 with thousands of documented travelers. Every guide we work with is a licensed Egyptologist with an active Ministry of Tourism credential. You can verify our registration with ETAA directly. We also publish our prices, our inclusions, and our cancellation terms before you pay anything.",
+    links: [
+      {
+        text: "Egyptian Travel Agents Association (ETAA 2179)",
+        href: "https://www.etaa-egypt.org/SitePages/CompanyDetailsEn.aspx?licc=2179",
+      },
+    ],
   },
   {
     question: "Are your guides actually licensed Egyptologists?",
@@ -64,6 +74,33 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
       "October through April is the peak season — temperatures are pleasant (15–25°C / 60–77°F) across the whole country, including Upper Egypt (Luxor, Aswan, Abu Simbel). May through September gets very hot in Upper Egypt and the desert (40°C+ / 104°F+ is normal), though Cairo and the Mediterranean coast are still manageable. If you can travel in shoulder season (October–early November or late February–April), you get good weather with smaller crowds and better prices. We avoid sending travelers to Upper Egypt in July–August unless they specifically want the heat.",
   },
 ];
+
+// Splits the plain-text answer around each linked phrase and wraps the phrase
+// in an anchor. Keeps HOMEPAGE_FAQS text-only for the JSON-LD consumer.
+function renderAnswer(faq: HomepageFaq) {
+  if (!faq.links?.length) return faq.answer;
+  let parts: (string | JSX.Element)[] = [faq.answer];
+  faq.links.forEach((link, li) => {
+    parts = parts.flatMap((part) => {
+      if (typeof part !== "string" || !part.includes(link.text)) return [part];
+      const idx = part.indexOf(link.text);
+      return [
+        part.slice(0, idx),
+        <a
+          key={`${li}-${link.href}`}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-teal-700 underline underline-offset-2 hover:text-teal-800"
+        >
+          {link.text}
+        </a>,
+        part.slice(idx + link.text.length),
+      ];
+    });
+  });
+  return parts;
+}
 
 export default function FAQSection() {
   const [openItems, setOpenItems] = useState<number[]>([]);
@@ -109,7 +146,7 @@ export default function FAQSection() {
               {openItems.includes(index) && (
                 <CardContent className="px-6 pb-6 pt-0">
                   <div className="border-t border-gray-100 pt-4 text-gray-700 leading-relaxed whitespace-pre-line">
-                    {faq.answer}
+                    {renderAnswer(faq)}
                   </div>
                 </CardContent>
               )}
