@@ -475,7 +475,7 @@ export default function BudgetTravelEgypt() {
                       <MapPin className="w-6 h-6 text-teal-600" />
                     </div>
                     <h3 className="font-semibold mb-2">Ride Apps</h3>
-                    <p className="text-sm text-gray-600 mb-3">Uber/Careem for safe city travel</p>
+                    <p className="text-sm text-gray-600 mb-3">Uber, inDrive, or DiDi for city travel</p>
                     <div className="text-lg font-bold text-teal-600">Affordable</div>
                   </CardContent>
                 </Card>

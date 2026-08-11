@@ -21,7 +21,7 @@ export default function TravelTips() {
           canonical: "https://affordegypt.com/travel-tips",
           image: "https://affordegypt.com/images/giza-pyramids.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-08-04",
+          dateModified: "2026-08-11",
         })}
         ogType="article"
       />
@@ -160,12 +160,12 @@ export default function TravelTips() {
 
               <h3 className="text-2xl font-semibold mb-4">{t("travelTips.dailyBudget")}</h3>
               <p className="text-lg leading-relaxed mb-6">
-                Most budget travelers in Egypt will find themselves spending somewhere between <strong>1,250 and 2,000 EGP a day.</strong> This sweet spot covers a hostel or budget hotel, local meals, public transport, and entrance fees to a major attraction or two.
+                Most budget travelers in Egypt should expect to spend somewhere between <strong>2,500 and 3,000 EGP a day.</strong> Accommodation alone can run around 2,000 EGP per night, with the rest covering food, local transport, entrance fees, and other basic travel expenses.
               </p>
 
               <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-8">
                 <p className="mb-0">
-                  <strong className="text-gray-800">Total Trip Cost (7-10 Days):</strong> Expect to spend around <strong>20,000–27,500 EGP</strong> including flights from Europe/Asia. Flights from the U.S. or Australia will increase this total. Your flight will likely be your biggest single expense.
+                  <strong className="text-gray-800">Total Trip Cost (7-10 Days):</strong> Your total depends heavily on your accommodation, transportation, activities, and flights. Flights from the U.S. or Australia will generally increase the overall cost — your flight will likely be your biggest single expense.
                 </p>
               </div>
 
@@ -244,12 +244,12 @@ export default function TravelTips() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Shawarma:</strong> Juicy, garlicky, and craveable chicken or beef wraps. <strong>Cost: ~ 37 EGP.</strong></span>
+                  <span><strong>Shawarma:</strong> Juicy, garlicky, and craveable chicken or beef wraps. <strong>Cost: ~ 120 EGP.</strong></span>
                 </li>
               </ul>
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg">
                 <p className="mb-0">
-                  <strong className="text-foreground">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~35 EGP, a loaf of bread is ~14 EGP, and fresh produce is incredibly cheap. This is a great way to save on breakfasts and lunches.
+                  <strong className="text-foreground">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~72 EGP, a loaf of bread is ~2.5 EGP, and fresh produce is incredibly cheap. This can be a useful way to save on breakfasts and lunches.
                 </p>
               </div>
             </div>
@@ -277,7 +277,7 @@ export default function TravelTips() {
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚇</div>
                 <h4 className="text-xl font-semibold mb-2">{t("travelTips.localTransport")}</h4>
-                <p>In Cairo, the <strong>Metro</strong> is your best friend. For taxis, use ride-hailing apps like <strong>Uber or Careem</strong> to get fair, transparent pricing and avoid haggling.</p>
+                <p>In Cairo, the <strong>Metro</strong> is a useful option for getting around the city. For taxis, use ride-hailing apps such as <strong>Uber, inDrive, or DiDi</strong> to get clearer pricing and avoid haggling.</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚐</div>
@@ -294,7 +294,7 @@ export default function TravelTips() {
                 {t("travelTips.wondersTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-8">
-                Entrance fees can add up, but with smart planning, you can see the icons without emptying your wallet.
+                Entrance fees can add up, but with smart planning, you can experience Egypt's major attractions while managing your budget.
               </p>
 
               <h3 className="text-2xl font-semibold mb-4">{t("travelTips.freeTitle")}</h3>
@@ -319,7 +319,7 @@ export default function TravelTips() {
 
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg" id="itinerary">
                 <h3 className="text-2xl font-semibold mb-4">{t("travelTips.itinTitle")}</h3>
-                <p className="mb-4">This classic "Golden Triangle" route maximizes sights and minimizes costs.</p>
+                <p className="mb-4">This classic "Golden Triangle" route combines Cairo, Luxor, and Aswan.</p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
