@@ -14,6 +14,7 @@ export interface QuoteDay {
   selectedServices?: unknown[];
   selectedAttractions?: unknown[];
   selectedAddOns?: unknown[];
+  selectedGuide?: unknown;
 }
 
 export interface QuoteState {
@@ -35,7 +36,11 @@ export function hasPricedSelection(days: QuoteDay[]): boolean {
     (d) =>
       (d.selectedServices?.length ?? 0) > 0 ||
       (d.selectedAttractions?.length ?? 0) > 0 ||
-      (d.selectedAddOns?.length ?? 0) > 0,
+      (d.selectedAddOns?.length ?? 0) > 0 ||
+      // The guide lives in its own field, not in selectedServices. Omitting it
+      // here blocked guide-only itineraries from Review — while the blocker
+      // message promised that "a guide" counts.
+      d.selectedGuide != null,
   );
 }
 

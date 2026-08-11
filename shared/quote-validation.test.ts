@@ -77,6 +77,10 @@ describe("step 3 gate (entering Review)", () => {
     ["a service", { selectedServices: [{ id: 1 }] }],
     ["an attraction", { selectedAttractions: [{ id: 2 }] }],
     ["an add-on", { selectedAddOns: [{ id: 3 }] }],
+    // The 2026-08-11 live-site regression: a guide is priced (the blocker
+    // message even says so) but lives in its own field, and a guide-only
+    // itinerary was blocked from Review.
+    ["only a guide", { selectedGuide: { language: "English", duration: 8 } }],
   ])("passes when the day has %s", (_label, day) => {
     expect(blockersForStep(3, state({ days: [day] }))).toEqual({});
   });
