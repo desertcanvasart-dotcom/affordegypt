@@ -1463,7 +1463,7 @@
           "features": [
             "Professional guide",
             "Private vehicle",
-            "All entrance fees included"
+            "Entrance tickets billed separately"
           ]
         },
         "premiumCarService": {
@@ -1503,7 +1503,7 @@
       },
       "pricingTitle": "Affordable Cairo Car & Tour Guide Services",
       "pricingDesc": "Professional guides and luxury vehicles at competitive prices. No hidden costs.",
-      "pricingInfo": "Licensed guides • Luxury vehicles • Multilingual support • All entrance fees",
+      "pricingInfo": "Licensed guides • Private vehicles • Multilingual support • Entrance tickets billed separately",
       "ctaTitle": "Ready to Explore Ancient Cairo?",
       "ctaSubtitle": "Book your expert guide and discover the secrets of the pharaohs"
     },
