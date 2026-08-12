@@ -295,6 +295,7 @@ const nileValleyCities: NileCity[] = [
     latitude: 26.5569,
     longitude: 31.6948,
     highlights: [
+      "highlights.sohag.abydosTemple",
       "highlights.sohag.redWhiteMonasteries",
       "highlights.sohag.akhmimTextiles",
       "highlights.sohag.ruralCulture",
@@ -1334,6 +1335,7 @@ export default function NileValleyGuide() {
         "highlights.asyut.nileCorniche": "Nile Corniche Walkway",
 
         // Sohag highlights
+        "highlights.sohag.abydosTemple": "Abydos Temple",
         "highlights.sohag.redWhiteMonasteries": "Red and White Monasteries",
         "highlights.sohag.akhmimTextiles": "Akhmim Textiles Market",
         "highlights.sohag.ruralCulture": "Rural Cultural Heritage",
