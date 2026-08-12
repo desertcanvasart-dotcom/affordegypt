@@ -404,7 +404,7 @@ export default function EgyptianStreetFoodGuide() {
                   <div className="bg-teal-50 p-6">
                     <div className="flex justify-between items-center">
                       <span className="text-xl font-bold text-gray-900">{t("streetFoodGuide.totalLabel")}</span>
-                      <span className="text-2xl font-bold text-teal-600">75 EGP</span>
+                      <span className="text-2xl font-bold text-teal-600">{t("streetFoodGuide.totalValue")}</span>
                     </div>
                   </div>
                 </CardContent>

@@ -1808,7 +1808,7 @@
     "whyH2": "Why Street Food is Perfect for Travellers",
     "whySub": "Discover the authentic flavors of Egypt without breaking your budget",
     "why1H": "Extremely Affordable",
-    "why1B": "Most items cost between 5–30 EGP",
+    "why1B": "Many staples are inexpensive, but prices vary by city, portion, and vendor; check the posted menu before ordering",
     "why2H": "Fresh & Fast",
     "why2B": "Cooked in front of you, often piping hot and ready to eat",
     "why3H": "Deeply Local",
@@ -1830,7 +1830,7 @@
     "drinksH2": "Drinks to Pair with Street Food",
     "drinksSub": "Refresh yourself with authentic Egyptian beverages",
     "noteLabel": "Important Note:",
-    "noteBody": "Avoid tap water and ice; opt for sealed bottled water (≈5 EGP)",
+    "noteBody": "Outside large international hotels with confirmed treated water, use factory-sealed bottled or properly treated water. If you are unsure how ice was made, skip it.",
     "safetyH2": "Street Food Safety Tips",
     "safetySub": "Stay safe while enjoying authentic Egyptian flavors",
     "packH3": "What to Pack for a Street Food Adventure",
@@ -1844,9 +1844,10 @@
     "phrasesH2": "Useful Arabic Phrases",
     "phrasesSub": "Essential phrases to enhance your street food experience",
     "itineraryH2": "Budget-Friendly Street Food Itinerary",
-    "itinerarySub": "Cairo Day Trip: Full day of delicious street food for under 75 EGP",
+    "itinerarySub": "Cairo Day Trip: Full day of street food for 400 EGP",
     "itineraryTitle": "Cairo Street Food Day Trip",
     "totalLabel": "Total Daily Cost:",
+    "totalValue": "400 EGP",
     "finalH2": "Your Culinary Adventure Awaits",
     "finalBody": "Egypt's street food is more than cheap eats—it's a window into the soul of the country. Every sandwich passed through a tuk-tuk window, every spicy bite eaten standing on a sidewalk, brings you closer to the people and their heritage.",
     "ctaBook": "Book Culinary Tour",
@@ -1898,7 +1899,7 @@
       {
         "name": "Koshari",
         "description": "A carb-packed dish of rice, lentils, chickpeas, pasta, crispy onions, and tomato-vinegar sauce",
-        "cost": "15–25 EGP",
+        "cost": "Under 60 EGP",
         "bestIn": "Cairo (Abou Tarek, Koshary El Tahrir)",
         "tip": "Ask for 'shatta' (spicy sauce) if you enjoy heat",
         "arabicName": "كشري"
@@ -1906,7 +1907,7 @@
       {
         "name": "Ta'ameya",
         "description": "Egyptian falafel made of fava beans (not chickpeas), with herbs and sesame coating",
-        "cost": "1–2 EGP per piece",
+        "cost": "About 17 EGP",
         "bestIn": "Local breakfast carts across Cairo and Alexandria",
         "tip": "100% plant-based and filling",
         "arabicName": "طعمية"
@@ -1914,7 +1915,7 @@
       {
         "name": "Ful Medames",
         "description": "Slow-cooked fava beans with olive oil, cumin, lemon juice",
-        "cost": "5–10 EGP per sandwich",
+        "cost": "Under 25 EGP",
         "bestIn": "Breakfast carts and working-class cafés",
         "tip": "Egypt's national breakfast dish",
         "arabicName": "فول مدمس"
@@ -1922,7 +1923,7 @@
       {
         "name": "Shawarma",
         "description": "Marinated beef or chicken sliced from a vertical rotisserie",
-        "cost": "15–30 EGP per wrap",
+        "cost": "About 120 EGP",
         "bestIn": "Syrian-style shawarma kiosks in Cairo, Alexandria, and Hurghada",
         "tip": "Garlic sauce for chicken, tahini for beef",
         "arabicName": "شاورما"
@@ -1930,7 +1931,7 @@
       {
         "name": "Hawawshi",
         "description": "Spiced minced beef baked inside baladi bread",
-        "cost": "15–25 EGP per sandwich",
+        "cost": "200 EGP",
         "bestIn": "Traditional bakeries and street vendors",
         "tip": "Ask for 'balady' version – more traditional and flavourful",
         "arabicName": "حواوشي"
@@ -1938,7 +1939,7 @@
       {
         "name": "Sweet Potato",
         "description": "Roasted and sold from push carts, often topped with honey or nuts",
-        "cost": "5–15 EGP",
+        "cost": "150 EGP",
         "bestIn": "Street carts throughout Egypt",
         "tip": "Perfect winter snack, naturally sweet",
         "arabicName": "بطاطا"
@@ -2019,27 +2020,27 @@
       {
         "time": "9:00 AM",
         "activity": "Ful + Ta'ameya breakfast sandwich",
-        "cost": "10 EGP"
+        "cost": "35 EGP"
       },
       {
         "time": "11:00 AM",
         "activity": "Fresh Sugarcane Juice",
-        "cost": "5 EGP"
+        "cost": "30 EGP"
       },
       {
         "time": "1:00 PM",
         "activity": "Koshari lunch at Abu Tarek",
-        "cost": "25 EGP"
+        "cost": "60 EGP"
       },
       {
         "time": "3:00 PM",
         "activity": "Dessert: Zalabya",
-        "cost": "10 EGP"
+        "cost": "80 EGP"
       },
       {
         "time": "6:00 PM",
         "activity": "Shawarma wrap + tea in local cafe",
-        "cost": "25 EGP"
+        "cost": "195 EGP"
       }
     ],
     "ctaPrint": "Print / Save as PDF"
