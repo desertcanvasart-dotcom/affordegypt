@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { useSmartTranslation } from "@/hooks/useSmartTranslation";
+import { useTranslation } from "react-i18next";
 import { 
   Plane, 
   MapPin, 
-  Clock, 
   Shield, 
   Car, 
   CheckCircle, 
@@ -40,86 +40,55 @@ export default function LuxorAirportTransfers() {
     },
   };
   const { t } = useSmartTranslation();
+  const { t: rawT } = useTranslation();
   
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  // Structured content is read with returnObjects, which useSmartTranslation
+  // deliberately does not support -- it is a string-only helper. A locale that
+  // has not been backfilled falls through to English rather than rendering an
+  // empty section.
+  const list = (key: string): any[] => {
+    const value = rawT(key, { returnObjects: true });
+    if (Array.isArray(value)) return value;
+    const english = rawT(key, { returnObjects: true, lng: "en" });
+    return Array.isArray(english) ? english : [];
+  };
+
   const vehicleTypes = [
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to2"),
       price: t("airportTransfers.luxor.sedanPriceFrom"),
-      features: [t("airportTransfers.common.airConditioning"), t("airportTransfers.common.professionalDriver"), t("airportTransfers.luxor.templeRouteKnowledge")],
+      features: list("airportTransfers.luxor.sedanFeatures"),
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
-      capacity: t("airportTransfers.common.passengers3to8"), 
+      capacity: t("airportTransfers.common.passengers3to8"),
       price: t("airportTransfers.luxor.minivanPriceFrom"),
-      features: [t("airportTransfers.common.extraLuggageSpace"), t("airportTransfers.common.familyFriendly"), t("airportTransfers.luxor.touristFriendly")],
+      features: list("airportTransfers.luxor.minivanFeatures"),
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers9to15"),
-      price: t("airportTransfers.luxor.vanPriceFrom"), 
-      features: [t("airportTransfers.common.groupTravel"), t("airportTransfers.common.largeLuggageCapacity"), t("airportTransfers.luxor.tourGroupFriendly")],
+      price: t("airportTransfers.luxor.vanPriceFrom"),
+      features: list("airportTransfers.luxor.vanFeatures"),
       icon: Users
     }
   ];
 
-  const keyFeatures = [
-    {
-      icon: Shield,
-      title: t("airportTransfers.luxor.templeExpertise"),
-      description: t("airportTransfers.luxor.templeExpertiseDesc")
-    },
-    {
-      icon: Clock,
-      title: t("airportTransfers.common.flightMonitoring"),
-      description: t("airportTransfers.common.flightMonitoringDesc")
-    },
-    {
-      icon: Camera,
-      title: t("airportTransfers.luxor.sightseeingStops"),
-      description: t("airportTransfers.luxor.sightseeingStopsDesc")
-    },
-    {
-      icon: CheckCircle,
-      title: t("airportTransfers.luxor.localKnowledge"),
-      description: t("airportTransfers.luxor.localKnowledgeDesc")
-    }
-  ];
-
-  // Luxor areas with fallback
-  const getLuxorAreas = () => {
-    try {
-      const areas = [
-        t("airportTransfers.luxor.area1") || "Luxor Airport (LXR)",
-        t("airportTransfers.luxor.area2") || "East Bank Hotels",
-        t("airportTransfers.luxor.area3") || "West Bank Hotels",
-        t("airportTransfers.luxor.area4") || "Valley of the Kings",
-        t("airportTransfers.luxor.area5") || "Karnak Temple Area",
-        t("airportTransfers.luxor.area6") || "Luxor Temple District",
-        t("airportTransfers.luxor.area7") || "Nile Cruise Terminals",
-        t("airportTransfers.luxor.area8") || "Winter Palace Area"
-      ];
-      return areas;
-    } catch {
-      return [
-        "Luxor Airport (LXR)",
-        "East Bank Hotels",
-        "West Bank Hotels",
-        "Valley of the Kings",
-        "Karnak Temple Area",
-        "Luxor Temple District", 
-        "Nile Cruise Terminals",
-        "Winter Palace Area"
-      ];
-    }
-  };
-  const luxorAreas = getLuxorAreas();
+  const banks = list("airportTransfers.luxor.banks");
+  const pricingGuide = list("airportTransfers.luxor.pricingGuide");
+  const cruiseItems = list("airportTransfers.luxor.cruiseItems");
+  const calcItems = list("airportTransfers.luxor.calcItems");
+  const includesItems = list("airportTransfers.luxor.includesItems");
+  const changesItems = list("airportTransfers.luxor.changesItems");
+  const steps = list("airportTransfers.luxor.steps");
+  const beforeItems = list("airportTransfers.luxor.beforeItems");
 
   return (
     <>
@@ -142,13 +111,16 @@ export default function LuxorAirportTransfers() {
                   {t("airportTransfers.luxor.heroTitle")}
                 </h1>
               </div>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
                 {t("airportTransfers.luxor.heroSubtitle")}
+              </p>
+              <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
+                {t("airportTransfers.luxor.heroNote")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/transfers">
-                    {t("airportTransfers.common.bookNow")}
+                    {t("airportTransfers.luxor.ctaQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
 
@@ -164,31 +136,133 @@ export default function LuxorAirportTransfers() {
           </div>
         </section>
 
-        {/* Key Features */}
+        {/* Which bank. This leads because the riverbank, not the city name,
+            is what decides the route and the fare. */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.luxor.whyChooseTitle")}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {keyFeatures.map((feature, index) => (
-                <Card key={index} className="text-center">
-                  <CardContent className="pt-6">
-                    <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4">{t("airportTransfers.luxor.banksTitle")}</h2>
+              <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
+                {t("airportTransfers.luxor.banksIntro")}
+              </p>
+
+              <Card className="mb-8">
+                <CardHeader>
+                  <Plane className="w-10 h-10 text-primary mb-2" />
+                  <CardTitle className="text-2xl">{t("airportTransfers.luxor.airportName")}</CardTitle>
+                  <Badge variant="secondary" className="w-fit text-base font-semibold">
+                    {t("airportTransfers.luxor.airportCode")}
+                  </Badge>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm text-muted-foreground">
+                  <p>{t("airportTransfers.luxor.airportLocation")}</p>
+                  <p>{t("airportTransfers.luxor.airportRouting")}</p>
+                </CardContent>
+              </Card>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {banks.map((bank: any, index: number) => (
+                  <Card key={index}>
+                    <CardHeader>
+                      <CardTitle className="text-xl flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-primary" />
+                        {bank.name}
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground">{bank.intro}</p>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2 mb-4">
+                        {(bank.areas || []).map((area: string, idx: number) => (
+                          <li key={idx} className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            <span className="text-sm">{area}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-sm text-muted-foreground">{bank.note}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              <div className="mt-8 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-6">
+                <div className="flex items-start gap-3">
+                  <Shield className="w-6 h-6 text-amber-600 mt-0.5 flex-shrink-0" />
+                  <p className="text-amber-900">
+                    <strong>{t("airportTransfers.luxor.bankWarningLabel")}</strong>{" "}
+                    {t("airportTransfers.luxor.bankWarning")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* East vs West pricing guide */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.luxor.pricingGuideTitle")}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {pricingGuide.map((row: any, index: number) => (
+                  <div key={index} className="p-4 bg-muted/30 rounded-lg">
+                    <h3 className="font-semibold mb-1">{row.label}</h3>
+                    <p className="text-sm text-muted-foreground">{row.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Nile cruise moorings */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4">{t("airportTransfers.luxor.cruiseTitle")}</h2>
+              <p className="text-center text-muted-foreground mb-8">
+                {t("airportTransfers.luxor.cruiseIntro")}
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                {cruiseItems.map((item: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-background rounded-lg">
+                    <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-muted-foreground text-center">{t("airportTransfers.luxor.cruiseNote")}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* How the price is calculated */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-8">{t("airportTransfers.luxor.calcTitle")}</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {calcItems.map((item: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+                    <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
         {/* Vehicle Options */}
-        <section className="py-16">
+        <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.chooseVehicle")}</h2>
+            <h2 className="text-3xl font-bold text-center mb-4">{t("airportTransfers.luxor.vehiclesTitle")}</h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+              {t("airportTransfers.luxor.vehiclesIntro")}
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {vehicleTypes.map((vehicle, index) => (
-                <Card key={index} className="relative hover:shadow-lg transition-shadow">
+                <Card key={index} className="relative hover:shadow-lg transition-shadow bg-background">
                   <CardHeader className="text-center">
                     <vehicle.icon className="w-16 h-16 text-primary mx-auto mb-4" />
                     <CardTitle className="text-2xl">{vehicle.name}</CardTitle>
@@ -199,7 +273,7 @@ export default function LuxorAirportTransfers() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
-                      {vehicle.features.map((feature, idx) => (
+                      {vehicle.features.map((feature: string, idx: number) => (
                         <li key={idx} className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-primary" />
                           <span className="text-sm">{feature}</span>
@@ -213,19 +287,68 @@ export default function LuxorAirportTransfers() {
           </div>
         </section>
 
-        {/* Service Areas */}
+        {/* What the quote includes, and what changes it */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h2 className="text-2xl font-bold mb-6">{t("airportTransfers.luxor.includesTitle")}</h2>
+                <ul className="space-y-3">
+                  {includesItems.map((item: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-6">{t("airportTransfers.luxor.changesTitle")}</h2>
+                <ul className="space-y-3 mb-4">
+                  {changesItems.map((item: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <ArrowRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm text-muted-foreground">{t("airportTransfers.luxor.changesNote")}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Point-to-point. Sightseeing is a different product and pricing it as
+            a transfer is how waiting time and itinerary cost get lost. */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.luxor.transferDestinationsTitle")}</h2>
-              <p className="text-center text-muted-foreground mb-8">
-                {t("airportTransfers.luxor.transferDestinationsDesc")}
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {luxorAreas.map((area: string, index: number) => (
-                  <div key={index} className="flex items-center gap-2 p-3 bg-background rounded-lg">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium">{area}</span>
+              <Card className="border-l-4 border-l-primary bg-background">
+                <CardHeader>
+                  <CardTitle className="text-2xl flex items-center gap-2">
+                    <Camera className="w-6 h-6 text-primary" />
+                    {t("airportTransfers.luxor.p2pTitle")}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{t("airportTransfers.luxor.p2pBody")}</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.howItWorks")}</h2>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {steps.map((step: any, index: number) => (
+                  <div key={index} className="text-center">
+                    <div className="step-number mb-4 mx-auto">{index + 1}</div>
+                    <h3 className="font-semibold mb-2">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
                 ))}
               </div>
@@ -233,71 +356,19 @@ export default function LuxorAirportTransfers() {
           </div>
         </section>
 
-        {/* Special Luxor Features */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.luxor.expertiseTitle")}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Camera className="w-6 h-6 text-primary" />
-                      {t("airportTransfers.luxor.templeRouteTitle")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      {t("airportTransfers.luxor.templeRouteDesc")}
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <MapPin className="w-6 h-6 text-primary" />
-                      {t("airportTransfers.luxor.eastWestBank")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      {t("airportTransfers.luxor.eastWestBankDesc")}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
+        {/* Details to send before booking */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.howItWorks")}</h2>
             <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="step-number mb-4 mx-auto">1</div>
-                  <h3 className="font-semibold mb-2">{t("airportTransfers.common.bookOnline")}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("airportTransfers.common.selectPickupTime")}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="step-number mb-4 mx-auto">2</div>
-                  <h3 className="font-semibold mb-2">{t("airportTransfers.common.meetDriver")}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("airportTransfers.luxor.stepMeetDriverDesc")}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="step-number mb-4 mx-auto">3</div>
-                  <h3 className="font-semibold mb-2">{t("airportTransfers.luxor.stepExploreLuxor")}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("airportTransfers.luxor.stepExploreLuxorDesc")}
-                  </p>
-                </div>
-              </div>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.luxor.beforeTitle")}</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {beforeItems.map((item: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-background rounded-lg">
+                    <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
@@ -306,17 +377,17 @@ export default function LuxorAirportTransfers() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">{t("airportTransfers.luxor.affordableTitle")}</h2>
+              <h2 className="text-3xl font-bold mb-6">{t("airportTransfers.luxor.pricingTitle")}</h2>
               <p className="text-muted-foreground mb-8">
-                {t("airportTransfers.luxor.affordableDesc")}
+                {t("airportTransfers.luxor.pricingIntro")}
               </p>
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.luxor.sedanPriceFrom")}</span>
+                  <span className="font-semibold">{t("airportTransfers.luxor.pricingFrom")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  {t("airportTransfers.luxor.pricingInfoDesc")}
+                  {t("airportTransfers.luxor.pricingTerms")}
                 </p>
                 <Button asChild size="lg">
                   <Link href="/transfers">
@@ -340,7 +411,7 @@ export default function LuxorAirportTransfers() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link href="/transfers">
-                  {t("airportTransfers.common.bookOnlineNow")}
+                  {t("airportTransfers.luxor.ctaBook")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
 
