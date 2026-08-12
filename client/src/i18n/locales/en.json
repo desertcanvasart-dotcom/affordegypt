@@ -438,7 +438,9 @@
     "desertsGuide": {
       "title": "Eastern & Western Deserts",
       "subtitle": "The Gateway to Budget-Friendly Adventures in Egypt's Untamed Wilderness",
-      "description": "Egypt's deserts offer unique treasures, majestic landscapes, spiritual experiences, and unique geology - and all at a fraction of the cost of typical tourist activities. Ideal for budget-conscious adventurers, authentic experiences await.",
+      "description": "Egypt's deserts offer distinctive geology, oasis communities, archaeological sites, and dark skies. Costs and access vary greatly by route, permits, vehicle, and guide.",
+      "safetyNoteLabel": "Safety note:",
+      "safetyNote": "Official travel advisories differ and can change quickly. Some governments advise against travel to parts of the Western Desert. Check your own government's current advice, local access rules, permits, and insurance coverage before booking, and use a licensed operator for off-road travel.",
       "buttons": {
         "planAdventure": "Plan Your Adventure",
         "viewBudgetGuide": "View Budget Guide"
@@ -466,15 +468,16 @@
         },
         "destinations": {
           "title": "Desert Destinations: Budget-Friendly Exploration",
-          "subtitle": "Top destinations for authentic desert experiences"
+          "subtitle": "Top destinations for authentic desert experiences",
+          "priceNote": "Accommodation, safari and transport prices below are commercial estimates from local operators, not official tariffs. They move with season, group size and vehicle, so get a dated quote before you book."
         },
         "budgetTips": {
           "title": "Budget Travel Tips",
           "subtitle": "Essential tips for budget-conscious desert travelers",
           "tips": [
-            "Join local safari groups instead of private trips to save up to 60%",
+            "Compare licensed local group and private safari quotes; savings vary and a fixed 60% claim cannot be substantiated",
             "Travel during November and March for shoulder season pricing",
-            "Use minibuses and shared taxis between oases",
+            "Confirm current inter-oasis transport locally; services can be sparse or change without notice",
             "Stay in family-run guesthouses over hotels",
             "Eat where locals gather for authentic, affordable meals",
             "Negotiate prices in person, especially in off-seasons"
@@ -482,8 +485,40 @@
         },
         "itinerary": {
           "title": "5-Day Budget Desert Adventure",
-          "subtitle": "Complete itinerary with transparent pricing",
-          "total": "Total: 2,850 EGP per person"
+          "subtitle": "Route, permits, accommodation and current pricing should be confirmed with a licensed local operator before you book",
+          "total": "Total: 7,600 EGP per person",
+          "days": [
+            {
+              "day": "Day 1",
+              "location": "Cairo → Bahariya",
+              "activities": "Bus journey, overnight in Bawiti",
+              "cost": "2,000 EGP"
+            },
+            {
+              "day": "Day 2",
+              "location": "White Desert Tour",
+              "activities": "Group trip including meals and camping",
+              "cost": "1,350 EGP"
+            },
+            {
+              "day": "Day 3",
+              "location": "Bahariya relaxation",
+              "activities": "Hot springs, local meal, lodge stay",
+              "cost": "1,350 EGP"
+            },
+            {
+              "day": "Day 4",
+              "location": "Farafra or return to Bahariya",
+              "activities": "Do not assume a same-day public transfer to Dakhla; it is far south and transport can be limited",
+              "cost": "2,000 EGP"
+            },
+            {
+              "day": "Day 5",
+              "location": "Return to Cairo",
+              "activities": "Confirm the current bus or private-transfer timetable and fare",
+              "cost": "900 EGP"
+            }
+          ]
         },
         "packing": {
           "title": "Desert Packing Essentials",
@@ -521,7 +556,7 @@
           "bestSeason": {
             "title": "Best Season",
             "period": "Oct - Mar",
-            "description": "Perfect weather, clear skies, and comfortable camping temperatures"
+            "description": "Generally cooler conditions, though desert days, nights, wind, and visibility vary"
           },
           "budgetSpot": {
             "title": "Budget Sweet Spot",

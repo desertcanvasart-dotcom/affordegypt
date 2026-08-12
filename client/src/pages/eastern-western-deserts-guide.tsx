@@ -103,40 +103,11 @@ export default function EasternWesternDesertsGuide() {
     }
   ];
 
-  // Handle budget itinerary with fallback
+  // The itinerary now lives in the locale files like the packing list and the
+  // budget tips. It used to be hard-coded here, which is how a stale route and
+  // a total that did not match its own line items survived unreviewed.
   const budgetItineraryTranslation = t('blog.desertsGuide.sections.itinerary.days', { returnObjects: true });
-  const budgetItinerary = Array.isArray(budgetItineraryTranslation) ? budgetItineraryTranslation : [
-    {
-      day: "Day 1",
-      location: "Cairo → Bahariya",
-      activities: "Bus journey, overnight in Bawiti",
-      cost: "350 EGP"
-    },
-    {
-      day: "Day 2", 
-      location: "White Desert Tour",
-      activities: "Group trip including meals and camping",
-      cost: "900 EGP"
-    },
-    {
-      day: "Day 3",
-      location: "Bahariya relaxation",
-      activities: "Hot springs, local meal, lodge stay",
-      cost: "400 EGP"
-    },
-    {
-      day: "Day 4",
-      location: "Dakhla Oasis",
-      activities: "Microbus transfer, visit Islamic mud city",
-      cost: "250 EGP"
-    },
-    {
-      day: "Day 5",
-      location: "Return to Cairo",
-      activities: "Bus journey, meals, SIM card top-up",
-      cost: "300 EGP"
-    }
-  ];
+  const budgetItinerary = Array.isArray(budgetItineraryTranslation) ? budgetItineraryTranslation : [];
 
   // Handle packing list with fallback
   const packingListTranslation = t('blog.desertsGuide.sections.packing.items', { returnObjects: true });
@@ -174,7 +145,7 @@ export default function EasternWesternDesertsGuide() {
             canonical: "https://affordegypt.com/eastern-western-deserts-guide",
             image: "https://affordegypt.com/images/eastern-desert.jpg",
             datePublished: "2025-06-07",
-            dateModified: "2026-08-02",
+            dateModified: "2026-08-12",
           })}
           ogType="article"
         />
@@ -284,6 +255,9 @@ export default function EasternWesternDesertsGuide() {
             <p className="text-xl text-slate-600">
               {t('blog.desertsGuide.sections.destinations.subtitle')}
             </p>
+            <p className="text-sm text-slate-600 max-w-3xl mx-auto mt-4">
+              {t('blog.desertsGuide.sections.destinations.priceNote')}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -345,7 +319,7 @@ export default function EasternWesternDesertsGuide() {
         <section id="budget-adventure">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-primary mb-4">{t('blog.desertsGuide.sections.itinerary.title')}</h2>
-            <p className="text-xl text-slate-600 mb-4">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-4">
               {t('blog.desertsGuide.sections.itinerary.subtitle')}
             </p>
             <Badge className="bg-primary text-white text-lg px-4 py-2">
@@ -474,15 +448,29 @@ export default function EasternWesternDesertsGuide() {
                 <MapPin className="w-5 h-5 mr-2" />
                 {t('blog.desertsGuide.cta.buttons.startPlanning')}
               </Button>
-              <Button 
-                size="lg" 
-                className="bg-gray-300 text-gray-500 cursor-not-allowed min-w-48" 
+              <Button
+                size="lg"
+                className="bg-gray-300 text-gray-500 cursor-not-allowed min-w-48"
                 disabled
               >
                 <Users className="w-5 h-5 mr-2" />
                 {t('blog.desertsGuide.cta.buttons.findGuides')}
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* Travel advisory. Parts of the Western Desert carry active warnings
+            from some governments, and off-road routes need permits. A budget
+            guide that omits this is the one place on the site where bad
+            information is a safety problem rather than a pricing one. */}
+        <section className="bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-6">
+          <div className="flex items-start gap-3 max-w-4xl mx-auto">
+            <Compass className="w-6 h-6 text-amber-600 mt-0.5 flex-shrink-0" />
+            <p className="text-amber-900">
+              <strong>{t('blog.desertsGuide.safetyNoteLabel')}</strong>{' '}
+              {t('blog.desertsGuide.safetyNote')}
+            </p>
           </div>
         </section>
       </div>
