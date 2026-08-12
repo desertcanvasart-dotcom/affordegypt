@@ -538,10 +538,22 @@ const nileValleyCities: NileCity[] = [
         hours: "attractions.aswan.unfinishedObelisk.hours",
       },
       {
+        name: "attractions.aswan.nubian.name",
+        description: "attractions.aswan.nubian.description",
+        entryFee: "attractions.aswan.nubian.entryFee",
+        hours: "attractions.aswan.nubian.hours",
+      },
+      {
         name: "attractions.aswan.nubianVillage.name",
         description: "attractions.aswan.nubianVillage.description",
         entryFee: "attractions.aswan.nubianVillage.entryFee",
         hours: "attractions.aswan.nubianVillage.hours",
+      },
+      {
+        name: "attractions.aswan.botanical.name",
+        description: "attractions.aswan.botanical.description",
+        entryFee: "attractions.aswan.botanical.entryFee",
+        hours: "attractions.aswan.botanical.hours",
       },
     ],
     transportation: {
@@ -1526,7 +1538,7 @@ export default function NileValleyGuide() {
         "attractions.aswan.botanical.name": "Botanical Garden",
         "attractions.aswan.botanical.description":
           "Exotic plants on Kitchener's Island",
-        "attractions.aswan.botanical.entryFee": "120 EGP (foreign adult)",
+        "attractions.aswan.botanical.entryFee": "70 EGP (foreign adult)",
         "attractions.aswan.botanical.hours": "8:00 AM - 6:00 PM",
 
         // Time-related translations
@@ -2940,7 +2952,7 @@ export default function NileValleyGuide() {
                         </h4>
                         <ul className="text-sm space-y-1">
                           {city.keyAttractions
-                            .slice(0, 4)
+                            .slice(0, 6)
                             .map((attraction, index) => (
                               <li key={index} className="flex justify-between">
                                 <span>{translateKey(attraction.name)}</span>
