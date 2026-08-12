@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import AdvanceTicketNote from "@/components/advance-ticket-note";
 
 export default function LuxorGuideServices() {
   const SERVICE_SCHEMA = {
@@ -64,7 +65,7 @@ export default function LuxorGuideServices() {
       icon: Users
     },
     {
-      name: "Luxury Temple Tours",
+      name: "Luxor Temples Tours",
       duration: "6-10 hours",
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-tour-car") } }), 
       features: ["Premium vehicle", "Expert driver-guide", "Flexible temple visits"],
@@ -333,6 +334,8 @@ export default function LuxorGuideServices() {
             </div>
           </div>
         </section>
+
+        <AdvanceTicketNote />
 
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">

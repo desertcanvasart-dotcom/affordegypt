@@ -64,6 +64,36 @@ export const HOMEPAGE_FAQS: HomepageFaq[] = [
       `Our floor is ${FLOOR_PER_DAY} for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. A typical 3-day Cairo trip with all entrance tickets and one meal per day works out to around LE 14,000–18,000 per person for a couple, depending on which attractions you include. We'll send you a real quote in under a minute — no account, no commitment. Note: we don't sell shared minibus tours. Some operators advertise \"Egypt tours from $50/day\" — those are shared group tours, a different product. Ours is fully private.`,
   },
   {
+    question: "Why do you charge 50 EGP to arrange an entrance ticket?",
+    answer:
+      "The attraction keeps its official admission price; the additional 50 EGP is AffordEgypt's optional advance-arrangement fee for each paid ticket issued. We purchase and organize the ticket before the visit, check the booking information supplied to us, and prepare it for the tour. This can reduce time at the ticket office and avoids relying entirely on on-site card payment, which matters because many Egyptian sites are now cashless and payment or ticketing systems can occasionally experience technical problems. It does not bypass security or other entrance controls. You can see the official prices and buy directly on the Ministry's own ticket portal, and the move to e-ticketing is described in the State Information Service announcement.",
+    links: [
+      {
+        text: "the Ministry's own ticket portal",
+        href: "https://egymonuments.com/aboutUs",
+      },
+      {
+        text: "the State Information Service announcement",
+        href: "https://sis.gov.eg/en/media-center/news/e-tickets-the-new-way-to-explore-egypt-s-past/",
+      },
+    ],
+  },
+  {
+    question: "Can I buy the entrance tickets myself?",
+    answer:
+      "Yes. The service is optional. You may buy tickets through the attraction's official booking channel or an approved on-site sales point where available. If you ask us to arrange them, your quote will show the official admission amount and our 50 EGP fee separately — we never fold the two together and call it the entrance fee.",
+  },
+  {
+    question: "Is the 50 EGP ticket fee charged once per booking?",
+    answer:
+      "No. It is charged per paid admission ticket issued. Two visitors ordering admission to four attractions require eight tickets, so the service fee is 8 x 50 EGP = 400 EGP. Student or reduced-price tickets need valid supporting identification accepted by the attraction; without it the venue may require a full-price ticket.",
+  },
+  {
+    question: "Does an advance ticket mean we skip every queue?",
+    answer:
+      "No. It can reduce or avoid the ticket-purchase queue. Security screening, ticket validation, identification checks, timed-entry controls, capacity restrictions, and other venue queues may still apply. Ticket changes, cancellations and refunds also remain subject to the attraction's own rules, which we state before collecting payment.",
+  },
+  {
     question: "Do I need a visa to enter Egypt?",
     answer:
       "Most travelers (US, UK, EU, Canada, Australia, and most other passports) need a visa to enter Egypt. The easiest option is the Egypt e-Visa at visa2egypt.gov.eg — apply online a week before travel, costs $25 USD for single entry, and the approval comes by email. You can also get a visa on arrival at most major airports (Cairo, Hurghada, Sharm El Sheikh) for the same fee in cash USD or EUR. A few nationalities (most African, some Asian) have different rules — check Egypt's MOFA website or just message us on WhatsApp and we'll point you to the right info.",

@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import AdvanceTicketNote from "@/components/advance-ticket-note";
 
 export default function CairoGuideServices() {
   const SERVICE_SCHEMA = {
@@ -67,7 +68,7 @@ export default function CairoGuideServices() {
       name: t("guideServices.common.premiumCarService"),
       duration: t("guideServices.common.6to12Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-tour-car") } }),
-      features: ["Luxury sedan/SUV", t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
+      features: ["Private sedan/SUV", t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
       icon: Car
     }
   ];
@@ -330,6 +331,8 @@ export default function CairoGuideServices() {
             </div>
           </div>
         </section>
+
+        <AdvanceTicketNote />
 
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">

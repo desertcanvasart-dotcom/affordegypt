@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import AdvanceTicketNote from "@/components/advance-ticket-note";
 
 export default function AswanGuideServices() {
   const SERVICE_SCHEMA = {
@@ -333,6 +334,8 @@ export default function AswanGuideServices() {
             </div>
           </div>
         </section>
+
+        <AdvanceTicketNote />
 
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">

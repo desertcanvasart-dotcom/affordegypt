@@ -1399,6 +1399,10 @@
   },
   "guideServices": {
     "common": {
+      "ticketServiceTitle": "Want Us to Arrange Your Entrance Tickets?",
+      "ticketServiceBody1": "We can purchase and organize eligible attraction tickets before your visit for",
+      "ticketServiceFee": "50 EGP per paid admission ticket",
+      "ticketServiceBody2": ", plus the official ticket price. This optional service helps reduce time at ticket offices and avoids depending entirely on on-site card terminals, as many sites do not accept cash. It covers advance processing and ticket organization; security checks, identity checks, timed-entry rules, and venue queues may still apply.",
       "bookNow": "Book Guide Service",
       "whatsapp": "WhatsApp",
       "callNow": "Call Now",
@@ -1533,7 +1537,7 @@
           ]
         },
         "luxuryTemple": {
-          "name": "Luxury Temple Tours",
+          "name": "Luxor Temples Tours",
           "duration": "6-10 hours",
           "features": [
             "Premium vehicle",
