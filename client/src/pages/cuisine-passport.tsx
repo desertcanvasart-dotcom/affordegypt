@@ -738,7 +738,7 @@ export default function CuisinePassport() {
           canonical: "https://affordegypt.com/cuisine-passport",
           image: "https://affordegypt.com/images/egyptian-food.jpg",
           datePublished: "2025-06-14",
-          dateModified: "2026-08-02",
+          dateModified: "2026-08-12",
         })}
         ogType="article"
       />

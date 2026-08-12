@@ -65,7 +65,7 @@ export default function EgyptianStreetFoodGuide() {
           canonical: "https://affordegypt.com/egyptian-street-food-guide",
           image: "https://affordegypt.com/images/street-food-egypt.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-08-04",
+          dateModified: "2026-08-12",
         })}
         ogType="article"
       />
