@@ -27,6 +27,8 @@ export default function SinaiPeninsulaGuide() {
       title: "Sinai Peninsula",
       subtitle: "Where Desert Meets Sea",
       description: "Discover Egypt's most diverse region, where ancient mountains meet crystal-clear waters, and Bedouin culture thrives in pristine desert landscapes.",
+      safetyNoteLabel: "Safety note:",
+      safetyNote: "Advice for Sinai varies sharply by area and can change. Check your government's current travel advice, local access rules, and insurance coverage immediately before travel; do not treat northern or interior Sinai as generally open to tourists.",
       destinations: {
         title: "Top Destinations",
         description: "From world-class diving sites to sacred mountains, explore the peninsula's most captivating locations.",
@@ -53,13 +55,13 @@ export default function SinaiPeninsulaGuide() {
           },
           {
             name: "Mount Sinai",
-            description: "Sacred mountain where Moses received the Ten Commandments",
+            description: "Mountain traditionally identified in Jewish, Christian, and Islamic tradition with Moses and the Ten Commandments",
             highlights: ["Sunrise trek", "St. Catherine's Monastery", "Biblical history", "Desert views"],
             bestTime: "Oct-Apr",
             duration: "1-2 days",
             difficulty: "Moderate",
             image: "⛰️",
-            details: "Sacred mountain where Moses received the Ten Commandments, home to ancient monasteries and spiritual pilgrimage"
+            details: "A major pilgrimage destination near St. Catherine's Monastery, with sunrise hikes and mountain scenery"
           },
           {
             name: "Nuweiba",
@@ -76,6 +78,7 @@ export default function SinaiPeninsulaGuide() {
       activities: {
         title: "Adventures & Experiences",
         description: "From underwater exploration to desert adventures, the Sinai offers experiences for every type of traveler.",
+        priceNote: "The USD prices below are indicative starting rates from local operators, not fixed tariffs. They vary by season, group size and inclusions, so ask for a dated quote before you book.",
         categories: [
           {
             category: "Water Sports & Diving",
@@ -99,9 +102,9 @@ export default function SinaiPeninsulaGuide() {
             category: "Cultural Experiences",
             items: [
               { name: "Mount Sinai Sunrise Trek", price: "From $35/person", description: "Climb the sacred mountain in darkness to witness a breathtaking sunrise over the desert landscape." },
-              { name: "St. Catherine's Monastery", price: "From $20/person", description: "Visit one of the world's oldest continuously operating monasteries with priceless manuscripts and art." },
+              { name: "St. Catherine's Monastery", price: "From $20/person", description: "Visit St. Catherine's, one of the world's oldest continuously functioning Christian monasteries, with an important manuscript and icon collection." },
               { name: "Bedouin Village Experience", price: "From $30/person", description: "Share traditional meals and stories with Bedouin families in authentic desert settlements." },
-              { name: "Wadi Feiran Oasis", price: "From $35/person", description: "Explore the biblical wilderness where the Israelites wandered, now a lush oasis with date palms." }
+              { name: "Wadi Feiran Oasis", price: "From $35/person", description: "Explore a palm-filled oasis associated by tradition with the biblical Rephidim; the identification is not archaeologically certain." }
             ]
           }
         ]
@@ -112,11 +115,11 @@ export default function SinaiPeninsulaGuide() {
         items: [
           {
             title: "Best Time to Visit",
-            content: "October to April offers perfect weather with warm days and cool nights. Avoid summer months (June-August) when temperatures exceed 40°C. Spring (March-May) is ideal for hiking and diving."
+            content: "October to April usually offers milder conditions, but mountain nights can be cold and coastal conditions vary. Summer heat can exceed 40°C inland; check the local forecast and activity conditions."
           },
           {
             title: "Getting There",
-            content: "Fly to Sharm El Sheikh (SSH) for southern Sinai or Taba for northern areas. Overland transfers from Cairo take 6-7 hours through stunning desert landscapes."
+            content: "Fly to Sharm El Sheikh (SSH) for southern Sinai. Taba airport service is limited and date-dependent, so verify that a flight actually operates before suggesting it. Cairo-Sharm road journeys commonly take about 6-8 hours, while Dahab, Nuweiba, St. Catherine, and Taba take longer depending on route, stops, and checkpoints."
           },
           {
             title: "Safety Tips",
@@ -582,7 +585,7 @@ export default function SinaiPeninsulaGuide() {
             canonical: "https://affordegypt.com/sinai-peninsula-guide",
             image: "https://affordegypt.com/images/sinai-monastery.jpg",
             datePublished: "2025-06-07",
-            dateModified: "2026-08-02",
+            dateModified: "2026-08-12",
           })}
           ogType="article"
         />
@@ -686,6 +689,9 @@ export default function SinaiPeninsulaGuide() {
             <h2 className="text-4xl font-bold text-teal-900 mb-4">{currentContent.activities.title}</h2>
             <p className="text-xl text-slate-600">
               {currentContent.activities.description}
+            </p>
+            <p className="text-sm text-slate-600 max-w-3xl mx-auto mt-4">
+              {currentContent.activities.priceNote || content.en.activities.priceNote}
             </p>
           </div>
 
@@ -795,6 +801,21 @@ export default function SinaiPeninsulaGuide() {
             >
               {currentContent.cta.button}
             </Button>
+          </div>
+        </section>
+
+        {/* Travel advisory. Advice for Sinai is area-specific and volatile, and
+            a guide that reads as a blanket invitation is the one failure mode
+            here that is a safety problem rather than a pricing one. Falls back
+            to English so a locale without the string still shows the warning
+            rather than silently dropping it. */}
+        <section className="bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-6">
+          <div className="flex items-start gap-3 max-w-4xl mx-auto">
+            <AlertTriangle className="w-6 h-6 text-amber-600 mt-0.5 flex-shrink-0" />
+            <p className="text-amber-900">
+              <strong>{currentContent.safetyNoteLabel || content.en.safetyNoteLabel}</strong>{' '}
+              {currentContent.safetyNote || content.en.safetyNote}
+            </p>
           </div>
         </section>
       </div>
