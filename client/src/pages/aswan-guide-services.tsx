@@ -24,6 +24,8 @@ import {
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import AdvanceTicketNote from "@/components/advance-ticket-note";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function AswanGuideServices() {
   const SERVICE_SCHEMA = {
@@ -131,11 +133,12 @@ export default function AswanGuideServices() {
         title={`Aswan Private Tour Guide & Car | From ${formatLEPerDay("aswan-guide-car")}`}
         description={`Private licensed Egyptologist and car in Aswan from ${formatLEPerDay("aswan-guide-car")}. Philae, the High Dam and Nubian villages. Entrance tickets billed separately.`}
         canonical="https://affordegypt.com/aswan-car-tour-guide-services"
-        schema={SERVICE_SCHEMA}
+        schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/aswan-car-tour-guide-services")!)]}
       />
 
       <div className="min-h-screen bg-background">
         <Navbar />
+        <PageBreadcrumbs />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">

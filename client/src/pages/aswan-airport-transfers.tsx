@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function AswanAirportTransfers() {
   const SERVICE_SCHEMA = {
@@ -107,11 +109,12 @@ export default function AswanAirportTransfers() {
         title="Aswan Airport Transfers | Fixed Price | AffordEgypt"
         description={`Fixed-price Aswan airport transfers from LE ${sedanFrom}. City hotels, Nubian stays, island jetties and cruise moorings. Licensed local drivers and fixed quotes.`}
         canonical="https://affordegypt.com/aswan-airport-transfers"
-        schema={SERVICE_SCHEMA}
+        schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/aswan-airport-transfers")!)]}
       />
 
       <div className="min-h-screen bg-background">
         <Navbar />
+        <PageBreadcrumbs />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">

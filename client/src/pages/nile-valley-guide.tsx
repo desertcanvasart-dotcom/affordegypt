@@ -19,6 +19,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SeoMeta from "@/components/seo-meta";
 import { articleSchema } from "@/lib/article-schema";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 interface NileCity {
   id: number;
@@ -2396,7 +2398,7 @@ export default function NileValleyGuide() {
           description="The hidden gems of the Nile Valley between Luxor and Aswan. Edfu, Kom Ombo, Dendera, Esna. How to see them on a budget with a private guide."
           canonical="https://affordegypt.com/nile-valley-guide"
           ogImage="https://affordegypt.com/images/nile-valley.jpg"
-          schema={articleSchema({
+          schema={[articleSchema({
             headline: "Nile Valley Travel Guide | Beyond Luxor & Aswan",
             description:
               "The hidden gems of the Nile Valley between Luxor and Aswan. Edfu, Kom Ombo, Dendera, Esna. How to see them on a budget with a private guide.",
@@ -2404,10 +2406,11 @@ export default function NileValleyGuide() {
             image: "https://affordegypt.com/images/nile-valley.jpg",
             datePublished: "2025-06-07",
             dateModified: "2026-08-12",
-          })}
+          }), breadcrumbSchema(trailFor("/nile-valley-guide")!)]}
           ogType="article"
         />
       <Navbar />
+      <PageBreadcrumbs />
 
       <GuideToc />
       {/* Hero Section */}

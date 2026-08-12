@@ -23,6 +23,8 @@ import {
   Printer
 } from "lucide-react";
 import { Link } from "wouter";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 // Presentation, not content — zipped onto the translated arrays by index.
 const cityIcons = ["🏛️", "🌊", "🏺", "⛵", "🌴"];
@@ -58,7 +60,7 @@ export default function EgyptianStreetFoodGuide() {
         description={t("streetFoodGuide.seoDescription")}
         canonical="https://affordegypt.com/egyptian-street-food-guide"
         ogImage="https://affordegypt.com/images/street-food-egypt.jpg"
-        schema={articleSchema({
+        schema={[articleSchema({
           headline: "Egyptian Street Food Guide | What to Eat & Where",
           description:
             "From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide.",
@@ -66,12 +68,13 @@ export default function EgyptianStreetFoodGuide() {
           image: "https://affordegypt.com/images/street-food-egypt.jpg",
           datePublished: "2025-06-07",
           dateModified: "2026-08-12",
-        })}
+        }), breadcrumbSchema(trailFor("/egyptian-street-food-guide")!)]}
         ogType="article"
       />
 
       <div className="min-h-screen bg-white">
         <Navbar />
+        <PageBreadcrumbs />
         
         <GuideToc />
         {/* Hero Section */}

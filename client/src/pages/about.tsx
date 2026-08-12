@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, Shield, Users, MapPin, Clock, Star } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function About() {
   const { t } = useTranslation();
@@ -36,9 +38,11 @@ export default function About() {
         title={t("aboutPage.seoTitle")}
         description={t("aboutPage.seoDescription")}
         canonical="https://affordegypt.com/about"
+        schema={breadcrumbSchema(trailFor("/about")!)}
       />
 
       <Navbar />
+      <PageBreadcrumbs />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section

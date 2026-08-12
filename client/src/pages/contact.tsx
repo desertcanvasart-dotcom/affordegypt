@@ -16,6 +16,8 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { OPERATOR } from "@shared/operator-facts";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 // A factory, not a module constant: the validation messages are translated, so
 // the schema must be built after i18next is available and rebuilt when the
@@ -81,9 +83,11 @@ export default function Contact() {
         title={t("contactPage.seoTitle")}
         description={t("contactPage.seoDescription")}
         canonical="https://affordegypt.com/contact"
+        schema={breadcrumbSchema(trailFor("/contact")!)}
       />
       
       <Navbar />
+      <PageBreadcrumbs />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-background py-20">

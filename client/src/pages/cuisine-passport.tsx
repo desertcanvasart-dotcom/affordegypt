@@ -31,6 +31,8 @@ import {
   X
 } from "lucide-react";
 import { Link } from "wouter";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 interface Dish {
   id: number;
@@ -731,7 +733,7 @@ export default function CuisinePassport() {
         description="An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."
         canonical="https://affordegypt.com/cuisine-passport"
         ogImage="https://affordegypt.com/images/egyptian-food.jpg"
-        schema={articleSchema({
+        schema={[articleSchema({
           headline: "Egyptian Cuisine Passport | Try 25 Dishes Across Egypt",
           description:
             "An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories.",
@@ -739,12 +741,13 @@ export default function CuisinePassport() {
           image: "https://affordegypt.com/images/egyptian-food.jpg",
           datePublished: "2025-06-14",
           dateModified: "2026-08-12",
-        })}
+        }), breadcrumbSchema(trailFor("/cuisine-passport")!)]}
         ogType="article"
       />
 
       <div className="min-h-screen bg-white">
         <Navbar />
+        <PageBreadcrumbs />
         
         {/* Hero Section */}
         <header

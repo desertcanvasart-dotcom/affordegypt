@@ -24,6 +24,8 @@ import {
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import AdvanceTicketNote from "@/components/advance-ticket-note";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function CairoGuideServices() {
   const SERVICE_SCHEMA = {
@@ -131,11 +133,12 @@ export default function CairoGuideServices() {
         title={`Cairo Private Tour Guide & Car | From ${formatLEPerDay("cairo-guide-car")}`}
         description={`Private licensed Egyptologist and car in Cairo from ${formatLEPerDay("cairo-guide-car")}. Giza, the Egyptian Museum and Islamic Cairo. Entrance tickets billed separately.`}
         canonical="https://affordegypt.com/cairo-car-tour-guide-services"
-        schema={SERVICE_SCHEMA}
+        schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/cairo-car-tour-guide-services")!)]}
       />
 
       <div className="min-h-screen bg-background">
         <Navbar />
+        <PageBreadcrumbs />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">

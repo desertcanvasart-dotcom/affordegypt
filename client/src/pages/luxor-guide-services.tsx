@@ -24,6 +24,8 @@ import {
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import AdvanceTicketNote from "@/components/advance-ticket-note";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function LuxorGuideServices() {
   const SERVICE_SCHEMA = {
@@ -131,11 +133,12 @@ export default function LuxorGuideServices() {
         title={`Luxor Private Tour Guide & Car | From ${formatLEPerDay("luxor-guide-car")}`}
         description={`Private licensed Egyptologist and car in Luxor from ${formatLEPerDay("luxor-guide-car")}. Karnak, the Valley of the Kings and both banks. Entrance tickets billed separately.`}
         canonical="https://affordegypt.com/luxor-car-tour-guide-services"
-        schema={SERVICE_SCHEMA}
+        schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/luxor-car-tour-guide-services")!)]}
       />
 
       <div className="min-h-screen bg-background">
         <Navbar />
+        <PageBreadcrumbs />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">

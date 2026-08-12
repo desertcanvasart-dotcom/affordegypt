@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { useTranslation } from "react-i18next";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function Destinations() {
   const { t } = useTranslation();
@@ -53,9 +55,11 @@ export default function Destinations() {
         title="Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
         description="Plan your Egypt trip across Cairo, Alexandria, Luxor, Aswan, Hurghada and Sharm El Sheikh. Licensed Egyptologist guides and transparent prices."
         canonical="https://affordegypt.com/destinations"
+        schema={breadcrumbSchema(trailFor("/destinations")!)}
       />
 
       <Navbar />
+      <PageBreadcrumbs />
       
       <main>
         {/* Hero Section */}

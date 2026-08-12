@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function CairoAirportTransfers() {
   const SERVICE_SCHEMA = {
@@ -107,11 +109,12 @@ export default function CairoAirportTransfers() {
         title="Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
         description={`Fixed-price Cairo airport transfers from LE ${sedanFrom}. CAI and Sphinx SPX, licensed drivers, flight monitoring and meet and greet. Book direct, no middlemen.`}
         canonical="https://affordegypt.com/cairo-airport-transfers"
-        schema={SERVICE_SCHEMA}
+        schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/cairo-airport-transfers")!)]}
       />
 
       <div className="min-h-screen bg-background">
         <Navbar />
+        <PageBreadcrumbs />
         {/* Hero Section */}
         <section className="relative bg-gradient-to-b from-primary/5 to-background py-20">
           <div className="container mx-auto px-4">

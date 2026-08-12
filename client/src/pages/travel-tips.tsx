@@ -4,6 +4,8 @@ import { articleSchema } from "@/lib/article-schema";
 import Navbar from "@/components/navbar";
 import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function TravelTips() {
   const { t } = useTranslation();
@@ -14,7 +16,7 @@ export default function TravelTips() {
         description={t("travelTips.seoDescription")}
         canonical="https://affordegypt.com/travel-tips"
         ogImage="https://affordegypt.com/images/giza-pyramids.jpg"
-        schema={articleSchema({
+        schema={[articleSchema({
           headline: "Egypt Travel Tips | What Locals Wish You Knew",
           description:
             "Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong.",
@@ -22,12 +24,13 @@ export default function TravelTips() {
           image: "https://affordegypt.com/images/giza-pyramids.jpg",
           datePublished: "2025-06-07",
           dateModified: "2026-08-12",
-        })}
+        }), breadcrumbSchema(trailFor("/travel-tips")!)]}
         ogType="article"
       />
       
       <div className="min-h-screen bg-white">
         <Navbar />
+        <PageBreadcrumbs />
         <GuideToc />
         {/* Hero Section */}
         <header

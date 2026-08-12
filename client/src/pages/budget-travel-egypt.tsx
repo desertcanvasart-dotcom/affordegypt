@@ -25,6 +25,8 @@ import {
   AlertTriangle
 } from "lucide-react";
 import { Link } from "wouter";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 
 export default function BudgetTravelEgypt() {
   const { t } = useTranslation();
@@ -60,7 +62,7 @@ export default function BudgetTravelEgypt() {
         description={t("budgetGuide.seoDescription")}
         canonical="https://affordegypt.com/budget-travel-egypt"
         ogImage="https://affordegypt.com/images/pyramid-of-giza.jpg"
-        schema={articleSchema({
+        schema={[articleSchema({
           headline: "Egypt on a Budget | A Cairo Operator's Honest Guide",
           description:
             "How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions.",
@@ -68,12 +70,13 @@ export default function BudgetTravelEgypt() {
           image: "https://affordegypt.com/images/pyramid-of-giza.jpg",
           datePublished: "2025-06-07",
           dateModified: "2026-08-11",
-        })}
+        }), breadcrumbSchema(trailFor("/budget-travel-egypt")!)]}
         ogType="article"
       />
 
       <div className="min-h-screen bg-white">
         <Navbar />
+        <PageBreadcrumbs />
         
         <GuideToc />
         {/* Hero Section */}

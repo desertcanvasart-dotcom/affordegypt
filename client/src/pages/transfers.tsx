@@ -43,6 +43,8 @@ import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
 import { formatEGP } from "@/lib/utils";
 import { formatEGPPlain } from "@/lib/service-pricing";
+import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
+import PageBreadcrumbs from "@/components/page-breadcrumbs";
 import {
   type CatalogRow,
   type VehicleSlug,
@@ -542,8 +544,10 @@ export default function TransfersPage() {
         title="Egypt Airport & Intercity Transfers | Private Car from LE 595"
         description={`Private airport and intercity transfers across Egypt from ${formatEGPPlain("luxor-airport-transfer")}. Fixed prices, licensed drivers, flight monitoring. Book direct, no middlemen.`}
         canonical="https://affordegypt.com/transfers"
+        schema={breadcrumbSchema(trailFor("/transfers")!)}
       />
       <Navbar />
+      <PageBreadcrumbs />
 
       {/* Header */}
       <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white py-16">
