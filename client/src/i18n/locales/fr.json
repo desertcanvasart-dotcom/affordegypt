@@ -3131,5 +3131,622 @@
       "noPricedService": "Ajoutez au moins un service — transport, guide, billets ou extra — avant de consulter votre prix.",
       "zeroTotal": "Votre itinéraire totalise toujours LE 0. Revenez en arrière et ajoutez au moins un service payant avant de passer au paiement."
     }
+  },
+  "nileValleyGuide": {
+    "title": "Guide de Voyage de la Vallée du Nil",
+    "subtitle": "Voyage à Travers le Cœur Ancestral de l'Égypte",
+    "description": "Suivez la ligne de vie de l'Égypte depuis la côte méditerranéenne jusqu'au cœur de la Nubie, en explorant des temples anciens, des villes vibrantes et des traditions intemporelles le long du puissant fleuve Nil.",
+    "hero": {
+      "badge1": "5,000 Ans d'Histoire",
+      "badge2": "Temples et Tombes Antiques",
+      "badge3": "Culture Égyptienne Authentique",
+      "features": {
+        "cities": {
+          "title": "12+ Villes Historiques",
+          "description": "D'Alexandrie à Abou Simbel"
+        },
+        "sites": {
+          "title": "Monuments Antiques",
+          "description": "Temples, tombes et pyramides"
+        },
+        "budget": {
+          "title": "Économique",
+          "description": "Options de voyage abordables"
+        }
+      },
+      "cta": "Commencez à Planifier Votre Voyage"
+    },
+    "regions": {
+      "title": "Explorez la Vallée du Nil par Région",
+      "all": "Toutes les Régions",
+      "lowerEgypt": "Basse-Égypte",
+      "middleEgypt": "Moyenne-Égypte",
+      "upperEgypt": "Haute-Égypte",
+      "nubia": "Nubie"
+    },
+    "map": {
+      "title": "Carte Interactive de la Vallée du Nil",
+      "clickCities": "Cliquez sur les villes pour explorer des informations détaillées"
+    },
+    "priceNote": "Les prix d’entrée sont les tarifs standard pour adultes étrangers vérifiés en août 2026. Les tarifs et les horaires changent sans préavis: vérifiez-les sur le site officiel avant de partir.",
+    "cityDetails": {
+      "bestTime": "Meilleure période pour visiter:",
+      "recommendedStay": "Séjour recommandé:",
+      "keyHighlights": "Points Forts",
+      "budgetTips": "Conseils Budget",
+      "transportation": "Transport",
+      "localTransport": "Transport local:",
+      "topAttractions": "Principales Attractions",
+      "entry": "Entrée:",
+      "hours": "Heures:"
+    },
+    "completeGuide": {
+      "title": "Guide Complet des Villes de la Vallée du Nil",
+      "bestTime": "Meilleure période:",
+      "stayDuration": "Durée de séjour:",
+      "fromCairo": "Depuis Le Caire:",
+      "keyHighlights": "Points Forts",
+      "topAttractions": "Principales Attractions",
+      "regions": {
+        "upperEgypt": "Haute-Égypte",
+        "middleEgypt": "Moyenne-Égypte",
+        "lowerEgypt": "Basse-Égypte",
+        "nubia": "Nubie"
+      },
+      "budgetTips": "Conseils Budget"
+    },
+    "transportation": {
+      "title": "Se Déplacer dans la Vallée du Nil",
+      "train": {
+        "title": "Voyages en Train",
+        "description": "Connexions ferroviaires abordables et pittoresques entre les principales villes le long de la Vallée du Nil.",
+        "cairoLuxor": "Le Caire à Louxor: 10-12 heures de nuit",
+        "cairoAswan": "Le Caire à Assouan: 13-14 heures de nuit",
+        "acCoaches": "Voitures climatisées disponibles",
+        "nightTrains": "Trains de nuit confortables avec voitures-restaurants"
+      },
+      "cruise": {
+        "title": "Croisières sur le Nil",
+        "description": "La façon la plus pittoresque de voyager entre Louxor et Assouan, offrant des vues magnifiques sur les temples anciens et les villages traditionnels le long des rives du fleuve.",
+        "threeFourDays": "Louxor à Assouan: 3-4 jours",
+        "allMeals": "Les repas inclus dépendent de la formule de croisière",
+        "entranceFees": "Frais d'entrée des temples généralement en supplément",
+        "bestTime": "Meilleure période: octobre à avril pour un climat confortable"
+      },
+      "flights": {
+        "title": "Vols Domestiques",
+        "description": "Connexions rapides et efficaces entre les principales villes, parfaites pour les voyageurs avec un temps limité.",
+        "cairoLuxor": "Le Caire à Louxor: 1.5 heures",
+        "cairoAswan": "Le Caire à Assouan: 1.5 heures",
+        "abuSimbel": "Abou Simbel: les vols dépendent de la date et partent le plus souvent d'Assouan; vérifiez les horaires en vigueur",
+        "flightTimes": "Les horaires de vol varient selon la saison et la compagnie aérienne"
+      }
+    },
+    "travelTips": {
+      "title": "Conseils Essentiels de Voyage dans la Vallée du Nil",
+      "bestTime": {
+        "title": "Meilleure Période pour Visiter",
+        "peakSeason": "Haute Saison (Oct-Avr)",
+        "peakDescription": "Climat généralement plus doux, avec une demande plus forte et des sites plus fréquentés",
+        "shoulderSeason": "Saison Intermédiaire (Mai, Sep)",
+        "shoulderDescription": "De fortes chaleurs sont possibles; la demande et les prix varient",
+        "lowSeason": "Basse Saison (Jun-Aoû)",
+        "lowDescription": "Climat très chaud en Haute-Égypte; une demande plus faible ne garantit pas le prix le plus bas partout"
+      },
+      "budgetBreakdown": {
+        "title": "Répartition du Budget",
+        "budget": {
+          "title": "Voyage Économique",
+          "description": "Établissez un budget actuel après avoir vérifié l'hébergement et les billets des sites; les anciens montants journaliers fixes deviennent vite inexacts."
+        },
+        "midRange": {
+          "title": "Gamme Moyenne",
+          "description": "Budgétisez séparément les hôtels, le transport entre les villes, les repas, les billets et les guides."
+        },
+        "luxury": {
+          "title": "Luxe",
+          "description": "Demandez des devis actuels pour les hôtels, guides privés, véhicules, croisières et expériences premium."
+        }
+      },
+      "culturalEtiquette": {
+        "title": "Étiquette Culturelle",
+        "dressModestly": "Habillez-vous modestement, surtout lors de la visite de sites religieux",
+        "removeShoes": "Retirez vos chaussures en entrant dans les mosquées",
+        "askPermission": "Demandez la permission avant de photographier les gens",
+        "bargainRespectfully": "Marchandez respectueusement dans les marchés",
+        "tipStaff": "Donnez un pourboire approprié au personnel des hôtels et restaurants",
+        "learnGreetings": "Apprenez les salutations de base en arabe"
+      },
+      "healthSafety": {
+        "title": "Santé et Sécurité",
+        "drinkBottledWater": "Buvez uniquement de l'eau en bouteille ou filtrée",
+        "useSunscreen": "Utilisez une crème solaire à haut FPS et portez des vêtements protecteurs",
+        "packMedications": "Emportez tous les médicaments sur ordonnance dont vous avez besoin",
+        "getTravelInsurance": "Souscrivez une assurance voyage complète",
+        "keepCopies": "Gardez des copies des documents importants",
+        "useRegisteredGuides": "Utilisez uniquement des guides touristiques enregistrés",
+        "stayHydrated": "Restez hydraté, surtout pendant les mois d'été"
+      }
+    },
+    "data": {
+      "budgetTips": {
+        "minya": {
+          "dayTripFromCairo": "Si vous visitez plusieurs sites, passer la nuit sur place est plus réaliste qu'un aller-retour dans la journée depuis Le Caire.",
+          "localGuides": "Engagez des guides locaux pour des visites économiques et enrichissantes.",
+          "groupTours": "Partagez une voiture ou joignez-vous à un groupe pour les sites hors de la ville : ils sont très éloignés les uns des autres"
+        },
+        "sohag": {
+          "cheapAccommodation": "Cherchez des hôtels bon marché près du centre-ville.",
+          "localFood": "Essayez les petits restaurants locaux pour des repas savoureux et abordables.",
+          "walkingTours": "Le centre-ville se parcourt à pied ; gardez le taxi pour les monastères à l'extérieur"
+        },
+        "qena": {
+          "budgetFriendly": "Explorez Qena à pied pour économiser sur les transports.",
+          "localMarkets": "Faites vos achats dans les marchés locaux pour des souvenirs à petit prix.",
+          "basicHotels": "Les hôtels locaux simples coûtent une fraction de ceux de Louxor, à une heure de route"
+        },
+        "asyut": {
+          "affordableStays": "Choisissez des hôtels bon marché ou des pensions pour économiser.",
+          "localTransport": "Utilisez les transports locaux comme les minibus pour voyager à petit prix.",
+          "traditionalFood": "Mangez dans les restaurants locaux traditionnels, où un repas complet coûte très peu"
+        },
+        "alexandria": {
+          "stayNearCorniche": "Séjournez près de la Corniche pour de superbes vues sur la mer",
+          "freshSeafood": "Essayez les fruits de mer frais dans les restaurants locaux",
+          "historicTram": "Utilisez le tramway historique pour un transport pas cher"
+        },
+        "cairo": {
+          "useMetro": "Utilisez le métro pour un transport bon marché en ville",
+          "localRestaurants": "Mangez dans des restaurants locaux pour une cuisine authentique",
+          "downtownAccommodation": "Logez au centre-ville pour un hébergement économique",
+          "freeMosquesMarkets": "Visitez les mosquées et les marchés, dont l'accès est gratuit"
+        },
+        "luxor": {
+          "eastBankStay": "Séjournez à East Bank pour des hébergements économiques",
+          "groupTickets": "Comparez les billets individuels avec le Luxor Pass en vigueur ; les remises de groupe habituelles ne sont pas garanties.",
+          "earlyMorning": "Visitez les temples tôt le matin pour éviter la foule",
+          "localRestaurants": "Mangez là où mangent les guides, une rue en retrait de la corniche"
+        },
+        "beniSuef": {
+          "affordableFood": "Nourriture locale abordable disponible",
+          "basicAccommodation": "Options d'hébergement de base mais propres",
+          "bargainMarkets": "Achetez nourriture et produits courants sur les marchés locaux plutôt qu'près des sites"
+        },
+        "edfu": {
+          "nileCruiseStop": "Arrêt populaire pour les croisières sur le Nil",
+          "horseCartRide": "Prenez une calèche jusqu'au temple",
+          "affordableFood": "Restaurants locaux abordables disponibles"
+        },
+        "komOmbo": {
+          "combineWithEdfu": "Combinez la visite avec le Temple d'Edfu",
+          "sunsetViews": "Excellentes vues du coucher de soleil sur le Nil",
+          "basicTown": "Ville de base avec des équipements simples"
+        },
+        "aswan": {
+          "stayNearSouk": "Séjournez près du souk pour une expérience locale",
+          "feluccaRides": "Négociez les balades en felouque au coucher du soleil",
+          "nubianVillages": "Visitez les villages nubiens pour une expérience culturelle",
+          "spiceShopping": "Achetez vos épices sur les marchés locaux"
+        },
+        "abuSimbel": {
+          "dayTripFromAswan": "Faites une excursion d'une journée depuis Assouan au lieu d'y passer la nuit",
+          "joinGroupTours": "Rejoignez des visites de groupe pour de meilleurs prix",
+          "bringLunchWater": "Emportez de quoi déjeuner et de l'eau depuis Assouan",
+          "earlyMorningArrival": "Arrivez tôt le matin, quand il fait plus frais"
+        }
+      },
+      "attractions": {
+        "minya": {
+          "tellElAmarna": {
+            "name": "Tell el-Amarna",
+            "entryFee": "150 EGP (adulte étranger)",
+            "description": "Vestiges d'Akhetaton, l'éphémère capitale fondée par Akhenaton"
+          },
+          "beniHassan": {
+            "name": "Tombes de Beni Hassan",
+            "entryFee": "150 EGP (adulte étranger)",
+            "description": "Tombes rupestres de gouverneurs du Moyen Empire, peintes de scènes de la vie quotidienne"
+          },
+          "tunaElGebel": {
+            "name": "Nécropole de Tuna el-Gebel",
+            "entryFee": "150 EGP (adulte étranger)",
+            "description": "Nécropole avec des catacombes, la chapelle funéraire de Pétosiris et des sépultures animales"
+          }
+        },
+        "asyut": {
+          "copticMonasteries": {
+            "name": "Anciens monastères coptes"
+          },
+          "traditionalCrafts": {
+            "name": "Artisanat traditionnel"
+          },
+          "nileCorniche": {
+            "name": "Corniche du Nil"
+          },
+          "monasteryVirginMary": {
+            "name": "Monastère de la Vierge Marie",
+            "entryFee": "Gratuit",
+            "description": "Monastère copte à flanc de falaise à Deirout el-Charif (Dourounka), grand lieu de pèlerinage en août"
+          },
+          "asyutBarrage": {
+            "name": "Barrage d'Asyut",
+            "entryFee": "Gratuit",
+            "description": "Barrage du XIXe siècle sur le Nil, toujours essentiel à l'irrigation de la région"
+          }
+        },
+        "sohag": {
+          "redWhiteMonasteries": {
+            "name": "Monastères Rouge et Blanc"
+          },
+          "akhmimTextiles": {
+            "name": "Textiles d'Akhmim"
+          },
+          "ruralCulture": {
+            "name": "Culture rurale"
+          },
+          "abydosTemple": {
+            "name": "Temple d'Abydos",
+            "description": "Temple de Séti Ier, où se trouve la liste royale d'Abydos",
+            "entryFee": "200 EGP (adulte étranger)",
+            "hours": "De 7h à 17h"
+          },
+          "redMonastery": {
+            "name": "Monastère Rouge",
+            "entryFee": "Gratuit",
+            "description": "Monastère copte de l'Antiquité tardive, connu pour son sanctuaire peint"
+          },
+          "whiteMonastery": {
+            "name": "Monastère Blanc",
+            "entryFee": "Gratuit",
+            "description": "Monastère de saint Chenouté, bâti avec le calcaire de sites pharaoniques plus anciens"
+          },
+          "akhmim": {
+            "name": "Musée en plein air d'Akhmim",
+            "entryFee": "100 EGP (adulte étranger)",
+            "description": "Ville dotée d'un site en plein air où est exposée une statue colossale de Méritamon"
+          }
+        },
+        "qena": {
+          "gatewayDendera": {
+            "name": "Porte vers le temple de Dendérah"
+          },
+          "traditionalPottery": {
+            "name": "Poterie traditionnelle"
+          },
+          "nileIslands": {
+            "name": "Îles du Nil"
+          },
+          "denderaTemple": {
+            "name": "Temple de Dendérah",
+            "entryFee": "300 EGP (adulte étranger)",
+            "description": "Temple d'Hathor, célèbre pour ses plafonds peints et ses couleurs conservées"
+          },
+          "qenaPotteryQuarter": {
+            "name": "Quartier de la poterie de Qena",
+            "entryFee": "Gratuit",
+            "description": "Ateliers produisant les jarres à eau en terre poreuse qui ont fait la réputation de la ville"
+          }
+        },
+        "alexandria": {
+          "bibliotheca": {
+            "name": "Bibliotheca Alexandrina",
+            "description": "Recréation moderne de l'ancienne bibliothèque d'Alexandrie",
+            "entryFee": "150 EGP (adulte étranger, billet de la bibliothèque principale)",
+            "hours": "Du lundi au jeudi, de 9h30 à 17h ; samedi et dimanche, de 10h à 14h ; fermé le vendredi"
+          },
+          "qaitbayCitadel": {
+            "name": "Citadelle de Qaitbay",
+            "description": "Fort du XVe siècle sur la côte méditerranéenne",
+            "entryFee": "200 EGP (adulte étranger)",
+            "hours": "De 9h à 20h (vérifiez les changements saisonniers ou lors des jours fériés)"
+          },
+          "catacombs": {
+            "name": "Catacombes de Kom el-Chougafa",
+            "description": "Chambres funéraires romaines",
+            "entryFee": "200 EGP (adulte étranger)",
+            "hours": "De 9h à 16h"
+          }
+        },
+        "cairo": {
+          "pyramidsGiza": {
+            "name": "Pyramides de Gizeh",
+            "description": "Dernière merveille du monde antique",
+            "entryFee": "700 EGP (entrée du site, adulte étranger)",
+            "hours": "De 8h à 16h"
+          },
+          "egyptianMuseum": {
+            "name": "Musée égyptien",
+            "description": "La plus grande collection d'objets de l'Égypte antique au monde",
+            "entryFee": "550 EGP (adulte étranger)",
+            "hours": "De 9h à 19h"
+          },
+          "citadelSaladin": {
+            "name": "Citadelle de Saladin",
+            "description": "Fortification islamique médiévale au Caire",
+            "entryFee": "550 EGP (adulte étranger)",
+            "hours": "8:00 AM - 5:00 PM"
+          },
+          "alabasterMosque": {
+            "name": "Mosquée d'Albâtre",
+            "description": "Belle mosquée de style ottoman",
+            "entryFee": "Gratuit",
+            "hours": "9:00 AM - 4:00 PM"
+          },
+          "copticMuseum": {
+            "name": "Musée Copte",
+            "description": "Plus grande collection d'artefacts coptes au monde",
+            "entryFee": "230 EGP (adulte étranger)",
+            "hours": "9:00 AM - 5:00 PM"
+          }
+        },
+        "luxor": {
+          "valleyKings": {
+            "name": "Vallée des Rois",
+            "description": "Tombes royales des pharaons",
+            "entryFee": "750 EGP (adulte étranger)",
+            "hours": "De 6h à 17h"
+          },
+          "karnakTemple": {
+            "name": "Complexe du Temple de Karnak",
+            "description": "Vaste complexe de temples dédié à Amon-Rê",
+            "entryFee": "600 EGP (adulte étranger)",
+            "hours": "De 6h à 17h30"
+          },
+          "luxorTemple": {
+            "name": "Temple de Louxor",
+            "description": "Temple de l'Égypte antique au cœur de la ville",
+            "entryFee": "500 EGP (adulte étranger)",
+            "hours": "De 6h à 21h"
+          },
+          "medinet": {
+            "name": "Medinet Habu",
+            "description": "Temple funéraire de Ramsès III",
+            "entryFee": "200 EGP (adulte étranger)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "deir": {
+            "name": "Deir el-Medina",
+            "description": "Village des constructeurs de tombes royales",
+            "entryFee": "200 EGP (adulte étranger)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "ramesseum": {
+            "name": "Ramesseum",
+            "description": "Temple commémoratif de Ramsès II",
+            "entryFee": "180 EGP (adulte étranger)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "luxorMuseum": {
+            "name": "Musée de Louxor",
+            "description": "Collection choisie de statues et d'objets provenant des temples et des tombes de Louxor",
+            "entryFee": "400 EGP (adulte étranger)",
+            "hours": "De 9h à 14h et de 17h à 21h"
+          },
+          "hatshepsutTemple": {
+            "name": "Temple d'Hatchepsout",
+            "description": "Temple funéraire en terrasses à Deir el-Bahari",
+            "entryFee": "440 EGP (adulte étranger)",
+            "hours": "De 6h à 17h"
+          }
+        },
+        "beniSuef": {
+          "meidumPyramid": {
+            "name": "Pyramide de Meidum",
+            "entryFee": "150 EGP (adulte étranger)",
+            "description": "Pyramide ancienne de Meïdoum, dont le parement effondré a laissé une silhouette de tour caractéristique"
+          }
+        },
+        "edfu": {
+          "templeHorus": {
+            "name": "Temple d'Horus",
+            "entryFee": "550 EGP (adulte étranger)",
+            "description": "Temple d'Horus, parmi les mieux conservés d'Égypte"
+          },
+          "edfuMarket": {
+            "name": "Marché Traditionnel d'Edfu",
+            "entryFee": "Gratuit",
+            "description": "Marché local de produits frais et d'articles ménagers dans les rues autour du temple"
+          }
+        },
+        "komOmbo": {
+          "templeKomOmbo": {
+            "name": "Temple de Kom Ombo",
+            "entryFee": "450 EGP (adulte étranger ; le musée du Crocodile est inclus)",
+            "description": "Temple double partagé par Sobek et Haroéris, aux moitiés symétriques"
+          },
+          "crocodileMuseum": {
+            "name": "Musée des Crocodiles",
+            "entryFee": "Inclus dans le billet du site du temple de Kom Ombo",
+            "description": "Crocodiles momifiés et objets votifs provenant du bassin sacré du temple"
+          }
+        },
+        "aswan": {
+          "philaeTemple": {
+            "name": "Temple de Philae",
+            "entryFee": "550 EGP (adulte étranger ; la traversée en bateau est en supplément)",
+            "description": "Temple d'Isis, déplacé pierre par pierre sur l'île d'Agilkia pour échapper à la montée des eaux"
+          },
+          "highDam": {
+            "name": "Haut Barrage d'Assouan",
+            "entryFee": "200 EGP (adulte étranger)",
+            "description": "Le barrage qui a créé le lac Nasser et transformé la crue annuelle du Nil"
+          },
+          "nubianVillage": {
+            "name": "Village Nubien",
+            "description": "Village nubien que l'on rejoint en bateau depuis Assouan",
+            "entryFee": "Gratuit",
+            "hours": "Ouvert à toute heure ; la traversée en bateau s'organise séparément"
+          },
+          "unfinishedObelisk": {
+            "name": "Obélisque Inachevé",
+            "description": "Ancienne carrière de granit avec obélisque inachevé",
+            "entryFee": "220 EGP (adulte étranger)",
+            "hours": "7:00 AM - 5:00 PM"
+          },
+          "nubian": {
+            "name": "Musée Nubien",
+            "description": "Musée de la culture et de l'histoire nubiennes",
+            "entryFee": "300 EGP (adulte étranger)",
+            "hours": "9:00 AM - 6:00 PM"
+          },
+          "botanical": {
+            "name": "Jardin Botanique",
+            "description": "Plantes exotiques sur l'île de Kitchener",
+            "entryFee": "70 EGP (adulte étranger)",
+            "hours": "8:00 AM - 6:00 PM"
+          }
+        },
+        "abuSimbel": {
+          "greatTempleRamesses": {
+            "name": "Grand Temple de Ramsès II",
+            "entryFee": "750 EGP (entrée combinée du site pour les adultes étrangers)",
+            "description": "Temple rupestre précédé de quatre statues colossales de Ramsès II assis"
+          },
+          "templeNefertari": {
+            "name": "Petit temple d'Hathor et de Néfertari",
+            "entryFee": "Inclus dans le billet du site d'Abou Simbel",
+            "description": "Temple voisin dédié à Hathor et à la reine Néfertari"
+          }
+        },
+        "hoursVary": "Les horaires varient selon la saison ; renseignez-vous sur place avant d'y aller"
+      },
+      "highlights": {
+        "alexandria": {
+          "library": "Bibliothèque d'Alexandrie",
+          "qaitbayCitadel": "Citadelle de Qaitbay",
+          "mediterraneanBeaches": "Plages de la Méditerranée",
+          "romanSites": "Sites Archéologiques Romains"
+        },
+        "cairo": {
+          "pyramidsGiza": "Pyramides de Gizeh",
+          "egyptianMuseum": "Musée égyptien",
+          "islamicCairo": "Le Caire islamique",
+          "khanElKhalili": "Souk de Khan el-Khalili"
+        },
+        "luxor": {
+          "valleyKings": "Vallée des Rois",
+          "karnakTemple": "Temple de Karnak",
+          "luxorTemple": "Temple de Louxor",
+          "westBankTombs": "Tombes de la rive ouest"
+        },
+        "aswan": {
+          "philaeTemple": "Temple de Philae",
+          "highDam": "Haut barrage",
+          "nubianVillages": "Villages nubiens",
+          "elephantineIsland": "Île Éléphantine"
+        },
+        "abuSimbel": {
+          "greatTemple": "Grand temple de Ramsès II",
+          "templeNefertari": "Temple de Néfertari",
+          "unescoSite": "Site du patrimoine mondial de l'UNESCO"
+        },
+        "minya": {
+          "tellElAmarna": "Tell el-Amarna",
+          "beniHassan": "Tombes de Beni Hassan",
+          "tunaElGebel": "Nécropole de Tuna el-Gebel"
+        },
+        "asyut": {
+          "copticMonasteries": "Anciens Monastères Coptes",
+          "traditionalCrafts": "Artisanat Traditionnel",
+          "nileCorniche": "Promenade du Nil (Corniche)"
+        },
+        "sohag": {
+          "abydosTemple": "Temple d'Abydos",
+          "redWhiteMonasteries": "Monastères Rouge et Blanc",
+          "akhmimTextiles": "Marché de Textiles d’Akhmim",
+          "ruralCulture": "Patrimoine Culturel Rural"
+        },
+        "qena": {
+          "gatewayDendera": "Porte vers le Temple de Dendérah",
+          "traditionalPottery": "Ateliers de Poterie Traditionnelle",
+          "nileIslands": "Îles du Nil"
+        },
+        "beniSuef": {
+          "meidumPyramid": "Pyramide de Meidum",
+          "ruralNile": "Villages Ruraux du Nil",
+          "traditionalMarkets": "Marchés Traditionnels"
+        },
+        "edfu": {
+          "templeHorus": "Temple d'Horus",
+          "traditionalMarkets": "Marchés Traditionnels",
+          "nileCruiseStop": "Arrêt Populaire de Croisière sur le Nil"
+        },
+        "komOmbo": {
+          "doubleTemple": "Temple Double Unique",
+          "crocodileMuseum": "Musée des Crocodiles",
+          "sugarCaneFields": "Champs de Canne à Sucre"
+        }
+      },
+      "nile": {
+        "bestTime": {
+          "marchNovember": "Mars à Novembre",
+          "octoberApril": "Octobre à Avril",
+          "octoberMarch": "Octobre à Mars"
+        },
+        "stay": {
+          "halfday": "Demi-journée",
+          "2_3days": "2-3 jours",
+          "3_4days": "3-4 jours",
+          "1day": "1 jour",
+          "2days": "2 jours",
+          "1_2days": "1-2 jours"
+        },
+        "time": {
+          "october_april": "D'octobre à avril",
+          "november_march": "De novembre à mars",
+          "september_may": "De septembre à mai"
+        }
+      }
+    },
+    "transportModes": {
+      "tram": "Tramway",
+      "bus": "Bus",
+      "taxi": "Taxi",
+      "uber": "Uber",
+      "metro": "Métro",
+      "microbus": "Microbus",
+      "tuktuk": "Tuk-tuk",
+      "felucca": "Felouque",
+      "horsecart": "Charrette à cheval",
+      "bicycle": "Vélo",
+      "caleche": "Calèche",
+      "walking": "À pied",
+      "motorboat": "Bateau à moteur",
+      "tourbus": "Autocar touristique",
+      "privatecar": "Voiture privée"
+    },
+    "fromCairo": {
+      "alexandria": "Environ 2h30 à 3h30 en train ; par la route, la durée varie selon le trafic",
+      "cairo": "Vous êtes déjà au Caire ; prévoyez du temps pour les traversées de la ville",
+      "benisuef": "Environ 1h30 à 2h30 en train ; vérifiez les horaires en vigueur",
+      "minya": "Environ 3h à 4h30 en train ; vérifiez les horaires en vigueur",
+      "asyut": "Environ 5h à 6h30 en train ; vérifiez les horaires en vigueur",
+      "sohag": "Environ 6h à 8h en train ; vérifiez les horaires en vigueur",
+      "qena": "Environ 8h à 10h en train ; vérifiez les horaires en vigueur",
+      "luxor": "Environ 9h30 à 12h en train ; cela dépend du service et du type de train",
+      "edfu": "Environ 11h à 13h en train direct lorsqu'il circule ; beaucoup de voyageurs partent de Louxor",
+      "komombo": "Environ 12h à 14h en train direct lorsqu'il circule ; beaucoup de voyageurs partent d'Assouan ou d'Edfou",
+      "aswan": "Environ 13h à 15h en train ; vérifiez les horaires en vigueur",
+      "abusimbel": "Pas de liaison ferroviaire directe praticable ; prenez l'avion quand il est programmé, ou comptez 3h30 à 4h par la route depuis Assouan"
+    },
+    "cityNames": {
+      "alexandria": "Alexandrie",
+      "cairo": "Le Caire",
+      "benisuef": "Beni Souef",
+      "minya": "Minya",
+      "asyut": "Assiout",
+      "sohag": "Sohag",
+      "qena": "Qena",
+      "luxor": "Louxor",
+      "edfu": "Edfou",
+      "komombo": "Kôm Ombo",
+      "aswan": "Assouan",
+      "abusimbel": "Abou Simbel"
+    },
+    "mapLabels": {
+      "western": "Occidental",
+      "eastern": "Oriental",
+      "desert": "Désert"
+    }
   }
 }
