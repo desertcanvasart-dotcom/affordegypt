@@ -22,8 +22,8 @@ import { articleSchema } from "@/lib/article-schema";
 
 /**
  * Stand-in for the entrance fees the August 2026 fact-check could not confirm
- * against a current first-party source (Beni Suef Museum, the Red and White
- * Monasteries, and Akhmim).
+ * against a current first-party source. Only the Beni Suef Museum still uses
+ * it; the operator has since supplied every other figure.
  *
  * Showing a number we cannot stand behind is worse than showing none: the old
  * figures were years out of date and a traveller budgets against them. Replace
@@ -302,6 +302,12 @@ const nileValleyCities: NileCity[] = [
     bestTimeToVisit: "nile.bestTime.octoberApril",
     averageStay: "nile.stay.1_2days",
     keyAttractions: [
+      {
+        name: "attractions.sohag.abydosTemple.name",
+        description: "attractions.sohag.abydosTemple.description",
+        entryFee: "attractions.sohag.abydosTemple.entryFee",
+        hours: "attractions.sohag.abydosTemple.hours",
+      },
       {
         name: "attractions.sohag.redMonastery.name",
         description: "attractions.sohag.redMonastery.description",
@@ -1561,15 +1567,17 @@ export default function NileValleyGuide() {
         "attractions.asyut.asyutBarrage.entryFee": "Free",
 
         // Sohag
+        "attractions.sohag.abydosTemple.name": "Abydos Temple",
+        "attractions.sohag.abydosTemple.description":
+          "Temple of Seti I, home of the Abydos King List",
+        "attractions.sohag.abydosTemple.entryFee": "200 EGP (foreign adult)",
+        "attractions.sohag.abydosTemple.hours": "8:00 AM - 5:00 PM",
         "attractions.sohag.redMonastery.name": "Red Monastery",
-        "attractions.sohag.redMonastery.entryFee":
-          PRICE_UNCONFIRMED,
+        "attractions.sohag.redMonastery.entryFee": "Free",
         "attractions.sohag.whiteMonastery.name": "White Monastery",
-        "attractions.sohag.whiteMonastery.entryFee":
-          PRICE_UNCONFIRMED,
+        "attractions.sohag.whiteMonastery.entryFee": "Free",
         "attractions.sohag.akhmim.name": "Akhmim Open-Air Museum",
-        "attractions.sohag.akhmim.entryFee":
-          PRICE_UNCONFIRMED,
+        "attractions.sohag.akhmim.entryFee": "100 EGP (foreign adult)",
 
         // Qena
         "attractions.qena.denderaTemple.name": "Dendera Temple Complex",
