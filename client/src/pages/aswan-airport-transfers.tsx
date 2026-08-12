@@ -6,19 +6,17 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { useSmartTranslation } from "@/hooks/useSmartTranslation";
+import { useTranslation } from "react-i18next";
 import { 
   Plane, 
   MapPin, 
-  Clock, 
   Shield, 
   Car, 
   CheckCircle, 
   Star,
   Users,
   ArrowRight,
-  Phone,
-  Waves,
-  Mountain
+  Phone
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -41,86 +39,55 @@ export default function AswanAirportTransfers() {
     },
   };
   const { t } = useSmartTranslation();
+  const { t: rawT } = useTranslation();
   
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  // Structured content is read with returnObjects, which useSmartTranslation
+  // deliberately does not support -- it is a string-only helper. A locale that
+  // has not been backfilled falls through to English rather than rendering an
+  // empty section.
+  const list = (key: string): any[] => {
+    const value = rawT(key, { returnObjects: true });
+    if (Array.isArray(value)) return value;
+    const english = rawT(key, { returnObjects: true, lng: "en" });
+    return Array.isArray(english) ? english : [];
+  };
+
   const vehicleTypes = [
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to2"),
       price: t("airportTransfers.aswan.sedanPriceFrom"),
-      features: [t("airportTransfers.common.airConditioning"), t("airportTransfers.common.professionalDriver"), t("airportTransfers.aswan.nileRouteExpertise")],
+      features: list("airportTransfers.aswan.sedanFeatures"),
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
-      capacity: t("airportTransfers.common.passengers3to8"), 
+      capacity: t("airportTransfers.common.passengers3to8"),
       price: t("airportTransfers.aswan.minivanPriceFrom"),
-      features: [t("airportTransfers.common.extraLuggageSpace"), t("airportTransfers.common.familyFriendly"), t("airportTransfers.aswan.nubianCultureKnowledge")],
+      features: list("airportTransfers.aswan.minivanFeatures"),
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers9to15"),
-      price: t("airportTransfers.aswan.vanPriceFrom"), 
-      features: [t("airportTransfers.common.groupTravel"), t("airportTransfers.common.largeLuggageCapacity"), t("airportTransfers.aswan.abuSimbelRouteReady")],
+      price: t("airportTransfers.aswan.vanPriceFrom"),
+      features: list("airportTransfers.aswan.vanFeatures"),
       icon: Users
     }
   ];
 
-  const keyFeatures = [
-    {
-      icon: Waves,
-      title: t("airportTransfers.aswan.nileExpertise"),
-      description: t("airportTransfers.aswan.nileExpertiseDesc")
-    },
-    {
-      icon: Clock,
-      title: t("airportTransfers.common.flightMonitoring"),
-      description: t("airportTransfers.common.flightMonitoringDesc")
-    },
-    {
-      icon: Mountain,
-      title: t("airportTransfers.aswan.desertRoutes"),
-      description: t("airportTransfers.aswan.desertRoutesDesc")
-    },
-    {
-      icon: CheckCircle,
-      title: t("airportTransfers.aswan.nubianCulture"),
-      description: t("airportTransfers.aswan.nubianCultureDesc")
-    }
-  ];
-
-  // Aswan areas with fallback
-  const getAswanAreas = () => {
-    try {
-      const areas = [
-        t("airportTransfers.aswan.area1") || "Aswan Airport (ASW)",
-        t("airportTransfers.aswan.area2") || "Corniche Hotels",
-        t("airportTransfers.aswan.area3") || "Elephantine Island",
-        t("airportTransfers.aswan.area4") || "Nubian Villages",
-        t("airportTransfers.aswan.area5") || "Philae Temple Area",
-        t("airportTransfers.aswan.area6") || "High Dam District",
-        t("airportTransfers.aswan.area7") || "Felucca Harbors",
-        t("airportTransfers.aswan.area8") || "Abu Simbel Route"
-      ];
-      return areas;
-    } catch {
-      return [
-        "Aswan Airport (ASW)",
-        "Corniche Hotels",
-        "Elephantine Island",
-        "Nubian Villages",
-        "Philae Temple Area",
-        "High Dam District",
-        "Felucca Harbors",
-        "Abu Simbel Route"
-      ];
-    }
-  };
-  const aswanAreas = getAswanAreas();
+  const destinations = list("airportTransfers.aswan.destinations");
+  const cruiseItems = list("airportTransfers.aswan.cruiseItems");
+  const pricingGuide = list("airportTransfers.aswan.pricingGuide");
+  const calcItems = list("airportTransfers.aswan.calcItems");
+  const includesItems = list("airportTransfers.aswan.includesItems");
+  const changesItems = list("airportTransfers.aswan.changesItems");
+  const steps = list("airportTransfers.aswan.steps");
+  const beforeItems = list("airportTransfers.aswan.beforeItems");
 
   return (
     <>
@@ -143,13 +110,16 @@ export default function AswanAirportTransfers() {
                   {t("airportTransfers.aswan.heroTitle")}
                 </h1>
               </div>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
                 {t("airportTransfers.aswan.heroSubtitle")}
+              </p>
+              <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
+                {t("airportTransfers.aswan.heroNote")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/transfers">
-                    {t("airportTransfers.common.bookNow")}
+                    {t("airportTransfers.aswan.ctaQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
 
@@ -165,31 +135,135 @@ export default function AswanAirportTransfers() {
           </div>
         </section>
 
-        {/* Key Features */}
+        {/* Where in Aswan. The destination, not the city name, decides the
+            route: a Corniche hotel, Gharb Soheil and an island jetty are three
+            different journeys. */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.aswan.whyChooseTitle")}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {keyFeatures.map((feature, index) => (
-                <Card key={index} className="text-center">
-                  <CardContent className="pt-6">
-                    <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4">{t("airportTransfers.aswan.whereTitle")}</h2>
+              <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
+                {t("airportTransfers.aswan.whereIntro")}
+              </p>
+
+              <Card className="mb-8">
+                <CardHeader>
+                  <Plane className="w-10 h-10 text-primary mb-2" />
+                  <CardTitle className="text-2xl">{t("airportTransfers.aswan.airportName")}</CardTitle>
+                  <Badge variant="secondary" className="w-fit text-base font-semibold">
+                    {t("airportTransfers.aswan.airportCode")}
+                  </Badge>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{t("airportTransfers.aswan.airportLocation")}</p>
+                </CardContent>
+              </Card>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {destinations.map((dest: any, index: number) => (
+                  <Card key={index}>
+                    <CardHeader>
+                      <CardTitle className="text-xl flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-primary" />
+                        {dest.name}
+                      </CardTitle>
+                      {dest.intro ? <p className="text-sm text-muted-foreground">{dest.intro}</p> : null}
+                    </CardHeader>
+                    <CardContent>
+                      {(dest.areas || []).length > 0 && (
+                        <ul className="space-y-2 mb-4">
+                          {dest.areas.map((area: string, idx: number) => (
+                            <li key={idx} className="flex items-center gap-2">
+                              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                              <span className="text-sm">{area}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <p className="text-sm text-muted-foreground">{dest.note}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Cruise moorings, and the Nile vs Lake Nasser distinction */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4">{t("airportTransfers.aswan.cruiseTitle")}</h2>
+              <p className="text-center text-muted-foreground mb-8">
+                {t("airportTransfers.aswan.cruiseIntro")}
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                {cruiseItems.map((item: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+                    <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-muted-foreground text-center mb-8">{t("airportTransfers.aswan.cruiseNote")}</p>
+
+              <div className="bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-6">
+                <div className="flex items-start gap-3">
+                  <Shield className="w-6 h-6 text-amber-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-amber-900 mb-1">{t("airportTransfers.aswan.lakeTitle")}</h3>
+                    <p className="text-amber-900 text-sm">{t("airportTransfers.aswan.lakeBody")}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Destination-based pricing guide */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.aswan.pricingGuideTitle")}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {pricingGuide.map((row: any, index: number) => (
+                  <div key={index} className="p-4 bg-background rounded-lg">
+                    <h3 className="font-semibold mb-1">{row.label}</h3>
+                    <p className="text-sm text-muted-foreground">{row.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How the price is calculated */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-8">{t("airportTransfers.aswan.calcTitle")}</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {calcItems.map((item: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+                    <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
         {/* Vehicle Options */}
-        <section className="py-16">
+        <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.chooseVehicle")}</h2>
+            <h2 className="text-3xl font-bold text-center mb-4">{t("airportTransfers.aswan.vehiclesTitle")}</h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+              {t("airportTransfers.aswan.vehiclesIntro")}
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {vehicleTypes.map((vehicle, index) => (
-                <Card key={index} className="relative hover:shadow-lg transition-shadow">
+                <Card key={index} className="relative hover:shadow-lg transition-shadow bg-background">
                   <CardHeader className="text-center">
                     <vehicle.icon className="w-16 h-16 text-primary mx-auto mb-4" />
                     <CardTitle className="text-2xl">{vehicle.name}</CardTitle>
@@ -200,7 +274,7 @@ export default function AswanAirportTransfers() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
-                      {vehicle.features.map((feature, idx) => (
+                      {vehicle.features.map((feature: string, idx: number) => (
                         <li key={idx} className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-primary" />
                           <span className="text-sm">{feature}</span>
@@ -214,19 +288,67 @@ export default function AswanAirportTransfers() {
           </div>
         </section>
 
-        {/* Service Areas */}
+        {/* What the quote includes, and what changes it */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h2 className="text-2xl font-bold mb-6">{t("airportTransfers.aswan.includesTitle")}</h2>
+                <ul className="space-y-3">
+                  {includesItems.map((item: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-6">{t("airportTransfers.aswan.changesTitle")}</h2>
+                <ul className="space-y-3 mb-4">
+                  {changesItems.map((item: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <ArrowRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm text-muted-foreground">{t("airportTransfers.aswan.changesNote")}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Point-to-point */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.aswan.transferDestinationsTitle")}</h2>
-              <p className="text-center text-muted-foreground mb-8">
-                {t("airportTransfers.aswan.transferDestinationsDesc")}
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {aswanAreas.map((area: string, index: number) => (
-                  <div key={index} className="flex items-center gap-2 p-3 bg-background rounded-lg">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium">{area}</span>
+              <Card className="border-l-4 border-l-primary bg-background">
+                <CardHeader>
+                  <CardTitle className="text-2xl flex items-center gap-2">
+                    <MapPin className="w-6 h-6 text-primary" />
+                    {t("airportTransfers.aswan.p2pTitle")}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{t("airportTransfers.aswan.p2pBody")}</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.howItWorks")}</h2>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {steps.map((step: any, index: number) => (
+                  <div key={index} className="text-center">
+                    <div className="step-number mb-4 mx-auto">{index + 1}</div>
+                    <h3 className="font-semibold mb-2">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
                 ))}
               </div>
@@ -234,71 +356,19 @@ export default function AswanAirportTransfers() {
           </div>
         </section>
 
-        {/* Special Aswan Features */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.aswan.expertiseTitle")}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Waves className="w-6 h-6 text-primary" />
-                      {t("airportTransfers.aswan.nileNavigation")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      {t("airportTransfers.aswan.nileNavigationDesc")}
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Mountain className="w-6 h-6 text-primary" />
-                      {t("airportTransfers.aswan.desertExpeditions")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      {t("airportTransfers.aswan.desertExpeditionsDesc")}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
+        {/* Details to send before booking */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.common.howItWorks")}</h2>
             <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="step-number mb-4 mx-auto">1</div>
-                  <h3 className="font-semibold mb-2">{t("airportTransfers.common.bookOnline")}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("airportTransfers.common.selectPickupTime")}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="step-number mb-4 mx-auto">2</div>
-                  <h3 className="font-semibold mb-2">{t("airportTransfers.common.meetDriver")}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("airportTransfers.aswan.stepMeetDriverDesc")}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="step-number mb-4 mx-auto">3</div>
-                  <h3 className="font-semibold mb-2">{t("airportTransfers.aswan.stepDiscoverAswan")}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("airportTransfers.aswan.stepDiscoverAswanDesc")}
-                  </p>
-                </div>
-              </div>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("airportTransfers.aswan.beforeTitle")}</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {beforeItems.map((item: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-background rounded-lg">
+                    <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
@@ -307,17 +377,17 @@ export default function AswanAirportTransfers() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">{t("airportTransfers.aswan.affordableTitle")}</h2>
+              <h2 className="text-3xl font-bold mb-6">{t("airportTransfers.aswan.pricingTitle")}</h2>
               <p className="text-muted-foreground mb-8">
-                {t("airportTransfers.aswan.affordableDesc")}
+                {t("airportTransfers.aswan.pricingIntro")}
               </p>
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.aswan.sedanPriceFrom")}</span>
+                  <span className="font-semibold">{t("airportTransfers.aswan.pricingFrom")}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  {t("airportTransfers.aswan.pricingInfoDesc")}
+                  {t("airportTransfers.aswan.pricingTerms")}
                 </p>
                 <Button asChild size="lg">
                   <Link href="/transfers">
@@ -341,7 +411,7 @@ export default function AswanAirportTransfers() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link href="/pricing-tool">
-                  {t("airportTransfers.common.bookOnlineNow")}
+                  {t("airportTransfers.aswan.ctaBook")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
 
