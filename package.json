@@ -13,6 +13,7 @@
     "check": "tsc",
     "test": "vitest run",
     "check:invariants": "node scripts/check-invariants.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
     "check:pricing-drift": "node scripts/check-pricing-drift.mjs",
     "check:routes": "node scripts/check-routes.mjs",
     "db:push": "drizzle-kit push"

@@ -37,6 +37,17 @@ jobs:
       - name: Route audit (dead internal links)
         run: npm run check:routes
 
+      # The site ships four locales, but a string typed into a component
+      # renders English whatever language the visitor chose — and key-parity
+      # checks can't see it, because the locale files are complete and the
+      # component simply never asks them. That is how the Sinai guide kept
+      # telling Spanish, French and German readers things the English page had
+      # already corrected. A ratchet, not a gate: known offenders are pinned in
+      # scripts/i18n-baseline.json, and the build fails on a new one or on a
+      # stale pin, so the count can only go down.
+      - name: i18n audit (hardcoded English)
+        run: npm run check:i18n
+
       # Full production build: pricing snapshot (falls back without
       # DATABASE_URL by design), vite build + prerender, sitemap, server
       # bundle. Catches build-only breakage before Railway does.

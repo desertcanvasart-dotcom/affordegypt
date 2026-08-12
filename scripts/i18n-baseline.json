@@ -1,0 +1,2292 @@
+{
+  "allowed": [
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Airport Transfer"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Category"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Description"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Distance (km)"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Enter description..."
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Error"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Experience"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Failed to create item. Please try again."
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "From City"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Inter-City Route"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Intra-City Tour"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Meal"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Name"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Per Person"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Per Trip"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Per Unit"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Please enter a name for the item."
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Please select cities and enter prices for all vehicle types."
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Price (USD)"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Pricing Type"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Route Type"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Select category"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Select departure city"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Select destination city"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Select pricing type"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Select route type"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Ticket"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "To City"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "Transport"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "e.g., 302"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "e.g., 50"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "e.g., 70"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "e.g., 90"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "🚌 Van Price (USD)"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "🚐 Minivan Price (USD)"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
+      "🚗 Sedan Price (USD)"
+    ],
+    [
+      "client/src/components/addons-search.tsx",
+      "No add-ons found matching your criteria"
+    ],
+    [
+      "client/src/components/addons-search.tsx",
+      "No per-person add-ons available"
+    ],
+    [
+      "client/src/components/addons-search.tsx",
+      "No per-unit add-ons available"
+    ],
+    [
+      "client/src/components/addons-search.tsx",
+      "Search add-ons..."
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "All Categories"
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "Category"
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "No attractions found matching your criteria"
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "Search attractions..."
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Budget Travel"
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Destinations"
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Food & Culture"
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Travel Tips"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "Loading services…"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "Search transfers…"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Bookings & support"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Closed"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Egypt office"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Email Address *"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Error"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Failed to send message. Please try again."
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Full Name *"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "General inquiries"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Get in Touch"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Message *"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Message Sent!"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Monday - Friday"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Saturday"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Send us a Message"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Subject *"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Sunday"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Tell us how we can help you..."
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Thank you for contacting us. We"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "What"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Your full name"
+    ],
+    [
+      "client/src/components/entrance-fees-search.tsx",
+      "Search entrance fees..."
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Are your guides actually licensed Egyptologists?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Can I buy the entrance tickets myself?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Can I customize my itinerary?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Do I need a visa to enter Egypt?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Does an advance ticket mean we skip every queue?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Egyptian Travel Agents Association (ETAA 2179)"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "How do I know AffordEgypt isn"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "How does payment work? Do I have to pay everything up front?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Is the 50 EGP ticket fee charged once per booking?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Still have questions?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "What"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "When is the best time to visit Egypt?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Why are you cheaper than other private Egypt tours?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Why do you charge 50 EGP to arrange an entrance ticket?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "the Ministry"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "the State Information Service announcement"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Abu Simbel, Philae Temple"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Cairo & Giza"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Diving, Sinai Peninsula"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Mediterranean coast, Library"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Pyramids, Sphinx, Islamic Cairo"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Red Sea diving, beaches"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Sharm El Sheikh"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Valley of Kings, Karnak Temple"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "Afford Egypt Logo"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "AffordEgypt home"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "Explore"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "Follow us on Facebook"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "Follow us on Instagram"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "Our Services"
+    ],
+    [
+      "client/src/components/footer.tsx",
+      "Subscribe to our YouTube channel"
+    ],
+    [
+      "client/src/components/founder-block.tsx",
+      "Islam, founder of AffordEgypt"
+    ],
+    [
+      "client/src/components/founder-block.tsx",
+      "Photo of Islam, founder of AffordEgypt"
+    ],
+    [
+      "client/src/components/founder-block.tsx",
+      "— Islam"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "10 hours"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "12 hours"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "4 hours"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "6 hours"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "8 hours"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "Free"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "No Guide"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "No guides found matching your search"
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "Search languages or specialties..."
+    ],
+    [
+      "client/src/components/guide-search.tsx",
+      "Self-guided tour"
+    ],
+    [
+      "client/src/components/guide-toc.tsx",
+      "On this page"
+    ],
+    [
+      "client/src/components/language-selector.tsx",
+      "Deutsch"
+    ],
+    [
+      "client/src/components/language-selector.tsx",
+      "English"
+    ],
+    [
+      "client/src/components/mobile-sticky-cta.tsx",
+      "Build My Trip"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "1-2 days"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "3-4 days"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "5-7 days"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "8-14 days"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Add destinations to see your live price."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Answer a few questions and see your full price instantly — right here on screen, no waiting."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Blend of coastal relaxation and historic exploration"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Booking Policy"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Build Quote"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Build your itinerary"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Check all details before proceeding to checkout"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Check your itinerary"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Checkout"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Choose a city to visit"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Choose a destination"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Choose your first destination"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Classic Egypt Explorer"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Complete Egypt adventure covering all regions"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Complete Your Booking"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Complete booking"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Contact Information"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Date"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Days"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Days, transport & extras"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Design Your Egypt Adventure"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Dietary requirements, accessibility needs, preferences..."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Email Address *"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Enter your details to finalize your reservation"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Entrance fees"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Entrance fees:"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Essential Egypt experience covering ancient wonders"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Full Name *"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Grand Egypt Journey"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Guide"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Hotel name or address"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Hotel/Accommodation (Optional)"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "How many days?"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "How many travelers?"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Instant price on screen"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "John Doe"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Just exploring"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Mediterranean & Ancient Wonders"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "More than 14 days"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Nationality (Optional)"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Not sure yet — I don"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Order Summary"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Phone Number *"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Pick transport, guide, entrance fees and add-ons for each day — add more days as you go."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Pricing Breakdown"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Privacy Policy"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Private vehicle &amp; guide"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Quote"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Quote builder progress"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Review & Pricing"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Review Your Itinerary"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Saved"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Saved Quotes"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Select a city to start planning your trip"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Select destination"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Select destination for next day"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Select number of travelers"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Select trip length"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Services"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Special Requests"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Start Date"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Start your journey"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Terms & Conditions"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Terms of Service"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Total"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Total Price"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Tour Guides"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Transfer"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Transparent pricing"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Travel Date"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Travelers"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Trip Overview"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Trip Summary"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Where do you want to go?"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Your trip — live price"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "e.g., American"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Afford Egypt"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Book directly with Egypt-based experts — no middlemen"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Message us on WhatsApp"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Plan Your Egypt Trip"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Private tours with transparent pricing"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Real prices in EGP"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Secure booking"
+    ],
+    [
+      "client/src/components/navbar.tsx",
+      "Transparent pricing — what you see is what you pay"
+    ],
+    [
+      "client/src/components/page-breadcrumbs.tsx",
+      "Breadcrumb"
+    ],
+    [
+      "client/src/components/quote-manager.tsx",
+      "Delete quote"
+    ],
+    [
+      "client/src/components/quote-manager.tsx",
+      "Duplicate quote"
+    ],
+    [
+      "client/src/components/quote-manager.tsx",
+      "Load quote"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "1 star — poor"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "2 stars — fair"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "3 stars — good"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "4 stars — very good"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "5 stars — excellent"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Enter your name"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Error"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Rating *"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Review Title *"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Share Your Experience"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Summarize your experience"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Tell us about your Egypt experience. What did you enjoy most? Any tips for future travelers?"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Thank you for your review!"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Trip Date"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Your Location"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Your Name *"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Your Review *"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Your review has been submitted and will be published after verification."
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "e.g., London, UK"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      ", error,"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- Customer's full name"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- Full review text"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- Review headline"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- Star rating (1-5)"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- TRUE/FALSE"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- YYYY-MM-DD format"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "- e.g., \"London, UK\""
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Error Details:"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Invalid File Type"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Optional Columns:"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Please upload a CSV file. Download the template if needed."
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Processing reviews..."
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Required CSV Columns:"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Upload Complete"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Upload Failed"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Upload Instructions"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "City & Inter-City Transport"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Egyptian tour guide"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Experiences & Add-ons"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Felucca on the Nile"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Felucca rides, horse carriages, meals, skip-line tickets. Context-aware options."
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Licensed Tour Guides"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Multi-language guides. City-specific rates. Hourly or daily pricing."
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Route-based or hourly pricing. Economy to luxury vehicles. Licensed drivers only."
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Starting from $15/hour"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Starting from $8/person"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Starting from EGP 800/day"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Transportation in Egypt"
+    ],
+    [
+      "client/src/components/user-nav.tsx",
+      "Admin Panel"
+    ],
+    [
+      "client/src/components/user-nav.tsx",
+      "Log out"
+    ],
+    [
+      "client/src/components/user-nav.tsx",
+      "My Bookings"
+    ],
+    [
+      "client/src/components/user-nav.tsx",
+      "Profile"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Afford Egypt"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Booking Support"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Custom Trip"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "General Inquiry"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Get Quote"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Hello! I"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Hi! I"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Hi! I need help with my booking. Can you assist me?"
+    ],
+    [
+      "client/src/components/whatsapp-widget.tsx",
+      "Typically replies in minutes"
+    ],
+    [
+      "client/src/pages/aswan-airport-transfers.tsx",
+      "Aswan Airport Transfers | Fixed Price | AffordEgypt"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "12-14 hours"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Abu Simbel Expedition"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Aswan Cultural Specialties"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Authentic Aswan Car & Tour Guide Services"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Choose Your Experience"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Choose Your Service"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Cultural Sensitivity"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Customized tours including felucca rides and village visits"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Desert Expeditions"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Experience Nubia"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Expert guides for Abu Simbel and southern desert temple sites"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Flexible Itineraries"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Full Day"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Full Day (8 hours)"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "How It Works"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Meet Cultural Guide"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Nile & Temples Package"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Nile Expertise"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Nubian Culture Guide"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Ready to Experience Nubian Culture?"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Respectful guides trained in Nubian customs and traditions"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Southern Egypt Destinations"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Specialized knowledge of Nubian culture and Nile river traditions"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Why Choose Our Aswan Car & Tour Guide Services?"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Add New Attraction"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Ancient pyramids complex"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Attraction created successfully"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Attractions Management"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Attractions Management | Admin | AffordEgypt"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Attractions Overview"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Back to Dashboard"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Category"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "City"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Description"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Duration (hours)"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Error"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Failed to create attraction"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Historical"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Manage attractions and link them to specific cities"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Name"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Pyramids of Giza"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Select City"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Success"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Ticket Price (EGP)"
+    ],
+    [
+      "client/src/pages/attractions.tsx",
+      "inside an"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "10% deposit required"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "AffordEgypt Logo"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Any special requirements or requests..."
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Attractions"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Booking Created Successfully"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Booking Failed"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Complete Your Booking"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Email Address"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Full Name"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Guide Service"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "John Doe"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Our team will contact you to collect it and confirm your booking."
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Pay the rest on arrival, in cash or by credit card."
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Phone Number"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Service Type"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Special Requests (Optional)"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Subtotal"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Taxes & Fees"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Total"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Transportation"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Travel Date"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "You must accept the terms and conditions to proceed"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Your Booking"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "💵 10% deposit required"
+    ],
+    [
+      "client/src/pages/booking-agreement.tsx",
+      "August 5, 2026"
+    ],
+    [
+      "client/src/pages/booking-agreement.tsx",
+      "Booking Agreement | AffordEgypt"
+    ],
+    [
+      "client/src/pages/booking-agreement.tsx",
+      "Contact Email:"
+    ],
+    [
+      "client/src/pages/booking-agreement.tsx",
+      "March 2, 2020"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "10% deposit required"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "AffordEgypt Logo"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Attractions"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Booking Confirmation"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Booking Created Successfully"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Booking Details"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Booking Information"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Booking Not Found"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Contact Information"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Customer Information"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Detailed itinerary information will be provided separately."
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "EGP, USD, GBP, EUR"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Email"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "End Date:"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Guide Service"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Guide Service:"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Name"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Our team will contact you to collect it and confirm your booking."
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Pay the rest on arrival, in cash or by credit card."
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Payment Information"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Phone"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Special Requests"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Special Requests:"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Start Date:"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Status"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Thank you for choosing AffordEgypt for your Egypt adventure!"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Total Amount"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Total Amount:"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Transportation"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Trip Itinerary"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "We meet you"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "We review your booking"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "We send your 10% deposit link"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "What happens next"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Your Multi-Day Itinerary"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Your booking is confirmed once the deposit clears"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "&lt; 25 EGP"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "&lt; 60 EGP"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "1,000–1,500 EGP+/night"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "2,000 EGP+/night"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Affordable"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Always drink bottled water"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Avoid uncooked foods from street vendors"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Best Times for Budget Travel"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Budget Hotels"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Buses"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Cairo's efficient metro system"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Cheapest"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Comfortable"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Cultural immersion in Aswan with traditional Nubian-style accommodations — check current rates before booking."
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Daily Budget Breakdown"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Egypt on a Budget | A Cairo Operator"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Essential Pre-Travel Checklist"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Ful Medames"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Go Bus and Blue Bus; Cairo–Luxor 500–600 EGP"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Hostels"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Inexpensive"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Metro"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Mid-range restaurants occasionally ($8-16/person)"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Nubian Stays"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Private rooms, often family-run guesthouses — prices depend on the city, location, facilities, and season."
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Rates vary"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Ride Apps"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Second-class AC; Cairo–Luxor ~3,763 EGP for foreigners"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Shawarma"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Shop at local markets for self-catering options"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Smart Dining Strategy"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Street Food Champions"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Ta'ameya (Falafel)"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Top Money-Saving Hacks"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Total Daily Budget"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Trains"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Uber, inDrive, or DiDi for city travel"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Useful for meeting fellow travelers, but availability is limited outside the main hubs and quality varies — vet each place before booking."
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "Your Egyptian Adventure Awaits"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "~120 EGP"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "~17 EGP"
+    ],
+    [
+      "client/src/pages/cairo-airport-transfers.tsx",
+      "Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
+      "Choose Your Service"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
+      "Explore Cairo"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
+      "Meet Your Guide"
+    ],
+    [
+      "client/src/pages/cookie-policy.tsx",
+      "August 5, 2026"
+    ],
+    [
+      "client/src/pages/cookie-policy.tsx",
+      "March 2, 2020"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "0 && triedCount"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 10 minutes (hot) / 6-12 hours (cold brew)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 20 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 25 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 3 hours including proofing"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 30 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 45 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 6 hours (traditional slow-cooking; recipes vary)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 60-75 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "About 90 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "All Categories"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "All Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "All Levels"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "All Regions"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Also spelled Karkaday or Karkadi, this traditional drink holds deep cultural significance in Egypt. Served during weddings and festive gatherings, it"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots. Enjoyed daily by millions of Egyptians, from simple street carts in Cairo to home kitchens across the country."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Appetizer"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Baladi Bread"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Beverage"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Created in Cairo"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Dessert"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Easy"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Egyptian Cuisine Passport | Try 25 Dishes Across Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Essential part of Egyptian culture for over 5,000 years, often called"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ful Medames"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Hard"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Karkade"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Main"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Medium"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory. Often called the Egyptian version of bread pudding with Middle Eastern flair, loaded with nuts, coconut, and sometimes raisins."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Nile Delta"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ottoman influence dish that became deeply rooted in Egyptian family traditions. Often prepared in large trays for sharing at family gatherings, feasts, and celebrations. The name literally means"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Rice Muammar"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Street Food"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "The name"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional Egyptian baked rice dish cooked slowly in milk and cream, served in clay tajin. Creates a creamy, golden-topped casserole with crispy crust and rich, buttery center. Popular in countryside and Upper Egypt for Friday lunches and family gatherings."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Umm Ali"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Under 25 EGP"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Under 60 EGP"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Upper Egypt"
+    ],
+    [
+      "client/src/pages/destinations.tsx",
+      "Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Desert nights can be cold"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Eco-friendly and refillable in oases"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Flashlight"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Flip flops & hiking shoes"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "For springs and rugged walks"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Minimal lighting in camps"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "No electricity during camping"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Power bank"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Refillable water bottle"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Sun, dust, and sand protection"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Thermal layer"
+    ],
+    [
+      "client/src/pages/egyptian-street-food-guide.tsx",
+      "Egyptian Street Food Guide | What to Eat & Where"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Afford Egypt"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Capital Travel Service"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Capital Travel Service — ETAA 2179"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "ETAA Member"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Egypt Tours from a Real Egyptian Operator | AffordEgypt"
+    ],
+    [
+      "client/src/pages/luxor-airport-transfers.tsx",
+      "Luxor Airport Transfers | Fixed Price | AffordEgypt"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "6-10 hours"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Ancient Luxor Temple Sites"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Book Your Tour"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Choose Your Service"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "East & West Bank Tour"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Explore Ancient Thebes"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Full Day"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Full Day (8 hours)"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "How It Works"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Luxor Temple Specialties"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Luxor Temples Tours"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Meet Temple Expert"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Temple Specialist Guide"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Abu Simbel"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Asyut"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Beni Suef"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Kom Ombo"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Lower Egypt"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Middle Egypt"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Minya"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Nile Valley Travel Guide | Beyond Luxor & Aswan"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Nubia"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Qena"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Sohag"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Upper Egypt"
+    ],
+    [
+      "client/src/pages/not-found.tsx",
+      "Page Not Found | AffordEgypt"
+    ],
+    [
+      "client/src/pages/privacy-policy.tsx",
+      "August 5, 2026"
+    ],
+    [
+      "client/src/pages/privacy-policy.tsx",
+      "Contact Email:"
+    ],
+    [
+      "client/src/pages/privacy-policy.tsx",
+      "March 2, 2020"
+    ],
+    [
+      "client/src/pages/privacy-policy.tsx",
+      "Privacy Policy | AffordEgypt"
+    ],
+    [
+      "client/src/pages/privacy-policy.tsx",
+      "We may collect:"
+    ],
+    [
+      "client/src/pages/privacy-policy.tsx",
+      "You have the right to:"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "1 Star"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "12 per page"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "2 Stars"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "24 per page"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "3 Stars"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "4 Stars"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "48 per page"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "5 Stars"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "6 per page"
+    ],
+    [
+      "client/src/pages/sinai-peninsula-guide.tsx",
+      "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
+    ],
+    [
+      "client/src/pages/submit-review.tsx",
+      "Submit a Review | AffordEgypt"
+    ],
+    [
+      "client/src/pages/terms-of-service.tsx",
+      "August 5, 2026"
+    ],
+    [
+      "client/src/pages/terms-of-service.tsx",
+      "Contact Email:"
+    ],
+    [
+      "client/src/pages/terms-of-service.tsx",
+      "March 2, 2020"
+    ],
+    [
+      "client/src/pages/terms-of-service.tsx",
+      "Terms of Service | AffordEgypt"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "1–2 passengers"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "3–8 passengers"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "9–15 passengers"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Egypt Airport & Intercity Transfers | Private Car from LE 595"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Loading transfers…"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Total"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "(Mar–May & Sep–Nov)"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "1. Passport & Visa"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "2,500 and 3,000 EGP a day."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "2. Travel Insurance"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "3. Health & Vaccinations"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "About the figures below:"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Cost: ~ 120 EGP."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Days 9-10:"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Egypt Travel Tips | What Locals Wish You Knew"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Heads Up:"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "If you don't mind serious heat, this could be your budget jackpot. Tailor your itinerary wisely with coastal time in Alexandria or Dahab. You'll find some of the lowest prices of the year."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "In Cairo, the"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Juicy, garlicky, and craveable chicken or beef wraps."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Master your spending and find great deals."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Metro"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Navigate like a local and see the best sights."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Quick Tip:"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Return to Cairo for departure or extend your trip to Alexandria or the Red Sea."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Self-Catering Tip:"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "The perfect mix of decent weather, manageable crowds, and affordable prices. Airlines and hotels are often more generous with their deals. This is the best value for money."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "This classic \"Golden Triangle\" route combines Cairo, Luxor, and Aswan."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Total Trip Cost (7-10 Days):"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Uber, inDrive, or DiDi"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Visas, timing, and essential checklists."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "is a useful option for getting around the city. For taxis, use ride-hailing apps such as"
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "to get clearer pricing and avoid haggling."
+    ]
+  ]
+}
