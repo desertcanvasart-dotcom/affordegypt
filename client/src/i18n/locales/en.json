@@ -933,10 +933,129 @@
     },
     "cairo": {
       "title": "Cairo Airport Transfers - Reliable & Affordable | AffordEgypt",
-      "metaDescription": "Book reliable Cairo airport transfers from 2,025 EGP. Professional drivers, 24/7 service, flight monitoring. Transfer to hotels in New Cairo, Giza, Downtown & more.",
-      "keywords": "Cairo airport transfer, CAI airport transport, Cairo taxi, Egypt airport shuttle, New Cairo transfer",
+      "metaDescription": "Private transfers from Cairo International (CAI) and Sphinx International (SPX) to hotels across Cairo, Giza and Greater Cairo. Route-specific fixed quotes from 2,025 EGP.",
+      "keywords": "Cairo airport transfer, CAI airport transport, Sphinx airport SPX transfer, Egypt airport shuttle, New Cairo transfer",
       "heroTitle": "Cairo Airport Transfers",
-      "heroSubtitle": "Reliable, comfortable, and affordable airport transfers in Cairo. Professional drivers, flight monitoring, and transparent pricing from 2,025 EGP.",
+      "heroSubtitle": "Private transfers from Cairo International Airport (CAI) and Sphinx International Airport (SPX) to hotels across Cairo, Giza, and Greater Cairo.",
+      "heroNote": "Your fare depends on two locations: the airport where your flight lands and the exact address of your hotel. Tell us both and we will confirm the price before you book.",
+      "ctaQuote": "Get Your Exact Transfer Quote",
+      "airportsTitle": "First: Which Cairo Airport Are You Using?",
+      "airportsIntro": "Cairo has two major passenger airports, and they are on opposite sides of Greater Cairo. Please check the three-letter airport code on your ticket before requesting a transfer.",
+      "airports": [
+        {
+          "name": "Cairo International Airport",
+          "code": "Airport code: CAI",
+          "location": "Located on the eastern side of Cairo, near Heliopolis.",
+          "direct": "Usually the more direct arrival airport for Heliopolis, Nasr City, Downtown Cairo, Zamalek, Maadi, and many New Cairo addresses.",
+          "farther": "Transfers to Giza, the Pyramids area, Sheikh Zayed City, and 6th of October City cross more of Greater Cairo, so the route and fare may be higher."
+        },
+        {
+          "name": "Sphinx International Airport",
+          "code": "Airport code: SPX",
+          "location": "Located west of Cairo in Giza Governorate, near the Cairo-Alexandria Desert Road.",
+          "direct": "Usually the more direct arrival airport for Sheikh Zayed City, 6th of October City, the Grand Egyptian Museum, and many western Giza hotels.",
+          "farther": "Transfers to Downtown Cairo, Heliopolis, Nasr City, Maadi, or New Cairo travel farther across the metropolitan area and are quoted accordingly."
+        }
+      ],
+      "airportWarningLabel": "Important",
+      "airportWarning": "CAI and SPX are different airports. Selecting the wrong airport can change the route substantially. Send us your flight number so we can verify the arrival airport and monitor the correct flight.",
+      "calcTitle": "How We Calculate Your Transfer Price",
+      "calcIntro": "There is no single accurate fare for every \"Cairo airport transfer.\" Your confirmed quote is based on:",
+      "calcItems": [
+        "Arrival airport: CAI or SPX",
+        "Exact hotel or accommodation address",
+        "Vehicle size",
+        "Number of travelers",
+        "Number and size of bags",
+        "One-way or return transfer",
+        "Pickup date and time",
+        "Any special requirements, such as a child seat, wheelchair, oversized luggage, or several hotel stops"
+      ],
+      "zonesTitle": "Hotel Areas and Pricing Zones",
+      "zonesIntro": "The district name matters, even when the postal address says Cairo or Giza.",
+      "zones": [
+        {
+          "name": "Central Cairo & Core Giza",
+          "areas": ["Downtown Cairo", "Zamalek", "Garden City", "Dokki", "Mohandessin", "Many central Giza hotels"],
+          "note": "These areas often fall within our standard central-zone pricing, but the airport and exact hotel still need to be confirmed."
+        },
+        {
+          "name": "Eastern Greater Cairo",
+          "areas": ["Heliopolis", "Nasr City", "New Cairo", "Fifth Settlement", "Cairo Festival City area"],
+          "note": "Hotels near CAI may have a shorter route. New Cairo is a large suburban area, so two hotels both described as \"New Cairo\" can require different journeys and prices."
+        },
+        {
+          "name": "Western Greater Cairo",
+          "areas": ["Giza Pyramids hotels", "Grand Egyptian Museum area", "Sheikh Zayed City", "6th of October City"],
+          "note": "Hotels near SPX may have a shorter route. Sheikh Zayed and 6th of October are extensive western suburbs, so we quote the exact property rather than one city-wide fare."
+        },
+        {
+          "name": "Southern Cairo",
+          "areas": ["Maadi", "New Maadi", "Zahraa El Maadi"],
+          "note": "These routes can be affected by the airport used and the hotel's position within the district."
+        }
+      ],
+      "zonesHelpTitle": "Not Sure Which Zone Your Hotel Is In?",
+      "zonesHelp": "Send the hotel name, full address, or a map pin. We will identify the correct zone and quote the route from your actual airport.",
+      "vehiclesTitle": "Starting Vehicle Rates",
+      "vehiclesIntro": "The prices below are starting rates for eligible airport-to-hotel routes. They are not a promise that every route from both airports costs the same. Your exact fixed price is confirmed after we receive the airport and hotel address.",
+      "sedanFeatures": ["Air conditioning", "Professional driver", "Suitable for standard luggage"],
+      "minivanFeatures": ["Extra luggage space", "Family-friendly seating", "Useful for travelers with several suitcases"],
+      "vanFeatures": ["Group travel", "Large luggage capacity", "Vehicle assignment depends on the final passenger and baggage count"],
+      "includesTitle": "What Your Confirmed Quote Includes",
+      "includesItems": [
+        "Private vehicle and professional driver",
+        "Airport pickup from the confirmed airport",
+        "Flight monitoring",
+        "Meet-and-greet instructions",
+        "Direct transfer to the confirmed hotel or address",
+        "Fuel, parking, and road tolls for the confirmed route",
+        "Taxes and stated service fees"
+      ],
+      "changesTitle": "What Can Change the Quote?",
+      "changesItems": [
+        "Changing from CAI to SPX or from SPX to CAI",
+        "Changing the hotel, district, or final address",
+        "Adding stops, a second hotel, or an airport-to-airport transfer",
+        "Increasing the passenger or luggage count so a larger vehicle is required",
+        "Requesting specialist equipment or a service not included in the original quote"
+      ],
+      "changesNote": "We will always explain and confirm any revised price before the service.",
+      "a2aTitle": "Airport-to-Airport Transfers",
+      "a2aBody": "Connecting between Cairo International Airport (CAI) and Sphinx International Airport (SPX) is a cross-city road transfer, not a terminal change. It requires a separate quote and generous time between flights. Tell us both flight numbers, whether the tickets are separate, and whether you must collect and recheck baggage. The traveler remains responsible for airline check-in and connection requirements.",
+      "steps": [
+        {
+          "title": "Send Your Flight and Hotel Details",
+          "description": "Share the flight number, arrival date, airport code, hotel name or map pin, passenger count, and luggage count."
+        },
+        {
+          "title": "Receive a Route-Specific Fixed Quote",
+          "description": "We check the airport, destination zone, and required vehicle, then confirm the total price and inclusions before booking."
+        },
+        {
+          "title": "Meet Your Driver",
+          "description": "We send clear meeting instructions for your arrival airport. Your driver monitors the confirmed flight and meets you at the designated pickup point."
+        },
+        {
+          "title": "Travel Directly to Your Hotel",
+          "description": "Your private transfer follows the appropriate route to the exact address supplied in your booking."
+        }
+      ],
+      "beforeTitle": "Before You Book: Send Us These Details",
+      "beforeItems": [
+        "Flight number",
+        "Arrival date and scheduled time",
+        "Airport code: CAI or SPX",
+        "Hotel name and full address or map pin",
+        "Number of adults and children",
+        "Number of checked bags and cabin bags",
+        "Preferred vehicle or any special requirement"
+      ],
+      "pricingTitle": "Transparent, Route-Specific Pricing",
+      "pricingIntro": "We do not quote only from the word \"Cairo.\" We price the real journey — from your actual arrival airport to your exact hotel — with the correct vehicle for your group and luggage.",
+      "pricingFrom": "Starting from 2,025 EGP on eligible routes",
+      "pricingTerms": "Your fixed total is confirmed before booking • No airport substitution • No surprise destination-zone charge",
+      "ctaBook": "Book Your Transfer",
       "whyChooseTitle": "Why Choose Our Cairo Airport Transfers?",
       "service24_7": "24/7 Service",
       "service24_7Desc": "Round-the-clock airport transfers available every day",
@@ -961,8 +1080,8 @@
       "stepEnjoyRide": "Enjoy Your Ride",
       "stepEnjoyRideDesc": "Relax in comfort as we take you to your destination",
       "pricingInfoDesc": "Airport to hotel transfers • Professional driver • Meet & greet service",
-      "ctaTitle": "Ready to Book Your Cairo Airport Transfer?",
-      "ctaSubtitle": "Join thousands of satisfied customers who trust us for their Cairo airport transfers",
+      "ctaTitle": "Ready to Arrange Your Cairo Airport Transfer?",
+      "ctaSubtitle": "Send us your flight number and hotel location. We will confirm whether you arrive at CAI or SPX, identify the correct destination zone, and provide the appropriate vehicle price.",
       "area1": "Cairo International Airport (CAI)",
       "area2": "New Cairo Hotels",
       "area3": "6th of October City",
