@@ -1,5 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
+import { vehicleDigits, type VehicleClass } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -57,25 +58,32 @@ export default function CairoAirportTransfers() {
     return Array.isArray(english) ? english : [];
   };
 
+  // "From X EGP" comes from the build-time snapshot, never from a literal in
+  // the locale file. See client/src/lib/service-pricing.ts.
+  const fromPrice = (vehicle: VehicleClass) => {
+    const digits = vehicleDigits("cairo-airport-transfer", vehicle);
+    return digits === null ? "—" : rawT("airportTransfers.common.fromPrice", { price: digits });
+  };
+
   const vehicleTypes = [
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to2"),
-      price: t("airportTransfers.cairo.sedanPriceFrom"),
+      price: fromPrice("sedan"),
       features: list("airportTransfers.cairo.sedanFeatures"),
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
       capacity: t("airportTransfers.common.passengers3to8"),
-      price: t("airportTransfers.cairo.minivanPriceFrom"),
+      price: fromPrice("minivan"),
       features: list("airportTransfers.cairo.minivanFeatures"),
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers9to15"),
-      price: t("airportTransfers.cairo.vanPriceFrom"),
+      price: fromPrice("van"),
       features: list("airportTransfers.cairo.vanFeatures"),
       icon: Users
     }
@@ -365,7 +373,9 @@ export default function CairoAirportTransfers() {
               <div className="bg-background p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.cairo.pricingFrom")}</span>
+                  <span className="font-semibold">{vehicleDigits("cairo-airport-transfer", "sedan") === null
+                    ? "—"
+                    : rawT("airportTransfers.common.startingFromRoutes", { price: vehicleDigits("cairo-airport-transfer", "sedan")! })}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("airportTransfers.cairo.pricingTerms")}

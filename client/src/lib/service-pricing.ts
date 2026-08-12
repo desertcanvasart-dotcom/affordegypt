@@ -46,4 +46,33 @@ export function formatEGPPlain(key: ServiceKey): string {
   return n === null ? '—' : `${groupDigits(n)} EGP`;
 }
 
+/**
+ * Per-vehicle "from" prices on the airport-transfer pages.
+ *
+ * These lived as literal strings in the locale files until they were derived,
+ * and every one of the nine had drifted: Cairo advertised above the catalog,
+ * Luxor below it, Aswan in both directions at once. A traveller could read
+ * "From 2,135 EGP" for a Luxor van the booking system prices at 2,800.
+ */
+type VehicleServiceKey = keyof typeof pricingSnapshot.vehicles;
+export type VehicleClass = "sedan" | "minivan" | "van";
+
+export function vehiclePriceOf(
+  key: VehicleServiceKey,
+  vehicle: VehicleClass,
+): number | null {
+  const raw = (pricingSnapshot.vehicles[key] as Record<string, string> | undefined)?.[vehicle];
+  const n = Number(raw);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+/** `"1,950"` for a vehicle class, or null when the catalog cannot price it. */
+export function vehicleDigits(
+  key: VehicleServiceKey,
+  vehicle: VehicleClass,
+): string | null {
+  const n = vehiclePriceOf(key, vehicle);
+  return n === null ? null : groupDigits(n);
+}
+
 export const CURRENCY = pricingSnapshot.currency;

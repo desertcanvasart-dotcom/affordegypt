@@ -1,5 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
+import { vehicleDigits, type VehicleClass } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -56,25 +57,32 @@ export default function AswanAirportTransfers() {
     return Array.isArray(english) ? english : [];
   };
 
+  // "From X EGP" comes from the build-time snapshot, never from a literal in
+  // the locale file. See client/src/lib/service-pricing.ts.
+  const fromPrice = (vehicle: VehicleClass) => {
+    const digits = vehicleDigits("aswan-airport-transfer", vehicle);
+    return digits === null ? "—" : rawT("airportTransfers.common.fromPrice", { price: digits });
+  };
+
   const vehicleTypes = [
     {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to2"),
-      price: t("airportTransfers.aswan.sedanPriceFrom"),
+      price: fromPrice("sedan"),
       features: list("airportTransfers.aswan.sedanFeatures"),
       icon: Car
     },
     {
       name: t("airportTransfers.common.minivan"),
       capacity: t("airportTransfers.common.passengers3to8"),
-      price: t("airportTransfers.aswan.minivanPriceFrom"),
+      price: fromPrice("minivan"),
       features: list("airportTransfers.aswan.minivanFeatures"),
       icon: Users
     },
     {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers9to15"),
-      price: t("airportTransfers.aswan.vanPriceFrom"),
+      price: fromPrice("van"),
       features: list("airportTransfers.aswan.vanFeatures"),
       icon: Users
     }
@@ -384,7 +392,9 @@ export default function AswanAirportTransfers() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("airportTransfers.aswan.pricingFrom")}</span>
+                  <span className="font-semibold">{vehicleDigits("aswan-airport-transfer", "sedan") === null
+                    ? "—"
+                    : rawT("airportTransfers.common.startingFromRoutes", { price: vehicleDigits("aswan-airport-transfer", "sedan")! })}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("airportTransfers.aswan.pricingTerms")}

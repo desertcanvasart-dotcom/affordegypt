@@ -24,7 +24,7 @@ import "dotenv/config";
 import { writeFile, mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { deriveFromDb, SERVICE_KEYS } from "./lib/derive-pricing.mjs";
+import { deriveFromDb, SERVICE_KEYS, VEHICLE_SERVICES, VEHICLE_CLASSES } from "./lib/derive-pricing.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -44,8 +44,9 @@ async function main() {
   let dbError = null;
 
   let derived = {};
+  let derivedVehicles = {};
   try {
-    derived = await deriveFromDb();
+    ({ prices: derived, vehicles: derivedVehicles } = await deriveFromDb());
   } catch (err) {
     dbError = err;
     source = "fallback";
@@ -76,11 +77,34 @@ async function main() {
     }
   }
 
+  // Per-vehicle "from" prices for the transfer pages. Same fallback rule as
+  // services: any class the catalog cannot price keeps the committed value.
+  const vehicles = {};
+  const usedFallbackVehicles = [];
+  for (const serviceKey of Object.keys(VEHICLE_SERVICES)) {
+    vehicles[serviceKey] = {};
+    for (const cls of VEHICLE_CLASSES) {
+      const price = derivedVehicles?.[serviceKey]?.[cls];
+      if (price && price !== "0") {
+        vehicles[serviceKey][cls] = price;
+      } else {
+        vehicles[serviceKey][cls] = fallback.vehicles?.[serviceKey]?.[cls];
+        usedFallbackVehicles.push(`${serviceKey}.${cls}`);
+      }
+    }
+  }
+  if (usedFallbackVehicles.length > 0 && !dbError) {
+    console.warn(
+      `[pricing-snapshot] no DB price found for: ${usedFallbackVehicles.join(", ")} — using fallback values`,
+    );
+  }
+
   const snapshot = {
     generatedAt: new Date().toISOString(),
     source,
     currency: fallback.currency,
     services,
+    vehicles,
   };
 
   const json = JSON.stringify(snapshot, null, 2) + "\n";

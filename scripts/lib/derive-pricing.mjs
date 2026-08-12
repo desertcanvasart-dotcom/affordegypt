@@ -61,6 +61,20 @@ export const PINNED_SLUGS = {
   aswanAbuSimbelCar: "aswan-hotel-abu-simbel-hotel-same-day",
 };
 
+/**
+ * Services whose pages advertise a per-vehicle "from" price, not just a single
+ * minimum. These were hand-typed in the locale files and drifted from the
+ * catalog in three different directions before being derived here.
+ */
+export const VEHICLE_SERVICES = {
+  [SERVICE_KEYS.cairoAirport]: "Cairo",
+  [SERVICE_KEYS.luxorAirport]: "Luxor",
+  [SERVICE_KEYS.aswanAirport]: "Aswan",
+};
+
+/** Vehicle classes the transfer pages show a card for. */
+export const VEHICLE_CLASSES = ["sedan", "minivan", "van"];
+
 /** Cheapest positive value across a set of flat JSONB vehicle_prices blobs. */
 function minAcrossVehiclePrices(rows) {
   let min = Infinity;
@@ -80,6 +94,51 @@ function minAcrossVehiclePrices(rows) {
     }
   }
   return min === Infinity ? null : Math.round(min).toString();
+}
+
+/**
+ * Cheapest price per vehicle class across a city's airport_transfer rows.
+ *
+ * Taken per class rather than per row on purpose: "From X" on a vehicle card
+ * means the cheapest that vehicle goes for on any eligible route. In Luxor the
+ * cheapest sedan and the cheapest van are on different rows, so no single row
+ * produces all three numbers.
+ *
+ * Keys are matched by prefix because the JSONB blobs qualify them by trip type
+ * (sedan_one_way, sedan_round_trip_same_day, ...).
+ */
+async function getAirportTransferVehicleMins(c, cityName) {
+  const { rows } = await c.query(
+    `SELECT vehicle_prices FROM service_catalog
+     WHERE category = 'airport_transfer'
+       AND is_active = true
+       AND LOWER(city) = LOWER($1)`,
+    [cityName],
+  );
+  const mins = {};
+  for (const r of rows) {
+    let blob = r.vehicle_prices;
+    if (typeof blob === "string") {
+      try {
+        blob = JSON.parse(blob);
+      } catch {
+        continue;
+      }
+    }
+    if (!blob || typeof blob !== "object") continue;
+    for (const [rawKey, rawValue] of Object.entries(blob)) {
+      const cls = VEHICLE_CLASSES.find((v) => rawKey.startsWith(v));
+      if (!cls) continue;
+      const n = Number(rawValue);
+      if (!Number.isFinite(n) || n <= 0) continue;
+      if (mins[cls] === undefined || n < mins[cls]) mins[cls] = n;
+    }
+  }
+  const out = {};
+  for (const cls of VEHICLE_CLASSES) {
+    out[cls] = mins[cls] === undefined ? null : Math.round(mins[cls]).toString();
+  }
+  return out;
 }
 
 /**
@@ -135,6 +194,13 @@ function sumPrices(a, b) {
 
 /**
  * Every snapshot value, derived from the live database.
+ *
+ * Returns { prices, vehicles }: `prices` is the single minimum per service that
+ * the Offer schema advertises, `vehicles` is the per-class "from" price the
+ * transfer pages print on their vehicle cards. Both callers — the generator and
+ * the nightly drift checker — read the same result, so they cannot form
+ * separate opinions about what the right price is.
+ *
  * Throws if DATABASE_URL is absent or the connection fails — callers decide
  * whether that is fatal (drift check) or a fallback trigger (generator).
  */
@@ -170,7 +236,12 @@ export async function deriveFromDb() {
     out[SERVICE_KEYS.aswanAbuSimbelGuideCar] = sumPrices(
       out[SERVICE_KEYS.aswanGuide], out[SERVICE_KEYS.aswanAbuSimbelCar]);
 
-    return out;
+    const vehicles = {};
+    for (const [serviceKey, cityName] of Object.entries(VEHICLE_SERVICES)) {
+      vehicles[serviceKey] = await getAirportTransferVehicleMins(c, cityName);
+    }
+
+    return { prices: out, vehicles };
   } finally {
     await c.end();
   }

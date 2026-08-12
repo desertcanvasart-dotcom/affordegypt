@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T16:29:30.086Z",
+  "generatedAt": "2026-08-12T17:23:52.401Z",
   "source": "db",
   "currency": "EGP",
   "services": {
@@ -44,6 +44,23 @@
     },
     "aswan-abu-simbel-guide-car": {
       "minPrice": "11250"
+    }
+  },
+  "vehicles": {
+    "cairo-airport-transfer": {
+      "sedan": "1950",
+      "minivan": "2300",
+      "van": "2600"
+    },
+    "luxor-airport-transfer": {
+      "sedan": "1200",
+      "minivan": "1500",
+      "van": "2800"
+    },
+    "aswan-airport-transfer": {
+      "sedan": "1450",
+      "minivan": "1800",
+      "van": "3150"
     }
   }
 }

@@ -1,19 +1,64 @@
 {
   "currency": "EGP",
   "services": {
-    "cairo-airport-transfer": { "minPrice": "1950" },
-    "luxor-airport-transfer": { "minPrice": "1200" },
-    "aswan-airport-transfer": { "minPrice": "1450" },
-    "cairo-guide-services": { "minPrice": "2750" },
-    "luxor-guide-services": { "minPrice": "2750" },
-    "aswan-guide-services": { "minPrice": "2750" },
-    "cairo-tour-car": { "minPrice": "2700" },
-    "luxor-tour-car": { "minPrice": "3700" },
-    "aswan-tour-car": { "minPrice": "4600" },
-    "cairo-guide-car": { "minPrice": "5450" },
-    "luxor-guide-car": { "minPrice": "6450" },
-    "aswan-guide-car": { "minPrice": "7350" },
-    "aswan-abu-simbel-car": { "minPrice": "8500" },
-    "aswan-abu-simbel-guide-car": { "minPrice": "11250" }
+    "cairo-airport-transfer": {
+      "minPrice": "1950"
+    },
+    "luxor-airport-transfer": {
+      "minPrice": "1200"
+    },
+    "aswan-airport-transfer": {
+      "minPrice": "1450"
+    },
+    "cairo-guide-services": {
+      "minPrice": "2750"
+    },
+    "luxor-guide-services": {
+      "minPrice": "2750"
+    },
+    "aswan-guide-services": {
+      "minPrice": "2750"
+    },
+    "cairo-tour-car": {
+      "minPrice": "2700"
+    },
+    "luxor-tour-car": {
+      "minPrice": "3700"
+    },
+    "aswan-tour-car": {
+      "minPrice": "4600"
+    },
+    "cairo-guide-car": {
+      "minPrice": "5450"
+    },
+    "luxor-guide-car": {
+      "minPrice": "6450"
+    },
+    "aswan-guide-car": {
+      "minPrice": "7350"
+    },
+    "aswan-abu-simbel-car": {
+      "minPrice": "8500"
+    },
+    "aswan-abu-simbel-guide-car": {
+      "minPrice": "11250"
+    }
+  },
+  "vehicles": {
+    "cairo-airport-transfer": {
+      "sedan": "1950",
+      "minivan": "2300",
+      "van": "2600"
+    },
+    "luxor-airport-transfer": {
+      "sedan": "1200",
+      "minivan": "1500",
+      "van": "2800"
+    },
+    "aswan-airport-transfer": {
+      "sedan": "1450",
+      "minivan": "1800",
+      "van": "3150"
+    }
   }
 }

@@ -34,7 +34,7 @@ import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { deriveFromDb } from "./lib/derive-pricing.mjs";
+import { deriveFromDb, VEHICLE_SERVICES, VEHICLE_CLASSES } from "./lib/derive-pricing.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FALLBACK_PATH = path.join(__dirname, "pricing-snapshot-fallback.json");
@@ -55,8 +55,9 @@ async function main() {
   const committed = JSON.parse(await readFile(FALLBACK_PATH, "utf8"));
 
   let derived;
+  let derivedVehicles;
   try {
-    derived = await deriveFromDb();
+    ({ prices: derived, vehicles: derivedVehicles } = await deriveFromDb());
   } catch (err) {
     fail(`could not derive prices from the database: ${err.message}`);
   }
@@ -86,16 +87,41 @@ async function main() {
     }
   }
 
+  // Per-vehicle "from" prices printed on the transfer pages. These drifted from
+  // the catalog in three different directions before they were derived, which
+  // is precisely why they are checked here now.
+  for (const serviceKey of Object.keys(VEHICLE_SERVICES)) {
+    for (const cls of VEHICLE_CLASSES) {
+      const label = `${serviceKey}.${cls}`;
+      const want = derivedVehicles?.[serviceKey]?.[cls];
+      const have = committed.vehicles?.[serviceKey]?.[cls];
+      if (want === null || want === undefined) {
+        missing.push(`${label}: catalog yields no price (committed says ${have ?? "—"})`);
+        continue;
+      }
+      if (have === undefined) {
+        missing.push(`${label}: derived ${want} but the committed file has no such key`);
+        continue;
+      }
+      if (String(have) !== String(want)) {
+        drifted.push({ key: label, have: String(have), want: String(want) });
+      }
+    }
+  }
+
   if (drifted.length === 0 && missing.length === 0) {
-    console.log(`[pricing-drift] OK — all ${keys.length} advertised prices match the catalog.`);
+    console.log(
+      `[pricing-drift] OK — all ${keys.length} service prices and ` +
+        `${Object.keys(VEHICLE_SERVICES).length * VEHICLE_CLASSES.length} vehicle prices match the catalog.`,
+    );
     return;
   }
 
   if (drifted.length > 0) {
     console.error("\n[pricing-drift] Advertised prices no longer match the catalog:\n");
-    console.error(`  ${"key".padEnd(30)}${"advertised".padEnd(14)}catalog`);
+    console.error(`  ${"key".padEnd(38)}${"advertised".padEnd(14)}catalog`);
     for (const d of drifted) {
-      console.error(`  ${d.key.padEnd(30)}${d.have.padEnd(14)}${d.want}`);
+      console.error(`  ${d.key.padEnd(38)}${d.have.padEnd(14)}${d.want}`);
     }
   }
   if (missing.length > 0) {
