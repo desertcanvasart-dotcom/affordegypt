@@ -21,7 +21,7 @@ export default function TravelTips() {
           canonical: "https://affordegypt.com/travel-tips",
           image: "https://affordegypt.com/images/giza-pyramids.jpg",
           datePublished: "2025-06-07",
-          dateModified: "2026-08-11",
+          dateModified: "2026-08-12",
         })}
         ogType="article"
       />
@@ -155,8 +155,14 @@ export default function TravelTips() {
                 {t("travelTips.budgetTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-6">
-                Let's talk numbers. A smart budget is your best travel companion. We'll use an estimated rate of <strong>1 USD = 49.6 EGP</strong>, but always check current rates.
+                Let's talk numbers. A smart budget is your best travel companion. Exchange rates move frequently, so check a bank or reputable live currency source when you plan and again when you travel.
               </p>
+
+              <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-8">
+                <p className="mb-0">
+                  <strong className="text-gray-800">About the figures below:</strong> food, grocery, accommodation, tour, felucca, tipping and daily-budget amounts are local-market estimates, not fixed tariffs. They move with inflation and vary by city and season, so treat them as a planning guide and confirm current prices locally.
+                </p>
+              </div>
 
               <h3 className="text-2xl font-semibold mb-4">{t("travelTips.dailyBudget")}</h3>
               <p className="text-lg leading-relaxed mb-6">
@@ -267,12 +273,12 @@ export default function TravelTips() {
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚂</div>
                 <h4 className="text-xl font-semibold mb-2">{t("travelTips.trains")}</h4>
-                <p>{t("travelTips.trainsBody")} <strong>{t("travelTips.trainsStrong")}</strong>. {t("travelTips.trainsBody2")}</p>
+                <p>{t("travelTips.trainsBody")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚌</div>
                 <h4 className="text-xl font-semibold mb-2">{t("travelTips.buses")}</h4>
-                <p>{t("travelTips.busesBody")} <strong>{t("travelTips.busesStrong")}</strong>. {t("travelTips.busesBody2")}</p>
+                <p>{t("travelTips.busesBody")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚇</div>
