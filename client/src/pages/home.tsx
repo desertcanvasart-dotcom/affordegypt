@@ -12,6 +12,7 @@ import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
 import MobileStickyCTA from "@/components/mobile-sticky-cta";
 import { formatLEPerDay } from "@/lib/service-pricing";
+import { OPERATOR } from "@shared/operator-facts";
 
 const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
@@ -45,8 +46,10 @@ const LOCAL_BUSINESS_SCHEMA = {
   foundingDate: "2003",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Cairo",
-    addressCountry: "EG",
+    streetAddress: OPERATOR.address.street,
+    addressLocality: OPERATOR.address.locality,
+    addressRegion: OPERATOR.address.region,
+    addressCountry: OPERATOR.address.country,
   },
   geo: {
     "@type": "GeoCoordinates",

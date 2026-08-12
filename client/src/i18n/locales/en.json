@@ -934,9 +934,6 @@
       "passengers9to15": "9–15 passengers"
     },
     "cairo": {
-      "title": "Cairo Airport Transfers - Reliable & Affordable | AffordEgypt",
-      "metaDescription": "Private transfers from Cairo International (CAI) and Sphinx International (SPX) to hotels across Cairo, Giza and Greater Cairo. Route-specific fixed quotes from 1,950 EGP.",
-      "keywords": "Cairo airport transfer, CAI airport transport, Sphinx airport SPX transfer, Egypt airport shuttle, New Cairo transfer",
       "heroTitle": "Cairo Airport Transfers",
       "heroSubtitle": "Private transfers from Cairo International Airport (CAI) and Sphinx International Airport (SPX) to hotels across Cairo, Giza, and Greater Cairo.",
       "heroNote": "Your fare depends on two locations: the airport where your flight lands and the exact address of your hotel. Tell us both and we will confirm the price before you book.",
@@ -1090,9 +1087,6 @@
       "area8": "Zamalek"
     },
     "luxor": {
-      "title": "Luxor Airport Transfers - Professional & Reliable | AffordEgypt",
-      "metaDescription": "Private transfers from Luxor International Airport (LXR) to East Bank hotels, West Bank hotels and Nile cruise moorings. Route-specific fixed quotes from 1,200 EGP.",
-      "keywords": "Luxor airport transfer, LXR airport transport, Valley of Kings transfer, Luxor taxi, Egypt ancient sites transport",
       "heroTitle": "Luxor Airport Transfers",
       "heroSubtitle": "Private transfers from Luxor International Airport (LXR) to East Bank hotels, West Bank hotels, and confirmed Nile cruise moorings.",
       "whyChooseTitle": "Why Choose Our Luxor Airport Transfers?",
@@ -1240,9 +1234,6 @@
       "area8": "Winter Palace Area"
     },
     "aswan": {
-      "title": "Aswan Airport Transfers - Nile City Transport | AffordEgypt",
-      "metaDescription": "Private transfers from Aswan International Airport (ASW) to city hotels, Nubian stays, island jetties and Nile or Lake Nasser cruise moorings. Fixed quotes from 1,450 EGP.",
-      "keywords": "Aswan airport transfer, ASW airport transport, Abu Simbel transfer, Nubian village transport, Aswan taxi, Nile transport",
       "heroTitle": "Aswan Airport Transfers",
       "heroSubtitle": "Private transfers from Aswan International Airport (ASW) to city hotels, outlying properties, Nubian stays, island-hotel jetties, and confirmed Nile or Lake Nasser cruise moorings.",
       "whyChooseTitle": "Why Choose Our Aswan Airport Transfers?",
@@ -1470,7 +1461,7 @@
           "name": "Premium Car Service",
           "duration": "8-12 hours",
           "features": [
-            "Luxury sedan/SUV",
+            "Private sedan/SUV",
             "Professional driver",
             "Flexible itinerary"
           ]
@@ -1502,7 +1493,7 @@
         "step3Desc": "Discover Cairo's wonders with expert commentary and insider knowledge"
       },
       "pricingTitle": "Affordable Cairo Car & Tour Guide Services",
-      "pricingDesc": "Professional guides and luxury vehicles at competitive prices. No hidden costs.",
+      "pricingDesc": "Professional guides and private vehicles at competitive prices. No hidden costs.",
       "pricingInfo": "Licensed guides • Private vehicles • Multilingual support • Entrance tickets billed separately",
       "ctaTitle": "Ready to Explore Ancient Cairo?",
       "ctaSubtitle": "Book your expert guide and discover the secrets of the pharaohs"
@@ -1714,7 +1705,7 @@
     "findUsBody": "Located in the heart of Cairo, we're perfectly positioned to help you explore all of Egypt.",
     "mapTitle": "Afford Egypt Location in Cairo",
     "ourLocation": "Our Location",
-    "ourLocationValue": "Downtown Cairo, Egypt",
+    "ourLocationValue": "{{address}}",
     "officeHours": "Office Hours",
     "officeHoursValue": "24/7 Support Available",
     "contactLabel": "Contact"

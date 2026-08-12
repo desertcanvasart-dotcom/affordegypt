@@ -15,6 +15,7 @@ import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { OPERATOR } from "@shared/operator-facts";
 
 // A factory, not a module constant: the validation messages are translated, so
 // the schema must be built after i18next is available and rebuilt when the
@@ -397,7 +398,7 @@ export default function Contact() {
                 <div className="text-center">
                   <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
                   <h3 className="font-semibold text-foreground mb-1">{t("contactPage.ourLocation")}</h3>
-                  <p className="text-sm text-muted-foreground">{t("contactPage.ourLocationValue")}</p>
+                  <p className="text-sm text-muted-foreground">{t("contactPage.ourLocationValue", { address: OPERATOR.address.full })}</p>
                 </div>
                 <div className="text-center">
                   <Clock className="w-8 h-8 text-primary mx-auto mb-2" />

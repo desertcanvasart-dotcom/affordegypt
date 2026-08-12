@@ -39,6 +39,10 @@ export default function AswanAirportTransfers() {
       "availability": "https://schema.org/InStock",
     },
   };
+  // The meta description quotes a price, so it is derived like every other
+  // price on the page. A literal here is outside the drift check and is how
+  // the visible prices came adrift in the first place.
+  const sedanFrom = vehicleDigits("aswan-airport-transfer", "sedan") ?? "—";
   const { t } = useSmartTranslation();
   const { t: rawT } = useTranslation();
   
@@ -101,7 +105,7 @@ export default function AswanAirportTransfers() {
     <>
       <SeoMeta
         title="Aswan Airport Transfers | Fixed Price | AffordEgypt"
-        description="Private Aswan airport (ASW) transfers to any Aswan hotel or Nile cruise dock. Licensed drivers, fixed prices, no markup."
+        description={`Private transfers from Aswan International Airport (ASW) to city hotels, Nubian stays, island jetties and Nile or Lake Nasser cruise moorings. Fixed quotes from LE ${sedanFrom}.`}
         canonical="https://affordegypt.com/aswan-airport-transfers"
         schema={SERVICE_SCHEMA}
       />

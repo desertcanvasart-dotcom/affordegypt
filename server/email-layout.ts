@@ -389,7 +389,7 @@ function renderFooter(audience: 'customer' | 'internal'): string {
     </p>
     <p style="margin:0 0 14px 0; font-family:${FONT}; font-size:13px; line-height:21px; color:${BRAND.muted};">
       Licensed Egyptian tour operator &middot; ${esc(OPERATOR.etaaLicence)} &middot; operating since ${OPERATOR.licensedSince}<br />
-      Giza, Egypt
+      ${esc(OPERATOR.address.full)}
     </p>
     <p style="margin:0 0 16px 0; font-family:${FONT}; font-size:13px; line-height:21px; color:${BRAND.muted};">
       <a href="mailto:hello@affordegypt.com" style="color:${BRAND.brandDeep}; text-decoration:none;">hello@affordegypt.com</a>

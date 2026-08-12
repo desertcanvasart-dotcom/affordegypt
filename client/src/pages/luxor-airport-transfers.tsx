@@ -40,6 +40,10 @@ export default function LuxorAirportTransfers() {
       "availability": "https://schema.org/InStock",
     },
   };
+  // The meta description quotes a price, so it is derived like every other
+  // price on the page. A literal here is outside the drift check and is how
+  // the visible prices came adrift in the first place.
+  const sedanFrom = vehicleDigits("luxor-airport-transfer", "sedan") ?? "—";
   const { t } = useSmartTranslation();
   const { t: rawT } = useTranslation();
   
@@ -102,7 +106,7 @@ export default function LuxorAirportTransfers() {
     <>
       <SeoMeta
         title="Luxor Airport Transfers | Fixed Price | AffordEgypt"
-        description="Private Luxor airport (LXR) transfers to East Bank or West Bank hotels. Licensed drivers, fixed prices, English-speaking. Book in 60 seconds."
+        description={`Private transfers from Luxor International Airport (LXR) to East Bank hotels, West Bank hotels and Nile cruise moorings. Route-specific fixed quotes from LE ${sedanFrom}.`}
         canonical="https://affordegypt.com/luxor-airport-transfers"
         schema={SERVICE_SCHEMA}
       />

@@ -39,6 +39,10 @@ export default function CairoAirportTransfers() {
       "availability": "https://schema.org/InStock",
     },
   };
+  // The meta description quotes a price, so it is derived like every other
+  // price on the page. A literal here is outside the drift check and is how
+  // the visible prices came adrift in the first place.
+  const sedanFrom = vehicleDigits("cairo-airport-transfer", "sedan") ?? "—";
   const { t } = useSmartTranslation();
   const { t: rawT } = useTranslation();
   
@@ -101,7 +105,7 @@ export default function CairoAirportTransfers() {
     <>
       <SeoMeta
         title="Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
-        description="Private transfers from Cairo International (CAI) and Sphinx International (SPX) to hotels across Cairo, Giza and Greater Cairo. Route-specific fixed quotes from LE 1,950."
+        description={`Private transfers from Cairo International (CAI) and Sphinx International (SPX) to hotels across Cairo, Giza and Greater Cairo. Route-specific fixed quotes from LE ${sedanFrom}.`}
         canonical="https://affordegypt.com/cairo-airport-transfers"
         schema={SERVICE_SCHEMA}
       />

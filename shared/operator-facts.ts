@@ -16,6 +16,25 @@ export const OPERATOR = {
   legalName: 'Capital Travel Service',
   etaaLicence: 'ETAA 2179',
   licensedSince: 2003,
+
+  /**
+   * The business address, retyped in five places before it lived here and
+   * already diverged into three answers: the footer and the transactional
+   * mail said "Giza, Egypt", the contact page said "Downtown Cairo, Egypt",
+   * and the LocalBusiness schema carried no street at all. A visitor
+   * comparing the contact page with the footer saw two different cities.
+   *
+   * Structured parts are kept separate because schema.org PostalAddress wants
+   * them apart, and a single joined string cannot be split back reliably.
+   */
+  address: {
+    street: '1 Farouk Mahmoud St',
+    locality: 'Giza',
+    region: 'Cairo',
+    country: 'EG',
+    /** One-line form for the footer, contact page and mail signature. */
+    full: '1 Farouk Mahmoud St, Giza, Cairo',
+  },
 } as const;
 
 /**

@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { OPERATOR } from "@shared/operator-facts";
 import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 import { useTranslatedLink } from "@/utils/slugTranslation";
@@ -175,7 +176,7 @@ export default function Footer() {
             <span className="mx-2 text-gray-500">·</span>
             ETAA 2179
             <span className="mx-2 text-gray-500">·</span>
-            Giza, Egypt
+            {OPERATOR.address.full}
           </p>
           <p className="text-xs">
             {`© ${new Date().getFullYear()} AffordEgypt. ${t('footer.copyright')}`}
