@@ -129,6 +129,12 @@ const nileValleyCities: NileCity[] = [
         entryFee: "attractions.cairo.citadelSaladin.entryFee",
         hours: "attractions.cairo.citadelSaladin.hours",
       },
+      {
+        name: "attractions.cairo.copticMuseum.name",
+        description: "attractions.cairo.copticMuseum.description",
+        entryFee: "attractions.cairo.copticMuseum.entryFee",
+        hours: "attractions.cairo.copticMuseum.hours",
+      },
     ],
     transportation: {
       fromCairo:
