@@ -20,17 +20,6 @@ import { Badge } from "@/components/ui/badge";
 import SeoMeta from "@/components/seo-meta";
 import { articleSchema } from "@/lib/article-schema";
 
-/**
- * Stand-in for the entrance fees the August 2026 fact-check could not confirm
- * against a current first-party source. Only the Beni Suef Museum still uses
- * it; the operator has since supplied every other figure.
- *
- * Showing a number we cannot stand behind is worse than showing none: the old
- * figures were years out of date and a traveller budgets against them. Replace
- * each of these with the verified fee once the ticket office confirms it.
- */
-const PRICE_UNCONFIRMED = "Check the official site for the current price";
-
 interface NileCity {
   id: number;
   name: string;
@@ -177,12 +166,6 @@ const nileValleyCities: NileCity[] = [
         description: "attractions.beniSuef.meidumPyramid.description",
         entryFee: "attractions.beniSuef.meidumPyramid.entryFee",
         hours: "attractions.beniSuef.meidumPyramid.hours",
-      },
-      {
-        name: "attractions.beniSuef.beniSuefMuseum.name",
-        description: "attractions.beniSuef.beniSuefMuseum.description",
-        entryFee: "attractions.beniSuef.beniSuefMuseum.entryFee",
-        hours: "attractions.beniSuef.beniSuefMuseum.hours",
       },
     ],
     transportation: {
@@ -1429,9 +1412,6 @@ export default function NileValleyGuide() {
         "attractions.beniSuef.meidumPyramid.name": "Meidum Pyramid",
         "attractions.beniSuef.meidumPyramid.entryFee":
           "150 EGP (foreign adult)",
-        "attractions.beniSuef.beniSuefMuseum.name": "Beni Suef Museum",
-        "attractions.beniSuef.beniSuefMuseum.entryFee":
-          PRICE_UNCONFIRMED,
         "budgetTips.beniSuef.affordableFood": "Affordable local food available",
         "budgetTips.beniSuef.basicAccommodation":
           "Basic but clean accommodation options",
@@ -1475,7 +1455,7 @@ export default function NileValleyGuide() {
           "Nubian community reached by boat from Aswan",
         "attractions.aswan.nubianVillage.entryFee": "Free",
         "attractions.aswan.nubianVillage.hours":
-          "Daylight hours; the boat trip is arranged separately",
+          "Open around the clock; the boat trip is arranged separately",
         "budgetTips.aswan.stayNearSouk":
           "Stay near the souk for local experience",
         "budgetTips.aswan.feluccaRides": "Negotiate felucca rides at sunset",
@@ -1573,7 +1553,7 @@ export default function NileValleyGuide() {
         "attractions.sohag.abydosTemple.description":
           "Temple of Seti I, home of the Abydos King List",
         "attractions.sohag.abydosTemple.entryFee": "200 EGP (foreign adult)",
-        "attractions.sohag.abydosTemple.hours": "8:00 AM - 5:00 PM",
+        "attractions.sohag.abydosTemple.hours": "7:00 AM - 5:00 PM",
         "attractions.sohag.redMonastery.name": "Red Monastery",
         "attractions.sohag.redMonastery.entryFee": "Free",
         "attractions.sohag.whiteMonastery.name": "White Monastery",
