@@ -22,8 +22,8 @@ import { articleSchema } from "@/lib/article-schema";
 
 /**
  * Stand-in for the entrance fees the August 2026 fact-check could not confirm
- * against a current first-party source (Beni Suef Museum, Tell el-Amarna, Beni
- * Hassan, Tuna el-Gebel, the Red and White Monasteries, and Akhmim).
+ * against a current first-party source (Beni Suef Museum, the Red and White
+ * Monasteries, and Akhmim).
  *
  * Showing a number we cannot stand behind is worse than showing none: the old
  * figures were years out of date and a traveller budgets against them. Replace
@@ -1550,12 +1550,9 @@ export default function NileValleyGuide() {
         "nile.stay.1day": "1 day",
         "nile.stay.2days": "2 days",
         "nile.stay.1_2days": "1-2 days",
-        "attractions.minya.tellElAmarna.entryFee":
-          PRICE_UNCONFIRMED,
-        "attractions.minya.beniHassan.entryFee":
-          PRICE_UNCONFIRMED,
-        "attractions.minya.tunaElGebel.entryFee":
-          PRICE_UNCONFIRMED,
+        "attractions.minya.tellElAmarna.entryFee": "150 EGP (foreign adult)",
+        "attractions.minya.beniHassan.entryFee": "150 EGP (foreign adult)",
+        "attractions.minya.tunaElGebel.entryFee": "150 EGP (foreign adult)",
         // Asyut
         "attractions.asyut.monasteryVirginMary.name":
           "Monastery of the Virgin Mary",
