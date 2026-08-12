@@ -1,6 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google Consent Mode v2 defaults.
+         MUST stay above the Tag Manager and gtag loaders below: consent state
+         has to exist before any tag initialises, or the tag sets cookies once
+         before the first update lands and the denial is meaningless.
+
+         Everything non-essential defaults to denied, for every visitor rather
+         than only the EEA. Regional defaults are supported, but a single
+         global default has no geo edge cases to get wrong, and the banner is
+         shown to everyone anyway.
+
+         Tags are deliberately NOT blocked. Under Consent Mode they load and
+         send cookieless pings while denied, which is what preserves Google Ads
+         conversion modelling — the property feeds Ads conversion imports, so
+         blocking the scripts outright would cost measurement that denial alone
+         does not.
+
+         A previously stored choice is replayed into the default so a
+         consenting returning visitor is not measured as denied for the first
+         500ms of every page load. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      (function () {
+        var granted = false;
+        try { granted = localStorage.getItem('ae:cookie-consent') === 'granted'; } catch (e) {}
+        var state = granted ? 'granted' : 'denied';
+        gtag('consent', 'default', {
+          ad_storage: state,
+          ad_user_data: state,
+          ad_personalization: state,
+          analytics_storage: state,
+          functionality_storage: 'granted',
+          security_storage: 'granted',
+          wait_for_update: 500
+        });
+      })();
+    </script>
+    <!-- End Google Consent Mode v2 defaults -->
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -15,8 +54,6 @@
          reload the document, so they are reported from analytics.ts instead. -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWY0T7465M"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-MWY0T7465M');
     </script>

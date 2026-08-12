@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
+import { OPERATOR } from "@shared/operator-facts";
 
 export default function TermsOfService() {
   const { t, i18n } = useTranslation();
@@ -49,7 +50,7 @@ export default function TermsOfService() {
                     {t("termsOfService.s1")}
                   </h2>
                   <p className="text-gray-700">
-                    {t("termsOfService.s1pre")}{" "}<a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a> {" "}{t("termsOfService.s1b")}
+                    {t("termsOfService.s1pre")}{" "}<a href="https://affordegypt.com" className="text-teal-600 hover:text-teal-700">affordegypt.com</a> {" "}{t("termsOfService.s1b", { address: OPERATOR.address.full })}
                   </p>
                 </section>
 

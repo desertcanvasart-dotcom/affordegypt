@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
+import CookieConsent from "@/components/cookie-consent";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FaWhatsapp } from "react-icons/fa";
 import { AuthProvider } from "@/hooks/useAuth";
@@ -303,6 +304,7 @@ function App() {
             <TooltipProvider>
               <ClientOnly>
                 <Toaster />
+                <CookieConsent />
               </ClientOnly>
               <ScrollToTop />
               <Router />

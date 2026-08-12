@@ -179,8 +179,11 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">{t("contactPage.office")}</h3>
                       <p className="text-muted-foreground">
-                        {t("contactPage.officeCity")}<br />
-                        {t("contactPage.officeArea")}
+                        {t("contactPage.officeStreet", { street: OPERATOR.address.street })}<br />
+                        {t("contactPage.officeLocality", {
+                          locality: OPERATOR.address.locality,
+                          region: OPERATOR.address.region,
+                        })}
                       </p>
                     </div>
                   </div>

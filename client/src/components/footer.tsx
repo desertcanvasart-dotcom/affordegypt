@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { OPERATOR } from "@shared/operator-facts";
+import { openCookiePreferences } from "@/components/cookie-consent";
 import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
 import { useTranslatedLink } from "@/utils/slugTranslation";
@@ -72,6 +73,17 @@ export default function Footer() {
               <li><Link href="/privacy-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.privacyPolicy')}</Link></li>
               <li><Link href="/terms-of-service" className="text-gray-300 hover:text-primary transition-colors">{t('footer.termsOfService')}</Link></li>
               <li><Link href="/cookie-policy" className="text-gray-300 hover:text-primary transition-colors">{t('footer.cookiePolicy')}</Link></li>
+              {/* The privacy policy promises the right to withdraw consent, so
+                  there has to be a way to reach the choice again. */}
+              <li>
+                <button
+                  type="button"
+                  onClick={openCookiePreferences}
+                  className="text-gray-300 hover:text-primary transition-colors text-left"
+                >
+                  Cookie Preferences
+                </button>
+              </li>
               <li><Link href="/booking-agreement" className="text-gray-300 hover:text-primary transition-colors">{t('footer.bookingAgreement')}</Link></li>
             </ul>
           </div>
