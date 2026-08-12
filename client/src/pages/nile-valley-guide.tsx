@@ -406,10 +406,34 @@ const nileValleyCities: NileCity[] = [
         hours: "attractions.luxor.luxorTemple.hours",
       },
       {
+        name: "attractions.luxor.luxorMuseum.name",
+        description: "attractions.luxor.luxorMuseum.description",
+        entryFee: "attractions.luxor.luxorMuseum.entryFee",
+        hours: "attractions.luxor.luxorMuseum.hours",
+      },
+      {
         name: "attractions.luxor.hatshepsutTemple.name",
         description: "attractions.luxor.hatshepsutTemple.description",
         entryFee: "attractions.luxor.hatshepsutTemple.entryFee",
         hours: "attractions.luxor.hatshepsutTemple.hours",
+      },
+      {
+        name: "attractions.luxor.medinet.name",
+        description: "attractions.luxor.medinet.description",
+        entryFee: "attractions.luxor.medinet.entryFee",
+        hours: "attractions.luxor.medinet.hours",
+      },
+      {
+        name: "attractions.luxor.ramesseum.name",
+        description: "attractions.luxor.ramesseum.description",
+        entryFee: "attractions.luxor.ramesseum.entryFee",
+        hours: "attractions.luxor.ramesseum.hours",
+      },
+      {
+        name: "attractions.luxor.deir.name",
+        description: "attractions.luxor.deir.description",
+        entryFee: "attractions.luxor.deir.entryFee",
+        hours: "attractions.luxor.deir.hours",
       },
     ],
     transportation: {
@@ -1522,6 +1546,12 @@ export default function NileValleyGuide() {
           "Memorial temple of Ramesses II",
         "attractions.luxor.ramesseum.entryFee": "180 EGP (foreign adult)",
         "attractions.luxor.ramesseum.hours": "6:00 AM - 5:00 PM",
+        "attractions.luxor.luxorMuseum.name": "Luxor Museum",
+        "attractions.luxor.luxorMuseum.description":
+          "Curated collection of statuary and objects from Luxor's temples and tombs",
+        "attractions.luxor.luxorMuseum.entryFee": "400 EGP (foreign adult)",
+        "attractions.luxor.luxorMuseum.hours":
+          "Check the official site for current opening hours",
         "attractions.luxor.hatshepsutTemple.name": "Temple of Hatshepsut",
         "attractions.luxor.hatshepsutTemple.description":
           "Terraced mortuary temple at Deir el-Bahari",
@@ -2958,7 +2988,7 @@ export default function NileValleyGuide() {
                         </h4>
                         <ul className="text-sm space-y-1">
                           {city.keyAttractions
-                            .slice(0, 6)
+                            .slice(0, 8)
                             .map((attraction, index) => (
                               <li key={index} className="flex justify-between">
                                 <span>{translateKey(attraction.name)}</span>
