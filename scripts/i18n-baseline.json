@@ -226,11 +226,35 @@
     ],
     [
       "client/src/components/catalog-service-picker.tsx",
+      "12-hour rental"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "4-hour rental"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "8-hour rental"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
       "Couldn't load services. Try refreshing."
     ],
     [
       "client/src/components/catalog-service-picker.tsx",
       "Loading services…"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "No catalog services available for this combination yet."
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "Round-trip (multi-day)"
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
+      "Round-trip (same day)"
     ],
     [
       "client/src/components/catalog-service-picker.tsx",
@@ -326,6 +350,10 @@
     ],
     [
       "client/src/components/contact-section.tsx",
+      "Thank you for contacting us. We'll get back to you within 24 hours."
+    ],
+    [
+      "client/src/components/contact-section.tsx",
       "We typically respond within 24 hours during business days."
     ],
     [
@@ -402,6 +430,10 @@
     ],
     [
       "client/src/components/faq-section.tsx",
+      "How do I know AffordEgypt isn't one of the scam operators I've read about?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
       "How does payment work? Do I have to pay everything up front?"
     ],
     [
@@ -414,11 +446,27 @@
     ],
     [
       "client/src/components/faq-section.tsx",
+      "No — that's part of the point. You pay a 10% deposit when you book (we send you a payment link, usually via Tab.travel, that works with any major card). Your booking is confirmed once the deposit clears. The remaining 90% is paid on arrival in cash (we accept EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader. Whatever's easiest for you."
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "No. It can reduce or avoid the ticket-purchase queue. Security screening, ticket validation, identification checks, timed-entry controls, capacity restrictions, and other venue queues may still apply. Ticket changes, cancellations and refunds also remain subject to the attraction's own rules, which we state before collecting payment."
+    ],
+    [
+      "client/src/components/faq-section.tsx",
       "Still have questions?"
     ],
     [
       "client/src/components/faq-section.tsx",
       "What"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "What's the absolute minimum I could pay for a private Egypt trip?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "What's your cancellation policy?"
     ],
     [
       "client/src/components/faq-section.tsx",
@@ -431,6 +479,14 @@
     [
       "client/src/components/faq-section.tsx",
       "Why do you charge 50 EGP to arrange an entrance ticket?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Yes. Our entire model is modular — pick destinations, pick how many days in each, pick which attractions to include, add a guide for some days but not others, choose vehicle size by group. The pricing tool builds it live. If you want something the tool doesn't show, message us on WhatsApp and we'll quote it manually."
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Yes. The service is optional. You may buy tickets through the attraction's official booking channel or an approved on-site sales point where available. If you ask us to arrange them, your quote will show the official admission amount and our 50 EGP fee separately — we never fold the two together and call it the entrance fee."
     ],
     [
       "client/src/components/faq-section.tsx",
@@ -550,6 +606,26 @@
     ],
     [
       "client/src/components/inclusions-comparison.tsx",
+      "24/7 dedicated trip line"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Bottled water"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Concierge planning"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Entrance tickets"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Fuel and parking"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
       "Here's exactly what you get."
     ],
     [
@@ -558,7 +634,55 @@
     ],
     [
       "client/src/components/inclusions-comparison.tsx",
+      "Hotel"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "International flights"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Licensed Egyptologist guide"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Meals"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Multilingual guides (Spanish, Japanese, Finnish, Arabic)"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Optional experiences (camel ride, felucca, etc.)"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Pre-trip planning calls"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Premium hotel partnerships"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Private vehicle + driver"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Tips"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Welcome amenities"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
       "What we can add at the premium tier"
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "WhatsApp support during your trip"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -578,11 +702,19 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Abu Simbel"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Add destinations to see your live price."
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Add services to see your price."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "All major sites"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -611,6 +743,10 @@
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Booking Policy"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Booking error:"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -690,11 +826,19 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Desert experience"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Design Your Egypt Adventure"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Dietary requirements, accessibility needs, preferences..."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Egypt trip booking"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -758,7 +902,15 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Library of Alexandria"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Mediterranean & Ancient Wonders"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Mediterranean Coast"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -767,6 +919,10 @@
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Nationality (Optional)"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Nile cruise"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -803,6 +959,14 @@
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Proceed to Checkout"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Pyramids"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Pyramids of Giza"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -922,6 +1086,10 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Valley of the Kings"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Where do you want to go?"
     ],
     [
@@ -987,6 +1155,10 @@
     [
       "client/src/components/review-form.tsx",
       "Error"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Failed to submit review"
     ],
     [
       "client/src/components/review-form.tsx",
@@ -1074,7 +1246,23 @@
     ],
     [
       "client/src/components/review-upload.tsx",
+      "Ahmed Hassan"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Amazing Egypt Experience"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Best travel experience ever! Professional service and authentic Egyptian culture."
+    ],
+    [
+      "client/src/components/review-upload.tsx",
       "Bulk Review Upload"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Cairo Egypt"
     ],
     [
       "client/src/components/review-upload.tsx",
@@ -1086,7 +1274,35 @@
     ],
     [
       "client/src/components/review-upload.tsx",
+      "Excellent service from local team. Very professional and accommodating."
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Failed to process the file"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Great Local Experience"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Had the most incredible time exploring Cairo and Luxor with Afford Egypt. The guides were knowledgeable and the transportation was comfortable."
+    ],
+    [
+      "client/src/components/review-upload.tsx",
       "Invalid File Type"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "John Smith"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "London UK"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "New York USA"
     ],
     [
       "client/src/components/review-upload.tsx",
@@ -1103,6 +1319,22 @@
     [
       "client/src/components/review-upload.tsx",
       "Required CSV Columns:"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Review data:"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Review upload error:"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Sarah Johnson"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Unforgettable Journey"
     ],
     [
       "client/src/components/review-upload.tsx",
@@ -1186,155 +1418,11 @@
     ],
     [
       "client/src/pages/aswan-airport-transfers.tsx",
+      "Airport Transfer"
+    ],
+    [
+      "client/src/pages/aswan-airport-transfers.tsx",
       "Aswan Airport Transfers | Fixed Price | AffordEgypt"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "12-14 hours"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Abu Simbel Expedition"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Abu Simbel Expeditions"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Aswan Car & Tour Guide Services"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Aswan Cultural Specialties"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Authentic Aswan Car & Tour Guide Services"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Book Cultural Tour"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Book Online Now"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Call Now"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Choose Your Experience"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Choose Your Service"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Cultural Sensitivity"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Customized tours including felucca rides and village visits"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Desert Expeditions"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Discover the authentic traditions of southern Egypt with local experts"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Experience Nubia"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Experience the jewels of the Nile with expert cultural guidance"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Expert guides for Abu Simbel and southern desert temple sites"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Flexible Itineraries"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Full Day"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Full Day (8 hours)"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Genuine cultural experiences with local Nubian guides. Best value cultural tourism."
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Get Instant Quote"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "How It Works"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Immerse yourself in the unique culture of southern Egypt"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Local Nubian guide with deep knowledge of traditions and history"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Meet Cultural Guide"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Nile & Temples Package"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Nile Expertise"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Nubian Culture Guide"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Nubian Heritage Tours"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Ready to Experience Nubian Culture?"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Respectful guides trained in Nubian customs and traditions"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Select cultural tours, temple visits, or desert expeditions"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Southern Egypt Destinations"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Specialized knowledge of Nubian culture and Nile river traditions"
-    ],
-    [
-      "client/src/pages/aswan-guide-services.tsx",
-      "Why Choose Our Aswan Car & Tour Guide Services?"
     ],
     [
       "client/src/pages/attractions-simple.tsx",
@@ -1442,6 +1530,10 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Booking API error:"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Booking Agreement"
     ],
     [
@@ -1458,6 +1550,18 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Booking created successfully:"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Booking mutation error:"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Booking submission error:"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Complete Your Booking"
     ],
     [
@@ -1467,6 +1571,14 @@
     [
       "client/src/pages/book.tsx",
       "Email Address"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Form submitted with data:"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Form validation errors:"
     ],
     [
       "client/src/pages/book.tsx",
@@ -1498,11 +1610,23 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Please try again or contact support"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Prepared booking data:"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Service Type"
     ],
     [
       "client/src/pages/book.tsx",
       "Special Requests (Optional)"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Submitting booking with data:"
     ],
     [
       "client/src/pages/book.tsx",
@@ -1618,11 +1742,19 @@
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
+      "Egypt trip booking"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
       "Email"
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
       "End Date:"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Error generating PDF:"
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
@@ -1798,6 +1930,10 @@
     ],
     [
       "client/src/pages/budget-travel-egypt.tsx",
+      "Egypt on a Budget | A Cairo Operator's Honest Guide"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
       "Essential Pre-Travel Checklist"
     ],
     [
@@ -1811,6 +1947,10 @@
     [
       "client/src/pages/budget-travel-egypt.tsx",
       "Hostels"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
+      "How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions."
     ],
     [
       "client/src/pages/budget-travel-egypt.tsx",
@@ -1902,35 +2042,11 @@
     ],
     [
       "client/src/pages/cairo-airport-transfers.tsx",
+      "Airport Transfer"
+    ],
+    [
+      "client/src/pages/cairo-airport-transfers.tsx",
       "Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Book Online Now"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Choose Your Service"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Discover Cairo's wonders with expert commentary and insider knowledge"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Explore Cairo"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Meet Your Guide"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Professional licensed guide will meet you at your hotel or chosen location"
-    ],
-    [
-      "client/src/pages/cairo-guide-services.tsx",
-      "Select guide only, car only, or combined package based on your needs"
     ],
     [
       "client/src/pages/cookie-policy.tsx",
@@ -1943,6 +2059,10 @@
     [
       "client/src/pages/cuisine-passport.tsx",
       "0 && triedCount"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Abou Tarek - Downtown Cairo"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -1982,6 +2102,70 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Accompanied by baladi bread"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Accompanied by hard-boiled eggs"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Accompanied by lemon wedges"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Accompanied by pickles"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Accompanied by side salad or yogurt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Accompanies mahshi and other main dishes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Add dash of baharat (Egyptian spice mix) for authentic flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Add rosewater or orange blossom water for Arabian twist"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Add seasonings and simmer 2-3 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Add white flour for better elasticity in modern baking"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Adjust mashing to personal texture preference"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Aids digestion"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Al Malky Restaurant"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Alexandrian Hawawshi: Spicier version in fresh kneaded dough"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Alexandrian family restaurants"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Alexandrian-style: Includes chopped tomatoes, served with seafood"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "All Categories"
     ],
     [
@@ -1998,7 +2182,19 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "All-purpose flour"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Allspice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Also spelled Karkaday or Karkadi, this traditional drink holds deep cultural significance in Egypt. Served during weddings and festive gatherings, it"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2006,7 +2202,39 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Ancient dish with Pharaonic origins"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Appetizer"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Arranged upright on serving tray"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Aswan street vendors"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Avoid over-handling dough once shaped to ensure puffing"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Bake at 200°C (390°F) for 20-25 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Bake at 200°C (390°F) for 45-60 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Baked in clay or ceramic tajin"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Baked on hot baking stone or iron griddle"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2014,7 +2242,99 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Baladi bread"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Balance lemon juice and olive oil for best flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Bay leaf"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Bell pepper"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Bell peppers"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Best enjoyed fresh out of the oven"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Beverage"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Black pepper"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Bold, spicy, tangy flavours"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Boosts liver health"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Breakfast with ful medames"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Broil for extra 2-3 minutes for crispier top"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Brown lentils"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Brown meat slightly before adding for extra flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cairo street cafés with shisha"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cairo street food stalls"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Camera access error:"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Can be savory with meat or sweet for dessert"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Chicken broth"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Chicken or beef"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Chickpeas"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Chili flakes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cilantro"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cinnamon"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2022,7 +2342,55 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Coastal restaurants"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cold Brew: Soak petals 6-12 hours for gentler flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cold as refreshing summer drink"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cook each component separately for best texture"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cooked at 250°C (480°F) for 5-7 minutes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cooked fava beans"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cooking cream"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Coriander"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cover with foil, then uncover for golden crust"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Covered in garlicky tomato sauce"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Creamy or chunky texture (depending on preference)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Created in Cairo"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Created in Cairo's working-class neighborhoods as a quick, filling meal that's become one of Egypt's most beloved street foods. Often compared to a Middle Eastern-style meat pie or spiced burger in pita, it's popular as a street snack, family meal, or party dish."
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2030,7 +2398,35 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Crispy and golden on the outside"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Crispy top and creamy base highlight"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Crispy, golden top; creamy and soft underneath"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Crushed tomatoes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Cumin"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Dairy"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt's most ancient dishes dating back to Pharaonic times. Smooth, garlicky, and full of umami with a unique slightly mucilaginous texture."
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2038,7 +2434,47 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Dill"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Do not pre-cook rice - it cooks inside vegetables"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Dried hibiscus petals"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Earthy, garlicky, and rich with coriander flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Earthy, garlicky, lemony, and sometimes spicy flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Easy"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Egypt's classic dish of vegetables stuffed with seasoned rice, slow-cooked in light tomato broth. Includes zucchini, eggplant, bell peppers, tomatoes, cabbage leaves, and grape leaves. Deeply tied to family gatherings and celebrations."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Egypt's most famous and comforting dessert meaning 'Ali's Mother'. Rich, creamy bread pudding-style dish with pastry, nuts, milk, and cream, baked until bubbling and golden. Associated with celebrations, Ramadan, and special occasions."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Egypt's most iconic breakfast dish made from slow-cooked fava beans, typically seasoned with olive oil, garlic, lemon juice, and spices. Deeply embedded in Egyptian daily life, versatile and rich in protein and fiber."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Egypt's traditional flatbread, a cornerstone of everyday Egyptian life. The word 'baladi' means 'local' or 'country-style'. It is commonly made with around 50% whole-wheat flour and baked at high heat to form a pocket; recipes are not universally 100% whole wheat."
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2046,7 +2482,67 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Egyptian rice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Eid feasts and celebrations"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "El Refai Restaurant"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Essential for authentic Egyptian breakfast"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Essential part of Egyptian culture for over 5,000 years, often called"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life. Simple, hearty, and deeply rooted in Egyptian culture, this bread truly embodies the traditional local spirit."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Every Egyptian table"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Family-style sharing from clay pot"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Fill 2/3 full to allow rice expansion"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Finished with crispy fried onions"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Fresh molokhia must be chopped until paste-like consistency"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Friday family lunch gatherings"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Friday lunch tables"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Frozen molokhia works well as convenient alternative"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Fry onions until deep golden and crispy (10-15 minutes)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ful Eskandrani (Alexandrian): Served cold with chili, tomatoes, parsley, vinegar"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2054,7 +2550,111 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Ful bel Dabba (with butter): Creamy, indulgent restaurant version"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ful with boiled eggs: Classic street-style breakfast"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Full-fat milk"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Furn baladi (clay ovens)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Garlic"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Garnished with crushed pistachios"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Garnished with diced tomatoes, onions, or parsley"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ghee"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ghee or butter"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Gluten"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Green chilli"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Groppi Cafe"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ground beef or lamb"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ground coriander"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ground cumin"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Hard"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Hearty & filling - a full meal in one bowl"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Heat 3-5 minutes until warmed and thickened"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Heavy cream"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Herby, garlicky, rich, and comforting taste"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Hollow vegetables carefully with vegetable corer"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Hot as soothing herbal tea"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Hotel restaurants"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Include sweetened condensed milk for richer version"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Infused with ginger or mint"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Instant yeast"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Juicy, spiced meat filling inside"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2062,7 +2662,71 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Koshari El Tahrir"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Koshari Hind"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Layer pastry with nuts and pour hot milk mixture"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Layer with potato slices to prevent sticking"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Layered in deep bowl starting with rice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Layered textures: crispy, soft, chewy"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Lemon juice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Local bakeries"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Local cafes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Local grills"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Lowers blood pressure (clinically studied)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Made with puff pastry, phyllo, or bread"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Main"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Make extra fried onions - they disappear first"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Make tasha separately for proper flavor infusion"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Mash lightly with fork for desired texture"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Meat variation: Add minced meat to rice for richer version"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2070,7 +2734,47 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Mix milk and evaporated milk for extra richness"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Mixed nuts"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Modern twist: Add cheese for extra richness"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Molokhia leaves"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Naguib Mahfouz Cafe"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory. Often called the Egyptian version of bread pudding with Middle Eastern flair, loaded with nuts, coconut, and sometimes raisins."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "National favorite enjoyed daily by millions"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Naturally vegan (no meat or dairy)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Naturally vegan, no dairy or eggs"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Naturally vegetarian, often vegan"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Never boil - heat gently to preserve texture"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2078,7 +2782,43 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Nile Delta: Traditional cabbage rolls popular"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "No eggs - unlike Western bread puddings"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Nuts"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Olive oil"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Onion"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Onions"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Optional drizzle of condensed milk for extra indulgence"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Optional: lemon, cinnamon, clove"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt's most ancient and beloved dishes, representing the ultimate comfort food for Egyptians across generations."
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2086,7 +2826,179 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Ottoman influence dish that became deeply rooted in Egyptian family traditions. Often prepared in large trays for sharing at family gatherings, feasts, and celebrations. The name literally means 'stuffed' in Arabic."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Oven method: 200°C for 20-25 minutes, flip halfway"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Packed with onions, peppers, and warm spices"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Paired with hot chili vinegar"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Paired with pickled vegetables (torshi)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Pairing with taameya (Egyptian falafel)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Palestinian/Lebanese style: Whole leaves, more stew-like texture"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Paprika"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Parsley"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Pepper"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Prepare all elements in advance and assemble before serving"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Puff pastry"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Puffs up during high-heat baking process"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Puffs up when baked - forming a pocket inside"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Raisins"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ramadan Iftar desserts"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ramadan iftar tables"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Reserve tomato juice from hollowed tomatoes for broth"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "Rice Muammar"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Rich in vitamin C and antioxidants"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Rural Egyptian households"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Rural Egyptian: Traditionally paired with rabbit for feasts"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Rural family kitchens"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Salt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Savory version with chicken or beef chunks"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Scooping up molokhia or koshari"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served in individual ramekins or family-style dish"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served over white rice or vermicelli rice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served straight from the tajin while warm"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served warm, straight from the oven"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served with tahini sauce"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served with warm baladi bread or pita"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Served with yogurt or green salad"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Short-grain rice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Shredded coconut"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Signature creamy interior with crispy golden crust"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Simmer tomato sauce 15-20 minutes until thickened"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Simple ingredients with deeply comforting result"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Sliced in halves or quarters"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Slow-cooked in tomato-based broth for maximum flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Small pasta"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Soft yet slightly chewy with nutty, earthy flavor"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Spooned with cooking broth on top"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Stir only once after adding to broth"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2094,7 +3006,51 @@
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
+      "Street breakfast vendors"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Street food vendors"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Street stalls throughout Egypt"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Street vendors"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Sugar"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Sweet version (Muammar Helw) with sugar and vanilla"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
       "The name"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "The name 'muammar' means 'enriched,' referring to the rich milk and cream used. Traditional clay tajin cooking gives the best crispy crust and is especially popular in rural Egyptian kitchens."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Thick and slightly viscous texture (similar to okra)"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Tomato paste"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Topped with lentils, pasta, and chickpeas"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Topped with squeeze of fresh lemon"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2103,6 +3059,30 @@
     [
       "client/src/pages/cuisine-passport.tsx",
       "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free."
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional Egyptian homes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional cafes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional family restaurants"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional homes"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Traditional street carts"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Ultimate Egyptian comfort food"
     ],
     [
       "client/src/pages/cuisine-passport.tsx",
@@ -2121,6 +3101,110 @@
       "Upper Egypt"
     ],
     [
+      "client/src/pages/cuisine-passport.tsx",
+      "Upper Egypt restaurants"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Upper Egypt style with whole spices"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Upper Egypt: Cabbage and grape leaves versions especially loved"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Use clay tajin for best crispy texture"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Use clay tajin if available for best crust"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Use cooked fava beans or quality canned beans"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Use cream-soaked toast for more rustic version"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Use preheated pizza stone to mimic clay oven effect"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Use short grain Egyptian rice for best texture"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Used for wrapping and scooping foods"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Vanilla extract"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Vegan & healthy - packed with fiber and protein"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Vegetable oil"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Vegetables stuffed with seasoned rice filling"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Warm beans gently in saucepan with splash of water"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Warm water"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Water"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Wedding celebrations"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Weddings and special occasions"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "White rice"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "White vinegar"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Whole wheat flour"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Whole wheat, round and flat shape"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "With rosewater for floral twist"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Wrapping kebda (liver) sandwiches"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Zucchini"
+    ],
+    [
       "client/src/pages/destinations.tsx",
       "Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
     ],
@@ -2130,7 +3214,15 @@
     ],
     [
       "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Eat where locals gather for authentic, affordable meals"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
       "Eco-friendly and refillable in oases"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Egypt's Deserts | White Desert, Black Desert, Siwa Oasis"
     ],
     [
       "client/src/pages/eastern-western-deserts-guide.tsx",
@@ -2143,6 +3235,10 @@
     [
       "client/src/pages/eastern-western-deserts-guide.tsx",
       "For springs and rugged walks"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Join local safari groups instead of private trips to save up to 60%"
     ],
     [
       "client/src/pages/eastern-western-deserts-guide.tsx",
@@ -2162,15 +3258,35 @@
     ],
     [
       "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Stay in family-run guesthouses over hotels"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
       "Sun, dust, and sand protection"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "The deserts most Egypt itineraries skip. White Desert, Black Desert, Bahariya, Farafra, and Siwa Oasis. Logistics, costs, and what's worth the trip — written by a guide who grew up in Aswan."
     ],
     [
       "client/src/pages/eastern-western-deserts-guide.tsx",
       "Thermal layer"
     ],
     [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Travel during November and March for shoulder season pricing"
+    ],
+    [
+      "client/src/pages/eastern-western-deserts-guide.tsx",
+      "Use minibuses and shared taxis between oases"
+    ],
+    [
       "client/src/pages/egyptian-street-food-guide.tsx",
       "Egyptian Street Food Guide | What to Eat & Where"
+    ],
+    [
+      "client/src/pages/egyptian-street-food-guide.tsx",
+      "From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide."
     ],
     [
       "client/src/pages/home.tsx",
@@ -2182,111 +3298,75 @@
     ],
     [
       "client/src/pages/home.tsx",
-      "Capital Travel Service — ETAA 2179"
-    ],
-    [
-      "client/src/pages/home.tsx",
-      "ETAA Member"
-    ],
-    [
-      "client/src/pages/home.tsx",
       "Egypt Tours from a Real Egyptian Operator | AffordEgypt"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Egypt tours"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Egyptian travel"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Egyptology"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Nile cruises"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Pyramid tours"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "Sharm El Sheikh"
+    ],
+    [
+      "client/src/pages/home.tsx",
+      "The transparent budget tier of Capital Travel Service, a Cairo-based ETAA-licensed tour operator (ETAA 2179) since 2003."
+    ],
+    [
+      "client/src/pages/luxor-airport-transfers.tsx",
+      "Airport Transfer"
     ],
     [
       "client/src/pages/luxor-airport-transfers.tsx",
       "Luxor Airport Transfers | Fixed Price | AffordEgypt"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "6-10 hours"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 1.5-2.5 hours by train; check the current timetable"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Ancient Luxor Temple Sites"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 13-15 hours by train; check the current timetable"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Book Online Now"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 2.5-3.5 hours by train; road times vary with traffic"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Book Temple Tour"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 3-4.5 hours by train; check the current timetable"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Book Your Tour"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 5-6.5 hours by train; check the current timetable"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Call Now"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 6-8 hours by train; check the current timetable"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Choose East Bank, West Bank, or combined temple tour package"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 8-10 hours by train; check the current timetable"
     ],
     [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Choose Your Service"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Discover pharaonic treasures with expert historical commentary"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "East & West Bank Tour"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Explore Ancient Thebes"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Full Day"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Full Day (8 hours)"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Get Instant Quote"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "How It Works"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Licensed archaeologist guide meets you with comfortable transport"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Luxor Temple Specialties"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Luxor Temples Tours"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Meet Temple Expert"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Professional guided tours of the world's greatest open-air museum"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Temple Architecture Tours"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Temple Specialist Guide"
-    ],
-    [
-      "client/src/pages/luxor-guide-services.tsx",
-      "Valley of Kings Expert"
+      "client/src/pages/nile-valley-guide.tsx",
+      "About 9.5-12 hours by train; service and train type matter"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2294,11 +3374,35 @@
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "All Regions"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Alle Regionen"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Alto Egipto"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Asyut"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "Bajo Egipto"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Beni Suef"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Bicycle"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Caleche"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2310,11 +3414,31 @@
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "Egipto Medio"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Felucca"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Horse cart"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Kom Ombo"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
       "Lower Egypt"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Metro"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Microbus"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2326,7 +3450,15 @@
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "Motorboat"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Nile Valley Travel Guide | Beyond Luxor & Aswan"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "No practical direct rail route; fly when scheduled or travel about 3.5-4 hours by road from Aswan"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2334,7 +3466,27 @@
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "Nubie"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Nubien"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Private car"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Qena"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Roughly 11-13 hours by direct train when available; many visitors travel from Luxor"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Roughly 12-14 hours by direct train when available; many visitors travel from Aswan or Edfu"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2342,11 +3494,47 @@
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "Taxi"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "The hidden gems of the Nile Valley between Luxor and Aswan. Edfu, Kom Ombo, Dendera, Esna. How to see them on a budget with a private guide."
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Todas las Regiones"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Tour bus"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Toutes les Régions"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Tram"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Uber"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Upper Egypt"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
+      "Walking"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
       "Western"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "You are already in Cairo; allow extra time for cross-city traffic"
     ],
     [
       "client/src/pages/privacy-policy.tsx",
@@ -2430,6 +3618,10 @@
     ],
     [
       "client/src/pages/sinai-peninsula-guide.tsx",
+      "From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai."
+    ],
+    [
+      "client/src/pages/sinai-peninsula-guide.tsx",
       "Red Sea Diving Paradise"
     ],
     [
@@ -2505,6 +3697,10 @@
       "Total"
     ],
     [
+      "client/src/pages/transfers.tsx",
+      "Transfer booking error:"
+    ],
+    [
       "client/src/pages/travel-tips.tsx",
       "(Mar–May & Sep–Nov)"
     ],
@@ -2575,6 +3771,10 @@
     [
       "client/src/pages/travel-tips.tsx",
       "Navigate like a local and see the best sights."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong."
     ],
     [
       "client/src/pages/travel-tips.tsx",

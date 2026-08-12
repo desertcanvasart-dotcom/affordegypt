@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { useSmartTranslation } from "@/hooks/useSmartTranslation";
+import { useTranslation } from "react-i18next";
 import { 
   UserCheck, 
   MapPin, 
@@ -31,7 +32,8 @@ export default function LuxorGuideServices() {
   const SERVICE_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Private Tour Guide and Car",
+    // schema.org value on the English prerender Google indexes
+    "serviceType": "Private Tour Guide and Car", // i18n-exempt
     "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
     "areaServed": "Luxor",
     "offers": {
@@ -45,6 +47,8 @@ export default function LuxorGuideServices() {
     },
   };
   const { t } = useSmartTranslation();
+  // useSmartTranslation coerces to string; arrays need the raw hook.
+  const { t: rawT } = useTranslation();
   
   // Scroll to top when component mounts
   useEffect(() => {
@@ -53,24 +57,24 @@ export default function LuxorGuideServices() {
   
   const serviceTypes = [
     {
-      name: "Temple Specialist Guide",
-      duration: "Full Day (8 hours)",
+      name: t("guideServices.luxor.cardGuideName"),
+      duration: t("guideServices.common.fullDay8Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-guide-services") } }),
-      features: ["Ancient Egypt expert", "Valley of Kings specialist", "Hieroglyph interpreter"],
+      features: [t("guideServices.luxor.featAncientEgyptExpert"), t("guideServices.luxor.featValleyKingsSpecialist"), t("guideServices.luxor.featHieroglyphInterpreter")],
       icon: UserCheck
     },
     {
-      name: "East & West Bank Tour",
-      duration: "Full Day", 
+      name: t("guideServices.luxor.cardPackageName"),
+      duration: t("guideServices.common.fullDay"), 
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-guide-car") } }),
-      features: ["Professional guide", "Private vehicle", "Both banks covered"],
+      features: [t("guideServices.luxor.featProfessionalGuide"), t("guideServices.common.privateVehicle"), t("guideServices.luxor.featBothBanks")],
       icon: Users
     },
     {
-      name: "Luxor Temples Tours",
-      duration: "6-10 hours",
+      name: t("guideServices.luxor.cardCarName"),
+      duration: t("guideServices.common.6to10Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-tour-car") } }), 
-      features: ["Premium vehicle", "Expert driver-guide", "Flexible temple visits"],
+      features: [t("guideServices.luxor.featPremiumVehicle"), t("guideServices.luxor.featExpertDriverGuide"), t("guideServices.luxor.featFlexibleTempleVisits")],
       icon: Car
     }
   ];
@@ -98,34 +102,14 @@ export default function LuxorGuideServices() {
     }
   ];
 
-  // Guide service areas in Luxor with fallback
-  const getServiceAreas = () => {
-    try {
-      const areas = [
-        "Valley of the Kings",
-        "Karnak Temple Complex",
-        "Luxor Temple",
-        "Queen Hatshepsut Temple",
-        "Valley of the Queens",
-        "Medinet Habu",
-        "Colossi of Memnon",
-        "Ramesseum Temple"
-      ];
-      return areas;
-    } catch {
-      return [
-        "Valley of the Kings",
-        "Karnak Temple Complex",
-        "Luxor Temple",
-        "Queen Hatshepsut Temple",
-        "Valley of the Queens",
-        "Medinet Habu",
-        "Colossi of Memnon",
-        "Ramesseum Temple"
-      ];
-    }
-  };
-  const serviceAreas = getServiceAreas();
+  // The list lives in the locale files, translated. It used to be a literal
+  // here with an identical copy in a catch block that could never differ, and
+  // the locale copies had already drifted: es/fr/de listed Saqqara and Dahshur
+  // where English listed Al-Azhar and Old Cairo walking tours. One source now.
+  const serviceAreas = rawT("guideServices.luxor.serviceAreas", {
+    returnObjects: true,
+    defaultValue: [],
+  }) as string[];
 
   return (
     <>
@@ -155,7 +139,7 @@ export default function LuxorGuideServices() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/transfers">
-                    Book Temple Tour
+                    {t("guideServices.luxor.bookCta")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -191,7 +175,7 @@ export default function LuxorGuideServices() {
         {/* Service Options */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Choose Your Service</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.chooseYourService")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {serviceTypes.map((service, index) => (
                 <Card key={index} className="relative hover:shadow-lg transition-shadow">
@@ -223,9 +207,9 @@ export default function LuxorGuideServices() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Ancient Luxor Temple Sites</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.luxor.serviceAreasTitle")}</h2>
               <p className="text-center text-muted-foreground mb-8">
-                Professional guided tours of the world's greatest open-air museum
+                {t("guideServices.luxor.serviceAreasDesc")}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {serviceAreas.map((area, index) => (
@@ -243,19 +227,18 @@ export default function LuxorGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Luxor Temple Specialties</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.luxor.specialtiesTitle")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Compass className="w-6 h-6 text-primary" />
-                      Valley of Kings Expert
+                      {t("guideServices.luxor.valleyKingsExpert")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Specialized guides for the royal tombs with detailed knowledge of pharaonic 
-                      burial practices, tomb art, and recent archaeological discoveries.
+                      {t("guideServices.luxor.valleyKingsExpertDesc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -263,13 +246,12 @@ export default function LuxorGuideServices() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Camera className="w-6 h-6 text-primary" />
-                      Temple Architecture Tours
+                      {t("guideServices.luxor.templeArchitecture")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Expert architectural guides explaining the engineering marvels of Karnak 
-                      and Luxor temples, including hieroglyphic translations and historical context.
+                      {t("guideServices.luxor.templeArchitectureDesc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -281,28 +263,28 @@ export default function LuxorGuideServices() {
         {/* How It Works */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.howItWorks")}</h2>
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">1</div>
-                  <h3 className="font-semibold mb-2">Book Your Tour</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.luxor.bookYourTour")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Choose East Bank, West Bank, or combined temple tour package
+                    {t("guideServices.luxor.chooseServiceDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">2</div>
-                  <h3 className="font-semibold mb-2">Meet Temple Expert</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.luxor.meetGuideStep")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Licensed archaeologist guide meets you with comfortable transport
+                    {t("guideServices.luxor.meetGuideDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">3</div>
-                  <h3 className="font-semibold mb-2">Explore Ancient Thebes</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.luxor.exploreCity")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Discover pharaonic treasures with expert historical commentary
+                    {t("guideServices.luxor.exploreCityDesc")}
                   </p>
                 </div>
               </div>
@@ -321,14 +303,14 @@ export default function LuxorGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Licensed guide from {formatLEPerDay("luxor-guide-services")} — guide + private car from {formatLEPerDay("luxor-guide-car")}</span>
+                  <span className="font-semibold">{t("guideServices.common.guidePriceFrom", { interpolation: { guidePrice: formatLE("luxor-guide-services"), guideCarPrice: formatLE("luxor-guide-car") } })}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Licensed guides • Temple expertise • Private air-conditioned car on the guide + car package • Entrance tickets billed separately
+                  {t("guideServices.luxor.pricingInfo")}
                 </p>
                 <Button asChild size="lg">
                   <Link href="/transfers">
-                    Get Instant Quote
+                    {t("guideServices.common.getInstantQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
 
@@ -350,7 +332,7 @@ export default function LuxorGuideServices() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link href="/pricing-tool">
-                  Book Online Now
+                  {t("guideServices.common.bookOnlineNow")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
 
@@ -358,7 +340,7 @@ export default function LuxorGuideServices() {
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="text-lg px-8 bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call Now
+                  {t("guideServices.common.callNow")}
                 </Button>
               </a>
             </div>

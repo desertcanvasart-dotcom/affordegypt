@@ -124,6 +124,9 @@ function scan() {
       if (/^\s*(\/\/|\*|\/\*)/.test(line)) return;
       if (ranges.some(([a, b]) => ln >= a && ln <= b)) return;
       if (/i18n-exempt/.test(line)) return; // deliberate, justified in a comment
+      // schema.org vocabulary: "@type": "Offer" is a machine-read constant, not
+      // copy. Translating it would break the structured data.
+      if (/"@(type|context|id)"/.test(line)) return;
       const hits = new Set();
       for (const m of line.matchAll(/>([^<>{}\n]{4,})</g)) hits.add(m[1]);
       // A JSX text node split across lines: the tag closes on an earlier line
@@ -137,6 +140,16 @@ function scan() {
       }
       for (const m of line.matchAll(VISIBLE_ATTR)) hits.add(m[2]);
       for (const m of line.matchAll(/\b[a-zA-Z]+:\s*["']([^"'\n]{4,})["']/g)) hits.add(m[1]);
+      // String arrays: features: ["Licensed Egyptologist", "Private vehicle"].
+      // The key:"value" pattern above stops at the bracket, so every element of
+      // every list of labels was invisible.
+      //
+      // Quote types are matched as matching PAIRS, not as a ["'] character
+      // class: "don't" would otherwise split at the apostrophe and yield the
+      // fragment "t" plus whatever followed. Elements must also start with a
+      // capital or digit, which keeps lowercase lookup keys ("beni suef") out.
+      for (const m of line.matchAll(/"([A-Z0-9][^"\n]{3,})"\s*[,\]]/g)) hits.add(m[1]);
+      for (const m of line.matchAll(/'([A-Z0-9][^'\n]{3,})'\s*[,\]]/g)) hits.add(m[1]);
       for (const h of hits) {
         if (!isProse(h)) continue;
         // Legal bodies: only long-form prose is exempt, labels still count.

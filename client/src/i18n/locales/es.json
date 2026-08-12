@@ -1581,7 +1581,12 @@
       "ticketServiceTitle": "¿Quieres que gestionemos tus entradas?",
       "ticketServiceBody1": "Podemos comprar y organizar las entradas elegibles antes de tu visita por",
       "ticketServiceFee": "50 EGP por cada entrada de pago emitida",
-      "ticketServiceBody2": ", además del precio oficial de la entrada. Este servicio opcional ayuda a reducir el tiempo en las taquillas y evita depender por completo de los datáfonos del recinto, ya que muchos lugares no aceptan efectivo. Cubre la gestión anticipada y la organización de las entradas; los controles de seguridad, de identidad, los horarios de acceso y las colas del recinto pueden seguir aplicándose."
+      "ticketServiceBody2": ", además del precio oficial de la entrada. Este servicio opcional ayuda a reducir el tiempo en las taquillas y evita depender por completo de los datáfonos del recinto, ya que muchos lugares no aceptan efectivo. Cubre la gestión anticipada y la organización de las entradas; los controles de seguridad, de identidad, los horarios de acceso y las colas del recinto pueden seguir aplicándose.",
+      "chooseYourService": "Elige tu servicio",
+      "6to10Hours": "6-10 horas",
+      "privateVehicle": "Vehículo privado",
+      "privateSedanSuv": "Sedán/SUV privado",
+      "guidePriceFrom": "Guía licenciado desde {{guidePrice}}/día — guía + coche privado desde {{guideCarPrice}}/día"
     },
     "cairo": {
       "title": "Servicios de Auto y Guía Turístico en El Cairo | AffordEgypt",
@@ -1605,7 +1610,7 @@
       "islamicCairoSpecialistsDesc": "Guías expertos para las calles medievales del Cairo islámico, mezquitas históricas y bazares tradicionales.",
       "pricingTitle": "Servicios Asequibles de Auto y Guía Turístico en El Cairo",
       "pricingDesc": "Guías profesionales y vehículos de lujo a precios competitivos. Sin costos ocultos.",
-      "pricingInfo": "Guías licenciados • Vehículos de lujo • Soporte multilingüe • Todas las tasas de entrada",
+      "pricingInfo": "Guías licenciados • Vehículos privados • Soporte multilingüe • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Explorar el Antiguo El Cairo?",
       "ctaSubtitle": "Reserva tu guía experto y descubre los secretos de los faraones",
       "serviceAreas": [
@@ -1615,9 +1620,16 @@
         "El Cairo copto",
         "Bazar Khan El Khalili",
         "Ciudadela de Saladino",
-        "Saqqara y Menfis",
-        "Dahshur"
-      ]
+        "Mezquita de Al-Azhar",
+        "Visitas a pie por el Viejo Cairo"
+      ],
+      "exploreCity": "Descubre El Cairo",
+      "exploreCityDesc": "Descubre las maravillas de El Cairo con comentarios expertos y conocimiento local",
+      "meetGuideDesc": "Un guía profesional con licencia te recogerá en tu hotel o en el lugar que elijas",
+      "chooseServiceDesc": "Elige solo guía, solo coche o el paquete combinado según lo que necesites",
+      "featLicensedEgyptologist": "Egiptólogo titulado",
+      "featFluentEnglishArabic": "Inglés y árabe fluidos",
+      "featHistoricalExpertise": "Experiencia histórica"
     },
     "luxor": {
       "title": "Servicios de Auto y Guía Turístico en Luxor | AffordEgypt",
@@ -1641,7 +1653,7 @@
       "templeArchitectureDesc": "Guías arquitectónicos expertos explicando las maravillas de ingeniería de los templos de Karnak y Luxor.",
       "pricingTitle": "Servicios Expertos de Auto y Guía Turístico en Luxor",
       "pricingDesc": "Guías arqueológicos profesionales y transporte de lujo. Mejor valor en el Alto Egipto.",
-      "pricingInfo": "Guías licenciados • Experiencia en templos • Vehículos premium • Boletos de entrada incluidos",
+      "pricingInfo": "Guías licenciados • Experiencia en templos • Coche privado con aire acondicionado en el paquete de guía + coche • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Descubrir la Antigua Tebas?",
       "ctaSubtitle": "Experimenta los templos de Luxor con guías arqueológicos expertos",
       "serviceAreas": [
@@ -1653,7 +1665,25 @@
         "Medinet Habu",
         "Colosos de Memnón",
         "Ramesseum"
-      ]
+      ],
+      "cardGuideName": "Guía especialista en templos",
+      "cardPackageName": "Tour orilla este y oeste",
+      "cardCarName": "Tours por los templos de Luxor",
+      "meetGuideStep": "Conoce al experto en templos",
+      "meetGuideDesc": "Un arqueólogo titulado te recibe con transporte cómodo",
+      "chooseServiceDesc": "Elige la orilla este, la oeste o el paquete combinado de templos",
+      "exploreCity": "Explora la antigua Tebas",
+      "exploreCityDesc": "Descubre tesoros faraónicos con comentarios históricos expertos",
+      "bookCta": "Reservar tour de templos",
+      "bookYourTour": "Reserva tu tour",
+      "featAncientEgyptExpert": "Experto en el Antiguo Egipto",
+      "featValleyKingsSpecialist": "Especialista en el Valle de los Reyes",
+      "featHieroglyphInterpreter": "Intérprete de jeroglíficos",
+      "featProfessionalGuide": "Guía profesional",
+      "featBothBanks": "Ambas orillas incluidas",
+      "featPremiumVehicle": "Vehículo prémium",
+      "featExpertDriverGuide": "Conductor-guía experto",
+      "featFlexibleTempleVisits": "Visitas a templos flexibles"
     },
     "aswan": {
       "title": "Servicios de Auto y Guía Turístico en Asuán | AffordEgypt",
@@ -1677,7 +1707,7 @@
       "abuSimbelExpeditionsDesc": "Guías del desierto profesionales para el sitio del Patrimonio Mundial de la UNESCO.",
       "pricingTitle": "Servicios Auténticos de Auto y Guía Turístico en Asuán",
       "pricingDesc": "Experiencias culturales genuinas con guías nubios locales. Mejor valor en turismo cultural.",
-      "pricingInfo": "Guías locales • Inmersión cultural • Transporte premium • Experiencias auténticas",
+      "pricingInfo": "Guías locales • Inmersión cultural • Coche privado en el paquete de guía + coche • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Experimentar la Cultura Nubia?",
       "ctaSubtitle": "Descubre las tradiciones auténticas del sur de Egipto con expertos locales",
       "serviceAreas": [
@@ -1689,7 +1719,25 @@
         "Obelisco inacabado",
         "Paseo en faluca",
         "Isla de Kitchener"
-      ]
+      ],
+      "cardGuideName": "Guía de cultura nubia",
+      "cardPackageName": "Paquete Nilo y templos",
+      "cardCarName": "Expedición a Abu Simbel",
+      "meetGuideStep": "Conoce al guía cultural",
+      "meetGuideDesc": "Guía nubio local con profundo conocimiento de las tradiciones y la historia",
+      "chooseServiceStep": "Elige tu experiencia",
+      "chooseServiceDesc": "Elige tours culturales, visitas a templos o expediciones al desierto",
+      "exploreCity": "Vive Nubia",
+      "exploreCityDesc": "Sumérgete en la cultura única del sur de Egipto",
+      "bookCta": "Reservar tour cultural",
+      "featNubianHeritageExpert": "Experto en patrimonio nubio",
+      "featLocalVillageGuide": "Guía local de las aldeas",
+      "featTraditionalCulture": "Enfoque en la cultura tradicional",
+      "featProfessionalGuide": "Guía profesional",
+      "featPhilaeTour": "Visita al templo de Filae",
+      "featLongDistanceVehicle": "Vehículo de largo recorrido",
+      "featExpertGuide": "Guía experto",
+      "featUnescoSpecialist": "Especialista en sitios UNESCO"
     }
   },
   "contactPage": {

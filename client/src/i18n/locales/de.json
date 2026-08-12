@@ -1581,7 +1581,12 @@
       "ticketServiceTitle": "Sollen wir Ihre Eintrittskarten besorgen?",
       "ticketServiceBody1": "Wir können berechtigte Eintrittskarten vor Ihrem Besuch kaufen und organisieren, für",
       "ticketServiceFee": "50 EGP pro ausgestellter kostenpflichtiger Eintrittskarte",
-      "ticketServiceBody2": ", zuzüglich des offiziellen Ticketpreises. Dieser optionale Service verkürzt die Zeit an den Kassen und vermeidet die vollständige Abhängigkeit von Kartenterminals vor Ort, da viele Stätten kein Bargeld annehmen. Er umfasst die vorherige Abwicklung und Organisation der Tickets; Sicherheitskontrollen, Identitätsprüfungen, Zeitfenster und Warteschlangen vor Ort können weiterhin gelten."
+      "ticketServiceBody2": ", zuzüglich des offiziellen Ticketpreises. Dieser optionale Service verkürzt die Zeit an den Kassen und vermeidet die vollständige Abhängigkeit von Kartenterminals vor Ort, da viele Stätten kein Bargeld annehmen. Er umfasst die vorherige Abwicklung und Organisation der Tickets; Sicherheitskontrollen, Identitätsprüfungen, Zeitfenster und Warteschlangen vor Ort können weiterhin gelten.",
+      "chooseYourService": "Wählen Sie Ihre Leistung",
+      "6to10Hours": "6-10 Stunden",
+      "privateVehicle": "Privatfahrzeug",
+      "privateSedanSuv": "Private Limousine/SUV",
+      "guidePriceFrom": "Lizenzierter Guide ab {{guidePrice}}/Tag — Guide + Privatwagen ab {{guideCarPrice}}/Tag"
     },
     "cairo": {
       "title": "Kairo Auto & Reiseführer-Services | AffordEgypt",
@@ -1605,7 +1610,7 @@
       "islamicCairoSpecialistsDesc": "Experten-Reiseführer für die mittelalterlichen Straßen des islamischen Kairos, historische Moscheen und traditionelle Basare.",
       "pricingTitle": "Erschwingliche Kairo Auto & Reiseführer-Services",
       "pricingDesc": "Professionelle Reiseführer und Luxusfahrzeuge zu wettbewerbsfähigen Preisen. Keine versteckten Kosten.",
-      "pricingInfo": "Lizenzierte Reiseführer • Luxusfahrzeuge • Mehrsprachiger Support • Alle Eintrittsgebühren",
+      "pricingInfo": "Lizenzierte Reiseführer • Privatfahrzeuge • Mehrsprachiger Support • Eintrittskarten werden separat berechnet",
       "ctaTitle": "Bereit, das Alte Kairo zu Erkunden?",
       "ctaSubtitle": "Buchen Sie Ihren Experten-Reiseführer und entdecken Sie die Geheimnisse der Pharaonen",
       "serviceAreas": [
@@ -1615,9 +1620,16 @@
         "Koptisches Kairo",
         "Basar Khan El Khalili",
         "Zitadelle Saladins",
-        "Sakkara und Memphis",
-        "Dahschur"
-      ]
+        "Al-Azhar-Moschee",
+        "Altkairo zu Fuß"
+      ],
+      "exploreCity": "Kairo entdecken",
+      "exploreCityDesc": "Entdecken Sie Kairos Sehenswürdigkeiten mit fachkundigen Erläuterungen und Insiderwissen",
+      "meetGuideDesc": "Ein professioneller, lizenzierter Guide holt Sie an Ihrem Hotel oder einem Ort Ihrer Wahl ab",
+      "chooseServiceDesc": "Wählen Sie nur Guide, nur Fahrzeug oder das Kombipaket — ganz nach Bedarf",
+      "featLicensedEgyptologist": "Lizenzierter Ägyptologe",
+      "featFluentEnglishArabic": "Fließend Englisch und Arabisch",
+      "featHistoricalExpertise": "Historische Fachkenntnis"
     },
     "luxor": {
       "title": "Luxor Auto & Reiseführer-Services | AffordEgypt",
@@ -1641,7 +1653,7 @@
       "templeArchitectureDesc": "Experten-Architektur-Reiseführer erklären die Ingenieurswunder der Karnak- und Luxor-Tempel.",
       "pricingTitle": "Experten Luxor Auto & Reiseführer-Services",
       "pricingDesc": "Professionelle archäologische Reiseführer und Luxus-Transport. Bester Wert in Oberägypten.",
-      "pricingInfo": "Lizenzierte Reiseführer • Tempel-Expertise • Premium-Fahrzeuge • Eintrittskarten enthalten",
+      "pricingInfo": "Lizenzierte Reiseführer • Tempel-Expertise • Klimatisierter Privatwagen im Paket Guide + Wagen • Eintrittskarten werden separat berechnet",
       "ctaTitle": "Bereit, das Antike Theben zu Entdecken?",
       "ctaSubtitle": "Erleben Sie Luxors Tempel mit Experten-Archäologen-Reiseführern",
       "serviceAreas": [
@@ -1653,7 +1665,25 @@
         "Medinet Habu",
         "Memnonkolosse",
         "Ramesseum"
-      ]
+      ],
+      "cardGuideName": "Tempel-Spezialist als Guide",
+      "cardPackageName": "Tour Ost- und Westufer",
+      "cardCarName": "Touren zu den Tempeln von Luxor",
+      "meetGuideStep": "Treffen Sie den Tempel-Experten",
+      "meetGuideDesc": "Ein lizenzierter Archäologe empfängt Sie mit komfortablem Transport",
+      "chooseServiceDesc": "Wählen Sie Ostufer, Westufer oder das kombinierte Tempelpaket",
+      "exploreCity": "Das antike Theben erkunden",
+      "exploreCityDesc": "Entdecken Sie pharaonische Schätze mit fachkundigen historischen Erläuterungen",
+      "bookCta": "Tempel-Tour buchen",
+      "bookYourTour": "Buchen Sie Ihre Tour",
+      "featAncientEgyptExpert": "Experte für das Alte Ägypten",
+      "featValleyKingsSpecialist": "Spezialist für das Tal der Könige",
+      "featHieroglyphInterpreter": "Hieroglyphen-Kundiger",
+      "featProfessionalGuide": "Professioneller Guide",
+      "featBothBanks": "Beide Ufer inbegriffen",
+      "featPremiumVehicle": "Premium-Fahrzeug",
+      "featExpertDriverGuide": "Erfahrener Fahrer-Guide",
+      "featFlexibleTempleVisits": "Flexible Tempelbesuche"
     },
     "aswan": {
       "title": "Assuan Auto & Reiseführer-Services | AffordEgypt",
@@ -1677,7 +1707,7 @@
       "abuSimbelExpeditionsDesc": "Professionelle Wüsten-Reiseführer für die ultimative UNESCO-Welterbestätte.",
       "pricingTitle": "Authentische Assuan Auto & Reiseführer-Services",
       "pricingDesc": "Echte kulturelle Erfahrungen mit lokalen nubischen Reiseführern. Bester Wert im Kulturtourismus.",
-      "pricingInfo": "Lokale Reiseführer • Kulturelle Immersion • Premium-Transport • Authentische Erfahrungen",
+      "pricingInfo": "Lokale Reiseführer • Kulturelle Immersion • Privatwagen im Paket Guide + Wagen • Eintrittskarten werden separat berechnet",
       "ctaTitle": "Bereit, Nubische Kultur zu Erleben?",
       "ctaSubtitle": "Entdecken Sie die authentischen Traditionen Südägyptens mit lokalen Experten",
       "serviceAreas": [
@@ -1689,7 +1719,25 @@
         "Unvollendeter Obelisk",
         "Feluken-Fahrt",
         "Kitchener-Insel"
-      ]
+      ],
+      "cardGuideName": "Guide für nubische Kultur",
+      "cardPackageName": "Paket Nil und Tempel",
+      "cardCarName": "Expedition nach Abu Simbel",
+      "meetGuideStep": "Treffen Sie den Kultur-Guide",
+      "meetGuideDesc": "Lokaler nubischer Guide mit tiefem Wissen über Traditionen und Geschichte",
+      "chooseServiceStep": "Wählen Sie Ihr Erlebnis",
+      "chooseServiceDesc": "Wählen Sie Kulturtouren, Tempelbesuche oder Wüstenexpeditionen",
+      "exploreCity": "Nubien erleben",
+      "exploreCityDesc": "Tauchen Sie ein in die einzigartige Kultur Südägyptens",
+      "bookCta": "Kulturtour buchen",
+      "featNubianHeritageExpert": "Experte für nubisches Erbe",
+      "featLocalVillageGuide": "Lokaler Dorf-Guide",
+      "featTraditionalCulture": "Schwerpunkt traditionelle Kultur",
+      "featProfessionalGuide": "Professioneller Guide",
+      "featPhilaeTour": "Besuch des Philae-Tempels",
+      "featLongDistanceVehicle": "Langstreckenfahrzeug",
+      "featExpertGuide": "Erfahrener Guide",
+      "featUnescoSpecialist": "Spezialist für UNESCO-Stätten"
     }
   },
   "contactPage": {

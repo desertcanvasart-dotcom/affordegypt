@@ -1581,7 +1581,12 @@
       "ticketServiceTitle": "Vous souhaitez que nous réservions vos billets d'entrée ?",
       "ticketServiceBody1": "Nous pouvons acheter et organiser les billets éligibles avant votre visite pour",
       "ticketServiceFee": "50 EGP par billet d'entrée payant émis",
-      "ticketServiceBody2": ", en plus du prix officiel du billet. Ce service facultatif réduit le temps passé aux guichets et évite de dépendre entièrement des terminaux de paiement sur place, car de nombreux sites n'acceptent pas les espèces. Il couvre le traitement anticipé et l'organisation des billets ; les contrôles de sécurité, les contrôles d'identité, les créneaux horaires et les files d'attente du site peuvent toujours s'appliquer."
+      "ticketServiceBody2": ", en plus du prix officiel du billet. Ce service facultatif réduit le temps passé aux guichets et évite de dépendre entièrement des terminaux de paiement sur place, car de nombreux sites n'acceptent pas les espèces. Il couvre le traitement anticipé et l'organisation des billets ; les contrôles de sécurité, les contrôles d'identité, les créneaux horaires et les files d'attente du site peuvent toujours s'appliquer.",
+      "chooseYourService": "Choisissez votre service",
+      "6to10Hours": "6-10 heures",
+      "privateVehicle": "Véhicule privé",
+      "privateSedanSuv": "Berline/SUV privé",
+      "guidePriceFrom": "Guide licencié à partir de {{guidePrice}}/jour — guide + voiture privée à partir de {{guideCarPrice}}/jour"
     },
     "cairo": {
       "title": "Services Voiture et Guide Touristique au Caire | AffordEgypt",
@@ -1605,7 +1610,7 @@
       "islamicCairoSpecialistsDesc": "Guides experts pour les rues médiévales du Caire islamique, mosquées historiques et bazars traditionnels.",
       "pricingTitle": "Services Abordables Voiture et Guide Touristique au Caire",
       "pricingDesc": "Guides professionnels et véhicules de luxe à prix compétitifs. Pas de coûts cachés.",
-      "pricingInfo": "Guides licenciés • Véhicules de luxe • Support multilingue • Tous les frais d'entrée",
+      "pricingInfo": "Guides licenciés • Véhicules privés • Support multilingue • Les billets d'entrée sont facturés séparément",
       "ctaTitle": "Prêt à Explorer l'Ancien Caire ?",
       "ctaSubtitle": "Réservez votre guide expert et découvrez les secrets des pharaons",
       "serviceAreas": [
@@ -1615,9 +1620,16 @@
         "Le Caire copte",
         "Bazar Khan El Khalili",
         "Citadelle de Saladin",
-        "Saqqarah et Memphis",
-        "Dahchour"
-      ]
+        "Mosquée Al-Azhar",
+        "Visites à pied du Vieux Caire"
+      ],
+      "exploreCity": "Explorer Le Caire",
+      "exploreCityDesc": "Découvrez les merveilles du Caire avec un commentaire expert et des conseils d'initié",
+      "meetGuideDesc": "Un guide professionnel agréé vous retrouve à votre hôtel ou au lieu de votre choix",
+      "chooseServiceDesc": "Choisissez guide seul, voiture seule ou la formule combinée selon vos besoins",
+      "featLicensedEgyptologist": "Égyptologue diplômé",
+      "featFluentEnglishArabic": "Anglais et arabe courants",
+      "featHistoricalExpertise": "Expertise historique"
     },
     "luxor": {
       "title": "Services Voiture et Guide Touristique à Louxor | AffordEgypt",
@@ -1641,7 +1653,7 @@
       "templeArchitectureDesc": "Guides architecturaux experts expliquant les merveilles d'ingénierie des temples de Karnak et Louxor.",
       "pricingTitle": "Services Experts Voiture et Guide Touristique à Louxor",
       "pricingDesc": "Guides archéologiques professionnels et transport de luxe. Meilleur rapport qualité-prix en Haute-Égypte.",
-      "pricingInfo": "Guides licenciés • Expertise des temples • Véhicules premium • Billets d'entrée inclus",
+      "pricingInfo": "Guides licenciés • Expertise des temples • Voiture privée climatisée avec la formule guide + voiture • Les billets d'entrée sont facturés séparément",
       "ctaTitle": "Prêt à Découvrir l'Ancienne Thèbes ?",
       "ctaSubtitle": "Découvrez les temples de Louxor avec des guides archéologiques experts",
       "serviceAreas": [
@@ -1653,7 +1665,25 @@
         "Medinet Habou",
         "Colosses de Memnon",
         "Ramesséum"
-      ]
+      ],
+      "cardGuideName": "Guide spécialiste des temples",
+      "cardPackageName": "Circuit rives est et ouest",
+      "cardCarName": "Circuits des temples de Louxor",
+      "meetGuideStep": "Rencontrez l'expert des temples",
+      "meetGuideDesc": "Un archéologue diplômé vous accueille avec un transport confortable",
+      "chooseServiceDesc": "Choisissez la rive est, la rive ouest ou la formule combinée",
+      "exploreCity": "Explorer l'antique Thèbes",
+      "exploreCityDesc": "Découvrez les trésors pharaoniques avec un commentaire historique expert",
+      "bookCta": "Réserver le circuit des temples",
+      "bookYourTour": "Réservez votre circuit",
+      "featAncientEgyptExpert": "Spécialiste de l'Égypte antique",
+      "featValleyKingsSpecialist": "Spécialiste de la Vallée des Rois",
+      "featHieroglyphInterpreter": "Interprète des hiéroglyphes",
+      "featProfessionalGuide": "Guide professionnel",
+      "featBothBanks": "Les deux rives incluses",
+      "featPremiumVehicle": "Véhicule haut de gamme",
+      "featExpertDriverGuide": "Chauffeur-guide expert",
+      "featFlexibleTempleVisits": "Visites de temples flexibles"
     },
     "aswan": {
       "title": "Services Voiture et Guide Touristique à Assouan | AffordEgypt",
@@ -1677,7 +1707,7 @@
       "abuSimbelExpeditionsDesc": "Guides du désert professionnels pour le site du Patrimoine Mondial de l'UNESCO.",
       "pricingTitle": "Services Authentiques Voiture et Guide Touristique à Assouan",
       "pricingDesc": "Expériences culturelles authentiques avec guides nubiens locaux. Meilleur rapport qualité-prix en tourisme culturel.",
-      "pricingInfo": "Guides locaux • Immersion culturelle • Transport premium • Expériences authentiques",
+      "pricingInfo": "Guides locaux • Immersion culturelle • Voiture privée avec la formule guide + voiture • Les billets d'entrée sont facturés séparément",
       "ctaTitle": "Prêt à Découvrir la Culture Nubienne ?",
       "ctaSubtitle": "Découvrez les traditions authentiques du sud de l'Égypte avec des experts locaux",
       "serviceAreas": [
@@ -1689,7 +1719,25 @@
         "Obélisque inachevé",
         "Balade en felouque",
         "Île de Kitchener"
-      ]
+      ],
+      "cardGuideName": "Guide de culture nubienne",
+      "cardPackageName": "Formule Nil et temples",
+      "cardCarName": "Expédition à Abou Simbel",
+      "meetGuideStep": "Rencontrez le guide culturel",
+      "meetGuideDesc": "Guide nubien local connaissant en profondeur les traditions et l'histoire",
+      "chooseServiceStep": "Choisissez votre expérience",
+      "chooseServiceDesc": "Choisissez circuits culturels, visites de temples ou expéditions dans le désert",
+      "exploreCity": "Vivre la Nubie",
+      "exploreCityDesc": "Plongez dans la culture unique du sud de l'Égypte",
+      "bookCta": "Réserver le circuit culturel",
+      "featNubianHeritageExpert": "Spécialiste du patrimoine nubien",
+      "featLocalVillageGuide": "Guide local des villages",
+      "featTraditionalCulture": "Axé sur la culture traditionnelle",
+      "featProfessionalGuide": "Guide professionnel",
+      "featPhilaeTour": "Visite du temple de Philae",
+      "featLongDistanceVehicle": "Véhicule longue distance",
+      "featExpertGuide": "Guide expert",
+      "featUnescoSpecialist": "Spécialiste des sites UNESCO"
     }
   },
   "contactPage": {
