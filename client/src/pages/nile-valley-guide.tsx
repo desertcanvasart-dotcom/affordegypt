@@ -1551,7 +1551,7 @@ export default function NileValleyGuide() {
           "Curated collection of statuary and objects from Luxor's temples and tombs",
         "attractions.luxor.luxorMuseum.entryFee": "400 EGP (foreign adult)",
         "attractions.luxor.luxorMuseum.hours":
-          "Check the official site for current opening hours",
+          "9:00 AM - 2:00 PM and 5:00 PM - 9:00 PM",
         "attractions.luxor.hatshepsutTemple.name": "Temple of Hatshepsut",
         "attractions.luxor.hatshepsutTemple.description":
           "Terraced mortuary temple at Deir el-Bahari",
