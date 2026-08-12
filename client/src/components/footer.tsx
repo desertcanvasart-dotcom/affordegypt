@@ -126,6 +126,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href={getTranslatedLink("eastern-western-deserts-guide")} className="text-gray-300 hover:text-primary transition-colors">
+                  Eastern &amp; Western Deserts
+                </Link>
+              </li>
+              <li>
                 <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
                   Egyptian Cuisine Passport
                 </Link>
@@ -133,6 +138,16 @@ export default function Footer() {
               <li>
                 <Link href="/#faq" className="text-gray-300 hover:text-primary transition-colors">
                   FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("nile-valley-guide")} className="text-gray-300 hover:text-primary transition-colors">
+                  Nile Valley Guide
+                </Link>
+              </li>
+              <li>
+                <Link href={getTranslatedLink("sinai-peninsula-guide")} className="text-gray-300 hover:text-primary transition-colors">
+                  Sinai Peninsula Guide
                 </Link>
               </li>
               <li>
