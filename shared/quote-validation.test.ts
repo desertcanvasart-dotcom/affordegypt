@@ -33,7 +33,7 @@ describe("step 2 gate (leaving Trip Overview)", () => {
 
   it("blocks a missing date when the visitor has not opted out", () => {
     const blockers = blockersForStep(2, state({ travelDate: "", justExploring: false }));
-    expect(blockers.date).toMatch(/Not sure yet/);
+    expect(blockers.date).toBe("date");
   });
 
   it('accepts a missing date once "Not sure yet" is ticked', () => {
@@ -70,7 +70,7 @@ describe("step 3 gate (entering Review)", () => {
 
   it("blocks a day with nothing priced on it", () => {
     const blockers = blockersForStep(3, state({ days: [{ selectedServices: [] }] }));
-    expect(blockers.itinerary).toMatch(/at least one service/);
+    expect(blockers.itinerary).toBe("noPricedService");
   });
 
   it.each([
@@ -94,7 +94,7 @@ describe("step 3 gate (entering Review)", () => {
 
 describe("step 4 gate (entering Checkout)", () => {
   it("blocks a LE 0 total", () => {
-    expect(blockersForStep(4, state({ totalAmount: 0 })).total).toMatch(/LE 0/);
+    expect(blockersForStep(4, state({ totalAmount: 0 })).total).toBe("zeroTotal");
   });
 
   it("blocks a negative total", () => {
