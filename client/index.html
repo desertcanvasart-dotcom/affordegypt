@@ -40,11 +40,22 @@
     </script>
     <!-- End Google Consent Mode v2 defaults -->
 
-    <!-- Google Tag Manager -->
+    <!-- Google Tag Manager.
+         Google's stock snippet ends `f.parentNode.insertBefore(j, f)`, which
+         places the loader before the FIRST script in the document — now the
+         consent defaults above. At runtime that is harmless, because the
+         inline consent script has already executed by then. In the prerendered
+         snapshot it is not: Puppeteer serialises the injected tag where it
+         sits, so the built HTML shipped gtm.js ahead of the consent block and
+         a fresh browser parsed them in that order.
+
+         Appending to <head> instead is functionally identical and keeps the
+         loader after the consent defaults in both the live DOM and the
+         snapshot. Do not restore insertBefore. -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    new Date().getTime(),event:'gtm.js'});var
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;d.head.appendChild(j);
     })(window,document,'script','dataLayer','GTM-WJ597P5W');</script>
     <!-- End Google Tag Manager -->
     

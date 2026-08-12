@@ -80,6 +80,33 @@ export default defineConfig({
           /<head>/,
           `<head>\n    <meta name="prerender-status" content="prerendered" />`,
         );
+
+        // Google's tags inject their own <script src> loaders at runtime, and
+        // Puppeteer serialises them wherever they landed in the DOM. Anything
+        // that landed ABOVE the Consent Mode defaults ships in the snapshot
+        // ahead of them, so a fresh browser parses the loader first and the
+        // tag initialises before consent is known — the denial becomes
+        // decorative while still reading correctly in the source.
+        //
+        // These loaders are all recreated at runtime by the inline snippets in
+        // index.html, so dropping them from the snapshot costs nothing and
+        // restores the intended order. Only tags above the consent marker are
+        // removed; the static loader below it is left alone.
+        // Keyed on the call itself, not the comment above it. GTM\'s stock loader
+        // inserts before the first <script> ELEMENT, which lands it after the
+        // comment but before the code — so a comment-based marker would find
+        // nothing to strip and silently pass.
+        const CONSENT_MARKER = "gtag('consent', 'default'";
+        const consentAt = renderedRoute.html.indexOf(CONSENT_MARKER);
+        if (consentAt !== -1) {
+          const head = renderedRoute.html.slice(0, consentAt);
+          const tail = renderedRoute.html.slice(consentAt);
+          const cleanedHead = head.replace(
+            /<script[^>]*src="https:\/\/www\.googletagmanager\.com\/[^"]*"[^>]*>\s*<\/script>/g,
+            "",
+          );
+          renderedRoute.html = cleanedHead + tail;
+        }
       },
     }),
         ]),
