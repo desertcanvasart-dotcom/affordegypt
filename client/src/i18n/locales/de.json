@@ -6,7 +6,20 @@
     "signIn": "Anmelden",
     "signUp": "Registrieren",
     "startTrip": "Reiseangebot Starten",
-    "bookTransfer": "Transfer Buchen"
+    "bookTransfer": "Transfer Buchen",
+    "whatsappTitle": "Schreiben Sie uns auf WhatsApp",
+    "planTripTitle": "Planen Sie Ihre Ägypten-Reise",
+    "planTripSubtitle": "Private Touren mit transparenten Preisen",
+    "trustTransparent": "Transparente Preise — Sie zahlen, was Sie sehen",
+    "trustRealPrices": "Echte Preise in EGP",
+    "trustDirect": "Buchen Sie direkt bei Experten vor Ort in Ägypten — ohne Zwischenhändler",
+    "trustSecure": "Sichere Buchung",
+    "contact": "Kontakt",
+    "dashboard": "Übersicht",
+    "privateTransfers": "Private Transfers",
+    "getInstantQuote": "Sofort-Angebot",
+    "getYourInstantQuote": "Holen Sie Ihr Sofort-Angebot",
+    "signOut": "Abmelden"
   },
   "common": {
     "loading": "Lädt...",
@@ -341,7 +354,16 @@
       "failed": "Abonnement fehlgeschlagen",
       "failedDesc": "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
       "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein."
-    }
+    },
+    "servicesHeading": "Unsere Leistungen",
+    "exploreHeading": "Entdecken",
+    "logoAlt": "Afford Egypt Logo",
+    "homeAria": "AffordEgypt Startseite",
+    "followFacebook": "Folgen Sie uns auf Facebook",
+    "followInstagram": "Folgen Sie uns auf Instagram",
+    "followYoutube": "Abonnieren Sie unseren YouTube-Kanal",
+    "cookiePreferences": "Cookie-Einstellungen",
+    "operatedBy": "AffordEgypt wird betrieben von Capital Travel Service"
   },
   "about": {
     "title": "Warum Mit Uns Reisen",
@@ -2418,5 +2440,61 @@
     ],
     "ctaPrint": "Drucken / als PDF speichern",
     "totalValue": "400 EGP"
+  },
+  "chrome": {
+    "onThisPage": "Auf dieser Seite",
+    "breadcrumbAria": "Navigationspfad",
+    "buildMyTrip": "Meine Reise planen",
+    "notFoundTitle": "Seite nicht gefunden | AffordEgypt",
+    "notFoundHeading": "Seite nicht gefunden"
+  },
+  "userNav": {
+    "profile": "Profil",
+    "myBookings": "Meine Buchungen",
+    "adminPanel": "Administrationsbereich",
+    "logOut": "Abmelden"
+  },
+  "whatsappWidget": {
+    "replyTime": "Antwortet meist innerhalb von Minuten",
+    "generalInquiry": "Allgemeine Anfrage",
+    "getQuote": "Angebot anfordern",
+    "bookingSupport": "Hilfe zur Buchung",
+    "customTrip": "Individuelle Reise",
+    "msgGeneral": "Hallo! Ich möchte eine Reise nach Ägypten planen. Können Sie mir Informationen zu Ihren Leistungen geben?",
+    "msgQuote": "Hallo! Ich hätte gern ein Angebot für meine Ägypten-Reise. Können wir die Einzelheiten besprechen?",
+    "msgBooking": "Hallo! Ich brauche Hilfe bei meiner Buchung. Können Sie mich unterstützen?",
+    "msgCustom": "Hallo! Ich möchte eine individuelle Ägypten-Route zusammenstellen. Können wir darüber sprechen?",
+    "msgDefault": "Hallo! Ich habe eine Frage zu Ihren Ägypten-Reiseleistungen.",
+    "startChat": "Chat starten",
+    "intro": "Starten Sie ein Gespräch mit uns auf WhatsApp für schnelle Hilfe!"
+  },
+  "pageNames": {
+    "home": "Startseite",
+    "transfers": "Transfers",
+    "destinations": "Reiseziele",
+    "aboutUs": "Über uns",
+    "contactUs": "Kontakt",
+    "travelTips": "Reisetipps",
+    "cairoAirportTransfers": "Flughafentransfers Kairo",
+    "luxorAirportTransfers": "Flughafentransfers Luxor",
+    "aswanAirportTransfers": "Flughafentransfers Assuan",
+    "cairoCarAndTourGuideServices": "Auto und Reiseleitung in Kairo",
+    "luxorCarAndTourGuideServices": "Auto und Reiseleitung in Luxor",
+    "aswanCarAndTourGuideServices": "Auto und Reiseleitung in Assuan",
+    "budgetTravelGuide": "Reiseführer für kleines Budget",
+    "easternAndWesternDesertsGuide": "Führer zur Ost- und Westwüste",
+    "egyptianCuisinePassport": "Pass der ägyptischen Küche",
+    "nileValleyGuide": "Reiseführer Niltal",
+    "sinaiPeninsulaGuide": "Reiseführer Sinai-Halbinsel",
+    "streetFoodGuide": "Streetfood-Führer",
+    "easternAndWesternDeserts": "Ost- und Westwüste",
+    "faq": "Häufige Fragen",
+    "submitAReview": "Bewertung abgeben"
+  },
+  "cookieConsent": {
+    "title": "Cookies auf AffordEgypt",
+    "acceptAll": "Alle akzeptieren",
+    "rejectNonEssential": "Nicht notwendige ablehnen",
+    "cookiePolicy": "Cookie-Richtlinie"
   }
 }

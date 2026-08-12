@@ -7,7 +7,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { trailFor } from "@/lib/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
+import { crumbKey, trailFor } from "@/lib/breadcrumb-schema";
 
 /**
  * The visible breadcrumb trail.
@@ -25,11 +26,12 @@ import { trailFor } from "@/lib/breadcrumb-schema";
  */
 export default function PageBreadcrumbs({ className = "" }: { className?: string }) {
   const [path] = useLocation();
+  const { t } = useTranslation();
   const trail = trailFor(path);
   if (!trail || trail.length < 2) return null;
 
   return (
-    <nav aria-label="Breadcrumb" className={`container mx-auto px-4 py-3 ${className}`}>
+    <div className={`container mx-auto px-4 py-3 ${className}`}>
       <Breadcrumb>
         <BreadcrumbList>
           {trail.map((crumb, i) => {
@@ -37,11 +39,15 @@ export default function PageBreadcrumbs({ className = "" }: { className?: string
             return (
               <BreadcrumbItem key={crumb.name}>
                 {last || !crumb.url ? (
-                  <BreadcrumbPage>{crumb.name}</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    {t(crumbKey(crumb.name), { defaultValue: crumb.name })}
+                  </BreadcrumbPage>
                 ) : (
                   <>
                     <BreadcrumbLink asChild>
-                      <Link href={crumb.url}>{crumb.name}</Link>
+                      <Link href={crumb.url}>
+                        {t(crumbKey(crumb.name), { defaultValue: crumb.name })}
+                      </Link>
                     </BreadcrumbLink>
                     <BreadcrumbSeparator />
                   </>
@@ -51,6 +57,6 @@ export default function PageBreadcrumbs({ className = "" }: { className?: string
           })}
         </BreadcrumbList>
       </Breadcrumb>
-    </nav>
+    </div>
   );
 }

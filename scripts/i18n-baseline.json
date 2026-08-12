@@ -6,6 +6,10 @@
     ],
     [
       "client/src/components/add-item-modal.tsx",
+      "Cancel"
+    ],
+    [
+      "client/src/components/add-item-modal.tsx",
       "Category"
     ],
     [
@@ -146,6 +150,10 @@
     ],
     [
       "client/src/components/addons-search.tsx",
+      "Clear All"
+    ],
+    [
+      "client/src/components/addons-search.tsx",
       "No add-ons found matching your criteria"
     ],
     [
@@ -161,6 +169,14 @@
       "Search add-ons..."
     ],
     [
+      "client/src/components/animated-review-carousel.tsx",
+      "Trustpilot"
+    ],
+    [
+      "client/src/components/animated-review-carousel.tsx",
+      "Verified"
+    ],
+    [
       "client/src/components/attractions-search.tsx",
       "All Categories"
     ],
@@ -170,11 +186,27 @@
     ],
     [
       "client/src/components/attractions-search.tsx",
+      "Clear All"
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "Clear All Visible"
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "Clear filters"
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
       "No attractions found matching your criteria"
     ],
     [
       "client/src/components/attractions-search.tsx",
       "Search attractions..."
+    ],
+    [
+      "client/src/components/attractions-search.tsx",
+      "Select All Visible"
     ],
     [
       "client/src/components/blog-grid.tsx",
@@ -194,6 +226,10 @@
     ],
     [
       "client/src/components/catalog-service-picker.tsx",
+      "Couldn't load services. Try refreshing."
+    ],
+    [
+      "client/src/components/catalog-service-picker.tsx",
       "Loading services…"
     ],
     [
@@ -206,6 +242,10 @@
     ],
     [
       "client/src/components/contact-section.tsx",
+      "Call Us"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
       "Closed"
     ],
     [
@@ -215,6 +255,10 @@
     [
       "client/src/components/contact-section.tsx",
       "Email Address *"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Email Us"
     ],
     [
       "client/src/components/contact-section.tsx",
@@ -238,6 +282,10 @@
     ],
     [
       "client/src/components/contact-section.tsx",
+      "Have questions about your Egypt trip? We're here to help you plan the perfect adventure within your budget."
+    ],
+    [
+      "client/src/components/contact-section.tsx",
       "Message *"
     ],
     [
@@ -247,6 +295,10 @@
     [
       "client/src/components/contact-section.tsx",
       "Monday - Friday"
+    ],
+    [
+      "client/src/components/contact-section.tsx",
+      "Office Hours"
     ],
     [
       "client/src/components/contact-section.tsx",
@@ -274,11 +326,35 @@
     ],
     [
       "client/src/components/contact-section.tsx",
+      "We typically respond within 24 hours during business days."
+    ],
+    [
+      "client/src/components/contact-section.tsx",
       "What"
     ],
     [
       "client/src/components/contact-section.tsx",
       "Your full name"
+    ],
+    [
+      "client/src/components/customer-reviews.tsx",
+      "Be the first to share your Egypt travel experience with us!"
+    ],
+    [
+      "client/src/components/customer-reviews.tsx",
+      "Real experiences from travelers who explored Egypt with us"
+    ],
+    [
+      "client/src/components/customer-reviews.tsx",
+      "Verified"
+    ],
+    [
+      "client/src/components/customer-reviews.tsx",
+      "What Our Travelers Say"
+    ],
+    [
+      "client/src/components/entrance-fees-search.tsx",
+      "Clear all"
     ],
     [
       "client/src/components/entrance-fees-search.tsx",
@@ -310,6 +386,18 @@
     ],
     [
       "client/src/components/faq-section.tsx",
+      "Email us"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Frequently Asked Questions"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Honest answers to the questions budget travelers actually ask."
+    ],
+    [
+      "client/src/components/faq-section.tsx",
       "How do I know AffordEgypt isn"
     ],
     [
@@ -319,6 +407,10 @@
     [
       "client/src/components/faq-section.tsx",
       "Is the 50 EGP ticket fee charged once per booking?"
+    ],
+    [
+      "client/src/components/faq-section.tsx",
+      "Message us on WhatsApp"
     ],
     [
       "client/src/components/faq-section.tsx",
@@ -362,7 +454,15 @@
     ],
     [
       "client/src/components/featured-destinations.tsx",
+      "From ancient pyramids to Red Sea resorts - we cover all major Egyptian destinations"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
       "Mediterranean coast, Library"
+    ],
+    [
+      "client/src/components/featured-destinations.tsx",
+      "Popular Egyptian Destinations"
     ],
     [
       "client/src/components/featured-destinations.tsx",
@@ -381,40 +481,16 @@
       "Valley of Kings, Karnak Temple"
     ],
     [
-      "client/src/components/footer.tsx",
-      "Afford Egypt Logo"
-    ],
-    [
-      "client/src/components/footer.tsx",
-      "AffordEgypt home"
-    ],
-    [
-      "client/src/components/footer.tsx",
-      "Explore"
-    ],
-    [
-      "client/src/components/footer.tsx",
-      "Follow us on Facebook"
-    ],
-    [
-      "client/src/components/footer.tsx",
-      "Follow us on Instagram"
-    ],
-    [
-      "client/src/components/footer.tsx",
-      "Our Services"
-    ],
-    [
-      "client/src/components/footer.tsx",
-      "Subscribe to our YouTube channel"
-    ],
-    [
       "client/src/components/founder-block.tsx",
       "Islam, founder of AffordEgypt"
     ],
     [
       "client/src/components/founder-block.tsx",
       "Photo of Islam, founder of AffordEgypt"
+    ],
+    [
+      "client/src/components/founder-block.tsx",
+      "Real prices. Real operator behind it. Real Egypt."
     ],
     [
       "client/src/components/founder-block.tsx",
@@ -461,20 +537,28 @@
       "Self-guided tour"
     ],
     [
-      "client/src/components/guide-toc.tsx",
-      "On this page"
+      "client/src/components/hero.tsx",
+      "Build Your Quote in 60 Seconds"
     ],
     [
-      "client/src/components/language-selector.tsx",
-      "Deutsch"
+      "client/src/components/hero.tsx",
+      "No account needed. Get your price, then send to WhatsApp."
     ],
     [
-      "client/src/components/language-selector.tsx",
-      "English"
+      "client/src/components/hero.tsx",
+      "Real prices."
     ],
     [
-      "client/src/components/mobile-sticky-cta.tsx",
-      "Build My Trip"
+      "client/src/components/inclusions-comparison.tsx",
+      "Here's exactly what you get."
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "Honest pricing means honest inclusions."
+    ],
+    [
+      "client/src/components/inclusions-comparison.tsx",
+      "What we can add at the premium tier"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -498,7 +582,27 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Add services to see your price."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Answer a few questions and see your full price instantly — right here on screen, no waiting."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Attractions"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Back to Overview"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Back to Review"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Back to itinerary"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -515,6 +619,10 @@
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Build your itinerary"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "By submitting, you agree to our terms and conditions"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -559,6 +667,14 @@
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Contact Information"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Continue to Review"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Craft your perfect journey with transparent pricing at every step"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -654,6 +770,10 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Not sure yet"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Not sure yet — I don"
     ],
     [
@@ -682,11 +802,19 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Proceed to Checkout"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Quote"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Quote builder progress"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Request Booking"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -738,6 +866,10 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Start Your Private Egypt Journey"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Start your journey"
     ],
     [
@@ -755,6 +887,10 @@
     [
       "client/src/components/multi-city-pricing-tool.tsx",
       "Total Price"
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
+      "Tour Guide"
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
@@ -790,6 +926,10 @@
     ],
     [
       "client/src/components/multi-city-pricing-tool.tsx",
+      "Your itinerary totals LE 0. Go back and add at least one service to check out."
+    ],
+    [
+      "client/src/components/multi-city-pricing-tool.tsx",
       "Your trip — live price"
     ],
     [
@@ -797,40 +937,16 @@
       "e.g., American"
     ],
     [
-      "client/src/components/navbar.tsx",
-      "Afford Egypt"
+      "client/src/components/newsletter-section.tsx",
+      "Get the Egypt Trip Calculator"
     ],
     [
-      "client/src/components/navbar.tsx",
-      "Book directly with Egypt-based experts — no middlemen"
+      "client/src/components/newsletter-section.tsx",
+      "We respect your privacy. Unsubscribe at any time."
     ],
     [
-      "client/src/components/navbar.tsx",
-      "Message us on WhatsApp"
-    ],
-    [
-      "client/src/components/navbar.tsx",
-      "Plan Your Egypt Trip"
-    ],
-    [
-      "client/src/components/navbar.tsx",
-      "Private tours with transparent pricing"
-    ],
-    [
-      "client/src/components/navbar.tsx",
-      "Real prices in EGP"
-    ],
-    [
-      "client/src/components/navbar.tsx",
-      "Secure booking"
-    ],
-    [
-      "client/src/components/navbar.tsx",
-      "Transparent pricing — what you see is what you pay"
-    ],
-    [
-      "client/src/components/page-breadcrumbs.tsx",
-      "Breadcrumb"
+      "client/src/components/quote-manager.tsx",
+      "Book Now"
     ],
     [
       "client/src/components/quote-manager.tsx",
@@ -871,6 +987,10 @@
     [
       "client/src/components/review-form.tsx",
       "Error"
+    ],
+    [
+      "client/src/components/review-form.tsx",
+      "Help other travelers by sharing your Egypt adventure"
     ],
     [
       "client/src/components/review-form.tsx",
@@ -954,6 +1074,14 @@
     ],
     [
       "client/src/components/review-upload.tsx",
+      "Bulk Review Upload"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Download CSV Template"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
       "Error Details:"
     ],
     [
@@ -978,6 +1106,10 @@
     ],
     [
       "client/src/components/review-upload.tsx",
+      "Upload Another File"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
       "Upload Complete"
     ],
     [
@@ -989,12 +1121,24 @@
       "Upload Instructions"
     ],
     [
+      "client/src/components/review-upload.tsx",
+      "Upload Results"
+    ],
+    [
+      "client/src/components/review-upload.tsx",
+      "Upload a CSV file with customer reviews. Download the template below for the correct format."
+    ],
+    [
       "client/src/components/service-overview.tsx",
       "City & Inter-City Transport"
     ],
     [
       "client/src/components/service-overview.tsx",
       "Egyptian tour guide"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
+      "Everything you need for budget travel in Egypt. No packages, no upselling - just transparent pricing for exactly what you want."
     ],
     [
       "client/src/components/service-overview.tsx",
@@ -1034,59 +1178,11 @@
     ],
     [
       "client/src/components/service-overview.tsx",
+      "Three Simple Services, Complete Freedom"
+    ],
+    [
+      "client/src/components/service-overview.tsx",
       "Transportation in Egypt"
-    ],
-    [
-      "client/src/components/user-nav.tsx",
-      "Admin Panel"
-    ],
-    [
-      "client/src/components/user-nav.tsx",
-      "Log out"
-    ],
-    [
-      "client/src/components/user-nav.tsx",
-      "My Bookings"
-    ],
-    [
-      "client/src/components/user-nav.tsx",
-      "Profile"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Afford Egypt"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Booking Support"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Custom Trip"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "General Inquiry"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Get Quote"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Hello! I"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Hi! I"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Hi! I need help with my booking. Can you assist me?"
-    ],
-    [
-      "client/src/components/whatsapp-widget.tsx",
-      "Typically replies in minutes"
     ],
     [
       "client/src/pages/aswan-airport-transfers.tsx",
@@ -1102,11 +1198,31 @@
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
+      "Abu Simbel Expeditions"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Aswan Car & Tour Guide Services"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
       "Aswan Cultural Specialties"
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
       "Authentic Aswan Car & Tour Guide Services"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Book Cultural Tour"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Book Online Now"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Call Now"
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
@@ -1130,7 +1246,15 @@
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
+      "Discover the authentic traditions of southern Egypt with local experts"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
       "Experience Nubia"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Experience the jewels of the Nile with expert cultural guidance"
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
@@ -1150,7 +1274,23 @@
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
+      "Genuine cultural experiences with local Nubian guides. Best value cultural tourism."
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Get Instant Quote"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
       "How It Works"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Immerse yourself in the unique culture of southern Egypt"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Local Nubian guide with deep knowledge of traditions and history"
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
@@ -1170,11 +1310,19 @@
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
+      "Nubian Heritage Tours"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
       "Ready to Experience Nubian Culture?"
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
       "Respectful guides trained in Nubian customs and traditions"
+    ],
+    [
+      "client/src/pages/aswan-guide-services.tsx",
+      "Select cultural tours, temple visits, or desert expeditions"
     ],
     [
       "client/src/pages/aswan-guide-services.tsx",
@@ -1215,6 +1363,10 @@
     [
       "client/src/pages/attractions-simple.tsx",
       "Back to Dashboard"
+    ],
+    [
+      "client/src/pages/attractions-simple.tsx",
+      "Cancel"
     ],
     [
       "client/src/pages/attractions-simple.tsx",
@@ -1290,6 +1442,10 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Booking Agreement"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Booking Created Successfully"
     ],
     [
@@ -1298,7 +1454,15 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Booking Summary"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Complete Your Booking"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Contact Information"
     ],
     [
       "client/src/pages/book.tsx",
@@ -1330,6 +1494,10 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Please provide your details to confirm your Egypt travel booking"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Service Type"
     ],
     [
@@ -1346,6 +1514,10 @@
     ],
     [
       "client/src/pages/book.tsx",
+      "Terms of Service"
+    ],
+    [
+      "client/src/pages/book.tsx",
       "Total"
     ],
     [
@@ -1355,6 +1527,10 @@
     [
       "client/src/pages/book.tsx",
       "Travel Date"
+    ],
+    [
+      "client/src/pages/book.tsx",
+      "Travelers"
     ],
     [
       "client/src/pages/book.tsx",
@@ -1418,6 +1594,10 @@
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
+      "Booking Status"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
       "Contact Information"
     ],
     [
@@ -1427,6 +1607,10 @@
     [
       "client/src/pages/booking-confirmation.tsx",
       "Detailed itinerary information will be provided separately."
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Download PDF Confirmation"
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
@@ -1454,6 +1638,10 @@
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
+      "On the day of your trip, our driver and licensed Egyptologist meet you at the agreed pickup point. You're set."
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
       "Our team will contact you to collect it and confirm your booking."
     ],
     [
@@ -1467,6 +1655,10 @@
     [
       "client/src/pages/booking-confirmation.tsx",
       "Phone"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Return to Home"
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
@@ -1502,7 +1694,15 @@
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
+      "Trip End Date"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
       "Trip Itinerary"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "Trip Start Date"
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
@@ -1515,6 +1715,10 @@
     [
       "client/src/pages/booking-confirmation.tsx",
       "We send your 10% deposit link"
+    ],
+    [
+      "client/src/pages/booking-confirmation.tsx",
+      "We've received your booking request. Here's what happens next."
     ],
     [
       "client/src/pages/booking-confirmation.tsx",
@@ -1634,6 +1838,10 @@
     ],
     [
       "client/src/pages/budget-travel-egypt.tsx",
+      "Read Travel Tips"
+    ],
+    [
+      "client/src/pages/budget-travel-egypt.tsx",
       "Ride Apps"
     ],
     [
@@ -1698,7 +1906,15 @@
     ],
     [
       "client/src/pages/cairo-guide-services.tsx",
+      "Book Online Now"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
       "Choose Your Service"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
+      "Discover Cairo's wonders with expert commentary and insider knowledge"
     ],
     [
       "client/src/pages/cairo-guide-services.tsx",
@@ -1707,6 +1923,14 @@
     [
       "client/src/pages/cairo-guide-services.tsx",
       "Meet Your Guide"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
+      "Professional licensed guide will meet you at your hotel or chosen location"
+    ],
+    [
+      "client/src/pages/cairo-guide-services.tsx",
+      "Select guide only, car only, or combined package based on your needs"
     ],
     [
       "client/src/pages/cookie-policy.tsx",
@@ -1982,11 +2206,31 @@
     ],
     [
       "client/src/pages/luxor-guide-services.tsx",
+      "Book Online Now"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Book Temple Tour"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
       "Book Your Tour"
     ],
     [
       "client/src/pages/luxor-guide-services.tsx",
+      "Call Now"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Choose East Bank, West Bank, or combined temple tour package"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
       "Choose Your Service"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Discover pharaonic treasures with expert historical commentary"
     ],
     [
       "client/src/pages/luxor-guide-services.tsx",
@@ -2006,7 +2250,15 @@
     ],
     [
       "client/src/pages/luxor-guide-services.tsx",
+      "Get Instant Quote"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
       "How It Works"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Licensed archaeologist guide meets you with comfortable transport"
     ],
     [
       "client/src/pages/luxor-guide-services.tsx",
@@ -2022,7 +2274,19 @@
     ],
     [
       "client/src/pages/luxor-guide-services.tsx",
+      "Professional guided tours of the world's greatest open-air museum"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Temple Architecture Tours"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
       "Temple Specialist Guide"
+    ],
+    [
+      "client/src/pages/luxor-guide-services.tsx",
+      "Valley of Kings Expert"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2035,6 +2299,14 @@
     [
       "client/src/pages/nile-valley-guide.tsx",
       "Beni Suef"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Desert"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Eastern"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",
@@ -2073,8 +2345,8 @@
       "Upper Egypt"
     ],
     [
-      "client/src/pages/not-found.tsx",
-      "Page Not Found | AffordEgypt"
+      "client/src/pages/nile-valley-guide.tsx",
+      "Western"
     ],
     [
       "client/src/pages/privacy-policy.tsx",
@@ -2137,6 +2409,30 @@
       "6 per page"
     ],
     [
+      "client/src/pages/reviews.tsx",
+      "First"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "Last"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "Verified"
+    ],
+    [
+      "client/src/pages/sinai-peninsula-guide.tsx",
+      "Bedouin Desert Culture"
+    ],
+    [
+      "client/src/pages/sinai-peninsula-guide.tsx",
+      "Biblical Mount Sinai"
+    ],
+    [
+      "client/src/pages/sinai-peninsula-guide.tsx",
+      "Red Sea Diving Paradise"
+    ],
+    [
       "client/src/pages/sinai-peninsula-guide.tsx",
       "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
     ],
@@ -2174,11 +2470,35 @@
     ],
     [
       "client/src/pages/transfers.tsx",
+      "Book another transfer"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Booking Policy"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Booking request submitted!"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Couldn't load transfers. Try refreshing."
+    ],
+    [
+      "client/src/pages/transfers.tsx",
       "Egypt Airport & Intercity Transfers | Private Car from LE 595"
     ],
     [
       "client/src/pages/transfers.tsx",
       "Loading transfers…"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Privacy Policy"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Terms of Service"
     ],
     [
       "client/src/pages/transfers.tsx",
@@ -2222,6 +2542,10 @@
     ],
     [
       "client/src/pages/travel-tips.tsx",
+      "Entrance fees can add up, but with smart planning, you can experience Egypt's major attractions while managing your budget."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
       "Heads Up:"
     ],
     [
@@ -2235,6 +2559,10 @@
     [
       "client/src/pages/travel-tips.tsx",
       "Juicy, garlicky, and craveable chicken or beef wraps."
+    ],
+    [
+      "client/src/pages/travel-tips.tsx",
+      "Let's talk numbers. A smart budget is your best travel companion. Exchange rates move frequently, so check a bank or reputable live currency source when you plan and again when you travel."
     ],
     [
       "client/src/pages/travel-tips.tsx",
@@ -2287,6 +2615,18 @@
     [
       "client/src/pages/travel-tips.tsx",
       "to get clearer pricing and avoid haggling."
+    ],
+    [
+      "client/src/pages/verify-email.tsx",
+      "Go to Login"
+    ],
+    [
+      "client/src/pages/verify-email.tsx",
+      "Redirecting to login page..."
+    ],
+    [
+      "client/src/pages/verify-email.tsx",
+      "Resend Verification Email"
     ]
   ]
 }

@@ -11,9 +11,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Link, useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 import { User, LogOut, Settings, BookOpen } from "lucide-react";
 
 export default function UserNav() {
+  const { t } = useTranslation();
   const { user, logout, isAuthenticated, isLoading } = useAuth();
   const [, setLocation] = useLocation();
 
@@ -35,12 +37,12 @@ export default function UserNav() {
       <div className="flex items-center space-x-2">
         <Button asChild variant="ghost" size="sm">
           <Link href="/login">
-            Sign In
+            {t('nav.signIn')}
           </Link>
         </Button>
         <Button asChild size="sm">
           <Link href="/register">
-            Sign Up
+            {t('nav.signUp')}
           </Link>
         </Button>
       </div>
@@ -80,20 +82,20 @@ export default function UserNav() {
         <DropdownMenuItem asChild>
           <Link href="/dashboard" className="flex items-center cursor-pointer">
             <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
+            <span>{t('userNav.profile')}</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/dashboard" className="flex items-center cursor-pointer">
             <BookOpen className="mr-2 h-4 w-4" />
-            <span>My Bookings</span>
+            <span>{t('userNav.myBookings')}</span>
           </Link>
         </DropdownMenuItem>
         {user?.role === "admin" && (
           <DropdownMenuItem asChild>
             <Link href="/admin" className="flex items-center cursor-pointer">
               <Settings className="mr-2 h-4 w-4" />
-              <span>Admin Panel</span>
+              <span>{t('userNav.adminPanel')}</span>
             </Link>
           </DropdownMenuItem>
         )}
@@ -103,7 +105,7 @@ export default function UserNav() {
           onClick={handleLogout}
         >
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+          <span>{t('userNav.logOut')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

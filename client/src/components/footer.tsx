@@ -15,10 +15,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-6">
-              <Link href="/" className="flex min-h-11 items-center" aria-label="AffordEgypt home">
+              <Link href="/" className="flex min-h-11 items-center" aria-label={t('footer.homeAria')}>
                 <img 
                   src="/images/logo-afford-egypt.png" 
-                  alt="Afford Egypt Logo" 
+                  alt={t('footer.logoAlt')} 
                   className="h-8 w-auto cursor-pointer hover:opacity-90 transition-opacity"
                 />
               </Link>
@@ -32,7 +32,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex min-h-11 min-w-11 items-center justify-center -m-2.5 text-gray-400 hover:text-primary transition-colors"
-                aria-label="Follow us on Facebook"
+                aria-label={t('footer.followFacebook')}
               >
                 <FaFacebookF className="w-5 h-5" />
               </a>
@@ -41,7 +41,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex min-h-11 min-w-11 items-center justify-center -m-2.5 text-gray-400 hover:text-primary transition-colors"
-                aria-label="Follow us on Instagram"
+                aria-label={t('footer.followInstagram')}
               >
                 <FaInstagram className="w-5 h-5" />
               </a>
@@ -50,7 +50,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex min-h-11 min-w-11 items-center justify-center -m-2.5 text-gray-400 hover:text-primary transition-colors"
-                aria-label="Subscribe to our YouTube channel"
+                aria-label={t('footer.followYoutube')}
               >
                 <FaYoutube className="w-5 h-5" />
               </a>
@@ -81,7 +81,7 @@ export default function Footer() {
                   onClick={openCookiePreferences}
                   className="text-gray-300 hover:text-primary transition-colors text-left"
                 >
-                  Cookie Preferences
+                  {t('footer.cookiePreferences')}
                 </button>
               </li>
               <li><Link href="/booking-agreement" className="text-gray-300 hover:text-primary transition-colors">{t('footer.bookingAgreement')}</Link></li>
@@ -89,93 +89,93 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.servicesHeading')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href={getTranslatedLink("cairo-airport-transfers")} className="text-gray-300 hover:text-primary transition-colors">
-                  Cairo Airport Transfers
+                  {t('pageNames.cairoAirportTransfers')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("luxor-airport-transfers")} className="text-gray-300 hover:text-primary transition-colors">
-                  Luxor Airport Transfers
+                  {t('pageNames.luxorAirportTransfers')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("aswan-airport-transfers")} className="text-gray-300 hover:text-primary transition-colors">
-                  Aswan Airport Transfers
+                  {t('pageNames.aswanAirportTransfers')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("cairo-car-tour-guide-services")} className="text-gray-300 hover:text-primary transition-colors">
-                  Cairo Car & Tour Guide Services
+                  {t('pageNames.cairoCarAndTourGuideServices')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("luxor-car-tour-guide-services")} className="text-gray-300 hover:text-primary transition-colors">
-                  Luxor Car & Tour Guide Services
+                  {t('pageNames.luxorCarAndTourGuideServices')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("aswan-car-tour-guide-services")} className="text-gray-300 hover:text-primary transition-colors">
-                  Aswan Car & Tour Guide Services
+                  {t('pageNames.aswanCarAndTourGuideServices')}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Explore</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.exploreHeading')}</h3>
             {/* Alphabetical, except Submit a Review stays pinned last. */}
             <ul className="space-y-2">
               <li>
                 <Link href={getTranslatedLink("budget-travel-egypt")} className="text-gray-300 hover:text-primary transition-colors">
-                  Budget Travel Guide
+                  {t('pageNames.budgetTravelGuide')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("destinations")} className="text-gray-300 hover:text-primary transition-colors">
-                  Destinations
+                  {t('pageNames.destinations')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("eastern-western-deserts-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  Eastern &amp; Western Deserts
+                  {t('pageNames.easternAndWesternDeserts')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("cuisine-passport")} className="text-gray-300 hover:text-primary transition-colors">
-                  Egyptian Cuisine Passport
+                  {t('pageNames.egyptianCuisinePassport')}
                 </Link>
               </li>
               <li>
                 <Link href="/#faq" className="text-gray-300 hover:text-primary transition-colors">
-                  FAQ
+                  {t('pageNames.faq')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("nile-valley-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  Nile Valley Guide
+                  {t('pageNames.nileValleyGuide')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("sinai-peninsula-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  Sinai Peninsula Guide
+                  {t('pageNames.sinaiPeninsulaGuide')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("egyptian-street-food-guide")} className="text-gray-300 hover:text-primary transition-colors">
-                  Street Food Guide
+                  {t('pageNames.streetFoodGuide')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("travel-tips")} className="text-gray-300 hover:text-primary transition-colors">
-                  Travel Tips
+                  {t('pageNames.travelTips')}
                 </Link>
               </li>
               <li>
                 <Link href={getTranslatedLink("submit-review")} className="text-gray-300 hover:text-primary transition-colors">
-                  Submit a Review
+                  {t('pageNames.submitAReview')}
                 </Link>
               </li>
             </ul>
@@ -184,9 +184,9 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 space-y-3">
           <p className="text-xs sm:text-sm leading-relaxed max-w-3xl mx-auto">
-            AffordEgypt is operated by Capital Travel Service
+            {t('footer.operatedBy')}
             <span className="mx-2 text-gray-500">·</span>
-            ETAA 2179
+            ETAA 2179 {/* i18n-exempt: licence registration number */}
             <span className="mx-2 text-gray-500">·</span>
             {OPERATOR.address.full}
           </p>

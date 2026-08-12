@@ -6,7 +6,20 @@
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "startTrip": "Start Your Trip Quote",
-    "bookTransfer": "Book a Transfer"
+    "bookTransfer": "Book a Transfer",
+    "whatsappTitle": "Message us on WhatsApp",
+    "planTripTitle": "Plan Your Egypt Trip",
+    "planTripSubtitle": "Private tours with transparent pricing",
+    "trustTransparent": "Transparent pricing — what you see is what you pay",
+    "trustRealPrices": "Real prices in EGP",
+    "trustDirect": "Book directly with Egypt-based experts — no middlemen",
+    "trustSecure": "Secure booking",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "privateTransfers": "Private Transfers",
+    "getInstantQuote": "Get Instant Quote",
+    "getYourInstantQuote": "Get Your Instant Quote",
+    "signOut": "Sign Out"
   },
   "common": {
     "loading": "Loading...",
@@ -341,7 +354,16 @@
       "failed": "Subscription failed",
       "failedDesc": "Please try again or contact us directly.",
       "emailRequired": "Please enter your email address."
-    }
+    },
+    "servicesHeading": "Our Services",
+    "exploreHeading": "Explore",
+    "logoAlt": "Afford Egypt logo",
+    "homeAria": "AffordEgypt home",
+    "followFacebook": "Follow us on Facebook",
+    "followInstagram": "Follow us on Instagram",
+    "followYoutube": "Subscribe to our YouTube channel",
+    "cookiePreferences": "Cookie Preferences",
+    "operatedBy": "AffordEgypt is operated by Capital Travel Service"
   },
   "about": {
     "title": "Why Travel With Us",
@@ -2418,5 +2440,61 @@
       }
     ],
     "ctaPrint": "Print / Save as PDF"
+  },
+  "chrome": {
+    "onThisPage": "On this page",
+    "breadcrumbAria": "Breadcrumb",
+    "buildMyTrip": "Build My Trip",
+    "notFoundTitle": "Page Not Found | AffordEgypt",
+    "notFoundHeading": "Page not found"
+  },
+  "userNav": {
+    "profile": "Profile",
+    "myBookings": "My Bookings",
+    "adminPanel": "Admin Panel",
+    "logOut": "Log out"
+  },
+  "whatsappWidget": {
+    "replyTime": "Typically replies in minutes",
+    "generalInquiry": "General Inquiry",
+    "getQuote": "Get Quote",
+    "bookingSupport": "Booking Support",
+    "customTrip": "Custom Trip",
+    "msgGeneral": "Hi! I'm interested in planning a trip to Egypt. Can you help me with information about your services?",
+    "msgQuote": "Hello! I'd like to get a quote for my Egypt travel plans. Can we discuss the details?",
+    "msgBooking": "Hi! I need help with my booking. Can you assist me?",
+    "msgCustom": "Hello! I'm looking to plan a custom Egypt itinerary. Can we chat about my requirements?",
+    "msgDefault": "Hello! I have a question about your Egypt travel services.",
+    "startChat": "Start Chat",
+    "intro": "Start a conversation with us on WhatsApp for quick assistance!"
+  },
+  "pageNames": {
+    "home": "Home",
+    "transfers": "Transfers",
+    "destinations": "Destinations",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "travelTips": "Travel Tips",
+    "cairoAirportTransfers": "Cairo Airport Transfers",
+    "luxorAirportTransfers": "Luxor Airport Transfers",
+    "aswanAirportTransfers": "Aswan Airport Transfers",
+    "cairoCarAndTourGuideServices": "Cairo Car & Tour Guide Services",
+    "luxorCarAndTourGuideServices": "Luxor Car & Tour Guide Services",
+    "aswanCarAndTourGuideServices": "Aswan Car & Tour Guide Services",
+    "budgetTravelGuide": "Budget Travel Guide",
+    "easternAndWesternDesertsGuide": "Eastern & Western Deserts Guide",
+    "egyptianCuisinePassport": "Egyptian Cuisine Passport",
+    "nileValleyGuide": "Nile Valley Guide",
+    "sinaiPeninsulaGuide": "Sinai Peninsula Guide",
+    "streetFoodGuide": "Street Food Guide",
+    "easternAndWesternDeserts": "Eastern & Western Deserts",
+    "faq": "FAQ",
+    "submitAReview": "Submit a Review"
+  },
+  "cookieConsent": {
+    "title": "Cookies on AffordEgypt",
+    "acceptAll": "Accept all",
+    "rejectNonEssential": "Reject non-essential",
+    "cookiePolicy": "Cookie Policy"
   }
 }

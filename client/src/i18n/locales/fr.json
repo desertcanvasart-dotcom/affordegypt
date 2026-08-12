@@ -6,7 +6,20 @@
     "signIn": "Se Connecter",
     "signUp": "S'inscrire",
     "startTrip": "Commencer Votre Devis de Voyage",
-    "bookTransfer": "Réserver un Transfert"
+    "bookTransfer": "Réserver un Transfert",
+    "whatsappTitle": "Écrivez-nous sur WhatsApp",
+    "planTripTitle": "Planifiez votre voyage en Égypte",
+    "planTripSubtitle": "Circuits privés à tarifs transparents",
+    "trustTransparent": "Tarifs transparents : le prix affiché est le prix payé",
+    "trustRealPrices": "Prix réels en EGP",
+    "trustDirect": "Réservez directement avec des experts basés en Égypte, sans intermédiaire",
+    "trustSecure": "Réservation sécurisée",
+    "contact": "Contact",
+    "dashboard": "Tableau de bord",
+    "privateTransfers": "Transferts privés",
+    "getInstantQuote": "Devis immédiat",
+    "getYourInstantQuote": "Obtenez votre devis immédiat",
+    "signOut": "Se déconnecter"
   },
   "common": {
     "loading": "Chargement...",
@@ -341,7 +354,16 @@
       "failed": "Échec de l'abonnement",
       "failedDesc": "Veuillez réessayer ou nous contacter directement.",
       "emailRequired": "Veuillez saisir votre adresse email."
-    }
+    },
+    "servicesHeading": "Nos services",
+    "exploreHeading": "Explorer",
+    "logoAlt": "Logo Afford Egypt",
+    "homeAria": "Accueil AffordEgypt",
+    "followFacebook": "Suivez-nous sur Facebook",
+    "followInstagram": "Suivez-nous sur Instagram",
+    "followYoutube": "Abonnez-vous à notre chaîne YouTube",
+    "cookiePreferences": "Préférences de cookies",
+    "operatedBy": "AffordEgypt est exploité par Capital Travel Service"
   },
   "about": {
     "title": "Pourquoi Voyager Avec Nous",
@@ -2418,5 +2440,61 @@
     ],
     "ctaPrint": "Imprimer / Enregistrer en PDF",
     "totalValue": "400 EGP"
+  },
+  "chrome": {
+    "onThisPage": "Sur cette page",
+    "breadcrumbAria": "Fil d'Ariane",
+    "buildMyTrip": "Composer mon voyage",
+    "notFoundTitle": "Page introuvable | AffordEgypt",
+    "notFoundHeading": "Page introuvable"
+  },
+  "userNav": {
+    "profile": "Profil",
+    "myBookings": "Mes réservations",
+    "adminPanel": "Panneau d'administration",
+    "logOut": "Se déconnecter"
+  },
+  "whatsappWidget": {
+    "replyTime": "Répond généralement en quelques minutes",
+    "generalInquiry": "Demande générale",
+    "getQuote": "Demander un devis",
+    "bookingSupport": "Aide à la réservation",
+    "customTrip": "Voyage sur mesure",
+    "msgGeneral": "Bonjour ! Je souhaite organiser un voyage en Égypte. Pouvez-vous me renseigner sur vos services ?",
+    "msgQuote": "Bonjour ! J'aimerais obtenir un devis pour mon voyage en Égypte. Pouvons-nous en discuter ?",
+    "msgBooking": "Bonjour ! J'ai besoin d'aide pour ma réservation. Pouvez-vous m'aider ?",
+    "msgCustom": "Bonjour ! Je souhaite créer un itinéraire sur mesure en Égypte. Pouvons-nous en parler ?",
+    "msgDefault": "Bonjour ! J'ai une question sur vos services de voyage en Égypte.",
+    "startChat": "Démarrer la discussion",
+    "intro": "Lancez une conversation avec nous sur WhatsApp pour une aide rapide !"
+  },
+  "pageNames": {
+    "home": "Accueil",
+    "transfers": "Transferts",
+    "destinations": "Destinations",
+    "aboutUs": "À propos",
+    "contactUs": "Contact",
+    "travelTips": "Conseils de voyage",
+    "cairoAirportTransfers": "Transferts aéroport du Caire",
+    "luxorAirportTransfers": "Transferts aéroport de Louxor",
+    "aswanAirportTransfers": "Transferts aéroport d'Assouan",
+    "cairoCarAndTourGuideServices": "Voiture et guide au Caire",
+    "luxorCarAndTourGuideServices": "Voiture et guide à Louxor",
+    "aswanCarAndTourGuideServices": "Voiture et guide à Assouan",
+    "budgetTravelGuide": "Guide du voyage économique",
+    "easternAndWesternDesertsGuide": "Guide des déserts oriental et occidental",
+    "egyptianCuisinePassport": "Passeport de la cuisine égyptienne",
+    "nileValleyGuide": "Guide de la vallée du Nil",
+    "sinaiPeninsulaGuide": "Guide de la péninsule du Sinaï",
+    "streetFoodGuide": "Guide de la cuisine de rue",
+    "easternAndWesternDeserts": "Déserts oriental et occidental",
+    "faq": "Questions fréquentes",
+    "submitAReview": "Laisser un avis"
+  },
+  "cookieConsent": {
+    "title": "Cookies sur AffordEgypt",
+    "acceptAll": "Tout accepter",
+    "rejectNonEssential": "Refuser les non essentiels",
+    "cookiePolicy": "Politique de cookies"
   }
 }

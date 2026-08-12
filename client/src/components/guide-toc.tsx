@@ -48,7 +48,7 @@ export default function GuideToc({
   // client/src/i18n/index.ts). Scanning only on mount captured the English
   // headings and never re-read them, so every guide in a non-English locale
   // showed a German/French/Spanish article under an English table of contents.
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [items, setItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -151,7 +151,7 @@ export default function GuideToc({
 
   return (
     <nav
-      aria-label="On this page"
+      aria-label={t('chrome.onThisPage')}
       data-guide-toc
       className="sticky top-16 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm"
     >
@@ -160,7 +160,7 @@ export default function GuideToc({
             mobile without hiding sections behind a toggle. */}
         <ul className="flex items-center gap-1 overflow-x-auto whitespace-nowrap py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <li className="shrink-0 pr-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
-            On this page
+            {t('chrome.onThisPage')}
           </li>
           {items.map((item) => {
             const isActive = item.id === activeId;

@@ -118,13 +118,23 @@ function scan() {
     const src = readFileSync(path.join(REPO, rel), "utf8");
     const legalBody = LEGAL_BODIES.test(rel);
     const ranges = languageBlockRanges(src);
-    src.split("\n").forEach((line, i) => {
+    const lines = src.split("\n");
+    lines.forEach((line, i) => {
       const ln = i + 1;
       if (/^\s*(\/\/|\*|\/\*)/.test(line)) return;
       if (ranges.some(([a, b]) => ln >= a && ln <= b)) return;
       if (/i18n-exempt/.test(line)) return; // deliberate, justified in a comment
       const hits = new Set();
       for (const m of line.matchAll(/>([^<>{}\n]{4,})</g)) hits.add(m[1]);
+      // A JSX text node split across lines: the tag closes on an earlier line
+      // and reopens on a later one, so the text sits alone. Missing these is
+      // how "Start Chat" stayed invisible to the first version of this check.
+      const bare = line.trim();
+      if (/^[A-Z][A-Za-z0-9 ,'\u2019&:%!?.-]{3,}$/.test(bare)) {
+        const prev = lines.slice(0, i).reverse().find((l) => l.trim());
+        const next = lines.slice(i + 1).find((l) => l.trim());
+        if (prev?.trim().endsWith(">") && next?.trim().startsWith("<")) hits.add(bare);
+      }
       for (const m of line.matchAll(VISIBLE_ATTR)) hits.add(m[2]);
       for (const m of line.matchAll(/\b[a-zA-Z]+:\s*["']([^"'\n]{4,})["']/g)) hits.add(m[1]);
       for (const h of hits) {

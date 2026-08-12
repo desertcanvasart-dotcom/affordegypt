@@ -98,3 +98,31 @@ export function breadcrumbSchema(trail: Crumb[]) {
     })),
   };
 }
+
+/**
+ * Locale key for a crumb's visible label.
+ *
+ * The trail is defined once in English above, because the JSON-LD must stay
+ * English: the prerendered page Google indexes is the English one, and a
+ * BreadcrumbList that disagrees with the visible trail on the indexed page is
+ * exactly what Search Console flags. So the schema keeps `crumb.name` and only
+ * the on-screen label is translated, via this key.
+ *
+ * The namespace is pageNames, not breadcrumbs: the footer links to the same
+ * pages by the same names, and two copies of "Nile Valley Guide" in two
+ * namespaces is how translations drift apart.
+ *
+ * Derived from the English name rather than stored as a second field, so a new
+ * trail entry cannot be added with the key forgotten — the worst case is a
+ * missing translation that falls back to English, not a silent mismatch.
+ */
+export function crumbKey(name: string): string {
+  const slug = name
+    .replace(/&/g, "and")
+    .replace(/[^A-Za-z0-9 ]/g, "")
+    .trim()
+    .split(/\s+/)
+    .map((w, i) => (i === 0 ? w.toLowerCase() : w[0].toUpperCase() + w.slice(1).toLowerCase()))
+    .join("");
+  return `pageNames.${slug}`;
+}

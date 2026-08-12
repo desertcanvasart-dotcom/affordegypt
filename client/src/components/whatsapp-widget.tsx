@@ -2,8 +2,10 @@ import { MessageCircle, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 
 export default function WhatsAppWidget() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   
   // WhatsApp business number - you'll need to replace this with your actual number
@@ -16,23 +18,14 @@ export default function WhatsAppWidget() {
     setIsOpen(false);
   };
 
+  // The prefilled text opens in the visitor's own language: they are about to
+  // continue the conversation in it either way, so an English opener would only
+  // mislead about which languages we answer in.
   const quickMessages = [
-    {
-      title: "General Inquiry",
-      message: "Hi! I'm interested in planning a trip to Egypt. Can you help me with information about your services?"
-    },
-    {
-      title: "Get Quote",
-      message: "Hello! I'd like to get a quote for my Egypt travel plans. Can we discuss the details?"
-    },
-    {
-      title: "Booking Support",
-      message: "Hi! I need help with my booking. Can you assist me?"
-    },
-    {
-      title: "Custom Trip",
-      message: "Hello! I'm looking to plan a custom Egypt itinerary. Can we chat about my requirements?"
-    }
+    { title: t("whatsappWidget.generalInquiry"), message: t("whatsappWidget.msgGeneral") },
+    { title: t("whatsappWidget.getQuote"), message: t("whatsappWidget.msgQuote") },
+    { title: t("whatsappWidget.bookingSupport"), message: t("whatsappWidget.msgBooking") },
+    { title: t("whatsappWidget.customTrip"), message: t("whatsappWidget.msgCustom") },
   ];
 
   return (
@@ -48,8 +41,8 @@ export default function WhatsAppWidget() {
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm">Afford Egypt</h3>
-                    <p className="text-xs text-white/80">Typically replies in minutes</p>
+                    <h3 className="font-semibold text-sm">Afford Egypt</h3> {/* i18n-exempt: brand name */}
+                    <p className="text-xs text-white/80">{t("whatsappWidget.replyTime")}</p>
                   </div>
                 </div>
                 <Button
@@ -65,7 +58,7 @@ export default function WhatsAppWidget() {
             
             <CardContent className="p-4">
               <p className="text-sm text-muted-foreground mb-4">
-                Start a conversation with us on WhatsApp for quick assistance!
+                {t("whatsappWidget.intro")}
               </p>
               
               <div className="space-y-2">
@@ -89,12 +82,12 @@ export default function WhatsAppWidget() {
               
               <div className="mt-4 pt-3 border-t">
                 <Button
-                  onClick={() => openWhatsApp("Hello! I have a question about your Egypt travel services.")}
+                  onClick={() => openWhatsApp(t("whatsappWidget.msgDefault"))}
                   className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white"
                   size="sm"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  Start Chat
+                  {t('whatsappWidget.startChat')}
                 </Button>
               </div>
             </CardContent>

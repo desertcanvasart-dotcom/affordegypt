@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
 import { readConsent, writeConsent } from "@/lib/consent";
+import { useTranslation } from "react-i18next";
 
 /**
  * Cookie consent banner.
@@ -21,6 +22,7 @@ import { readConsent, writeConsent } from "@/lib/consent";
  * given, which is the point of asking at all.
  */
 export default function CookieConsent() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function CookieConsent() {
           <Cookie className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
           <div>
             <h2 id="cookie-consent-heading" className="font-semibold">
-              Cookies on AffordEgypt
+              {t('cookieConsent.title')}
             </h2>
             <p className="text-sm text-muted-foreground">
               We use essential cookies to run the site. With your permission we
@@ -62,7 +64,7 @@ export default function CookieConsent() {
                 href="/cookie-policy"
                 className="underline underline-offset-2 hover:text-primary"
               >
-                Cookie Policy
+                {t('cookieConsent.cookiePolicy')}
               </Link>
             </p>
           </div>
@@ -73,10 +75,10 @@ export default function CookieConsent() {
             onClick={() => decide("denied")}
             className="flex-1 md:flex-none"
           >
-            Reject non-essential
+            {t('cookieConsent.rejectNonEssential')}
           </Button>
           <Button onClick={() => decide("granted")} className="flex-1 md:flex-none">
-            Accept all
+            {t('cookieConsent.acceptAll')}
           </Button>
         </div>
       </div>
