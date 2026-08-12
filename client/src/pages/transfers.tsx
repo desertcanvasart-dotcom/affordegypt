@@ -42,6 +42,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
 import { formatEGP } from "@/lib/utils";
+import { formatEGPPlain } from "@/lib/service-pricing";
 import {
   type CatalogRow,
   type VehicleSlug,
@@ -539,7 +540,7 @@ export default function TransfersPage() {
     <div className="min-h-screen bg-gray-50">
       <SeoMeta
         title="Egypt Airport & Intercity Transfers | Private Car from LE 595"
-        description="Private airport transfers and intercity transfers across Egypt. Cairo, Luxor, Aswan, Hurghada, Marsa Alam. Licensed drivers, fixed prices, no hidden fees. Book in 60 seconds."
+        description={`Private airport and intercity transfers across Egypt from ${formatEGPPlain("luxor-airport-transfer")}. Fixed prices, licensed drivers, flight monitoring. Book direct, no middlemen.`}
         canonical="https://affordegypt.com/transfers"
       />
       <Navbar />

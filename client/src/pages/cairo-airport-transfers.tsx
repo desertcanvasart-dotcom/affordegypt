@@ -105,7 +105,7 @@ export default function CairoAirportTransfers() {
     <>
       <SeoMeta
         title="Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
-        description={`Private transfers from Cairo International (CAI) and Sphinx International (SPX) to hotels across Cairo, Giza and Greater Cairo. Route-specific fixed quotes from LE ${sedanFrom}.`}
+        description={`Fixed-price Cairo airport transfers from LE ${sedanFrom}. CAI and Sphinx SPX, licensed drivers, flight monitoring and meet and greet. Book direct, no middlemen.`}
         canonical="https://affordegypt.com/cairo-airport-transfers"
         schema={SERVICE_SCHEMA}
       />

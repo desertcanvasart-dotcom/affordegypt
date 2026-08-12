@@ -135,7 +135,7 @@ export default function EasternWesternDesertsGuide() {
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
   <SeoMeta
           title="Egypt's Deserts | White Desert, Black Desert, Siwa Oasis"
-          description="The deserts most Egypt itineraries skip. White Desert, Black Desert, Bahariya, Farafra, and Siwa Oasis. Logistics, costs, and what's worth the trip — written by a guide who grew up in Aswan."
+          description="White Desert, Black Desert, Bahariya, Farafra and Siwa Oasis: logistics, costs, permits and safety for the deserts most Egypt itineraries skip."
           canonical="https://affordegypt.com/eastern-western-deserts-guide"
           ogImage="https://affordegypt.com/images/eastern-desert.jpg"
           schema={articleSchema({

@@ -129,7 +129,7 @@ export default function LuxorGuideServices() {
     <>
       <SeoMeta
         title={`Luxor Private Tour Guide & Car | From ${formatLEPerDay("luxor-guide-car")}`}
-        description={`Private licensed Egyptologist + vehicle for Luxor East and West Banks. Karnak, Valley of the Kings, Hatshepsut, and the Colossi. From ${formatLEPerDay("luxor-guide-car")} for guide + private car.`}
+        description={`Private licensed Egyptologist and car in Luxor from ${formatLEPerDay("luxor-guide-car")}. Karnak, the Valley of the Kings and both banks. Entrance tickets billed separately.`}
         canonical="https://affordegypt.com/luxor-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />

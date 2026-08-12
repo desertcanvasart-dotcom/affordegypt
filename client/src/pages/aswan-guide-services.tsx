@@ -129,7 +129,7 @@ export default function AswanGuideServices() {
     <>
       <SeoMeta
         title={`Aswan Private Tour Guide & Car | From ${formatLEPerDay("aswan-guide-car")}`}
-        description={`Private licensed Egyptologist + vehicle for Aswan, Philae, the High Dam, and Abu Simbel. From ${formatLEPerDay("aswan-guide-car")} for guide + private car. Operated by Capital Travel Service (ETAA 2179).`}
+        description={`Private licensed Egyptologist and car in Aswan from ${formatLEPerDay("aswan-guide-car")}. Philae, the High Dam and Nubian villages. Entrance tickets billed separately.`}
         canonical="https://affordegypt.com/aswan-car-tour-guide-services"
         schema={SERVICE_SCHEMA}
       />

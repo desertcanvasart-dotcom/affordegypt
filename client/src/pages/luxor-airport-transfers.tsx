@@ -106,7 +106,7 @@ export default function LuxorAirportTransfers() {
     <>
       <SeoMeta
         title="Luxor Airport Transfers | Fixed Price | AffordEgypt"
-        description={`Private transfers from Luxor International Airport (LXR) to East Bank hotels, West Bank hotels and Nile cruise moorings. Route-specific fixed quotes from LE ${sedanFrom}.`}
+        description={`Fixed-price Luxor airport transfers from LE ${sedanFrom}. East Bank, West Bank and Nile cruise moorings. Licensed drivers, flight monitoring and fixed quotes.`}
         canonical="https://affordegypt.com/luxor-airport-transfers"
         schema={SERVICE_SCHEMA}
       />

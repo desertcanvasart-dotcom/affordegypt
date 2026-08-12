@@ -105,7 +105,7 @@ export default function AswanAirportTransfers() {
     <>
       <SeoMeta
         title="Aswan Airport Transfers | Fixed Price | AffordEgypt"
-        description={`Private transfers from Aswan International Airport (ASW) to city hotels, Nubian stays, island jetties and Nile or Lake Nasser cruise moorings. Fixed quotes from LE ${sedanFrom}.`}
+        description={`Fixed-price Aswan airport transfers from LE ${sedanFrom}. City hotels, Nubian stays, island jetties and cruise moorings. Licensed local drivers and fixed quotes.`}
         canonical="https://affordegypt.com/aswan-airport-transfers"
         schema={SERVICE_SCHEMA}
       />
