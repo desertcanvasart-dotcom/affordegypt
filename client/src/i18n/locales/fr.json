@@ -809,14 +809,14 @@
     },
     "filters": {
       "searchPlaceholder": "Rechercher des plats...",
-      "foundDishes": "{count} plats trouvés",
       "regions": {
         "all": "Toutes les Régions",
         "cairo": "Le Caire",
         "alexandria": "Alexandrie",
         "upperEgypt": "Haute-Égypte",
         "nileDelta": "Delta du Nil",
-        "aswan": "Assouan"
+        "aswan": "Assouan",
+        "allEgypt": "Toute l'Égypte"
       },
       "categories": {
         "all": "Toutes les Catégories",
@@ -831,7 +831,9 @@
         "easy": "Facile",
         "medium": "Moyen",
         "hard": "Difficile"
-      }
+      },
+      "foundDishes_one": "{{count}} plat trouvé",
+      "foundDishes_other": "{{count}} plats trouvés"
     },
     "dish": {
       "spiceLevel": "Niveau d'Épice",
@@ -864,59 +866,484 @@
       "healthyScore": "Score Santé",
       "bestPlacesToTry": "Meilleurs Endroits pour Essayer"
     },
-    "descriptions": {
-      "koshari": "Plat national d'Égypte - un plat de rue copieux, épicé et uniquement satisfaisant fait en superposant lentilles, riz, pâtes, pois chiches et oignons frits croustillants, puis arrosé de sauce tomate à l'ail et assaisonnement optionnel de vinaigre-piment.",
-      "fulMedames": "Le plat de petit-déjeuner le plus emblématique d'Égypte fait avec des fèves cuites lentement, typiquement assaisonnées avec de l'huile d'olive, de l'ail, du jus de citron et des épices. Profondément ancré dans la vie quotidienne égyptienne, polyvalent et riche en protéines et fibres.",
-      "mahshi": "Légumes farcis traditionnels égyptiens - typiquement courgettes, aubergines, poivrons et feuilles de vigne farcies avec un mélange aromatique de riz et d'herbes. Cuits lentement dans un bouillon de tomate jusqu'à être tendres et savoureux.",
-      "molokhia": "Soupe verte profonde faite de feuilles de mauve finement hachées. L'un des plats les plus anciens d'Égypte, souvent servi avec du poulet ou du lapin, du riz et un trait de citron.",
-      "roz": "Aliment réconfortant d'Égypte - riz au lait crémeux fait avec du lait, du sucre et des épices aromatiques comme la vanille et la cannelle. Souvent garni de noix et servi chaud ou froid.",
-      "ricemuammar": "Plat traditionnel égyptien de riz cuit au four lentement dans du lait et de la crème, servi dans un tajine en argile. Crée une casserole crémeuse avec un dessus doré et une croûte croustillante avec un centre riche et beurré.",
-      "hawawshi": "Pain farci à la viande égyptien classique - bœuf ou agneau haché épicé mélangé avec des légumes et des herbes, fourré dans du pain baladi et cuit jusqu'à être doré et croustillant à l'extérieur avec une farce juteuse à l'intérieur.",
-      "karkade": "Thé d'hibiscus traditionnel égyptien fait avec des pétales séchés d'Hibiscus sabdariffa. Couleur cramoisie profonde, saveur acidulée et fruitée similaire à la canneberge. Riche en antioxydants et sans caféine.",
-      "baladibre": "Pain plat traditionnel égyptien au blé entier, pierre angulaire de la vie quotidienne égyptienne. Le mot 'baladi' signifie 'traditionnel' ou 'local'. Similaire au pita mais fait avec 100% de farine de blé entier, cuit à haute température créant une poche gonflée à l'intérieur.",
-      "umm": "Le dessert le plus célèbre et réconfortant d'Égypte signifiant 'Mère d'Ali'. Plat riche et crémeux style pouding au pain avec pâte, noix, lait et crème, cuit jusqu'à ce qu'il bouillonne et dore. Associé aux célébrations, Ramadan et occasions spéciales."
-    },
-    "culturalStories": {
-      "koshari": "Créé au 19ème siècle en mélangeant divers plats de grains de différentes cultures commerçant en Égypte. Bien que d'origine humble, Koshari est un symbole de l'ingéniosité égyptienne, servi dans les maisons, les étals de rue et les restaurants du Caire à Assouan. Il représente la nourriture de rue réconfortante ultime d'Égypte."
-    },
-    "servingStyles": {
-      "koshari": [
-        "Servi en couches dans un bol profond en commençant par le riz",
-        "Garni de lentilles, pâtes et pois chiches",
-        "Recouvert de sauce tomate à l'ail",
-        "Fini avec des oignons frits croustillants",
-        "Sauce de vinaigre épicée optionnelle (Da'a) sur le côté"
-      ]
-    },
-    "signatureTraits": {
-      "koshari": [
-        "Copieux et rassasiant - un repas complet dans un bol",
-        "Naturellement végétalien (pas de viande ni de produits laitiers)",
-        "Textures en couches : croustillant, doux, moelleux",
-        "Saveurs audacieuses, épicées, acidulées",
-        "Abordable et largement disponible"
-      ]
-    },
-    "cookingMethods": {
-      "koshari": [
-        "Cuire chaque composant séparément pour une meilleure texture",
-        "Faire frire les oignons jusqu'à ce qu'ils soient dorés et croustillants (10-15 minutes)",
-        "Faire mijoter la sauce tomate 15-20 minutes jusqu'à épaississement",
-        "Disposer les composants en couches juste avant de servir pour une texture optimale"
-      ]
-    },
-    "preparationTips": {
-      "koshari": [
-        "Faire des oignons frits supplémentaires - ils disparaissent en premier",
-        "Préparer tous les éléments à l'avance et assembler avant de servir",
-        "Ajouter une pincée de baharat (mélange d'épices égyptiennes) pour un goût authentique",
-        "Se réchauffe bien, ce qui en fait un excellent choix pour la préparation de repas"
-      ]
-    },
     "badges": {
       "traditionalDish": "Plat Traditionnel Égyptien",
       "traditionalDrink": "Boisson Traditionnelle Égyptienne"
-    }
+    },
+    "dishes": {
+      "koshari": {
+        "name": "Koshari",
+        "description": "Le plat national égyptien : une street food nourrissante, relevée et singulièrement réconfortante, faite de couches de lentilles, de riz, de pâtes et de pois chiches, couronnées d'oignons frits croustillants et nappées d'une sauce tomate à l'ail, avec une sauce piquante au vinaigre et au piment en option.",
+        "cookingTime": "Environ 45 minutes",
+        "priceRange": "Moins de 60 EGP",
+        "culturalStory": "Né au XIXe siècle du mélange de différents plats de céréales apportés par les cultures qui commerçaient en Égypte. Malgré ses origines modestes, le koshari est un symbole de l'ingéniosité égyptienne : on le sert à la maison, dans les échoppes de rue et au restaurant, du Caire à Assouan. C'est la nourriture réconfortante égyptienne par excellence.",
+        "ingredients": [
+          "Lentilles brunes",
+          "Riz blanc",
+          "Petites pâtes",
+          "Pois chiches",
+          "Oignons",
+          "Ail",
+          "Tomates concassées",
+          "Vinaigre blanc",
+          "Cumin",
+          "Flocons de piment"
+        ],
+        "bestLocations": [
+          "Abou Tarek - centre-ville du Caire",
+          "Koshari El Tahrir",
+          "Koshari Hind",
+          "Échoppes de rue dans toute l'Égypte"
+        ],
+        "signatureTraits": [
+          "Nourrissant et rassasiant : un repas complet dans un bol",
+          "Végétalien par nature (ni viande ni produits laitiers)",
+          "Textures superposées : croustillant, moelleux, ferme",
+          "Saveurs franches, relevées et acidulées",
+          "Abordable et facile à trouver"
+        ],
+        "servingStyles": [
+          "Monté en couches dans un bol creux, en commençant par le riz",
+          "Recouvert de lentilles, de pâtes et de pois chiches",
+          "Nappé de sauce tomate à l'ail",
+          "Terminé par des oignons frits croustillants",
+          "Sauce piquante au vinaigre (da'a) à part, en option"
+        ],
+        "cookingMethods": [
+          "Cuire chaque élément séparément pour obtenir la meilleure texture",
+          "Frire les oignons jusqu'à ce qu'ils soient bien dorés et croustillants (10 à 15 minutes)",
+          "Laisser mijoter la sauce tomate 15 à 20 minutes jusqu'à épaississement",
+          "Assembler les couches juste avant de servir pour préserver la texture"
+        ],
+        "preparationTips": [
+          "Prévoyez des oignons frits en plus : ils disparaissent les premiers",
+          "Préparez tous les éléments à l'avance et assemblez au moment de servir",
+          "Ajoutez une pincée de baharat (mélange d'épices égyptien) pour une saveur authentique",
+          "Il se réchauffe très bien, ce qui en fait un excellent plat à préparer à l'avance"
+        ]
+      },
+      "fulMedames": {
+        "name": "Ful medames",
+        "description": "Le petit-déjeuner le plus emblématique d'Égypte, à base de fèves mijotées longuement, assaisonnées le plus souvent d'huile d'olive, d'ail, de jus de citron et d'épices. Profondément ancré dans le quotidien égyptien, polyvalent et riche en protéines et en fibres.",
+        "cookingTime": "Environ 6 heures (cuisson lente traditionnelle ; les recettes varient)",
+        "priceRange": "Moins de 25 EGP",
+        "culturalStory": "Plat ancien qui remonte à l'époque pharaonique, traditionnellement cuit toute la nuit dans des jarres en terre enterrées. Des millions d'Égyptiens le mangent chaque jour, des simples charrettes de rue du Caire aux cuisines familiales de tout le pays.",
+        "ingredients": [
+          "Fèves cuites",
+          "Huile d'olive",
+          "Ail",
+          "Jus de citron",
+          "Cumin moulu",
+          "Sel",
+          "Poivre noir"
+        ],
+        "bestLocations": [
+          "Restaurant Al Malky",
+          "Charrettes de rue traditionnelles",
+          "Cafés de quartier",
+          "Vendeurs de petit-déjeuner de rue"
+        ],
+        "signatureTraits": [
+          "Texture crémeuse ou avec des morceaux (selon les goûts)",
+          "Saveur terreuse, aillée, citronnée et parfois relevée",
+          "Végétalien et sain : riche en fibres et en protéines",
+          "Favori national, savouré chaque jour par des millions de personnes",
+          "Le petit-déjeuner égyptien le plus emblématique"
+        ],
+        "servingStyles": [
+          "Servi avec du pain baladi chaud ou du pain pita",
+          "Accompagné d'œufs durs",
+          "Garni de tomates, d'oignons ou de persil finement coupés",
+          "Avec des légumes au vinaigre (torshi)",
+          "Filet de tahini ou piments verts hachés, en option"
+        ],
+        "cookingMethods": [
+          "Réchauffer doucement les fèves dans une casserole avec un peu d'eau",
+          "Les écraser légèrement à la fourchette pour obtenir la texture voulue",
+          "Ajouter l'assaisonnement et laisser mijoter 2 à 3 minutes",
+          "Servir aussitôt, bien chaud"
+        ],
+        "preparationTips": [
+          "Utilisez des fèves cuites ou des conserves de qualité",
+          "Adaptez l'écrasement à la texture que vous préférez",
+          "Équilibrez le jus de citron et l'huile d'olive pour la meilleure saveur",
+          "Servez immédiatement pour profiter de la température et du goût optimaux"
+        ],
+        "regionalVariations": [
+          "Ful eskandrani (alexandrin) : servi froid avec piment, tomates, persil et vinaigre",
+          "Ful aux œufs durs : le petit-déjeuner de rue classique",
+          "Ful bel dabba (au beurre) : version crémeuse et gourmande servie au restaurant",
+          "Ful relevé : avec de la harissa ou de l'huile pimentée fraîche"
+        ]
+      },
+      "molokhia": {
+        "name": "Molokhia",
+        "description": "Soupe d'un vert profond préparée à partir de feuilles de corète finement hachées. L'un des plats les plus anciens d'Égypte, il remonte à l'époque pharaonique. Onctueux, très aillé et plein d'umami, avec une texture légèrement mucilagineuse caractéristique.",
+        "cookingTime": "Environ 30 minutes",
+        "priceRange": "120 EGP",
+        "culturalStory": "À l'époque pharaonique, il était interdit au peuple car considéré comme un mets réservé à la royauté. C'est l'un des plats les plus anciens et les plus aimés d'Égypte, la nourriture réconfortante par excellence pour des générations d'Égyptiens.",
+        "ingredients": [
+          "Feuilles de molokhia",
+          "Ail",
+          "Coriandre moulue",
+          "Bouillon de poulet",
+          "Ghee ou beurre",
+          "Jus de citron",
+          "Sel"
+        ],
+        "bestLocations": [
+          "Café Naguib Mahfouz",
+          "Restaurants familiaux traditionnels",
+          "Restaurants d'hôtel",
+          "Foyers ruraux égyptiens"
+        ],
+        "signatureTraits": [
+          "Texture épaisse et légèrement visqueuse (proche du gombo)",
+          "Saveur terreuse et aillée, portée par la coriandre",
+          "Plat ancien d'origine pharaonique",
+          "La nourriture réconfortante égyptienne par excellence",
+          "Consistance mucilagineuse unique"
+        ],
+        "servingStyles": [
+          "Servie sur du riz blanc ou du riz aux vermicelles",
+          "Accompagnée de pain baladi",
+          "Avec un filet de citron frais",
+          "Avec du vinaigre pimenté",
+          "Avec une viande grillée à part"
+        ],
+        "cookingMethods": [
+          "Ne jamais faire bouillir : chauffer doucement pour préserver la texture",
+          "Ne remuer qu'une seule fois après l'avoir ajoutée au bouillon",
+          "Chauffer 3 à 5 minutes jusqu'à ce qu'elle soit chaude et épaissie",
+          "Ajouter la tasha (mélange ail-coriandre) encore grésillante"
+        ],
+        "preparationTips": [
+          "La molokhia fraîche doit être hachée jusqu'à obtenir une consistance de pâte",
+          "La molokhia surgelée constitue une alternative pratique et efficace",
+          "Préparez la tasha à part pour que les arômes se diffusent bien",
+          "Évitez de trop remuer pour qu'elle ne devienne pas gluante"
+        ],
+        "regionalVariations": [
+          "Façon alexandrine : avec des tomates concassées, servie avec des fruits de mer",
+          "Façon palestinienne ou libanaise : feuilles entières, texture plus proche du ragoût",
+          "Égypte rurale : traditionnellement servie avec du lapin lors des fêtes",
+          "Variantes modernes : avec une sauce vinaigre-piment à part"
+        ]
+      },
+      "mahshi": {
+        "name": "Mahshi",
+        "description": "Le grand classique égyptien des légumes farcis au riz épicé, mijotés dans un bouillon léger à la tomate. On y trouve courgettes, aubergines, poivrons, tomates, feuilles de chou et feuilles de vigne. Très lié aux réunions de famille et aux fêtes.",
+        "cookingTime": "Environ 90 minutes",
+        "priceRange": "150 EGP",
+        "culturalStory": "Plat d'influence ottomane profondément enraciné dans les traditions familiales égyptiennes. Il est souvent préparé en grands plateaux à partager lors des réunions de famille, des banquets et des fêtes. Son nom signifie littéralement « farci » en arabe.",
+        "ingredients": [
+          "Courgettes",
+          "Poivrons",
+          "Riz égyptien",
+          "Oignon",
+          "Concentré de tomate",
+          "Persil",
+          "Aneth",
+          "Coriandre fraîche",
+          "Huile végétale",
+          "Cumin",
+          "Coriandre moulue"
+        ],
+        "bestLocations": [
+          "Restaurants familiaux d'Alexandrie",
+          "Maisons traditionnelles",
+          "Restaurants du littoral",
+          "Déjeuners de famille du vendredi"
+        ],
+        "signatureTraits": [
+          "Légumes farcis d'un riz bien assaisonné",
+          "Mijoté longuement dans un bouillon à la tomate pour un maximum de saveur",
+          "Goût herbacé, aillé, riche et réconfortant",
+          "Végétarien par nature, souvent végétalien",
+          "Parfait pour les réunions de famille et les fêtes"
+        ],
+        "servingStyles": [
+          "Disposé debout sur le plat de service",
+          "Arrosé d'un peu du bouillon de cuisson",
+          "Servi avec du yaourt ou une salade verte",
+          "Accompagné de quartiers de citron",
+          "Avec des pickles ou de la molokhia pour un repas complet"
+        ],
+        "cookingMethods": [
+          "Évider soigneusement les légumes avec un vide-légumes",
+          "Remplir aux deux tiers seulement pour laisser le riz gonfler",
+          "Disposer une couche de rondelles de pomme de terre pour éviter que ça n'attache",
+          "Laisser mijoter doucement 45 à 60 minutes jusqu'à ce que les légumes soient tendres"
+        ],
+        "preparationTips": [
+          "Utilisez du riz égyptien à grain court pour la meilleure texture",
+          "Ne précuisez pas le riz : il cuit à l'intérieur des légumes",
+          "Gardez le jus des tomates évidées pour le bouillon",
+          "Servi aux déjeuners de famille du vendredi, à l'Aïd et lors des grandes occasions"
+        ],
+        "regionalVariations": [
+          "Haute-Égypte : les versions aux feuilles de chou et de vigne sont particulièrement appréciées",
+          "Delta du Nil : les traditionnels rouleaux de chou y sont très populaires",
+          "Variante à la viande : de la viande hachée est ajoutée au riz pour un plat plus riche",
+          "Zones côtières : souvent servi avec des fruits de mer en accompagnement"
+        ]
+      },
+      "baladiBread": {
+        "name": "Pain baladi",
+        "description": "Le pain plat traditionnel d'Égypte, pierre angulaire de la vie quotidienne égyptienne. Le mot « baladi » signifie « local » ou « du pays ». Il est le plus souvent fait avec environ 50 % de farine complète et cuit à très haute température pour former une poche ; les recettes ne sont pas toutes 100 % complètes.",
+        "cookingTime": "Environ 3 heures, pousse comprise",
+        "priceRange": "5 EGP",
+        "culturalStory": "Élément essentiel de la culture égyptienne depuis plus de 5 000 ans, on l'appelle souvent « aysh », c'est-à-dire la vie. Simple, nourrissant et profondément enraciné dans la culture égyptienne, ce pain incarne véritablement l'esprit local traditionnel.",
+        "ingredients": [
+          "Farine de blé complète",
+          "Farine tout usage",
+          "Levure instantanée",
+          "Sucre",
+          "Sel",
+          "Eau tiède",
+          "Huile d'olive"
+        ],
+        "bestLocations": [
+          "Boulangeries de quartier",
+          "Vendeurs de rue",
+          "Toutes les tables égyptiennes",
+          "Furn baladi (fours en terre)"
+        ],
+        "signatureTraits": [
+          "Complet, de forme ronde et plate",
+          "Il gonfle à la cuisson et forme une poche à l'intérieur",
+          "Moelleux mais légèrement ferme, au goût de noisette et de terroir",
+          "Végétalien par nature, sans produits laitiers ni œufs",
+          "Servi avec presque tous les repas égyptiens"
+        ],
+        "servingStyles": [
+          "Au petit-déjeuner, avec du ful medames",
+          "Pour saucer la molokhia ou le koshari",
+          "Pour envelopper les sandwichs au kebda (foie)",
+          "Avec la taameya (le falafel égyptien)",
+          "Avec des sauces à tremper comme le tahini, le baba ganoush ou la duqqa"
+        ],
+        "cookingMethods": [
+          "Cuit sur une pierre brûlante ou une plaque en fonte",
+          "Cuit à 250 °C pendant 5 à 7 minutes",
+          "Il gonfle pendant la cuisson à haute température",
+          "Peut se faire à la maison, avec ou sans four spécial"
+        ],
+        "preparationTips": [
+          "Utilisez une pierre à pizza préchauffée pour imiter le four en terre",
+          "Ne manipulez plus la pâte une fois façonnée, pour qu'elle gonfle bien",
+          "Ajoutez de la farine blanche pour plus d'élasticité en cuisson moderne",
+          "Conservez-le dans un sac fermé 2 à 3 jours, ou congelez-le pour plus longtemps"
+        ],
+        "traditionalUses": [
+          "Accompagne le mahshi et d'autres plats principaux",
+          "Indispensable à un vrai petit-déjeuner égyptien",
+          "Sert à envelopper et à saucer les aliments",
+          "Symbole de subsistance dans la culture égyptienne"
+        ]
+      },
+      "ummAli": {
+        "name": "Umm Ali",
+        "description": "Le dessert le plus célèbre et le plus réconfortant d'Égypte ; son nom signifie « la mère d'Ali ». Un entremets riche et crémeux, dans l'esprit du pudding au pain, à base de pâte feuilletée, de fruits secs, de lait et de crème, cuit au four jusqu'à ce qu'il soit doré et bouillonnant. Associé aux fêtes, au ramadan et aux grandes occasions.",
+        "cookingTime": "Environ 20 minutes",
+        "priceRange": "100 EGP",
+        "culturalStory": "Il porte le nom de l'épouse du sultan Ezz El Din Aybek et fut créé pour célébrer une victoire. On l'appelle souvent la version égyptienne du pudding au pain, avec une touche moyen-orientale, généreusement garni de fruits secs, de noix de coco et parfois de raisins secs.",
+        "ingredients": [
+          "Pâte feuilletée",
+          "Lait entier",
+          "Crème entière",
+          "Sucre",
+          "Fruits secs mélangés",
+          "Noix de coco râpée",
+          "Raisins secs",
+          "Extrait de vanille"
+        ],
+        "bestLocations": [
+          "Café Groppi",
+          "Cafés traditionnels",
+          "Restaurants d'hôtel",
+          "Tables de l'iftar pendant le ramadan"
+        ],
+        "signatureTraits": [
+          "Servi chaud, à la sortie du four",
+          "Dessus croustillant et doré ; crémeux et fondant dessous",
+          "Préparé avec de la pâte feuilletée, de la pâte filo ou du pain",
+          "Sans œufs, contrairement aux puddings au pain occidentaux",
+          "Riche, festif et profondément satisfaisant"
+        ],
+        "servingStyles": [
+          "Meilleur à la sortie du four",
+          "Garni de pistaches concassées",
+          "Filet de lait concentré sucré en option, pour plus de gourmandise",
+          "Servi en ramequins individuels ou dans un plat à partager",
+          "Accompagné de café arabe ou de thé"
+        ],
+        "cookingMethods": [
+          "Cuire à 200 °C pendant 20 à 25 minutes",
+          "Passer 2 à 3 minutes sous le gril pour un dessus plus croustillant",
+          "Alterner pâte et fruits secs, puis verser le mélange de lait chaud",
+          "Couvrir de crème entière sans mélanger"
+        ],
+        "preparationTips": [
+          "Utilisez du pain grillé imbibé de crème pour une version plus rustique",
+          "Ajoutez de l'eau de rose ou de fleur d'oranger pour une touche orientale",
+          "Incorporez du lait concentré sucré pour une version plus riche",
+          "Surveillez de près le passage sous le gril pour éviter que ça ne brûle"
+        ],
+        "celebrationOccasions": [
+          "Desserts de l'iftar pendant le ramadan",
+          "Banquets et fêtes de l'Aïd",
+          "Mariages et grandes occasions",
+          "Cartes des cafés et déjeuners de famille du vendredi"
+        ]
+      },
+      "riceMuammar": {
+        "name": "Riz muammar",
+        "description": "Plat traditionnel égyptien de riz cuit lentement au four dans du lait et de la crème, servi dans un plat en terre cuite. On obtient un gratin crémeux au dessus doré, avec une croûte croustillante et un cœur riche et beurré. Très apprécié à la campagne et en Haute-Égypte pour les déjeuners du vendredi et les repas de famille.",
+        "cookingTime": "Environ 60 à 75 minutes",
+        "priceRange": "150 EGP",
+        "culturalStory": "Le nom « muammar » signifie « enrichi » et renvoie au lait et à la crème qui entrent dans sa composition. La cuisson traditionnelle en plat de terre cuite donne la meilleure croûte croustillante et reste particulièrement populaire dans les cuisines rurales égyptiennes.",
+        "ingredients": [
+          "Riz à grain court",
+          "Lait entier",
+          "Crème à cuisiner",
+          "Ghee",
+          "Poulet ou bœuf",
+          "Sel",
+          "Poivre",
+          "Feuille de laurier"
+        ],
+        "bestLocations": [
+          "Restaurants de Haute-Égypte",
+          "Cuisines familiales rurales",
+          "Maisons égyptiennes traditionnelles",
+          "Tables du déjeuner du vendredi"
+        ],
+        "signatureTraits": [
+          "Cuit au four dans un plat en terre ou en céramique",
+          "Intérieur crémeux caractéristique et croûte dorée et croustillante",
+          "Peut être salé avec de la viande ou sucré en dessert",
+          "Des ingrédients simples pour un résultat très réconfortant",
+          "Populaire dans les campagnes égyptiennes"
+        ],
+        "servingStyles": [
+          "Servi bien chaud, directement dans le plat de cuisson",
+          "Accompagné d'une salade ou de yaourt",
+          "À partager en famille, à même le plat en terre",
+          "Avec le contraste entre le dessus croustillant et la base crémeuse",
+          "En plat central du déjeuner du vendredi"
+        ],
+        "cookingMethods": [
+          "Cuire à 200 °C pendant 45 à 60 minutes",
+          "Couvrir de papier aluminium, puis découvrir pour obtenir une croûte dorée",
+          "Utiliser un plat en terre cuite pour la meilleure texture croustillante",
+          "Disposer la viande au fond, puis le riz et le mélange lacté par-dessus"
+        ],
+        "preparationTips": [
+          "Utilisez un plat en terre cuite, si vous en avez un, pour la meilleure croûte",
+          "Faites légèrement revenir la viande avant de l'ajouter, pour plus de goût",
+          "Mélangez lait et lait évaporé pour un résultat plus riche",
+          "Ajoutez un clou de girofle entier ou une feuille de laurier pour un arôme discret"
+        ],
+        "regionalVariations": [
+          "Version salée, avec des morceaux de poulet ou de bœuf",
+          "Version sucrée (muammar helw), avec du sucre et de la vanille",
+          "Façon Haute-Égypte, avec des épices entières",
+          "Version campagnarde, avec plus de ghee et de l'ishta"
+        ]
+      },
+      "hawawshi": {
+        "name": "Hawawshi",
+        "description": "Le classique pain égyptien farci à la viande : du bœuf ou de l'agneau hachés et épicés, mêlés de légumes et d'herbes, glissés dans du pain baladi et cuits au four jusqu'à être croustillants et dorés dehors, avec une farce bien juteuse dedans.",
+        "cookingTime": "Environ 25 minutes",
+        "priceRange": "200 EGP",
+        "culturalStory": "Né dans les quartiers populaires du Caire comme un repas rapide et rassasiant, il est devenu l'une des street foods les plus aimées d'Égypte. Souvent comparé à un friand à la viande moyen-oriental ou à un burger épicé en pain pita, il est apprécié en en-cas de rue, en repas de famille ou lors des fêtes.",
+        "ingredients": [
+          "Bœuf ou agneau hachés",
+          "Pain baladi",
+          "Oignon",
+          "Poivron",
+          "Ail",
+          "Piment vert",
+          "Persil",
+          "Cumin",
+          "Paprika",
+          "Cannelle",
+          "Piment de la Jamaïque"
+        ],
+        "bestLocations": [
+          "Restaurant El Refai",
+          "Vendeurs de street food",
+          "Grillades de quartier",
+          "Échoppes de rue du Caire"
+        ],
+        "signatureTraits": [
+          "Croustillant et doré à l'extérieur",
+          "Farce de viande épicée et juteuse à l'intérieur",
+          "Généreux en oignons, en poivrons et en épices chaudes",
+          "Équilibre parfait entre texture et saveur"
+        ],
+        "servingStyles": [
+          "Coupé en deux ou en quatre",
+          "Servi avec une sauce au tahini",
+          "Accompagné de pickles",
+          "Avec une salade fraîche à côté"
+        ],
+        "cookingMethods": [
+          "Au four : 200 °C pendant 20 à 25 minutes, en le retournant à mi-cuisson",
+          "À la poêle : 5 à 7 minutes par face, à feu moyen"
+        ],
+        "regionalVariations": [
+          "Hawawshi alexandrin : version plus relevée, dans une pâte pétrie du jour",
+          "Touche moderne : du fromage est ajouté pour plus de gourmandise",
+          "Version plus légère : avec du pain pita complet"
+        ]
+      },
+      "karkade": {
+        "name": "Karkadé",
+        "description": "L'infusion d'hibiscus traditionnelle d'Égypte, préparée à partir de pétales séchés d'Hibiscus sabdariffa. D'un cramoisi profond, au goût acidulé et fruité proche de la canneberge. Riche en antioxydants et sans caféine.",
+        "cookingTime": "Environ 10 minutes (à chaud) / 6 à 12 heures (à froid)",
+        "priceRange": "40 EGP",
+        "culturalStory": "Également orthographiée karkaday ou karkadi, cette boisson traditionnelle a une grande portée culturelle en Égypte. Servie lors des mariages et des fêtes, c'est l'une des favorites du ramadan pour rompre le jeûne. On lui prête des vertus médicinales : faire baisser la tension artérielle, faciliter la digestion et soutenir la santé du foie. Elle se prépare à froid (la méthode égyptienne traditionnelle, au goût plus doux) ou à chaud, pour une saveur plus marquée.",
+        "ingredients": [
+          "Pétales d'hibiscus séchés",
+          "Eau",
+          "Sucre",
+          "En option : citron, cannelle, clou de girofle"
+        ],
+        "bestLocations": [
+          "Vendeurs de rue d'Assouan",
+          "Cafés traditionnels",
+          "Cafés de rue du Caire avec chicha",
+          "Célébrations de mariage",
+          "Tables de l'iftar pendant le ramadan"
+        ],
+        "servingStyles": [
+          "Chaude, en infusion réconfortante",
+          "Froide, en boisson rafraîchissante d'été",
+          "À l'eau de rose, pour une touche florale",
+          "Infusée au gingembre ou à la menthe",
+          "Allongée d'eau gazeuse, en soda à l'hibiscus"
+        ],
+        "healthBenefits": [
+          "Fait baisser la tension artérielle (étudié cliniquement)",
+          "Facilite la digestion",
+          "Soutient la santé du foie",
+          "Riche en vitamine C et en antioxydants",
+          "Alternative sans caféine au thé et au café"
+        ],
+        "preparationMethods": [
+          "À froid : laisser infuser les pétales 6 à 12 heures pour une saveur plus douce",
+          "À chaud : laisser frémir 10 à 15 minutes pour un goût plus marqué"
+        ]
+      }
+    },
+    "allergens": {
+      "gluten": "Gluten",
+      "nuts": "Fruits à coque",
+      "dairy": "Produits laitiers"
+    },
+    "cameraError": "L'accès à la caméra a été refusé. Activez les autorisations de caméra pour utiliser les fonctions de RA."
   },
   "airportTransfers": {
     "common": {

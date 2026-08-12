@@ -70,6 +70,11 @@ function isProse(s) {
   if (/^[#/.]/.test(t)) return false; // route / selector
   if (/^https?:|@|\.com|\.svg|\.png|\.jpg|\.webp/.test(t)) return false;
   if (/[{}<>=]/.test(t)) return false;
+  // `{triedCount > 0 && triedCount < 3 && ...}` reads to the JSX text-node rule
+  // as the text " 0 && triedCount " between a > and a <. Copy never contains a
+  // logical operator, so this costs nothing and removes the whole false-positive
+  // class that comparisons inside JSX expressions create.
+  if (/&&|\|\||=>/.test(t)) return false;
   if (/^[A-Z_]+$/.test(t)) return false; // CONSTANT
   if (/\b(px|rem|flex|grid|bg-|text-|w-full|rounded|border|gap-|mt-|mb-|p-\d)\b/.test(t)) return false;
   if (/^\d/.test(t) && !/[a-z]{3}/.test(t)) return false;

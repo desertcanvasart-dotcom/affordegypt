@@ -809,14 +809,14 @@
     },
     "filters": {
       "searchPlaceholder": "Gerichte suchen...",
-      "foundDishes": "{count} Gerichte gefunden",
       "regions": {
         "all": "Alle Regionen",
         "cairo": "Kairo",
         "alexandria": "Alexandria",
         "upperEgypt": "Oberägypten",
         "nileDelta": "Nil-Delta",
-        "aswan": "Assuan"
+        "aswan": "Assuan",
+        "allEgypt": "Ganz Ägypten"
       },
       "categories": {
         "all": "Alle Kategorien",
@@ -831,7 +831,9 @@
         "easy": "Einfach",
         "medium": "Mittel",
         "hard": "Schwer"
-      }
+      },
+      "foundDishes_one": "{{count}} Gericht gefunden",
+      "foundDishes_other": "{{count}} Gerichte gefunden"
     },
     "dish": {
       "spiceLevel": "Schärfegrad",
@@ -864,59 +866,484 @@
       "healthyScore": "Gesundheitswert",
       "bestPlacesToTry": "Beste Orte zum Probieren"
     },
-    "descriptions": {
-      "koshari": "Ägyptens Nationalgericht - ein herzhaftes, würziges und einzigartig befriedigendes Streetfood, das durch Schichten von Linsen, Reis, Nudeln, Kichererbsen und knusprigen gebratenen Zwiebeln zubereitet wird, dann mit knoblauchiger Tomatensauce und optionalem würzigem Essig-Chili-Dressing übergossen wird.",
-      "fulMedames": "Ägyptens ikonischstes Frühstücksgericht aus langsam gekochten Ackerbohnen, typisch gewürzt mit Olivenöl, Knoblauch, Zitronensaft und Gewürzen. Tief verwurzelt im ägyptischen Alltag, vielseitig und reich an Proteinen und Ballaststoffen.",
-      "mahshi": "Traditionelles ägyptisches gefülltes Gemüse - typisch Zucchini, Auberginen, Paprika und Weinblätter gefüllt mit aromatischer Reis- und Kräutermischung. Langsam in Tomatenbrühe gekocht bis zart und geschmackvoll.",
-      "molokhia": "Tiefgrüne Blättersuppe aus fein gehackten Malvenblättern. Eines der ältesten Gerichte Ägyptens, oft mit Huhn oder Kaninchen, Reis und einem Spritzer Zitrone serviert.",
-      "roz": "Ägyptens Wohlfühlessen - cremiger Milchreis mit Milch, Zucker und aromatischen Gewürzen wie Vanille und Zimt. Oft mit Nüssen garniert und warm oder kalt serviert.",
-      "ricemuammar": "Traditionelles ägyptisches gebackenes Reisgericht, langsam in Milch und Sahne gekocht, in Ton-Tajine serviert. Schafft einen cremigen, goldenen Auflauf mit knuspriger Kruste und reichem, buttrigem Kern.",
-      "hawawshi": "Klassisches ägyptisches fleischgefülltes Brot - gewürztes Hackfleisch oder Lamm gemischt mit Gemüse und Kräutern, in Baladi-Brot gestopft und gebacken bis es außen knusprig golden und innen saftig gefüllt ist.",
-      "karkade": "Traditioneller ägyptischer Hibiskustee aus getrockneten Hibiscus sabdariffa-Blütenblättern. Tiefkarmesinrote Farbe, herber und fruchtiger Geschmack ähnlich Cranberry. Reich an Antioxidantien und koffeinfrei.",
-      "baladibre": "Ägyptens traditionelles Vollkorn-Fladenbrot, ein Grundpfeiler des alltäglichen ägyptischen Lebens. Das Wort 'baladi' bedeutet 'traditionell' oder 'lokal'. Ähnlich wie Pita, aber aus 100% Vollkornmehl hergestellt, bei hoher Hitze gebacken, wodurch eine aufgeblähte Tasche entsteht.",
-      "umm": "Ägyptens berühmtester und tröstendster Nachtisch, der 'Alis Mutter' bedeutet. Reichhaltiges, cremiges Brotpudding-ähnliches Gericht mit Teig, Nüssen, Milch und Sahne, gebacken bis es sprudelt und golden wird. Verbunden mit Feiern, Ramadan und besonderen Anlässen."
-    },
-    "culturalStories": {
-      "koshari": "Im 19. Jahrhundert durch Mischung verschiedener Getreidearten von verschiedenen Kulturen, die in Ägypten handelten, entstanden. Obwohl bescheidenen Ursprungs, ist Koshari ein Symbol ägyptischer Kreativität, serviert in Häusern, Straßenständen und Restaurants von Kairo bis Assuan. Es repräsentiert das ultimative ägyptische Straßen-Comfort-Food."
-    },
-    "servingStyles": {
-      "koshari": [
-        "Schichtweise in tiefer Schüssel beginnend mit Reis serviert",
-        "Gekrönt mit Linsen, Nudeln und Kichererbsen",
-        "Bedeckt mit knoblauchiger Tomatensauce",
-        "Abgeschlossen mit knusprigen gebratenen Zwiebeln",
-        "Optional würzige Essigsauce (Da'a) an der Seite"
-      ]
-    },
-    "signatureTraits": {
-      "koshari": [
-        "Herzhaft und sättigend - eine vollständige Mahlzeit in einer Schüssel",
-        "Natürlich vegan (kein Fleisch oder Milchprodukte)",
-        "Geschichtete Texturen: knusprig, weich, zäh",
-        "Kräftige, würzige, würzige Aromen",
-        "Erschwinglich und weit verbreitet"
-      ]
-    },
-    "cookingMethods": {
-      "koshari": [
-        "Jede Komponente separat kochen für beste Textur",
-        "Zwiebeln goldbraun und knusprig braten (10-15 Minuten)",
-        "Tomatensauce 15-20 Minuten köcheln lassen bis eingedickt",
-        "Komponenten kurz vor dem Servieren schichten für optimale Textur"
-      ]
-    },
-    "preparationTips": {
-      "koshari": [
-        "Extra gebratene Zwiebeln machen - sie verschwinden zuerst",
-        "Alle Elemente im Voraus vorbereiten und vor dem Servieren zusammenfügen",
-        "Prise Baharat (ägyptische Gewürzmischung) für authentischen Geschmack hinzufügen",
-        "Lässt sich gut aufwärmen, ideal für Meal Prep"
-      ]
-    },
     "badges": {
       "traditionalDish": "Traditionelles Ägyptisches Gericht",
       "traditionalDrink": "Traditionelles Ägyptisches Getränk"
-    }
+    },
+    "dishes": {
+      "koshari": {
+        "name": "Koshari",
+        "description": "Ägyptens Nationalgericht – ein sättigendes, würziges und einzigartig wohltuendes Streetfood aus Schichten von Linsen, Reis, Nudeln und Kichererbsen, gekrönt von knusprigen Röstzwiebeln und übergossen mit Knoblauch-Tomatensauce sowie wahlweise einer scharfen Essig-Chili-Sauce.",
+        "cookingTime": "Etwa 45 Minuten",
+        "priceRange": "Unter 60 EGP",
+        "culturalStory": "Entstanden im 19. Jahrhundert aus der Mischung verschiedener Getreidegerichte der in Ägypten handelnden Kulturen. So bescheiden sein Ursprung ist, gilt Koshari als Sinnbild ägyptischen Einfallsreichtums: Man isst es zu Hause, an Straßenständen und im Restaurant, von Kairo bis Assuan. Es ist das ägyptische Wohlfühlessen schlechthin.",
+        "ingredients": [
+          "Braune Linsen",
+          "Weißer Reis",
+          "Kleine Nudeln",
+          "Kichererbsen",
+          "Zwiebeln",
+          "Knoblauch",
+          "Passierte Tomaten",
+          "Weißweinessig",
+          "Kreuzkümmel",
+          "Chiliflocken"
+        ],
+        "bestLocations": [
+          "Abou Tarek – Innenstadt von Kairo",
+          "Koshari El Tahrir",
+          "Koshari Hind",
+          "Straßenstände in ganz Ägypten"
+        ],
+        "signatureTraits": [
+          "Sättigend und reichhaltig – eine ganze Mahlzeit in einer Schüssel",
+          "Von Natur aus vegan (ohne Fleisch und Milchprodukte)",
+          "Texturen in Schichten: knusprig, weich, bissfest",
+          "Kräftige, würzige und säuerliche Aromen",
+          "Günstig und fast überall zu bekommen"
+        ],
+        "servingStyles": [
+          "In einer tiefen Schüssel geschichtet, beginnend mit dem Reis",
+          "Mit Linsen, Nudeln und Kichererbsen bedeckt",
+          "Mit Knoblauch-Tomatensauce übergossen",
+          "Mit knusprigen Röstzwiebeln abgerundet",
+          "Scharfe Essigsauce (Da'a) nach Wunsch dazu"
+        ],
+        "cookingMethods": [
+          "Jede Komponente einzeln garen, damit die Textur stimmt",
+          "Zwiebeln goldbraun und knusprig frittieren (10–15 Minuten)",
+          "Tomatensauce 15–20 Minuten einkochen, bis sie andickt",
+          "Erst kurz vor dem Servieren schichten, damit die Textur erhalten bleibt"
+        ],
+        "preparationTips": [
+          "Machen Sie mehr Röstzwiebeln, als Sie brauchen – sie sind immer zuerst weg",
+          "Alle Komponenten vorbereiten und erst beim Servieren zusammensetzen",
+          "Eine Prise Baharat (ägyptische Gewürzmischung) sorgt für authentischen Geschmack",
+          "Lässt sich gut aufwärmen und eignet sich damit bestens zum Vorkochen"
+        ]
+      },
+      "fulMedames": {
+        "name": "Ful Medames",
+        "description": "Ägyptens bekanntestes Frühstücksgericht aus langsam gegarten Saubohnen, meist abgeschmeckt mit Olivenöl, Knoblauch, Zitronensaft und Gewürzen. Tief im ägyptischen Alltag verwurzelt, vielseitig und reich an Eiweiß und Ballaststoffen.",
+        "cookingTime": "Etwa 6 Stunden (traditionelles langsames Garen; die Rezepte variieren)",
+        "priceRange": "Unter 25 EGP",
+        "culturalStory": "Ein uraltes Gericht, das bis in die Pharaonenzeit zurückreicht und traditionell über Nacht in vergrabenen Tontöpfen gegart wurde. Millionen Ägypterinnen und Ägypter essen es täglich – von den einfachen Straßenkarren in Kairo bis in die Küchen im ganzen Land.",
+        "ingredients": [
+          "Gekochte Saubohnen",
+          "Olivenöl",
+          "Knoblauch",
+          "Zitronensaft",
+          "Gemahlener Kreuzkümmel",
+          "Salz",
+          "Schwarzer Pfeffer"
+        ],
+        "bestLocations": [
+          "Restaurant Al Malky",
+          "Traditionelle Straßenkarren",
+          "Cafés im Viertel",
+          "Frühstücksverkäufer auf der Straße"
+        ],
+        "signatureTraits": [
+          "Cremig oder stückig (je nach Vorliebe)",
+          "Erdiger Geschmack mit Knoblauch und Zitrone, manchmal auch scharf",
+          "Vegan und gesund – viel Eiweiß und viele Ballaststoffe",
+          "Nationaler Liebling, den Millionen täglich essen",
+          "Das bekannteste ägyptische Frühstücksgericht"
+        ],
+        "servingStyles": [
+          "Mit warmem Baladi-Brot oder Pitabrot serviert",
+          "Mit hartgekochten Eiern",
+          "Mit gewürfelten Tomaten, Zwiebeln oder Petersilie garniert",
+          "Dazu eingelegtes Gemüse (Torshi)",
+          "Wahlweise ein Spritzer Tahini oder gehackte grüne Chilis"
+        ],
+        "cookingMethods": [
+          "Die Bohnen im Topf mit einem Schuss Wasser sanft erwärmen",
+          "Mit der Gabel leicht zerdrücken, bis die gewünschte Textur erreicht ist",
+          "Würzen und 2–3 Minuten ziehen lassen",
+          "Sofort servieren, solange es warm ist"
+        ],
+        "preparationTips": [
+          "Verwenden Sie gekochte Saubohnen oder gute Konserven",
+          "Stampfen Sie so viel oder so wenig, wie es Ihnen schmeckt",
+          "Zitronensaft und Olivenöl ausbalancieren – das macht den Geschmack aus",
+          "Sofort servieren, dann stimmen Temperatur und Aroma"
+        ],
+        "regionalVariations": [
+          "Ful Eskandrani (aus Alexandria): kalt serviert mit Chili, Tomaten, Petersilie und Essig",
+          "Ful mit gekochtem Ei: das klassische Straßenfrühstück",
+          "Ful bel Dabba (mit Butter): cremige, üppige Restaurantversion",
+          "Scharfes Ful: mit Harissa oder frischem Chiliöl"
+        ]
+      },
+      "molokhia": {
+        "name": "Molokhia",
+        "description": "Tiefgrüne Blattsuppe aus fein gehackten Blättern der Langkapsel-Jute. Eines der ältesten Gerichte Ägyptens, es reicht bis in die Pharaonenzeit zurück. Sanft, kräftig nach Knoblauch und voller Umami, mit der charakteristisch leicht schleimigen Textur.",
+        "cookingTime": "Etwa 30 Minuten",
+        "priceRange": "120 EGP",
+        "culturalStory": "In der Pharaonenzeit war es dem einfachen Volk verboten, weil es als Speise der Herrscher galt. Es ist eines der ältesten und beliebtesten Gerichte Ägyptens und für Generationen von Ägyptern der Inbegriff von Wohlfühlessen.",
+        "ingredients": [
+          "Molokhia-Blätter",
+          "Knoblauch",
+          "Gemahlener Koriander",
+          "Hühnerbrühe",
+          "Ghee oder Butter",
+          "Zitronensaft",
+          "Salz"
+        ],
+        "bestLocations": [
+          "Café Naguib Mahfouz",
+          "Traditionelle Familienrestaurants",
+          "Hotelrestaurants",
+          "Ländliche ägyptische Haushalte"
+        ],
+        "signatureTraits": [
+          "Dickflüssige, leicht zähe Textur (ähnlich wie Okra)",
+          "Erdig, knoblauchbetont und reich an Koriander",
+          "Uraltes Gericht mit pharaonischem Ursprung",
+          "Das ägyptische Wohlfühlessen schlechthin",
+          "Unverwechselbar schleimige Konsistenz"
+        ],
+        "servingStyles": [
+          "Auf weißem Reis oder Reis mit Fadennudeln serviert",
+          "Mit Baladi-Brot",
+          "Mit einem Spritzer frischer Zitrone",
+          "Dazu scharfer Chili-Essig",
+          "Mit gegrilltem Fleisch oder Fisch als Beilage"
+        ],
+        "cookingMethods": [
+          "Niemals kochen – nur sanft erhitzen, damit die Textur erhalten bleibt",
+          "Nach dem Einrühren in die Brühe nur ein einziges Mal umrühren",
+          "3–5 Minuten erhitzen, bis sie heiß und angedickt ist",
+          "Die Tasha (Knoblauch-Koriander-Mischung) zischend heiß einrühren"
+        ],
+        "preparationTips": [
+          "Frische Molokhia muss so fein gehackt werden, bis sie fast pastös ist",
+          "Tiefgekühlte Molokhia ist eine gute und bequeme Alternative",
+          "Die Tasha getrennt zubereiten, damit sich das Aroma richtig entfaltet",
+          "Nicht zu viel rühren, sonst wird sie schleimig"
+        ],
+        "regionalVariations": [
+          "Alexandrinische Art: mit gehackten Tomaten, serviert mit Meeresfrüchten",
+          "Palästinensisch-libanesische Art: ganze Blätter, eher eintopfartig",
+          "Ländliches Ägypten: traditionell zu Festen mit Kaninchen serviert",
+          "Moderne Varianten: mit Essig-Chili-Dip an der Seite"
+        ]
+      },
+      "mahshi": {
+        "name": "Mahshi",
+        "description": "Ägyptens Klassiker aus Gemüse, das mit gewürztem Reis gefüllt und langsam in leichter Tomatenbrühe geschmort wird. Dazu gehören Zucchini, Auberginen, Paprika, Tomaten, Kohl- und Weinblätter. Eng verbunden mit Familientreffen und Feiern.",
+        "cookingTime": "Etwa 90 Minuten",
+        "priceRange": "150 EGP",
+        "culturalStory": "Ein Gericht osmanischen Ursprungs, das sich tief in die ägyptische Familientradition eingeschrieben hat. Es wird oft auf großen Blechen zubereitet, um es bei Familientreffen, Festessen und Feiern zu teilen. Der Name bedeutet auf Arabisch wörtlich „gefüllt“.",
+        "ingredients": [
+          "Zucchini",
+          "Paprika",
+          "Ägyptischer Reis",
+          "Zwiebel",
+          "Tomatenmark",
+          "Petersilie",
+          "Dill",
+          "Koriandergrün",
+          "Pflanzenöl",
+          "Kreuzkümmel",
+          "Gemahlener Koriander"
+        ],
+        "bestLocations": [
+          "Familienrestaurants in Alexandria",
+          "Traditionelle Haushalte",
+          "Restaurants an der Küste",
+          "Familienessen am Freitag"
+        ],
+        "signatureTraits": [
+          "Gemüse, gefüllt mit gewürztem Reis",
+          "Langsam in Tomatenbrühe geschmort, für maximales Aroma",
+          "Krautig, knoblauchbetont, gehaltvoll und wohltuend",
+          "Von Natur aus vegetarisch, oft vegan",
+          "Perfekt für Familientreffen und Feiern"
+        ],
+        "servingStyles": [
+          "Aufrecht auf der Servierplatte angerichtet",
+          "Mit etwas Schmorbrühe übergossen",
+          "Mit Joghurt oder grünem Salat serviert",
+          "Dazu Zitronenspalten",
+          "Mit Pickles oder Molokhia als vollständige Mahlzeit"
+        ],
+        "cookingMethods": [
+          "Das Gemüse vorsichtig mit einem Aushöhler entkernen",
+          "Nur zu zwei Dritteln füllen, damit der Reis aufgehen kann",
+          "Mit einer Lage Kartoffelscheiben auslegen, damit nichts anhaftet",
+          "45–60 Minuten sanft schmoren, bis alles weich ist"
+        ],
+        "preparationTips": [
+          "Verwenden Sie kurzkörnigen ägyptischen Reis für die beste Textur",
+          "Den Reis nicht vorgaren – er gart im Gemüse",
+          "Den Saft der ausgehöhlten Tomaten für die Brühe aufbewahren",
+          "Wird beim Familienessen am Freitag, zum Eid und zu besonderen Anlässen serviert"
+        ],
+        "regionalVariations": [
+          "Oberägypten: Besonders beliebt sind die Varianten mit Kohl- und Weinblättern",
+          "Nildelta: Traditionelle Kohlrouladen sind hier verbreitet",
+          "Variante mit Fleisch: Hackfleisch im Reis macht das Gericht gehaltvoller",
+          "Küstenregionen: oft mit Meeresfrüchten als Beilage"
+        ]
+      },
+      "baladiBread": {
+        "name": "Baladi-Brot",
+        "description": "Ägyptens traditionelles Fladenbrot und ein Eckpfeiler des ägyptischen Alltags. Das Wort „baladi“ bedeutet „lokal“ oder „ländlich“. Es wird meist mit etwa 50 % Vollkornmehl gebacken, bei großer Hitze, sodass sich eine Tasche bildet; nicht alle Rezepte sind zu 100 % Vollkorn.",
+        "cookingTime": "Etwa 3 Stunden, Gehzeit inklusive",
+        "priceRange": "5 EGP",
+        "culturalStory": "Seit über 5000 Jahren ein wesentlicher Teil der ägyptischen Kultur, oft „Aysh“ genannt, was Leben bedeutet. Schlicht, sättigend und tief in der ägyptischen Kultur verwurzelt – dieses Brot verkörpert den traditionellen lokalen Geist.",
+        "ingredients": [
+          "Vollkornweizenmehl",
+          "Weizenmehl Type 550",
+          "Trockenhefe",
+          "Zucker",
+          "Salz",
+          "Warmes Wasser",
+          "Olivenöl"
+        ],
+        "bestLocations": [
+          "Bäckereien im Viertel",
+          "Straßenverkäufer",
+          "Jeder ägyptische Tisch",
+          "Furn Baladi (Lehmöfen)"
+        ],
+        "signatureTraits": [
+          "Vollkorn, rund und flach",
+          "Geht beim Backen auf und bildet innen eine Tasche",
+          "Weich, aber leicht bissfest, mit nussig-erdigem Geschmack",
+          "Von Natur aus vegan, ohne Milchprodukte und Eier",
+          "Wird zu fast jeder ägyptischen Mahlzeit gereicht"
+        ],
+        "servingStyles": [
+          "Zum Frühstück, mit Ful Medames",
+          "Zum Auftunken von Molokhia oder Koshari",
+          "Als Hülle für Kebda-Sandwiches (Leber)",
+          "Zu Taameya (ägyptische Falafel)",
+          "Mit Dips wie Tahini, Baba Ghanoush oder Duqqa"
+        ],
+        "cookingMethods": [
+          "Auf heißem Backstein oder gusseiserner Platte gebacken",
+          "Bei 250 °C 5–7 Minuten gebacken",
+          "Geht beim Backen mit großer Hitze auf",
+          "Lässt sich zu Hause auch ohne speziellen Ofen backen"
+        ],
+        "preparationTips": [
+          "Ein vorgeheizter Pizzastein ahmt den Lehmofen gut nach",
+          "Den geformten Teig nicht mehr bearbeiten, damit er sicher aufgeht",
+          "Etwas helles Mehl macht den Teig beim modernen Backen elastischer",
+          "Im verschlossenen Beutel 2–3 Tage haltbar, länger im Gefrierfach"
+        ],
+        "traditionalUses": [
+          "Begleitet Mahshi und andere Hauptgerichte",
+          "Unverzichtbar für ein echtes ägyptisches Frühstück",
+          "Dient zum Einwickeln und Auftunken von Speisen",
+          "Sinnbild für Lebensunterhalt in der ägyptischen Kultur"
+        ]
+      },
+      "ummAli": {
+        "name": "Umm Ali",
+        "description": "Ägyptens berühmtestes und wohltuendstes Dessert; der Name bedeutet „Alis Mutter“. Eine gehaltvolle, cremige Süßspeise nach Art eines Brotpuddings, mit Blätterteig, Nüssen, Milch und Sahne, goldbraun und blubbernd gebacken. Verbunden mit Festen, dem Ramadan und besonderen Anlässen.",
+        "cookingTime": "Etwa 20 Minuten",
+        "priceRange": "100 EGP",
+        "culturalStory": "Benannt nach der Frau von Sultan Ezz El Din Aybek und geschaffen, um einen Sieg zu feiern. Oft als ägyptische Version des Brotpuddings mit orientalischer Note beschrieben, reichlich gefüllt mit Nüssen, Kokos und mitunter Rosinen.",
+        "ingredients": [
+          "Blätterteig",
+          "Vollmilch",
+          "Schlagsahne",
+          "Zucker",
+          "Gemischte Nüsse",
+          "Kokosraspeln",
+          "Rosinen",
+          "Vanilleextrakt"
+        ],
+        "bestLocations": [
+          "Café Groppi",
+          "Traditionelle Cafés",
+          "Hotelrestaurants",
+          "Iftar-Tafeln im Ramadan"
+        ],
+        "signatureTraits": [
+          "Warm serviert, direkt aus dem Ofen",
+          "Knusprig-goldene Oberfläche, darunter cremig und weich",
+          "Mit Blätterteig, Filoteig oder Brot zubereitet",
+          "Ohne Eier – anders als westliche Brotpuddings",
+          "Gehaltvoll, festlich und zutiefst befriedigend"
+        ],
+        "servingStyles": [
+          "Am besten frisch aus dem Ofen",
+          "Mit gehackten Pistazien garniert",
+          "Nach Wunsch mit einem Schuss Kondensmilch, für noch mehr Genuss",
+          "In einzelnen Förmchen oder in einer Form zum Teilen serviert",
+          "Dazu arabischer Kaffee oder Tee"
+        ],
+        "cookingMethods": [
+          "Bei 200 °C 20–25 Minuten backen",
+          "Weitere 2–3 Minuten überbacken, für eine knusprigere Oberfläche",
+          "Teig und Nüsse schichten und die heiße Milchmischung angießen",
+          "Mit Sahne bedecken, ohne umzurühren"
+        ],
+        "preparationTips": [
+          "In Sahne getränktes Toastbrot ergibt eine rustikalere Version",
+          "Rosen- oder Orangenblütenwasser gibt eine orientalische Note",
+          "Gezuckerte Kondensmilch macht die Süßspeise noch gehaltvoller",
+          "Beim Überbacken genau hinschauen, damit nichts verbrennt"
+        ],
+        "celebrationOccasions": [
+          "Desserts zum Iftar im Ramadan",
+          "Festessen und Feiern zum Eid",
+          "Hochzeiten und besondere Anlässe",
+          "Cafékarten und Familienessen am Freitag"
+        ]
+      },
+      "riceMuammar": {
+        "name": "Reis Muammar",
+        "description": "Traditionelles ägyptisches Gericht aus Reis, der langsam in Milch und Sahne gebacken und in einer Tonform serviert wird. Es entsteht ein cremiger Auflauf mit goldener Oberfläche, knuspriger Kruste und gehaltvollem, buttrigem Kern. Auf dem Land und in Oberägypten beliebt für das Freitagsessen und für Familienrunden.",
+        "cookingTime": "Etwa 60–75 Minuten",
+        "priceRange": "150 EGP",
+        "culturalStory": "Der Name „Muammar“ bedeutet „angereichert“ und verweist auf die reichlich verwendete Milch und Sahne. Die traditionelle Zubereitung in der Tonform ergibt die beste knusprige Kruste und ist besonders in ländlichen ägyptischen Küchen verbreitet.",
+        "ingredients": [
+          "Rundkornreis",
+          "Vollmilch",
+          "Kochsahne",
+          "Ghee",
+          "Hähnchen oder Rind",
+          "Salz",
+          "Pfeffer",
+          "Lorbeerblatt"
+        ],
+        "bestLocations": [
+          "Restaurants in Oberägypten",
+          "Ländliche Familienküchen",
+          "Traditionelle ägyptische Haushalte",
+          "Tische beim Freitagsessen"
+        ],
+        "signatureTraits": [
+          "In Ton- oder Keramikform gebacken",
+          "Charakteristisch cremiges Inneres mit goldener, knuspriger Kruste",
+          "Herzhaft mit Fleisch oder süß als Dessert möglich",
+          "Einfache Zutaten mit zutiefst wohltuendem Ergebnis",
+          "Auf dem ägyptischen Land beliebt"
+        ],
+        "servingStyles": [
+          "Warm serviert, direkt aus der Form",
+          "Dazu Salat oder Joghurt",
+          "Zum Teilen in der Familie, direkt aus dem Tontopf",
+          "Mit dem Kontrast aus knuspriger Kruste und cremigem Boden",
+          "Als Mittelpunkt des Freitagsessens"
+        ],
+        "cookingMethods": [
+          "Bei 200 °C 45–60 Minuten backen",
+          "Mit Folie abdecken, dann abdecken, damit die Kruste bräunt",
+          "Für die beste knusprige Textur eine Tonform verwenden",
+          "Das Fleisch nach unten schichten, darüber Reis und Milchmischung"
+        ],
+        "preparationTips": [
+          "Wenn vorhanden, eine Tonform verwenden – das gibt die beste Kruste",
+          "Das Fleisch vorher leicht anbraten, das gibt mehr Aroma",
+          "Milch und Kondensmilch mischen, dann wird es besonders gehaltvoll",
+          "Eine ganze Gewürznelke oder ein Lorbeerblatt gibt ein feines Aroma"
+        ],
+        "regionalVariations": [
+          "Herzhafte Version mit Hähnchen- oder Rindfleischstücken",
+          "Süße Version (Muammar Helw) mit Zucker und Vanille",
+          "Oberägyptische Art, mit ganzen Gewürzen",
+          "Ländliche Version, mit mehr Ghee und Ishta"
+        ]
+      },
+      "hawawshi": {
+        "name": "Hawawshi",
+        "description": "Das klassische ägyptische Fleischbrot – gewürztes Rinder- oder Lammhack, gemischt mit Gemüse und Kräutern, in Baladi-Brot gefüllt und gebacken, bis es außen knusprig und goldbraun ist und die Füllung innen saftig bleibt.",
+        "cookingTime": "Etwa 25 Minuten",
+        "priceRange": "200 EGP",
+        "culturalStory": "Entstanden in den Arbeitervierteln Kairos als schnelle, sättigende Mahlzeit und heute eines der beliebtesten Streetfoods Ägyptens. Oft mit einer nahöstlichen Fleischpastete oder einem gewürzten Burger im Pitabrot verglichen, ist es als Snack auf der Straße, Familienessen und Partygericht gleichermaßen beliebt.",
+        "ingredients": [
+          "Rinder- oder Lammhack",
+          "Baladi-Brot",
+          "Zwiebel",
+          "Paprika",
+          "Knoblauch",
+          "Grüne Chili",
+          "Petersilie",
+          "Kreuzkümmel",
+          "Paprikapulver",
+          "Zimt",
+          "Piment"
+        ],
+        "bestLocations": [
+          "Restaurant El Refai",
+          "Streetfood-Verkäufer",
+          "Grills im Viertel",
+          "Straßenstände in Kairo"
+        ],
+        "signatureTraits": [
+          "Außen knusprig und goldbraun",
+          "Innen eine saftige, gewürzte Fleischfüllung",
+          "Reichlich Zwiebeln, Paprika und warme Gewürze",
+          "Perfekte Balance aus Textur und Aroma"
+        ],
+        "servingStyles": [
+          "In Hälften oder Viertel geschnitten",
+          "Mit Tahini-Sauce serviert",
+          "Dazu Pickles",
+          "Mit frischem Salat als Beilage"
+        ],
+        "cookingMethods": [
+          "Im Ofen: 200 °C für 20–25 Minuten, nach der Hälfte wenden",
+          "In der Pfanne: 5–7 Minuten pro Seite bei mittlerer Hitze"
+        ],
+        "regionalVariations": [
+          "Alexandrinisches Hawawshi: schärfere Version in frisch geknetetem Teig",
+          "Moderne Note: mit Käse für mehr Gehalt",
+          "Leichtere Version: mit Vollkorn-Pitabrot"
+        ]
+      },
+      "karkade": {
+        "name": "Karkade",
+        "description": "Ägyptens traditioneller Hibiskustee aus getrockneten Blüten von Hibiscus sabdariffa. Tiefrot, herb und fruchtig im Geschmack, ähnlich der Cranberry. Reich an Antioxidantien und koffeinfrei.",
+        "cookingTime": "Etwa 10 Minuten (heiß) / 6–12 Stunden (kalt angesetzt)",
+        "priceRange": "40 EGP",
+        "culturalStory": "Auch Karkaday oder Karkadi geschrieben, hat dieses traditionelle Getränk in Ägypten eine große kulturelle Bedeutung. Es wird bei Hochzeiten und Festen gereicht und gehört im Ramadan zu den beliebtesten Getränken zum Fastenbrechen. Ihm werden heilsame Wirkungen nachgesagt: den Blutdruck senken, die Verdauung fördern und die Lebergesundheit unterstützen. Es lässt sich kalt ansetzen (die traditionelle ägyptische Methode, für einen milderen Geschmack) oder heiß aufbrühen, für ein kräftigeres Aroma.",
+        "ingredients": [
+          "Getrocknete Hibiskusblüten",
+          "Wasser",
+          "Zucker",
+          "Wahlweise: Zitrone, Zimt, Gewürznelke"
+        ],
+        "bestLocations": [
+          "Straßenverkäufer in Assuan",
+          "Traditionelle Cafés",
+          "Straßencafés in Kairo mit Shisha",
+          "Hochzeitsfeiern",
+          "Iftar-Tafeln im Ramadan"
+        ],
+        "servingStyles": [
+          "Heiß, als wohltuender Kräutertee",
+          "Kalt, als erfrischendes Sommergetränk",
+          "Mit Rosenwasser, für eine blumige Note",
+          "Mit Ingwer oder Minze aufgegossen",
+          "Mit Sprudelwasser gemischt, als Hibiskuslimonade"
+        ],
+        "healthBenefits": [
+          "Senkt den Blutdruck (klinisch untersucht)",
+          "Fördert die Verdauung",
+          "Unterstützt die Lebergesundheit",
+          "Reich an Vitamin C und Antioxidantien",
+          "Koffeinfreie Alternative zu Tee und Kaffee"
+        ],
+        "preparationMethods": [
+          "Kalt angesetzt: Blüten 6–12 Stunden ziehen lassen, für ein milderes Aroma",
+          "Heiß aufgebrüht: 10–15 Minuten ziehen lassen, für einen kräftigeren Geschmack"
+        ]
+      }
+    },
+    "allergens": {
+      "gluten": "Gluten",
+      "nuts": "Nüsse",
+      "dairy": "Milchprodukte"
+    },
+    "cameraError": "Kamerazugriff verweigert. Aktivieren Sie die Kameraberechtigung, um die AR-Funktionen zu nutzen."
   },
   "airportTransfers": {
     "common": {

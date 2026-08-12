@@ -809,14 +809,14 @@
     },
     "filters": {
       "searchPlaceholder": "Search dishes...",
-      "foundDishes": "Found {count} dishes",
       "regions": {
         "all": "All Regions",
         "cairo": "Cairo",
         "alexandria": "Alexandria",
         "upperEgypt": "Upper Egypt",
         "nileDelta": "Nile Delta",
-        "aswan": "Aswan"
+        "aswan": "Aswan",
+        "allEgypt": "All Egypt"
       },
       "categories": {
         "all": "All Categories",
@@ -831,7 +831,9 @@
         "easy": "Easy",
         "medium": "Medium",
         "hard": "Hard"
-      }
+      },
+      "foundDishes_one": "Found {{count}} dish",
+      "foundDishes_other": "Found {{count}} dishes"
     },
     "dish": {
       "spiceLevel": "Spice Level",
@@ -864,59 +866,484 @@
       "healthyScore": "Healthy Score",
       "bestPlacesToTry": "Best Places to Try"
     },
-    "descriptions": {
-      "koshari": "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing.",
-      "fulMedames": "Egypt's most iconic breakfast dish made from slow-cooked fava beans, typically seasoned with olive oil, garlic, lemon juice, and spices. Deeply embedded in Egyptian daily life, versatile and rich in protein and fiber.",
-      "mahshi": "Traditional Egyptian stuffed vegetables - typically zucchini, eggplant, peppers, and grape leaves filled with aromatic rice and herb mixture. Slow-cooked in tomato broth until tender and flavorful.",
-      "molokhia": "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt's most ancient dishes, often served with chicken or rabbit, rice, and a squeeze of lemon.",
-      "roz": "Egypt's comfort food - creamy rice pudding made with milk, sugar, and aromatic spices like vanilla and cinnamon. Often garnished with nuts and served warm or chilled.",
-      "ricemuammar": "Traditional Egyptian baked rice dish cooked slowly in milk and cream, served in clay tajin. Creates a creamy, golden-topped casserole with crispy crust and rich, buttery center.",
-      "hawawshi": "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside.",
-      "karkade": "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free.",
-      "baladibre": "Egypt's traditional flatbread, a cornerstone of everyday Egyptian life. The word 'baladi' means 'local' or 'country-style'. It is commonly made with around 50% whole-wheat flour and baked at high heat to form a pocket; recipes are not universally 100% whole wheat.",
-      "umm": "Egypt's most famous and comforting dessert meaning 'Ali's Mother'. Rich, creamy bread pudding-style dish with pastry, nuts, milk, and cream, baked until bubbling and golden. Associated with celebrations, Ramadan, and special occasions."
-    },
-    "culturalStories": {
-      "koshari": "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food."
-    },
-    "servingStyles": {
-      "koshari": [
-        "Layered in deep bowl starting with rice",
-        "Topped with lentils, pasta, and chickpeas",
-        "Covered in garlicky tomato sauce",
-        "Finished with crispy fried onions",
-        "Optional spicy vinegar sauce (Da'a) on the side"
-      ]
-    },
-    "signatureTraits": {
-      "koshari": [
-        "Hearty & filling - a full meal in one bowl",
-        "Naturally vegan (no meat or dairy)",
-        "Layered textures: crispy, soft, chewy",
-        "Bold, spicy, tangy flavours",
-        "Affordable & widely available"
-      ]
-    },
-    "cookingMethods": {
-      "koshari": [
-        "Cook each component separately for best texture",
-        "Fry onions until deep golden and crispy (10-15 minutes)",
-        "Simmer tomato sauce 15-20 minutes until thickened",
-        "Layer components just before serving for optimal texture"
-      ]
-    },
-    "preparationTips": {
-      "koshari": [
-        "Make extra fried onions - they disappear first",
-        "Prepare all elements in advance and assemble before serving",
-        "Add dash of baharat (Egyptian spice mix) for authentic flavor",
-        "Reheats well, making it great for meal prep"
-      ]
-    },
     "badges": {
       "traditionalDish": "Traditional Egyptian Dish",
       "traditionalDrink": "Traditional Egyptian Drink"
-    }
+    },
+    "dishes": {
+      "koshari": {
+        "name": "Koshari",
+        "description": "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing.",
+        "cookingTime": "About 45 minutes",
+        "priceRange": "Under 60 EGP",
+        "culturalStory": "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food.",
+        "ingredients": [
+          "Brown lentils",
+          "White rice",
+          "Small pasta",
+          "Chickpeas",
+          "Onions",
+          "Garlic",
+          "Crushed tomatoes",
+          "White vinegar",
+          "Cumin",
+          "Chili flakes"
+        ],
+        "bestLocations": [
+          "Abou Tarek - Downtown Cairo",
+          "Koshari El Tahrir",
+          "Koshari Hind",
+          "Street stalls throughout Egypt"
+        ],
+        "signatureTraits": [
+          "Hearty & filling - a full meal in one bowl",
+          "Naturally vegan (no meat or dairy)",
+          "Layered textures: crispy, soft, chewy",
+          "Bold, spicy, tangy flavours",
+          "Affordable & widely available"
+        ],
+        "servingStyles": [
+          "Layered in deep bowl starting with rice",
+          "Topped with lentils, pasta, and chickpeas",
+          "Covered in garlicky tomato sauce",
+          "Finished with crispy fried onions",
+          "Optional spicy vinegar sauce (Da'a) on the side"
+        ],
+        "cookingMethods": [
+          "Cook each component separately for best texture",
+          "Fry onions until deep golden and crispy (10-15 minutes)",
+          "Simmer tomato sauce 15-20 minutes until thickened",
+          "Layer components just before serving for optimal texture"
+        ],
+        "preparationTips": [
+          "Make extra fried onions - they disappear first",
+          "Prepare all elements in advance and assemble before serving",
+          "Add dash of baharat (Egyptian spice mix) for authentic flavor",
+          "Reheats well, making it great for meal prep"
+        ]
+      },
+      "fulMedames": {
+        "name": "Ful Medames",
+        "description": "Egypt's most iconic breakfast dish made from slow-cooked fava beans, typically seasoned with olive oil, garlic, lemon juice, and spices. Deeply embedded in Egyptian daily life, versatile and rich in protein and fiber.",
+        "cookingTime": "About 6 hours (traditional slow-cooking; recipes vary)",
+        "priceRange": "Under 25 EGP",
+        "culturalStory": "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots. Enjoyed daily by millions of Egyptians, from simple street carts in Cairo to home kitchens across the country.",
+        "ingredients": [
+          "Cooked fava beans",
+          "Olive oil",
+          "Garlic",
+          "Lemon juice",
+          "Ground cumin",
+          "Salt",
+          "Black pepper"
+        ],
+        "bestLocations": [
+          "Al Malky Restaurant",
+          "Traditional street carts",
+          "Local cafes",
+          "Street breakfast vendors"
+        ],
+        "signatureTraits": [
+          "Creamy or chunky texture (depending on preference)",
+          "Earthy, garlicky, lemony, and sometimes spicy flavor",
+          "Vegan & healthy - packed with fiber and protein",
+          "National favorite enjoyed daily by millions",
+          "Most iconic Egyptian breakfast dish"
+        ],
+        "servingStyles": [
+          "Served with warm baladi bread or pita",
+          "Accompanied by hard-boiled eggs",
+          "Garnished with diced tomatoes, onions, or parsley",
+          "Paired with pickled vegetables (torshi)",
+          "Optional tahini drizzle or chopped green chilies"
+        ],
+        "cookingMethods": [
+          "Warm beans gently in saucepan with splash of water",
+          "Mash lightly with fork for desired texture",
+          "Add seasonings and simmer 2-3 minutes",
+          "Serve immediately while warm"
+        ],
+        "preparationTips": [
+          "Use cooked fava beans or quality canned beans",
+          "Adjust mashing to personal texture preference",
+          "Balance lemon juice and olive oil for best flavor",
+          "Serve immediately for optimal temperature and taste"
+        ],
+        "regionalVariations": [
+          "Ful Eskandrani (Alexandrian): Served cold with chili, tomatoes, parsley, vinegar",
+          "Ful with boiled eggs: Classic street-style breakfast",
+          "Ful bel Dabba (with butter): Creamy, indulgent restaurant version",
+          "Spicy Ful: Add harissa or fresh chili oil for heat"
+        ]
+      },
+      "molokhia": {
+        "name": "Molokhia",
+        "description": "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt's most ancient dishes dating back to Pharaonic times. Smooth, garlicky, and full of umami with a unique slightly mucilaginous texture.",
+        "cookingTime": "About 30 minutes",
+        "priceRange": "120 EGP",
+        "culturalStory": "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt's most ancient and beloved dishes, representing the ultimate comfort food for Egyptians across generations.",
+        "ingredients": [
+          "Molokhia leaves",
+          "Garlic",
+          "Ground coriander",
+          "Chicken broth",
+          "Ghee or butter",
+          "Lemon juice",
+          "Salt"
+        ],
+        "bestLocations": [
+          "Naguib Mahfouz Cafe",
+          "Traditional family restaurants",
+          "Hotel restaurants",
+          "Rural Egyptian households"
+        ],
+        "signatureTraits": [
+          "Thick and slightly viscous texture (similar to okra)",
+          "Earthy, garlicky, and rich with coriander flavor",
+          "Ancient dish with Pharaonic origins",
+          "Ultimate Egyptian comfort food",
+          "Unique mucilaginous consistency"
+        ],
+        "servingStyles": [
+          "Served over white rice or vermicelli rice",
+          "Accompanied by baladi bread",
+          "Topped with squeeze of fresh lemon",
+          "Paired with hot chili vinegar",
+          "Served with grilled protein on the side"
+        ],
+        "cookingMethods": [
+          "Never boil - heat gently to preserve texture",
+          "Stir only once after adding to broth",
+          "Heat 3-5 minutes until warmed and thickened",
+          "Add tasha (garlic-coriander mix) while sizzling hot"
+        ],
+        "preparationTips": [
+          "Fresh molokhia must be chopped until paste-like consistency",
+          "Frozen molokhia works well as convenient alternative",
+          "Make tasha separately for proper flavor infusion",
+          "Avoid over-stirring to prevent slimy texture"
+        ],
+        "regionalVariations": [
+          "Alexandrian-style: Includes chopped tomatoes, served with seafood",
+          "Palestinian/Lebanese style: Whole leaves, more stew-like texture",
+          "Rural Egyptian: Traditionally paired with rabbit for feasts",
+          "Modern variations: Served with vinegar-chili dip on side"
+        ]
+      },
+      "mahshi": {
+        "name": "Mahshi",
+        "description": "Egypt's classic dish of vegetables stuffed with seasoned rice, slow-cooked in light tomato broth. Includes zucchini, eggplant, bell peppers, tomatoes, cabbage leaves, and grape leaves. Deeply tied to family gatherings and celebrations.",
+        "cookingTime": "About 90 minutes",
+        "priceRange": "150 EGP",
+        "culturalStory": "Ottoman influence dish that became deeply rooted in Egyptian family traditions. Often prepared in large trays for sharing at family gatherings, feasts, and celebrations. The name literally means 'stuffed' in Arabic.",
+        "ingredients": [
+          "Zucchini",
+          "Bell peppers",
+          "Egyptian rice",
+          "Onion",
+          "Tomato paste",
+          "Parsley",
+          "Dill",
+          "Cilantro",
+          "Vegetable oil",
+          "Cumin",
+          "Coriander"
+        ],
+        "bestLocations": [
+          "Alexandrian family restaurants",
+          "Traditional homes",
+          "Coastal restaurants",
+          "Friday family lunch gatherings"
+        ],
+        "signatureTraits": [
+          "Vegetables stuffed with seasoned rice filling",
+          "Slow-cooked in tomato-based broth for maximum flavor",
+          "Herby, garlicky, rich, and comforting taste",
+          "Naturally vegetarian, often vegan",
+          "Perfect for family gatherings and celebrations"
+        ],
+        "servingStyles": [
+          "Arranged upright on serving tray",
+          "Spooned with cooking broth on top",
+          "Served with yogurt or green salad",
+          "Accompanied by lemon wedges",
+          "Paired with pickles or molokhia for complete meal"
+        ],
+        "cookingMethods": [
+          "Hollow vegetables carefully with vegetable corer",
+          "Fill 2/3 full to allow rice expansion",
+          "Layer with potato slices to prevent sticking",
+          "Simmer gently 45-60 minutes until tender"
+        ],
+        "preparationTips": [
+          "Use short grain Egyptian rice for best texture",
+          "Do not pre-cook rice - it cooks inside vegetables",
+          "Reserve tomato juice from hollowed tomatoes for broth",
+          "Served at Friday family lunches, Eid, and special occasions"
+        ],
+        "regionalVariations": [
+          "Upper Egypt: Cabbage and grape leaves versions especially loved",
+          "Nile Delta: Traditional cabbage rolls popular",
+          "Meat variation: Add minced meat to rice for richer version",
+          "Coastal areas: Often served with seafood accompaniments"
+        ]
+      },
+      "baladiBread": {
+        "name": "Baladi Bread",
+        "description": "Egypt's traditional flatbread, a cornerstone of everyday Egyptian life. The word 'baladi' means 'local' or 'country-style'. It is commonly made with around 50% whole-wheat flour and baked at high heat to form a pocket; recipes are not universally 100% whole wheat.",
+        "cookingTime": "About 3 hours including proofing",
+        "priceRange": "5 EGP",
+        "culturalStory": "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life. Simple, hearty, and deeply rooted in Egyptian culture, this bread truly embodies the traditional local spirit.",
+        "ingredients": [
+          "Whole wheat flour",
+          "All-purpose flour",
+          "Instant yeast",
+          "Sugar",
+          "Salt",
+          "Warm water",
+          "Olive oil"
+        ],
+        "bestLocations": [
+          "Local bakeries",
+          "Street vendors",
+          "Every Egyptian table",
+          "Furn baladi (clay ovens)"
+        ],
+        "signatureTraits": [
+          "Whole wheat, round and flat shape",
+          "Puffs up when baked - forming a pocket inside",
+          "Soft yet slightly chewy with nutty, earthy flavor",
+          "Naturally vegan, no dairy or eggs",
+          "Served with almost every Egyptian meal"
+        ],
+        "servingStyles": [
+          "Breakfast with ful medames",
+          "Scooping up molokhia or koshari",
+          "Wrapping kebda (liver) sandwiches",
+          "Pairing with taameya (Egyptian falafel)",
+          "Served with dips like tahini, baba ghanoush, duqqa"
+        ],
+        "cookingMethods": [
+          "Baked on hot baking stone or iron griddle",
+          "Cooked at 250°C (480°F) for 5-7 minutes",
+          "Puffs up during high-heat baking process",
+          "Can be made at home with or without special oven"
+        ],
+        "preparationTips": [
+          "Use preheated pizza stone to mimic clay oven effect",
+          "Avoid over-handling dough once shaped to ensure puffing",
+          "Add white flour for better elasticity in modern baking",
+          "Store in sealed bag for 2-3 days or freeze for longer"
+        ],
+        "traditionalUses": [
+          "Accompanies mahshi and other main dishes",
+          "Essential for authentic Egyptian breakfast",
+          "Used for wrapping and scooping foods",
+          "Symbol of sustenance in Egyptian culture"
+        ]
+      },
+      "ummAli": {
+        "name": "Umm Ali",
+        "description": "Egypt's most famous and comforting dessert meaning 'Ali's Mother'. Rich, creamy bread pudding-style dish with pastry, nuts, milk, and cream, baked until bubbling and golden. Associated with celebrations, Ramadan, and special occasions.",
+        "cookingTime": "About 20 minutes",
+        "priceRange": "100 EGP",
+        "culturalStory": "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory. Often called the Egyptian version of bread pudding with Middle Eastern flair, loaded with nuts, coconut, and sometimes raisins.",
+        "ingredients": [
+          "Puff pastry",
+          "Full-fat milk",
+          "Heavy cream",
+          "Sugar",
+          "Mixed nuts",
+          "Shredded coconut",
+          "Raisins",
+          "Vanilla extract"
+        ],
+        "bestLocations": [
+          "Groppi Cafe",
+          "Traditional cafes",
+          "Hotel restaurants",
+          "Ramadan iftar tables"
+        ],
+        "signatureTraits": [
+          "Served warm, straight from the oven",
+          "Crispy, golden top; creamy and soft underneath",
+          "Made with puff pastry, phyllo, or bread",
+          "No eggs - unlike Western bread puddings",
+          "Rich, festive, and deeply satisfying"
+        ],
+        "servingStyles": [
+          "Best enjoyed fresh out of the oven",
+          "Garnished with crushed pistachios",
+          "Optional drizzle of condensed milk for extra indulgence",
+          "Served in individual ramekins or family-style dish",
+          "Accompanied by Arabic coffee or tea"
+        ],
+        "cookingMethods": [
+          "Bake at 200°C (390°F) for 20-25 minutes",
+          "Broil for extra 2-3 minutes for crispier top",
+          "Layer pastry with nuts and pour hot milk mixture",
+          "Top with heavy cream without stirring"
+        ],
+        "preparationTips": [
+          "Use cream-soaked toast for more rustic version",
+          "Add rosewater or orange blossom water for Arabian twist",
+          "Include sweetened condensed milk for richer version",
+          "Watch closely during broiling to prevent burning"
+        ],
+        "celebrationOccasions": [
+          "Ramadan Iftar desserts",
+          "Eid feasts and celebrations",
+          "Weddings and special occasions",
+          "Café menus and Friday family lunches"
+        ]
+      },
+      "riceMuammar": {
+        "name": "Rice Muammar",
+        "description": "Traditional Egyptian baked rice dish cooked slowly in milk and cream, served in clay tajin. Creates a creamy, golden-topped casserole with crispy crust and rich, buttery center. Popular in countryside and Upper Egypt for Friday lunches and family gatherings.",
+        "cookingTime": "About 60-75 minutes",
+        "priceRange": "150 EGP",
+        "culturalStory": "The name 'muammar' means 'enriched,' referring to the rich milk and cream used. Traditional clay tajin cooking gives the best crispy crust and is especially popular in rural Egyptian kitchens.",
+        "ingredients": [
+          "Short-grain rice",
+          "Full-fat milk",
+          "Cooking cream",
+          "Ghee",
+          "Chicken or beef",
+          "Salt",
+          "Pepper",
+          "Bay leaf"
+        ],
+        "bestLocations": [
+          "Upper Egypt restaurants",
+          "Rural family kitchens",
+          "Traditional Egyptian homes",
+          "Friday lunch tables"
+        ],
+        "signatureTraits": [
+          "Baked in clay or ceramic tajin",
+          "Signature creamy interior with crispy golden crust",
+          "Can be savory with meat or sweet for dessert",
+          "Simple ingredients with deeply comforting result",
+          "Popular in rural Egyptian countryside"
+        ],
+        "servingStyles": [
+          "Served straight from the tajin while warm",
+          "Accompanied by side salad or yogurt",
+          "Family-style sharing from clay pot",
+          "Crispy top and creamy base highlight",
+          "Friday lunch centerpiece dish"
+        ],
+        "cookingMethods": [
+          "Bake at 200°C (390°F) for 45-60 minutes",
+          "Cover with foil, then uncover for golden crust",
+          "Use clay tajin for best crispy texture",
+          "Layer meat at bottom, rice and milk mixture on top"
+        ],
+        "preparationTips": [
+          "Use clay tajin if available for best crust",
+          "Brown meat slightly before adding for extra flavor",
+          "Mix milk and evaporated milk for extra richness",
+          "Add whole clove or bay leaf for subtle aroma"
+        ],
+        "regionalVariations": [
+          "Savory version with chicken or beef chunks",
+          "Sweet version (Muammar Helw) with sugar and vanilla",
+          "Upper Egypt style with whole spices",
+          "Countryside version with extra ghee and ishta"
+        ]
+      },
+      "hawawshi": {
+        "name": "Hawawshi",
+        "description": "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside.",
+        "cookingTime": "About 25 minutes",
+        "priceRange": "200 EGP",
+        "culturalStory": "Created in Cairo's working-class neighborhoods as a quick, filling meal that's become one of Egypt's most beloved street foods. Often compared to a Middle Eastern-style meat pie or spiced burger in pita, it's popular as a street snack, family meal, or party dish.",
+        "ingredients": [
+          "Ground beef or lamb",
+          "Baladi bread",
+          "Onion",
+          "Bell pepper",
+          "Garlic",
+          "Green chilli",
+          "Parsley",
+          "Cumin",
+          "Paprika",
+          "Cinnamon",
+          "Allspice"
+        ],
+        "bestLocations": [
+          "El Refai Restaurant",
+          "Street food vendors",
+          "Local grills",
+          "Cairo street food stalls"
+        ],
+        "signatureTraits": [
+          "Crispy and golden on the outside",
+          "Juicy, spiced meat filling inside",
+          "Packed with onions, peppers, and warm spices",
+          "Perfect balance of texture and flavor"
+        ],
+        "servingStyles": [
+          "Sliced in halves or quarters",
+          "Served with tahini sauce",
+          "Accompanied by pickles",
+          "With fresh salad on the side"
+        ],
+        "cookingMethods": [
+          "Oven method: 200°C for 20-25 minutes, flip halfway",
+          "Skillet method: 5-7 minutes per side on medium heat"
+        ],
+        "regionalVariations": [
+          "Alexandrian Hawawshi: Spicier version in fresh kneaded dough",
+          "Modern twist: Add cheese for extra richness",
+          "Lighter version: Use whole wheat pita bread"
+        ]
+      },
+      "karkade": {
+        "name": "Karkade",
+        "description": "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free.",
+        "cookingTime": "About 10 minutes (hot) / 6-12 hours (cold brew)",
+        "priceRange": "40 EGP",
+        "culturalStory": "Also spelled Karkaday or Karkadi, this traditional drink holds deep cultural significance in Egypt. Served during weddings and festive gatherings, it's a Ramadan favorite for breaking the fast. Known for medicinal benefits including lowering blood pressure, aiding digestion, and boosting liver health. Can be prepared as cold brew (traditional Egyptian method for smoother taste) or hot brew for stronger flavor.",
+        "ingredients": [
+          "Dried hibiscus petals",
+          "Water",
+          "Sugar",
+          "Optional: lemon, cinnamon, clove"
+        ],
+        "bestLocations": [
+          "Aswan street vendors",
+          "Traditional cafes",
+          "Cairo street cafés with shisha",
+          "Wedding celebrations",
+          "Ramadan iftar tables"
+        ],
+        "servingStyles": [
+          "Hot as soothing herbal tea",
+          "Cold as refreshing summer drink",
+          "With rosewater for floral twist",
+          "Infused with ginger or mint",
+          "Mixed with sparkling water as hibiscus soda"
+        ],
+        "healthBenefits": [
+          "Lowers blood pressure (clinically studied)",
+          "Aids digestion",
+          "Boosts liver health",
+          "Rich in vitamin C and antioxidants",
+          "Caffeine-free alternative to tea/coffee"
+        ],
+        "preparationMethods": [
+          "Cold Brew: Soak petals 6-12 hours for gentler flavor",
+          "Hot Brew: Simmer 10-15 minutes for stronger taste"
+        ]
+      }
+    },
+    "allergens": {
+      "gluten": "Gluten",
+      "nuts": "Nuts",
+      "dairy": "Dairy"
+    },
+    "cameraError": "Camera access denied. Please enable camera permissions to use AR features."
   },
   "airportTransfers": {
     "common": {
