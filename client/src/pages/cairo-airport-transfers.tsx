@@ -132,7 +132,12 @@ export default function CairoAirportTransfers() {
                 {t("airportTransfers.cairo.heroNote")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="text-lg px-8">
+                {/* Sentence-length CTA. Buttons are white-space:nowrap by
+                    default, and the German label ("Erhalten Sie Ihr genaues
+                    Transfer-Angebot") overflowed a 375px viewport and made the
+                    page scroll sideways — the same failure already documented
+                    on the Sinai guide. Let it wrap. */}
+                <Button asChild size="lg" className="text-lg px-8 whitespace-normal max-w-full h-auto py-3">
                   <Link href="/transfers">
                     {t("airportTransfers.cairo.ctaQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />

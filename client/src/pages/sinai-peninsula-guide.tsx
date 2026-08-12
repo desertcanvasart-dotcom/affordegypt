@@ -190,13 +190,13 @@ export default function SinaiPeninsulaGuide() {
           },
           {
             name: "Monte Sinaí",
-            description: "Montaña sagrada donde Moisés recibió los Diez Mandamientos",
+            description: "Montaña identificada por la tradición judía, cristiana e islámica con Moisés y los Diez Mandamientos",
             highlights: ["Caminata al amanecer", "Monasterio de Santa Catalina", "Historia bíblica", "Vistas del desierto"],
             bestTime: "Oct-Abr",
             duration: "1-2 días",
             difficulty: "Moderado",
             image: "⛰️",
-            details: "Montaña sagrada donde Moisés recibió los Diez Mandamientos, hogar de monasterios antiguos y peregrinación espiritual"
+            details: "Un importante destino de peregrinación junto al Monasterio de Santa Catalina, con caminatas al amanecer y paisajes de montaña"
           },
           {
             name: "Nuweiba",
@@ -236,9 +236,9 @@ export default function SinaiPeninsulaGuide() {
             category: "Experiencias Culturales",
             items: [
               { name: "Caminata Amanecer Monte Sinaí", price: "Desde $35/persona", description: "Escala la montaña sagrada en la oscuridad para presenciar un amanecer impresionante sobre el paisaje desértico." },
-              { name: "Monasterio Santa Catalina", price: "Desde $20/persona", description: "Visita uno de los monasterios en funcionamiento continuo más antiguos del mundo con manuscritos y arte invaluables." },
+              { name: "Monasterio Santa Catalina", price: "Desde $20/persona", description: "Visita Santa Catalina, uno de los monasterios cristianos en funcionamiento continuo más antiguos del mundo, con una importante colección de manuscritos e iconos." },
               { name: "Experiencia Pueblo Beduino", price: "Desde $30/persona", description: "Comparte comidas y historias tradicionales con familias beduinas en asentamientos auténticos del desierto." },
-              { name: "Oasis Wadi Feiran", price: "Desde $35/persona", description: "Explora el desierto bíblico donde vagaron los israelitas, ahora un oasis exuberante con palmeras datileras." }
+              { name: "Oasis Wadi Feiran", price: "Desde $35/persona", description: "Explora un oasis de palmeras asociado por la tradición con la Refidim bíblica; la identificación no es arqueológicamente segura." }
             ]
           }
         ]
@@ -249,11 +249,11 @@ export default function SinaiPeninsulaGuide() {
         items: [
           {
             title: "Mejor Época para Visitar",
-            content: "Octubre a abril ofrece clima perfecto con días cálidos y noches frescas. Evita los meses de verano (junio-agosto) cuando las temperaturas superan los 40°C. La primavera (marzo-mayo) es ideal para senderismo y buceo."
+            content: "De octubre a abril las condiciones suelen ser más suaves, pero las noches en la montaña pueden ser frías y la costa varía. El calor del verano puede superar los 40°C en el interior; consulta la previsión local."
           },
           {
             title: "Cómo Llegar",
-            content: "Vuela a Sharm El Sheikh (SSH) para el sur del Sinaí o Taba para áreas del norte. Los traslados terrestres desde El Cairo toman 6-7 horas a través de paisajes desérticos impresionantes."
+            content: "Vuela a Sharm El Sheikh (SSH) para el sur del Sinaí. El servicio del aeropuerto de Taba es limitado y depende de la fecha, así que verifica que el vuelo opere realmente. El trayecto por carretera El Cairo-Sharm suele durar unas 6-8 horas; Dahab, Nuweiba, Santa Catalina y Taba tardan más."
           },
           {
             title: "Consejos de Seguridad",
@@ -322,13 +322,13 @@ export default function SinaiPeninsulaGuide() {
           },
           {
             name: "Mont Sinaï",
-            description: "Montagne sacrée où Moïse reçut les Dix Commandements",
+            description: "Montagne identifiée par la tradition juive, chrétienne et islamique à Moïse et aux Dix Commandements",
             highlights: ["Randonnée lever du soleil", "Monastère Sainte-Catherine", "Histoire biblique", "Vues du désert"],
             bestTime: "Oct-Avr",
             duration: "1-2 jours",
             difficulty: "Modéré",
             image: "⛰️",
-            details: "Montagne sacrée où Moïse reçut les Dix Commandements, foyer de monastères anciens et pèlerinage spirituel"
+            details: "Une grande destination de pèlerinage près du monastère Sainte-Catherine, avec des randonnées au lever du soleil et des paysages de montagne"
           },
           {
             name: "Nuweiba",
@@ -368,9 +368,9 @@ export default function SinaiPeninsulaGuide() {
             category: "Expériences Culturelles",
             items: [
               { name: "Randonnée Lever Soleil Mont Sinaï", price: "À partir de $35/personne", description: "Escaladez la montagne sacrée dans l'obscurité pour assister à un lever de soleil à couper le souffle sur le paysage désertique." },
-              { name: "Monastère Sainte-Catherine", price: "À partir de $20/personne", description: "Visitez l'un des monastères en fonctionnement continu les plus anciens au monde avec manuscrits et art inestimables." },
+              { name: "Monastère Sainte-Catherine", price: "À partir de $20/personne", description: "Visitez Sainte-Catherine, l'un des plus anciens monastères chrétiens en fonctionnement continu au monde, avec une importante collection de manuscrits et d'icônes." },
               { name: "Expérience Village Bédouin", price: "À partir de $30/personne", description: "Partagez repas et histoires traditionnels avec familles bédouines dans settlements authentiques du désert." },
-              { name: "Oasis Wadi Feiran", price: "À partir de $35/personne", description: "Explorez le désert biblique où errèrent les Israélites, maintenant une oasis luxuriante avec palmiers dattiers." }
+              { name: "Oasis Wadi Feiran", price: "À partir de $35/personne", description: "Explorez une oasis de palmiers associée par la tradition à la Rephidim biblique ; l'identification n'est pas archéologiquement certaine." }
             ]
           }
         ]
@@ -381,11 +381,11 @@ export default function SinaiPeninsulaGuide() {
         items: [
           {
             title: "Meilleure Période pour Visiter",
-            content: "Octobre à avril offre un temps parfait avec journées chaudes et nuits fraîches. Évitez les mois d'été (juin-août) quand les températures dépassent 40°C. Le printemps (mars-mai) est idéal pour randonnée et plongée."
+            content: "D'octobre à avril, les conditions sont généralement plus douces, mais les nuits en montagne peuvent être froides et la côte varie. La chaleur estivale peut dépasser 40°C à l'intérieur des terres ; consultez les prévisions locales."
           },
           {
             title: "Comment S'y Rendre",
-            content: "Volez vers Sharm El Sheikh (SSH) pour le sud du Sinaï ou Taba pour les zones nord. Les transferts terrestres depuis Le Caire prennent 6-7 heures à travers des paysages désertiques époustouflants."
+            content: "Volez vers Sharm El Sheikh (SSH) pour le sud du Sinaï. Le service de l'aéroport de Taba est limité et dépend de la date : vérifiez qu'un vol opère réellement. Le trajet routier Le Caire-Sharm dure généralement 6 à 8 heures ; Dahab, Nuweiba, Sainte-Catherine et Taba prennent plus de temps."
           },
           {
             title: "Conseils de Sécurité",
@@ -454,13 +454,13 @@ export default function SinaiPeninsulaGuide() {
           },
           {
             name: "Berg Sinai",
-            description: "Heiliger Berg, wo Moses die Zehn Gebote erhielt",
+            description: "Berg, der in jüdischer, christlicher und islamischer Tradition mit Mose und den Zehn Geboten verbunden wird",
             highlights: ["Sonnenaufgang-Wanderung", "Katharinenkloster", "Biblische Geschichte", "Wüstenblicke"],
             bestTime: "Okt-Apr",
             duration: "1-2 Tage",
             difficulty: "Moderat",
             image: "⛰️",
-            details: "Heiliger Berg, wo Moses die Zehn Gebote erhielt, Heimat uralter Klöster und spiritueller Pilgerfahrt"
+            details: "Ein bedeutendes Pilgerziel nahe dem Katharinenkloster, mit Wanderungen zum Sonnenaufgang und Bergpanoramen"
           },
           {
             name: "Nuweiba",
@@ -500,9 +500,9 @@ export default function SinaiPeninsulaGuide() {
             category: "Kulturelle Erlebnisse",
             items: [
               { name: "Berg Sinai Sonnenaufgang-Wanderung", price: "Ab $35/Person", description: "Besteigen Sie den heiligen Berg in Dunkelheit, um einen atemberaubenden Sonnenaufgang über der Wüstenlandschaft zu erleben." },
-              { name: "Katharinenkloster", price: "Ab $20/Person", description: "Besuchen Sie eines der ältesten kontinuierlich betriebenen Klöster der Welt mit unbezahlbaren Manuskripten und Kunst." },
+              { name: "Katharinenkloster", price: "Ab $20/Person", description: "Besuchen Sie das Katharinenkloster, eines der ältesten durchgehend betriebenen christlichen Klöster der Welt, mit einer bedeutenden Manuskript- und Ikonensammlung." },
               { name: "Beduinendorf-Erlebnis", price: "Ab $30/Person", description: "Teilen Sie traditionelle Mahlzeiten und Geschichten mit Beduinenfamilien in authentischen Wüstensiedlungen." },
-              { name: "Wadi Feiran Oase", price: "Ab $35/Person", description: "Erkunden Sie die biblische Wildnis, wo die Israeliten wanderten, jetzt eine üppige Oase mit Dattelpalmen." }
+              { name: "Wadi Feiran Oase", price: "Ab $35/Person", description: "Erkunden Sie eine Palmenoase, die traditionell mit dem biblischen Refidim verbunden wird; die Zuordnung ist archäologisch nicht gesichert." }
             ]
           }
         ]
@@ -513,11 +513,11 @@ export default function SinaiPeninsulaGuide() {
         items: [
           {
             title: "Beste Reisezeit",
-            content: "Oktober bis April bietet perfektes Wetter mit warmen Tagen und kühlen Nächten. Vermeiden Sie Sommermonate (Juni-August), wenn Temperaturen 40°C übersteigen. Frühling (März-Mai) ist ideal für Wandern und Tauchen."
+            content: "Von Oktober bis April sind die Bedingungen meist milder, doch die Nächte im Gebirge können kalt sein und die Küste variiert. Die Sommerhitze kann im Landesinneren 40°C überschreiten; prüfen Sie die lokale Vorhersage."
           },
           {
             title: "Anreise",
-            content: "Fliegen Sie nach Sharm El Sheikh (SSH) für Süd-Sinai oder Taba für nördliche Bereiche. Landtransfers von Kairo dauern 6-7 Stunden durch atemberaubende Wüstenlandschaften."
+            content: "Fliegen Sie nach Sharm El Sheikh (SSH) für den Süd-Sinai. Der Flugbetrieb ab Taba ist begrenzt und datumsabhängig — prüfen Sie, ob ein Flug tatsächlich verkehrt. Die Straßenfahrt Kairo-Sharm dauert meist etwa 6-8 Stunden; Dahab, Nuweiba, St. Katharina und Taba länger."
           },
           {
             title: "Sicherheitstipps",

@@ -466,7 +466,8 @@
         },
         "destinations": {
           "title": "Destinos Desérticos: Exploración Económica",
-          "subtitle": "Principales destinos para experiencias desérticas auténticas"
+          "subtitle": "Principales destinos para experiencias desérticas auténticas",
+          "priceNote": "Los precios de alojamiento, safaris y transporte que figuran abajo son estimaciones comerciales de operadores locales, no tarifas oficiales. Varían según la temporada, el tamaño del grupo y el vehículo, así que pide un presupuesto con fecha antes de reservar."
         },
         "budgetTips": {
           "title": "Consejos de Viaje Económico",
@@ -483,7 +484,39 @@
         "itinerary": {
           "title": "Aventura Desértica de 5 Días con Presupuesto",
           "subtitle": "Itinerario completo con precios transparentes",
-          "total": "Total: 2,850 EGP por persona"
+          "total": "Total: 2,850 EGP por persona",
+          "days": [
+            {
+              "day": "Día 1",
+              "location": "El Cairo → Bahariya",
+              "activities": "Viaje en autobús, noche en Bawiti",
+              "cost": "2,000 EGP"
+            },
+            {
+              "day": "Día 2",
+              "location": "Tour por el Desierto Blanco",
+              "activities": "Excursión en grupo con comidas y acampada",
+              "cost": "1,350 EGP"
+            },
+            {
+              "day": "Día 3",
+              "location": "Descanso en Bahariya",
+              "activities": "Aguas termales, comida local, estancia en lodge",
+              "cost": "1,350 EGP"
+            },
+            {
+              "day": "Día 4",
+              "location": "Farafra o regreso a Bahariya",
+              "activities": "No des por hecho un traslado público el mismo día a Dakhla; está muy al sur y el transporte puede ser limitado",
+              "cost": "2,000 EGP"
+            },
+            {
+              "day": "Día 5",
+              "location": "Regreso a El Cairo",
+              "activities": "Confirma el horario y la tarifa actuales del autobús o del traslado privado",
+              "cost": "900 EGP"
+            }
+          ]
         },
         "packing": {
           "title": "Elementos Esenciales para el Desierto",
@@ -543,7 +576,9 @@
           "startPlanning": "Empezar Planificación",
           "findGuides": "Encontrar Guías Locales"
         }
-      }
+      },
+      "safetyNoteLabel": "Nota de seguridad:",
+      "safetyNote": "Los avisos oficiales de viaje difieren y pueden cambiar rápidamente. Algunos gobiernos desaconsejan viajar a zonas del Desierto Occidental. Consulta la información actual de tu propio gobierno, las normas de acceso locales, los permisos y la cobertura del seguro antes de reservar, y utiliza un operador con licencia para los recorridos fuera de carretera."
     }
   },
   "budgetTips": {
@@ -894,12 +929,11 @@
       "van": "Furgoneta",
       "passengers1to2": "1–2 pasajeros",
       "passengers3to8": "3–8 pasajeros",
-      "passengers9to15": "9–15 pasajeros"
+      "passengers9to15": "9–15 pasajeros",
+      "fromPrice": "Desde {{price}} EGP",
+      "startingFromRoutes": "Desde {{price}} EGP en rutas elegibles"
     },
     "cairo": {
-      "title": "Traslados del Aeropuerto de El Cairo - Confiables y Asequibles | AffordEgypt",
-      "metaDescription": "Reserve traslados confiables del aeropuerto de El Cairo desde 2,025 EGP. Conductores profesionales, servicio 24/7, monitoreo de vuelos. Traslados a hoteles en Nuevo Cairo, Giza, Centro y más.",
-      "keywords": "traslado aeropuerto Cairo, transporte aeropuerto CAI, taxi Cairo, shuttle aeropuerto Egipto, traslado Nuevo Cairo",
       "heroTitle": "Traslados del Aeropuerto de El Cairo",
       "heroSubtitle": "Traslados de aeropuerto confiables, cómodos y asequibles en El Cairo. Conductores profesionales, monitoreo de vuelos y precios transparentes desde 2,025 EGP.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de El Cairo?",
@@ -907,9 +941,6 @@
       "service24_7Desc": "Traslados de aeropuerto disponibles las 24 horas todos los días",
       "doorToDoor": "Puerta a Puerta",
       "doorToDoorDesc": "Traslados directos desde el aeropuerto hasta tu hotel o destino",
-      "sedanPriceFrom": "Desde 2,025 EGP",
-      "minivanPriceFrom": "Desde 2,475 EGP",
-      "vanPriceFrom": "Desde 3,675 EGP",
       "transferDestinationsTitle": "Destinos de Traslados en El Cairo",
       "transferDestinationsDesc": "Proporcionamos traslados de aeropuerto a todas las áreas principales de El Cairo y alrededores",
       "areas": [
@@ -935,12 +966,161 @@
       "area5": "Centro de El Cairo",
       "area6": "Heliópolis",
       "area7": "Maadi",
-      "area8": "Zamalek"
+      "area8": "Zamalek",
+      "ctaQuote": "Obtén tu presupuesto exacto de traslado",
+      "calcTitle": "Cómo calculamos el precio de tu traslado",
+      "vehiclesTitle": "Tarifas iniciales por vehículo",
+      "sedanFeatures": [
+        "Aire acondicionado",
+        "Conductor profesional",
+        "Apto para equipaje estándar"
+      ],
+      "minivanFeatures": [
+        "Espacio extra para equipaje",
+        "Asientos para familias",
+        "Útil para viajeros con varias maletas"
+      ],
+      "vanFeatures": [
+        "Viajes en grupo",
+        "Gran capacidad de equipaje",
+        "La asignación del vehículo depende del número final de pasajeros y maletas"
+      ],
+      "includesTitle": "Qué incluye tu presupuesto confirmado",
+      "changesTitle": "¿Qué puede cambiar el presupuesto?",
+      "beforeTitle": "Antes de reservar: envíanos estos datos",
+      "pricingTitle": "Precios transparentes y específicos por ruta",
+      "ctaBook": "Reserva tu traslado",
+      "heroNote": "Tu tarifa depende de dos lugares: el aeropuerto donde aterriza tu vuelo y la dirección exacta de tu hotel. Indícanos ambos y confirmaremos el precio antes de que reserves.",
+      "airportsTitle": "Primero: ¿qué aeropuerto de El Cairo vas a usar?",
+      "airportsIntro": "El Cairo tiene dos aeropuertos de pasajeros principales, y están en lados opuestos del Gran Cairo. Comprueba el código de tres letras en tu billete antes de solicitar un traslado.",
+      "airports": [
+        {
+          "name": "Aeropuerto Internacional de El Cairo",
+          "code": "Código de aeropuerto: CAI",
+          "location": "Situado en el lado este de El Cairo, cerca de Heliópolis.",
+          "direct": "Suele ser el aeropuerto de llegada más directo para Heliópolis, Nasr City, el centro de El Cairo, Zamalek, Maadi y muchas direcciones de Nuevo Cairo.",
+          "farther": "Los traslados a Giza, la zona de las Pirámides, Sheikh Zayed y la Ciudad 6 de Octubre atraviesan más del Gran Cairo, por lo que la ruta y la tarifa pueden ser mayores."
+        },
+        {
+          "name": "Aeropuerto Internacional Sphinx",
+          "code": "Código de aeropuerto: SPX",
+          "location": "Situado al oeste de El Cairo, en la gobernación de Giza, cerca de la carretera del desierto El Cairo-Alejandría.",
+          "direct": "Suele ser el aeropuerto de llegada más directo para Sheikh Zayed, la Ciudad 6 de Octubre, el Gran Museo Egipcio y muchos hoteles del oeste de Giza.",
+          "farther": "Los traslados al centro de El Cairo, Heliópolis, Nasr City, Maadi o Nuevo Cairo recorren más área metropolitana y se presupuestan en consecuencia."
+        }
+      ],
+      "airportWarningLabel": "Importante",
+      "airportWarning": "CAI y SPX son aeropuertos distintos. Elegir el aeropuerto equivocado puede cambiar la ruta sustancialmente. Envíanos tu número de vuelo para verificar el aeropuerto de llegada y hacer seguimiento del vuelo correcto.",
+      "calcIntro": "No existe una tarifa única y exacta para todo «traslado del aeropuerto de El Cairo». Tu presupuesto confirmado se basa en:",
+      "calcItems": [
+        "Aeropuerto de llegada: CAI o SPX",
+        "Dirección exacta del hotel o alojamiento",
+        "Tamaño del vehículo",
+        "Número de viajeros",
+        "Número y tamaño de las maletas",
+        "Traslado de ida o de ida y vuelta",
+        "Fecha y hora de recogida",
+        "Cualquier necesidad especial, como silla infantil, silla de ruedas, equipaje voluminoso o varias paradas en hoteles"
+      ],
+      "zonesTitle": "Zonas de hoteles y de precios",
+      "zonesIntro": "El nombre del distrito importa, aunque la dirección postal diga El Cairo o Giza.",
+      "zones": [
+        {
+          "name": "Centro de El Cairo y Giza central",
+          "areas": [
+            "Centro de El Cairo",
+            "Zamalek",
+            "Garden City",
+            "Dokki",
+            "Mohandessin",
+            "Muchos hoteles del centro de Giza"
+          ],
+          "note": "Estas zonas suelen entrar en nuestra tarifa de zona central, pero aún hay que confirmar el aeropuerto y el hotel exacto."
+        },
+        {
+          "name": "Este del Gran Cairo",
+          "areas": [
+            "Heliópolis",
+            "Nasr City",
+            "Nuevo Cairo",
+            "Fifth Settlement",
+            "Zona de Cairo Festival City"
+          ],
+          "note": "Los hoteles cercanos a CAI pueden tener una ruta más corta. Nuevo Cairo es una zona residencial extensa, así que dos hoteles descritos como «Nuevo Cairo» pueden requerir trayectos y precios distintos."
+        },
+        {
+          "name": "Oeste del Gran Cairo",
+          "areas": [
+            "Hoteles de las Pirámides de Giza",
+            "Zona del Gran Museo Egipcio",
+            "Sheikh Zayed",
+            "Ciudad 6 de Octubre"
+          ],
+          "note": "Los hoteles cercanos a SPX pueden tener una ruta más corta. Sheikh Zayed y 6 de Octubre son suburbios extensos del oeste, así que presupuestamos la propiedad exacta en lugar de una tarifa única para toda la ciudad."
+        },
+        {
+          "name": "Sur de El Cairo",
+          "areas": [
+            "Maadi",
+            "Nuevo Maadi",
+            "Zahraa El Maadi"
+          ],
+          "note": "Estas rutas pueden verse afectadas por el aeropuerto utilizado y por la ubicación del hotel dentro del distrito."
+        }
+      ],
+      "zonesHelpTitle": "¿No sabes en qué zona está tu hotel?",
+      "zonesHelp": "Envíanos el nombre del hotel, la dirección completa o una ubicación en el mapa. Identificaremos la zona correcta y presupuestaremos la ruta desde tu aeropuerto real.",
+      "vehiclesIntro": "Los precios siguientes son tarifas iniciales para rutas elegibles de aeropuerto a hotel. No significan que todas las rutas desde ambos aeropuertos cuesten lo mismo. Tu precio fijo exacto se confirma cuando recibimos el aeropuerto y la dirección del hotel.",
+      "includesItems": [
+        "Vehículo privado y conductor profesional",
+        "Recogida en el aeropuerto confirmado",
+        "Seguimiento del vuelo",
+        "Instrucciones para el encuentro con el conductor",
+        "Traslado directo al hotel o dirección confirmados",
+        "Combustible, aparcamiento y peajes de la ruta confirmada",
+        "Impuestos y tasas de servicio indicadas"
+      ],
+      "changesItems": [
+        "Cambiar de CAI a SPX o de SPX a CAI",
+        "Cambiar el hotel, el distrito o la dirección final",
+        "Añadir paradas, un segundo hotel o un traslado entre aeropuertos",
+        "Aumentar el número de pasajeros o de equipaje de modo que se necesite un vehículo mayor",
+        "Solicitar equipamiento especial o un servicio no incluido en el presupuesto original"
+      ],
+      "changesNote": "Siempre explicaremos y confirmaremos cualquier precio revisado antes del servicio.",
+      "a2aTitle": "Traslados entre aeropuertos",
+      "a2aBody": "Conectar entre el Aeropuerto Internacional de El Cairo (CAI) y el Aeropuerto Internacional Sphinx (SPX) es un traslado por carretera que cruza la ciudad, no un cambio de terminal. Requiere un presupuesto aparte y un margen amplio entre vuelos. Indícanos ambos números de vuelo, si los billetes son independientes y si debes recoger y facturar de nuevo el equipaje. El viajero sigue siendo responsable de la facturación y de los requisitos de conexión de la aerolínea.",
+      "steps": [
+        {
+          "title": "Envía los datos de tu vuelo y hotel",
+          "description": "Comparte el número de vuelo, la fecha de llegada, el código de aeropuerto, el nombre del hotel o la ubicación en el mapa, el número de pasajeros y de maletas."
+        },
+        {
+          "title": "Recibe un presupuesto fijo para tu ruta",
+          "description": "Comprobamos el aeropuerto, la zona de destino y el vehículo necesario, y confirmamos el precio total y lo incluido antes de reservar."
+        },
+        {
+          "title": "Encuentra a tu conductor",
+          "description": "Enviamos instrucciones claras de encuentro para tu aeropuerto de llegada. Tu conductor hace seguimiento del vuelo confirmado y te espera en el punto de recogida indicado."
+        },
+        {
+          "title": "Viaja directo a tu hotel",
+          "description": "Tu traslado privado sigue la ruta adecuada hasta la dirección exacta indicada en tu reserva."
+        }
+      ],
+      "beforeItems": [
+        "Número de vuelo",
+        "Fecha y hora prevista de llegada",
+        "Código de aeropuerto: CAI o SPX",
+        "Nombre del hotel y dirección completa o ubicación en el mapa",
+        "Número de adultos y niños",
+        "Número de maletas facturadas y de mano",
+        "Vehículo preferido o cualquier necesidad especial"
+      ],
+      "pricingIntro": "No presupuestamos solo a partir de la palabra «El Cairo». Ponemos precio al trayecto real —desde tu aeropuerto de llegada hasta tu hotel exacto— con el vehículo adecuado para tu grupo y equipaje.",
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Sin cambio de aeropuerto • Sin cargos sorpresa por zona de destino"
     },
     "luxor": {
-      "title": "Traslados del Aeropuerto de Luxor - Profesionales y Confiables | AffordEgypt",
-      "metaDescription": "Reserve traslados del aeropuerto de Luxor desde 1,115 EGP. Conductores expertos con conocimiento local, rutas de templos y vehículos cómodos. Traslados a Orilla Este, Orilla Oeste y cruceros por el Nilo.",
-      "keywords": "traslado aeropuerto Luxor, transporte aeropuerto LXR, traslado Valle de los Reyes, taxi Luxor, transporte sitios antiguos Egipto",
       "heroTitle": "Traslados del Aeropuerto de Luxor",
       "heroSubtitle": "Traslados profesionales de aeropuerto en la antigua ciudad de Luxor. Conductores locales expertos con conocimiento de rutas de templos y precios transparentes desde 1,115 EGP.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de Luxor?",
@@ -953,9 +1133,6 @@
       "templeRouteKnowledge": "Conocimiento de rutas de templos",
       "touristFriendly": "Amigable con turistas",
       "tourGroupFriendly": "Amigable con grupos de turismo",
-      "sedanPriceFrom": "Desde 1,115 EGP",
-      "minivanPriceFrom": "Desde 1,340 EGP",
-      "vanPriceFrom": "Desde 2,135 EGP",
       "transferDestinationsTitle": "Destinos de Traslados en Luxor",
       "transferDestinationsDesc": "Proporcionamos traslados de aeropuerto a todas las áreas principales y sitios antiguos de Luxor",
       "areas": [
@@ -988,12 +1165,159 @@
       "area5": "Zona del Templo de Karnak",
       "area6": "Distrito del Templo de Lúxor",
       "area7": "Terminales de Cruceros por el Nilo",
-      "area8": "Zona del Winter Palace"
+      "area8": "Zona del Winter Palace",
+      "ctaQuote": "Obtén tu presupuesto exacto de traslado",
+      "calcTitle": "Cómo calculamos el precio de tu traslado",
+      "vehiclesTitle": "Tarifas iniciales por vehículo",
+      "sedanFeatures": [
+        "Aire acondicionado",
+        "Conductor profesional",
+        "Apto para equipaje estándar"
+      ],
+      "minivanFeatures": [
+        "Espacio extra para equipaje",
+        "Asientos para familias",
+        "Útil para viajeros con varias maletas"
+      ],
+      "vanFeatures": [
+        "Viajes en grupo",
+        "Gran capacidad de equipaje",
+        "La asignación del vehículo depende del número final de pasajeros y maletas"
+      ],
+      "includesTitle": "Qué incluye tu presupuesto confirmado",
+      "changesTitle": "¿Qué puede cambiar el presupuesto?",
+      "beforeTitle": "Antes de reservar: envíanos estos datos",
+      "pricingTitle": "Precios transparentes y específicos por ruta",
+      "ctaBook": "Reserva tu traslado",
+      "heroNote": "El precio de tu traslado en Luxor depende de en qué orilla del Nilo te alojes. Envíanos los datos exactos del hotel o del barco y confirmaremos la ruta y el precio antes de que reserves.",
+      "banksTitle": "Primero: ¿tu hotel está en la orilla este o en la orilla oeste?",
+      "banksIntro": "Durante muchos años, «traslado del aeropuerto de Luxor» solía significar un traslado a uno de los hoteles consolidados de la orilla este. Luxor tiene ahora una oferta mucho más amplia de hoteles y casas de huéspedes en la orilla oeste, así que hay que confirmar el nombre del hotel y la orilla antes de dar una tarifa exacta.",
+      "airportName": "Aeropuerto Internacional de Luxor",
+      "airportCode": "Código de aeropuerto: LXR",
+      "airportLocation": "El aeropuerto de Luxor está al este de la ciudad y en el lado oriental del Nilo.",
+      "airportRouting": "Eso hace que muchos hoteles de la orilla este sean comparativamente directos por carretera. Un hotel en la orilla oeste requiere una ruta distinta y por lo general más larga.",
+      "banks": [
+        {
+          "name": "Hoteles de la orilla este",
+          "intro": "Destinos habituales en la orilla este:",
+          "areas": [
+            "Centro de Luxor",
+            "Corniche de Luxor",
+            "Zona del Templo de Luxor",
+            "Karnak y hoteles del norte de Luxor",
+            "Hoteles en torno a la calle Khaled Ibn El Walid",
+            "Muchos grandes resorts y hoteles de cadenas internacionales"
+          ],
+          "note": "Los trayectos por la orilla este no requieren cruzar el Nilo. La distancia exacta varía igualmente porque la zona hotelera de la orilla este se extiende al norte y al sur del centro."
+        },
+        {
+          "name": "Hoteles de la orilla oeste",
+          "intro": "Destinos habituales en la orilla oeste:",
+          "areas": [
+            "Al-Gezira y la zona del ferry",
+            "El-Bairat",
+            "Al-Qurna",
+            "Zona de Medinet Habu",
+            "Hoteles cerca de los yacimientos de la orilla oeste",
+            "Hager Al Dabayah y propiedades más al sur"
+          ],
+          "note": "Para un traslado privado normal desde el aeropuerto, el vehículo circula por carretera cruzando el puente de Luxor. El ferry central de pasajeros es útil para desplazarse entre orillas, pero no es la ruta habitual de un vehículo de aeropuerto con pasajeros y equipaje. Como el puente está fuera de la zona hotelera central, un traslado a la orilla oeste no es el mismo trayecto que uno a la orilla este."
+        }
+      ],
+      "bankWarningLabel": "Importante",
+      "bankWarning": "«Orilla oeste» no es un único destino. Una casa de huéspedes cerca del ferry, un hotel junto a Medinet Habu y una propiedad más al sur pueden requerir rutas distintas. Envía el nombre de la propiedad, la dirección completa o una ubicación en el mapa, en lugar de escribir solo «orilla oeste de Luxor».",
+      "pricingGuideTitle": "Orilla este frente a orilla oeste: guía de precios",
+      "pricingGuide": [
+        {
+          "label": "Hotel en la orilla este",
+          "note": "Suele ser la ruta más directa desde el aeropuerto. Las rutas elegibles pueden recibir el precio inicial indicado una vez confirmado el hotel exacto."
+        },
+        {
+          "label": "Hotel en la orilla oeste",
+          "note": "Se presupuesta aparte porque el vehículo debe usar el cruce por carretera y continuar hasta la propiedad exacta."
+        },
+        {
+          "label": "Cambio de hotel tras la reserva",
+          "note": "Puede cambiar la ruta y el precio, aunque ambas propiedades lleven «Luxor» en su dirección."
+        },
+        {
+          "label": "No sabes la orilla",
+          "note": "Envía la confirmación de la reserva del hotel o un enlace del mapa y la identificaremos por ti."
+        }
+      ],
+      "cruiseTitle": "Los traslados a cruceros del Nilo necesitan los datos del barco",
+      "cruiseIntro": "«Crucero por el Nilo en Luxor» no es un lugar completo de recogida o entrega. Los barcos pueden usar distintos atraques en Luxor o sus alrededores, y el amarre final puede confirmarlo o cambiarlo la naviera. Por favor, envía:",
+      "cruiseItems": [
+        "Nombre del barco",
+        "Naviera",
+        "Fecha de embarque o desembarque",
+        "Último lugar de atraque conocido",
+        "Teléfono de contacto del representante, si lo tienes"
+      ],
+      "cruiseNote": "Si el amarre aún no está asignado, podemos presupuestar de forma provisional y reconfirmar la ruta cuando la naviera lo facilite.",
+      "calcItems": [
+        "Hotel, casa de huéspedes o amarre exacto",
+        "Orilla este u orilla oeste",
+        "Traslado de llegada o de salida",
+        "Tamaño del vehículo",
+        "Número de viajeros",
+        "Número y tamaño de las maletas",
+        "Fecha y hora de recogida",
+        "Paradas adicionales o necesidades especiales"
+      ],
+      "vehiclesIntro": "Estas son tarifas iniciales para rutas elegibles de aeropuerto a hotel. No significan que todos los hoteles de la orilla este, los de la orilla oeste, los yacimientos o los amarres cuesten lo mismo. Tu total fijo se confirma una vez identificado el destino exacto.",
+      "includesItems": [
+        "Vehículo privado y conductor profesional",
+        "Recogida en el Aeropuerto Internacional de Luxor o en la propiedad confirmada",
+        "Seguimiento del vuelo en las llegadas",
+        "Instrucciones para el encuentro con el conductor",
+        "Traslado directo al hotel o amarre confirmados",
+        "Combustible, aparcamiento y peajes de la ruta confirmada",
+        "Impuestos y tasas de servicio indicadas"
+      ],
+      "changesItems": [
+        "Cambiar de un hotel de la orilla este a uno de la orilla oeste, o al revés",
+        "Cambiar a otro hotel de la misma orilla cuando la ruta sea sustancialmente distinta",
+        "Cambiar el amarre del crucero",
+        "Añadir visitas turísticas, un segundo hotel u otra parada",
+        "Aumentar el número de pasajeros o de equipaje de modo que se necesite un vehículo mayor",
+        "Solicitar equipamiento especial u otro servicio no incluido en el presupuesto original"
+      ],
+      "changesNote": "Explicaremos y confirmaremos cualquier precio revisado antes del servicio.",
+      "p2pTitle": "Los traslados de aeropuerto son servicios punto a punto",
+      "p2pBody": "Un traslado de aeropuerto te lleva directamente entre LXR y el hotel o amarre confirmado. El Valle de los Reyes, Karnak, el Templo de Luxor y otras visitas deben reservarse por separado para poder calcular con claridad el tiempo de vehículo, los tiempos de espera y el itinerario.",
+      "steps": [
+        {
+          "title": "Envía los datos de tu vuelo y alojamiento",
+          "description": "Comparte el número de vuelo, la fecha, el nombre del hotel o del crucero, la dirección o ubicación en el mapa, y el número de pasajeros y maletas."
+        },
+        {
+          "title": "Confirmamos la orilla y la ruta",
+          "description": "Identificamos si el destino está en la orilla este o en la oeste y comprobamos la ruta por carretera o el amarre correcto."
+        },
+        {
+          "title": "Recibe un presupuesto fijo para tu ruta",
+          "description": "Confirmamos el vehículo, el precio total y lo incluido antes de reservar."
+        },
+        {
+          "title": "Encuentra a tu conductor",
+          "description": "Tu conductor hace seguimiento del vuelo confirmado y te espera en el punto de recogida indicado del aeropuerto."
+        }
+      ],
+      "beforeItems": [
+        "Número de vuelo",
+        "Fecha y hora prevista de llegada o salida",
+        "Nombre del hotel, casa de huéspedes o barco",
+        "Dirección completa, amarre actual o ubicación en el mapa",
+        "Orilla este u oeste, si la conoces",
+        "Número de adultos y niños",
+        "Número de maletas facturadas y de mano",
+        "Vehículo preferido o cualquier necesidad especial"
+      ],
+      "pricingIntro": "No damos por hecho que toda reserva en Luxor termina en un hotel de la orilla este. Ponemos precio al trayecto real desde el aeropuerto de Luxor hasta tu propiedad o amarre exacto, incluido el cruce por carretera a la orilla oeste cuando hace falta.",
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Orilla y hotel correctos • Sin cargos sorpresa por la ruta a la orilla oeste"
     },
     "aswan": {
-      "title": "Traslados del Aeropuerto de Asuán - Transporte Ciudad del Nilo | AffordEgypt",
-      "metaDescription": "Reserve traslados del aeropuerto de Asuán desde 1,475 EGP. Conductores expertos de la ciudad del Nilo, conocimiento de cultura nubia, rutas del desierto a Abu Simbel. Transporte confiable del sur de Egipto.",
-      "keywords": "traslado aeropuerto Aswan, transporte aeropuerto ASW, traslado Abu Simbel, transporte pueblo nubio, taxi Aswan, transporte Nilo",
       "heroTitle": "Traslados del Aeropuerto de Asuán",
       "heroSubtitle": "Traslados profesionales de aeropuerto en la hermosa Asuán. Conductores expertos de la ciudad del Nilo con conocimiento local y precios transparentes desde 1,475 EGP.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de Asuán?",
@@ -1006,9 +1330,6 @@
       "nileRouteExpertise": "Experiencia en rutas del Nilo",
       "nubianCultureKnowledge": "Conocimiento de cultura nubia",
       "abuSimbelRouteReady": "Listo para ruta de Abu Simbel",
-      "sedanPriceFrom": "Desde 1,475 EGP",
-      "minivanPriceFrom": "Desde 1,750 EGP",
-      "vanPriceFrom": "Desde 3,010 EGP",
       "transferDestinationsTitle": "Destinos de Traslados en Asuán",
       "transferDestinationsDesc": "Proporcionamos traslados de aeropuerto a todas las áreas principales de Asuán y el sur de Egipto",
       "areas": [
@@ -1041,7 +1362,173 @@
       "area5": "Zona del Templo de Filae",
       "area6": "Distrito de la Alta Presa",
       "area7": "Puertos de Falucas",
-      "area8": "Ruta de Abu Simbel"
+      "area8": "Ruta de Abu Simbel",
+      "ctaQuote": "Obtén tu presupuesto exacto de traslado",
+      "calcTitle": "Cómo calculamos el precio de tu traslado",
+      "vehiclesTitle": "Tarifas iniciales por vehículo",
+      "sedanFeatures": [
+        "Aire acondicionado",
+        "Conductor profesional",
+        "Apto para equipaje estándar"
+      ],
+      "minivanFeatures": [
+        "Espacio extra para equipaje",
+        "Asientos para familias",
+        "Útil para viajeros con varias maletas"
+      ],
+      "vanFeatures": [
+        "Viajes en grupo",
+        "Gran capacidad de equipaje",
+        "La asignación del vehículo depende del número final de pasajeros y maletas"
+      ],
+      "includesTitle": "Qué incluye tu presupuesto confirmado",
+      "changesTitle": "¿Qué puede cambiar el presupuesto?",
+      "beforeTitle": "Antes de reservar: envíanos estos datos",
+      "pricingTitle": "Precios transparentes y específicos por ruta",
+      "ctaBook": "Reserva tu traslado",
+      "heroNote": "El precio de tu traslado en Asuán depende del destino exacto, no solo de la palabra «Asuán». Envíanos los datos del hotel, la aldea, el embarcadero o el crucero y confirmaremos la ruta y el precio antes de que reserves.",
+      "whereTitle": "Primero: ¿dónde te alojas en Asuán?",
+      "whereIntro": "Un traslado a un hotel céntrico de la Corniche no es el mismo trayecto que uno a un resort a las afueras, a Gharb Soheil, al punto de embarque de un hotel en una isla o a un crucero atracado fuera del centro. El destino exacto determina la ruta, el tiempo de vehículo y el precio final.",
+      "airportName": "Aeropuerto Internacional de Asuán",
+      "airportCode": "Código de aeropuerto: ASW",
+      "airportLocation": "El Aeropuerto Internacional de Asuán está fuera de la ciudad, al sur del centro. Distintos alojamientos pueden quedar en direcciones diferentes desde el aeropuerto, así que conviene calcular la distancia desde la propiedad real y no desde «la ciudad de Asuán».",
+      "destinations": [
+        {
+          "name": "Hoteles del centro de Asuán",
+          "intro": "Destinos céntricos habituales:",
+          "areas": [
+            "Hoteles de la Corniche",
+            "Hoteles cerca de la estación de tren de Asuán",
+            "Centro y zona del Zoco Antiguo",
+            "Hoteles en torno al Museo Nubio y el Old Cataract",
+            "Propiedades céntricas junto al río con acceso directo por carretera"
+          ],
+          "note": "Las rutas céntricas elegibles pueden recibir el precio inicial indicado una vez confirmada la propiedad exacta."
+        },
+        {
+          "name": "Hoteles fuera del centro de Asuán",
+          "intro": "",
+          "areas": [],
+          "note": "Algunos resorts, casas de huéspedes y alojamientos usan una dirección de Asuán pero están fuera de la zona hotelera central. Una propiedad cerca de la carretera de la Presa Alta, en un distrito del sur, al norte de la ciudad o en otra ubicación periférica puede requerir una tarifa distinta. Envía el nombre completo del hotel y una ubicación en el mapa: los nombres parecidos y las etiquetas de zona genéricas pueden llevar a la ruta equivocada."
+        },
+        {
+          "name": "Gharb Soheil y alojamientos en aldeas nubias",
+          "intro": "",
+          "areas": [],
+          "note": "Gharb Soheil —también escrito Gharb Suhail, Gharb Sohail o West Suhail— es una zona de aldeas nubias al sur del centro de Asuán, en la orilla oeste del Nilo. Su ruta desde el aeropuerto es distinta a la de un traslado a la Corniche céntrica. Las propiedades están repartidas por la aldea y el acceso en vehículo puede variar según la calle y la entrada del hotel. Envía el nombre exacto de la casa de huéspedes u hotel y una ubicación en el mapa. No selecciones «hotel en la ciudad de Asuán» si tu reserva está en Gharb Soheil o en otra aldea nubia."
+        },
+        {
+          "name": "Hoteles en islas y conexiones en barco",
+          "intro": "Los hoteles en la isla Elefantina, en otras islas o en puntos del río sin acceso directo por carretera requieren un traslado al embarcadero correcto en tierra firme, en lugar de hasta la puerta del hotel en coche. La lancha del propio hotel, un ferry público o un barco contratado aparte puede completar el trayecto. Confirma con la propiedad:",
+          "areas": [
+            "Embarcadero o punto de recogida necesario",
+            "Horario de funcionamiento del barco",
+            "Si el barco está incluido en la reserva del hotel",
+            "Si el personal te recibirá en el embarcadero"
+          ],
+          "note": "Nuestro presupuesto indicará si cubre solo el traslado por carretera o también una conexión en barco confirmada por separado."
+        }
+      ],
+      "cruiseTitle": "Los traslados a cruceros del Nilo necesitan el amarre exacto",
+      "cruiseIntro": "«Crucero por el Nilo en Asuán» no es un destino único. Los barcos pueden atracar en distintas zonas dentro o más allá del centro, y el lugar asignado puede cambiar antes del embarque o desembarque. Por favor, envía:",
+      "cruiseItems": [
+        "Nombre del barco",
+        "Naviera",
+        "Fecha de embarque o desembarque",
+        "Último lugar de atraque conocido",
+        "Referencia de la reserva",
+        "Teléfono de contacto del representante, si lo tienes"
+      ],
+      "cruiseNote": "Si el amarre final aún no está asignado, podemos presupuestar de forma provisional y reconfirmarlo contigo antes del traslado.",
+      "lakeTitle": "¿Crucero por el Nilo o crucero por el lago Nasser?",
+      "lakeBody": "No se atienden necesariamente desde la misma zona de atraque. Los cruceros habituales del Nilo entre Asuán y Luxor suelen usar amarres del Nilo en Asuán o sus alrededores. Los cruceros del lago Nasser usan una zona de embarque distinta, asociada al lado de la Presa Alta. Indícanos el itinerario completo y el nombre del barco para no enviar el vehículo al muelle equivocado.",
+      "pricingGuideTitle": "Guía de precios según el destino",
+      "pricingGuide": [
+        {
+          "label": "Hotel en el centro",
+          "note": "Suele ser la ruta de referencia; los precios iniciales solo se aplican a propiedades elegibles ya confirmadas."
+        },
+        {
+          "label": "Hotel o resort en las afueras de Asuán",
+          "note": "Se presupuesta con la propiedad exacta y su ubicación por carretera."
+        },
+        {
+          "label": "Gharb Soheil u otro alojamiento nubio",
+          "note": "Se presupuesta aparte, con la casa de huéspedes u hotel y su entrada exacta."
+        },
+        {
+          "label": "Hotel en una isla",
+          "note": "Se presupuesta hasta el embarcadero necesario, indicando por separado cualquier conexión en barco."
+        },
+        {
+          "label": "Crucero del Nilo o del lago Nasser",
+          "note": "Se presupuesta hasta el último amarre confirmado, no simplemente hasta «el puerto de cruceros de Asuán»."
+        }
+      ],
+      "calcItems": [
+        "Hotel, casa de huéspedes, embarcadero o amarre exacto",
+        "Ubicación céntrica o periférica",
+        "Acceso directo por carretera o conexión en barco",
+        "Traslado de llegada o de salida",
+        "Tamaño del vehículo",
+        "Número de viajeros",
+        "Número y tamaño de las maletas",
+        "Fecha y hora de recogida",
+        "Paradas adicionales o necesidades especiales"
+      ],
+      "vehiclesIntro": "Estas son tarifas iniciales para rutas elegibles de aeropuerto a hotel. No significan que todos los hoteles del centro, las propiedades de Gharb Soheil, los embarcaderos, los resorts periféricos o los amarres cuesten lo mismo. Tu total fijo se confirma tras comprobar el destino exacto y las condiciones de acceso.",
+      "includesItems": [
+        "Vehículo privado y conductor profesional",
+        "Recogida en el Aeropuerto Internacional de Asuán o en el punto accesible confirmado",
+        "Seguimiento del vuelo en las llegadas",
+        "Instrucciones para el encuentro con el conductor",
+        "Traslado directo por carretera a la propiedad, embarcadero o amarre confirmados",
+        "Combustible, aparcamiento y peajes de la ruta confirmada",
+        "Impuestos y tasas de servicio indicadas",
+        "Cualquier tramo en barco solo cuando figure expresamente en el presupuesto"
+      ],
+      "changesItems": [
+        "Cambiar de un hotel céntrico a uno periférico o de Gharb Soheil",
+        "Cambiar la propiedad, la entrada, el embarcadero o el amarre del crucero",
+        "Necesitar una conexión en barco no prevista",
+        "Cambiar entre un muelle de crucero del Nilo y uno del lago Nasser",
+        "Añadir visitas turísticas, un segundo hotel u otra parada",
+        "Aumentar el número de pasajeros o de equipaje de modo que se necesite un vehículo mayor",
+        "Solicitar equipamiento especial u otro servicio no incluido en el presupuesto original"
+      ],
+      "changesNote": "Explicaremos y confirmaremos cualquier precio revisado antes del servicio.",
+      "p2pTitle": "Los traslados de aeropuerto son servicios punto a punto",
+      "p2pBody": "Un traslado de aeropuerto te lleva directamente entre ASW y la propiedad accesible por carretera, el embarcadero o el amarre confirmados. El Templo de Filae, la Presa Alta, las visitas a aldeas nubias y Abu Simbel son servicios turísticos o de larga distancia independientes y deben presupuestarse por separado.",
+      "steps": [
+        {
+          "title": "Envía los datos de tu vuelo y destino",
+          "description": "Comparte el número de vuelo, la fecha, el nombre del hotel o del crucero, la dirección completa o ubicación en el mapa, y el número de pasajeros y maletas."
+        },
+        {
+          "title": "Confirmamos la ubicación y el acceso",
+          "description": "Comprobamos si es céntrico, periférico, en Gharb Soheil, en una isla o en un amarre de crucero del Nilo o del lago Nasser."
+        },
+        {
+          "title": "Recibe un presupuesto fijo para tu ruta",
+          "description": "Confirmamos el vehículo, el destino por carretera, cualquier arreglo en barco, el precio total y lo incluido antes de reservar."
+        },
+        {
+          "title": "Encuentra a tu conductor",
+          "description": "Tu conductor hace seguimiento del vuelo confirmado y te espera en el punto de recogida indicado del aeropuerto."
+        }
+      ],
+      "beforeItems": [
+        "Número de vuelo",
+        "Fecha y hora prevista de llegada o salida",
+        "Nombre del hotel, casa de huéspedes, propiedad en isla o barco",
+        "Dirección completa, ubicación en el mapa, embarcadero o último amarre",
+        "Naviera e itinerario, cuando corresponda",
+        "Número de adultos y niños",
+        "Número de maletas facturadas y de mano",
+        "Vehículo preferido o cualquier necesidad especial"
+      ],
+      "pricingIntro": "No damos por hecho que toda reserva en Asuán termina en un hotel céntrico de la Corniche. Ponemos precio al trayecto real hasta tu propiedad, embarcadero o barco exacto e indicamos con claridad si se incluye alguna conexión en barco.",
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Propiedad o amarre correctos • Sin cargos sorpresa por salir de la ciudad o por acceso en barco"
     }
   },
   "guideServices": {
@@ -1068,7 +1555,11 @@
       "fullDay": "Día Completo",
       "6to12Hours": "8-12 horas",
       "12to14Hours": "12-14 horas",
-      "priceFrom": "Desde {{price}}"
+      "priceFrom": "Desde {{price}}",
+      "ticketServiceTitle": "¿Quieres que gestionemos tus entradas?",
+      "ticketServiceBody1": "Podemos comprar y organizar las entradas elegibles antes de tu visita por",
+      "ticketServiceFee": "50 EGP por cada entrada de pago emitida",
+      "ticketServiceBody2": ", además del precio oficial de la entrada. Este servicio opcional ayuda a reducir el tiempo en las taquillas y evita depender por completo de los datáfonos del recinto, ya que muchos lugares no aceptan efectivo. Cubre la gestión anticipada y la organización de las entradas; los controles de seguridad, de identidad, los horarios de acceso y las colas del recinto pueden seguir aplicándose."
     },
     "cairo": {
       "title": "Servicios de Auto y Guía Turístico en El Cairo | AffordEgypt",
@@ -1094,7 +1585,17 @@
       "pricingDesc": "Guías profesionales y vehículos de lujo a precios competitivos. Sin costos ocultos.",
       "pricingInfo": "Guías licenciados • Vehículos de lujo • Soporte multilingüe • Todas las tasas de entrada",
       "ctaTitle": "¿Listo para Explorar el Antiguo El Cairo?",
-      "ctaSubtitle": "Reserva tu guía experto y descubre los secretos de los faraones"
+      "ctaSubtitle": "Reserva tu guía experto y descubre los secretos de los faraones",
+      "serviceAreas": [
+        "Pirámides de Giza y la Esfinge",
+        "Museo Egipcio",
+        "El Cairo islámico",
+        "El Cairo copto",
+        "Bazar Khan El Khalili",
+        "Ciudadela de Saladino",
+        "Saqqara y Menfis",
+        "Dahshur"
+      ]
     },
     "luxor": {
       "title": "Servicios de Auto y Guía Turístico en Luxor | AffordEgypt",
@@ -1120,7 +1621,17 @@
       "pricingDesc": "Guías arqueológicos profesionales y transporte de lujo. Mejor valor en el Alto Egipto.",
       "pricingInfo": "Guías licenciados • Experiencia en templos • Vehículos premium • Boletos de entrada incluidos",
       "ctaTitle": "¿Listo para Descubrir la Antigua Tebas?",
-      "ctaSubtitle": "Experimenta los templos de Luxor con guías arqueológicos expertos"
+      "ctaSubtitle": "Experimenta los templos de Luxor con guías arqueológicos expertos",
+      "serviceAreas": [
+        "Valle de los Reyes",
+        "Templo de Karnak",
+        "Templo de Luxor",
+        "Templo de Hatshepsut",
+        "Valle de las Reinas",
+        "Medinet Habu",
+        "Colosos de Memnón",
+        "Ramesseum"
+      ]
     },
     "aswan": {
       "title": "Servicios de Auto y Guía Turístico en Asuán | AffordEgypt",
@@ -1146,7 +1657,17 @@
       "pricingDesc": "Experiencias culturales genuinas con guías nubios locales. Mejor valor en turismo cultural.",
       "pricingInfo": "Guías locales • Inmersión cultural • Transporte premium • Experiencias auténticas",
       "ctaTitle": "¿Listo para Experimentar la Cultura Nubia?",
-      "ctaSubtitle": "Descubre las tradiciones auténticas del sur de Egipto con expertos locales"
+      "ctaSubtitle": "Descubre las tradiciones auténticas del sur de Egipto con expertos locales",
+      "serviceAreas": [
+        "Templo de Filae",
+        "Templos de Abu Simbel",
+        "Isla Elefantina",
+        "Aldeas nubias",
+        "Presa Alta de Asuán",
+        "Obelisco inacabado",
+        "Paseo en faluca",
+        "Isla de Kitchener"
+      ]
     }
   },
   "contactPage": {
@@ -1167,8 +1688,6 @@
     "businessHours": "Horario de atención",
     "emailNote": "Respondemos en menos de 24 horas",
     "phoneNote": "Disponible 24/7",
-    "officeCity": "El Cairo, Egipto",
-    "officeArea": "Centro de la ciudad",
     "hoursWeekdays": "Domingo - Jueves: 9:00 - 20:00",
     "hoursWeekend": "Viernes - Sábado: 10:00 - 18:00",
     "hoursTimezone": "(Hora estándar de Egipto)",
@@ -1208,7 +1727,9 @@
     "ourLocationValue": "Centro de El Cairo, Egipto",
     "officeHours": "Horario de oficina",
     "officeHoursValue": "Soporte disponible 24/7",
-    "contactLabel": "Contacto"
+    "contactLabel": "Contacto",
+    "officeStreet": "{{street}}",
+    "officeLocality": "{{locality}}, {{region}}"
   },
   "aboutPage": {
     "seoTitle": "Sobre AffordEgypt | La línea económica de Capital Travel Service",
@@ -1480,12 +2001,8 @@
     "moveLead": "Egipto es un país grande, pero su red de trenes, autobuses y transporte local facilita recorrerlo con poco presupuesto.",
     "trains": "Trenes",
     "trainsBody": "Panorámicos y económicos para largas distancias. Un asiento de 2.ª clase con aire acondicionado de",
-    "trainsStrong": "El Cairo a Luxor cuesta a los extranjeros unos 775 EGP",
-    "trainsBody2": "Es una forma cómoda y clásica de viajar.",
     "buses": "Autobuses",
     "busesBody": "La opción más barata. Un autobús de",
-    "busesStrong": "El Cairo a Luxor puede costar solo 200-275 EGP",
-    "busesBody2": "Usa compañías fiables como Go Bus o Blue Bus.",
     "localTransport": "Transporte local",
     "microbuses": "Microbuses",
     "microBody": "Para los más aventureros. Son baratísimos pero difíciles de usar sin árabe. Mejor para trayectos cortos y habituales donde puedas seguir a los locales.",
@@ -1899,6 +2416,7 @@
         "cost": "25 EGP"
       }
     ],
-    "ctaPrint": "Imprimir / Guardar como PDF"
+    "ctaPrint": "Imprimir / Guardar como PDF",
+    "totalValue": "400 EGP"
   }
 }

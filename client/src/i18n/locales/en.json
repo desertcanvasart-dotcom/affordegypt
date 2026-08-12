@@ -975,22 +975,44 @@
       "zones": [
         {
           "name": "Central Cairo & Core Giza",
-          "areas": ["Downtown Cairo", "Zamalek", "Garden City", "Dokki", "Mohandessin", "Many central Giza hotels"],
+          "areas": [
+            "Downtown Cairo",
+            "Zamalek",
+            "Garden City",
+            "Dokki",
+            "Mohandessin",
+            "Many central Giza hotels"
+          ],
           "note": "These areas often fall within our standard central-zone pricing, but the airport and exact hotel still need to be confirmed."
         },
         {
           "name": "Eastern Greater Cairo",
-          "areas": ["Heliopolis", "Nasr City", "New Cairo", "Fifth Settlement", "Cairo Festival City area"],
+          "areas": [
+            "Heliopolis",
+            "Nasr City",
+            "New Cairo",
+            "Fifth Settlement",
+            "Cairo Festival City area"
+          ],
           "note": "Hotels near CAI may have a shorter route. New Cairo is a large suburban area, so two hotels both described as \"New Cairo\" can require different journeys and prices."
         },
         {
           "name": "Western Greater Cairo",
-          "areas": ["Giza Pyramids hotels", "Grand Egyptian Museum area", "Sheikh Zayed City", "6th of October City"],
+          "areas": [
+            "Giza Pyramids hotels",
+            "Grand Egyptian Museum area",
+            "Sheikh Zayed City",
+            "6th of October City"
+          ],
           "note": "Hotels near SPX may have a shorter route. Sheikh Zayed and 6th of October are extensive western suburbs, so we quote the exact property rather than one city-wide fare."
         },
         {
           "name": "Southern Cairo",
-          "areas": ["Maadi", "New Maadi", "Zahraa El Maadi"],
+          "areas": [
+            "Maadi",
+            "New Maadi",
+            "Zahraa El Maadi"
+          ],
           "note": "These routes can be affected by the airport used and the hotel's position within the district."
         }
       ],
@@ -998,9 +1020,21 @@
       "zonesHelp": "Send the hotel name, full address, or a map pin. We will identify the correct zone and quote the route from your actual airport.",
       "vehiclesTitle": "Starting Vehicle Rates",
       "vehiclesIntro": "The prices below are starting rates for eligible airport-to-hotel routes. They are not a promise that every route from both airports costs the same. Your exact fixed price is confirmed after we receive the airport and hotel address.",
-      "sedanFeatures": ["Air conditioning", "Professional driver", "Suitable for standard luggage"],
-      "minivanFeatures": ["Extra luggage space", "Family-friendly seating", "Useful for travelers with several suitcases"],
-      "vanFeatures": ["Group travel", "Large luggage capacity", "Vehicle assignment depends on the final passenger and baggage count"],
+      "sedanFeatures": [
+        "Air conditioning",
+        "Professional driver",
+        "Suitable for standard luggage"
+      ],
+      "minivanFeatures": [
+        "Extra luggage space",
+        "Family-friendly seating",
+        "Useful for travelers with several suitcases"
+      ],
+      "vanFeatures": [
+        "Group travel",
+        "Large luggage capacity",
+        "Vehicle assignment depends on the final passenger and baggage count"
+      ],
       "includesTitle": "What Your Confirmed Quote Includes",
       "includesItems": [
         "Private vehicle and professional driver",
@@ -1111,13 +1145,27 @@
         {
           "name": "East Bank Hotels",
           "intro": "Common East Bank destinations include:",
-          "areas": ["Luxor city centre", "Luxor Corniche", "Luxor Temple district", "Karnak and northern Luxor hotels", "Hotels around Khaled Ibn El Walid Street", "Many large resort and international-brand hotels"],
+          "areas": [
+            "Luxor city centre",
+            "Luxor Corniche",
+            "Luxor Temple district",
+            "Karnak and northern Luxor hotels",
+            "Hotels around Khaled Ibn El Walid Street",
+            "Many large resort and international-brand hotels"
+          ],
           "note": "East Bank journeys do not require the vehicle to cross the Nile. The exact distance still varies because Luxor's East Bank hotel area extends north and south of the city centre."
         },
         {
           "name": "West Bank Hotels",
           "intro": "Common West Bank destinations include:",
-          "areas": ["Al-Gezira and the ferry area", "El-Bairat", "Al-Qurna", "Medinet Habu area", "Hotels near the West Bank archaeological sites", "Hager Al Dabayah and properties farther south"],
+          "areas": [
+            "Al-Gezira and the ferry area",
+            "El-Bairat",
+            "Al-Qurna",
+            "Medinet Habu area",
+            "Hotels near the West Bank archaeological sites",
+            "Hager Al Dabayah and properties farther south"
+          ],
           "note": "For a normal private airport transfer, the vehicle travels by road across the Luxor bridge. The central passenger ferry is useful for people moving between the banks, but it is not the standard route for an airport vehicle carrying passengers and luggage. Because the road bridge is outside the central hotel area, a West Bank transfer is not the same journey as an East Bank transfer."
         }
       ],
@@ -1125,10 +1173,22 @@
       "bankWarning": "\"West Bank\" is not one single destination. A guesthouse near the ferry, a hotel near Medinet Habu, and a property farther south can require different routes. Send the property name, full address, or a map pin rather than only writing \"Luxor West Bank.\"",
       "pricingGuideTitle": "East Bank vs. West Bank: Pricing Guide",
       "pricingGuide": [
-        { "label": "East Bank hotel", "note": "Usually the more direct airport route. Eligible routes may receive the displayed starting price after the exact hotel is confirmed." },
-        { "label": "West Bank hotel", "note": "Quoted separately because the vehicle must use the road crossing and continue to the exact West Bank property." },
-        { "label": "Hotel change after booking", "note": "May change the route and price, even when both properties use \"Luxor\" in their address." },
-        { "label": "Bank not known", "note": "Send the hotel booking confirmation or map link and we will identify it for you." }
+        {
+          "label": "East Bank hotel",
+          "note": "Usually the more direct airport route. Eligible routes may receive the displayed starting price after the exact hotel is confirmed."
+        },
+        {
+          "label": "West Bank hotel",
+          "note": "Quoted separately because the vehicle must use the road crossing and continue to the exact West Bank property."
+        },
+        {
+          "label": "Hotel change after booking",
+          "note": "May change the route and price, even when both properties use \"Luxor\" in their address."
+        },
+        {
+          "label": "Bank not known",
+          "note": "Send the hotel booking confirmation or map link and we will identify it for you."
+        }
       ],
       "cruiseTitle": "Nile Cruise Transfers Need the Boat Details",
       "cruiseIntro": "\"Nile cruise in Luxor\" is not a complete pickup or drop-off location. Cruise vessels can use different moorings in or around Luxor, and the final berth may be confirmed or changed by the cruise operator. Please send:",
@@ -1153,9 +1213,21 @@
       ],
       "vehiclesTitle": "Starting Vehicle Rates",
       "vehiclesIntro": "These are starting rates for eligible airport-to-hotel routes. They do not mean that every East Bank hotel, West Bank hotel, archaeological site, or cruise mooring costs the same. Your fixed total is confirmed after we identify the exact destination.",
-      "sedanFeatures": ["Air conditioning", "Professional driver", "Suitable for standard luggage"],
-      "minivanFeatures": ["Extra luggage space", "Family-friendly seating", "Useful for travelers with several suitcases"],
-      "vanFeatures": ["Group travel", "Large luggage capacity", "Vehicle assignment depends on the final passenger and baggage count"],
+      "sedanFeatures": [
+        "Air conditioning",
+        "Professional driver",
+        "Suitable for standard luggage"
+      ],
+      "minivanFeatures": [
+        "Extra luggage space",
+        "Family-friendly seating",
+        "Useful for travelers with several suitcases"
+      ],
+      "vanFeatures": [
+        "Group travel",
+        "Large luggage capacity",
+        "Vehicle assignment depends on the final passenger and baggage count"
+      ],
       "includesTitle": "What Your Confirmed Quote Includes",
       "includesItems": [
         "Private vehicle and professional driver",
@@ -1179,10 +1251,22 @@
       "p2pTitle": "Airport Transfers Are Point-to-Point Services",
       "p2pBody": "An airport transfer takes you directly between LXR and the confirmed hotel or cruise mooring. Valley of the Kings, Karnak, Luxor Temple, and other sightseeing visits should be booked separately so that the correct vehicle time, waiting time, and itinerary can be priced clearly.",
       "steps": [
-        { "title": "Send Your Flight and Accommodation Details", "description": "Share the flight number, date, hotel or cruise name, address or map pin, passenger count, and luggage count." },
-        { "title": "We Confirm the Riverbank and Route", "description": "We identify whether the destination is on the East Bank or West Bank and check the correct road route or cruise mooring." },
-        { "title": "Receive a Route-Specific Fixed Quote", "description": "We confirm the vehicle, total price, and inclusions before booking." },
-        { "title": "Meet Your Driver", "description": "Your driver monitors the confirmed flight and meets you at the designated airport pickup point." }
+        {
+          "title": "Send Your Flight and Accommodation Details",
+          "description": "Share the flight number, date, hotel or cruise name, address or map pin, passenger count, and luggage count."
+        },
+        {
+          "title": "We Confirm the Riverbank and Route",
+          "description": "We identify whether the destination is on the East Bank or West Bank and check the correct road route or cruise mooring."
+        },
+        {
+          "title": "Receive a Route-Specific Fixed Quote",
+          "description": "We confirm the vehicle, total price, and inclusions before booking."
+        },
+        {
+          "title": "Meet Your Driver",
+          "description": "Your driver monitors the confirmed flight and meets you at the designated airport pickup point."
+        }
       ],
       "beforeTitle": "Before You Book: Send Us These Details",
       "beforeItems": [
@@ -1257,7 +1341,13 @@
         {
           "name": "Central Aswan Hotels",
           "intro": "Common central destinations include:",
-          "areas": ["Corniche hotels", "Hotels near Aswan Railway Station", "Downtown and Old Souk area", "Hotels around the Nubian Museum and Old Cataract area", "Central riverside properties with direct road access"],
+          "areas": [
+            "Corniche hotels",
+            "Hotels near Aswan Railway Station",
+            "Downtown and Old Souk area",
+            "Hotels around the Nubian Museum and Old Cataract area",
+            "Central riverside properties with direct road access"
+          ],
           "note": "Eligible central routes may receive the displayed starting price after the exact property is confirmed."
         },
         {
@@ -1275,7 +1365,12 @@
         {
           "name": "Island Hotels and Boat Connections",
           "intro": "Hotels on Elephantine Island, other islands, or river locations without direct road access require a transfer to the correct mainland jetty rather than to the hotel door by car. The hotel's own launch, a public ferry, or a separately arranged boat may complete the journey. Confirm with the property:",
-          "areas": ["Required jetty or pickup point", "Boat operating hours", "Whether the boat is included in the hotel booking", "Whether staff will meet you at the jetty"],
+          "areas": [
+            "Required jetty or pickup point",
+            "Boat operating hours",
+            "Whether the boat is included in the hotel booking",
+            "Whether staff will meet you at the jetty"
+          ],
           "note": "Our quote will state whether it covers only the road transfer or also includes a separately confirmed boat connection."
         }
       ],
@@ -1294,11 +1389,26 @@
       "lakeBody": "These are not necessarily served from the same docking area. Standard Nile cruises between Aswan and Luxor commonly use Nile moorings in or around Aswan. Lake Nasser cruises use a different embarkation area associated with the High Dam side of Aswan. Tell us the complete itinerary and vessel name so we do not send the vehicle to the wrong dock.",
       "pricingGuideTitle": "Destination-Based Pricing Guide",
       "pricingGuide": [
-        { "label": "Central city hotel", "note": "Usually the standard comparison route; starting prices apply only to eligible confirmed properties." },
-        { "label": "Outlying Aswan hotel or resort", "note": "Quoted using the exact property and road location." },
-        { "label": "Gharb Soheil or another Nubian stay", "note": "Quoted separately using the exact guesthouse or hotel entrance." },
-        { "label": "Island hotel", "note": "Quoted to the required jetty, with any boat connection stated separately." },
-        { "label": "Nile or Lake Nasser cruise", "note": "Quoted to the latest confirmed mooring, not simply to \"Aswan cruise port.\"" }
+        {
+          "label": "Central city hotel",
+          "note": "Usually the standard comparison route; starting prices apply only to eligible confirmed properties."
+        },
+        {
+          "label": "Outlying Aswan hotel or resort",
+          "note": "Quoted using the exact property and road location."
+        },
+        {
+          "label": "Gharb Soheil or another Nubian stay",
+          "note": "Quoted separately using the exact guesthouse or hotel entrance."
+        },
+        {
+          "label": "Island hotel",
+          "note": "Quoted to the required jetty, with any boat connection stated separately."
+        },
+        {
+          "label": "Nile or Lake Nasser cruise",
+          "note": "Quoted to the latest confirmed mooring, not simply to \"Aswan cruise port.\""
+        }
       ],
       "calcTitle": "How We Calculate Your Transfer Price",
       "calcItems": [
@@ -1314,9 +1424,21 @@
       ],
       "vehiclesTitle": "Starting Vehicle Rates",
       "vehiclesIntro": "These are starting rates for eligible airport-to-hotel routes. They do not mean that every central hotel, Gharb Soheil property, island jetty, outlying resort, or cruise mooring costs the same. Your fixed total is confirmed after the exact destination and access arrangements are checked.",
-      "sedanFeatures": ["Air conditioning", "Professional driver", "Suitable for standard luggage"],
-      "minivanFeatures": ["Extra luggage space", "Family-friendly seating", "Useful for travelers with several suitcases"],
-      "vanFeatures": ["Group travel", "Large luggage capacity", "Vehicle assignment depends on the final passenger and baggage count"],
+      "sedanFeatures": [
+        "Air conditioning",
+        "Professional driver",
+        "Suitable for standard luggage"
+      ],
+      "minivanFeatures": [
+        "Extra luggage space",
+        "Family-friendly seating",
+        "Useful for travelers with several suitcases"
+      ],
+      "vanFeatures": [
+        "Group travel",
+        "Large luggage capacity",
+        "Vehicle assignment depends on the final passenger and baggage count"
+      ],
       "includesTitle": "What Your Confirmed Quote Includes",
       "includesItems": [
         "Private vehicle and professional driver",
@@ -1342,10 +1464,22 @@
       "p2pTitle": "Airport Transfers Are Point-to-Point Services",
       "p2pBody": "An airport transfer takes you directly between ASW and the confirmed road-accessible property, jetty, or cruise mooring. Philae Temple, the High Dam, Nubian village visits, and Abu Simbel are separate sightseeing or long-distance services and should be quoted independently.",
       "steps": [
-        { "title": "Send Your Flight and Destination Details", "description": "Share the flight number, date, hotel or cruise name, full address or map pin, passenger count, and luggage count." },
-        { "title": "We Confirm the Location and Access", "description": "We check whether it is central, outlying, in Gharb Soheil, on an island, or at a Nile or Lake Nasser cruise mooring." },
-        { "title": "Receive a Route-Specific Fixed Quote", "description": "We confirm the vehicle, road destination, any boat arrangements, total price, and inclusions before booking." },
-        { "title": "Meet Your Driver", "description": "Your driver monitors the confirmed flight and meets you at the designated airport pickup point." }
+        {
+          "title": "Send Your Flight and Destination Details",
+          "description": "Share the flight number, date, hotel or cruise name, full address or map pin, passenger count, and luggage count."
+        },
+        {
+          "title": "We Confirm the Location and Access",
+          "description": "We check whether it is central, outlying, in Gharb Soheil, on an island, or at a Nile or Lake Nasser cruise mooring."
+        },
+        {
+          "title": "Receive a Route-Specific Fixed Quote",
+          "description": "We confirm the vehicle, road destination, any boat arrangements, total price, and inclusions before booking."
+        },
+        {
+          "title": "Meet Your Driver",
+          "description": "Your driver monitors the confirmed flight and meets you at the designated airport pickup point."
+        }
       ],
       "beforeTitle": "Before You Book: Send Us These Details",
       "beforeItems": [
@@ -1429,8 +1563,6 @@
     },
     "cairo": {
       "title": "Cairo Car & Tour Guide Services - Expert Tours | AffordEgypt",
-      "metaDescription": "Expert Cairo car & tour guide services. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
-      "keywords": "Cairo guide, Egypt tour guide, Cairo car service, pyramid tours, Egyptian Museum guide, Islamic Cairo tours",
       "heroTitle": "Cairo Car & Tour Guide Services",
       "heroSubtitle": "Expert Cairo car & tour guide services. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "whyChooseTitle": "Why Choose Our Cairo Car & Tour Guide Services?",
@@ -1442,35 +1574,6 @@
       "photographySupportDesc": "Guides help you capture perfect photos at iconic Cairo landmarks",
       "flexibleScheduling": "Flexible Scheduling",
       "flexibleSchedulingDesc": "Customize your itinerary and timing to match your preferences",
-      "serviceTypes": {
-        "professionalGuide": {
-          "name": "Professional Guide",
-          "duration": "Full Day (8 hours)",
-          "features": [
-            "Licensed Egyptologist",
-            "Fluent English/Arabic",
-            "Historical expertise"
-          ]
-        },
-        "guideCarPackage": {
-          "name": "Guide + Car Package",
-          "duration": "Full Day",
-          "features": [
-            "Professional guide",
-            "Private vehicle",
-            "Entrance tickets billed separately"
-          ]
-        },
-        "premiumCarService": {
-          "name": "Premium Car Service",
-          "duration": "8-12 hours",
-          "features": [
-            "Private sedan/SUV",
-            "Professional driver",
-            "Flexible itinerary"
-          ]
-        }
-      },
       "serviceAreasTitle": "Popular Cairo Tour Destinations",
       "serviceAreasDesc": "Our expert guides cover all major Cairo attractions and hidden gems",
       "serviceAreas": [
@@ -1488,14 +1591,6 @@
       "egyptologyExpertsDesc": "Licensed Egyptologists with deep knowledge of pharaonic history, hieroglyphs, and archaeological discoveries. Perfect for museum tours and pyramid exploration.",
       "islamicCairoSpecialists": "Islamic Cairo Specialists",
       "islamicCairoSpecialistsDesc": "Expert guides for Islamic Cairo's medieval streets, historic mosques, and traditional bazaars. Experience authentic Egyptian culture and architecture.",
-      "howItWorksSteps": {
-        "step1": "Choose Your Service",
-        "step1Desc": "Select guide only, car only, or combined package based on your needs",
-        "step2": "Meet Your Guide",
-        "step2Desc": "Professional licensed guide will meet you at your hotel or chosen location",
-        "step3": "Explore Cairo",
-        "step3Desc": "Discover Cairo's wonders with expert commentary and insider knowledge"
-      },
       "pricingTitle": "Affordable Cairo Car & Tour Guide Services",
       "pricingDesc": "Professional guides and private vehicles at competitive prices. No hidden costs.",
       "pricingInfo": "Licensed guides • Private vehicles • Multilingual support • Entrance tickets billed separately",
@@ -1504,8 +1599,6 @@
     },
     "luxor": {
       "title": "Luxor Car & Tour Guide Services - Temple Tours | AffordEgypt",
-      "metaDescription": "Expert car & tour guide services in ancient Thebes. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
-      "keywords": "Luxor guide, Valley of Kings tour, temple guide Luxor, Karnak guide, ancient Egypt tours, Luxor car service",
       "heroTitle": "Luxor Car & Tour Guide Services",
       "heroSubtitle": "Expert car & tour guide services in ancient Thebes. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "whyChooseTitle": "Why Choose Our Luxor Car & Tour Guide Services?",
@@ -1517,35 +1610,6 @@
       "photographyToursDesc": "Special photo tours for best lighting and angles at temples",
       "earlyMorningAccess": "Early Starts",
       "earlyMorningAccessDesc": "Plan an early start around each site's published opening hours; private access is not included unless separately confirmed",
-      "serviceTypes": {
-        "templeSpecialist": {
-          "name": "Temple Specialist Guide",
-          "duration": "Full Day (8 hours)",
-          "features": [
-            "Ancient Egypt expert",
-            "Valley of Kings specialist",
-            "Hieroglyph interpreter"
-          ]
-        },
-        "eastWestBank": {
-          "name": "East & West Bank Tour",
-          "duration": "Full Day",
-          "features": [
-            "Professional guide",
-            "Private vehicle",
-            "Both banks covered"
-          ]
-        },
-        "luxuryTemple": {
-          "name": "Luxor Temples Tours",
-          "duration": "6-10 hours",
-          "features": [
-            "Premium vehicle",
-            "Expert driver-guide",
-            "Flexible temple visits"
-          ]
-        }
-      },
       "serviceAreasTitle": "Ancient Luxor Temple Sites",
       "serviceAreasDesc": "Professional guided tours of the world's greatest open-air museum",
       "serviceAreas": [
@@ -1563,14 +1627,6 @@
       "valleyKingsExpertDesc": "Specialized guides for the royal tombs with detailed knowledge of pharaonic burial practices, tomb art, and recent archaeological discoveries.",
       "templeArchitecture": "Temple Architecture Tours",
       "templeArchitectureDesc": "Expert architectural guides explaining the engineering marvels of Karnak and Luxor temples, including hieroglyphic translations and historical context.",
-      "howItWorksSteps": {
-        "step1": "Book Your Tour",
-        "step1Desc": "Choose East Bank, West Bank, or combined temple tour package",
-        "step2": "Meet Temple Expert",
-        "step2Desc": "Licensed archaeologist guide meets you with comfortable transport",
-        "step3": "Explore Ancient Thebes",
-        "step3Desc": "Discover pharaonic treasures with expert historical commentary"
-      },
       "pricingTitle": "Expert Luxor Car & Tour Guide Services",
       "pricingDesc": "Professional archaeological guides and comfortable transport. Best value in Upper Egypt.",
       "pricingInfo": "Licensed guides • Temple expertise • Premium vehicles • Entry tickets included",
@@ -1579,8 +1635,6 @@
     },
     "aswan": {
       "title": "Aswan Car & Tour Guide Services - Nubian Culture Tours | AffordEgypt",
-      "metaDescription": "Discover Nubian culture and southern Egypt. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
-      "keywords": "Aswan guide, Abu Simbel tour, Nubian village tour, Philae Temple guide, felucca sailing, Aswan car service",
       "heroTitle": "Aswan Car & Tour Guide Services",
       "heroSubtitle": "Discover Nubian culture and southern Egypt. Licensed guide from {{guidePrice}}/day, or guide + private car from {{guideCarPrice}}/day. Entrance tickets are billed separately.",
       "whyChooseTitle": "Why Choose Our Aswan Car & Tour Guide Services?",
@@ -1592,35 +1646,6 @@
       "desertExpeditionsDesc": "Expert guides for Abu Simbel and southern desert temple sites",
       "flexibleItineraries": "Flexible Itineraries",
       "flexibleItinerariesDesc": "Customized tours including felucca rides and village visits",
-      "serviceTypes": {
-        "nubianCulture": {
-          "name": "Nubian Culture Guide",
-          "duration": "Full Day (8 hours)",
-          "features": [
-            "Nubian heritage expert",
-            "Local village guide",
-            "Traditional culture focus"
-          ]
-        },
-        "nileTemples": {
-          "name": "Nile & Temples Package",
-          "duration": "Full Day",
-          "features": [
-            "Professional guide",
-            "Felucca included",
-            "Philae Temple tour"
-          ]
-        },
-        "abuSimbelExpedition": {
-          "name": "Abu Simbel Expedition",
-          "duration": "12-14 hours",
-          "features": [
-            "Long-distance vehicle",
-            "Expert guide",
-            "UNESCO site specialist"
-          ]
-        }
-      },
       "serviceAreasTitle": "Southern Egypt Destinations",
       "serviceAreasDesc": "Experience the jewels of the Nile with expert cultural guidance",
       "serviceAreas": [
@@ -1638,14 +1663,6 @@
       "nubianHeritageDesc": "Authentic Nubian village visits with local community guides. Experience traditional crafts, music, and hospitality while respecting local customs.",
       "abuSimbelExpeditions": "Abu Simbel Expeditions",
       "abuSimbelExpeditionsDesc": "Professional desert guides for the ultimate UNESCO World Heritage site. Early departure options and expert commentary on Ramses II's masterpiece.",
-      "howItWorksSteps": {
-        "step1": "Choose Your Experience",
-        "step1Desc": "Select cultural tours, temple visits, or desert expeditions",
-        "step2": "Meet Cultural Guide",
-        "step2Desc": "Local Nubian guide with deep knowledge of traditions and history",
-        "step3": "Experience Nubia",
-        "step3Desc": "Immerse yourself in the unique culture of southern Egypt"
-      },
       "pricingTitle": "Authentic Aswan Car & Tour Guide Services",
       "pricingDesc": "Genuine cultural experiences with local Nubian guides. Best value cultural tourism.",
       "pricingInfo": "Local guides • Cultural immersion • Premium transport • Authentic experiences",

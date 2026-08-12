@@ -466,7 +466,8 @@
         },
         "destinations": {
           "title": "Wüstenziele: Budgetfreundliche Erkundung",
-          "subtitle": "Top-Ziele für authentische Wüstenerlebnisse"
+          "subtitle": "Top-Ziele für authentische Wüstenerlebnisse",
+          "priceNote": "Die unten genannten Preise für Unterkunft, Safari und Transport sind kommerzielle Schätzungen lokaler Anbieter, keine amtlichen Tarife. Sie schwanken je nach Saison, Gruppengröße und Fahrzeug — holen Sie vor der Buchung ein datiertes Angebot ein."
         },
         "budgetTips": {
           "title": "Budget-Reisetipps",
@@ -483,7 +484,39 @@
         "itinerary": {
           "title": "5-Tage Budget-Wüstenabenteuer",
           "subtitle": "Vollständiger Reiseplan mit transparenten Preisen",
-          "total": "Gesamt: 2.850 EGP pro Person"
+          "total": "Gesamt: 2.850 EGP pro Person",
+          "days": [
+            {
+              "day": "Tag 1",
+              "location": "Kairo → Bahariya",
+              "activities": "Busfahrt, Übernachtung in Bawiti",
+              "cost": "2,000 EGP"
+            },
+            {
+              "day": "Tag 2",
+              "location": "Tour in die Weiße Wüste",
+              "activities": "Gruppentour mit Mahlzeiten und Camping",
+              "cost": "1,350 EGP"
+            },
+            {
+              "day": "Tag 3",
+              "location": "Erholung in Bahariya",
+              "activities": "Heiße Quellen, lokales Essen, Übernachtung in der Lodge",
+              "cost": "1,350 EGP"
+            },
+            {
+              "day": "Tag 4",
+              "location": "Farafra oder zurück nach Bahariya",
+              "activities": "Rechnen Sie nicht mit einem öffentlichen Transfer am selben Tag nach Dakhla; es liegt weit im Süden und die Verbindungen können spärlich sein",
+              "cost": "2,000 EGP"
+            },
+            {
+              "day": "Tag 5",
+              "location": "Rückfahrt nach Kairo",
+              "activities": "Prüfen Sie den aktuellen Fahrplan und Preis für Bus oder Privattransfer",
+              "cost": "900 EGP"
+            }
+          ]
         },
         "packing": {
           "title": "Wüsten-Packliste",
@@ -543,7 +576,9 @@
           "startPlanning": "Planung Beginnen",
           "findGuides": "Lokale Führer Finden"
         }
-      }
+      },
+      "safetyNoteLabel": "Sicherheitshinweis:",
+      "safetyNote": "Offizielle Reisehinweise unterscheiden sich und können sich schnell ändern. Einige Regierungen raten von Reisen in Teile der Westlichen Wüste ab. Prüfen Sie vor der Buchung die aktuellen Hinweise Ihrer eigenen Regierung, die örtlichen Zugangsregeln, Genehmigungen und Ihren Versicherungsschutz, und nutzen Sie für Fahrten abseits befestigter Straßen einen lizenzierten Veranstalter."
     }
   },
   "budgetTips": {
@@ -894,12 +929,11 @@
       "van": "Transporter",
       "passengers1to2": "1–2 Passagiere",
       "passengers3to8": "3–8 Passagiere",
-      "passengers9to15": "9–15 Passagiere"
+      "passengers9to15": "9–15 Passagiere",
+      "fromPrice": "Ab {{price}} EGP",
+      "startingFromRoutes": "Ab {{price}} EGP auf berechtigten Strecken"
     },
     "cairo": {
-      "title": "Kairo Flughafentransfers - Zuverlässig & Erschwinglich | AffordEgypt",
-      "metaDescription": "Buchen Sie zuverlässige Kairo Flughafentransfers ab 2.025 EGP. Professionelle Fahrer, 24/7-Service, Flugüberwachung. Transfers zu Hotels in Neu-Kairo, Giza, Innenstadt und mehr.",
-      "keywords": "Kairo Flughafentransfer, CAI Flughafentransport, Kairo Taxi, Ägypten Flughafen Shuttle, Neu-Kairo Transfer",
       "heroTitle": "Kairo Flughafentransfers",
       "heroSubtitle": "Zuverlässige, komfortable und erschwingliche Flughafentransfers in Kairo. Professionelle Fahrer, Flugüberwachung und transparente Preise ab 2.025 EGP.",
       "whyChooseTitle": "Warum Unsere Kairo Flughafentransfers Wählen?",
@@ -907,9 +941,6 @@
       "service24_7Desc": "Rund um die Uhr verfügbare Flughafentransfers jeden Tag",
       "doorToDoor": "Von Tür zu Tür",
       "doorToDoorDesc": "Direkte Transfers vom Flughafen zu Ihrem Hotel oder Ziel",
-      "sedanPriceFrom": "Ab 2.025 EGP",
-      "minivanPriceFrom": "Ab 2.475 EGP",
-      "vanPriceFrom": "Ab 3.675 EGP",
       "transferDestinationsTitle": "Kairo Transfer-Ziele",
       "transferDestinationsDesc": "Wir bieten Flughafentransfers zu allen wichtigen Gebieten in und um Kairo",
       "areas": [
@@ -935,12 +966,161 @@
       "area5": "Innenstadt von Kairo",
       "area6": "Heliopolis",
       "area7": "Maadi",
-      "area8": "Zamalek"
+      "area8": "Zamalek",
+      "ctaQuote": "Erhalten Sie Ihr genaues Transfer-Angebot",
+      "calcTitle": "So berechnen wir Ihren Transferpreis",
+      "vehiclesTitle": "Einstiegspreise nach Fahrzeug",
+      "sedanFeatures": [
+        "Klimaanlage",
+        "Professioneller Fahrer",
+        "Geeignet für normales Gepäck"
+      ],
+      "minivanFeatures": [
+        "Zusätzlicher Gepäckraum",
+        "Familienfreundliche Bestuhlung",
+        "Praktisch für Reisende mit mehreren Koffern"
+      ],
+      "vanFeatures": [
+        "Gruppenreisen",
+        "Große Gepäckkapazität",
+        "Die Fahrzeugzuteilung richtet sich nach der endgültigen Personen- und Gepäckzahl"
+      ],
+      "includesTitle": "Was Ihr bestätigtes Angebot enthält",
+      "changesTitle": "Was kann das Angebot verändern?",
+      "beforeTitle": "Vor der Buchung: Senden Sie uns diese Angaben",
+      "pricingTitle": "Transparente, streckenbezogene Preise",
+      "ctaBook": "Transfer buchen",
+      "heroNote": "Ihr Preis hängt von zwei Orten ab: dem Flughafen, an dem Ihr Flug landet, und der genauen Adresse Ihres Hotels. Nennen Sie uns beide, und wir bestätigen den Preis vor Ihrer Buchung.",
+      "airportsTitle": "Zuerst: Welchen Flughafen in Kairo nutzen Sie?",
+      "airportsIntro": "Kairo hat zwei große Passagierflughäfen, und sie liegen auf gegenüberliegenden Seiten des Großraums Kairo. Bitte prüfen Sie den dreistelligen Flughafencode auf Ihrem Ticket, bevor Sie einen Transfer anfragen.",
+      "airports": [
+        {
+          "name": "Internationaler Flughafen Kairo",
+          "code": "Flughafencode: CAI",
+          "location": "Im Osten Kairos gelegen, nahe Heliopolis.",
+          "direct": "Meist der direktere Ankunftsflughafen für Heliopolis, Nasr City, die Innenstadt von Kairo, Zamalek, Maadi und viele Adressen in New Cairo.",
+          "farther": "Transfers nach Gizeh, zum Pyramidengebiet, nach Sheikh Zayed und in die 6th of October City durchqueren mehr des Großraums, daher können Strecke und Preis höher ausfallen."
+        },
+        {
+          "name": "Internationaler Flughafen Sphinx",
+          "code": "Flughafencode: SPX",
+          "location": "Westlich von Kairo im Gouvernement Gizeh gelegen, nahe der Wüstenstraße Kairo-Alexandria.",
+          "direct": "Meist der direktere Ankunftsflughafen für Sheikh Zayed, die 6th of October City, das Große Ägyptische Museum und viele Hotels im Westen von Gizeh.",
+          "farther": "Transfers in die Innenstadt von Kairo, nach Heliopolis, Nasr City, Maadi oder New Cairo führen weiter durch den Ballungsraum und werden entsprechend kalkuliert."
+        }
+      ],
+      "airportWarningLabel": "Wichtig",
+      "airportWarning": "CAI und SPX sind verschiedene Flughäfen. Die Wahl des falschen Flughafens kann die Strecke erheblich verändern. Senden Sie uns Ihre Flugnummer, damit wir den Ankunftsflughafen prüfen und den richtigen Flug verfolgen können.",
+      "calcIntro": "Es gibt keinen einzelnen zutreffenden Preis für jeden „Kairo-Flughafentransfer“. Ihr bestätigtes Angebot basiert auf:",
+      "calcItems": [
+        "Ankunftsflughafen: CAI oder SPX",
+        "Genaue Hotel- oder Unterkunftsadresse",
+        "Fahrzeuggröße",
+        "Anzahl der Reisenden",
+        "Anzahl und Größe der Gepäckstücke",
+        "Einfacher Transfer oder Hin- und Rückfahrt",
+        "Datum und Uhrzeit der Abholung",
+        "Besondere Anforderungen wie Kindersitz, Rollstuhl, Übergepäck oder mehrere Hotelstopps"
+      ],
+      "zonesTitle": "Hotelgebiete und Preiszonen",
+      "zonesIntro": "Der Stadtteil ist entscheidend, auch wenn die Postanschrift Kairo oder Gizeh lautet.",
+      "zones": [
+        {
+          "name": "Zentrum von Kairo und Gizeh-Zentrum",
+          "areas": [
+            "Innenstadt von Kairo",
+            "Zamalek",
+            "Garden City",
+            "Dokki",
+            "Mohandessin",
+            "Viele Hotels im Zentrum von Gizeh"
+          ],
+          "note": "Diese Gebiete fallen häufig unter unseren Zentrumstarif, doch Flughafen und genaues Hotel müssen weiterhin bestätigt werden."
+        },
+        {
+          "name": "Östlicher Großraum Kairo",
+          "areas": [
+            "Heliopolis",
+            "Nasr City",
+            "New Cairo",
+            "Fifth Settlement",
+            "Gebiet Cairo Festival City"
+          ],
+          "note": "Hotels nahe CAI können eine kürzere Strecke haben. New Cairo ist ein weitläufiges Vorstadtgebiet — zwei Hotels, die beide als „New Cairo“ beschrieben werden, können unterschiedliche Fahrten und Preise erfordern."
+        },
+        {
+          "name": "Westlicher Großraum Kairo",
+          "areas": [
+            "Hotels an den Pyramiden von Gizeh",
+            "Gebiet des Großen Ägyptischen Museums",
+            "Sheikh Zayed",
+            "6th of October City"
+          ],
+          "note": "Hotels nahe SPX können eine kürzere Strecke haben. Sheikh Zayed und 6th of October sind ausgedehnte westliche Vororte, daher kalkulieren wir das genaue Haus statt eines stadtweiten Preises."
+        },
+        {
+          "name": "Süden von Kairo",
+          "areas": [
+            "Maadi",
+            "New Maadi",
+            "Zahraa El Maadi"
+          ],
+          "note": "Diese Strecken können vom genutzten Flughafen und von der Lage des Hotels im Stadtteil abhängen."
+        }
+      ],
+      "zonesHelpTitle": "Nicht sicher, in welcher Zone Ihr Hotel liegt?",
+      "zonesHelp": "Senden Sie den Hotelnamen, die vollständige Adresse oder eine Kartenmarkierung. Wir ermitteln die richtige Zone und kalkulieren die Strecke ab Ihrem tatsächlichen Flughafen.",
+      "vehiclesIntro": "Die folgenden Preise sind Einstiegspreise für berechtigte Strecken vom Flughafen zum Hotel. Sie bedeuten nicht, dass jede Strecke von beiden Flughäfen gleich viel kostet. Ihr genauer Festpreis wird bestätigt, sobald uns Flughafen und Hoteladresse vorliegen.",
+      "includesItems": [
+        "Privatfahrzeug und professioneller Fahrer",
+        "Abholung am bestätigten Flughafen",
+        "Flugverfolgung",
+        "Hinweise zum Treffpunkt",
+        "Direkter Transfer zum bestätigten Hotel oder zur bestätigten Adresse",
+        "Kraftstoff, Parkgebühren und Maut für die bestätigte Strecke",
+        "Steuern und ausgewiesene Servicegebühren"
+      ],
+      "changesItems": [
+        "Wechsel von CAI zu SPX oder von SPX zu CAI",
+        "Änderung von Hotel, Stadtteil oder Zieladresse",
+        "Zusätzliche Stopps, ein zweites Hotel oder ein Transfer zwischen Flughäfen",
+        "Erhöhung der Personen- oder Gepäckzahl, sodass ein größeres Fahrzeug nötig wird",
+        "Anforderung von Spezialausrüstung oder einer nicht im ursprünglichen Angebot enthaltenen Leistung"
+      ],
+      "changesNote": "Wir erklären und bestätigen jeden geänderten Preis stets vor der Leistung.",
+      "a2aTitle": "Transfers zwischen Flughäfen",
+      "a2aBody": "Die Verbindung zwischen dem Internationalen Flughafen Kairo (CAI) und dem Internationalen Flughafen Sphinx (SPX) ist eine Straßenfahrt quer durch die Stadt, kein Terminalwechsel. Sie erfordert ein separates Angebot und großzügige Zeit zwischen den Flügen. Nennen Sie uns beide Flugnummern, ob die Tickets getrennt sind und ob Sie Gepäck abholen und neu aufgeben müssen. Für Check-in und Anschlussbedingungen der Airline bleibt der Reisende verantwortlich.",
+      "steps": [
+        {
+          "title": "Senden Sie Ihre Flug- und Hoteldaten",
+          "description": "Teilen Sie Flugnummer, Ankunftsdatum, Flughafencode, Hotelnamen oder Kartenmarkierung sowie Personen- und Gepäckzahl mit."
+        },
+        {
+          "title": "Erhalten Sie ein streckenbezogenes Festpreisangebot",
+          "description": "Wir prüfen Flughafen, Zielzone und benötigtes Fahrzeug und bestätigen Gesamtpreis und Leistungen vor der Buchung."
+        },
+        {
+          "title": "Treffen Sie Ihren Fahrer",
+          "description": "Wir senden klare Treffpunkthinweise für Ihren Ankunftsflughafen. Ihr Fahrer verfolgt den bestätigten Flug und erwartet Sie am ausgewiesenen Abholpunkt."
+        },
+        {
+          "title": "Direkt zu Ihrem Hotel",
+          "description": "Ihr privater Transfer folgt der passenden Strecke zur genauen Adresse aus Ihrer Buchung."
+        }
+      ],
+      "beforeItems": [
+        "Flugnummer",
+        "Ankunftsdatum und planmäßige Uhrzeit",
+        "Flughafencode: CAI oder SPX",
+        "Hotelname und vollständige Adresse oder Kartenmarkierung",
+        "Anzahl Erwachsene und Kinder",
+        "Anzahl aufgegebener Gepäckstücke und Handgepäck",
+        "Bevorzugtes Fahrzeug oder besondere Anforderungen"
+      ],
+      "pricingIntro": "Wir kalkulieren nicht allein anhand des Wortes „Kairo“. Wir berechnen die tatsächliche Fahrt — von Ihrem echten Ankunftsflughafen zu Ihrem genauen Hotel — mit dem passenden Fahrzeug für Gruppe und Gepäck.",
+      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Kein Flughafentausch • Keine überraschenden Zonenzuschläge"
     },
     "luxor": {
-      "title": "Luxor Flughafentransfers - Professionell & Zuverlässig | AffordEgypt",
-      "metaDescription": "Buchen Sie Luxor Flughafentransfers ab 1.115 EGP. Expertenfahrer mit Ortskenntnis, Tempelrouten und komfortable Fahrzeuge. Ost-Ufer, West-Ufer & Nil-Kreuzfahrt Transfers.",
-      "keywords": "Luxor Flughafentransfer, LXR Flughafentransport, Tal der Könige Transfer, Luxor Taxi, Ägypten antike Stätten Transport",
       "heroTitle": "Luxor Flughafentransfers",
       "heroSubtitle": "Professionelle Flughafentransfers in der antiken Stadt Luxor. Ortskundige Expertenfahrer mit Tempelroutenwissen und transparente Preise ab 1.115 EGP.",
       "whyChooseTitle": "Warum Unsere Luxor Flughafentransfers Wählen?",
@@ -953,9 +1133,6 @@
       "templeRouteKnowledge": "Tempelroutenwissen",
       "touristFriendly": "Touristenfreundlich",
       "tourGroupFriendly": "Reisegruppenfreundlich",
-      "sedanPriceFrom": "Ab 1.115 EGP",
-      "minivanPriceFrom": "Ab 1.340 EGP",
-      "vanPriceFrom": "Ab 2.135 EGP",
       "transferDestinationsTitle": "Luxor Transfer-Ziele",
       "transferDestinationsDesc": "Wir bieten Flughafentransfers zu allen wichtigen Gebieten und antiken Stätten in Luxor",
       "areas": [
@@ -988,12 +1165,159 @@
       "area5": "Bereich Karnak-Tempel",
       "area6": "Viertel am Luxor-Tempel",
       "area7": "Nilkreuzfahrt-Terminals",
-      "area8": "Bereich Winter Palace"
+      "area8": "Bereich Winter Palace",
+      "ctaQuote": "Erhalten Sie Ihr genaues Transfer-Angebot",
+      "calcTitle": "So berechnen wir Ihren Transferpreis",
+      "vehiclesTitle": "Einstiegspreise nach Fahrzeug",
+      "sedanFeatures": [
+        "Klimaanlage",
+        "Professioneller Fahrer",
+        "Geeignet für normales Gepäck"
+      ],
+      "minivanFeatures": [
+        "Zusätzlicher Gepäckraum",
+        "Familienfreundliche Bestuhlung",
+        "Praktisch für Reisende mit mehreren Koffern"
+      ],
+      "vanFeatures": [
+        "Gruppenreisen",
+        "Große Gepäckkapazität",
+        "Die Fahrzeugzuteilung richtet sich nach der endgültigen Personen- und Gepäckzahl"
+      ],
+      "includesTitle": "Was Ihr bestätigtes Angebot enthält",
+      "changesTitle": "Was kann das Angebot verändern?",
+      "beforeTitle": "Vor der Buchung: Senden Sie uns diese Angaben",
+      "pricingTitle": "Transparente, streckenbezogene Preise",
+      "ctaBook": "Transfer buchen",
+      "heroNote": "Ihr Transferpreis in Luxor hängt davon ab, auf welcher Nilseite Sie wohnen. Senden Sie uns die genauen Hotel- oder Schiffsdaten, und wir bestätigen Strecke und Preis vor Ihrer Buchung.",
+      "banksTitle": "Zuerst: Liegt Ihr Hotel am Ostufer oder am Westufer?",
+      "banksIntro": "Viele Jahre lang bedeutete „Luxor-Flughafentransfer“ meist eine Fahrt zu einem der etablierten Hotels am Ostufer. Luxor bietet inzwischen deutlich mehr Hotels und Gästehäuser am Westufer, daher müssen Hotelname und Nilseite bekannt sein, bevor ein genauer Preis möglich ist.",
+      "airportName": "Internationaler Flughafen Luxor",
+      "airportCode": "Flughafencode: LXR",
+      "airportLocation": "Der Flughafen Luxor liegt östlich der Stadt und auf der Ostseite des Nils.",
+      "airportRouting": "Dadurch sind viele Hotels am Ostufer vergleichsweise direkt über die Straße erreichbar. Ein Hotel am Westufer erfordert eine andere und in der Regel längere Route.",
+      "banks": [
+        {
+          "name": "Hotels am Ostufer",
+          "intro": "Häufige Ziele am Ostufer:",
+          "areas": [
+            "Stadtzentrum von Luxor",
+            "Corniche von Luxor",
+            "Viertel um den Luxor-Tempel",
+            "Karnak und Hotels im Norden Luxors",
+            "Hotels rund um die Khaled-Ibn-El-Walid-Straße",
+            "Viele große Resorts und internationale Markenhotels"
+          ],
+          "note": "Fahrten am Ostufer erfordern keine Nilüberquerung. Die genaue Entfernung variiert dennoch, da sich das Hotelgebiet am Ostufer nördlich und südlich des Zentrums erstreckt."
+        },
+        {
+          "name": "Hotels am Westufer",
+          "intro": "Häufige Ziele am Westufer:",
+          "areas": [
+            "Al-Gezira und das Fährgebiet",
+            "El-Bairat",
+            "Al-Qurna",
+            "Gebiet Medinet Habu",
+            "Hotels nahe den Ausgrabungsstätten am Westufer",
+            "Hager Al Dabayah und Häuser weiter südlich"
+          ],
+          "note": "Bei einem normalen privaten Flughafentransfer fährt das Fahrzeug über die Luxor-Brücke. Die zentrale Personenfähre ist praktisch für den Wechsel zwischen den Ufern, ist aber nicht die übliche Route für ein Flughafenfahrzeug mit Passagieren und Gepäck. Da die Brücke außerhalb des zentralen Hotelgebiets liegt, ist ein Transfer zum Westufer nicht dieselbe Fahrt wie zum Ostufer."
+        }
+      ],
+      "bankWarningLabel": "Wichtig",
+      "bankWarning": "„Westufer“ ist kein einzelnes Ziel. Ein Gästehaus nahe der Fähre, ein Hotel bei Medinet Habu und ein Haus weiter südlich können unterschiedliche Routen erfordern. Senden Sie den Namen der Unterkunft, die vollständige Adresse oder eine Kartenmarkierung, statt nur „Luxor Westufer“ zu schreiben.",
+      "pricingGuideTitle": "Ostufer oder Westufer: Preisübersicht",
+      "pricingGuide": [
+        {
+          "label": "Hotel am Ostufer",
+          "note": "Meist die direktere Strecke ab Flughafen. Berechtigte Strecken können den angezeigten Einstiegspreis erhalten, sobald das genaue Hotel bestätigt ist."
+        },
+        {
+          "label": "Hotel am Westufer",
+          "note": "Wird separat kalkuliert, da das Fahrzeug die Straßenquerung nutzen und bis zur genauen Unterkunft weiterfahren muss."
+        },
+        {
+          "label": "Hotelwechsel nach der Buchung",
+          "note": "Kann Strecke und Preis verändern, auch wenn beide Häuser „Luxor“ in der Adresse führen."
+        },
+        {
+          "label": "Ufer unbekannt",
+          "note": "Senden Sie die Hotelbuchungsbestätigung oder einen Kartenlink, und wir ermitteln es für Sie."
+        }
+      ],
+      "cruiseTitle": "Transfers zu Nilkreuzfahrten brauchen die Schiffsdaten",
+      "cruiseIntro": "„Nilkreuzfahrt in Luxor“ ist kein vollständiger Abhol- oder Zielort. Kreuzfahrtschiffe können in und um Luxor unterschiedliche Liegeplätze nutzen, und der endgültige Liegeplatz kann von der Reederei bestätigt oder geändert werden. Bitte senden Sie:",
+      "cruiseItems": [
+        "Name des Schiffes",
+        "Reederei",
+        "Datum der Ein- oder Ausschiffung",
+        "Zuletzt bekannter Liegeplatz",
+        "Telefonnummer des Reiseleiters, falls vorhanden"
+      ],
+      "cruiseNote": "Ist der Liegeplatz noch nicht zugewiesen, erstellen wir ein vorläufiges Angebot und bestätigen die Strecke erneut, sobald die Reederei sie mitteilt.",
+      "calcItems": [
+        "Genaues Hotel, Gästehaus oder Liegeplatz",
+        "Ostufer oder Westufer",
+        "Ankunfts- oder Abreisetransfer",
+        "Fahrzeuggröße",
+        "Anzahl der Reisenden",
+        "Anzahl und Größe der Gepäckstücke",
+        "Datum und Uhrzeit der Abholung",
+        "Zusätzliche Stopps oder besondere Anforderungen"
+      ],
+      "vehiclesIntro": "Dies sind Einstiegspreise für berechtigte Strecken vom Flughafen zum Hotel. Sie bedeuten nicht, dass jedes Hotel am Ostufer, am Westufer, jede Ausgrabungsstätte oder jeder Liegeplatz gleich viel kostet. Ihr Festpreis wird bestätigt, sobald das genaue Ziel feststeht.",
+      "includesItems": [
+        "Privatfahrzeug und professioneller Fahrer",
+        "Abholung am Internationalen Flughafen Luxor oder an der bestätigten Unterkunft",
+        "Flugverfolgung bei Ankünften",
+        "Hinweise zum Treffpunkt",
+        "Direkter Transfer zum bestätigten Hotel oder Liegeplatz",
+        "Kraftstoff, Parkgebühren und Maut für die bestätigte Strecke",
+        "Steuern und ausgewiesene Servicegebühren"
+      ],
+      "changesItems": [
+        "Wechsel von einem Hotel am Ostufer zu einem am Westufer oder umgekehrt",
+        "Wechsel zu einem anderen Hotel am selben Ufer, wenn die Strecke deutlich abweicht",
+        "Änderung des Kreuzfahrt-Liegeplatzes",
+        "Hinzufügen von Besichtigungen, einem zweiten Hotel oder einem weiteren Stopp",
+        "Erhöhung der Personen- oder Gepäckzahl, sodass ein größeres Fahrzeug nötig wird",
+        "Anforderung von Spezialausrüstung oder einer nicht im ursprünglichen Angebot enthaltenen Leistung"
+      ],
+      "changesNote": "Wir erklären und bestätigen jeden geänderten Preis vor der Leistung.",
+      "p2pTitle": "Flughafentransfers sind Punkt-zu-Punkt-Leistungen",
+      "p2pBody": "Ein Flughafentransfer bringt Sie direkt zwischen LXR und dem bestätigten Hotel oder Liegeplatz. Tal der Könige, Karnak, Luxor-Tempel und andere Besichtigungen sollten separat gebucht werden, damit Fahrzeugzeit, Wartezeit und Ablauf klar kalkuliert werden können.",
+      "steps": [
+        {
+          "title": "Senden Sie Ihre Flug- und Unterkunftsdaten",
+          "description": "Teilen Sie Flugnummer, Datum, Hotel- oder Schiffsnamen, Adresse oder Kartenmarkierung sowie Personen- und Gepäckzahl mit."
+        },
+        {
+          "title": "Wir bestätigen Ufer und Strecke",
+          "description": "Wir klären, ob das Ziel am Ost- oder Westufer liegt, und prüfen die richtige Straßenroute oder den Liegeplatz."
+        },
+        {
+          "title": "Erhalten Sie ein streckenbezogenes Festpreisangebot",
+          "description": "Wir bestätigen Fahrzeug, Gesamtpreis und Leistungen vor der Buchung."
+        },
+        {
+          "title": "Treffen Sie Ihren Fahrer",
+          "description": "Ihr Fahrer verfolgt den bestätigten Flug und erwartet Sie am ausgewiesenen Abholpunkt des Flughafens."
+        }
+      ],
+      "beforeItems": [
+        "Flugnummer",
+        "Geplantes Ankunfts- oder Abreisedatum mit Uhrzeit",
+        "Name des Hotels, Gästehauses oder Kreuzfahrtschiffs",
+        "Vollständige Adresse, aktueller Liegeplatz oder Kartenmarkierung",
+        "Ost- oder Westufer, falls bekannt",
+        "Anzahl Erwachsene und Kinder",
+        "Anzahl aufgegebener Gepäckstücke und Handgepäck",
+        "Bevorzugtes Fahrzeug oder besondere Anforderungen"
+      ],
+      "pricingIntro": "Wir gehen nicht davon aus, dass jede Luxor-Buchung in einem Hotel am Ostufer endet. Wir kalkulieren die tatsächliche Fahrt vom Flughafen Luxor zu Ihrer genauen Unterkunft oder Ihrem Liegeplatz, einschließlich der Straßenquerung zum Westufer, wenn sie nötig ist.",
+      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Richtiges Ufer und Hotel • Keine überraschenden Zuschläge für die Westufer-Route"
     },
     "aswan": {
-      "title": "Assuan Flughafentransfers - Nilstadt Transport | AffordEgypt",
-      "metaDescription": "Buchen Sie Assuan Flughafentransfers ab 1.475 EGP. Experten-Nilstadtfahrer, Nubisches Kulturwissen, Wüstenrouten nach Abu Simbel. Zuverlässiger Südägypten-Transport.",
-      "keywords": "Assuan Flughafentransfer, ASW Flughafentransport, Abu Simbel Transfer, Nubisches Dorf Transport, Assuan Taxi, Nil Transport",
       "heroTitle": "Assuan Flughafentransfers",
       "heroSubtitle": "Professionelle Flughafentransfers im schönen Assuan. Experten-Nilstadtfahrer mit Ortskenntnis und transparente Preise ab 1.475 EGP.",
       "whyChooseTitle": "Warum Unsere Assuan Flughafentransfers Wählen?",
@@ -1006,9 +1330,6 @@
       "nileRouteExpertise": "Nil-Routenexpertise",
       "nubianCultureKnowledge": "Nubisches Kulturwissen",
       "abuSimbelRouteReady": "Abu Simbel Route bereit",
-      "sedanPriceFrom": "Ab 1.475 EGP",
-      "minivanPriceFrom": "Ab 1.750 EGP",
-      "vanPriceFrom": "Ab 3.010 EGP",
       "transferDestinationsTitle": "Assuan Transfer-Ziele",
       "transferDestinationsDesc": "Wir bieten Flughafentransfers zu allen wichtigen Gebieten in Assuan und Südägypten",
       "areas": [
@@ -1041,7 +1362,173 @@
       "area5": "Bereich Philae-Tempel",
       "area6": "Viertel am Hochdamm",
       "area7": "Feluken-Häfen",
-      "area8": "Route nach Abu Simbel"
+      "area8": "Route nach Abu Simbel",
+      "ctaQuote": "Erhalten Sie Ihr genaues Transfer-Angebot",
+      "calcTitle": "So berechnen wir Ihren Transferpreis",
+      "vehiclesTitle": "Einstiegspreise nach Fahrzeug",
+      "sedanFeatures": [
+        "Klimaanlage",
+        "Professioneller Fahrer",
+        "Geeignet für normales Gepäck"
+      ],
+      "minivanFeatures": [
+        "Zusätzlicher Gepäckraum",
+        "Familienfreundliche Bestuhlung",
+        "Praktisch für Reisende mit mehreren Koffern"
+      ],
+      "vanFeatures": [
+        "Gruppenreisen",
+        "Große Gepäckkapazität",
+        "Die Fahrzeugzuteilung richtet sich nach der endgültigen Personen- und Gepäckzahl"
+      ],
+      "includesTitle": "Was Ihr bestätigtes Angebot enthält",
+      "changesTitle": "Was kann das Angebot verändern?",
+      "beforeTitle": "Vor der Buchung: Senden Sie uns diese Angaben",
+      "pricingTitle": "Transparente, streckenbezogene Preise",
+      "ctaBook": "Transfer buchen",
+      "heroNote": "Ihr Transferpreis in Assuan hängt vom genauen Ziel ab, nicht nur vom Wort „Assuan“. Senden Sie uns die Angaben zu Hotel, Dorf, Anleger oder Kreuzfahrt, und wir bestätigen Strecke und Preis vor Ihrer Buchung.",
+      "whereTitle": "Zuerst: Wo in Assuan wohnen Sie?",
+      "whereIntro": "Ein Transfer zu einem zentralen Hotel an der Corniche ist nicht dieselbe Fahrt wie zu einem Resort außerhalb, nach Gharb Soheil, zum Ablegepunkt eines Inselhotels oder zu einem außerhalb des Zentrums liegenden Kreuzfahrtschiff. Das genaue Ziel bestimmt Strecke, Fahrzeugzeit und Endpreis.",
+      "airportName": "Internationaler Flughafen Assuan",
+      "airportCode": "Flughafencode: ASW",
+      "airportLocation": "Der Internationale Flughafen Assuan liegt außerhalb der Stadt, südlich des Zentrums. Unterkünfte können vom Flughafen aus in unterschiedlichen Richtungen liegen, daher sollte die Entfernung von der tatsächlichen Unterkunft aus geprüft und nicht von „Assuan Stadt“ geschätzt werden.",
+      "destinations": [
+        {
+          "name": "Hotels im Zentrum von Assuan",
+          "intro": "Häufige zentrale Ziele:",
+          "areas": [
+            "Hotels an der Corniche",
+            "Hotels nahe dem Bahnhof Assuan",
+            "Innenstadt und Altstadt-Basar",
+            "Hotels rund um das Nubische Museum und das Old Cataract",
+            "Zentrale Häuser am Fluss mit direkter Straßenanbindung"
+          ],
+          "note": "Berechtigte zentrale Strecken können den angezeigten Einstiegspreis erhalten, sobald die genaue Unterkunft bestätigt ist."
+        },
+        {
+          "name": "Hotels außerhalb des Zentrums von Assuan",
+          "intro": "",
+          "areas": [],
+          "note": "Einige Resorts, Gästehäuser und Unterkünfte führen eine Assuan-Adresse, liegen aber außerhalb des zentralen Hotelgebiets. Ein Haus nahe der Hochdammstraße, in einem südlichen Stadtteil, nördlich der Stadt oder in anderer Randlage kann einen anderen Preis erfordern. Senden Sie den vollständigen Hotelnamen und eine Kartenmarkierung: ähnliche Namen und grobe Ortsangaben führen sonst leicht zur falschen Route."
+        },
+        {
+          "name": "Gharb Soheil und Aufenthalte in nubischen Dörfern",
+          "intro": "",
+          "areas": [],
+          "note": "Gharb Soheil — auch Gharb Suhail, Gharb Sohail oder West Suhail geschrieben — ist ein nubisches Dorfgebiet südlich des Zentrums von Assuan, auf der Westseite des Nils. Die Route ab Flughafen unterscheidet sich von einem Transfer zur zentralen Corniche. Die Unterkünfte verteilen sich über das Dorf, und die Zufahrt kann je nach Straße und Hoteleingang variieren. Senden Sie den genauen Namen des Gästehauses oder Hotels und eine Kartenmarkierung. Wählen Sie nicht „Hotel in der Stadt Assuan“, wenn Ihre Buchung in Gharb Soheil oder einem anderen nubischen Dorf liegt."
+        },
+        {
+          "name": "Inselhotels und Bootsverbindungen",
+          "intro": "Hotels auf der Insel Elephantine, auf anderen Inseln oder an Flussorten ohne direkte Straßenanbindung erfordern einen Transfer zum richtigen Anleger auf dem Festland statt bis zur Hoteltür. Das hoteleigene Boot, eine öffentliche Fähre oder ein separat organisiertes Boot übernimmt den Rest. Klären Sie mit der Unterkunft:",
+          "areas": [
+            "Erforderlicher Anleger oder Abholpunkt",
+            "Betriebszeiten des Bootes",
+            "Ob das Boot in der Hotelbuchung enthalten ist",
+            "Ob Sie am Anleger vom Personal empfangen werden"
+          ],
+          "note": "Unser Angebot gibt an, ob es nur den Straßentransfer abdeckt oder auch eine separat bestätigte Bootsverbindung."
+        }
+      ],
+      "cruiseTitle": "Transfers zu Nilkreuzfahrten brauchen den genauen Liegeplatz",
+      "cruiseIntro": "„Nilkreuzfahrt in Assuan“ ist kein festes Ziel. Kreuzfahrtschiffe können an verschiedenen Liegeplätzen im Zentrum oder darüber hinaus anlegen, und der zugewiesene Ort kann sich vor der Ein- oder Ausschiffung ändern. Bitte senden Sie:",
+      "cruiseItems": [
+        "Name des Schiffes",
+        "Reederei",
+        "Datum der Ein- oder Ausschiffung",
+        "Zuletzt bekannter Liegeplatz",
+        "Buchungsreferenz",
+        "Telefonnummer des Reiseleiters, falls vorhanden"
+      ],
+      "cruiseNote": "Ist der endgültige Liegeplatz noch nicht zugewiesen, erstellen wir ein vorläufiges Angebot und bestätigen ihn vor dem Transfer erneut mit Ihnen.",
+      "lakeTitle": "Nilkreuzfahrt oder Nassersee-Kreuzfahrt?",
+      "lakeBody": "Beide starten nicht zwangsläufig vom selben Anlegebereich. Übliche Nilkreuzfahrten zwischen Assuan und Luxor nutzen meist Liegeplätze am Nil in oder um Assuan. Nassersee-Kreuzfahrten nutzen einen anderen Einschiffungsbereich auf der Seite des Hochdamms. Nennen Sie uns die vollständige Route und den Schiffsnamen, damit wir das Fahrzeug nicht zum falschen Anleger schicken.",
+      "pricingGuideTitle": "Preisübersicht nach Ziel",
+      "pricingGuide": [
+        {
+          "label": "Hotel im Stadtzentrum",
+          "note": "Üblicherweise die Vergleichsstrecke; Einstiegspreise gelten nur für berechtigte, bestätigte Unterkünfte."
+        },
+        {
+          "label": "Hotel oder Resort außerhalb Assuans",
+          "note": "Wird anhand der genauen Unterkunft und ihrer Straßenlage kalkuliert."
+        },
+        {
+          "label": "Gharb Soheil oder andere nubische Unterkunft",
+          "note": "Wird separat anhand des genauen Gästehauses oder Hoteleingangs kalkuliert."
+        },
+        {
+          "label": "Inselhotel",
+          "note": "Wird bis zum erforderlichen Anleger kalkuliert, eine etwaige Bootsverbindung wird gesondert ausgewiesen."
+        },
+        {
+          "label": "Nil- oder Nassersee-Kreuzfahrt",
+          "note": "Wird bis zum zuletzt bestätigten Liegeplatz kalkuliert, nicht einfach bis zum „Kreuzfahrthafen Assuan“."
+        }
+      ],
+      "calcItems": [
+        "Genaues Hotel, Gästehaus, Anleger oder Liegeplatz",
+        "Zentrale oder periphere Lage",
+        "Direkte Straßenanbindung oder Bootsverbindung",
+        "Ankunfts- oder Abreisetransfer",
+        "Fahrzeuggröße",
+        "Anzahl der Reisenden",
+        "Anzahl und Größe der Gepäckstücke",
+        "Datum und Uhrzeit der Abholung",
+        "Zusätzliche Stopps oder besondere Anforderungen"
+      ],
+      "vehiclesIntro": "Dies sind Einstiegspreise für berechtigte Strecken vom Flughafen zum Hotel. Sie bedeuten nicht, dass jedes zentrale Hotel, jede Unterkunft in Gharb Soheil, jeder Inselanleger, jedes Resort außerhalb oder jeder Liegeplatz gleich viel kostet. Ihr Festpreis wird bestätigt, sobald das genaue Ziel und die Zugangsbedingungen geprüft sind.",
+      "includesItems": [
+        "Privatfahrzeug und professioneller Fahrer",
+        "Abholung am Internationalen Flughafen Assuan oder am bestätigten erreichbaren Ort",
+        "Flugverfolgung bei Ankünften",
+        "Hinweise zum Treffpunkt",
+        "Direkter Straßentransfer zur bestätigten Unterkunft, zum Anleger oder Liegeplatz",
+        "Kraftstoff, Parkgebühren und Maut für die bestätigte Strecke",
+        "Steuern und ausgewiesene Servicegebühren",
+        "Ein Bootsabschnitt nur dann, wenn er ausdrücklich im Angebot aufgeführt ist"
+      ],
+      "changesItems": [
+        "Wechsel von einem zentralen Hotel zu einer Unterkunft außerhalb oder in Gharb Soheil",
+        "Änderung von Unterkunft, Eingang, Festlandanleger oder Kreuzfahrt-Liegeplatz",
+        "Eine ungeplante Bootsverbindung wird nötig",
+        "Wechsel zwischen einem Nil- und einem Nassersee-Kreuzfahrtanleger",
+        "Hinzufügen von Besichtigungen, einem zweiten Hotel oder einem weiteren Stopp",
+        "Erhöhung der Personen- oder Gepäckzahl, sodass ein größeres Fahrzeug nötig wird",
+        "Anforderung von Spezialausrüstung oder einer nicht im ursprünglichen Angebot enthaltenen Leistung"
+      ],
+      "changesNote": "Wir erklären und bestätigen jeden geänderten Preis vor der Leistung.",
+      "p2pTitle": "Flughafentransfers sind Punkt-zu-Punkt-Leistungen",
+      "p2pBody": "Ein Flughafentransfer bringt Sie direkt zwischen ASW und der bestätigten, über die Straße erreichbaren Unterkunft, dem Anleger oder dem Liegeplatz. Der Philae-Tempel, der Hochdamm, Besuche nubischer Dörfer und Abu Simbel sind eigenständige Besichtigungs- oder Fernstreckenleistungen und werden getrennt kalkuliert.",
+      "steps": [
+        {
+          "title": "Senden Sie Ihre Flug- und Zieldaten",
+          "description": "Teilen Sie Flugnummer, Datum, Hotel- oder Schiffsnamen, vollständige Adresse oder Kartenmarkierung sowie Personen- und Gepäckzahl mit."
+        },
+        {
+          "title": "Wir bestätigen Lage und Zugang",
+          "description": "Wir prüfen, ob das Ziel zentral, außerhalb, in Gharb Soheil, auf einer Insel oder an einem Nil- bzw. Nassersee-Liegeplatz liegt."
+        },
+        {
+          "title": "Erhalten Sie ein streckenbezogenes Festpreisangebot",
+          "description": "Wir bestätigen Fahrzeug, Straßenziel, etwaige Bootsarrangements, Gesamtpreis und Leistungen vor der Buchung."
+        },
+        {
+          "title": "Treffen Sie Ihren Fahrer",
+          "description": "Ihr Fahrer verfolgt den bestätigten Flug und erwartet Sie am ausgewiesenen Abholpunkt des Flughafens."
+        }
+      ],
+      "beforeItems": [
+        "Flugnummer",
+        "Geplantes Ankunfts- oder Abreisedatum mit Uhrzeit",
+        "Name des Hotels, Gästehauses, Inselhauses oder Kreuzfahrtschiffs",
+        "Vollständige Adresse, Kartenmarkierung, Festlandanleger oder letzter Liegeplatz",
+        "Reederei und Route, sofern zutreffend",
+        "Anzahl Erwachsene und Kinder",
+        "Anzahl aufgegebener Gepäckstücke und Handgepäck",
+        "Bevorzugtes Fahrzeug oder besondere Anforderungen"
+      ],
+      "pricingIntro": "Wir gehen nicht davon aus, dass jede Assuan-Buchung in einem zentralen Corniche-Hotel endet. Wir kalkulieren die tatsächliche Fahrt zu Ihrer genauen Unterkunft, Ihrem Anleger oder Schiff und geben klar an, ob eine Bootsverbindung enthalten ist.",
+      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Richtige Unterkunft oder Liegeplatz • Keine überraschenden Zuschläge außerhalb der Stadt oder für den Bootszugang"
     }
   },
   "guideServices": {
@@ -1068,7 +1555,11 @@
       "fullDay": "Ganztägig",
       "6to12Hours": "8-12 Stunden",
       "12to14Hours": "12-14 Stunden",
-      "priceFrom": "Ab {{price}}"
+      "priceFrom": "Ab {{price}}",
+      "ticketServiceTitle": "Sollen wir Ihre Eintrittskarten besorgen?",
+      "ticketServiceBody1": "Wir können berechtigte Eintrittskarten vor Ihrem Besuch kaufen und organisieren, für",
+      "ticketServiceFee": "50 EGP pro ausgestellter kostenpflichtiger Eintrittskarte",
+      "ticketServiceBody2": ", zuzüglich des offiziellen Ticketpreises. Dieser optionale Service verkürzt die Zeit an den Kassen und vermeidet die vollständige Abhängigkeit von Kartenterminals vor Ort, da viele Stätten kein Bargeld annehmen. Er umfasst die vorherige Abwicklung und Organisation der Tickets; Sicherheitskontrollen, Identitätsprüfungen, Zeitfenster und Warteschlangen vor Ort können weiterhin gelten."
     },
     "cairo": {
       "title": "Kairo Auto & Reiseführer-Services | AffordEgypt",
@@ -1094,7 +1585,17 @@
       "pricingDesc": "Professionelle Reiseführer und Luxusfahrzeuge zu wettbewerbsfähigen Preisen. Keine versteckten Kosten.",
       "pricingInfo": "Lizenzierte Reiseführer • Luxusfahrzeuge • Mehrsprachiger Support • Alle Eintrittsgebühren",
       "ctaTitle": "Bereit, das Alte Kairo zu Erkunden?",
-      "ctaSubtitle": "Buchen Sie Ihren Experten-Reiseführer und entdecken Sie die Geheimnisse der Pharaonen"
+      "ctaSubtitle": "Buchen Sie Ihren Experten-Reiseführer und entdecken Sie die Geheimnisse der Pharaonen",
+      "serviceAreas": [
+        "Pyramiden von Gizeh und Sphinx",
+        "Ägyptisches Museum",
+        "Islamisches Kairo",
+        "Koptisches Kairo",
+        "Basar Khan El Khalili",
+        "Zitadelle Saladins",
+        "Sakkara und Memphis",
+        "Dahschur"
+      ]
     },
     "luxor": {
       "title": "Luxor Auto & Reiseführer-Services | AffordEgypt",
@@ -1120,7 +1621,17 @@
       "pricingDesc": "Professionelle archäologische Reiseführer und Luxus-Transport. Bester Wert in Oberägypten.",
       "pricingInfo": "Lizenzierte Reiseführer • Tempel-Expertise • Premium-Fahrzeuge • Eintrittskarten enthalten",
       "ctaTitle": "Bereit, das Antike Theben zu Entdecken?",
-      "ctaSubtitle": "Erleben Sie Luxors Tempel mit Experten-Archäologen-Reiseführern"
+      "ctaSubtitle": "Erleben Sie Luxors Tempel mit Experten-Archäologen-Reiseführern",
+      "serviceAreas": [
+        "Tal der Könige",
+        "Karnak-Tempel",
+        "Luxor-Tempel",
+        "Hatschepsut-Tempel",
+        "Tal der Königinnen",
+        "Medinet Habu",
+        "Memnonkolosse",
+        "Ramesseum"
+      ]
     },
     "aswan": {
       "title": "Assuan Auto & Reiseführer-Services | AffordEgypt",
@@ -1146,7 +1657,17 @@
       "pricingDesc": "Echte kulturelle Erfahrungen mit lokalen nubischen Reiseführern. Bester Wert im Kulturtourismus.",
       "pricingInfo": "Lokale Reiseführer • Kulturelle Immersion • Premium-Transport • Authentische Erfahrungen",
       "ctaTitle": "Bereit, Nubische Kultur zu Erleben?",
-      "ctaSubtitle": "Entdecken Sie die authentischen Traditionen Südägyptens mit lokalen Experten"
+      "ctaSubtitle": "Entdecken Sie die authentischen Traditionen Südägyptens mit lokalen Experten",
+      "serviceAreas": [
+        "Philae-Tempel",
+        "Tempel von Abu Simbel",
+        "Insel Elephantine",
+        "Nubische Dörfer",
+        "Assuan-Hochdamm",
+        "Unvollendeter Obelisk",
+        "Feluken-Fahrt",
+        "Kitchener-Insel"
+      ]
     }
   },
   "contactPage": {
@@ -1167,8 +1688,6 @@
     "businessHours": "Geschäftszeiten",
     "emailNote": "Wir antworten innerhalb von 24 Stunden",
     "phoneNote": "Rund um die Uhr erreichbar",
-    "officeCity": "Kairo, Ägypten",
-    "officeArea": "Innenstadt",
     "hoursWeekdays": "Sonntag - Donnerstag: 9 - 20 Uhr",
     "hoursWeekend": "Freitag - Samstag: 10 - 18 Uhr",
     "hoursTimezone": "(Ägyptische Standardzeit)",
@@ -1208,7 +1727,9 @@
     "ourLocationValue": "Innenstadt von Kairo, Ägypten",
     "officeHours": "Bürozeiten",
     "officeHoursValue": "Support rund um die Uhr",
-    "contactLabel": "Kontakt"
+    "contactLabel": "Kontakt",
+    "officeStreet": "{{street}}",
+    "officeLocality": "{{locality}}, {{region}}"
   },
   "aboutPage": {
     "seoTitle": "Über AffordEgypt | Die Budget-Sparte von Capital Travel Service",
@@ -1480,12 +2001,8 @@
     "moveLead": "Ägypten ist groß, doch das Netz aus Zügen, Bussen und lokalen Verkehrsmitteln macht das Reisen mit kleinem Budget einfach.",
     "trains": "Züge",
     "trainsBody": "Landschaftlich reizvoll und günstig auf langen Strecken. Ein Sitzplatz 2. Klasse mit Klimaanlage von",
-    "trainsStrong": "Kairo nach Luxor kostet für Ausländer etwa 775 EGP",
-    "trainsBody2": "Eine bequeme und klassische Art zu reisen.",
     "buses": "Busse",
     "busesBody": "Die günstigste Variante. Ein Bus von",
-    "busesStrong": "Kairo nach Luxor kann schon ab 200–275 EGP zu haben sein",
-    "busesBody2": "Nutzen Sie zuverlässige Anbieter wie Go Bus oder Blue Bus.",
     "localTransport": "Nahverkehr",
     "microbuses": "Microbusse",
     "microBody": "Etwas für Abenteuerlustige. Sehr günstig, ohne Arabisch aber schwer zu navigieren. Am besten für kurze, gängige Strecken, auf denen Sie sich an Einheimischen orientieren können.",
@@ -1899,6 +2416,7 @@
         "cost": "25 EGP"
       }
     ],
-    "ctaPrint": "Drucken / als PDF speichern"
+    "ctaPrint": "Drucken / als PDF speichern",
+    "totalValue": "400 EGP"
   }
 }
