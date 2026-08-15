@@ -414,7 +414,9 @@
     "selectDate": "Veuillez sélectionner une date de voyage",
     "selectRoute": "Veuillez sélectionner au moins un itinéraire",
     "nameMin": "Le nom doit comporter au moins 2 caractères",
-    "acceptTerms": "Vous devez accepter les conditions générales pour continuer"
+    "acceptTerms": "Vous devez accepter les conditions générales pour continuer",
+    "titleMin": "Le titre doit comporter au moins 5 caractères",
+    "reviewMin": "L'avis doit comporter au moins 20 caractères"
   },
   "slugs": {
     "destinations": "destinations",
@@ -2359,6 +2361,8 @@
     "nextPage": "Page suivante"
   },
   "submitReviewPage": {
+    "seoTitle": "Laisser un avis | AffordEgypt",
+    "seoDescription": "Racontez-nous comment s'est passé votre voyage avec AffordEgypt. Votre avis sincère aide les futurs voyageurs à mieux choisir.",
     "title": "Partagez votre aventure en Égypte",
     "subtitle": "Vos expériences authentiques aident d'autres voyageurs à découvrir la magie de l'Égypte. Partagez votre récit et inspirez les autres.",
     "avgRating": "Note moyenne",
@@ -2383,7 +2387,35 @@
     "g4Label": "Soyez respectueux :",
     "g4": "Gardez un avis constructif et respectueux envers toutes les parties.",
     "needHelp": "Besoin d'aide ?",
-    "verifiedNote": "Tous les avis sont vérifiés manuellement avant publication afin d'en garantir l'authenticité."
+    "verifiedNote": "Tous les avis sont vérifiés manuellement avant publication afin d'en garantir l'authenticité.",
+    "form": {
+      "title": "Partagez votre expérience",
+      "subtitle": "Aidez d'autres voyageurs en partageant votre aventure en Égypte",
+      "name": "Votre nom *",
+      "namePlaceholder": "Saisissez votre nom",
+      "location": "Votre ville",
+      "locationPlaceholder": "ex. : Paris, France",
+      "tripDate": "Date du voyage",
+      "ratingLabel": "Note *",
+      "ratingSummary": "{{rating}}/5 étoiles",
+      "ratingLabels": [
+        "1 étoile — mauvais",
+        "2 étoiles — passable",
+        "3 étoiles — bien",
+        "4 étoiles — très bien",
+        "5 étoiles — excellent"
+      ],
+      "reviewTitle": "Titre de l'avis *",
+      "reviewTitlePlaceholder": "Résumez votre expérience",
+      "review": "Votre avis *",
+      "reviewPlaceholder": "Racontez-nous votre expérience en Égypte. Qu'avez-vous préféré ? Des conseils pour les futurs voyageurs ?",
+      "submit": "Envoyer l'avis",
+      "submitting": "Envoi en cours...",
+      "successTitle": "Merci pour votre avis !",
+      "successBody": "Votre avis a bien été envoyé et sera publié après vérification.",
+      "errorTitle": "Erreur",
+      "errorBody": "Échec de l'envoi de l'avis"
+    }
   },
   "legal": {
     "effectiveDate": "Date d'entrée en vigueur :",

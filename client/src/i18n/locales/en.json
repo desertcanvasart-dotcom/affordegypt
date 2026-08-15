@@ -414,7 +414,9 @@
     "selectDate": "Please select a travel date",
     "selectRoute": "Please select at least one route",
     "nameMin": "Name must be at least 2 characters",
-    "acceptTerms": "You must accept the terms and conditions to proceed"
+    "acceptTerms": "You must accept the terms and conditions to proceed",
+    "titleMin": "Title must be at least 5 characters",
+    "reviewMin": "Review must be at least 20 characters"
   },
   "slugs": {
     "destinations": "destinations",
@@ -2359,6 +2361,8 @@
     "nextPage": "Next page"
   },
   "submitReviewPage": {
+    "seoTitle": "Submit a Review | AffordEgypt",
+    "seoDescription": "Tell us how your AffordEgypt trip went. Your honest feedback helps future travelers make a better decision.",
     "title": "Share Your Egypt Adventure",
     "subtitle": "Your authentic experiences help fellow travelers discover the magic of Egypt. Share your story and inspire others to explore this incredible destination.",
     "avgRating": "Average Rating",
@@ -2383,7 +2387,35 @@
     "g4Label": "Be Respectful:",
     "g4": "Keep your review constructive and respectful to all parties.",
     "needHelp": "Need Help?",
-    "verifiedNote": "All reviews are manually verified before publication to ensure authenticity."
+    "verifiedNote": "All reviews are manually verified before publication to ensure authenticity.",
+    "form": {
+      "title": "Share Your Experience",
+      "subtitle": "Help other travelers by sharing your Egypt adventure",
+      "name": "Your Name *",
+      "namePlaceholder": "Enter your name",
+      "location": "Your Location",
+      "locationPlaceholder": "e.g., London, UK",
+      "tripDate": "Trip Date",
+      "ratingLabel": "Rating *",
+      "ratingSummary": "{{rating}}/5 stars",
+      "ratingLabels": [
+        "1 star — poor",
+        "2 stars — fair",
+        "3 stars — good",
+        "4 stars — very good",
+        "5 stars — excellent"
+      ],
+      "reviewTitle": "Review Title *",
+      "reviewTitlePlaceholder": "Summarize your experience",
+      "review": "Your Review *",
+      "reviewPlaceholder": "Tell us about your Egypt experience. What did you enjoy most? Any tips for future travelers?",
+      "submit": "Submit Review",
+      "submitting": "Submitting...",
+      "successTitle": "Thank you for your review!",
+      "successBody": "Your review has been submitted and will be published after verification.",
+      "errorTitle": "Error",
+      "errorBody": "Failed to submit review"
+    }
   },
   "legal": {
     "effectiveDate": "Effective Date:",

@@ -61,8 +61,8 @@ export default function SubmitReview() {
   return (
     <>
       <SeoMeta
-        title="Submit a Review | AffordEgypt"
-        description="Tell us how your AffordEgypt trip went. Your honest feedback helps future travelers make a better decision."
+        title={t("submitReviewPage.seoTitle")}
+        description={t("submitReviewPage.seoDescription")}
         canonical="https://affordegypt.com/submit-review"
       />
 

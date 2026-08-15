@@ -497,90 +497,6 @@
       "Load quote"
     ],
     [
-      "client/src/components/review-form.tsx",
-      "1 star — poor"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "2 stars — fair"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "3 stars — good"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "4 stars — very good"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "5 stars — excellent"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Enter your name"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Error"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Failed to submit review"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Help other travelers by sharing your Egypt adventure"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Rating *"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Review Title *"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Share Your Experience"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Summarize your experience"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Tell us about your Egypt experience. What did you enjoy most? Any tips for future travelers?"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Thank you for your review!"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Trip Date"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Your Location"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Your Name *"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Your Review *"
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "Your review has been submitted and will be published after verification."
-    ],
-    [
-      "client/src/components/review-form.tsx",
-      "e.g., London, UK"
-    ],
-    [
       "client/src/components/review-upload.tsx",
       ", error,"
     ],
@@ -1183,10 +1099,6 @@
     [
       "client/src/pages/sinai-peninsula-guide.tsx",
       "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
-    ],
-    [
-      "client/src/pages/submit-review.tsx",
-      "Submit a Review | AffordEgypt"
     ],
     [
       "client/src/pages/terms-of-service.tsx",

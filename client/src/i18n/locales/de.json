@@ -414,7 +414,9 @@
     "selectDate": "Bitte wählen Sie ein Reisedatum",
     "selectRoute": "Bitte wählen Sie mindestens eine Route",
     "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
-    "acceptTerms": "Sie müssen die AGB akzeptieren, um fortzufahren"
+    "acceptTerms": "Sie müssen die AGB akzeptieren, um fortzufahren",
+    "titleMin": "Der Titel muss mindestens 5 Zeichen lang sein",
+    "reviewMin": "Die Bewertung muss mindestens 20 Zeichen lang sein"
   },
   "slugs": {
     "destinations": "reiseziele",
@@ -2359,6 +2361,8 @@
     "nextPage": "Nächste Seite"
   },
   "submitReviewPage": {
+    "seoTitle": "Bewertung abgeben | AffordEgypt",
+    "seoDescription": "Erzählen Sie uns, wie Ihre Reise mit AffordEgypt war. Ihr ehrliches Feedback hilft künftigen Reisenden bei der Entscheidung.",
     "title": "Teilen Sie Ihr Ägypten-Abenteuer",
     "subtitle": "Ihre authentischen Erfahrungen helfen anderen Reisenden, den Zauber Ägyptens zu entdecken. Teilen Sie Ihre Geschichte und inspirieren Sie andere.",
     "avgRating": "Durchschnittsbewertung",
@@ -2383,7 +2387,35 @@
     "g4Label": "Seien Sie respektvoll:",
     "g4": "Halten Sie Ihre Bewertung konstruktiv und respektvoll gegenüber allen Beteiligten.",
     "needHelp": "Brauchen Sie Hilfe?",
-    "verifiedNote": "Alle Bewertungen werden vor der Veröffentlichung manuell geprüft, um ihre Echtheit sicherzustellen."
+    "verifiedNote": "Alle Bewertungen werden vor der Veröffentlichung manuell geprüft, um ihre Echtheit sicherzustellen.",
+    "form": {
+      "title": "Teilen Sie Ihre Erfahrung",
+      "subtitle": "Helfen Sie anderen Reisenden, indem Sie Ihr Ägypten-Erlebnis teilen",
+      "name": "Ihr Name *",
+      "namePlaceholder": "Namen eingeben",
+      "location": "Ihr Wohnort",
+      "locationPlaceholder": "z. B. Berlin, Deutschland",
+      "tripDate": "Reisedatum",
+      "ratingLabel": "Bewertung *",
+      "ratingSummary": "{{rating}}/5 Sterne",
+      "ratingLabels": [
+        "1 Stern — schlecht",
+        "2 Sterne — ausreichend",
+        "3 Sterne — gut",
+        "4 Sterne — sehr gut",
+        "5 Sterne — ausgezeichnet"
+      ],
+      "reviewTitle": "Titel der Bewertung *",
+      "reviewTitlePlaceholder": "Fassen Sie Ihre Erfahrung zusammen",
+      "review": "Ihre Bewertung *",
+      "reviewPlaceholder": "Erzählen Sie uns von Ihrem Ägypten-Erlebnis. Was hat Ihnen am besten gefallen? Tipps für künftige Reisende?",
+      "submit": "Bewertung absenden",
+      "submitting": "Wird gesendet...",
+      "successTitle": "Danke für Ihre Bewertung!",
+      "successBody": "Ihre Bewertung ist eingegangen und wird nach der Prüfung veröffentlicht.",
+      "errorTitle": "Fehler",
+      "errorBody": "Bewertung konnte nicht gesendet werden"
+    }
   },
   "legal": {
     "effectiveDate": "Gültig ab:",
