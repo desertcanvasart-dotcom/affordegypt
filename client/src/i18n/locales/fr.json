@@ -523,7 +523,7 @@
           "tips": [
             "Rejoignez des groupes de safari locaux au lieu de voyages privés pour économiser jusqu'à 60%",
             "Voyagez en novembre et mars pour les prix de saison intermédiaire",
-            "Utilisez des minibus et des taxis partagés entre les oasis",
+            "Confirmez sur place les transports actuels entre oasis ; les services peuvent être rares ou changer sans préavis",
             "Séjournez dans des maisons d'hôtes familiales plutôt qu'à l'hôtel",
             "Mangez où se rassemblent les locaux pour des repas authentiques et abordables",
             "Négociez les prix en personne, surtout en basse saison"
@@ -531,8 +531,8 @@
         },
         "itinerary": {
           "title": "Aventure Désertique de 5 Jours avec Budget",
-          "subtitle": "Itinéraire complet avec prix transparents",
-          "total": "Total : 2 850 EGP par personne",
+          "subtitle": "L'itinéraire, les permis, l'hébergement et les tarifs actuels doivent être confirmés auprès d'un opérateur local agréé avant de réserver",
+          "total": "Total : 7,600 EGP par personne",
           "days": [
             {
               "day": "Jour 1",
@@ -1410,7 +1410,7 @@
     },
     "cairo": {
       "heroTitle": "Transferts Aéroport du Caire",
-      "heroSubtitle": "Transferts d'aéroport fiables, confortables et abordables au Caire. Chauffeurs professionnels, surveillance des vols et tarification transparente à partir de 2 025 EGP.",
+      "heroSubtitle": "Transferts privés depuis l'aéroport international du Caire (CAI) et l'aéroport international Sphinx (SPX) vers les hôtels du Caire, de Gizeh et du Grand Caire.",
       "whyChooseTitle": "Pourquoi Choisir Nos Transferts Aéroport du Caire ?",
       "service24_7": "Service 24h/24",
       "service24_7Desc": "Transferts d'aéroport disponibles 24h/24 tous les jours",
@@ -1433,7 +1433,7 @@
       "stepEnjoyRideDesc": "Détendez-vous confortablement pendant que nous vous emmenons à votre destination",
       "pricingInfoDesc": "Transferts aéroport vers hôtel • Chauffeur professionnel • Service d'accueil",
       "ctaTitle": "Prêt à Réserver Votre Transfert Aéroport du Caire ?",
-      "ctaSubtitle": "Rejoignez des milliers de clients satisfaits qui nous font confiance pour leurs transferts d'aéroport du Caire",
+      "ctaSubtitle": "Envoyez-nous votre numéro de vol et l'adresse de votre hôtel. Nous confirmerons si vous arrivez à CAI ou à SPX, identifierons la bonne zone de destination et vous communiquerons le prix du véhicule adapté.",
       "area1": "Aéroport international du Caire (CAI)",
       "area2": "Hôtels du Nouveau Caire",
       "area3": "Ville du 6 Octobre",
@@ -1597,7 +1597,7 @@
     },
     "luxor": {
       "heroTitle": "Transferts Aéroport de Louxor",
-      "heroSubtitle": "Transferts d'aéroport professionnels dans l'ancienne ville de Louxor. Chauffeurs locaux experts avec connaissance des routes des temples et tarification transparente à partir de 1 115 EGP.",
+      "heroSubtitle": "Transferts privés depuis l'aéroport international de Louxor (LXR) vers les hôtels de la rive est, ceux de la rive ouest et les postes d'amarrage confirmés des croisières sur le Nil.",
       "whyChooseTitle": "Pourquoi Choisir Nos Transferts Aéroport de Louxor ?",
       "templeExpertise": "Expertise des Temples",
       "templeExpertiseDesc": "Chauffeurs connaissant les sites antiques et routes de Louxor",
@@ -1632,7 +1632,7 @@
       "affordableDesc": "Tarifs compétitifs pour les transferts dans la ville antique. Pas de frais cachés ni de supplément touristique.",
       "pricingInfoDesc": "Transferts aéroport vers hôtel • Chauffeur local expert • Connaissance des routes des temples",
       "ctaTitle": "Prêt à Explorer l'Ancien Louxor ?",
-      "ctaSubtitle": "Commencez votre voyage vers le plus grand musée en plein air du monde avec nos transferts fiables",
+      "ctaSubtitle": "Envoyez-nous votre numéro de vol et l'adresse de votre hébergement. Nous confirmerons la bonne rive, l'itinéraire, le véhicule et le prix total avant votre réservation.",
       "area1": "Aéroport de Louxor (LXR)",
       "area2": "Hôtels de la rive est",
       "area3": "Hôtels de la rive ouest",
@@ -1794,7 +1794,7 @@
     },
     "aswan": {
       "heroTitle": "Transferts Aéroport d'Assouan",
-      "heroSubtitle": "Transferts d'aéroport professionnels dans la belle Assouan. Chauffeurs experts de la ville du Nil avec connaissance locale et tarification transparente à partir de 1 475 EGP.",
+      "heroSubtitle": "Transferts privés depuis l'aéroport international d'Assouan (ASW) vers les hôtels de la ville, les établissements excentrés, les maisons d'hôtes nubiennes, les pontons des hôtels insulaires et les postes d'amarrage confirmés des croisières sur le Nil ou le lac Nasser.",
       "whyChooseTitle": "Pourquoi Choisir Nos Transferts Aéroport d'Assouan ?",
       "nileExpertise": "Expertise du Nil",
       "nileExpertiseDesc": "Connaissance spécialisée des emplacements uniques du Nil à Assouan et ports de felouque",
@@ -1829,7 +1829,7 @@
       "affordableDesc": "Meilleur rapport qualité-prix pour les transferts dans le sud de l'Égypte. Tarification transparente sans coûts cachés.",
       "pricingInfoDesc": "Transferts aéroport vers hôtel • Chauffeur expert du Nil • Connaissance culturelle locale",
       "ctaTitle": "Prêt à Découvrir le Joyau du Nil ?",
-      "ctaSubtitle": "Commencez votre aventure à Assouan avec notre service de transfert fiable et expert",
+      "ctaSubtitle": "Envoyez-nous votre numéro de vol et votre destination exacte. Nous confirmerons l'itinéraire d'accès, le véhicule, toute liaison en bateau et le prix total avant votre réservation.",
       "area1": "Aéroport d'Assouan (ASW)",
       "area2": "Hôtels de la Corniche",
       "area3": "Île Éléphantine",
@@ -2815,7 +2815,7 @@
     "whyH2": "Pourquoi la street food est idéale pour les voyageurs",
     "whySub": "Découvrez les saveurs authentiques de l'Égypte sans faire exploser votre budget",
     "why1H": "Très abordable",
-    "why1B": "La plupart des plats coûtent entre 5 et 30 EGP",
+    "why1B": "Beaucoup de plats de base sont bon marché, mais les prix varient selon la ville, la portion et le vendeur ; consultez le menu affiché avant de commander",
     "why2H": "Frais et rapide",
     "why2B": "Préparé devant vous, souvent brûlant et prêt à déguster",
     "why3H": "Profondément local",
@@ -2837,7 +2837,7 @@
     "drinksH2": "Boissons à associer à la street food",
     "drinksSub": "Rafraîchissez-vous avec d'authentiques boissons égyptiennes",
     "noteLabel": "Remarque importante :",
-    "noteBody": "Évitez l'eau du robinet et les glaçons ; préférez une bouteille d'eau scellée (environ 5 EGP)",
+    "noteBody": "En dehors des grands hôtels internationaux à l'eau traitée avérée, buvez de l'eau en bouteille scellée d'origine ou correctement traitée. Si vous ignorez comment les glaçons ont été faits, évitez-les.",
     "safetyH2": "Conseils de sécurité pour la street food",
     "safetySub": "Profitez des saveurs authentiques de l'Égypte en toute sérénité",
     "packH3": "Que emporter pour une aventure street food",
@@ -2851,7 +2851,7 @@
     "phrasesH2": "Expressions arabes utiles",
     "phrasesSub": "Les phrases essentielles pour enrichir votre expérience culinaire",
     "itineraryH2": "Itinéraire street food à petit budget",
-    "itinerarySub": "Journée au Caire : une journée entière de délicieuse street food pour moins de 75 EGP",
+    "itinerarySub": "Journée au Caire : une journée entière de street food pour 400 EGP",
     "itineraryTitle": "Journée street food au Caire",
     "totalLabel": "Coût total de la journée :",
     "finalH2": "Votre aventure culinaire vous attend",
@@ -2905,7 +2905,7 @@
       {
         "name": "Koshari",
         "description": "Un plat nourrissant de riz, lentilles, pois chiches, pâtes, oignons frits et sauce tomate-vinaigre",
-        "cost": "15–25 EGP",
+        "cost": "Moins de 60 EGP",
         "bestIn": "Le Caire (Abou Tarek, Koshary El Tahrir)",
         "tip": "Demandez de la « shatta » (sauce piquante) si vous aimez le relevé",
         "arabicName": "كشري"
@@ -2913,7 +2913,7 @@
       {
         "name": "Ta'ameya",
         "description": "Le falafel égyptien, à base de fèves (et non de pois chiches), aux herbes et enrobé de sésame",
-        "cost": "1–2 EGP la pièce",
+        "cost": "Environ 17 EGP",
         "bestIn": "Les charrettes de petit-déjeuner du Caire et d'Alexandrie",
         "tip": "100 % végétal et rassasiant",
         "arabicName": "طعمية"
@@ -2921,7 +2921,7 @@
       {
         "name": "Ful Medames",
         "description": "Fèves mijotées longuement à l'huile d'olive, au cumin et au jus de citron",
-        "cost": "5–10 EGP le sandwich",
+        "cost": "Moins de 25 EGP",
         "bestIn": "Charrettes de petit-déjeuner et cafés populaires",
         "tip": "Le petit-déjeuner national égyptien",
         "arabicName": "فول مدمس"
@@ -2929,7 +2929,7 @@
       {
         "name": "Shawarma",
         "description": "Bœuf ou poulet mariné, tranché à la broche verticale",
-        "cost": "15–30 EGP le wrap",
+        "cost": "Environ 120 EGP",
         "bestIn": "Les kiosques à shawarma de style syrien du Caire, d'Alexandrie et d'Hurghada",
         "tip": "Sauce à l'ail pour le poulet, tahini pour le bœuf",
         "arabicName": "شاورما"
@@ -2937,7 +2937,7 @@
       {
         "name": "Hawawshi",
         "description": "Viande de bœuf hachée et épicée, cuite dans du pain baladi",
-        "cost": "15–25 EGP le sandwich",
+        "cost": "200 EGP",
         "bestIn": "Boulangeries traditionnelles et vendeurs de rue",
         "tip": "Demandez la version « balady » : plus traditionnelle et plus parfumée",
         "arabicName": "حواوشي"
@@ -2945,7 +2945,7 @@
       {
         "name": "Patate douce",
         "description": "Rôtie et vendue sur des charrettes, souvent nappée de miel ou de fruits secs",
-        "cost": "5–15 EGP",
+        "cost": "150 EGP",
         "bestIn": "Charrettes de rue partout en Égypte",
         "tip": "L'en-cas d'hiver parfait, naturellement sucré",
         "arabicName": "بطاطا"
@@ -3026,27 +3026,27 @@
       {
         "time": "9h00",
         "activity": "Sandwich petit-déjeuner ful et ta'ameya",
-        "cost": "10 EGP"
+        "cost": "35 EGP"
       },
       {
         "time": "11h00",
         "activity": "Jus de canne à sucre frais",
-        "cost": "5 EGP"
+        "cost": "30 EGP"
       },
       {
         "time": "13h00",
         "activity": "Déjeuner koshari chez Abu Tarek",
-        "cost": "25 EGP"
+        "cost": "60 EGP"
       },
       {
         "time": "15h00",
         "activity": "Dessert : zalabya",
-        "cost": "10 EGP"
+        "cost": "80 EGP"
       },
       {
         "time": "18h00",
         "activity": "Wrap shawarma et thé dans un café local",
-        "cost": "25 EGP"
+        "cost": "195 EGP"
       }
     ],
     "ctaPrint": "Imprimer / Enregistrer en PDF",

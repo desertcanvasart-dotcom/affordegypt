@@ -523,7 +523,7 @@
           "tips": [
             "Únete a grupos de safari locales en lugar de viajes privados para ahorrar hasta un 60%",
             "Viaja durante noviembre y marzo para precios de temporada media",
-            "Usa minibuses y taxis compartidos entre oasis",
+            "Confirma sobre el terreno el transporte actual entre oasis; los servicios pueden ser escasos o cambiar sin previo aviso",
             "Hospédate en casas de huéspedes familiares en lugar de hoteles",
             "Come donde se reúnen los locales para comidas auténticas y económicas",
             "Negocia precios en persona, especialmente en temporadas bajas"
@@ -531,8 +531,8 @@
         },
         "itinerary": {
           "title": "Aventura Desértica de 5 Días con Presupuesto",
-          "subtitle": "Itinerario completo con precios transparentes",
-          "total": "Total: 2,850 EGP por persona",
+          "subtitle": "La ruta, los permisos, el alojamiento y los precios actuales deben confirmarse con un operador local con licencia antes de reservar",
+          "total": "Total: 7,600 EGP por persona",
           "days": [
             {
               "day": "Día 1",
@@ -1410,7 +1410,7 @@
     },
     "cairo": {
       "heroTitle": "Traslados del Aeropuerto de El Cairo",
-      "heroSubtitle": "Traslados de aeropuerto confiables, cómodos y asequibles en El Cairo. Conductores profesionales, monitoreo de vuelos y precios transparentes desde 2,025 EGP.",
+      "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de El Cairo (CAI) y el Aeropuerto Internacional Sphinx (SPX) a hoteles de El Cairo, Guiza y el Gran Cairo.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de El Cairo?",
       "service24_7": "Servicio 24/7",
       "service24_7Desc": "Traslados de aeropuerto disponibles las 24 horas todos los días",
@@ -1433,7 +1433,7 @@
       "stepEnjoyRideDesc": "Relájate cómodamente mientras te llevamos a tu destino",
       "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor profesional • Servicio de encuentro y saludo",
       "ctaTitle": "¿Listo para Reservar Tu Traslado del Aeropuerto de El Cairo?",
-      "ctaSubtitle": "Únete a miles de clientes satisfechos que confían en nosotros para sus traslados del aeropuerto de El Cairo",
+      "ctaSubtitle": "Envíanos tu número de vuelo y la ubicación de tu hotel. Confirmaremos si llegas a CAI o a SPX, identificaremos la zona de destino correcta y te daremos el precio del vehículo adecuado.",
       "area1": "Aeropuerto Internacional de El Cairo (CAI)",
       "area2": "Hoteles de Nuevo Cairo",
       "area3": "Ciudad 6 de Octubre",
@@ -1597,7 +1597,7 @@
     },
     "luxor": {
       "heroTitle": "Traslados del Aeropuerto de Luxor",
-      "heroSubtitle": "Traslados profesionales de aeropuerto en la antigua ciudad de Luxor. Conductores locales expertos con conocimiento de rutas de templos y precios transparentes desde 1,115 EGP.",
+      "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de Luxor (LXR) a hoteles de la orilla este, hoteles de la orilla oeste y amarres confirmados de cruceros por el Nilo.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de Luxor?",
       "templeExpertise": "Experiencia en Templos",
       "templeExpertiseDesc": "Conductores con conocimiento sobre los sitios antiguos y rutas de Luxor",
@@ -1632,7 +1632,7 @@
       "affordableDesc": "Tarifas competitivas para traslados en la ciudad antigua. Sin tarifas ocultas ni sobrecargos turísticos.",
       "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor local experto • Conocimiento de rutas de templos",
       "ctaTitle": "¿Listo para Explorar el Antiguo Luxor?",
-      "ctaSubtitle": "Comienza tu viaje al museo al aire libre más grande del mundo con nuestros traslados confiables",
+      "ctaSubtitle": "Envíanos tu número de vuelo y la ubicación de tu alojamiento. Confirmaremos la orilla correcta, la ruta, el vehículo y el precio total antes de que reserves.",
       "area1": "Aeropuerto de Lúxor (LXR)",
       "area2": "Hoteles de la Orilla Este",
       "area3": "Hoteles de la Orilla Oeste",
@@ -1794,7 +1794,7 @@
     },
     "aswan": {
       "heroTitle": "Traslados del Aeropuerto de Asuán",
-      "heroSubtitle": "Traslados profesionales de aeropuerto en la hermosa Asuán. Conductores expertos de la ciudad del Nilo con conocimiento local y precios transparentes desde 1,475 EGP.",
+      "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de Asuán (ASW) a hoteles de la ciudad, alojamientos a las afueras, casas nubias, embarcaderos de hoteles isla y amarres confirmados de cruceros por el Nilo o el lago Nasser.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de Asuán?",
       "nileExpertise": "Experiencia del Nilo",
       "nileExpertiseDesc": "Conocimiento especializado de las ubicaciones únicas del Nilo en Asuán y puertos de faluca",
@@ -1829,7 +1829,7 @@
       "affordableDesc": "La mejor relación calidad-precio en traslados del sur de Egipto. Precios transparentes sin costos ocultos.",
       "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor experto del Nilo • Conocimiento cultural local",
       "ctaTitle": "¿Listo para Experimentar la Joya del Nilo?",
-      "ctaSubtitle": "Comienza tu aventura en Asuán con nuestro servicio de traslado confiable y conocedor",
+      "ctaSubtitle": "Envíanos tu número de vuelo y tu destino exacto. Confirmaremos la ruta de acceso, el vehículo, cualquier conexión en barco y el precio total antes de que reserves.",
       "area1": "Aeropuerto de Asuán (ASW)",
       "area2": "Hoteles de la Corniche",
       "area3": "Isla Elefantina",
@@ -2815,7 +2815,7 @@
     "whyH2": "Por qué la comida callejera es perfecta para viajeros",
     "whySub": "Descubra los sabores auténticos de Egipto sin arruinar su presupuesto",
     "why1H": "Extremadamente económica",
-    "why1B": "La mayoría de los platos cuesta entre 5 y 30 EGP",
+    "why1B": "Muchos platos básicos son baratos, pero los precios varían según la ciudad, la ración y el puesto; consulta la carta expuesta antes de pedir",
     "why2H": "Fresca y rápida",
     "why2B": "Preparada delante de usted, casi siempre muy caliente y lista para comer",
     "why3H": "Profundamente local",
@@ -2837,7 +2837,7 @@
     "drinksH2": "Bebidas para acompañar la comida callejera",
     "drinksSub": "Refrésquese con bebidas egipcias auténticas",
     "noteLabel": "Nota importante:",
-    "noteBody": "Evite el agua del grifo y el hielo; elija agua embotellada precintada (aprox. 5 EGP)",
+    "noteBody": "Fuera de los grandes hoteles internacionales con agua tratada confirmada, bebe agua embotellada precintada de fábrica o correctamente tratada. Si no sabes cómo se ha hecho el hielo, evítalo.",
     "safetyH2": "Consejos de seguridad para comer en la calle",
     "safetySub": "Disfrute de los sabores auténticos de Egipto con tranquilidad",
     "packH3": "Qué llevar a una aventura de comida callejera",
@@ -2851,7 +2851,7 @@
     "phrasesH2": "Frases árabes útiles",
     "phrasesSub": "Frases esenciales para enriquecer su experiencia gastronómica",
     "itineraryH2": "Itinerario de comida callejera económico",
-    "itinerarySub": "Día en El Cairo: una jornada entera de comida callejera deliciosa por menos de 75 EGP",
+    "itinerarySub": "Día en El Cairo: una jornada entera de comida callejera por 400 EGP",
     "itineraryTitle": "Día de comida callejera en El Cairo",
     "totalLabel": "Coste total del día:",
     "finalH2": "Su aventura culinaria le espera",
@@ -2905,7 +2905,7 @@
       {
         "name": "Koshari",
         "description": "Un plato contundente de arroz, lentejas, garbanzos, pasta, cebolla crujiente y salsa de tomate y vinagre",
-        "cost": "15–25 EGP",
+        "cost": "Menos de 60 EGP",
         "bestIn": "El Cairo (Abou Tarek, Koshary El Tahrir)",
         "tip": "Pida «shatta» (salsa picante) si le gusta el picante",
         "arabicName": "كشري"
@@ -2913,7 +2913,7 @@
       {
         "name": "Ta'ameya",
         "description": "Falafel egipcio hecho de habas (no de garbanzos), con hierbas y una capa de sésamo",
-        "cost": "1–2 EGP por pieza",
+        "cost": "Unos 17 EGP",
         "bestIn": "Carritos de desayuno de El Cairo y Alejandría",
         "tip": "100 % vegetal y saciante",
         "arabicName": "طعمية"
@@ -2921,7 +2921,7 @@
       {
         "name": "Ful Medames",
         "description": "Habas cocidas a fuego lento con aceite de oliva, comino y zumo de limón",
-        "cost": "5–10 EGP por bocadillo",
+        "cost": "Menos de 25 EGP",
         "bestIn": "Carritos de desayuno y cafés populares",
         "tip": "El desayuno nacional de Egipto",
         "arabicName": "فول مدمس"
@@ -2929,7 +2929,7 @@
       {
         "name": "Shawarma",
         "description": "Ternera o pollo marinado y cortado de un asador vertical",
-        "cost": "15–30 EGP por wrap",
+        "cost": "Unos 120 EGP",
         "bestIn": "Puestos de shawarma de estilo sirio en El Cairo, Alejandría y Hurgada",
         "tip": "Salsa de ajo para el pollo, tahini para la ternera",
         "arabicName": "شاورما"
@@ -2937,7 +2937,7 @@
       {
         "name": "Hawawshi",
         "description": "Carne picada de ternera especiada y horneada dentro de pan baladi",
-        "cost": "15–25 EGP por bocadillo",
+        "cost": "200 EGP",
         "bestIn": "Panaderías tradicionales y vendedores callejeros",
         "tip": "Pida la versión «balady»: más tradicional y sabrosa",
         "arabicName": "حواوشي"
@@ -2945,7 +2945,7 @@
       {
         "name": "Boniato",
         "description": "Asado y vendido en carritos ambulantes, a menudo con miel o frutos secos",
-        "cost": "5–15 EGP",
+        "cost": "150 EGP",
         "bestIn": "Carritos callejeros por todo Egipto",
         "tip": "El aperitivo perfecto de invierno, dulce por naturaleza",
         "arabicName": "بطاطا"
@@ -3026,27 +3026,27 @@
       {
         "time": "9:00",
         "activity": "Bocadillo de desayuno de ful y ta'ameya",
-        "cost": "10 EGP"
+        "cost": "35 EGP"
       },
       {
         "time": "11:00",
         "activity": "Zumo de caña de azúcar recién hecho",
-        "cost": "5 EGP"
+        "cost": "30 EGP"
       },
       {
         "time": "13:00",
         "activity": "Koshari para comer en Abu Tarek",
-        "cost": "25 EGP"
+        "cost": "60 EGP"
       },
       {
         "time": "15:00",
         "activity": "Postre: zalabya",
-        "cost": "10 EGP"
+        "cost": "80 EGP"
       },
       {
         "time": "18:00",
         "activity": "Wrap de shawarma y té en un café local",
-        "cost": "25 EGP"
+        "cost": "195 EGP"
       }
     ],
     "ctaPrint": "Imprimir / Guardar como PDF",

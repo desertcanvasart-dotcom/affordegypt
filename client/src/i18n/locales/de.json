@@ -523,7 +523,7 @@
           "tips": [
             "Schließen Sie sich lokalen Safari-Gruppen an statt privaten Reisen, um bis zu 60% zu sparen",
             "Reisen Sie im November und März für Nebensaison-Preise",
-            "Nutzen Sie Minibusse und geteilte Taxis zwischen Oasen",
+            "Bestätigen Sie den aktuellen Verkehr zwischen den Oasen vor Ort; die Verbindungen können spärlich sein oder sich ohne Vorankündigung ändern",
             "Übernachten Sie in familiengeführten Gästehäusern statt Hotels",
             "Essen Sie dort, wo sich Einheimische treffen, für authentische, erschwingliche Mahlzeiten",
             "Verhandeln Sie Preise persönlich, besonders in der Nebensaison"
@@ -531,8 +531,8 @@
         },
         "itinerary": {
           "title": "5-Tage Budget-Wüstenabenteuer",
-          "subtitle": "Vollständiger Reiseplan mit transparenten Preisen",
-          "total": "Gesamt: 2.850 EGP pro Person",
+          "subtitle": "Route, Genehmigungen, Unterkunft und aktuelle Preise sollten vor der Buchung mit einem lizenzierten örtlichen Veranstalter bestätigt werden",
+          "total": "Gesamt: 7,600 EGP pro Person",
           "days": [
             {
               "day": "Tag 1",
@@ -1410,7 +1410,7 @@
     },
     "cairo": {
       "heroTitle": "Kairo Flughafentransfers",
-      "heroSubtitle": "Zuverlässige, komfortable und erschwingliche Flughafentransfers in Kairo. Professionelle Fahrer, Flugüberwachung und transparente Preise ab 2.025 EGP.",
+      "heroSubtitle": "Private Transfers vom Flughafen Kairo International (CAI) und vom Sphinx International Airport (SPX) zu Hotels in Kairo, Gizeh und Groß-Kairo.",
       "whyChooseTitle": "Warum Unsere Kairo Flughafentransfers Wählen?",
       "service24_7": "24/7-Service",
       "service24_7Desc": "Rund um die Uhr verfügbare Flughafentransfers jeden Tag",
@@ -1433,7 +1433,7 @@
       "stepEnjoyRideDesc": "Entspannen Sie sich komfortabel, während wir Sie zu Ihrem Ziel bringen",
       "pricingInfoDesc": "Flughafen zu Hotel Transfers • Professioneller Fahrer • Empfangsservice",
       "ctaTitle": "Bereit, Ihren Kairo Flughafentransfer zu Buchen?",
-      "ctaSubtitle": "Schließen Sie sich Tausenden von zufriedenen Kunden an, die uns für ihre Kairo Flughafentransfers vertrauen",
+      "ctaSubtitle": "Senden Sie uns Ihre Flugnummer und die Lage Ihres Hotels. Wir bestätigen, ob Sie an CAI oder SPX ankommen, bestimmen die richtige Zielzone und nennen Ihnen den passenden Fahrzeugpreis.",
       "area1": "Internationaler Flughafen Kairo (CAI)",
       "area2": "Hotels in Neu-Kairo",
       "area3": "Stadt des 6. Oktober",
@@ -1597,7 +1597,7 @@
     },
     "luxor": {
       "heroTitle": "Luxor Flughafentransfers",
-      "heroSubtitle": "Professionelle Flughafentransfers in der antiken Stadt Luxor. Ortskundige Expertenfahrer mit Tempelroutenwissen und transparente Preise ab 1.115 EGP.",
+      "heroSubtitle": "Private Transfers vom Flughafen Luxor International (LXR) zu Hotels am Ostufer, Hotels am Westufer und bestätigten Anlegestellen von Nilkreuzfahrten.",
       "whyChooseTitle": "Warum Unsere Luxor Flughafentransfers Wählen?",
       "templeExpertise": "Tempel-Expertise",
       "templeExpertiseDesc": "Fahrer mit Kenntnissen über Luxors antike Stätten und Routen",
@@ -1632,7 +1632,7 @@
       "affordableDesc": "Wettbewerbsfähige Preise für Transfers in der antiken Stadt. Keine versteckten Gebühren oder Touristenaufschläge.",
       "pricingInfoDesc": "Flughafen zu Hotel Transfers • Ortskundiger Expertenfahrer • Tempelroutenwissen",
       "ctaTitle": "Bereit, das Antike Luxor zu Erkunden?",
-      "ctaSubtitle": "Beginnen Sie Ihre Reise zum größten Freilichtmuseum der Welt mit unseren zuverlässigen Transfers",
+      "ctaSubtitle": "Senden Sie uns Ihre Flugnummer und die Lage Ihrer Unterkunft. Wir bestätigen das richtige Ufer, die Route, das Fahrzeug und den Gesamtpreis, bevor Sie buchen.",
       "area1": "Flughafen Luxor (LXR)",
       "area2": "Hotels am Ostufer",
       "area3": "Hotels am Westufer",
@@ -1794,7 +1794,7 @@
     },
     "aswan": {
       "heroTitle": "Assuan Flughafentransfers",
-      "heroSubtitle": "Professionelle Flughafentransfers im schönen Assuan. Experten-Nilstadtfahrer mit Ortskenntnis und transparente Preise ab 1.475 EGP.",
+      "heroSubtitle": "Private Transfers vom Flughafen Assuan International (ASW) zu Stadthotels, außerhalb gelegenen Unterkünften, nubischen Gästehäusern, Anlegestegen von Inselhotels und bestätigten Anlegestellen von Nil- oder Nassersee-Kreuzfahrten.",
       "whyChooseTitle": "Warum Unsere Assuan Flughafentransfers Wählen?",
       "nileExpertise": "Nil-Expertise",
       "nileExpertiseDesc": "Spezialisiertes Wissen über Assuans einzigartige Nil-Standorte und Felucca-Häfen",
@@ -1829,7 +1829,7 @@
       "affordableDesc": "Bestes Preis-Leistungs-Verhältnis für Transfers in Südägypten. Transparente Preise ohne versteckte Kosten.",
       "pricingInfoDesc": "Flughafen zu Hotel Transfers • Nil-Expertenfahrer • Lokales Kulturwissen",
       "ctaTitle": "Bereit, das Juwel des Nils zu Erleben?",
-      "ctaSubtitle": "Beginnen Sie Ihr Assuan-Abenteuer mit unserem zuverlässigen und sachkundigen Transfer-Service",
+      "ctaSubtitle": "Senden Sie uns Ihre Flugnummer und Ihr genaues Ziel. Wir bestätigen die Anfahrtsroute, das Fahrzeug, eine etwaige Bootsverbindung und den Gesamtpreis, bevor Sie buchen.",
       "area1": "Flughafen Assuan (ASW)",
       "area2": "Hotels an der Corniche",
       "area3": "Elephantine-Insel",
@@ -2815,7 +2815,7 @@
     "whyH2": "Warum Streetfood perfekt für Reisende ist",
     "whySub": "Entdecken Sie die authentischen Aromen Ägyptens, ohne Ihr Budget zu sprengen",
     "why1H": "Äußerst günstig",
-    "why1B": "Die meisten Gerichte kosten zwischen 5 und 30 EGP",
+    "why1B": "Viele Grundgerichte sind günstig, doch die Preise schwanken je nach Stadt, Portion und Verkäufer; prüfen Sie die ausgehängte Karte, bevor Sie bestellen",
     "why2H": "Frisch & schnell",
     "why2B": "Vor Ihren Augen zubereitet, meist dampfend heiß und sofort essfertig",
     "why3H": "Zutiefst lokal",
@@ -2837,7 +2837,7 @@
     "drinksH2": "Getränke zum Streetfood",
     "drinksSub": "Erfrischen Sie sich mit authentischen ägyptischen Getränken",
     "noteLabel": "Wichtiger Hinweis:",
-    "noteBody": "Meiden Sie Leitungswasser und Eiswürfel; greifen Sie zu verschlossenem Flaschenwasser (ca. 5 EGP)",
+    "noteBody": "Außerhalb großer internationaler Hotels mit nachweislich aufbereitetem Wasser trinken Sie original verschlossenes Flaschenwasser oder ordentlich aufbereitetes Wasser. Wenn Sie nicht wissen, wie das Eis hergestellt wurde, verzichten Sie darauf.",
     "safetyH2": "Sicherheitstipps für Streetfood",
     "safetySub": "Bleiben Sie sicher, während Sie authentische ägyptische Aromen genießen",
     "packH3": "Was Sie zum Streetfood-Abenteuer mitnehmen sollten",
@@ -2851,7 +2851,7 @@
     "phrasesH2": "Nützliche arabische Redewendungen",
     "phrasesSub": "Wichtige Sätze, die Ihr Streetfood-Erlebnis bereichern",
     "itineraryH2": "Günstige Streetfood-Tagesroute",
-    "itinerarySub": "Tagesausflug in Kairo: ein ganzer Tag voller köstlichem Streetfood für unter 75 EGP",
+    "itinerarySub": "Tagesausflug in Kairo: ein ganzer Tag Streetfood für 400 EGP",
     "itineraryTitle": "Streetfood-Tagesausflug in Kairo",
     "totalLabel": "Gesamtkosten pro Tag:",
     "finalH2": "Ihr kulinarisches Abenteuer wartet",
@@ -2905,7 +2905,7 @@
       {
         "name": "Koshari",
         "description": "Ein sättigendes Gericht aus Reis, Linsen, Kichererbsen, Nudeln, knusprigen Zwiebeln und Tomaten-Essig-Sauce",
-        "cost": "15–25 EGP",
+        "cost": "Unter 60 EGP",
         "bestIn": "Kairo (Abou Tarek, Koshary El Tahrir)",
         "tip": "Fragen Sie nach „Shatta“ (scharfe Sauce), wenn Sie es scharf mögen",
         "arabicName": "كشري"
@@ -2913,7 +2913,7 @@
       {
         "name": "Ta'ameya",
         "description": "Ägyptische Falafel aus Saubohnen (nicht Kichererbsen), mit Kräutern und Sesamkruste",
-        "cost": "1–2 EGP pro Stück",
+        "cost": "Ca. 17 EGP",
         "bestIn": "Frühstückskarren in Kairo und Alexandria",
         "tip": "Zu 100 % pflanzlich und sättigend",
         "arabicName": "طعمية"
@@ -2921,7 +2921,7 @@
       {
         "name": "Ful Medames",
         "description": "Langsam gegarte Saubohnen mit Olivenöl, Kreuzkümmel und Zitronensaft",
-        "cost": "5–10 EGP pro Sandwich",
+        "cost": "Unter 25 EGP",
         "bestIn": "Frühstückskarren und einfache Cafés",
         "tip": "Ägyptens Nationalgericht zum Frühstück",
         "arabicName": "فول مدمس"
@@ -2929,7 +2929,7 @@
       {
         "name": "Shawarma",
         "description": "Mariniertes Rind- oder Hähnchenfleisch, vom vertikalen Drehspieß geschnitten",
-        "cost": "15–30 EGP pro Wrap",
+        "cost": "Ca. 120 EGP",
         "bestIn": "Shawarma-Kioske syrischer Art in Kairo, Alexandria und Hurghada",
         "tip": "Knoblauchsauce zu Hähnchen, Tahini zu Rind",
         "arabicName": "شاورما"
@@ -2937,7 +2937,7 @@
       {
         "name": "Hawawshi",
         "description": "Gewürztes Rinderhack, im Baladi-Brot gebacken",
-        "cost": "15–25 EGP pro Sandwich",
+        "cost": "200 EGP",
         "bestIn": "Traditionelle Bäckereien und Straßenverkäufer",
         "tip": "Fragen Sie nach der „Balady“-Variante – traditioneller und aromatischer",
         "arabicName": "حواوشي"
@@ -2945,7 +2945,7 @@
       {
         "name": "Süßkartoffel",
         "description": "Geröstet und vom Schubkarren verkauft, oft mit Honig oder Nüssen",
-        "cost": "5–15 EGP",
+        "cost": "150 EGP",
         "bestIn": "Straßenkarren in ganz Ägypten",
         "tip": "Perfekter Wintersnack, von Natur aus süß",
         "arabicName": "بطاطا"
@@ -3026,27 +3026,27 @@
       {
         "time": "9:00 Uhr",
         "activity": "Frühstückssandwich mit Ful und Ta'ameya",
-        "cost": "10 EGP"
+        "cost": "35 EGP"
       },
       {
         "time": "11:00 Uhr",
         "activity": "Frischer Zuckerrohrsaft",
-        "cost": "5 EGP"
+        "cost": "30 EGP"
       },
       {
         "time": "13:00 Uhr",
         "activity": "Koshari-Mittagessen bei Abu Tarek",
-        "cost": "25 EGP"
+        "cost": "60 EGP"
       },
       {
         "time": "15:00 Uhr",
         "activity": "Nachtisch: Zalabya",
-        "cost": "10 EGP"
+        "cost": "80 EGP"
       },
       {
         "time": "18:00 Uhr",
         "activity": "Shawarma-Wrap und Tee im lokalen Café",
-        "cost": "25 EGP"
+        "cost": "195 EGP"
       }
     ],
     "ctaPrint": "Drucken / als PDF speichern",
