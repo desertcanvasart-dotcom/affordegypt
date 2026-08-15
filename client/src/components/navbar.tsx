@@ -304,10 +304,11 @@ export default function Navbar() {
               FAQs
             </button>
 
-            {/* Was navigateToSection('contact'), which scrolled to #contact —
-                an id that only exists in contact-section.tsx, a component the
-                homepage never renders. getElementById returned null and the tap
-                silently did nothing. /contact is a real page; link to it. */}
+            {/* Was navigateToSection('contact'), which scrolled to a #contact
+                id no rendered component defines, so getElementById returned
+                null and the tap silently did nothing. /contact is a real page;
+                link to it. (The component that owned that id was never
+                rendered and has since been deleted.) */}
             <Link
               href={getTranslatedLink("contact")}
               onClick={() => setIsMenuOpen(false)}
