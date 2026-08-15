@@ -1,5 +1,5 @@
 import SeoMeta from "@/components/seo-meta";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { articleSchema } from "@/lib/article-schema";
 import Navbar from "@/components/navbar";
 import GuideToc from "@/components/guide-toc";
@@ -17,9 +17,8 @@ export default function TravelTips() {
         canonical="https://affordegypt.com/travel-tips"
         ogImage="https://affordegypt.com/images/giza-pyramids.jpg"
         schema={[articleSchema({
-          headline: "Egypt Travel Tips | What Locals Wish You Knew",
-          description:
-            "Practical Egypt travel tips from a Cairo-based licensed operator. Tipping, safety, scams to avoid, dress code, currency, transport, and what guidebooks usually get wrong.",
+          headline: t("travelTips.seoTitle"),
+          description: t("travelTips.schemaDescription"),
           canonical: "https://affordegypt.com/travel-tips",
           image: "https://affordegypt.com/images/giza-pyramids.jpg",
           datePublished: "2025-06-07",
@@ -54,22 +53,22 @@ export default function TravelTips() {
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
                 <h4 className="font-semibold mb-2 text-green-primary">{t("travelTips.step1")}</h4>
-                <p className="text-sm text-white/80">Visas, timing, and essential checklists.</p>
+                <p className="text-sm text-white/80">{t("travelTips.step1Body")}</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
                 <h4 className="font-semibold mb-2 text-green-primary">{t("travelTips.step2")}</h4>
-                <p className="text-sm text-white/80">Master your spending and find great deals.</p>
+                <p className="text-sm text-white/80">{t("travelTips.step2Body")}</p>
               </div>
               <div className="bg-white/10 border border-white/20 backdrop-blur-sm p-5 rounded-lg w-60 text-center">
                 <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
                 <h4 className="font-semibold mb-2 text-green-primary">{t("travelTips.step3")}</h4>
-                <p className="text-sm text-white/80">Navigate like a local and see the best sights.</p>
+                <p className="text-sm text-white/80">{t("travelTips.step3Body")}</p>
               </div>
             </div>
             
             <a href="#itinerary" className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
-              See Sample Itinerary ↓
+              {t("travelTips.ctaItinerary")}
             </a>
           </div>
         </header>
@@ -86,7 +85,7 @@ export default function TravelTips() {
             </p>
             <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-6">
               <p className="mb-0">
-                <strong className="text-gray-800">Heads Up:</strong> Don't assume every price tag is a steal. Inflation, currency shifts, and dual pricing (locals vs. tourists) can sometimes throw a curveball. A little vigilance goes a long way—think of it like bargaining in a souk: you don't need to haggle hard, just be informed and savvy with your spending.
+                <strong className="text-gray-800">{t("travelTips.headsUpL")}</strong> {t("travelTips.headsUp")}
               </p>
             </div>
             <p className="text-lg leading-relaxed">
@@ -107,17 +106,17 @@ export default function TravelTips() {
                 <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                   <div className="text-2xl text-primary mb-4">🌿</div>
                   <h4 className="text-xl font-semibold mb-2">{t("travelTips.seasonA")}</h4>
-                  <p><strong>(Mar–May & Sep–Nov)</strong> The perfect mix of decent weather, manageable crowds, and affordable prices. Airlines and hotels are often more generous with their deals. This is the best value for money.</p>
+                  <p><strong>{t("travelTips.seasonADates")}</strong> {t("travelTips.seasonABody")}</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                   <div className="text-2xl text-primary mb-4">☀️</div>
                   <h4 className="text-xl font-semibold mb-2">{t("travelTips.seasonB")}</h4>
-                  <p><strong>(Jun–Aug)</strong> If you don't mind serious heat, this could be your budget jackpot. Tailor your itinerary wisely with coastal time in Alexandria or Dahab. You'll find some of the lowest prices of the year.</p>
+                  <p><strong>{t("travelTips.seasonBDates")}</strong> {t("travelTips.seasonBBody")}</p>
                 </div>
               </div>
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg">
                 <p className="mb-0">
-                  <strong className="text-foreground">Quick Tip:</strong> Winter (Dec–Feb) has gorgeous weather but comes with a heavier price tag as it's peak tourist season. If your budget is tight, aim for the shoulder seasons.
+                  <strong className="text-foreground">{t("travelTips.quickTipL")}</strong> {t("travelTips.quickTip")}
                 </p>
               </div>
             </div>
@@ -135,17 +134,17 @@ export default function TravelTips() {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">📖</div>
-                <h4 className="text-xl font-semibold mb-2">1. Passport & Visa</h4>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.visaTitle")}</h4>
                 <p>{t("travelTips.visaBody")} <strong>{t("travelTips.visaStrong")}</strong> {t("travelTips.visaBody2")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🛡️</div>
-                <h4 className="text-xl font-semibold mb-2">2. Travel Insurance</h4>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.insuranceTitle")}</h4>
                 <p>{t("travelTips.insuranceBody")}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">💉</div>
-                <h4 className="text-xl font-semibold mb-2">3. Health & Vaccinations</h4>
+                <h4 className="text-xl font-semibold mb-2">{t("travelTips.healthTitle")}</h4>
                 <p>{t("travelTips.healthBody")}</p>
               </div>
             </div>
@@ -158,23 +157,25 @@ export default function TravelTips() {
                 {t("travelTips.budgetTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-6">
-                Let's talk numbers. A smart budget is your best travel companion. Exchange rates move frequently, so check a bank or reputable live currency source when you plan and again when you travel.
+                {t("travelTips.budgetLead")}
               </p>
 
               <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-8">
                 <p className="mb-0">
-                  <strong className="text-gray-800">About the figures below:</strong> food, grocery, accommodation, tour, felucca, tipping and daily-budget amounts are local-market estimates, not fixed tariffs. They move with inflation and vary by city and season, so treat them as a planning guide and confirm current prices locally.
+                  <strong className="text-gray-800">{t("travelTips.figuresL")}</strong> {t("travelTips.figures")}
                 </p>
               </div>
 
               <h3 className="text-2xl font-semibold mb-4">{t("travelTips.dailyBudget")}</h3>
               <p className="text-lg leading-relaxed mb-6">
-                Most budget travelers in Egypt should expect to spend somewhere between <strong>2,500 and 3,000 EGP a day.</strong> Accommodation alone can run around 2,000 EGP per night, with the rest covering food, local transport, entrance fees, and other basic travel expenses.
+                {/* Trans: the emphasised figure sits mid-sentence, and each
+                    language puts it in a different place. */}
+                <Trans i18nKey="travelTips.dailyBudgetBody" components={{ b: <strong /> }} />
               </p>
 
               <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-8">
                 <p className="mb-0">
-                  <strong className="text-gray-800">Total Trip Cost (7-10 Days):</strong> Your total depends heavily on your accommodation, transportation, activities, and flights. Flights from the U.S. or Australia will generally increase the overall cost — your flight will likely be your biggest single expense.
+                  <strong className="text-gray-800">{t("travelTips.tripCostL")}</strong> {t("travelTips.tripCost")}
                 </p>
               </div>
 
@@ -253,12 +254,12 @@ export default function TravelTips() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary font-bold mr-3">✓</span>
-                  <span><strong>Shawarma:</strong> Juicy, garlicky, and craveable chicken or beef wraps. <strong>Cost: ~ 120 EGP.</strong></span>
+                  <span><strong>{t("travelTips.food4L")}</strong> {t("travelTips.food4")} <strong>{t("travelTips.food4C")}</strong></span>
                 </li>
               </ul>
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg">
                 <p className="mb-0">
-                  <strong className="text-foreground">Self-Catering Tip:</strong> Shopping at local markets is an adventure. A dozen eggs costs ~72 EGP, a loaf of bread is ~2.5 EGP, and fresh produce is incredibly cheap. This can be a useful way to save on breakfasts and lunches.
+                  <strong className="text-foreground">{t("travelTips.selfCateringL")}</strong> {t("travelTips.selfCatering")}
                 </p>
               </div>
             </div>
@@ -286,7 +287,7 @@ export default function TravelTips() {
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚇</div>
                 <h4 className="text-xl font-semibold mb-2">{t("travelTips.localTransport")}</h4>
-                <p>In Cairo, the <strong>Metro</strong> is a useful option for getting around the city. For taxis, use ride-hailing apps such as <strong>Uber, inDrive, or DiDi</strong> to get clearer pricing and avoid haggling.</p>
+                <p><Trans i18nKey="travelTips.localTransportBody" components={{ b: <strong /> }} /></p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary">
                 <div className="text-2xl text-primary mb-4">🚐</div>
@@ -303,7 +304,7 @@ export default function TravelTips() {
                 {t("travelTips.wondersTitle")}
               </h2>
               <p className="text-lg leading-relaxed mb-8">
-                Entrance fees can add up, but with smart planning, you can experience Egypt's major attractions while managing your budget.
+                {t("travelTips.wondersLead")}
               </p>
 
               <h3 className="text-2xl font-semibold mb-4">{t("travelTips.freeTitle")}</h3>
@@ -328,7 +329,7 @@ export default function TravelTips() {
 
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg" id="itinerary">
                 <h3 className="text-2xl font-semibold mb-4">{t("travelTips.itinTitle")}</h3>
-                <p className="mb-4">This classic "Golden Triangle" route combines Cairo, Luxor, and Aswan.</p>
+                <p className="mb-4">{t("travelTips.itinLead")}</p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
@@ -344,7 +345,7 @@ export default function TravelTips() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary font-bold mr-3">✓</span>
-                    <span><strong>Days 9-10:</strong> Return to Cairo for departure or extend your trip to Alexandria or the Red Sea.</span>
+                    <span><strong>{t("travelTips.itin4L")}</strong> {t("travelTips.itin4")}</span>
                   </li>
                 </ul>
               </div>
@@ -387,7 +388,7 @@ export default function TravelTips() {
               {t("travelTips.ctaBody")}
             </p>
             <a href="#" onClick={() => window.scrollTo(0, 0)} className="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:-translate-y-1">
-              Back to Top ↑
+              {t("travelTips.backToTop")}
             </a>
           </section>
 
