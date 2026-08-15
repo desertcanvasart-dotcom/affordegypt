@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { MapPin, Clock, Star, Camera, Mountain, Sun, Compass, DollarSign, Calendar, Users, Tent } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { MapPin, Star, Camera, Mountain, Sun, Compass, DollarSign, Calendar, Users, Tent } from "lucide-react";
+import { useLocation } from "wouter";
 import Navbar from "@/components/navbar";
 import GuideToc from "@/components/guide-toc";
 import Footer from "@/components/footer";
@@ -111,39 +110,28 @@ export default function EasternWesternDesertsGuide() {
   const budgetItineraryTranslation = t('blog.desertsGuide.sections.itinerary.days', { returnObjects: true });
   const budgetItinerary = Array.isArray(budgetItineraryTranslation) ? budgetItineraryTranslation : [];
 
-  // Handle packing list with fallback
+  // These used to carry an English fallback list each. The fallbacks were
+  // unreachable — the keys are arrays in all four locales — and they had gone
+  // stale: the transport tip still read "use minibuses and shared taxis
+  // between oases" long after English was corrected to tell readers to confirm
+  // inter-oasis transport locally because services can be sparse. An empty
+  // list is the honest failure here; superseded advice is not.
   const packingListTranslation = t('blog.desertsGuide.sections.packing.items', { returnObjects: true });
-  const packingList = Array.isArray(packingListTranslation) ? packingListTranslation : [
-    { item: "Power bank", reason: "No electricity during camping" },
-    { item: "Scarf/keffiyeh", reason: "Sun, dust, and sand protection" },
-    { item: "Flip flops & hiking shoes", reason: "For springs and rugged walks" },
-    { item: "Thermal layer", reason: "Desert nights can be cold" },
-    { item: "Flashlight", reason: "Minimal lighting in camps" },
-    { item: "Refillable water bottle", reason: "Eco-friendly and refillable in oases" }
-  ];
+  const packingList = Array.isArray(packingListTranslation) ? packingListTranslation : [];
 
-  // Handle budget tips with fallback
   const budgetTipsTranslation = t('blog.desertsGuide.sections.budgetTips.tips', { returnObjects: true });
-  const budgetTips = Array.isArray(budgetTipsTranslation) ? budgetTipsTranslation : [
-    "Join local safari groups instead of private trips to save up to 60%",
-    "Travel during November and March for shoulder season pricing",
-    "Use minibuses and shared taxis between oases",
-    "Stay in family-run guesthouses over hotels",
-    "Eat where locals gather for authentic, affordable meals",
-    "Negotiate prices in person, especially in off-seasons"
-  ];
+  const budgetTips = Array.isArray(budgetTipsTranslation) ? budgetTipsTranslation : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
   <SeoMeta
-          title="Egypt's Deserts | White Desert, Black Desert, Siwa Oasis"
-          description="White Desert, Black Desert, Bahariya, Farafra and Siwa Oasis: logistics, costs, permits and safety for the deserts most Egypt itineraries skip."
+          title={t("blog.desertsGuide.seoTitle")}
+          description={t("blog.desertsGuide.seoDescription")}
           canonical="https://affordegypt.com/eastern-western-deserts-guide"
           ogImage="https://affordegypt.com/images/eastern-desert.jpg"
           schema={[articleSchema({
-            headline: "Egypt's Deserts | White Desert, Black Desert, Siwa Oasis",
-            description:
-              "The deserts most Egypt itineraries skip. White Desert, Black Desert, Bahariya, Farafra, and Siwa Oasis. Logistics, costs, and what's worth the trip — written by a guide who grew up in Aswan.",
+            headline: t("blog.desertsGuide.seoTitle"),
+            description: t("blog.desertsGuide.schemaDescription"),
             canonical: "https://affordegypt.com/eastern-western-deserts-guide",
             image: "https://affordegypt.com/images/eastern-desert.jpg",
             datePublished: "2025-06-07",
