@@ -42,9 +42,21 @@ const args = process.argv.slice(2);
 const UPDATE = args.includes("--update");
 const LIST = args.includes("--list");
 
-/** Staff-only or non-copy files. Nothing here is shown to a tourist. */
-const INTERNAL =
-  /(^|\/)(admin|login|register|reset-password|user-dashboard)|useAuth|error-boundary|client-only|seo-meta|translation-demo|App\.tsx|main\.tsx|\/ui\//;
+/**
+ * Staff-only screens. English is fine here by decision, and — unlike NON_COPY
+ * below — that decision travels: a component reachable only from a staff
+ * screen is itself staff-only.
+ */
+const STAFF = /(^|\/)(admin|login|register|reset-password|user-dashboard)/;
+
+/**
+ * Excluded for carrying no product copy, NOT for being staff-only. The
+ * distinction matters: App.tsx imports every page in the site, so if this
+ * exemption propagated through imports the way STAFF does, the entire site
+ * would exempt itself.
+ */
+const NON_COPY =
+  /useAuth|error-boundary|client-only|seo-meta|translation-demo|App\.tsx|main\.tsx|\/ui\//;
 
 /** Legal bodies stay English by decision; their chrome is still checked. */
 const LEGAL_BODIES = /(privacy-policy|terms-of-service|cookie-policy|booking-agreement)\.tsx$/;
@@ -116,10 +128,92 @@ function walk(dir, out = []) {
   return out;
 }
 
+/** `@/pages/foo` -> `client/src/pages/foo.tsx`, when that file exists. */
+function resolveAlias(spec, known) {
+  if (!spec.startsWith("@/")) return null;
+  const rel = `client/src/${spec.slice(2)}.tsx`;
+  return known.has(rel) ? rel : null;
+}
+
+/**
+ * Pages that are staff-only by ROUTE rather than by filename.
+ *
+ * attractions-simple.tsx sits in pages/ with an innocuous name and is only
+ * ever mounted at /admin/attractions, so the filename rule above never saw it
+ * and 21 admin strings sat in the worklist as work nobody was ever going to
+ * do. Reading the routes means a future admin page is caught whatever it is
+ * called.
+ */
+function adminRoutedFiles(known) {
+  const src = readFileSync(path.join(REPO, "client/src/App.tsx"), "utf8");
+  const byComponent = new Map();
+  // `const X = withSuspense(lazy(() => import("@/pages/x")))` — the arrow's
+  // `=>` means this cannot be bounded on `=`; bound it on the statement.
+  for (const m of src.matchAll(/(?:const|let)\s+(\w+)\s*=\s*[^;\n]*?import\("([^"]+)"\)/g)) {
+    byComponent.set(m[1], m[2]);
+  }
+  for (const m of src.matchAll(/import\s+(\w+)\s+from\s+"([^"]+)"/g)) {
+    if (!byComponent.has(m[1])) byComponent.set(m[1], m[2]);
+  }
+
+  const out = new Set();
+  for (const m of src.matchAll(/path="\/admin[^"]*"\s+component=\{(\w+)\}/g)) {
+    const file = resolveAlias(byComponent.get(m[1]) ?? "", known);
+    if (file) out.add(file);
+  }
+  // A silent zero here would quietly re-admit every admin page, so it is loud.
+  if (!out.size) {
+    console.error("✗ check-i18n: no /admin routes resolved out of App.tsx — has the routing shape changed?");
+    process.exit(1);
+  }
+  return out;
+}
+
+/**
+ * A component whose every importer is staff-only is staff-only too:
+ * add-item-modal is reachable only from admin.tsx, review-upload only from
+ * admin-reviews.tsx. Iterated to a fixpoint so a chain of such components
+ * resolves.
+ *
+ * Files with NO importer are deliberately left in scope. They are dead, and
+ * dead code should be deleted rather than quietly exempted — that is how
+ * contact-section and attractions-search were found.
+ */
+function staffOnlyByImport(files, isStaff) {
+  const known = new Set(files);
+  const importers = new Map(files.map((f) => [f, []]));
+  for (const f of files) {
+    const src = readFileSync(path.join(REPO, f), "utf8");
+    for (const m of src.matchAll(/(?:from|import)\s*\(?\s*"(@\/[^"]+)"/g)) {
+      const target = resolveAlias(m[1], known);
+      if (target && target !== f) importers.get(target).push(f);
+    }
+  }
+
+  const staff = new Set(files.filter(isStaff));
+  for (let changed = true; changed; ) {
+    changed = false;
+    for (const f of files) {
+      if (staff.has(f)) continue;
+      const from = importers.get(f);
+      if (from.length && from.every((i) => staff.has(i))) {
+        staff.add(f);
+        changed = true;
+      }
+    }
+  }
+  return staff;
+}
+
 function scan() {
   const found = [];
-  for (const rel of walk(path.join(REPO, "client/src")).sort()) {
-    if (INTERNAL.test(rel)) continue;
+  const files = walk(path.join(REPO, "client/src")).sort();
+  const known = new Set(files);
+  const adminRouted = adminRoutedFiles(known);
+  const staff = staffOnlyByImport(files, (f) => STAFF.test(f) || adminRouted.has(f));
+
+  for (const rel of files) {
+    if (NON_COPY.test(rel) || staff.has(rel)) continue;
     const src = readFileSync(path.join(REPO, rel), "utf8");
     const legalBody = LEGAL_BODIES.test(rel);
     const ranges = languageBlockRanges(src);
