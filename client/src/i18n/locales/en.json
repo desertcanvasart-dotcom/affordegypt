@@ -2537,10 +2537,14 @@
   "budgetGuide": {
     "seoTitle": "Egypt on a Budget | A Cairo Operator's Honest Guide",
     "seoDescription": "What Egypt actually costs in 2026: transport, food, hotels and entrance tickets, with real figures from a Cairo-based ETAA-licensed operator.",
+    "schemaDescription": "How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions.",
     "badge": "Budget Travel Guide 2026",
     "title": "Budget Travel in Egypt",
+    "titleSub": "How to See More for Less",
     "heroLead": "Discover Egypt's extraordinary cultural heritage, vibrant local life, and timeless attractions without breaking the bank. Your complete guide to affordable Egyptian adventures.",
     "heroCta": "Get Custom Quote",
+    "heroCta2": "Read Travel Tips",
+    "whyH2": "Why Egypt in 2026 is Perfect for Budget Travellers",
     "whyLead": "Egypt stands out as an exceptional budget travel destination, offering incredible value and unforgettable experiences.",
     "why1": "Favorable Exchange Rates",
     "why1b": "The Egyptian Pound's favorable rates against international currencies mean greater purchasing power. Accommodation, meals, transport, and attraction tickets remain attractively affordable compared to Europe or North America.",
@@ -2548,17 +2552,8 @@
     "why2b": "Egypt is heavily investing in tourism infrastructure. New museums, interactive exhibitions, and immersive digital experiences offer engaging ways to explore history, often at introductory prices.",
     "why3": "Improved Experience",
     "why3b": "Streamlined airport procedures, upgraded safety standards, and welcoming hospitality make Egypt exceptionally appealing for budget-conscious adventurers seeking memorable, affordable experiences.",
+    "timingH2": "Best Times for Budget Travel",
     "timingLead": "Timing your visit can significantly impact your budget and experience",
-    "checklistLead": "Get prepared before you go to ensure a smooth, stress-free Egyptian adventure",
-    "budgetLead": "Plan your spending with realistic daily budget expectations",
-    "budgetNote": "Covers accommodation, meals, transport, and key attractions for a comprehensive Egypt experience",
-    "hacksLead": "Insider tips to maximize your budget and get the most value from your Egyptian adventure",
-    "stayTitle": "Affordable Accommodation Options",
-    "eatTitle": "Economical Eating Tips",
-    "moveTitle": "Transportation on a Budget",
-    "closing": "With strategic planning and mindful budgeting, experiencing Egypt's extraordinary cultural heritage is well within reach.",
-    "cta1": "Start Planning Your Trip",
-    "cta2": "Explore Travel Guides",
     "bestTimes": [
       {
         "season": "Spring & Autumn",
@@ -2599,43 +2594,11 @@
         "tip": "Choose coastal locations like Alexandria or Dahab"
       }
     ],
-    "budgetBreakdown": [
-      {
-        "category": "Accommodation",
-        "daily": "~2,000 EGP",
-        "details": "Budget hotels; hostels 1,000–1,500 EGP where available"
-      },
-      {
-        "category": "Food",
-        "daily": "200–400 EGP",
-        "details": "Street food to casual restaurants"
-      },
-      {
-        "category": "Transport",
-        "daily": "50–200 EGP",
-        "details": "Metro and ride apps; intercity buses extra"
-      },
-      {
-        "category": "Attractions",
-        "daily": "150–750 EGP",
-        "details": "Entry fees vary by site (major sites 440–750 EGP)"
-      },
-      {
-        "category": "Miscellaneous",
-        "daily": "100–300 EGP",
-        "details": "Tips, souvenirs, emergencies"
-      }
-    ],
-    "moneySavingHacks": [
-      "Book accommodations early during shoulder seasons",
-      "Eat local street food (koshari, shawarma, ta'ameya)",
-      "Use public transport (metro, buses, shared taxis)",
-      "Student tickets at state-run sites: commonly age 24 or younger with valid student ID and an ISIC card — check each attraction",
-      "Bargain respectfully in markets",
-      "Stay in Nubian-style accommodations in Aswan",
-      "Shop at local markets for self-catering",
-      "Use Uber, inDrive, or DiDi for city travel"
-    ],
+    "advantagesLabel": "Advantages:",
+    "considerLabel": "Consider:",
+    "tipLabel": "Tip:",
+    "checklistH2": "Essential Pre-Travel Checklist",
+    "checklistLead": "Get prepared before you go to ensure a smooth, stress-free Egyptian adventure",
     "checklist": [
       {
         "title": "Travel Documents",
@@ -2665,8 +2628,122 @@
         ]
       }
     ],
-    "titleSub": "How to See More for Less",
-    "whyH2": "Why Egypt in 2026 is Perfect for Budget Travellers"
+    "budgetH2": "Daily Budget Breakdown",
+    "budgetLead": "Plan your spending with realistic daily budget expectations",
+    "budgetBreakdown": [
+      {
+        "category": "Accommodation",
+        "daily": "~2,000 EGP",
+        "details": "Budget hotels; hostels 1,000–1,500 EGP where available"
+      },
+      {
+        "category": "Food",
+        "daily": "200–400 EGP",
+        "details": "Street food to casual restaurants"
+      },
+      {
+        "category": "Transport",
+        "daily": "50–200 EGP",
+        "details": "Metro and ride apps; intercity buses extra"
+      },
+      {
+        "category": "Attractions",
+        "daily": "150–750 EGP",
+        "details": "Entry fees vary by site (major sites 440–750 EGP)"
+      },
+      {
+        "category": "Miscellaneous",
+        "daily": "100–300 EGP",
+        "details": "Tips, souvenirs, emergencies"
+      }
+    ],
+    "budgetTotalTitle": "Total Daily Budget",
+    "budgetTotal": "2,500–3,000 EGP",
+    "budgetNote": "Covers accommodation, meals, transport, and key attractions for a comprehensive Egypt experience",
+    "hacksH2": "Top Money-Saving Hacks",
+    "hacksLead": "Insider tips to maximize your budget and get the most value from your Egyptian adventure",
+    "moneySavingHacks": [
+      "Book accommodations early during shoulder seasons",
+      "Eat local street food (koshari, shawarma, ta'ameya)",
+      "Use public transport (metro, buses, shared taxis)",
+      "Student tickets at state-run sites: commonly age 24 or younger with valid student ID and an ISIC card — check each attraction",
+      "Bargain respectfully in markets",
+      "Stay in Nubian-style accommodations in Aswan",
+      "Shop at local markets for self-catering",
+      "Use Uber, inDrive, or DiDi for city travel"
+    ],
+    "stayTitle": "Affordable Accommodation Options",
+    "stayOptions": [
+      {
+        "name": "Hostels",
+        "price": "1,000–1,500 EGP+/night",
+        "description": "Useful for meeting fellow travelers, but availability is limited outside the main hubs and quality varies — vet each place before booking."
+      },
+      {
+        "name": "Budget Hotels",
+        "price": "2,000 EGP+/night",
+        "description": "Private rooms, often family-run guesthouses — prices depend on the city, location, facilities, and season."
+      },
+      {
+        "name": "Nubian Stays",
+        "price": "Rates vary",
+        "description": "Cultural immersion in Aswan with traditional Nubian-style accommodations — check current rates before booking."
+      }
+    ],
+    "eatTitle": "Economical Eating Tips",
+    "streetFoodTitle": "Street Food Champions",
+    "streetFoodItems": [
+      {
+        "name": "Koshari",
+        "price": "< 60 EGP"
+      },
+      {
+        "name": "Ta'ameya (Falafel)",
+        "price": "~17 EGP"
+      },
+      {
+        "name": "Ful Medames",
+        "price": "< 25 EGP"
+      },
+      {
+        "name": "Shawarma",
+        "price": "~120 EGP"
+      }
+    ],
+    "diningTitle": "Smart Dining Strategy",
+    "diningTips": [
+      "Shop at local markets for self-catering options",
+      "Mid-range restaurants occasionally ($8-16/person)",
+      "Always drink bottled water",
+      "Avoid uncooked foods from street vendors"
+    ],
+    "moveTitle": "Transportation on a Budget",
+    "transportModes": [
+      {
+        "name": "Trains",
+        "detail": "Second-class AC; Cairo–Luxor ~3,763 EGP for foreigners",
+        "verdict": "Comfortable"
+      },
+      {
+        "name": "Buses",
+        "detail": "Go Bus and Blue Bus; Cairo–Luxor 500–600 EGP",
+        "verdict": "Cheapest"
+      },
+      {
+        "name": "Metro",
+        "detail": "Cairo's efficient metro system",
+        "verdict": "Inexpensive"
+      },
+      {
+        "name": "Ride Apps",
+        "detail": "Uber, inDrive, or DiDi for city travel",
+        "verdict": "Affordable"
+      }
+    ],
+    "closingH2": "Your Egyptian Adventure Awaits",
+    "closingBody": "With strategic planning and mindful budgeting, experiencing Egypt's extraordinary cultural heritage, vibrant local life, and timeless attractions affordably is entirely achievable. Embrace local customs, opt for economical accommodations and meals, and use public transportation wisely.",
+    "cta1": "Start Planning Your Trip",
+    "cta2": "Explore Travel Guides"
   },
   "streetFoodGuide": {
     "seoTitle": "Egyptian Street Food Guide | What to Eat & Where",

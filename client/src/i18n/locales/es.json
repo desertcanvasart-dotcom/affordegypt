@@ -2537,10 +2537,14 @@
   "budgetGuide": {
     "seoTitle": "Egipto con poco presupuesto | La guía honesta de un operador de El Cairo",
     "seoDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni operadores fraudulentos. Costes y consejos reales de un operador con licencia en El Cairo: gasto diario, transporte, comida y atracciones.",
+    "schemaDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni en operadores fraudulentos. Costes reales y consejos reales de un operador con licencia radicado en El Cairo. Costes diarios, transporte, comida y entradas.",
     "badge": "Guía de viaje económico 2026",
     "title": "Viajar barato por Egipto",
+    "titleSub": "Cómo ver más gastando menos",
     "heroLead": "Descubre el extraordinario patrimonio cultural de Egipto, su vida local vibrante y sus atracciones atemporales sin arruinarte. Tu guía completa para aventuras egipcias asequibles.",
     "heroCta": "Pedir presupuesto",
+    "heroCta2": "Leer consejos de viaje",
+    "whyH2": "Por qué Egipto es ideal en 2026 para viajar con poco presupuesto",
     "whyLead": "Egipto destaca como un destino excepcional para viajar con poco presupuesto, con una relación calidad-precio inmejorable y experiencias inolvidables.",
     "why1": "Tipos de cambio favorables",
     "why1b": "Los tipos favorables de la libra egipcia frente a las monedas internacionales se traducen en mayor poder adquisitivo. El alojamiento, las comidas, el transporte y las entradas siguen siendo muy asequibles en comparación con Europa o Norteamérica.",
@@ -2548,17 +2552,8 @@
     "why2b": "Egipto está invirtiendo con fuerza en infraestructura turística. Nuevos museos, exposiciones interactivas y experiencias digitales inmersivas ofrecen formas atractivas de descubrir la historia, a menudo con precios de lanzamiento.",
     "why3": "Mejor experiencia",
     "why3b": "Trámites aeroportuarios más ágiles, mejores estándares de seguridad y una hospitalidad acogedora hacen de Egipto un destino especialmente atractivo para viajeros que buscan experiencias memorables y asequibles.",
+    "timingH2": "Las mejores épocas para viajar barato",
     "timingLead": "Elegir bien las fechas influye mucho en tu presupuesto y en tu experiencia",
-    "checklistLead": "Prepárate antes de salir para que tu aventura egipcia transcurra sin contratiempos",
-    "budgetLead": "Planifica tus gastos con presupuestos diarios realistas",
-    "budgetNote": "Cubre alojamiento, comidas, transporte y las principales atracciones para una experiencia completa en Egipto",
-    "hacksLead": "Consejos de quien vive allí para aprovechar al máximo tu presupuesto",
-    "stayTitle": "Opciones de alojamiento asequibles",
-    "eatTitle": "Consejos para comer barato",
-    "moveTitle": "Transporte con poco presupuesto",
-    "closing": "Con una planificación estratégica y un presupuesto bien pensado, el extraordinario patrimonio cultural de Egipto está perfectamente a tu alcance.",
-    "cta1": "Empieza a planificar tu viaje",
-    "cta2": "Explorar guías de viaje",
     "bestTimes": [
       {
         "season": "Primavera y otoño",
@@ -2599,50 +2594,18 @@
         "tip": "Elige zonas costeras como Alejandría o Dahab"
       }
     ],
-    "budgetBreakdown": [
-      {
-        "category": "Alojamiento",
-        "daily": "150-750 EGP",
-        "details": "De albergues a hoteles económicos"
-      },
-      {
-        "category": "Comida",
-        "daily": "75-375 EGP",
-        "details": "De comida callejera a restaurantes de gama media"
-      },
-      {
-        "category": "Transporte",
-        "daily": "50-250 EGP",
-        "details": "Transporte público y autobuses interurbanos"
-      },
-      {
-        "category": "Atracciones",
-        "daily": "125-500 EGP",
-        "details": "Entradas y actividades"
-      },
-      {
-        "category": "Varios",
-        "daily": "125-375 EGP",
-        "details": "Propinas, recuerdos, imprevistos"
-      }
-    ],
-    "moneySavingHacks": [
-      "Reserva alojamiento con antelación en temporada media",
-      "Come comida callejera local (koshari, shawarma, ta'ameya)",
-      "Usa el transporte público (metro, autobuses, taxis compartidos)",
-      "Lleva la tarjeta ISIC para descuentos de estudiante (hasta el 50 %)",
-      "Regatea con respeto en los mercados",
-      "Alójate en casas de estilo nubio en Asuán",
-      "Compra en mercados locales para cocinar tú",
-      "Usa Uber/Careem para desplazamientos urbanos seguros y baratos"
-    ],
+    "advantagesLabel": "Ventajas:",
+    "considerLabel": "A tener en cuenta:",
+    "tipLabel": "Consejo:",
+    "checklistH2": "Lista esencial antes de viajar",
+    "checklistLead": "Prepárate antes de salir para que tu aventura egipcia transcurra sin contratiempos",
     "checklist": [
       {
         "title": "Documentación de viaje",
         "items": [
           "Pasaporte con validez de más de 6 meses y páginas en blanco",
-          "Visado electrónico (625 EGP): se recomienda solicitarlo online",
-          "Visado a la llegada (625 EGP en efectivo) para algunas nacionalidades",
+          "Visado electrónico (30 USD): se recomienda solicitarlo online",
+          "Visado a la llegada (en efectivo, en USD) para algunas nacionalidades",
           "Verifica los requisitos vigentes por canales oficiales"
         ]
       },
@@ -2650,7 +2613,7 @@
         "title": "Salud y seguridad",
         "items": [
           "Seguro de viaje que cubra urgencias médicas",
-          "Vacunas recomendadas: hepatitis A, fiebre tifoidea, tétanos",
+          "Consulta a un profesional sobre las vacunas según tu destino; se exige certificado de fiebre amarilla si llegas desde un país de riesgo",
           "Solo agua embotellada; evita la comida callejera cruda",
           "Botiquín básico con los medicamentos esenciales"
         ]
@@ -2660,13 +2623,127 @@
         "items": [
           "La moneda local es la libra egipcia (EGP)",
           "Lleva efectivo en billetes pequeños",
-          "Presupuesta 1.250-2.000 EGP al día para un viaje completo",
-          "7-10 días: unos 20.000-27.500 EGP con vuelo incluido"
+          "Presupuesta 2,500-3,000 EGP al día para un viaje completo",
+          "7-10 días: el total depende del alojamiento, las actividades y los vuelos"
         ]
       }
     ],
-    "titleSub": "Cómo ver más gastando menos",
-    "whyH2": "Por qué Egipto es ideal en 2026 para viajar con poco presupuesto"
+    "budgetH2": "Desglose del presupuesto diario",
+    "budgetLead": "Planifica tus gastos con presupuestos diarios realistas",
+    "budgetBreakdown": [
+      {
+        "category": "Alojamiento",
+        "daily": "~2,000 EGP",
+        "details": "Hoteles económicos; albergues 1,000–1,500 EGP donde los haya"
+      },
+      {
+        "category": "Comida",
+        "daily": "200–400 EGP",
+        "details": "De comida callejera a restaurantes informales"
+      },
+      {
+        "category": "Transporte",
+        "daily": "50–200 EGP",
+        "details": "Metro y apps de transporte; autobuses interurbanos aparte"
+      },
+      {
+        "category": "Atracciones",
+        "daily": "150–750 EGP",
+        "details": "Las entradas varían según el sitio (principales 440–750 EGP)"
+      },
+      {
+        "category": "Varios",
+        "daily": "100–300 EGP",
+        "details": "Propinas, recuerdos, imprevistos"
+      }
+    ],
+    "budgetTotalTitle": "Presupuesto diario total",
+    "budgetTotal": "2,500–3,000 EGP",
+    "budgetNote": "Cubre alojamiento, comidas, transporte y las principales atracciones para una experiencia completa en Egipto",
+    "hacksH2": "Los mejores trucos para ahorrar",
+    "hacksLead": "Consejos de quien vive allí para aprovechar al máximo tu presupuesto",
+    "moneySavingHacks": [
+      "Reserva alojamiento con antelación en temporada media",
+      "Come comida callejera local (koshari, shawarma, ta'ameya)",
+      "Usa el transporte público (metro, autobuses, taxis compartidos)",
+      "Entradas de estudiante en sitios estatales: por lo general 24 años o menos con carné de estudiante válido y tarjeta ISIC; confírmalo en cada monumento",
+      "Regatea con respeto en los mercados",
+      "Alójate en casas de estilo nubio en Asuán",
+      "Compra en mercados locales para cocinar tú",
+      "Usa Uber, inDrive o DiDi para desplazamientos urbanos"
+    ],
+    "stayTitle": "Opciones de alojamiento asequibles",
+    "stayOptions": [
+      {
+        "name": "Albergues",
+        "price": "1,000–1,500 EGP+/noche",
+        "description": "Útiles para conocer a otros viajeros, pero la oferta es limitada fuera de los destinos principales y la calidad varía: revisa bien cada alojamiento antes de reservar."
+      },
+      {
+        "name": "Hoteles económicos",
+        "price": "2,000 EGP+/noche",
+        "description": "Habitaciones privadas, a menudo pensiones familiares: los precios dependen de la ciudad, la ubicación, las instalaciones y la temporada."
+      },
+      {
+        "name": "Alojamientos nubios",
+        "price": "Precios variables",
+        "description": "Inmersión cultural en Asuán en alojamientos de estilo nubio tradicional: consulta los precios actuales antes de reservar."
+      }
+    ],
+    "eatTitle": "Consejos para comer barato",
+    "streetFoodTitle": "Los reyes de la comida callejera",
+    "streetFoodItems": [
+      {
+        "name": "Koshari",
+        "price": "< 60 EGP"
+      },
+      {
+        "name": "Ta'ameya (Falafel)",
+        "price": "~17 EGP"
+      },
+      {
+        "name": "Ful Medames",
+        "price": "< 25 EGP"
+      },
+      {
+        "name": "Shawarma",
+        "price": "~120 EGP"
+      }
+    ],
+    "diningTitle": "Estrategia inteligente para comer",
+    "diningTips": [
+      "Compra en mercados locales para cocinar por tu cuenta",
+      "Restaurantes de gama media de vez en cuando (8-16 USD por persona)",
+      "Bebe siempre agua embotellada",
+      "Evita los alimentos crudos de los puestos callejeros"
+    ],
+    "moveTitle": "Transporte con poco presupuesto",
+    "transportModes": [
+      {
+        "name": "Trenes",
+        "detail": "Segunda clase con aire acondicionado; El Cairo–Luxor ~3,763 EGP para extranjeros",
+        "verdict": "Cómodo"
+      },
+      {
+        "name": "Autobuses",
+        "detail": "Go Bus y Blue Bus; El Cairo–Luxor 500–600 EGP",
+        "verdict": "Lo más barato"
+      },
+      {
+        "name": "Metro",
+        "detail": "El eficiente metro de El Cairo",
+        "verdict": "Muy económico"
+      },
+      {
+        "name": "Apps de transporte",
+        "detail": "Uber, inDrive o DiDi para moverte por la ciudad",
+        "verdict": "Asequible"
+      }
+    ],
+    "closingH2": "Tu aventura egipcia te espera",
+    "closingBody": "Con una planificación estratégica y un presupuesto bien pensado, disfrutar del extraordinario patrimonio cultural de Egipto, de su vibrante vida local y de sus monumentos atemporales sin gastar de más es totalmente posible. Respeta las costumbres locales, elige alojamientos y comidas económicos y aprovecha bien el transporte público.",
+    "cta1": "Empieza a planificar tu viaje",
+    "cta2": "Explorar guías de viaje"
   },
   "streetFoodGuide": {
     "seoTitle": "Guía de comida callejera egipcia | Qué comer y dónde",

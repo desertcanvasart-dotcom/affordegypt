@@ -17,7 +17,6 @@ import {
   Bed, 
   Bus, 
   Camera,
-  Clock,
   Thermometer,
   CreditCard,
   Heart,
@@ -44,6 +43,22 @@ export default function BudgetTravelEgypt() {
 
   const moneySavingHacks = t("budgetGuide.moneySavingHacks", { returnObjects: true }) as string[];
 
+  const stayOptions = t("budgetGuide.stayOptions", { returnObjects: true }) as any[];
+
+  const streetFoodItems = t("budgetGuide.streetFoodItems", { returnObjects: true }) as any[];
+
+  const diningTips = t("budgetGuide.diningTips", { returnObjects: true }) as string[];
+
+  const transportModes = t("budgetGuide.transportModes", { returnObjects: true }) as any[];
+
+  // Each transport card carries its own icon; the copy comes from the locale.
+  const transportIcons = [
+    <Bus className="w-6 h-6 text-teal-600" />,
+    <Bus className="w-6 h-6 text-teal-600" />,
+    <MapPin className="w-6 h-6 text-teal-600" />,
+    <MapPin className="w-6 h-6 text-teal-600" />,
+  ];
+
   const checklistIcons = [
     <Shield className="w-5 h-5" />,
     <Heart className="w-5 h-5" />,
@@ -63,9 +78,8 @@ export default function BudgetTravelEgypt() {
         canonical="https://affordegypt.com/budget-travel-egypt"
         ogImage="https://affordegypt.com/images/pyramid-of-giza.jpg"
         schema={[articleSchema({
-          headline: "Egypt on a Budget | A Cairo Operator's Honest Guide",
-          description:
-            "How to travel Egypt affordably without falling for tourist traps or scam operators. Real costs, real tips from a Cairo-based licensed operator. Daily costs, transport, food, attractions.",
+          headline: t("budgetGuide.seoTitle"),
+          description: t("budgetGuide.schemaDescription"),
           canonical: "https://affordegypt.com/budget-travel-egypt",
           image: "https://affordegypt.com/images/pyramid-of-giza.jpg",
           datePublished: "2025-06-07",
@@ -106,7 +120,7 @@ export default function BudgetTravelEgypt() {
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary px-8 py-4 text-lg">
                   <Link href="/travel-tips">
-                    Read Travel Tips
+                    {t("budgetGuide.heroCta2")}
                   </Link>
                 </Button>
               </div>
@@ -173,7 +187,7 @@ export default function BudgetTravelEgypt() {
           {/* Best Times for Budget Travel */}
           <section className="bg-teal-50 -mx-4 px-4 py-16 rounded-2xl">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Best Times for Budget Travel</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("budgetGuide.timingH2")}</h2>
               <p className="text-xl text-gray-600">
                 {t("budgetGuide.timingLead")}
               </p>
@@ -197,7 +211,7 @@ export default function BudgetTravelEgypt() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h4 className="font-semibold text-green-700 mb-2">Advantages:</h4>
+                      <h4 className="font-semibold text-green-700 mb-2">{t("budgetGuide.advantagesLabel")}</h4>
                       <ul className="space-y-1">
                         {time.advantages.map((advantage: string, i: number) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
@@ -210,7 +224,7 @@ export default function BudgetTravelEgypt() {
                     
                     {time.drawbacks && (
                       <div>
-                        <h4 className="font-semibold text-amber-700 mb-2">Consider:</h4>
+                        <h4 className="font-semibold text-amber-700 mb-2">{t("budgetGuide.considerLabel")}</h4>
                         <ul className="space-y-1">
                           {time.drawbacks.map((drawback: string, i: number) => (
                             <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
@@ -230,7 +244,7 @@ export default function BudgetTravelEgypt() {
 
                     {time.tip && (
                       <div className="bg-blue-100 p-3 rounded-lg">
-                        <p className="text-sm text-blue-800"><strong>Tip:</strong>{` ${time.tip}`}</p>
+                        <p className="text-sm text-blue-800"><strong>{t("budgetGuide.tipLabel")}</strong>{` ${time.tip}`}</p>
                       </div>
                     )}
                   </CardContent>
@@ -242,7 +256,7 @@ export default function BudgetTravelEgypt() {
           {/* Pre-Travel Checklist */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Essential Pre-Travel Checklist</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("budgetGuide.checklistH2")}</h2>
               <p className="text-xl text-gray-600">
                 {t("budgetGuide.checklistLead")}
               </p>
@@ -275,7 +289,7 @@ export default function BudgetTravelEgypt() {
           {/* Budget Breakdown */}
           <section className="bg-gray-50 -mx-4 px-4 py-16 rounded-2xl">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Daily Budget Breakdown</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("budgetGuide.budgetH2")}</h2>
               <p className="text-xl text-gray-600">
                 {t("budgetGuide.budgetLead")}
               </p>
@@ -295,8 +309,8 @@ export default function BudgetTravelEgypt() {
               </div>
 
               <div className="bg-teal-600 text-white p-8 rounded-xl text-center">
-                <h3 className="text-2xl font-bold mb-4">Total Daily Budget</h3>
-                <div className="text-4xl font-bold mb-2">2,500 - 3,000 EGP</div>
+                <h3 className="text-2xl font-bold mb-4">{t("budgetGuide.budgetTotalTitle")}</h3>
+                <div className="text-4xl font-bold mb-2">{t("budgetGuide.budgetTotal")}</div>
                 <p className="text-teal-100">
                   {t("budgetGuide.budgetNote")}
                 </p>
@@ -307,7 +321,7 @@ export default function BudgetTravelEgypt() {
           {/* Money-Saving Hacks */}
           <section>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Top Money-Saving Hacks</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("budgetGuide.hacksH2")}</h2>
               <p className="text-xl text-gray-600">
                 {t("budgetGuide.hacksLead")}
               </p>
@@ -339,35 +353,17 @@ export default function BudgetTravelEgypt() {
                 {t("budgetGuide.stayTitle")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="border-t-4 border-teal-600">
-                  <CardHeader>
-                    <CardTitle>Hostels</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold text-teal-600 mb-2">1,000–1,500 EGP+/night</div>
-                    <p className="text-gray-700">Useful for meeting fellow travelers, but availability is limited outside the main hubs and quality varies — vet each place before booking.</p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="border-t-4 border-teal-600">
-                  <CardHeader>
-                    <CardTitle>Budget Hotels</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold text-teal-600 mb-2">2,000 EGP+/night</div>
-                    <p className="text-gray-700">Private rooms, often family-run guesthouses — prices depend on the city, location, facilities, and season.</p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="border-t-4 border-teal-600">
-                  <CardHeader>
-                    <CardTitle>Nubian Stays</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold text-teal-600 mb-2">Rates vary</div>
-                    <p className="text-gray-700">Cultural immersion in Aswan with traditional Nubian-style accommodations — check current rates before booking.</p>
-                  </CardContent>
-                </Card>
+                {stayOptions.map((option, index) => (
+                  <Card key={index} className="border-t-4 border-teal-600">
+                    <CardHeader>
+                      <CardTitle>{option.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-teal-600 mb-2">{option.price}</div>
+                      <p className="text-gray-700">{option.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
 
@@ -380,52 +376,32 @@ export default function BudgetTravelEgypt() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="bg-teal-50 border-0">
                   <CardHeader>
-                    <CardTitle className="text-teal-700">Street Food Champions</CardTitle>
+                    <CardTitle className="text-teal-700">{t("budgetGuide.streetFoodTitle")}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">Koshari</span>
-                        <span className="text-teal-600 font-bold">&lt; 60 EGP</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">Ta'ameya (Falafel)</span>
-                        <span className="text-teal-600 font-bold">~17 EGP</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">Ful Medames</span>
-                        <span className="text-teal-600 font-bold">&lt; 25 EGP</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">Shawarma</span>
-                        <span className="text-teal-600 font-bold">~120 EGP</span>
-                      </div>
+                      {streetFoodItems.map((item, index) => (
+                        <div key={index} className="flex justify-between items-center">
+                          <span className="font-medium">{item.name}</span>
+                          <span className="text-teal-600 font-bold">{item.price}</span>
+                        </div>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
-                    <CardTitle>Smart Dining Strategy</CardTitle>
+                    <CardTitle>{t("budgetGuide.diningTitle")}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5" />
-                        <span className="text-gray-700">Shop at local markets for self-catering options</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5" />
-                        <span className="text-gray-700">Mid-range restaurants occasionally ($8-16/person)</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5" />
-                        <span className="text-gray-700">Always drink bottled water</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5" />
-                        <span className="text-gray-700">Avoid uncooked foods from street vendors</span>
-                      </div>
+                      {diningTips.map((tip, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5" />
+                          <span className="text-gray-700">{tip}</span>
+                        </div>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
@@ -439,49 +415,18 @@ export default function BudgetTravelEgypt() {
                 {t("budgetGuide.moveTitle")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Bus className="w-6 h-6 text-teal-600" />
-                    </div>
-                    <h3 className="font-semibold mb-2">Trains</h3>
-                    <p className="text-sm text-gray-600 mb-3">Second-class AC; Cairo–Luxor ~3,763 EGP for foreigners</p>
-                    <div className="text-lg font-bold text-teal-600">Comfortable</div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Bus className="w-6 h-6 text-teal-600" />
-                    </div>
-                    <h3 className="font-semibold mb-2">Buses</h3>
-                    <p className="text-sm text-gray-600 mb-3">Go Bus and Blue Bus; Cairo–Luxor 500–600 EGP</p>
-                    <div className="text-lg font-bold text-teal-600">Cheapest</div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <MapPin className="w-6 h-6 text-teal-600" />
-                    </div>
-                    <h3 className="font-semibold mb-2">Metro</h3>
-                    <p className="text-sm text-gray-600 mb-3">Cairo's efficient metro system</p>
-                    <div className="text-lg font-bold text-teal-600">Inexpensive</div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <MapPin className="w-6 h-6 text-teal-600" />
-                    </div>
-                    <h3 className="font-semibold mb-2">Ride Apps</h3>
-                    <p className="text-sm text-gray-600 mb-3">Uber, inDrive, or DiDi for city travel</p>
-                    <div className="text-lg font-bold text-teal-600">Affordable</div>
-                  </CardContent>
-                </Card>
+                {transportModes.map((mode, index) => (
+                  <Card key={index} className="text-center">
+                    <CardContent className="p-6">
+                      <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        {transportIcons[index]}
+                      </div>
+                      <h3 className="font-semibold mb-2">{mode.name}</h3>
+                      <p className="text-sm text-gray-600 mb-3">{mode.detail}</p>
+                      <div className="text-lg font-bold text-teal-600">{mode.verdict}</div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
 
@@ -490,11 +435,9 @@ export default function BudgetTravelEgypt() {
           {/* Final Tips */}
           <section className="bg-teal-600 text-white -mx-4 px-4 py-16 rounded-2xl">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6">Your Egyptian Adventure Awaits</h2>
+              <h2 className="text-4xl font-bold mb-6">{t("budgetGuide.closingH2")}</h2>
               <p className="text-xl text-teal-100 mb-8 leading-relaxed">
-                With strategic planning and mindful budgeting, experiencing Egypt's extraordinary cultural heritage, 
-                vibrant local life, and timeless attractions affordably is entirely achievable. Embrace local customs, 
-                opt for economical accommodations and meals, and use public transportation wisely.
+                {t("budgetGuide.closingBody")}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg" className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 text-lg">

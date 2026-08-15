@@ -2537,10 +2537,14 @@
   "budgetGuide": {
     "seoTitle": "Ägypten mit kleinem Budget | Der ehrliche Leitfaden eines Kairoer Veranstalters",
     "seoDescription": "Wie Sie Ägypten günstig bereisen, ohne in Touristenfallen oder an unseriöse Anbieter zu geraten. Echte Kosten und Tipps von einem lizenzierten Veranstalter in Kairo: Tagesbudget, Transport, Essen, Sehenswürdigkeiten.",
+    "schemaDescription": "Wie Sie Ägypten günstig bereisen, ohne in Touristenfallen oder an unseriöse Anbieter zu geraten. Echte Kosten und echte Tipps von einem lizenzierten Veranstalter aus Kairo. Tageskosten, Transport, Essen und Eintritte.",
     "badge": "Budget-Reiseführer 2026",
     "title": "Günstig reisen in Ägypten",
+    "titleSub": "Mehr erleben für weniger Geld",
     "heroLead": "Entdecken Sie Ägyptens außergewöhnliches Kulturerbe, das lebendige Alltagsleben und zeitlose Sehenswürdigkeiten, ohne Ihr Budget zu sprengen. Ihr kompletter Leitfaden für bezahlbare Ägypten-Abenteuer.",
     "heroCta": "Individuelles Angebot",
+    "heroCta2": "Reisetipps lesen",
+    "whyH2": "Warum Ägypten 2026 ideal für Sparreisende ist",
     "whyLead": "Ägypten ist ein herausragendes Reiseziel für kleines Budget und bietet großartiges Preis-Leistungs-Verhältnis und unvergessliche Erlebnisse.",
     "why1": "Günstige Wechselkurse",
     "why1b": "Die günstigen Kurse des ägyptischen Pfunds gegenüber internationalen Währungen bedeuten mehr Kaufkraft. Unterkunft, Mahlzeiten, Transport und Eintrittskarten bleiben im Vergleich zu Europa oder Nordamerika attraktiv günstig.",
@@ -2548,17 +2552,8 @@
     "why2b": "Ägypten investiert stark in die Tourismus-Infrastruktur. Neue Museen, interaktive Ausstellungen und immersive digitale Erlebnisse bieten spannende Zugänge zur Geschichte – oft zu Einführungspreisen.",
     "why3": "Angenehmeres Reisen",
     "why3b": "Vereinfachte Abläufe an Flughäfen, höhere Sicherheitsstandards und herzliche Gastfreundschaft machen Ägypten besonders attraktiv für preisbewusste Reisende, die unvergessliche und bezahlbare Erlebnisse suchen.",
+    "timingH2": "Die besten Reisezeiten für ein kleines Budget",
     "timingLead": "Der richtige Reisezeitpunkt beeinflusst Budget und Erlebnis erheblich",
-    "checklistLead": "Bereiten Sie sich vor der Abreise vor, damit Ihr Ägypten-Abenteuer entspannt verläuft",
-    "budgetLead": "Planen Sie Ihre Ausgaben mit realistischen Tagesbudgets",
-    "budgetNote": "Deckt Unterkunft, Mahlzeiten, Transport und wichtige Sehenswürdigkeiten für ein umfassendes Ägypten-Erlebnis ab",
-    "hacksLead": "Insidertipps, um Ihr Budget optimal zu nutzen und das Meiste aus Ihrer Reise herauszuholen",
-    "stayTitle": "Günstige Unterkunftsmöglichkeiten",
-    "eatTitle": "Tipps zum günstigen Essen",
-    "moveTitle": "Günstig unterwegs",
-    "closing": "Mit guter Planung und bewusstem Budget ist Ägyptens außergewöhnliches Kulturerbe gut erreichbar.",
-    "cta1": "Reiseplanung starten",
-    "cta2": "Reiseführer entdecken",
     "bestTimes": [
       {
         "season": "Frühling & Herbst",
@@ -2599,50 +2594,18 @@
         "tip": "Wählen Sie Küstenorte wie Alexandria oder Dahab"
       }
     ],
-    "budgetBreakdown": [
-      {
-        "category": "Unterkunft",
-        "daily": "150–750 EGP",
-        "details": "Hostels bis günstige Hotels"
-      },
-      {
-        "category": "Essen",
-        "daily": "75–375 EGP",
-        "details": "Streetfood bis Restaurants mittlerer Preisklasse"
-      },
-      {
-        "category": "Transport",
-        "daily": "50–250 EGP",
-        "details": "Nahverkehr und Fernbusse"
-      },
-      {
-        "category": "Sehenswürdigkeiten",
-        "daily": "125–500 EGP",
-        "details": "Eintritte und Aktivitäten"
-      },
-      {
-        "category": "Sonstiges",
-        "daily": "125–375 EGP",
-        "details": "Trinkgeld, Souvenirs, Notfälle"
-      }
-    ],
-    "moneySavingHacks": [
-      "Unterkünfte in der Nebensaison früh buchen",
-      "Lokales Streetfood essen (Koshari, Schawarma, Ta'ameya)",
-      "Öffentliche Verkehrsmittel nutzen (Metro, Busse, Sammeltaxis)",
-      "ISIC-Karte für Studierendenrabatte mitnehmen (bis zu 50 %)",
-      "Auf Märkten respektvoll handeln",
-      "In Assuan in nubischen Unterkünften übernachten",
-      "Auf lokalen Märkten für die Selbstverpflegung einkaufen",
-      "Uber/Careem für sichere, günstige Fahrten in der Stadt nutzen"
-    ],
+    "advantagesLabel": "Vorteile:",
+    "considerLabel": "Zu bedenken:",
+    "tipLabel": "Tipp:",
+    "checklistH2": "Wichtige Checkliste vor der Reise",
+    "checklistLead": "Bereiten Sie sich vor der Abreise vor, damit Ihr Ägypten-Abenteuer entspannt verläuft",
     "checklist": [
       {
         "title": "Reisedokumente",
         "items": [
           "Reisepass mit mindestens 6 Monaten Gültigkeit und freien Seiten",
-          "E-Visum (625 EGP) – Online-Antrag empfohlen",
-          "Visum bei Ankunft (625 EGP in bar) für ausgewählte Nationalitäten",
+          "E-Visum (30 USD) – Online-Antrag empfohlen",
+          "Visum bei Ankunft (Bargeld in USD) für ausgewählte Nationalitäten",
           "Aktuelle Bestimmungen über offizielle Stellen prüfen"
         ]
       },
@@ -2650,7 +2613,7 @@
         "title": "Gesundheit & Sicherheit",
         "items": [
           "Reiseversicherung mit Deckung medizinischer Notfälle",
-          "Empfohlene Impfungen: Hepatitis A, Typhus, Tetanus",
+          "Ärztlichen Rat je nach Reiseziel einholen; bei Einreise aus Risikoländern ist ein Gelbfieber-Nachweis erforderlich",
           "Nur Wasser aus Flaschen, kein rohes Streetfood",
           "Kleine Reiseapotheke mit den wichtigsten Medikamenten"
         ]
@@ -2660,13 +2623,127 @@
         "items": [
           "Landeswährung ist das ägyptische Pfund (EGP)",
           "Bargeld in kleinen Scheinen mitführen",
-          "1.250–2.000 EGP pro Tag für eine umfassende Reise einplanen",
-          "7–10 Tage: ca. 20.000–27.500 EGP inklusive Flug"
+          "2,500–3,000 EGP pro Tag für eine umfassende Reise einplanen",
+          "7–10 Tage: Der Gesamtbetrag hängt von Unterkunft, Aktivitäten und Flügen ab"
         ]
       }
     ],
-    "titleSub": "Mehr erleben für weniger Geld",
-    "whyH2": "Warum Ägypten 2026 ideal für Sparreisende ist"
+    "budgetH2": "Aufschlüsselung des Tagesbudgets",
+    "budgetLead": "Planen Sie Ihre Ausgaben mit realistischen Tagesbudgets",
+    "budgetBreakdown": [
+      {
+        "category": "Unterkunft",
+        "daily": "~2,000 EGP",
+        "details": "Günstige Hotels; Hostels 1,000–1,500 EGP, wo vorhanden"
+      },
+      {
+        "category": "Essen",
+        "daily": "200–400 EGP",
+        "details": "Von Streetfood bis zu einfachen Restaurants"
+      },
+      {
+        "category": "Transport",
+        "daily": "50–200 EGP",
+        "details": "Metro und Fahrdienst-Apps; Fernbusse zusätzlich"
+      },
+      {
+        "category": "Sehenswürdigkeiten",
+        "daily": "150–750 EGP",
+        "details": "Eintritte je nach Ort verschieden (große Stätten 440–750 EGP)"
+      },
+      {
+        "category": "Sonstiges",
+        "daily": "100–300 EGP",
+        "details": "Trinkgeld, Souvenirs, Notfälle"
+      }
+    ],
+    "budgetTotalTitle": "Gesamtes Tagesbudget",
+    "budgetTotal": "2,500–3,000 EGP",
+    "budgetNote": "Deckt Unterkunft, Mahlzeiten, Transport und wichtige Sehenswürdigkeiten für ein umfassendes Ägypten-Erlebnis ab",
+    "hacksH2": "Die besten Spartipps",
+    "hacksLead": "Insidertipps, um Ihr Budget optimal zu nutzen und das Meiste aus Ihrer Reise herauszuholen",
+    "moneySavingHacks": [
+      "Unterkünfte in der Nebensaison früh buchen",
+      "Lokales Streetfood essen (Koshari, Schawarma, Ta'ameya)",
+      "Öffentliche Verkehrsmittel nutzen (Metro, Busse, Sammeltaxis)",
+      "Studierendentickets an staatlichen Stätten: in der Regel 24 Jahre oder jünger mit gültigem Studierendenausweis und ISIC-Karte — an jeder Stätte erfragen",
+      "Auf Märkten respektvoll handeln",
+      "In Assuan in nubischen Unterkünften übernachten",
+      "Auf lokalen Märkten für die Selbstverpflegung einkaufen",
+      "Uber, inDrive oder DiDi für Fahrten in der Stadt nutzen"
+    ],
+    "stayTitle": "Günstige Unterkunftsmöglichkeiten",
+    "stayOptions": [
+      {
+        "name": "Hostels",
+        "price": "1,000–1,500 EGP+/Nacht",
+        "description": "Gut, um andere Reisende kennenzulernen, aber außerhalb der großen Städte ist das Angebot begrenzt und die Qualität schwankt — prüfen Sie jede Unterkunft vor der Buchung."
+      },
+      {
+        "name": "Günstige Hotels",
+        "price": "2,000 EGP+/Nacht",
+        "description": "Privatzimmer, oft familiengeführte Gästehäuser — die Preise hängen von Stadt, Lage, Ausstattung und Saison ab."
+      },
+      {
+        "name": "Nubische Unterkünfte",
+        "price": "Preise variieren",
+        "description": "Kulturelles Erlebnis in Assuan in traditionellen nubischen Unterkünften — erfragen Sie die aktuellen Preise vor der Buchung."
+      }
+    ],
+    "eatTitle": "Tipps zum günstigen Essen",
+    "streetFoodTitle": "Die Streetfood-Favoriten",
+    "streetFoodItems": [
+      {
+        "name": "Koshari",
+        "price": "< 60 EGP"
+      },
+      {
+        "name": "Ta'ameya (Falafel)",
+        "price": "~17 EGP"
+      },
+      {
+        "name": "Ful Medames",
+        "price": "< 25 EGP"
+      },
+      {
+        "name": "Shawarma",
+        "price": "~120 EGP"
+      }
+    ],
+    "diningTitle": "Clever essen gehen",
+    "diningTips": [
+      "Auf lokalen Märkten einkaufen und selbst kochen",
+      "Gelegentlich Restaurants mittlerer Preisklasse (8-16 USD pro Person)",
+      "Immer Wasser aus der Flasche trinken",
+      "Rohe Speisen von Straßenständen meiden"
+    ],
+    "moveTitle": "Günstig unterwegs",
+    "transportModes": [
+      {
+        "name": "Züge",
+        "detail": "2. Klasse mit Klimaanlage; Kairo–Luxor ~3,763 EGP für Ausländer",
+        "verdict": "Komfortabel"
+      },
+      {
+        "name": "Busse",
+        "detail": "Go Bus und Blue Bus; Kairo–Luxor 500–600 EGP",
+        "verdict": "Am günstigsten"
+      },
+      {
+        "name": "Metro",
+        "detail": "Das effiziente U-Bahn-Netz von Kairo",
+        "verdict": "Sehr günstig"
+      },
+      {
+        "name": "Fahrdienst-Apps",
+        "detail": "Uber, inDrive oder DiDi für Fahrten in der Stadt",
+        "verdict": "Erschwinglich"
+      }
+    ],
+    "closingH2": "Ihr Ägypten-Abenteuer wartet",
+    "closingBody": "Mit guter Planung und einem bewussten Budget lassen sich Ägyptens außergewöhnliches Kulturerbe, das lebendige Alltagsleben und die zeitlosen Sehenswürdigkeiten durchaus günstig erleben. Achten Sie auf lokale Gepflogenheiten, wählen Sie preiswerte Unterkünfte und Mahlzeiten und nutzen Sie den Nahverkehr klug.",
+    "cta1": "Reiseplanung starten",
+    "cta2": "Reiseführer entdecken"
   },
   "streetFoodGuide": {
     "seoTitle": "Ägyptisches Streetfood | Was man essen sollte und wo",
