@@ -651,38 +651,71 @@
     }
   },
   "faq": {
-    "title": "Egypt Travel FAQs",
-    "subtitle": "Answers to your most common questions—clear, honest, and up-to-date",
-    "questions": {
-      "safety": {
-        "question": "Is Egypt safe for tourists right now?",
-        "answer": "Yes, Egypt is generally safe for tourists, especially in major destinations like Cairo, Luxor, Aswan, and the Red Sea resorts. We monitor all regions closely and tailor each itinerary to ensure your comfort and safety, with private transport and local support at every step."
+    "title": "Frequently Asked Questions",
+    "subtitle": "Honest answers to the questions budget travelers actually ask.",
+    "stillQuestions": "Still have questions?",
+    "whatsapp": "Message us on WhatsApp",
+    "email": "Email us",
+    "items": {
+      "cheaper": {
+        "question": "Why are you cheaper than other private Egypt tours?",
+        "answer": "Because we don't pad the price with things you didn't ask for. Most Egypt tour packages bundle hotels, meals, tickets, and concierge service into a single number — even if you'd rather choose those yourself. AffordEgypt charges only for the operational core: a private car, a licensed Egyptologist, and a transparent base price from {{floor}}/day. You add tickets, meals, and experiences only when you want them. Same operations as Capital Travel Service's premium tier, with the markup and the inclusions you didn't choose stripped out."
+      },
+      "scam": {
+        "question": "How do I know AffordEgypt isn't one of the scam operators I've read about?",
+        "answer": "Fair question — there are real scam operators in Egypt, and we don't blame anyone for being cautious. AffordEgypt is operated by Capital Travel Service, which is registered with the Egyptian Travel Agents Association (ETAA 2179) and has been operating in Cairo since 2003 with thousands of documented travelers. Every guide we work with is a licensed Egyptologist with an active Ministry of Tourism credential. You can verify our registration with ETAA directly. We also publish our prices, our inclusions, and our cancellation terms before you pay anything.",
+        "linkTexts": [
+          "Egyptian Travel Agents Association (ETAA 2179)"
+        ]
+      },
+      "licensed": {
+        "question": "Are your guides actually licensed Egyptologists?",
+        "answer": "Yes — every guide we send is licensed by the Egyptian Ministry of Tourism and Antiquities and carries a current Egyptologist credential. This isn't a small thing: unlicensed guides can't legally take you past the front gates of major sites, and many cheaper operators send them anyway. Our guides are the same roster Capital Travel Service uses for premium tours — they just deliver the lighter inclusions tier when working under AffordEgypt."
+      },
+      "payment": {
+        "question": "How does payment work? Do I have to pay everything up front?",
+        "answer": "No — that's part of the point. You pay a 10% deposit when you book (we send you a payment link, usually via Tab.travel, that works with any major card). Your booking is confirmed once the deposit clears. The remaining 90% is paid on arrival in cash (we accept EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader. Whatever's easiest for you."
+      },
+      "cancellation": {
+        "question": "What's your cancellation policy?",
+        "answer": "Free cancellation up to 48 hours before your trip starts — you get the full deposit back. Inside 48 hours, the deposit is non-refundable because we've already committed your guide and vehicle for those days. Anything paid beyond the deposit is refunded in full. If we have to cancel for any reason on our end (vehicle issue, guide illness, force majeure), we refund 100%, including the deposit, and help you rebook."
+      },
+      "customize": {
+        "question": "Can I customize my itinerary?",
+        "answer": "Yes. Our entire model is modular — pick destinations, pick how many days in each, pick which attractions to include, add a guide for some days but not others, choose vehicle size by group. The pricing tool builds it live. If you want something the tool doesn't show, message us on WhatsApp and we'll quote it manually."
+      },
+      "minimum": {
+        "question": "What's the absolute minimum I could pay for a private Egypt trip?",
+        "answer": "Our floor is {{floor}}/day for a private car + licensed Egyptologist in Cairo, before tickets, meals, and hotel. A typical 3-day Cairo trip with all entrance tickets and one meal per day works out to around LE 14,000–18,000 per person for a couple, depending on which attractions you include. We'll send you a real quote in under a minute — no account, no commitment. Note: we don't sell shared minibus tours. Some operators advertise \"Egypt tours from $50/day\" — those are shared group tours, a different product. Ours is fully private."
+      },
+      "ticketFee": {
+        "question": "Why do you charge 50 EGP to arrange an entrance ticket?",
+        "answer": "The attraction keeps its official admission price; the additional 50 EGP is AffordEgypt's optional advance-arrangement fee for each paid ticket issued. We purchase and organize the ticket before the visit, check the booking information supplied to us, and prepare it for the tour. This can reduce time at the ticket office and avoids relying entirely on on-site card payment, which matters because many Egyptian sites are now cashless and payment or ticketing systems can occasionally experience technical problems. It does not bypass security or other entrance controls. You can see the official prices and buy directly on the Ministry's own ticket portal, and the move to e-ticketing is described in the State Information Service announcement.",
+        "linkTexts": [
+          "the Ministry's own ticket portal",
+          "the State Information Service announcement"
+        ]
+      },
+      "buyTickets": {
+        "question": "Can I buy the entrance tickets myself?",
+        "answer": "Yes. The service is optional. You may buy tickets through the attraction's official booking channel or an approved on-site sales point where available. If you ask us to arrange them, your quote will show the official admission amount and our 50 EGP fee separately — we never fold the two together and call it the entrance fee."
+      },
+      "feePerTicket": {
+        "question": "Is the 50 EGP ticket fee charged once per booking?",
+        "answer": "No. It is charged per paid admission ticket issued. Two visitors ordering admission to four attractions require eight tickets, so the service fee is 8 x 50 EGP = 400 EGP. Student or reduced-price tickets need valid supporting identification accepted by the attraction; without it the venue may require a full-price ticket."
+      },
+      "skipQueue": {
+        "question": "Does an advance ticket mean we skip every queue?",
+        "answer": "No. It can reduce or avoid the ticket-purchase queue. Security screening, ticket validation, identification checks, timed-entry controls, capacity restrictions, and other venue queues may still apply. Ticket changes, cancellations and refunds also remain subject to the attraction's own rules, which we state before collecting payment."
       },
       "visa": {
         "question": "Do I need a visa to enter Egypt?",
-        "answer": "Most travelers can obtain an e-Visa online before arrival or purchase one on arrival at major airports. We'll guide you through the process after booking. Some nationalities require pre-approval—check with your local embassy or ask us."
+        "answer": "Most travelers (US, UK, EU, Canada, Australia, and most other passports) need a visa to enter Egypt. The easiest option is the Egypt e-Visa at visa2egypt.gov.eg — apply online a week before travel, costs $25 USD for single entry, and the approval comes by email. You can also get a visa on arrival at most major airports (Cairo, Hurghada, Sharm El Sheikh) for the same fee in cash USD or EUR. A few nationalities (most African, some Asian) have different rules — check Egypt's MOFA website or just message us on WhatsApp and we'll point you to the right info."
       },
-      "price": {
-        "question": "What's included in my tour price?",
-        "answer": "All our itineraries are fully transparent, with no hidden fees. Inclusions typically cover private transportation, expert guides, entrance tickets, bottled water, and all mentioned activities. Optional extras or personal spending are clearly listed before booking."
-      },
-      "customise": {
-        "question": "Can I customise my itinerary?",
-        "answer": "Absolutely! Our trips are designed around you. Whether you're a couple, a solo traveler, or a family, you can customise everything—hotel category, pace, guides, and even destinations."
-      },
-      "currency": {
-        "question": "What currency should I bring?",
-        "answer": "Egypt uses the Egyptian Pound (EGP) as its official currency. We recommend bringing some cash for small purchases and tips, though credit cards are accepted in most hotels and restaurants."
-      },
-      "weather": {
-        "question": "What's the best time to visit Egypt?",
-        "answer": "October to April offers the most comfortable weather with cooler temperatures perfect for sightseeing. Summer (May-September) is hotter but ideal for Red Sea activities and comes with lower accommodation prices."
+      "bestTime": {
+        "question": "When is the best time to visit Egypt?",
+        "answer": "October through April is the peak season — temperatures are pleasant (15–25°C / 60–77°F) across the whole country, including Upper Egypt (Luxor, Aswan, Abu Simbel). May through September gets very hot in Upper Egypt and the desert (40°C+ / 104°F+ is normal), though Cairo and the Mediterranean coast are still manageable. If you can travel in shoulder season (October–early November or late February–April), you get good weather with smaller crowds and better prices. We avoid sending travelers to Upper Egypt in July–August unless they specifically want the heat."
       }
-    },
-    "support": {
-      "question": "Still have questions? We're here to help!",
-      "whatsapp": "WhatsApp Support",
-      "email": "Email Us"
     }
   },
   "destinations": {

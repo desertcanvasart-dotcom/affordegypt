@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import SeoMeta from "@/components/seo-meta";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
@@ -7,7 +9,7 @@ import InclusionsComparison from "@/components/inclusions-comparison";
 import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 import BlogGrid from "@/components/blog-grid";
-import FAQSection, { HOMEPAGE_FAQS } from "@/components/faq-section";
+import FAQSection, { buildHomepageFaqs } from "@/components/faq-section";
 import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
 import MobileStickyCTA from "@/components/mobile-sticky-cta";
@@ -79,27 +81,35 @@ const LOCAL_BUSINESS_SCHEMA = {
   ],
 };
 
-const FAQ_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: HOMEPAGE_FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: f.answer,
-    },
-  })),
-};
-
 export default function Home() {
+  const { t, i18n } = useTranslation();
+
+  // Built in-component, not at module scope: the FAQ copy is translated, so it
+  // does not exist until i18next is ready. Same source as the visible list, so
+  // the structured data and the page can never drift apart.
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: buildHomepageFaqs(t).map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.answer,
+        },
+      })),
+    }),
+    [t, i18n.language],
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <SeoMeta
         title="Egypt Tours from a Real Egyptian Operator | AffordEgypt"
         description={`Private car + licensed Egyptologist in Egypt from ${formatLEPerDay("cairo-guide-car")}. Real prices, no markup, no bundling. ETAA-licensed operator since 2003. Quote in 60 seconds.`}
         canonical="https://affordegypt.com/"
-        schema={[ORGANIZATION_SCHEMA, LOCAL_BUSINESS_SCHEMA, FAQ_SCHEMA]}
+        schema={[ORGANIZATION_SCHEMA, LOCAL_BUSINESS_SCHEMA, faqSchema]}
       />
       <Navbar />
       <Hero />

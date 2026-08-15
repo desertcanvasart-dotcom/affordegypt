@@ -651,38 +651,71 @@
     }
   },
   "faq": {
-    "title": "Preguntas Frecuentes sobre Egipto",
-    "subtitle": "Respuestas a tus preguntas más comunes: claras, honestas y actualizadas",
-    "questions": {
-      "safety": {
-        "question": "¿Es seguro Egipto para los turistas ahora?",
-        "answer": "Sí, Egipto es generalmente seguro para los turistas, especialmente en destinos principales como El Cairo, Luxor, Asuán y los resorts del Mar Rojo. Monitoreamos todas las regiones de cerca y adaptamos cada itinerario para garantizar tu comodidad y seguridad, con transporte privado y apoyo local en cada paso."
+    "title": "Preguntas frecuentes",
+    "subtitle": "Respuestas honestas a las preguntas que de verdad hacen los viajeros con presupuesto ajustado.",
+    "stillQuestions": "¿Te queda alguna duda?",
+    "whatsapp": "Escríbenos por WhatsApp",
+    "email": "Envíanos un correo",
+    "items": {
+      "cheaper": {
+        "question": "¿Por qué sois más baratos que otros tours privados por Egipto?",
+        "answer": "Porque no inflamos el precio con cosas que no has pedido. La mayoría de los paquetes por Egipto agrupan hoteles, comidas, entradas y servicio de conserjería en una sola cifra, aunque prefieras elegir todo eso por tu cuenta. AffordEgypt cobra solo por el núcleo operativo: un coche privado, un egiptólogo con licencia y un precio base transparente desde {{floor}}/día. Añades entradas, comidas y experiencias solo cuando quieres. La misma operativa que la gama premium de Capital Travel Service, sin el margen ni las inclusiones que no has elegido."
+      },
+      "scam": {
+        "question": "¿Cómo sé que AffordEgypt no es uno de esos operadores fraudulentos de los que he leído?",
+        "answer": "Es una pregunta justa: en Egipto hay operadores fraudulentos de verdad, y no culpamos a nadie por ser precavido. AffordEgypt está operada por Capital Travel Service, inscrita en la Asociación Egipcia de Agentes de Viajes (ETAA 2179) y en activo en El Cairo desde 2003, con miles de viajeros documentados. Cada guía con el que trabajamos es un egiptólogo con licencia y credencial vigente del Ministerio de Turismo. Puedes verificar nuestro registro directamente con la ETAA. Además publicamos nuestros precios, nuestras inclusiones y nuestras condiciones de cancelación antes de que pagues nada.",
+        "linkTexts": [
+          "Asociación Egipcia de Agentes de Viajes (ETAA 2179)"
+        ]
+      },
+      "licensed": {
+        "question": "¿Vuestros guías son realmente egiptólogos con licencia?",
+        "answer": "Sí: cada guía que enviamos tiene licencia del Ministerio de Turismo y Antigüedades de Egipto y una credencial vigente de egiptólogo. No es un detalle menor: los guías sin licencia no pueden llevarte legalmente más allá de las puertas de los grandes yacimientos, y muchos operadores más baratos los envían igualmente. Nuestros guías son los mismos que Capital Travel Service usa para sus tours premium; simplemente ofrecen el nivel de inclusiones más ligero cuando trabajan con AffordEgypt."
+      },
+      "payment": {
+        "question": "¿Cómo funciona el pago? ¿Tengo que pagarlo todo por adelantado?",
+        "answer": "No, y en parte de eso se trata. Pagas un depósito del 10 % al reservar (te enviamos un enlace de pago, normalmente por Tab.travel, que funciona con cualquier tarjeta principal). Tu reserva queda confirmada en cuanto se hace efectivo el depósito. El 90 % restante se paga a la llegada en efectivo (aceptamos EGP, USD, EUR o GBP), mediante un segundo enlace de pago o con tarjeta a través de nuestro lector móvil. Lo que te resulte más cómodo."
+      },
+      "cancellation": {
+        "question": "¿Cuál es vuestra política de cancelación?",
+        "answer": "Cancelación gratuita hasta 48 horas antes del inicio del viaje: te devolvemos el depósito íntegro. Dentro de esas 48 horas el depósito no es reembolsable, porque ya hemos comprometido tu guía y tu vehículo para esos días. Todo lo pagado por encima del depósito se reembolsa por completo. Si somos nosotros quienes tenemos que cancelar por cualquier motivo (avería del vehículo, enfermedad del guía, fuerza mayor), devolvemos el 100 %, depósito incluido, y te ayudamos a reprogramar."
+      },
+      "customize": {
+        "question": "¿Puedo personalizar mi itinerario?",
+        "answer": "Sí. Todo nuestro modelo es modular: eliges destinos, cuántos días en cada uno, qué atracciones incluir, si quieres guía algunos días y otros no, y el tamaño del vehículo según el grupo. La herramienta de precios lo calcula en directo. Si quieres algo que la herramienta no muestra, escríbenos por WhatsApp y te lo presupuestamos a mano."
+      },
+      "minimum": {
+        "question": "¿Cuál es el mínimo absoluto que podría pagar por un viaje privado a Egipto?",
+        "answer": "Nuestro suelo es {{floor}}/día por un coche privado y un egiptólogo con licencia en El Cairo, sin entradas, comidas ni hotel. Un viaje típico de 3 días por El Cairo con todas las entradas y una comida al día sale por unos LE 14,000–18,000 por persona en pareja, según qué atracciones incluyas. Te enviamos un presupuesto real en menos de un minuto, sin cuenta y sin compromiso. Nota: no vendemos tours compartidos en minibús. Algunos operadores anuncian «tours por Egipto desde 50 USD al día»: son tours de grupo compartidos, un producto distinto. El nuestro es totalmente privado."
+      },
+      "ticketFee": {
+        "question": "¿Por qué cobráis 50 EGP por gestionar una entrada?",
+        "answer": "El monumento se queda con su precio oficial de admisión; los 50 EGP adicionales son la tarifa opcional de gestión anticipada de AffordEgypt por cada entrada de pago emitida. Compramos y organizamos la entrada antes de la visita, comprobamos los datos de reserva que nos facilitas y la dejamos preparada para el tour. Esto puede reducir el tiempo en taquilla y evita depender por completo del pago con tarjeta in situ, algo que importa porque muchos yacimientos egipcios ya no aceptan efectivo y los sistemas de pago o de emisión de entradas pueden tener fallos técnicos puntuales. No salta los controles de seguridad ni de acceso. Puedes consultar los precios oficiales y comprar directamente en el portal oficial de entradas del Ministerio, y el paso al billete electrónico se describe en el anuncio del Servicio de Información del Estado.",
+        "linkTexts": [
+          "el portal oficial de entradas del Ministerio",
+          "el anuncio del Servicio de Información del Estado"
+        ]
+      },
+      "buyTickets": {
+        "question": "¿Puedo comprar yo mismo las entradas?",
+        "answer": "Sí. El servicio es opcional. Puedes comprar las entradas por el canal oficial de reserva del monumento o en un punto de venta autorizado in situ, donde exista. Si nos pides que las gestionemos, tu presupuesto mostrará por separado el importe oficial de admisión y nuestra tarifa de 50 EGP: nunca juntamos ambos y lo llamamos «precio de la entrada»."
+      },
+      "feePerTicket": {
+        "question": "¿La tarifa de 50 EGP por entrada se cobra una vez por reserva?",
+        "answer": "No. Se cobra por cada entrada de pago emitida. Dos visitantes que soliciten entrada a cuatro monumentos necesitan ocho entradas, así que la tarifa de servicio es 8 x 50 EGP = 400 EGP. Las entradas de estudiante o con precio reducido requieren una identificación válida aceptada por el monumento; sin ella, el recinto puede exigir una entrada de precio completo."
+      },
+      "skipQueue": {
+        "question": "¿Una entrada anticipada significa que nos saltamos todas las colas?",
+        "answer": "No. Puede reducir o evitar la cola de compra de entradas. Los controles de seguridad, la validación del billete, la comprobación de identidad, los accesos con hora asignada, los límites de aforo y otras colas del recinto pueden seguir aplicándose. Los cambios, cancelaciones y reembolsos de entradas también siguen sujetos a las normas del propio monumento, que te indicamos antes de cobrar."
       },
       "visa": {
-        "question": "¿Necesito visa para ingresar a Egipto?",
-        "answer": "La mayoría de los viajeros pueden obtener una e-Visa en línea antes de llegar o comprar una al llegar a los aeropuertos principales. Te guiaremos a través del proceso después de la reserva. Algunas nacionalidades requieren pre-aprobación: consulta con tu embajada local o pregúntanos."
+        "question": "¿Necesito visado para entrar en Egipto?",
+        "answer": "La mayoría de los viajeros (EE. UU., Reino Unido, UE, Canadá, Australia y casi todos los demás pasaportes) necesitan visado para entrar en Egipto. La opción más sencilla es el visado electrónico de Egipto en visa2egypt.gov.eg: se solicita por internet una semana antes del viaje, cuesta 25 USD para una sola entrada y la aprobación llega por correo electrónico. También puedes obtener el visado a la llegada en la mayoría de los aeropuertos principales (El Cairo, Hurgada, Sharm el-Sheij) por la misma tarifa, en efectivo en USD o EUR. Unas pocas nacionalidades (la mayoría africanas y algunas asiáticas) tienen normas distintas: consulta la web del Ministerio de Asuntos Exteriores egipcio o escríbenos por WhatsApp y te indicamos dónde mirar."
       },
-      "price": {
-        "question": "¿Qué está incluido en el precio de mi tour?",
-        "answer": "Todos nuestros itinerarios son completamente transparentes, sin tarifas ocultas. Las inclusiones típicamente cubren transporte privado, guías expertos, boletos de entrada, agua embotellada y todas las actividades mencionadas. Los extras opcionales o gastos personales se listan claramente antes de la reserva."
-      },
-      "customise": {
-        "question": "¿Puedo personalizar mi itinerario?",
-        "answer": "¡Absolutamente! Nuestros viajes están diseñados alrededor de ti. Ya seas una pareja, un viajero solo o una familia, puedes personalizar todo: categoría de hotel, ritmo, guías e incluso destinos."
-      },
-      "currency": {
-        "question": "¿Qué moneda debo llevar?",
-        "answer": "Egipto usa la Libra Egipcia (EGP) como su moneda oficial. Recomendamos llevar algo de efectivo para compras pequeñas y propinas, aunque las tarjetas de crédito son aceptadas en la mayoría de hoteles y restaurantes."
-      },
-      "weather": {
-        "question": "¿Cuál es el mejor momento para visitar Egipto?",
-        "answer": "Octubre a abril ofrece el clima más cómodo con temperaturas más frescas perfectas para turismo. El verano (mayo-septiembre) es más caluroso pero ideal para actividades en el Mar Rojo y viene con precios más bajos de alojamiento."
+      "bestTime": {
+        "question": "¿Cuál es la mejor época para visitar Egipto?",
+        "answer": "De octubre a abril es la temporada alta: las temperaturas son agradables (15–25 °C / 60–77 °F) en todo el país, incluido el Alto Egipto (Luxor, Asuán, Abu Simbel). De mayo a septiembre hace mucho calor en el Alto Egipto y el desierto (más de 40 °C / 104 °F es lo normal), aunque El Cairo y la costa mediterránea siguen siendo llevaderos. Si puedes viajar en temporada media (octubre–principios de noviembre o finales de febrero–abril), tendrás buen tiempo con menos gente y mejores precios. Evitamos enviar viajeros al Alto Egipto en julio y agosto salvo que busquen expresamente el calor."
       }
-    },
-    "support": {
-      "question": "¿Tienes más preguntas? ¡Estamos aquí para ayudarte!",
-      "whatsapp": "Soporte por WhatsApp",
-      "email": "Escríbenos"
     }
   },
   "destinations": {

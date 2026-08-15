@@ -651,38 +651,71 @@
     }
   },
   "faq": {
-    "title": "Ägypten Reise FAQ",
-    "subtitle": "Antworten auf Ihre häufigsten Fragen - klar, ehrlich und aktuell",
-    "questions": {
-      "safety": {
-        "question": "Ist Ägypten derzeit sicher für Touristen?",
-        "answer": "Ja, Ägypten ist generell sicher für Touristen, besonders in Hauptzielen wie Kairo, Luxor, Assuan und den Resorts am Roten Meer. Wir überwachen alle Regionen genau und passen jeden Reiseplan an, um Ihren Komfort und Ihre Sicherheit zu gewährleisten, mit privatem Transport und lokaler Unterstützung bei jedem Schritt."
+    "title": "Häufige Fragen",
+    "subtitle": "Ehrliche Antworten auf die Fragen, die Sparreisende wirklich stellen.",
+    "stillQuestions": "Noch Fragen?",
+    "whatsapp": "Schreiben Sie uns auf WhatsApp",
+    "email": "Schreiben Sie uns eine E-Mail",
+    "items": {
+      "cheaper": {
+        "question": "Warum sind Sie günstiger als andere private Ägypten-Touren?",
+        "answer": "Weil wir den Preis nicht mit Dingen aufblähen, nach denen Sie nie gefragt haben. Die meisten Ägypten-Pakete bündeln Hotels, Mahlzeiten, Eintritte und Concierge-Service in einer einzigen Zahl — auch wenn Sie das lieber selbst wählen würden. AffordEgypt berechnet nur den operativen Kern: ein Privatfahrzeug, einen lizenzierten Ägyptologen und einen transparenten Basispreis ab {{floor}}/Tag. Eintritte, Mahlzeiten und Erlebnisse kommen nur dazu, wenn Sie es wünschen. Dieselbe Durchführung wie bei der Premium-Sparte von Capital Travel Service, nur ohne den Aufschlag und ohne die Leistungen, die Sie nicht gewählt haben."
+      },
+      "scam": {
+        "question": "Woher weiß ich, dass AffordEgypt nicht einer der betrügerischen Anbieter ist, von denen ich gelesen habe?",
+        "answer": "Berechtigte Frage — es gibt in Ägypten tatsächlich betrügerische Anbieter, und niemand muss sich für Vorsicht rechtfertigen. AffordEgypt wird von Capital Travel Service betrieben, eingetragen beim Ägyptischen Reisebüroverband (ETAA 2179) und seit 2003 in Kairo tätig, mit Tausenden dokumentierten Reisenden. Jeder Guide, mit dem wir arbeiten, ist ein lizenzierter Ägyptologe mit gültiger Akkreditierung des Tourismusministeriums. Sie können unsere Eintragung direkt bei der ETAA überprüfen. Außerdem veröffentlichen wir unsere Preise, unsere Leistungen und unsere Stornobedingungen, bevor Sie irgendetwas zahlen.",
+        "linkTexts": [
+          "Ägyptischen Reisebüroverband (ETAA 2179)"
+        ]
+      },
+      "licensed": {
+        "question": "Sind Ihre Guides wirklich lizenzierte Ägyptologen?",
+        "answer": "Ja — jeder Guide, den wir schicken, ist vom ägyptischen Ministerium für Tourismus und Altertümer lizenziert und besitzt eine gültige Ägyptologen-Akkreditierung. Das ist keine Kleinigkeit: Guides ohne Lizenz dürfen Sie rechtlich nicht über die Tore der großen Stätten hinaus begleiten, und viele günstigere Anbieter schicken sie trotzdem. Unsere Guides sind dieselben, die Capital Travel Service für Premium-Touren einsetzt; sie erbringen bei AffordEgypt lediglich die Variante mit schlankeren Leistungen."
+      },
+      "payment": {
+        "question": "Wie funktioniert die Bezahlung? Muss ich alles im Voraus zahlen?",
+        "answer": "Nein — das ist Teil des Konzepts. Bei der Buchung zahlen Sie eine Anzahlung von 10 % (wir senden Ihnen einen Zahlungslink, in der Regel über Tab.travel, der mit allen gängigen Karten funktioniert). Ihre Buchung ist bestätigt, sobald die Anzahlung eingegangen ist. Die restlichen 90 % zahlen Sie bei Ankunft in bar (wir akzeptieren EGP, USD, EUR oder GBP), über einen zweiten Zahlungslink oder per Karte über unser mobiles Lesegerät. Ganz wie es Ihnen am besten passt."
+      },
+      "cancellation": {
+        "question": "Wie sind Ihre Stornobedingungen?",
+        "answer": "Kostenlose Stornierung bis 48 Stunden vor Reisebeginn — Sie erhalten die Anzahlung vollständig zurück. Innerhalb dieser 48 Stunden ist die Anzahlung nicht erstattungsfähig, weil wir Guide und Fahrzeug für diese Tage bereits fest eingeplant haben. Alles, was über die Anzahlung hinaus gezahlt wurde, wird vollständig erstattet. Müssen wir unsererseits absagen, aus welchem Grund auch immer (Fahrzeugschaden, Erkrankung des Guides, höhere Gewalt), erstatten wir 100 % einschließlich der Anzahlung und helfen Ihnen bei der Neuplanung."
+      },
+      "customize": {
+        "question": "Kann ich meine Route individuell zusammenstellen?",
+        "answer": "Ja. Unser gesamtes Modell ist modular: Sie wählen die Ziele, die Anzahl der Tage je Ort, die Sehenswürdigkeiten, ob an manchen Tagen ein Guide dabei ist und die Fahrzeuggröße je nach Gruppe. Der Preisrechner kalkuliert live mit. Wenn Sie etwas möchten, das der Rechner nicht anzeigt, schreiben Sie uns auf WhatsApp — wir erstellen das Angebot manuell."
+      },
+      "minimum": {
+        "question": "Was ist das absolute Minimum für eine private Ägypten-Reise?",
+        "answer": "Unsere Untergrenze liegt bei {{floor}}/Tag für ein Privatfahrzeug plus lizenzierten Ägyptologen in Kairo, ohne Eintritte, Mahlzeiten und Hotel. Eine typische 3-Tage-Reise in Kairo mit allen Eintritten und einer Mahlzeit pro Tag liegt bei etwa LE 14,000–18,000 pro Person zu zweit, je nach gewählten Sehenswürdigkeiten. Wir schicken Ihnen in unter einer Minute ein echtes Angebot — ohne Konto, ohne Verpflichtung. Hinweis: Wir verkaufen keine geteilten Minibus-Touren. Manche Anbieter werben mit „Ägypten-Touren ab 50 USD pro Tag“ — das sind geteilte Gruppentouren, ein anderes Produkt. Unseres ist vollständig privat."
+      },
+      "ticketFee": {
+        "question": "Warum berechnen Sie 50 EGP für die Organisation eines Eintrittstickets?",
+        "answer": "Die Stätte behält ihren offiziellen Eintrittspreis; die zusätzlichen 50 EGP sind die optionale Vorab-Organisationsgebühr von AffordEgypt je ausgestelltem kostenpflichtigen Ticket. Wir kaufen und organisieren das Ticket vor dem Besuch, prüfen die uns übermittelten Buchungsdaten und bereiten es für die Tour vor. Das kann Zeit an der Kasse sparen und vermeidet, sich vollständig auf die Kartenzahlung vor Ort zu verlassen — wichtig, weil viele ägyptische Stätten inzwischen bargeldlos sind und Zahlungs- oder Ticketsysteme gelegentlich technische Störungen haben. Sicherheits- und sonstige Zugangskontrollen werden dadurch nicht umgangen. Die offiziellen Preise sehen und direkt kaufen können Sie über das offizielle Ticketportal des Ministeriums; die Umstellung auf E-Tickets beschreibt die Mitteilung des staatlichen Informationsdienstes.",
+        "linkTexts": [
+          "das offizielle Ticketportal des Ministeriums",
+          "die Mitteilung des staatlichen Informationsdienstes"
+        ]
+      },
+      "buyTickets": {
+        "question": "Kann ich die Eintrittskarten selbst kaufen?",
+        "answer": "Ja. Der Service ist optional. Sie können Tickets über den offiziellen Buchungskanal der Stätte oder, wo vorhanden, an einer zugelassenen Verkaufsstelle vor Ort kaufen. Wenn Sie uns mit der Organisation beauftragen, weist Ihr Angebot den offiziellen Eintrittsbetrag und unsere Gebühr von 50 EGP getrennt aus — wir fassen beides nie zusammen und nennen es „Eintrittspreis“."
+      },
+      "feePerTicket": {
+        "question": "Wird die Ticketgebühr von 50 EGP einmal pro Buchung berechnet?",
+        "answer": "Nein. Sie wird je ausgestelltem kostenpflichtigen Eintrittsticket berechnet. Zwei Besucher, die Eintritt für vier Sehenswürdigkeiten bestellen, benötigen acht Tickets; die Servicegebühr beträgt damit 8 x 50 EGP = 400 EGP. Für Studierenden- oder ermäßigte Tickets ist ein gültiger, von der Stätte akzeptierter Nachweis nötig; ohne ihn kann die Stätte ein Ticket zum vollen Preis verlangen."
+      },
+      "skipQueue": {
+        "question": "Bedeutet ein im Voraus gekauftes Ticket, dass wir jede Warteschlange umgehen?",
+        "answer": "Nein. Es kann die Warteschlange am Ticketschalter verkürzen oder vermeiden. Sicherheitskontrollen, Ticketprüfung, Ausweiskontrollen, Zeitfenster-Einlass, Kapazitätsgrenzen und andere Warteschlangen vor Ort können weiterhin gelten. Auch Änderungen, Stornierungen und Erstattungen von Tickets richten sich weiterhin nach den Regeln der jeweiligen Stätte, die wir Ihnen vor dem Einzug der Zahlung nennen."
       },
       "visa": {
-        "question": "Benötige ich ein Visum für die Einreise nach Ägypten?",
-        "answer": "Die meisten Reisenden können ein e-Visa online vor der Ankunft erhalten oder bei der Ankunft an größeren Flughäfen kaufen. Wir führen Sie nach der Buchung durch den Prozess. Einige Nationalitäten benötigen eine Vorabgenehmigung - fragen Sie bei Ihrer örtlichen Botschaft nach oder fragen Sie uns."
+        "question": "Brauche ich ein Visum für die Einreise nach Ägypten?",
+        "answer": "Die meisten Reisenden (USA, Vereinigtes Königreich, EU, Kanada, Australien und die meisten anderen Pässe) benötigen ein Visum für Ägypten. Am einfachsten ist das ägyptische E-Visum unter visa2egypt.gov.eg: online eine Woche vor der Reise beantragen, 25 USD für die einmalige Einreise, die Bestätigung kommt per E-Mail. Sie können ein Visum auch bei Ankunft an den meisten großen Flughäfen (Kairo, Hurghada, Sharm El-Sheikh) zum selben Preis in bar in USD oder EUR erhalten. Für einige Nationalitäten (überwiegend afrikanische, einzelne asiatische) gelten andere Regeln — prüfen Sie die Website des ägyptischen Außenministeriums oder schreiben Sie uns auf WhatsApp, wir verweisen Sie an die richtige Stelle."
       },
-      "price": {
-        "question": "Was ist in meinem Reisepreis enthalten?",
-        "answer": "Alle unsere Reiserouten sind vollständig transparent, ohne versteckte Gebühren. Einschlüsse decken typischerweise privaten Transport, Expertenführer, Eintrittskarten, Flaschenwasser und alle erwähnten Aktivitäten ab. Optionale Extras oder persönliche Ausgaben werden vor der Buchung klar aufgelistet."
-      },
-      "customise": {
-        "question": "Kann ich meine Reiseroute anpassen?",
-        "answer": "Absolut! Unsere Reisen sind um Sie herum gestaltet. Ob Sie ein Paar, ein Alleinreisender oder eine Familie sind, Sie können alles anpassen - Hotelkategorie, Tempo, Führer und sogar Ziele."
-      },
-      "currency": {
-        "question": "Welche Währung sollte ich mitbringen?",
-        "answer": "Ägypten verwendet das Ägyptische Pfund (EGP) als offizielle Währung. Wir empfehlen, etwas Bargeld für kleine Einkäufe und Trinkgelder mitzubringen, obwohl Kreditkarten in den meisten Hotels und Restaurants akzeptiert werden."
-      },
-      "weather": {
-        "question": "Wann ist die beste Zeit, Ägypten zu besuchen?",
-        "answer": "Oktober bis April bietet das angenehmste Wetter mit kühleren Temperaturen, perfekt für Sightseeing. Der Sommer (Mai-September) ist heißer, aber ideal für Aktivitäten am Roten Meer und kommt mit niedrigeren Unterkunftspreisen."
+      "bestTime": {
+        "question": "Wann ist die beste Reisezeit für Ägypten?",
+        "answer": "Oktober bis April ist die Hauptsaison — die Temperaturen sind im ganzen Land angenehm (15–25 °C / 60–77 °F), auch in Oberägypten (Luxor, Assuan, Abu Simbel). Von Mai bis September wird es in Oberägypten und in der Wüste sehr heiß (über 40 °C / 104 °F ist normal), während Kairo und die Mittelmeerküste erträglich bleiben. Wenn Sie in der Nebensaison reisen können (Oktober–Anfang November oder Ende Februar–April), erwarten Sie gutes Wetter mit weniger Andrang und besseren Preisen. Nach Oberägypten schicken wir im Juli und August ungern Reisende, außer sie wollen die Hitze ausdrücklich."
       }
-    },
-    "support": {
-      "question": "Haben Sie noch Fragen? Wir helfen Ihnen gerne!",
-      "whatsapp": "WhatsApp Support",
-      "email": "E-Mail Kontakt"
     }
   },
   "destinations": {
