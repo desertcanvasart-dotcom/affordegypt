@@ -4032,5 +4032,35 @@
       "whatsapp": "WhatsApp:",
       "thanks": "Vielen Dank, dass Sie sich für AffordEgypt entschieden haben!"
     }
+  },
+  "inclusions": {
+    "heading": "Ehrliche Preise heißen ehrliche Leistungen.",
+    "subheading": "Das ist genau, was Sie bekommen.",
+    "includedTitle": "AffordEgypt — was enthalten ist",
+    "notIncludedTitle": "AffordEgypt — was nicht enthalten ist",
+    "premiumTitle": "Was wir in der Premium-Variante ergänzen können",
+    "included": [
+      "Lizenzierter ägyptologischer Reiseleiter",
+      "Privatfahrzeug mit Fahrer",
+      "Kraftstoff und Parkgebühren",
+      "Wasser in Flaschen",
+      "WhatsApp-Betreuung während Ihrer Reise"
+    ],
+    "notIncluded": [
+      "Eintrittskarten",
+      "Mahlzeiten",
+      "Hotel",
+      "Trinkgeld",
+      "Internationale Flüge",
+      "Optionale Erlebnisse (Kamelritt, Felukenfahrt usw.)"
+    ],
+    "premium": [
+      "Mehrsprachige Guides (Spanisch, Japanisch, Finnisch, Arabisch)",
+      "Partnerschaften mit Premium-Hotels",
+      "Concierge-Planung",
+      "Willkommensaufmerksamkeiten",
+      "Eigene Reise-Hotline rund um die Uhr",
+      "Planungsgespräche vor der Reise"
+    ]
   }
 }

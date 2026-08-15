@@ -4032,5 +4032,35 @@
       "whatsapp": "WhatsApp :",
       "thanks": "Merci d'avoir choisi AffordEgypt pour votre voyage en Égypte !"
     }
+  },
+  "inclusions": {
+    "heading": "Des prix honnêtes, donc des prestations honnêtes.",
+    "subheading": "Voici exactement ce que vous obtenez.",
+    "includedTitle": "AffordEgypt — ce qui est inclus",
+    "notIncludedTitle": "AffordEgypt — ce qui n'est pas inclus",
+    "premiumTitle": "Ce que nous pouvons ajouter en gamme premium",
+    "included": [
+      "Guide égyptologue diplômé",
+      "Véhicule privé avec chauffeur",
+      "Carburant et stationnement",
+      "Eau en bouteille",
+      "Assistance WhatsApp pendant votre voyage"
+    ],
+    "notIncluded": [
+      "Billets d'entrée",
+      "Repas",
+      "Hôtel",
+      "Pourboires",
+      "Vols internationaux",
+      "Activités optionnelles (balade à dos de chameau, felouque, etc.)"
+    ],
+    "premium": [
+      "Guides multilingues (espagnol, japonais, finnois, arabe)",
+      "Partenariats avec des hôtels haut de gamme",
+      "Organisation façon conciergerie",
+      "Attentions de bienvenue",
+      "Ligne dédiée 24h/24 et 7j/7 pendant le voyage",
+      "Appels de préparation avant le départ"
+    ]
   }
 }

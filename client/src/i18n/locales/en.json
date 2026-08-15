@@ -4032,5 +4032,35 @@
       "whatsapp": "WhatsApp:",
       "thanks": "Thank you for choosing AffordEgypt for your Egypt adventure!"
     }
+  },
+  "inclusions": {
+    "heading": "Honest pricing means honest inclusions.",
+    "subheading": "Here's exactly what you get.",
+    "includedTitle": "AffordEgypt — what's included",
+    "notIncludedTitle": "AffordEgypt — what's not included",
+    "premiumTitle": "What we can add at the premium tier",
+    "included": [
+      "Licensed Egyptologist guide",
+      "Private vehicle + driver",
+      "Fuel and parking",
+      "Bottled water",
+      "WhatsApp support during your trip"
+    ],
+    "notIncluded": [
+      "Entrance tickets",
+      "Meals",
+      "Hotel",
+      "Tips",
+      "International flights",
+      "Optional experiences (camel ride, felucca, etc.)"
+    ],
+    "premium": [
+      "Multilingual guides (Spanish, Japanese, Finnish, Arabic)",
+      "Premium hotel partnerships",
+      "Concierge planning",
+      "Welcome amenities",
+      "24/7 dedicated trip line",
+      "Pre-trip planning calls"
+    ]
   }
 }
