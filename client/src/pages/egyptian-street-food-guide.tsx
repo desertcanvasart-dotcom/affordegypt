@@ -60,10 +60,12 @@ export default function EgyptianStreetFoodGuide() {
         description={t("streetFoodGuide.seoDescription")}
         canonical="https://affordegypt.com/egyptian-street-food-guide"
         ogImage="https://affordegypt.com/images/street-food-egypt.jpg"
+        // The schema restated the meta tag's title and description as English
+        // literals, so the tag followed the reader and the structured data did
+        // not — two copies of one sentence, and only one of them translated.
         schema={[articleSchema({
-          headline: "Egyptian Street Food Guide | What to Eat & Where",
-          description:
-            "From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide.",
+          headline: t("streetFoodGuide.seoTitle"),
+          description: t("streetFoodGuide.seoDescription"),
           canonical: "https://affordegypt.com/egyptian-street-food-guide",
           image: "https://affordegypt.com/images/street-food-egypt.jpg",
           datePublished: "2025-06-07",
