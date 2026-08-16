@@ -19,7 +19,13 @@ const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "dist", "public", "sitemap.xml");
 const SITE = "https://affordegypt.com";
 
-// Mirror of PRERENDER_ROUTES in vite.config.ts. Keep in sync.
+// The English canonicals, mirroring the hand-written PRERENDER_ROUTES list in
+// vite.config.ts. Keep in sync.
+//
+// Deliberately NOT vite's full prerender list any more: that now also contains
+// the 71 translated slugs, derived from these. Those belong in the sitemap as
+// hreflang alternates on their English canonical — which buildEntry() emits —
+// not as 71 more <url> entries competing with it.
 const ROUTES = [
   "/",
   "/about",

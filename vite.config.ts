@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import prerender from "@prerenderer/rollup-plugin";
+import { SLUG_MAPPINGS, languageOfSlug } from "./shared/public-routes";
 
-// TODO: extend to multilingual locales by deriving routes from slugTranslation.ts source-of-truth.
 // TODO: /routes and /reviews currently prerender thin (no API data baked in). Revisit with build-time API capture if these routes pull meaningful organic traffic. See Phase 1 docs.
 const PRERENDER_ROUTES = [
   "/",
@@ -36,6 +36,42 @@ const PRERENDER_ROUTES = [
   "/submit-review",
 ];
 
+/**
+ * The same pages under their translated slugs.
+ *
+ * Derived, not listed: a new page or language becomes a prerendered route the
+ * moment it is routed, which is what the removed TODO here asked for.
+ *
+ * Only slugs that unambiguously name a language are included. The four shared
+ * ones — French "destinations", "contact", "attractions" and German
+ * "transfers" — ARE the English URL, so they are already prerendered above, in
+ * English, which is what a visitor with no preference gets there and what the
+ * sitemap declines to advertise as an alternate.
+ *
+ * This works because i18n picks its language from the path before first paint:
+ * Puppeteer opens /reiseziele and gets German HTML, and the client hydrating
+ * that HTML runs the same function over the same path. If those two ever
+ * disagree the symptom is a hydration mismatch, not a wrong page.
+ */
+const TRANSLATED_PRERENDER_ROUTES = Array.from(
+  new Set(
+    PRERENDER_ROUTES.flatMap((route) => {
+      const enSlug = route === "/" ? "" : route.slice(1);
+      if (!enSlug || SLUG_MAPPINGS.en[enSlug] === undefined) return [];
+      return (Object.keys(SLUG_MAPPINGS) as (keyof typeof SLUG_MAPPINGS)[])
+        .filter((lang) => lang !== "en")
+        .map((lang) => SLUG_MAPPINGS[lang][enSlug])
+        .filter((slug) => slug && languageOfSlug(slug) !== null)
+        .map((slug) => `/${slug}`);
+    }),
+  ),
+);
+
+const ALL_PRERENDER_ROUTES = [
+  ...PRERENDER_ROUTES,
+  ...TRANSLATED_PRERENDER_ROUTES,
+];
+
 export default defineConfig({
   plugins: [
     react(),
@@ -52,7 +88,7 @@ export default defineConfig({
       ? []
       : [
     prerender({
-      routes: PRERENDER_ROUTES,
+      routes: ALL_PRERENDER_ROUTES,
       renderer: "@prerenderer/renderer-puppeteer",
       rendererOptions: {
         renderAfterDocumentEvent: "prerender-ready",

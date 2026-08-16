@@ -33,14 +33,35 @@ const resources = {
   }
 };
 
-// Hydration-safe init: lock first paint to English so prerendered HTML matches
-// what React renders on the client. Real language detection runs post-hydration
-// from main.tsx via applyDetectedLanguage().
+/**
+ * The language first paint renders in, decided before React runs.
+ *
+ * This used to be hardcoded 'en' so that prerendered HTML — all of it English —
+ * matched what the client rendered, avoiding the hydration mismatch that once
+ * produced a flood of React #418/#423 errors and a visible English→German flip
+ * a second after load.
+ *
+ * It has to come from the URL now, because the translated routes are
+ * prerendered per language. Both sides derive it from the same pure function
+ * over the same path, so they cannot disagree: /reiseziele is prerendered in
+ * German and hydrates in German. Anything the path does not name — the English
+ * routes, the four shared slugs, the planner and booking flows — stays English
+ * for first paint, and a stored preference still swaps in after hydration via
+ * applyDetectedLanguage().
+ */
+function initialLanguage(): Supported {
+  if (typeof window === 'undefined') return 'en';
+  if (!MULTILINGUAL_ENABLED) return 'en';
+  return languageOfPath(window.location.pathname) ?? 'en';
+}
+
+const INITIAL_LANGUAGE = initialLanguage();
+
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
+    lng: INITIAL_LANGUAGE,
     fallbackLng: 'en',
     initImmediate: false,
     ns: ['translation', 'blog', 'common'],
@@ -106,6 +127,15 @@ function syncDocumentLang(lang: string): void {
 
 i18n.on('languageChanged', syncDocumentLang);
 
+// init() does not emit languageChanged for the language it starts in, so
+// without this <html lang> kept whatever index.html shipped — "en". The
+// prerender then captured whichever value won a race between the snapshot and
+// the idle callback that ran applyDetectedLanguage: /reiseziele came out
+// lang="de" and /destinos lang="en", both with translated content. Setting it
+// synchronously here makes the attribute agree with the render that produced
+// it, in the browser and in Puppeteer alike.
+syncDocumentLang(INITIAL_LANGUAGE);
+
 /**
  * Persists an explicit user choice and switches to it.
  * This is the ONLY path that may write a language preference.
@@ -123,14 +153,19 @@ export function setLanguage(raw: string): void {
 /**
  * Applies a previously *chosen* language after hydration.
  *
- * Only two sources count as a choice: an explicit `?lng=` in the URL, and a
- * preference this user set via the language selector. Browser locale is
- * intentionally ignored — the site is authored in English, only ~14% of
- * components are wired to i18next, and every page is prerendered in English,
- * so honouring navigator.language produced half-translated pages plus a
- * visible English→German flip a second after load (the hydration mismatch
- * behind the React #418/#423 error flood). English-by-default is correct
- * until translation coverage and per-locale prerendering exist.
+ * Runs after hydration, and now only settles what first paint could not: the
+ * path is already handled at init, so this is for `?lng=` and for a stored
+ * preference on a URL that names no language — an English route, or one of the
+ * four slugs two languages share.
+ *
+ * `navigator.language` is still ignored, and deliberately. Honouring it once
+ * produced half-translated pages and a visible English→German flip a second
+ * after load — the hydration mismatch behind the React #418/#423 flood. The
+ * two conditions that reasoning waited on, full translation coverage and
+ * per-locale prerendering, both exist now; browser locale is still not a
+ * choice the visitor made, and a German speaker reading English on
+ * /destinations can pick German once and keep it. Do not add it back without
+ * checking that against the prerendered HTML, which is per-URL, not per-user.
  */
 export function applyDetectedLanguage(): void {
   if (typeof window === 'undefined') return;
