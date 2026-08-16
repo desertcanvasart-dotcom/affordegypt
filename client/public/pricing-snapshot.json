@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T17:23:52.401Z",
+  "generatedAt": "2026-08-16T15:01:16.025Z",
   "source": "db",
   "currency": "EGP",
   "services": {
@@ -44,6 +44,12 @@
     },
     "aswan-abu-simbel-guide-car": {
       "minPrice": "11250"
+    },
+    "in-town-transfer": {
+      "minPrice": "700"
+    },
+    "airport-transfer-floor": {
+      "minPrice": "1000"
     }
   },
   "vehicles": {

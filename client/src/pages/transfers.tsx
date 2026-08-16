@@ -429,17 +429,22 @@ export default function TransfersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <SeoMeta
-        // The title used to advertise "from LE 595" — a literal with no source
-        // behind it, sitting next to a description deriving 1,200 EGP from the
-        // pricing snapshot. Nothing in the catalog snapshot or the repo
-        // produces 595, so the page's own tag block disagreed with itself.
-        // Both now read the one derived value, the way service-pricing.ts
-        // requires: no literal prices in components.
+        // This started as a literal "from LE 595" with nothing behind it, next
+        // to a description deriving its own figure — the same tag block
+        // quoting two different prices. Both then read
+        // luxor-airport-transfer, which was the lowest airport key that
+        // existed but is Luxor's floor, not the country's: the catalog sells
+        // airport transfers from five cities and starts at 1,000 in Hurghada.
+        // airport-transfer-floor asks the national question directly.
+        //
+        // The copy says "airport and intercity", so the price is the airport
+        // floor and not the page's outright cheapest row — in-town starts at
+        // 700 (in-town-transfer), which would undercut the sentence it sits in.
         title={t("transfers.seo.title", {
-          price: formatEGPPlain("luxor-airport-transfer"),
+          price: formatEGPPlain("airport-transfer-floor"),
         })}
         description={t("transfers.seo.description", {
-          price: formatEGPPlain("luxor-airport-transfer"),
+          price: formatEGPPlain("airport-transfer-floor"),
         })}
         canonical="https://affordegypt.com/transfers"
         schema={breadcrumbSchema(trailFor("/transfers")!)}
