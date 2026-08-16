@@ -45,7 +45,8 @@
     "traveler": "viajero",
     "recommended": "Recomendado",
     "current": "Actual",
-    "selectAllVisible": "Seleccionar Todo Visible"
+    "selectAllVisible": "Seleccionar Todo Visible",
+    "bookNow": "Reservar Ahora"
   },
   "home": {
     "title": "Descubre las Maravillas de Egipto",
@@ -89,7 +90,12 @@
       "Turismo en Egipto",
       "Cruceros por el Nilo",
       "Tours a las pirámides"
-    ]
+    ],
+    "loadQuote": "Cargar presupuesto",
+    "duplicateQuote": "Duplicar presupuesto",
+    "deleteQuote": "Eliminar presupuesto",
+    "moreCities": "+{{count}} más",
+    "copySuffix": "{{name}} (Copia)"
   },
   "hero": {
     "title": "Viajar por Egipto es",
@@ -1400,7 +1406,6 @@
   },
   "airportTransfers": {
     "common": {
-      "bookNow": "Reservar Ahora",
       "whatsapp": "WhatsApp",
       "callNow": "Llamar Ahora",
       "chooseVehicle": "Elige Tu Vehículo",

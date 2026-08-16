@@ -45,7 +45,8 @@
     "traveler": "voyageur",
     "recommended": "Recommandé",
     "current": "Actuel",
-    "selectAllVisible": "Sélectionner Tout Visible"
+    "selectAllVisible": "Sélectionner Tout Visible",
+    "bookNow": "Réserver Maintenant"
   },
   "home": {
     "title": "Découvrez les Merveilles de l'Égypte",
@@ -89,7 +90,12 @@
       "Tourisme en Égypte",
       "Croisières sur le Nil",
       "Visites des pyramides"
-    ]
+    ],
+    "loadQuote": "Charger le devis",
+    "duplicateQuote": "Dupliquer le devis",
+    "deleteQuote": "Supprimer le devis",
+    "moreCities": "+{{count}} de plus",
+    "copySuffix": "{{name}} (Copie)"
   },
   "hero": {
     "title": "Voyager en Égypte c'est",
@@ -1400,7 +1406,6 @@
   },
   "airportTransfers": {
     "common": {
-      "bookNow": "Réserver Maintenant",
       "whatsapp": "WhatsApp",
       "callNow": "Appeler Maintenant",
       "chooseVehicle": "Choisissez Votre Véhicule",

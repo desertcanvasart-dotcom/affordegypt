@@ -45,7 +45,8 @@
     "traveler": "traveler",
     "recommended": "Recommended",
     "current": "Current",
-    "selectAllVisible": "Select All Visible"
+    "selectAllVisible": "Select All Visible",
+    "bookNow": "Book Now"
   },
   "home": {
     "title": "Discover Egypt's Wonders",
@@ -89,7 +90,12 @@
       "Egyptian travel",
       "Nile cruises",
       "Pyramid tours"
-    ]
+    ],
+    "loadQuote": "Load quote",
+    "duplicateQuote": "Duplicate quote",
+    "deleteQuote": "Delete quote",
+    "moreCities": "+{{count}} more",
+    "copySuffix": "{{name}} (Copy)"
   },
   "hero": {
     "title": "Egypt Travel Made",
@@ -1400,7 +1406,6 @@
   },
   "airportTransfers": {
     "common": {
-      "bookNow": "Book Now",
       "whatsapp": "WhatsApp",
       "callNow": "Call Now",
       "chooseVehicle": "Choose Your Vehicle",

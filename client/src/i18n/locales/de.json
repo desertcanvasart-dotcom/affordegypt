@@ -45,7 +45,8 @@
     "traveler": "Reisender",
     "recommended": "Empfohlen",
     "current": "Aktuell",
-    "selectAllVisible": "Alle Sichtbaren Auswählen"
+    "selectAllVisible": "Alle Sichtbaren Auswählen",
+    "bookNow": "Jetzt Buchen"
   },
   "home": {
     "title": "Entdecke Ägyptens Wunder",
@@ -89,7 +90,12 @@
       "Reisen in Ägypten",
       "Nilkreuzfahrten",
       "Pyramiden-Touren"
-    ]
+    ],
+    "loadQuote": "Angebot laden",
+    "duplicateQuote": "Angebot duplizieren",
+    "deleteQuote": "Angebot löschen",
+    "moreCities": "+{{count}} weitere",
+    "copySuffix": "{{name}} (Kopie)"
   },
   "hero": {
     "title": "Ägypten Reisen wird",
@@ -1400,7 +1406,6 @@
   },
   "airportTransfers": {
     "common": {
-      "bookNow": "Jetzt Buchen",
       "whatsapp": "WhatsApp",
       "callNow": "Jetzt Anrufen",
       "chooseVehicle": "Wählen Sie Ihr Fahrzeug",

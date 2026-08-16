@@ -41,7 +41,7 @@ interface QuoteManagerProps {
 }
 
 export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManagerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [location, setLocation] = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"date" | "total" | "name">("date");
@@ -106,7 +106,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
     mutationFn: async (quote: SavedQuote) => {
       return apiRequest("POST", "/api/quotes", {
         ...JSON.parse(quote.jsonBlob),
-        name: `${quote.name} (Copy)`,
+        name: t('home.copySuffix', { name: quote.name }),
       });
     },
     onSuccess: () => {
@@ -299,7 +299,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                         <div className="flex items-center gap-2">
                           <h4 className="font-medium">{quote.name || `Quote #${quote.id}`}</h4>
                           <Badge variant="outline" className="text-xs">
-                            {new Date(quote.createdAt).toLocaleDateString()}
+                            {new Date(quote.createdAt).toLocaleDateString(i18n.language)}
                           </Badge>
                         </div>
                         
@@ -329,7 +329,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                             ))}
                             {details.cities.length > 3 && (
                               <Badge variant="secondary" className="text-xs">
-                                +{details.cities.length - 3} more
+                                {t('home.moreCities', { count: details.cities.length - 3 })}
                               </Badge>
                             )}
                           </div>
@@ -342,7 +342,12 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                             variant="outline"
                             size="sm"
                             onClick={() => handleLoadQuote(quote)}
-                            title="Load quote"
+                            // title is a mouse-only tooltip; on an icon-only
+                            // button the accessible name has to come from
+                            // aria-label, or the control is announced as
+                            // "button" and nothing else.
+                            title={t('home.loadQuote')}
+                            aria-label={t('home.loadQuote')}
                           >
                             <Edit3 className="w-3 h-3" />
                           </Button>
@@ -352,7 +357,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                           variant="outline"
                           size="sm"
                           onClick={() => duplicateQuoteMutation.mutate(quote)}
-                          title="Duplicate quote"
+                          title={t('home.duplicateQuote')}
+                          aria-label={t('home.duplicateQuote')}
                           disabled={duplicateQuoteMutation.isPending}
                         >
                           <Copy className="w-3 h-3" />
@@ -362,7 +368,8 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                           variant="outline"
                           size="sm"
                           onClick={() => deleteQuoteMutation.mutate(quote.id)}
-                          title="Delete quote"
+                          title={t('home.deleteQuote')}
+                          aria-label={t('home.deleteQuote')}
                           disabled={deleteQuoteMutation.isPending}
                           className="text-destructive hover:text-destructive"
                         >
@@ -374,7 +381,7 @@ export default function QuoteManager({ currentQuote, onLoadQuote }: QuoteManager
                           onClick={() => handleBookNow(quote)}
                           className="ml-2"
                         >
-                          Book Now
+                          {t('common.bookNow')}
                         </Button>
                       </div>
                     </div>
