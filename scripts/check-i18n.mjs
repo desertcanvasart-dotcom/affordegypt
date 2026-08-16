@@ -219,6 +219,25 @@ function staffOnlyByImport(files, isStaff) {
   return staff;
 }
 
+/**
+ * Blank out comment bodies, keeping every newline so line numbers still line up.
+ *
+ * The per-line skip below catches a line that *starts* with //, * or /*, which
+ * misses a JSX comment: `{/* ... *​/}` starts with a brace. A comment
+ * describing markup then reads as markup — `a <button> inside an <a> is
+ * invalid HTML` was reported as the untranslated string "inside an", because
+ * the text-node rule found it between a > and a <. Continuation lines of a
+ * multi-line comment have the same problem whatever the opener.
+ *
+ * i18n-exempt markers live in comments and must survive, so those lines are
+ * left alone.
+ */
+function blankComments(src) {
+  return src.replace(/\{?\/\*[\s\S]*?\*\/\}?/g, (m) =>
+    /i18n-exempt/.test(m) ? m : m.replace(/[^\n]/g, " "),
+  );
+}
+
 function scan() {
   const found = [];
   const files = walk(path.join(REPO, "client/src")).sort();
@@ -228,7 +247,7 @@ function scan() {
 
   for (const rel of files) {
     if (NON_COPY.test(rel) || staff.has(rel)) continue;
-    const src = readFileSync(path.join(REPO, rel), "utf8");
+    const src = blankComments(readFileSync(path.join(REPO, rel), "utf8"));
     const legalBody = LEGAL_BODIES.test(rel);
     const ranges = languageBlockRanges(src);
     const lines = src.split("\n");

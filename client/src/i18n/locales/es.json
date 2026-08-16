@@ -2100,7 +2100,9 @@
     "subtitle": "Los precios reales y oficiales de las entradas, los mismos que usamos en tu presupuesto. Sin recargos ni sorpresas en la taquilla.",
     "note": "Las entradas no están incluidas en las tarifas diarias de AffordEgypt: las pagas directamente o las añades a tu presupuesto.",
     "ctaTitle": "Añade entradas a tu presupuesto",
-    "ctaBody": "Crea tu itinerario con coche privado y egiptólogo licenciado, y añade las entradas solo donde quieras."
+    "ctaBody": "Crea tu itinerario con coche privado y egiptólogo licenciado, y añade las entradas solo donde quieras.",
+    "listUpdating": "La lista de entradas se está actualizando: escríbenos por WhatsApp para conocer los precios actuales.",
+    "ctaButton": "Crear tu presupuesto"
   },
   "reviewsPage": {
     "seoTitle": "Opiniones de viajeros | AffordEgypt",

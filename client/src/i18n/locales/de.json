@@ -2100,7 +2100,9 @@
     "subtitle": "Die echten, offiziellen Ticketpreise – dieselben, die wir in Ihrem Angebot verwenden. Kein Aufschlag, keine Überraschungen am Eingang.",
     "note": "Eintrittskarten sind in den Tagessätzen von AffordEgypt nicht enthalten – Sie zahlen diese Preise direkt oder fügen sie Ihrem Angebot hinzu.",
     "ctaTitle": "Tickets zu Ihrem Angebot hinzufügen",
-    "ctaBody": "Stellen Sie Ihre Reiseroute mit Privatwagen und lizenziertem Ägyptologen zusammen und fügen Sie Eintrittsgelder nur dort hinzu, wo Sie möchten."
+    "ctaBody": "Stellen Sie Ihre Reiseroute mit Privatwagen und lizenziertem Ägyptologen zusammen und fügen Sie Eintrittsgelder nur dort hinzu, wo Sie möchten.",
+    "listUpdating": "Die Liste der Eintrittspreise wird gerade aktualisiert — schreiben Sie uns auf WhatsApp für aktuelle Preise.",
+    "ctaButton": "Angebot erstellen"
   },
   "reviewsPage": {
     "seoTitle": "Reisebewertungen | AffordEgypt",

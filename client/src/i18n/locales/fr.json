@@ -2100,7 +2100,9 @@
     "subtitle": "Les tarifs officiels réels des billets, ceux-là mêmes que nous utilisons dans votre devis. Sans majoration ni surprise à l'entrée.",
     "note": "Les billets d'entrée ne sont pas compris dans les tarifs journaliers d'AffordEgypt : vous les réglez directement ou vous les ajoutez à votre devis.",
     "ctaTitle": "Ajoutez les billets à votre devis",
-    "ctaBody": "Composez votre itinéraire avec voiture privée et égyptologue diplômé, puis ajoutez les entrées uniquement où vous le souhaitez."
+    "ctaBody": "Composez votre itinéraire avec voiture privée et égyptologue diplômé, puis ajoutez les entrées uniquement où vous le souhaitez.",
+    "listUpdating": "La liste des billets d'entrée est en cours de mise à jour — écrivez-nous sur WhatsApp pour les tarifs actuels.",
+    "ctaButton": "Créer votre devis"
   },
   "reviewsPage": {
     "seoTitle": "Avis de voyageurs | AffordEgypt",

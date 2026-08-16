@@ -2100,7 +2100,9 @@
     "subtitle": "The real, official ticket prices — the same ones we use in your quote. No markup, no surprises at the gate.",
     "note": "Entrance tickets are not included in AffordEgypt day rates — you pay these prices directly, or add them to your quote.",
     "ctaTitle": "Add tickets to your trip quote",
-    "ctaBody": "Build your itinerary with a private car and licensed Egyptologist, then add entrance fees only where you want them."
+    "ctaBody": "Build your itinerary with a private car and licensed Egyptologist, then add entrance fees only where you want them.",
+    "listUpdating": "Entrance fee list is being updated — message us on WhatsApp for current prices.",
+    "ctaButton": "Build Your Quote"
   },
   "reviewsPage": {
     "seoTitle": "Traveler Reviews | AffordEgypt",
