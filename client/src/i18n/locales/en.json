@@ -79,7 +79,17 @@
     "quoteLoadedDescription": "Quote has been loaded into the pricing tool.",
     "noQuotesMatchSearch": "No quotes match your search.",
     "name": "Name",
-    "price": "Price"
+    "price": "Price",
+    "seoTitle": "Egypt Tours from a Real Egyptian Operator | AffordEgypt",
+    "seoDescription": "Private car + licensed Egyptologist in Egypt from {{price}}/day. Real prices, no markup, no bundling. ETAA-licensed operator since {{year}}. Quote in 60 seconds.",
+    "schemaDescription": "The transparent budget tier of {{operator}}, a Cairo-based ETAA-licensed tour operator ({{licence}}) since {{year}}.",
+    "knowsAbout": [
+      "Egypt tours",
+      "Egyptology",
+      "Egyptian travel",
+      "Nile cruises",
+      "Pyramid tours"
+    ]
   },
   "hero": {
     "title": "Egypt Travel Made",

@@ -79,7 +79,17 @@
     "quoteLoadedDescription": "Le devis a été chargé dans l'outil de tarification.",
     "noQuotesMatchSearch": "Aucun devis ne correspond à votre recherche.",
     "name": "Nom",
-    "price": "Prix"
+    "price": "Prix",
+    "seoTitle": "Voyages en Égypte par un Vrai Opérateur Égyptien | AffordEgypt",
+    "seoDescription": "Voiture privée + égyptologue diplômé en Égypte à partir de {{price}}/jour. Prix réels, sans marge, sans forfait imposé. Opérateur agréé ETAA depuis {{year}}. Devis en 60 secondes.",
+    "schemaDescription": "La gamme économique et transparente de {{operator}}, un voyagiste agréé ETAA ({{licence}}) basé au Caire depuis {{year}}.",
+    "knowsAbout": [
+      "Voyages en Égypte",
+      "Égyptologie",
+      "Tourisme en Égypte",
+      "Croisières sur le Nil",
+      "Visites des pyramides"
+    ]
   },
   "hero": {
     "title": "Voyager en Égypte c'est",

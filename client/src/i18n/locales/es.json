@@ -79,7 +79,17 @@
     "quoteLoadedDescription": "La cotización ha sido cargada en la herramienta de precios.",
     "noQuotesMatchSearch": "Ninguna cotización coincide con su búsqueda.",
     "name": "Nombre",
-    "price": "Precio"
+    "price": "Precio",
+    "seoTitle": "Viajes a Egipto de un Operador Egipcio Real | AffordEgypt",
+    "seoDescription": "Coche privado + egiptólogo licenciado en Egipto desde {{price}}/día. Precios reales, sin recargos, sin paquetes obligatorios. Operador con licencia ETAA desde {{year}}. Presupuesto en 60 segundos.",
+    "schemaDescription": "La gama económica y transparente de {{operator}}, un turoperador con licencia ETAA ({{licence}}) con sede en El Cairo desde {{year}}.",
+    "knowsAbout": [
+      "Viajes a Egipto",
+      "Egiptología",
+      "Turismo en Egipto",
+      "Cruceros por el Nilo",
+      "Tours a las pirámides"
+    ]
   },
   "hero": {
     "title": "Viajar por Egipto es",

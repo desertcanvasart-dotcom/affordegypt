@@ -62,15 +62,29 @@ const NON_COPY =
 const LEGAL_BODIES = /(privacy-policy|terms-of-service|cookie-policy|booking-agreement)\.tsx$/;
 
 /** Reads identically in every target language. */
-const NO_TRANSLATE = new Set(
-  (
+const NO_TRANSLATE = new Set([
+  ...(
     "Egypt Cairo Luxor Aswan Giza Alexandria Sinai Nile Sharm Dahab Hurghada Nuweiba Taba " +
     "Koshari Molokhia Fattah Feteer Hawawshi Kunafa Basbousa Mahshi Sayadeya " +
     "EGP USD WhatsApp Facebook Instagram TripAdvisor Google Afford AffordEgypt " +
     "Abydos Karnak Philae Edfu Dendera Saqqara Dahshur Meidum Siwa Bahariya Farafra Dakhla Kharga " +
     "Sedan Minivan Van SUV"
   ).split(/\s+/),
-);
+  // Proper nouns that happen to contain a space. The list above is split on
+  // whitespace, so a multi-word name could never be expressed in it — which is
+  // why "Sharm El Sheikh" was reported as untranslated copy while "Cairo" and
+  // "Hurghada" sitting in the same areaServed array were not. Matching is on
+  // the whole string, so these exempt the names and nothing else.
+  "Sharm El Sheikh",
+  "Abu Simbel",
+  "Marsa Alam",
+  "St. Catherine",
+  "Port Said",
+  "Ain Sokhna",
+  // Company identities. Translating either would misname a licensed operator.
+  "Afford Egypt",
+  "Capital Travel Service",
+]);
 
 const VISIBLE_ATTR = /\b(placeholder|aria-label|title|alt)=["']([^"'{}]{4,})["']/g;
 

@@ -79,7 +79,17 @@
     "quoteLoadedDescription": "Das Angebot wurde in das Preistool geladen.",
     "noQuotesMatchSearch": "Keine Angebote entsprechen Ihrer Suche.",
     "name": "Name",
-    "price": "Preis"
+    "price": "Preis",
+    "seoTitle": "Ägypten-Reisen von einem echten ägyptischen Veranstalter | AffordEgypt",
+    "seoDescription": "Privatwagen + lizenzierter Ägyptologe in Ägypten ab {{price}}/Tag. Echte Preise, kein Aufschlag, keine Pakete. ETAA-lizenzierter Veranstalter seit {{year}}. Angebot in 60 Sekunden.",
+    "schemaDescription": "Die transparente Budget-Sparte von {{operator}}, einem ETAA-lizenzierten Reiseveranstalter ({{licence}}) mit Sitz in Kairo seit {{year}}.",
+    "knowsAbout": [
+      "Ägypten-Reisen",
+      "Ägyptologie",
+      "Reisen in Ägypten",
+      "Nilkreuzfahrten",
+      "Pyramiden-Touren"
+    ]
   },
   "hero": {
     "title": "Ägypten Reisen wird",
