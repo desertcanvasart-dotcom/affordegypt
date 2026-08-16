@@ -2372,7 +2372,17 @@
     "readLess": "Leer menos",
     "noneFound": "No se han encontrado opiniones que coincidan con tus criterios.",
     "prevPage": "Página anterior",
-    "nextPage": "Página siguiente"
+    "nextPage": "Página siguiente",
+    "stars_one": "{{count}} estrella",
+    "stars_other": "{{count}} estrellas",
+    "perPageOption": "{{count}} por página",
+    "firstPage": "Primera",
+    "lastPage": "Última",
+    "verified": "Verificada",
+    "reviewCount_one": "({{count}} opinión)",
+    "reviewCount_other": "({{count}} opiniones)",
+    "showingRange": "Mostrando {{from}}–{{to}} de {{total}} opiniones",
+    "pageOf": "Página {{current}} de {{total}}"
   },
   "submitReviewPage": {
     "seoTitle": "Enviar una reseña | AffordEgypt",

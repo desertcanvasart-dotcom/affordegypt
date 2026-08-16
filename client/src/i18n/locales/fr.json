@@ -2372,7 +2372,17 @@
     "readLess": "Lire moins",
     "noneFound": "Aucun avis ne correspond à vos critères.",
     "prevPage": "Page précédente",
-    "nextPage": "Page suivante"
+    "nextPage": "Page suivante",
+    "stars_one": "{{count}} étoile",
+    "stars_other": "{{count}} étoiles",
+    "perPageOption": "{{count}} par page",
+    "firstPage": "Première",
+    "lastPage": "Dernière",
+    "verified": "Vérifié",
+    "reviewCount_one": "({{count}} avis)",
+    "reviewCount_other": "({{count}} avis)",
+    "showingRange": "Affichage de {{from}}–{{to}} sur {{total}} avis",
+    "pageOf": "Page {{current}} sur {{total}}"
   },
   "submitReviewPage": {
     "seoTitle": "Laisser un avis | AffordEgypt",

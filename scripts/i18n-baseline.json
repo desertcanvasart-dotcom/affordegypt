@@ -378,51 +378,7 @@
     ],
     [
       "client/src/pages/reviews.tsx",
-      "1 Star"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "12 per page"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "2 Stars"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "24 per page"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "3 Stars"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "4 Stars"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "48 per page"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "5 Stars"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "6 per page"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "First"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "Last"
-    ],
-    [
-      "client/src/pages/reviews.tsx",
-      "Verified"
+      "MMM yyyy"
     ],
     [
       "client/src/pages/sinai-peninsula-guide.tsx",

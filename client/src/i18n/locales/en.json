@@ -2372,7 +2372,17 @@
     "readLess": "Read less",
     "noneFound": "No reviews found matching your criteria.",
     "prevPage": "Previous page",
-    "nextPage": "Next page"
+    "nextPage": "Next page",
+    "stars_one": "{{count}} Star",
+    "stars_other": "{{count}} Stars",
+    "perPageOption": "{{count}} per page",
+    "firstPage": "First",
+    "lastPage": "Last",
+    "verified": "Verified",
+    "reviewCount_one": "({{count}} review)",
+    "reviewCount_other": "({{count}} reviews)",
+    "showingRange": "Showing {{from}}–{{to}} of {{total}} reviews",
+    "pageOf": "Page {{current}} of {{total}}"
   },
   "submitReviewPage": {
     "seoTitle": "Submit a Review | AffordEgypt",

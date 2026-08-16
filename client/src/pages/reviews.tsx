@@ -7,14 +7,26 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
+import { enUS, es, fr, de } from "date-fns/locale";
 import type { Review } from "@shared/schema";
 import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
+// date-fns formats month names from its own locale, not the browser's and not
+// i18next's — a bare format(d, "MMM yyyy") printed "Mar 2026" on the German
+// page. Every trip date on this screen went through that call.
+const DATE_LOCALES = { en: enUS, es, fr, de } as const;
+
 export default function ReviewsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dateLocale =
+    DATE_LOCALES[i18n.language as keyof typeof DATE_LOCALES] ?? enUS;
+  const tripMonth = (value: string | Date) =>
+    // i18n-exempt: a date-fns format pattern, not copy — the words it produces
+    // come from `locale`, which is what makes this translated at all.
+    format(new Date(value), "MMM yyyy", { locale: dateLocale });
   const [searchTerm, setSearchTerm] = useState("");
   const [ratingFilter, setRatingFilter] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
@@ -157,7 +169,7 @@ export default function ReviewsPage() {
               {averageRating.toFixed(1)}
             </span>
             <span className="text-gray-600">
-              ({reviews.length} review{reviews.length !== 1 ? 's' : ''})
+              {t("reviewsPage.reviewCount", { count: reviews.length })}
             </span>
           </div>
         </div>
@@ -208,11 +220,11 @@ export default function ReviewsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">{t("reviewsPage.allRatings")}</SelectItem>
-                  <SelectItem value="5">5 Stars</SelectItem>
-                  <SelectItem value="4">4 Stars</SelectItem>
-                  <SelectItem value="3">3 Stars</SelectItem>
-                  <SelectItem value="2">2 Stars</SelectItem>
-                  <SelectItem value="1">1 Star</SelectItem>
+                  {[5, 4, 3, 2, 1].map((n) => (
+                    <SelectItem key={n} value={String(n)}>
+                      {t("reviewsPage.stars", { count: n })}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 
@@ -233,10 +245,11 @@ export default function ReviewsPage() {
                   <SelectValue placeholder={t("reviewsPage.perPage")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="6">6 per page</SelectItem>
-                  <SelectItem value="12">12 per page</SelectItem>
-                  <SelectItem value="24">24 per page</SelectItem>
-                  <SelectItem value="48">48 per page</SelectItem>
+                  {[6, 12, 24, 48].map((n) => (
+                    <SelectItem key={n} value={String(n)}>
+                      {t("reviewsPage.perPageOption", { count: n })}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 
@@ -265,10 +278,19 @@ export default function ReviewsPage() {
             </div>
           </div>
 
-          {/* Results summary */}
-          <div className="mt-4 pt-4 border-t text-sm text-gray-600">
-            Showing {startIndex + 1}-{Math.min(endIndex, filteredAndSortedReviews.length)} of {filteredAndSortedReviews.length} reviews
-          </div>
+          {/* Results summary. Suppressed when nothing matched — the range is
+              computed from the page offset, so an empty result set rendered
+              "Showing 1–0 of 0 reviews". The empty state below says it once,
+              properly. */}
+          {filteredAndSortedReviews.length > 0 && (
+            <div className="mt-4 pt-4 border-t text-sm text-gray-600">
+              {t("reviewsPage.showingRange", {
+                from: startIndex + 1,
+                to: Math.min(endIndex, filteredAndSortedReviews.length),
+                total: filteredAndSortedReviews.length,
+              })}
+            </div>
+          )}
         </div>
 
         {/* Reviews Display */}
@@ -326,12 +348,12 @@ export default function ReviewsPage() {
                         <div className="text-right">
                           {review.isVerified && (
                             <Badge variant="secondary" className="mb-1">
-                              Verified
+                              {t("reviewsPage.verified")}
                             </Badge>
                           )}
                           {review.tripDate && (
                             <p className="text-xs text-gray-500">
-                              {format(new Date(review.tripDate), "MMM yyyy")}
+                              {tripMonth(review.tripDate)}
                             </p>
                           )}
                         </div>
@@ -358,7 +380,7 @@ export default function ReviewsPage() {
                         </h3>
                         {review.isVerified && (
                           <Badge variant="secondary">
-                            Verified
+                            {t("reviewsPage.verified")}
                           </Badge>
                         )}
                       </div>
@@ -383,7 +405,7 @@ export default function ReviewsPage() {
                         </div>
                         {review.tripDate && (
                           <p className="text-sm text-gray-500">
-                            {format(new Date(review.tripDate), "MMM yyyy")}
+                            {tripMonth(review.tripDate)}
                           </p>
                         )}
                       </div>
@@ -407,7 +429,10 @@ export default function ReviewsPage() {
         {totalPages > 1 && (
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
             <div className="text-sm text-gray-600">
-              Page {currentPage} of {totalPages}
+              {t("reviewsPage.pageOf", {
+                current: currentPage,
+                total: totalPages,
+              })}
             </div>
             
             <div className="flex items-center gap-2">
@@ -417,7 +442,7 @@ export default function ReviewsPage() {
                 onClick={() => setCurrentPage(1)}
                 disabled={currentPage === 1}
               >
-                First
+                {t("reviewsPage.firstPage")}
               </Button>
               
               <Button
@@ -476,7 +501,7 @@ export default function ReviewsPage() {
                 onClick={() => setCurrentPage(totalPages)}
                 disabled={currentPage === totalPages}
               >
-                Last
+                {t("reviewsPage.lastPage")}
               </Button>
             </div>
           </div>

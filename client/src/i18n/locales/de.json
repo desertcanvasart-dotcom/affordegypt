@@ -2372,7 +2372,17 @@
     "readLess": "Weniger lesen",
     "noneFound": "Keine Bewertungen gefunden, die Ihren Kriterien entsprechen.",
     "prevPage": "Vorherige Seite",
-    "nextPage": "Nächste Seite"
+    "nextPage": "Nächste Seite",
+    "stars_one": "{{count}} Stern",
+    "stars_other": "{{count}} Sterne",
+    "perPageOption": "{{count}} pro Seite",
+    "firstPage": "Erste",
+    "lastPage": "Letzte",
+    "verified": "Verifiziert",
+    "reviewCount_one": "({{count}} Bewertung)",
+    "reviewCount_other": "({{count}} Bewertungen)",
+    "showingRange": "{{from}}–{{to}} von {{total}} Bewertungen",
+    "pageOf": "Seite {{current}} von {{total}}"
   },
   "submitReviewPage": {
     "seoTitle": "Bewertung abgeben | AffordEgypt",
