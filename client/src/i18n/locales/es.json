@@ -61,9 +61,11 @@
     "copySuffix": "{{name}} (Copia)"
   },
   "hero": {
-    "title": "Viajar por Egipto es",
-    "subtitle": "Obtenga cotizaciones instantáneas para transporte, guías y experiencias. Vea el precio final real por adelantado, sin tarifas ocultas.",
-    "cta": "Comienza a Planificar tu Viaje"
+    "title": "Viajes reales a Egipto, de un operador egipcio real. <highlight>Precios reales.</highlight>",
+    "subtitle": "Los mismos guías expertos, con menos extras incluidos: de un operador con licencia desde {{year}}.",
+    "priceLine": "Coche privado + egiptólogo desde <price>{{price}}/día</price>",
+    "cta": "Crea tu presupuesto en 60 segundos",
+    "note": "Sin necesidad de cuenta. Obtén tu precio y envíalo por WhatsApp."
   },
   "transfers": {
     "title": "Solo Traslado",

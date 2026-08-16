@@ -61,9 +61,11 @@
     "copySuffix": "{{name}} (Copie)"
   },
   "hero": {
-    "title": "Voyager en Égypte c'est",
-    "subtitle": "Obtenez des devis instantanés pour le transport, les guides et les expériences. Voyez le prix final réel à l'avance - pas de frais cachés.",
-    "cta": "Commencez à Planifier votre Voyage"
+    "title": "De vrais circuits en Égypte, par un vrai opérateur égyptien. <highlight>De vrais prix.</highlight>",
+    "subtitle": "Les mêmes guides experts, avec moins d'inclusions — d'un opérateur agréé depuis {{year}}.",
+    "priceLine": "Voiture privée + égyptologue à partir de <price>{{price}}/jour</price>",
+    "cta": "Obtenez votre devis en 60 secondes",
+    "note": "Aucun compte requis. Obtenez votre prix, puis envoyez-le sur WhatsApp."
   },
   "transfers": {
     "title": "Transfert Uniquement",

@@ -61,9 +61,11 @@
     "copySuffix": "{{name}} (Copy)"
   },
   "hero": {
-    "title": "Egypt Travel Made",
-    "subtitle": "Get instant quotes for transport, guides, and experiences. See the real final price upfront – no hidden fees.",
-    "cta": "Start Planning Your Trip"
+    "title": "Real Egypt tours, from a real Egyptian operator. <highlight>Real prices.</highlight>",
+    "subtitle": "Same expert guides, lighter inclusions — from an operator licensed since {{year}}.",
+    "priceLine": "Private car + Egyptologist from <price>{{price}}/day</price>",
+    "cta": "Build Your Quote in 60 Seconds",
+    "note": "No account needed. Get your price, then send to WhatsApp."
   },
   "transfers": {
     "title": "Transfer Only",

@@ -61,9 +61,11 @@
     "copySuffix": "{{name}} (Kopie)"
   },
   "hero": {
-    "title": "Ägypten Reisen wird",
-    "subtitle": "Erhalten Sie sofortige Angebote für Transport, Guides und Erlebnisse. Sehen Sie den echten Endpreis im Voraus - keine versteckten Gebühren.",
-    "cta": "Beginnen Sie Ihre Reiseplanung"
+    "title": "Echte Ägypten-Reisen, von einem echten ägyptischen Veranstalter. <highlight>Echte Preise.</highlight>",
+    "subtitle": "Dieselben erfahrenen Reiseleiter, mit schlankeren Leistungen — von einem seit {{year}} lizenzierten Veranstalter.",
+    "priceLine": "Privatwagen + Ägyptologe ab <price>{{price}}/Tag</price>",
+    "cta": "Angebot in 60 Sekunden erstellen",
+    "note": "Kein Konto nötig. Preis berechnen und per WhatsApp senden."
   },
   "transfers": {
     "title": "Nur Transfer",
