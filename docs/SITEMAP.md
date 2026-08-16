@@ -288,14 +288,15 @@ Single-page admin shell with a left sidebar. Sections:
 
 **Main panel** (per section):
 - Table view of items (cities / vehicles / etc.)
-- **+ Add New** button → opens AddItemModal (cities, vehicles and guides only)
-- Edit pencil icon per row → opens AddItemModal in edit mode
+- **+ Add New** button → opens the add/edit dialog (cities, vehicles and guides only)
+- Edit pencil icon per row → opens the same dialog in edit mode
 - Trash icon per row → opens delete confirmation dialog
 
-**AddItemModal** (`components/add-item-modal.tsx`):
-- Renders different fields based on `modalType` (city/vehicle/guide/addon/route/attraction)
-- **Save** button → POSTs (create) or PUTs (update) the right `/api/*` endpoint with the admin JWT
-- **Cancel** button → closes modal
+The add/edit dialog is rendered **inline by `admin-sidebar.tsx`** (a `<Dialog>`
+keyed on `modalType`, fields switched per entity, Save POSTs or PUTs the right
+`/api/*` endpoint with the admin JWT). It is not a separate component. There
+was an `add-item-modal.tsx` that looked like it served this screen, but its
+only importer was the unmounted `pages/admin.tsx`; both are deleted.
 
 ### Catalog admin
 
@@ -326,11 +327,12 @@ List + manage all bookings.
 - Bulk **CSV upload** for reviews via `<ReviewUpload>`
 
 ### Unused admin pages
-`pages/admin.tsx` is the last leftover from a prior iteration — not wired into
-`App.tsx`, safe to delete. The others once listed here (`admin-working`,
-`admin-dashboard`, `routes`, `routes-overview`, `booking-confirmation-broken`)
-have since been deleted. `pages/attractions.tsx` was listed here too and is
-**not** unused — it serves the public `/attractions` route.
+None. Every page under `client/src/pages/` is now reachable from `App.tsx`.
+`admin.tsx` was the last leftover and has been deleted, along with
+`admin-working`, `admin-dashboard`, `routes`, `routes-overview` and
+`booking-confirmation-broken` before it. `pages/attractions.tsx` was once
+listed here too and is **not** unused — it serves the public `/attractions`
+route.
 
 ---
 
@@ -346,17 +348,21 @@ have since been deleted. `pages/attractions.tsx` was listed here too and is
 | MultiCityPricingTool | `multi-city-pricing-tool.tsx` | The wizard (1,300 lines) |
 | FAQSection | `faq-section.tsx` | 7 expandable Q&As |
 | NewsletterSection | `newsletter-section.tsx` | Egypt Trip Calculator subscribe |
-| AboutSection | `about-section.tsx` | About-page content block |
 | BlogGrid | `blog-grid.tsx` | Long-form guide cards |
-| FeaturedDestinations | `featured-destinations.tsx` | Destination cards |
 | AnimatedReviewCarousel | `animated-review-carousel.tsx` | Auto-scroll reviews |
-| CustomerReviews | `customer-reviews.tsx` | Static reviews grid |
 | GuideToc | `guide-toc.tsx` | Table of contents on the long-form guides |
 | AdvanceTicketNote | `advance-ticket-note.tsx` | Advance-booking caveat on ticketed attractions |
 
-`/contact` is a page (`pages/contact.tsx`), not a section component. The old
-`contact-section.tsx` was deleted — it was imported by nothing and its submit
-handler told the customer their message had been sent while discarding it.
+**Every component listed in this file is rendered by something.** That was not
+true before 2026-08-16: `about-section`, `customer-reviews`,
+`featured-destinations`, `service-overview` and `contact-section` were all
+listed here as live section blocks while being imported by nothing. If you add
+a component, add its row; if you delete a row, check `grep -r` first — a
+listing here is the main reason dead code gets mistaken for live code.
+
+`/contact` and `/about` are pages (`pages/contact.tsx`, `pages/about.tsx`), not
+section components. `contact-section.tsx` and `about-section.tsx` were their
+unmounted predecessors.
 
 ### Layout / chrome
 | Component | File |
@@ -365,13 +371,16 @@ handler told the customer their message had been sent while discarding it.
 | Footer | `footer.tsx` |
 | MobileStickyCTA | `mobile-sticky-cta.tsx` |
 | LanguageSelector | `language-selector.tsx` (hidden while `MULTILINGUAL_ENABLED` is off) |
-| WhatsAppWidget | `whatsapp-widget.tsx` |
-| UserNav | `user-nav.tsx` |
 | PageBreadcrumbs | `page-breadcrumbs.tsx` |
 | CookieConsent | `cookie-consent.tsx` |
 | SeoMeta | `seo-meta.tsx` (title / description / JSON-LD per page) |
 | ErrorBoundary | `error-boundary.tsx` |
 | ClientOnly | `client-only.tsx` (skips prerender for client-only subtrees) |
+
+The floating **WhatsApp** button is rendered inline by `App.tsx`, not by a
+component — `whatsapp-widget.tsx` was an unmounted duplicate and is gone. The
+navbar carries the other two WhatsApp links. All three point at
+`wa.me/201100765283`.
 
 ### Booking & pricing
 | Component | File |
@@ -392,10 +401,11 @@ the only quote builder now.
 |---|---|
 | AdminLogin | `admin-login.tsx` |
 | AdminBookings | `admin-bookings.tsx` (booking detail modal + table) |
-| AddItemModal | `add-item-modal.tsx` |
-| ReviewForm | `review-form.tsx` |
 | ReviewUpload | `review-upload.tsx` (CSV import for reviews) |
-| TranslationDemo | `translation-demo.tsx` (developer-only i18n preview) |
+
+`review-form.tsx` was listed here but is **customer-facing** — it is the form
+on `/submit-review`, and it is translated. `translation-demo.tsx` was a
+developer-only i18n preview that nothing rendered; deleted.
 
 ### shadcn/ui primitives
 `components/ui/*.tsx` — 47 files: button, card, dialog, dropdown-menu, input, label, table, toast, tooltip, etc. These are unstyled or lightly-styled wrappers around Radix UI. The `outline` variant of `button.tsx` was customised to white-bg + primary-green hover.

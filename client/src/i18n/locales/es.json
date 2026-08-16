@@ -199,21 +199,6 @@
     "chooseCityToVisit": "Elige una ciudad para visitar",
     "recommendedItineraries": "Itinerarios Recomendados"
   },
-  "transportation": {
-    "transferDropOff": "Transfer & Recogida",
-    "dayTrip": "Viaje de un Día",
-    "overnight": "Estancia Nocturna",
-    "multiDay": "Tour de Varios Días",
-    "withinCity": "Dentro de la Ciudad",
-    "betweenCities": "Entre Ciudades",
-    "airport": "Aeropuerto",
-    "activity": "Actividad",
-    "selectTransportation": "Seleccionar transporte...",
-    "selectedRoute": "Ruta seleccionada",
-    "routeSelected": "1 ruta seleccionada",
-    "routesSelected": "{{count}} rutas seleccionadas",
-    "searchRoutes": "Buscar rutas..."
-  },
   "guides": {
     "selectTourGuide": "Seleccionar guía turístico...",
     "selectedGuide": "Guía {{language}} ({{duration}}h)",
@@ -398,24 +383,6 @@
     "cookiePreferences": "Preferencias de cookies",
     "operatedBy": "AffordEgypt está gestionada por Capital Travel Service"
   },
-  "about": {
-    "title": "Por Qué Viajar Con Nosotros",
-    "description1": "En Afford Egypt, somos una nueva generación de especialistas en viajes a Egipto que redefinimos lo que significa viajar con presupuesto: transparente, flexible y rico en experiencias.",
-    "description2": "Desde 2003, hemos ayudado a miles a explorar el verdadero Egipto sin tarifas ocultas y con máxima tranquilidad. Desde traslados entre ciudades hasta aventuras guiadas de día completo, todo está diseñado para ajustarse a tu plan y presupuesto.",
-    "description3": "Ya sea navegando por las calles ancestrales de El Cairo, navegando por el Nilo, o descubriendo los secretos de los templos de Luxor, nuestra plataforma te conecta directamente con transporte confiable, guías locales de confianza y atracciones esenciales, todo en solo unos clics.",
-    "description4": "Respaldados por un excelente servicio al cliente y construidos por jóvenes que realmente entienden a los viajeros modernos, Afford Egypt hace que explorar Egipto sea fácil, asequible e inolvidable.",
-    "stats": {
-      "travelers": "5000+ Viajeros",
-      "travelersDesc": "Atendidos desde 2003",
-      "destinations": "15+ Destinos",
-      "destinationsDesc": "Por todo Egipto",
-      "support": "Soporte 24/7",
-      "supportDesc": "Durante tu viaje",
-      "guarantee": "100% Garantía",
-      "guaranteeDesc": "Promesa de devolución"
-    },
-    "cta": "Empezar a Planificar"
-  },
   "validation": {
     "required": "Este campo es obligatorio",
     "invalidEmail": "Por favor ingresa un email válido",
@@ -428,27 +395,6 @@
     "reviewMin": "La reseña debe tener al menos 20 caracteres",
     "enterName": "Introduce tu nombre completo",
     "enterPhone": "Introduce tu número de teléfono"
-  },
-  "slugs": {
-    "destinations": "destinos",
-    "travel-tips": "consejos-de-viaje",
-    "reviews": "reseñas",
-    "submit-review": "enviar-reseña",
-    "about": "acerca-de",
-    "contact": "contacto",
-    "budget-travel-egypt": "viaje-barato-egipto",
-    "egyptian-street-food-guide": "guia-comida-callejera-egipcia",
-    "nile-valley-guide": "guia-valle-del-nilo",
-    "sinai-peninsula-guide": "guia-peninsula-sinai",
-    "eastern-western-deserts-guide": "guia-desiertos-oriental-occidental",
-    "cuisine-passport": "pasaporte-culinario",
-    "booking-agreement": "acuerdo-de-reserva",
-    "terms-of-service": "terminos-de-servicio",
-    "privacy-policy": "politica-de-privacidad",
-    "cookie-policy": "politica-de-cookies",
-    "transfers": "traslados",
-    "pricing-tool": "herramienta-de-precios",
-    "attractions": "atracciones"
   },
   "reviews": {
     "title": "Lo Que Dicen Nuestros Viajeros",
@@ -3147,26 +3093,6 @@
     "buildMyTrip": "Crear mi viaje",
     "notFoundTitle": "Página no encontrada | AffordEgypt",
     "notFoundHeading": "Página no encontrada"
-  },
-  "userNav": {
-    "profile": "Perfil",
-    "myBookings": "Mis reservas",
-    "adminPanel": "Panel de administración",
-    "logOut": "Cerrar sesión"
-  },
-  "whatsappWidget": {
-    "replyTime": "Normalmente responde en minutos",
-    "generalInquiry": "Consulta general",
-    "getQuote": "Pedir presupuesto",
-    "bookingSupport": "Ayuda con la reserva",
-    "customTrip": "Viaje a medida",
-    "msgGeneral": "¡Hola! Me interesa planificar un viaje a Egipto. ¿Podrían darme información sobre sus servicios?",
-    "msgQuote": "¡Hola! Me gustaría pedir un presupuesto para mi viaje a Egipto. ¿Podemos ver los detalles?",
-    "msgBooking": "¡Hola! Necesito ayuda con mi reserva. ¿Pueden ayudarme?",
-    "msgCustom": "¡Hola! Quiero organizar un itinerario a medida por Egipto. ¿Podemos hablar de lo que necesito?",
-    "msgDefault": "¡Hola! Tengo una pregunta sobre sus servicios de viaje a Egipto.",
-    "startChat": "Iniciar chat",
-    "intro": "¡Empieza una conversación con nosotros por WhatsApp para recibir ayuda rápida!"
   },
   "pageNames": {
     "home": "Inicio",

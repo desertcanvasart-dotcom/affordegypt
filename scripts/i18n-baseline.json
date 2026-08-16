@@ -45,68 +45,12 @@
       "Travel Tips"
     ],
     [
-      "client/src/components/customer-reviews.tsx",
-      "Be the first to share your Egypt travel experience with us!"
-    ],
-    [
-      "client/src/components/customer-reviews.tsx",
-      "Real experiences from travelers who explored Egypt with us"
-    ],
-    [
-      "client/src/components/customer-reviews.tsx",
-      "Verified"
-    ],
-    [
-      "client/src/components/customer-reviews.tsx",
-      "What Our Travelers Say"
-    ],
-    [
       "client/src/components/entrance-fees-search.tsx",
       "Clear all"
     ],
     [
       "client/src/components/entrance-fees-search.tsx",
       "Search entrance fees..."
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Abu Simbel, Philae Temple"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Cairo & Giza"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Diving, Sinai Peninsula"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "From ancient pyramids to Red Sea resorts - we cover all major Egyptian destinations"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Mediterranean coast, Library"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Popular Egyptian Destinations"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Pyramids, Sphinx, Islamic Cairo"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Red Sea diving, beaches"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Sharm El Sheikh"
-    ],
-    [
-      "client/src/components/featured-destinations.tsx",
-      "Valley of Kings, Karnak Temple"
     ],
     [
       "client/src/components/founder-block.tsx",

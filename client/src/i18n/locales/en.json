@@ -199,21 +199,6 @@
     "chooseCityToVisit": "Choose a city to visit",
     "recommendedItineraries": "Recommended Itineraries"
   },
-  "transportation": {
-    "transferDropOff": "Transfer & Drop off",
-    "dayTrip": "Day Trip",
-    "overnight": "Overnight Stay",
-    "multiDay": "Multi-Day Tour",
-    "withinCity": "Within City",
-    "betweenCities": "Between Cities",
-    "airport": "Airport",
-    "activity": "Activity",
-    "selectTransportation": "Select transportation...",
-    "selectedRoute": "Selected route",
-    "routeSelected": "1 route selected",
-    "routesSelected": "{{count}} routes selected",
-    "searchRoutes": "Search routes..."
-  },
   "guides": {
     "selectTourGuide": "Select tour guide...",
     "selectedGuide": "{{language}} guide ({{duration}}h)",
@@ -398,24 +383,6 @@
     "cookiePreferences": "Cookie Preferences",
     "operatedBy": "AffordEgypt is operated by Capital Travel Service"
   },
-  "about": {
-    "title": "Why Travel With Us",
-    "description1": "At Afford Egypt, we're a new generation of Egypt travel specialists redefining what budget travel means—transparent, flexible, and rich in experience.",
-    "description2": "Since 2003, we've helped thousands explore the real Egypt with zero hidden fees and maximum peace of mind. From intercity rides to full-day guided adventures, everything is built to fit your plan and your budget.",
-    "description3": "Whether you're navigating the ancient streets of Cairo, sailing down the Nile, or uncovering Luxor's temple secrets, our platform connects you directly to reliable transport, trusted local guides, and essential attractions—all in just a few clicks.",
-    "description4": "Backed by outstanding customer support and built by young people who actually understand modern travelers, Afford Egypt makes exploring Egypt easy, affordable, and unforgettable.",
-    "stats": {
-      "travelers": "5000+ Travelers",
-      "travelersDesc": "Served since 2003",
-      "destinations": "15+ Destinations",
-      "destinationsDesc": "Across Egypt",
-      "support": "24/7 Support",
-      "supportDesc": "During your trip",
-      "guarantee": "100% Guarantee",
-      "guaranteeDesc": "Money back promise"
-    },
-    "cta": "Start Planning"
-  },
   "validation": {
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address",
@@ -428,27 +395,6 @@
     "reviewMin": "Review must be at least 20 characters",
     "enterName": "Please enter your full name",
     "enterPhone": "Please enter your phone number"
-  },
-  "slugs": {
-    "destinations": "destinations",
-    "travel-tips": "travel-tips",
-    "reviews": "reviews",
-    "submit-review": "submit-review",
-    "about": "about",
-    "contact": "contact",
-    "budget-travel-egypt": "budget-travel-egypt",
-    "egyptian-street-food-guide": "egyptian-street-food-guide",
-    "nile-valley-guide": "nile-valley-guide",
-    "sinai-peninsula-guide": "sinai-peninsula-guide",
-    "eastern-western-deserts-guide": "eastern-western-deserts-guide",
-    "cuisine-passport": "cuisine-passport",
-    "booking-agreement": "booking-agreement",
-    "terms-of-service": "terms-of-service",
-    "privacy-policy": "privacy-policy",
-    "cookie-policy": "cookie-policy",
-    "transfers": "transfers",
-    "pricing-tool": "pricing-tool",
-    "attractions": "attractions"
   },
   "reviews": {
     "title": "What Our Travelers Say",
@@ -3147,26 +3093,6 @@
     "buildMyTrip": "Build My Trip",
     "notFoundTitle": "Page Not Found | AffordEgypt",
     "notFoundHeading": "Page not found"
-  },
-  "userNav": {
-    "profile": "Profile",
-    "myBookings": "My Bookings",
-    "adminPanel": "Admin Panel",
-    "logOut": "Log out"
-  },
-  "whatsappWidget": {
-    "replyTime": "Typically replies in minutes",
-    "generalInquiry": "General Inquiry",
-    "getQuote": "Get Quote",
-    "bookingSupport": "Booking Support",
-    "customTrip": "Custom Trip",
-    "msgGeneral": "Hi! I'm interested in planning a trip to Egypt. Can you help me with information about your services?",
-    "msgQuote": "Hello! I'd like to get a quote for my Egypt travel plans. Can we discuss the details?",
-    "msgBooking": "Hi! I need help with my booking. Can you assist me?",
-    "msgCustom": "Hello! I'm looking to plan a custom Egypt itinerary. Can we chat about my requirements?",
-    "msgDefault": "Hello! I have a question about your Egypt travel services.",
-    "startChat": "Start Chat",
-    "intro": "Start a conversation with us on WhatsApp for quick assistance!"
   },
   "pageNames": {
     "home": "Home",
