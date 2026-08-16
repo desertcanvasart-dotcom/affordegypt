@@ -60,75 +60,22 @@ export default function AnimatedReviewCarousel() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-4">
-            {/* Trustpilot Logo */}
-            <div className="hidden sm:flex items-center">
-              <svg width="100" height="20" viewBox="0 0 100 20" fill="none">
-                <rect width="100" height="20" rx="3" fill="#00B67A"/>
-                <text x="6" y="13" fill="white" fontSize="8" fontWeight="600" fontFamily="Arial">
-                  Trustpilot
-                </text>
-                <g transform="translate(65, 5)">
-                  <polygon points="5,0 6.2,3 10,3 7.2,5 8.4,8 5,6 1.6,8 2.8,5 0,3 3.8,3" fill="white"/>
-                  <polygon points="15,0 16.2,3 20,3 17.2,5 18.4,8 15,6 11.6,8 12.8,5 10,3 13.8,3" fill="white"/>
-                  <polygon points="25,0 26.2,3 30,3 27.2,5 28.4,8 25,6 21.6,8 22.8,5 20,3 23.8,3" fill="white"/>
-                </g>
-              </svg>
-            </div>
+          {/* The heading used to be flanked by hand-drawn SVG recreations of the
+              Trustpilot and TripAdvisor logos — <rect> and <text> in each
+              company's trademark green — with a second pair for mobile.
+              Nothing stood behind them: this repo has no integration with
+              either platform, no link to a profile on either, and the reviews
+              below come from our own /api/reviews, whose table has no column
+              recording where a review came from. Two third-party marks were
+              lending their credibility to reviews we collect and publish
+              ourselves. Removed 2026-08-16.
 
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center">
-              {t('reviews.title')}
-            </h2>
+              If AffordEgypt does hold profiles on those platforms, the honest
+              version is a link to them, not a picture of their logo. */}
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
+            {t('reviews.title')}
+          </h2>
 
-            {/* TripAdvisor Logo */}
-            <div className="hidden sm:flex items-center">
-              <svg width="100" height="20" viewBox="0 0 100 20" fill="none">
-                <rect width="100" height="20" rx="3" fill="#00AA6C"/>
-                <text x="6" y="13" fill="white" fontSize="7" fontWeight="600" fontFamily="Arial">
-                  TripAdvisor
-                </text>
-                <g transform="translate(70, 3)">
-                  <circle cx="6" cy="7" r="5" fill="none" stroke="white" strokeWidth="0.8"/>
-                  <circle cx="16" cy="7" r="5" fill="none" stroke="white" strokeWidth="0.8"/>
-                  <circle cx="6" cy="7" r="2" fill="white"/>
-                  <circle cx="16" cy="7" r="2" fill="white"/>
-                  <path d="M1 7 C1 4, 3 2, 6 2 C9 2, 11 4, 11 7" stroke="white" strokeWidth="0.8" fill="none"/>
-                  <path d="M11 7 C11 4, 13 2, 16 2 C19 2, 21 4, 21 7" stroke="white" strokeWidth="0.8" fill="none"/>
-                </g>
-              </svg>
-            </div>
-          </div>
-          
-          {/* Mobile Badge Display */}
-          <div className="flex sm:hidden justify-center gap-4 mb-4">
-            <svg width="80" height="16" viewBox="0 0 80 16" fill="none">
-              <rect width="80" height="16" rx="2" fill="#00B67A"/>
-              <text x="4" y="11" fill="white" fontSize="6" fontWeight="600" fontFamily="Arial">
-                Trustpilot
-              </text>
-              <g transform="translate(50, 3)">
-                <polygon points="4,0 4.8,2.4 8,2.4 5.6,4 6.4,6.4 4,5 1.6,6.4 2.4,4 0,2.4 3.2,2.4" fill="white"/>
-                <polygon points="12,0 12.8,2.4 16,2.4 13.6,4 14.4,6.4 12,5 9.6,6.4 10.4,4 8,2.4 11.2,2.4" fill="white"/>
-                <polygon points="20,0 20.8,2.4 24,2.4 21.6,4 22.4,6.4 20,5 17.6,6.4 18.4,4 16,2.4 19.2,2.4" fill="white"/>
-              </g>
-            </svg>
-            
-            <svg width="80" height="16" viewBox="0 0 80 16" fill="none">
-              <rect width="80" height="16" rx="2" fill="#00AA6C"/>
-              <text x="4" y="11" fill="white" fontSize="5" fontWeight="600" fontFamily="Arial">
-                TripAdvisor
-              </text>
-              <g transform="translate(56, 2)">
-                <circle cx="4" cy="6" r="4" fill="none" stroke="white" strokeWidth="0.6"/>
-                <circle cx="12" cy="6" r="4" fill="none" stroke="white" strokeWidth="0.6"/>
-                <circle cx="4" cy="6" r="1.5" fill="white"/>
-                <circle cx="12" cy="6" r="1.5" fill="white"/>
-                <path d="M0 6 C0 3, 2 1, 4 1 C6 1, 8 3, 8 6" stroke="white" strokeWidth="0.6" fill="none"/>
-                <path d="M8 6 C8 3, 10 1, 12 1 C14 1, 16 3, 16 6" stroke="white" strokeWidth="0.6" fill="none"/>
-              </g>
-            </svg>
-          </div>
-          
           <p className="text-gray-600 text-lg">
             {t('reviews.subtitle')}
           </p>
