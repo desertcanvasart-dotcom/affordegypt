@@ -3835,5 +3835,14 @@
     "dropoff": "Drop-off",
     "eitherDirection": "either direction",
     "anywhereInTown": "anywhere in town"
+  },
+  "founder": {
+    "photoAlt": "Islam, founder of AffordEgypt",
+    "heading": "Hi, I'm Islam — and I built AffordEgypt to fix something I see every day.",
+    "p1": "I grew up in Aswan and have run a licensed Egyptian tour operator since {{year}}. We've taken thousands of travelers across Egypt: backpackers and families, honeymooners and solo first-timers.",
+    "p2": "Here's what I kept noticing: a huge number of travelers were getting priced out of real Egypt by tour operator markup and package bundling they didn't ask for. They'd either book a $4,000 package they couldn't afford, or take their chances with a fly-by-night WhatsApp operator nobody could verify.",
+    "p3": "AffordEgypt is the third option. The same licensed guides we send on our premium tours, the same vehicles, the same standards — stripped down to what you actually need. A private car. A real Egyptologist. And the freedom to add tickets, meals, and experiences only when you want them.",
+    "closing": "Real prices. Real operator behind it. Real Egypt.",
+    "signature": "— Islam"
   }
 }

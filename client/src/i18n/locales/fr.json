@@ -3835,5 +3835,14 @@
     "dropoff": "Dépose",
     "eitherDirection": "dans les deux sens",
     "anywhereInTown": "n'importe où en ville"
+  },
+  "founder": {
+    "photoAlt": "Islam, fondateur d'AffordEgypt",
+    "heading": "Bonjour, je suis Islam — et j'ai créé AffordEgypt pour corriger quelque chose que je vois tous les jours.",
+    "p1": "J'ai grandi à Assouan et je dirige un voyagiste égyptien agréé depuis {{year}}. Nous avons accompagné des milliers de voyageurs à travers l'Égypte : routards et familles, jeunes mariés et primo-visiteurs voyageant seuls.",
+    "p2": "Voici ce que je constatais sans cesse : énormément de voyageurs étaient exclus de la véritable Égypte par les marges des voyagistes et par des forfaits qu'ils n'avaient pas demandés. Soit ils réservaient un forfait à $4,000 qu'ils ne pouvaient pas s'offrir, soit ils tentaient leur chance avec un opérateur WhatsApp éphémère que personne ne pouvait vérifier.",
+    "p3": "AffordEgypt est la troisième option. Les mêmes guides diplômés que nous envoyons sur nos circuits premium, les mêmes véhicules, les mêmes standards — réduits à ce dont vous avez réellement besoin. Une voiture privée. Un véritable égyptologue. Et la liberté d'ajouter billets, repas et expériences uniquement quand vous le souhaitez.",
+    "closing": "Des prix réels. Un vrai opérateur derrière. La vraie Égypte.",
+    "signature": "— Islam"
   }
 }

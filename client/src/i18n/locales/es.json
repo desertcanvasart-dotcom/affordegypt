@@ -3835,5 +3835,14 @@
     "dropoff": "Destino",
     "eitherDirection": "en ambas direcciones",
     "anywhereInTown": "cualquier lugar de la ciudad"
+  },
+  "founder": {
+    "photoAlt": "Islam, fundador de AffordEgypt",
+    "heading": "Hola, soy Islam, y creé AffordEgypt para arreglar algo que veo todos los días.",
+    "p1": "Crecí en Asuán y dirijo un turoperador egipcio con licencia desde {{year}}. Hemos llevado a miles de viajeros por todo Egipto: mochileros y familias, parejas en luna de miel y viajeros que vienen solos por primera vez.",
+    "p2": "Esto es lo que no dejaba de ver: muchísimos viajeros quedaban fuera del Egipto real por los márgenes de los turoperadores y por paquetes que nunca habían pedido. O reservaban un paquete de $4,000 que no podían permitirse, o se jugaban la suerte con un operador de WhatsApp efímero que nadie podía verificar.",
+    "p3": "AffordEgypt es la tercera opción. Los mismos guías licenciados que enviamos en nuestros tours premium, los mismos vehículos, los mismos estándares, reducidos a lo que realmente necesitas. Un coche privado. Un egiptólogo de verdad. Y la libertad de añadir entradas, comidas y experiencias solo cuando tú quieras.",
+    "closing": "Precios reales. Un operador real detrás. El Egipto real.",
+    "signature": "— Islam"
   }
 }

@@ -3835,5 +3835,14 @@
     "dropoff": "Ziel",
     "eitherDirection": "in beide Richtungen",
     "anywhereInTown": "überall in der Stadt"
+  },
+  "founder": {
+    "photoAlt": "Islam, Gründer von AffordEgypt",
+    "heading": "Hallo, ich bin Islam — und ich habe AffordEgypt gegründet, um etwas zu ändern, das ich jeden Tag sehe.",
+    "p1": "Ich bin in Assuan aufgewachsen und führe seit {{year}} einen lizenzierten ägyptischen Reiseveranstalter. Wir haben Tausende von Reisenden durch Ägypten begleitet: Rucksackreisende und Familien, Hochzeitsreisende und Alleinreisende beim ersten Besuch.",
+    "p2": "Das ist mir immer wieder aufgefallen: Sehr viele Reisende wurden durch Veranstalter-Aufschläge und durch Pakete, nach denen sie nie gefragt hatten, vom echten Ägypten ausgeschlossen. Entweder buchten sie ein Paket für $4,000, das sie sich nicht leisten konnten, oder sie versuchten ihr Glück bei einem kurzlebigen WhatsApp-Anbieter, den niemand überprüfen konnte.",
+    "p3": "AffordEgypt ist die dritte Option. Dieselben lizenzierten Reiseleiter, die wir auf unseren Premium-Touren einsetzen, dieselben Fahrzeuge, dieselben Standards — reduziert auf das, was Sie wirklich brauchen. Ein Privatwagen. Ein echter Ägyptologe. Und die Freiheit, Tickets, Mahlzeiten und Erlebnisse nur dann hinzuzufügen, wenn Sie es möchten.",
+    "closing": "Echte Preise. Ein echter Veranstalter dahinter. Das echte Ägypten.",
+    "signature": "— Islam"
   }
 }
