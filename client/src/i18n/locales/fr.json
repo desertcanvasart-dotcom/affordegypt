@@ -2077,7 +2077,9 @@
       "chooseServiceDesc": "Choisissez guide seul, voiture seule ou la formule combinée selon vos besoins",
       "featLicensedEgyptologist": "Égyptologue diplômé",
       "featFluentEnglishArabic": "Anglais et arabe courants",
-      "featHistoricalExpertise": "Expertise historique"
+      "featHistoricalExpertise": "Expertise historique",
+      "seoTitle": "Guide Touristique Privé et Voiture au Caire | À partir de {{price}}/jour",
+      "seoDescription": "Égyptologue diplômé et voiture privée au Caire à partir de {{price}}/jour. Gizeh, le Musée égyptien et le Caire islamique. Les billets d'entrée sont facturés séparément."
     },
     "luxor": {
       "title": "Services Voiture et Guide Touristique à Louxor | AffordEgypt",
@@ -2131,7 +2133,9 @@
       "featBothBanks": "Les deux rives incluses",
       "featPremiumVehicle": "Véhicule haut de gamme",
       "featExpertDriverGuide": "Chauffeur-guide expert",
-      "featFlexibleTempleVisits": "Visites de temples flexibles"
+      "featFlexibleTempleVisits": "Visites de temples flexibles",
+      "seoTitle": "Guide Touristique Privé et Voiture à Louxor | À partir de {{price}}/jour",
+      "seoDescription": "Égyptologue diplômé et voiture privée à Louxor à partir de {{price}}/jour. Karnak, la Vallée des Rois et les deux rives. Les billets d'entrée sont facturés séparément."
     },
     "aswan": {
       "title": "Services Voiture et Guide Touristique à Assouan | AffordEgypt",
@@ -2185,7 +2189,9 @@
       "featPhilaeTour": "Visite du temple de Philae",
       "featLongDistanceVehicle": "Véhicule longue distance",
       "featExpertGuide": "Guide expert",
-      "featUnescoSpecialist": "Spécialiste des sites UNESCO"
+      "featUnescoSpecialist": "Spécialiste des sites UNESCO",
+      "seoTitle": "Guide Touristique Privé et Voiture à Assouan | À partir de {{price}}/jour",
+      "seoDescription": "Égyptologue diplômé et voiture privée à Assouan à partir de {{price}}/jour. Philae, le Haut Barrage et les villages nubiens. Les billets d'entrée sont facturés séparément."
     }
   },
   "contactPage": {

@@ -2077,7 +2077,9 @@
       "chooseServiceDesc": "Select guide only, car only, or combined package based on your needs",
       "featLicensedEgyptologist": "Licensed Egyptologist",
       "featFluentEnglishArabic": "Fluent English/Arabic",
-      "featHistoricalExpertise": "Historical expertise"
+      "featHistoricalExpertise": "Historical expertise",
+      "seoTitle": "Cairo Private Tour Guide & Car | From {{price}}/day",
+      "seoDescription": "Private licensed Egyptologist and car in Cairo from {{price}}/day. Giza, the Egyptian Museum and Islamic Cairo. Entrance tickets are billed separately."
     },
     "luxor": {
       "title": "Luxor Car & Tour Guide Services - Temple Tours | AffordEgypt",
@@ -2131,7 +2133,9 @@
       "featBothBanks": "Both banks covered",
       "featPremiumVehicle": "Premium vehicle",
       "featExpertDriverGuide": "Expert driver-guide",
-      "featFlexibleTempleVisits": "Flexible temple visits"
+      "featFlexibleTempleVisits": "Flexible temple visits",
+      "seoTitle": "Luxor Private Tour Guide & Car | From {{price}}/day",
+      "seoDescription": "Private licensed Egyptologist and car in Luxor from {{price}}/day. Karnak, the Valley of the Kings and both banks. Entrance tickets are billed separately."
     },
     "aswan": {
       "title": "Aswan Car & Tour Guide Services - Nubian Culture Tours | AffordEgypt",
@@ -2185,7 +2189,9 @@
       "featPhilaeTour": "Philae Temple tour",
       "featLongDistanceVehicle": "Long-distance vehicle",
       "featExpertGuide": "Expert guide",
-      "featUnescoSpecialist": "UNESCO site specialist"
+      "featUnescoSpecialist": "UNESCO site specialist",
+      "seoTitle": "Aswan Private Tour Guide & Car | From {{price}}/day",
+      "seoDescription": "Private licensed Egyptologist and car in Aswan from {{price}}/day. Philae, the High Dam and Nubian villages. Entrance tickets are billed separately."
     }
   },
   "contactPage": {

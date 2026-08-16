@@ -34,11 +34,19 @@ export function formatLE(key: ServiceKey): string {
   return n === null ? '—' : `LE ${groupDigits(n)}`;
 }
 
-/** `"LE 5,625/day"`. */
-export function formatLEPerDay(key: ServiceKey): string {
-  const n = priceOf(key);
-  return n === null ? '—' : `LE ${groupDigits(n)}/day`;
-}
+/*
+ * There was a formatLEPerDay() here returning `"LE 5,625/day"`.
+ *
+ * It is gone deliberately: the "/day" was English baked into a helper, so
+ * every caller that put its result into a translated sentence produced
+ * "LE 5,450/day" inside German and French copy. Its callers were the homepage
+ * meta description and the three guide-service page titles — all now using
+ * formatLE() and letting each locale supply "/day", "/día", "/jour", "/Tag".
+ *
+ * Format a price with a unit by interpolating formatLE() into a translated
+ * string. Do not add a helper that concatenates a unit here; this file cannot
+ * know what language it is being rendered into.
+ */
 
 /** `"5,625 EGP"` — the order used inside the service cards. */
 export function formatEGPPlain(key: ServiceKey): string {

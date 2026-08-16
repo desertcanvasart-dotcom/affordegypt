@@ -2077,7 +2077,9 @@
       "chooseServiceDesc": "Elige solo guía, solo coche o el paquete combinado según lo que necesites",
       "featLicensedEgyptologist": "Egiptólogo titulado",
       "featFluentEnglishArabic": "Inglés y árabe fluidos",
-      "featHistoricalExpertise": "Experiencia histórica"
+      "featHistoricalExpertise": "Experiencia histórica",
+      "seoTitle": "Guía Turístico Privado y Coche en El Cairo | Desde {{price}}/día",
+      "seoDescription": "Egiptólogo licenciado y coche privado en El Cairo desde {{price}}/día. Giza, el Museo Egipcio y El Cairo islámico. Las entradas se facturan por separado."
     },
     "luxor": {
       "title": "Servicios de Auto y Guía Turístico en Luxor | AffordEgypt",
@@ -2131,7 +2133,9 @@
       "featBothBanks": "Ambas orillas incluidas",
       "featPremiumVehicle": "Vehículo prémium",
       "featExpertDriverGuide": "Conductor-guía experto",
-      "featFlexibleTempleVisits": "Visitas a templos flexibles"
+      "featFlexibleTempleVisits": "Visitas a templos flexibles",
+      "seoTitle": "Guía Turístico Privado y Coche en Luxor | Desde {{price}}/día",
+      "seoDescription": "Egiptólogo licenciado y coche privado en Luxor desde {{price}}/día. Karnak, el Valle de los Reyes y ambas orillas. Las entradas se facturan por separado."
     },
     "aswan": {
       "title": "Servicios de Auto y Guía Turístico en Asuán | AffordEgypt",
@@ -2185,7 +2189,9 @@
       "featPhilaeTour": "Visita al templo de Filae",
       "featLongDistanceVehicle": "Vehículo de largo recorrido",
       "featExpertGuide": "Guía experto",
-      "featUnescoSpecialist": "Especialista en sitios UNESCO"
+      "featUnescoSpecialist": "Especialista en sitios UNESCO",
+      "seoTitle": "Guía Turístico Privado y Coche en Asuán | Desde {{price}}/día",
+      "seoDescription": "Egiptólogo licenciado y coche privado en Asuán desde {{price}}/día. File, la Presa Alta y aldeas nubias. Las entradas se facturan por separado."
     }
   },
   "contactPage": {

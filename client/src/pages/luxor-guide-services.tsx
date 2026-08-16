@@ -1,6 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -114,8 +114,14 @@ export default function LuxorGuideServices() {
   return (
     <>
       <SeoMeta
-        title={`Luxor Private Tour Guide & Car | From ${formatLEPerDay("luxor-guide-car")}`}
-        description={`Private licensed Egyptologist and car in Luxor from ${formatLEPerDay("luxor-guide-car")}. Karnak, the Valley of the Kings and both banks. Entrance tickets billed separately.`}
+        // Price interpolated without its unit: each locale supplies "/day",
+        // "/día", "/jour", "/Tag", the way heroSubtitle below already does.
+        title={t("guideServices.luxor.seoTitle", {
+          interpolation: { price: formatLE("luxor-guide-car") },
+        })}
+        description={t("guideServices.luxor.seoDescription", {
+          interpolation: { price: formatLE("luxor-guide-car") },
+        })}
         canonical="https://affordegypt.com/luxor-car-tour-guide-services"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/luxor-car-tour-guide-services")!)]}
       />

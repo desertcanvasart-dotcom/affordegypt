@@ -1,6 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -114,8 +114,14 @@ export default function CairoGuideServices() {
   return (
     <>
       <SeoMeta
-        title={`Cairo Private Tour Guide & Car | From ${formatLEPerDay("cairo-guide-car")}`}
-        description={`Private licensed Egyptologist and car in Cairo from ${formatLEPerDay("cairo-guide-car")}. Giza, the Egyptian Museum and Islamic Cairo. Entrance tickets billed separately.`}
+        // Price interpolated without its unit: each locale supplies "/day",
+        // "/día", "/jour", "/Tag", the way heroSubtitle below already does.
+        title={t("guideServices.cairo.seoTitle", {
+          interpolation: { price: formatLE("cairo-guide-car") },
+        })}
+        description={t("guideServices.cairo.seoDescription", {
+          interpolation: { price: formatLE("cairo-guide-car") },
+        })}
         canonical="https://affordegypt.com/cairo-car-tour-guide-services"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/cairo-car-tour-guide-services")!)]}
       />

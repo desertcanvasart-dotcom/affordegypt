@@ -1,6 +1,6 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -114,8 +114,14 @@ export default function AswanGuideServices() {
   return (
     <>
       <SeoMeta
-        title={`Aswan Private Tour Guide & Car | From ${formatLEPerDay("aswan-guide-car")}`}
-        description={`Private licensed Egyptologist and car in Aswan from ${formatLEPerDay("aswan-guide-car")}. Philae, the High Dam and Nubian villages. Entrance tickets billed separately.`}
+        // Price interpolated without its unit: each locale supplies "/day",
+        // "/día", "/jour", "/Tag", the way heroSubtitle below already does.
+        title={t("guideServices.aswan.seoTitle", {
+          interpolation: { price: formatLE("aswan-guide-car") },
+        })}
+        description={t("guideServices.aswan.seoDescription", {
+          interpolation: { price: formatLE("aswan-guide-car") },
+        })}
         canonical="https://affordegypt.com/aswan-car-tour-guide-services"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/aswan-car-tour-guide-services")!)]}
       />

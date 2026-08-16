@@ -42,10 +42,12 @@ const FAQ_LINK_HREFS: Partial<Record<(typeof FAQ_IDS)[number], string[]>> = {
  * switches language. home.tsx calls this too, to build the FAQPage JSON-LD
  * from exactly the text on screen.
  *
- * The floor price is interpolated WITHOUT its unit — `formatLE`, not
- * `formatLEPerDay` — so each language supplies its own "/day", "/día",
- * "/jour", "/Tag". It still comes from the build-time pricing snapshot, so the
- * FAQ cannot quote a rate the pricing engine no longer charges.
+ * The floor price is interpolated WITHOUT its unit, so each language supplies
+ * its own "/day", "/día", "/jour", "/Tag". This was the first place to get it
+ * right; the helper that appended an English "/day" has since been removed
+ * from service-pricing.ts along with its last callers. The figure still comes
+ * from the build-time pricing snapshot, so the FAQ cannot quote a rate the
+ * pricing engine no longer charges.
  */
 export function buildHomepageFaqs(
   t: (key: string, opts?: Record<string, unknown>) => any,

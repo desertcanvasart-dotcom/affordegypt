@@ -2077,7 +2077,9 @@
       "chooseServiceDesc": "Wählen Sie nur Guide, nur Fahrzeug oder das Kombipaket — ganz nach Bedarf",
       "featLicensedEgyptologist": "Lizenzierter Ägyptologe",
       "featFluentEnglishArabic": "Fließend Englisch und Arabisch",
-      "featHistoricalExpertise": "Historische Fachkenntnis"
+      "featHistoricalExpertise": "Historische Fachkenntnis",
+      "seoTitle": "Privater Reiseführer & Auto in Kairo | Ab {{price}}/Tag",
+      "seoDescription": "Lizenzierter Ägyptologe und Privatwagen in Kairo ab {{price}}/Tag. Gizeh, das Ägyptische Museum und Islamisches Kairo. Eintrittskarten werden separat berechnet."
     },
     "luxor": {
       "title": "Luxor Auto & Reiseführer-Services | AffordEgypt",
@@ -2131,7 +2133,9 @@
       "featBothBanks": "Beide Ufer inbegriffen",
       "featPremiumVehicle": "Premium-Fahrzeug",
       "featExpertDriverGuide": "Erfahrener Fahrer-Guide",
-      "featFlexibleTempleVisits": "Flexible Tempelbesuche"
+      "featFlexibleTempleVisits": "Flexible Tempelbesuche",
+      "seoTitle": "Privater Reiseführer & Auto in Luxor | Ab {{price}}/Tag",
+      "seoDescription": "Lizenzierter Ägyptologe und Privatwagen in Luxor ab {{price}}/Tag. Karnak, das Tal der Könige und beide Nilufer. Eintrittskarten werden separat berechnet."
     },
     "aswan": {
       "title": "Assuan Auto- & Reiseführer-Services – Touren zur nubischen Kultur | AffordEgypt",
@@ -2185,7 +2189,9 @@
       "featPhilaeTour": "Besuch des Philae-Tempels",
       "featLongDistanceVehicle": "Langstreckenfahrzeug",
       "featExpertGuide": "Erfahrener Guide",
-      "featUnescoSpecialist": "Spezialist für UNESCO-Stätten"
+      "featUnescoSpecialist": "Spezialist für UNESCO-Stätten",
+      "seoTitle": "Privater Reiseführer & Auto in Assuan | Ab {{price}}/Tag",
+      "seoDescription": "Lizenzierter Ägyptologe und Privatwagen in Assuan ab {{price}}/Tag. Philae, der Assuan-Hochdamm und nubische Dörfer. Eintrittskarten werden separat berechnet."
     }
   },
   "contactPage": {
