@@ -175,6 +175,55 @@ export function languageOfSlug(slug: string): SupportedLanguage | null {
   return claimants.length === 1 ? claimants[0] : null;
 }
 
+/**
+ * The canonical URL a page should declare for the language it is being served
+ * in.
+ *
+ * Pages pass their English canonical as a literal. Once the translated slugs
+ * became real routes that was actively harmful: /reiseziele declared
+ * <link rel="canonical" href=".../destinations">, which tells Google the German
+ * page is a duplicate of the English one and to drop it — taking the hreflang
+ * alternates down with it, since an alternate has to be self-canonical to
+ * count. Every translated page was doing this.
+ *
+ * So when the current path is a translated variant of the same page, the
+ * canonical follows it. Anything else — a path that is not a translated
+ * sibling, an unknown slug, a malformed URL — is returned untouched, because
+ * guessing is worse than the caller's explicit value.
+ */
+export function canonicalForPath(canonical: string, pathname: string): string {
+  let url: URL;
+  try {
+    url = new URL(canonical);
+  } catch {
+    return canonical;
+  }
+
+  const canonicalSlug = url.pathname.split("/")[1] ?? "";
+  let currentSlug = pathname.split("/")[1] ?? "";
+  try {
+    currentSlug = decodeURIComponent(currentSlug);
+  } catch {
+    /* keep the raw form; it will simply not match */
+  }
+  if (!canonicalSlug || !currentSlug || currentSlug === canonicalSlug) return canonical;
+
+  // Same page, another language? Find the English key the canonical names, and
+  // check the current slug is one of that key's translations.
+  const enKey = Object.entries(SLUG_MAPPINGS.en).find(
+    ([, slug]) => slug === canonicalSlug,
+  )?.[0];
+  if (!enKey) return canonical;
+
+  const isSibling = (Object.keys(SLUG_MAPPINGS) as SupportedLanguage[]).some(
+    (lang) => SLUG_MAPPINGS[lang][enKey] === currentSlug,
+  );
+  if (!isSibling) return canonical;
+
+  url.pathname = `/${currentSlug}`;
+  return url.toString();
+}
+
 export function isKnownPublicPath(rawPath: string): boolean {
   let pathname = rawPath.split("?")[0].split("#")[0];
   try {

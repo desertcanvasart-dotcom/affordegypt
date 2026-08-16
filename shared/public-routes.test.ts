@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { SLUG_MAPPINGS, languageOfSlug, type SupportedLanguage } from "./public-routes";
+import {
+  SLUG_MAPPINGS,
+  languageOfSlug,
+  canonicalForPath,
+  type SupportedLanguage,
+} from "./public-routes";
 
 const LANGS = Object.keys(SLUG_MAPPINGS) as SupportedLanguage[];
 
@@ -66,5 +71,61 @@ describe("translated slugs", () => {
       "destinations:en/fr",
       "transfers:en/de",
     ]);
+  });
+});
+
+/**
+ * Every hreflang alternate must be self-canonical or Google discards it. The
+ * pages hardcode their English canonical, so a translated route has to rewrite
+ * it — otherwise /reiseziele tells Google it is a duplicate of /destinations
+ * and the German page never gets indexed at all.
+ */
+describe("canonicalForPath", () => {
+  const SITE = "https://affordegypt.com";
+
+  it("follows the path to the same page in another language", () => {
+    expect(canonicalForPath(`${SITE}/destinations`, "/reiseziele")).toBe(
+      `${SITE}/reiseziele`,
+    );
+    expect(canonicalForPath(`${SITE}/travel-tips`, "/conseils-voyage")).toBe(
+      `${SITE}/conseils-voyage`,
+    );
+  });
+
+  it("decodes a percent-encoded path", () => {
+    expect(canonicalForPath(`${SITE}/reviews`, "/rese%C3%B1as")).toBe(
+      `${SITE}/rese%C3%B1as`,
+    );
+  });
+
+  it("leaves the canonical alone when the path is the same page", () => {
+    expect(canonicalForPath(`${SITE}/destinations`, "/destinations")).toBe(
+      `${SITE}/destinations`,
+    );
+  });
+
+  it("refuses to rewrite across different pages", () => {
+    // /reisetipps is a real slug, but it is not a translation of destinations.
+    expect(canonicalForPath(`${SITE}/destinations`, "/reisetipps")).toBe(
+      `${SITE}/destinations`,
+    );
+    expect(canonicalForPath(`${SITE}/destinations`, "/not-a-page")).toBe(
+      `${SITE}/destinations`,
+    );
+  });
+
+  it("survives a canonical that is not a URL", () => {
+    expect(canonicalForPath("not a url", "/reiseziele")).toBe("not a url");
+  });
+
+  it("gives every translated route a self-referencing canonical", () => {
+    for (const lang of LANGS) {
+      for (const [enKey, slug] of Object.entries(SLUG_MAPPINGS[lang])) {
+        const english = `${SITE}/${SLUG_MAPPINGS.en[enKey]}`;
+        expect(canonicalForPath(english, `/${slug}`), `${lang} ${slug}`).toBe(
+          `${SITE}/${encodeURI(slug).replace(/%25/g, "%")}`,
+        );
+      }
+    }
   });
 });

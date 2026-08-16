@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { MULTILINGUAL_ENABLED } from "@/config/features";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsent from "@/components/cookie-consent";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -301,7 +300,6 @@ function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <HelmetProvider>
           <AuthProvider>
             <TooltipProvider>
               <ClientOnly>
@@ -335,7 +333,6 @@ function App() {
               </div>
             </TooltipProvider>
           </AuthProvider>
-        </HelmetProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );

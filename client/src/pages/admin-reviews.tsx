@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/seo-meta";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import ReviewUpload from "@/components/review-upload";
 import { Button } from "@/components/ui/button";
@@ -97,10 +97,11 @@ export default function AdminReviews() {
 
   return (
     <>
-      <Helmet>
-        <title>Admin - Review Management | Afford Egypt</title>
-        <meta name="description" content="Manage customer reviews for Afford Egypt travel services." />
-      </Helmet>
+      <SeoMeta
+        title="Admin - Review Management | Afford Egypt"
+        description="Manage customer reviews for Afford Egypt travel services."
+        noindex
+      />
 
       <div className="min-h-screen bg-gray-50">
         <div className="py-8">
