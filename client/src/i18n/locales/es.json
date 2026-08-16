@@ -2903,7 +2903,11 @@
     "breadcrumbAria": "Ruta de navegación",
     "buildMyTrip": "Crear mi viaje",
     "notFoundTitle": "Página no encontrada | AffordEgypt",
-    "notFoundHeading": "Página no encontrada"
+    "notFoundHeading": "Página no encontrada",
+    "operatedBy": "Operado por {{operator}}",
+    "licensedSince": "Con licencia desde {{year}}",
+    "travellersServed": "{{travellers}} viajeros por todo Egipto",
+    "whatsappCta": "Escríbenos"
   },
   "pageNames": {
     "home": "Inicio",

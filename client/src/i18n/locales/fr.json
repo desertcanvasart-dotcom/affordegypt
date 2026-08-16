@@ -2903,7 +2903,11 @@
     "breadcrumbAria": "Fil d'Ariane",
     "buildMyTrip": "Composer mon voyage",
     "notFoundTitle": "Page introuvable | AffordEgypt",
-    "notFoundHeading": "Page introuvable"
+    "notFoundHeading": "Page introuvable",
+    "operatedBy": "Exploité par {{operator}}",
+    "licensedSince": "Agréé depuis {{year}}",
+    "travellersServed": "{{travellers}} voyageurs à travers l'Égypte",
+    "whatsappCta": "Écrivez-nous"
   },
   "pageNames": {
     "home": "Accueil",

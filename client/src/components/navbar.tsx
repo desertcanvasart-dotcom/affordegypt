@@ -129,7 +129,8 @@ export default function Navbar() {
             {/* Sourced from OPERATOR rather than retyped: this line names the
                 legal entity and licence number. */}
             <div className={`hidden lg:block mt-1.5 text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
-              Operated by {OPERATOR.legalName} · {OPERATOR.etaaLicence}
+              {t('chrome.operatedBy', { operator: OPERATOR.legalName })} ·{' '}
+              {OPERATOR.etaaLicence}
             </div>
           </div>
 

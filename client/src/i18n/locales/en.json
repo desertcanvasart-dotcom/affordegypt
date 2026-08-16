@@ -2903,7 +2903,11 @@
     "breadcrumbAria": "Breadcrumb",
     "buildMyTrip": "Build My Trip",
     "notFoundTitle": "Page Not Found | AffordEgypt",
-    "notFoundHeading": "Page not found"
+    "notFoundHeading": "Page not found",
+    "operatedBy": "Operated by {{operator}}",
+    "licensedSince": "Licensed since {{year}}",
+    "travellersServed": "{{travellers}} travellers across Egypt",
+    "whatsappCta": "WhatsApp Us"
   },
   "pageNames": {
     "home": "Home",
