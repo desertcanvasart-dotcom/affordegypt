@@ -165,10 +165,6 @@
       "Street Food"
     ],
     [
-      "client/src/pages/destinations.tsx",
-      "Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
-    ],
-    [
       "client/src/pages/egyptian-street-food-guide.tsx",
       "Egyptian Street Food Guide | What to Eat & Where"
     ],
@@ -219,26 +215,6 @@
     [
       "client/src/pages/reviews.tsx",
       "MMM yyyy"
-    ],
-    [
-      "client/src/pages/sinai-peninsula-guide.tsx",
-      "Bedouin Desert Culture"
-    ],
-    [
-      "client/src/pages/sinai-peninsula-guide.tsx",
-      "Biblical Mount Sinai"
-    ],
-    [
-      "client/src/pages/sinai-peninsula-guide.tsx",
-      "From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai."
-    ],
-    [
-      "client/src/pages/sinai-peninsula-guide.tsx",
-      "Red Sea Diving Paradise"
-    ],
-    [
-      "client/src/pages/sinai-peninsula-guide.tsx",
-      "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
     ],
     [
       "client/src/pages/terms-of-service.tsx",
