@@ -318,7 +318,6 @@ List + manage all bookings.
 | AboutSection | `about-section.tsx` | About-page content block |
 | ContactSection | `contact-section.tsx` | Contact-page form |
 | BlogGrid | `blog-grid.tsx` | Long-form guide cards |
-| ServiceOverview | `service-overview.tsx` | Service cards block |
 | FeaturedDestinations | `featured-destinations.tsx` | Destination cards |
 | AnimatedReviewCarousel | `animated-review-carousel.tsx` | Auto-scroll reviews |
 | CustomerReviews | `customer-reviews.tsx` | Static reviews grid |
