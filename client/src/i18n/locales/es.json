@@ -243,7 +243,37 @@
   },
   "addons": {
     "selectAddOns": "Seleccionar complementos...",
-    "addOnsSelected": "{{count}} complementos seleccionados ({{items}} artículos)"
+    "addOnsSelected": "{{count}} complementos seleccionados ({{items}} artículos)",
+    "headingForCity": "Extras para {{city}}",
+    "selectedCount": "{{count}} seleccionados",
+    "clearAll": "Borrar todo",
+    "searchPlaceholder": "Buscar extras...",
+    "allCategories": "Todos",
+    "quantity": "Cantidad:",
+    "done": "Listo",
+    "doneWith": "Listo ({{count}} seleccionados)",
+    "tabs": {
+      "perPersonTrip": "Por persona/viaje ({{count}})",
+      "perUnit": "Por unidad ({{count}})"
+    },
+    "empty": {
+      "perPerson": "No hay extras por persona disponibles",
+      "perUnit": "No hay extras por unidad disponibles",
+      "noMatch": "No se encontraron extras que coincidan con tus criterios"
+    },
+    "unitTypes": {
+      "per_person": "Por persona",
+      "per_trip": "Por viaje",
+      "per_unit": "Por unidad"
+    },
+    "categories": {
+      "Dinner": "Cena",
+      "Lunch": "Almuerzo",
+      "Felucca Ride": "Paseo en faluca",
+      "Horse Carriage": "Coche de caballos",
+      "Sunrise-Baloon Ride": "Vuelo en globo al amanecer",
+      "Post-Sunrise-Balloon Ride": "Vuelo en globo tras el amanecer"
+    }
   },
   "attractions": {
     "cairo": {

@@ -1,26 +1,6 @@
 {
   "allowed": [
     [
-      "client/src/components/addons-search.tsx",
-      "Clear All"
-    ],
-    [
-      "client/src/components/addons-search.tsx",
-      "No add-ons found matching your criteria"
-    ],
-    [
-      "client/src/components/addons-search.tsx",
-      "No per-person add-ons available"
-    ],
-    [
-      "client/src/components/addons-search.tsx",
-      "No per-unit add-ons available"
-    ],
-    [
-      "client/src/components/addons-search.tsx",
-      "Search add-ons..."
-    ],
-    [
       "client/src/components/animated-review-carousel.tsx",
       "Trustpilot"
     ],

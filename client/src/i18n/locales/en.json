@@ -243,7 +243,37 @@
   },
   "addons": {
     "selectAddOns": "Select add-ons...",
-    "addOnsSelected": "{{count}} add-ons selected ({{items}} items)"
+    "addOnsSelected": "{{count}} add-ons selected ({{items}} items)",
+    "headingForCity": "Add-ons for {{city}}",
+    "selectedCount": "{{count}} selected",
+    "clearAll": "Clear All",
+    "searchPlaceholder": "Search add-ons...",
+    "allCategories": "All",
+    "quantity": "Quantity:",
+    "done": "Done",
+    "doneWith": "Done ({{count}} selected)",
+    "tabs": {
+      "perPersonTrip": "Per Person/Trip ({{count}})",
+      "perUnit": "Per Unit ({{count}})"
+    },
+    "empty": {
+      "perPerson": "No per-person add-ons available",
+      "perUnit": "No per-unit add-ons available",
+      "noMatch": "No add-ons found matching your criteria"
+    },
+    "unitTypes": {
+      "per_person": "Per Person",
+      "per_trip": "Per Trip",
+      "per_unit": "Per Unit"
+    },
+    "categories": {
+      "Dinner": "Dinner",
+      "Lunch": "Lunch",
+      "Felucca Ride": "Felucca Ride",
+      "Horse Carriage": "Horse Carriage",
+      "Sunrise-Baloon Ride": "Sunrise Balloon Ride",
+      "Post-Sunrise-Balloon Ride": "Post-Sunrise Balloon Ride"
+    }
   },
   "attractions": {
     "cairo": {

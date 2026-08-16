@@ -243,7 +243,37 @@
   },
   "addons": {
     "selectAddOns": "Sélectionner services...",
-    "addOnsSelected": "{{count}} services sélectionnés ({{items}} articles)"
+    "addOnsSelected": "{{count}} services sélectionnés ({{items}} articles)",
+    "headingForCity": "Options pour {{city}}",
+    "selectedCount": "{{count}} sélectionnées",
+    "clearAll": "Tout effacer",
+    "searchPlaceholder": "Rechercher des options...",
+    "allCategories": "Toutes",
+    "quantity": "Quantité :",
+    "done": "Terminé",
+    "doneWith": "Terminé ({{count}} sélectionnées)",
+    "tabs": {
+      "perPersonTrip": "Par personne/voyage ({{count}})",
+      "perUnit": "Par unité ({{count}})"
+    },
+    "empty": {
+      "perPerson": "Aucune option par personne disponible",
+      "perUnit": "Aucune option par unité disponible",
+      "noMatch": "Aucune option ne correspond à vos critères"
+    },
+    "unitTypes": {
+      "per_person": "Par personne",
+      "per_trip": "Par voyage",
+      "per_unit": "Par unité"
+    },
+    "categories": {
+      "Dinner": "Dîner",
+      "Lunch": "Déjeuner",
+      "Felucca Ride": "Balade en felouque",
+      "Horse Carriage": "Calèche",
+      "Sunrise-Baloon Ride": "Vol en montgolfière au lever du soleil",
+      "Post-Sunrise-Balloon Ride": "Vol en montgolfière après le lever du soleil"
+    }
   },
   "attractions": {
     "cairo": {
