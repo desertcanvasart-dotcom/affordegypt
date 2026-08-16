@@ -3844,5 +3844,20 @@
     "p3": "AffordEgypt es la tercera opción. Los mismos guías licenciados que enviamos en nuestros tours premium, los mismos vehículos, los mismos estándares, reducidos a lo que realmente necesitas. Un coche privado. Un egiptólogo de verdad. Y la libertad de añadir entradas, comidas y experiencias solo cuando tú quieras.",
     "closing": "Precios reales. Un operador real detrás. El Egipto real.",
     "signature": "— Islam"
+  },
+  "verifyEmail": {
+    "titleVerifying": "Verificando tu correo",
+    "titleSuccess": "¡Correo verificado!",
+    "titleFailed": "Verificación fallida",
+    "noToken": "El enlace de verificación no es válido. Revisa tu correo para encontrar el enlace correcto.",
+    "success": "¡Correo verificado correctamente! Ya puedes acceder a todas las funciones.",
+    "failed": "Ese enlace de verificación no es válido o ha caducado. Solicita uno nuevo abajo.",
+    "error": "Se produjo un error durante la verificación. Inténtalo de nuevo.",
+    "redirecting": "Redirigiendo a la página de inicio de sesión...",
+    "resendCta": "Reenviar correo de verificación",
+    "resendNoEmail": "No se puede reenviar. Regístrate de nuevo.",
+    "resendSent": "¡Correo de verificación reenviado! Revisa tu bandeja de entrada.",
+    "resendFailed": "No se pudo reenviar el correo. Inténtalo más tarde.",
+    "goToLogin": "Ir a iniciar sesión"
   }
 }

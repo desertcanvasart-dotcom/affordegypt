@@ -3844,5 +3844,20 @@
     "p3": "AffordEgypt est la troisième option. Les mêmes guides diplômés que nous envoyons sur nos circuits premium, les mêmes véhicules, les mêmes standards — réduits à ce dont vous avez réellement besoin. Une voiture privée. Un véritable égyptologue. Et la liberté d'ajouter billets, repas et expériences uniquement quand vous le souhaitez.",
     "closing": "Des prix réels. Un vrai opérateur derrière. La vraie Égypte.",
     "signature": "— Islam"
+  },
+  "verifyEmail": {
+    "titleVerifying": "Vérification de votre e-mail",
+    "titleSuccess": "E-mail vérifié !",
+    "titleFailed": "Échec de la vérification",
+    "noToken": "Ce lien de vérification n'est pas valide. Consultez votre e-mail pour retrouver le bon lien.",
+    "success": "E-mail vérifié avec succès ! Vous avez désormais accès à toutes les fonctionnalités.",
+    "failed": "Ce lien de vérification n'est pas valide ou a expiré. Demandez-en un nouveau ci-dessous.",
+    "error": "Une erreur s'est produite lors de la vérification. Veuillez réessayer.",
+    "redirecting": "Redirection vers la page de connexion...",
+    "resendCta": "Renvoyer l'e-mail de vérification",
+    "resendNoEmail": "Impossible de renvoyer. Veuillez vous inscrire à nouveau.",
+    "resendSent": "E-mail de vérification renvoyé ! Vérifiez votre boîte de réception.",
+    "resendFailed": "Échec de l'envoi. Veuillez réessayer plus tard.",
+    "goToLogin": "Aller à la connexion"
   }
 }

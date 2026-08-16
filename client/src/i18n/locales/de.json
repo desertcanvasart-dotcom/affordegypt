@@ -3844,5 +3844,20 @@
     "p3": "AffordEgypt ist die dritte Option. Dieselben lizenzierten Reiseleiter, die wir auf unseren Premium-Touren einsetzen, dieselben Fahrzeuge, dieselben Standards — reduziert auf das, was Sie wirklich brauchen. Ein Privatwagen. Ein echter Ägyptologe. Und die Freiheit, Tickets, Mahlzeiten und Erlebnisse nur dann hinzuzufügen, wenn Sie es möchten.",
     "closing": "Echte Preise. Ein echter Veranstalter dahinter. Das echte Ägypten.",
     "signature": "— Islam"
+  },
+  "verifyEmail": {
+    "titleVerifying": "E-Mail wird verifiziert",
+    "titleSuccess": "E-Mail verifiziert!",
+    "titleFailed": "Verifizierung fehlgeschlagen",
+    "noToken": "Dieser Verifizierungslink ist ungültig. Bitte prüfen Sie Ihre E-Mail auf den richtigen Link.",
+    "success": "E-Mail erfolgreich verifiziert! Sie haben jetzt Zugriff auf alle Funktionen.",
+    "failed": "Dieser Verifizierungslink ist ungültig oder abgelaufen. Fordern Sie unten einen neuen an.",
+    "error": "Bei der Verifizierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "redirecting": "Weiterleitung zur Anmeldeseite...",
+    "resendCta": "Verifizierungs-E-Mail erneut senden",
+    "resendNoEmail": "Erneutes Senden nicht möglich. Bitte registrieren Sie sich erneut.",
+    "resendSent": "Verifizierungs-E-Mail erneut gesendet! Bitte prüfen Sie Ihren Posteingang.",
+    "resendFailed": "E-Mail konnte nicht erneut gesendet werden. Bitte später erneut versuchen.",
+    "goToLogin": "Zur Anmeldung"
   }
 }

@@ -3844,5 +3844,20 @@
     "p3": "AffordEgypt is the third option. The same licensed guides we send on our premium tours, the same vehicles, the same standards — stripped down to what you actually need. A private car. A real Egyptologist. And the freedom to add tickets, meals, and experiences only when you want them.",
     "closing": "Real prices. Real operator behind it. Real Egypt.",
     "signature": "— Islam"
+  },
+  "verifyEmail": {
+    "titleVerifying": "Verifying Your Email",
+    "titleSuccess": "Email Verified!",
+    "titleFailed": "Verification Failed",
+    "noToken": "Invalid verification link. Please check your email for the correct link.",
+    "success": "Email verified successfully! You can now access all features.",
+    "failed": "That verification link is invalid or has expired. Request a new one below.",
+    "error": "An error occurred during verification. Please try again.",
+    "redirecting": "Redirecting to login page...",
+    "resendCta": "Resend Verification Email",
+    "resendNoEmail": "Unable to resend. Please register again.",
+    "resendSent": "Verification email resent! Please check your inbox.",
+    "resendFailed": "Failed to resend email. Please try again later.",
+    "goToLogin": "Go to Login"
   }
 }

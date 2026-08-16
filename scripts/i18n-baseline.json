@@ -107,18 +107,6 @@
     [
       "client/src/pages/transfers.tsx",
       "Transfer booking error:"
-    ],
-    [
-      "client/src/pages/verify-email.tsx",
-      "Go to Login"
-    ],
-    [
-      "client/src/pages/verify-email.tsx",
-      "Redirecting to login page..."
-    ],
-    [
-      "client/src/pages/verify-email.tsx",
-      "Resend Verification Email"
     ]
   ]
 }
