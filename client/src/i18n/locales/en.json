@@ -304,7 +304,11 @@
       "successDesc": "You'll receive travel tips and special offers in your inbox.",
       "failed": "Subscription failed",
       "failedDesc": "Please try again or contact us directly.",
-      "emailRequired": "Please enter your email address."
+      "emailRequired": "Please enter your email address.",
+      "title": "Get the Egypt Trip Calculator",
+      "body": "A 1-page worksheet for planning your trip cost honestly. Plus monthly insider notes from a Cairo operator — no fluff, no spam, unsubscribe in one click.",
+      "privacyNote": "We respect your privacy. Unsubscribe at any time.",
+      "invalidEmailDesc": "Check the address and try again."
     },
     "servicesHeading": "Our Services",
     "exploreHeading": "Explore",

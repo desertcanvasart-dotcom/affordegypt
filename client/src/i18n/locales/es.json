@@ -304,7 +304,11 @@
       "successDesc": "Recibirás consejos de viaje y ofertas especiales en tu bandeja de entrada.",
       "failed": "Falló la suscripción",
       "failedDesc": "Inténtalo de nuevo o contáctanos directamente.",
-      "emailRequired": "Por favor ingresa tu dirección de email."
+      "emailRequired": "Por favor ingresa tu dirección de email.",
+      "title": "Consigue la Calculadora de Viaje a Egipto",
+      "body": "Una hoja de trabajo de 1 página para calcular el coste de tu viaje con honestidad. Además, notas mensuales de un operador de El Cairo: sin relleno, sin spam, cancela con un clic.",
+      "privacyNote": "Respetamos tu privacidad. Cancela la suscripción cuando quieras.",
+      "invalidEmailDesc": "Revisa la dirección e inténtalo de nuevo."
     },
     "servicesHeading": "Nuestros servicios",
     "exploreHeading": "Explorar",

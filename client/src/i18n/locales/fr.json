@@ -304,7 +304,11 @@
       "successDesc": "Vous recevrez des conseils de voyage et des offres spéciales dans votre boîte de réception.",
       "failed": "Échec de l'abonnement",
       "failedDesc": "Veuillez réessayer ou nous contacter directement.",
-      "emailRequired": "Veuillez saisir votre adresse email."
+      "emailRequired": "Veuillez saisir votre adresse email.",
+      "title": "Obtenez le Calculateur de Voyage en Égypte",
+      "body": "Une fiche d'une page pour estimer honnêtement le coût de votre voyage. Plus des notes mensuelles d'un opérateur du Caire : pas de blabla, pas de spam, désabonnement en un clic.",
+      "privacyNote": "Nous respectons votre vie privée. Désabonnez-vous à tout moment.",
+      "invalidEmailDesc": "Vérifiez l'adresse et réessayez."
     },
     "servicesHeading": "Nos services",
     "exploreHeading": "Explorer",

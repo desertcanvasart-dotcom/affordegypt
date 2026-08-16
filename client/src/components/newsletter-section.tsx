@@ -44,8 +44,10 @@ export default function NewsletterSection() {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast({
+        // Was validation.invalidEmail for both, so the toast repeated one
+        // sentence as its own heading and body.
         title: t('validation.invalidEmail'),
-        description: t('validation.invalidEmail'),
+        description: t('footer.newsletter.invalidEmailDesc'),
         variant: "destructive",
       });
       return;
@@ -61,13 +63,11 @@ export default function NewsletterSection() {
         </div>
         
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          Get the Egypt Trip Calculator
+          {t('footer.newsletter.title')}
         </h2>
 
         <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-          A 1-page worksheet for planning your trip cost honestly. Plus
-          monthly insider notes from a Cairo operator — no fluff, no
-          spam, unsubscribe in one click.
+          {t('footer.newsletter.body')}
         </p>
         
         <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
@@ -112,7 +112,7 @@ export default function NewsletterSection() {
         </form>
         
         <p className="text-sm text-white/70 mt-4">
-          We respect your privacy. Unsubscribe at any time.
+          {t('footer.newsletter.privacyNote')}
         </p>
       </div>
     </section>

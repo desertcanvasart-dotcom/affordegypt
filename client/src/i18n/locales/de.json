@@ -304,7 +304,11 @@
       "successDesc": "Sie erhalten Reisetipps und Sonderangebote in Ihrem Posteingang.",
       "failed": "Abonnement fehlgeschlagen",
       "failedDesc": "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
-      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein."
+      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+      "title": "Holen Sie sich den Ägypten-Reisekostenrechner",
+      "body": "Ein einseitiges Arbeitsblatt, um Ihre Reisekosten ehrlich zu planen. Dazu monatliche Insider-Notizen von einem Veranstalter aus Kairo — kein Füllmaterial, kein Spam, Abmeldung mit einem Klick.",
+      "privacyNote": "Wir respektieren Ihre Privatsphäre. Abmeldung jederzeit möglich.",
+      "invalidEmailDesc": "Bitte prüfen Sie die Adresse und versuchen Sie es erneut."
     },
     "servicesHeading": "Unsere Leistungen",
     "exploreHeading": "Entdecken",
