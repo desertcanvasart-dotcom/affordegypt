@@ -66,7 +66,7 @@ const NO_TRANSLATE = new Set([
   ...(
     "Egypt Cairo Luxor Aswan Giza Alexandria Sinai Nile Sharm Dahab Hurghada Nuweiba Taba " +
     "Koshari Molokhia Fattah Feteer Hawawshi Kunafa Basbousa Mahshi Sayadeya " +
-    "EGP USD WhatsApp Facebook Instagram TripAdvisor Google Afford AffordEgypt " +
+    "EGP USD WhatsApp Facebook Instagram TripAdvisor Trustpilot Google Afford AffordEgypt " +
     "Abydos Karnak Philae Edfu Dendera Saqqara Dahshur Meidum Siwa Bahariya Farafra Dakhla Kharga " +
     "Sedan Minivan Van SUV"
   ).split(/\s+/),

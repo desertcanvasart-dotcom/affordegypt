@@ -182,7 +182,8 @@ export default function AnimatedReviewCarousel() {
                           </div>
                           {review.isVerified && (
                             <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
-                              Verified
+                              {/* Same badge as the reviews page, so one key. */}
+                              {t("reviewsPage.verified")}
                             </div>
                           )}
                         </div>

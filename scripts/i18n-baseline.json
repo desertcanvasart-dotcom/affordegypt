@@ -1,14 +1,6 @@
 {
   "allowed": [
     [
-      "client/src/components/animated-review-carousel.tsx",
-      "Trustpilot"
-    ],
-    [
-      "client/src/components/animated-review-carousel.tsx",
-      "Verified"
-    ],
-    [
       "client/src/components/blog-grid.tsx",
       "Budget Travel"
     ],
