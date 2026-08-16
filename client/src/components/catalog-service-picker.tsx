@@ -12,6 +12,7 @@
 // vehicle_prices for that row.
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -62,20 +63,37 @@ interface Props {
   travelers?: number;
 }
 
-export const TRIP_TYPE_LABELS: Record<string, string> = {
-  one_way: "One-way",
-  round_trip_same_day: "Round-trip (same day)",
-  round_trip_multi_day: "Round-trip (multi-day)",
-  "4hr": "4-hour rental",
-  "8hr": "8-hour rental",
-  "12hr": "12-hour rental",
-};
+/**
+ * Trip-type, vehicle and seating labels for the catalog.
+ *
+ * These were three English-only module consts read by this picker, the
+ * transfers page and the pricing tool — so the same booking rendered "Sedan"
+ * in three places that could each be localised separately and drift. They are
+ * lookups against `catalog.*` now: one definition per label, four locales,
+ * and the seat counts identical in every language because digits are facts.
+ *
+ * Taking `t` as an argument rather than calling useTranslation() keeps them
+ * usable from the module scope of a `.map()` callback, and keeps a component
+ * that forgets to re-render on language change impossible to write — the
+ * caller already holds a `t` bound to the live language.
+ */
+type TFunc = (key: string) => string;
 
-export const VEHICLE_LABELS: Record<VehicleSlug, string> = {
-  sedan: "Sedan",
-  minivan: "Minivan",
-  van: "Van",
-};
+export function tripTypeLabel(t: TFunc, tripType: string): string {
+  const key = `catalog.tripTypes.${tripType}`;
+  const label = t(key);
+  // i18next echoes the key back when it's missing. The catalog can add a trip
+  // type before the locales know it; show the raw slug rather than a key path.
+  return label === key ? tripType : label;
+}
+
+export function vehicleLabel(t: TFunc, vehicle: VehicleSlug): string {
+  return t(`catalog.vehicles.${vehicle}`);
+}
+
+export function vehicleSeatsLabel(t: TFunc, vehicle: VehicleSlug): string {
+  return t(`catalog.vehicleSeats.${vehicle}`);
+}
 
 function isVehicleSlug(v: string): v is VehicleSlug {
   return v === "sedan" || v === "minivan" || v === "van";
@@ -141,9 +159,10 @@ export default function CatalogServicePicker({
   categories,
   selected,
   onChange,
-  emptyMessage = "No catalog services available for this combination yet.",
+  emptyMessage,
   travelers = 1,
 }: Props) {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const cityLower = city.toLowerCase();
   const queryUrl = `/api/services?city=${encodeURIComponent(cityLower)}&category=${encodeURIComponent(categories.join(","))}`;
@@ -206,17 +225,21 @@ export default function CatalogServicePicker({
   }, [travelers, data, selected, inScopeSlugs, onChange]);
 
   if (isLoading) {
-    return <p className="text-sm text-muted-foreground">Loading services…</p>;
+    return (
+      <p className="text-sm text-muted-foreground">{t("catalog.loading")}</p>
+    );
   }
   if (isError) {
     return (
-      <p className="text-sm text-muted-foreground">
-        Couldn't load services. Try refreshing.
-      </p>
+      <p className="text-sm text-muted-foreground">{t("catalog.error")}</p>
     );
   }
   if (!data || data.length === 0) {
-    return <p className="text-sm text-muted-foreground">{emptyMessage}</p>;
+    return (
+      <p className="text-sm text-muted-foreground">
+        {emptyMessage ?? t("catalog.empty")}
+      </p>
+    );
   }
 
   const handleToggle = (row: CatalogRow, checked: boolean) => {
@@ -272,7 +295,7 @@ export default function CatalogServicePicker({
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search transfers…"
+            placeholder={t("catalog.searchPlaceholder")}
             className="h-9 pl-8 text-sm"
             data-testid="catalog-search"
           />
@@ -281,7 +304,7 @@ export default function CatalogServicePicker({
       <div className="max-h-72 space-y-2 overflow-y-auto pr-1">
       {filtered.length === 0 && (
         <p className="py-2 text-sm text-muted-foreground">
-          No transfers match “{search}”.
+          {t("catalog.noMatch", { query: search })}
         </p>
       )}
       {filtered.map((row) => {
@@ -320,11 +343,11 @@ export default function CatalogServicePicker({
                 </Label>
                 <div className="flex flex-wrap items-center gap-2 mt-1">
                   <Badge variant="outline" className="text-xs">
-                    {TRIP_TYPE_LABELS[tripType] ?? tripType}
+                    {tripTypeLabel(t, tripType)}
                   </Badge>
                   {showZone && row.pickup_zone && (
                     <span className="text-xs text-muted-foreground">
-                      Pickup: {row.pickup_zone}
+                      {t("catalog.pickup")}: {row.pickup_zone}
                     </span>
                   )}
                 </div>
@@ -343,14 +366,14 @@ export default function CatalogServicePicker({
                     <SelectContent>
                       {vs.map((v) => (
                         <SelectItem key={v} value={v}>
-                          {VEHICLE_LABELS[v]}
+                          {vehicleLabel(t, v)}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 ) : isChecked ? (
                   <Badge variant="secondary" className="text-xs">
-                    {VEHICLE_LABELS[currentVehicle]}
+                    {vehicleLabel(t, currentVehicle)}
                   </Badge>
                 ) : null}
                 {currentPrice !== undefined && (

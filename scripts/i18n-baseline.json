@@ -45,42 +45,6 @@
       "Travel Tips"
     ],
     [
-      "client/src/components/catalog-service-picker.tsx",
-      "12-hour rental"
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "4-hour rental"
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "8-hour rental"
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "Couldn't load services. Try refreshing."
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "Loading services…"
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "No catalog services available for this combination yet."
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "Round-trip (multi-day)"
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "Round-trip (same day)"
-    ],
-    [
-      "client/src/components/catalog-service-picker.tsx",
-      "Search transfers…"
-    ],
-    [
       "client/src/components/customer-reviews.tsx",
       "Be the first to share your Egypt travel experience with us!"
     ],
@@ -495,54 +459,6 @@
     [
       "client/src/pages/terms-of-service.tsx",
       "Terms of Service | AffordEgypt"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "1–2 passengers"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "3–8 passengers"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "9–15 passengers"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Book another transfer"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Booking Policy"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Booking request submitted!"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Couldn't load transfers. Try refreshing."
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Egypt Airport & Intercity Transfers | Private Car from LE 595"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Loading transfers…"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Privacy Policy"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Terms of Service"
-    ],
-    [
-      "client/src/pages/transfers.tsx",
-      "Total"
     ],
     [
       "client/src/pages/transfers.tsx",

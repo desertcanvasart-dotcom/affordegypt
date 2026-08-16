@@ -107,42 +107,51 @@
     }
   },
   "transfers": {
-    "title": "Servicios de Transporte",
-    "intercityTravel": "Viajes Entre Ciudades",
-    "localTours": "Tours Locales",
-    "selectFrom": "Desde",
-    "selectTo": "Hacia",
-    "selectCity": "Seleccionar Ciudad",
-    "selectCityForLocal": "Elige una ciudad para tours locales",
-    "availableRoutes": "Rutas Locales Disponibles",
-    "matchingRoutes": "Rutas Coincidentes",
-    "popularRoutes": "Rutas Populares",
-    "noRoutes": "No se encontraron rutas para tu búsqueda",
-    "clickToSeeOptions": "Clic para ver opciones de vehículos",
+    "title": "Solo Traslado",
+    "subtitle": "Transporte simple punto a punto por Egipto",
+    "instantQuotes": "Cotizaciones instantáneas",
+    "noHiddenFees": "Sin costos ocultos",
+    "licensedDrivers": "Conductores licenciados",
+    "intercity": "Interurbano",
+    "airport": "Aeropuerto",
+    "local": "En la ciudad",
+    "city": "Ciudad",
+    "allCities": "Todas las ciudades",
+    "travelers": "Viajeros",
+    "searchPlaceholder": "Buscar traslados…",
+    "from": "Desde",
     "selectVehicle": "Seleccionar Vehículo",
-    "backToRoutes": "← Volver a Rutas",
+    "chooseVehicle": "Elige tu vehículo para este traslado",
+    "back": "Volver a traslados",
     "serviceType": "Tipo de Servicio",
-    "distance": "Distancia",
-    "duration": "Duración",
-    "vehicleTypes": {
-      "sedan": "Sedán",
-      "minivan": "Minivan",
-      "van": "Furgoneta",
-      "coach": "Autocar",
-      "bus": "Autobús"
+    "list": {
+      "loading": "Cargando traslados…",
+      "error": "No se pudieron cargar los traslados. Prueba a actualizar.",
+      "empty": "Todavía no hay traslados disponibles para esta selección. Prueba con otra ciudad o categoría, o escríbenos para una cotización personalizada."
     },
-    "passengerCapacity": {
-      "sedan": "1-2 pasajeros",
-      "minivan": "3-8 pasajeros",
-      "van": "9-15 pasajeros",
-      "coach": "16-35 pasajeros",
-      "bus": "16-35 pasajeros"
+    "noPricing": "Aún no hay precio para este traslado. Escríbenos para una cotización.",
+    "form": {
+      "phone": "Teléfono / WhatsApp",
+      "specialRequests": "Peticiones especiales (hora de recogida, nombre del hotel, número de vuelo…)",
+      "acceptTerms": "Acepto los <terms>Términos del Servicio</terms> y la <privacy>Política de Privacidad</privacy>",
+      "acceptPolicy": "Entiendo y acepto la <policy>Política de Reservas</policy> y las condiciones de cancelación",
+      "submit": "Solicitar Reserva",
+      "submitting": "Enviando…",
+      "noPrepayment": "No se requiere pago por adelantado: primero confirmamos la disponibilidad."
     },
-    "tripModes": {
-      "transfer": "Traslado y Entrega",
-      "day_trip": "Excursión de Día",
-      "overnight": "Pernoctación",
-      "multi_day": "Varios Días"
+    "success": {
+      "heading": "¡Solicitud de reserva enviada!",
+      "referenceLabel": "Referencia de la reserva:",
+      "emailSent": "Se ha enviado un correo de confirmación a {{email}}. Nos pondremos en contacto contigo en breve para confirmar los detalles de la recogida.",
+      "bookAnother": "Reservar otro traslado"
+    },
+    "errors": {
+      "acceptBoth": "Acepta los términos y la política de reservas.",
+      "submitFailed": "No se pudo enviar la reserva. Inténtalo de nuevo."
+    },
+    "seo": {
+      "title": "Traslados de Aeropuerto e Interurbanos en Egipto | Coche Privado desde {{price}}",
+      "description": "Traslados privados de aeropuerto e interurbanos por todo Egipto desde {{price}}. Precios fijos, conductores licenciados, seguimiento de vuelos. Reserva directa, sin intermediarios."
     }
   },
   "pricing": {
@@ -416,7 +425,9 @@
     "nameMin": "El nombre debe tener al menos 2 caracteres",
     "acceptTerms": "Debes aceptar los términos y condiciones para continuar",
     "titleMin": "El título debe tener al menos 5 caracteres",
-    "reviewMin": "La reseña debe tener al menos 20 caracteres"
+    "reviewMin": "La reseña debe tener al menos 20 caracteres",
+    "enterName": "Introduce tu nombre completo",
+    "enterPhone": "Introduce tu número de teléfono"
   },
   "slugs": {
     "destinations": "destinos",
@@ -4065,5 +4076,34 @@
       "Línea de viaje exclusiva 24/7",
       "Llamadas de planificación antes del viaje"
     ]
+  },
+  "catalog": {
+    "tripTypes": {
+      "one_way": "Solo ida",
+      "round_trip_same_day": "Ida y vuelta (mismo día)",
+      "round_trip_multi_day": "Ida y vuelta (varios días)",
+      "4hr": "Alquiler de 4 horas",
+      "8hr": "Alquiler de 8 horas",
+      "12hr": "Alquiler de 12 horas"
+    },
+    "vehicles": {
+      "sedan": "Sedán",
+      "minivan": "Minivan",
+      "van": "Furgoneta"
+    },
+    "vehicleSeats": {
+      "sedan": "1–2 pasajeros",
+      "minivan": "3–8 pasajeros",
+      "van": "9–15 pasajeros"
+    },
+    "loading": "Cargando servicios…",
+    "error": "No se pudieron cargar los servicios. Prueba a actualizar.",
+    "empty": "Todavía no hay servicios del catálogo para esta combinación.",
+    "noMatch": "Ningún traslado coincide con «{{query}}».",
+    "searchPlaceholder": "Buscar traslados…",
+    "pickup": "Recogida",
+    "dropoff": "Destino",
+    "eitherDirection": "en ambas direcciones",
+    "anywhereInTown": "cualquier lugar de la ciudad"
   }
 }

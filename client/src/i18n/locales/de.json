@@ -107,42 +107,51 @@
     }
   },
   "transfers": {
-    "title": "Transportservices",
-    "intercityTravel": "Städteverbindungen",
-    "localTours": "Lokale Touren",
-    "selectFrom": "Von",
-    "selectTo": "Nach",
-    "selectCity": "Stadt Auswählen",
-    "selectCityForLocal": "Wähle eine Stadt für lokale Touren",
-    "availableRoutes": "Verfügbare Lokale Routen",
-    "matchingRoutes": "Passende Routen",
-    "popularRoutes": "Beliebte Routen",
-    "noRoutes": "Keine Routen für Ihre Suche gefunden",
-    "clickToSeeOptions": "Klicken für Fahrzeugoptionen",
+    "title": "Nur Transfer",
+    "subtitle": "Einfacher Punkt-zu-Punkt-Transport durch Ägypten",
+    "instantQuotes": "Sofortige Angebote",
+    "noHiddenFees": "Keine versteckten Gebühren",
+    "licensedDrivers": "Lizenzierte Fahrer",
+    "intercity": "Intercity",
+    "airport": "Flughafen",
+    "local": "In der Stadt",
+    "city": "Stadt",
+    "allCities": "Alle Städte",
+    "travelers": "Reisende",
+    "searchPlaceholder": "Transfers suchen…",
+    "from": "Ab",
     "selectVehicle": "Fahrzeug Auswählen",
-    "backToRoutes": "← Zurück zu Routen",
+    "chooseVehicle": "Wählen Sie Ihr Fahrzeug für diesen Transfer",
+    "back": "Zurück zu Transfers",
     "serviceType": "Service-Typ",
-    "distance": "Entfernung",
-    "duration": "Dauer",
-    "vehicleTypes": {
-      "sedan": "Limousine",
-      "minivan": "Kleinbus",
-      "van": "Transporter",
-      "coach": "Reisebus",
-      "bus": "Bus"
+    "list": {
+      "loading": "Transfers werden geladen…",
+      "error": "Transfers konnten nicht geladen werden. Bitte aktualisieren.",
+      "empty": "Für diese Auswahl sind noch keine Transfers verfügbar. Versuchen Sie eine andere Stadt oder Kategorie, oder kontaktieren Sie uns für ein individuelles Angebot."
     },
-    "passengerCapacity": {
-      "sedan": "1-2 Passagiere",
-      "minivan": "3-8 Passagiere",
-      "van": "9-15 Passagiere",
-      "coach": "16-35 Passagiere",
-      "bus": "16-35 Passagiere"
+    "noPricing": "Für diesen Transfer steht noch kein Preis fest. Kontaktieren Sie uns für ein Angebot.",
+    "form": {
+      "phone": "Telefon / WhatsApp",
+      "specialRequests": "Sonderwünsche (Abholzeit, Hotelname, Flugnummer…)",
+      "acceptTerms": "Ich stimme den <terms>Nutzungsbedingungen</terms> und der <privacy>Datenschutzerklärung</privacy> zu",
+      "acceptPolicy": "Ich verstehe und akzeptiere die <policy>Buchungsrichtlinie</policy> und die Stornierungsbedingungen",
+      "submit": "Buchung Anfragen",
+      "submitting": "Wird gesendet…",
+      "noPrepayment": "Keine Vorauszahlung erforderlich — wir bestätigen zuerst die Verfügbarkeit."
     },
-    "tripModes": {
-      "transfer": "Transfer & Abgabe",
-      "day_trip": "Tagesausflug",
-      "overnight": "Übernachtung",
-      "multi_day": "Mehrtägig"
+    "success": {
+      "heading": "Buchungsanfrage gesendet!",
+      "referenceLabel": "Buchungsreferenz:",
+      "emailSent": "Eine Bestätigungs-E-Mail wurde an {{email}} gesendet. Wir melden uns in Kürze, um die Abholdetails zu bestätigen.",
+      "bookAnother": "Weiteren Transfer buchen"
+    },
+    "errors": {
+      "acceptBoth": "Bitte akzeptieren Sie die Bedingungen und die Buchungsrichtlinie.",
+      "submitFailed": "Buchung konnte nicht gesendet werden. Bitte erneut versuchen."
+    },
+    "seo": {
+      "title": "Flughafen- und Intercity-Transfers in Ägypten | Privatwagen ab {{price}}",
+      "description": "Private Flughafen- und Intercity-Transfers in ganz Ägypten ab {{price}}. Festpreise, lizenzierte Fahrer, Flugüberwachung. Direkt buchen, ohne Zwischenhändler."
     }
   },
   "pricing": {
@@ -416,7 +425,9 @@
     "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
     "acceptTerms": "Sie müssen die AGB akzeptieren, um fortzufahren",
     "titleMin": "Der Titel muss mindestens 5 Zeichen lang sein",
-    "reviewMin": "Die Bewertung muss mindestens 20 Zeichen lang sein"
+    "reviewMin": "Die Bewertung muss mindestens 20 Zeichen lang sein",
+    "enterName": "Bitte geben Sie Ihren vollständigen Namen ein",
+    "enterPhone": "Bitte geben Sie Ihre Telefonnummer ein"
   },
   "slugs": {
     "destinations": "reiseziele",
@@ -4065,5 +4076,34 @@
       "Eigene Reise-Hotline rund um die Uhr",
       "Planungsgespräche vor der Reise"
     ]
+  },
+  "catalog": {
+    "tripTypes": {
+      "one_way": "Einfache Fahrt",
+      "round_trip_same_day": "Hin- und Rückfahrt (am selben Tag)",
+      "round_trip_multi_day": "Hin- und Rückfahrt (mehrtägig)",
+      "4hr": "4-Stunden-Miete",
+      "8hr": "8-Stunden-Miete",
+      "12hr": "12-Stunden-Miete"
+    },
+    "vehicles": {
+      "sedan": "Limousine",
+      "minivan": "Minivan",
+      "van": "Kleinbus"
+    },
+    "vehicleSeats": {
+      "sedan": "1–2 Passagiere",
+      "minivan": "3–8 Passagiere",
+      "van": "9–15 Passagiere"
+    },
+    "loading": "Services werden geladen…",
+    "error": "Services konnten nicht geladen werden. Bitte aktualisieren.",
+    "empty": "Für diese Kombination gibt es noch keine Katalog-Services.",
+    "noMatch": "Keine Transfers passen zu „{{query}}“.",
+    "searchPlaceholder": "Transfers suchen…",
+    "pickup": "Abholung",
+    "dropoff": "Ziel",
+    "eitherDirection": "in beide Richtungen",
+    "anywhereInTown": "überall in der Stadt"
   }
 }

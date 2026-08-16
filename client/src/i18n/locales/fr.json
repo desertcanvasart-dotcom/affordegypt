@@ -107,42 +107,51 @@
     }
   },
   "transfers": {
-    "title": "Services de Transport",
-    "intercityTravel": "Voyage Inter-urbain",
-    "localTours": "Tours Locaux",
-    "selectFrom": "De",
-    "selectTo": "Vers",
-    "selectCity": "Sélectionner Ville",
-    "selectCityForLocal": "Choisissez une ville pour les tours locaux",
-    "availableRoutes": "Itinéraires Locaux Disponibles",
-    "matchingRoutes": "Itinéraires Correspondants",
-    "popularRoutes": "Itinéraires Populaires",
-    "noRoutes": "Aucun itinéraire trouvé pour votre recherche",
-    "clickToSeeOptions": "Cliquez pour voir les options de véhicules",
-    "selectVehicle": "Sélectionner Véhicule",
-    "backToRoutes": "← Retour aux Itinéraires",
+    "title": "Transfert Uniquement",
+    "subtitle": "Transport simple point à point à travers l'Égypte",
+    "instantQuotes": "Devis instantanés",
+    "noHiddenFees": "Pas de frais cachés",
+    "licensedDrivers": "Chauffeurs agréés",
+    "intercity": "Intercité",
+    "airport": "Aéroport",
+    "local": "En ville",
+    "city": "Ville",
+    "allCities": "Toutes les villes",
+    "travelers": "Voyageurs",
+    "searchPlaceholder": "Rechercher des transferts…",
+    "from": "À partir de",
+    "selectVehicle": "Sélectionner le Véhicule",
+    "chooseVehicle": "Choisissez votre véhicule pour ce transfert",
+    "back": "Retour aux transferts",
     "serviceType": "Type de Service",
-    "distance": "Distance",
-    "duration": "Durée",
-    "vehicleTypes": {
-      "sedan": "Berline",
-      "minivan": "Minivan",
-      "van": "Fourgonnette",
-      "coach": "Autocar",
-      "bus": "Bus"
+    "list": {
+      "loading": "Chargement des transferts…",
+      "error": "Impossible de charger les transferts. Essayez d'actualiser.",
+      "empty": "Aucun transfert disponible pour cette sélection pour le moment. Essayez une autre ville ou catégorie, ou contactez-nous pour un devis personnalisé."
     },
-    "passengerCapacity": {
-      "sedan": "1-2 passagers",
-      "minivan": "3-8 passagers",
-      "van": "9-15 passagers",
-      "coach": "16-35 passagers",
-      "bus": "16-35 passagers"
+    "noPricing": "Le tarif de ce transfert n'est pas encore fixé. Contactez-nous pour un devis.",
+    "form": {
+      "phone": "Téléphone / WhatsApp",
+      "specialRequests": "Demandes particulières (heure de prise en charge, nom de l'hôtel, numéro de vol…)",
+      "acceptTerms": "J'accepte les <terms>Conditions d'Utilisation</terms> et la <privacy>Politique de Confidentialité</privacy>",
+      "acceptPolicy": "Je comprends et j'accepte la <policy>Politique de Réservation</policy> et les conditions d'annulation",
+      "submit": "Demander une Réservation",
+      "submitting": "Envoi…",
+      "noPrepayment": "Aucun prépaiement requis — nous confirmons d'abord la disponibilité."
     },
-    "tripModes": {
-      "transfer": "Transfert et Dépose",
-      "day_trip": "Excursion d'une Journée",
-      "overnight": "Nuitée",
-      "multi_day": "Plusieurs Jours"
+    "success": {
+      "heading": "Demande de réservation envoyée !",
+      "referenceLabel": "Référence de réservation :",
+      "emailSent": "Un e-mail de confirmation a été envoyé à {{email}}. Nous vous contacterons sous peu pour confirmer les détails de la prise en charge.",
+      "bookAnother": "Réserver un autre transfert"
+    },
+    "errors": {
+      "acceptBoth": "Veuillez accepter les conditions et la politique de réservation.",
+      "submitFailed": "Échec de l'envoi de la réservation. Veuillez réessayer."
+    },
+    "seo": {
+      "title": "Transferts Aéroport et Intercité en Égypte | Voiture Privée à partir de {{price}}",
+      "description": "Transferts privés aéroport et intercité à travers l'Égypte à partir de {{price}}. Prix fixes, chauffeurs agréés, suivi des vols. Réservation directe, sans intermédiaires."
     }
   },
   "pricing": {
@@ -416,7 +425,9 @@
     "nameMin": "Le nom doit comporter au moins 2 caractères",
     "acceptTerms": "Vous devez accepter les conditions générales pour continuer",
     "titleMin": "Le titre doit comporter au moins 5 caractères",
-    "reviewMin": "L'avis doit comporter au moins 20 caractères"
+    "reviewMin": "L'avis doit comporter au moins 20 caractères",
+    "enterName": "Veuillez saisir votre nom complet",
+    "enterPhone": "Veuillez saisir votre numéro de téléphone"
   },
   "slugs": {
     "destinations": "destinations",
@@ -4065,5 +4076,34 @@
       "Ligne dédiée 24h/24 et 7j/7 pendant le voyage",
       "Appels de préparation avant le départ"
     ]
+  },
+  "catalog": {
+    "tripTypes": {
+      "one_way": "Aller simple",
+      "round_trip_same_day": "Aller-retour (même jour)",
+      "round_trip_multi_day": "Aller-retour (plusieurs jours)",
+      "4hr": "Location de 4 heures",
+      "8hr": "Location de 8 heures",
+      "12hr": "Location de 12 heures"
+    },
+    "vehicles": {
+      "sedan": "Berline",
+      "minivan": "Monospace",
+      "van": "Van"
+    },
+    "vehicleSeats": {
+      "sedan": "1–2 passagers",
+      "minivan": "3–8 passagers",
+      "van": "9–15 passagers"
+    },
+    "loading": "Chargement des services…",
+    "error": "Impossible de charger les services. Essayez d'actualiser.",
+    "empty": "Aucun service du catalogue pour cette combinaison pour le moment.",
+    "noMatch": "Aucun transfert ne correspond à « {{query}} ».",
+    "searchPlaceholder": "Rechercher des transferts…",
+    "pickup": "Prise en charge",
+    "dropoff": "Dépose",
+    "eitherDirection": "dans les deux sens",
+    "anywhereInTown": "n'importe où en ville"
   }
 }

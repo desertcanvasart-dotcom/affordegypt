@@ -19,8 +19,8 @@ import QuoteManager from "@/components/quote-manager";
 import CatalogServicePicker, {
   type SelectedCatalogService,
   type CatalogRow,
-  TRIP_TYPE_LABELS,
-  VEHICLE_LABELS,
+  tripTypeLabel,
+  vehicleLabel,
 } from "@/components/catalog-service-picker";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
@@ -1122,8 +1122,8 @@ export default function MultiCityPricingTool() {
                                     {city.selectedServices.map((s) => (
                                       <li key={s.slug}>
                                         • {s.name ?? s.slug} —{" "}
-                                        {VEHICLE_LABELS[s.vehicleSlug] ?? s.vehicleSlug}
-                                        {" "}({TRIP_TYPE_LABELS[s.tripType] ?? s.tripType})
+                                        {vehicleLabel(t, s.vehicleSlug)}
+                                        {" "}({tripTypeLabel(t, s.tripType)})
                                         {typeof s.price === "number" && (
                                           <span className="text-muted-foreground">
                                             {" "}— {formatEGP(s.price)}

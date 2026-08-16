@@ -107,42 +107,51 @@
     }
   },
   "transfers": {
-    "title": "Transportation Services",
-    "intercityTravel": "Intercity Travel",
-    "localTours": "Local Tours",
-    "selectFrom": "From",
-    "selectTo": "To",
-    "selectCity": "Select City",
-    "selectCityForLocal": "Choose a city for local tours",
-    "availableRoutes": "Available Local Routes",
-    "matchingRoutes": "Matching Routes",
-    "popularRoutes": "Popular Routes",
-    "noRoutes": "No routes found for your search",
-    "clickToSeeOptions": "Click to see vehicle options",
+    "title": "Transfer Only",
+    "subtitle": "Simple point-to-point transportation across Egypt",
+    "instantQuotes": "Instant quotes",
+    "noHiddenFees": "No hidden fees",
+    "licensedDrivers": "Licensed drivers",
+    "intercity": "Intercity",
+    "airport": "Airport",
+    "local": "In-town",
+    "city": "City",
+    "allCities": "All cities",
+    "travelers": "Travelers",
+    "searchPlaceholder": "Search transfers…",
+    "from": "From",
     "selectVehicle": "Select Vehicle",
-    "backToRoutes": "← Back to Routes",
+    "chooseVehicle": "Choose your vehicle for this transfer",
+    "back": "Back to transfers",
     "serviceType": "Service Type",
-    "distance": "Distance",
-    "duration": "Duration",
-    "vehicleTypes": {
-      "sedan": "Sedan",
-      "minivan": "Minivan",
-      "van": "Van",
-      "coach": "Coach",
-      "bus": "Bus"
+    "list": {
+      "loading": "Loading transfers…",
+      "error": "Couldn't load transfers. Try refreshing.",
+      "empty": "No transfers available for this selection yet. Try another city or category, or contact us for a custom quote."
     },
-    "passengerCapacity": {
-      "sedan": "1-2 passengers",
-      "minivan": "3-8 passengers",
-      "van": "9-15 passengers",
-      "coach": "16-35 passengers",
-      "bus": "16-35 passengers"
+    "noPricing": "Pricing not yet set for this transfer. Please contact us for a quote.",
+    "form": {
+      "phone": "Phone / WhatsApp",
+      "specialRequests": "Special requests (pickup time, hotel name, flight number…)",
+      "acceptTerms": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>",
+      "acceptPolicy": "I understand and accept the <policy>Booking Policy</policy> and cancellation terms",
+      "submit": "Request Booking",
+      "submitting": "Submitting…",
+      "noPrepayment": "No prepayment required — we confirm availability first."
     },
-    "tripModes": {
-      "transfer": "Transfer & Drop-off",
-      "day_trip": "Day Trip",
-      "overnight": "Overnight",
-      "multi_day": "Multi-Day"
+    "success": {
+      "heading": "Booking request submitted!",
+      "referenceLabel": "Booking reference:",
+      "emailSent": "A confirmation email has been sent to {{email}}. We'll contact you shortly to confirm pickup details.",
+      "bookAnother": "Book another transfer"
+    },
+    "errors": {
+      "acceptBoth": "Please accept the terms and the booking policy.",
+      "submitFailed": "Failed to submit booking. Please try again."
+    },
+    "seo": {
+      "title": "Egypt Airport & Intercity Transfers | Private Car from {{price}}",
+      "description": "Private airport and intercity transfers across Egypt from {{price}}. Fixed prices, licensed drivers, flight monitoring. Book direct, no middlemen."
     }
   },
   "pricing": {
@@ -416,7 +425,9 @@
     "nameMin": "Name must be at least 2 characters",
     "acceptTerms": "You must accept the terms and conditions to proceed",
     "titleMin": "Title must be at least 5 characters",
-    "reviewMin": "Review must be at least 20 characters"
+    "reviewMin": "Review must be at least 20 characters",
+    "enterName": "Please enter your full name",
+    "enterPhone": "Please enter your phone number"
   },
   "slugs": {
     "destinations": "destinations",
@@ -4065,5 +4076,34 @@
       "24/7 dedicated trip line",
       "Pre-trip planning calls"
     ]
+  },
+  "catalog": {
+    "tripTypes": {
+      "one_way": "One-way",
+      "round_trip_same_day": "Round-trip (same day)",
+      "round_trip_multi_day": "Round-trip (multi-day)",
+      "4hr": "4-hour rental",
+      "8hr": "8-hour rental",
+      "12hr": "12-hour rental"
+    },
+    "vehicles": {
+      "sedan": "Sedan",
+      "minivan": "Minivan",
+      "van": "Van"
+    },
+    "vehicleSeats": {
+      "sedan": "1–2 passengers",
+      "minivan": "3–8 passengers",
+      "van": "9–15 passengers"
+    },
+    "loading": "Loading services…",
+    "error": "Couldn't load services. Try refreshing.",
+    "empty": "No catalog services available for this combination yet.",
+    "noMatch": "No transfers match “{{query}}”.",
+    "searchPlaceholder": "Search transfers…",
+    "pickup": "Pickup",
+    "dropoff": "Drop-off",
+    "eitherDirection": "either direction",
+    "anywhereInTown": "anywhere in town"
   }
 }
