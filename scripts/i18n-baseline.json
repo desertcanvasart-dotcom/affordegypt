@@ -78,10 +78,6 @@
     ],
     [
       "client/src/pages/booking-agreement.tsx",
-      "Booking Agreement | AffordEgypt"
-    ],
-    [
-      "client/src/pages/booking-agreement.tsx",
       "Contact Email:"
     ],
     [
@@ -166,10 +162,6 @@
     ],
     [
       "client/src/pages/privacy-policy.tsx",
-      "Privacy Policy | AffordEgypt"
-    ],
-    [
-      "client/src/pages/privacy-policy.tsx",
       "We may collect:"
     ],
     [
@@ -191,10 +183,6 @@
     [
       "client/src/pages/terms-of-service.tsx",
       "March 2, 2020"
-    ],
-    [
-      "client/src/pages/terms-of-service.tsx",
-      "Terms of Service | AffordEgypt"
     ],
     [
       "client/src/pages/transfers.tsx",

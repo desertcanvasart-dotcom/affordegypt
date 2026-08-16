@@ -14,8 +14,8 @@ export default function PrivacyPolicy() {
     <>
       <Navbar />
   <SeoMeta
-          title="Privacy Policy | AffordEgypt"
-          description="How AffordEgypt collects, uses, and protects your personal data when you browse, request quotes, or book a tour."
+          title={t("privacyPolicy.seoTitle")}
+          description={t("privacyPolicy.seoDescription")}
           canonical="https://affordegypt.com/privacy-policy"
         />
       <div className="min-h-screen bg-gray-50 py-12">

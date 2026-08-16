@@ -32,7 +32,11 @@ export default function PageBreadcrumbs({ className = "" }: { className?: string
 
   return (
     <div className={`container mx-auto px-4 py-3 ${className}`}>
-      <Breadcrumb>
+      {/* ui/breadcrumb.tsx hardcodes aria-label="breadcrumb" on the <nav>, and
+          chrome.breadcrumbAria was written for it but never passed. Overriding
+          here rather than editing the vendored primitive: the landmark is what
+          a screen reader announces before reading the trail. */}
+      <Breadcrumb aria-label={t("chrome.breadcrumbAria")}>
         <BreadcrumbList>
           {trail.map((crumb, i) => {
             const last = i === trail.length - 1;
