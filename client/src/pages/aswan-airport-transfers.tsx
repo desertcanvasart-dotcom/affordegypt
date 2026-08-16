@@ -28,7 +28,8 @@ export default function AswanAirportTransfers() {
   const SERVICE_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Airport Transfer",
+    // schema.org value on the English prerender Google indexes
+    "serviceType": "Airport Transfer", // i18n-exempt
     "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
     "areaServed": "Aswan",
     "offers": {
@@ -106,8 +107,10 @@ export default function AswanAirportTransfers() {
   return (
     <>
       <SeoMeta
-        title="Aswan Airport Transfers | Fixed Price | AffordEgypt"
-        description={`Fixed-price Aswan airport transfers from LE ${sedanFrom}. City hotels, Nubian stays, island jetties and cruise moorings. Licensed local drivers and fixed quotes.`}
+        title={t("airportTransfers.aswan.seoTitle")}
+        description={t("airportTransfers.aswan.seoDescription", {
+          interpolation: { price: `LE ${sedanFrom}` },
+        })}
         canonical="https://affordegypt.com/aswan-airport-transfers"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/aswan-airport-transfers")!)]}
       />

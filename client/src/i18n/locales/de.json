@@ -1588,7 +1588,9 @@
         "Bevorzugtes Fahrzeug oder besondere Anforderungen"
       ],
       "pricingIntro": "Wir kalkulieren nicht allein anhand des Wortes „Kairo“. Wir berechnen die tatsächliche Fahrt — von Ihrem echten Ankunftsflughafen zu Ihrem genauen Hotel — mit dem passenden Fahrzeug für Gruppe und Gepäck.",
-      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Kein Flughafentausch • Keine überraschenden Zonenzuschläge"
+      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Kein Flughafentausch • Keine überraschenden Zonenzuschläge",
+      "seoTitle": "Flughafentransfers Kairo | CAI & Flughafen Sphinx (SPX) | AffordEgypt",
+      "seoDescription": "Flughafentransfers in Kairo zum Festpreis ab {{price}}. CAI und Sphinx SPX, lizenzierte Fahrer, Flugüberwachung und persönlicher Empfang. Direkt buchen, ohne Zwischenhändler."
     },
     "luxor": {
       "heroTitle": "Luxor Flughafentransfers",
@@ -1785,7 +1787,9 @@
         "Bevorzugtes Fahrzeug oder besondere Anforderungen"
       ],
       "pricingIntro": "Wir gehen nicht davon aus, dass jede Luxor-Buchung in einem Hotel am Ostufer endet. Wir kalkulieren die tatsächliche Fahrt vom Flughafen Luxor zu Ihrer genauen Unterkunft oder Ihrem Liegeplatz, einschließlich der Straßenquerung zum Westufer, wenn sie nötig ist.",
-      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Richtiges Ufer und Hotel • Keine überraschenden Zuschläge für die Westufer-Route"
+      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Richtiges Ufer und Hotel • Keine überraschenden Zuschläge für die Westufer-Route",
+      "seoTitle": "Flughafentransfers Luxor | Festpreis | AffordEgypt",
+      "seoDescription": "Flughafentransfers in Luxor zum Festpreis ab {{price}}. Ostufer, Westufer und Anlegestellen der Nilkreuzfahrten. Lizenzierte Fahrer, Flugüberwachung und Festpreise."
     },
     "aswan": {
       "heroTitle": "Assuan Flughafentransfers",
@@ -1998,7 +2002,9 @@
         "Bevorzugtes Fahrzeug oder besondere Anforderungen"
       ],
       "pricingIntro": "Wir gehen nicht davon aus, dass jede Assuan-Buchung in einem zentralen Corniche-Hotel endet. Wir kalkulieren die tatsächliche Fahrt zu Ihrer genauen Unterkunft, Ihrem Anleger oder Schiff und geben klar an, ob eine Bootsverbindung enthalten ist.",
-      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Richtige Unterkunft oder Liegeplatz • Keine überraschenden Zuschläge außerhalb der Stadt oder für den Bootszugang"
+      "pricingTerms": "Ihr Festpreis wird vor der Buchung bestätigt • Richtige Unterkunft oder Liegeplatz • Keine überraschenden Zuschläge außerhalb der Stadt oder für den Bootszugang",
+      "seoTitle": "Flughafentransfers Assuan | Festpreis | AffordEgypt",
+      "seoDescription": "Flughafentransfers in Assuan zum Festpreis ab {{price}}. Stadthotels, nubische Unterkünfte, Inselanleger und Kreuzfahrt-Liegeplätze. Lizenzierte lokale Fahrer und Festpreise."
     }
   },
   "guideServices": {

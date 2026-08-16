@@ -105,14 +105,6 @@
       "Load quote"
     ],
     [
-      "client/src/pages/aswan-airport-transfers.tsx",
-      "Airport Transfer"
-    ],
-    [
-      "client/src/pages/aswan-airport-transfers.tsx",
-      "Aswan Airport Transfers | Fixed Price | AffordEgypt"
-    ],
-    [
       "client/src/pages/attractions.tsx",
       "inside an"
     ],
@@ -131,14 +123,6 @@
     [
       "client/src/pages/booking-agreement.tsx",
       "March 2, 2020"
-    ],
-    [
-      "client/src/pages/cairo-airport-transfers.tsx",
-      "Airport Transfer"
-    ],
-    [
-      "client/src/pages/cairo-airport-transfers.tsx",
-      "Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
     ],
     [
       "client/src/pages/cookie-policy.tsx",
@@ -191,14 +175,6 @@
     [
       "client/src/pages/egyptian-street-food-guide.tsx",
       "From kushari to ful medames to hawawshi — what to eat, where to find it, and how to avoid the tourist-tax. A Cairo operator's local food guide."
-    ],
-    [
-      "client/src/pages/luxor-airport-transfers.tsx",
-      "Airport Transfer"
-    ],
-    [
-      "client/src/pages/luxor-airport-transfers.tsx",
-      "Luxor Airport Transfers | Fixed Price | AffordEgypt"
     ],
     [
       "client/src/pages/nile-valley-guide.tsx",

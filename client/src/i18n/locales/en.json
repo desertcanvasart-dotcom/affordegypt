@@ -1588,7 +1588,9 @@
       "area5": "Downtown Cairo",
       "area6": "Heliopolis",
       "area7": "Maadi",
-      "area8": "Zamalek"
+      "area8": "Zamalek",
+      "seoTitle": "Cairo Airport Transfers | CAI & Sphinx Airport (SPX) | AffordEgypt",
+      "seoDescription": "Fixed-price Cairo airport transfers from {{price}}. CAI and Sphinx SPX, licensed drivers, flight monitoring and meet and greet. Book direct, no middlemen."
     },
     "luxor": {
       "heroTitle": "Luxor Airport Transfers",
@@ -1785,7 +1787,9 @@
       "area5": "Karnak Temple Area",
       "area6": "Luxor Temple District",
       "area7": "Nile Cruise Terminals",
-      "area8": "Winter Palace Area"
+      "area8": "Winter Palace Area",
+      "seoTitle": "Luxor Airport Transfers | Fixed Price | AffordEgypt",
+      "seoDescription": "Fixed-price Luxor airport transfers from {{price}}. East Bank, West Bank and Nile cruise moorings. Licensed drivers, flight monitoring and fixed quotes."
     },
     "aswan": {
       "heroTitle": "Aswan Airport Transfers",
@@ -1998,7 +2002,9 @@
       "area5": "Philae Temple Area",
       "area6": "High Dam District",
       "area7": "Felucca Harbors",
-      "area8": "Abu Simbel Route"
+      "area8": "Abu Simbel Route",
+      "seoTitle": "Aswan Airport Transfers | Fixed Price | AffordEgypt",
+      "seoDescription": "Fixed-price Aswan airport transfers from {{price}}. City hotels, Nubian stays, island jetties and cruise moorings. Licensed local drivers and fixed quotes."
     }
   },
   "guideServices": {

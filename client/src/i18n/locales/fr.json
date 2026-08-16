@@ -1588,7 +1588,9 @@
         "Véhicule souhaité ou toute exigence particulière"
       ],
       "pricingIntro": "Nous ne tarifons pas à partir du seul mot « Le Caire ». Nous tarifons le trajet réel — de votre aéroport d'arrivée à votre hôtel exact — avec le véhicule adapté à votre groupe et à vos bagages.",
-      "pricingTerms": "Votre total fixe est confirmé avant la réservation • Aucun changement d'aéroport • Aucun supplément surprise de zone"
+      "pricingTerms": "Votre total fixe est confirmé avant la réservation • Aucun changement d'aéroport • Aucun supplément surprise de zone",
+      "seoTitle": "Transferts Aéroport Le Caire | CAI et Aéroport Sphinx (SPX) | AffordEgypt",
+      "seoDescription": "Transferts aéroport à prix fixe au Caire à partir de {{price}}. CAI et Sphinx SPX, chauffeurs agréés, suivi des vols et accueil personnalisé. Réservation directe, sans intermédiaires."
     },
     "luxor": {
       "heroTitle": "Transferts Aéroport de Louxor",
@@ -1785,7 +1787,9 @@
         "Véhicule souhaité ou toute exigence particulière"
       ],
       "pricingIntro": "Nous ne supposons pas que toute réservation à Louxor se termine dans un hôtel de la rive est. Nous tarifons le trajet réel depuis l'aéroport de Louxor jusqu'à votre propriété ou amarrage exact, traversée routière vers la rive ouest comprise lorsque nécessaire.",
-      "pricingTerms": "Votre total fixe est confirmé avant la réservation • Rive et hôtel corrects • Aucun supplément surprise pour la rive ouest"
+      "pricingTerms": "Votre total fixe est confirmé avant la réservation • Rive et hôtel corrects • Aucun supplément surprise pour la rive ouest",
+      "seoTitle": "Transferts Aéroport Louxor | Prix Fixe | AffordEgypt",
+      "seoDescription": "Transferts aéroport à prix fixe à Louxor à partir de {{price}}. Rive Est, Rive Ouest et amarrages des croisières sur le Nil. Chauffeurs agréés, suivi des vols et devis fixes."
     },
     "aswan": {
       "heroTitle": "Transferts Aéroport d'Assouan",
@@ -1998,7 +2002,9 @@
         "Véhicule souhaité ou toute exigence particulière"
       ],
       "pricingIntro": "Nous ne supposons pas que toute réservation à Assouan se termine dans un hôtel central de la Corniche. Nous tarifons le trajet réel jusqu'à votre propriété, votre embarcadère ou votre bateau exact et indiquons clairement si une liaison en bateau est incluse.",
-      "pricingTerms": "Votre total fixe est confirmé avant la réservation • Propriété ou amarrage corrects • Aucun supplément surprise hors ville ou d'accès par bateau"
+      "pricingTerms": "Votre total fixe est confirmé avant la réservation • Propriété ou amarrage corrects • Aucun supplément surprise hors ville ou d'accès par bateau",
+      "seoTitle": "Transferts Aéroport Assouan | Prix Fixe | AffordEgypt",
+      "seoDescription": "Transferts aéroport à prix fixe à Assouan à partir de {{price}}. Hôtels en ville, hébergements nubiens, embarcadères des îles et amarrages de croisière. Chauffeurs locaux agréés et devis fixes."
     }
   },
   "guideServices": {

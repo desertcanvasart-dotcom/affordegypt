@@ -1588,7 +1588,9 @@
         "Vehículo preferido o cualquier necesidad especial"
       ],
       "pricingIntro": "No presupuestamos solo a partir de la palabra «El Cairo». Ponemos precio al trayecto real —desde tu aeropuerto de llegada hasta tu hotel exacto— con el vehículo adecuado para tu grupo y equipaje.",
-      "pricingTerms": "Tu total fijo se confirma antes de reservar • Sin cambio de aeropuerto • Sin cargos sorpresa por zona de destino"
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Sin cambio de aeropuerto • Sin cargos sorpresa por zona de destino",
+      "seoTitle": "Traslados Aeropuerto El Cairo | CAI y Aeropuerto Sphinx (SPX) | AffordEgypt",
+      "seoDescription": "Traslados de aeropuerto en El Cairo a precio fijo desde {{price}}. CAI y Sphinx SPX, conductores licenciados, seguimiento de vuelos y recepción personalizada. Reserva directa, sin intermediarios."
     },
     "luxor": {
       "heroTitle": "Traslados del Aeropuerto de Luxor",
@@ -1785,7 +1787,9 @@
         "Vehículo preferido o cualquier necesidad especial"
       ],
       "pricingIntro": "No damos por hecho que toda reserva en Luxor termina en un hotel de la orilla este. Ponemos precio al trayecto real desde el aeropuerto de Luxor hasta tu propiedad o amarre exacto, incluido el cruce por carretera a la orilla oeste cuando hace falta.",
-      "pricingTerms": "Tu total fijo se confirma antes de reservar • Orilla y hotel correctos • Sin cargos sorpresa por la ruta a la orilla oeste"
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Orilla y hotel correctos • Sin cargos sorpresa por la ruta a la orilla oeste",
+      "seoTitle": "Traslados Aeropuerto Luxor | Precio Fijo | AffordEgypt",
+      "seoDescription": "Traslados de aeropuerto en Luxor a precio fijo desde {{price}}. Orilla Este, Orilla Oeste y amarres de cruceros por el Nilo. Conductores licenciados, seguimiento de vuelos y precios fijos."
     },
     "aswan": {
       "heroTitle": "Traslados del Aeropuerto de Asuán",
@@ -1998,7 +2002,9 @@
         "Vehículo preferido o cualquier necesidad especial"
       ],
       "pricingIntro": "No damos por hecho que toda reserva en Asuán termina en un hotel céntrico de la Corniche. Ponemos precio al trayecto real hasta tu propiedad, embarcadero o barco exacto e indicamos con claridad si se incluye alguna conexión en barco.",
-      "pricingTerms": "Tu total fijo se confirma antes de reservar • Propiedad o amarre correctos • Sin cargos sorpresa por salir de la ciudad o por acceso en barco"
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Propiedad o amarre correctos • Sin cargos sorpresa por salir de la ciudad o por acceso en barco",
+      "seoTitle": "Traslados Aeropuerto Asuán | Precio Fijo | AffordEgypt",
+      "seoDescription": "Traslados de aeropuerto en Asuán a precio fijo desde {{price}}. Hoteles de la ciudad, alojamientos nubios, embarcaderos de islas y amarres de cruceros. Conductores locales licenciados y precios fijos."
     }
   },
   "guideServices": {
