@@ -3137,12 +3137,6 @@
       "fromCairo": "Depuis Le Caire:",
       "keyHighlights": "Points Forts",
       "topAttractions": "Principales Attractions",
-      "regions": {
-        "upperEgypt": "Haute-Égypte",
-        "middleEgypt": "Moyenne-Égypte",
-        "lowerEgypt": "Basse-Égypte",
-        "nubia": "Nubie"
-      },
       "budgetTips": "Conseils Budget"
     },
     "transportation": {

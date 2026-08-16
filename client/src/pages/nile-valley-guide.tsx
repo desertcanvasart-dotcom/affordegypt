@@ -67,6 +67,24 @@ const REGION_FILTERS = [
   { value: "Nubia", labelKey: "nileValleyGuide.regions.nubia" },
 ] as const;
 
+/**
+ * The one place a region value becomes a label a reader sees.
+ *
+ * Two city badges used to resolve the same four regions themselves, each
+ * through its own ternary chain reading a second subtree —
+ * nileValleyGuide.completeGuide.regions — so "Upper Egypt" had two
+ * translations per language, sixteen duplicated strings that happened to
+ * agree. Both badges read the filter's labels now, and the duplicate subtree
+ * is gone.
+ */
+export function regionLabel(
+  t: (key: string) => string,
+  region: string,
+): string {
+  const match = REGION_FILTERS.find((r) => r.value === region);
+  return match ? t(match.labelKey) : region;
+}
+
 const nileValleyCities: NileCity[] = [
   {
     id: 1,
@@ -1104,15 +1122,7 @@ export default function NileValleyGuide() {
                     {selectedCity.arabicName}
                   </p>
                   <Badge className="mb-4">
-                    {selectedCity.region === "Upper Egypt"
-                      ? t('nileValleyGuide.completeGuide.regions.upperEgypt')
-                      : selectedCity.region === "Middle Egypt"
-                        ? t('nileValleyGuide.completeGuide.regions.middleEgypt')
-                        : selectedCity.region === "Lower Egypt"
-                          ? t('nileValleyGuide.completeGuide.regions.lowerEgypt')
-                          : selectedCity.region === "Nubia"
-                            ? t('nileValleyGuide.completeGuide.regions.nubia')
-                            : selectedCity.region}
+                    {regionLabel(t, selectedCity.region)}
                   </Badge>
 
                   <div className="space-y-3 mb-6">
@@ -1237,17 +1247,7 @@ export default function NileValleyGuide() {
                   <div className="md:col-span-2">
                     <div className="flex items-center gap-3 mb-3">
                       <h3 className="text-2xl font-bold">{t(`nileValleyGuide.cityNames.${city.name}`)}</h3>
-                      <Badge>
-                        {city.region === "Upper Egypt"
-                          ? t('nileValleyGuide.completeGuide.regions.upperEgypt')
-                          : city.region === "Middle Egypt"
-                            ? t('nileValleyGuide.completeGuide.regions.middleEgypt')
-                            : city.region === "Lower Egypt"
-                              ? t('nileValleyGuide.completeGuide.regions.lowerEgypt')
-                              : city.region === "Nubia"
-                                ? t('nileValleyGuide.completeGuide.regions.nubia')
-                                : city.region}
-                      </Badge>
+                      <Badge>{regionLabel(t, city.region)}</Badge>
                     </div>
 
                     <p className="text-gray-600 mb-1">{city.arabicName}</p>

@@ -48,6 +48,21 @@ const cities: City[] = (() => {
   throw new Error("could not find the nileValleyCities literal");
 })();
 
+/** The REGION_FILTERS literal, read from the source for the same reason. */
+const regionFilters: { value: string; labelKey: string }[] = (() => {
+  const marker = "const REGION_FILTERS = ";
+  const start = SOURCE.indexOf(marker) + marker.length;
+  let depth = 0;
+  for (let i = start; i < SOURCE.length; i++) {
+    if (SOURCE[i] === "[") depth++;
+    else if (SOURCE[i] === "]") {
+      depth--;
+      if (depth === 0) return eval(SOURCE.slice(start, i + 1));
+    }
+  }
+  throw new Error("could not find the REGION_FILTERS literal");
+})();
+
 const lookup = (locale: keyof typeof LOCALES, path: string): unknown =>
   path.split(".").reduce<any>((o, k) => (o == null ? undefined : o[k]), LOCALES[locale]);
 
@@ -88,9 +103,28 @@ describe("nile valley guide data", () => {
   );
 
   it("only uses regions the filter offers", () => {
-    const offered = ["Lower Egypt", "Middle Egypt", "Upper Egypt", "Nubia"];
-    for (const city of cities) expect(offered, city.name).toContain(city.region);
+    for (const city of cities) {
+      expect(regionFilters.map((r) => r.value), city.name).toContain(city.region);
+    }
   });
+
+  /**
+   * The city badges resolve a region through REGION_FILTERS rather than their
+   * own ternary chains, which is what let a second copy of these four labels
+   * live under completeGuide.regions and drift. That only holds while every
+   * filter's labelKey actually resolves — a missing one renders the key path
+   * on the badge.
+   */
+  it.each(Object.keys(LOCALES) as (keyof typeof LOCALES)[])(
+    "%s has a label for every region the filter offers",
+    (locale) => {
+      for (const { value, labelKey } of regionFilters) {
+        const label = lookup(locale, labelKey);
+        expect(typeof label, `${locale} ${value} -> ${labelKey}`).toBe("string");
+        expect((label as string).trim(), `${locale} ${value}`).not.toBe("");
+      }
+    },
+  );
 
   it("keeps Arabic city names identical across locales", () => {
     // They are the subject matter, not copy: defined once on the record and

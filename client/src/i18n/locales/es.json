@@ -3137,12 +3137,6 @@
       "fromCairo": "Desde El Cairo:",
       "keyHighlights": "Puntos Destacados",
       "topAttractions": "Principales Atracciones",
-      "regions": {
-        "upperEgypt": "Alto Egipto",
-        "middleEgypt": "Egipto Medio",
-        "lowerEgypt": "Bajo Egipto",
-        "nubia": "Nubia"
-      },
       "budgetTips": "Consejos de Presupuesto"
     },
     "transportation": {

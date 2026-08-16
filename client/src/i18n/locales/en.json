@@ -3137,12 +3137,6 @@
       "fromCairo": "From Cairo:",
       "keyHighlights": "Key Highlights",
       "topAttractions": "Top Attractions",
-      "regions": {
-        "upperEgypt": "Upper Egypt",
-        "middleEgypt": "Middle Egypt",
-        "lowerEgypt": "Lower Egypt",
-        "nubia": "Nubia"
-      },
       "budgetTips": "Budget Tips"
     },
     "transportation": {
