@@ -1,10 +1,9 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { ChevronDown, Search, User, Clock, Globe, Star, X, Check } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -63,39 +62,33 @@ export function GuideSearch({
     return Number.isFinite(n) ? n : null;
   };
 
-  // Enhanced language data with specialties
+  /**
+   * The languages this city offers, with whatever the operator has actually
+   * recorded about each.
+   *
+   * There used to be a per-language "specialties" map here too — English guides
+   * do historical sites and photography, German guides do archaeological sites
+   * and historical analysis, and so on for ten languages. Like the ratings, it
+   * was written in this component and backed by nothing: the system stores no
+   * specialties, and no guide had been asked. Two invented claims stacked on
+   * one row is how a picker starts looking like a directory of vetted
+   * professionals, so both are gone.
+   */
   const enhancedLanguages = useMemo(() => {
-    const specialties = {
-      'English': [t('guides.specialties.historicalSites'), t('guides.specialties.culturalTours'), t('guides.specialties.photography')],
-      'Spanish': [t('guides.specialties.artHistory'), t('guides.specialties.religiousSites'), t('guides.specialties.localCuisine')],
-      'French': [t('guides.specialties.architecture'), t('guides.specialties.museumTours'), t('guides.specialties.culturalHeritage')],
-      'German': [t('guides.specialties.archaeologicalSites'), t('guides.specialties.historicalAnalysis'), t('guides.specialties.technicalTours')],
-      'Italian': [t('guides.specialties.artCollections'), t('guides.specialties.religiousHistory'), t('guides.specialties.renaissanceCulture')],
-      'Japanese': [t('guides.specialties.culturalExchange'), t('guides.specialties.photography'), t('guides.specialties.spiritualSites')],
-      'Chinese': [t('guides.specialties.ancientHistory'), t('guides.specialties.culturalTraditions'), t('guides.specialties.silkRoad')],
-      'Dutch': [t('guides.specialties.historicalSites'), t('guides.specialties.culturalTours'), t('guides.specialties.photography')],
-      'Korean': [t('guides.specialties.culturalExchange'), t('guides.specialties.photography'), t('guides.specialties.spiritualSites')],
-      'Arabic': [t('guides.specialties.islamicHeritage'), t('guides.specialties.localCustoms'), t('guides.specialties.traditionalCrafts')]
-    };
-
     return languages.map(language => ({
       language,
       displayName: t(`guides.languages.${language.toLowerCase()}`),
       rating: ratingFor(language),
-      specialties: specialties[language as keyof typeof specialties] || [t('guides.specialties.generalTours')]
     }));
   }, [languages, t, guideRates, cityId]);
 
   // Filter languages based on search
   const filteredLanguages = useMemo(() => {
     if (!searchTerm) return enhancedLanguages;
-    
-    return enhancedLanguages.filter(lang => 
+
+    return enhancedLanguages.filter(lang =>
       lang.language.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      lang.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      lang.specialties.some(specialty => 
-        specialty.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      lang.displayName.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [enhancedLanguages, searchTerm]);
 
@@ -229,7 +222,7 @@ export function GuideSearch({
                 <p>{t('guides.noneFound')}</p>
               </div>
             ) : (
-              filteredLanguages.map(({ language, displayName, rating, specialties }) => (
+              filteredLanguages.map(({ language, displayName, rating }) => (
                 <div
                   key={language}
                   className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
@@ -252,13 +245,6 @@ export function GuideSearch({
                             <span className="text-xs text-gray-600">{rating}</span>
                           </div>
                         )}
-                      </div>
-                      <div className="flex gap-1 mt-1">
-                        {specialties.slice(0, 2).map(specialty => (
-                          <Badge key={specialty} variant="outline" className="text-xs">
-                            {specialty}
-                          </Badge>
-                        ))}
                       </div>
                     </div>
                   </div>
