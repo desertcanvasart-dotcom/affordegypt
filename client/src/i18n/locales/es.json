@@ -3863,5 +3863,17 @@
     "resendSent": "¡Correo de verificación reenviado! Revisa tu bandeja de entrada.",
     "resendFailed": "No se pudo reenviar el correo. Inténtalo más tarde.",
     "goToLogin": "Ir a iniciar sesión"
+  },
+  "entranceFees": {
+    "placeholder": "Seleccionar entradas",
+    "selected_one": "{{count}} entrada seleccionada",
+    "selected_other": "{{count}} entradas seleccionadas",
+    "headingForCity": "Entradas en {{city}}",
+    "clearAll": "Borrar todo",
+    "searchPlaceholder": "Buscar entradas...",
+    "noneFound": "No se encontraron entradas para {{city}}",
+    "perPerson": "/pers.",
+    "done": "Listo",
+    "doneWith": "Listo ({{count}})"
   }
 }

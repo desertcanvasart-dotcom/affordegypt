@@ -3863,5 +3863,17 @@
     "resendSent": "E-mail de vérification renvoyé ! Vérifiez votre boîte de réception.",
     "resendFailed": "Échec de l'envoi. Veuillez réessayer plus tard.",
     "goToLogin": "Aller à la connexion"
+  },
+  "entranceFees": {
+    "placeholder": "Sélectionner les billets d'entrée",
+    "selected_one": "{{count}} billet d'entrée sélectionné",
+    "selected_other": "{{count}} billets d'entrée sélectionnés",
+    "headingForCity": "Billets d'entrée à {{city}}",
+    "clearAll": "Tout effacer",
+    "searchPlaceholder": "Rechercher des billets d'entrée...",
+    "noneFound": "Aucun billet d'entrée trouvé pour {{city}}",
+    "perPerson": "/pers.",
+    "done": "Terminé",
+    "doneWith": "Terminé ({{count}})"
   }
 }

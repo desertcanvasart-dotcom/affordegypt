@@ -3863,5 +3863,17 @@
     "resendSent": "Verifizierungs-E-Mail erneut gesendet! Bitte prüfen Sie Ihren Posteingang.",
     "resendFailed": "E-Mail konnte nicht erneut gesendet werden. Bitte später erneut versuchen.",
     "goToLogin": "Zur Anmeldung"
+  },
+  "entranceFees": {
+    "placeholder": "Eintrittskarten auswählen",
+    "selected_one": "{{count}} Eintrittskarte ausgewählt",
+    "selected_other": "{{count}} Eintrittskarten ausgewählt",
+    "headingForCity": "Eintrittskarten in {{city}}",
+    "clearAll": "Alle entfernen",
+    "searchPlaceholder": "Eintrittskarten suchen...",
+    "noneFound": "Keine Eintrittskarten für {{city}} gefunden",
+    "perPerson": "/Pers.",
+    "done": "Fertig",
+    "doneWith": "Fertig ({{count}})"
   }
 }

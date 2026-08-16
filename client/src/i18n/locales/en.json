@@ -3863,5 +3863,17 @@
     "resendSent": "Verification email resent! Please check your inbox.",
     "resendFailed": "Failed to resend email. Please try again later.",
     "goToLogin": "Go to Login"
+  },
+  "entranceFees": {
+    "placeholder": "Select entrance fees",
+    "selected_one": "{{count}} entrance fee selected",
+    "selected_other": "{{count}} entrance fees selected",
+    "headingForCity": "Entrance fees in {{city}}",
+    "clearAll": "Clear all",
+    "searchPlaceholder": "Search entrance fees...",
+    "noneFound": "No entrance fees found for {{city}}",
+    "perPerson": "/pp",
+    "done": "Done",
+    "doneWith": "Done ({{count}})"
   }
 }

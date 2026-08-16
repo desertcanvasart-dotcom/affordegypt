@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { Search, Ticket, ChevronDown, X, Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ export default function EntranceFeesSearch({
   onEntranceFeesChange,
   cityName,
 }: EntranceFeesSearchProps) {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -52,10 +54,11 @@ export default function EntranceFeesSearch({
 
   const displayText =
     selectedEntranceFees.length === 0
-      ? "Select entrance fees"
+      ? t("entranceFees.placeholder")
       : selectedEntranceFees.length === 1
-        ? cityFees.find((f) => f.slug === selectedEntranceFees[0])?.name ?? "1 selected"
-        : `${selectedEntranceFees.length} entrance fees selected`;
+        ? cityFees.find((f) => f.slug === selectedEntranceFees[0])?.name ??
+          t("entranceFees.selected", { count: 1 })
+        : t("entranceFees.selected", { count: selectedEntranceFees.length });
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -73,12 +76,14 @@ export default function EntranceFeesSearch({
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Ticket className="h-5 w-5 text-teal-600" />
-              <h3 className="font-semibold">Entrance fees in {cityName}</h3>
+              <h3 className="font-semibold">
+                {t("entranceFees.headingForCity", { city: cityName })}
+              </h3>
             </div>
             <div className="flex items-center gap-2">
               {selectedEntranceFees.length > 0 && (
                 <Button size="sm" variant="ghost" onClick={() => onEntranceFeesChange([])}>
-                  Clear all
+                  {t("entranceFees.clearAll")}
                 </Button>
               )}
               <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="h-6 w-6 p-0">
@@ -89,7 +94,7 @@ export default function EntranceFeesSearch({
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search entrance fees..."
+              placeholder={t("entranceFees.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -102,7 +107,7 @@ export default function EntranceFeesSearch({
             {filtered.length === 0 ? (
               <div className="text-center py-6 text-gray-500">
                 <Ticket className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No entrance fees found for {cityName}</p>
+                <p>{t("entranceFees.noneFound", { city: cityName })}</p>
               </div>
             ) : (
               filtered.map((f) => (
@@ -125,7 +130,11 @@ export default function EntranceFeesSearch({
                   </div>
                   <span className="text-sm font-medium whitespace-nowrap">
                     {formatEGP(f.price_per_person)}
-                    <span className="text-xs text-gray-500">/pp</span>
+                    {/* The per-person suffix is a word, not punctuation: /pp
+                        reads as nothing in German. */}
+                    <span className="text-xs text-gray-500">
+                      {t("entranceFees.perPerson")}
+                    </span>
                   </span>
                 </div>
               ))
@@ -136,7 +145,9 @@ export default function EntranceFeesSearch({
         <div className="p-4 border-t">
           <Button onClick={() => setIsOpen(false)} className="w-full" size="sm">
             <Check className="w-4 h-4 mr-2" />
-            Done{selectedEntranceFees.length > 0 && ` (${selectedEntranceFees.length})`}
+            {selectedEntranceFees.length > 0
+              ? t("entranceFees.doneWith", { count: selectedEntranceFees.length })
+              : t("entranceFees.done")}
           </Button>
         </div>
       </PopoverContent>
