@@ -2228,7 +2228,11 @@
     "s6": "6. Security",
     "s6b": "We take appropriate technical and organisational measures to safeguard your personal data.",
     "s7": "7. International Transfers",
-    "s7b": "We may transfer data outside the EU (e.g., to Egypt), using Standard Contractual Clauses or other legal safeguards."
+    "s7b": "We may transfer data outside the EU (e.g., to Egypt), using Standard Contractual Clauses or other legal safeguards.",
+    "s2intro": "We may collect:",
+    "s3intro": "Under the General Data Protection Regulation (GDPR), we process your data based on:",
+    "s4intro": "You have the right to:",
+    "s4contact": "To exercise these rights, email us at:"
   },
   "termsOfService": {
     "seoTitle": "Terms of Service | AffordEgypt",

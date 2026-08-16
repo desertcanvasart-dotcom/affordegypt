@@ -2228,7 +2228,11 @@
     "s6": "6. Sécurité",
     "s6b": "Nous prenons les mesures techniques et organisationnelles appropriées pour protéger vos données personnelles.",
     "s7": "7. Transferts internationaux",
-    "s7b": "Nous pouvons transférer des données hors de l'UE (par exemple vers l'Égypte) en recourant aux clauses contractuelles types ou à d'autres garanties légales."
+    "s7b": "Nous pouvons transférer des données hors de l'UE (par exemple vers l'Égypte) en recourant aux clauses contractuelles types ou à d'autres garanties légales.",
+    "s2intro": "Nous pouvons collecter :",
+    "s3intro": "Conformément au Règlement général sur la protection des données (RGPD), nous traitons vos données sur la base de :",
+    "s4intro": "Vous avez le droit de :",
+    "s4contact": "Pour exercer ces droits, écrivez-nous à :"
   },
   "termsOfService": {
     "seoTitle": "Conditions de service | AffordEgypt",

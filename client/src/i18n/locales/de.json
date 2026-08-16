@@ -2228,7 +2228,11 @@
     "s6": "6. Sicherheit",
     "s6b": "Wir treffen geeignete technische und organisatorische Maßnahmen zum Schutz Ihrer personenbezogenen Daten.",
     "s7": "7. Internationale Datenübermittlung",
-    "s7b": "Wir können Daten außerhalb der EU übermitteln (z. B. nach Ägypten) und nutzen dafür Standardvertragsklauseln oder andere rechtliche Garantien."
+    "s7b": "Wir können Daten außerhalb der EU übermitteln (z. B. nach Ägypten) und nutzen dafür Standardvertragsklauseln oder andere rechtliche Garantien.",
+    "s2intro": "Wir können erheben:",
+    "s3intro": "Nach der Datenschutz-Grundverordnung (DSGVO) verarbeiten wir Ihre Daten auf folgender Grundlage:",
+    "s4intro": "Sie haben das Recht:",
+    "s4contact": "Um diese Rechte auszuüben, schreiben Sie uns an:"
   },
   "termsOfService": {
     "seoTitle": "Nutzungsbedingungen | AffordEgypt",
