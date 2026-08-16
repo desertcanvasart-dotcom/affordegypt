@@ -249,7 +249,23 @@
       "localCustoms": "Lokale Bräuche",
       "traditionalCrafts": "Traditionelles Handwerk",
       "generalTours": "Allgemeine Touren"
-    }
+    },
+    "headingForCity": "Reiseführer für {{city}}",
+    "searchPlaceholder": "Sprachen oder Spezialgebiete suchen...",
+    "durationLabel": "Dauer:",
+    "durationHours_one": "{{count}} Stunde",
+    "durationHours_other": "{{count}} Stunden",
+    "durations": {
+      "halfDay": "Halbtags",
+      "fullDay": "Ganztags",
+      "extended": "Verlängert"
+    },
+    "noGuide": "Ohne Reiseführer",
+    "selfGuided": "Tour auf eigene Faust",
+    "free": "Kostenlos",
+    "noneFound": "Keine Reiseführer für Ihre Suche gefunden",
+    "done": "Fertig",
+    "doneWith": "Fertig ({{language}} — {{duration}} Std.)"
   },
   "addons": {
     "selectAddOns": "Zusätze auswählen...",

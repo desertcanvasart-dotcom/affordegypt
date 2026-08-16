@@ -249,7 +249,23 @@
       "localCustoms": "Local customs",
       "traditionalCrafts": "Traditional crafts",
       "generalTours": "General tours"
-    }
+    },
+    "headingForCity": "Tour Guide for {{city}}",
+    "searchPlaceholder": "Search languages or specialties...",
+    "durationLabel": "Duration:",
+    "durationHours_one": "{{count}} hour",
+    "durationHours_other": "{{count}} hours",
+    "durations": {
+      "halfDay": "Half Day",
+      "fullDay": "Full Day",
+      "extended": "Extended"
+    },
+    "noGuide": "No Guide",
+    "selfGuided": "Self-guided tour",
+    "free": "Free",
+    "noneFound": "No guides found matching your search",
+    "done": "Done",
+    "doneWith": "Done ({{language}} — {{duration}}h)"
   },
   "addons": {
     "selectAddOns": "Select add-ons...",

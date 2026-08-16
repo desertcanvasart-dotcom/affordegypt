@@ -34,21 +34,36 @@ export function GuideSearch({
   const [selectedDuration, setSelectedDuration] = useState<number>(8);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Fetch actual guide rates from database
+  // Real guide rows, which is where a rating has to come from.
   const { data: guideRates = [] } = useQuery({
     queryKey: ['/api/guide-rates', cityId],
     enabled: !!cityId
   });
 
-  // Get actual daily rate for a language from database
-  const getDailyRate = (language: string): number => {
-    const guideRate = (guideRates as any[]).find((rate: any) => 
-      rate.language?.trim().toLowerCase() === language.trim().toLowerCase()
+  /**
+   * The rating the operator has actually recorded for this language in this
+   * city, or null.
+   *
+   * This used to be a literal map in the component — Japanese 4.9, German 4.5,
+   * English 4.8 — rendered beside a star as though it were measured. Nothing
+   * produced those numbers: `guide_rates.rating` is the only rating the system
+   * has, and it is NULL on all 54 rows today. So the stars were invented, on
+   * the screen where a customer picks and pays for a guide.
+   *
+   * Matched on city as well as language, because rates are per city and a
+   * language-only match would show Cairo's row on the Aswan step.
+   */
+  const ratingFor = (language: string): number | null => {
+    const row = (guideRates as any[]).find(
+      (r: any) =>
+        r.language?.trim().toLowerCase() === language.trim().toLowerCase() &&
+        r.cityId === cityId,
     );
-    return guideRate ? Math.round(parseFloat(guideRate.hourlyPrice)) : 2500; // Default fallback
+    const n = row?.rating == null ? NaN : parseFloat(row.rating);
+    return Number.isFinite(n) ? n : null;
   };
 
-  // Enhanced language data with ratings and specialties
+  // Enhanced language data with specialties
   const enhancedLanguages = useMemo(() => {
     const specialties = {
       'English': [t('guides.specialties.historicalSites'), t('guides.specialties.culturalTours'), t('guides.specialties.photography')],
@@ -63,26 +78,13 @@ export function GuideSearch({
       'Arabic': [t('guides.specialties.islamicHeritage'), t('guides.specialties.localCustoms'), t('guides.specialties.traditionalCrafts')]
     };
 
-    const ratings = {
-      'English': 4.8,
-      'Spanish': 4.6,
-      'French': 4.7,
-      'German': 4.5,
-      'Italian': 4.6,
-      'Japanese': 4.9,
-      'Chinese': 4.7,
-      'Dutch': 4.7,
-      'Korean': 4.8,
-      'Arabic': 4.9
-    };
-
     return languages.map(language => ({
       language,
       displayName: t(`guides.languages.${language.toLowerCase()}`),
-      rating: ratings[language as keyof typeof ratings] || 4.5,
+      rating: ratingFor(language),
       specialties: specialties[language as keyof typeof specialties] || [t('guides.specialties.generalTours')]
     }));
-  }, [languages, t]);
+  }, [languages, t, guideRates, cityId]);
 
   // Filter languages based on search
   const filteredLanguages = useMemo(() => {
@@ -114,9 +116,9 @@ export function GuideSearch({
   };
 
   const getDurationLabel = (hours: number) => {
-    if (hours <= 4) return 'Half Day';
-    if (hours <= 8) return 'Full Day';
-    return 'Extended';
+    if (hours <= 4) return t('guides.durations.halfDay');
+    if (hours <= 8) return t('guides.durations.fullDay');
+    return t('guides.durations.extended');
   };
 
   const getDisplayText = () => {
@@ -151,7 +153,9 @@ export function GuideSearch({
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <User className="h-5 w-5 text-teal-600" />
-              <h3 className="font-semibold">Tour Guide for {cityName}</h3>
+              <h3 className="font-semibold">
+                {t('guides.headingForCity', { city: cityName })}
+              </h3>
             </div>
             <Button
               variant="ghost"
@@ -167,7 +171,7 @@ export function GuideSearch({
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search languages or specialties..."
+              placeholder={t('guides.searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -177,17 +181,17 @@ export function GuideSearch({
           {/* Duration Selection */}
           <div className="flex items-center gap-2 mb-3">
             <Clock className="h-4 w-4 text-gray-600" />
-            <Label className="text-sm font-medium">Duration:</Label>
+            <Label className="text-sm font-medium">{t('guides.durationLabel')}</Label>
             <Select value={selectedDuration.toString()} onValueChange={(value) => setSelectedDuration(Number(value))}>
               <SelectTrigger className="w-32">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="4">4 hours</SelectItem>
-                <SelectItem value="6">6 hours</SelectItem>
-                <SelectItem value="8">8 hours</SelectItem>
-                <SelectItem value="10">10 hours</SelectItem>
-                <SelectItem value="12">12 hours</SelectItem>
+                {[4, 6, 8, 10, 12].map((h) => (
+                  <SelectItem key={h} value={String(h)}>
+                    {t('guides.durationHours', { count: h })}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -209,11 +213,11 @@ export function GuideSearch({
                   🚫
                 </div>
                 <div>
-                  <div className="font-medium">No Guide</div>
-                  <div className="text-sm text-gray-600">Self-guided tour</div>
+                  <div className="font-medium">{t('guides.noGuide')}</div>
+                  <div className="text-sm text-gray-600">{t('guides.selfGuided')}</div>
                 </div>
               </div>
-              <div className="text-sm text-gray-500">Free</div>
+              <div className="text-sm text-gray-500">{t('guides.free')}</div>
             </div>
           </div>
 
@@ -222,7 +226,7 @@ export function GuideSearch({
             {filteredLanguages.length === 0 ? (
               <div className="text-center py-6 text-gray-500">
                 <Globe className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No guides found matching your search</p>
+                <p>{t('guides.noneFound')}</p>
               </div>
             ) : (
               filteredLanguages.map(({ language, displayName, rating, specialties }) => (
@@ -242,10 +246,12 @@ export function GuideSearch({
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className="font-medium">{displayName}</span>
-                        <div className="flex items-center gap-1">
-                          <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                          <span className="text-xs text-gray-600">{rating}</span>
-                        </div>
+                        {rating !== null && (
+                          <div className="flex items-center gap-1">
+                            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                            <span className="text-xs text-gray-600">{rating}</span>
+                          </div>
+                        )}
                       </div>
                       <div className="flex gap-1 mt-1">
                         {specialties.slice(0, 2).map(specialty => (
@@ -275,8 +281,16 @@ export function GuideSearch({
             size="sm"
           >
             <Check className="w-4 h-4 mr-2" />
-            Done
-            {selectedGuide && ` (${selectedGuide.language} - ${selectedGuide.duration}h)`}
+            {/* `selectedGuide.language` is the raw catalog word ("German"), so
+                appending it gave "Fertig (German - 8h)" on the German step —
+                the same bug already fixed on booking-confirmation and book.tsx.
+                Use the same guides.languages lookup getDisplayText does. */}
+            {selectedGuide
+              ? t('guides.doneWith', {
+                  language: t(`guides.languages.${selectedGuide.language.toLowerCase()}`),
+                  duration: selectedGuide.duration,
+                })
+              : t('guides.done')}
           </Button>
         </div>
       </PopoverContent>
