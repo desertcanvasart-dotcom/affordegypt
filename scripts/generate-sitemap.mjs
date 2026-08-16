@@ -12,6 +12,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { SLUG_MAPPINGS, languageOfSlug } from "../shared/public-routes.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -48,37 +49,13 @@ const ROUTES = [
   "/submit-review",
 ];
 
-// Mirror of slugMappings in client/src/utils/slugTranslation.ts. Keep in sync
-// when adding new languages or pages.
-const SLUG_MAPPINGS = {
-  en: {
-    "destinations": "destinations",
-    "travel-tips": "travel-tips",
-    "reviews": "reviews",
-    "submit-review": "submit-review",
-    "about": "about",
-    "contact": "contact",
-    "budget-travel-egypt": "budget-travel-egypt",
-    "egyptian-street-food-guide": "egyptian-street-food-guide",
-    "nile-valley-guide": "nile-valley-guide",
-    "sinai-peninsula-guide": "sinai-peninsula-guide",
-    "eastern-western-deserts-guide": "eastern-western-deserts-guide",
-    "cuisine-passport": "cuisine-passport",
-    "booking-agreement": "booking-agreement",
-    "terms-of-service": "terms-of-service",
-    "privacy-policy": "privacy-policy",
-    "cookie-policy": "cookie-policy",
-    "transfers": "transfers",
-    "pricing-tool": "pricing-tool",
-    "attractions": "attractions",
-    "cairo-airport-transfers": "cairo-airport-transfers",
-    "luxor-airport-transfers": "luxor-airport-transfers",
-    "aswan-airport-transfers": "aswan-airport-transfers",
-    "cairo-car-tour-guide-services": "cairo-car-tour-guide-services",
-    "luxor-car-tour-guide-services": "luxor-car-tour-guide-services",
-    "aswan-car-tour-guide-services": "aswan-car-tour-guide-services",
-  },
-};
+// Imported, not mirrored. This file used to keep its own copy of the slug
+// table "in sync with client/src/utils/slugTranslation.ts" — a file that has
+// since moved its data to shared/public-routes.ts. The copy was left holding
+// English only, which is the whole reason the sitemap advertised no es/fr/de
+// alternates: the generator was looping over one language and finding nothing
+// to emit. Importing the real table means a new language or page appears here
+// the moment it is routed. Run with tsx so this .mjs can read the .ts source.
 
 const GUIDE_PAGES = new Set([
   "/budget-travel-egypt",
@@ -119,25 +96,46 @@ function escapeXml(s) {
     .replace(/'/g, "&apos;");
 }
 
-// TODO: emit hreflang alternates for es/fr/de when those routes are added to PRERENDER_ROUTES (Phase 3+).
+/**
+ * Languages whose slug for this page is theirs alone.
+ *
+ * Defers to languageOfSlug() so this and i18n's applyDetectedLanguage() cannot
+ * disagree: announcing hreflang="fr" for a URL the app answers in English is a
+ * promise the site does not keep, and Google treats a mismatched alternate as
+ * a reason to distrust the whole cluster.
+ */
+function unambiguousLangsFor(enSlug) {
+  const out = [];
+  for (const lang of Object.keys(SLUG_MAPPINGS)) {
+    const slug = SLUG_MAPPINGS[lang]?.[enSlug];
+    if (slug && languageOfSlug(slug) === lang) out.push({ lang, slug });
+  }
+  return out;
+}
+
 function buildEntry(route, lastmod) {
   const enSlug = route === "/" ? "" : route.slice(1);
-  const langs = Object.keys(SLUG_MAPPINGS);
   const hasTranslations = enSlug && SLUG_MAPPINGS.en[enSlug] !== undefined;
 
-  const alternateLinks = route === "/"
-    ? `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/" />`
-    : hasTranslations
-    ? langs
-        .map((lang) => {
-          const slug = SLUG_MAPPINGS[lang]?.[enSlug];
-          if (!slug) return null;
-          const href = `${SITE}/${encodeURI(slug)}`;
-          return `    <xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}" />`;
-        })
-        .filter(Boolean)
-        .join("\n")
-    : "";
+  // Every entry names itself as the English version and as x-default: these are
+  // the English URLs, and English is what they serve to a visitor who has
+  // expressed no preference.
+  const links = [
+    `    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(`${SITE}${route}`)}" />`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${SITE}${route}`)}" />`,
+  ];
+
+  if (hasTranslations) {
+    for (const { lang, slug } of unambiguousLangsFor(enSlug)) {
+      if (lang === "en") continue;
+      const href = `${SITE}/${encodeURI(slug)}`;
+      links.push(
+        `    <xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}" />`,
+      );
+    }
+  }
+
+  const alternateLinks = links.join("\n");
 
   const loc = `${SITE}${route}`;
   const lines = [

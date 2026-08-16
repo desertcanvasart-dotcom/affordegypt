@@ -1,8 +1,10 @@
 // Single source of truth for the public URL surface, shared by:
 //   - client/src/utils/slugTranslation.ts (multilingual route creation + links)
 //   - server/vite.ts serveStatic (real 404 status for unknown paths)
-// scripts/generate-sitemap.mjs still carries its own mirror (plain .mjs can't
-// import TS) — keep it in sync when adding pages or languages.
+//   - scripts/generate-sitemap.mjs (hreflang alternates), run under tsx so it
+//     can import this file rather than mirror it — the mirror it used to keep
+//     had gone stale at English-only, which is why the sitemap advertised no
+//     translated alternates at all.
 //
 // Pure data + pure functions only: this module is bundled into both the
 // client and the server, so it must not import client or server code.
@@ -148,6 +150,31 @@ const SLUG_SET: Set<string> = new Set(
  * production static handler to serve the SPA shell with a real 404 status
  * for unknown URLs (instead of a soft-404 200) so crawlers drop dead links.
  */
+export type SupportedLanguage = keyof typeof SLUG_MAPPINGS;
+
+/**
+ * The language a slug unambiguously belongs to, or null.
+ *
+ * Four slugs are shared between languages — French keeps the English
+ * "destinations", "contact" and "attractions"; German keeps "transfers" — so
+ * they identify a page without identifying a language.
+ *
+ * Both callers depend on agreeing about this, and for opposite reasons:
+ * i18n's applyDetectedLanguage() will not switch language on an ambiguous slug
+ * (it would force French on an English reader, or vice versa), and the sitemap
+ * will not advertise one as an hreflang alternate (it would promise Google a
+ * language that URL does not serve). If they disagreed, the sitemap would
+ * announce a translation the app declines to render — so the rule lives here,
+ * once.
+ */
+export function languageOfSlug(slug: string): SupportedLanguage | null {
+  if (!slug) return null;
+  const claimants = (Object.keys(SLUG_MAPPINGS) as SupportedLanguage[]).filter(
+    (lang) => Object.values(SLUG_MAPPINGS[lang]).includes(slug),
+  );
+  return claimants.length === 1 ? claimants[0] : null;
+}
+
 export function isKnownPublicPath(rawPath: string): boolean {
   let pathname = rawPath.split("?")[0].split("#")[0];
   try {

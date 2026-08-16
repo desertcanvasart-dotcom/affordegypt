@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { MULTILINGUAL_ENABLED } from '@/config/features';
+import { languageOfSlug } from '@shared/public-routes';
 
 // Import translation files
 import enTranslations from './locales/en.json';
@@ -77,6 +78,26 @@ function normalize(raw: string | null | undefined): Supported | null {
   return (SUPPORTED as readonly string[]).includes(base) ? (base as Supported) : null;
 }
 
+/**
+ * The language a path declares, or null. The rule for what counts as
+ * unambiguous lives in shared/public-routes.ts, because the sitemap generator
+ * has to make the same call about the same slugs — see languageOfSlug().
+ */
+function languageOfPath(pathname: string): Supported | null {
+  const raw = pathname.split('/')[1] ?? '';
+  // location.pathname is percent-encoded, and two slugs carry non-ASCII:
+  // /reseñas and /enviar-reseña arrive as /rese%C3%B1as and
+  // /enviar-rese%C3%B1a, which match nothing and fell back to English — on the
+  // exact URLs the sitemap advertises as the Spanish alternates.
+  let slug = raw;
+  try {
+    slug = decodeURIComponent(raw);
+  } catch {
+    // A malformed escape is not a slug we know; keep the raw form and miss.
+  }
+  return languageOfSlug(slug);
+}
+
 /** Keeps <html lang> in sync so assistive tech and crawlers see the truth. */
 function syncDocumentLang(lang: string): void {
   if (typeof document === 'undefined') return;
@@ -125,9 +146,21 @@ export function applyDetectedLanguage(): void {
 
   let chosen: Supported | null = null;
 
-  try {
-    chosen = normalize(new URLSearchParams(window.location.search).get('lng'));
-  } catch {}
+  // The path outranks everything. /reiseziele IS the German destinations page —
+  // it is registered as a route only because German exists, and a link to it
+  // has already declared its language. Reading ?lng= or a stored preference
+  // first meant a visitor arriving from a German search result, or opening a
+  // shared /reiseziele link, got English under a German URL: the exact "worst
+  // of both" that createMultilingualRoute redirects away from when the feature
+  // is off. It also has to be the path for the sitemap's hreflang alternates to
+  // be true, since those name a URL and promise a language.
+  chosen = languageOfPath(window.location.pathname);
+
+  if (!chosen) {
+    try {
+      chosen = normalize(new URLSearchParams(window.location.search).get('lng'));
+    } catch {}
+  }
 
   if (!chosen) {
     try {
