@@ -31,6 +31,13 @@ export default function SinaiPeninsulaGuide() {
       description: "Discover Egypt's most diverse region, where ancient mountains meet crystal-clear waters, and Bedouin culture thrives in pristine desert landscapes.",
       safetyNoteLabel: "Safety note:",
       safetyNote: "Advice for Sinai varies sharply by area and can change. Check your government's current travel advice, local access rules, and insurance coverage immediately before travel; do not treat northern or interior Sinai as generally open to tourists.",
+      seoTitle: "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine",
+      seoDescription: "From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai.",
+      heroBadges: {
+        diving: "Red Sea Diving Paradise",
+        mountain: "Biblical Mount Sinai",
+        bedouin: "Bedouin Desert Culture",
+      },
       destinations: {
         title: "Top Destinations",
         description: "From world-class diving sites to sacred mountains, explore the peninsula's most captivating locations.",
@@ -164,6 +171,15 @@ export default function SinaiPeninsulaGuide() {
       title: "Península del Sinaí",
       subtitle: "Donde el Desierto se Encuentra con el Mar",
       description: "Descubre la región más diversa de Egipto, donde las montañas antiguas se encuentran con aguas cristalinas y la cultura beduina prospera en paisajes desérticos prístinos.",
+      safetyNoteLabel: "Nota de seguridad:",
+      safetyNote: "Las recomendaciones para el Sinaí varían mucho según la zona y pueden cambiar. Consulta las recomendaciones de viaje vigentes de tu gobierno, las normas de acceso locales y la cobertura de tu seguro justo antes de viajar; no des por hecho que el norte o el interior del Sinaí estén abiertos al turismo.",
+      seoTitle: "Guía de Viaje de la Península del Sinaí | Monte Sinaí, Dahab, Santa Catalina",
+      seoDescription: "Desde los escarpados picos del Monte Sinaí hasta las capitales del buceo, Dahab y Sharm El Sheikh. Una guía práctica y honesta para viajar por el Sinaí.",
+      heroBadges: {
+        diving: "Paraíso del Buceo en el Mar Rojo",
+        mountain: "Monte Sinaí Bíblico",
+        bedouin: "Cultura Beduina del Desierto",
+      },
       destinations: {
         title: "Principales Destinos",
         description: "Desde sitios de buceo de clase mundial hasta montañas sagradas, explora las ubicaciones más cautivadoras de la península.",
@@ -296,6 +312,15 @@ export default function SinaiPeninsulaGuide() {
       title: "Péninsule du Sinaï",
       subtitle: "Où le Désert Rencontre la Mer",
       description: "Découvrez la région la plus diverse d'Égypte, où les montagnes anciennes rencontrent des eaux cristallines et la culture bédouine prospère dans des paysages désertiques pristins.",
+      safetyNoteLabel: "Note de sécurité :",
+      safetyNote: "Les recommandations concernant le Sinaï varient fortement selon les zones et peuvent changer. Consultez les conseils aux voyageurs actuels de votre gouvernement, les règles d'accès locales et votre couverture d'assurance juste avant de partir ; ne considérez pas le nord ni l'intérieur du Sinaï comme globalement ouverts aux touristes.",
+      seoTitle: "Guide de Voyage de la Péninsule du Sinaï | Mont Sinaï, Dahab, Sainte-Catherine",
+      seoDescription: "Des pics escarpés du mont Sinaï aux capitales de la plongée, Dahab et Charm el-Cheikh. Un guide pratique et honnête pour voyager au Sinaï.",
+      heroBadges: {
+        diving: "Paradis de la Plongée en Mer Rouge",
+        mountain: "Mont Sinaï Biblique",
+        bedouin: "Culture Bédouine du Désert",
+      },
       destinations: {
         title: "Principales Destinations",
         description: "Des sites de plongée de classe mondiale aux montagnes sacrées, explorez les lieux les plus captivants de la péninsule.",
@@ -428,6 +453,15 @@ export default function SinaiPeninsulaGuide() {
       title: "Sinai-Halbinsel",
       subtitle: "Wo Wüste auf Meer Trifft",
       description: "Entdecken Sie Ägyptens vielfältigste Region, wo uralte Berge auf kristallklares Wasser treffen und die Beduinenkultur in unberührten Wüstenlandschaften gedeiht.",
+      safetyNoteLabel: "Sicherheitshinweis:",
+      safetyNote: "Die Empfehlungen für den Sinai unterscheiden sich stark je nach Gebiet und können sich ändern. Prüfen Sie unmittelbar vor der Reise die aktuellen Reisehinweise Ihrer Regierung, die örtlichen Zugangsregeln und Ihren Versicherungsschutz; gehen Sie nicht davon aus, dass der Norden oder das Landesinnere des Sinai allgemein für Touristen offen sind.",
+      seoTitle: "Reiseführer Sinai-Halbinsel | Berg Sinai, Dahab, Sankt Katharina",
+      seoDescription: "Von den schroffen Gipfeln des Berges Sinai bis zu den Tauchmetropolen Dahab und Sharm El Sheikh. Ein praktischer, ehrlicher Leitfaden für Reisen auf dem Sinai.",
+      heroBadges: {
+        diving: "Tauchparadies am Roten Meer",
+        mountain: "Biblischer Berg Sinai",
+        bedouin: "Beduinische Wüstenkultur",
+      },
       destinations: {
         title: "Top-Reiseziele",
         description: "Von Weltklasse-Tauchplätzen bis zu heiligen Bergen, erkunden Sie die faszinierendsten Orte der Halbinsel.",
@@ -576,14 +610,18 @@ export default function SinaiPeninsulaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50">
   <SeoMeta
-          title="Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine"
-          description="From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai."
+          // These four read from currentContent, so the tag, the article
+          // schema and the page agree and follow the reader's language. The
+          // title and description were each written out twice here as English
+          // literals — the meta tag and the schema headline were two copies of
+          // one sentence, free to drift apart.
+          title={currentContent.seoTitle}
+          description={currentContent.seoDescription}
           canonical="https://affordegypt.com/sinai-peninsula-guide"
           ogImage="https://affordegypt.com/images/sinai-monastery.jpg"
           schema={[articleSchema({
-            headline: "Sinai Peninsula Travel Guide | Mt. Sinai, Dahab, St. Catherine",
-            description:
-              "From the rugged peaks of Mt. Sinai to the diving capitals of Dahab and Sharm El Sheikh. A practical, operator-honest guide to traveling Sinai.",
+            headline: currentContent.seoTitle,
+            description: currentContent.seoDescription,
             canonical: "https://affordegypt.com/sinai-peninsula-guide",
             image: "https://affordegypt.com/images/sinai-monastery.jpg",
             datePublished: "2025-06-07",
@@ -616,15 +654,15 @@ export default function SinaiPeninsulaGuide() {
             <div className="flex flex-wrap justify-center gap-4 pt-6">
               <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
                 <Waves className="w-5 h-5 mr-3" />
-                Red Sea Diving Paradise
+                {currentContent.heroBadges.diving}
               </Badge>
               <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
                 <Mountain className="w-5 h-5 mr-3" />
-                Biblical Mount Sinai  
+                {currentContent.heroBadges.mountain}
               </Badge>
               <Badge variant="secondary" className="bg-white/20 text-white border-white/30 px-6 py-3 text-lg">
                 <Sun className="w-5 h-5 mr-3" />
-                Bedouin Desert Culture
+                {currentContent.heroBadges.bedouin}
               </Badge>
             </div>
           </div>

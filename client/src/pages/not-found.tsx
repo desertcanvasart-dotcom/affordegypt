@@ -4,12 +4,14 @@ import { Compass, Home, Calculator } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
+import { useTranslation } from "react-i18next";
 
 export default function NotFound() {
+  const { t } = useTranslation();
   return (
     <>
       <SeoMeta
-        title="Page Not Found | AffordEgypt"
+        title={t('chrome.notFoundTitle')}
         description="This page doesn't exist. Head back to AffordEgypt to plan your Egypt trip with transparent pricing."
         noindex="follow"
       />
@@ -18,7 +20,7 @@ export default function NotFound() {
         <div className="text-center px-4">
           <Compass className="w-14 h-14 text-primary mx-auto mb-6" />
           <h1 className="text-4xl font-bold text-foreground mb-3">
-            Page not found
+            {t('chrome.notFoundHeading')}
           </h1>
           <p className="text-muted-foreground max-w-md mx-auto mb-8">
             This page doesn't exist — but Egypt is still out there. Head back

@@ -8,11 +8,12 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
-    "build": "node scripts/generate-pricing-snapshot.mjs && vite build && node scripts/generate-sitemap.mjs && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build": "node scripts/generate-pricing-snapshot.mjs && vite build && npx tsx scripts/generate-sitemap.mjs && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",
     "test": "vitest run",
     "check:invariants": "node scripts/check-invariants.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
     "check:pricing-drift": "node scripts/check-pricing-drift.mjs",
     "check:routes": "node scripts/check-routes.mjs",
     "db:push": "drizzle-kit push"
@@ -83,7 +84,6 @@
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
-    "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.55.0",
     "react-i18next": "^15.6.0",
     "react-icons": "^5.4.0",

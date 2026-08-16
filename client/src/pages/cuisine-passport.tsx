@@ -33,579 +33,110 @@ import {
 import { Link } from "wouter";
 import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
 import PageBreadcrumbs from "@/components/page-breadcrumbs";
+import { DISH_FACTS, type DishFacts } from "@/lib/cuisine-dishes";
 
-interface Dish {
-  id: number;
+// Sentinel values for the "no filter" option in each dropdown. They are compared
+// against, never shown, so they must not be translated — the visible label comes
+// from cuisinePassport.filters.*.all.
+const ALL_REGIONS = "__all_regions__";
+const ALL_CATEGORIES = "__all_categories__";
+const ALL_LEVELS = "__all_levels__";
+
+/*
+ * Search metadata used to live here as two module constants, both promising
+ * "25 Dishes". The page builds itself from DISH_FACTS, which holds nine — so
+ * the title of the page, and the description Google shows under it, invited
+ * people to a card with 25 dishes on it and delivered nine.
+ *
+ * The count is read from the data now and interpolated, so it cannot be wrong
+ * again: add a dish and the claim follows. cuisine-dishes.test.ts asserts that
+ * no locale hardcodes a number in its place.
+ *
+ * The old comment here said these stay English "the same as every other page's
+ * SeoMeta". That is no longer true of any page — the transfer, guide-service,
+ * airport, destinations, Sinai, reviews and home meta are all translated — so
+ * these are too.
+ */
+
+/**
+ * A dish as the page uses it: the facts from the data module merged with the
+ * prose for the active language.
+ */
+type Dish = DishFacts & {
   name: string;
-  arabicName: string;
   description: string;
-  region: string;
-  spiceLevel: number;
-  difficulty: "Easy" | "Medium" | "Hard";
   cookingTime: string;
   priceRange: string;
-  ingredients: string[];
-  allergens: string[];
-  category: "Appetizer" | "Main" | "Dessert" | "Street Food" | "Beverage";
-  popularity: number;
-  tried: boolean;
-  image: string;
-  arPreview?: string;
-  nutritionScore: number;
   culturalStory: string;
+  ingredients: string[];
   bestLocations: string[];
-  healthBenefits?: string[];
-  servingStyles?: string[];
-  preparationMethods?: string[];
   signatureTraits?: string[];
-  regionalVariations?: string[];
+  servingStyles?: string[];
   cookingMethods?: string[];
   preparationTips?: string[];
+  regionalVariations?: string[];
   traditionalUses?: string[];
   celebrationOccasions?: string[];
-}
-
-const egyptianDishes: Dish[] = [
-  {
-    id: 1,
-    name: "Koshari",
-    arabicName: "كشري",
-    description: "Egypt's national dish - a hearty, spicy, and uniquely satisfying street food made by layering lentils, rice, pasta, chickpeas, and crispy fried onions, then drenched in garlicky tomato sauce and optional spicy vinegar-chili dressing.",
-    region: "Cairo",
-    spiceLevel: 2,
-    difficulty: "Medium",
-    cookingTime: "About 45 minutes",
-    priceRange: "Under 60 EGP",
-    ingredients: ["Brown lentils", "White rice", "Small pasta", "Chickpeas", "Onions", "Garlic", "Crushed tomatoes", "White vinegar", "Cumin", "Chili flakes"],
-    allergens: ["Gluten"],
-    category: "Main",
-    popularity: 95,
-    tried: false,
-    image: "/images/koshary.jpg",
-    nutritionScore: 85,
-    culturalStory: "Created in the 19th century by mixing various grain dishes from different cultures trading in Egypt. Though humble in origin, Koshari is a symbol of Egyptian ingenuity, served in homes, street stalls, and restaurants from Cairo to Aswan. It represents the ultimate Egyptian street comfort food.",
-    bestLocations: ["Abou Tarek - Downtown Cairo", "Koshari El Tahrir", "Koshari Hind", "Street stalls throughout Egypt"],
-    signatureTraits: [
-      "Hearty & filling - a full meal in one bowl",
-      "Naturally vegan (no meat or dairy)",
-      "Layered textures: crispy, soft, chewy",
-      "Bold, spicy, tangy flavours",
-      "Affordable & widely available"
-    ],
-    servingStyles: [
-      "Layered in deep bowl starting with rice",
-      "Topped with lentils, pasta, and chickpeas",
-      "Covered in garlicky tomato sauce",
-      "Finished with crispy fried onions",
-      "Optional spicy vinegar sauce (Da'a) on the side"
-    ],
-    cookingMethods: [
-      "Cook each component separately for best texture",
-      "Fry onions until deep golden and crispy (10-15 minutes)",
-      "Simmer tomato sauce 15-20 minutes until thickened",
-      "Layer components just before serving for optimal texture"
-    ],
-    preparationTips: [
-      "Make extra fried onions - they disappear first",
-      "Prepare all elements in advance and assemble before serving",
-      "Add dash of baharat (Egyptian spice mix) for authentic flavor",
-      "Reheats well, making it great for meal prep"
-    ]
-  },
-  {
-    id: 2,
-    name: "Ful Medames",
-    arabicName: "فول مدمس",
-    description: "Egypt's most iconic breakfast dish made from slow-cooked fava beans, typically seasoned with olive oil, garlic, lemon juice, and spices. Deeply embedded in Egyptian daily life, versatile and rich in protein and fiber.",
-    region: "Upper Egypt",
-    spiceLevel: 1,
-    difficulty: "Easy",
-    cookingTime: "About 6 hours (traditional slow-cooking; recipes vary)",
-    priceRange: "Under 25 EGP",
-    ingredients: ["Cooked fava beans", "Olive oil", "Garlic", "Lemon juice", "Ground cumin", "Salt", "Black pepper"],
-    allergens: [],
-    category: "Main",
-    popularity: 90,
-    tried: false,
-    image: "/images/fool-medames.jpg",
-    nutritionScore: 92,
-    culturalStory: "Ancient dish dating back to Pharaonic times, traditionally cooked overnight in buried clay pots. Enjoyed daily by millions of Egyptians, from simple street carts in Cairo to home kitchens across the country.",
-    bestLocations: ["Al Malky Restaurant", "Traditional street carts", "Local cafes", "Street breakfast vendors"],
-    signatureTraits: [
-      "Creamy or chunky texture (depending on preference)",
-      "Earthy, garlicky, lemony, and sometimes spicy flavor",
-      "Vegan & healthy - packed with fiber and protein",
-      "National favorite enjoyed daily by millions",
-      "Most iconic Egyptian breakfast dish"
-    ],
-    servingStyles: [
-      "Served with warm baladi bread or pita",
-      "Accompanied by hard-boiled eggs",
-      "Garnished with diced tomatoes, onions, or parsley",
-      "Paired with pickled vegetables (torshi)",
-      "Optional tahini drizzle or chopped green chilies"
-    ],
-    cookingMethods: [
-      "Warm beans gently in saucepan with splash of water",
-      "Mash lightly with fork for desired texture",
-      "Add seasonings and simmer 2-3 minutes",
-      "Serve immediately while warm"
-    ],
-    regionalVariations: [
-      "Ful Eskandrani (Alexandrian): Served cold with chili, tomatoes, parsley, vinegar",
-      "Ful with boiled eggs: Classic street-style breakfast",
-      "Ful bel Dabba (with butter): Creamy, indulgent restaurant version",
-      "Spicy Ful: Add harissa or fresh chili oil for heat"
-    ],
-    preparationTips: [
-      "Use cooked fava beans or quality canned beans",
-      "Adjust mashing to personal texture preference",
-      "Balance lemon juice and olive oil for best flavor",
-      "Serve immediately for optimal temperature and taste"
-    ]
-  },
-  {
-    id: 3,
-    name: "Molokhia",
-    arabicName: "ملوخية",
-    description: "Deep green leafy soup made from finely chopped jute mallow leaves. One of Egypt's most ancient dishes dating back to Pharaonic times. Smooth, garlicky, and full of umami with a unique slightly mucilaginous texture.",
-    region: "Nile Delta",
-    spiceLevel: 2,
-    difficulty: "Medium",
-    cookingTime: "About 30 minutes",
-    priceRange: "120 EGP",
-    ingredients: ["Molokhia leaves", "Garlic", "Ground coriander", "Chicken broth", "Ghee or butter", "Lemon juice", "Salt"],
-    allergens: [],
-    category: "Main",
-    popularity: 80,
-    tried: false,
-    image: "/images/molo5eya.jpg",
-    nutritionScore: 88,
-    culturalStory: "Originally forbidden for commoners in Pharaonic times as it was considered food for royalty. One of Egypt's most ancient and beloved dishes, representing the ultimate comfort food for Egyptians across generations.",
-    bestLocations: ["Naguib Mahfouz Cafe", "Traditional family restaurants", "Hotel restaurants", "Rural Egyptian households"],
-    signatureTraits: [
-      "Thick and slightly viscous texture (similar to okra)",
-      "Earthy, garlicky, and rich with coriander flavor",
-      "Ancient dish with Pharaonic origins",
-      "Ultimate Egyptian comfort food",
-      "Unique mucilaginous consistency"
-    ],
-    servingStyles: [
-      "Served over white rice or vermicelli rice",
-      "Accompanied by baladi bread",
-      "Topped with squeeze of fresh lemon",
-      "Paired with hot chili vinegar",
-      "Served with grilled protein on the side"
-    ],
-    cookingMethods: [
-      "Never boil - heat gently to preserve texture",
-      "Stir only once after adding to broth",
-      "Heat 3-5 minutes until warmed and thickened",
-      "Add tasha (garlic-coriander mix) while sizzling hot"
-    ],
-    regionalVariations: [
-      "Alexandrian-style: Includes chopped tomatoes, served with seafood",
-      "Palestinian/Lebanese style: Whole leaves, more stew-like texture",
-      "Rural Egyptian: Traditionally paired with rabbit for feasts",
-      "Modern variations: Served with vinegar-chili dip on side"
-    ],
-    preparationTips: [
-      "Fresh molokhia must be chopped until paste-like consistency",
-      "Frozen molokhia works well as convenient alternative",
-      "Make tasha separately for proper flavor infusion",
-      "Avoid over-stirring to prevent slimy texture"
-    ]
-  },
-  {
-    id: 4,
-    name: "Mahshi",
-    arabicName: "محشي",
-    description: "Egypt's classic dish of vegetables stuffed with seasoned rice, slow-cooked in light tomato broth. Includes zucchini, eggplant, bell peppers, tomatoes, cabbage leaves, and grape leaves. Deeply tied to family gatherings and celebrations.",
-    region: "Alexandria",
-    spiceLevel: 2,
-    difficulty: "Hard",
-    cookingTime: "About 90 minutes",
-    priceRange: "150 EGP",
-    ingredients: ["Zucchini", "Bell peppers", "Egyptian rice", "Onion", "Tomato paste", "Parsley", "Dill", "Cilantro", "Vegetable oil", "Cumin", "Coriander"],
-    allergens: [],
-    category: "Main",
-    popularity: 75,
-    tried: false,
-    image: "/images/mashi.jpg",
-    nutritionScore: 90,
-    culturalStory: "Ottoman influence dish that became deeply rooted in Egyptian family traditions. Often prepared in large trays for sharing at family gatherings, feasts, and celebrations. The name literally means 'stuffed' in Arabic.",
-    bestLocations: ["Alexandrian family restaurants", "Traditional homes", "Coastal restaurants", "Friday family lunch gatherings"],
-    signatureTraits: [
-      "Vegetables stuffed with seasoned rice filling",
-      "Slow-cooked in tomato-based broth for maximum flavor",
-      "Herby, garlicky, rich, and comforting taste",
-      "Naturally vegetarian, often vegan",
-      "Perfect for family gatherings and celebrations"
-    ],
-    servingStyles: [
-      "Arranged upright on serving tray",
-      "Spooned with cooking broth on top",
-      "Served with yogurt or green salad",
-      "Accompanied by lemon wedges",
-      "Paired with pickles or molokhia for complete meal"
-    ],
-    cookingMethods: [
-      "Hollow vegetables carefully with vegetable corer",
-      "Fill 2/3 full to allow rice expansion",
-      "Layer with potato slices to prevent sticking",
-      "Simmer gently 45-60 minutes until tender"
-    ],
-    regionalVariations: [
-      "Upper Egypt: Cabbage and grape leaves versions especially loved",
-      "Nile Delta: Traditional cabbage rolls popular",
-      "Meat variation: Add minced meat to rice for richer version",
-      "Coastal areas: Often served with seafood accompaniments"
-    ],
-    preparationTips: [
-      "Use short grain Egyptian rice for best texture",
-      "Do not pre-cook rice - it cooks inside vegetables",
-      "Reserve tomato juice from hollowed tomatoes for broth",
-      "Served at Friday family lunches, Eid, and special occasions"
-    ]
-  },
-  {
-    id: 5,
-    name: "Baladi Bread",
-    arabicName: "عيش بلدي",
-    description: "Egypt's traditional flatbread, a cornerstone of everyday Egyptian life. The word 'baladi' means 'local' or 'country-style'. It is commonly made with around 50% whole-wheat flour and baked at high heat to form a pocket; recipes are not universally 100% whole wheat.",
-    region: "All Egypt",
-    spiceLevel: 0,
-    difficulty: "Medium",
-    cookingTime: "About 3 hours including proofing",
-    priceRange: "5 EGP",
-    ingredients: ["Whole wheat flour", "All-purpose flour", "Instant yeast", "Sugar", "Salt", "Warm water", "Olive oil"],
-    allergens: ["Gluten"],
-    category: "Appetizer",
-    popularity: 100,
-    tried: false,
-    image: "/images/3esh.jpg",
-    nutritionScore: 70,
-    culturalStory: "Essential part of Egyptian culture for over 5,000 years, often called 'aysh' meaning life. Simple, hearty, and deeply rooted in Egyptian culture, this bread truly embodies the traditional local spirit.",
-    bestLocations: ["Local bakeries", "Street vendors", "Every Egyptian table", "Furn baladi (clay ovens)"],
-    signatureTraits: [
-      "Whole wheat, round and flat shape",
-      "Puffs up when baked - forming a pocket inside",
-      "Soft yet slightly chewy with nutty, earthy flavor",
-      "Naturally vegan, no dairy or eggs",
-      "Served with almost every Egyptian meal"
-    ],
-    servingStyles: [
-      "Breakfast with ful medames",
-      "Scooping up molokhia or koshari",
-      "Wrapping kebda (liver) sandwiches",
-      "Pairing with taameya (Egyptian falafel)",
-      "Served with dips like tahini, baba ghanoush, duqqa"
-    ],
-    cookingMethods: [
-      "Baked on hot baking stone or iron griddle",
-      "Cooked at 250°C (480°F) for 5-7 minutes",
-      "Puffs up during high-heat baking process",
-      "Can be made at home with or without special oven"
-    ],
-    preparationTips: [
-      "Use preheated pizza stone to mimic clay oven effect",
-      "Avoid over-handling dough once shaped to ensure puffing",
-      "Add white flour for better elasticity in modern baking",
-      "Store in sealed bag for 2-3 days or freeze for longer"
-    ],
-    traditionalUses: [
-      "Accompanies mahshi and other main dishes",
-      "Essential for authentic Egyptian breakfast",
-      "Used for wrapping and scooping foods",
-      "Symbol of sustenance in Egyptian culture"
-    ]
-  },
-  {
-    id: 6,
-    name: "Umm Ali",
-    arabicName: "أم علي",
-    description: "Egypt's most famous and comforting dessert meaning 'Ali's Mother'. Rich, creamy bread pudding-style dish with pastry, nuts, milk, and cream, baked until bubbling and golden. Associated with celebrations, Ramadan, and special occasions.",
-    region: "Cairo",
-    spiceLevel: 0,
-    difficulty: "Easy",
-    cookingTime: "About 20 minutes",
-    priceRange: "100 EGP",
-    ingredients: ["Puff pastry", "Full-fat milk", "Heavy cream", "Sugar", "Mixed nuts", "Shredded coconut", "Raisins", "Vanilla extract"],
-    allergens: ["Gluten", "Nuts", "Dairy"],
-    category: "Dessert",
-    popularity: 85,
-    tried: false,
-    image: "/images/om-3aly.jpg",
-    nutritionScore: 60,
-    culturalStory: "Named after the wife of Sultan Ezz El Din Aybek, created to celebrate a victory. Often called the Egyptian version of bread pudding with Middle Eastern flair, loaded with nuts, coconut, and sometimes raisins.",
-    bestLocations: ["Groppi Cafe", "Traditional cafes", "Hotel restaurants", "Ramadan iftar tables"],
-    signatureTraits: [
-      "Served warm, straight from the oven",
-      "Crispy, golden top; creamy and soft underneath",
-      "Made with puff pastry, phyllo, or bread",
-      "No eggs - unlike Western bread puddings",
-      "Rich, festive, and deeply satisfying"
-    ],
-    servingStyles: [
-      "Best enjoyed fresh out of the oven",
-      "Garnished with crushed pistachios",
-      "Optional drizzle of condensed milk for extra indulgence",
-      "Served in individual ramekins or family-style dish",
-      "Accompanied by Arabic coffee or tea"
-    ],
-    cookingMethods: [
-      "Bake at 200°C (390°F) for 20-25 minutes",
-      "Broil for extra 2-3 minutes for crispier top",
-      "Layer pastry with nuts and pour hot milk mixture",
-      "Top with heavy cream without stirring"
-    ],
-    celebrationOccasions: [
-      "Ramadan Iftar desserts",
-      "Eid feasts and celebrations",
-      "Weddings and special occasions",
-      "Café menus and Friday family lunches"
-    ],
-    preparationTips: [
-      "Use cream-soaked toast for more rustic version",
-      "Add rosewater or orange blossom water for Arabian twist",
-      "Include sweetened condensed milk for richer version",
-      "Watch closely during broiling to prevent burning"
-    ]
-  },
-  {
-    id: 9,
-    name: "Rice Muammar",
-    arabicName: "رز معمر",
-    description: "Traditional Egyptian baked rice dish cooked slowly in milk and cream, served in clay tajin. Creates a creamy, golden-topped casserole with crispy crust and rich, buttery center. Popular in countryside and Upper Egypt for Friday lunches and family gatherings.",
-    region: "Upper Egypt",
-    spiceLevel: 0,
-    difficulty: "Medium",
-    cookingTime: "About 60-75 minutes",
-    priceRange: "150 EGP",
-    ingredients: ["Short-grain rice", "Full-fat milk", "Cooking cream", "Ghee", "Chicken or beef", "Salt", "Pepper", "Bay leaf"],
-    allergens: ["Dairy"],
-    category: "Main",
-    popularity: 78,
-    tried: false,
-    image: "/images/rice-muammar-.jpg",
-    nutritionScore: 75,
-    culturalStory: "The name 'muammar' means 'enriched,' referring to the rich milk and cream used. Traditional clay tajin cooking gives the best crispy crust and is especially popular in rural Egyptian kitchens.",
-    bestLocations: ["Upper Egypt restaurants", "Rural family kitchens", "Traditional Egyptian homes", "Friday lunch tables"],
-    signatureTraits: [
-      "Baked in clay or ceramic tajin",
-      "Signature creamy interior with crispy golden crust",
-      "Can be savory with meat or sweet for dessert",
-      "Simple ingredients with deeply comforting result",
-      "Popular in rural Egyptian countryside"
-    ],
-    servingStyles: [
-      "Served straight from the tajin while warm",
-      "Accompanied by side salad or yogurt",
-      "Family-style sharing from clay pot",
-      "Crispy top and creamy base highlight",
-      "Friday lunch centerpiece dish"
-    ],
-    cookingMethods: [
-      "Bake at 200°C (390°F) for 45-60 minutes",
-      "Cover with foil, then uncover for golden crust",
-      "Use clay tajin for best crispy texture",
-      "Layer meat at bottom, rice and milk mixture on top"
-    ],
-    regionalVariations: [
-      "Savory version with chicken or beef chunks",
-      "Sweet version (Muammar Helw) with sugar and vanilla",
-      "Upper Egypt style with whole spices",
-      "Countryside version with extra ghee and ishta"
-    ],
-    preparationTips: [
-      "Use clay tajin if available for best crust",
-      "Brown meat slightly before adding for extra flavor",
-      "Mix milk and evaporated milk for extra richness",
-      "Add whole clove or bay leaf for subtle aroma"
-    ]
-  },
-  {
-    id: 7,
-    name: "Hawawshi",
-    arabicName: "حواوشي",
-    description: "Classic Egyptian meat-stuffed bread - spiced minced beef or lamb mixed with vegetables and herbs, stuffed into baladi bread and baked until crispy golden outside with juicy filling inside.",
-    region: "Cairo",
-    spiceLevel: 3,
-    difficulty: "Medium",
-    cookingTime: "About 25 minutes",
-    priceRange: "200 EGP",
-    ingredients: ["Ground beef or lamb", "Baladi bread", "Onion", "Bell pepper", "Garlic", "Green chilli", "Parsley", "Cumin", "Paprika", "Cinnamon", "Allspice"],
-    allergens: ["Gluten"],
-    category: "Street Food",
-    popularity: 85,
-    tried: false,
-    image: "/images/7awawshy.jpg",
-    nutritionScore: 75,
-    culturalStory: "Created in Cairo's working-class neighborhoods as a quick, filling meal that's become one of Egypt's most beloved street foods. Often compared to a Middle Eastern-style meat pie or spiced burger in pita, it's popular as a street snack, family meal, or party dish.",
-    bestLocations: ["El Refai Restaurant", "Street food vendors", "Local grills", "Cairo street food stalls"],
-    signatureTraits: [
-      "Crispy and golden on the outside",
-      "Juicy, spiced meat filling inside", 
-      "Packed with onions, peppers, and warm spices",
-      "Perfect balance of texture and flavor"
-    ],
-    servingStyles: [
-      "Sliced in halves or quarters",
-      "Served with tahini sauce",
-      "Accompanied by pickles",
-      "With fresh salad on the side"
-    ],
-    regionalVariations: [
-      "Alexandrian Hawawshi: Spicier version in fresh kneaded dough",
-      "Modern twist: Add cheese for extra richness",
-      "Lighter version: Use whole wheat pita bread"
-    ],
-    cookingMethods: [
-      "Oven method: 200°C for 20-25 minutes, flip halfway",
-      "Skillet method: 5-7 minutes per side on medium heat"
-    ]
-  },
-  {
-    id: 8,
-    name: "Karkade",
-    arabicName: "كركديه",
-    description: "Traditional Egyptian hibiscus tea made from dried Hibiscus sabdariffa petals. Deep crimson in color, tart and fruity flavor similar to cranberry. Rich in antioxidants and caffeine-free.",
-    region: "Aswan",
-    spiceLevel: 0,
-    difficulty: "Easy",
-    cookingTime: "About 10 minutes (hot) / 6-12 hours (cold brew)",
-    priceRange: "40 EGP",
-    ingredients: ["Dried hibiscus petals", "Water", "Sugar", "Optional: lemon, cinnamon, clove"],
-    allergens: [],
-    category: "Beverage",
-    popularity: 70,
-    tried: false,
-    image: "/images/karkade.jpg",
-    nutritionScore: 95,
-    culturalStory: "Also spelled Karkaday or Karkadi, this traditional drink holds deep cultural significance in Egypt. Served during weddings and festive gatherings, it's a Ramadan favorite for breaking the fast. Known for medicinal benefits including lowering blood pressure, aiding digestion, and boosting liver health. Can be prepared as cold brew (traditional Egyptian method for smoother taste) or hot brew for stronger flavor.",
-    bestLocations: ["Aswan street vendors", "Traditional cafes", "Cairo street cafés with shisha", "Wedding celebrations", "Ramadan iftar tables"],
-    healthBenefits: [
-      "Lowers blood pressure (clinically studied)",
-      "Aids digestion", 
-      "Boosts liver health",
-      "Rich in vitamin C and antioxidants",
-      "Caffeine-free alternative to tea/coffee"
-    ],
-    servingStyles: [
-      "Hot as soothing herbal tea",
-      "Cold as refreshing summer drink", 
-      "With rosewater for floral twist",
-      "Infused with ginger or mint",
-      "Mixed with sparkling water as hibiscus soda"
-    ],
-    preparationMethods: [
-      "Cold Brew: Soak petals 6-12 hours for gentler flavor",
-      "Hot Brew: Simmer 10-15 minutes for stronger taste"
-    ]
-  }
-];
+  healthBenefits?: string[];
+  preparationMethods?: string[];
+};
 
 export default function CuisinePassport() {
   const { t } = useTranslation();
-  const [dishes, setDishes] = useState<Dish[]>(egyptianDishes);
-  const [filteredDishes, setFilteredDishes] = useState<Dish[]>(egyptianDishes);
-  const [selectedRegion, setSelectedRegion] = useState("All Regions");
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("All Levels");
+  // Counted from the data, never typed. See the note above the component.
+  const seoTitle = t("cuisinePassport.seoTitle", { count: DISH_FACTS.length });
+  const seoDescription = t("cuisinePassport.seoDescription", {
+    count: DISH_FACTS.length,
+  });
+  const [selectedRegion, setSelectedRegion] = useState(ALL_REGIONS);
+  const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORIES);
+  const [selectedDifficulty, setSelectedDifficulty] = useState(ALL_LEVELS);
+  // Which dishes the visitor has ticked off. Held by id rather than on the dish
+  // objects, because those are rebuilt from the locale on every language change.
+  const [triedIds, setTriedIds] = useState<number[]>([]);
 
-  // Helper function to get translated description
-  const getTranslatedDescription = (dish: Dish) => {
-    const dishKeys: {[key: string]: string} = {
-      "Koshari": "koshari",
-      "Ful Medames": "fulMedames", 
-      "Mahshi": "mahshi",
-      "Molokhia": "molokhia",
-      "Roz Bel Laban": "roz",
-      "Rice Muammar": "ricemuammar",
-      "Hawawshi": "hawawshi",
-      "Karkade": "karkade",
-      "Baladi Bread": "baladibre",
-      "Umm Ali": "umm"
-    };
-    
-    const translationKey = dishKeys[dish.name];
-    if (translationKey) {
-      return t(`cuisinePassport.descriptions.${translationKey}`);
-    }
-    return dish.description; // fallback to original description
-  };
-
-  // Helper function to get translated cultural story
-  const getTranslatedCulturalStory = (dish: Dish) => {
-    const dishKeys: {[key: string]: string} = {
-      "Koshari": "koshari",
-      "Ful Medames": "fulMedames", 
-      "Mahshi": "mahshi",
-      "Molokhia": "molokhia",
-      "Roz Bel Laban": "roz",
-      "Rice Muammar": "ricemuammar",
-      "Hawawshi": "hawawshi",
-      "Karkade": "karkade",
-      "Baladi Bread": "baladibre",
-      "Umm Ali": "umm"
-    };
-    
-    const translationKey = dishKeys[dish.name];
-    if (translationKey) {
-      return t(`cuisinePassport.culturalStories.${translationKey}`);
-    }
-    return dish.culturalStory; // fallback
-  };
-
-  // Helper function to get translated array content
-  const getTranslatedArrayContent = (dish: Dish, arrayType: 'servingStyles' | 'signatureTraits' | 'cookingMethods' | 'preparationTips') => {
-    const dishKeys: {[key: string]: string} = {
-      "Koshari": "koshari",
-      "Ful Medames": "fulMedames", 
-      "Mahshi": "mahshi",
-      "Molokhia": "molokhia",
-      "Roz Bel Laban": "roz",
-      "Rice Muammar": "ricemuammar",
-      "Hawawshi": "hawawshi",
-      "Karkade": "karkade",
-      "Baladi Bread": "baladibre",
-      "Umm Ali": "umm"
-    };
-    
-    const translationKey = dishKeys[dish.name];
-    if (translationKey) {
-      const translatedArray = t(`cuisinePassport.${arrayType}.${translationKey}`, { returnObjects: true });
-      if (Array.isArray(translatedArray)) {
-        return translatedArray;
-      }
-    }
-    return dish[arrayType] || []; // fallback
-  };
+  // The prose half of each dish comes from the locale files; the facts half from
+  // the data module. `defaultValue` keeps the page standing if a locale is ever
+  // missing an entry — the dish renders with its facts and empty prose rather
+  // than throwing, which is what returnObjects does on a missing key.
+  const dishes: Dish[] = DISH_FACTS.map((facts) => ({
+    ...facts,
+    ...(t(`cuisinePassport.dishes.${facts.slug}`, { returnObjects: true, defaultValue: {} }) as object),
+  })) as Dish[];
 
   const regionOptions = [
-    { value: "All Regions", label: t('cuisinePassport.filters.regions.all') },
-    { value: "Cairo", label: t('cuisinePassport.filters.regions.cairo') },
-    { value: "Alexandria", label: t('cuisinePassport.filters.regions.alexandria') },
-    { value: "Upper Egypt", label: t('cuisinePassport.filters.regions.upperEgypt') },
-    { value: "Nile Delta", label: t('cuisinePassport.filters.regions.nileDelta') },
-    { value: "Aswan", label: t('cuisinePassport.filters.regions.aswan') }
+    { value: ALL_REGIONS, label: t('cuisinePassport.filters.regions.all') },
+    { value: "cairo", label: t('cuisinePassport.filters.regions.cairo') },
+    { value: "alexandria", label: t('cuisinePassport.filters.regions.alexandria') },
+    { value: "upperEgypt", label: t('cuisinePassport.filters.regions.upperEgypt') },
+    { value: "nileDelta", label: t('cuisinePassport.filters.regions.nileDelta') },
+    { value: "aswan", label: t('cuisinePassport.filters.regions.aswan') },
+    { value: "allEgypt", label: t('cuisinePassport.filters.regions.allEgypt') }
   ];
-  
+
   const categoryOptions = [
-    { value: "All Categories", label: t('cuisinePassport.filters.categories.all') },
+    { value: ALL_CATEGORIES, label: t('cuisinePassport.filters.categories.all') },
     { value: "Appetizer", label: t('cuisinePassport.filters.categories.appetizer') },
     { value: "Main", label: t('cuisinePassport.filters.categories.main') },
     { value: "Dessert", label: t('cuisinePassport.filters.categories.dessert') },
     { value: "Street Food", label: t('cuisinePassport.filters.categories.streetFood') },
     { value: "Beverage", label: t('cuisinePassport.filters.categories.beverage') }
   ];
-  
+
   const difficultyOptions = [
-    { value: "All Levels", label: t('cuisinePassport.filters.difficulties.all') },
+    { value: ALL_LEVELS, label: t('cuisinePassport.filters.difficulties.all') },
     { value: "Easy", label: t('cuisinePassport.filters.difficulties.easy') },
     { value: "Medium", label: t('cuisinePassport.filters.difficulties.medium') },
     { value: "Hard", label: t('cuisinePassport.filters.difficulties.hard') }
   ];
+
+  const regionLabel = (key: string) =>
+    regionOptions.find((o) => o.value === key)?.label ?? key;
+  const categoryLabel = (key: string) =>
+    categoryOptions.find((o) => o.value === key)?.label ?? key;
+  const difficultyLabel = (key: string) =>
+    difficultyOptions.find((o) => o.value === key)?.label ?? key;
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
   const [showARPreview, setShowARPreview] = useState(false);
@@ -614,44 +145,32 @@ export default function CuisinePassport() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const triedCount = dishes.filter(dish => dish.tried).length;
+  const isTried = (dishId: number) => triedIds.includes(dishId);
+  const triedCount = triedIds.length;
   const progressPercentage = (triedCount / dishes.length) * 100;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    let filtered = dishes;
-
-    if (selectedRegion !== "All Regions") {
-      filtered = filtered.filter(dish => dish.region === selectedRegion);
-    }
-
-    if (selectedCategory !== "All Categories") {
-      filtered = filtered.filter(dish => dish.category === selectedCategory);
-    }
-
-    if (selectedDifficulty !== "All Levels") {
-      filtered = filtered.filter(dish => dish.difficulty === selectedDifficulty);
-    }
-
-    if (searchTerm) {
-      filtered = filtered.filter(dish => 
-        dish.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        dish.arabicName.includes(searchTerm) ||
-        dish.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    setFilteredDishes(filtered);
-  }, [selectedRegion, selectedCategory, selectedDifficulty, searchTerm, dishes]);
+  // Derived, not state. `dishes` is rebuilt on every render from the locale, so
+  // an effect that filtered into state and listed it as a dependency would
+  // re-run forever.
+  const needle = searchTerm.toLowerCase();
+  const filteredDishes = dishes.filter((dish) =>
+    (selectedRegion === ALL_REGIONS || dish.region === selectedRegion) &&
+    (selectedCategory === ALL_CATEGORIES || dish.category === selectedCategory) &&
+    (selectedDifficulty === ALL_LEVELS || dish.difficulty === selectedDifficulty) &&
+    (!searchTerm ||
+      dish.name.toLowerCase().includes(needle) ||
+      dish.arabicName.includes(searchTerm) ||
+      dish.description.toLowerCase().includes(needle))
+  );
 
   const toggleTried = (dishId: number) => {
-    const updatedDishes = dishes.map(dish => 
-      dish.id === dishId ? { ...dish, tried: !dish.tried } : dish
+    setTriedIds((ids) =>
+      ids.includes(dishId) ? ids.filter((id) => id !== dishId) : [...ids, dishId]
     );
-    setDishes(updatedDishes);
   };
 
   const getSpiceIcons = (level: number) => {
@@ -689,8 +208,8 @@ export default function CuisinePassport() {
         setIsARActive(true);
       }
     } catch (error) {
-      console.error('Camera access error:', error);
-      setCameraError('Camera access denied. Please enable camera permissions to use AR features.');
+      console.error('Camera access error:', error); // i18n-exempt: console, not UI
+      setCameraError(t('cuisinePassport.cameraError'));
     }
   };
 
@@ -729,14 +248,13 @@ export default function CuisinePassport() {
   return (
     <>
       <SeoMeta
-        title="Egyptian Cuisine Passport | Try 25 Dishes Across Egypt"
-        description="An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."
+        title={seoTitle}
+        description={seoDescription}
         canonical="https://affordegypt.com/cuisine-passport"
         ogImage="https://affordegypt.com/images/egyptian-food.jpg"
         schema={[articleSchema({
-          headline: "Egyptian Cuisine Passport | Try 25 Dishes Across Egypt",
-          description:
-            "An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories.",
+          headline: seoTitle,
+          description: seoDescription,
           canonical: "https://affordegypt.com/cuisine-passport",
           image: "https://affordegypt.com/images/egyptian-food.jpg",
           datePublished: "2025-06-14",
@@ -849,7 +367,7 @@ export default function CuisinePassport() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredDishes.map((dish) => (
-                <Card key={dish.id} className={`overflow-hidden transition-all hover:shadow-xl ${dish.tried ? 'ring-2 ring-primary' : ''}`}>
+                <Card key={dish.id} className={`overflow-hidden transition-all hover:shadow-xl ${isTried(dish.id) ? 'ring-2 ring-primary' : ''}`}>
                   <div className="relative">
                     <img 
                       src={dish.image} 
@@ -858,9 +376,9 @@ export default function CuisinePassport() {
                     />
                     <div className="absolute top-3 right-3 flex gap-2">
                       <Badge className={getDifficultyColor(dish.difficulty)}>
-                        {t(`cuisinePassport.filters.difficulties.${dish.difficulty.toLowerCase()}`)}
+                        {difficultyLabel(dish.difficulty)}
                       </Badge>
-                      {dish.tried && (
+                      {isTried(dish.id) && (
                         <Badge className="bg-primary text-white">
                           <CheckCircle className="w-3 h-3 mr-1" />
                           {t('cuisinePassport.dish.tried')}
@@ -870,10 +388,10 @@ export default function CuisinePassport() {
                     <button
                       onClick={() => toggleTried(dish.id)}
                       className={`absolute top-3 left-3 p-2 rounded-full transition-colors ${
-                        dish.tried ? 'bg-primary text-white' : 'bg-white/80 text-gray-600 hover:bg-white'
+                        isTried(dish.id) ? 'bg-primary text-white' : 'bg-white/80 text-gray-600 hover:bg-white'
                       }`}
                     >
-                      <Heart className={`w-4 h-4 ${dish.tried ? 'fill-current' : ''}`} />
+                      <Heart className={`w-4 h-4 ${isTried(dish.id) ? 'fill-current' : ''}`} />
                     </button>
                   </div>
 
@@ -887,9 +405,9 @@ export default function CuisinePassport() {
                     </div>
                     
                     <p className="text-gray-600 text-sm mb-1">{dish.arabicName}</p>
-                    <Badge variant="outline" className="mb-3">{dish.region}</Badge>
+                    <Badge variant="outline" className="mb-3">{regionLabel(dish.region)}</Badge>
                     
-                    <p className="text-gray-700 text-sm mb-4 line-clamp-2">{getTranslatedDescription(dish)}</p>
+                    <p className="text-gray-700 text-sm mb-4 line-clamp-2">{dish.description}</p>
 
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
@@ -967,13 +485,13 @@ export default function CuisinePassport() {
                     <CardTitle className="text-2xl mb-2">{selectedDish.name}</CardTitle>
                     <p className="text-gray-600 mb-2">{selectedDish.arabicName}</p>
                     <div className="flex gap-2 mb-4">
-                      <Badge>{selectedDish.region}</Badge>
-                      <Badge variant="outline">{selectedDish.category}</Badge>
+                      <Badge>{regionLabel(selectedDish.region)}</Badge>
+                      <Badge variant="outline">{categoryLabel(selectedDish.category)}</Badge>
                       <Badge className={getDifficultyColor(selectedDish.difficulty)}>
-                        {selectedDish.difficulty}
+                        {difficultyLabel(selectedDish.difficulty)}
                       </Badge>
                     </div>
-                    <p className="text-gray-700 mb-4">{getTranslatedDescription(selectedDish)}</p>
+                    <p className="text-gray-700 mb-4">{selectedDish.description}</p>
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
@@ -992,7 +510,7 @@ export default function CuisinePassport() {
               <CardContent className="space-y-6">
                 <div>
                   <h4 className="font-semibold mb-2">{t('cuisinePassport.dish.culturalStory')}</h4>
-                  <p className="text-gray-700 text-sm">{getTranslatedCulturalStory(selectedDish)}</p>
+                  <p className="text-gray-700 text-sm">{selectedDish.culturalStory}</p>
                 </div>
 
                 {selectedDish.healthBenefits && (
@@ -1013,7 +531,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-primary">{t('cuisinePassport.dish.servingStyles')}</h4>
                     <ul className="text-sm space-y-1">
-                      {getTranslatedArrayContent(selectedDish, 'servingStyles').map((style, index) => (
+                      {selectedDish.servingStyles!.map((style, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <ChefHat className="w-3 h-3 text-primary" />
                           {style}
@@ -1041,7 +559,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-orange-600">{t('cuisinePassport.dish.signatureTraits')}</h4>
                     <ul className="text-sm space-y-1">
-                      {getTranslatedArrayContent(selectedDish, 'signatureTraits').map((trait, index) => (
+                      {selectedDish.signatureTraits!.map((trait, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <Star className="w-3 h-3 text-orange-500" />
                           {trait}
@@ -1069,7 +587,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-primary">{t('cuisinePassport.dish.cookingMethods')}</h4>
                     <ul className="text-sm space-y-1">
-                      {getTranslatedArrayContent(selectedDish, 'cookingMethods').map((method, index) => (
+                      {selectedDish.cookingMethods!.map((method, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <ChefHat className="w-3 h-3 text-primary" />
                           {method}
@@ -1083,7 +601,7 @@ export default function CuisinePassport() {
                   <div>
                     <h4 className="font-semibold mb-2 text-yellow-600">{t('cuisinePassport.dish.preparationTips')}</h4>
                     <ul className="text-sm space-y-1">
-                      {getTranslatedArrayContent(selectedDish, 'preparationTips').map((tip, index) => (
+                      {selectedDish.preparationTips!.map((tip, index) => (
                         <li key={index} className="flex items-center gap-2">
                           <Clock className="w-3 h-3 text-yellow-500" />
                           {tip}
@@ -1152,7 +670,7 @@ export default function CuisinePassport() {
                     <div className="flex gap-1">
                       {selectedDish.allergens.map((allergen, index) => (
                         <Badge key={index} variant="destructive" className="text-xs">
-                          {allergen}
+                          {t(`cuisinePassport.allergens.${allergen}`)}
                         </Badge>
                       ))}
                     </div>
@@ -1162,9 +680,9 @@ export default function CuisinePassport() {
                 <div className="flex gap-4 pt-4">
                   <Button 
                     onClick={() => toggleTried(selectedDish.id)}
-                    className={selectedDish.tried ? "bg-green-600 hover:bg-green-700" : ""}
+                    className={isTried(selectedDish.id) ? "bg-green-600 hover:bg-green-700" : ""}
                   >
-                    {selectedDish.tried ? t('cuisinePassport.dish.markAsNotTried') : t('cuisinePassport.dish.markAsTried')}
+                    {isTried(selectedDish.id) ? t('cuisinePassport.dish.markAsNotTried') : t('cuisinePassport.dish.markAsTried')}
                   </Button>
                   <Button 
                     variant="outline"
@@ -1295,13 +813,13 @@ export default function CuisinePassport() {
                   <button
                     onClick={() => toggleTried(selectedDish.id)}
                     className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors flex-1 ${
-                      selectedDish.tried 
+                      isTried(selectedDish.id)
                         ? 'bg-green-500 hover:bg-green-600 text-white' 
                         : 'bg-primary hover:bg-primary/90 text-white'
                     }`}
                   >
-                    <Heart className={`w-5 h-5 ${selectedDish.tried ? 'fill-current' : ''}`} />
-                    {selectedDish.tried ? t('cuisinePassport.dish.markedAsTried') : t('cuisinePassport.dish.markAsTried')}
+                    <Heart className={`w-5 h-5 ${isTried(selectedDish.id) ? 'fill-current' : ''}`} />
+                    {isTried(selectedDish.id) ? t('cuisinePassport.dish.markedAsTried') : t('cuisinePassport.dish.markAsTried')}
                   </button>
                   
                   <button

@@ -29,7 +29,8 @@ export default function LuxorAirportTransfers() {
   const SERVICE_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Airport Transfer",
+    // schema.org value on the English prerender Google indexes
+    "serviceType": "Airport Transfer", // i18n-exempt
     "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
     "areaServed": "Luxor",
     "offers": {
@@ -107,8 +108,10 @@ export default function LuxorAirportTransfers() {
   return (
     <>
       <SeoMeta
-        title="Luxor Airport Transfers | Fixed Price | AffordEgypt"
-        description={`Fixed-price Luxor airport transfers from LE ${sedanFrom}. East Bank, West Bank and Nile cruise moorings. Licensed drivers, flight monitoring and fixed quotes.`}
+        title={t("airportTransfers.luxor.seoTitle")}
+        description={t("airportTransfers.luxor.seoDescription", {
+          interpolation: { price: `LE ${sedanFrom}` },
+        })}
         canonical="https://affordegypt.com/luxor-airport-transfers"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/luxor-airport-transfers")!)]}
       />

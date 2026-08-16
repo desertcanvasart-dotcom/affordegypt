@@ -38,6 +38,23 @@ export const OPERATOR = {
 } as const;
 
 /**
+ * Effective and last-updated dates for the legal pages.
+ *
+ * "March 2, 2020" and "August 5, 2026" were typed into all four of
+ * privacy-policy, terms-of-service, booking-agreement and cookie-policy —
+ * eight copies of two facts, already formatted in English, so a German reader
+ * got an English date in the middle of a translated document and any revision
+ * meant editing four files without missing one.
+ *
+ * Stored as ISO so the pages can format them in the reader's language. Update
+ * `lastUpdated` when the wording of a policy actually changes.
+ */
+export const LEGAL_DATES = {
+  effective: '2020-03-02',
+  lastUpdated: '2026-08-05',
+} as const;
+
+/**
  * Cumulative travellers served by the operator.
  *
  * NOT derivable from this app's database — it predates the site and covers the

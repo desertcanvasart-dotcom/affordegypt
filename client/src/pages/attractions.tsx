@@ -75,8 +75,7 @@ export default function AttractionsPage() {
               </div>
             ) : cities.length === 0 ? (
               <p className="text-center text-muted-foreground py-12">
-                Entrance fee list is being updated — message us on WhatsApp for
-                current prices.
+                {t("attractionsPage.listUpdating")}
               </p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -132,7 +131,7 @@ export default function AttractionsPage() {
                 anchor a 20px-tall inline target. */}
             <Button asChild size="lg" className="gap-2">
               <Link href="/pricing-tool">
-                Build Your Quote <ArrowRight className="w-4 h-4" />
+                {t("attractionsPage.ctaButton")} <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>

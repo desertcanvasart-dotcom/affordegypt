@@ -6,8 +6,13 @@
  * length, date, and every priced service, and still land on a "Review" screen
  * showing a LE 0 total with a checkout button that silently did nothing.
  *
- * Each function returns a map of field -> message. An empty map means the
- * step may be entered; the UI renders each message beside its own field.
+ * Each function returns a map of field -> reason code. An empty map means the
+ * step may be entered; the UI renders each reason beside its own field.
+ *
+ * The values are codes, not sentences, so that the rules stay language-free:
+ * the builder is translated, and English baked in here would have surfaced as
+ * English on a Spanish page. The client maps each code through
+ * `quoteBuilder.blockers.<code>`.
  */
 
 export interface QuoteDay {
@@ -28,7 +33,17 @@ export interface QuoteState {
   totalAmount: number;
 }
 
-export type Blockers = Record<string, string>;
+/** Reason a step is blocked. Keys of `quoteBuilder.blockers` in the locale files. */
+export type BlockerCode =
+  | "destination"
+  | "duration"
+  | "travelers"
+  | "date"
+  | "emptyItinerary"
+  | "noPricedService"
+  | "zeroTotal";
+
+export type Blockers = Record<string, BlockerCode>;
 
 /** True when at least one day carries something that actually costs money. */
 export function hasPricedSelection(days: QuoteDay[]): boolean {
@@ -49,29 +64,27 @@ export function blockersForStep(step: number, s: QuoteState): Blockers {
 
   switch (step) {
     case 2:
-      if (!s.destinationId) errors.destination = 'Choose where you want to go.';
-      if (!s.tripDuration) errors.duration = 'Pick a trip length.';
-      if (!s.travelers || s.travelers < 1) errors.travelers = 'Choose how many travelers.';
+      if (!s.destinationId) errors.destination = 'destination';
+      if (!s.tripDuration) errors.duration = 'duration';
+      if (!s.travelers || s.travelers < 1) errors.travelers = 'travelers';
       // A missing date is fine, but only when the visitor says so. Silence is
       // not the same as "not sure yet".
       if (!s.travelDate && !s.justExploring) {
-        errors.date = 'Pick a travel date, or tick "Not sure yet".';
+        errors.date = 'date';
       }
       return errors;
 
     case 3:
       if (s.days.length === 0) {
-        errors.itinerary = 'Add at least one day to your itinerary.';
+        errors.itinerary = 'emptyItinerary';
       } else if (!hasPricedSelection(s.days)) {
-        errors.itinerary =
-          'Add at least one service — transport, a guide, tickets or an add-on — before reviewing your price.';
+        errors.itinerary = 'noPricedService';
       }
       return errors;
 
     case 4:
       if (!(s.totalAmount > 0)) {
-        errors.total =
-          'Your itinerary still totals LE 0. Go back and add at least one priced service before checking out.';
+        errors.total = 'zeroTotal';
       }
       return errors;
 

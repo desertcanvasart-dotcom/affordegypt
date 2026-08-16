@@ -36,6 +36,23 @@ export const SERVICE_KEYS = {
   // intercity_transfer, not a tour_transfer — priced separately for that reason.
   aswanAbuSimbelCar: "aswan-abu-simbel-car",
   aswanAbuSimbelGuideCar: "aswan-abu-simbel-guide-car",
+  // The cheapest in-town ride anywhere in the catalog. /transfers lists
+  // intercity, airport and in-town side by side, and its "from" price was
+  // quoting luxor-airport-transfer because that was the lowest key that
+  // existed — 1,200 against a real floor of 700. Deliberately not pinned to a
+  // city or a slug: the page is national, so the number has to be too.
+  intownTransfer: "in-town-transfer",
+  /**
+   * Cheapest airport transfer in the country.
+   *
+   * The three keys above are per-city and were the only airport prices the
+   * snapshot knew, so "from" on a national page could not go below the
+   * cheapest of those three — 1,200, Luxor. The catalog sells airport
+   * transfers from five cities, and the actual floor is Hurghada at 1,000;
+   * Marsa Alam at 1,050 also undercut Luxor. A per-city minimum cannot answer
+   * a national question, however many cities you add.
+   */
+  airportTransferFloor: "airport-transfer-floor",
 };
 
 /**
@@ -159,6 +176,45 @@ async function getAirportTransferMin(c, cityName) {
 }
 
 /**
+ * Cheapest in-town transfer in the catalog, across every city.
+ *
+ * No city filter and no pinned slug: this backs the "from" price on
+ * /transfers, which lists every city's transfers together, so pinning it
+ * anywhere would advertise one city's floor as the whole page's.
+ *
+ * local_transfer only. The other two categories on that page price higher
+ * (airport from 1,000, intercity from 2,800 at the time of writing), so the
+ * page minimum is the in-town minimum — but taking it from this category by
+ * name rather than as a MIN across all three keeps the number's meaning
+ * stable if that ordering ever changes.
+ */
+async function getIntownTransferMin(c) {
+  const { rows } = await c.query(
+    `SELECT vehicle_prices FROM service_catalog
+     WHERE category = 'local_transfer'
+       AND is_active = true`,
+  );
+  return rows.length ? minAcrossVehiclePrices(rows) : null;
+}
+
+/**
+ * Cheapest airport transfer across every city, not just the three with pages.
+ *
+ * getAirportTransferMin() above answers "what does this city start at", which
+ * is what a city page needs. This answers "what does the country start at",
+ * which is what /transfers needs, and the two are not the same question: the
+ * floor is in Hurghada, which has no page and therefore no per-city key.
+ */
+async function getAirportTransferFloor(c) {
+  const { rows } = await c.query(
+    `SELECT vehicle_prices FROM service_catalog
+     WHERE category = 'airport_transfer'
+       AND is_active = true`,
+  );
+  return rows.length ? minAcrossVehiclePrices(rows) : null;
+}
+
+/**
  * Minimum guide daily rate for a city. The schema column is named hourlyPrice
  * but per server/services/pricing.ts the live data is actually daily — we
  * honor that convention here.
@@ -218,6 +274,8 @@ export async function deriveFromDb() {
     out[SERVICE_KEYS.cairoAirport] = await getAirportTransferMin(c, "Cairo");
     out[SERVICE_KEYS.luxorAirport] = await getAirportTransferMin(c, "Luxor");
     out[SERVICE_KEYS.aswanAirport] = await getAirportTransferMin(c, "Aswan");
+    out[SERVICE_KEYS.intownTransfer] = await getIntownTransferMin(c);
+    out[SERVICE_KEYS.airportTransferFloor] = await getAirportTransferFloor(c);
     out[SERVICE_KEYS.cairoGuide] = await getGuideMin(c, CITY_IDS.cairo);
     out[SERVICE_KEYS.luxorGuide] = await getGuideMin(c, CITY_IDS.luxor);
     out[SERVICE_KEYS.aswanGuide] = await getGuideMin(c, CITY_IDS.aswan);

@@ -122,14 +122,15 @@ export default function Navbar() {
           <div className="flex flex-col items-start">
             <img 
               src="/images/logo-afford-egypt.png" 
-              alt="Afford Egypt" 
+              alt="Afford Egypt" /* i18n-exempt: brand name */ 
               className={`w-auto cursor-pointer hover:opacity-90 transition-all duration-300 ${isScrolled ? 'h-6' : 'h-8'}`}
               onClick={navigateToHome}
             />
             {/* Sourced from OPERATOR rather than retyped: this line names the
                 legal entity and licence number. */}
             <div className={`hidden lg:block mt-1.5 text-gray-600 transition-all duration-300 ${isScrolled ? 'text-[10px]' : 'text-xs'}`}>
-              Operated by {OPERATOR.legalName} · {OPERATOR.etaaLicence}
+              {t('chrome.operatedBy', { operator: OPERATOR.legalName })} ·{' '}
+              {OPERATOR.etaaLicence}
             </div>
           </div>
 
@@ -144,7 +145,7 @@ export default function Navbar() {
               className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
             >
               <MapPin className="w-4 h-4" />
-              Destinations
+              {t('nav.destinations')}
             </Link>
 
             <Link
@@ -153,7 +154,7 @@ export default function Navbar() {
               className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
             >
               <Truck className="w-4 h-4" />
-              Transfers
+              {t('pageNames.transfers')}
             </Link>
             
             <button 
@@ -187,13 +188,13 @@ export default function Navbar() {
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard" className="flex items-center">
                       <User className="w-4 h-4 mr-2" />
-                      Dashboard
+                      {t('nav.dashboard')}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={logout} className="flex items-center text-red-600">
                     <LogOut className="w-4 h-4 mr-2" />
-                    Sign Out
+                    {t('nav.signOut')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -207,7 +208,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 h-8 inline-flex items-center justify-center text-sm font-medium text-green-700 hover:text-green-800 hover:bg-green-50 rounded-md transition-colors"
-                title="Message us on WhatsApp"
+                title={t('nav.whatsappTitle')}
               >
                 WhatsApp
               </a>
@@ -220,7 +221,7 @@ export default function Navbar() {
               onClick={() => navigateToSection('quote-builder')}
               className="bg-[#008C86] text-white px-4 py-2 rounded-md hover:bg-[#007570] transition-all font-medium text-sm shadow-sm hover:shadow-md duration-200 whitespace-nowrap"
             >
-              Get Instant Quote
+              {t('nav.getInstantQuote')}
             </button>
           </div>
 
@@ -243,12 +244,12 @@ export default function Navbar() {
             <div className="flex items-center justify-center h-9 text-xs sm:text-sm text-teal-800">
               <div className="flex items-center gap-2 sm:gap-6">
                 <span className="flex items-center gap-1.5">
-                  💚 <span className="hidden sm:inline">Transparent pricing — what you see is what you pay</span><span className="sm:hidden">Real prices in EGP</span>
+                  💚 <span className="hidden sm:inline">{t('nav.trustTransparent')}</span><span className="sm:hidden">{t('nav.trustRealPrices')}</span>
                 </span>
                 <span className="hidden sm:inline">·</span>
-                <span className="hidden sm:inline">Book directly with Egypt-based experts — no middlemen</span>
+                <span className="hidden sm:inline">{t('nav.trustDirect')}</span>
                 <span className="hidden sm:inline">·</span>
-                <span className="hidden sm:inline">Secure booking</span>
+                <span className="hidden sm:inline">{t('nav.trustSecure')}</span>
               </div>
             </div>
           </div>
@@ -264,8 +265,8 @@ export default function Navbar() {
         <div className="p-6">
           {/* Hero Section */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Plan Your Egypt Trip</h2>
-            <p className="text-gray-600">Private tours with transparent pricing</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('nav.planTripTitle')}</h2>
+            <p className="text-gray-600">{t('nav.planTripSubtitle')}</p>
           </div>
 
           {/* Primary CTA on Top */}
@@ -273,7 +274,7 @@ export default function Navbar() {
             onClick={() => navigateToSection('quote-builder')}
             className="w-full bg-[#008C86] text-white px-6 py-4 rounded-lg hover:bg-[#007570] transition-all font-semibold shadow-md mb-6 text-lg"
           >
-            Get Your Instant Quote
+            {t('nav.getYourInstantQuote')}
           </button>
 
           {/* Navigation Sections */}
@@ -284,7 +285,7 @@ export default function Navbar() {
               className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >
               <MapPin className="w-5 h-5" />
-              Destinations
+              {t('nav.destinations')}
             </Link>
 
             <Link
@@ -293,7 +294,7 @@ export default function Navbar() {
               className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >
               <Truck className="w-5 h-5" />
-              Private Transfers
+              {t('nav.privateTransfers')}
             </Link>
             
             <button 
@@ -304,17 +305,18 @@ export default function Navbar() {
               FAQs
             </button>
 
-            {/* Was navigateToSection('contact'), which scrolled to #contact —
-                an id that only exists in contact-section.tsx, a component the
-                homepage never renders. getElementById returned null and the tap
-                silently did nothing. /contact is a real page; link to it. */}
+            {/* Was navigateToSection('contact'), which scrolled to a #contact
+                id no rendered component defines, so getElementById returned
+                null and the tap silently did nothing. /contact is a real page;
+                link to it. (The component that owned that id was never
+                rendered and has since been deleted.) */}
             <Link
               href={getTranslatedLink("contact")}
               onClick={() => setIsMenuOpen(false)}
               className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >
               <MessageCircle className="w-5 h-5" />
-              Contact
+              {t('nav.contact')}
             </Link>
           </div>
 
@@ -337,7 +339,7 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full text-center border border-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all font-medium"
               >
-                Dashboard
+                {t('nav.dashboard')}
               </Link>
               <button
                 onClick={() => {
@@ -346,7 +348,7 @@ export default function Navbar() {
                 }}
                 className="w-full text-center border border-red-200 text-red-600 px-4 py-3 rounded-lg hover:bg-red-50 transition-all font-medium"
               >
-                Sign Out
+                {t('nav.signOut')}
               </button>
             </div>
           ) : (
@@ -358,7 +360,7 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full text-center border border-green-600 text-green-700 px-4 py-3 rounded-lg hover:bg-green-50 transition-all font-medium"
               >
-                Message us on WhatsApp
+                {t('nav.whatsappTitle')}
               </a>
             </div>
           )}

@@ -12,11 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// Endonyms: each language is listed in itself, so a French speaker looking for
+// their language finds "Français" rather than whatever the current locale calls
+// it. Translating these would defeat the purpose of the switcher. i18n-exempt
 const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },   // i18n-exempt
+  { code: 'es', name: 'Español', flag: '🇪🇸' },   // i18n-exempt
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },  // i18n-exempt
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },   // i18n-exempt
 ];
 
 type Lang = keyof typeof SLUG_MAPPINGS;

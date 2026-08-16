@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
+import { effectiveDate, lastUpdatedDate } from "@/lib/legal-dates";
 import { OPERATOR } from "@shared/operator-facts";
 
 export default function TermsOfService() {
@@ -15,8 +16,8 @@ export default function TermsOfService() {
     <>
       <Navbar />
   <SeoMeta
-          title="Terms of Service | AffordEgypt"
-          description="Terms of service for AffordEgypt, operated by Capital Travel Service (ETAA 2179). Use of the site, bookings, payments, and liability."
+          title={t("termsOfService.seoTitle")}
+          description={t("termsOfService.seoDescription")}
           canonical="https://affordegypt.com/terms-of-service"
         />
       <div className="min-h-screen bg-gray-50 py-12">
@@ -39,9 +40,9 @@ export default function TermsOfService() {
             
             <div className="prose prose-lg max-w-none">
               <div className="mb-8 text-gray-600">
-                <p><strong>{t("legal.effectiveDate")}</strong> March 2, 2020</p>
-                <p><strong>{t("legal.lastUpdated")}</strong> August 5, 2026</p>
-                <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
+                <p><strong>{t("legal.effectiveDate")}</strong> {effectiveDate(i18n.language)}</p>
+                <p><strong>{t("legal.lastUpdated")}</strong> {lastUpdatedDate(i18n.language)}</p>
+                <p><strong>{t("legal.contactEmail")}</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <div className="space-y-8">

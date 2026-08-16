@@ -1,0 +1,76 @@
+{
+  "allowed": [
+    [
+      "client/src/components/blog-grid.tsx",
+      "Budget Travel"
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Destinations"
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Food & Culture"
+    ],
+    [
+      "client/src/components/blog-grid.tsx",
+      "Travel Tips"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Appetizer"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Beverage"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Dessert"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Easy"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Hard"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Main"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Medium"
+    ],
+    [
+      "client/src/pages/cuisine-passport.tsx",
+      "Street Food"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Lower Egypt"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Middle Egypt"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Nubia"
+    ],
+    [
+      "client/src/pages/nile-valley-guide.tsx",
+      "Upper Egypt"
+    ],
+    [
+      "client/src/pages/reviews.tsx",
+      "MMM yyyy"
+    ],
+    [
+      "client/src/pages/transfers.tsx",
+      "Transfer booking error:"
+    ]
+  ]
+}

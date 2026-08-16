@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,30 +13,37 @@ import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
-const reviewFormSchema = z.object({
-  customerName: z.string().min(2, "Name must be at least 2 characters"),
-  customerLocation: z.string().optional(),
-  rating: z.number().min(1).max(5),
-  title: z.string().min(5, "Title must be at least 5 characters"),
-  content: z.string().min(20, "Review must be at least 20 characters"),
-  tripDate: z.string().optional(),
-});
+// A factory, not a module constant: the validation messages are translated, so
+// the schema must be built after i18next is available and rebuilt when the
+// visitor switches language. Same pattern as contact.tsx and book.tsx.
+const makeReviewFormSchema = (t: (key: string) => string) =>
+  z.object({
+    customerName: z.string().min(2, t("validation.nameMin")),
+    customerLocation: z.string().optional(),
+    rating: z.number().min(1).max(5),
+    title: z.string().min(5, t("validation.titleMin")),
+    content: z.string().min(20, t("validation.reviewMin")),
+    tripDate: z.string().optional(),
+  });
 
-type ReviewFormData = z.infer<typeof reviewFormSchema>;
-
-const RATING_OPTIONS = [
-  { value: 1, label: "1 star — poor" },
-  { value: 2, label: "2 stars — fair" },
-  { value: 3, label: "3 stars — good" },
-  { value: 4, label: "4 stars — very good" },
-  { value: 5, label: "5 stars — excellent" },
-];
+type ReviewFormData = z.infer<ReturnType<typeof makeReviewFormSchema>>;
 
 interface ReviewFormProps {
   onSuccess?: () => void;
 }
 
 export default function ReviewForm({ onSuccess }: ReviewFormProps) {
+  const { t, i18n } = useTranslation();
+  const reviewFormSchema = useMemo(() => makeReviewFormSchema(t), [t, i18n.language]);
+
+  // The label is what a screen reader announces for each star, so it is
+  // content, not decoration — it comes from the locale file like everything
+  // else. The value stays derived from position.
+  const ratingOptions = useMemo(() => {
+    const labels = t("submitReviewPage.form.ratingLabels", { returnObjects: true }) as string[];
+    return labels.map((label, i) => ({ value: i + 1, label }));
+  }, [t, i18n.language]);
+
   const [hoveredRating, setHoveredRating] = useState(0);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -66,15 +74,16 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
       queryClient.invalidateQueries({ queryKey: ["/api/reviews"] });
       form.reset();
       toast({
-        title: "Thank you for your review!",
-        description: "Your review has been submitted and will be published after verification.",
+        title: t("submitReviewPage.form.successTitle"),
+        description: t("submitReviewPage.form.successBody"),
       });
       onSuccess?.();
     },
-    onError: (error: Error) => {
+    onError: () => {
+      // error.message is a server string, untranslated and often just a status.
       toast({
-        title: "Error",
-        description: error.message || "Failed to submit review",
+        title: t("submitReviewPage.form.errorTitle"),
+        description: t("submitReviewPage.form.errorBody"),
         variant: "destructive",
       });
     },
@@ -99,9 +108,9 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
       {/* The legend is the group's visible label. A <FormLabel> here would
           render `for="…-form-item"` pointing at a control that no longer
           exists, which is worse than no label at all. */}
-      <legend className="text-sm font-medium leading-none mb-2">Rating *</legend>
+      <legend className="text-sm font-medium leading-none mb-2">{t("submitReviewPage.form.ratingLabel")}</legend>
       <div className="flex items-center gap-1">
-        {RATING_OPTIONS.map(({ value, label }) => (
+        {ratingOptions.map(({ value, label }) => (
           <label
             key={value}
             className="cursor-pointer rounded p-0.5 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary has-[:focus-visible]:ring-offset-1"
@@ -128,7 +137,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
           </label>
         ))}
         <span className="ml-2 text-sm text-gray-600" aria-hidden="true">
-          {rating}/5 stars
+          {t("submitReviewPage.form.ratingSummary", { rating })}
         </span>
       </div>
     </fieldset>
@@ -137,9 +146,9 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl text-center">Share Your Experience</CardTitle>
+        <CardTitle className="text-2xl text-center">{t("submitReviewPage.form.title")}</CardTitle>
         <p className="text-center text-gray-600">
-          Help other travelers by sharing your Egypt adventure
+          {t("submitReviewPage.form.subtitle")}
         </p>
       </CardHeader>
       <CardContent>
@@ -154,9 +163,9 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
                 name="customerName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Your Name *</FormLabel>
+                    <FormLabel>{t("submitReviewPage.form.name")}</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Enter your name" required autoComplete="name" />
+                      <Input {...field} placeholder={t("submitReviewPage.form.namePlaceholder")} required autoComplete="name" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -167,9 +176,9 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
                 name="customerLocation"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Your Location</FormLabel>
+                    <FormLabel>{t("submitReviewPage.form.location")}</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="e.g., London, UK" autoComplete="address-level2" />
+                      <Input {...field} placeholder={t("submitReviewPage.form.locationPlaceholder")} autoComplete="address-level2" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -182,7 +191,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
               name="tripDate"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Trip Date</FormLabel>
+                  <FormLabel>{t("submitReviewPage.form.tripDate")}</FormLabel>
                   <FormControl>
                     <Input {...field} type="date" />
                   </FormControl>
@@ -207,9 +216,9 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Review Title *</FormLabel>
+                  <FormLabel>{t("submitReviewPage.form.reviewTitle")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Summarize your experience" required autoComplete="off" />
+                    <Input {...field} placeholder={t("submitReviewPage.form.reviewTitlePlaceholder")} required autoComplete="off" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -221,11 +230,11 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your Review *</FormLabel>
+                  <FormLabel>{t("submitReviewPage.form.review")}</FormLabel>
                   <FormControl>
-                    <Textarea 
-                      {...field} 
-                      placeholder="Tell us about your Egypt experience. What did you enjoy most? Any tips for future travelers?"
+                    <Textarea
+                      {...field}
+                      placeholder={t("submitReviewPage.form.reviewPlaceholder")}
                       required
                       rows={5}
                       className="resize-none"
@@ -244,10 +253,10 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
               {createReviewMutation.isPending ? (
                 <>
                   <div className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full mr-2"></div>
-                  Submitting...
+                  {t("submitReviewPage.form.submitting")}
                 </>
               ) : (
-                "Submit Review"
+                t("submitReviewPage.form.submit")
               )}
             </Button>
           </form>

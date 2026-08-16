@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowRight, ChevronDown } from "lucide-react";
+import { Clock, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from 'react-i18next';
 
@@ -25,6 +25,20 @@ const POST_ROUTES: Record<string, string> = {
   "eastern-western-deserts-travel-guide": "/eastern-western-deserts-guide",
   "budget-travel-egypt": "/budget-travel-egypt",
   "egyptian-street-food-guide": "/egyptian-street-food-guide",
+};
+
+/**
+ * Stored category -> locale key. The category strings live on the posts and in
+ * the filter state, so they stay as they are; only the label a reader sees is
+ * translated. Same split as the cuisine passport's difficulty and category
+ * enums, and the catalog's trip types.
+ */
+const CATEGORY_KEYS: Record<string, string> = {
+  "All": "all",
+  "Destinations": "destinations",
+  "Budget Travel": "budgetTravel",
+  "Food & Culture": "foodCulture",
+  "Travel Tips": "travelTips",
 };
 
 const getBlogPosts = (t: any): BlogPost[] => [
@@ -88,16 +102,6 @@ const getBlogPosts = (t: any): BlogPost[] => [
     image: "/images/street-food-egypt.jpg",
     slug: "egyptian-street-food-guide"
   },
-  {
-    id: 7,
-    title: t('blog.posts.desertsGuide.title'),
-    excerpt: t('blog.posts.desertsGuide.excerpt'),
-    category: "Destinations",
-    readTime: t('blog.readTime', { time: "8" }),
-    publishDate: "2024-03-01",
-    image: "/images/eastern-desert.jpg",
-    slug: "eastern-western-deserts-travel-guide"
-  }
 ];
 
 export default function BlogGrid() {
@@ -105,12 +109,14 @@ export default function BlogGrid() {
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = [
-    { key: "All", label: t('blog.categories.all') },
-    { key: "Destinations", label: t('blog.categories.destinations') },
-    { key: "Budget Travel", label: t('blog.categories.budgetTravel') },
-    { key: "Food & Culture", label: t('blog.categories.foodCulture') }
-  ];
+  // One category -> locale-key mapping. The filter chips and the badge on each
+  // card both read it; the badge used to repeat the same four pairs as a
+  // ternary chain seventy lines further down, free to disagree with the chips.
+  const categoryLabel = (category: string) => {
+    const key = CATEGORY_KEYS[category];
+    return key ? t(`blog.categories.${key}`) : category;
+  };
+  const categories = ["All", "Destinations", "Budget Travel", "Food & Culture"];
 
   // Get translated blog posts
   const blogPosts = getBlogPosts(t);
@@ -123,14 +129,6 @@ export default function BlogGrid() {
 
   const loadMore = () => {
     setVisiblePosts(prev => Math.min(prev + 3, filteredPosts.length));
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
   };
 
   return (
@@ -147,18 +145,18 @@ export default function BlogGrid() {
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {categories.map((category) => (
             <Button
-              key={category.key}
-              variant={selectedCategory === category.key ? "default" : "outline"}
+              key={category}
+              variant={selectedCategory === category ? "default" : "outline"}
               size="sm"
               // size="sm" is 36px; the audit's 44px floor wins on a filter row
               // that is thumb-operated on mobile.
               onClick={() => {
-                setSelectedCategory(category.key);
+                setSelectedCategory(category);
                 setVisiblePosts(3);
               }}
-              className={`min-h-11 min-w-11 ${selectedCategory === category.key ? "bg-primary text-primary-foreground" : ""}`}
+              className={`min-h-11 min-w-11 ${selectedCategory === category ? "bg-primary text-primary-foreground" : ""}`}
             >
-              {category.label}
+              {categoryLabel(category)}
             </Button>
           ))}
         </div>
@@ -180,11 +178,7 @@ export default function BlogGrid() {
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
                   <Badge variant="secondary" className="text-xs">
-                    {post.category === 'Destinations' ? t('blog.categories.destinations') :
-                     post.category === 'Budget Travel' ? t('blog.categories.budgetTravel') :
-                     post.category === 'Food & Culture' ? t('blog.categories.foodCulture') :
-                     post.category === 'Travel Tips' ? t('blog.categories.travelTips') :
-                     post.category}
+                    {categoryLabel(post.category)}
                   </Badge>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1">

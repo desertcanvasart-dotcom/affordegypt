@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Backpack, Truck } from "lucide-react";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 
 export default function MobileStickyCTA() {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function MobileStickyCTA() {
           className="w-full bg-teal-600 text-white px-4 py-4 font-medium flex items-center justify-center space-x-2 hover:bg-teal-700 transition-colors"
         >
           <Backpack className="w-4 h-4" />
-          <span>Build My Trip</span>
+          <span>{t('chrome.buildMyTrip')}</span>
         </button>
       </div>
     </div>

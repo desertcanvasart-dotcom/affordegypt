@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
+import { effectiveDate, lastUpdatedDate } from "@/lib/legal-dates";
 
 export default function BookingAgreement() {
   const { t, i18n } = useTranslation();
@@ -14,8 +15,8 @@ export default function BookingAgreement() {
     <>
       <Navbar />
   <SeoMeta
-          title="Booking Agreement | AffordEgypt"
-          description="AffordEgypt's booking agreement: deposit terms, cancellation, refunds, and traveler responsibilities for tours operated by Capital Travel Service (ETAA 2179)."
+          title={t("bookingAgreement.seoTitle")}
+          description={t("bookingAgreement.seoDescription")}
           canonical="https://affordegypt.com/booking-agreement"
         />
       <div className="min-h-screen bg-gray-50 py-12">
@@ -38,9 +39,9 @@ export default function BookingAgreement() {
             
             <div className="prose prose-lg max-w-none">
               <div className="mb-8 text-gray-600">
-                <p><strong>{t("legal.effectiveDate")}</strong> March 2, 2020</p>
-                <p><strong>{t("legal.lastUpdated")}</strong> August 5, 2026</p>
-                <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
+                <p><strong>{t("legal.effectiveDate")}</strong> {effectiveDate(i18n.language)}</p>
+                <p><strong>{t("legal.lastUpdated")}</strong> {lastUpdatedDate(i18n.language)}</p>
+                <p><strong>{t("legal.contactEmail")}</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <p className="text-lg text-gray-700 mb-8">

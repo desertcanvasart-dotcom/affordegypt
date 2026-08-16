@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,23 +8,19 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Plus, ArrowRight, Calculator, ChevronDown, X, Save, BookOpen, Filter, Search, Sliders, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, Shield, CreditCard, Package, Ticket } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Calendar, Users, MapPin, Plus, Calculator, ChevronDown, X, BookOpen, DollarSign, Clock, Star, MapPinned, Check, ChevronRight, ChevronLeft, CreditCard, Package, Ticket } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest } from "@/lib/queryClient";
 import { formatEGP } from "@/lib/utils";
-import { useLocation } from "wouter";
 import QuoteManager from "@/components/quote-manager";
-import AttractionsSearch from "@/components/attractions-search";
 import CatalogServicePicker, {
   type SelectedCatalogService,
   type CatalogRow,
-  TRIP_TYPE_LABELS,
-  VEHICLE_LABELS,
+  tripTypeLabel,
+  vehicleLabel,
 } from "@/components/catalog-service-picker";
 import { GuideSearch } from "@/components/guide-search";
 import { AddOnsSearch } from "@/components/addons-search";
@@ -72,12 +68,6 @@ interface CityService {
   }>;
 }
 
-interface Route {
-  id: number;
-  name: string;
-  type: string;
-}
-
 interface AddOn {
   id: number;
   name: string;
@@ -96,9 +86,10 @@ function StepProgress({ currentStep, steps, onStepClick }: {
   steps: Array<{ number: number; title: string; description: string }>; 
   onStepClick?: (step: number) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="mb-8">
-      <nav aria-label="Quote builder progress" className="flex items-center justify-between max-w-4xl mx-auto">
+      <nav aria-label={t('quoteBuilder.progress.ariaLabel')} className="flex items-center justify-between max-w-4xl mx-auto">
         {steps.map((step, index) => (
           <div key={step.number} className="flex items-center flex-1">
             <div className="flex flex-col items-center flex-1">
@@ -107,7 +98,12 @@ function StepProgress({ currentStep, steps, onStepClick }: {
                 disabled={step.number > currentStep + 1}
                 // The visible label is a bare digit (or a checkmark once done),
                 // which tells a screen-reader user nothing about the step.
-                aria-label={`Step ${step.number}: ${step.title}${step.number < currentStep ? ' (completed)' : ''}`}
+                aria-label={t(
+                step.number < currentStep
+                  ? 'quoteBuilder.progress.stepDone'
+                  : 'quoteBuilder.progress.step',
+                { number: step.number, title: step.title },
+              )}
                 aria-current={step.number === currentStep ? 'step' : undefined}
                 className={`
                   w-11 h-11 rounded-full flex items-center justify-center font-semibold transition-all
@@ -166,13 +162,14 @@ function LivePriceSummary({
   ctaLabel?: string;
   ctaDisabled?: boolean;
 }) {
+  const { t } = useTranslation();
   const hasPricing = totalPricing && totalPricing.totalAmount > 0;
   return (
     <div className="lg:sticky lg:top-4 h-fit">
       <Card className="p-4">
         <div className="flex items-center gap-2 mb-3">
           <DollarSign className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold">Your trip — live price</h3>
+          <h3 className="font-semibold">{t('quoteBuilder.livePrice.title')}</h3>
         </div>
         {hasPricing ? (
           <>
@@ -186,14 +183,14 @@ function LivePriceSummary({
             </div>
             <div className="flex justify-between items-baseline mt-3 pt-3 border-t">
               <span className="text-sm text-muted-foreground">
-                Total · {totalPricing.travelers} {totalPricing.travelers === 1 ? "traveler" : "travelers"}
+                {t('quoteBuilder.livePrice.totalWithTravelers', { count: totalPricing.travelers })}
               </span>
               <span className="text-xl font-bold text-primary">{formatEGP(totalPricing.totalAmount)}</span>
             </div>
-            <p className="text-xs text-muted-foreground">{formatEGP(totalPricing.perPersonAmount)} per person</p>
+            <p className="text-xs text-muted-foreground">{t('quoteBuilder.livePrice.perPerson', { price: formatEGP(totalPricing.perPersonAmount) })}</p>
           </>
         ) : (
-          <p className="text-sm text-muted-foreground">Add destinations to see your live price.</p>
+          <p className="text-sm text-muted-foreground">{t('quoteBuilder.livePrice.empty')}</p>
         )}
         {onContinue && (
           <Button
@@ -201,12 +198,12 @@ function LivePriceSummary({
             disabled={ctaDisabled}
             className="w-full mt-4 bg-gradient-to-r from-primary to-blue-600"
           >
-            {ctaLabel ?? "Continue"}
+            {ctaLabel ?? t('quoteBuilder.livePrice.continue')}
             <ChevronRight className="w-4 h-4 ml-2" />
           </Button>
         )}
         <p className="text-xs text-center text-muted-foreground mt-2">
-          Transparent pricing — updates as you build.
+          {t('quoteBuilder.livePrice.footnote')}
         </p>
       </Card>
     </div>
@@ -230,14 +227,11 @@ export default function MultiCityPricingTool() {
   
   // Step-based navigation
   const [currentStep, setCurrentStep] = useState(1);
-  const [expandedCityIndex, setExpandedCityIndex] = useState<number | null>(0);
   const stepContentRef = useRef<HTMLDivElement>(null);
   
   // Core state
   const [cityServices, setCityServices] = useState<CityService[]>([]);
-  const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [totalPricing, setTotalPricing] = useState<any>(null);
-  const [showCityPicker, setShowCityPicker] = useState(false);
   const [travelDate, setTravelDate] = useState<string | null>('');
   const [justExploring, setJustExploring] = useState<boolean>(false);
   const [tripDuration, setTripDuration] = useState<string>('');
@@ -248,9 +242,6 @@ export default function MultiCityPricingTool() {
   const [focusedDay, setFocusedDay] = useState<number | null>(null);
   const [step1DestinationId, setStep1DestinationId] = useState<string>('');
   const [globalTravelers, setGlobalTravelers] = useState<number>(1);
-  const [tripStyle, setTripStyle] = useState<'private' | 'shared'>('private');
-  const [pickupCity, setPickupCity] = useState<string>('');
-  const [, setLocation] = useLocation();
   
   // Checkout form state
   const [checkoutData, setCheckoutData] = useState({
@@ -265,14 +256,6 @@ export default function MultiCityPricingTool() {
     updatesConsent: false
   });
   
-  // Enhanced search state
-  const [searchFilters, setSearchFilters] = useState({
-    budgetRange: { min: 0, max: 2000 },
-    duration: { min: 1, max: 14 },
-    travelStyle: 'balanced' as 'budget' | 'balanced' | 'luxury'
-  });
-  const [citySearchTerm, setCitySearchTerm] = useState('');
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   // Fetch available cities from the database with translation
   const { data: allCities = [] } = useTranslatedQuery<{id: number, name: string, description?: string}[]>("/api/cities");
@@ -299,18 +282,9 @@ export default function MultiCityPricingTool() {
     queryKey: ["/api/addons"],
   });
 
-  // Fetch available routes with translation and shorter stale time for real-time updates
-  const { data: routes = [], refetch: refetchRoutes } = useTranslatedQuery<any[]>("/api/routes", {
-    staleTime: 0, // Always fetch fresh data
-    gcTime: 30 * 1000, // Keep in cache for 30 seconds (was cacheTime in v4)
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
-  });
 
 
 
-  // Fetch available attractions with translation
-  const { data: attractions = [] } = useTranslatedQuery<any[]>("/api/attractions");
   const { data: entranceFees = [] } = useTranslatedQuery<any[]>("/api/entrance-fees");
 
   // Calculate pricing mutation
@@ -438,113 +412,13 @@ export default function MultiCityPricingTool() {
     })();
   }, [cities, deepLinkApplied]);
 
-  const addNewCity = (selectedCityId?: number) => {
-    const selectedCity = selectedCityId ? cities.find(c => c.id === selectedCityId) : cities[0];
-    if (!selectedCity) return;
-    
-    const nextDayNumber = cityServices.length + 1;
-    const newCityService: CityService = {
-      dayNumber: nextDayNumber,
-      cityId: selectedCity.id,
-      cityName: selectedCity.name,
-      date: travelDate || new Date().toISOString().split('T')[0],
-      travelers: globalTravelers,
-      selectedServices: [],
-      attractions: "",
-      selectedAttractions: [],
-      selectedAddOns: []
-    };
-    setCityServices(prev => [...prev, newCityService]);
-  };
 
-  const updateCityService = (index: number, updates: Partial<CityService>) => {
-    setCityServices(prev => 
-      prev.map((service, i) => 
-        i === index ? { ...service, ...updates } : service
-      )
-    );
-  };
 
-  // toggleRoute removed in Phase C — the catalog picker mutates
-  // selectedServices through its own onChange callback.
-
-  const toggleAddOn = (cityIndex: number, addOn: AddOn) => {
-    const cityService = cityServices[cityIndex];
-    const existingAddOn = cityService.selectedAddOns.find(a => a.id === addOn.id);
-    
-    if (existingAddOn) {
-      const newAddOns = cityService.selectedAddOns.filter(a => a.id !== addOn.id);
-      updateCityService(cityIndex, { selectedAddOns: newAddOns });
-    } else {
-      const newAddOns = [...cityService.selectedAddOns, {
-        id: addOn.id,
-        name: addOn.name,
-        quantity: 1,
-        unitType: addOn.unitType,
-        price: addOn.price
-      }];
-      updateCityService(cityIndex, { selectedAddOns: newAddOns });
-    }
-  };
 
   // (removed dead handleContinueBooking — an unused /api/quotes checkout that
   // froze only transfers; the live step-5 checkout below now freezes the full
   // itinerary via cityServices.)
 
-  const getCurrentCityRoutes = (cityId: number) => {
-    if (!routes || routes.length === 0) return [];
-    
-    // Filter routes that start from this city and preserve database ordering
-    return routes
-      .filter((route: any) => {
-        return route.fromCityId === cityId;
-      })
-      .sort((a: any, b: any) => {
-        // Sort by displayOrder first, then by id to maintain consistent ordering
-        const orderA = a.displayOrder || 0;
-        const orderB = b.displayOrder || 0;
-        if (orderA !== orderB) {
-          return orderA - orderB;
-        }
-        return a.id - b.id;
-      })
-      .map((route: any) => {
-      // Generate route name based on available data
-      let routeName = '';
-      let routeType = 'inter-city';
-      
-      if (route.fromCityId === route.toCityId) {
-        // Intra-city route (same start and end city)
-        if (route.name) {
-          // Use custom route name if available
-          routeName = route.name;
-        } else if (route.fromLocation && route.toLocation) {
-          // Use specific locations if available
-          routeName = `${route.fromLocation} to ${route.toLocation}`;
-        } else {
-          // Fallback to city tour
-          const cityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
-          routeName = `${cityName} City Tour`;
-        }
-        routeType = 'intra-city';
-      } else {
-        // Inter-city route
-        const fromCityName = cities.find(c => c.id === route.fromCityId)?.name || 'City';
-        const toCityName = cities.find(c => c.id === route.toCityId)?.name || 'City';
-        routeName = `${fromCityName} to ${toCityName}`;
-        if (route.km) {
-          routeName += ` (${parseFloat(route.km).toFixed(0)}km)`;
-        }
-        routeType = 'inter-city';
-      }
-      
-      return {
-        id: route.id,
-        name: routeName,
-        type: routeType
-      };
-    });
-  };
 
   const loadQuoteData = (quoteData: any) => {
     if (quoteData.cityServices) {
@@ -568,151 +442,20 @@ export default function MultiCityPricingTool() {
     };
   };
 
-  // Enhanced city filtering and recommendations
-  const getFilteredCities = () => {
-    const { budgetRange, travelStyle } = searchFilters;
-    
-    return cities.filter(city => {
-      if (citySearchTerm && !city.name.toLowerCase().includes(citySearchTerm.toLowerCase())) {
-        return false;
-      }
-      return true;
-    }).map(city => {
-      // Add budget estimates and recommendations
-      const basePrice = getBudgetEstimate(city.id, travelStyle);
-      const isRecommended = isWithinBudget(basePrice, budgetRange);
-      const hasPreferredActivities = getActivityScore(city.id, []);
-      
-      return {
-        ...city,
-        estimatedPrice: basePrice,
-        isRecommended,
-        activityScore: hasPreferredActivities,
-        description: getCityDescription(city.name)
-      };
-    }).sort((a, b) => {
-      // Sort by recommendation score
-      const scoreA = (a.isRecommended ? 10 : 0) + a.activityScore;
-      const scoreB = (b.isRecommended ? 10 : 0) + b.activityScore;
-      return scoreB - scoreA;
-    });
-  };
 
-  const getBudgetEstimate = (cityId: number, style: string) => {
-    const baseRates = {
-      1: { budget: 40, balanced: 75, luxury: 150 }, // Cairo - reduced by half
-      2: { budget: 35, balanced: 60, luxury: 125 }, // Alexandria - reduced by half  
-      3: { budget: 45, balanced: 90, luxury: 175 }, // Luxor - reduced by half
-      4: { budget: 42, balanced: 80, luxury: 160 }  // Aswan - reduced by half
-    };
-    return baseRates[cityId as keyof typeof baseRates]?.[style as keyof typeof baseRates[1]] || 50;
-  };
 
-  const isWithinBudget = (price: number, range: { min: number; max: number }) => {
-    return price >= range.min && price <= range.max;
-  };
 
-  const getActivityScore = (cityId: number, activities: string[]) => {
-    const cityActivities = {
-      1: ['historical', 'cultural', 'museums', 'nightlife'], // Cairo
-      2: ['coastal', 'historical', 'cultural', 'relaxation'], // Alexandria
-      3: ['historical', 'temples', 'cultural', 'adventure'], // Luxor
-      4: ['cultural', 'temples', 'relaxation', 'adventure']  // Aswan
-    };
-    
-    const matches = activities.filter(activity => 
-      cityActivities[cityId as keyof typeof cityActivities]?.includes(activity)
-    );
-    return matches.length;
-  };
 
-  const getCityDescription = (cityName: string) => {
-    // Use the city description from the database
-    const city = cities.find(c => c.name === cityName);
-    return city?.description || 'Historic Egyptian destination';
-  };
 
-  // Smart itinerary suggestions
-  const getItinerarySuggestions = () => {
-    const { budgetRange, duration, travelStyle } = searchFilters;
-    
-    const suggestions = [
-      {
-        id: 'classic',
-        name: 'Classic Egypt Explorer',
-        duration: 7,
-        cities: ['Cairo', 'Luxor', 'Aswan'],
-        estimatedCost: travelStyle === 'budget' ? 850 : travelStyle === 'luxury' ? 2100 : 1400,
-        activities: ['historical', 'cultural', 'temples'],
-        highlights: ['Pyramids of Giza', 'Valley of the Kings', 'Abu Simbel'],
-        description: 'Essential Egypt experience covering ancient wonders'
-      },
-      {
-        id: 'coastal',
-        name: 'Mediterranean & Ancient Wonders',
-        duration: 5,
-        cities: ['Alexandria', 'Cairo'],
-        estimatedCost: travelStyle === 'budget' ? 600 : travelStyle === 'luxury' ? 1500 : 950,
-        activities: ['coastal', 'historical', 'cultural'],
-        highlights: ['Library of Alexandria', 'Pyramids', 'Mediterranean Coast'],
-        description: 'Blend of coastal relaxation and historic exploration'
-      },
-      {
-        id: 'comprehensive',
-        name: 'Grand Egypt Journey',
-        duration: 12,
-        cities: ['Cairo', 'Alexandria', 'Luxor', 'Aswan'],
-        estimatedCost: travelStyle === 'budget' ? 1800 : travelStyle === 'luxury' ? 4200 : 2800,
-        activities: ['historical', 'cultural', 'temples', 'coastal'],
-        highlights: ['All major sites', 'Nile cruise', 'Desert experience'],
-        description: 'Complete Egypt adventure covering all regions'
-      }
-    ];
 
-    return suggestions.filter(suggestion => {
-      const withinBudget = suggestion.estimatedCost >= budgetRange.min && suggestion.estimatedCost <= budgetRange.max;
-      const withinDuration = suggestion.duration >= duration.min && suggestion.duration <= duration.max;
-      
-      return withinBudget && withinDuration;
-    }).map(suggestion => ({
-      ...suggestion,
-      matchScore: 5
-    })).sort((a, b) => b.matchScore - a.matchScore);
-  };
 
-  const getMatchScore = (suggestion: any, activities: string[]) => {
-    if (activities.length === 0) return 5;
-    const matches = activities.filter(activity => suggestion.activities.includes(activity));
-    return matches.length;
-  };
-
-  const applyItinerarySuggestion = (suggestion: any) => {
-    const newCityServices = suggestion.cities.map((cityName: string) => {
-      const city = cities.find(c => c.name === cityName);
-      if (!city) return null;
-
-      return {
-        cityId: city.id,
-        cityName: city.name,
-        date: travelDate ?? '',
-        travelers: globalTravelers,
-        selectedServices: [],
-        attractions: "",
-        selectedAttractions: [],
-        selectedAddOns: []
-      };
-    }).filter(Boolean);
-
-    setCityServices(newCityServices);
-    setShowAdvancedFilters(false);
-  };
 
   // Step navigation helpers
   const steps = [
-    { number: 1, title: 'Trip Overview', description: 'Start your journey' },
-    { number: 2, title: 'Build your itinerary', description: 'Days, transport & extras' },
-    { number: 3, title: 'Review & Pricing', description: 'Check your itinerary' },
-    { number: 4, title: 'Checkout', description: 'Complete booking' }
+    { number: 1, title: t('quoteBuilder.steps.overviewTitle'), description: t('quoteBuilder.steps.overviewDescription') },
+    { number: 2, title: t('quoteBuilder.steps.itineraryTitle'), description: t('quoteBuilder.steps.itineraryDescription') },
+    { number: 3, title: t('quoteBuilder.steps.reviewTitle'), description: t('quoteBuilder.steps.reviewDescription') },
+    { number: 4, title: t('quoteBuilder.steps.checkoutTitle'), description: t('quoteBuilder.steps.checkoutDescription') }
   ];
 
   // Rules live in @shared/quote-validation so they can be unit-tested without
@@ -727,8 +470,13 @@ export default function MultiCityPricingTool() {
     totalAmount: totalPricing?.totalAmount ?? 0,
   };
 
-  const blockersForStep = (step: number) => sharedBlockersForStep(step, validationState);
-  const canProceedToStep = (step: number) => Object.keys(blockersForStep(step)).length === 0;
+  // The shared rules return reason codes; the words live in the locale files.
+  const blockersForStep = (step: number): Record<string, string> => {
+    const codes = sharedBlockersForStep(step, validationState);
+    return Object.fromEntries(
+      Object.entries(codes).map(([field, code]) => [field, t(`quoteBuilder.blockers.${code}`)]),
+    );
+  };
 
   const goToNextStep = () => {
     if (currentStep >= 4) return;
@@ -798,13 +546,13 @@ export default function MultiCityPricingTool() {
           <TabsList className="grid w-full grid-cols-2 mb-6 mx-auto max-w-md">
             <TabsTrigger value="pricing" className="flex items-center gap-2">
               <Calculator className="w-4 h-4" />
-              <span className="hidden sm:inline">Build Quote</span>
-              <span className="sm:hidden">Quote</span>
+              <span className="hidden sm:inline">{t('quoteBuilder.tabs.build')}</span>
+              <span className="sm:hidden">{t('quoteBuilder.tabs.buildShort')}</span>
             </TabsTrigger>
             <TabsTrigger value="saved" className="flex items-center gap-2">
               <BookOpen className="w-4 h-4" />
-              <span className="hidden sm:inline">Saved Quotes</span>
-              <span className="sm:hidden">Saved</span>
+              <span className="hidden sm:inline">{t('quoteBuilder.tabs.saved')}</span>
+              <span className="sm:hidden">{t('quoteBuilder.tabs.savedShort')}</span>
             </TabsTrigger>
           </TabsList>
         )}
@@ -814,10 +562,10 @@ export default function MultiCityPricingTool() {
             <CardHeader className="text-center pb-4">
               <CardTitle className="flex items-center justify-center gap-2 text-xl sm:text-2xl">
                 <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                <span>Design Your Egypt Adventure</span>
+                <span>{t('quoteBuilder.header.title')}</span>
               </CardTitle>
               <p className="text-muted-foreground text-sm">
-                Craft your perfect journey with transparent pricing at every step
+                {t('quoteBuilder.header.subtitle')}
               </p>
             </CardHeader>
             
@@ -847,9 +595,9 @@ export default function MultiCityPricingTool() {
                     {/* Header */}
                     <div className="text-center mb-7 sm:mb-8">
                       <h3 className="text-2xl sm:text-3xl font-bold mb-2 bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
-                        Start Your Private Egypt Journey
+                        {t('quoteBuilder.step1.title')}
                       </h3>
-                      <p className="text-sm text-muted-foreground">Answer a few questions and see your full price instantly — right here on screen, no waiting.</p>
+                      <p className="text-sm text-muted-foreground">{t('quoteBuilder.step1.subtitle')}</p>
                     </div>
 
                     {/* Compact 2-up field grid — stacks to one column on mobile */}
@@ -858,7 +606,7 @@ export default function MultiCityPricingTool() {
                       <div>
                         <Label htmlFor="step1-destination" className="text-xs font-semibold mb-1.5 flex items-center gap-1.5 text-gray-600">
                           <MapPin className="w-4 h-4 text-teal-600" />
-                          Where do you want to go?
+                          {t('quoteBuilder.step1.destinationLabel')}
                         </Label>
                         <Select
                           value={step1DestinationId}
@@ -891,12 +639,12 @@ export default function MultiCityPricingTool() {
                         >
                           <SelectTrigger
                             id="step1-destination"
-                            aria-label="Where do you want to go?"
+                            aria-label={t('quoteBuilder.step1.destinationLabel')}
                             aria-invalid={!!stepErrors.destination}
                             aria-describedby={stepErrors.destination ? 'step1-destination-error' : undefined}
                             className={`w-full h-11 rounded-lg focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 ${stepErrors.destination ? 'border-red-500' : 'border-gray-300'}`}
                           >
-                            <SelectValue placeholder="Choose a destination" />
+                            <SelectValue placeholder={t('quoteBuilder.step1.destinationPlaceholder')} />
                           </SelectTrigger>
                           <SelectContent>
                             {cities?.map((city: any) => (
@@ -916,7 +664,7 @@ export default function MultiCityPricingTool() {
                       <div>
                         <Label htmlFor="trip-duration" className="text-xs font-semibold mb-1.5 flex items-center gap-1.5 text-gray-600">
                           <Clock className="w-4 h-4 text-teal-600" />
-                          How many days?
+                          {t('quoteBuilder.step1.daysLabel')}
                         </Label>
                         <Select
                           value={tripDuration}
@@ -927,20 +675,20 @@ export default function MultiCityPricingTool() {
                         >
                           <SelectTrigger
                             id="trip-duration"
-                            aria-label="How many days?"
+                            aria-label={t('quoteBuilder.step1.daysLabel')}
                             aria-invalid={!!stepErrors.duration}
                             aria-describedby={stepErrors.duration ? 'trip-duration-error' : undefined}
                             className={`w-full h-11 rounded-lg focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200 ${stepErrors.duration ? 'border-red-500' : 'border-gray-300'}`}
                           >
-                            <SelectValue placeholder="Select trip length" />
+                            <SelectValue placeholder={t('quoteBuilder.step1.daysPlaceholder')} />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="1-2">1-2 days</SelectItem>
-                            <SelectItem value="3-4">3-4 days</SelectItem>
-                            <SelectItem value="5-7">5-7 days</SelectItem>
-                            <SelectItem value="8-14">8-14 days</SelectItem>
-                            <SelectItem value="15+">More than 14 days</SelectItem>
-                            <SelectItem value="exploring">Just exploring</SelectItem>
+                            <SelectItem value="1-2">{t('quoteBuilder.step1.duration1to2')}</SelectItem>
+                            <SelectItem value="3-4">{t('quoteBuilder.step1.duration3to4')}</SelectItem>
+                            <SelectItem value="5-7">{t('quoteBuilder.step1.duration5to7')}</SelectItem>
+                            <SelectItem value="8-14">{t('quoteBuilder.step1.duration8to14')}</SelectItem>
+                            <SelectItem value="15+">{t('quoteBuilder.step1.duration15plus')}</SelectItem>
+                            <SelectItem value="exploring">{t('quoteBuilder.step1.durationExploring')}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FieldError id="trip-duration-error" message={stepErrors.duration} />
@@ -950,7 +698,7 @@ export default function MultiCityPricingTool() {
                       <div>
                         <Label htmlFor="total-travelers" className="text-xs font-semibold mb-1.5 flex items-center gap-1.5 text-gray-600">
                           <Users className="w-4 h-4 text-teal-600" />
-                          How many travelers?
+                          {t('quoteBuilder.step1.travelersLabel')}
                         </Label>
                         <Select
                           value={globalTravelers.toString()}
@@ -962,14 +710,14 @@ export default function MultiCityPricingTool() {
                         >
                           <SelectTrigger
                             id="total-travelers"
-                            aria-label="How many travelers?"
+                            aria-label={t('quoteBuilder.step1.travelersLabel')}
                             className="w-full h-11 rounded-lg border-gray-300 focus:border-teal-600 focus:ring-2 focus:ring-teal-100 transition-all duration-200"
                           >
-                            <SelectValue placeholder="Select number of travelers" />
+                            <SelectValue placeholder={t('quoteBuilder.step1.travelersPlaceholder')} />
                           </SelectTrigger>
                           <SelectContent>
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-                              <SelectItem key={num} value={num.toString()}>{num} {num === 1 ? 'traveler' : 'travelers'}</SelectItem>
+                              <SelectItem key={num} value={num.toString()}>{t('quoteBuilder.step1.travelerCount', { count: num })}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -980,7 +728,7 @@ export default function MultiCityPricingTool() {
                         <div className="flex items-center justify-between mb-1.5">
                           <Label htmlFor="travel-date" className="text-xs font-semibold flex items-center gap-1.5 text-gray-600">
                             <Calendar className="w-4 h-4 text-teal-600" />
-                            When?
+                            {t('quoteBuilder.step1.whenLabel')}
                           </Label>
                           {/* The Radix checkbox renders 14x14. The label is the
                               real hit area, and at 89x16 it was far under the
@@ -996,7 +744,7 @@ export default function MultiCityPricingTool() {
                               // Radix renders a <button role="checkbox">, whose only
                               // text child is the label's — which the wrapping <label>
                               // does not supply to it. Name it explicitly.
-                              aria-label="Not sure yet — I don't have a travel date"
+                              aria-label={t('quoteBuilder.step1.notSureYetAria')}
                               className="h-3.5 w-3.5"
                               checked={justExploring}
                               onCheckedChange={(checked) => {
@@ -1009,7 +757,7 @@ export default function MultiCityPricingTool() {
                                 if (isChecked) setStepErrors(prev => ({ ...prev, date: '' }));
                               }}
                             />
-                            Not sure yet
+                            {t('quoteBuilder.step1.notSureYet')}
                           </label>
                         </div>
                         <Input
@@ -1032,9 +780,9 @@ export default function MultiCityPricingTool() {
 
                     {/* Trust row */}
                     <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-7 text-sm text-gray-600">
-                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Private vehicle &amp; guide</span>
-                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Transparent pricing</span>
-                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> Instant price on screen</span>
+                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> {t('quoteBuilder.step1.trustVehicle')}</span>
+                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> {t('quoteBuilder.step1.trustPricing')}</span>
+                      <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-teal-600 shrink-0" /> {t('quoteBuilder.step1.trustInstant')}</span>
                     </div>
 
                     {/* CTA */}
@@ -1048,7 +796,7 @@ export default function MultiCityPricingTool() {
                       >
                         {/* Step 2 is where the price forms — promising a price
                             on this click was a small untruth. */}
-                        Build My Itinerary →
+                        {t('quoteBuilder.step1.cta')}
                       </Button>
                     </div>
                   </div>
@@ -1060,8 +808,8 @@ export default function MultiCityPricingTool() {
                 <div className="animate-in fade-in duration-300 space-y-6">
                   {/* Header */}
                   <div className="text-center lg:text-left">
-                    <h2 className="text-2xl font-bold mb-2">Build your itinerary</h2>
-                    <p className="text-muted-foreground">Pick transport, guide, entrance fees and add-ons for each day — add more days as you go.</p>
+                    <h2 className="text-2xl font-bold mb-2">{t('quoteBuilder.step2.title')}</h2>
+                    <p className="text-muted-foreground">{t('quoteBuilder.step2.subtitle')}</p>
                   </div>
 
                   {/* First-destination selector (empty state) */}
@@ -1069,11 +817,11 @@ export default function MultiCityPricingTool() {
                     <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-dashed border-blue-200 rounded-lg">
                       <div className="text-center mb-6">
                         <MapPin className="w-12 h-12 mx-auto mb-3 text-blue-600" />
-                        <h3 className="text-lg font-semibold mb-2">Choose your first destination</h3>
-                        <p className="text-sm text-muted-foreground">Select a city to start planning your trip</p>
+                        <h3 className="text-lg font-semibold mb-2">{t('quoteBuilder.step2.firstDestinationTitle')}</h3>
+                        <p className="text-sm text-muted-foreground">{t('quoteBuilder.step2.firstDestinationSubtitle')}</p>
                       </div>
                       <div className="max-w-md mx-auto">
-                        <Label className="text-sm font-medium mb-2 block">Select destination</Label>
+                        <Label className="text-sm font-medium mb-2 block">{t('quoteBuilder.step2.selectDestinationLabel')}</Label>
                         <Select
                           onValueChange={(value) => {
                             if (!cities || cities.length === 0) return;
@@ -1095,7 +843,7 @@ export default function MultiCityPricingTool() {
                           }}
                         >
                           <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Choose a city to visit" />
+                            <SelectValue placeholder={t('quoteBuilder.step2.chooseCityPlaceholder')} />
                           </SelectTrigger>
                           <SelectContent>
                             {cities?.map((city: any) => (
@@ -1119,10 +867,10 @@ export default function MultiCityPricingTool() {
                         const dayTotal = totalPricing?.breakdown?.[index]?.total;
                         const tCount = city.selectedServices?.length || 0;
                         const transferSummary = tCount === 0
-                          ? "Select transfer"
+                          ? t('quoteBuilder.step2.selectTransfer')
                           : tCount === 1
-                            ? (city.selectedServices[0]?.name || "1 transfer")
-                            : `${tCount} transfers`;
+                            ? (city.selectedServices[0]?.name || t('quoteBuilder.step2.transferCount', { count: 1 }))
+                            : t('quoteBuilder.step2.transferCount', { count: tCount });
                         return (
                           <Card
                             key={index}
@@ -1135,7 +883,7 @@ export default function MultiCityPricingTool() {
                           >
                             {/* strip header */}
                             <div className="flex items-center gap-2 mb-3 pb-3 border-b">
-                              <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                              <Badge className="bg-primary">{t('quoteBuilder.step2.day', { number: city.dayNumber })}</Badge>
                               <div className="flex items-center gap-1 font-semibold min-w-0">
                                 <MapPin className="w-4 h-4 text-primary shrink-0" />
                                 <span className="truncate">{city.cityName}</span>
@@ -1148,7 +896,7 @@ export default function MultiCityPricingTool() {
                                 size="icon"
                                 onClick={() => setCityServices(prev => prev.filter((_, i) => i !== index).map((c, i) => ({ ...c, dayNumber: i + 1 })))}
                                 className={`${dayTotal ? '' : 'ml-auto'} h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50`}
-                                aria-label={`Remove day ${city.dayNumber}`}
+                                aria-label={t('quoteBuilder.step2.removeDay', { number: city.dayNumber })}
                               >
                                 <X className="w-4 h-4" />
                               </Button>
@@ -1158,7 +906,7 @@ export default function MultiCityPricingTool() {
                             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
                               {/* Date */}
                               <div className="space-y-1.5">
-                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />Date</Label>
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{t('quoteBuilder.step2.dateLabel')}</Label>
                                 <Input
                                   type="date"
                                   value={city.date || ''}
@@ -1169,7 +917,7 @@ export default function MultiCityPricingTool() {
 
                               {/* Transfer (inline picker wrapped in a popover so it fits a column) */}
                               <div className="space-y-1.5">
-                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><MapPinned className="w-3.5 h-3.5" />Transfer</Label>
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><MapPinned className="w-3.5 h-3.5" />{t('quoteBuilder.step2.transferLabel')}</Label>
                                 <Popover>
                                   <PopoverTrigger asChild>
                                     <Button variant="outline" className="w-full justify-between h-9 text-sm font-normal">
@@ -1191,7 +939,7 @@ export default function MultiCityPricingTool() {
 
                               {/* Guide */}
                               <div className="space-y-1.5">
-                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Users className="w-3.5 h-3.5" />Guide</Label>
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Users className="w-3.5 h-3.5" />{t('quoteBuilder.step2.guideLabel')}</Label>
                                 <GuideSearch
                                   languages={languages || []}
                                   cityId={city.cityId}
@@ -1203,7 +951,7 @@ export default function MultiCityPricingTool() {
 
                               {/* Entrance fees */}
                               <div className="space-y-1.5">
-                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Ticket className="w-3.5 h-3.5" />Entrance fees</Label>
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Ticket className="w-3.5 h-3.5" />{t('quoteBuilder.step2.entranceFeesLabel')}</Label>
                                 <EntranceFeesSearch
                                   entranceFees={entranceFees || []}
                                   cityName={city.cityName}
@@ -1214,7 +962,7 @@ export default function MultiCityPricingTool() {
 
                               {/* Add-ons */}
                               <div className="space-y-1.5">
-                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Package className="w-3.5 h-3.5" />Add-ons</Label>
+                                <Label className="text-xs text-muted-foreground flex items-center gap-1"><Package className="w-3.5 h-3.5" />{t('quoteBuilder.step2.addOnsLabel')}</Label>
                                 <AddOnsSearch
                                   addOns={addOns || []}
                                   selectedAddOns={city.selectedAddOns || []}
@@ -1236,7 +984,7 @@ export default function MultiCityPricingTool() {
                       <div className="flex items-center gap-4">
                         <Label className="text-sm font-medium whitespace-nowrap">
                           <Plus className="w-4 h-4 inline mr-2" />
-                          Add day {cityServices.length + 1}
+                          {t('quoteBuilder.step2.addDay', { number: cityServices.length + 1 })}
                         </Label>
                         <Select
                           onValueChange={(value) => {
@@ -1259,11 +1007,10 @@ export default function MultiCityPricingTool() {
                               selectedAddOns: []
                             };
                             setCityServices(prev => [...prev, newCity]);
-                            setExpandedCityIndex(cityServices.length);
                           }}
                         >
                           <SelectTrigger className="flex-1">
-                            <SelectValue placeholder="Select destination for next day" />
+                            <SelectValue placeholder={t('quoteBuilder.step2.nextDayPlaceholder')} />
                           </SelectTrigger>
                           <SelectContent>
                             {cities?.map((city: any) => (
@@ -1284,8 +1031,8 @@ export default function MultiCityPricingTool() {
                   {cityServices.length > 0 && totalPricing && totalPricing.totalAmount > 0 && (
                     <div className="flex items-center justify-between gap-4 p-4 bg-primary/5 rounded-lg border">
                       <div>
-                        <div className="text-sm text-muted-foreground">Total · {totalPricing.travelers} {totalPricing.travelers === 1 ? 'traveler' : 'travelers'}</div>
-                        <div className="text-xs text-muted-foreground">{formatEGP(totalPricing.perPersonAmount)} per person</div>
+                        <div className="text-sm text-muted-foreground">{t('quoteBuilder.livePrice.totalWithTravelers', { count: totalPricing.travelers })}</div>
+                        <div className="text-xs text-muted-foreground">{t('quoteBuilder.livePrice.perPerson', { price: formatEGP(totalPricing.perPersonAmount) })}</div>
                       </div>
                       <div className="text-2xl font-bold text-primary">{formatEGP(totalPricing.totalAmount)}</div>
                     </div>
@@ -1296,10 +1043,10 @@ export default function MultiCityPricingTool() {
                     <div className="flex flex-col-reverse sm:flex-row justify-center sm:justify-between gap-3">
                       <Button variant="outline" onClick={goToPreviousStep} size="lg" className="w-full sm:w-auto">
                         <ChevronLeft className="w-4 h-4 mr-2" />
-                        Back to Overview
+                        {t('quoteBuilder.step2.back')}
                       </Button>
                       <Button onClick={goToNextStep} size="lg" className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto">
-                        Continue to Review
+                        {t('quoteBuilder.step2.continue')}
                         <ChevronRight className="w-4 h-4 ml-2" />
                       </Button>
                     </div>
@@ -1315,28 +1062,28 @@ export default function MultiCityPricingTool() {
                   <div className="space-y-6 min-w-0">
                   {/* Header */}
                   <div>
-                    <h2 className="text-2xl font-bold mb-2">Review Your Itinerary</h2>
-                    <p className="text-muted-foreground">Check all details before proceeding to checkout</p>
+                    <h2 className="text-2xl font-bold mb-2">{t('quoteBuilder.step3.title')}</h2>
+                    <p className="text-muted-foreground">{t('quoteBuilder.step3.subtitle')}</p>
                   </div>
 
                   {/* Trip Summary */}
                   <Card className="p-6 bg-gradient-to-br from-blue-50 to-purple-50">
-                    <h3 className="text-lg font-semibold mb-4">Trip Summary</h3>
+                    <h3 className="text-lg font-semibold mb-4">{t('quoteBuilder.step3.tripSummary')}</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div>
-                        <p className="text-sm text-muted-foreground">Start Date</p>
+                        <p className="text-sm text-muted-foreground">{t('quoteBuilder.step3.startDate')}</p>
                         <p className="font-semibold">{travelDate ? new Date(travelDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '-'}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Travelers</p>
-                        <p className="font-semibold">{globalTravelers} {globalTravelers === 1 ? 'Person' : 'People'}</p>
+                        <p className="text-sm text-muted-foreground">{t('quoteBuilder.step3.travelers')}</p>
+                        <p className="font-semibold">{t('quoteBuilder.step3.personCount', { count: globalTravelers })}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Days</p>
-                        <p className="font-semibold">{cityServices.length} {cityServices.length === 1 ? 'Day' : 'Days'}</p>
+                        <p className="text-sm text-muted-foreground">{t('quoteBuilder.step3.days')}</p>
+                        <p className="font-semibold">{t('quoteBuilder.step3.dayCount', { count: cityServices.length })}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Total Price</p>
+                        <p className="text-sm text-muted-foreground">{t('quoteBuilder.step3.totalPrice')}</p>
                         <p className="font-semibold text-primary">{formatEGP(totalPricing?.totalAmount)}</p>
                       </div>
                     </div>
@@ -1351,7 +1098,7 @@ export default function MultiCityPricingTool() {
                         <AccordionItem key={index} value={`review-day-${city.dayNumber}`} className="border rounded-lg">
                           <AccordionTrigger className="px-4 py-3 hover:no-underline">
                             <div className="flex items-center gap-4 w-full">
-                              <Badge className="bg-primary">Day {city.dayNumber}</Badge>
+                              <Badge className="bg-primary">{t('quoteBuilder.step2.day', { number: city.dayNumber })}</Badge>
                               <div className="flex items-center gap-2">
                                 <MapPin className="w-4 h-4 text-primary" />
                                 <span className="font-semibold">{city.cityName}</span>
@@ -1369,14 +1116,14 @@ export default function MultiCityPricingTool() {
                                 <div>
                                   <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                                     <MapPinned className="w-4 h-4" />
-                                    Services
+                                    {t('quoteBuilder.step3.services')}
                                   </h4>
                                   <ul className="text-sm space-y-1 ml-6">
                                     {city.selectedServices.map((s) => (
                                       <li key={s.slug}>
                                         • {s.name ?? s.slug} —{" "}
-                                        {VEHICLE_LABELS[s.vehicleSlug] ?? s.vehicleSlug}
-                                        {" "}({TRIP_TYPE_LABELS[s.tripType] ?? s.tripType})
+                                        {vehicleLabel(t, s.vehicleSlug)}
+                                        {" "}({tripTypeLabel(t, s.tripType)})
                                         {typeof s.price === "number" && (
                                           <span className="text-muted-foreground">
                                             {" "}— {formatEGP(s.price)}
@@ -1393,9 +1140,9 @@ export default function MultiCityPricingTool() {
                                 <div>
                                   <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                                     <Users className="w-4 h-4" />
-                                    Tour Guide
+                                    {t('quoteBuilder.step3.tourGuide')}
                                   </h4>
-                                  <p className="text-sm ml-6">• {city.selectedGuide.language} guide ({city.selectedGuide.duration} hours)</p>
+                                  <p className="text-sm ml-6">• {t('quoteBuilder.step3.guideLine', { language: city.selectedGuide.language, hours: city.selectedGuide.duration })}</p>
                                 </div>
                               )}
 
@@ -1404,7 +1151,7 @@ export default function MultiCityPricingTool() {
                                 <div>
                                   <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                                     <Star className="w-4 h-4" />
-                                    Attractions
+                                    {t('quoteBuilder.step3.attractions')}
                                   </h4>
                                   <ul className="text-sm space-y-1 ml-6">
                                     {city.selectedAttractions.map((attraction, i) => (
@@ -1419,7 +1166,7 @@ export default function MultiCityPricingTool() {
                                 <div>
                                   <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                                     <Package className="w-4 h-4" />
-                                    Add-ons
+                                    {t('quoteBuilder.step3.addOns')}
                                   </h4>
                                   <ul className="text-sm space-y-1 ml-6">
                                     {city.selectedAddOns.map((addon, i) => (
@@ -1437,7 +1184,7 @@ export default function MultiCityPricingTool() {
                                   onClick={() => editDay(city.dayNumber)}
                                   className="text-primary hover:text-primary/80"
                                 >
-                                  Edit Day {city.dayNumber}
+                                  {t('quoteBuilder.step3.editDay', { number: city.dayNumber })}
                                 </Button>
                               </div>
                             </div>
@@ -1459,7 +1206,7 @@ export default function MultiCityPricingTool() {
                         className="w-full sm:w-auto"
                       >
                         <ChevronLeft className="w-4 h-4 mr-2" />
-                        Back to itinerary
+                        {t('quoteBuilder.step3.back')}
                       </Button>
                       <Button
                         onClick={goToNextStep}
@@ -1467,13 +1214,13 @@ export default function MultiCityPricingTool() {
                         size="lg"
                         className="bg-gradient-to-r from-primary to-blue-600 w-full sm:w-auto"
                       >
-                        Proceed to Checkout
+                        {t('quoteBuilder.step3.proceed')}
                         <ChevronRight className="w-4 h-4 ml-2" />
                       </Button>
                     </div>
                     {!(totalPricing && totalPricing.totalAmount > 0) && (
                       <p role="status" className="mt-3 text-sm text-red-600 text-center sm:text-right">
-                        Your itinerary totals LE 0. Go back and add at least one service to check out.
+                        {t('quoteBuilder.step3.zeroTotal')}
                       </p>
                     )}
                     <FieldError id="step3-total-error" message={stepErrors.total} />
@@ -1491,20 +1238,20 @@ export default function MultiCityPricingTool() {
                   <div className="space-y-4 min-w-0">
                   {/* Header */}
                   <div className="text-center">
-                    <h2 className="text-xl font-bold mb-1">Complete Your Booking</h2>
-                    <p className="text-sm text-muted-foreground">Enter your details to finalize your reservation</p>
+                    <h2 className="text-xl font-bold mb-1">{t('quoteBuilder.step4.title')}</h2>
+                    <p className="text-sm text-muted-foreground">{t('quoteBuilder.step4.subtitle')}</p>
                   </div>
 
                   <div className="grid grid-cols-1 gap-4">
                     {/* Compact Form */}
                     <Card className="p-4">
-                      <h3 className="font-semibold mb-3">Contact Information</h3>
+                      <h3 className="font-semibold mb-3">{t('quoteBuilder.step4.contactInformation')}</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div className="md:col-span-2">
-                          <Label htmlFor="checkout-name" className="text-sm">Full Name *</Label>
+                          <Label htmlFor="checkout-name" className="text-sm">{t('quoteBuilder.step4.fullName')}</Label>
                           <Input
                             id="checkout-name"
-                            placeholder="John Doe"
+                            placeholder={t('quoteBuilder.step4.namePlaceholder')}
                             required
                             autoComplete="name"
                             className="mt-1 h-9"
@@ -1514,7 +1261,7 @@ export default function MultiCityPricingTool() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="checkout-email" className="text-sm">Email Address *</Label>
+                          <Label htmlFor="checkout-email" className="text-sm">{t('quoteBuilder.step4.email')}</Label>
                           <Input
                             id="checkout-email"
                             type="email"
@@ -1528,7 +1275,7 @@ export default function MultiCityPricingTool() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="checkout-phone" className="text-sm">Phone Number *</Label>
+                          <Label htmlFor="checkout-phone" className="text-sm">{t('quoteBuilder.step4.phone')}</Label>
                           <Input
                             id="checkout-phone"
                             type="tel"
@@ -1542,10 +1289,10 @@ export default function MultiCityPricingTool() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="checkout-nationality" className="text-sm">Nationality (Optional)</Label>
+                          <Label htmlFor="checkout-nationality" className="text-sm">{t('quoteBuilder.step4.nationality')}</Label>
                           <Input
                             id="checkout-nationality"
-                            placeholder="e.g., American"
+                            placeholder={t('quoteBuilder.step4.nationalityPlaceholder')}
                             autoComplete="country-name"
                             className="mt-1 h-9"
                             value={checkoutData.nationality}
@@ -1554,10 +1301,10 @@ export default function MultiCityPricingTool() {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="checkout-accommodation" className="text-sm">Hotel/Accommodation (Optional)</Label>
+                          <Label htmlFor="checkout-accommodation" className="text-sm">{t('quoteBuilder.step4.accommodation')}</Label>
                           <Input
                             id="checkout-accommodation"
-                            placeholder="Hotel name or address"
+                            placeholder={t('quoteBuilder.step4.accommodationPlaceholder')}
                             className="mt-1 h-9"
                             value={checkoutData.accommodation}
                             onChange={(e) => setCheckoutData(prev => ({ ...prev, accommodation: e.target.value }))}
@@ -1568,11 +1315,11 @@ export default function MultiCityPricingTool() {
 
                       {/* Special Requests - Compact */}
                       <div className="mt-3">
-                        <Label htmlFor="checkout-requests" className="text-sm">Special Requests</Label>
+                        <Label htmlFor="checkout-requests" className="text-sm">{t('quoteBuilder.step4.specialRequests')}</Label>
                         <textarea
                           id="checkout-requests"
                           className="w-full mt-1 h-16 px-3 py-2 text-sm border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-                          placeholder="Dietary requirements, accessibility needs, preferences..."
+                          placeholder={t('quoteBuilder.step4.specialRequestsPlaceholder')}
                           value={checkoutData.specialRequests}
                           onChange={(e) => setCheckoutData(prev => ({ ...prev, specialRequests: e.target.value }))}
                           data-testid="input-special-requests"
@@ -1581,7 +1328,7 @@ export default function MultiCityPricingTool() {
 
                       {/* Terms & Conditions - Compact */}
                       <div className="mt-3 pt-3 border-t">
-                        <h3 className="font-semibold mb-2">Terms & Conditions</h3>
+                        <h3 className="font-semibold mb-2">{t('quoteBuilder.step4.termsHeading')}</h3>
                         <div className="space-y-2">
                           <div className="flex items-start gap-2">
                             <Checkbox 
@@ -1592,7 +1339,13 @@ export default function MultiCityPricingTool() {
                               className="mt-0.5"
                             />
                             <Label htmlFor="terms-service" className="text-xs leading-tight cursor-pointer">
-                              I agree to the <a href="/terms-of-service" className="text-primary hover:underline" target="_blank">Terms of Service</a> and <a href="/privacy-policy" className="text-primary hover:underline" target="_blank">Privacy Policy</a>
+                              <Trans
+                                i18nKey="quoteBuilder.step4.agreeTerms"
+                                components={{
+                                  terms: <a href="/terms-of-service" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer" />,
+                                  privacy: <a href="/privacy-policy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer" />,
+                                }}
+                              />
                             </Label>
                           </div>
                           <div className="flex items-start gap-2">
@@ -1604,7 +1357,12 @@ export default function MultiCityPricingTool() {
                               className="mt-0.5"
                             />
                             <Label htmlFor="booking-policy" className="text-xs leading-tight cursor-pointer">
-                              I understand and accept the <a href="/booking-agreement" className="text-primary hover:underline" target="_blank">Booking Policy</a> and cancellation terms
+                              <Trans
+                                i18nKey="quoteBuilder.step4.agreeBookingPolicy"
+                                components={{
+                                  policy: <a href="/booking-agreement" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer" />,
+                                }}
+                              />
                             </Label>
                           </div>
                         </div>
@@ -1613,47 +1371,47 @@ export default function MultiCityPricingTool() {
 
                     {/* Order Summary - Compact */}
                     <Card className="p-4">
-                      <h3 className="font-semibold mb-3">Order Summary</h3>
+                      <h3 className="font-semibold mb-3">{t('quoteBuilder.step4.orderSummary')}</h3>
                         
                       {/* Trip Details */}
                       <div className="grid grid-cols-3 gap-2 mb-3 pb-3 border-b">
                         <div className="text-center">
-                          <p className="text-xs text-muted-foreground">Travel Date</p>
+                          <p className="text-xs text-muted-foreground">{t('quoteBuilder.step4.travelDate')}</p>
                           <p className="text-sm font-medium">{travelDate ? new Date(travelDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-'}</p>
                         </div>
                         <div className="text-center">
-                          <p className="text-xs text-muted-foreground">Travelers</p>
-                          <p className="text-sm font-medium">{globalTravelers} {globalTravelers === 1 ? 'Person' : 'People'}</p>
+                          <p className="text-xs text-muted-foreground">{t('quoteBuilder.step3.travelers')}</p>
+                          <p className="text-sm font-medium">{t('quoteBuilder.step3.personCount', { count: globalTravelers })}</p>
                         </div>
                         <div className="text-center">
-                          <p className="text-xs text-muted-foreground">Days</p>
-                          <p className="text-sm font-medium">{cityServices.length} {cityServices.length === 1 ? 'Day' : 'Days'}</p>
+                          <p className="text-xs text-muted-foreground">{t('quoteBuilder.step3.days')}</p>
+                          <p className="text-sm font-medium">{t('quoteBuilder.step3.dayCount', { count: cityServices.length })}</p>
                         </div>
                       </div>
 
                       {/* Price Breakdown */}
                       <div className="space-y-1.5 mb-3 pb-3 border-b text-sm">
                         <div className="flex justify-between">
-                          <span>Services</span>
+                          <span>{t('quoteBuilder.step4.priceServices')}</span>
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span>Tour Guides</span>
+                          <span>{t('quoteBuilder.step4.priceGuides')}</span>
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span>Entrance fees</span>
+                          <span>{t('quoteBuilder.step4.priceEntranceFees')}</span>
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0))}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span>Add-ons</span>
+                          <span>{t('quoteBuilder.step4.priceAddOns')}</span>
                           <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0))}</span>
                         </div>
                       </div>
 
                       {/* Total */}
                       <div className="flex justify-between items-center mb-4">
-                        <span className="font-semibold">Total</span>
+                        <span className="font-semibold">{t('quoteBuilder.step4.total')}</span>
                         <span className="text-xl font-bold text-primary">{formatEGP(totalPricing?.totalAmount)}</span>
                       </div>
 
@@ -1663,23 +1421,23 @@ export default function MultiCityPricingTool() {
                         onClick={async () => {
                           // Validation
                           if (!checkoutData.name.trim()) {
-                            alert('Please enter your full name');
+                            alert(t('quoteBuilder.validation.name'));
                             return;
                           }
                           if (!checkoutData.email.trim() || !checkoutData.email.includes('@')) {
-                            alert('Please enter a valid email address');
+                            alert(t('quoteBuilder.validation.email'));
                             return;
                           }
                           if (!checkoutData.phone.trim()) {
-                            alert('Please enter your phone number');
+                            alert(t('quoteBuilder.validation.phone'));
                             return;
                           }
                           if (!checkoutData.termsAccepted) {
-                            alert('Please accept the Terms of Service and Privacy Policy');
+                            alert(t('quoteBuilder.validation.terms'));
                             return;
                           }
                           if (!checkoutData.bookingPolicyAccepted) {
-                            alert('Please accept the Booking Policy');
+                            alert(t('quoteBuilder.validation.bookingPolicy'));
                             return;
                           }
                           
@@ -1765,7 +1523,7 @@ export default function MultiCityPricingTool() {
                                 currency: 'EGP',
                                 items: [{
                                   item_id: booking.bookingReference,
-                                  item_name: 'Egypt trip booking',
+                                  item_name: 'Egypt trip booking', // i18n-exempt: GA4 item name, not UI
                                   item_category: 'trip',
                                   price: Number.isFinite(bookedValue) && bookedValue > 0
                                     ? bookedValue
@@ -1776,7 +1534,10 @@ export default function MultiCityPricingTool() {
                               markConversionSent(booking.bookingReference);
                             }
 
-                            alert(`Booking request submitted successfully!\n\nConfirmation email sent to ${checkoutData.email}.\nBooking reference: ${booking.bookingReference}`);
+                            alert(t('quoteBuilder.validation.submitted', {
+                              email: checkoutData.email,
+                              reference: booking.bookingReference,
+                            }));
                             
                             // Reset form and go back to step 1
                             setCheckoutData({
@@ -1792,18 +1553,18 @@ export default function MultiCityPricingTool() {
                             });
                             setCurrentStep(1);
                           } catch (error) {
-                            console.error('Booking error:', error);
-                            alert('Failed to submit booking. Please try again.');
+                            console.error('Booking error:', error); // i18n-exempt: console, not UI
+                            alert(t('quoteBuilder.validation.submitFailed'));
                           }
                         }}
                         data-testid="button-submit-booking"
                       >
                         <CreditCard className="w-4 h-4 mr-2" />
-                        Request Booking
+                        {t('quoteBuilder.step4.requestBooking')}
                       </Button>
 
                       <p className="text-xs text-center text-muted-foreground mt-2">
-                        By submitting, you agree to our terms and conditions
+                        {t('quoteBuilder.step4.disclaimer')}
                       </p>
                     </Card>
                   </div>
@@ -1816,7 +1577,7 @@ export default function MultiCityPricingTool() {
                       className="w-full sm:w-auto"
                     >
                       <ChevronLeft className="w-4 h-4 mr-2" />
-                      Back to Review
+                      {t('quoteBuilder.step4.back')}
                     </Button>
                   </div>
                   </div>
@@ -1835,31 +1596,31 @@ export default function MultiCityPricingTool() {
                 totalPricing.totalAmount > 0 ? (
                 <div className="mt-8">
                   <Separator className="mb-4" />
-                  <h3 className="text-lg font-semibold mb-4">Pricing Breakdown</h3>
+                  <h3 className="text-lg font-semibold mb-4">{t('quoteBuilder.breakdown.title')}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {totalPricing.breakdown.map((city: any, index: number) => (
                       <Card key={index} className="p-4">
                         <h4 className="font-medium mb-2">{city.city}</h4>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between">
-                            <span>Services:</span>
+                            <span>{t('quoteBuilder.breakdown.services')}</span>
                             <span className="font-mono">{formatEGP(city.routes)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span>Guide:</span>
+                            <span>{t('quoteBuilder.breakdown.guide')}</span>
                             <span className="font-mono">{formatEGP(city.guide)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span>Entrance fees:</span>
+                            <span>{t('quoteBuilder.breakdown.entranceFees')}</span>
                             <span className="font-mono">{formatEGP(city.attractions)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span>Add-ons:</span>
+                            <span>{t('quoteBuilder.breakdown.addOns')}</span>
                             <span className="font-mono">{formatEGP(city.addOns)}</span>
                           </div>
                           <Separator className="my-2" />
                           <div className="flex justify-between font-semibold">
-                            <span>Total:</span>
+                            <span>{t('quoteBuilder.breakdown.total')}</span>
                             <span className="font-mono">{formatEGP(city.total)}</span>
                           </div>
                         </div>
@@ -1871,7 +1632,7 @@ export default function MultiCityPricingTool() {
                 <div className="mt-8">
                   <Separator className="mb-4" />
                   <p className="text-sm text-muted-foreground">
-                    Add services to see your price.
+                    {t('quoteBuilder.breakdown.empty')}
                   </p>
                 </div>
                 )

@@ -1,12 +1,13 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { useSmartTranslation } from "@/hooks/useSmartTranslation";
+import { useTranslation } from "react-i18next";
 import { 
   UserCheck, 
   MapPin, 
@@ -31,7 +32,8 @@ export default function AswanGuideServices() {
   const SERVICE_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Private Tour Guide and Car",
+    // schema.org value on the English prerender Google indexes
+    "serviceType": "Private Tour Guide and Car", // i18n-exempt
     "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
     "areaServed": "Aswan",
     "offers": {
@@ -45,6 +47,8 @@ export default function AswanGuideServices() {
     },
   };
   const { t } = useSmartTranslation();
+  // useSmartTranslation coerces to string; arrays need the raw hook.
+  const { t: rawT } = useTranslation();
   
   // Scroll to top when component mounts
   useEffect(() => {
@@ -53,24 +57,24 @@ export default function AswanGuideServices() {
   
   const serviceTypes = [
     {
-      name: "Nubian Culture Guide",
-      duration: "Full Day (8 hours)",
+      name: t("guideServices.aswan.cardGuideName"),
+      duration: t("guideServices.common.fullDay8Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-guide-services") } }),
-      features: ["Nubian heritage expert", "Local village guide", "Traditional culture focus"],
+      features: [t("guideServices.aswan.featNubianHeritageExpert"), t("guideServices.aswan.featLocalVillageGuide"), t("guideServices.aswan.featTraditionalCulture")],
       icon: UserCheck
     },
     {
-      name: "Nile & Temples Package",
-      duration: "Full Day", 
+      name: t("guideServices.aswan.cardPackageName"),
+      duration: t("guideServices.common.fullDay"), 
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-guide-car") } }),
-      features: ["Professional guide", "Private vehicle", "Philae Temple tour"],
+      features: [t("guideServices.aswan.featProfessionalGuide"), t("guideServices.common.privateVehicle"), t("guideServices.aswan.featPhilaeTour")],
       icon: Users
     },
     {
-      name: "Abu Simbel Expedition",
-      duration: "12-14 hours",
+      name: t("guideServices.aswan.cardCarName"),
+      duration: t("guideServices.common.12to14Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-abu-simbel-guide-car") } }), 
-      features: ["Long-distance vehicle", "Expert guide", "UNESCO site specialist"],
+      features: [t("guideServices.aswan.featLongDistanceVehicle"), t("guideServices.aswan.featExpertGuide"), t("guideServices.aswan.featUnescoSpecialist")],
       icon: Car
     }
   ];
@@ -78,60 +82,46 @@ export default function AswanGuideServices() {
   const keyFeatures = [
     {
       icon: Waves,
-      title: "Nile Expertise",
-      description: "Specialized knowledge of Nubian culture and Nile river traditions"
+      title: t("guideServices.aswan.nileExpertise"),
+      description: t("guideServices.aswan.nileExpertiseDesc")
     },
     {
       icon: Shield,
-      title: "Cultural Sensitivity",
-      description: "Respectful guides trained in Nubian customs and traditions"
+      title: t("guideServices.aswan.culturalSensitivity"),
+      description: t("guideServices.aswan.culturalSensitivityDesc")
     },
     {
       icon: Mountain,
-      title: "Desert Expeditions",
-      description: "Expert guides for Abu Simbel and southern desert temple sites"
+      title: t("guideServices.aswan.desertExpeditions"),
+      description: t("guideServices.aswan.desertExpeditionsDesc")
     },
     {
       icon: Clock,
-      title: "Flexible Itineraries",
-      description: "Customized tours including felucca rides and village visits"
+      title: t("guideServices.aswan.flexibleItineraries"),
+      description: t("guideServices.aswan.flexibleItinerariesDesc")
     }
   ];
 
-  // Guide service areas in Aswan with fallback
-  const getServiceAreas = () => {
-    try {
-      const areas = [
-        "Philae Temple",
-        "Abu Simbel Temples",
-        "Elephantine Island",
-        "Nubian Villages",
-        "Aswan High Dam",
-        "Unfinished Obelisk",
-        "Felucca Sailing",
-        "Kitchener's Island"
-      ];
-      return areas;
-    } catch {
-      return [
-        "Philae Temple",
-        "Abu Simbel Temples",
-        "Elephantine Island",
-        "Nubian Villages",
-        "Aswan High Dam",
-        "Unfinished Obelisk",
-        "Felucca Sailing",
-        "Kitchener's Island"
-      ];
-    }
-  };
-  const serviceAreas = getServiceAreas();
+  // The list lives in the locale files, translated. It used to be a literal
+  // here with an identical copy in a catch block that could never differ, and
+  // the locale copies had already drifted: es/fr/de listed Saqqara and Dahshur
+  // where English listed Al-Azhar and Old Cairo walking tours. One source now.
+  const serviceAreas = rawT("guideServices.aswan.serviceAreas", {
+    returnObjects: true,
+    defaultValue: [],
+  }) as string[];
 
   return (
     <>
       <SeoMeta
-        title={`Aswan Private Tour Guide & Car | From ${formatLEPerDay("aswan-guide-car")}`}
-        description={`Private licensed Egyptologist and car in Aswan from ${formatLEPerDay("aswan-guide-car")}. Philae, the High Dam and Nubian villages. Entrance tickets billed separately.`}
+        // Price interpolated without its unit: each locale supplies "/day",
+        // "/día", "/jour", "/Tag", the way heroSubtitle below already does.
+        title={t("guideServices.aswan.seoTitle", {
+          interpolation: { price: formatLE("aswan-guide-car") },
+        })}
+        description={t("guideServices.aswan.seoDescription", {
+          interpolation: { price: formatLE("aswan-guide-car") },
+        })}
         canonical="https://affordegypt.com/aswan-car-tour-guide-services"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/aswan-car-tour-guide-services")!)]}
       />
@@ -146,7 +136,7 @@ export default function AswanGuideServices() {
               <div className="flex items-center justify-center gap-3 mb-6">
                 <UserCheck className="w-10 h-10 text-primary" />
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  Aswan Car & Tour Guide Services
+                  {t("guideServices.aswan.heroTitle")}
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -155,7 +145,7 @@ export default function AswanGuideServices() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/transfers">
-                    Book Cultural Tour
+                    {t("guideServices.aswan.bookCta")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -173,7 +163,7 @@ export default function AswanGuideServices() {
         {/* Key Features */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Aswan Car & Tour Guide Services?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.aswan.whyChooseTitle")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {keyFeatures.map((feature, index) => (
                 <Card key={index} className="text-center">
@@ -191,7 +181,7 @@ export default function AswanGuideServices() {
         {/* Service Options */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Choose Your Service</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.chooseYourService")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {serviceTypes.map((service, index) => (
                 <Card key={index} className="relative hover:shadow-lg transition-shadow">
@@ -223,9 +213,9 @@ export default function AswanGuideServices() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Southern Egypt Destinations</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.aswan.serviceAreasTitle")}</h2>
               <p className="text-center text-muted-foreground mb-8">
-                Experience the jewels of the Nile with expert cultural guidance
+                {t("guideServices.aswan.serviceAreasDesc")}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {serviceAreas.map((area, index) => (
@@ -243,19 +233,18 @@ export default function AswanGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Aswan Cultural Specialties</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.aswan.specialtiesTitle")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Waves className="w-6 h-6 text-primary" />
-                      Nubian Heritage Tours
+                      {t("guideServices.aswan.nubianHeritage")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Authentic Nubian village visits with local community guides. Experience 
-                      traditional crafts, music, and hospitality while respecting local customs.
+                      {t("guideServices.aswan.nubianHeritageDesc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -263,13 +252,12 @@ export default function AswanGuideServices() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Mountain className="w-6 h-6 text-primary" />
-                      Abu Simbel Expeditions
+                      {t("guideServices.aswan.abuSimbelExpeditions")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Professional desert guides for the ultimate UNESCO World Heritage site. 
-                      Early departure options and expert commentary on Ramses II's masterpiece.
+                      {t("guideServices.aswan.abuSimbelExpeditionsDesc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -281,28 +269,28 @@ export default function AswanGuideServices() {
         {/* How It Works */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.howItWorks")}</h2>
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">1</div>
-                  <h3 className="font-semibold mb-2">Choose Your Experience</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.aswan.chooseServiceStep")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Select cultural tours, temple visits, or desert expeditions
+                    {t("guideServices.aswan.chooseServiceDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">2</div>
-                  <h3 className="font-semibold mb-2">Meet Cultural Guide</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.aswan.meetGuideStep")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Local Nubian guide with deep knowledge of traditions and history
+                    {t("guideServices.aswan.meetGuideDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">3</div>
-                  <h3 className="font-semibold mb-2">Experience Nubia</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.aswan.exploreCity")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Immerse yourself in the unique culture of southern Egypt
+                    {t("guideServices.aswan.exploreCityDesc")}
                   </p>
                 </div>
               </div>
@@ -314,21 +302,21 @@ export default function AswanGuideServices() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Authentic Aswan Car & Tour Guide Services</h2>
+              <h2 className="text-3xl font-bold mb-6">{t("guideServices.aswan.pricingTitle")}</h2>
               <p className="text-muted-foreground mb-8">
-                Genuine cultural experiences with local Nubian guides. Best value cultural tourism.
+                {t("guideServices.aswan.pricingDesc")}
               </p>
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">Licensed guide from {formatLEPerDay("aswan-guide-services")} — guide + private car from {formatLEPerDay("aswan-guide-car")}</span>
+                  <span className="font-semibold">{t("guideServices.common.guidePriceFrom", { interpolation: { guidePrice: formatLE("aswan-guide-services"), guideCarPrice: formatLE("aswan-guide-car") } })}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Local guides • Cultural immersion • Private car on the guide + car package • Entrance tickets billed separately
+                  {t("guideServices.aswan.pricingInfo")}
                 </p>
                 <Button asChild size="lg">
                   <Link href="/transfers">
-                    Get Instant Quote
+                    {t("guideServices.common.getInstantQuote")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
 
@@ -343,14 +331,14 @@ export default function AswanGuideServices() {
         {/* CTA Section */}
         <section className="py-16 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Experience Nubian Culture?</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("guideServices.aswan.ctaTitle")}</h2>
             <p className="text-lg mb-8 opacity-90">
-              Discover the authentic traditions of southern Egypt with local experts
+              {t("guideServices.aswan.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link href="/pricing-tool">
-                  Book Online Now
+                  {t("guideServices.common.bookOnlineNow")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
 
@@ -358,7 +346,7 @@ export default function AswanGuideServices() {
               <a href="https://wa.me/201100765283" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="text-lg px-8 bg-white text-gray-900 border-gray-200 hover:bg-primary hover:text-white hover:border-primary">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call Now
+                  {t("guideServices.common.callNow")}
                 </Button>
               </a>
             </div>

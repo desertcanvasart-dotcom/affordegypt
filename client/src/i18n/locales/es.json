@@ -1,48 +1,25 @@
 {
   "nav": {
     "destinations": "Destinos",
-    "travelTips": "Consejos de Viaje",
-    "cuisine": "Pasaporte Culinario",
-    "signIn": "Iniciar Sesión",
-    "signUp": "Registrarse",
-    "startTrip": "Comenzar Cotización de Viaje",
-    "bookTransfer": "Reservar Traslado"
+    "whatsappTitle": "Escríbenos por WhatsApp",
+    "planTripTitle": "Planifica tu viaje a Egipto",
+    "planTripSubtitle": "Tours privados con precios transparentes",
+    "trustTransparent": "Precios transparentes: lo que ves es lo que pagas",
+    "trustRealPrices": "Precios reales en EGP",
+    "trustDirect": "Reserva directamente con expertos en Egipto, sin intermediarios",
+    "trustSecure": "Reserva segura",
+    "contact": "Contacto",
+    "dashboard": "Panel",
+    "privateTransfers": "Traslados privados",
+    "getInstantQuote": "Presupuesto al instante",
+    "getYourInstantQuote": "Consigue tu presupuesto al instante",
+    "signOut": "Cerrar sesión"
   },
   "common": {
-    "loading": "Cargando...",
-    "error": "Error",
-    "submit": "Enviar",
-    "cancel": "Cancelar",
-    "save": "Guardar",
-    "edit": "Editar",
-    "delete": "Eliminar",
-    "back": "Atrás",
-    "next": "Siguiente",
-    "previous": "Anterior",
-    "search": "Buscar",
-    "filter": "Filtrar",
-    "clear": "Limpiar",
     "total": "Total",
-    "perPerson": "por persona",
-    "egp": "EGP",
-    "eur": "EUR",
-    "gbp": "GBP",
-    "egpPerDay": "EGP/día",
-    "travelers": "viajeros",
-    "traveler": "viajero",
-    "recommended": "Recomendado",
-    "current": "Actual",
-    "selectAllVisible": "Seleccionar Todo Visible"
+    "bookNow": "Reservar Ahora"
   },
   "home": {
-    "title": "Descubre las Maravillas de Egipto",
-    "subtitle": "Viajes asequibles y transparentes sin tarifas ocultas",
-    "features": {
-      "noHiddenFees": "Sin tarifas ocultas - Precios reales en EGP",
-      "localNetwork": "Red local + tarifas más bajas"
-    },
-    "buildQuote": "Crear Cotización",
-    "savedQuotes": "Cotizaciones Guardadas",
     "quoteManager": "Gestor de Cotizaciones",
     "saveCurrentQuote": "Guardar Cotización Actual",
     "searchQuotesPlaceholder": "Buscar cotizaciones por nombre o ciudad...",
@@ -66,131 +43,86 @@
     "quoteLoadedDescription": "La cotización ha sido cargada en la herramienta de precios.",
     "noQuotesMatchSearch": "Ninguna cotización coincide con su búsqueda.",
     "name": "Nombre",
-    "price": "Precio"
+    "price": "Precio",
+    "seoTitle": "Viajes a Egipto de un Operador Egipcio Real | AffordEgypt",
+    "seoDescription": "Coche privado + egiptólogo licenciado en Egipto desde {{price}}/día. Precios reales, sin recargos, sin paquetes obligatorios. Operador con licencia ETAA desde {{year}}. Presupuesto en 60 segundos.",
+    "schemaDescription": "La gama económica y transparente de {{operator}}, un turoperador con licencia ETAA ({{licence}}) con sede en El Cairo desde {{year}}.",
+    "knowsAbout": [
+      "Viajes a Egipto",
+      "Egiptología",
+      "Turismo en Egipto",
+      "Cruceros por el Nilo",
+      "Tours a las pirámides"
+    ],
+    "loadQuote": "Cargar presupuesto",
+    "duplicateQuote": "Duplicar presupuesto",
+    "deleteQuote": "Eliminar presupuesto",
+    "moreCities": "+{{count}} más",
+    "copySuffix": "{{name}} (Copia)"
   },
   "hero": {
-    "title": "Viajar por Egipto es",
-    "titleHighlight": "Sencillo",
-    "subtitle": "Obtenga cotizaciones instantáneas para transporte, guías y experiencias. Vea el precio final real por adelantado, sin tarifas ocultas.",
-    "steps": {
-      "step1": {
-        "title": "Selecciona tu Viaje",
-        "description": "Elige ciudades, transporte y tamaño de grupo"
-      },
-      "step2": {
-        "title": "Agregar Guías y Extras",
-        "description": "Elige guías locales y experiencias"
-      },
-      "step3": {
-        "title": "Obtén tu Cotización",
-        "description": "Precios reales mostrados en libras egipcias"
-      }
-    },
-    "cta": "Comienza a Planificar tu Viaje",
-    "trustSignals": {
-      "satisfaction": "99% Satisfacción del Cliente",
-      "experience": "15+ Años de Experiencia",
-      "coverage": "Todo Egipto Cubierto"
-    }
+    "title": "Viajes reales a Egipto, de un operador egipcio real. <highlight>Precios reales.</highlight>",
+    "subtitle": "Los mismos guías expertos, con menos extras incluidos: de un operador con licencia desde {{year}}.",
+    "priceLine": "Coche privado + egiptólogo desde <price>{{price}}/día</price>",
+    "cta": "Crea tu presupuesto en 60 segundos",
+    "note": "Sin necesidad de cuenta. Obtén tu precio y envíalo por WhatsApp."
   },
   "transfers": {
-    "title": "Servicios de Transporte",
-    "intercityTravel": "Viajes Entre Ciudades",
-    "localTours": "Tours Locales",
-    "selectFrom": "Desde",
-    "selectTo": "Hacia",
-    "selectCity": "Seleccionar Ciudad",
-    "selectCityForLocal": "Elige una ciudad para tours locales",
-    "availableRoutes": "Rutas Locales Disponibles",
-    "matchingRoutes": "Rutas Coincidentes",
-    "popularRoutes": "Rutas Populares",
-    "noRoutes": "No se encontraron rutas para tu búsqueda",
-    "clickToSeeOptions": "Clic para ver opciones de vehículos",
+    "title": "Solo Traslado",
+    "subtitle": "Transporte simple punto a punto por Egipto",
+    "instantQuotes": "Cotizaciones instantáneas",
+    "noHiddenFees": "Sin costos ocultos",
+    "licensedDrivers": "Conductores licenciados",
+    "intercity": "Interurbano",
+    "airport": "Aeropuerto",
+    "local": "En la ciudad",
+    "city": "Ciudad",
+    "allCities": "Todas las ciudades",
+    "travelers": "Viajeros",
+    "searchPlaceholder": "Buscar traslados…",
+    "from": "Desde",
     "selectVehicle": "Seleccionar Vehículo",
-    "backToRoutes": "← Volver a Rutas",
+    "chooseVehicle": "Elige tu vehículo para este traslado",
+    "back": "Volver a traslados",
     "serviceType": "Tipo de Servicio",
-    "distance": "Distancia",
-    "duration": "Duración",
-    "vehicleTypes": {
-      "sedan": "Sedán",
-      "minivan": "Minivan",
-      "van": "Furgoneta",
-      "coach": "Autocar",
-      "bus": "Autobús"
+    "list": {
+      "loading": "Cargando traslados…",
+      "error": "No se pudieron cargar los traslados. Prueba a actualizar.",
+      "empty": "Todavía no hay traslados disponibles para esta selección. Prueba con otra ciudad o categoría, o escríbenos para una cotización personalizada."
     },
-    "passengerCapacity": {
-      "sedan": "1-2 pasajeros",
-      "minivan": "3-8 pasajeros",
-      "van": "9-15 pasajeros",
-      "coach": "16-35 pasajeros",
-      "bus": "16-35 pasajeros"
+    "noPricing": "Aún no hay precio para este traslado. Escríbenos para una cotización.",
+    "form": {
+      "phone": "Teléfono / WhatsApp",
+      "specialRequests": "Peticiones especiales (hora de recogida, nombre del hotel, número de vuelo…)",
+      "acceptTerms": "Acepto los <terms>Términos del Servicio</terms> y la <privacy>Política de Privacidad</privacy>",
+      "acceptPolicy": "Entiendo y acepto la <policy>Política de Reservas</policy> y las condiciones de cancelación",
+      "submit": "Solicitar Reserva",
+      "submitting": "Enviando…",
+      "noPrepayment": "No se requiere pago por adelantado: primero confirmamos la disponibilidad."
     },
-    "tripModes": {
-      "transfer": "Traslado y Entrega",
-      "day_trip": "Excursión de Día",
-      "overnight": "Pernoctación",
-      "multi_day": "Varios Días"
+    "success": {
+      "heading": "¡Solicitud de reserva enviada!",
+      "referenceLabel": "Referencia de la reserva:",
+      "emailSent": "Se ha enviado un correo de confirmación a {{email}}. Nos pondremos en contacto contigo en breve para confirmar los detalles de la recogida.",
+      "bookAnother": "Reservar otro traslado"
+    },
+    "errors": {
+      "acceptBoth": "Acepta los términos y la política de reservas.",
+      "submitFailed": "No se pudo enviar la reserva. Inténtalo de nuevo."
+    },
+    "seo": {
+      "title": "Traslados de Aeropuerto e Interurbanos en Egipto | Coche Privado desde {{price}}",
+      "description": "Traslados privados de aeropuerto e interurbanos por todo Egipto desde {{price}}. Precios fijos, conductores licenciados, seguimiento de vuelos. Reserva directa, sin intermediarios."
     }
   },
   "pricing": {
-    "multiCityTool": "Herramienta de Precios de Viaje Multi-Ciudad de Egipto",
-    "buildItinerary": "Construye tu itinerario completo de Egipto ciudad por ciudad con precios instantáneos",
-    "startHere": "Comienza Aquí",
-    "addCity": "Agregar Ciudad",
-    "selectTransportation": "Seleccionar transporte...",
-    "selectTourGuide": "Seleccionar guía turístico...",
-    "selectAddOns": "Seleccionar complementos...",
-    "historical": "Histórico",
-    "selectAllVisible": "Seleccionar Todo Visible",
-    "deselectAllVisible": "Deseleccionar Todo Visible",
-    "finalTotalPerPerson": "Total Final Por Persona",
-    "totalFor": "Total: 0 EGP para 1 Viajero",
-    "paymentAccepted": "Todos los precios en EGP • Tarjetas internacionales aceptadas",
-    "continueToBooking": "Continuar con la Reserva",
-    "pricingBreakdown": "Desglose de Precios",
-    "routes": "Rutas",
-    "guide": "Guía",
-    "attractions": "Atracciones",
     "guideLanguages": {
       "english": "Inglés",
       "spanish": "Español",
       "french": "Francés",
       "german": "Alemán",
       "arabic": "Árabe"
-    },
-    "smartItineraryBuilder": "Constructor de Itinerario Inteligente",
-    "showFilters": "Mostrar Filtros",
-    "hideFilters": "Ocultar Filtros",
-    "addDestination": "Añadir Destino",
-    "searchCities": "Buscar ciudades...",
-    "tripStartDate": "Fecha de Inicio del Viaje:",
-    "totalTravelers": "Total de Viajeros:",
-    "city": "Ciudad",
-    "transportation": "Transporte",
-    "perPersonAddOns": "Extras por Persona",
-    "perUnitAddOns": "Extras por Unidad",
-    "totalPerPerson": "Total/Persona",
-    "searchInstruction": "Escribe al menos 2 letras de tu destino, luego haz clic en \"Añadir Destino\" para incluirlo en tu itinerario.",
-    "chooseNextDestination": "Elige tu Próximo Destino",
-    "cancel": "Cancelar",
-    "calculating": "Calculando...",
-    "chooseCityToVisit": "Elige una ciudad para visitar",
-    "recommendedItineraries": "Itinerarios Recomendados"
-  },
-  "transportation": {
-    "transferDropOff": "Transfer & Recogida",
-    "dayTrip": "Viaje de un Día",
-    "overnight": "Estancia Nocturna",
-    "multiDay": "Tour de Varios Días",
-    "withinCity": "Dentro de la Ciudad",
-    "betweenCities": "Entre Ciudades",
-    "airport": "Aeropuerto",
-    "activity": "Actividad",
-    "selectTransportation": "Seleccionar transporte...",
-    "selectedRoute": "Ruta seleccionada",
-    "routeSelected": "1 ruta seleccionada",
-    "routesSelected": "{{count}} rutas seleccionadas",
-    "searchRoutes": "Buscar rutas..."
+    }
   },
   "guides": {
     "selectTourGuide": "Seleccionar guía turístico...",
@@ -207,36 +139,56 @@
       "dutch": "Neerlandés",
       "korean": "Coreano"
     },
-    "specialties": {
-      "historicalSites": "Sitios históricos",
-      "culturalTours": "Tours culturales",
-      "photography": "Fotografía",
-      "artHistory": "Historia del arte",
-      "religiousSites": "Sitios religiosos",
-      "localCuisine": "Cocina local",
-      "architecture": "Arquitectura",
-      "museumTours": "Tours de museos",
-      "culturalHeritage": "Patrimonio cultural",
-      "archaeologicalSites": "Sitios arqueológicos",
-      "historicalAnalysis": "Análisis histórico",
-      "technicalTours": "Tours técnicos",
-      "artCollections": "Colecciones de arte",
-      "religiousHistory": "Historia religiosa",
-      "renaissanceCulture": "Cultura renacentista",
-      "culturalExchange": "Intercambio cultural",
-      "spiritualSites": "Sitios espirituales",
-      "ancientHistory": "Historia antigua",
-      "culturalTraditions": "Tradiciones culturales",
-      "silkRoad": "Ruta de la seda",
-      "islamicHeritage": "Patrimonio islámico",
-      "localCustoms": "Costumbres locales",
-      "traditionalCrafts": "Artesanías tradicionales",
-      "generalTours": "Tours generales"
-    }
+    "headingForCity": "Guía turístico para {{city}}",
+    "searchPlaceholder": "Buscar idiomas...",
+    "durationLabel": "Duración:",
+    "durationHours_one": "{{count}} hora",
+    "durationHours_other": "{{count}} horas",
+    "durations": {
+      "halfDay": "Medio día",
+      "fullDay": "Día completo",
+      "extended": "Ampliado"
+    },
+    "noGuide": "Sin guía",
+    "selfGuided": "Visita por tu cuenta",
+    "free": "Gratis",
+    "noneFound": "No se encontraron guías que coincidan con tu búsqueda",
+    "done": "Listo",
+    "doneWith": "Listo ({{language}} — {{duration}} h)"
   },
   "addons": {
     "selectAddOns": "Seleccionar complementos...",
-    "addOnsSelected": "{{count}} complementos seleccionados ({{items}} artículos)"
+    "addOnsSelected": "{{count}} complementos seleccionados ({{items}} artículos)",
+    "headingForCity": "Extras para {{city}}",
+    "selectedCount": "{{count}} seleccionados",
+    "clearAll": "Borrar todo",
+    "searchPlaceholder": "Buscar extras...",
+    "allCategories": "Todos",
+    "quantity": "Cantidad:",
+    "done": "Listo",
+    "doneWith": "Listo ({{count}} seleccionados)",
+    "tabs": {
+      "perPersonTrip": "Por persona/viaje ({{count}})",
+      "perUnit": "Por unidad ({{count}})"
+    },
+    "empty": {
+      "perPerson": "No hay extras por persona disponibles",
+      "perUnit": "No hay extras por unidad disponibles",
+      "noMatch": "No se encontraron extras que coincidan con tus criterios"
+    },
+    "unitTypes": {
+      "per_person": "Por persona",
+      "per_trip": "Por viaje",
+      "per_unit": "Por unidad"
+    },
+    "categories": {
+      "Dinner": "Cena",
+      "Lunch": "Almuerzo",
+      "Felucca Ride": "Paseo en faluca",
+      "Horse Carriage": "Coche de caballos",
+      "Sunrise-Baloon Ride": "Vuelo en globo al amanecer",
+      "Post-Sunrise-Balloon Ride": "Vuelo en globo tras el amanecer"
+    }
   },
   "attractions": {
     "cairo": {
@@ -295,20 +247,44 @@
     }
   },
   "booking": {
-    "title": "Completa tu Reserva",
-    "customerInfo": "Información del Cliente",
-    "firstName": "Nombre",
-    "lastName": "Apellido",
-    "email": "Correo Electrónico",
-    "phone": "Teléfono",
-    "nationality": "Nacionalidad",
-    "travelDetails": "Detalles del Viaje",
-    "travelDate": "Fecha de Viaje",
-    "notes": "Solicitudes Especiales (Opcional)",
-    "bookingConfirmation": "Confirmación de Reserva",
-    "thankYou": "¡Gracias por tu reserva!",
-    "confirmationSent": "Se ha enviado un email de confirmación a tu dirección de correo.",
-    "bookingReference": "Referencia de Reserva"
+    "title": "Completa tu reserva",
+    "subtitle": "Facilítanos tus datos para confirmar tu reserva de viaje a Egipto",
+    "contactInfo": "Datos de contacto",
+    "fullName": "Nombre completo",
+    "fullNamePlaceholder": "Juan Pérez",
+    "email": "Correo electrónico",
+    "phone": "Número de teléfono",
+    "travelDate": "Fecha del viaje",
+    "specialRequests": "Peticiones especiales (opcional)",
+    "specialRequestsPlaceholder": "Cualquier requisito o petición especial...",
+    "acceptTerms": "He leído y acepto los <terms>Términos del servicio</terms> y el <agreement>Acuerdo de reserva</agreement>",
+    "depositTitle": "Se requiere un depósito del 10 %",
+    "depositCollect": "Nuestro equipo se pondrá en contacto contigo para cobrarlo y confirmar tu reserva.",
+    "depositRest": "Paga el resto a tu llegada, en efectivo o con tarjeta de crédito.",
+    "currencyNote": "Todos los precios en EGP • Se aceptan tarjetas internacionales",
+    "processing": "Procesando...",
+    "confirmCta": "Confirmar reserva - {{amount}}",
+    "summaryTitle": "Resumen de la reserva",
+    "travelers": "Viajeros",
+    "noDate": "Selecciona la fecha en la herramienta de precios",
+    "yourBooking": "Tu reserva",
+    "serviceType": "Tipo de servicio",
+    "vehicleLine": "{{vehicle}} - {{distance}} km",
+    "tripModeTransfer": "Traslado y entrega",
+    "tripModeDayTrip": "Excursión de un día (regreso el mismo día)",
+    "tripModeOvernight": "Estancia de una noche (1 noche)",
+    "tripModeMultiDay": "Tour de varios días (2 noches o más)",
+    "attractionFallback": "Atracción n.º {{id}}",
+    "itemQuantity": "x{{count}}",
+    "unknownAddOn": "Extra desconocido",
+    "subtotal": "Subtotal",
+    "taxes": "Impuestos y tasas",
+    "total": "Total",
+    "depositNote": "💵 Se requiere un depósito del 10 %",
+    "successTitle": "Reserva creada correctamente",
+    "successBody": "Tu número de reserva es {{reference}}",
+    "failTitle": "No se pudo crear la reserva",
+    "failBody": "Inténtalo de nuevo o contacta con soporte"
   },
   "footer": {
     "aboutUs": "Acerca de Nosotros",
@@ -317,22 +293,10 @@
     "termsOfService": "Términos de Servicio",
     "cookiePolicy": "Política de Cookies",
     "bookingAgreement": "Acuerdo de Reserva",
-    "followUs": "Síguenos",
     "description": "Viajes asequibles a Egipto con precios transparentes y guías locales expertos.",
-    "usefulLinks": "Enlaces Útiles",
-    "travelTips": "Consejos de Viaje",
-    "desertsGuide": "Guía de Viaje de los Desiertos Oriental y Occidental",
-    "sinaiGuide": "Guía de Viaje de la Península del Sinaí",
-    "nileGuide": "Guía de Viaje del Valle del Nilo",
-    "budgetTravel": "Viajes Económicos en Egipto",
-    "streetFood": "Comida Callejera Egipcia",
-    "cuisinePassport": "Pasaporte Culinario",
     "legal": "Legal",
     "copyright": "Todos los derechos reservados.",
-    "poweredBy": "Desarrollado y Perfeccionado por",
     "newsletter": {
-      "title": "Boletín",
-      "subtitle": "Recibe consejos de viaje y ofertas especiales",
       "placeholder": "Tu email",
       "subscribe": "Suscribirse",
       "subscribing": "Suscribiendo...",
@@ -340,54 +304,33 @@
       "successDesc": "Recibirás consejos de viaje y ofertas especiales en tu bandeja de entrada.",
       "failed": "Falló la suscripción",
       "failedDesc": "Inténtalo de nuevo o contáctanos directamente.",
-      "emailRequired": "Por favor ingresa tu dirección de email."
-    }
-  },
-  "about": {
-    "title": "Por Qué Viajar Con Nosotros",
-    "description1": "En Afford Egypt, somos una nueva generación de especialistas en viajes a Egipto que redefinimos lo que significa viajar con presupuesto: transparente, flexible y rico en experiencias.",
-    "description2": "Desde 2003, hemos ayudado a miles a explorar el verdadero Egipto sin tarifas ocultas y con máxima tranquilidad. Desde traslados entre ciudades hasta aventuras guiadas de día completo, todo está diseñado para ajustarse a tu plan y presupuesto.",
-    "description3": "Ya sea navegando por las calles ancestrales de El Cairo, navegando por el Nilo, o descubriendo los secretos de los templos de Luxor, nuestra plataforma te conecta directamente con transporte confiable, guías locales de confianza y atracciones esenciales, todo en solo unos clics.",
-    "description4": "Respaldados por un excelente servicio al cliente y construidos por jóvenes que realmente entienden a los viajeros modernos, Afford Egypt hace que explorar Egipto sea fácil, asequible e inolvidable.",
-    "stats": {
-      "travelers": "5000+ Viajeros",
-      "travelersDesc": "Atendidos desde 2003",
-      "destinations": "15+ Destinos",
-      "destinationsDesc": "Por todo Egipto",
-      "support": "Soporte 24/7",
-      "supportDesc": "Durante tu viaje",
-      "guarantee": "100% Garantía",
-      "guaranteeDesc": "Promesa de devolución"
+      "emailRequired": "Por favor ingresa tu dirección de email.",
+      "title": "Consigue la Calculadora de Viaje a Egipto",
+      "body": "Una hoja de trabajo de 1 página para calcular el coste de tu viaje con honestidad. Además, notas mensuales de un operador de El Cairo: sin relleno, sin spam, cancela con un clic.",
+      "privacyNote": "Respetamos tu privacidad. Cancela la suscripción cuando quieras.",
+      "invalidEmailDesc": "Revisa la dirección e inténtalo de nuevo."
     },
-    "cta": "Empezar a Planificar"
+    "servicesHeading": "Nuestros servicios",
+    "exploreHeading": "Explorar",
+    "logoAlt": "Logotipo de Afford Egypt",
+    "homeAria": "Inicio de AffordEgypt",
+    "followFacebook": "Síguenos en Facebook",
+    "followInstagram": "Síguenos en Instagram",
+    "followYoutube": "Suscríbete a nuestro canal de YouTube",
+    "cookiePreferences": "Preferencias de cookies",
+    "operatedBy": "AffordEgypt está gestionada por Capital Travel Service"
   },
   "validation": {
     "required": "Este campo es obligatorio",
     "invalidEmail": "Por favor ingresa un email válido",
     "invalidPhone": "Por favor ingresa un número de teléfono válido",
     "selectDate": "Por favor selecciona una fecha de viaje",
-    "selectRoute": "Por favor selecciona al menos una ruta"
-  },
-  "slugs": {
-    "destinations": "destinos",
-    "travel-tips": "consejos-de-viaje",
-    "reviews": "reseñas",
-    "submit-review": "enviar-reseña",
-    "about": "acerca-de",
-    "contact": "contacto",
-    "budget-travel-egypt": "viaje-barato-egipto",
-    "egyptian-street-food-guide": "guia-comida-callejera-egipcia",
-    "nile-valley-guide": "guia-valle-del-nilo",
-    "sinai-peninsula-guide": "guia-peninsula-sinai",
-    "eastern-western-deserts-guide": "guia-desiertos-oriental-occidental",
-    "cuisine-passport": "pasaporte-culinario",
-    "booking-agreement": "acuerdo-de-reserva",
-    "terms-of-service": "terminos-de-servicio",
-    "privacy-policy": "politica-de-privacidad",
-    "cookie-policy": "politica-de-cookies",
-    "transfers": "traslados",
-    "pricing-tool": "herramienta-de-precios",
-    "attractions": "atracciones"
+    "nameMin": "El nombre debe tener al menos 2 caracteres",
+    "acceptTerms": "Debes aceptar los términos y condiciones para continuar",
+    "titleMin": "El título debe tener al menos 5 caracteres",
+    "reviewMin": "La reseña debe tener al menos 20 caracteres",
+    "enterName": "Introduce tu nombre completo",
+    "enterPhone": "Introduce tu número de teléfono"
   },
   "reviews": {
     "title": "Lo Que Dicen Nuestros Viajeros",
@@ -436,6 +379,9 @@
       }
     },
     "desertsGuide": {
+      "seoTitle": "Los desiertos de Egipto | Desierto Blanco, Desierto Negro, oasis de Siwa",
+      "seoDescription": "Desierto Blanco, Desierto Negro, Bahariya, Farafra y el oasis de Siwa: logística, costes, permisos y seguridad para los desiertos que la mayoría de los itinerarios por Egipto se saltan.",
+      "schemaDescription": "Los desiertos que la mayoría de los itinerarios por Egipto se saltan. Desierto Blanco, Desierto Negro, Bahariya, Farafra y el oasis de Siwa. Logística, costes y lo que merece el viaje, escrito por un guía que creció en Asuán.",
       "title": "Desiertos Oriental y Occidental",
       "subtitle": "La Puerta de Entrada a Aventuras Económicas en la Naturaleza Salvaje de Egipto",
       "description": "Los desiertos de Egipto ofrecen tesoros únicos, paisajes majestuosos, experiencias espirituales y geología única, todo a una fracción del costo de las actividades turísticas típicas. Ideal para aventureros conscientes del presupuesto, experiencias auténticas te esperan.",
@@ -475,7 +421,7 @@
           "tips": [
             "Únete a grupos de safari locales en lugar de viajes privados para ahorrar hasta un 60%",
             "Viaja durante noviembre y marzo para precios de temporada media",
-            "Usa minibuses y taxis compartidos entre oasis",
+            "Confirma sobre el terreno el transporte actual entre oasis; los servicios pueden ser escasos o cambiar sin previo aviso",
             "Hospédate en casas de huéspedes familiares en lugar de hoteles",
             "Come donde se reúnen los locales para comidas auténticas y económicas",
             "Negocia precios en persona, especialmente en temporadas bajas"
@@ -483,8 +429,8 @@
         },
         "itinerary": {
           "title": "Aventura Desértica de 5 Días con Presupuesto",
-          "subtitle": "Itinerario completo con precios transparentes",
-          "total": "Total: 2,850 EGP por persona",
+          "subtitle": "La ruta, los permisos, el alojamiento y los precios actuales deben confirmarse con un operador local con licencia antes de reservar",
+          "total": "Total: 7,600 EGP por persona",
           "days": [
             {
               "day": "Día 1",
@@ -570,7 +516,6 @@
       },
       "cta": {
         "title": "¿Listo para Explorar los Desiertos de Egipto?",
-        "subtitle": "Obtén cotizaciones personalizadas para tu aventura en el desierto",
         "description": "Planifica tu escape perfecto al desierto con nuestros guías locales expertos",
         "buttons": {
           "startPlanning": "Empezar Planificación",
@@ -603,44 +548,77 @@
     }
   },
   "faq": {
-    "title": "Preguntas Frecuentes sobre Egipto",
-    "subtitle": "Respuestas a tus preguntas más comunes: claras, honestas y actualizadas",
-    "questions": {
-      "safety": {
-        "question": "¿Es seguro Egipto para los turistas ahora?",
-        "answer": "Sí, Egipto es generalmente seguro para los turistas, especialmente en destinos principales como El Cairo, Luxor, Asuán y los resorts del Mar Rojo. Monitoreamos todas las regiones de cerca y adaptamos cada itinerario para garantizar tu comodidad y seguridad, con transporte privado y apoyo local en cada paso."
+    "title": "Preguntas frecuentes",
+    "subtitle": "Respuestas honestas a las preguntas que de verdad hacen los viajeros con presupuesto ajustado.",
+    "stillQuestions": "¿Te queda alguna duda?",
+    "whatsapp": "Escríbenos por WhatsApp",
+    "email": "Envíanos un correo",
+    "items": {
+      "cheaper": {
+        "question": "¿Por qué sois más baratos que otros tours privados por Egipto?",
+        "answer": "Porque no inflamos el precio con cosas que no has pedido. La mayoría de los paquetes por Egipto agrupan hoteles, comidas, entradas y servicio de conserjería en una sola cifra, aunque prefieras elegir todo eso por tu cuenta. AffordEgypt cobra solo por el núcleo operativo: un coche privado, un egiptólogo con licencia y un precio base transparente desde {{floor}}/día. Añades entradas, comidas y experiencias solo cuando quieres. La misma operativa que la gama premium de Capital Travel Service, sin el margen ni las inclusiones que no has elegido."
+      },
+      "scam": {
+        "question": "¿Cómo sé que AffordEgypt no es uno de esos operadores fraudulentos de los que he leído?",
+        "answer": "Es una pregunta justa: en Egipto hay operadores fraudulentos de verdad, y no culpamos a nadie por ser precavido. AffordEgypt está operada por Capital Travel Service, inscrita en la Asociación Egipcia de Agentes de Viajes (ETAA 2179) y en activo en El Cairo desde 2003, con miles de viajeros documentados. Cada guía con el que trabajamos es un egiptólogo con licencia y credencial vigente del Ministerio de Turismo. Puedes verificar nuestro registro directamente con la ETAA. Además publicamos nuestros precios, nuestras inclusiones y nuestras condiciones de cancelación antes de que pagues nada.",
+        "linkTexts": [
+          "Asociación Egipcia de Agentes de Viajes (ETAA 2179)"
+        ]
+      },
+      "licensed": {
+        "question": "¿Vuestros guías son realmente egiptólogos con licencia?",
+        "answer": "Sí: cada guía que enviamos tiene licencia del Ministerio de Turismo y Antigüedades de Egipto y una credencial vigente de egiptólogo. No es un detalle menor: los guías sin licencia no pueden llevarte legalmente más allá de las puertas de los grandes yacimientos, y muchos operadores más baratos los envían igualmente. Nuestros guías son los mismos que Capital Travel Service usa para sus tours premium; simplemente ofrecen el nivel de inclusiones más ligero cuando trabajan con AffordEgypt."
+      },
+      "payment": {
+        "question": "¿Cómo funciona el pago? ¿Tengo que pagarlo todo por adelantado?",
+        "answer": "No, y en parte de eso se trata. Pagas un depósito del 10 % al reservar (te enviamos un enlace de pago, normalmente por Tab.travel, que funciona con cualquier tarjeta principal). Tu reserva queda confirmada en cuanto se hace efectivo el depósito. El 90 % restante se paga a la llegada en efectivo (aceptamos EGP, USD, EUR o GBP), mediante un segundo enlace de pago o con tarjeta a través de nuestro lector móvil. Lo que te resulte más cómodo."
+      },
+      "cancellation": {
+        "question": "¿Cuál es vuestra política de cancelación?",
+        "answer": "Cancelación gratuita hasta 48 horas antes del inicio del viaje: te devolvemos el depósito íntegro. Dentro de esas 48 horas el depósito no es reembolsable, porque ya hemos comprometido tu guía y tu vehículo para esos días. Todo lo pagado por encima del depósito se reembolsa por completo. Si somos nosotros quienes tenemos que cancelar por cualquier motivo (avería del vehículo, enfermedad del guía, fuerza mayor), devolvemos el 100 %, depósito incluido, y te ayudamos a reprogramar."
+      },
+      "customize": {
+        "question": "¿Puedo personalizar mi itinerario?",
+        "answer": "Sí. Todo nuestro modelo es modular: eliges destinos, cuántos días en cada uno, qué atracciones incluir, si quieres guía algunos días y otros no, y el tamaño del vehículo según el grupo. La herramienta de precios lo calcula en directo. Si quieres algo que la herramienta no muestra, escríbenos por WhatsApp y te lo presupuestamos a mano."
+      },
+      "minimum": {
+        "question": "¿Cuál es el mínimo absoluto que podría pagar por un viaje privado a Egipto?",
+        "answer": "Nuestro suelo es {{floor}}/día por un coche privado y un egiptólogo con licencia en El Cairo, sin entradas, comidas ni hotel. Un viaje típico de 3 días por El Cairo con todas las entradas y una comida al día sale por unos LE 14,000–18,000 por persona en pareja, según qué atracciones incluyas. Te enviamos un presupuesto real en menos de un minuto, sin cuenta y sin compromiso. Nota: no vendemos tours compartidos en minibús. Algunos operadores anuncian «tours por Egipto desde 50 USD al día»: son tours de grupo compartidos, un producto distinto. El nuestro es totalmente privado."
+      },
+      "ticketFee": {
+        "question": "¿Por qué cobráis 50 EGP por gestionar una entrada?",
+        "answer": "El monumento se queda con su precio oficial de admisión; los 50 EGP adicionales son la tarifa opcional de gestión anticipada de AffordEgypt por cada entrada de pago emitida. Compramos y organizamos la entrada antes de la visita, comprobamos los datos de reserva que nos facilitas y la dejamos preparada para el tour. Esto puede reducir el tiempo en taquilla y evita depender por completo del pago con tarjeta in situ, algo que importa porque muchos yacimientos egipcios ya no aceptan efectivo y los sistemas de pago o de emisión de entradas pueden tener fallos técnicos puntuales. No salta los controles de seguridad ni de acceso. Puedes consultar los precios oficiales y comprar directamente en el portal oficial de entradas del Ministerio, y el paso al billete electrónico se describe en el anuncio del Servicio de Información del Estado.",
+        "linkTexts": [
+          "el portal oficial de entradas del Ministerio",
+          "el anuncio del Servicio de Información del Estado"
+        ]
+      },
+      "buyTickets": {
+        "question": "¿Puedo comprar yo mismo las entradas?",
+        "answer": "Sí. El servicio es opcional. Puedes comprar las entradas por el canal oficial de reserva del monumento o en un punto de venta autorizado in situ, donde exista. Si nos pides que las gestionemos, tu presupuesto mostrará por separado el importe oficial de admisión y nuestra tarifa de 50 EGP: nunca juntamos ambos y lo llamamos «precio de la entrada»."
+      },
+      "feePerTicket": {
+        "question": "¿La tarifa de 50 EGP por entrada se cobra una vez por reserva?",
+        "answer": "No. Se cobra por cada entrada de pago emitida. Dos visitantes que soliciten entrada a cuatro monumentos necesitan ocho entradas, así que la tarifa de servicio es 8 x 50 EGP = 400 EGP. Las entradas de estudiante o con precio reducido requieren una identificación válida aceptada por el monumento; sin ella, el recinto puede exigir una entrada de precio completo."
+      },
+      "skipQueue": {
+        "question": "¿Una entrada anticipada significa que nos saltamos todas las colas?",
+        "answer": "No. Puede reducir o evitar la cola de compra de entradas. Los controles de seguridad, la validación del billete, la comprobación de identidad, los accesos con hora asignada, los límites de aforo y otras colas del recinto pueden seguir aplicándose. Los cambios, cancelaciones y reembolsos de entradas también siguen sujetos a las normas del propio monumento, que te indicamos antes de cobrar."
       },
       "visa": {
-        "question": "¿Necesito visa para ingresar a Egipto?",
-        "answer": "La mayoría de los viajeros pueden obtener una e-Visa en línea antes de llegar o comprar una al llegar a los aeropuertos principales. Te guiaremos a través del proceso después de la reserva. Algunas nacionalidades requieren pre-aprobación: consulta con tu embajada local o pregúntanos."
+        "question": "¿Necesito visado para entrar en Egipto?",
+        "answer": "La mayoría de los viajeros (EE. UU., Reino Unido, UE, Canadá, Australia y casi todos los demás pasaportes) necesitan visado para entrar en Egipto. La opción más sencilla es el visado electrónico de Egipto en visa2egypt.gov.eg: se solicita por internet una semana antes del viaje, cuesta 25 USD para una sola entrada y la aprobación llega por correo electrónico. También puedes obtener el visado a la llegada en la mayoría de los aeropuertos principales (El Cairo, Hurgada, Sharm el-Sheij) por la misma tarifa, en efectivo en USD o EUR. Unas pocas nacionalidades (la mayoría africanas y algunas asiáticas) tienen normas distintas: consulta la web del Ministerio de Asuntos Exteriores egipcio o escríbenos por WhatsApp y te indicamos dónde mirar."
       },
-      "price": {
-        "question": "¿Qué está incluido en el precio de mi tour?",
-        "answer": "Todos nuestros itinerarios son completamente transparentes, sin tarifas ocultas. Las inclusiones típicamente cubren transporte privado, guías expertos, boletos de entrada, agua embotellada y todas las actividades mencionadas. Los extras opcionales o gastos personales se listan claramente antes de la reserva."
-      },
-      "customise": {
-        "question": "¿Puedo personalizar mi itinerario?",
-        "answer": "¡Absolutamente! Nuestros viajes están diseñados alrededor de ti. Ya seas una pareja, un viajero solo o una familia, puedes personalizar todo: categoría de hotel, ritmo, guías e incluso destinos."
-      },
-      "currency": {
-        "question": "¿Qué moneda debo llevar?",
-        "answer": "Egipto usa la Libra Egipcia (EGP) como su moneda oficial. Recomendamos llevar algo de efectivo para compras pequeñas y propinas, aunque las tarjetas de crédito son aceptadas en la mayoría de hoteles y restaurantes."
-      },
-      "weather": {
-        "question": "¿Cuál es el mejor momento para visitar Egipto?",
-        "answer": "Octubre a abril ofrece el clima más cómodo con temperaturas más frescas perfectas para turismo. El verano (mayo-septiembre) es más caluroso pero ideal para actividades en el Mar Rojo y viene con precios más bajos de alojamiento."
+      "bestTime": {
+        "question": "¿Cuál es la mejor época para visitar Egipto?",
+        "answer": "De octubre a abril es la temporada alta: las temperaturas son agradables (15–25 °C / 60–77 °F) en todo el país, incluido el Alto Egipto (Luxor, Asuán, Abu Simbel). De mayo a septiembre hace mucho calor en el Alto Egipto y el desierto (más de 40 °C / 104 °F es lo normal), aunque El Cairo y la costa mediterránea siguen siendo llevaderos. Si puedes viajar en temporada media (octubre–principios de noviembre o finales de febrero–abril), tendrás buen tiempo con menos gente y mejores precios. Evitamos enviar viajeros al Alto Egipto en julio y agosto salvo que busquen expresamente el calor."
       }
-    },
-    "support": {
-      "question": "¿Tienes más preguntas? ¡Estamos aquí para ayudarte!",
-      "whatsapp": "Soporte por WhatsApp",
-      "email": "Escríbenos"
     }
   },
   "destinations": {
     "meta": {
-      "title": "Destinos de Egipto - Descubre Gemas Ocultas | Afford Egypt",
-      "description": "Explora los destinos más cautivadores de Egipto desde guías de viaje económicas hasta gemas ocultas del desierto y aventuras montañosas en la Península del Sinaí."
+      "title": "Guía de Destinos de Egipto | El Cairo, Luxor, Asuán y Más",
+      "description": "Planifica tu viaje a Egipto por El Cairo, Alejandría, Luxor, Asuán, Hurghada y Sharm El Sheikh. Guías egiptólogos licenciados y precios transparentes."
     },
     "hero": {
       "title": "Descubre los Destinos Ocultos de Egipto",
@@ -768,8 +746,6 @@
     }
   },
   "cuisinePassport": {
-    "title": "Pasaporte de Sabores de la Cocina Egipcia",
-    "description": "Descubre la auténtica cocina egipcia con nuestro pasaporte de sabores interactivo. Sigue tu viaje culinario, explora platos tradicionales y experimenta vistas previas AR de menús.",
     "hero": {
       "title": "Cocina Egipcia",
       "subtitle": "Pasaporte de Sabores",
@@ -787,14 +763,14 @@
     },
     "filters": {
       "searchPlaceholder": "Buscar platos...",
-      "foundDishes": "Se encontraron {count} platos",
       "regions": {
         "all": "Todas las Regiones",
         "cairo": "El Cairo",
         "alexandria": "Alejandría",
         "upperEgypt": "Alto Egipto",
         "nileDelta": "Delta del Nilo",
-        "aswan": "Asuán"
+        "aswan": "Asuán",
+        "allEgypt": "Todo Egipto"
       },
       "categories": {
         "all": "Todas las Categorías",
@@ -809,11 +785,12 @@
         "easy": "Fácil",
         "medium": "Medio",
         "hard": "Difícil"
-      }
+      },
+      "foundDishes_one": "Se encontró {{count}} plato",
+      "foundDishes_other": "Se encontraron {{count}} platos"
     },
     "dish": {
       "spiceLevel": "Nivel de Picante",
-      "difficulty": "Dificultad",
       "cookingTime": "Tiempo de Cocción",
       "priceRange": "Rango de Precio",
       "tried": "Probado",
@@ -842,88 +819,493 @@
       "healthyScore": "Puntuación Saludable",
       "bestPlacesToTry": "Mejores Lugares para Probar"
     },
-    "descriptions": {
-      "koshari": "Plato nacional de Egipto - una comida callejera abundante, picante y únicamente satisfactoria hecha al superponer lentejas, arroz, pasta, garbanzos y cebollas fritas crujientes, luego bañada en salsa de tomate con ajo y aderezo opcional de vinagre picante.",
-      "fulMedames": "El plato de desayuno más icónico de Egipto hecho con habas cocidas a fuego lento, típicamente sazonadas con aceite de oliva, ajo, jugo de limón y especias. Profundamente arraigado en la vida diaria egipcia, versátil y rico en proteínas y fibra.",
-      "mahshi": "Verduras rellenas tradicionales egipcias - típicamente calabacín, berenjena, pimientos y hojas de parra rellenas con una mezcla aromática de arroz y hierbas. Cocinadas lentamente en caldo de tomate hasta quedar tiernas y sabrosas.",
-      "molokhia": "Sopa verde profunda hecha de hojas de malva finamente picadas. Uno de los platos más antiguos de Egipto, a menudo servido con pollo o conejo, arroz y un chorrito de limón.",
-      "roz": "Comida reconfortante de Egipto - arroz con leche cremoso hecho con leche, azúcar y especias aromáticas como vainilla y canela. A menudo decorado con nueces y servido caliente o frío.",
-      "ricemuammar": "Plato tradicional egipcio de arroz horneado cocido lentamente en leche y crema, servido en tajín de barro. Crea una cazuela cremosa con tope dorado y corteza crujiente con centro rico y mantecoso.",
-      "hawawshi": "Pan relleno de carne egipcio clásico - carne de res o cordero molida condimentada mezclada con verduras y hierbas, rellena en pan baladi y horneada hasta quedar dorada y crujiente por fuera con relleno jugoso por dentro.",
-      "karkade": "Té de hibisco tradicional egipcio hecho con pétalos secos de Hibiscus sabdariffa. Color carmesí profundo, sabor ácido y afrutado similar al arándano. Rico en antioxidantes y sin cafeína.",
-      "baladibre": "Pan plano tradicional egipcio de trigo integral, piedra angular de la vida cotidiana egipcia. La palabra 'baladi' significa 'tradicional' o 'local'. Similar al pita pero hecho con 100% harina de trigo integral, horneado a alta temperatura creando un bolsillo inflado adentro.",
-      "umm": "El postre más famoso y reconfortante de Egipto que significa 'Madre de Ali'. Rico plato cremoso estilo budín de pan con masa, nueces, leche y crema, horneado hasta burbujear y dorar. Asociado con celebraciones, Ramadán y ocasiones especiales."
-    },
-    "culturalStories": {
-      "koshari": "Creado en el siglo XIX al mezclar varios platos de granos de diferentes culturas comerciando en Egipto. Aunque de origen humilde, Koshari es un símbolo del ingenio egipcio, servido en hogares, puestos callejeros y restaurantes desde El Cairo hasta Asuán. Representa la comida callejera reconfortante definitiva de Egipto."
-    },
-    "servingStyles": {
-      "koshari": [
-        "Servido en capas en tazón profundo comenzando con arroz",
-        "Coronado con lentejas, pasta y garbanzos",
-        "Cubierto con salsa de tomate con ajo",
-        "Terminado con cebollas fritas crujientes",
-        "Salsa de vinagre picante opcional (Da'a) a un lado"
-      ]
-    },
-    "signatureTraits": {
-      "koshari": [
-        "Abundante y saciante - una comida completa en un tazón",
-        "Naturalmente vegano (sin carne ni lácteos)",
-        "Texturas en capas: crujiente, suave, masticable",
-        "Sabores audaces, picantes, ácidos",
-        "Asequible y ampliamente disponible"
-      ]
-    },
-    "cookingMethods": {
-      "koshari": [
-        "Cocinar cada componente por separado para mejor textura",
-        "Freír cebollas hasta que estén doradas y crujientes (10-15 minutos)",
-        "Hervir salsa de tomate 15-20 minutos hasta espesar",
-        "Colocar componentes en capas justo antes de servir para textura óptima"
-      ]
-    },
-    "preparationTips": {
-      "koshari": [
-        "Hacer cebollas fritas extra - desaparecen primero",
-        "Preparar todos los elementos con anticipación y ensamblar antes de servir",
-        "Agregar pizca de baharat (mezcla de especias egipcias) para sabor auténtico",
-        "Se recalienta bien, lo que lo hace ideal para preparación de comidas"
-      ]
-    },
     "badges": {
       "traditionalDish": "Plato Tradicional Egipcio",
       "traditionalDrink": "Bebida Tradicional Egipcia"
-    }
+    },
+    "dishes": {
+      "koshari": {
+        "name": "Koshari",
+        "description": "El plato nacional de Egipto: una comida callejera contundente, especiada y singularmente satisfactoria, hecha con capas de lentejas, arroz, pasta y garbanzos, coronada con cebolla frita crujiente y bañada en salsa de tomate al ajo, con un aliño opcional picante de vinagre y chile.",
+        "cookingTime": "Unos 45 minutos",
+        "priceRange": "Menos de 60 EGP",
+        "culturalStory": "Nació en el siglo XIX de la mezcla de distintos platos de cereales de las culturas que comerciaban en Egipto. Pese a su origen humilde, el koshari es un símbolo del ingenio egipcio y se sirve en casas, puestos callejeros y restaurantes desde El Cairo hasta Asuán. Representa la comida reconfortante egipcia por excelencia.",
+        "ingredients": [
+          "Lentejas pardinas",
+          "Arroz blanco",
+          "Pasta pequeña",
+          "Garbanzos",
+          "Cebolla",
+          "Ajo",
+          "Tomate triturado",
+          "Vinagre blanco",
+          "Comino",
+          "Copos de chile"
+        ],
+        "bestLocations": [
+          "Abou Tarek - Centro de El Cairo",
+          "Koshari El Tahrir",
+          "Koshari Hind",
+          "Puestos callejeros por todo Egipto"
+        ],
+        "signatureTraits": [
+          "Contundente y saciante: una comida completa en un solo bol",
+          "Vegano por naturaleza (sin carne ni lácteos)",
+          "Texturas en capas: crujiente, blanda, chiclosa",
+          "Sabores intensos, picantes y ácidos",
+          "Económico y fácil de encontrar"
+        ],
+        "servingStyles": [
+          "En capas en un bol hondo, empezando por el arroz",
+          "Cubierto con lentejas, pasta y garbanzos",
+          "Bañado en salsa de tomate al ajo",
+          "Rematado con cebolla frita crujiente",
+          "Salsa picante de vinagre (da'a) aparte, opcional"
+        ],
+        "cookingMethods": [
+          "Cocer cada componente por separado para lograr la mejor textura",
+          "Freír la cebolla hasta que quede dorada oscura y crujiente (10-15 minutos)",
+          "Cocer la salsa de tomate a fuego lento 15-20 minutos hasta que espese",
+          "Montar las capas justo antes de servir para conservar la textura"
+        ],
+        "preparationTips": [
+          "Prepare cebolla frita de más: es lo primero que desaparece",
+          "Deje todos los elementos listos de antemano y monte el plato al servir",
+          "Añada una pizca de baharat (mezcla de especias egipcia) para un sabor auténtico",
+          "Se recalienta bien, así que va muy bien para preparar comidas por adelantado"
+        ]
+      },
+      "fulMedames": {
+        "name": "Ful medames",
+        "description": "El desayuno más emblemático de Egipto, hecho con habas cocidas a fuego lento y aliñadas normalmente con aceite de oliva, ajo, zumo de limón y especias. Profundamente arraigado en la vida diaria egipcia, versátil y rico en proteínas y fibra.",
+        "cookingTime": "Unas 6 horas (cocción lenta tradicional; las recetas varían)",
+        "priceRange": "Menos de 25 EGP",
+        "culturalStory": "Plato antiguo que se remonta a la época faraónica, cocinado tradicionalmente durante toda la noche en ollas de barro enterradas. Millones de egipcios lo disfrutan a diario, desde los sencillos carritos callejeros de El Cairo hasta las cocinas de todo el país.",
+        "ingredients": [
+          "Habas cocidas",
+          "Aceite de oliva",
+          "Ajo",
+          "Zumo de limón",
+          "Comino molido",
+          "Sal",
+          "Pimienta negra"
+        ],
+        "bestLocations": [
+          "Restaurante Al Malky",
+          "Carritos callejeros tradicionales",
+          "Cafeterías de barrio",
+          "Vendedores callejeros de desayuno"
+        ],
+        "signatureTraits": [
+          "Textura cremosa o con tropezones (según la preferencia)",
+          "Sabor terroso, con ajo y limón, y a veces picante",
+          "Vegano y saludable: cargado de fibra y proteínas",
+          "Favorito nacional que millones disfrutan a diario",
+          "El desayuno egipcio más emblemático"
+        ],
+        "servingStyles": [
+          "Servido con pan baladi caliente o pan de pita",
+          "Acompañado de huevos duros",
+          "Adornado con tomate, cebolla o perejil picados",
+          "Con encurtidos (torshi)",
+          "Chorrito de tahini o guindilla verde picada, opcionales"
+        ],
+        "cookingMethods": [
+          "Calentar las habas suavemente en un cazo con un chorrito de agua",
+          "Aplastarlas ligeramente con un tenedor hasta la textura deseada",
+          "Añadir los aliños y cocer 2-3 minutos",
+          "Servir de inmediato, mientras esté caliente"
+        ],
+        "preparationTips": [
+          "Use habas cocidas o conservas de calidad",
+          "Ajuste el aplastado a la textura que prefiera",
+          "Equilibre el zumo de limón y el aceite de oliva para el mejor sabor",
+          "Sírvalo enseguida para disfrutar de la temperatura y el sabor óptimos"
+        ],
+        "regionalVariations": [
+          "Ful eskandrani (alejandrino): servido frío con chile, tomate, perejil y vinagre",
+          "Ful con huevo duro: el clásico desayuno callejero",
+          "Ful bel dabba (con mantequilla): versión cremosa e indulgente de restaurante",
+          "Ful picante: con harissa o aceite de chile fresco"
+        ]
+      },
+      "molokhia": {
+        "name": "Molokhia",
+        "description": "Sopa de hoja verde intenso hecha con hojas de yute finamente picadas. Uno de los platos más antiguos de Egipto, se remonta a la época faraónica. Suave, con mucho ajo y llena de umami, con una textura ligeramente mucilaginosa muy característica.",
+        "cookingTime": "Unos 30 minutos",
+        "priceRange": "120 EGP",
+        "culturalStory": "En época faraónica estuvo prohibido para el pueblo llano por considerarse comida de la realeza. Es uno de los platos más antiguos y queridos de Egipto y representa la comida reconfortante por excelencia para generaciones de egipcios.",
+        "ingredients": [
+          "Hojas de molokhia",
+          "Ajo",
+          "Cilantro molido",
+          "Caldo de pollo",
+          "Ghee o mantequilla",
+          "Zumo de limón",
+          "Sal"
+        ],
+        "bestLocations": [
+          "Café Naguib Mahfouz",
+          "Restaurantes familiares tradicionales",
+          "Restaurantes de hotel",
+          "Casas rurales egipcias"
+        ],
+        "signatureTraits": [
+          "Textura espesa y algo viscosa (parecida a la okra)",
+          "Sabor terroso, con ajo y muy marcado por el cilantro",
+          "Plato antiguo de origen faraónico",
+          "La comida reconfortante egipcia por excelencia",
+          "Consistencia mucilaginosa inconfundible"
+        ],
+        "servingStyles": [
+          "Servida sobre arroz blanco o arroz con fideos",
+          "Acompañada de pan baladi",
+          "Con un chorrito de limón fresco",
+          "Con vinagre de guindilla",
+          "Con una proteína a la parrilla aparte"
+        ],
+        "cookingMethods": [
+          "No hervir nunca: calentar suavemente para conservar la textura",
+          "Remover una sola vez tras añadirla al caldo",
+          "Calentar 3-5 minutos hasta que esté caliente y haya espesado",
+          "Añadir la tasha (mezcla de ajo y cilantro) mientras chisporrotea"
+        ],
+        "preparationTips": [
+          "La molokhia fresca debe picarse hasta lograr una consistencia de pasta",
+          "La molokhia congelada funciona bien como alternativa cómoda",
+          "Prepare la tasha aparte para que el sabor se infusione bien",
+          "Evite remover en exceso para que no quede babosa"
+        ],
+        "regionalVariations": [
+          "Estilo alejandrino: con tomate picado, servida con marisco",
+          "Estilo palestino o libanés: hojas enteras y textura más de guiso",
+          "Egipto rural: tradicionalmente se sirve con conejo en las fiestas",
+          "Variaciones modernas: con salsa de vinagre y chile aparte"
+        ]
+      },
+      "mahshi": {
+        "name": "Mahshi",
+        "description": "El clásico plato egipcio de verduras rellenas de arroz especiado y cocinadas a fuego lento en un caldo ligero de tomate. Incluye calabacín, berenjena, pimiento, tomate, hojas de col y hojas de parra. Muy ligado a las reuniones familiares y las celebraciones.",
+        "cookingTime": "Unos 90 minutos",
+        "priceRange": "150 EGP",
+        "culturalStory": "Plato de influencia otomana que echó raíces profundas en la tradición familiar egipcia. Suele prepararse en bandejas grandes para compartir en reuniones familiares, banquetes y celebraciones. El nombre significa literalmente 'relleno' en árabe.",
+        "ingredients": [
+          "Calabacín",
+          "Pimientos",
+          "Arroz egipcio",
+          "Cebolla",
+          "Concentrado de tomate",
+          "Perejil",
+          "Eneldo",
+          "Cilantro",
+          "Aceite vegetal",
+          "Comino",
+          "Cilantro molido"
+        ],
+        "bestLocations": [
+          "Restaurantes familiares de Alejandría",
+          "Casas tradicionales",
+          "Restaurantes de la costa",
+          "Comidas familiares del viernes"
+        ],
+        "signatureTraits": [
+          "Verduras rellenas de arroz especiado",
+          "Cocinado despacio en caldo de tomate para dar el máximo sabor",
+          "Sabor herbáceo, con ajo, sabroso y reconfortante",
+          "Vegetariano por naturaleza y a menudo vegano",
+          "Perfecto para reuniones familiares y celebraciones"
+        ],
+        "servingStyles": [
+          "Colocado de pie en la bandeja de servir",
+          "Con un poco del caldo de cocción por encima",
+          "Servido con yogur o ensalada verde",
+          "Acompañado de gajos de limón",
+          "Con encurtidos o molokhia para una comida completa"
+        ],
+        "cookingMethods": [
+          "Vaciar las verduras con cuidado usando un descorazonador",
+          "Rellenar solo 2/3 para que el arroz pueda expandirse",
+          "Poner una capa de rodajas de patata para que no se pegue",
+          "Cocer a fuego suave 45-60 minutos hasta que estén tiernas"
+        ],
+        "preparationTips": [
+          "Use arroz egipcio de grano corto para lograr la mejor textura",
+          "No precocine el arroz: se cocina dentro de las verduras",
+          "Reserve el jugo de los tomates vaciados para el caldo",
+          "Se sirve en las comidas familiares del viernes, en el Eid y en ocasiones especiales"
+        ],
+        "regionalVariations": [
+          "Alto Egipto: las versiones con hojas de col y de parra son las más apreciadas",
+          "Delta del Nilo: los rollitos de col tradicionales son muy populares",
+          "Variante con carne: se añade carne picada al arroz para una versión más contundente",
+          "Zonas costeras: se sirve a menudo acompañado de marisco"
+        ]
+      },
+      "baladiBread": {
+        "name": "Pan baladi",
+        "description": "El pan plano tradicional de Egipto, piedra angular de la vida cotidiana egipcia. La palabra 'baladi' significa 'local' o 'del país'. Suele elaborarse con alrededor de un 50 % de harina integral y se hornea a temperatura muy alta para que se forme el bolsillo; las recetas no son siempre 100 % integrales.",
+        "cookingTime": "Unas 3 horas, fermentación incluida",
+        "priceRange": "5 EGP",
+        "culturalStory": "Parte esencial de la cultura egipcia desde hace más de 5000 años, se le llama a menudo 'aysh', que significa vida. Sencillo, contundente y profundamente arraigado en la cultura egipcia, este pan encarna de verdad el espíritu local tradicional.",
+        "ingredients": [
+          "Harina integral de trigo",
+          "Harina de todo uso",
+          "Levadura instantánea",
+          "Azúcar",
+          "Sal",
+          "Agua templada",
+          "Aceite de oliva"
+        ],
+        "bestLocations": [
+          "Panaderías de barrio",
+          "Vendedores callejeros",
+          "Todas las mesas egipcias",
+          "Furn baladi (hornos de barro)"
+        ],
+        "signatureTraits": [
+          "Integral, de forma redonda y plana",
+          "Se hincha al hornearse y forma un bolsillo por dentro",
+          "Tierno pero algo chicloso, con sabor terroso y a frutos secos",
+          "Vegano por naturaleza, sin lácteos ni huevo",
+          "Se sirve con casi cualquier comida egipcia"
+        ],
+        "servingStyles": [
+          "En el desayuno, con ful medames",
+          "Para mojar en la molokhia o el koshari",
+          "Para envolver bocadillos de kebda (hígado)",
+          "Junto a la taameya (el falafel egipcio)",
+          "Con salsas para mojar como tahini, baba ganush o duqqa"
+        ],
+        "cookingMethods": [
+          "Horneado sobre piedra caliente o plancha de hierro",
+          "Cocido a 250 °C durante 5-7 minutos",
+          "Se hincha durante el horneado a alta temperatura",
+          "Se puede hacer en casa con o sin horno especial"
+        ],
+        "preparationTips": [
+          "Use una piedra de pizza precalentada para imitar el efecto del horno de barro",
+          "No manipule la masa una vez formada, para asegurar que se hinche",
+          "Añada harina blanca para dar más elasticidad en el horneado moderno",
+          "Consérvelo en una bolsa cerrada 2-3 días o congélelo para más tiempo"
+        ],
+        "traditionalUses": [
+          "Acompaña al mahshi y a otros platos principales",
+          "Imprescindible en un desayuno egipcio auténtico",
+          "Se usa para envolver y para recoger la comida",
+          "Símbolo del sustento en la cultura egipcia"
+        ]
+      },
+      "ummAli": {
+        "name": "Umm Ali",
+        "description": "El postre más famoso y reconfortante de Egipto; su nombre significa 'la madre de Ali'. Un dulce cremoso y sustancioso, al estilo del pudin de pan, con hojaldre, frutos secos, leche y nata, horneado hasta quedar dorado y burbujeante. Asociado a las celebraciones, al Ramadán y a las ocasiones especiales.",
+        "cookingTime": "Unos 20 minutos",
+        "priceRange": "100 EGP",
+        "culturalStory": "Lleva el nombre de la esposa del sultán Ezz El Din Aybek y se creó para celebrar una victoria. Se le llama a menudo la versión egipcia del pudin de pan con un toque de Oriente Medio, cargado de frutos secos, coco y a veces pasas.",
+        "ingredients": [
+          "Hojaldre",
+          "Leche entera",
+          "Nata para montar",
+          "Azúcar",
+          "Frutos secos variados",
+          "Coco rallado",
+          "Pasas",
+          "Extracto de vainilla"
+        ],
+        "bestLocations": [
+          "Café Groppi",
+          "Cafeterías tradicionales",
+          "Restaurantes de hotel",
+          "Mesas del iftar en Ramadán"
+        ],
+        "signatureTraits": [
+          "Se sirve caliente, recién salido del horno",
+          "Superficie crujiente y dorada; cremoso y tierno por debajo",
+          "Se hace con hojaldre, pasta filo o pan",
+          "Sin huevo, a diferencia de los pudines de pan occidentales",
+          "Sustancioso, festivo y profundamente satisfactorio"
+        ],
+        "servingStyles": [
+          "Está mejor recién salido del horno",
+          "Adornado con pistacho picado",
+          "Con un chorrito opcional de leche condensada para hacerlo más goloso",
+          "Servido en cuencos individuales o en fuente para compartir",
+          "Acompañado de café árabe o té"
+        ],
+        "cookingMethods": [
+          "Hornear a 200 °C durante 20-25 minutos",
+          "Gratinar 2-3 minutos más para una superficie más crujiente",
+          "Alternar capas de hojaldre y frutos secos y verter la mezcla de leche caliente",
+          "Cubrir con nata sin remover"
+        ],
+        "preparationTips": [
+          "Use pan tostado empapado en nata para una versión más rústica",
+          "Añada agua de rosas o de azahar para darle un toque árabe",
+          "Incorpore leche condensada para una versión más sustanciosa",
+          "Vigílelo de cerca al gratinar para que no se queme"
+        ],
+        "celebrationOccasions": [
+          "Postres del iftar en Ramadán",
+          "Banquetes y celebraciones del Eid",
+          "Bodas y ocasiones especiales",
+          "Cartas de cafetería y comidas familiares del viernes"
+        ]
+      },
+      "riceMuammar": {
+        "name": "Arroz muammar",
+        "description": "Plato tradicional egipcio de arroz horneado despacio en leche y nata y servido en una cazuela de barro. Da como resultado una especie de gratinado cremoso y dorado, con costra crujiente y un centro sustancioso y mantecoso. Muy popular en el campo y en el Alto Egipto para las comidas del viernes y las reuniones familiares.",
+        "cookingTime": "Unos 60-75 minutos",
+        "priceRange": "150 EGP",
+        "culturalStory": "El nombre 'muammar' significa 'enriquecido' y alude a la leche y la nata que lleva. La cocción tradicional en cazuela de barro es la que da la mejor costra crujiente y es especialmente popular en las cocinas rurales egipcias.",
+        "ingredients": [
+          "Arroz de grano corto",
+          "Leche entera",
+          "Nata para cocinar",
+          "Ghee",
+          "Pollo o ternera",
+          "Sal",
+          "Pimienta",
+          "Hoja de laurel"
+        ],
+        "bestLocations": [
+          "Restaurantes del Alto Egipto",
+          "Cocinas familiares rurales",
+          "Casas egipcias tradicionales",
+          "Mesas de la comida del viernes"
+        ],
+        "signatureTraits": [
+          "Horneado en cazuela de barro o cerámica",
+          "Interior cremoso característico con costra dorada y crujiente",
+          "Puede ser salado con carne o dulce como postre",
+          "Ingredientes sencillos con un resultado muy reconfortante",
+          "Popular en el campo egipcio"
+        ],
+        "servingStyles": [
+          "Servido caliente, directamente de la cazuela",
+          "Acompañado de ensalada o yogur",
+          "Para compartir en familia, de la olla de barro",
+          "Con el contraste entre la costra crujiente y la base cremosa",
+          "Como plato central de la comida del viernes"
+        ],
+        "cookingMethods": [
+          "Hornear a 200 °C durante 45-60 minutos",
+          "Cubrir con papel de aluminio y destapar después para que dore",
+          "Usar cazuela de barro para lograr la mejor textura crujiente",
+          "Poner la carne en el fondo y encima el arroz con la mezcla de leche"
+        ],
+        "preparationTips": [
+          "Use cazuela de barro, si la tiene, para lograr la mejor costra",
+          "Dore un poco la carne antes de añadirla para dar más sabor",
+          "Mezcle leche y leche evaporada para que quede más sustancioso",
+          "Añada un clavo entero o una hoja de laurel para un aroma sutil"
+        ],
+        "regionalVariations": [
+          "Versión salada con trozos de pollo o de ternera",
+          "Versión dulce (muammar helw) con azúcar y vainilla",
+          "Estilo del Alto Egipto, con especias enteras",
+          "Versión campesina, con más ghee e ishta"
+        ]
+      },
+      "hawawshi": {
+        "name": "Hawawshi",
+        "description": "El clásico pan egipcio relleno de carne: ternera o cordero picados y especiados, mezclados con verduras y hierbas, metidos en pan baladi y horneados hasta quedar crujientes y dorados por fuera, con el relleno jugoso por dentro.",
+        "cookingTime": "Unos 25 minutos",
+        "priceRange": "200 EGP",
+        "culturalStory": "Nació en los barrios obreros de El Cairo como una comida rápida y saciante, y se ha convertido en una de las comidas callejeras más queridas de Egipto. Se compara a menudo con una empanada de carne de Oriente Medio o con una hamburguesa especiada en pan de pita, y es popular como tentempié callejero, comida familiar o plato de fiesta.",
+        "ingredients": [
+          "Ternera o cordero picados",
+          "Pan baladi",
+          "Cebolla",
+          "Pimiento",
+          "Ajo",
+          "Guindilla verde",
+          "Perejil",
+          "Comino",
+          "Pimentón",
+          "Canela",
+          "Pimienta de Jamaica"
+        ],
+        "bestLocations": [
+          "Restaurante El Refai",
+          "Vendedores de comida callejera",
+          "Parrillas de barrio",
+          "Puestos callejeros de El Cairo"
+        ],
+        "signatureTraits": [
+          "Crujiente y dorado por fuera",
+          "Relleno de carne especiada y jugosa por dentro",
+          "Cargado de cebolla, pimiento y especias cálidas",
+          "Equilibrio perfecto entre textura y sabor"
+        ],
+        "servingStyles": [
+          "Cortado por la mitad o en cuartos",
+          "Servido con salsa de tahini",
+          "Acompañado de encurtidos",
+          "Con ensalada fresca al lado"
+        ],
+        "cookingMethods": [
+          "Al horno: 200 °C durante 20-25 minutos, dándole la vuelta a media cocción",
+          "A la sartén: 5-7 minutos por cada lado a fuego medio"
+        ],
+        "regionalVariations": [
+          "Hawawshi alejandrino: versión más picante, en masa recién amasada",
+          "Toque moderno: se añade queso para hacerlo más sustancioso",
+          "Versión más ligera: con pan de pita integral"
+        ]
+      },
+      "karkade": {
+        "name": "Karkadé",
+        "description": "El té de hibisco tradicional de Egipto, hecho con pétalos secos de Hibiscus sabdariffa. De color carmesí intenso y sabor ácido y afrutado, parecido al arándano rojo. Rico en antioxidantes y sin cafeína.",
+        "cookingTime": "Unos 10 minutos (caliente) / 6-12 horas (en frío)",
+        "priceRange": "40 EGP",
+        "culturalStory": "Escrito también karkaday o karkadi, esta bebida tradicional tiene un profundo significado cultural en Egipto. Se sirve en bodas y celebraciones y es una de las favoritas del Ramadán para romper el ayuno. Se le atribuyen beneficios medicinales como bajar la tensión arterial, ayudar a la digestión y favorecer la salud del hígado. Puede prepararse en frío (el método egipcio tradicional, de sabor más suave) o en caliente, para un sabor más intenso.",
+        "ingredients": [
+          "Pétalos secos de hibisco",
+          "Agua",
+          "Azúcar",
+          "Opcional: limón, canela, clavo"
+        ],
+        "bestLocations": [
+          "Vendedores callejeros de Asuán",
+          "Cafeterías tradicionales",
+          "Cafés callejeros de El Cairo con shisha",
+          "Celebraciones de boda",
+          "Mesas del iftar en Ramadán"
+        ],
+        "servingStyles": [
+          "Caliente, como infusión reconfortante",
+          "Frío, como bebida refrescante de verano",
+          "Con agua de rosas, para un toque floral",
+          "Infusionado con jengibre o menta",
+          "Mezclado con agua con gas, como refresco de hibisco"
+        ],
+        "healthBenefits": [
+          "Baja la tensión arterial (estudiado clínicamente)",
+          "Ayuda a la digestión",
+          "Favorece la salud del hígado",
+          "Rico en vitamina C y antioxidantes",
+          "Alternativa sin cafeína al té y al café"
+        ],
+        "preparationMethods": [
+          "En frío: dejar los pétalos en remojo 6-12 horas para un sabor más suave",
+          "En caliente: cocer a fuego lento 10-15 minutos para un sabor más intenso"
+        ]
+      }
+    },
+    "allergens": {
+      "gluten": "Gluten",
+      "nuts": "Frutos secos",
+      "dairy": "Lácteos"
+    },
+    "cameraError": "Acceso a la cámara denegado. Active los permisos de cámara para usar las funciones de RA.",
+    "seoTitle": "Pasaporte de la Cocina Egipcia | Prueba {{count}} Platos por Egipto",
+    "seoDescription": "Una tarjeta de bingo interactiva con {{count}} platos egipcios imprescindibles. Registra los que has probado, descubre dónde encontrar cada uno y llévate recuerdos que se comen."
   },
   "airportTransfers": {
     "common": {
-      "bookNow": "Reservar Ahora",
       "whatsapp": "WhatsApp",
       "callNow": "Llamar Ahora",
-      "chooseVehicle": "Elige Tu Vehículo",
       "howItWorks": "Cómo Funciona",
-      "bookOnline": "Reservar En Línea",
-      "meetDriver": "Conoce a Tu Conductor",
-      "selectPickupTime": "Selecciona tu hora de recogida, destino y tipo de vehículo",
-      "transparentPricing": "Precios Transparentes",
-      "noHiddenFees": "Sin tarifas ocultas. Lo que ves es lo que pagas. Los precios incluyen todos los impuestos y tarifas.",
-      "startingFrom": "Desde",
       "getInstantQuote": "Obtener Cotización Instantánea",
-      "bookOnlineNow": "Reservar En Línea Ahora",
-      "flightMonitoring": "Monitoreo de Vuelos",
-      "flightMonitoringDesc": "Rastreamos tu vuelo y ajustamos los horarios de recogida en consecuencia",
-      "professionalDrivers": "Conductores Profesionales",
-      "professionalDriversDesc": "Conductores licenciados y experimentados con conocimiento local",
-      "airConditioning": "Aire acondicionado",
-      "professionalDriver": "Conductor profesional",
-      "meetGreet": "Servicio de encuentro y saludo",
-      "extraLuggageSpace": "Espacio extra para equipaje",
-      "familyFriendly": "Familiar",
-      "comfortableSeating": "Asientos cómodos",
-      "groupTravel": "Viajes grupales",
-      "largeLuggageCapacity": "Gran capacidad de equipaje",
-      "premiumComfort": "Comodidad premium",
       "sedan": "Sedán",
       "minivan": "Minivan",
       "van": "Furgoneta",
@@ -935,38 +1317,9 @@
     },
     "cairo": {
       "heroTitle": "Traslados del Aeropuerto de El Cairo",
-      "heroSubtitle": "Traslados de aeropuerto confiables, cómodos y asequibles en El Cairo. Conductores profesionales, monitoreo de vuelos y precios transparentes desde 2,025 EGP.",
-      "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de El Cairo?",
-      "service24_7": "Servicio 24/7",
-      "service24_7Desc": "Traslados de aeropuerto disponibles las 24 horas todos los días",
-      "doorToDoor": "Puerta a Puerta",
-      "doorToDoorDesc": "Traslados directos desde el aeropuerto hasta tu hotel o destino",
-      "transferDestinationsTitle": "Destinos de Traslados en El Cairo",
-      "transferDestinationsDesc": "Proporcionamos traslados de aeropuerto a todas las áreas principales de El Cairo y alrededores",
-      "areas": [
-        "Aeropuerto Internacional de El Cairo (CAI)",
-        "Hoteles del Nuevo Cairo",
-        "Ciudad 6 de Octubre",
-        "Hoteles de Giza",
-        "Centro de El Cairo",
-        "Heliópolis",
-        "Maadi",
-        "Zamalek"
-      ],
-      "stepMeetDriverDesc": "Tu conductor te encontrará en el punto de recogida designado",
-      "stepEnjoyRide": "Disfruta Tu Viaje",
-      "stepEnjoyRideDesc": "Relájate cómodamente mientras te llevamos a tu destino",
-      "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor profesional • Servicio de encuentro y saludo",
+      "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de El Cairo (CAI) y el Aeropuerto Internacional Sphinx (SPX) a hoteles de El Cairo, Guiza y el Gran Cairo.",
       "ctaTitle": "¿Listo para Reservar Tu Traslado del Aeropuerto de El Cairo?",
-      "ctaSubtitle": "Únete a miles de clientes satisfechos que confían en nosotros para sus traslados del aeropuerto de El Cairo",
-      "area1": "Aeropuerto Internacional de El Cairo (CAI)",
-      "area2": "Hoteles de Nuevo Cairo",
-      "area3": "Ciudad 6 de Octubre",
-      "area4": "Hoteles de Giza",
-      "area5": "Centro de El Cairo",
-      "area6": "Heliópolis",
-      "area7": "Maadi",
-      "area8": "Zamalek",
+      "ctaSubtitle": "Envíanos tu número de vuelo y la ubicación de tu hotel. Confirmaremos si llegas a CAI o a SPX, identificaremos la zona de destino correcta y te daremos el precio del vehículo adecuado.",
       "ctaQuote": "Obtén tu presupuesto exacto de traslado",
       "calcTitle": "Cómo calculamos el precio de tu traslado",
       "vehiclesTitle": "Tarifas iniciales por vehículo",
@@ -1118,54 +1471,15 @@
         "Vehículo preferido o cualquier necesidad especial"
       ],
       "pricingIntro": "No presupuestamos solo a partir de la palabra «El Cairo». Ponemos precio al trayecto real —desde tu aeropuerto de llegada hasta tu hotel exacto— con el vehículo adecuado para tu grupo y equipaje.",
-      "pricingTerms": "Tu total fijo se confirma antes de reservar • Sin cambio de aeropuerto • Sin cargos sorpresa por zona de destino"
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Sin cambio de aeropuerto • Sin cargos sorpresa por zona de destino",
+      "seoTitle": "Traslados Aeropuerto El Cairo | CAI y Aeropuerto Sphinx (SPX) | AffordEgypt",
+      "seoDescription": "Traslados de aeropuerto en El Cairo a precio fijo desde {{price}}. CAI y Sphinx SPX, conductores licenciados, seguimiento de vuelos y recepción personalizada. Reserva directa, sin intermediarios."
     },
     "luxor": {
       "heroTitle": "Traslados del Aeropuerto de Luxor",
-      "heroSubtitle": "Traslados profesionales de aeropuerto en la antigua ciudad de Luxor. Conductores locales expertos con conocimiento de rutas de templos y precios transparentes desde 1,115 EGP.",
-      "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de Luxor?",
-      "templeExpertise": "Experiencia en Templos",
-      "templeExpertiseDesc": "Conductores con conocimiento sobre los sitios antiguos y rutas de Luxor",
-      "sightseeingStops": "Paradas Turísticas",
-      "sightseeingStopsDesc": "Paradas opcionales para fotos en ubicaciones pintorescas en el camino",
-      "localKnowledge": "Conocimiento Local",
-      "localKnowledgeDesc": "Conductores locales expertos con experiencia en el área de Luxor",
-      "templeRouteKnowledge": "Conocimiento de rutas de templos",
-      "touristFriendly": "Amigable con turistas",
-      "tourGroupFriendly": "Amigable con grupos de turismo",
-      "transferDestinationsTitle": "Destinos de Traslados en Luxor",
-      "transferDestinationsDesc": "Proporcionamos traslados de aeropuerto a todas las áreas principales y sitios antiguos de Luxor",
-      "areas": [
-        "Aeropuerto de Luxor (LXR)",
-        "Hoteles de la Orilla Este",
-        "Hoteles de la Orilla Oeste",
-        "Valle de los Reyes",
-        "Área del Templo de Karnak",
-        "Distrito del Templo de Luxor",
-        "Terminales de Cruceros por el Nilo",
-        "Área del Palacio de Invierno"
-      ],
-      "expertiseTitle": "Experiencia en el Antiguo Luxor",
-      "templeRouteTitle": "Conocimiento de Rutas de Templos",
-      "templeRouteDesc": "Nuestros conductores conocen las mejores rutas a los templos principales y pueden recomendar horarios óptimos para visitar el Valle de los Reyes, el Templo de Karnak y otros sitios antiguos.",
-      "eastWestBank": "Orilla Este y Oeste",
-      "eastWestBankDesc": "Traslados sin problemas entre hoteles de la Orilla Este y atracciones de la Orilla Oeste. Conocemos todos los horarios de ferry y tiempos de cruce de puentes.",
-      "stepMeetDriverDesc": "Tu conductor local experto te encontrará en el aeropuerto",
-      "stepExploreLuxor": "Explora Luxor",
-      "stepExploreLuxorDesc": "Llega cómodo y listo para explorar las maravillas antiguas",
-      "affordableTitle": "Traslados Asequibles en Luxor",
-      "affordableDesc": "Tarifas competitivas para traslados en la ciudad antigua. Sin tarifas ocultas ni sobrecargos turísticos.",
-      "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor local experto • Conocimiento de rutas de templos",
+      "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de Luxor (LXR) a hoteles de la orilla este, hoteles de la orilla oeste y amarres confirmados de cruceros por el Nilo.",
       "ctaTitle": "¿Listo para Explorar el Antiguo Luxor?",
-      "ctaSubtitle": "Comienza tu viaje al museo al aire libre más grande del mundo con nuestros traslados confiables",
-      "area1": "Aeropuerto de Lúxor (LXR)",
-      "area2": "Hoteles de la Orilla Este",
-      "area3": "Hoteles de la Orilla Oeste",
-      "area4": "Valle de los Reyes",
-      "area5": "Zona del Templo de Karnak",
-      "area6": "Distrito del Templo de Lúxor",
-      "area7": "Terminales de Cruceros por el Nilo",
-      "area8": "Zona del Winter Palace",
+      "ctaSubtitle": "Envíanos tu número de vuelo y la ubicación de tu alojamiento. Confirmaremos la orilla correcta, la ruta, el vehículo y el precio total antes de que reserves.",
       "ctaQuote": "Obtén tu presupuesto exacto de traslado",
       "calcTitle": "Cómo calculamos el precio de tu traslado",
       "vehiclesTitle": "Tarifas iniciales por vehículo",
@@ -1315,54 +1629,15 @@
         "Vehículo preferido o cualquier necesidad especial"
       ],
       "pricingIntro": "No damos por hecho que toda reserva en Luxor termina en un hotel de la orilla este. Ponemos precio al trayecto real desde el aeropuerto de Luxor hasta tu propiedad o amarre exacto, incluido el cruce por carretera a la orilla oeste cuando hace falta.",
-      "pricingTerms": "Tu total fijo se confirma antes de reservar • Orilla y hotel correctos • Sin cargos sorpresa por la ruta a la orilla oeste"
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Orilla y hotel correctos • Sin cargos sorpresa por la ruta a la orilla oeste",
+      "seoTitle": "Traslados Aeropuerto Luxor | Precio Fijo | AffordEgypt",
+      "seoDescription": "Traslados de aeropuerto en Luxor a precio fijo desde {{price}}. Orilla Este, Orilla Oeste y amarres de cruceros por el Nilo. Conductores licenciados, seguimiento de vuelos y precios fijos."
     },
     "aswan": {
       "heroTitle": "Traslados del Aeropuerto de Asuán",
-      "heroSubtitle": "Traslados profesionales de aeropuerto en la hermosa Asuán. Conductores expertos de la ciudad del Nilo con conocimiento local y precios transparentes desde 1,475 EGP.",
-      "whyChooseTitle": "¿Por Qué Elegir Nuestros Traslados del Aeropuerto de Asuán?",
-      "nileExpertise": "Experiencia del Nilo",
-      "nileExpertiseDesc": "Conocimiento especializado de las ubicaciones únicas del Nilo en Asuán y puertos de faluca",
-      "desertRoutes": "Rutas del Desierto",
-      "desertRoutesDesc": "Navegación experta a Abu Simbel y otros destinos del desierto del sur",
-      "nubianCulture": "Cultura Nubia",
-      "nubianCultureDesc": "Conductores con conocimiento de la cultura y tradiciones nubias locales",
-      "nileRouteExpertise": "Experiencia en rutas del Nilo",
-      "nubianCultureKnowledge": "Conocimiento de cultura nubia",
-      "abuSimbelRouteReady": "Listo para ruta de Abu Simbel",
-      "transferDestinationsTitle": "Destinos de Traslados en Asuán",
-      "transferDestinationsDesc": "Proporcionamos traslados de aeropuerto a todas las áreas principales de Asuán y el sur de Egipto",
-      "areas": [
-        "Aeropuerto de Asuán (ASW)",
-        "Hoteles de Corniche",
-        "Isla Elefantina",
-        "Pueblos Nubios",
-        "Área del Templo de Philae",
-        "Distrito de la Gran Presa",
-        "Puertos de Faluca",
-        "Ruta de Abu Simbel"
-      ],
-      "expertiseTitle": "Experiencia del Sur de Egipto",
-      "nileNavigation": "Navegación del Nilo",
-      "nileNavigationDesc": "Conocimiento experto de la geografía única del Nilo en Asuán, incluyendo puertos de faluca, acceso a la Isla Elefantina y conexiones en barco al Templo de Philae.",
-      "desertExpeditions": "Expediciones del Desierto",
-      "desertExpeditionsDesc": "Listos para traslados de larga distancia a Abu Simbel y otros destinos del desierto. Nuestros vehículos están equipados para viajes extendidos por el sur de Egipto.",
-      "stepMeetDriverDesc": "Tu conductor experto de la ciudad del Nilo te encontrará en el aeropuerto",
-      "stepDiscoverAswan": "Descubre Asuán",
-      "stepDiscoverAswanDesc": "Llega relajado y listo para explorar la joya del Nilo",
-      "affordableTitle": "Traslados Asequibles en Asuán",
-      "affordableDesc": "La mejor relación calidad-precio en traslados del sur de Egipto. Precios transparentes sin costos ocultos.",
-      "pricingInfoDesc": "Traslados de aeropuerto a hotel • Conductor experto del Nilo • Conocimiento cultural local",
+      "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de Asuán (ASW) a hoteles de la ciudad, alojamientos a las afueras, casas nubias, embarcaderos de hoteles isla y amarres confirmados de cruceros por el Nilo o el lago Nasser.",
       "ctaTitle": "¿Listo para Experimentar la Joya del Nilo?",
-      "ctaSubtitle": "Comienza tu aventura en Asuán con nuestro servicio de traslado confiable y conocedor",
-      "area1": "Aeropuerto de Asuán (ASW)",
-      "area2": "Hoteles de la Corniche",
-      "area3": "Isla Elefantina",
-      "area4": "Pueblos Nubios",
-      "area5": "Zona del Templo de Filae",
-      "area6": "Distrito de la Alta Presa",
-      "area7": "Puertos de Falucas",
-      "area8": "Ruta de Abu Simbel",
+      "ctaSubtitle": "Envíanos tu número de vuelo y tu destino exacto. Confirmaremos la ruta de acceso, el vehículo, cualquier conexión en barco y el precio total antes de que reserves.",
       "ctaQuote": "Obtén tu presupuesto exacto de traslado",
       "calcTitle": "Cómo calculamos el precio de tu traslado",
       "vehiclesTitle": "Tarifas iniciales por vehículo",
@@ -1528,7 +1803,9 @@
         "Vehículo preferido o cualquier necesidad especial"
       ],
       "pricingIntro": "No damos por hecho que toda reserva en Asuán termina en un hotel céntrico de la Corniche. Ponemos precio al trayecto real hasta tu propiedad, embarcadero o barco exacto e indicamos con claridad si se incluye alguna conexión en barco.",
-      "pricingTerms": "Tu total fijo se confirma antes de reservar • Propiedad o amarre correctos • Sin cargos sorpresa por salir de la ciudad o por acceso en barco"
+      "pricingTerms": "Tu total fijo se confirma antes de reservar • Propiedad o amarre correctos • Sin cargos sorpresa por salir de la ciudad o por acceso en barco",
+      "seoTitle": "Traslados Aeropuerto Asuán | Precio Fijo | AffordEgypt",
+      "seoDescription": "Traslados de aeropuerto en Asuán a precio fijo desde {{price}}. Hoteles de la ciudad, alojamientos nubios, embarcaderos de islas y amarres de cruceros. Conductores locales licenciados y precios fijos."
     }
   },
   "guideServices": {
@@ -1537,17 +1814,13 @@
       "whatsapp": "WhatsApp",
       "callNow": "Llamar Ahora",
       "howItWorks": "Cómo Funciona",
-      "bookOnline": "Reservar Online",
       "meetGuide": "Conocer su Guía",
-      "exploreCity": "Explorar Ciudad",
       "bookOnlineNow": "Reservar Online Ahora",
       "getInstantQuote": "Obtener Cotización Instantánea",
       "licensedGuide": "Guía licenciado",
       "professionalDriver": "Conductor profesional",
       "entranceFeesExcluded": "Entradas no incluidas",
       "flexibleItinerary": "Itinerario flexible",
-      "multilingualGuide": "Guía multilingüe",
-      "culturalExpertise": "Experiencia cultural",
       "professionalGuide": "Guía Profesional",
       "guideCarPackage": "Paquete Guía + Auto",
       "premiumCarService": "Servicio de Auto Premium",
@@ -1559,10 +1832,14 @@
       "ticketServiceTitle": "¿Quieres que gestionemos tus entradas?",
       "ticketServiceBody1": "Podemos comprar y organizar las entradas elegibles antes de tu visita por",
       "ticketServiceFee": "50 EGP por cada entrada de pago emitida",
-      "ticketServiceBody2": ", además del precio oficial de la entrada. Este servicio opcional ayuda a reducir el tiempo en las taquillas y evita depender por completo de los datáfonos del recinto, ya que muchos lugares no aceptan efectivo. Cubre la gestión anticipada y la organización de las entradas; los controles de seguridad, de identidad, los horarios de acceso y las colas del recinto pueden seguir aplicándose."
+      "ticketServiceBody2": ", además del precio oficial de la entrada. Este servicio opcional ayuda a reducir el tiempo en las taquillas y evita depender por completo de los datáfonos del recinto, ya que muchos lugares no aceptan efectivo. Cubre la gestión anticipada y la organización de las entradas; los controles de seguridad, de identidad, los horarios de acceso y las colas del recinto pueden seguir aplicándose.",
+      "chooseYourService": "Elige tu servicio",
+      "6to10Hours": "6-10 horas",
+      "privateVehicle": "Vehículo privado",
+      "privateSedanSuv": "Sedán/SUV privado",
+      "guidePriceFrom": "Guía licenciado desde {{guidePrice}}/día — guía + coche privado desde {{guideCarPrice}}/día"
     },
     "cairo": {
-      "title": "Servicios de Auto y Guía Turístico en El Cairo | AffordEgypt",
       "heroTitle": "Servicios de Auto y Guía Turístico en El Cairo",
       "heroSubtitle": "Servicios expertos de auto y guía turístico en El Cairo. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en El Cairo?",
@@ -1578,12 +1855,12 @@
       "serviceAreasDesc": "Nuestros guías expertos cubren todas las principales atracciones de El Cairo y gemas ocultas",
       "specialtiesTitle": "Servicios Especializados de El Cairo",
       "egyptologyExperts": "Expertos en Egiptología",
-      "egyptologyExpertsDesc": "Egiptólogos licenciados con conocimiento profundo de historia faraónica, jeroglíficos y descubrimientos arqueológicos.",
+      "egyptologyExpertsDesc": "Egiptólogos licenciados con conocimiento profundo de historia faraónica, jeroglíficos y descubrimientos arqueológicos. Ideales para visitas a museos y para explorar las pirámides.",
       "islamicCairoSpecialists": "Especialistas en El Cairo Islámico",
-      "islamicCairoSpecialistsDesc": "Guías expertos para las calles medievales del Cairo islámico, mezquitas históricas y bazares tradicionales.",
+      "islamicCairoSpecialistsDesc": "Guías expertos para las calles medievales del Cairo islámico, sus mezquitas históricas y sus bazares tradicionales. Descubre la cultura y la arquitectura egipcias auténticas.",
       "pricingTitle": "Servicios Asequibles de Auto y Guía Turístico en El Cairo",
       "pricingDesc": "Guías profesionales y vehículos de lujo a precios competitivos. Sin costos ocultos.",
-      "pricingInfo": "Guías licenciados • Vehículos de lujo • Soporte multilingüe • Todas las tasas de entrada",
+      "pricingInfo": "Guías licenciados • Vehículos privados • Soporte multilingüe • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Explorar el Antiguo El Cairo?",
       "ctaSubtitle": "Reserva tu guía experto y descubre los secretos de los faraones",
       "serviceAreas": [
@@ -1593,12 +1870,20 @@
         "El Cairo copto",
         "Bazar Khan El Khalili",
         "Ciudadela de Saladino",
-        "Saqqara y Menfis",
-        "Dahshur"
-      ]
+        "Mezquita de Al-Azhar",
+        "Visitas a pie por el Viejo Cairo"
+      ],
+      "exploreCity": "Descubre El Cairo",
+      "exploreCityDesc": "Descubre las maravillas de El Cairo con comentarios expertos y conocimiento local",
+      "meetGuideDesc": "Un guía profesional con licencia te recogerá en tu hotel o en el lugar que elijas",
+      "chooseServiceDesc": "Elige solo guía, solo coche o el paquete combinado según lo que necesites",
+      "featLicensedEgyptologist": "Egiptólogo titulado",
+      "featFluentEnglishArabic": "Inglés y árabe fluidos",
+      "featHistoricalExpertise": "Experiencia histórica",
+      "seoTitle": "Guía Turístico Privado y Coche en El Cairo | Desde {{price}}/día",
+      "seoDescription": "Egiptólogo licenciado y coche privado en El Cairo desde {{price}}/día. Giza, el Museo Egipcio y El Cairo islámico. Las entradas se facturan por separado."
     },
     "luxor": {
-      "title": "Servicios de Auto y Guía Turístico en Luxor | AffordEgypt",
       "heroTitle": "Servicios de Auto y Guía Turístico en Luxor",
       "heroSubtitle": "Servicios expertos de auto y guía turístico en la antigua Tebas. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en Luxor?",
@@ -1609,17 +1894,17 @@
       "photographyTours": "Tours Fotográficos",
       "photographyToursDesc": "Tours fotográficos especiales para mejor iluminación y ángulos en templos",
       "earlyMorningAccess": "Acceso Matutino Temprano",
-      "earlyMorningAccessDesc": "Evita las multitudes con visitas al amanecer y acceso exclusivo temprano",
+      "earlyMorningAccessDesc": "Planifica un inicio temprano según el horario de apertura publicado de cada sitio; el acceso privado no está incluido salvo que se confirme por separado",
       "serviceAreasTitle": "Sitios de Templos Antiguos de Luxor",
       "serviceAreasDesc": "Tours guiados profesionales del museo al aire libre más grande del mundo",
       "specialtiesTitle": "Especialidades de Templos de Luxor",
       "valleyKingsExpert": "Experto en Valle de los Reyes",
       "valleyKingsExpertDesc": "Guías especializados para las tumbas reales con conocimiento detallado de prácticas de entierro faraónicas.",
       "templeArchitecture": "Tours de Arquitectura de Templos",
-      "templeArchitectureDesc": "Guías arquitectónicos expertos explicando las maravillas de ingeniería de los templos de Karnak y Luxor.",
+      "templeArchitectureDesc": "Guías especializados en arquitectura que explican las maravillas de ingeniería de los templos de Karnak y Luxor, con traducción de jeroglíficos y contexto histórico.",
       "pricingTitle": "Servicios Expertos de Auto y Guía Turístico en Luxor",
       "pricingDesc": "Guías arqueológicos profesionales y transporte de lujo. Mejor valor en el Alto Egipto.",
-      "pricingInfo": "Guías licenciados • Experiencia en templos • Vehículos premium • Boletos de entrada incluidos",
+      "pricingInfo": "Guías licenciados • Experiencia en templos • Coche privado con aire acondicionado en el paquete de guía + coche • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Descubrir la Antigua Tebas?",
       "ctaSubtitle": "Experimenta los templos de Luxor con guías arqueológicos expertos",
       "serviceAreas": [
@@ -1631,10 +1916,29 @@
         "Medinet Habu",
         "Colosos de Memnón",
         "Ramesseum"
-      ]
+      ],
+      "cardGuideName": "Guía especialista en templos",
+      "cardPackageName": "Tour orilla este y oeste",
+      "cardCarName": "Tours por los templos de Luxor",
+      "meetGuideStep": "Conoce al experto en templos",
+      "meetGuideDesc": "Un arqueólogo titulado te recibe con transporte cómodo",
+      "chooseServiceDesc": "Elige la orilla este, la oeste o el paquete combinado de templos",
+      "exploreCity": "Explora la antigua Tebas",
+      "exploreCityDesc": "Descubre tesoros faraónicos con comentarios históricos expertos",
+      "bookCta": "Reservar tour de templos",
+      "bookYourTour": "Reserva tu tour",
+      "featAncientEgyptExpert": "Experto en el Antiguo Egipto",
+      "featValleyKingsSpecialist": "Especialista en el Valle de los Reyes",
+      "featHieroglyphInterpreter": "Intérprete de jeroglíficos",
+      "featProfessionalGuide": "Guía profesional",
+      "featBothBanks": "Ambas orillas incluidas",
+      "featPremiumVehicle": "Vehículo prémium",
+      "featExpertDriverGuide": "Conductor-guía experto",
+      "featFlexibleTempleVisits": "Visitas a templos flexibles",
+      "seoTitle": "Guía Turístico Privado y Coche en Luxor | Desde {{price}}/día",
+      "seoDescription": "Egiptólogo licenciado y coche privado en Luxor desde {{price}}/día. Karnak, el Valle de los Reyes y ambas orillas. Las entradas se facturan por separado."
     },
     "aswan": {
-      "title": "Servicios de Auto y Guía Turístico en Asuán | AffordEgypt",
       "heroTitle": "Servicios de Auto y Guía Turístico en Asuán",
       "heroSubtitle": "Descubre la cultura nubia y tesoros del sur de Egipto. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en Asuán?",
@@ -1650,12 +1954,12 @@
       "serviceAreasDesc": "Experimenta las joyas del Nilo con guía cultural experto",
       "specialtiesTitle": "Especialidades Culturales de Asuán",
       "nubianHeritage": "Tours del Patrimonio Nubio",
-      "nubianHeritageDesc": "Visitas auténticas a pueblos nubios con guías comunitarios locales.",
+      "nubianHeritageDesc": "Visitas auténticas a pueblos nubios con guías de la comunidad local. Descubre artesanía, música y hospitalidad tradicionales respetando las costumbres locales.",
       "abuSimbelExpeditions": "Expediciones a Abu Simbel",
-      "abuSimbelExpeditionsDesc": "Guías del desierto profesionales para el sitio del Patrimonio Mundial de la UNESCO.",
+      "abuSimbelExpeditionsDesc": "Guías del desierto profesionales para el gran sitio Patrimonio Mundial de la UNESCO. Opciones de salida temprana y comentario experto sobre la obra maestra de Ramsés II.",
       "pricingTitle": "Servicios Auténticos de Auto y Guía Turístico en Asuán",
       "pricingDesc": "Experiencias culturales genuinas con guías nubios locales. Mejor valor en turismo cultural.",
-      "pricingInfo": "Guías locales • Inmersión cultural • Transporte premium • Experiencias auténticas",
+      "pricingInfo": "Guías locales • Inmersión cultural • Coche privado en el paquete de guía + coche • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Experimentar la Cultura Nubia?",
       "ctaSubtitle": "Descubre las tradiciones auténticas del sur de Egipto con expertos locales",
       "serviceAreas": [
@@ -1667,7 +1971,27 @@
         "Obelisco inacabado",
         "Paseo en faluca",
         "Isla de Kitchener"
-      ]
+      ],
+      "cardGuideName": "Guía de cultura nubia",
+      "cardPackageName": "Paquete Nilo y templos",
+      "cardCarName": "Expedición a Abu Simbel",
+      "meetGuideStep": "Conoce al guía cultural",
+      "meetGuideDesc": "Guía nubio local con profundo conocimiento de las tradiciones y la historia",
+      "chooseServiceStep": "Elige tu experiencia",
+      "chooseServiceDesc": "Elige tours culturales, visitas a templos o expediciones al desierto",
+      "exploreCity": "Vive Nubia",
+      "exploreCityDesc": "Sumérgete en la cultura única del sur de Egipto",
+      "bookCta": "Reservar tour cultural",
+      "featNubianHeritageExpert": "Experto en patrimonio nubio",
+      "featLocalVillageGuide": "Guía local de las aldeas",
+      "featTraditionalCulture": "Enfoque en la cultura tradicional",
+      "featProfessionalGuide": "Guía profesional",
+      "featPhilaeTour": "Visita al templo de Filae",
+      "featLongDistanceVehicle": "Vehículo de largo recorrido",
+      "featExpertGuide": "Guía experto",
+      "featUnescoSpecialist": "Especialista en sitios UNESCO",
+      "seoTitle": "Guía Turístico Privado y Coche en Asuán | Desde {{price}}/día",
+      "seoDescription": "Egiptólogo licenciado y coche privado en Asuán desde {{price}}/día. File, la Presa Alta y aldeas nubias. Las entradas se facturan por separado."
     }
   },
   "contactPage": {
@@ -1733,7 +2057,7 @@
   },
   "aboutPage": {
     "seoTitle": "Sobre AffordEgypt | La línea económica de Capital Travel Service",
-    "seoDescription": "AffordEgypt es la línea económica y transparente de Capital Travel Service, un operador con licencia ETAA con sede en El Cairo desde 2003. Fundada por Islam, que creció en Asuán, para ofrecer a los viajeros un punto medio honesto entre los paquetes de 4.000 dólares y los operadores de WhatsApp imposibles de verificar.",
+    "seoDescription": "AffordEgypt es la línea económica y transparente de Capital Travel Service, un operador con licencia ETAA con sede en El Cairo desde 2003, fundada por un guía de Asuán.",
     "badge": "Nuestra historia",
     "heroTitle": "Sobre Afford Egypt",
     "heroSubtitle": "Más que una agencia de viajes: somos especialistas apasionados por Egipto que hacen accesible el viaje auténtico para todos.",
@@ -1775,9 +2099,10 @@
     "title": "Atracciones de Egipto y precios de entrada",
     "subtitle": "Los precios reales y oficiales de las entradas, los mismos que usamos en tu presupuesto. Sin recargos ni sorpresas en la taquilla.",
     "note": "Las entradas no están incluidas en las tarifas diarias de AffordEgypt: las pagas directamente o las añades a tu presupuesto.",
-    "updating": "Estamos actualizando la lista de precios de entrada: escríbenos por WhatsApp para conocer los precios actuales.",
     "ctaTitle": "Añade entradas a tu presupuesto",
-    "ctaBody": "Crea tu itinerario con coche privado y egiptólogo licenciado, y añade las entradas solo donde quieras."
+    "ctaBody": "Crea tu itinerario con coche privado y egiptólogo licenciado, y añade las entradas solo donde quieras.",
+    "listUpdating": "La lista de entradas se está actualizando: escríbenos por WhatsApp para conocer los precios actuales.",
+    "ctaButton": "Crear tu presupuesto"
   },
   "reviewsPage": {
     "seoTitle": "Opiniones de viajeros | AffordEgypt",
@@ -1800,9 +2125,21 @@
     "readLess": "Leer menos",
     "noneFound": "No se han encontrado opiniones que coincidan con tus criterios.",
     "prevPage": "Página anterior",
-    "nextPage": "Página siguiente"
+    "nextPage": "Página siguiente",
+    "stars_one": "{{count}} estrella",
+    "stars_other": "{{count}} estrellas",
+    "perPageOption": "{{count}} por página",
+    "firstPage": "Primera",
+    "lastPage": "Última",
+    "verified": "Verificada",
+    "reviewCount_one": "({{count}} opinión)",
+    "reviewCount_other": "({{count}} opiniones)",
+    "showingRange": "Mostrando {{from}}–{{to}} de {{total}} opiniones",
+    "pageOf": "Página {{current}} de {{total}}"
   },
   "submitReviewPage": {
+    "seoTitle": "Enviar una reseña | AffordEgypt",
+    "seoDescription": "Cuéntanos cómo fue tu viaje con AffordEgypt. Tu opinión sincera ayuda a otros viajeros a decidir mejor.",
     "title": "Comparte tu aventura en Egipto",
     "subtitle": "Tus experiencias auténticas ayudan a otros viajeros a descubrir la magia de Egipto. Comparte tu historia e inspira a los demás.",
     "avgRating": "Valoración media",
@@ -1827,7 +2164,35 @@
     "g4Label": "Sé respetuoso:",
     "g4": "Mantén tu opinión constructiva y respetuosa con todas las partes.",
     "needHelp": "¿Necesitas ayuda?",
-    "verifiedNote": "Todas las opiniones se verifican manualmente antes de publicarse para garantizar su autenticidad."
+    "verifiedNote": "Todas las opiniones se verifican manualmente antes de publicarse para garantizar su autenticidad.",
+    "form": {
+      "title": "Comparte tu experiencia",
+      "subtitle": "Ayuda a otros viajeros compartiendo tu aventura en Egipto",
+      "name": "Tu nombre *",
+      "namePlaceholder": "Escribe tu nombre",
+      "location": "Tu ubicación",
+      "locationPlaceholder": "p. ej., Madrid, España",
+      "tripDate": "Fecha del viaje",
+      "ratingLabel": "Valoración *",
+      "ratingSummary": "{{rating}}/5 estrellas",
+      "ratingLabels": [
+        "1 estrella — mala",
+        "2 estrellas — regular",
+        "3 estrellas — buena",
+        "4 estrellas — muy buena",
+        "5 estrellas — excelente"
+      ],
+      "reviewTitle": "Título de la reseña *",
+      "reviewTitlePlaceholder": "Resume tu experiencia",
+      "review": "Tu reseña *",
+      "reviewPlaceholder": "Cuéntanos tu experiencia en Egipto. ¿Qué fue lo que más te gustó? ¿Algún consejo para futuros viajeros?",
+      "submit": "Enviar reseña",
+      "submitting": "Enviando...",
+      "successTitle": "¡Gracias por tu reseña!",
+      "successBody": "Hemos recibido tu reseña y se publicará una vez verificada.",
+      "errorTitle": "Error",
+      "errorBody": "No se pudo enviar la reseña"
+    }
   },
   "legal": {
     "effectiveDate": "Fecha de entrada en vigor:",
@@ -1841,7 +2206,7 @@
   },
   "privacyPolicy": {
     "seoTitle": "Política de privacidad | AffordEgypt",
-    "seoDescription": "Cómo AffordEgypt recopila, utiliza y protege tus datos personales, incluidos tus derechos según el RGPD.",
+    "seoDescription": "Cómo AffordEgypt recopila, usa y protege tus datos personales cuando navegas, pides un presupuesto o reservas un tour.",
     "title": "Política de privacidad – Afford Egypt",
     "s1": "1. Introducción",
     "s1b": "Afford Egypt («nosotros», «nuestro» o «nos») valora tu privacidad y se compromete a proteger tus datos personales. Esta política explica cómo recopilamos, usamos, comunicamos y protegemos tu información cuando visitas nuestro sitio web",
@@ -1871,11 +2236,15 @@
     "s6": "6. Seguridad",
     "s6b": "Adoptamos medidas técnicas y organizativas adecuadas para proteger tus datos personales.",
     "s7": "7. Transferencias internacionales",
-    "s7b": "Podemos transferir datos fuera de la UE (por ejemplo, a Egipto) utilizando cláusulas contractuales tipo u otras garantías legales."
+    "s7b": "Podemos transferir datos fuera de la UE (por ejemplo, a Egipto) utilizando cláusulas contractuales tipo u otras garantías legales.",
+    "s2intro": "Podemos recopilar:",
+    "s3intro": "Conforme al Reglamento General de Protección de Datos (RGPD), tratamos tus datos sobre la base de:",
+    "s4intro": "Tienes derecho a:",
+    "s4contact": "Para ejercer estos derechos, escríbenos a:"
   },
   "termsOfService": {
     "seoTitle": "Términos de servicio | AffordEgypt",
-    "seoDescription": "Los términos que rigen las reservas, pagos, cancelaciones y responsabilidad de los servicios de viaje de AffordEgypt.",
+    "seoDescription": "Términos del servicio de AffordEgypt, operado por Capital Travel Service (ETAA 2179). Uso del sitio, reservas, pagos y responsabilidad.",
     "title": "Términos de servicio – Afford Egypt",
     "s1": "1. Aceptación de los términos",
     "s1pre": "Al utilizar",
@@ -1904,7 +2273,7 @@
   },
   "bookingAgreement": {
     "seoTitle": "Acuerdo de reserva | AffordEgypt",
-    "seoDescription": "Depósito, servicios incluidos, modificaciones, cancelaciones y responsabilidades del cliente en las reservas de AffordEgypt.",
+    "seoDescription": "El acuerdo de reserva de AffordEgypt: condiciones del depósito, cancelación, reembolsos y responsabilidades del viajero para tours operados por Capital Travel Service (ETAA 2179).",
     "title": "Acuerdo de reserva – Afford Egypt",
     "intro": "Este acuerdo se aplica a todas las reservas de viaje realizadas con Afford Egypt.",
     "s1": "1. Confirmación y depósito",
@@ -1931,11 +2300,11 @@
     "s2a": "Cookies esenciales:",
     "s2av": "Para el funcionamiento del sitio (p. ej., navegación, reservas)",
     "s2b": "Cookies analíticas:",
-    "s2bv": "Para medir el rendimiento (p. ej., Google Analytics)",
+    "s2bv": "Para entender cómo se usa el sitio (Google Analytics 4). Solo se instalan con tu consentimiento.",
     "s2c": "Cookies de marketing:",
-    "s2cv": "Para anuncios personalizados (p. ej., Facebook Pixel)",
+    "s2cv": "Para la medición y la personalización de la publicidad (Google Ads). Solo se instalan con tu consentimiento.",
     "s3": "3. Gestión de cookies",
-    "s3b": "Puedes gestionar o eliminar las cookies desde la configuración de tu navegador. Desactivarlas puede afectar al funcionamiento del sitio.",
+    "s3b": "Las cookies de análisis y de publicidad solo se instalan si las aceptas. En tu primera visita te preguntamos qué prefieres, y puedes cambiar o retirar tu elección en cualquier momento con el enlace «Preferencias de cookies» del pie de página. Las cookies esenciales están siempre activas porque el sitio no puede funcionar sin ellas. También puedes gestionar o eliminar las cookies desde la configuración de tu navegador; desactivar las esenciales puede afectar al funcionamiento del sitio.",
     "s4": "4. Cookies de terceros",
     "s4b": "Algunas cookies pueden proceder de servicios externos como mapas, plataformas de pago o sistemas de chat en directo."
   },
@@ -1956,10 +2325,10 @@
     "checklistTitle": "Lista esencial antes de viajar",
     "checklistLead": "Tener la documentación en regla con antelación es una de las formas más inteligentes (y sencillas) de que tu aventura egipcia transcurra sin sobresaltos.",
     "visaBody": "Asegúrate de que tu pasaporte tenga al menos seis meses de validez desde tu llegada. La mayoría de los viajeros necesita visado. El",
-    "visaStrong": "visado electrónico (625 EGP)",
+    "visaStrong": "visado electrónico (30 USD)",
     "visaBody2": "es muy recomendable y se solicita por internet. El visado a la llegada es una opción para algunos, pero consulta las normas porque pueden cambiar.",
     "insuranceBody": "Imprescindible. Es tu red de seguridad ante urgencias médicas, cancelaciones o pérdida de equipaje. Comprueba que la póliza cubra actividades como el buceo o los vuelos en globo si están en tu itinerario.",
-    "healthBody": "Para la mayoría no hay vacunas obligatorias, pero se recomiendan encarecidamente hepatitis A, fiebre tifoidea y tétanos. Bebe siempre agua embotellada y cuida la higiene alimentaria. Lleva un pequeño botiquín.",
+    "healthBody": "Para la mayoría de los itinerarios no hay vacunas obligatorias, pero se exige certificado de vacunación contra la fiebre amarilla a los viajeros de 9 meses o más que lleguen desde un país con riesgo de transmisión, incluido un tránsito aeroportuario allí de más de 12 horas. Las necesidades de vacunación varían según la persona y la ruta, así que pide consejo médico específico para tu destino antes de viajar. Fuera de los grandes hoteles internacionales con agua tratada confirmada, bebe agua embotellada de fábrica o correctamente tratada, cuida la higiene alimentaria y lleva un pequeño botiquín.",
     "budgetTitle": "Prepara tu presupuesto: qué esperar en 2026 💰",
     "dailyBudget": "Tu presupuesto diario en Egipto",
     "hacksTitle": "Trucos para ahorrar 💡",
@@ -1968,7 +2337,7 @@
     "hack2L": "Usa el transporte público:",
     "hack2": "El metro de El Cairo es eficiente, seguro y muy barato (menos de 0,50 dólares por viaje).",
     "hack3L": "Consigue la tarjeta ISIC:",
-    "hack3": "Si eres estudiante menor de 30 años, te da un 50 % de descuento en la mayoría de los sitios históricos.",
+    "hack3": "Muchos sitios estatales ofrecen entrada reducida de estudiante; por lo general hay que tener 24 años o menos y mostrar un carné de estudiante válido y la tarjeta ISIC. Confírmalo en cada monumento.",
     "hack4L": "Regatea con una sonrisa:",
     "hack4": "En los mercados locales (zocos), regatear con simpatía forma parte de la cultura.",
     "hack5L": "Compra agua en formato grande:",
@@ -1976,12 +2345,12 @@
     "stayTitle": "Alojamiento asequible 🛏️",
     "stayLead": "Encontrar dónde dormir en Egipto no tiene por qué vaciarte la cartera. Desde albergues con ambiente hasta casas de huéspedes privadas, hay buenas opciones.",
     "hostels": "Albergues",
-    "hostelsBody": "El campamento base del viajero de bajo presupuesto, ideal para conocer gente. Camas en dormitorio compartido desde",
-    "hostelsStrong": "150–300 EGP",
-    "hostelsBody2": "por noche en El Cairo, Luxor y Dahab.",
+    "hostelsBody": "Útiles para conocer a otros viajeros, pero el alojamiento tipo albergue no abunda, puede ser difícil de conseguir y no conviene dar por supuesto que sea totalmente seguro. Donde los haya, cuenta con unos",
+    "hostelsStrong": "1,000–1,500 EGP en adelante",
+    "hostelsBody2": "por noche.",
     "hotels": "Hoteles económicos",
     "hotelsBody": "Para más intimidad. Puedes encontrar habitaciones privadas y limpias por",
-    "hotelsStrong": "375–750 EGP",
+    "hotelsStrong": "2,000 EGP en adelante",
     "hotelsBody2": "por noche, a menudo con baño propio y aire acondicionado.",
     "nubian": "Casas nubias",
     "nubianBody": "En Asuán, alójate en una colorida casa de huéspedes nubia de gestión familiar: una experiencia cultural única a precios moderados.",
@@ -1990,19 +2359,19 @@
     "eatsTitle": "Imprescindibles y baratos:",
     "food1L": "Koshari:",
     "food1": "El plato nacional. Una mezcla contundente de arroz, lentejas, pasta y salsa de tomate picante.",
-    "food1C": "Precio: menos de 25 EGP.",
+    "food1C": "Precio: menos de 60 EGP.",
     "food2L": "Ta'ameya (faláfel):",
     "food2": "Hecho con habas y servido en pan de pita recién hecho.",
-    "food2C": "Precio: unos 12 EGP.",
+    "food2C": "Precio: ~ 17 EGP.",
     "food3L": "Ful medames:",
     "food3": "Habas cocidas a fuego lento, el desayuno de los campeones.",
     "food3C": "Precio: menos de 25 EGP.",
     "moveTitle": "Moverse por Egipto sin gastar mucho 🚍",
     "moveLead": "Egipto es un país grande, pero su red de trenes, autobuses y transporte local facilita recorrerlo con poco presupuesto.",
     "trains": "Trenes",
-    "trainsBody": "Panorámicos y económicos para largas distancias. Un asiento de 2.ª clase con aire acondicionado de",
+    "trainsBody": "Una forma cómoda y clásica de recorrer largas distancias. Los precios para pasajeros extranjeros y el acceso a la reserva varían según el tren y la clase, y las tarifas cambiaron en marzo de 2026. Consulta el horario oficial del ferrocarril y la tarifa vigente para tu fecha en lugar de fiarte de una conversión fija.",
     "buses": "Autobuses",
-    "busesBody": "La opción más barata. Un autobús de",
+    "busesBody": "Suele ser la opción más barata para largas distancias. Consulta el horario y la tarifa vigentes del operador para tu fecha. Compañías como Go Bus y Blue Bus cubren rutas de larga distancia, pero la disponibilidad cambia.",
     "localTransport": "Transporte local",
     "microbuses": "Microbuses",
     "microBody": "Para los más aventureros. Son baratísimos pero difíciles de usar sin árabe. Mejor para trayectos cortos y habituales donde puedas seguir a los locales.",
@@ -2015,35 +2384,72 @@
     "free3L": "Explora El Cairo copto e islámico:",
     "free3": "Muchas de las iglesias y mezquitas más antiguas de El Cairo se visitan gratis o con una pequeña donación.",
     "free4L": "Visita la isla Elefantina:",
-    "free4": "Toma el ferry público barato en Asuán y recorre coloridos pueblos nubios.",
+    "free4": "Toma el ferry público barato a la isla Elefantina. No es lo mismo que una excursión en lancha privada a un pueblo nubio; confirma la tarifa vigente del ferry público en el embarcadero.",
     "itinTitle": "Ejemplo de itinerario económico de 10 días",
     "itin1L": "Días 1-3: El Cairo.",
-    "itin1": "Visita las pirámides, el Museo Egipcio y Khan el-Khalili. Toma un autobús o tren nocturno a Luxor.",
+    "itin1": "Visita la meseta de Guiza (700 EGP de entrada al recinto para adulto extranjero, sin incluir el interior de las pirámides), el Museo Egipcio (550 EGP para adulto extranjero) y Khan el-Khalili. Consulta la tarifa en vigor del operador antes de reservar un autobús o tren nocturno a Luxor.",
     "itin2L": "Días 4-6: Luxor.",
-    "itin2": "Recorre los templos de Karnak y Luxor en la orilla este; el Valle de los Reyes y el templo de Hatshepsut en la oeste.",
+    "itin2": "Recorre Karnak (600 EGP) y el templo de Luxor (500 EGP) en la orilla este; el Valle de los Reyes (750 EGP, con algunas tumbas abiertas incluidas) y Deir el-Bahari/templo de Hatshepsut (440 EGP) en la oeste. Son precios de adulto extranjero comprobados en agosto de 2026; las tumbas premium cuestan aparte.",
     "itin3L": "Días 7-8: Asuán.",
-    "itin3": "Visita el templo de File, recorre pueblos nubios y navega en faluca al atardecer. Valora una excursión económica a Abu Simbel.",
+    "itin3": "Visita el templo de File (550 EGP de entrada para adulto extranjero; el traslado en barco aparte), recorre un pueblo nubio y navega en faluca al atardecer. La entrada a Abu Simbel cuesta 750 EGP para un adulto extranjero; el transporte o la excursión van aparte.",
     "safeTitle": "Viajar seguro, sano y con respeto cultural",
     "safeLead": "Un poco de preparación y respeto contribuyen mucho a que tu viaje sea cómodo y memorable.",
     "customs": "Respeta las costumbres locales",
     "customsBody": "Vístete con discreción, sobre todo en lugares religiosos. Un sencillo «Salam Alaikum» (hola) siempre se agradece. Pide permiso antes de fotografiar a las personas.",
     "tipping": "Entiende las propinas",
-    "tippingBody": "La propina (baksheesh) forma parte de la vida diaria. Lleva billetes pequeños (5, 10, 20 EGP) para guías, personal del hotel y encargados de aseos. Para un guía de jornada completa, 80-100 EGP es una buena propina.",
+    "tippingBody": "La propina (baksheesh) forma parte de la vida diaria. Lleva billetes pequeños (5, 10, 20 EGP) para los maleteros del aeropuerto, el personal del hotel y los encargados de aseos. Para un guía de jornada completa, una buena propina ronda los 300–500 EGP.",
     "safety": "Seguridad general",
     "safetyBody": "Mantente atento en zonas concurridas, evita las manifestaciones y usa aplicaciones de transporte por la noche. Para las mujeres, vestir con discreción y unirse a grupos ayuda a reducir atenciones no deseadas.",
     "ctaTitle": "¡Tu sueño egipcio te espera!",
     "ctaBody": "Viajar a Egipto con poco presupuesto en 2026 no solo es posible, sino enormemente gratificante. Con buena planificación, espíritu aventurero y ganas de acercarte a la cultura local, las maravillas atemporales de este país están a tu alcance.",
     "h1a": "Viajar barato por Egipto, ",
     "h1b": "sin complicaciones",
-    "heroTagline": "Tu guía definitiva de 2026 para viajar barato por Egipto."
+    "heroTagline": "Tu guía definitiva de 2026 para viajar barato por Egipto.",
+    "schemaDescription": "Consejos prácticos para viajar a Egipto de un operador con licencia radicado en El Cairo. Propinas, seguridad, estafas que evitar, código de vestimenta, moneda, transporte y lo que las guías suelen equivocar.",
+    "step1Body": "Visados, fechas y listas imprescindibles.",
+    "step2Body": "Controla tus gastos y encuentra buenas ofertas.",
+    "step3Body": "Muévete como un local y descubre lo mejor.",
+    "ctaItinerary": "Ver itinerario de ejemplo ↓",
+    "headsUpL": "Atención:",
+    "headsUp": "No des por hecho que todo precio es una ganga. La inflación, los cambios de divisa y el doble precio (locales frente a turistas) pueden dar alguna sorpresa. Un poco de atención sirve de mucho: piénsalo como regatear en un zoco; no hace falta negociar duro, solo estar informado y gastar con cabeza.",
+    "seasonADates": "(mar–may y sep–nov)",
+    "seasonABody": "La combinación perfecta de buen tiempo, multitudes manejables y precios asequibles. Las aerolíneas y los hoteles suelen ser más generosos con sus ofertas. Es la mejor relación calidad-precio.",
+    "seasonBDates": "(jun–ago)",
+    "seasonBBody": "Si el calor fuerte no te importa, puede ser tu gran chollo. Planifica bien el itinerario con días de costa en Alejandría o Dahab. Encontrarás algunos de los precios más bajos del año.",
+    "quickTipL": "Consejo rápido:",
+    "quickTip": "El invierno (dic–feb) tiene un tiempo estupendo, pero sale más caro porque es temporada alta. Si vas justo de presupuesto, apunta a las temporadas intermedias.",
+    "visaTitle": "1. Pasaporte y visado",
+    "insuranceTitle": "2. Seguro de viaje",
+    "healthTitle": "3. Salud y vacunas",
+    "budgetLead": "Hablemos de números. Un buen presupuesto es tu mejor compañero de viaje. Los tipos de cambio se mueven con frecuencia, así que consulta un banco o una fuente fiable de divisas al planificar y otra vez al viajar.",
+    "figuresL": "Sobre las cifras que siguen:",
+    "figures": "los importes de comida, compra, alojamiento, excursiones, faluca, propinas y presupuesto diario son estimaciones del mercado local, no tarifas fijas. Cambian con la inflación y varían según la ciudad y la temporada, así que tómalos como guía de planificación y confirma los precios actuales sobre el terreno.",
+    "dailyBudgetBody": "La mayoría de quienes viajan con poco presupuesto por Egipto deberían contar con gastar entre <b>2,500 y 3,000 EGP al día.</b> Solo el alojamiento puede rondar los 2,000 EGP por noche, y el resto cubre comida, transporte local, entradas y otros gastos básicos del viaje.",
+    "tripCostL": "Coste total del viaje (7-10 días):",
+    "tripCost": "El total depende mucho del alojamiento, el transporte, las actividades y los vuelos. Los vuelos desde EE. UU. o Australia suelen elevar el coste general: probablemente el vuelo sea tu mayor gasto.",
+    "food4L": "Shawarma:",
+    "food4": "Jugosos wraps de pollo o ternera con ajo, para repetir.",
+    "food4C": "Precio: ~ 120 EGP.",
+    "selfCateringL": "Consejo para cocinar por tu cuenta:",
+    "selfCatering": "Comprar en los mercados locales es toda una aventura. Una docena de huevos cuesta ~72 EGP, una barra de pan ~2,5 EGP y la fruta y verdura fresca son baratísimas. Es una buena forma de ahorrar en desayunos y comidas.",
+    "localTransportBody": "En El Cairo, el <b>metro</b> es una opción útil para moverte por la ciudad. Para los taxis, usa aplicaciones como <b>Uber, inDrive o DiDi</b> y así tendrás precios más claros y evitarás regatear.",
+    "wondersLead": "Las entradas suman, pero con una buena planificación puedes disfrutar de los grandes monumentos de Egipto sin descuadrar tu presupuesto.",
+    "itinLead": "Esta ruta clásica del «Triángulo Dorado» combina El Cairo, Luxor y Asuán.",
+    "itin4L": "Días 9-10:",
+    "itin4": "Vuelve a El Cairo para la salida o alarga el viaje hasta Alejandría o el mar Rojo.",
+    "backToTop": "Volver arriba ↑"
   },
   "budgetGuide": {
     "seoTitle": "Egipto con poco presupuesto | La guía honesta de un operador de El Cairo",
     "seoDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni operadores fraudulentos. Costes y consejos reales de un operador con licencia en El Cairo: gasto diario, transporte, comida y atracciones.",
+    "schemaDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni en operadores fraudulentos. Costes reales y consejos reales de un operador con licencia radicado en El Cairo. Costes diarios, transporte, comida y entradas.",
     "badge": "Guía de viaje económico 2026",
     "title": "Viajar barato por Egipto",
+    "titleSub": "Cómo ver más gastando menos",
     "heroLead": "Descubre el extraordinario patrimonio cultural de Egipto, su vida local vibrante y sus atracciones atemporales sin arruinarte. Tu guía completa para aventuras egipcias asequibles.",
     "heroCta": "Pedir presupuesto",
+    "heroCta2": "Leer consejos de viaje",
+    "whyH2": "Por qué Egipto es ideal en 2026 para viajar con poco presupuesto",
     "whyLead": "Egipto destaca como un destino excepcional para viajar con poco presupuesto, con una relación calidad-precio inmejorable y experiencias inolvidables.",
     "why1": "Tipos de cambio favorables",
     "why1b": "Los tipos favorables de la libra egipcia frente a las monedas internacionales se traducen en mayor poder adquisitivo. El alojamiento, las comidas, el transporte y las entradas siguen siendo muy asequibles en comparación con Europa o Norteamérica.",
@@ -2051,17 +2457,8 @@
     "why2b": "Egipto está invirtiendo con fuerza en infraestructura turística. Nuevos museos, exposiciones interactivas y experiencias digitales inmersivas ofrecen formas atractivas de descubrir la historia, a menudo con precios de lanzamiento.",
     "why3": "Mejor experiencia",
     "why3b": "Trámites aeroportuarios más ágiles, mejores estándares de seguridad y una hospitalidad acogedora hacen de Egipto un destino especialmente atractivo para viajeros que buscan experiencias memorables y asequibles.",
+    "timingH2": "Las mejores épocas para viajar barato",
     "timingLead": "Elegir bien las fechas influye mucho en tu presupuesto y en tu experiencia",
-    "checklistLead": "Prepárate antes de salir para que tu aventura egipcia transcurra sin contratiempos",
-    "budgetLead": "Planifica tus gastos con presupuestos diarios realistas",
-    "budgetNote": "Cubre alojamiento, comidas, transporte y las principales atracciones para una experiencia completa en Egipto",
-    "hacksLead": "Consejos de quien vive allí para aprovechar al máximo tu presupuesto",
-    "stayTitle": "Opciones de alojamiento asequibles",
-    "eatTitle": "Consejos para comer barato",
-    "moveTitle": "Transporte con poco presupuesto",
-    "closing": "Con una planificación estratégica y un presupuesto bien pensado, el extraordinario patrimonio cultural de Egipto está perfectamente a tu alcance.",
-    "cta1": "Empieza a planificar tu viaje",
-    "cta2": "Explorar guías de viaje",
     "bestTimes": [
       {
         "season": "Primavera y otoño",
@@ -2102,50 +2499,18 @@
         "tip": "Elige zonas costeras como Alejandría o Dahab"
       }
     ],
-    "budgetBreakdown": [
-      {
-        "category": "Alojamiento",
-        "daily": "150-750 EGP",
-        "details": "De albergues a hoteles económicos"
-      },
-      {
-        "category": "Comida",
-        "daily": "75-375 EGP",
-        "details": "De comida callejera a restaurantes de gama media"
-      },
-      {
-        "category": "Transporte",
-        "daily": "50-250 EGP",
-        "details": "Transporte público y autobuses interurbanos"
-      },
-      {
-        "category": "Atracciones",
-        "daily": "125-500 EGP",
-        "details": "Entradas y actividades"
-      },
-      {
-        "category": "Varios",
-        "daily": "125-375 EGP",
-        "details": "Propinas, recuerdos, imprevistos"
-      }
-    ],
-    "moneySavingHacks": [
-      "Reserva alojamiento con antelación en temporada media",
-      "Come comida callejera local (koshari, shawarma, ta'ameya)",
-      "Usa el transporte público (metro, autobuses, taxis compartidos)",
-      "Lleva la tarjeta ISIC para descuentos de estudiante (hasta el 50 %)",
-      "Regatea con respeto en los mercados",
-      "Alójate en casas de estilo nubio en Asuán",
-      "Compra en mercados locales para cocinar tú",
-      "Usa Uber/Careem para desplazamientos urbanos seguros y baratos"
-    ],
+    "advantagesLabel": "Ventajas:",
+    "considerLabel": "A tener en cuenta:",
+    "tipLabel": "Consejo:",
+    "checklistH2": "Lista esencial antes de viajar",
+    "checklistLead": "Prepárate antes de salir para que tu aventura egipcia transcurra sin contratiempos",
     "checklist": [
       {
         "title": "Documentación de viaje",
         "items": [
           "Pasaporte con validez de más de 6 meses y páginas en blanco",
-          "Visado electrónico (625 EGP): se recomienda solicitarlo online",
-          "Visado a la llegada (625 EGP en efectivo) para algunas nacionalidades",
+          "Visado electrónico (30 USD): se recomienda solicitarlo online",
+          "Visado a la llegada (en efectivo, en USD) para algunas nacionalidades",
           "Verifica los requisitos vigentes por canales oficiales"
         ]
       },
@@ -2153,7 +2518,7 @@
         "title": "Salud y seguridad",
         "items": [
           "Seguro de viaje que cubra urgencias médicas",
-          "Vacunas recomendadas: hepatitis A, fiebre tifoidea, tétanos",
+          "Consulta a un profesional sobre las vacunas según tu destino; se exige certificado de fiebre amarilla si llegas desde un país de riesgo",
           "Solo agua embotellada; evita la comida callejera cruda",
           "Botiquín básico con los medicamentos esenciales"
         ]
@@ -2163,13 +2528,127 @@
         "items": [
           "La moneda local es la libra egipcia (EGP)",
           "Lleva efectivo en billetes pequeños",
-          "Presupuesta 1.250-2.000 EGP al día para un viaje completo",
-          "7-10 días: unos 20.000-27.500 EGP con vuelo incluido"
+          "Presupuesta 2,500-3,000 EGP al día para un viaje completo",
+          "7-10 días: el total depende del alojamiento, las actividades y los vuelos"
         ]
       }
     ],
-    "titleSub": "Cómo ver más gastando menos",
-    "whyH2": "Por qué Egipto es ideal en 2026 para viajar con poco presupuesto"
+    "budgetH2": "Desglose del presupuesto diario",
+    "budgetLead": "Planifica tus gastos con presupuestos diarios realistas",
+    "budgetBreakdown": [
+      {
+        "category": "Alojamiento",
+        "daily": "~2,000 EGP",
+        "details": "Hoteles económicos; albergues 1,000–1,500 EGP donde los haya"
+      },
+      {
+        "category": "Comida",
+        "daily": "200–400 EGP",
+        "details": "De comida callejera a restaurantes informales"
+      },
+      {
+        "category": "Transporte",
+        "daily": "50–200 EGP",
+        "details": "Metro y apps de transporte; autobuses interurbanos aparte"
+      },
+      {
+        "category": "Atracciones",
+        "daily": "150–750 EGP",
+        "details": "Las entradas varían según el sitio (principales 440–750 EGP)"
+      },
+      {
+        "category": "Varios",
+        "daily": "100–300 EGP",
+        "details": "Propinas, recuerdos, imprevistos"
+      }
+    ],
+    "budgetTotalTitle": "Presupuesto diario total",
+    "budgetTotal": "2,500–3,000 EGP",
+    "budgetNote": "Cubre alojamiento, comidas, transporte y las principales atracciones para una experiencia completa en Egipto",
+    "hacksH2": "Los mejores trucos para ahorrar",
+    "hacksLead": "Consejos de quien vive allí para aprovechar al máximo tu presupuesto",
+    "moneySavingHacks": [
+      "Reserva alojamiento con antelación en temporada media",
+      "Come comida callejera local (koshari, shawarma, ta'ameya)",
+      "Usa el transporte público (metro, autobuses, taxis compartidos)",
+      "Entradas de estudiante en sitios estatales: por lo general 24 años o menos con carné de estudiante válido y tarjeta ISIC; confírmalo en cada monumento",
+      "Regatea con respeto en los mercados",
+      "Alójate en casas de estilo nubio en Asuán",
+      "Compra en mercados locales para cocinar tú",
+      "Usa Uber, inDrive o DiDi para desplazamientos urbanos"
+    ],
+    "stayTitle": "Opciones de alojamiento asequibles",
+    "stayOptions": [
+      {
+        "name": "Albergues",
+        "price": "1,000–1,500 EGP+/noche",
+        "description": "Útiles para conocer a otros viajeros, pero la oferta es limitada fuera de los destinos principales y la calidad varía: revisa bien cada alojamiento antes de reservar."
+      },
+      {
+        "name": "Hoteles económicos",
+        "price": "2,000 EGP+/noche",
+        "description": "Habitaciones privadas, a menudo pensiones familiares: los precios dependen de la ciudad, la ubicación, las instalaciones y la temporada."
+      },
+      {
+        "name": "Alojamientos nubios",
+        "price": "Precios variables",
+        "description": "Inmersión cultural en Asuán en alojamientos de estilo nubio tradicional: consulta los precios actuales antes de reservar."
+      }
+    ],
+    "eatTitle": "Consejos para comer barato",
+    "streetFoodTitle": "Los reyes de la comida callejera",
+    "streetFoodItems": [
+      {
+        "name": "Koshari",
+        "price": "< 60 EGP"
+      },
+      {
+        "name": "Ta'ameya (Falafel)",
+        "price": "~17 EGP"
+      },
+      {
+        "name": "Ful Medames",
+        "price": "< 25 EGP"
+      },
+      {
+        "name": "Shawarma",
+        "price": "~120 EGP"
+      }
+    ],
+    "diningTitle": "Estrategia inteligente para comer",
+    "diningTips": [
+      "Compra en mercados locales para cocinar por tu cuenta",
+      "Restaurantes de gama media de vez en cuando (8-16 USD por persona)",
+      "Bebe siempre agua embotellada",
+      "Evita los alimentos crudos de los puestos callejeros"
+    ],
+    "moveTitle": "Transporte con poco presupuesto",
+    "transportModes": [
+      {
+        "name": "Trenes",
+        "detail": "Segunda clase con aire acondicionado; El Cairo–Luxor ~3,763 EGP para extranjeros",
+        "verdict": "Cómodo"
+      },
+      {
+        "name": "Autobuses",
+        "detail": "Go Bus y Blue Bus; El Cairo–Luxor 500–600 EGP",
+        "verdict": "Lo más barato"
+      },
+      {
+        "name": "Metro",
+        "detail": "El eficiente metro de El Cairo",
+        "verdict": "Muy económico"
+      },
+      {
+        "name": "Apps de transporte",
+        "detail": "Uber, inDrive o DiDi para moverte por la ciudad",
+        "verdict": "Asequible"
+      }
+    ],
+    "closingH2": "Tu aventura egipcia te espera",
+    "closingBody": "Con una planificación estratégica y un presupuesto bien pensado, disfrutar del extraordinario patrimonio cultural de Egipto, de su vibrante vida local y de sus monumentos atemporales sin gastar de más es totalmente posible. Respeta las costumbres locales, elige alojamientos y comidas económicos y aprovecha bien el transporte público.",
+    "cta1": "Empieza a planificar tu viaje",
+    "cta2": "Explorar guías de viaje"
   },
   "streetFoodGuide": {
     "seoTitle": "Guía de comida callejera egipcia | Qué comer y dónde",
@@ -2182,7 +2661,7 @@
     "whyH2": "Por qué la comida callejera es perfecta para viajeros",
     "whySub": "Descubra los sabores auténticos de Egipto sin arruinar su presupuesto",
     "why1H": "Extremadamente económica",
-    "why1B": "La mayoría de los platos cuesta entre 5 y 30 EGP",
+    "why1B": "Muchos platos básicos son baratos, pero los precios varían según la ciudad, la ración y el puesto; consulta la carta expuesta antes de pedir",
     "why2H": "Fresca y rápida",
     "why2B": "Preparada delante de usted, casi siempre muy caliente y lista para comer",
     "why3H": "Profundamente local",
@@ -2204,7 +2683,7 @@
     "drinksH2": "Bebidas para acompañar la comida callejera",
     "drinksSub": "Refrésquese con bebidas egipcias auténticas",
     "noteLabel": "Nota importante:",
-    "noteBody": "Evite el agua del grifo y el hielo; elija agua embotellada precintada (aprox. 5 EGP)",
+    "noteBody": "Fuera de los grandes hoteles internacionales con agua tratada confirmada, bebe agua embotellada precintada de fábrica o correctamente tratada. Si no sabes cómo se ha hecho el hielo, evítalo.",
     "safetyH2": "Consejos de seguridad para comer en la calle",
     "safetySub": "Disfrute de los sabores auténticos de Egipto con tranquilidad",
     "packH3": "Qué llevar a una aventura de comida callejera",
@@ -2218,7 +2697,7 @@
     "phrasesH2": "Frases árabes útiles",
     "phrasesSub": "Frases esenciales para enriquecer su experiencia gastronómica",
     "itineraryH2": "Itinerario de comida callejera económico",
-    "itinerarySub": "Día en El Cairo: una jornada entera de comida callejera deliciosa por menos de 75 EGP",
+    "itinerarySub": "Día en El Cairo: una jornada entera de comida callejera por 400 EGP",
     "itineraryTitle": "Día de comida callejera en El Cairo",
     "totalLabel": "Coste total del día:",
     "finalH2": "Su aventura culinaria le espera",
@@ -2272,7 +2751,7 @@
       {
         "name": "Koshari",
         "description": "Un plato contundente de arroz, lentejas, garbanzos, pasta, cebolla crujiente y salsa de tomate y vinagre",
-        "cost": "15–25 EGP",
+        "cost": "Menos de 60 EGP",
         "bestIn": "El Cairo (Abou Tarek, Koshary El Tahrir)",
         "tip": "Pida «shatta» (salsa picante) si le gusta el picante",
         "arabicName": "كشري"
@@ -2280,7 +2759,7 @@
       {
         "name": "Ta'ameya",
         "description": "Falafel egipcio hecho de habas (no de garbanzos), con hierbas y una capa de sésamo",
-        "cost": "1–2 EGP por pieza",
+        "cost": "Unos 17 EGP",
         "bestIn": "Carritos de desayuno de El Cairo y Alejandría",
         "tip": "100 % vegetal y saciante",
         "arabicName": "طعمية"
@@ -2288,7 +2767,7 @@
       {
         "name": "Ful Medames",
         "description": "Habas cocidas a fuego lento con aceite de oliva, comino y zumo de limón",
-        "cost": "5–10 EGP por bocadillo",
+        "cost": "Menos de 25 EGP",
         "bestIn": "Carritos de desayuno y cafés populares",
         "tip": "El desayuno nacional de Egipto",
         "arabicName": "فول مدمس"
@@ -2296,7 +2775,7 @@
       {
         "name": "Shawarma",
         "description": "Ternera o pollo marinado y cortado de un asador vertical",
-        "cost": "15–30 EGP por wrap",
+        "cost": "Unos 120 EGP",
         "bestIn": "Puestos de shawarma de estilo sirio en El Cairo, Alejandría y Hurgada",
         "tip": "Salsa de ajo para el pollo, tahini para la ternera",
         "arabicName": "شاورما"
@@ -2304,7 +2783,7 @@
       {
         "name": "Hawawshi",
         "description": "Carne picada de ternera especiada y horneada dentro de pan baladi",
-        "cost": "15–25 EGP por bocadillo",
+        "cost": "200 EGP",
         "bestIn": "Panaderías tradicionales y vendedores callejeros",
         "tip": "Pida la versión «balady»: más tradicional y sabrosa",
         "arabicName": "حواوشي"
@@ -2312,7 +2791,7 @@
       {
         "name": "Boniato",
         "description": "Asado y vendido en carritos ambulantes, a menudo con miel o frutos secos",
-        "cost": "5–15 EGP",
+        "cost": "150 EGP",
         "bestIn": "Carritos callejeros por todo Egipto",
         "tip": "El aperitivo perfecto de invierno, dulce por naturaleza",
         "arabicName": "بطاطا"
@@ -2393,30 +2872,1014 @@
       {
         "time": "9:00",
         "activity": "Bocadillo de desayuno de ful y ta'ameya",
-        "cost": "10 EGP"
+        "cost": "35 EGP"
       },
       {
         "time": "11:00",
         "activity": "Zumo de caña de azúcar recién hecho",
-        "cost": "5 EGP"
+        "cost": "30 EGP"
       },
       {
         "time": "13:00",
         "activity": "Koshari para comer en Abu Tarek",
-        "cost": "25 EGP"
+        "cost": "60 EGP"
       },
       {
         "time": "15:00",
         "activity": "Postre: zalabya",
-        "cost": "10 EGP"
+        "cost": "80 EGP"
       },
       {
         "time": "18:00",
         "activity": "Wrap de shawarma y té en un café local",
-        "cost": "25 EGP"
+        "cost": "195 EGP"
       }
     ],
     "ctaPrint": "Imprimir / Guardar como PDF",
     "totalValue": "400 EGP"
+  },
+  "chrome": {
+    "onThisPage": "En esta página",
+    "breadcrumbAria": "Ruta de navegación",
+    "buildMyTrip": "Crear mi viaje",
+    "notFoundTitle": "Página no encontrada | AffordEgypt",
+    "notFoundHeading": "Página no encontrada",
+    "operatedBy": "Operado por {{operator}}",
+    "licensedSince": "Con licencia desde {{year}}",
+    "travellersServed": "{{travellers}} viajeros por todo Egipto",
+    "whatsappCta": "Escríbenos"
+  },
+  "pageNames": {
+    "home": "Inicio",
+    "transfers": "Traslados",
+    "destinations": "Destinos",
+    "aboutUs": "Sobre nosotros",
+    "contactUs": "Contacto",
+    "travelTips": "Consejos de viaje",
+    "cairoAirportTransfers": "Traslados aeropuerto de El Cairo",
+    "luxorAirportTransfers": "Traslados aeropuerto de Luxor",
+    "aswanAirportTransfers": "Traslados aeropuerto de Asuán",
+    "cairoCarAndTourGuideServices": "Coche y guía turístico en El Cairo",
+    "luxorCarAndTourGuideServices": "Coche y guía turístico en Luxor",
+    "aswanCarAndTourGuideServices": "Coche y guía turístico en Asuán",
+    "budgetTravelGuide": "Guía de viaje económico",
+    "easternAndWesternDesertsGuide": "Guía de los desiertos Oriental y Occidental",
+    "egyptianCuisinePassport": "Pasaporte de la cocina egipcia",
+    "nileValleyGuide": "Guía del valle del Nilo",
+    "sinaiPeninsulaGuide": "Guía de la península del Sinaí",
+    "streetFoodGuide": "Guía de comida callejera",
+    "easternAndWesternDeserts": "Desiertos Oriental y Occidental",
+    "faq": "Preguntas frecuentes",
+    "submitAReview": "Escribir una reseña"
+  },
+  "cookieConsent": {
+    "title": "Cookies en AffordEgypt",
+    "acceptAll": "Aceptar todas",
+    "rejectNonEssential": "Rechazar las no esenciales",
+    "cookiePolicy": "Política de cookies"
+  },
+  "quoteBuilder": {
+    "tabs": {
+      "build": "Crear presupuesto",
+      "buildShort": "Presupuesto",
+      "saved": "Presupuestos guardados",
+      "savedShort": "Guardados"
+    },
+    "header": {
+      "title": "Diseñe su aventura en Egipto",
+      "subtitle": "Componga su viaje perfecto con precios transparentes en cada paso"
+    },
+    "progress": {
+      "ariaLabel": "Progreso del presupuesto",
+      "step": "Paso {{number}}: {{title}}",
+      "stepDone": "Paso {{number}}: {{title}} (completado)"
+    },
+    "steps": {
+      "overviewTitle": "Resumen del viaje",
+      "overviewDescription": "Empiece su viaje",
+      "itineraryTitle": "Cree su itinerario",
+      "itineraryDescription": "Días, transporte y extras",
+      "reviewTitle": "Revisión y precio",
+      "reviewDescription": "Revise su itinerario",
+      "checkoutTitle": "Pago",
+      "checkoutDescription": "Complete la reserva"
+    },
+    "step1": {
+      "title": "Empiece su viaje privado por Egipto",
+      "subtitle": "Responda unas preguntas y vea su precio completo al instante, aquí mismo en pantalla y sin esperas.",
+      "destinationLabel": "¿Adónde quiere ir?",
+      "destinationPlaceholder": "Elija un destino",
+      "daysLabel": "¿Cuántos días?",
+      "daysPlaceholder": "Seleccione la duración del viaje",
+      "duration1to2": "1-2 días",
+      "duration3to4": "3-4 días",
+      "duration5to7": "5-7 días",
+      "duration8to14": "8-14 días",
+      "duration15plus": "Más de 14 días",
+      "durationExploring": "Solo estoy mirando",
+      "travelersLabel": "¿Cuántos viajeros?",
+      "travelersPlaceholder": "Seleccione el número de viajeros",
+      "travelerCount_one": "{{count}} viajero",
+      "travelerCount_other": "{{count}} viajeros",
+      "whenLabel": "¿Cuándo?",
+      "notSureYet": "Aún no lo sé",
+      "notSureYetAria": "Aún no lo sé: no tengo fecha de viaje",
+      "trustVehicle": "Vehículo privado y guía",
+      "trustPricing": "Precios transparentes",
+      "trustInstant": "Precio al instante en pantalla",
+      "cta": "Crear mi itinerario →"
+    },
+    "step2": {
+      "title": "Cree su itinerario",
+      "subtitle": "Elija transporte, guía, entradas y extras para cada día, y vaya añadiendo días.",
+      "firstDestinationTitle": "Elija su primer destino",
+      "firstDestinationSubtitle": "Seleccione una ciudad para empezar a planificar su viaje",
+      "selectDestinationLabel": "Seleccione un destino",
+      "chooseCityPlaceholder": "Elija una ciudad que visitar",
+      "day": "Día {{number}}",
+      "removeDay": "Eliminar el día {{number}}",
+      "dateLabel": "Fecha",
+      "transferLabel": "Traslado",
+      "selectTransfer": "Seleccione un traslado",
+      "transferCount_one": "{{count}} traslado",
+      "transferCount_other": "{{count}} traslados",
+      "guideLabel": "Guía",
+      "entranceFeesLabel": "Entradas",
+      "addOnsLabel": "Extras",
+      "addDay": "Añadir el día {{number}}",
+      "nextDayPlaceholder": "Seleccione el destino del día siguiente",
+      "back": "Volver al resumen",
+      "continue": "Continuar a la revisión"
+    },
+    "step3": {
+      "title": "Revise su itinerario",
+      "subtitle": "Compruebe todos los detalles antes de pasar al pago",
+      "tripSummary": "Resumen del viaje",
+      "startDate": "Fecha de inicio",
+      "travelers": "Viajeros",
+      "days": "Días",
+      "totalPrice": "Precio total",
+      "personCount_one": "{{count}} persona",
+      "personCount_other": "{{count}} personas",
+      "dayCount_one": "{{count}} día",
+      "dayCount_other": "{{count}} días",
+      "services": "Servicios",
+      "tourGuide": "Guía turístico",
+      "guideLine": "Guía en {{language}} ({{hours}} horas)",
+      "attractions": "Atracciones",
+      "addOns": "Extras",
+      "editDay": "Editar el día {{number}}",
+      "back": "Volver al itinerario",
+      "proceed": "Continuar al pago",
+      "zeroTotal": "Su itinerario suma LE 0. Vuelva atrás y añada al menos un servicio para poder pagar."
+    },
+    "step4": {
+      "title": "Complete su reserva",
+      "subtitle": "Introduzca sus datos para finalizar la reserva",
+      "contactInformation": "Datos de contacto",
+      "fullName": "Nombre completo *",
+      "namePlaceholder": "Juan Pérez",
+      "email": "Correo electrónico *",
+      "phone": "Teléfono *",
+      "nationality": "Nacionalidad (opcional)",
+      "nationalityPlaceholder": "p. ej., española",
+      "accommodation": "Hotel o alojamiento (opcional)",
+      "accommodationPlaceholder": "Nombre o dirección del hotel",
+      "specialRequests": "Peticiones especiales",
+      "specialRequestsPlaceholder": "Requisitos dietéticos, necesidades de accesibilidad, preferencias...",
+      "termsHeading": "Términos y condiciones",
+      "agreeTerms": "Acepto las <terms>Condiciones del servicio</terms> y la <privacy>Política de privacidad</privacy>",
+      "agreeBookingPolicy": "Entiendo y acepto la <policy>Política de reservas</policy> y las condiciones de cancelación",
+      "orderSummary": "Resumen del pedido",
+      "travelDate": "Fecha del viaje",
+      "priceServices": "Servicios",
+      "priceGuides": "Guías turísticos",
+      "priceEntranceFees": "Entradas",
+      "priceAddOns": "Extras",
+      "total": "Total",
+      "requestBooking": "Solicitar la reserva",
+      "disclaimer": "Al enviar el formulario, acepta nuestros términos y condiciones",
+      "back": "Volver a la revisión"
+    },
+    "livePrice": {
+      "title": "Su viaje: precio en vivo",
+      "empty": "Añada destinos para ver su precio en vivo.",
+      "totalWithTravelers_one": "Total · {{count}} viajero",
+      "totalWithTravelers_other": "Total · {{count}} viajeros",
+      "perPerson": "{{price}} por persona",
+      "continue": "Continuar",
+      "footnote": "Precios transparentes: se actualizan mientras planifica."
+    },
+    "breakdown": {
+      "title": "Desglose de precios",
+      "empty": "Añada servicios para ver su precio.",
+      "services": "Servicios:",
+      "guide": "Guía:",
+      "entranceFees": "Entradas:",
+      "addOns": "Extras:",
+      "total": "Total:"
+    },
+    "validation": {
+      "name": "Introduzca su nombre completo",
+      "email": "Introduzca una dirección de correo electrónico válida",
+      "phone": "Introduzca su número de teléfono",
+      "terms": "Acepte las Condiciones del servicio y la Política de privacidad",
+      "bookingPolicy": "Acepte la Política de reservas",
+      "submitFailed": "No se ha podido enviar la reserva. Inténtelo de nuevo.",
+      "submitted": "¡Solicitud de reserva enviada correctamente!\n\nSe ha enviado un correo de confirmación a {{email}}.\nReferencia de la reserva: {{reference}}"
+    },
+    "blockers": {
+      "destination": "Elija adónde quiere ir.",
+      "duration": "Elija la duración del viaje.",
+      "travelers": "Indique cuántos viajeros son.",
+      "date": "Elija una fecha de viaje o marque «Aún no lo sé».",
+      "emptyItinerary": "Añada al menos un día a su itinerario.",
+      "noPricedService": "Añada al menos un servicio (transporte, guía, entradas o un extra) antes de revisar el precio.",
+      "zeroTotal": "Su itinerario sigue sumando LE 0. Vuelva atrás y añada al menos un servicio con precio antes de pagar."
+    }
+  },
+  "nileValleyGuide": {
+    "title": "Guía de Viaje del Valle del Nilo",
+    "subtitle": "Viaje a Través del Corazón Ancestral de Egipto",
+    "description": "Sigue la línea vital de Egipto desde la costa mediterránea hasta el corazón de Nubia, explorando templos antiguos, ciudades vibrantes y tradiciones atemporales a lo largo del poderoso río Nilo.",
+    "hero": {
+      "features": {
+        "cities": {
+          "title": "12+ Ciudades Históricas",
+          "description": "De Alejandría a Abu Simbel"
+        },
+        "sites": {
+          "title": "Monumentos Antiguos",
+          "description": "Templos, tumbas y pirámides"
+        },
+        "budget": {
+          "title": "Económico",
+          "description": "Opciones de viaje asequibles"
+        }
+      },
+      "cta": "Comienza a Planificar tu Viaje"
+    },
+    "regions": {
+      "all": "Todas las Regiones",
+      "lowerEgypt": "Bajo Egipto",
+      "middleEgypt": "Egipto Medio",
+      "upperEgypt": "Alto Egipto",
+      "nubia": "Nubia"
+    },
+    "map": {
+      "title": "Mapa Interactivo del Valle del Nilo",
+      "clickCities": "Haz clic en las ciudades para explorar información detallada"
+    },
+    "priceNote": "Los precios de entrada son tarifas estándar para adultos extranjeros verificadas en agosto de 2026. Las tarifas y los horarios cambian sin previo aviso; confírmalos en la web oficial antes de viajar.",
+    "cityDetails": {
+      "bestTime": "Mejor época para visitar:",
+      "recommendedStay": "Estancia recomendada:",
+      "keyHighlights": "Puntos Destacados",
+      "budgetTips": "Consejos de Presupuesto",
+      "transportation": "Transporte",
+      "localTransport": "Transporte local:",
+      "topAttractions": "Principales Atracciones",
+      "entry": "Entrada:",
+      "hours": "Horarios:"
+    },
+    "completeGuide": {
+      "title": "Guía Completa de Ciudades del Valle del Nilo",
+      "bestTime": "Mejor época:",
+      "stayDuration": "Duración de estancia:",
+      "fromCairo": "Desde El Cairo:",
+      "keyHighlights": "Puntos Destacados",
+      "topAttractions": "Principales Atracciones",
+      "budgetTips": "Consejos de Presupuesto"
+    },
+    "transportation": {
+      "title": "Cómo Moverse por el Valle del Nilo",
+      "train": {
+        "title": "Viajes en Tren",
+        "description": "Conexiones ferroviarias asequibles y pintorescas entre las principales ciudades a lo largo del Valle del Nilo.",
+        "cairoLuxor": "El Cairo a Luxor: 10-12 horas nocturno",
+        "cairoAswan": "El Cairo a Asuán: 13-14 horas nocturno",
+        "acCoaches": "Vagones con aire acondicionado disponibles",
+        "nightTrains": "Trenes nocturnos cómodos con vagones restaurante"
+      },
+      "cruise": {
+        "title": "Cruceros por el Río Nilo",
+        "description": "La forma más pintoresca de viajar entre Luxor y Asuán, ofreciendo vistas impresionantes de templos antiguos y pueblos tradicionales a lo largo de las orillas del río.",
+        "threeFourDays": "Luxor a Asuán: 3-4 días",
+        "allMeals": "Las comidas incluidas dependen del paquete del crucero",
+        "entranceFees": "Tarifas de entrada a templos generalmente extra",
+        "bestTime": "Mejor época: octubre a abril para clima cómodo"
+      },
+      "flights": {
+        "title": "Vuelos Domésticos",
+        "description": "Conexiones rápidas y eficientes entre las principales ciudades, perfectas para viajeros con tiempo limitado.",
+        "cairoLuxor": "El Cairo a Luxor: 1.5 horas",
+        "cairoAswan": "El Cairo a Asuán: 1.5 horas",
+        "abuSimbel": "Abu Simbel: los vuelos dependen de la fecha y suelen conectar desde Asuán; verifica el horario en vigor",
+        "flightTimes": "Los horarios de vuelos varían según temporada y aerolínea"
+      }
+    },
+    "travelTips": {
+      "title": "Consejos Esenciales de Viaje al Valle del Nilo",
+      "bestTime": {
+        "title": "Mejor Época para Visitar",
+        "peakSeason": "Temporada Alta (Oct-Abr)",
+        "peakDescription": "Clima generalmente más suave, con mayor demanda y atracciones más concurridas",
+        "shoulderSeason": "Temporada Media (May, Sep)",
+        "shoulderDescription": "Es posible que haga mucho calor; la demanda y los precios varían",
+        "lowSeason": "Temporada Baja (Jun-Ago)",
+        "lowDescription": "Clima muy caluroso en el Alto Egipto; una demanda menor no garantiza el precio más bajo en todas partes"
+      },
+      "budgetBreakdown": {
+        "title": "Desglose de Presupuesto",
+        "budget": {
+          "title": "Viaje Económico",
+          "description": "Fija un presupuesto actualizado tras consultar el alojamiento y las entradas; las cifras diarias fijas antiguas se vuelven inexactas rápidamente."
+        },
+        "midRange": {
+          "title": "Rango Medio",
+          "description": "Presupuesta por separado hoteles, transporte entre ciudades, comidas, entradas y guías."
+        },
+        "luxury": {
+          "title": "Lujo",
+          "description": "Solicita presupuestos actuales para hoteles, guías privados, vehículos, cruceros y experiencias premium."
+        }
+      },
+      "culturalEtiquette": {
+        "title": "Etiqueta Cultural",
+        "dressModestly": "Vístete modestamente, especialmente al visitar sitios religiosos",
+        "removeShoes": "Quítate los zapatos al entrar a mezquitas",
+        "askPermission": "Pide permiso antes de fotografiar a las personas",
+        "bargainRespectfully": "Regatear respetuosamente en los mercados",
+        "tipStaff": "Dar propina apropiadamente al personal de hoteles y restaurantes",
+        "learnGreetings": "Aprende saludos básicos en árabe"
+      },
+      "healthSafety": {
+        "title": "Salud y Seguridad",
+        "drinkBottledWater": "Bebe solo agua embotellada o filtrada",
+        "useSunscreen": "Usa protector solar de alto FPS y ropa protectora",
+        "packMedications": "Empaca cualquier medicamento recetado que necesites",
+        "getTravelInsurance": "Obtén un seguro de viaje integral",
+        "keepCopies": "Mantén copias de documentos importantes",
+        "useRegisteredGuides": "Usa solo guías turísticos registrados",
+        "stayHydrated": "Mantente hidratado, especialmente durante los meses de verano"
+      }
+    },
+    "data": {
+      "budgetTips": {
+        "minya": {
+          "dayTripFromCairo": "Si va a visitar varios sitios, pernoctar es más realista que hacer una excursión de un día desde El Cairo.",
+          "localGuides": "Contrata guías locales para recorridos económicos y enriquecedores.",
+          "groupTours": "Comparta coche o únase a un grupo para los sitios de las afueras: están muy separados entre sí"
+        },
+        "sohag": {
+          "cheapAccommodation": "Busca hoteles económicos cerca del centro de la ciudad.",
+          "localFood": "Prueba la comida local en lugares sencillos y económicos.",
+          "walkingTours": "El centro se recorre a pie; reserve el taxi para los monasterios de las afueras"
+        },
+        "qena": {
+          "budgetFriendly": "Explora Qena a pie para ahorrar en transporte.",
+          "localMarkets": "Compra recuerdos baratos en los mercados locales.",
+          "basicHotels": "Los hoteles locales sencillos cuestan una fracción de los de Luxor, a una hora de distancia"
+        },
+        "asyut": {
+          "affordableStays": "Elige hoteles económicos o casas de huéspedes para ahorrar dinero.",
+          "localTransport": "Usa el transporte local como los microbuses para viajar barato.",
+          "traditionalFood": "Coma en restaurantes locales tradicionales, donde una comida completa cuesta muy poco"
+        },
+        "alexandria": {
+          "stayNearCorniche": "Alójate cerca de la Corniche para vistas al mar",
+          "freshSeafood": "Prueba mariscos frescos en restaurantes locales",
+          "historicTram": "Usa el tranvía histórico para transporte barato"
+        },
+        "cairo": {
+          "useMetro": "Usa el metro para transporte urbano barato",
+          "localRestaurants": "Come en restaurantes locales para cocina auténtica",
+          "downtownAccommodation": "Quédate en el centro para alojamientos económicos",
+          "freeMosquesMarkets": "Visita mezquitas y mercados gratuitos"
+        },
+        "luxor": {
+          "eastBankStay": "Alójate en East Bank para alojamientos económicos",
+          "groupTickets": "Compare las entradas individuales con el Luxor Pass vigente; no se garantizan los descuentos de grupo habituales.",
+          "earlyMorning": "Visita templos temprano en la mañana para evitar multitudes",
+          "localRestaurants": "Coma donde comen los guías, a una calle de la cornisa"
+        },
+        "beniSuef": {
+          "affordableFood": "Comida local asequible disponible",
+          "basicAccommodation": "Opciones de alojamiento básico pero limpio",
+          "bargainMarkets": "Compre comida y artículos cotidianos en los mercados locales, no junto a los monumentos"
+        },
+        "edfu": {
+          "nileCruiseStop": "Parada popular para cruceros del Nilo",
+          "horseCartRide": "Toma un paseo en carreta de caballos al templo",
+          "affordableFood": "Restaurantes locales asequibles disponibles"
+        },
+        "komOmbo": {
+          "combineWithEdfu": "Combina la visita con el Templo de Edfu",
+          "sunsetViews": "Excelentes vistas del atardecer sobre el Nilo",
+          "basicTown": "Pueblo básico con servicios simples"
+        },
+        "aswan": {
+          "stayNearSouk": "Quédate cerca del zoco para experiencia local",
+          "feluccaRides": "Negocia paseos en faluca al atardecer",
+          "nubianVillages": "Visita pueblos nubios para experiencia cultural",
+          "spiceShopping": "Compra especias en mercados locales"
+        },
+        "abuSimbel": {
+          "dayTripFromAswan": "Haz excursión de un día desde Asuán en lugar de quedarte",
+          "joinGroupTours": "Únete a tours grupales para mejores precios",
+          "bringLunchWater": "Trae almuerzo y agua desde Asuán",
+          "earlyMorningArrival": "Llega temprano en la mañana para clima más fresco"
+        }
+      },
+      "attractions": {
+        "minya": {
+          "tellElAmarna": {
+            "name": "Tell el-Amarna",
+            "entryFee": "150 EGP (adulto extranjero)",
+            "description": "Restos de Aketatón, la efímera capital fundada por Akenatón"
+          },
+          "beniHassan": {
+            "name": "Tumbas de Beni Hassan",
+            "entryFee": "150 EGP (adulto extranjero)",
+            "description": "Tumbas excavadas en la roca de gobernadores del Imperio Medio, con pinturas de escenas cotidianas"
+          },
+          "tunaElGebel": {
+            "name": "Necrópolis de Tuna el-Gebel",
+            "entryFee": "150 EGP (adulto extranjero)",
+            "description": "Necrópolis con catacumbas, la capilla funeraria de Petosiris y enterramientos de animales"
+          }
+        },
+        "asyut": {
+          "copticMonasteries": {
+            "name": "Monasterios coptos antiguos"
+          },
+          "traditionalCrafts": {
+            "name": "Artesanías tradicionales"
+          },
+          "nileCorniche": {
+            "name": "Paseo Corniche del Nilo"
+          },
+          "monasteryVirginMary": {
+            "name": "Monasterio de la Virgen María",
+            "entryFee": "Gratis",
+            "description": "Monasterio copto en el acantilado de Durunka, importante lugar de peregrinación en agosto"
+          },
+          "asyutBarrage": {
+            "name": "Presa de Asyut",
+            "entryFee": "Gratis",
+            "description": "Presa del siglo XIX sobre el Nilo, todavía clave para el riego de la región"
+          }
+        },
+        "sohag": {
+          "redWhiteMonasteries": {
+            "name": "Monasterios Rojo y Blanco"
+          },
+          "akhmimTextiles": {
+            "name": "Textiles de Akhmim"
+          },
+          "ruralCulture": {
+            "name": "Cultura rural"
+          },
+          "abydosTemple": {
+            "name": "Templo de Abidos",
+            "description": "Templo de Seti I, donde se encuentra la lista real de Abidos",
+            "entryFee": "200 EGP (adulto extranjero)",
+            "hours": "De 7:00 a 17:00"
+          },
+          "redMonastery": {
+            "name": "Monasterio Rojo",
+            "entryFee": "Gratis",
+            "description": "Monasterio copto de la Antigüedad tardía, conocido por su santuario pintado"
+          },
+          "whiteMonastery": {
+            "name": "Monasterio Blanco",
+            "entryFee": "Gratis",
+            "description": "Monasterio de San Shenute, construido con piedra caliza de antiguos sitios faraónicos"
+          },
+          "akhmim": {
+            "name": "Museo al aire libre de Akhmim",
+            "entryFee": "100 EGP (adulto extranjero)",
+            "description": "Localidad con un recinto al aire libre que exhibe una estatua colosal de Meritamón"
+          }
+        },
+        "qena": {
+          "gatewayDendera": {
+            "name": "Puerta al Templo de Dendera"
+          },
+          "traditionalPottery": {
+            "name": "Cerámica tradicional"
+          },
+          "nileIslands": {
+            "name": "Islas del Nilo"
+          },
+          "denderaTemple": {
+            "name": "Templo de Dendera",
+            "entryFee": "300 EGP (adulto extranjero)",
+            "description": "Templo de Hathor, célebre por sus techos pintados y por el color conservado"
+          },
+          "qenaPotteryQuarter": {
+            "name": "Barrio de la cerámica de Qena",
+            "entryFee": "Gratis",
+            "description": "Talleres que fabrican las jarras porosas de barro por las que se conoce la ciudad"
+          }
+        },
+        "alexandria": {
+          "bibliotheca": {
+            "name": "Biblioteca de Alejandría",
+            "description": "Recreación moderna de la antigua Biblioteca de Alejandría",
+            "entryFee": "150 EGP (adulto extranjero, entrada a la biblioteca principal)",
+            "hours": "De lunes a jueves, de 9:30 a 17:00; sábados y domingos, de 10:00 a 14:00; cerrado los viernes"
+          },
+          "qaitbayCitadel": {
+            "name": "Ciudadela de Qaitbay",
+            "description": "Fuerte del siglo XV en la costa mediterránea",
+            "entryFee": "200 EGP (adulto extranjero)",
+            "hours": "De 9:00 a 20:00 (consulte los cambios por temporada o festivos)"
+          },
+          "catacombs": {
+            "name": "Catacumbas de Kom el Shoqafa",
+            "description": "Cámaras funerarias romanas",
+            "entryFee": "200 EGP (adulto extranjero)",
+            "hours": "9:00 AM - 4:00 PM"
+          }
+        },
+        "cairo": {
+          "pyramidsGiza": {
+            "name": "Pirámides de Giza",
+            "description": "Última maravilla del mundo antiguo",
+            "entryFee": "700 EGP (entrada al recinto, adulto extranjero)",
+            "hours": "8:00 AM - 4:00 PM"
+          },
+          "egyptianMuseum": {
+            "name": "Museo Egipcio",
+            "description": "La colección más grande del mundo de artefactos del antiguo Egipto",
+            "entryFee": "550 EGP (adulto extranjero)",
+            "hours": "9:00 AM - 7:00 PM"
+          },
+          "citadelSaladin": {
+            "name": "Ciudadela de Saladino",
+            "description": "Fortificación islámica medieval en El Cairo",
+            "entryFee": "550 EGP (adulto extranjero)",
+            "hours": "8:00 AM - 5:00 PM"
+          },
+          "alabasterMosque": {
+            "name": "Mezquita de Alabastro",
+            "description": "Hermosa mezquita de estilo otomano",
+            "entryFee": "Gratis",
+            "hours": "9:00 AM - 4:00 PM"
+          },
+          "copticMuseum": {
+            "name": "Museo Copto",
+            "description": "La colección más grande del mundo de artefactos coptos",
+            "entryFee": "230 EGP (adulto extranjero)",
+            "hours": "9:00 AM - 5:00 PM"
+          }
+        },
+        "luxor": {
+          "valleyKings": {
+            "name": "Valle de los Reyes",
+            "description": "Tumbas reales de faraones",
+            "entryFee": "750 EGP (adulto extranjero)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "karnakTemple": {
+            "name": "Complejo del Templo de Karnak",
+            "description": "Vasto complejo de templos dedicado a Amón-Ra",
+            "entryFee": "600 EGP (adulto extranjero)",
+            "hours": "6:00 AM - 5:30 PM"
+          },
+          "luxorTemple": {
+            "name": "Templo de Luxor",
+            "description": "Templo egipcio antiguo en el centro de la ciudad",
+            "entryFee": "500 EGP (adulto extranjero)",
+            "hours": "6:00 AM - 9:00 PM"
+          },
+          "medinet": {
+            "name": "Medinet Habu",
+            "description": "Templo funerario de Ramsés III",
+            "entryFee": "200 EGP (adulto extranjero)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "deir": {
+            "name": "Deir el-Medina",
+            "description": "Pueblo de constructores de tumbas reales",
+            "entryFee": "200 EGP (adulto extranjero)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "ramesseum": {
+            "name": "Ramesseum",
+            "description": "Templo conmemorativo de Ramsés II",
+            "entryFee": "180 EGP (adulto extranjero)",
+            "hours": "6:00 AM - 5:00 PM"
+          },
+          "luxorMuseum": {
+            "name": "Museo de Luxor",
+            "description": "Colección seleccionada de estatuas y objetos de los templos y las tumbas de Luxor",
+            "entryFee": "400 EGP (adulto extranjero)",
+            "hours": "De 9:00 a 14:00 y de 17:00 a 21:00"
+          },
+          "hatshepsutTemple": {
+            "name": "Templo de Hatshepsut",
+            "description": "Templo funerario escalonado en Deir el-Bahari",
+            "entryFee": "440 EGP (adulto extranjero)",
+            "hours": "De 6:00 a 17:00"
+          }
+        },
+        "beniSuef": {
+          "meidumPyramid": {
+            "name": "Pirámide de Meidum",
+            "entryFee": "150 EGP (adulto extranjero)",
+            "description": "Pirámide temprana de Meidum, cuyo revestimiento derrumbado le dejó su característica forma de torre"
+          }
+        },
+        "edfu": {
+          "templeHorus": {
+            "name": "Templo de Horus",
+            "entryFee": "550 EGP (adulto extranjero)",
+            "description": "Templo de Horus, uno de los mejor conservados de Egipto"
+          },
+          "edfuMarket": {
+            "name": "Mercado Tradicional de Edfu",
+            "entryFee": "Gratis",
+            "description": "Mercado local de productos frescos y artículos del hogar en las calles junto al templo"
+          }
+        },
+        "komOmbo": {
+          "templeKomOmbo": {
+            "name": "Templo de Kom Ombo",
+            "entryFee": "450 EGP (adulto extranjero; incluye el Museo del Cocodrilo)",
+            "description": "Templo doble compartido por Sobek y Haroeris, con dos mitades simétricas"
+          },
+          "crocodileMuseum": {
+            "name": "Museo del Cocodrilo",
+            "entryFee": "Incluido en la entrada al recinto del templo de Kom Ombo",
+            "description": "Cocodrilos momificados y objetos votivos procedentes del estanque sagrado del templo"
+          }
+        },
+        "aswan": {
+          "philaeTemple": {
+            "name": "Templo de Philae",
+            "entryFee": "550 EGP (adulto extranjero; el traslado en barco es aparte)",
+            "description": "Templo de Isis, trasladado piedra a piedra a la isla de Agilkia para salvarlo de la subida del lago"
+          },
+          "highDam": {
+            "name": "Presa Alta de Asuán",
+            "entryFee": "200 EGP (adulto extranjero)",
+            "description": "La presa que creó el lago Nasser y transformó la crecida anual del Nilo"
+          },
+          "nubianVillage": {
+            "name": "Pueblo Nubio",
+            "description": "Comunidad nubia a la que se llega en barco desde Asuán",
+            "entryFee": "Gratis",
+            "hours": "Abierto a cualquier hora; el trayecto en barco se organiza aparte"
+          },
+          "unfinishedObelisk": {
+            "name": "Obelisco Inacabado",
+            "description": "Cantera de granito antigua con obelisco inacabado",
+            "entryFee": "220 EGP (adulto extranjero)",
+            "hours": "7:00 AM - 5:00 PM"
+          },
+          "nubian": {
+            "name": "Museo Nubio",
+            "description": "Museo de cultura e historia nubia",
+            "entryFee": "300 EGP (adulto extranjero)",
+            "hours": "9:00 AM - 6:00 PM"
+          },
+          "botanical": {
+            "name": "Jardín Botánico",
+            "description": "Plantas exóticas en la Isla de Kitchener",
+            "entryFee": "70 EGP (adulto extranjero)",
+            "hours": "8:00 AM - 6:00 PM"
+          }
+        },
+        "abuSimbel": {
+          "greatTempleRamesses": {
+            "name": "Gran Templo de Ramsés II",
+            "entryFee": "750 EGP (entrada combinada al recinto para adultos extranjeros)",
+            "description": "Templo excavado en la roca, precedido por cuatro figuras colosales de Ramsés II sentado"
+          },
+          "templeNefertari": {
+            "name": "Templo Pequeño de Hathor y Nefertari",
+            "entryFee": "Incluido en la entrada al recinto de Abu Simbel",
+            "description": "Templo contiguo dedicado a Hathor y a la reina Nefertari"
+          }
+        },
+        "hoursVary": "El horario varía según la temporada; consúltelo sobre el terreno antes de ir"
+      },
+      "highlights": {
+        "alexandria": {
+          "library": "Biblioteca de Alejandría",
+          "qaitbayCitadel": "Ciudadela de Qaitbay",
+          "mediterraneanBeaches": "Playas del Mediterráneo",
+          "romanSites": "Sitios Arqueológicos Romanos"
+        },
+        "cairo": {
+          "pyramidsGiza": "Pirámides de Giza",
+          "egyptianMuseum": "Museo Egipcio",
+          "islamicCairo": "El Cairo Islámico",
+          "khanElKhalili": "Bazar Khan El-Khalili"
+        },
+        "luxor": {
+          "valleyKings": "Valle de los Reyes",
+          "karnakTemple": "Templo de Karnak",
+          "luxorTemple": "Templo de Luxor",
+          "westBankTombs": "Tumbas de la Orilla Oeste"
+        },
+        "aswan": {
+          "philaeTemple": "Templo de Philae",
+          "highDam": "Presa Alta",
+          "nubianVillages": "Pueblos Nubios",
+          "elephantineIsland": "Isla Elefantina"
+        },
+        "abuSimbel": {
+          "greatTemple": "Gran Templo de Ramsés II",
+          "templeNefertari": "Templo de Nefertari",
+          "unescoSite": "Sitio Patrimonio Mundial UNESCO"
+        },
+        "minya": {
+          "tellElAmarna": "Tell el-Amarna",
+          "beniHassan": "Tumbas de Beni Hassan",
+          "tunaElGebel": "Necrópolis de Tuna el-Gebel"
+        },
+        "asyut": {
+          "copticMonasteries": "Antiguos Monasterios Coptos",
+          "traditionalCrafts": "Artesanías Tradicionales",
+          "nileCorniche": "Paseo por el Corniche del Nilo"
+        },
+        "sohag": {
+          "abydosTemple": "Templo de Abidos",
+          "redWhiteMonasteries": "Monasterios Rojo y Blanco",
+          "akhmimTextiles": "Mercado Textil de Akhmim",
+          "ruralCulture": "Herencia Cultural Rural"
+        },
+        "qena": {
+          "gatewayDendera": "Puerta al Templo de Dendera",
+          "traditionalPottery": "Talleres de Alfarería Tradicional",
+          "nileIslands": "Islas del Río Nilo"
+        },
+        "beniSuef": {
+          "meidumPyramid": "Pirámide de Meidum",
+          "ruralNile": "Pueblos Rurales del Nilo",
+          "traditionalMarkets": "Mercados Tradicionales"
+        },
+        "edfu": {
+          "templeHorus": "Templo de Horus",
+          "traditionalMarkets": "Mercados Tradicionales",
+          "nileCruiseStop": "Parada Popular de Cruceros del Nilo"
+        },
+        "komOmbo": {
+          "doubleTemple": "Templo Doble Único",
+          "crocodileMuseum": "Museo del Cocodrilo",
+          "sugarCaneFields": "Campos de Caña de Azúcar"
+        }
+      },
+      "nile": {
+        "bestTime": {
+          "marchNovember": "Marzo a Noviembre",
+          "octoberApril": "Octubre a Abril",
+          "octoberMarch": "Octubre a Marzo"
+        },
+        "stay": {
+          "halfday": "Medio día",
+          "2_3days": "2-3 días",
+          "3_4days": "3-4 días",
+          "1day": "1 día",
+          "2days": "2 días",
+          "1_2days": "1-2 días"
+        },
+        "time": {
+          "october_april": "Octubre - Abril",
+          "november_march": "Noviembre - Marzo",
+          "september_may": "Septiembre - Mayo"
+        }
+      }
+    },
+    "transportModes": {
+      "tram": "Tranvía",
+      "bus": "Autobús",
+      "taxi": "Taxi",
+      "uber": "Uber",
+      "metro": "Metro",
+      "microbus": "Microbús",
+      "tuktuk": "Tuk-tuk",
+      "felucca": "Faluca",
+      "horsecart": "Carro de caballos",
+      "bicycle": "Bicicleta",
+      "caleche": "Calesa",
+      "walking": "A pie",
+      "motorboat": "Lancha motora",
+      "tourbus": "Autocar turístico",
+      "privatecar": "Coche privado"
+    },
+    "fromCairo": {
+      "alexandria": "Unas 2,5-3,5 horas en tren; por carretera el tiempo varía según el tráfico",
+      "cairo": "Ya está en El Cairo; calcule tiempo de más por el tráfico dentro de la ciudad",
+      "benisuef": "Unas 1,5-2,5 horas en tren; consulte el horario vigente",
+      "minya": "Unas 3-4,5 horas en tren; consulte el horario vigente",
+      "asyut": "Unas 5-6,5 horas en tren; consulte el horario vigente",
+      "sohag": "Unas 6-8 horas en tren; consulte el horario vigente",
+      "qena": "Unas 8-10 horas en tren; consulte el horario vigente",
+      "luxor": "Unas 9,5-12 horas en tren; depende del servicio y del tipo de tren",
+      "edfu": "Unas 11-13 horas en tren directo cuando lo hay; muchos viajeros van desde Luxor",
+      "komombo": "Unas 12-14 horas en tren directo cuando lo hay; muchos viajeros van desde Asuán o Edfu",
+      "aswan": "Unas 13-15 horas en tren; consulte el horario vigente",
+      "abusimbel": "No hay una ruta directa práctica en tren; vuele cuando haya servicio o vaya por carretera desde Asuán en unas 3,5-4 horas"
+    },
+    "cityNames": {
+      "alexandria": "Alejandría",
+      "cairo": "El Cairo",
+      "benisuef": "Beni Suef",
+      "minya": "Minia",
+      "asyut": "Asiut",
+      "sohag": "Sohag",
+      "qena": "Qena",
+      "luxor": "Luxor",
+      "edfu": "Edfu",
+      "komombo": "Kom Ombo",
+      "aswan": "Asuán",
+      "abusimbel": "Abu Simbel"
+    },
+    "mapLabels": {
+      "western": "Occidental",
+      "eastern": "Oriental",
+      "desert": "Desierto"
+    }
+  },
+  "bookingConfirmation": {
+    "logoAlt": "Logotipo de AffordEgypt",
+    "notFoundTitle": "Reserva no encontrada",
+    "notFoundBody": "No hemos encontrado ninguna reserva con la referencia: {{reference}}",
+    "returnHome": "Volver al inicio",
+    "heading": "Reserva recibida. Gracias, {{name}}",
+    "subheading": "Hemos recibido su solicitud de reserva. Esto es lo que sucede a continuación.",
+    "downloadPdf": "Descargar la confirmación en PDF",
+    "pdfError": "Error al generar el PDF. Inténtelo de nuevo.",
+    "nextSteps": {
+      "title": "Qué sucede a continuación",
+      "step1Title": "Revisamos su reserva",
+      "step1Body": "En un plazo de 24 horas (normalmente mucho antes), nuestro equipo confirma la disponibilidad de vehículo y guía para sus fechas.",
+      "step2Title": "Le enviamos el enlace del depósito del 10 %",
+      "step2Body": "Recibirá un enlace de pago por correo electrónico, normalmente de Tab.travel para tarjetas internacionales. El depósito es totalmente reembolsable hasta 48 horas antes de la llegada.",
+      "step3Title": "Su reserva queda confirmada en cuanto se abona el depósito",
+      "step3Body": "El 90 % restante se paga a la llegada en efectivo (EGP, USD, EUR o GBP), mediante un segundo enlace de pago o con tarjeta a través de nuestro datáfono móvil.",
+      "step4Title": "Nos encontramos con usted",
+      "step4Body": "El día de su viaje, nuestro conductor y un egiptólogo licenciado le esperan en el punto de recogida acordado. Todo listo."
+    },
+    "bookingInformation": "Información de la reserva",
+    "reference": "Referencia: {{reference}}",
+    "totalAmount": "Importe total",
+    "tripStartDate": "Fecha de inicio del viaje",
+    "tripEndDate": "Fecha de fin del viaje",
+    "bookingStatus": "Estado de la reserva",
+    "customerInformation": "Datos del cliente",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "specialRequests": "Peticiones especiales",
+    "itineraryTitle": "Su itinerario de varios días",
+    "day": "Día {{number}}",
+    "travelerCount_one": "{{count}} viajero",
+    "travelerCount_other": "{{count}} viajeros",
+    "transportation": "Transporte",
+    "guideService": "Servicio de guía",
+    "guideLine": "Guía en {{language}} - {{hours}} horas",
+    "attractions": "Atracciones",
+    "addOns": "Extras",
+    "addOnQuantity": "x{{quantity}}",
+    "addOnPerPerson": "x{{quantity}} ({{each}} por persona)",
+    "bookingDetails": "Detalles de la reserva",
+    "status": "Estado",
+    "itinerarySeparately": "La información detallada del itinerario se facilitará por separado.",
+    "payment": {
+      "title": "Información de pago",
+      "depositLabel": "Se requiere un depósito del 10 %",
+      "depositBody": "Nuestro equipo se pondrá en contacto con usted para cobrarlo y confirmar su reserva.",
+      "remainder": "Pague el resto a su llegada, en efectivo o con tarjeta de crédito.",
+      "acceptedIn": "Se aceptan pagos en:",
+      "currencies": "EGP, USD, GBP, EUR"
+    },
+    "success": {
+      "title": "Reserva creada correctamente",
+      "body": "Su referencia de reserva es"
+    },
+    "pdf": {
+      "title": "Confirmación de la reserva",
+      "referenceLabel": "Referencia:",
+      "bookingInformation": "Información de la reserva",
+      "totalAmount": "Importe total:",
+      "status": "Estado:",
+      "startDate": "Fecha de inicio:",
+      "endDate": "Fecha de fin:",
+      "customerInformation": "Datos del cliente",
+      "name": "Nombre:",
+      "email": "Correo electrónico:",
+      "phone": "Teléfono:",
+      "specialRequests": "Peticiones especiales:",
+      "itinerary": "Itinerario del viaje",
+      "date": "Fecha:",
+      "travelers": "Viajeros:",
+      "transportation": "Transporte:",
+      "guideService": "Servicio de guía:",
+      "attractions": "Atracciones:",
+      "addOns": "Extras:",
+      "contactInformation": "Información de contacto",
+      "whatsapp": "WhatsApp:",
+      "thanks": "¡Gracias por elegir AffordEgypt para su aventura en Egipto!"
+    }
+  },
+  "inclusions": {
+    "heading": "Precios honestos significan inclusiones honestas.",
+    "subheading": "Esto es exactamente lo que incluye.",
+    "includedTitle": "AffordEgypt — qué incluye",
+    "notIncludedTitle": "AffordEgypt — qué no incluye",
+    "premiumTitle": "Lo que podemos añadir en la gama premium",
+    "included": [
+      "Guía egiptólogo con licencia",
+      "Vehículo privado con conductor",
+      "Combustible y aparcamiento",
+      "Agua embotellada",
+      "Asistencia por WhatsApp durante el viaje"
+    ],
+    "notIncluded": [
+      "Entradas a los monumentos",
+      "Comidas",
+      "Hotel",
+      "Propinas",
+      "Vuelos internacionales",
+      "Experiencias opcionales (paseo en camello, faluca, etc.)"
+    ],
+    "premium": [
+      "Guías multilingües (español, japonés, finés, árabe)",
+      "Acuerdos con hoteles premium",
+      "Planificación tipo conserjería",
+      "Detalles de bienvenida",
+      "Línea de viaje exclusiva 24/7",
+      "Llamadas de planificación antes del viaje"
+    ]
+  },
+  "catalog": {
+    "tripTypes": {
+      "one_way": "Solo ida",
+      "round_trip_same_day": "Ida y vuelta (mismo día)",
+      "round_trip_multi_day": "Ida y vuelta (varios días)",
+      "4hr": "Alquiler de 4 horas",
+      "8hr": "Alquiler de 8 horas",
+      "12hr": "Alquiler de 12 horas"
+    },
+    "vehicles": {
+      "sedan": "Sedán",
+      "minivan": "Minivan",
+      "van": "Furgoneta"
+    },
+    "vehicleSeats": {
+      "sedan": "1–2 pasajeros",
+      "minivan": "3–8 pasajeros",
+      "van": "9–15 pasajeros"
+    },
+    "loading": "Cargando servicios…",
+    "error": "No se pudieron cargar los servicios. Prueba a actualizar.",
+    "empty": "Todavía no hay servicios del catálogo para esta combinación.",
+    "noMatch": "Ningún traslado coincide con «{{query}}».",
+    "searchPlaceholder": "Buscar traslados…",
+    "pickup": "Recogida",
+    "dropoff": "Destino",
+    "eitherDirection": "en ambas direcciones",
+    "anywhereInTown": "cualquier lugar de la ciudad"
+  },
+  "founder": {
+    "photoAlt": "Islam, fundador de AffordEgypt",
+    "heading": "Hola, soy Islam, y creé AffordEgypt para arreglar algo que veo todos los días.",
+    "p1": "Crecí en Asuán y dirijo un turoperador egipcio con licencia desde {{year}}. Hemos llevado a miles de viajeros por todo Egipto: mochileros y familias, parejas en luna de miel y viajeros que vienen solos por primera vez.",
+    "p2": "Esto es lo que no dejaba de ver: muchísimos viajeros quedaban fuera del Egipto real por los márgenes de los turoperadores y por paquetes que nunca habían pedido. O reservaban un paquete de $4,000 que no podían permitirse, o se jugaban la suerte con un operador de WhatsApp efímero que nadie podía verificar.",
+    "p3": "AffordEgypt es la tercera opción. Los mismos guías licenciados que enviamos en nuestros tours premium, los mismos vehículos, los mismos estándares, reducidos a lo que realmente necesitas. Un coche privado. Un egiptólogo de verdad. Y la libertad de añadir entradas, comidas y experiencias solo cuando tú quieras.",
+    "closing": "Precios reales. Un operador real detrás. El Egipto real.",
+    "signature": "— Islam"
+  },
+  "verifyEmail": {
+    "titleVerifying": "Verificando tu correo",
+    "titleSuccess": "¡Correo verificado!",
+    "titleFailed": "Verificación fallida",
+    "noToken": "El enlace de verificación no es válido. Revisa tu correo para encontrar el enlace correcto.",
+    "success": "¡Correo verificado correctamente! Ya puedes acceder a todas las funciones.",
+    "failed": "Ese enlace de verificación no es válido o ha caducado. Solicita uno nuevo abajo.",
+    "error": "Se produjo un error durante la verificación. Inténtalo de nuevo.",
+    "redirecting": "Redirigiendo a la página de inicio de sesión...",
+    "resendCta": "Reenviar correo de verificación",
+    "resendNoEmail": "No se puede reenviar. Regístrate de nuevo.",
+    "resendSent": "¡Correo de verificación reenviado! Revisa tu bandeja de entrada.",
+    "resendFailed": "No se pudo reenviar el correo. Inténtalo más tarde.",
+    "goToLogin": "Ir a iniciar sesión"
+  },
+  "entranceFees": {
+    "placeholder": "Seleccionar entradas",
+    "selected_one": "{{count}} entrada seleccionada",
+    "selected_other": "{{count}} entradas seleccionadas",
+    "headingForCity": "Entradas en {{city}}",
+    "clearAll": "Borrar todo",
+    "searchPlaceholder": "Buscar entradas...",
+    "noneFound": "No se encontraron entradas para {{city}}",
+    "perPerson": "/pers.",
+    "done": "Listo",
+    "doneWith": "Listo ({{count}})"
   }
 }

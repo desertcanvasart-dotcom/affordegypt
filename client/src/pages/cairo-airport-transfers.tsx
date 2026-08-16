@@ -28,7 +28,8 @@ export default function CairoAirportTransfers() {
   const SERVICE_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Airport Transfer",
+    // schema.org value on the English prerender Google indexes
+    "serviceType": "Airport Transfer", // i18n-exempt
     "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
     "areaServed": "Cairo",
     "offers": {
@@ -106,8 +107,13 @@ export default function CairoAirportTransfers() {
   return (
     <>
       <SeoMeta
-        title="Cairo Airport Transfers | CAI &amp; Sphinx Airport (SPX) | AffordEgypt"
-        description={`Fixed-price Cairo airport transfers from LE ${sedanFrom}. CAI and Sphinx SPX, licensed drivers, flight monitoring and meet and greet. Book direct, no middlemen.`}
+        // The "&" was written as &amp; here, which the JSX transform decodes
+        // before React sees it. The locale file holds a literal "&" — a JSON
+        // value gets no entity decoding.
+        title={t("airportTransfers.cairo.seoTitle")}
+        description={t("airportTransfers.cairo.seoDescription", {
+          interpolation: { price: `LE ${sedanFrom}` },
+        })}
         canonical="https://affordegypt.com/cairo-airport-transfers"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/cairo-airport-transfers")!)]}
       />

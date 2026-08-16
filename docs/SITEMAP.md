@@ -118,11 +118,29 @@ Composed of these sections in order:
 | `/transfers` | `transfers.tsx` | Browse transfer routes. Filter by city, vehicle. Each route card has a **Book Now** button → `/book?route=ID&vehicle=N&price=X`. |
 | `/pricing-tool` | `pricing-tool.tsx` | Standalone version of the Multi-City Pricing Tool with a header/footer wrapper. |
 | `/destinations` | `destinations.tsx` | Lists the 6 cities (Cairo, Alexandria, Luxor, Aswan, Hurghada, Sharm El Sheikh) with hero images. CTA buttons link to `/transfers` and `/travel-tips`. |
-| `/attractions` | `attractions-simple.tsx` | Browse attractions (filtered by city). Each attraction shows name, description, ticket price, duration. |
-| `/routes` | `routes-simple.tsx` | All routes table with vehicle pricing. Booking link goes to `/route-booking`. |
-| `/routes/:category/:citySlug` | `route-city-page.tsx` | Routes scoped to one city + category (inter-city, intra-city, airport). |
-| `/routes/book/:routeId` | `route-booking.tsx` | Single-route booking form. Collects customer info + travel date. POSTs `/api/route-bookings`. |
-| `/route-booking` | `route-booking.tsx` | Same component, alternate URL. |
+| `/attractions` | `attractions.tsx` | Browse attractions (filtered by city). Each attraction shows name, description, ticket price, duration. Not to be confused with `attractions-simple.tsx`, which is the admin screen at `/admin/attractions`. |
+| `/routes` | — | **Redirects to `/pricing-tool`.** |
+| `/routes/:category/:citySlug` | — | **Redirects to `/pricing-tool`.** |
+| `/routes/book/:routeId` | — | **Redirects to `/pricing-tool`.** |
+| `/route-booking` | — | **Redirects to `/pricing-tool`.** |
+
+The four `/routes*` URLs above were priced off the `routes` table, which is
+empty in production; the pages and their components are gone and the paths are
+kept only as redirects so old links still land somewhere useful.
+
+### Airport transfer & guide service pages
+
+| Path | Page |
+|---|---|
+| `/cairo-airport-transfers` | `cairo-airport-transfers.tsx` |
+| `/luxor-airport-transfers` | `luxor-airport-transfers.tsx` |
+| `/aswan-airport-transfers` | `aswan-airport-transfers.tsx` |
+| `/cairo-car-tour-guide-services` | `cairo-guide-services.tsx` |
+| `/luxor-car-tour-guide-services` | `luxor-guide-services.tsx` |
+| `/aswan-car-tour-guide-services` | `aswan-guide-services.tsx` |
+
+All six are multilingual routes and read their prices from
+`lib/service-pricing.ts`, never from a literal.
 
 ### Long-form guide pages (SEO content)
 
@@ -205,9 +223,9 @@ Three-step wizard:
 - City selector dropdown (only shown when no destinations chosen yet)
 - Each chosen destination renders an accordion item with:
   - Day badge, city name, date
-  - **TransportationSearch** (`components/transportation-search.tsx`) — pick routes for this city
+  - **CatalogServicePicker** (`components/catalog-service-picker.tsx`) — pick catalog services for this city
   - **GuideSearch** (`components/guide-search.tsx`) — pick a guide language
-  - **AttractionsSearch** (`components/attractions-search.tsx`) — multi-select attractions
+  - **EntranceFeesSearch** (`components/entrance-fees-search.tsx`) — multi-select attraction entrance fees
   - **AddOnsSearch** (`components/addons-search.tsx`) — multi-select add-ons with quantity
   - **Remove Day** button
 - **Add Day N** city selector at the bottom of the list
@@ -230,13 +248,17 @@ Single-route booking page launched from `/transfers` or quote completion. Reads 
 - **Book Now** button — POSTs to `/api/route-bookings` (server recomputes price via PricingService, ignores client price). Returns `bookingReference`.
 - After successful booking → navigates to `/booking-confirmation/:reference`.
 
-### `/checkout/:bookingId` (`pages/checkout.tsx`)
-Stripe-powered checkout for an existing booking ID. Wraps `<Elements>` from `@stripe/react-stripe-js`. Steps:
-- Fetches booking by ID
-- Calls POST `/api/create-payment-intent` with `{ bookingId, amount }` to get a Stripe PaymentIntent client secret
-- Renders `<PaymentElement>` (card input)
-- **Pay $X EGP** button — confirms the payment via Stripe.js
-- Webhook at POST `/api/stripe-webhook` updates booking `paymentStatus` to "paid" on success
+### Checkout — removed, no in-app payment step
+
+There is no `/checkout` route and no `pages/checkout.tsx`; both were removed
+for the Tab.travel migration. A booking is created and the customer lands
+straight on `/booking-confirmation/:reference` with `paymentStatus` unpaid —
+nobody pays a card on this site today.
+
+`POST /api/create-payment-intent` and `POST /api/stripe-webhook` still exist in
+`server/routes.ts`, both marked DEPRECATED and both logging a warning when hit.
+Nothing in the client calls either one. The Stripe packages are likewise still
+in `package.json` behind the `stripeRemoval` TODO.
 
 ### `/booking-confirmation/:reference` (`pages/booking-confirmation.tsx`)
 Read-only confirmation page. Fetches booking by reference via GET `/api/bookings/reference/:reference`. Shows:
@@ -256,33 +278,40 @@ The admin dashboard is gated behind real JWT auth — only users with `role = 'a
 Single-page admin shell with a left sidebar. Sections:
 
 **Sidebar navigation:**
-- Cities, Vehicle Types, Guides, Add-ons, Routes, Attractions, Bookings, Reviews
-- Each section toggles `activeSection` state
+- Cities, Vehicle Types, Guides, Add-ons, Bookings, Reviews — each toggles `activeSection` state
+- `activeSection` also has `routes` and `attractions` variants with render
+  blocks, but no nav button renders for either, so neither panel is reachable
+  from the UI. The routes one is dead alongside the empty `routes` table.
 
 **Top bar:**
 - Logout button → clears `auth_token` + `admin-token` from localStorage
 
 **Main panel** (per section):
 - Table view of items (cities / vehicles / etc.)
-- **+ Add New** button → opens AddItemModal
-- Edit pencil icon per row → opens AddItemModal in edit mode
+- **+ Add New** button → opens the add/edit dialog (cities, vehicles and guides only)
+- Edit pencil icon per row → opens the same dialog in edit mode
 - Trash icon per row → opens delete confirmation dialog
-- For routes: also has **Import CSV** button → opens import modal that POSTs `/api/routes/import-csv`
 
-**AddItemModal** (`components/add-item-modal.tsx`):
-- Renders different fields based on `modalType` (city/vehicle/guide/addon/route/attraction)
-- **Save** button → POSTs (create) or PUTs (update) the right `/api/*` endpoint with the admin JWT
-- **Cancel** button → closes modal
+The add/edit dialog is rendered **inline by `admin-sidebar.tsx`** (a `<Dialog>`
+keyed on `modalType`, fields switched per entity, Save POSTs or PUTs the right
+`/api/*` endpoint with the admin JWT). It is not a separate component. There
+was an `add-item-modal.tsx` that looked like it served this screen, but its
+only importer was the unmounted `pages/admin.tsx`; both are deleted.
 
-**RouteEditModal** (`components/route-edit-modal.tsx`) is a dedicated, larger modal for editing routes (more fields than the generic AddItemModal).
+### Catalog admin
 
-### `/admin/routes` (`pages/admin-routes-overview.tsx`)
-Routes-by-city overview. Each city card shows route count, click navigates to `/admin/routes/city/:citySlug/:category?`.
-- **+ Add Route** button → opens the route modal
-- **Back to Dashboard** button → returns to `/admin`
+These are where pricing is actually maintained — `service_catalog` is the
+source of truth the build-time pricing snapshot is generated from.
 
-### `/admin/routes/city/:citySlug/:category?` (`pages/admin-city-routes.tsx`)
-Routes for one city. Same CRUD pattern as the main admin sidebar. Filter by category (inter-city / intra-city / airport).
+| Path | Page |
+|---|---|
+| `/admin/service-catalog` | `admin-service-catalog.tsx` |
+| `/admin/service-catalog/new` | `admin-service-catalog-edit.tsx` |
+| `/admin/service-catalog/:id/edit` | `admin-service-catalog-edit.tsx` |
+| `/admin/service-categories` | `admin-service-categories.tsx` |
+| `/admin/trip-types` | `admin-trip-types.tsx` |
+| `/admin/entrance-fees` | `admin-entrance-fees.tsx` |
+| `/admin/attractions` | `attractions-simple.tsx` |
 
 ### `/admin/bookings` (`pages/admin-bookings.tsx`)
 List + manage all bookings.
@@ -298,7 +327,12 @@ List + manage all bookings.
 - Bulk **CSV upload** for reviews via `<ReviewUpload>`
 
 ### Unused admin pages
-`pages/admin.tsx`, `pages/admin-working.tsx`, `pages/admin-dashboard.tsx`, `pages/attractions.tsx`, `pages/routes.tsx`, `pages/routes-overview.tsx`, `pages/booking-confirmation-broken.tsx` — leftovers from prior iterations. Not wired into `App.tsx`. Safe to delete.
+None. Every page under `client/src/pages/` is now reachable from `App.tsx`.
+`admin.tsx` was the last leftover and has been deleted, along with
+`admin-working`, `admin-dashboard`, `routes`, `routes-overview` and
+`booking-confirmation-broken` before it. `pages/attractions.tsx` was once
+listed here too and is **not** unused — it serves the public `/attractions`
+route.
 
 ---
 
@@ -308,62 +342,70 @@ List + manage all bookings.
 | Component | File | Purpose |
 |---|---|---|
 | Hero | `hero.tsx` | Homepage hero |
-| HeroSection | `hero-section.tsx` | Alternate two-card hero (deprecated, no longer rendered) |
 | CredentialsStrip | `credentials-strip.tsx` | Trust strip under hero |
 | FounderBlock | `founder-block.tsx` | Islam founder note |
 | InclusionsComparison | `inclusions-comparison.tsx` | 3-column included/not/premium |
 | MultiCityPricingTool | `multi-city-pricing-tool.tsx` | The wizard (1,300 lines) |
 | FAQSection | `faq-section.tsx` | 7 expandable Q&As |
 | NewsletterSection | `newsletter-section.tsx` | Egypt Trip Calculator subscribe |
-| AboutSection | `about-section.tsx` | About-page content block |
-| ContactSection | `contact-section.tsx` | Contact-page form |
 | BlogGrid | `blog-grid.tsx` | Long-form guide cards |
-| ServiceOverview | `service-overview.tsx` | Service cards block |
-| FeaturedDestinations | `featured-destinations.tsx` | Destination cards |
 | AnimatedReviewCarousel | `animated-review-carousel.tsx` | Auto-scroll reviews |
-| CustomerReviews | `customer-reviews.tsx` | Static reviews grid |
+| GuideToc | `guide-toc.tsx` | Table of contents on the long-form guides |
+| AdvanceTicketNote | `advance-ticket-note.tsx` | Advance-booking caveat on ticketed attractions |
+
+**Every component listed in this file is rendered by something.** That was not
+true before 2026-08-16: `about-section`, `customer-reviews`,
+`featured-destinations`, `service-overview` and `contact-section` were all
+listed here as live section blocks while being imported by nothing. If you add
+a component, add its row; if you delete a row, check `grep -r` first — a
+listing here is the main reason dead code gets mistaken for live code.
+
+`/contact` and `/about` are pages (`pages/contact.tsx`, `pages/about.tsx`), not
+section components. `contact-section.tsx` and `about-section.tsx` were their
+unmounted predecessors.
 
 ### Layout / chrome
 | Component | File |
 |---|---|
 | Navbar | `navbar.tsx` |
-| Header | `header.tsx` (alternate, unused on homepage) |
 | Footer | `footer.tsx` |
 | MobileStickyCTA | `mobile-sticky-cta.tsx` |
-| LanguageSelector | `language-selector.tsx` |
-| WhatsAppWidget | `whatsapp-widget.tsx` |
-| UserNav | `user-nav.tsx` |
+| LanguageSelector | `language-selector.tsx` (hidden while `MULTILINGUAL_ENABLED` is off) |
+| PageBreadcrumbs | `page-breadcrumbs.tsx` |
+| CookieConsent | `cookie-consent.tsx` |
+| SeoMeta | `seo-meta.tsx` (title / description / JSON-LD per page) |
+| ErrorBoundary | `error-boundary.tsx` |
+| ClientOnly | `client-only.tsx` (skips prerender for client-only subtrees) |
+
+The floating **WhatsApp** button is rendered inline by `App.tsx`, not by a
+component — `whatsapp-widget.tsx` was an unmounted duplicate and is gone. The
+navbar carries the other two WhatsApp links. All three point at
+`wa.me/201100765283`.
 
 ### Booking & pricing
 | Component | File |
 |---|---|
-| BookingWizard | `booking-wizard.tsx` (legacy quote wizard) |
-| QuoteBuilderWizard | `quote-builder-wizard.tsx` (legacy alternate wizard) |
 | QuoteManager | `quote-manager.tsx` (saved quotes modal) |
-| PricingSidebar | `pricing-sidebar.tsx` |
-| TransportationSearch | `transportation-search.tsx` |
+| CatalogServicePicker | `catalog-service-picker.tsx` |
 | GuideSearch | `guide-search.tsx` |
-| AttractionsSearch | `attractions-search.tsx` |
+| EntranceFeesSearch | `entrance-fees-search.tsx` |
 | AddOnsSearch | `addons-search.tsx` |
 
-### Day-by-Day planner subcomponents
-| Component | File |
-|---|---|
-| DayColumn | `day-by-day/day-column.tsx` |
-| ServiceModal | `day-by-day/service-modal.tsx` |
-| DayByDay PricingSidebar | `day-by-day/pricing-sidebar.tsx` |
+The legacy wizards (`booking-wizard`, `quote-builder-wizard`), the standalone
+`pricing-sidebar`, `transportation-search`, `attractions-search` and the whole
+`day-by-day/` planner have all been deleted. `multi-city-pricing-tool.tsx` is
+the only quote builder now.
 
 ### Admin
 | Component | File |
 |---|---|
 | AdminLogin | `admin-login.tsx` |
 | AdminBookings | `admin-bookings.tsx` (booking detail modal + table) |
-| AddItemModal | `add-item-modal.tsx` |
-| RouteEditModal | `route-edit-modal.tsx` |
-| RoutesNavigation | `routes-navigation.tsx` |
-| ReviewForm | `review-form.tsx` |
 | ReviewUpload | `review-upload.tsx` (CSV import for reviews) |
-| TranslationDemo | `translation-demo.tsx` (developer-only i18n preview) |
+
+`review-form.tsx` was listed here but is **customer-facing** — it is the form
+on `/submit-review`, and it is translated. `translation-demo.tsx` was a
+developer-only i18n preview that nothing rendered; deleted.
 
 ### shadcn/ui primitives
 `components/ui/*.tsx` — 47 files: button, card, dialog, dropdown-menu, input, label, table, toast, tooltip, etc. These are unstyled or lightly-styled wrappers around Radix UI. The `outline` variant of `button.tsx` was customised to white-bg + primary-green hover.

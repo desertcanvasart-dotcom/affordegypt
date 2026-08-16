@@ -52,8 +52,12 @@ export default function Destinations() {
   return (
     <div className="min-h-screen bg-background">
       <SeoMeta
-        title="Egypt Destinations Guide | Cairo, Luxor, Aswan & More"
-        description="Plan your Egypt trip across Cairo, Alexandria, Luxor, Aswan, Hurghada and Sharm El Sheikh. Licensed Egyptologist guides and transparent prices."
+        // destinations.meta existed in all four locale files and nothing read
+        // it, so it still described the page as "Hidden Gems" while the tag
+        // here named the cities. The keys now carry this wording — the newer,
+        // deliberate one — and the page reads them.
+        title={t("destinations.meta.title")}
+        description={t("destinations.meta.description")}
         canonical="https://affordegypt.com/destinations"
         schema={breadcrumbSchema(trailFor("/destinations")!)}
       />

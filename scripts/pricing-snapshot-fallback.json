@@ -10,6 +10,12 @@
     "aswan-airport-transfer": {
       "minPrice": "1450"
     },
+    "in-town-transfer": {
+      "minPrice": "700"
+    },
+    "airport-transfer-floor": {
+      "minPrice": "1000"
+    },
     "cairo-guide-services": {
       "minPrice": "2750"
     },

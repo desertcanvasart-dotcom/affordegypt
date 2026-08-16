@@ -1,8 +1,8 @@
 import { Switch, Route, Redirect, useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 import { MULTILINGUAL_ENABLED } from "@/config/features";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsent from "@/components/cookie-consent";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -266,6 +266,7 @@ function Router() {
 }
 
 function App() {
+  const { t } = useTranslation();
   // Initialize Google Analytics and Google Ads when app loads.
   // This used to be gated on VITE_GA_MEASUREMENT_ID / VITE_GOOGLE_ADS_ID being
   // set, which they never were in the Railway build — so initGA() was simply
@@ -299,7 +300,6 @@ function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <HelmetProvider>
           <AuthProvider>
             <TooltipProvider>
               <ClientOnly>
@@ -322,16 +322,17 @@ function App() {
                   href="https://wa.me/201100765283"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Message us on WhatsApp"
+                  aria-label={t('nav.whatsappTitle')}
                   className="flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-full bg-green-500 p-3 text-white shadow-lg transition-all duration-200 hover:bg-green-600 hover:shadow-xl md:px-4 md:py-3"
                 >
                   <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
-                  <span className="hidden text-sm font-medium md:inline">WhatsApp Us</span>
+                  <span className="hidden text-sm font-medium md:inline">
+                    {t('chrome.whatsappCta')}
+                  </span>
                 </a>
               </div>
             </TooltipProvider>
           </AuthProvider>
-        </HelmetProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );

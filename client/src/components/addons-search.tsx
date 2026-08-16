@@ -34,13 +34,22 @@ interface AddOnsSearchProps {
   unitTypeFilter?: 'per_person' | 'per_trip' | 'per_unit';
 }
 
-export function AddOnsSearch({ 
-  addOns, 
-  selectedAddOns, 
-  onAddOnsChange, 
+/**
+ * Categories are free text in the add-ons table and have already picked up a
+ * trailing space: both "Lunch" and "Lunch " are stored, which rendered as two
+ * identical "Lunch" filter chips, each matching only half the lunches.
+ * Trimming here collapses them into one working filter. The stored values
+ * still need cleaning — this stops the UI lying about them meanwhile.
+ */
+const normaliseCategory = (category: string) => category.trim();
+
+export function AddOnsSearch({
+  addOns,
+  selectedAddOns,
+  onAddOnsChange,
   cityId,
   cityName,
-  unitTypeFilter 
+  unitTypeFilter
 }: AddOnsSearchProps) {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
@@ -63,7 +72,9 @@ export function AddOnsSearch({
         addOn.category.toLowerCase().includes(searchTerm.toLowerCase());
       
       // Category filter
-      const categoryMatch = selectedCategory === "all" || addOn.category === selectedCategory;
+      const categoryMatch =
+        selectedCategory === "all" ||
+        normaliseCategory(addOn.category) === selectedCategory;
       
       return cityMatch && unitTypeMatch && searchMatch && categoryMatch;
     });
@@ -74,7 +85,7 @@ export function AddOnsSearch({
     const cats = Array.from(new Set(
       addOns
         .filter(a => (a.cityId === null || a.cityId === cityId) && (!unitTypeFilter || a.unitType === unitTypeFilter))
-        .map(a => a.category)
+        .map(a => normaliseCategory(a.category))
     ));
     return cats.sort();
   }, [addOns, cityId, unitTypeFilter]);
@@ -88,29 +99,48 @@ export function AddOnsSearch({
     return grouped;
   }, [filteredAddOns]);
 
+  /**
+   * Icons keyed on the categories the add-ons table actually stores.
+   *
+   * The previous map listed Meals / Transportation / Activities /
+   * Accommodation / Equipment / Services / Entertainment / Shopping /
+   * Insurance / Documentation — a taxonomy nothing in the data uses, so every
+   * row fell through to the generic 📦 box.
+   */
   const getCategoryIcon = (category: string) => {
     const icons = {
-      'Meals': '🍽️',
-      'Transportation': '🚗',
-      'Activities': '🎯',
-      'Accommodation': '🏨',
-      'Equipment': '📱',
-      'Services': '🔧',
-      'Entertainment': '🎭',
-      'Shopping': '🛍️',
-      'Insurance': '🛡️',
-      'Documentation': '📋'
+      'Dinner': '🍽️',
+      'Lunch': '🍽️',
+      'Felucca Ride': '⛵',
+      'Horse Carriage': '🐴',
+      'Sunrise-Baloon Ride': '🎈',
+      'Post-Sunrise-Balloon Ride': '🎈',
     };
     return icons[category as keyof typeof icons] || '📦';
   };
 
   const getUnitTypeLabel = (unitType: string) => {
-    switch (unitType) {
-      case 'per_person': return 'Per Person';
-      case 'per_trip': return 'Per Trip';
-      case 'per_unit': return 'Per Unit';
-      default: return unitType;
-    }
+    const key = `addons.unitTypes.${unitType}`;
+    const label = t(key);
+    // i18next echoes the key back when it is missing; show the raw slug instead
+    // of a key path if the catalog ever grows a unit type the locales lack.
+    return label === key ? unitType : label;
+  };
+
+  /**
+   * Category names arrive from the database in English ("Dinner", "Felucca
+   * Ride") and were rendered raw on the filter chips and on every card, so a
+   * German visitor filtered add-ons by English words. Translated through a
+   * lookup keyed on the stored value, falling back to that value so a category
+   * added later still shows something readable rather than a key path.
+   *
+   * The English side is not always the identity: the table stores
+   * "Sunrise-Baloon Ride", and the locale spells it correctly.
+   */
+  const getCategoryLabel = (category: string) => {
+    const key = `addons.categories.${category}`;
+    const label = t(key);
+    return label === key ? category : label;
   };
 
   const getUnitTypeColor = (unitType: string) => {
@@ -170,7 +200,7 @@ export function AddOnsSearch({
           />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-lg">{getCategoryIcon(addOn.category)}</span>
+              <span className="text-lg">{getCategoryIcon(normaliseCategory(addOn.category))}</span>
               <h4 className="font-medium text-sm">{addOn.name}</h4>
             </div>
             
@@ -183,7 +213,7 @@ export function AddOnsSearch({
                 {getUnitTypeLabel(addOn.unitType)}
               </Badge>
               <Badge variant="outline" className="text-xs">
-                {addOn.category}
+                {getCategoryLabel(normaliseCategory(addOn.category))}
               </Badge>
             </div>
           </div>
@@ -191,7 +221,7 @@ export function AddOnsSearch({
         
         {isSelected && addOn.unitType === 'per_unit' && (
           <div className="flex items-center justify-between mt-3 pt-3 border-t">
-            <span className="text-sm text-gray-600">Quantity:</span>
+            <span className="text-sm text-gray-600">{t('addons.quantity')}</span>
             <div className="flex items-center gap-2">
               <Button
                 size="sm"
@@ -233,17 +263,19 @@ export function AddOnsSearch({
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Package className="h-5 w-5 text-teal-600" />
-              <h3 className="font-semibold">Add-ons for {cityName}</h3>
+              <h3 className="font-semibold">
+                {t('addons.headingForCity', { city: cityName })}
+              </h3>
             </div>
             <div className="flex items-center gap-2">
               {selectedAddOns.length > 0 && (
                 <Badge variant="secondary" className="text-xs">
-                  {selectedAddOns.length} selected
+                  {t('addons.selectedCount', { count: selectedAddOns.length })}
                 </Badge>
               )}
               {selectedAddOns.length > 0 && (
                 <Button size="sm" variant="ghost" onClick={clearAll}>
-                  Clear All
+                  {t('addons.clearAll')}
                 </Button>
               )}
               <Button
@@ -261,7 +293,7 @@ export function AddOnsSearch({
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search add-ons..."
+              placeholder={t('addons.searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -275,7 +307,7 @@ export function AddOnsSearch({
               className="cursor-pointer text-xs"
               onClick={() => setSelectedCategory("all")}
             >
-              All
+              {t('addons.allCategories')}
             </Badge>
             {categories.map(category => (
               <Badge 
@@ -284,7 +316,7 @@ export function AddOnsSearch({
                 className="cursor-pointer text-xs"
                 onClick={() => setSelectedCategory(category)}
               >
-                {getCategoryIcon(category)} {category}
+                {getCategoryIcon(category)} {getCategoryLabel(category)}
               </Badge>
             ))}
           </div>
@@ -296,11 +328,11 @@ export function AddOnsSearch({
               <TabsList className="w-full m-3 mb-0">
                 <TabsTrigger value="per_person" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  Per Person/Trip ({addOnsByType.per_person.length})
+                  {t('addons.tabs.perPersonTrip', { count: addOnsByType.per_person.length })}
                 </TabsTrigger>
                 <TabsTrigger value="per_unit" className="flex items-center gap-2">
                   <Package className="h-4 w-4" />
-                  Per Unit ({addOnsByType.per_unit.length})
+                  {t('addons.tabs.perUnit', { count: addOnsByType.per_unit.length })}
                 </TabsTrigger>
               </TabsList>
               
@@ -308,7 +340,7 @@ export function AddOnsSearch({
                 {addOnsByType.per_person.length === 0 ? (
                   <div className="text-center py-6 text-gray-500">
                     <Users className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                    <p>No per-person add-ons available</p>
+                    <p>{t('addons.empty.perPerson')}</p>
                   </div>
                 ) : (
                   addOnsByType.per_person.map(addOn => (
@@ -321,7 +353,7 @@ export function AddOnsSearch({
                 {addOnsByType.per_unit.length === 0 ? (
                   <div className="text-center py-6 text-gray-500">
                     <Package className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                    <p>No per-unit add-ons available</p>
+                    <p>{t('addons.empty.perUnit')}</p>
                   </div>
                 ) : (
                   addOnsByType.per_unit.map(addOn => (
@@ -335,7 +367,7 @@ export function AddOnsSearch({
               {filteredAddOns.length === 0 ? (
                 <div className="text-center py-6 text-gray-500">
                   <Package className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                  <p>No add-ons found matching your criteria</p>
+                  <p>{t('addons.empty.noMatch')}</p>
                 </div>
               ) : (
                 filteredAddOns.map(addOn => (
@@ -354,8 +386,9 @@ export function AddOnsSearch({
             size="sm"
           >
             <Check className="w-4 h-4 mr-2" />
-            Done
-            {selectedAddOns.length > 0 && ` (${selectedAddOns.length} selected)`}
+            {selectedAddOns.length > 0
+              ? t('addons.doneWith', { count: selectedAddOns.length })
+              : t('addons.done')}
           </Button>
         </div>
       </PopoverContent>

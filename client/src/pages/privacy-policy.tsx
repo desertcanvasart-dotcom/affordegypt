@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
+import { effectiveDate, lastUpdatedDate } from "@/lib/legal-dates";
 
 export default function PrivacyPolicy() {
   const { t, i18n } = useTranslation();
@@ -14,8 +15,8 @@ export default function PrivacyPolicy() {
     <>
       <Navbar />
   <SeoMeta
-          title="Privacy Policy | AffordEgypt"
-          description="How AffordEgypt collects, uses, and protects your personal data when you browse, request quotes, or book a tour."
+          title={t("privacyPolicy.seoTitle")}
+          description={t("privacyPolicy.seoDescription")}
           canonical="https://affordegypt.com/privacy-policy"
         />
       <div className="min-h-screen bg-gray-50 py-12">
@@ -38,9 +39,9 @@ export default function PrivacyPolicy() {
             
             <div className="prose prose-lg max-w-none">
               <div className="mb-8 text-gray-600">
-                <p><strong>{t("legal.effectiveDate")}</strong> March 2, 2020</p>
-                <p><strong>{t("legal.lastUpdated")}</strong> August 5, 2026</p>
-                <p><strong>Contact Email:</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
+                <p><strong>{t("legal.effectiveDate")}</strong> {effectiveDate(i18n.language)}</p>
+                <p><strong>{t("legal.lastUpdated")}</strong> {lastUpdatedDate(i18n.language)}</p>
+                <p><strong>{t("legal.contactEmail")}</strong> <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a></p>
               </div>
 
               <div className="space-y-8">
@@ -57,7 +58,7 @@ export default function PrivacyPolicy() {
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                     {t("privacyPolicy.s2")}
                   </h2>
-                  <p className="text-gray-700 mb-4">We may collect:</p>
+                  <p className="text-gray-700 mb-4">{t("privacyPolicy.s2intro")}</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li><strong>{t("privacyPolicy.s2a")}</strong> {t("privacyPolicy.s2av")}</li>
                     <li><strong>{t("privacyPolicy.s2b")}</strong> {t("privacyPolicy.s2bv")}</li>
@@ -71,7 +72,7 @@ export default function PrivacyPolicy() {
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                     {t("privacyPolicy.s3")}
                   </h2>
-                  <p className="text-gray-700 mb-4">Under the General Data Protection Regulation (GDPR), we process your data based on:</p>
+                  <p className="text-gray-700 mb-4">{t("privacyPolicy.s3intro")}</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>{t("privacyPolicy.s3a")}</li>
                     <li>{t("privacyPolicy.s3b")}</li>
@@ -84,7 +85,7 @@ export default function PrivacyPolicy() {
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                     {t("privacyPolicy.s4")}
                   </h2>
-                  <p className="text-gray-700 mb-4">You have the right to:</p>
+                  <p className="text-gray-700 mb-4">{t("privacyPolicy.s4intro")}</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>{t("privacyPolicy.s4a")}</li>
                     <li>{t("privacyPolicy.s4b")}</li>
@@ -92,7 +93,8 @@ export default function PrivacyPolicy() {
                     <li>{t("privacyPolicy.s4d")}</li>
                   </ul>
                   <p className="text-gray-700 mt-4">
-                    To exercise these rights, email us at: <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a>
+                    {t("privacyPolicy.s4contact")}{" "}
+                    <a href="mailto:hello@affordegypt.com" className="text-teal-600 hover:text-teal-700">hello@affordegypt.com</a>
                   </p>
                 </section>
 

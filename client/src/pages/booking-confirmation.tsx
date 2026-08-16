@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRoute } from "wouter";
-import { CheckCircle, Clock, AlertCircle, Download, Mail, Phone, DollarSign } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { CheckCircle, Clock, AlertCircle, Download, DollarSign } from "lucide-react";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -11,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { formatEGP } from "@/lib/utils";
 import {
   hasSentConversion,
@@ -21,26 +21,8 @@ import {
 
 type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
-interface BookingData {
-  booking: {
-    id: number;
-    bookingReference: string;
-    bookingStatus: BookingStatus;
-    totalAmount: string;
-    customerName: string;
-    customerEmail: string;
-    customerPhone: string;
-    customerNotes?: string;
-    startDate?: string;
-    endDate?: string;
-  };
-  quote: {
-    id: number;
-    jsonBlob: any;
-  };
-}
-
 export default function BookingConfirmation() {
+  const { t, i18n } = useTranslation();
   const [, params] = useRoute("/booking-confirmation/:reference");
   const reference = params?.reference;
 
@@ -85,7 +67,7 @@ export default function BookingConfirmation() {
       items: [
         {
           item_id: booking.bookingReference,
-          item_name: "Egypt trip booking",
+          item_name: "Egypt trip booking", // i18n-exempt: GA4 item name, not UI
           item_category: "trip",
           price: Number.isFinite(value) && value > 0 ? value : undefined,
           quantity: 1,
@@ -95,6 +77,12 @@ export default function BookingConfirmation() {
 
     markConversionSent(booking.bookingReference);
   }, [bookingData]);
+
+  // The guide's language is stored on the booking as an English word
+  // ("English", "French"). Rendering it raw gave "Guía en English" on the
+  // Spanish confirmation; pricing.guideLanguages already holds the translations.
+  const guideLanguage = (language: string) =>
+    t(`pricing.guideLanguages.${String(language).toLowerCase()}`, { defaultValue: language });
 
   const getStatusIcon = (status: BookingStatus) => {
     switch (status) {
@@ -106,13 +94,14 @@ export default function BookingConfirmation() {
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+  // Dates follow the reader's language: "15 septembre 2026", not
+  // "September 15, 2026" on an otherwise French confirmation.
+  const formatDate = (dateString: string) =>
+    new Date(dateString).toLocaleDateString(i18n.language, {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
-  };
 
   if (isLoading) {
     return (
@@ -129,12 +118,12 @@ export default function BookingConfirmation() {
           <CardContent className="pt-6">
             <div className="text-center">
               <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-              <h2 className="text-xl font-bold mb-2">Booking Not Found</h2>
+              <h2 className="text-xl font-bold mb-2">{t('bookingConfirmation.notFoundTitle')}</h2>
               <p className="text-muted-foreground mb-4">
-                We couldn't find a booking with reference: {reference}
+                {t('bookingConfirmation.notFoundBody', { reference })}
               </p>
               <Button onClick={() => window.location.href = '/'}>
-                Return to Home
+                {t('bookingConfirmation.returnHome')}
               </Button>
             </div>
           </CardContent>
@@ -170,49 +159,49 @@ export default function BookingConfirmation() {
       pdfContainer.innerHTML = `
         <div style="text-align: center; margin-bottom: 30px;">
           <h1 style="color: #0d9488; margin: 0; font-size: 28px;">AffordEgypt</h1>
-          <h2 style="margin: 10px 0; color: #374151;">Booking Confirmation</h2>
-          <p style="color: #6b7280; margin: 0;">Reference: ${booking.bookingReference}</p>
+          <h2 style="margin: 10px 0; color: #374151;">${t('bookingConfirmation.pdf.title')}</h2>
+          <p style="color: #6b7280; margin: 0;">${t('bookingConfirmation.pdf.referenceLabel')} ${booking.bookingReference}</p>
         </div>
         
         <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
-          <h3 style="color: #0d9488; margin-top: 0;">Booking Information</h3>
+          <h3 style="color: #0d9488; margin-top: 0;">${t('bookingConfirmation.pdf.bookingInformation')}</h3>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
             <div>
-              <strong>Total Amount:</strong> ${formatEGP(booking.totalAmount)}<br>
-              <strong>Status:</strong> ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
+              <strong>${t('bookingConfirmation.pdf.totalAmount')}</strong> ${formatEGP(booking.totalAmount)}<br>
+              <strong>${t('bookingConfirmation.pdf.status')}</strong> ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
             </div>
             <div>
-              ${booking.startDate ? `<strong>Start Date:</strong> ${formatDate(booking.startDate)}<br>` : ''}
-              ${booking.endDate ? `<strong>End Date:</strong> ${formatDate(booking.endDate)}<br>` : ''}
+              ${booking.startDate ? `<strong>${t('bookingConfirmation.pdf.startDate')}</strong> ${formatDate(booking.startDate)}<br>` : ''}
+              ${booking.endDate ? `<strong>${t('bookingConfirmation.pdf.endDate')}</strong> ${formatDate(booking.endDate)}<br>` : ''}
             </div>
           </div>
         </div>
         
         <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
-          <h3 style="color: #0d9488; margin-top: 0;">Customer Information</h3>
+          <h3 style="color: #0d9488; margin-top: 0;">${t('bookingConfirmation.pdf.customerInformation')}</h3>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
             <div>
-              <strong>Name:</strong> ${booking.customerName}<br>
-              <strong>Email:</strong> ${booking.customerEmail}
+              <strong>${t('bookingConfirmation.pdf.name')}</strong> ${booking.customerName}<br>
+              <strong>${t('bookingConfirmation.pdf.email')}</strong> ${booking.customerEmail}
             </div>
             <div>
-              <strong>Phone:</strong> ${booking.customerPhone}<br>
-              ${booking.customerNotes ? `<strong>Special Requests:</strong> ${booking.customerNotes}` : ''}
+              <strong>${t('bookingConfirmation.pdf.phone')}</strong> ${booking.customerPhone}<br>
+              ${booking.customerNotes ? `<strong>${t('bookingConfirmation.pdf.specialRequests')}</strong> ${booking.customerNotes}` : ''}
             </div>
           </div>
         </div>
         
         ${itinerary.length > 0 ? `
         <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
-          <h3 style="color: #0d9488; margin-top: 0;">Trip Itinerary</h3>
+          <h3 style="color: #0d9488; margin-top: 0;">${t('bookingConfirmation.pdf.itinerary')}</h3>
           ${itinerary.map((city: any, index: number) => `
             <div style="margin-bottom: 20px; padding-left: 15px; border-left: 4px solid #0d9488;">
               <h4 style="margin: 0 0 10px 0; color: #374151;">${index + 1}. ${city.cityName}</h4>
-              <p style="margin: 5px 0; color: #6b7280;"><strong>Date:</strong> ${city.date} • <strong>Travelers:</strong> ${city.travelers}</p>
+              <p style="margin: 5px 0; color: #6b7280;"><strong>${t('bookingConfirmation.pdf.date')}</strong> ${city.date} • <strong>${t('bookingConfirmation.pdf.travelers')}</strong> ${city.travelers}</p>
               
               ${city.selectedRoutes && city.selectedRoutes.length > 0 ? `
                 <div style="margin: 10px 0;">
-                  <strong style="color: #374151;">Transportation:</strong>
+                  <strong style="color: #374151;">${t('bookingConfirmation.pdf.transportation')}</strong>
                   <ul style="margin: 5px 0; padding-left: 20px;">
                     ${city.selectedRoutes.map((route: any) => `
                       <li style="color: #6b7280;">${typeof route === 'object' ? (route.name || getRouteName(route.id)) : getRouteName(route)}</li>
@@ -223,14 +212,14 @@ export default function BookingConfirmation() {
               
               ${city.selectedGuide ? `
                 <div style="margin: 10px 0;">
-                  <strong style="color: #374151;">Guide Service:</strong>
-                  <span style="color: #6b7280;"> ${city.selectedGuide.language} guide - ${city.selectedGuide.duration} hours</span>
+                  <strong style="color: #374151;">${t('bookingConfirmation.pdf.guideService')}</strong>
+                  <span style="color: #6b7280;"> ${t('bookingConfirmation.guideLine', { language: guideLanguage(city.selectedGuide.language), hours: city.selectedGuide.duration })}</span>
                 </div>
               ` : ''}
               
               ${(city.attractions || city.selectedAttractions) && (city.attractions || city.selectedAttractions).length > 0 ? `
                 <div style="margin: 10px 0;">
-                  <strong style="color: #374151;">Attractions:</strong>
+                  <strong style="color: #374151;">${t('bookingConfirmation.pdf.attractions')}</strong>
                   <ul style="margin: 5px 0; padding-left: 20px;">
                     ${(city.attractions || city.selectedAttractions).map((attraction: string) => `
                       <li style="color: #6b7280;">${attraction}</li>
@@ -241,13 +230,16 @@ export default function BookingConfirmation() {
               
               ${city.selectedAddOns && city.selectedAddOns.length > 0 ? `
                 <div style="margin: 10px 0;">
-                  <strong style="color: #374151;">Add-ons:</strong>
+                  <strong style="color: #374151;">${t('bookingConfirmation.pdf.addOns')}</strong>
                   <ul style="margin: 5px 0; padding-left: 20px;">
                     ${city.selectedAddOns.map((addOn: any) => {
                       const travelers = quote?.jsonBlob?.passengers || city.travelers || 1;
                       const isPerPerson = addOn.unitType === 'per_person' || addOn.type === 'per_person';
                       const displayQuantity = isPerPerson ? addOn.quantity * travelers : addOn.quantity;
-                      return `<li style="color: #6b7280;">${addOn.name} x${displayQuantity}${isPerPerson ? ` (${addOn.quantity} per person)` : ''}</li>`;
+                      const qty = isPerPerson
+                        ? t('bookingConfirmation.addOnPerPerson', { quantity: displayQuantity, each: addOn.quantity })
+                        : t('bookingConfirmation.addOnQuantity', { quantity: displayQuantity });
+                      return `<li style="color: #6b7280;">${addOn.name} ${qty}</li>`;
                     }).join('')}
                   </ul>
                 </div>
@@ -258,18 +250,18 @@ export default function BookingConfirmation() {
         ` : ''}
         
         <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; background-color: #f0f9ff;">
-          <h3 style="color: #0d9488; margin-top: 0;">Payment Information</h3>
-          <p style="margin: 5px 0; color: #374151;"><strong>10% deposit required</strong></p>
-          <p style="margin: 5px 0; color: #6b7280;">Our team will contact you to collect it and confirm your booking.</p>
-          <p style="margin: 5px 0; color: #6b7280;">Pay the rest on arrival, in cash or by credit card.</p>
+          <h3 style="color: #0d9488; margin-top: 0;">${t('bookingConfirmation.payment.title')}</h3>
+          <p style="margin: 5px 0; color: #374151;"><strong>${t('bookingConfirmation.payment.depositLabel')}</strong></p>
+          <p style="margin: 5px 0; color: #6b7280;">${t('bookingConfirmation.payment.depositBody')}</p>
+          <p style="margin: 5px 0; color: #6b7280;">${t('bookingConfirmation.payment.remainder')}</p>
         </div>
         
         <div style="text-align: center; padding: 20px; border-top: 2px solid #0d9488; margin-top: 30px;">
-          <h3 style="color: #0d9488; margin: 0 0 10px 0;">Contact Information</h3>
-          <p style="margin: 5px 0; color: #374151;"><strong>Phone:</strong> +20 110 076 5283</p>
-          <p style="margin: 5px 0; color: #374151;"><strong>WhatsApp:</strong> +20 110 076 5283</p>
-          <p style="margin: 5px 0; color: #374151;"><strong>Email:</strong> hello@affordegypt.com</p>
-          <p style="margin: 15px 0 0 0; color: #6b7280; font-style: italic;">Thank you for choosing AffordEgypt for your Egypt adventure!</p>
+          <h3 style="color: #0d9488; margin: 0 0 10px 0;">${t('bookingConfirmation.pdf.contactInformation')}</h3>
+          <p style="margin: 5px 0; color: #374151;"><strong>${t('bookingConfirmation.pdf.phone')}</strong> +20 110 076 5283</p>
+          <p style="margin: 5px 0; color: #374151;"><strong>${t('bookingConfirmation.pdf.whatsapp')}</strong> +20 110 076 5283</p>
+          <p style="margin: 5px 0; color: #374151;"><strong>${t('bookingConfirmation.pdf.email')}</strong> hello@affordegypt.com</p>
+          <p style="margin: 15px 0 0 0; color: #6b7280; font-style: italic;">${t('bookingConfirmation.pdf.thanks')}</p>
         </div>
       `;
       
@@ -307,115 +299,24 @@ export default function BookingConfirmation() {
       document.body.removeChild(pdfContainer);
       
     } catch (error) {
-      console.error('Error generating PDF:', error);
-      alert('Error generating PDF. Please try again.');
+      console.error('Error generating PDF:', error); // i18n-exempt: console, not UI
+      alert(t('bookingConfirmation.pdfError'));
     }
   };
 
-  const generateBookingDetailsText = (booking: any, quote: any) => {
-    const quoteData = quote.jsonBlob || {};
-    const cities = quoteData.cities || [];
-    
-    let details = `AFFORDEGYPT - BOOKING CONFIRMATION
-${'='.repeat(50)}
-
-BOOKING INFORMATION
-Booking Reference: ${booking.bookingReference}
-Status: ${booking.bookingStatus.replace('_', ' ').toUpperCase()}
-Total Amount: ${formatEGP(booking.totalAmount)}
-`;
-
-    if (booking.startDate) {
-      details += `Trip Start Date: ${formatDate(booking.startDate)}\n`;
-    }
-    if (booking.endDate) {
-      details += `Trip End Date: ${formatDate(booking.endDate)}\n`;
-    }
-
-    details += `
-CUSTOMER INFORMATION
-Name: ${booking.customerName}
-Email: ${booking.customerEmail}
-Phone: ${booking.customerPhone}
-`;
-
-    if (booking.customerNotes) {
-      details += `Special Requests: ${booking.customerNotes}\n`;
-    }
-
-    details += `
-ITINERARY DETAILS
-${'='.repeat(30)}
-`;
-
-    cities.forEach((city: any, index: number) => {
-      details += `
-${index + 1}. ${city.cityName}
-   Date: ${city.date}
-   Travelers: ${city.travelers}
-`;
-
-      if (city.selectedRoutes && city.selectedRoutes.length > 0) {
-        details += `   Transportation:\n`;
-        city.selectedRoutes.forEach((route: any) => {
-          details += `   - ${typeof route === 'object' ? (route.name || getRouteName(route.id)) : getRouteName(route)}\n`;
-        });
-      }
-
-      if (city.selectedGuide) {
-        details += `   Guide Service: ${city.selectedGuide.language} guide - ${city.selectedGuide.duration} hours\n`;
-      }
-
-      if (city.attractions && city.attractions.length > 0) {
-        details += `   Attractions:\n`;
-        city.attractions.forEach((attraction: string) => {
-          details += `   - ${attraction}\n`;
-        });
-      }
-
-      if (city.selectedAddOns && city.selectedAddOns.length > 0) {
-        details += `   Add-ons:\n`;
-        city.selectedAddOns.forEach((addOn: any) => {
-          const isPerPerson = addOn.unitType === 'per_person' || addOn.type === 'per_person';
-          const displayQuantity = isPerPerson 
-            ? addOn.quantity * city.travelers 
-            : addOn.quantity;
-          details += `   - ${addOn.name} x${displayQuantity}${isPerPerson ? ` (${addOn.quantity} per person)` : ''}\n`;
-        });
-      }
-    });
-
-    details += `
-PAYMENT INFORMATION
-${'='.repeat(30)}
-10% deposit required
-Our team will contact you to collect it and confirm your booking.
-Pay the rest on arrival, in cash or by credit card.
-
-CONTACT INFORMATION
-${'='.repeat(30)}
-Phone: +20 110 076 5283
-WhatsApp: +20 110 076 5283
-Email: hello@affordegypt.com
-
-Thank you for choosing AffordEgypt for your Egypt adventure!
-`;
-
-    return details;
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <img src="/logo.png" alt="AffordEgypt Logo" className="h-12 mx-auto mb-4" />
+          <img src="/logo.png" alt={t('bookingConfirmation.logoAlt')} className="h-12 mx-auto mb-4" />
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Booking received — thank you, {booking.customerName}
+            {t('bookingConfirmation.heading', { name: booking.customerName })}
           </h1>
           <p className="text-lg text-muted-foreground">
-            We've received your booking request. Here's what happens next.
+            {t('bookingConfirmation.subheading')}
           </p>
 
           {/* Download Button */}
@@ -425,7 +326,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
               className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3"
             >
               <Download className="w-4 h-4 mr-2" />
-              Download PDF Confirmation
+              {t('bookingConfirmation.downloadPdf')}
             </Button>
           </div>
         </div>
@@ -433,43 +334,43 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
         {/* Next Steps */}
         <Card className="mb-6 border-teal-200">
           <CardHeader>
-            <CardTitle>What happens next</CardTitle>
+            <CardTitle>{t('bookingConfirmation.nextSteps.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ol className="space-y-5">
               <li className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">1</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">We review your booking</h4>
+                  <h4 className="font-semibold text-gray-900 mb-1">{t('bookingConfirmation.nextSteps.step1Title')}</h4>
                   <p className="text-sm text-muted-foreground">
-                    Within 24 hours (usually much faster), our team confirms vehicle and guide availability for your dates.
+                    {t('bookingConfirmation.nextSteps.step1Body')}
                   </p>
                 </div>
               </li>
               <li className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">2</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">We send your 10% deposit link</h4>
+                  <h4 className="font-semibold text-gray-900 mb-1">{t('bookingConfirmation.nextSteps.step2Title')}</h4>
                   <p className="text-sm text-muted-foreground">
-                    You'll receive a payment link via email — typically Tab.travel for international cards. The deposit is fully refundable up to 48 hours before arrival.
+                    {t('bookingConfirmation.nextSteps.step2Body')}
                   </p>
                 </div>
               </li>
               <li className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">3</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Your booking is confirmed once the deposit clears</h4>
+                  <h4 className="font-semibold text-gray-900 mb-1">{t('bookingConfirmation.nextSteps.step3Title')}</h4>
                   <p className="text-sm text-muted-foreground">
-                    The remaining 90% is paid on arrival in cash (EGP, USD, EUR, or GBP), via a second payment link, or by card through our mobile reader.
+                    {t('bookingConfirmation.nextSteps.step3Body')}
                   </p>
                 </div>
               </li>
               <li className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white font-semibold flex items-center justify-center">4</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">We meet you</h4>
+                  <h4 className="font-semibold text-gray-900 mb-1">{t('bookingConfirmation.nextSteps.step4Title')}</h4>
                   <p className="text-sm text-muted-foreground">
-                    On the day of your trip, our driver and licensed Egyptologist meet you at the agreed pickup point. You're set.
+                    {t('bookingConfirmation.nextSteps.step4Body')}
                   </p>
                 </div>
               </li>
@@ -483,11 +384,11 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  <span>Booking Information</span>
+                  <span>{t('bookingConfirmation.bookingInformation')}</span>
                   <div className="flex items-center">
                     {getStatusIcon(booking.bookingStatus)}
                     <span className="ml-2 text-sm">
-                      Reference: {booking.bookingReference}
+                      {t('bookingConfirmation.reference', { reference: booking.bookingReference })}
                     </span>
                   </div>
                 </CardTitle>
@@ -496,7 +397,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="text-sm font-medium text-muted-foreground">
-                      Total Amount
+                      {t('bookingConfirmation.totalAmount')}
                     </label>
                     <p className="text-lg font-semibold">
                       {formatEGP(booking.totalAmount)}
@@ -505,7 +406,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                   {booking.startDate && (
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">
-                        Trip Start Date
+                        {t('bookingConfirmation.tripStartDate')}
                       </label>
                       <p className="text-lg">{formatDate(booking.startDate)}</p>
                     </div>
@@ -513,7 +414,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                   {booking.endDate && (
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">
-                        Trip End Date
+                        {t('bookingConfirmation.tripEndDate')}
                       </label>
                       <p className="text-lg">{formatDate(booking.endDate)}</p>
                     </div>
@@ -524,7 +425,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                 
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">
-                    Booking Status
+                    {t('bookingConfirmation.bookingStatus')}
                   </label>
                   <Badge variant="outline" className="ml-2">
                     {booking.bookingStatus.replace('_', ' ').toUpperCase()}
@@ -536,28 +437,28 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             {/* Customer Information */}
             <Card>
               <CardHeader>
-                <CardTitle>Customer Information</CardTitle>
+                <CardTitle>{t('bookingConfirmation.customerInformation')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">Name</label>
+                      <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.name')}</label>
                       <p className="text-lg">{booking.customerName}</p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">Email</label>
+                      <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.email')}</label>
                       <p className="text-lg">{booking.customerEmail}</p>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">Phone</label>
+                      <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.phone')}</label>
                       <p className="text-lg">{booking.customerPhone}</p>
                     </div>
                     {booking.customerNotes && (
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Special Requests</label>
+                        <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.specialRequests')}</label>
                         <p className="text-lg">{booking.customerNotes}</p>
                       </div>
                     )}
@@ -570,7 +471,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             {quote && quote.jsonBlob && (quote.jsonBlob.cities || quote.jsonBlob.itinerary) && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Your Multi-Day Itinerary</CardTitle>
+                  <CardTitle>{t('bookingConfirmation.itineraryTitle')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -580,7 +481,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                           <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                             <div className="flex items-center gap-3 mb-2 md:mb-0">
                               <Badge className="bg-teal-600 text-white px-3 py-1 text-sm">
-                                Day {city.dayNumber || index + 1}
+                                {t('bookingConfirmation.day', { number: city.dayNumber || index + 1 })}
                               </Badge>
                               <h3 className="font-semibold text-xl">{city.cityName}</h3>
                             </div>
@@ -590,7 +491,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                                 <span>{city.date ? formatDate(city.date) : formatDate(booking.startDate || new Date().toISOString())}</span>
                               </div>
                               <div>
-                                {city.travelers} travelers
+                                {t('bookingConfirmation.travelerCount', { count: city.travelers })}
                               </div>
                             </div>
                           </div>
@@ -599,7 +500,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                         
                         {city.selectedRoutes && city.selectedRoutes.length > 0 && (
                           <div>
-                            <div className="font-medium text-sm mb-2">Transportation</div>
+                            <div className="font-medium text-sm mb-2">{t('bookingConfirmation.transportation')}</div>
                             <div className="space-y-1">
                               {city.selectedRoutes.map((route: any, rIndex: number) => (
                                 <div key={rIndex} className="text-sm text-muted-foreground">
@@ -612,16 +513,16 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                         
                         {city.selectedGuide && (
                           <div>
-                            <div className="font-medium text-sm mb-2">Guide Service</div>
+                            <div className="font-medium text-sm mb-2">{t('bookingConfirmation.guideService')}</div>
                             <div className="text-sm text-muted-foreground">
-                              {city.selectedGuide.language} guide - {city.selectedGuide.duration} hours
+                              {t('bookingConfirmation.guideLine', { language: guideLanguage(city.selectedGuide.language), hours: city.selectedGuide.duration })}
                             </div>
                           </div>
                         )}
                         
                         {(city.attractions || city.selectedAttractions) && (city.attractions || city.selectedAttractions).length > 0 && (
                           <div>
-                            <div className="font-medium text-sm mb-2">Attractions</div>
+                            <div className="font-medium text-sm mb-2">{t('bookingConfirmation.attractions')}</div>
                             <div className="space-y-1">
                               {(city.attractions || city.selectedAttractions).map((attraction: string, aIndex: number) => (
                                 <div key={aIndex} className="text-sm text-muted-foreground">
@@ -634,7 +535,7 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                         
                         {city.selectedAddOns && city.selectedAddOns.length > 0 && (
                           <div>
-                            <div className="font-medium text-sm mb-2">Add-ons</div>
+                            <div className="font-medium text-sm mb-2">{t('bookingConfirmation.addOns')}</div>
                             <div className="space-y-1">
                               {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
                                 // Calculate display quantity based on pricing type
@@ -648,7 +549,9 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
                                   <div key={aoIndex} className="flex items-center justify-between text-sm">
                                     <span>{addOn.name}</span>
                                     <span className="text-muted-foreground">
-                                      x{displayQuantity} {isPerPerson ? `(${addOn.quantity} per person)` : ''}
+                                      {isPerPerson
+                                        ? t('bookingConfirmation.addOnPerPerson', { quantity: displayQuantity, each: addOn.quantity })
+                                        : t('bookingConfirmation.addOnQuantity', { quantity: displayQuantity })}
                                     </span>
                                   </div>
                                 );
@@ -668,22 +571,22 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             {!quote && booking && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Booking Details</CardTitle>
+                  <CardTitle>{t('bookingConfirmation.bookingDetails')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Total Amount</label>
+                        <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.totalAmount')}</label>
                         <p className="text-2xl font-bold text-primary">{formatEGP(booking.totalAmount)}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-muted-foreground">Status</label>
+                        <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.status')}</label>
                         <p className="text-lg capitalize">{booking.bookingStatus?.replace('_', ' ')}</p>
                       </div>
                     </div>
                     <div className="text-center text-muted-foreground">
-                      <p>Detailed itinerary information will be provided separately.</p>
+                      <p>{t('bookingConfirmation.itinerarySeparately')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -693,27 +596,27 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
             {/* Payment Information */}
             <Card className="bg-blue-50 border-blue-200">
               <CardHeader>
-                <CardTitle className="text-blue-900">Payment Information</CardTitle>
+                <CardTitle className="text-blue-900">{t('bookingConfirmation.payment.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full mt-1.5"></div>
                     <p className="text-sm text-blue-900">
-                      <strong>10% deposit required</strong> - Our team will contact you to collect it and confirm your booking.
+                      <strong>{t('bookingConfirmation.payment.depositLabel')}</strong> - {t('bookingConfirmation.payment.depositBody')}
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full mt-1.5"></div>
                     <p className="text-sm text-blue-900">
-                      Pay the rest on arrival, in cash or by credit card.
+                      {t('bookingConfirmation.payment.remainder')}
                     </p>
                   </div>
                   <Separator className="my-3" />
                   <div className="flex items-center justify-center gap-2 bg-white border border-blue-300 rounded-md px-4 py-2">
                     <DollarSign className="w-5 h-5 text-blue-600" />
                     <span className="text-sm font-medium text-blue-900">
-                      Payment accepted in: <strong>EGP, USD, GBP, EUR</strong>
+                      {t('bookingConfirmation.payment.acceptedIn')} <strong>{t('bookingConfirmation.payment.currencies')}</strong>
                     </span>
                   </div>
                 </div>
@@ -725,9 +628,9 @@ Thank you for choosing AffordEgypt for your Egypt adventure!
               <CardContent className="pt-6">
                 <div className="text-center space-y-2">
                   <CheckCircle className="w-8 h-8 text-green-500 mx-auto" />
-                  <h3 className="font-semibold text-green-900">Booking Created Successfully</h3>
+                  <h3 className="font-semibold text-green-900">{t('bookingConfirmation.success.title')}</h3>
                   <p className="text-sm text-green-700">
-                    Your booking reference is <strong>{booking.bookingReference}</strong>
+                    {t('bookingConfirmation.success.body')} <strong>{booking.bookingReference}</strong>
                   </p>
                 </div>
               </CardContent>

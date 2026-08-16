@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
+import { useTranslation, Trans } from "react-i18next";
 import { useParams, useLocation, useSearch } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CreditCard, User, Mail, Phone, Calendar, Users, MapPin } from "lucide-react";
+import { CreditCard, User, Calendar, Users, MapPin } from "lucide-react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,20 +20,33 @@ import { formatEGP } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { hasSentLead, markLeadSent, trackQualifiedLead } from "@/lib/analytics";
 
-const bookingSchema = z.object({
-  customerName: z.string().min(2, "Name must be at least 2 characters"),
-  customerEmail: z.string().email("Please enter a valid email address"),
-  customerPhone: z.string().min(10, "Please enter a valid phone number"),
-  travelDate: z.string().min(1, "Please select a travel date"),
-  specialRequests: z.string().optional(),
-  acceptTerms: z.boolean().refine(val => val === true, {
-    message: "You must accept the terms and conditions to proceed"
-  }),
-});
+// A factory, not a module constant: the validation messages are translated, so
+// the schema must be built after i18next is available and rebuilt when the
+// visitor switches language. Same pattern as contact.tsx.
+const makeBookingSchema = (t: (key: string) => string) =>
+  z.object({
+    customerName: z.string().min(2, t("validation.nameMin")),
+    customerEmail: z.string().email(t("validation.invalidEmail")),
+    customerPhone: z.string().min(10, t("validation.invalidPhone")),
+    travelDate: z.string().min(1, t("validation.selectDate")),
+    specialRequests: z.string().optional(),
+    acceptTerms: z.boolean().refine(val => val === true, {
+      message: t("validation.acceptTerms"),
+    }),
+  });
 
-type BookingFormData = z.infer<typeof bookingSchema>;
+type BookingFormData = z.infer<ReturnType<typeof makeBookingSchema>>;
 
 export default function BookPage() {
+  const { t, i18n } = useTranslation();
+  const bookingSchema = useMemo(() => makeBookingSchema(t), [t, i18n.language]);
+
+  // The guide's language is stored on the quote as an English word ("English",
+  // "French"). Rendering it raw gave "Guía en English" here, the same way it
+  // did on the confirmation page — keep both screens on the same lookup.
+  const guideLanguage = (language: string) =>
+    t(`pricing.guideLanguages.${String(language).toLowerCase()}`, { defaultValue: language });
+
   const params = useParams();
   const [, setLocation] = useLocation();
   const search = useSearch();
@@ -134,28 +147,25 @@ export default function BookPage() {
 
   const bookingMutation = useMutation({
     mutationFn: async (bookingData: any) => {
-      console.log('Submitting booking with data:', bookingData);
       const response = await apiRequest("POST", "/api/bookings", bookingData);
       if (!response.ok) {
-        const errorData = await response.text();
-        console.error('Booking API error:', errorData);
-        throw new Error(`Booking failed: ${response.status}`);
+        // Status only: the response body can echo back what we posted, which
+        // is the customer's name, email and phone.
+        throw new Error(`Booking failed: ${response.status}`); // i18n-exempt: Error for the console, never rendered
       }
       return response.json();
     },
     onSuccess: (booking) => {
-      console.log('Booking created successfully:', booking);
       toast({
-        title: "Booking Created Successfully",
-        description: `Your booking reference is ${booking.bookingReference}`,
+        title: t("booking.successTitle"),
+        description: t("booking.successBody", { reference: booking.bookingReference }),
       });
       setLocation(`/booking-confirmation/${booking.bookingReference}`);
     },
-    onError: (error) => {
-      console.error('Booking mutation error:', error);
+    onError: () => {
       toast({
-        title: "Booking Failed",
-        description: error.message || "Please try again or contact support",
+        title: t("booking.failTitle"),
+        description: t("booking.failBody"),
         variant: "destructive",
       });
       setIsProcessing(false);
@@ -163,9 +173,6 @@ export default function BookPage() {
   });
 
   const onSubmit = async (data: BookingFormData) => {
-    console.log('Form submitted with data:', data);
-    console.log('Form validation errors:', form.formState.errors);
-    
     setIsProcessing(true);
     
     try {
@@ -188,10 +195,10 @@ export default function BookPage() {
         })
       };
       
-      console.log('Prepared booking data:', bookingData);
       await bookingMutation.mutateAsync(bookingData);
     } catch (error) {
-      console.error('Booking submission error:', error);
+      // The message carries the HTTP status and no customer data.
+      console.error("Booking submission failed:", (error as Error)?.message); // i18n-exempt: console only
       setIsProcessing(false);
     }
   };
@@ -207,7 +214,6 @@ export default function BookPage() {
     );
   }
 
-  const displayQuote = quote || fallbackQuote;
   const totalAmount = quote?.jsonBlob?.totalAmount || quote?.total || parseInt(fallbackQuote.total);
   const travelers = quote?.jsonBlob?.passengers || fallbackQuote.travelers;
   const quoteTravelDate = quote?.jsonBlob?.travelDate || fallbackQuote.travelDate;
@@ -216,10 +222,10 @@ export default function BookPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 animate-in fade-in duration-300">
       <div className="mb-8 text-center">
-        <img src="/logo.png" alt="AffordEgypt Logo" className="h-12 mx-auto mb-4" />
-        <h1 className="text-3xl font-bold mb-2">Complete Your Booking</h1>
+        <img src="/logo.png" alt={t("bookingConfirmation.logoAlt")} className="h-12 mx-auto mb-4" />
+        <h1 className="text-3xl font-bold mb-2">{t("booking.title")}</h1>
         <p className="text-muted-foreground">
-          Please provide your details to confirm your Egypt travel booking
+          {t("booking.subtitle")}
         </p>
       </div>
 
@@ -230,7 +236,7 @@ export default function BookPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <User className="w-5 h-5" />
-                Contact Information
+                {t("booking.contactInfo")}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -243,9 +249,9 @@ export default function BookPage() {
                     name="customerName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Full Name</FormLabel>
+                        <FormLabel>{t("booking.fullName")}</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" required autoComplete="name" {...field} />
+                          <Input placeholder={t("booking.fullNamePlaceholder")} required autoComplete="name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -257,7 +263,7 @@ export default function BookPage() {
                     name="customerEmail"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email Address</FormLabel>
+                        <FormLabel>{t("booking.email")}</FormLabel>
                         <FormControl>
                           <Input type="email" placeholder="john@example.com" required autoComplete="email" {...field} />
                         </FormControl>
@@ -271,7 +277,7 @@ export default function BookPage() {
                     name="customerPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
+                        <FormLabel>{t("booking.phone")}</FormLabel>
                         <FormControl>
                           <Input type="tel" placeholder="+1 (555) 123-4567" required autoComplete="tel" {...field} />
                         </FormControl>
@@ -285,7 +291,7 @@ export default function BookPage() {
                     name="travelDate"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Travel Date</FormLabel>
+                        <FormLabel>{t("booking.travelDate")}</FormLabel>
                         <FormControl>
                           <Input 
                             type="date" 
@@ -303,12 +309,12 @@ export default function BookPage() {
                     name="specialRequests"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Special Requests (Optional)</FormLabel>
+                        <FormLabel>{t("booking.specialRequests")}</FormLabel>
                         <FormControl>
                           <textarea
                             className="w-full px-3 py-2 border border-input rounded-md resize-none"
                             rows={3}
-                            placeholder="Any special requirements or requests..."
+                            placeholder={t("booking.specialRequestsPlaceholder")}
                             {...field}
                           />
                         </FormControl>
@@ -330,22 +336,29 @@ export default function BookPage() {
                         </FormControl>
                         <div className="space-y-1 leading-none">
                           <FormLabel className="text-sm">
-                            I have reviewed and accept the{" "}
-                            <a 
-                              href="/terms-of-service" 
-                              target="_blank" 
-                              className="text-primary hover:underline"
-                            >
-                              Terms of Service
-                            </a>{" "}
-                            and{" "}
-                            <a 
-                              href="/booking-agreement" 
-                              target="_blank" 
-                              className="text-primary hover:underline"
-                            >
-                              Booking Agreement
-                            </a>
+                            {/* Trans, not concatenation: the two links sit in
+                                different places in each language's sentence. */}
+                            <Trans
+                              i18nKey="booking.acceptTerms"
+                              components={{
+                                terms: (
+                                  <a
+                                    href="/terms-of-service"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-primary hover:underline"
+                                  />
+                                ),
+                                agreement: (
+                                  <a
+                                    href="/booking-agreement"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-primary hover:underline"
+                                  />
+                                ),
+                              }}
+                            />
                           </FormLabel>
                           <FormMessage />
                         </div>
@@ -358,12 +371,12 @@ export default function BookPage() {
                     <div className="flex items-start gap-3">
                       <div className="text-2xl">💵</div>
                       <div>
-                        <h4 className="font-semibold text-blue-900 mb-2">10% deposit required</h4>
+                        <h4 className="font-semibold text-blue-900 mb-2">{t("booking.depositTitle")}</h4>
                         <p className="text-sm text-blue-800 mb-2">
-                          Our team will contact you to collect it and confirm your booking.
+                          {t("booking.depositCollect")}
                         </p>
                         <p className="text-sm text-blue-800">
-                          Pay the rest on arrival, in cash or by credit card.
+                          {t("booking.depositRest")}
                         </p>
                       </div>
                     </div>
@@ -371,7 +384,7 @@ export default function BookPage() {
                   
                   {/* Payment Currency Note */}
                   <p className="text-sm text-gray-600 text-center mb-4">
-                    All prices in EGP • International cards accepted
+                    {t("booking.currencyNote")}
                   </p>
 
                   <Button 
@@ -381,11 +394,11 @@ export default function BookPage() {
                     disabled={isProcessing || bookingMutation.isPending || !form.watch('acceptTerms')}
                   >
                     {isProcessing ? (
-                      "Processing..."
+                      t("booking.processing")
                     ) : (
                       <>
                         <CreditCard className="w-4 h-4 mr-2" />
-                        Confirm Booking - {formatEGP(totalAmount)}
+                        {t("booking.confirmCta", { amount: formatEGP(totalAmount) })}
                       </>
                     )}
                   </Button>
@@ -401,14 +414,14 @@ export default function BookPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="w-5 h-5" />
-                Booking Summary
+                {t("booking.summaryTitle")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <Users className="w-4 h-4" />
-                  Travelers
+                  {t("booking.travelers")}
                 </span>
                 <Badge variant="secondary">{travelers}</Badge>
               </div>
@@ -417,18 +430,18 @@ export default function BookPage() {
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  Travel Date
+                  {t("booking.travelDate")}
                 </span>
                 <span className="text-sm text-muted-foreground">
-                  {quoteTravelDate ? new Date(quoteTravelDate).toLocaleDateString() : 
-                   fallbackQuote.travelDate ? new Date(fallbackQuote.travelDate).toLocaleDateString() : 
-                   'Please set date in pricing tool'}
+                  {quoteTravelDate ? new Date(quoteTravelDate).toLocaleDateString(i18n.language) :
+                   fallbackQuote.travelDate ? new Date(fallbackQuote.travelDate).toLocaleDateString(i18n.language) :
+                   t("booking.noDate")}
                 </span>
               </div>
 
               {/* Booking Items Display */}
               <div className="space-y-3">
-                <h4 className="font-medium">Your Booking</h4>
+                <h4 className="font-medium">{t("booking.yourBooking")}</h4>
                 
                 {/* Transfer Booking Display */}
                 {fallbackQuote.isTransferBooking && routeData && cities && (
@@ -438,19 +451,24 @@ export default function BookPage() {
                     </div>
                     
                     <div>
-                      <div className="text-xs font-medium text-muted-foreground mb-1">Transportation</div>
+                      <div className="text-xs font-medium text-muted-foreground mb-1">{t("bookingConfirmation.transportation")}</div>
                       <div className="text-xs text-muted-foreground">
-                        {fallbackQuote.vehicleType ? fallbackQuote.vehicleType.charAt(0).toUpperCase() + fallbackQuote.vehicleType.slice(1) : ""} - {routeData.distanceKm} km
+                        {t("booking.vehicleLine", {
+                          vehicle: fallbackQuote.vehicleType
+                            ? fallbackQuote.vehicleType.charAt(0).toUpperCase() + fallbackQuote.vehicleType.slice(1)
+                            : "",
+                          distance: routeData.distanceKm,
+                        })}
                       </div>
                     </div>
 
                     <div>
-                      <div className="text-xs font-medium text-muted-foreground mb-1">Service Type</div>
+                      <div className="text-xs font-medium text-muted-foreground mb-1">{t("booking.serviceType")}</div>
                       <div className="text-xs text-muted-foreground">
-                        {routeData.tripMode === 'transfer' && 'Transfer & Drop-off'}
-                        {routeData.tripMode === 'day_trip' && 'Day Trip (Return Same Day)'}
-                        {routeData.tripMode === 'overnight' && 'Overnight Stay (1 Night)'}
-                        {routeData.tripMode === 'multi_day' && 'Multi-Day Tour (2+ Nights)'}
+                        {routeData.tripMode === 'transfer' && t("booking.tripModeTransfer")}
+                        {routeData.tripMode === 'day_trip' && t("booking.tripModeDayTrip")}
+                        {routeData.tripMode === 'overnight' && t("booking.tripModeOvernight")}
+                        {routeData.tripMode === 'multi_day' && t("booking.tripModeMultiDay")}
                       </div>
                     </div>
                   </div>
@@ -464,7 +482,7 @@ export default function BookPage() {
                         
                         {city.selectedRoutes && city.selectedRoutes.length > 0 && (
                           <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Transportation</div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">{t("bookingConfirmation.transportation")}</div>
                             {city.selectedRoutes.map((route: any, rIndex: number) => (
                               <div key={rIndex} className="text-xs text-muted-foreground">
                                 {route.fromLocation} → {route.toLocation}
@@ -475,52 +493,49 @@ export default function BookPage() {
                         
                         {city.selectedGuide && (
                           <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Guide Service</div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">{t("bookingConfirmation.guideService")}</div>
                             <div className="text-xs text-muted-foreground">
-                              {city.selectedGuide.language} guide - {city.selectedGuide.duration} hours
+                              {t("bookingConfirmation.guideLine", {
+                                language: guideLanguage(city.selectedGuide.language),
+                                hours: city.selectedGuide.duration,
+                              })}
                             </div>
                           </div>
                         )}
                         
                         {(city.selectedAttractions || city.attractions) && (city.selectedAttractions || city.attractions).length > 0 && (
                           <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Attractions</div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">{t("bookingConfirmation.attractions")}</div>
                             {(city.selectedAttractions || city.attractions).map((attraction: any, aIndex: number) => {
                               // Handle both ID numbers and attraction name strings
+                              let name: string | null = null;
                               if (typeof attraction === 'string') {
-                                return (
-                                  <div key={aIndex} className="text-xs text-muted-foreground">
-                                    {attraction} x{travelers}
-                                  </div>
-                                );
+                                name = attraction;
                               } else if (typeof attraction === 'number') {
                                 // Look up attraction name by ID
                                 const attractionsList = attractions as any[] || [];
                                 const fullAttraction = attractionsList.find((a: any) => a.id === attraction);
-                                return (
-                                  <div key={aIndex} className="text-xs text-muted-foreground">
-                                    {fullAttraction?.name || `Attraction #${attraction}`} x{travelers}
-                                  </div>
-                                );
+                                name = fullAttraction?.name || t("booking.attractionFallback", { id: attraction });
                               } else if (attraction?.name) {
-                                return (
-                                  <div key={aIndex} className="text-xs text-muted-foreground">
-                                    {attraction.name} x{travelers}
-                                  </div>
-                                );
+                                name = attraction.name;
                               }
-                              return null;
+                              if (!name) return null;
+                              return (
+                                <div key={aIndex} className="text-xs text-muted-foreground">
+                                  {name} {t("booking.itemQuantity", { count: travelers })}
+                                </div>
+                              );
                             })}
                           </div>
                         )}
                         
                         {city.selectedAddOns && city.selectedAddOns.length > 0 && (
                           <div>
-                            <div className="text-xs font-medium text-muted-foreground mb-1">Add-ons</div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">{t("bookingConfirmation.addOns")}</div>
                             {city.selectedAddOns.map((addOn: any, aoIndex: number) => {
                               // Fetch the full add-on data to get name and unitType
                               const fullAddOn = addOns?.find((a: any) => a.id === addOn.id);
-                              const addOnName = addOn.name || fullAddOn?.name || 'Unknown Add-on';
+                              const addOnName = addOn.name || fullAddOn?.name || t("booking.unknownAddOn");
                               const isPerPerson = fullAddOn?.unitType === 'per_person' || addOn.unitType === 'per_person' || addOn.type === 'per_person';
                               const displayQuantity = isPerPerson 
                                 ? travelers // For per-person add-ons, show traveler count
@@ -528,7 +543,7 @@ export default function BookPage() {
                               
                               return (
                                 <div key={aoIndex} className="text-xs text-muted-foreground">
-                                  {addOnName} x{displayQuantity}
+                                  {addOnName} {t("booking.itemQuantity", { count: displayQuantity })}
                                 </div>
                               );
                             })}
@@ -556,24 +571,24 @@ export default function BookPage() {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Subtotal</span>
+                  <span>{t("booking.subtotal")}</span>
                   <span>{formatEGP(totalAmount)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Taxes & Fees</span>
+                  <span>{t("booking.taxes")}</span>
                   <span>{formatEGP(0)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-semibold">
-                  <span>Total</span>
+                  <span>{t("booking.total")}</span>
                   <span>{formatEGP(totalAmount)}</span>
                 </div>
               </div>
 
               <div className="bg-muted p-3 rounded-md text-xs text-muted-foreground">
-                <p className="mb-1">💵 10% deposit required</p>
-                <p>Our team will contact you to collect it and confirm your booking.</p>
-                <p>Pay the rest on arrival, in cash or by credit card.</p>
+                <p className="mb-1">{t("booking.depositNote")}</p>
+                <p>{t("booking.depositCollect")}</p>
+                <p>{t("booking.depositRest")}</p>
               </div>
             </CardContent>
           </Card>

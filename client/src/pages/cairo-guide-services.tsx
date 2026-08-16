@@ -1,12 +1,13 @@
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE, formatLEPerDay } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { useSmartTranslation } from "@/hooks/useSmartTranslation";
+import { useTranslation } from "react-i18next";
 import { 
   UserCheck, 
   MapPin, 
@@ -31,7 +32,8 @@ export default function CairoGuideServices() {
   const SERVICE_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Private Tour Guide and Car",
+    // schema.org value on the English prerender Google indexes
+    "serviceType": "Private Tour Guide and Car", // i18n-exempt
     "provider": { "@type": "TravelAgency", "name": "AffordEgypt" },
     "areaServed": "Cairo",
     "offers": {
@@ -45,6 +47,8 @@ export default function CairoGuideServices() {
     },
   };
   const { t } = useSmartTranslation();
+  // useSmartTranslation coerces to string; arrays need the raw hook.
+  const { t: rawT } = useTranslation();
   
   // Scroll to top when component mounts
   useEffect(() => {
@@ -56,21 +60,21 @@ export default function CairoGuideServices() {
       name: t("guideServices.common.professionalGuide"),
       duration: t("guideServices.common.fullDay8Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-guide-services") } }),
-      features: ["Licensed Egyptologist", "Fluent English/Arabic", "Historical expertise"],
+      features: [t("guideServices.cairo.featLicensedEgyptologist"), t("guideServices.cairo.featFluentEnglishArabic"), t("guideServices.cairo.featHistoricalExpertise")],
       icon: UserCheck
     },
     {
       name: t("guideServices.common.guideCarPackage"),
       duration: t("guideServices.common.fullDay"), 
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-guide-car") } }),
-      features: [t("guideServices.common.licensedGuide"), "Private vehicle", t("guideServices.common.entranceFeesExcluded")],
+      features: [t("guideServices.common.licensedGuide"), t("guideServices.common.privateVehicle"), t("guideServices.common.entranceFeesExcluded")],
       icon: Users
     },
     {
       name: t("guideServices.common.premiumCarService"),
       duration: t("guideServices.common.6to12Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-tour-car") } }),
-      features: ["Private sedan/SUV", t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
+      features: [t("guideServices.common.privateSedanSuv"), t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
       icon: Car
     }
   ];
@@ -98,40 +102,26 @@ export default function CairoGuideServices() {
     }
   ];
 
-  // Guide service areas in Cairo with fallback
-  const getServiceAreas = () => {
-    try {
-      const areas = [
-        "Giza Pyramids & Sphinx",
-        "Egyptian Museum",
-        "Islamic Cairo",
-        "Coptic Cairo", 
-        "Khan El Khalili Bazaar",
-        "Citadel of Saladin",
-        "Al-Azhar Mosque",
-        "Old Cairo Walking Tours"
-      ];
-      return areas;
-    } catch {
-      return [
-        "Giza Pyramids & Sphinx",
-        "Egyptian Museum",
-        "Islamic Cairo",
-        "Coptic Cairo",
-        "Khan El Khalili Bazaar",
-        "Citadel of Saladin",
-        "Al-Azhar Mosque", 
-        "Old Cairo Walking Tours"
-      ];
-    }
-  };
-  const serviceAreas = getServiceAreas();
+  // The list lives in the locale files, translated. It used to be a literal
+  // here with an identical copy in a catch block that could never differ, and
+  // the locale copies had already drifted: es/fr/de listed Saqqara and Dahshur
+  // where English listed Al-Azhar and Old Cairo walking tours. One source now.
+  const serviceAreas = rawT("guideServices.cairo.serviceAreas", {
+    returnObjects: true,
+    defaultValue: [],
+  }) as string[];
 
   return (
     <>
       <SeoMeta
-        title={`Cairo Private Tour Guide & Car | From ${formatLEPerDay("cairo-guide-car")}`}
-        description={`Private licensed Egyptologist and car in Cairo from ${formatLEPerDay("cairo-guide-car")}. Giza, the Egyptian Museum and Islamic Cairo. Entrance tickets billed separately.`}
+        // Price interpolated without its unit: each locale supplies "/day",
+        // "/día", "/jour", "/Tag", the way heroSubtitle below already does.
+        title={t("guideServices.cairo.seoTitle", {
+          interpolation: { price: formatLE("cairo-guide-car") },
+        })}
+        description={t("guideServices.cairo.seoDescription", {
+          interpolation: { price: formatLE("cairo-guide-car") },
+        })}
         canonical="https://affordegypt.com/cairo-car-tour-guide-services"
         schema={[SERVICE_SCHEMA, breadcrumbSchema(trailFor("/cairo-car-tour-guide-services")!)]}
       />
@@ -191,7 +181,7 @@ export default function CairoGuideServices() {
         {/* Service Options */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.howItWorks")}</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t("guideServices.common.chooseYourService")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {serviceTypes.map((service, index) => (
                 <Card key={index} className="relative hover:shadow-lg transition-shadow">
@@ -284,23 +274,23 @@ export default function CairoGuideServices() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">1</div>
-                  <h3 className="font-semibold mb-2">Choose Your Service</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.common.chooseYourService")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Select guide only, car only, or combined package based on your needs
+                    {t("guideServices.cairo.chooseServiceDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">2</div>
-                  <h3 className="font-semibold mb-2">Meet Your Guide</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.common.meetGuide")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Professional licensed guide will meet you at your hotel or chosen location
+                    {t("guideServices.cairo.meetGuideDesc")}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="step-number mb-4 mx-auto">3</div>
-                  <h3 className="font-semibold mb-2">Explore Cairo</h3>
+                  <h3 className="font-semibold mb-2">{t("guideServices.cairo.exploreCity")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Discover Cairo's wonders with expert commentary and insider knowledge
+                    {t("guideServices.cairo.exploreCityDesc")}
                   </p>
                 </div>
               </div>
@@ -319,7 +309,7 @@ export default function CairoGuideServices() {
               <div className="bg-muted/30 p-6 rounded-lg">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span className="font-semibold">{t("guideServices.cairo.guidePriceFrom")}</span>
+                  <span className="font-semibold">{t("guideServices.common.guidePriceFrom", { interpolation: { guidePrice: formatLE("cairo-guide-services"), guideCarPrice: formatLE("cairo-guide-car") } })}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t("guideServices.cairo.pricingInfo")}
@@ -347,7 +337,7 @@ export default function CairoGuideServices() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link href="/pricing-tool">
-                  Book Online Now
+                  {t("guideServices.common.bookOnlineNow")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
 
