@@ -1364,7 +1364,9 @@
       "nuts": "Nuts",
       "dairy": "Dairy"
     },
-    "cameraError": "Camera access denied. Please enable camera permissions to use AR features."
+    "cameraError": "Camera access denied. Please enable camera permissions to use AR features.",
+    "seoTitle": "Egyptian Cuisine Passport | Try {{count}} Dishes Across Egypt",
+    "seoDescription": "An interactive bingo card of {{count}} must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."
   },
   "airportTransfers": {
     "common": {

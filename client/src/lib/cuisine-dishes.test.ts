@@ -82,6 +82,24 @@ describe("cuisine passport dish data", () => {
     },
   );
 
+  /**
+   * The page title and meta description both used to promise "25 Dishes"
+   * against a card of nine. The number is interpolated from DISH_FACTS.length
+   * now, so the only way to get it wrong again is for a locale to write a
+   * literal back in — which is what this checks. A digit in these two strings
+   * is always a mistake: the count is the only number they carry.
+   */
+  it.each(Object.keys(LOCALES) as (keyof typeof LOCALES)[])(
+    "%s takes the dish count from the data rather than stating one",
+    (locale) => {
+      const cp = (LOCALES[locale] as any).cuisinePassport;
+      for (const key of ["seoTitle", "seoDescription"] as const) {
+        expect(cp[key], `${locale}.${key}`).toContain("{{count}}");
+        expect(cp[key], `${locale}.${key} hardcodes a number`).not.toMatch(/\d/);
+      }
+    },
+  );
+
   it("uses region, category and difficulty values the filters offer", () => {
     const regions = Object.keys((en as any).cuisinePassport.filters.regions).filter((k) => k !== "all");
     const categories = ["Appetizer", "Main", "Dessert", "Street Food", "Beverage"];

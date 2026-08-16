@@ -1364,7 +1364,9 @@
       "nuts": "Fruits à coque",
       "dairy": "Produits laitiers"
     },
-    "cameraError": "L'accès à la caméra a été refusé. Activez les autorisations de caméra pour utiliser les fonctions de RA."
+    "cameraError": "L'accès à la caméra a été refusé. Activez les autorisations de caméra pour utiliser les fonctions de RA.",
+    "seoTitle": "Passeport de la Cuisine Égyptienne | Goûtez {{count}} Plats à travers l'Égypte",
+    "seoDescription": "Une carte de bingo interactive de {{count}} plats égyptiens incontournables. Notez ceux que vous avez goûtés, apprenez où trouver chacun d'eux et rapportez des souvenirs qui se mangent."
   },
   "airportTransfers": {
     "common": {

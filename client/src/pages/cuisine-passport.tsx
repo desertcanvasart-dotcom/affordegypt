@@ -42,10 +42,21 @@ const ALL_REGIONS = "__all_regions__";
 const ALL_CATEGORIES = "__all_categories__";
 const ALL_LEVELS = "__all_levels__";
 
-// Search metadata. Google indexes the English prerender, so these stay English
-// whatever the visitor has selected, the same as every other page's SeoMeta.
-const SEO_TITLE = "Egyptian Cuisine Passport | Try 25 Dishes Across Egypt"; // i18n-exempt
-const SEO_DESCRIPTION = "An interactive bingo card of 25 must-try Egyptian dishes. Track what you've tried, learn where to find each one, and bring home edible memories."; // i18n-exempt
+/*
+ * Search metadata used to live here as two module constants, both promising
+ * "25 Dishes". The page builds itself from DISH_FACTS, which holds nine — so
+ * the title of the page, and the description Google shows under it, invited
+ * people to a card with 25 dishes on it and delivered nine.
+ *
+ * The count is read from the data now and interpolated, so it cannot be wrong
+ * again: add a dish and the claim follows. cuisine-dishes.test.ts asserts that
+ * no locale hardcodes a number in its place.
+ *
+ * The old comment here said these stay English "the same as every other page's
+ * SeoMeta". That is no longer true of any page — the transfer, guide-service,
+ * airport, destinations, Sinai, reviews and home meta are all translated — so
+ * these are too.
+ */
 
 /**
  * A dish as the page uses it: the facts from the data module merged with the
@@ -72,6 +83,11 @@ type Dish = DishFacts & {
 
 export default function CuisinePassport() {
   const { t } = useTranslation();
+  // Counted from the data, never typed. See the note above the component.
+  const seoTitle = t("cuisinePassport.seoTitle", { count: DISH_FACTS.length });
+  const seoDescription = t("cuisinePassport.seoDescription", {
+    count: DISH_FACTS.length,
+  });
   const [selectedRegion, setSelectedRegion] = useState(ALL_REGIONS);
   const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORIES);
   const [selectedDifficulty, setSelectedDifficulty] = useState(ALL_LEVELS);
@@ -232,13 +248,13 @@ export default function CuisinePassport() {
   return (
     <>
       <SeoMeta
-        title={SEO_TITLE}
-        description={SEO_DESCRIPTION}
+        title={seoTitle}
+        description={seoDescription}
         canonical="https://affordegypt.com/cuisine-passport"
         ogImage="https://affordegypt.com/images/egyptian-food.jpg"
         schema={[articleSchema({
-          headline: SEO_TITLE,
-          description: SEO_DESCRIPTION,
+          headline: seoTitle,
+          description: seoDescription,
           canonical: "https://affordegypt.com/cuisine-passport",
           image: "https://affordegypt.com/images/egyptian-food.jpg",
           datePublished: "2025-06-14",

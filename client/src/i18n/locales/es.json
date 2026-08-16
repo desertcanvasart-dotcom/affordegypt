@@ -1364,7 +1364,9 @@
       "nuts": "Frutos secos",
       "dairy": "Lácteos"
     },
-    "cameraError": "Acceso a la cámara denegado. Active los permisos de cámara para usar las funciones de RA."
+    "cameraError": "Acceso a la cámara denegado. Active los permisos de cámara para usar las funciones de RA.",
+    "seoTitle": "Pasaporte de la Cocina Egipcia | Prueba {{count}} Platos por Egipto",
+    "seoDescription": "Una tarjeta de bingo interactiva con {{count}} platos egipcios imprescindibles. Registra los que has probado, descubre dónde encontrar cada uno y llévate recuerdos que se comen."
   },
   "airportTransfers": {
     "common": {

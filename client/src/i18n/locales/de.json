@@ -1364,7 +1364,9 @@
       "nuts": "Nüsse",
       "dairy": "Milchprodukte"
     },
-    "cameraError": "Kamerazugriff verweigert. Aktivieren Sie die Kameraberechtigung, um die AR-Funktionen zu nutzen."
+    "cameraError": "Kamerazugriff verweigert. Aktivieren Sie die Kameraberechtigung, um die AR-Funktionen zu nutzen.",
+    "seoTitle": "Ägyptischer Küchen-Pass | Probieren Sie {{count}} Gerichte in Ägypten",
+    "seoDescription": "Eine interaktive Bingokarte mit {{count}} unverzichtbaren ägyptischen Gerichten. Halten Sie fest, was Sie probiert haben, erfahren Sie, wo es jedes gibt, und nehmen Sie essbare Erinnerungen mit."
   },
   "airportTransfers": {
     "common": {
