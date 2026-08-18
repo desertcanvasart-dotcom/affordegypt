@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
 import { readConsent, writeConsent } from "@/lib/consent";
 import { useTranslation } from "react-i18next";
+import { useTranslatedLink } from "@/utils/slugTranslation";
 
 /**
  * Cookie consent banner.
@@ -23,6 +24,7 @@ import { useTranslation } from "react-i18next";
  */
 export default function CookieConsent() {
   const { t } = useTranslation();
+  const getTranslatedLink = useTranslatedLink();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -57,11 +59,9 @@ export default function CookieConsent() {
               {t('cookieConsent.title')}
             </h2>
             <p className="text-sm text-muted-foreground">
-              We use essential cookies to run the site. With your permission we
-              also use analytics and advertising cookies to understand how the
-              site is used. You can change this at any time.{" "}
+              {t('cookieConsent.body')}{" "}
               <Link
-                href="/cookie-policy"
+                href={getTranslatedLink("cookie-policy")}
                 className="underline underline-offset-2 hover:text-primary"
               >
                 {t('cookieConsent.cookiePolicy')}

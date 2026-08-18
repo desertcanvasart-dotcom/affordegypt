@@ -102,14 +102,14 @@ export default function Navbar() {
     setIsMenuOpen(false);
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, location === '/transfers' ? 0 : 100);
+    }, location === getTranslatedLink('transfers') ? 0 : 100);
   };
 
   const navigateToDestinations = () => {
     setIsMenuOpen(false);
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, location === '/destinations' ? 0 : 100);
+    }, location === getTranslatedLink('destinations') ? 0 : 100);
   };
 
   return (
@@ -140,7 +140,7 @@ export default function Navbar() {
                 middle-click, cmd-click, "copy link" and screen-reader link
                 semantics all have to work. The onClick only adds scroll-to-top. */}
             <Link
-              href="/destinations"
+              href={getTranslatedLink("destinations")}
               onClick={navigateToDestinations}
               className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
             >
@@ -149,7 +149,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/transfers"
+              href={getTranslatedLink("transfers")}
               onClick={navigateToTransfers}
               className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-teal-50 rounded-md transition-all font-medium flex items-center gap-1.5"
             >
@@ -280,7 +280,7 @@ export default function Navbar() {
           {/* Navigation Sections */}
           <div className="space-y-2 mb-6">
             <Link
-              href="/destinations"
+              href={getTranslatedLink("destinations")}
               onClick={navigateToDestinations}
               className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >
@@ -289,7 +289,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/transfers"
+              href={getTranslatedLink("transfers")}
               onClick={navigateToTransfers}
               className="w-full text-left px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-primary rounded-lg transition-all font-medium flex items-center gap-3"
             >

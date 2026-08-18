@@ -126,7 +126,7 @@
   },
   "guides": {
     "selectTourGuide": "Seleccionar guía turístico...",
-    "selectedGuide": "Guía {{language}} ({{duration}}h)",
+    "selectedGuide": "Guía en {{language}} ({{duration}} h)",
     "languages": {
       "english": "Inglés",
       "spanish": "Español",
@@ -196,19 +196,19 @@
         "name": "Pirámides de Giza",
         "description": "La última Maravilla del Mundo Antiguo superviviente",
         "entryFee": "700 EGP",
-        "hours": "8:00 AM - 4:00 PM"
+        "hours": "De 8:00 a 16:00"
       },
       "egyptianMuseum": {
         "name": "Museo Egipcio",
         "description": "La mejor colección de artefactos del antiguo Egipto del mundo",
         "entryFee": "550 EGP",
-        "hours": "9:00 AM - 5:00 PM"
+        "hours": "De 9:00 a 17:00"
       },
       "citadelSaladin": {
         "name": "Ciudadela de Saladino",
         "description": "Fortificación islámica medieval con vistas impresionantes",
         "entryFee": "550 EGP",
-        "hours": "8:00 AM - 5:00 PM"
+        "hours": "De 8:00 a 17:00"
       }
     },
     "alexandria": {
@@ -216,13 +216,13 @@
         "name": "Biblioteca de Alejandría",
         "description": "Renacimiento moderno de la antigua Biblioteca de Alejandría",
         "entryFee": "100 EGP",
-        "hours": "10:00 AM - 7:00 PM"
+        "hours": "De 10:00 a 19:00"
       },
       "qaitbayCitadel": {
         "name": "Ciudadela de Qaitbay",
         "description": "Fortaleza del siglo XV construida sobre el antiguo Faro",
         "entryFee": "200 EGP",
-        "hours": "9:00 AM - 4:00 PM"
+        "hours": "De 9:00 a 16:00"
       }
     },
     "luxor": {
@@ -230,19 +230,19 @@
         "name": "Valle de los Reyes",
         "description": "Cementerio real con tumbas decoradas",
         "entryFee": "750 EGP",
-        "hours": "6:00 AM - 4:00 PM"
+        "hours": "De 6:00 a 16:00"
       },
       "karnakTemple": {
         "name": "Templo de Karnak",
         "description": "El sitio religioso antiguo más grande del mundo",
         "entryFee": "550 EGP",
-        "hours": "6:00 AM - 5:00 PM"
+        "hours": "De 6:00 a 17:00"
       },
       "luxorTemple": {
         "name": "Templo de Luxor",
         "description": "Complejo de templos del antiguo Egipto",
         "entryFee": "300 EGP",
-        "hours": "6:00 AM - 9:00 PM"
+        "hours": "De 6:00 a 21:00"
       }
     }
   },
@@ -384,7 +384,7 @@
       "schemaDescription": "Los desiertos que la mayoría de los itinerarios por Egipto se saltan. Desierto Blanco, Desierto Negro, Bahariya, Farafra y el oasis de Siwa. Logística, costes y lo que merece el viaje, escrito por un guía que creció en Asuán.",
       "title": "Desiertos Oriental y Occidental",
       "subtitle": "La Puerta de Entrada a Aventuras Económicas en la Naturaleza Salvaje de Egipto",
-      "description": "Los desiertos de Egipto ofrecen tesoros únicos, paisajes majestuosos, experiencias espirituales y geología única, todo a una fracción del costo de las actividades turísticas típicas. Ideal para aventureros conscientes del presupuesto, experiencias auténticas te esperan.",
+      "description": "Los desiertos de Egipto ofrecen una geología singular, comunidades de los oasis, yacimientos arqueológicos y cielos oscuros. Los costes y el acceso varían mucho según la ruta, los permisos, el vehículo y el guía.",
       "buttons": {
         "planAdventure": "Planifica tu Aventura",
         "viewBudgetGuide": "Ver Guía de Presupuesto"
@@ -419,7 +419,7 @@
           "title": "Consejos de Viaje Económico",
           "subtitle": "Consejos esenciales para viajeros del desierto conscientes del presupuesto",
           "tips": [
-            "Únete a grupos de safari locales en lugar de viajes privados para ahorrar hasta un 60%",
+            "Compara presupuestos de safaris en grupo y privados de operadores locales con licencia; el ahorro varía y no puede garantizarse un porcentaje fijo",
             "Viaja durante noviembre y marzo para precios de temporada media",
             "Confirma sobre el terreno el transporte actual entre oasis; los servicios pueden ser escasos o cambiar sin previo aviso",
             "Hospédate en casas de huéspedes familiares en lugar de hoteles",
@@ -500,7 +500,7 @@
           "bestSeason": {
             "title": "Mejor Temporada",
             "period": "Oct - Mar",
-            "description": "Clima perfecto, cielos despejados y temperaturas cómodas para acampar"
+            "description": "Condiciones por lo general más frescas, aunque los días, las noches, el viento y la visibilidad varían en el desierto"
           },
           "budgetSpot": {
             "title": "Punto Ideal de Presupuesto",
@@ -1478,7 +1478,7 @@
     "luxor": {
       "heroTitle": "Traslados del Aeropuerto de Luxor",
       "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de Luxor (LXR) a hoteles de la orilla este, hoteles de la orilla oeste y amarres confirmados de cruceros por el Nilo.",
-      "ctaTitle": "¿Listo para Explorar el Antiguo Luxor?",
+      "ctaTitle": "¿Listo para organizar tu traslado del aeropuerto de Luxor?",
       "ctaSubtitle": "Envíanos tu número de vuelo y la ubicación de tu alojamiento. Confirmaremos la orilla correcta, la ruta, el vehículo y el precio total antes de que reserves.",
       "ctaQuote": "Obtén tu presupuesto exacto de traslado",
       "calcTitle": "Cómo calculamos el precio de tu traslado",
@@ -1636,7 +1636,7 @@
     "aswan": {
       "heroTitle": "Traslados del Aeropuerto de Asuán",
       "heroSubtitle": "Traslados privados desde el Aeropuerto Internacional de Asuán (ASW) a hoteles de la ciudad, alojamientos a las afueras, casas nubias, embarcaderos de hoteles isla y amarres confirmados de cruceros por el Nilo o el lago Nasser.",
-      "ctaTitle": "¿Listo para Experimentar la Joya del Nilo?",
+      "ctaTitle": "¿Listo para organizar tu traslado del aeropuerto de Asuán?",
       "ctaSubtitle": "Envíanos tu número de vuelo y tu destino exacto. Confirmaremos la ruta de acceso, el vehículo, cualquier conexión en barco y el precio total antes de que reserves.",
       "ctaQuote": "Obtén tu presupuesto exacto de traslado",
       "calcTitle": "Cómo calculamos el precio de tu traslado",
@@ -1814,7 +1814,7 @@
       "whatsapp": "WhatsApp",
       "callNow": "Llamar Ahora",
       "howItWorks": "Cómo Funciona",
-      "meetGuide": "Conocer su Guía",
+      "meetGuide": "Conoce a tu guía",
       "bookOnlineNow": "Reservar Online Ahora",
       "getInstantQuote": "Obtener Cotización Instantánea",
       "licensedGuide": "Guía licenciado",
@@ -1844,7 +1844,7 @@
       "heroSubtitle": "Servicios expertos de auto y guía turístico en El Cairo. Guía licenciado desde {{guidePrice}}/día, o guía + coche privado desde {{guideCarPrice}}/día. Las entradas se facturan por separado.",
       "whyChooseTitle": "¿Por Qué Elegir Nuestros Servicios de Auto y Guía Turístico en El Cairo?",
       "multilingualGuides": "Guías Multilingües",
-      "multilingualGuidesDesc": "Guías expertos fluentes en inglés, árabe, francés, alemán y español",
+      "multilingualGuidesDesc": "Guías expertos que hablan con fluidez inglés, árabe, francés, alemán y español",
       "licensedInsured": "Licenciado y Asegurado",
       "licensedInsuredDesc": "Todos los guías están oficialmente licenciados por el Ministerio de Turismo de Egipto",
       "photographySupport": "Soporte Fotográfico",
@@ -1859,9 +1859,9 @@
       "islamicCairoSpecialists": "Especialistas en El Cairo Islámico",
       "islamicCairoSpecialistsDesc": "Guías expertos para las calles medievales del Cairo islámico, sus mezquitas históricas y sus bazares tradicionales. Descubre la cultura y la arquitectura egipcias auténticas.",
       "pricingTitle": "Servicios Asequibles de Auto y Guía Turístico en El Cairo",
-      "pricingDesc": "Guías profesionales y vehículos de lujo a precios competitivos. Sin costos ocultos.",
+      "pricingDesc": "Guías profesionales y vehículos privados a precios competitivos. Sin costes ocultos.",
       "pricingInfo": "Guías licenciados • Vehículos privados • Soporte multilingüe • Las entradas se facturan por separado",
-      "ctaTitle": "¿Listo para Explorar el Antiguo El Cairo?",
+      "ctaTitle": "¿Listo para explorar el antiguo Cairo?",
       "ctaSubtitle": "Reserva tu guía experto y descubre los secretos de los faraones",
       "serviceAreas": [
         "Pirámides de Giza y la Esfinge",
@@ -1893,17 +1893,17 @@
       "licensedArchaeologistsDesc": "Guías con formación formal en arqueología y experiencia en excavaciones",
       "photographyTours": "Tours Fotográficos",
       "photographyToursDesc": "Tours fotográficos especiales para mejor iluminación y ángulos en templos",
-      "earlyMorningAccess": "Acceso Matutino Temprano",
+      "earlyMorningAccess": "Salidas tempranas",
       "earlyMorningAccessDesc": "Planifica un inicio temprano según el horario de apertura publicado de cada sitio; el acceso privado no está incluido salvo que se confirme por separado",
       "serviceAreasTitle": "Sitios de Templos Antiguos de Luxor",
       "serviceAreasDesc": "Tours guiados profesionales del museo al aire libre más grande del mundo",
       "specialtiesTitle": "Especialidades de Templos de Luxor",
       "valleyKingsExpert": "Experto en Valle de los Reyes",
-      "valleyKingsExpertDesc": "Guías especializados para las tumbas reales con conocimiento detallado de prácticas de entierro faraónicas.",
+      "valleyKingsExpertDesc": "Guías especializados en las tumbas reales, con conocimiento detallado de las prácticas funerarias faraónicas, el arte de las tumbas y los descubrimientos arqueológicos recientes.",
       "templeArchitecture": "Tours de Arquitectura de Templos",
       "templeArchitectureDesc": "Guías especializados en arquitectura que explican las maravillas de ingeniería de los templos de Karnak y Luxor, con traducción de jeroglíficos y contexto histórico.",
       "pricingTitle": "Servicios Expertos de Auto y Guía Turístico en Luxor",
-      "pricingDesc": "Guías arqueológicos profesionales y transporte de lujo. Mejor valor en el Alto Egipto.",
+      "pricingDesc": "Guías arqueológicos profesionales y transporte cómodo. La mejor relación calidad-precio del Alto Egipto.",
       "pricingInfo": "Guías licenciados • Experiencia en templos • Coche privado con aire acondicionado en el paquete de guía + coche • Las entradas se facturan por separado",
       "ctaTitle": "¿Listo para Descubrir la Antigua Tebas?",
       "ctaSubtitle": "Experimenta los templos de Luxor con guías arqueológicos expertos",
@@ -1991,12 +1991,12 @@
       "featExpertGuide": "Guía experto",
       "featUnescoSpecialist": "Especialista en sitios UNESCO",
       "seoTitle": "Guía Turístico Privado y Coche en Asuán | Desde {{price}}/día",
-      "seoDescription": "Egiptólogo licenciado y coche privado en Asuán desde {{price}}/día. File, la Presa Alta y aldeas nubias. Las entradas se facturan por separado."
+      "seoDescription": "Egiptólogo licenciado y coche privado en Asuán desde {{price}}/día. Filae, la Presa Alta y aldeas nubias. Las entradas se facturan por separado."
     }
   },
   "contactPage": {
     "seoTitle": "Contactar con AffordEgypt | WhatsApp, correo, teléfono",
-    "seoDescription": "Contacta con la oficina de AffordEgypt en El Cairo por WhatsApp, correo o teléfono. Solemos responder en menos de una hora en horario de El Cairo.",
+    "seoDescription": "Contacta con AffordEgypt por WhatsApp, correo o teléfono. Operador de El Cairo con licencia ETAA en 1 Farouk Mahmoud St, Guiza. Solemos responder en menos de una hora, los siete días de la semana.",
     "heroTitle": "Planifiquemos tu",
     "heroTitleAccent": "aventura en Egipto",
     "heroSubtitle": "Habla con nuestros expertos en viajes que conocen Egipto a fondo. Desde maravillas antiguas hasta joyas escondidas, te ayudamos a crear recuerdos para toda la vida.",
@@ -2048,7 +2048,7 @@
     "findUsBody": "Situados en el corazón de El Cairo, estamos en el lugar ideal para ayudarte a recorrer todo Egipto.",
     "mapTitle": "Ubicación de Afford Egypt en El Cairo",
     "ourLocation": "Nuestra ubicación",
-    "ourLocationValue": "Centro de El Cairo, Egipto",
+    "ourLocationValue": "{{address}}",
     "officeHours": "Horario de oficina",
     "officeHoursValue": "Soporte disponible 24/7",
     "contactLabel": "Contacto",
@@ -2135,7 +2135,10 @@
     "reviewCount_one": "({{count}} opinión)",
     "reviewCount_other": "({{count}} opiniones)",
     "showingRange": "Mostrando {{from}}–{{to}} de {{total}} opiniones",
-    "pageOf": "Página {{current}} de {{total}}"
+    "pageOf": "Página {{current}} de {{total}}",
+    "emptyTitle": "Sé el primero en contar tu viaje",
+    "emptyBody": "Estamos empezando a recopilar opiniones aquí. Si exploraste Egipto con nosotros, nos encantaría saber cómo te fue.",
+    "emptyCta": "Escribir una opinión"
   },
   "submitReviewPage": {
     "seoTitle": "Enviar una reseña | AffordEgypt",
@@ -2255,9 +2258,9 @@
     "s3b": "Las reservas requieren el pago total o parcial por adelantado. Los pagos se gestionan de forma segura.",
     "s4": "4. Cancelaciones y reembolsos",
     "s4a": "Más de 48 horas antes de la llegada:",
-    "s4av": "reembolso íntegro de su depósito",
+    "s4av": "reembolso íntegro de tu depósito",
     "s4b": "Dentro de las 48 horas previas a la llegada:",
-    "s4bv": "el depósito se retiene: su guía y su vehículo ya están reservados. Todo lo abonado por encima del depósito se reembolsa íntegramente.",
+    "s4bv": "el depósito se retiene: tu guía y tu vehículo ya están reservados. Todo lo abonado por encima del depósito se reembolsa íntegramente.",
     "s4c": "Si cancelamos nosotros:",
     "s4cv": "reembolso del 100 %, incluido el depósito",
     "s5": "5. Responsabilidades del usuario",
@@ -2277,7 +2280,7 @@
     "title": "Acuerdo de reserva – Afford Egypt",
     "intro": "Este acuerdo se aplica a todas las reservas de viaje realizadas con Afford Egypt.",
     "s1": "1. Confirmación y depósito",
-    "s1b": "Para confirmar su reserva se requiere un depósito del 10 %. El depósito es reembolsable hasta 48 horas antes de su llegada. El importe restante puede abonarse a la llegada, en efectivo o con tarjeta de crédito.",
+    "s1b": "Para confirmar tu reserva se requiere un depósito del 10 %. El depósito es reembolsable hasta 48 horas antes de tu llegada. El importe restante puede abonarse a la llegada, en efectivo o con tarjeta de crédito.",
     "s2": "2. Qué incluye y qué no",
     "s2b": "Tu presupuesto o itinerario indica exactamente qué está incluido y qué no. Revísalo con atención.",
     "s3": "3. Modificaciones y peticiones especiales",
@@ -2310,7 +2313,7 @@
   },
   "travelTips": {
     "seoTitle": "Consejos para viajar a Egipto | Lo que los locales querrían que supieras",
-    "seoDescription": "Consejos prácticos para viajar a Egipto de un operador con licencia en El Cairo. Propinas, seguridad, timos a evitar, código de vestimenta, moneda, transporte y lo que suelen omitir las guías.",
+    "seoDescription": "Consejos para viajar a Egipto de un operador con licencia de El Cairo: visados, propinas, seguridad, timos, transporte y dinero, y lo que las guías suelen contar mal.",
     "heroLead": "Consejos de quien vive allí sobre transporte, comida, alojamiento y atracciones.",
     "step1": "Planifica y prepárate",
     "step2": "Presupuesta y reserva",
@@ -2333,10 +2336,10 @@
     "dailyBudget": "Tu presupuesto diario en Egipto",
     "hacksTitle": "Trucos para ahorrar 💡",
     "hack1L": "Come como un local:",
-    "hack1": "Un buen plato de koshari o un bocadillo de faláfel puede costar apenas 1 dólar.",
+    "hack1": "Un buen plato de koshari o un bocadillo de faláfel puede ser una opción muy económica.",
     "hack2L": "Usa el transporte público:",
-    "hack2": "El metro de El Cairo es eficiente, seguro y muy barato (menos de 0,50 dólares por viaje).",
-    "hack3L": "Consigue la tarjeta ISIC:",
+    "hack2": "El metro de El Cairo es eficiente y barato para moverse por la ciudad.",
+    "hack3L": "Descuentos de estudiante:",
     "hack3": "Muchos sitios estatales ofrecen entrada reducida de estudiante; por lo general hay que tener 24 años o menos y mostrar un carné de estudiante válido y la tarjeta ISIC. Confírmalo en cada monumento.",
     "hack4L": "Regatea con una sonrisa:",
     "hack4": "En los mercados locales (zocos), regatear con simpatía forma parte de la cultura.",
@@ -2349,11 +2352,11 @@
     "hostelsStrong": "1,000–1,500 EGP en adelante",
     "hostelsBody2": "por noche.",
     "hotels": "Hoteles económicos",
-    "hotelsBody": "Para más intimidad. Puedes encontrar habitaciones privadas y limpias por",
+    "hotelsBody": "Para más intimidad, los hoteles económicos y las habitaciones privadas cuestan alrededor de",
     "hotelsStrong": "2,000 EGP en adelante",
-    "hotelsBody2": "por noche, a menudo con baño propio y aire acondicionado.",
+    "hotelsBody2": "por noche, según la ciudad, la ubicación, las instalaciones y la temporada.",
     "nubian": "Casas nubias",
-    "nubianBody": "En Asuán, alójate en una colorida casa de huéspedes nubia de gestión familiar: una experiencia cultural única a precios moderados.",
+    "nubianBody": "En Asuán, alójate en una colorida casa de huéspedes nubia de gestión familiar: una experiencia cultural única. Los precios varían mucho según el alojamiento y los servicios, así que consulta las tarifas actuales antes de reservar.",
     "eatTitle": "Comer barato: saborear Egipto 🍲",
     "eatLead": "Algunas de las mejores comidas que probarás en Egipto son también las más baratas. La regla de oro: sigue a los locales y lánzate a la comida callejera.",
     "eatsTitle": "Imprescindibles y baratos:",
@@ -2391,7 +2394,7 @@
     "itin2L": "Días 4-6: Luxor.",
     "itin2": "Recorre Karnak (600 EGP) y el templo de Luxor (500 EGP) en la orilla este; el Valle de los Reyes (750 EGP, con algunas tumbas abiertas incluidas) y Deir el-Bahari/templo de Hatshepsut (440 EGP) en la oeste. Son precios de adulto extranjero comprobados en agosto de 2026; las tumbas premium cuestan aparte.",
     "itin3L": "Días 7-8: Asuán.",
-    "itin3": "Visita el templo de File (550 EGP de entrada para adulto extranjero; el traslado en barco aparte), recorre un pueblo nubio y navega en faluca al atardecer. La entrada a Abu Simbel cuesta 750 EGP para un adulto extranjero; el transporte o la excursión van aparte.",
+    "itin3": "Visita el templo de Filae (550 EGP de entrada para adulto extranjero; el traslado en barco aparte), recorre un pueblo nubio y navega en faluca al atardecer. La entrada a Abu Simbel cuesta 750 EGP para un adulto extranjero; el transporte o la excursión van aparte.",
     "safeTitle": "Viajar seguro, sano y con respeto cultural",
     "safeLead": "Un poco de preparación y respeto contribuyen mucho a que tu viaje sea cómodo y memorable.",
     "customs": "Respeta las costumbres locales",
@@ -2441,7 +2444,7 @@
   },
   "budgetGuide": {
     "seoTitle": "Egipto con poco presupuesto | La guía honesta de un operador de El Cairo",
-    "seoDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni operadores fraudulentos. Costes y consejos reales de un operador con licencia en El Cairo: gasto diario, transporte, comida y atracciones.",
+    "seoDescription": "Lo que Egipto cuesta de verdad en 2026: transporte, comida, hoteles y entradas, con cifras reales de un operador de El Cairo con licencia ETAA.",
     "schemaDescription": "Cómo viajar por Egipto de forma económica sin caer en trampas para turistas ni en operadores fraudulentos. Costes reales y consejos reales de un operador con licencia radicado en El Cairo. Costes diarios, transporte, comida y entradas.",
     "badge": "Guía de viaje económico 2026",
     "title": "Viajar barato por Egipto",
@@ -2934,6 +2937,7 @@
   },
   "cookieConsent": {
     "title": "Cookies en AffordEgypt",
+    "body": "Usamos cookies esenciales para que el sitio funcione. Con tu permiso, también usamos cookies de análisis y publicidad para entender cómo se usa el sitio. Puedes cambiarlo en cualquier momento.",
     "acceptAll": "Aceptar todas",
     "rejectNonEssential": "Rechazar las no esenciales",
     "cookiePolicy": "Política de cookies"
@@ -3258,7 +3262,7 @@
           "freeMosquesMarkets": "Visita mezquitas y mercados gratuitos"
         },
         "luxor": {
-          "eastBankStay": "Alójate en East Bank para alojamientos económicos",
+          "eastBankStay": "Alójate en la orilla este para encontrar alojamiento económico",
           "groupTickets": "Compare las entradas individuales con el Luxor Pass vigente; no se garantizan los descuentos de grupo habituales.",
           "earlyMorning": "Visita templos temprano en la mañana para evitar multitudes",
           "localRestaurants": "Coma donde comen los guías, a una calle de la cornisa"
@@ -3420,19 +3424,19 @@
             "name": "Ciudadela de Saladino",
             "description": "Fortificación islámica medieval en El Cairo",
             "entryFee": "550 EGP (adulto extranjero)",
-            "hours": "8:00 AM - 5:00 PM"
+            "hours": "De 8:00 a 17:00"
           },
           "alabasterMosque": {
             "name": "Mezquita de Alabastro",
             "description": "Hermosa mezquita de estilo otomano",
             "entryFee": "Gratis",
-            "hours": "9:00 AM - 4:00 PM"
+            "hours": "De 9:00 a 16:00"
           },
           "copticMuseum": {
             "name": "Museo Copto",
             "description": "La colección más grande del mundo de artefactos coptos",
             "entryFee": "230 EGP (adulto extranjero)",
-            "hours": "9:00 AM - 5:00 PM"
+            "hours": "De 9:00 a 17:00"
           }
         },
         "luxor": {
@@ -3458,19 +3462,19 @@
             "name": "Medinet Habu",
             "description": "Templo funerario de Ramsés III",
             "entryFee": "200 EGP (adulto extranjero)",
-            "hours": "6:00 AM - 5:00 PM"
+            "hours": "De 6:00 a 17:00"
           },
           "deir": {
             "name": "Deir el-Medina",
             "description": "Pueblo de constructores de tumbas reales",
             "entryFee": "200 EGP (adulto extranjero)",
-            "hours": "6:00 AM - 5:00 PM"
+            "hours": "De 6:00 a 17:00"
           },
           "ramesseum": {
             "name": "Ramesseum",
             "description": "Templo conmemorativo de Ramsés II",
             "entryFee": "180 EGP (adulto extranjero)",
-            "hours": "6:00 AM - 5:00 PM"
+            "hours": "De 6:00 a 17:00"
           },
           "luxorMuseum": {
             "name": "Museo de Luxor",
@@ -3518,7 +3522,7 @@
         },
         "aswan": {
           "philaeTemple": {
-            "name": "Templo de Philae",
+            "name": "Templo de Filae",
             "entryFee": "550 EGP (adulto extranjero; el traslado en barco es aparte)",
             "description": "Templo de Isis, trasladado piedra a piedra a la isla de Agilkia para salvarlo de la subida del lago"
           },
@@ -3537,19 +3541,19 @@
             "name": "Obelisco Inacabado",
             "description": "Cantera de granito antigua con obelisco inacabado",
             "entryFee": "220 EGP (adulto extranjero)",
-            "hours": "7:00 AM - 5:00 PM"
+            "hours": "De 7:00 a 17:00"
           },
           "nubian": {
             "name": "Museo Nubio",
             "description": "Museo de cultura e historia nubia",
             "entryFee": "300 EGP (adulto extranjero)",
-            "hours": "9:00 AM - 6:00 PM"
+            "hours": "De 9:00 a 18:00"
           },
           "botanical": {
             "name": "Jardín Botánico",
             "description": "Plantas exóticas en la Isla de Kitchener",
             "entryFee": "70 EGP (adulto extranjero)",
-            "hours": "8:00 AM - 6:00 PM"
+            "hours": "De 8:00 a 18:00"
           }
         },
         "abuSimbel": {
@@ -3586,7 +3590,7 @@
           "westBankTombs": "Tumbas de la Orilla Oeste"
         },
         "aswan": {
-          "philaeTemple": "Templo de Philae",
+          "philaeTemple": "Templo de Filae",
           "highDam": "Presa Alta",
           "nubianVillages": "Pueblos Nubios",
           "elephantineIsland": "Isla Elefantina"

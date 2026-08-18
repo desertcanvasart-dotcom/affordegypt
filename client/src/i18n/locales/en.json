@@ -2135,7 +2135,10 @@
     "reviewCount_one": "({{count}} review)",
     "reviewCount_other": "({{count}} reviews)",
     "showingRange": "Showing {{from}}–{{to}} of {{total}} reviews",
-    "pageOf": "Page {{current}} of {{total}}"
+    "pageOf": "Page {{current}} of {{total}}",
+    "emptyTitle": "Be the first to share your journey",
+    "emptyBody": "We're just getting started collecting reviews here. If you've explored Egypt with us, we'd love to hear how it went.",
+    "emptyCta": "Write a review"
   },
   "submitReviewPage": {
     "seoTitle": "Submit a Review | AffordEgypt",
@@ -2934,6 +2937,7 @@
   },
   "cookieConsent": {
     "title": "Cookies on AffordEgypt",
+    "body": "We use essential cookies to run the site. With your permission we also use analytics and advertising cookies to understand how the site is used. You can change this at any time.",
     "acceptAll": "Accept all",
     "rejectNonEssential": "Reject non-essential",
     "cookiePolicy": "Cookie Policy"

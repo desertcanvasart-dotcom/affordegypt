@@ -126,7 +126,7 @@
   },
   "guides": {
     "selectTourGuide": "Reiseführer auswählen...",
-    "selectedGuide": "{{language}} Reiseführer ({{duration}}h)",
+    "selectedGuide": "Reiseleitung auf {{language}} ({{duration}} Std.)",
     "languages": {
       "english": "Englisch",
       "spanish": "Spanisch",
@@ -196,19 +196,19 @@
         "name": "Pyramiden von Gizeh",
         "description": "Das letzte überlebende Weltwunder der Antike",
         "entryFee": "700 EGP",
-        "hours": "8:00 AM - 4:00 PM"
+        "hours": "8:00–16:00 Uhr"
       },
       "egyptianMuseum": {
         "name": "Ägyptisches Museum",
         "description": "Die weltbeste Sammlung altägyptischer Artefakte",
         "entryFee": "550 EGP",
-        "hours": "9:00 AM - 5:00 PM"
+        "hours": "9:00–17:00 Uhr"
       },
       "citadelSaladin": {
         "name": "Zitadelle von Saladin",
         "description": "Mittelalterliche islamische Festung mit atemberaubenden Aussichten",
         "entryFee": "550 EGP",
-        "hours": "8:00 AM - 5:00 PM"
+        "hours": "8:00–17:00 Uhr"
       }
     },
     "alexandria": {
@@ -216,13 +216,13 @@
         "name": "Bibliothek von Alexandria",
         "description": "Moderne Wiederbelebung der antiken Bibliothek von Alexandria",
         "entryFee": "100 EGP",
-        "hours": "10:00 AM - 7:00 PM"
+        "hours": "10:00–19:00 Uhr"
       },
       "qaitbayCitadel": {
         "name": "Qaitbay-Zitadelle",
         "description": "Festung aus dem 15. Jahrhundert auf dem alten Leuchtturm-Standort",
         "entryFee": "200 EGP",
-        "hours": "9:00 AM - 4:00 PM"
+        "hours": "9:00–16:00 Uhr"
       }
     },
     "luxor": {
@@ -230,19 +230,19 @@
         "name": "Tal der Könige",
         "description": "Königliche Grabstätte mit dekorierten Gräbern",
         "entryFee": "750 EGP",
-        "hours": "6:00 AM - 4:00 PM"
+        "hours": "6:00–16:00 Uhr"
       },
       "karnakTemple": {
         "name": "Karnak-Tempel",
         "description": "Größte antike religiöse Stätte der Welt",
         "entryFee": "550 EGP",
-        "hours": "6:00 AM - 5:00 PM"
+        "hours": "6:00–17:00 Uhr"
       },
       "luxorTemple": {
         "name": "Luxor-Tempel",
         "description": "Altägyptischer Tempelkomplex",
         "entryFee": "300 EGP",
-        "hours": "6:00 AM - 9:00 PM"
+        "hours": "6:00–21:00 Uhr"
       }
     }
   },
@@ -362,7 +362,7 @@
         "excerpt": "Meistern Sie Kairos belebte Straßen mit unseren Insider-Tipps für die effiziente Nutzung von Metro, Taxis und öffentlichen Verkehrsmitteln."
       },
       "desertsGuide": {
-        "title": "Östliche & Westliche Wüsten Guide",
+        "title": "Guide zur Ost- und Westwüste",
         "excerpt": "Erkunden Sie Ägyptens prächtige Wüstenlandschaften, von den Formationen der Weißen Wüste bis zu alten Oasen."
       },
       "nileValley": {
@@ -384,7 +384,7 @@
       "schemaDescription": "Die Wüsten, die die meisten Ägypten-Routen auslassen. Weiße Wüste, Schwarze Wüste, Bahariya, Farafra und die Oase Siwa. Logistik, Kosten und was die Reise wert ist — von einem Guide, der in Assuan aufgewachsen ist.",
       "title": "Ost- & Westwüste",
       "subtitle": "Das Tor für Budgetreisende zu Ägyptens ungezähmter Schönheit",
-      "description": "Ägyptens Wüsten bieten einige Geheimnisse, majestätische Landschaften, spirituelle Erfahrungen und einzigartige Geologie - und das alles zu einem Bruchteil der Kosten typischer Touristenaktivitäten. Ideal für preisbewusste Abenteurer, authentische Erlebnisse suchen.",
+      "description": "Ägyptens Wüsten bieten besondere Geologie, Oasengemeinden, archäologische Stätten und dunkle Nachthimmel. Kosten und Zugang variieren stark je nach Route, Genehmigungen, Fahrzeug und Guide.",
       "buttons": {
         "planAdventure": "Planen Sie Ihr Wüstenabenteuer",
         "viewBudgetGuide": "Budget-Leitfaden Anzeigen"
@@ -419,7 +419,7 @@
           "title": "Budget-Reisetipps",
           "subtitle": "Wichtige Tipps für budgetbewusste Wüstenreisende",
           "tips": [
-            "Schließen Sie sich lokalen Safari-Gruppen an statt privaten Reisen, um bis zu 60% zu sparen",
+            "Vergleichen Sie Angebote lizenzierter lokaler Gruppen- und Privatsafaris; die Ersparnis variiert, und eine pauschale Angabe von 60 % lässt sich nicht belegen",
             "Reisen Sie im November und März für Nebensaison-Preise",
             "Bestätigen Sie den aktuellen Verkehr zwischen den Oasen vor Ort; die Verbindungen können spärlich sein oder sich ohne Vorankündigung ändern",
             "Übernachten Sie in familiengeführten Gästehäusern statt Hotels",
@@ -430,7 +430,7 @@
         "itinerary": {
           "title": "5-Tage Budget-Wüstenabenteuer",
           "subtitle": "Route, Genehmigungen, Unterkunft und aktuelle Preise sollten vor der Buchung mit einem lizenzierten örtlichen Veranstalter bestätigt werden",
-          "total": "Gesamt: 7,600 EGP pro Person",
+          "total": "Gesamt: 7.600 EGP pro Person",
           "days": [
             {
               "day": "Tag 1",
@@ -500,10 +500,10 @@
           "bestSeason": {
             "title": "Beste Saison",
             "period": "Okt - Mär",
-            "description": "Perfektes Wetter, klarer Himmel und komfortable Camping-Temperaturen"
+            "description": "Meist kühlere Bedingungen; Tages- und Nachttemperaturen, Wind und Sicht in der Wüste variieren dennoch"
           },
           "budgetSpot": {
-            "title": "Budget-Süßer Punkt",
+            "title": "Bester Spar-Zeitraum",
             "period": "Nov & Mär",
             "description": "Nebensaison-Preise mit ausgezeichneten Wetterbedingungen"
           },
@@ -583,7 +583,7 @@
       },
       "minimum": {
         "question": "Was ist das absolute Minimum für eine private Ägypten-Reise?",
-        "answer": "Unsere Untergrenze liegt bei {{floor}}/Tag für ein Privatfahrzeug plus lizenzierten Ägyptologen in Kairo, ohne Eintritte, Mahlzeiten und Hotel. Eine typische 3-Tage-Reise in Kairo mit allen Eintritten und einer Mahlzeit pro Tag liegt bei etwa LE 14,000–18,000 pro Person zu zweit, je nach gewählten Sehenswürdigkeiten. Wir schicken Ihnen in unter einer Minute ein echtes Angebot — ohne Konto, ohne Verpflichtung. Hinweis: Wir verkaufen keine geteilten Minibus-Touren. Manche Anbieter werben mit „Ägypten-Touren ab 50 USD pro Tag“ — das sind geteilte Gruppentouren, ein anderes Produkt. Unseres ist vollständig privat."
+        "answer": "Unsere Untergrenze liegt bei {{floor}}/Tag für ein Privatfahrzeug plus lizenzierten Ägyptologen in Kairo, ohne Eintritte, Mahlzeiten und Hotel. Eine typische 3-Tage-Reise in Kairo mit allen Eintritten und einer Mahlzeit pro Tag liegt bei etwa LE 14.000–18.000 pro Person zu zweit, je nach gewählten Sehenswürdigkeiten. Wir schicken Ihnen in unter einer Minute ein echtes Angebot — ohne Konto, ohne Verpflichtung. Hinweis: Wir verkaufen keine geteilten Minibus-Touren. Manche Anbieter werben mit „Ägypten-Touren ab 50 USD pro Tag“ — das sind geteilte Gruppentouren, ein anderes Produkt. Unseres ist vollständig privat."
       },
       "ticketFee": {
         "question": "Warum berechnen Sie 50 EGP für die Organisation eines Eintrittstickets?",
@@ -621,12 +621,12 @@
       "description": "Planen Sie Ihre Ägypten-Reise durch Kairo, Alexandria, Luxor, Assuan, Hurghada und Sharm El Sheikh. Lizenzierte Ägyptologen als Reiseleiter und transparente Preise."
     },
     "hero": {
-      "title": "Entdecke Ägyptens Versteckte Reiseziele",
-      "subtitle": "Von Budget-Abenteuern bis hin zu Wüstenausflügen und Bergexpeditionen - erkunde Ägypten jenseits der berühmten Wahrzeichen",
+      "title": "Entdecken Sie Ägyptens versteckte Reiseziele",
+      "subtitle": "Von Budget-Abenteuern bis hin zu Wüstenausflügen und Bergexpeditionen - entdecken Sie Ägypten jenseits der berühmten Wahrzeichen",
       "features": {
         "locations": {
           "title": "Einzigartige Orte",
-          "description": "Entdecke versteckte Schätze abseits der ausgetretenen Pfade"
+          "description": "Entdecken Sie versteckte Schätze abseits der ausgetretenen Pfade"
         },
         "insights": {
           "title": "Lokale Einblicke",
@@ -639,7 +639,7 @@
       }
     },
     "articles": {
-      "title": "Erkunde Ägyptens Beste Reiseziele",
+      "title": "Erkunden Sie Ägyptens beste Reiseziele",
       "description": "Detaillierte Führer zu Ägyptens faszinierendsten Reisezielen, von Budget-Reisetipps bis hin zu Abenteuer-Expeditionen"
     },
     "nileValley": {
@@ -655,8 +655,8 @@
       "author": "Wüsten-Führer"
     },
     "sinai": {
-      "title": "Sinai-Halbinsel: Bergabenteuer & Rotes Meer Küste",
-      "excerpt": "Erkunden Sie die dramatischen Landschaften der Sinai-Halbinsel, von den spirituellen Höhen des Sinai-Bergs bis zu den unberührten Korallenriffen der Roten Meer Küste.",
+      "title": "Sinai-Halbinsel: Bergabenteuer & die Küste des Roten Meeres",
+      "excerpt": "Erkunden Sie die dramatischen Landschaften der Sinai-Halbinsel, von den spirituellen Höhen des Sinai-Bergs bis zu den unberührten Korallenriffen an der Küste des Roten Meeres.",
       "readTime": "8 Min. Lesezeit",
       "author": "Abenteuer-Spezialist"
     },
@@ -1188,7 +1188,7 @@
         ],
         "cookingMethods": [
           "Bei 200 °C 45–60 Minuten backen",
-          "Mit Folie abdecken, dann abdecken, damit die Kruste bräunt",
+          "Mit Folie abdecken, dann aufdecken, damit die Kruste goldbraun wird",
           "Für die beste knusprige Textur eine Tonform verwenden",
           "Das Fleisch nach unten schichten, darüber Reis und Milchmischung"
         ],
@@ -1478,7 +1478,7 @@
     "luxor": {
       "heroTitle": "Luxor Flughafentransfers",
       "heroSubtitle": "Private Transfers vom Flughafen Luxor International (LXR) zu Hotels am Ostufer, Hotels am Westufer und bestätigten Anlegestellen von Nilkreuzfahrten.",
-      "ctaTitle": "Bereit, das Antike Luxor zu Erkunden?",
+      "ctaTitle": "Bereit, Ihren Flughafentransfer in Luxor zu organisieren?",
       "ctaSubtitle": "Senden Sie uns Ihre Flugnummer und die Lage Ihrer Unterkunft. Wir bestätigen das richtige Ufer, die Route, das Fahrzeug und den Gesamtpreis, bevor Sie buchen.",
       "ctaQuote": "Erhalten Sie Ihr genaues Transfer-Angebot",
       "calcTitle": "So berechnen wir Ihren Transferpreis",
@@ -1636,7 +1636,7 @@
     "aswan": {
       "heroTitle": "Assuan Flughafentransfers",
       "heroSubtitle": "Private Transfers vom Flughafen Assuan International (ASW) zu Stadthotels, außerhalb gelegenen Unterkünften, nubischen Gästehäusern, Anlegestegen von Inselhotels und bestätigten Anlegestellen von Nil- oder Nassersee-Kreuzfahrten.",
-      "ctaTitle": "Bereit, das Juwel des Nils zu Erleben?",
+      "ctaTitle": "Bereit, Ihren Flughafentransfer in Assuan zu organisieren?",
       "ctaSubtitle": "Senden Sie uns Ihre Flugnummer und Ihr genaues Ziel. Wir bestätigen die Anfahrtsroute, das Fahrzeug, eine etwaige Bootsverbindung und den Gesamtpreis, bevor Sie buchen.",
       "ctaQuote": "Erhalten Sie Ihr genaues Transfer-Angebot",
       "calcTitle": "So berechnen wir Ihren Transferpreis",
@@ -1840,9 +1840,9 @@
       "guidePriceFrom": "Lizenzierter Guide ab {{guidePrice}}/Tag — Guide + Privatwagen ab {{guideCarPrice}}/Tag"
     },
     "cairo": {
-      "heroTitle": "Kairo Auto & Reiseführer-Services",
-      "heroSubtitle": "Expertenhafter Auto- und Reiseführer-Service in Kairo. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
-      "whyChooseTitle": "Warum Unsere Kairo Auto & Reiseführer-Services Wählen?",
+      "heroTitle": "Auto & Reiseleitung in Kairo",
+      "heroSubtitle": "Professioneller Auto- und Reiseleiter-Service in Kairo. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
+      "whyChooseTitle": "Warum unseren Auto- und Reiseleiter-Service in Kairo wählen?",
       "multilingualGuides": "Mehrsprachige Reiseführer",
       "multilingualGuidesDesc": "Experten-Reiseführer fließend in Englisch, Arabisch, Französisch, Deutsch und Spanisch",
       "licensedInsured": "Lizenziert & Versichert",
@@ -1856,10 +1856,10 @@
       "specialtiesTitle": "Kairo Spezial-Services",
       "egyptologyExperts": "Ägyptologie-Experten",
       "egyptologyExpertsDesc": "Lizenzierte Ägyptologen mit tiefem Wissen über Pharaonengeschichte, Hieroglyphen und archäologische Entdeckungen. Ideal für Museumsbesuche und die Erkundung der Pyramiden.",
-      "islamicCairoSpecialists": "Islamisches Kairo Spezialisten",
+      "islamicCairoSpecialists": "Spezialisten für das Islamische Kairo",
       "islamicCairoSpecialistsDesc": "Experten-Reiseführer für die mittelalterlichen Straßen des islamischen Kairos, historische Moscheen und traditionelle Basare.",
       "pricingTitle": "Erschwingliche Kairo Auto & Reiseführer-Services",
-      "pricingDesc": "Professionelle Reiseführer und Luxusfahrzeuge zu wettbewerbsfähigen Preisen. Keine versteckten Kosten.",
+      "pricingDesc": "Professionelle Reiseleiter und Privatfahrzeuge zu fairen Preisen. Keine versteckten Kosten.",
       "pricingInfo": "Lizenzierte Reiseführer • Privatfahrzeuge • Mehrsprachiger Support • Eintrittskarten werden separat berechnet",
       "ctaTitle": "Bereit, das Alte Kairo zu Erkunden?",
       "ctaSubtitle": "Buchen Sie Ihren Experten-Reiseführer und entdecken Sie die Geheimnisse der Pharaonen",
@@ -1884,26 +1884,26 @@
       "seoDescription": "Lizenzierter Ägyptologe und Privatwagen in Kairo ab {{price}}/Tag. Gizeh, das Ägyptische Museum und Islamisches Kairo. Eintrittskarten werden separat berechnet."
     },
     "luxor": {
-      "heroTitle": "Luxor Auto & Reiseführer-Services",
-      "heroSubtitle": "Expertenhafter Auto- und Reiseführer-Service im antiken Theben. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
-      "whyChooseTitle": "Warum Unsere Luxor Auto & Reiseführer-Services Wählen?",
+      "heroTitle": "Auto & Reiseleitung in Luxor",
+      "heroSubtitle": "Professioneller Auto- und Reiseleiter-Service im antiken Theben. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
+      "whyChooseTitle": "Warum unseren Auto- und Reiseleiter-Service in Luxor wählen?",
       "templeExpertise": "Tempel-Expertise",
       "templeExpertiseDesc": "Spezialisiertes Wissen über Karnak, Luxor-Tempel und Tal der Könige",
       "licensedArchaeologists": "Lizenzierte Archäologen",
       "licensedArchaeologistsDesc": "Reiseführer mit formaler archäologischer Ausbildung und Grabungserfahrung",
       "photographyTours": "Fotografie-Touren",
       "photographyToursDesc": "Spezielle Foto-Touren für beste Beleuchtung und Winkel in Tempeln",
-      "earlyMorningAccess": "Früher Morgenzugang",
-      "earlyMorningAccessDesc": "Planen Sie einen frühen Start nach den veröffentlichten Öffnungszeiten der jeweiligen Stätte; privater Zugang ist nicht enthalten, sofern nicht gesondert bestätigt",
+      "earlyMorningAccess": "Früher Start",
+      "earlyMorningAccessDesc": "Planen Sie einen frühen Start im Rahmen der veröffentlichten Öffnungszeiten der jeweiligen Stätte; privater Zugang ist nicht enthalten, sofern nicht gesondert bestätigt",
       "serviceAreasTitle": "Antike Luxor Tempel-Stätten",
       "serviceAreasDesc": "Professionelle geführte Touren durch das größte Freilichtmuseum der Welt",
       "specialtiesTitle": "Luxor Tempel-Spezialitäten",
-      "valleyKingsExpert": "Tal der Könige Experte",
+      "valleyKingsExpert": "Experte für das Tal der Könige",
       "valleyKingsExpertDesc": "Spezialisierte Reiseführer für königliche Gräber mit detailliertem Wissen über pharaonische Bestattungspraktiken.",
       "templeArchitecture": "Tempel-Architektur-Touren",
       "templeArchitectureDesc": "Auf Architektur spezialisierte Guides erklären die ingenieurtechnischen Meisterleistungen der Tempel von Karnak und Luxor, samt Übersetzung der Hieroglyphen und historischem Kontext.",
       "pricingTitle": "Experten Luxor Auto & Reiseführer-Services",
-      "pricingDesc": "Professionelle archäologische Reiseführer und Luxus-Transport. Bester Wert in Oberägypten.",
+      "pricingDesc": "Professionelle archäologische Reiseleiter und komfortabler Transport. Bestes Preis-Leistungs-Verhältnis in Oberägypten.",
       "pricingInfo": "Lizenzierte Reiseführer • Tempel-Expertise • Klimatisierter Privatwagen im Paket Guide + Wagen • Eintrittskarten werden separat berechnet",
       "ctaTitle": "Bereit, das Antike Theben zu Entdecken?",
       "ctaSubtitle": "Erleben Sie Luxors Tempel mit Experten-Archäologen-Reiseführern",
@@ -1939,9 +1939,9 @@
       "seoDescription": "Lizenzierter Ägyptologe und Privatwagen in Luxor ab {{price}}/Tag. Karnak, das Tal der Könige und beide Nilufer. Eintrittskarten werden separat berechnet."
     },
     "aswan": {
-      "heroTitle": "Assuan Auto & Reiseführer-Services",
+      "heroTitle": "Auto & Reiseleitung in Assuan",
       "heroSubtitle": "Entdecken Sie nubische Kultur und südägyptische Schätze. Lizenzierter Guide ab {{guidePrice}}/Tag, oder Guide + Privatwagen ab {{guideCarPrice}}/Tag. Eintrittskarten werden separat berechnet.",
-      "whyChooseTitle": "Warum Unsere Assuan Auto & Reiseführer-Services Wählen?",
+      "whyChooseTitle": "Warum unseren Auto- und Reiseleiter-Service in Assuan wählen?",
       "nileExpertise": "Nil-Expertise",
       "nileExpertiseDesc": "Spezialisiertes Wissen über nubische Kultur und Nil-Flusstraditionen",
       "culturalSensitivity": "Kulturelle Sensibilität",
@@ -1951,7 +1951,7 @@
       "flexibleItineraries": "Flexible Reisepläne",
       "flexibleItinerariesDesc": "Maßgeschneiderte Touren einschließlich Felucca-Fahrten und Dorfbesuchen",
       "serviceAreasTitle": "Südägyptische Ziele",
-      "serviceAreasDesc": "Erleben Sie die Juwelen des Nils mit experten kultureller Führung",
+      "serviceAreasDesc": "Erleben Sie die Juwelen des Nils mit fachkundiger kultureller Begleitung",
       "specialtiesTitle": "Assuan Kulturelle Spezialitäten",
       "nubianHeritage": "Nubisches Erbe-Touren",
       "nubianHeritageDesc": "Authentische Besuche nubischer Dörfer mit Guides aus der örtlichen Gemeinschaft. Erleben Sie traditionelles Handwerk, Musik und Gastfreundschaft und respektieren Sie dabei lokale Gepflogenheiten.",
@@ -1996,7 +1996,7 @@
   },
   "contactPage": {
     "seoTitle": "AffordEgypt kontaktieren | WhatsApp, E-Mail, Telefon",
-    "seoDescription": "Erreichen Sie das Kairoer Büro von AffordEgypt per WhatsApp, E-Mail oder Telefon. Wir antworten während der Kairoer Geschäftszeiten in der Regel innerhalb einer Stunde.",
+    "seoDescription": "Erreichen Sie AffordEgypt per WhatsApp, E-Mail oder Telefon. ETAA-lizenzierter Veranstalter in Kairo, 1 Farouk Mahmoud St, Gizeh. Wir antworten in der Regel innerhalb einer Stunde – an sieben Tagen die Woche.",
     "heroTitle": "Planen wir Ihr",
     "heroTitleAccent": "Ägypten-Abenteuer",
     "heroSubtitle": "Sprechen Sie mit unseren Reiseexperten, die Ägypten in- und auswendig kennen. Von antiken Wundern bis zu verborgenen Schätzen helfen wir Ihnen, Erinnerungen fürs Leben zu schaffen.",
@@ -2048,7 +2048,7 @@
     "findUsBody": "Mitten in Kairo gelegen, sind wir bestens aufgestellt, um Ihnen ganz Ägypten zu zeigen.",
     "mapTitle": "Standort von Afford Egypt in Kairo",
     "ourLocation": "Unser Standort",
-    "ourLocationValue": "Innenstadt von Kairo, Ägypten",
+    "ourLocationValue": "{{address}}",
     "officeHours": "Bürozeiten",
     "officeHoursValue": "Support rund um die Uhr",
     "contactLabel": "Kontakt",
@@ -2135,7 +2135,10 @@
     "reviewCount_one": "({{count}} Bewertung)",
     "reviewCount_other": "({{count}} Bewertungen)",
     "showingRange": "{{from}}–{{to}} von {{total}} Bewertungen",
-    "pageOf": "Seite {{current}} von {{total}}"
+    "pageOf": "Seite {{current}} von {{total}}",
+    "emptyTitle": "Teilen Sie als Erster Ihre Reise",
+    "emptyBody": "Wir beginnen gerade erst, hier Bewertungen zu sammeln. Wenn Sie Ägypten mit uns entdeckt haben, würden wir gerne hören, wie es war.",
+    "emptyCta": "Bewertung schreiben"
   },
   "submitReviewPage": {
     "seoTitle": "Bewertung abgeben | AffordEgypt",
@@ -2333,9 +2336,9 @@
     "dailyBudget": "Ihr Tagesbudget in Ägypten",
     "hacksTitle": "Die besten Spartipps 💡",
     "hack1L": "Essen wie die Einheimischen:",
-    "hack1": "Ein leckeres Koshary oder ein Falafel-Sandwich kostet oft nur etwa 1 US-Dollar.",
+    "hack1": "Ein leckeres Koshari oder ein Falafel-Sandwich ist eine günstige Option.",
     "hack2L": "Öffentliche Verkehrsmittel nutzen:",
-    "hack2": "Die Metro in Kairo ist effizient, sicher und äußerst günstig (unter 0,50 US-Dollar pro Fahrt).",
+    "hack2": "Die Metro in Kairo ist effizient und günstig, um sich in der Stadt zu bewegen.",
     "hack3L": "ISIC-Karte besorgen:",
     "hack3": "Viele staatliche Stätten bieten ermäßigte Studierendentickets; in der Regel müssen Sie 24 Jahre oder jünger sein und einen gültigen Studierendenausweis sowie eine ISIC-Karte vorlegen. Erfragen Sie es an jeder Stätte.",
     "hack4L": "Mit einem Lächeln handeln:",
@@ -2346,14 +2349,14 @@
     "stayLead": "Eine passende Unterkunft in Ägypten muss Ihr Budget nicht sprengen. Von geselligen Hostels bis zu privaten Gästehäusern haben Sie gute Optionen.",
     "hostels": "Hostels",
     "hostelsBody": "Gut, um andere Reisende kennenzulernen, doch Hostel-Unterkünfte sind nicht weit verbreitet, mitunter schwer zu bekommen und nicht automatisch als völlig sicher anzunehmen. Wo vorhanden, rechnen Sie mit rund",
-    "hostelsStrong": "1,000–1,500 EGP und mehr",
+    "hostelsStrong": "1.000–1.500 EGP und mehr",
     "hostelsBody2": "pro Nacht.",
     "hotels": "Günstige Hotels",
     "hotelsBody": "Für mehr Privatsphäre. Saubere Einzelzimmer finden Sie für",
-    "hotelsStrong": "2,000 EGP und mehr",
-    "hotelsBody2": "pro Nacht, oft mit eigenem Bad und Klimaanlage.",
+    "hotelsStrong": "2.000 EGP und mehr",
+    "hotelsBody2": "pro Nacht, je nach Stadt, Lage, Ausstattung und Saison.",
     "nubian": "Nubische Gästehäuser",
-    "nubianBody": "Übernachten Sie in Assuan in einem farbenfrohen, familiengeführten nubischen Gästehaus – ein besonderes kulturelles Erlebnis zu moderaten Preisen.",
+    "nubianBody": "Übernachten Sie in Assuan in einem farbenfrohen, familiengeführten nubischen Gästehaus – ein besonderes kulturelles Erlebnis. Die Preise variieren je nach Haus und Leistungen erheblich; prüfen Sie die aktuellen Preise vor der Buchung.",
     "eatTitle": "Günstig essen: Ägypten genießen 🍲",
     "eatLead": "Einige der besten Mahlzeiten in Ägypten sind zugleich die günstigsten. Die goldene Regel: Folgen Sie den Einheimischen und probieren Sie Streetfood.",
     "eatsTitle": "Unbedingt probieren:",
@@ -2424,7 +2427,7 @@
     "budgetLead": "Sprechen wir über Zahlen. Ein durchdachtes Budget ist Ihr bester Reisebegleiter. Wechselkurse ändern sich häufig — prüfen Sie sie bei einer Bank oder einer seriösen Kursquelle bei der Planung und noch einmal vor der Abreise.",
     "figuresL": "Zu den Beträgen unten:",
     "figures": "die Angaben zu Essen, Einkäufen, Unterkunft, Touren, Feluke, Trinkgeld und Tagesbudget sind Schätzungen des lokalen Marktes, keine festen Tarife. Sie verändern sich mit der Inflation und schwanken je nach Stadt und Saison — nehmen Sie sie als Planungshilfe und prüfen Sie die aktuellen Preise vor Ort.",
-    "dailyBudgetBody": "Die meisten Sparreisenden in Ägypten sollten mit <b>2,500 bis 3,000 EGP pro Tag</b> rechnen. Allein die Unterkunft kann rund 2,000 EGP pro Nacht kosten; der Rest deckt Essen, Nahverkehr, Eintritte und weitere Grundausgaben.",
+    "dailyBudgetBody": "Die meisten Sparreisenden in Ägypten sollten mit <b>2.500 bis 3.000 EGP pro Tag</b> rechnen. Allein die Unterkunft kann rund 2.000 EGP pro Nacht kosten; der Rest deckt Essen, Nahverkehr, Eintritte und weitere Grundausgaben.",
     "tripCostL": "Gesamtkosten der Reise (7-10 Tage):",
     "tripCost": "Der Gesamtbetrag hängt stark von Unterkunft, Transport, Aktivitäten und Flügen ab. Flüge aus den USA oder Australien erhöhen die Gesamtkosten in der Regel — der Flug dürfte Ihr größter Einzelposten sein.",
     "food4L": "Schawarma:",
@@ -2441,7 +2444,7 @@
   },
   "budgetGuide": {
     "seoTitle": "Ägypten mit kleinem Budget | Der ehrliche Leitfaden eines Kairoer Veranstalters",
-    "seoDescription": "Wie Sie Ägypten günstig bereisen, ohne in Touristenfallen oder an unseriöse Anbieter zu geraten. Echte Kosten und Tipps von einem lizenzierten Veranstalter in Kairo: Tagesbudget, Transport, Essen, Sehenswürdigkeiten.",
+    "seoDescription": "Was Ägypten 2026 wirklich kostet: Transport, Essen, Hotels und Eintrittskarten — mit echten Zahlen von einem ETAA-lizenzierten Veranstalter aus Kairo.",
     "schemaDescription": "Wie Sie Ägypten günstig bereisen, ohne in Touristenfallen oder an unseriöse Anbieter zu geraten. Echte Kosten und echte Tipps von einem lizenzierten Veranstalter aus Kairo. Tageskosten, Transport, Essen und Eintritte.",
     "badge": "Budget-Reiseführer 2026",
     "title": "Günstig reisen in Ägypten",
@@ -2563,7 +2566,7 @@
       }
     ],
     "budgetTotalTitle": "Gesamtes Tagesbudget",
-    "budgetTotal": "2,500–3,000 EGP",
+    "budgetTotal": "2.500–3.000 EGP",
     "budgetNote": "Deckt Unterkunft, Mahlzeiten, Transport und wichtige Sehenswürdigkeiten für ein umfassendes Ägypten-Erlebnis ab",
     "hacksH2": "Die besten Spartipps",
     "hacksLead": "Insidertipps, um Ihr Budget optimal zu nutzen und das Meiste aus Ihrer Reise herauszuholen",
@@ -2934,6 +2937,7 @@
   },
   "cookieConsent": {
     "title": "Cookies auf AffordEgypt",
+    "body": "Wir verwenden essenzielle Cookies für den Betrieb der Website. Mit Ihrer Zustimmung verwenden wir außerdem Analyse- und Werbe-Cookies, um zu verstehen, wie die Website genutzt wird. Sie können dies jederzeit ändern.",
     "acceptAll": "Alle akzeptieren",
     "rejectNonEssential": "Nicht notwendige ablehnen",
     "cookiePolicy": "Cookie-Richtlinie"
@@ -3420,19 +3424,19 @@
             "name": "Zitadelle von Saladin",
             "description": "Mittelalterliche islamische Befestigung in Kairo",
             "entryFee": "550 EGP (ausländische Erwachsene)",
-            "hours": "8:00 AM - 5:00 PM"
+            "hours": "8:00–17:00 Uhr"
           },
           "alabasterMosque": {
             "name": "Alabaster-Moschee",
             "description": "Schöne Moschee im osmanischen Stil",
             "entryFee": "Kostenlos",
-            "hours": "9:00 AM - 4:00 PM"
+            "hours": "9:00–16:00 Uhr"
           },
           "copticMuseum": {
             "name": "Koptisches Museum",
             "description": "Weltgrößte Sammlung koptischer Artefakte",
             "entryFee": "230 EGP (ausländische Erwachsene)",
-            "hours": "9:00 AM - 5:00 PM"
+            "hours": "9:00–17:00 Uhr"
           }
         },
         "luxor": {
@@ -3458,19 +3462,19 @@
             "name": "Medinet Habu",
             "description": "Totentempel von Ramses III",
             "entryFee": "200 EGP (ausländische Erwachsene)",
-            "hours": "6:00 AM - 5:00 PM"
+            "hours": "6:00–17:00 Uhr"
           },
           "deir": {
             "name": "Deir el-Medina",
             "description": "Dorf der königlichen Grabbauer",
             "entryFee": "200 EGP (ausländische Erwachsene)",
-            "hours": "6:00 AM - 5:00 PM"
+            "hours": "6:00–17:00 Uhr"
           },
           "ramesseum": {
             "name": "Ramesseum",
             "description": "Gedenktempel von Ramses II",
             "entryFee": "180 EGP (ausländische Erwachsene)",
-            "hours": "6:00 AM - 5:00 PM"
+            "hours": "6:00–17:00 Uhr"
           },
           "luxorMuseum": {
             "name": "Luxor-Museum",
@@ -3537,19 +3541,19 @@
             "name": "Unvollendeter Obelisk",
             "description": "Alter Granitsteinbruch mit unvollendetem Obelisk",
             "entryFee": "220 EGP (ausländische Erwachsene)",
-            "hours": "7:00 AM - 5:00 PM"
+            "hours": "7:00–17:00 Uhr"
           },
           "nubian": {
             "name": "Nubisches Museum",
             "description": "Museum für nubische Kultur und Geschichte",
             "entryFee": "300 EGP (ausländische Erwachsene)",
-            "hours": "9:00 AM - 6:00 PM"
+            "hours": "9:00–18:00 Uhr"
           },
           "botanical": {
             "name": "Botanischer Garten",
             "description": "Exotische Pflanzen auf Kitchener's Insel",
             "entryFee": "70 EGP (ausländische Erwachsene)",
-            "hours": "8:00 AM - 6:00 PM"
+            "hours": "8:00–18:00 Uhr"
           }
         },
         "abuSimbel": {
