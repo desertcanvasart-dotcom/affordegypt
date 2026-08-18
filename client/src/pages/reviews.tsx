@@ -11,6 +11,8 @@ import { enUS, es, fr, de } from "date-fns/locale";
 import type { Review } from "@shared/schema";
 import SeoMeta from "@/components/seo-meta";
 import { useTranslation } from "react-i18next";
+import { Link } from "wouter";
+import { useTranslatedLink } from "@/utils/slugTranslation";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -34,10 +36,12 @@ export default function ReviewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+  const getTranslatedLink = useTranslatedLink();
 
   const { data: reviews = [], isLoading } = useQuery<Review[]>({
     queryKey: ["/api/reviews"],
   });
+  const hasReviews = reviews.length > 0;
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, i) => (
@@ -151,6 +155,14 @@ export default function ReviewsPage() {
     <>
     <Navbar />
     <div className="min-h-screen bg-gray-50 py-16">
+      {/* Also rendered by the loading branch, but that branch is skipped
+          entirely when the query answers from cache — without this copy, a
+          client-side navigation here keeps the previous page's head. */}
+      <SeoMeta
+        title={t("reviewsPage.seoTitle")}
+        description={t("reviewsPage.seoDescription")}
+        canonical="https://affordegypt.com/reviews"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -161,20 +173,26 @@ export default function ReviewsPage() {
             {t("reviewsPage.subtitle")}
           </p>
           
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="flex items-center gap-1">
-              {renderStars(Math.round(averageRating))}
+          {/* "0.0 (0 reviews)" under five hollow stars reads as a broken
+              page, not an unrated one — with no data the header stops at the
+              subtitle and the empty state below carries the message. */}
+          {hasReviews && (
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="flex items-center gap-1">
+                {renderStars(Math.round(averageRating))}
+              </div>
+              <span className="text-2xl font-bold text-gray-900">
+                {averageRating.toFixed(1)}
+              </span>
+              <span className="text-gray-600">
+                {t("reviewsPage.reviewCount", { count: reviews.length })}
+              </span>
             </div>
-            <span className="text-2xl font-bold text-gray-900">
-              {averageRating.toFixed(1)}
-            </span>
-            <span className="text-gray-600">
-              {t("reviewsPage.reviewCount", { count: reviews.length })}
-            </span>
-          </div>
+          )}
         </div>
 
         {/* Rating Distribution */}
+        {hasReviews && (
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("reviewsPage.distribution")}</h3>
           <div className="space-y-2">
@@ -195,8 +213,10 @@ export default function ReviewsPage() {
             ))}
           </div>
         </div>
+        )}
 
         {/* Filters and Controls */}
+        {hasReviews && (
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1">
@@ -292,9 +312,25 @@ export default function ReviewsPage() {
             </div>
           )}
         </div>
+        )}
 
         {/* Reviews Display */}
-        {viewMode === "grid" ? (
+        {!hasReviews ? (
+          <div className="text-center py-16 bg-white rounded-lg shadow-sm">
+            <Quote className="w-10 h-10 text-primary/30 mx-auto mb-4" />
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              {t("reviewsPage.emptyTitle")}
+            </h2>
+            <p className="text-gray-600 max-w-md mx-auto mb-6">
+              {t("reviewsPage.emptyBody")}
+            </p>
+            <Button asChild>
+              <Link href={getTranslatedLink("submit-review")}>
+                {t("reviewsPage.emptyCta")}
+              </Link>
+            </Button>
+          </div>
+        ) : viewMode === "grid" ? (
           <div className={`grid gap-6 mb-8 ${
             itemsPerPage === 6 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : 
             itemsPerPage === 12 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : 
@@ -417,7 +453,7 @@ export default function ReviewsPage() {
           </div>
         )}
 
-        {paginatedReviews.length === 0 && (
+        {hasReviews && paginatedReviews.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-600 text-lg">
               {t("reviewsPage.noneFound")}
