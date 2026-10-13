@@ -9,6 +9,7 @@ import { SLUG_MAPPINGS, languageOfSlug } from "./shared/public-routes";
 const PRERENDER_ROUTES = [
   "/",
   "/about",
+  "/packages",
   "/contact",
   "/transfers",
   "/destinations",

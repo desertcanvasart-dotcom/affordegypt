@@ -1,4 +1,5 @@
-import { pgTable, text, serial, integer, boolean, decimal, numeric, timestamp, jsonb, index, uniqueIndex } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import { pgTable, text, serial, integer, boolean, decimal, numeric, timestamp, jsonb, index, uniqueIndex, check } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -751,3 +752,37 @@ export type InsertServiceCategory = z.infer<typeof insertServiceCategorySchema>;
 
 export type ServiceCatalogItem = typeof serviceCatalog.$inferSelect;
 export type InsertServiceCatalogItem = z.infer<typeof insertServiceCatalogItemSchema>;
+
+// Exactly three editorial package slots. Draft content never reaches public APIs.
+export const travelPackages = pgTable("travel_packages", {
+  id: serial("id").primaryKey(),
+  slot: integer("slot").notNull().unique(),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull().default(""),
+  summary: text("summary").notNull().default(""),
+  description: text("description").notNull().default(""),
+  imageUrl: text("image_url").notNull().default(""),
+  durationDays: integer("duration_days").notNull().default(1),
+  nights: integer("nights").notNull().default(0),
+  itinerary: jsonb("itinerary").$type<Array<{title: string; description: string}>>().notNull().default([]),
+  inclusions: jsonb("inclusions").$type<string[]>().notNull().default([]),
+  exclusions: jsonb("exclusions").$type<string[]>().notNull().default([]),
+  bookingTerms: text("booking_terms").notNull().default(""),
+  perPersonRates: jsonb("per_person_rates").$type<Record<string, number>>().notNull().default({}),
+  singleSupplement: decimal("single_supplement", {precision: 10, scale: 2}),
+  status: text("status").notNull().default("draft"),
+  version: integer("version").notNull().default(1),
+  updatedAt: timestamp("updated_at", {withTimezone: true}).notNull().defaultNow(),
+}, t => [
+  check("package_slot_range", sql`${t.slot} between 1 and 3`),
+  check("package_duration", sql`${t.durationDays} between 1 and 60 and ${t.nights} >= 0 and ${t.nights} < ${t.durationDays}`),
+  check("package_status", sql`${t.status} in ('draft', 'published')`),
+  check("package_supplement", sql`${t.singleSupplement} >= 0`),
+]);
+
+// Idempotency keys prevent a retried package request from creating another booking.
+export const packageBookingRequests = pgTable("package_booking_requests", {
+  requestKey: text("request_key").primaryKey(),
+  requestHash: text("request_hash").notNull(),
+  bookingId: integer("booking_id").notNull().references(() => bookings.id),
+});

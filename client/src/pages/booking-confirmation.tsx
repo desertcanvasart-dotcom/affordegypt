@@ -1,3 +1,4 @@
+import PackageBookingSummary from "@/components/package-booking-summary";
 import { TourPrice } from "@/components/currency-estimate";
 import { useEffect } from "react";
 import { useRoute } from "wouter";
@@ -155,6 +156,8 @@ export default function BookingConfirmation() {
       pdfContainer.style.backgroundColor = 'white';
       pdfContainer.style.fontFamily = 'Arial, sans-serif';
       
+      const htmlEscape = (value: unknown) => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]!); // i18n-exempt: HTML escaping implementation, no user-facing copy
+      const packageSnapshot = quote.jsonBlob.package ? quote.jsonBlob : null;
       const itinerary = quote.jsonBlob.cities || quote.jsonBlob.itinerary || [];
       
       pdfContainer.innerHTML = `
@@ -192,14 +195,22 @@ export default function BookingConfirmation() {
           </div>
         </div>
         
+        ${packageSnapshot ? `<div style="margin-bottom:25px;padding:15px;border:1px solid #e5e7eb;">
+          <h3>${htmlEscape(packageSnapshot.package.title)}</h3>
+          <p>${htmlEscape(t('packages.travelers'))}: ${packageSnapshot.travelers}</p>
+          <p>${htmlEscape(t('packages.roomOption', {double:packageSnapshot.rooms.double,single:packageSnapshot.rooms.single}))}</p>
+          <p>${htmlEscape(t('packages.supplementTotal'))}: ${formatEGP(packageSnapshot.pricing.supplementTotal)}</p>
+          <h4>${htmlEscape(t('packages.terms'))}</h4><p>${htmlEscape(packageSnapshot.package.bookingTerms).replace(/\n/g,'<br>')}</p>
+        </div>` : ''}
         ${itinerary.length > 0 ? `
         <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px;">
           <h3 style="color: #0d9488; margin-top: 0;">${t('bookingConfirmation.pdf.itinerary')}</h3>
           ${itinerary.map((city: any, index: number) => `
             <div style="margin-bottom: 20px; padding-left: 15px; border-left: 4px solid #0d9488;">
-              <h4 style="margin: 0 0 10px 0; color: #374151;">${index + 1}. ${city.cityName}</h4>
+              <h4 style="margin: 0 0 10px 0; color: #374151;">${index + 1}. ${packageSnapshot ? htmlEscape(city.cityName) : city.cityName}</h4>
               <p style="margin: 5px 0; color: #6b7280;"><strong>${t('bookingConfirmation.pdf.date')}</strong> ${city.date} • <strong>${t('bookingConfirmation.pdf.travelers')}</strong> ${city.travelers}</p>
               
+              ${city.description ? `<p>${htmlEscape(city.description).replace(/\n/g,'<br>')}</p>` : ''}
               ${city.selectedRoutes && city.selectedRoutes.length > 0 ? `
                 <div style="margin: 10px 0;">
                   <strong style="color: #374151;">${t('bookingConfirmation.pdf.transportation')}</strong>
@@ -252,9 +263,10 @@ export default function BookingConfirmation() {
         
         <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; background-color: #f0f9ff;">
           <h3 style="color: #0d9488; margin-top: 0;">${t('bookingConfirmation.payment.title')}</h3>
+          ${packageSnapshot ? `<p>${htmlEscape(t('packages.requestNote'))}</p>` : `
           <p style="margin: 5px 0; color: #374151;"><strong>${t('bookingConfirmation.payment.depositLabel')}</strong></p>
           <p style="margin: 5px 0; color: #6b7280;">${t('bookingConfirmation.payment.depositBody')}</p>
-          <p style="margin: 5px 0; color: #6b7280;">${t('bookingConfirmation.payment.remainder')}</p>
+          <p style="margin: 5px 0; color: #6b7280;">${t('bookingConfirmation.payment.remainder')}</p>`}
         </div>
         
         <div style="text-align: center; padding: 20px; border-top: 2px solid #0d9488; margin-top: 30px;">
@@ -317,7 +329,7 @@ export default function BookingConfirmation() {
             {t('bookingConfirmation.heading', { name: booking.customerName })}
           </h1>
           <p className="text-lg text-muted-foreground">
-            {t('bookingConfirmation.subheading')}
+            {t(quote?.jsonBlob?.package ? 'packages.requestNote' : 'bookingConfirmation.subheading')}
           </p>
 
           {/* Download Button */}
@@ -332,7 +344,7 @@ export default function BookingConfirmation() {
           </div>
         </div>
 
-        {/* Next Steps */}
+        {quote?.jsonBlob?.package ? <PackageBookingSummary snapshot={quote.jsonBlob} /> : (
         <Card className="mb-6 border-teal-200">
           <CardHeader>
             <CardTitle>{t('bookingConfirmation.nextSteps.title')}</CardTitle>
@@ -378,6 +390,8 @@ export default function BookingConfirmation() {
             </ol>
           </CardContent>
         </Card>
+
+        )}
 
         {/* Main Booking Details - Full Width */}
         <div className="space-y-6">
@@ -492,11 +506,12 @@ export default function BookingConfirmation() {
                                 <span>{city.date ? formatDate(city.date) : formatDate(booking.startDate || new Date().toISOString())}</span>
                               </div>
                               <div>
-                                {t('bookingConfirmation.travelerCount', { count: city.travelers })}
+                                {t('bookingConfirmation.travelerCount', { count: city.travelers ?? quote.jsonBlob.travelers })}
                               </div>
                             </div>
                           </div>
                           
+                          {city.description && <p className="text-sm text-muted-foreground whitespace-pre-line mb-4">{city.description}</p>}
                           <Separator className="mb-4" />
                         
                         {city.selectedRoutes && city.selectedRoutes.length > 0 && (
@@ -595,6 +610,7 @@ export default function BookingConfirmation() {
             )}
 
             {/* Payment Information */}
+            {!quote?.jsonBlob?.package && (
             <Card className="bg-blue-50 border-blue-200">
               <CardHeader>
                 <CardTitle className="text-blue-900">{t('bookingConfirmation.payment.title')}</CardTitle>
@@ -623,6 +639,8 @@ export default function BookingConfirmation() {
                 </div>
               </CardContent>
             </Card>
+
+            )}
 
             {/* Booking Success Notice */}
             <Card className="bg-green-50 border-green-200">

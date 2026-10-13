@@ -1,3 +1,4 @@
+import FeaturedPackages from "@/components/featured-packages";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -6,7 +7,6 @@ import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import CredentialsStrip from "@/components/credentials-strip";
 import FounderBlock from "@/components/founder-block";
-import InclusionsComparison from "@/components/inclusions-comparison";
 import MultiCityPricingTool from "@/components/multi-city-pricing-tool";
 import AnimatedReviewCarousel from "@/components/animated-review-carousel";
 import BlogGrid from "@/components/blog-grid";
@@ -156,7 +156,7 @@ export default function Home() {
       <Hero />
       <CredentialsStrip />
       <FounderBlock />
-      <InclusionsComparison />
+      <FeaturedPackages />
       <MultiCityPricingTool />
       <AnimatedReviewCarousel />
       <BlogGrid />

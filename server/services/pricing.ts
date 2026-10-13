@@ -1,3 +1,4 @@
+import { pricePackage, type TravelPackage } from "@shared/travel-packages";
 // PricingService — single source of truth for every price the app shows
 // or freezes. Pure lookup, no math.
 //
@@ -139,6 +140,10 @@ export function pickVehicleSlugForPassengers(passengers: number): VehicleSlug {
 }
 
 export class PricingService {
+  static priceReadyMadePackage(pkg: Pick<TravelPackage, "perPersonRates" | "singleSupplement" | "version" | "nights">, travelers: number, singleRooms: number) {
+    return pricePackage(pkg, travelers, singleRooms);
+  }
+
   /**
    * Pure JSONB lookup against routes.vehicle_prices. Lookup key is
    * `${vehicleSlug}_${tripType}`. Returns null when the key isn't set

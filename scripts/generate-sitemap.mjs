@@ -29,6 +29,7 @@ const SITE = "https://affordegypt.com";
 const ROUTES = [
   "/",
   "/about",
+  "/packages",
   "/contact",
   "/transfers",
   "/destinations",

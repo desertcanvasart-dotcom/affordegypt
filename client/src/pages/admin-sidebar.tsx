@@ -506,6 +506,7 @@ export default function AdminSidebar() {
           <div className="pt-4 pb-1 px-3 text-[11px] uppercase tracking-wide text-gray-400 font-semibold">
             Catalog
           </div>
+          <Link href="/admin/packages" className="w-full"><button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-50"><Package className="w-4 h-4" /><span>Ready-made Packages</span></button></Link>
           <Link href="/admin/service-catalog" className="w-full">
             <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors">
               <Layers className="w-4 h-4" />

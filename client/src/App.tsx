@@ -15,6 +15,7 @@ import { ErrorBoundary } from "@/components/error-boundary";
 import { initGA } from "./lib/analytics";
 import { signalPrerenderReady } from "./lib/prerender";
 import { useAnalytics } from "./hooks/use-analytics";
+import Packages from "@/pages/packages";
 import Home from "@/pages/home";
 import Attractions from "@/pages/attractions";
 
@@ -37,6 +38,8 @@ function withSuspense(Component: ComponentType<any>) {
   };
 }
 
+const PackageDetail = withSuspense(lazy(() => import("@/pages/package-detail")));
+const AdminPackages = withSuspense(lazy(() => import("@/pages/admin-packages")));
 const BookPage = withSuspense(lazy(() => import("@/pages/book")));
 const AdminSidebar = withSuspense(lazy(() => import("@/pages/admin-sidebar")));
 const AdminBookings = withSuspense(lazy(() => import("@/pages/admin-bookings")));
@@ -201,6 +204,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/packages" component={Packages} />
+      <Route path="/packages/:slug" component={PackageDetail} />
+      <Route path="/admin/packages" component={AdminPackages} />
       <Route path="/book/:id?" component={BookPage} />
       <Route path="/booking-confirmation/:reference" component={BookingConfirmation} />
       <Route path="/dashboard" component={UserDashboard} />

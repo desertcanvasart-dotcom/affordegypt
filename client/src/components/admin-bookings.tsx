@@ -579,6 +579,7 @@ function BookingDetailsModal({
             <div>
               <h4 className="font-medium mb-3">Trip Details</h4>
               <div className="space-y-4">
+                {booking.quote.jsonBlob?.package && <div className="rounded-lg border p-4 space-y-2"><h5 className="font-semibold">{booking.quote.jsonBlob.package.title}</h5><p>Travelers: {booking.quote.jsonBlob.travelers} · Twin/double rooms: {booking.quote.jsonBlob.rooms?.double} · Single rooms: {booking.quote.jsonBlob.rooms?.single}</p><p>Group tier: {booking.quote.jsonBlob.pricing?.tier} · Single supplement: EGP {booking.quote.jsonBlob.pricing?.supplementTotal}</p><p className="whitespace-pre-line text-sm">{booking.quote.jsonBlob.specialRequests}</p><p className="whitespace-pre-line text-sm">{booking.quote.jsonBlob.package.bookingTerms}</p></div>}
                 {booking.quote.jsonBlob?.itinerary && (
                   <div>
                     <h5 className="text-sm font-medium mb-2">Itinerary</h5>

@@ -74,7 +74,7 @@ class TransactionalEmailService implements EmailService {
           email: this.fromEmail,
           name: 'Afford Egypt'
         },
-        subject: `Booking received — your AffordEgypt deposit link is on the way (booking #${booking.bookingReference})`,
+        subject: quoteData?.package ? `Package request received — ${booking.bookingReference}` : `Booking received — your AffordEgypt deposit link is on the way (booking #${booking.bookingReference})`,
         html: emailContent,
         text: this.stripHtml(emailContent)
       });
@@ -208,6 +208,22 @@ class TransactionalEmailService implements EmailService {
   }
 
   private generateConfirmationEmail(booking: Booking, quoteData: any, totalAmount: string): string {
+    if (quoteData?.package) {
+      return renderEmail({
+        title: `Package request — ${booking.bookingReference}`,
+        preheader: `${quoteData.package.title} · LE ${formatMoney(totalAmount)}. Availability is pending.`,
+        eyebrow: 'Package booking request', heading: 'We have received your package request',
+        lede: 'We will check availability and contact you to confirm the arrangements and payment instructions.',
+        body: summaryPanel('Your package', [
+          {label: 'Program', value: quoteData.package.title}, {label: 'Booking reference', value: booking.bookingReference},
+          {label: 'Total', value: `LE ${formatMoney(totalAmount)}`}, {label: 'Travelers', value: String(quoteData.travelers)},
+          {label: 'Twin/double rooms', value: String(quoteData.rooms.double)}, {label: 'Single rooms', value: String(quoteData.rooms.single)},
+          {label: 'Single-room supplements', value: `LE ${formatMoney(quoteData.pricing.supplementTotal)}`},
+          {label: 'Trip start', value: formatTripDate(booking.startDate)},
+        ]) + paragraph(esc(quoteData.package.bookingTerms).replace(/\n/g, '<br>'))
+          + button(`${emailLinks.SITE_URL}/booking-confirmation/${encodeURIComponent(booking.bookingReference)}`, 'View your request') + cardEnd(),
+      });
+    }
     const firstName = String(booking.customerName || '').trim().split(/\s+/)[0] || 'there';
     const bookingUrl = `${emailLinks.SITE_URL}/booking-confirmation/${encodeURIComponent(booking.bookingReference)}`;
 
@@ -401,7 +417,7 @@ class TransactionalEmailService implements EmailService {
       await mailService.send({
         to: 'hello@affordegypt.com',
         from: this.fromEmail,
-        subject: `ACTION: send Tab.travel deposit link — booking ${booking.bookingReference}`,
+        subject: jsonBlob?.package ? `ACTION: review package request — ${booking.bookingReference}` : `ACTION: send Tab.travel deposit link — booking ${booking.bookingReference}`,
         html: emailContent,
       });
       
@@ -413,6 +429,18 @@ class TransactionalEmailService implements EmailService {
   }
 
   private generateAdminNotificationEmail(booking: any, quote: any, jsonBlob: any, type: 'confirmation' | 'reminder'): string {
+    if (jsonBlob?.package) {
+      return renderEmail({title: `Package request ${booking.bookingReference}`, preheader: jsonBlob.package.title,
+        eyebrow: 'Package request', heading: 'Review availability and package terms',
+        body: summaryPanel('Request details', [
+          {label:'Package',value:jsonBlob.package.title}, {label:'Reference',value:booking.bookingReference},
+          {label:'Customer',value:booking.customerName}, {label:'Email',value:booking.customerEmail}, {label:'Phone',value:booking.customerPhone || ''},
+          {label:'Departure',value:formatTripDate(booking.startDate)}, {label:'Travelers',value:String(jsonBlob.travelers)},
+          {label:'Twin/double rooms',value:String(jsonBlob.rooms.double)}, {label:'Single rooms',value:String(jsonBlob.rooms.single)},
+          {label:'Total EGP',value:formatMoney(booking.totalAmount)},
+        ]) + paragraph(esc(jsonBlob.specialRequests || '')) + paragraph(esc(jsonBlob.package.bookingTerms).replace(/\n/g,'<br>')) + cardEnd(),
+      });
+    }
     const total = typeof booking.totalAmount === 'string' ? parseFloat(booking.totalAmount) : Number(booking.totalAmount);
     const deposit = Number.isFinite(total) ? total * 0.1 : NaN;
     const phoneDigits = String(booking.customerPhone || '').replace(/\D/g, '');

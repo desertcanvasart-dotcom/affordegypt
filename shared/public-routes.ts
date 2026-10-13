@@ -134,6 +134,7 @@ const STATIC_PATHS = new Set([
 
 // Parameterized route families (path itself or any subpath is valid).
 const PATH_PREFIXES = [
+  "/packages", // Package catalog and detail pages
   "/book", // /book/:id?
   "/booking-confirmation", // /booking-confirmation/:reference
   "/admin", // admin surface (noindex, but real pages)
