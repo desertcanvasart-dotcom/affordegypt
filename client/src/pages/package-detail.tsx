@@ -1,3 +1,4 @@
+import PackageAccommodation from "@/components/package-accommodation";
 import PackageConcept from "@/components/package-concept";
 import { useRef, useState } from "react";
 import { Link, useLocation, useRoute } from "wouter";
@@ -205,6 +206,7 @@ export default function PackageDetail() {
                 </section>
               ))}
             </div>
+            <PackageAccommodation slug={pkg.slug} />
             <p className="text-sm text-muted-foreground">{t("packages.bookingRatesExplanation")}</p>
             <section id="package-terms">
               <h2 className="text-2xl font-bold mb-4">{t("packages.terms")}</h2>

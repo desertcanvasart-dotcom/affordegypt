@@ -1,3 +1,4 @@
+import PackageAccommodation from "@/components/package-accommodation";
 import PackageConcept from "@/components/package-concept";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/navbar";
@@ -28,6 +29,7 @@ export default function Packages() {
         ) : (
           <p>{t("packages.comingSoon")}</p>
         )}
+        <PackageAccommodation />
       </main>
       <Footer />
     </>

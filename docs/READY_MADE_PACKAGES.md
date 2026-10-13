@@ -121,3 +121,9 @@ The repository must retain `migrations/0008_ready_made_packages.sql` and `conten
 Program 3 has explicit full-trip per-traveler rates for every size 2–12. Odd sizes average neighboring even rates: 3 = 81,549.50; 5 = 74,650; 7 = 71,050; 9 = 69,990; 11 = 68,972.50 EGP. The 21,750 EGP single-room supplement remains separate. Its detail page omits the standalone rate table and displays rates in the traveler selector. All three real programs now use averaged odd-group rates. Admin supports optional explicit odd-group rates.
 
 All package detail pages now omit the standalone group-price table and show 2–12 travelers and per-person rates in the booking selector. Programs 1 and 2 use the same neighboring-even averages as Program 3. Single-room supplements remain separate. The deployment startup revision updates already imported programs without resetting any booking snapshots or other prices/terms.
+
+## Accommodation examples
+
+The catalog displays all six operator-supplied examples; detail pages show the relevant overnight properties. Program 1 shows Cairo and Luxor hotels; Program 2 shows Cairo hotels and the Nile cruise (Aswan/Luxor are cruise stays); Program 3 shows Cairo, Aswan, Hurghada and the Nile cruise. The copy promises these properties or better as the minimum standard, subject to availability and final booking confirmation. No star categories, room views or extra hotel nights are implied.
+
+Property links were checked against Barceló (Occidental Cairo Grand Museum), Obelisk Hotels (Aswan), Aracan Hotels (Eatabe Luxor), Red Sea Hotels (Grand Hotel Hurghada) and Sunrise Resorts (SENTIDO M/S Nile Saray). Obelisk GEM Inn Museum links to a LateRooms listing, clearly labeled as a hotel listing because an official website was not verified. Interface copy is translated in all four locales.
