@@ -1,7 +1,8 @@
+import { CurrencyEstimate } from "@/components/currency-estimate";
 import { ArrowRight } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { formatLE } from "@/lib/service-pricing";
+import { formatLE, priceOf } from "@/lib/service-pricing";
 import { OPERATOR } from "@shared/operator-facts";
 
 // Cairo guide + full-day private car, from the build-time pricing snapshot.
@@ -9,10 +10,8 @@ import { OPERATOR } from "@shared/operator-facts";
 // site, and the one literal that survived #48 because that sweep grepped for
 // the formatted "5,625" rather than the bare number.
 //
-// The USD/EUR hints that used to sit here are gone. They were "$105 / €98"
-// while the FAQ quoted "$118 / €110" for the same EGP figure, their comment
-// asked for a monthly FX review that never happened, and a stale conversion is
-// exactly the kind of number a transparent-pricing pitch cannot afford.
+// Foreign-currency estimates now come from the live FX endpoint instead of
+// the old hardcoded USD/EUR hints. EGP remains the advertised base price.
 //
 // The "/ day" that used to be concatenated here in English now lives inside
 // each locale's priceLine, so the unit follows the sentence it belongs to.
@@ -61,6 +60,8 @@ export default function Hero() {
               components={{ price: <span className="font-semibold text-white" /> }}
             />
           </p>
+
+          <div className="mb-6"><CurrencyEstimate amount={priceOf("cairo-guide-car")} showNote /></div>
 
           <Button
             onClick={scrollToQuote}

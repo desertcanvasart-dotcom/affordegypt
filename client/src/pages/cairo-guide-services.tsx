@@ -1,6 +1,7 @@
+import { CurrencyEstimate } from "@/components/currency-estimate";
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE, priceOf } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -60,6 +61,7 @@ export default function CairoGuideServices() {
       name: t("guideServices.common.professionalGuide"),
       duration: t("guideServices.common.fullDay8Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-guide-services") } }),
+      amountEGP: priceOf("cairo-guide-services"),
       features: [t("guideServices.cairo.featLicensedEgyptologist"), t("guideServices.cairo.featFluentEnglishArabic"), t("guideServices.cairo.featHistoricalExpertise")],
       icon: UserCheck
     },
@@ -67,6 +69,7 @@ export default function CairoGuideServices() {
       name: t("guideServices.common.guideCarPackage"),
       duration: t("guideServices.common.fullDay"), 
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-guide-car") } }),
+      amountEGP: priceOf("cairo-guide-car"),
       features: [t("guideServices.common.licensedGuide"), t("guideServices.common.privateVehicle"), t("guideServices.common.entranceFeesExcluded")],
       icon: Users
     },
@@ -74,6 +77,7 @@ export default function CairoGuideServices() {
       name: t("guideServices.common.premiumCarService"),
       duration: t("guideServices.common.6to12Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("cairo-tour-car") } }),
+      amountEGP: priceOf("cairo-tour-car"),
       features: [t("guideServices.common.privateSedanSuv"), t("guideServices.common.professionalDriver"), t("guideServices.common.flexibleItinerary")],
       icon: Car
     }
@@ -192,6 +196,7 @@ export default function CairoGuideServices() {
                     <Badge variant="secondary" className="text-lg font-semibold px-4 py-1 mt-2">
                       {service.price}
                     </Badge>
+                    <CurrencyEstimate amount={service.amountEGP} showNote />
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">

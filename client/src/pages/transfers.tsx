@@ -1,3 +1,4 @@
+import { TourPrice } from "@/components/currency-estimate";
 // /transfers — the "Transfer Only" module: book a single transfer
 // (intercity / airport / local) without building a full itinerary.
 //
@@ -41,7 +42,6 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SeoMeta from "@/components/seo-meta";
-import { formatEGP } from "@/lib/utils";
 import { formatEGPPlain } from "@/lib/service-pricing";
 import { breadcrumbSchema, trailFor } from "@/lib/breadcrumb-schema";
 import PageBreadcrumbs from "@/components/page-breadcrumbs";
@@ -519,7 +519,7 @@ export default function TransfersPage() {
               <p className="text-gray-600">
                 {t("common.total")}:{" "}
                 <span className="font-semibold text-teal-700">
-                  {formatEGP(success.total)}
+                  <TourPrice amount={success.total} />
                 </span>
               </p>
               <p className="text-sm text-gray-500">
@@ -684,7 +684,7 @@ export default function TransfersPage() {
                                   <span className="text-gray-500">{t("transfers.from")} </span>
                                 )}
                                 <span className="font-semibold text-teal-700">
-                                  {formatEGP(best.price)}
+                                  <TourPrice amount={best.price} />
                                 </span>
                                 <span className="text-gray-500">
                                   {" "}
@@ -794,7 +794,7 @@ export default function TransfersPage() {
                             />
                           </div>
                           <p className="text-2xl font-bold text-teal-600">
-                            {formatEGP(price ?? 0)}
+                            <TourPrice amount={price ?? 0} />
                           </p>
                           <p className="text-sm text-gray-500 mt-1">
                             {vehicleSeatsLabel(t, v)}
@@ -994,7 +994,7 @@ export default function TransfersPage() {
                           className="text-2xl font-bold text-teal-700"
                           data-testid="transfer-total"
                         >
-                          {formatEGP(selectedPrice ?? 0)}
+                          <TourPrice amount={selectedPrice ?? 0} />
                         </p>
                       </div>
                       <Button

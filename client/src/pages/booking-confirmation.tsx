@@ -1,3 +1,4 @@
+import { TourPrice } from "@/components/currency-estimate";
 import { useEffect } from "react";
 import { useRoute } from "wouter";
 import { CheckCircle, Clock, AlertCircle, Download, DollarSign } from "lucide-react";
@@ -400,7 +401,7 @@ export default function BookingConfirmation() {
                       {t('bookingConfirmation.totalAmount')}
                     </label>
                     <p className="text-lg font-semibold">
-                      {formatEGP(booking.totalAmount)}
+                      <TourPrice amount={booking.totalAmount} />
                     </p>
                   </div>
                   {booking.startDate && (
@@ -578,7 +579,7 @@ export default function BookingConfirmation() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.totalAmount')}</label>
-                        <p className="text-2xl font-bold text-primary">{formatEGP(booking.totalAmount)}</p>
+                        <p className="text-2xl font-bold text-primary"><TourPrice amount={booking.totalAmount} /></p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">{t('bookingConfirmation.status')}</label>

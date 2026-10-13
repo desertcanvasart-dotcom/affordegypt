@@ -3885,5 +3885,12 @@
     "perPerson": "/pers.",
     "done": "Terminé",
     "doneWith": "Terminé ({{count}})"
+  },
+  "currency": {
+    "loading": "Chargement des estimations en devises…",
+    "unavailable": "Estimations en devises indisponibles",
+    "rateDate": "Date du taux :",
+    "stale": "Les derniers taux disponibles sont utilisés.",
+    "note": "Conversions approximatives. Les réservations sont calculées en EGP ; le taux et les frais de votre banque peuvent varier."
   }
 }

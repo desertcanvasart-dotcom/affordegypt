@@ -1,3 +1,4 @@
+import { TourPrice } from "@/components/currency-estimate";
 import { useState, useEffect, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslatedQuery } from "@/hooks/useTranslatedQuery";
@@ -572,16 +573,16 @@ export default function BookPage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>{t("booking.subtotal")}</span>
-                  <span>{formatEGP(totalAmount)}</span>
+                  <span><TourPrice amount={totalAmount} /></span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>{t("booking.taxes")}</span>
-                  <span>{formatEGP(0)}</span>
+                  <span><TourPrice amount={0} /></span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-semibold">
                   <span>{t("booking.total")}</span>
-                  <span>{formatEGP(totalAmount)}</span>
+                  <span><TourPrice amount={totalAmount} /></span>
                 </div>
               </div>
 

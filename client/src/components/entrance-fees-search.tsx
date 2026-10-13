@@ -1,3 +1,4 @@
+import { TourPrice } from "@/components/currency-estimate";
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Search, Ticket, ChevronDown, X, Check } from "lucide-react";
@@ -5,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { formatEGP } from "@/lib/utils";
 
 interface EntranceFee {
   slug: string;
@@ -129,7 +129,7 @@ export default function EntranceFeesSearch({
                     {f.notes && <p className="text-xs text-gray-600 mt-0.5 line-clamp-1">{f.notes}</p>}
                   </div>
                   <span className="text-sm font-medium whitespace-nowrap">
-                    {formatEGP(f.price_per_person)}
+                    <TourPrice amount={f.price_per_person} />
                     {/* The per-person suffix is a word, not punctuation: /pp
                         reads as nothing in German. */}
                     <span className="text-xs text-gray-500">

@@ -1,6 +1,7 @@
+import { CurrencyEstimate } from "@/components/currency-estimate";
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { vehicleDigits, type VehicleClass } from "@/lib/service-pricing";
+import { vehiclePriceOf, vehicleDigits, type VehicleClass } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -77,6 +78,7 @@ export default function LuxorAirportTransfers() {
       name: t("airportTransfers.common.sedan"),
       capacity: t("airportTransfers.common.passengers1to2"),
       price: fromPrice("sedan"),
+      amountEGP: vehiclePriceOf("luxor-airport-transfer", "sedan"),
       features: list("airportTransfers.luxor.sedanFeatures"),
       icon: Car
     },
@@ -84,6 +86,7 @@ export default function LuxorAirportTransfers() {
       name: t("airportTransfers.common.minivan"),
       capacity: t("airportTransfers.common.passengers3to8"),
       price: fromPrice("minivan"),
+      amountEGP: vehiclePriceOf("luxor-airport-transfer", "minivan"),
       features: list("airportTransfers.luxor.minivanFeatures"),
       icon: Users
     },
@@ -91,6 +94,7 @@ export default function LuxorAirportTransfers() {
       name: t("airportTransfers.common.van"),
       capacity: t("airportTransfers.common.passengers9to15"),
       price: fromPrice("van"),
+      amountEGP: vehiclePriceOf("luxor-airport-transfer", "van"),
       features: list("airportTransfers.luxor.vanFeatures"),
       icon: Users
     }
@@ -293,6 +297,7 @@ export default function LuxorAirportTransfers() {
                     <Badge variant="secondary" className="text-lg font-semibold px-4 py-1 mt-2">
                       {vehicle.price}
                     </Badge>
+                    <CurrencyEstimate amount={vehicle.amountEGP} showNote />
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">

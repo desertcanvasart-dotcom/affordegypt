@@ -1,6 +1,7 @@
+import { CurrencyEstimate } from "@/components/currency-estimate";
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE, priceOf } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -60,6 +61,7 @@ export default function AswanGuideServices() {
       name: t("guideServices.aswan.cardGuideName"),
       duration: t("guideServices.common.fullDay8Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-guide-services") } }),
+      amountEGP: priceOf("aswan-guide-services"),
       features: [t("guideServices.aswan.featNubianHeritageExpert"), t("guideServices.aswan.featLocalVillageGuide"), t("guideServices.aswan.featTraditionalCulture")],
       icon: UserCheck
     },
@@ -67,6 +69,7 @@ export default function AswanGuideServices() {
       name: t("guideServices.aswan.cardPackageName"),
       duration: t("guideServices.common.fullDay"), 
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-guide-car") } }),
+      amountEGP: priceOf("aswan-guide-car"),
       features: [t("guideServices.aswan.featProfessionalGuide"), t("guideServices.common.privateVehicle"), t("guideServices.aswan.featPhilaeTour")],
       icon: Users
     },
@@ -74,6 +77,7 @@ export default function AswanGuideServices() {
       name: t("guideServices.aswan.cardCarName"),
       duration: t("guideServices.common.12to14Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("aswan-abu-simbel-guide-car") } }), 
+      amountEGP: priceOf("aswan-abu-simbel-guide-car"),
       features: [t("guideServices.aswan.featLongDistanceVehicle"), t("guideServices.aswan.featExpertGuide"), t("guideServices.aswan.featUnescoSpecialist")],
       icon: Car
     }
@@ -192,6 +196,7 @@ export default function AswanGuideServices() {
                     <Badge variant="secondary" className="text-lg font-semibold px-4 py-1 mt-2">
                       {service.price}
                     </Badge>
+                    <CurrencyEstimate amount={service.amountEGP} showNote />
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">

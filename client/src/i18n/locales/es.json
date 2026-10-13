@@ -3885,5 +3885,12 @@
     "perPerson": "/pers.",
     "done": "Listo",
     "doneWith": "Listo ({{count}})"
+  },
+  "currency": {
+    "loading": "Cargando estimaciones de divisas…",
+    "unavailable": "Estimaciones de divisas no disponibles",
+    "rateDate": "Fecha del tipo de cambio:",
+    "stale": "Se utilizan los últimos tipos disponibles.",
+    "note": "Conversiones aproximadas. Las reservas se calculan en EGP; el tipo de cambio y las comisiones de tu banco pueden variar."
   }
 }

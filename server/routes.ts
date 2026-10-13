@@ -1,3 +1,4 @@
+import { registerExchangeRateRoutes } from "./exchange-rate-routes";
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./database-storage";
@@ -25,6 +26,7 @@ import { sql } from "drizzle-orm";
 let stripe: any = null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  registerExchangeRateRoutes(app);
   // adminAuth ([authenticateToken, requireAdmin]) is imported from
   // ./routes/shared so the split route modules share one definition.
 

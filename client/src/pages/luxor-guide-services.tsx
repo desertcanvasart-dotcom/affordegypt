@@ -1,6 +1,7 @@
+import { CurrencyEstimate } from "@/components/currency-estimate";
 import SeoMeta from "@/components/seo-meta";
 import pricingSnapshot from "@/generated/pricing-snapshot.json";
-import { formatEGPPlain, formatLE } from "@/lib/service-pricing";
+import { formatEGPPlain, formatLE, priceOf } from "@/lib/service-pricing";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -60,6 +61,7 @@ export default function LuxorGuideServices() {
       name: t("guideServices.luxor.cardGuideName"),
       duration: t("guideServices.common.fullDay8Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-guide-services") } }),
+      amountEGP: priceOf("luxor-guide-services"),
       features: [t("guideServices.luxor.featAncientEgyptExpert"), t("guideServices.luxor.featValleyKingsSpecialist"), t("guideServices.luxor.featHieroglyphInterpreter")],
       icon: UserCheck
     },
@@ -67,6 +69,7 @@ export default function LuxorGuideServices() {
       name: t("guideServices.luxor.cardPackageName"),
       duration: t("guideServices.common.fullDay"), 
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-guide-car") } }),
+      amountEGP: priceOf("luxor-guide-car"),
       features: [t("guideServices.luxor.featProfessionalGuide"), t("guideServices.common.privateVehicle"), t("guideServices.luxor.featBothBanks")],
       icon: Users
     },
@@ -74,6 +77,7 @@ export default function LuxorGuideServices() {
       name: t("guideServices.luxor.cardCarName"),
       duration: t("guideServices.common.6to10Hours"),
       price: t("guideServices.common.priceFrom", { interpolation: { price: formatEGPPlain("luxor-tour-car") } }), 
+      amountEGP: priceOf("luxor-tour-car"),
       features: [t("guideServices.luxor.featPremiumVehicle"), t("guideServices.luxor.featExpertDriverGuide"), t("guideServices.luxor.featFlexibleTempleVisits")],
       icon: Car
     }
@@ -192,6 +196,7 @@ export default function LuxorGuideServices() {
                     <Badge variant="secondary" className="text-lg font-semibold px-4 py-1 mt-2">
                       {service.price}
                     </Badge>
+                    <CurrencyEstimate amount={service.amountEGP} showNote />
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">

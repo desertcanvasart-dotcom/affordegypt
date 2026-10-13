@@ -1,3 +1,4 @@
+import { TourPrice } from "@/components/currency-estimate";
 // CatalogServicePicker — checkbox list of catalog services for the
 // homepage planner steps 2 (transfers) and 3 (experiences). Reads from
 // /api/services?city=<city>&category=<csv>, lets the customer pick a
@@ -151,8 +152,6 @@ function isDefaultZone(zone: string | null | undefined, city: string): boolean {
   return zone.trim().toLowerCase() === `${city} center`.toLowerCase();
 }
 
-const formatEGP = (n: number) =>
-  new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(Math.round(n));
 
 export default function CatalogServicePicker({
   city,
@@ -378,7 +377,7 @@ export default function CatalogServicePicker({
                 ) : null}
                 {currentPrice !== undefined && (
                   <span className="text-sm font-semibold">
-                    {formatEGP(currentPrice)} EGP
+                    <TourPrice amount={currentPrice} />
                   </span>
                 )}
               </div>

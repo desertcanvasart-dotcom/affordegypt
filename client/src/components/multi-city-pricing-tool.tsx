@@ -1,3 +1,4 @@
+import { TourPrice } from "@/components/currency-estimate";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Trans, useTranslation } from 'react-i18next';
@@ -177,7 +178,7 @@ function LivePriceSummary({
               {(totalPricing.breakdown ?? []).map((b: any, i: number) => (
                 <div key={i} className="flex justify-between gap-3">
                   <span className="text-muted-foreground truncate">{b.city}</span>
-                  <span className="whitespace-nowrap">{formatEGP(b.total)}</span>
+                  <span className="whitespace-nowrap"><TourPrice amount={b.total} /></span>
                 </div>
               ))}
             </div>
@@ -185,7 +186,7 @@ function LivePriceSummary({
               <span className="text-sm text-muted-foreground">
                 {t('quoteBuilder.livePrice.totalWithTravelers', { count: totalPricing.travelers })}
               </span>
-              <span className="text-xl font-bold text-primary">{formatEGP(totalPricing.totalAmount)}</span>
+              <span className="text-xl font-bold text-primary"><TourPrice amount={totalPricing.totalAmount} showNote /></span>
             </div>
             <p className="text-xs text-muted-foreground">{t('quoteBuilder.livePrice.perPerson', { price: formatEGP(totalPricing.perPersonAmount) })}</p>
           </>
@@ -889,7 +890,7 @@ export default function MultiCityPricingTool() {
                                 <span className="truncate">{city.cityName}</span>
                               </div>
                               {dayTotal !== undefined && dayTotal > 0 && (
-                                <span className="ml-auto text-sm font-semibold text-primary">{formatEGP(dayTotal)}</span>
+                                <span className="ml-auto text-sm font-semibold text-primary"><TourPrice amount={dayTotal} /></span>
                               )}
                               <Button
                                 variant="ghost"
@@ -1034,7 +1035,7 @@ export default function MultiCityPricingTool() {
                         <div className="text-sm text-muted-foreground">{t('quoteBuilder.livePrice.totalWithTravelers', { count: totalPricing.travelers })}</div>
                         <div className="text-xs text-muted-foreground">{t('quoteBuilder.livePrice.perPerson', { price: formatEGP(totalPricing.perPersonAmount) })}</div>
                       </div>
-                      <div className="text-2xl font-bold text-primary">{formatEGP(totalPricing.totalAmount)}</div>
+                      <div className="text-2xl font-bold text-primary"><TourPrice amount={totalPricing.totalAmount} /></div>
                     </div>
                   )}
 
@@ -1084,7 +1085,7 @@ export default function MultiCityPricingTool() {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">{t('quoteBuilder.step3.totalPrice')}</p>
-                        <p className="font-semibold text-primary">{formatEGP(totalPricing?.totalAmount)}</p>
+                        <p className="font-semibold text-primary"><TourPrice amount={totalPricing?.totalAmount} /></p>
                       </div>
                     </div>
                   </Card>
@@ -1104,7 +1105,7 @@ export default function MultiCityPricingTool() {
                                 <span className="font-semibold">{city.cityName}</span>
                               </div>
                               <div className="ml-auto mr-2">
-                                <span className="text-sm font-semibold">{formatEGP(cityBreakdown?.total)}</span>
+                                <span className="text-sm font-semibold"><TourPrice amount={cityBreakdown?.total} /></span>
                               </div>
                             </div>
                           </AccordionTrigger>
@@ -1126,7 +1127,7 @@ export default function MultiCityPricingTool() {
                                         {" "}({tripTypeLabel(t, s.tripType)})
                                         {typeof s.price === "number" && (
                                           <span className="text-muted-foreground">
-                                            {" "}— {formatEGP(s.price)}
+                                            {" "}— <TourPrice amount={s.price} />
                                           </span>
                                         )}
                                       </li>
@@ -1393,26 +1394,26 @@ export default function MultiCityPricingTool() {
                       <div className="space-y-1.5 mb-3 pb-3 border-b text-sm">
                         <div className="flex justify-between">
                           <span>{t('quoteBuilder.step4.priceServices')}</span>
-                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0))}</span>
+                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0)} /></span>
                         </div>
                         <div className="flex justify-between">
                           <span>{t('quoteBuilder.step4.priceGuides')}</span>
-                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0))}</span>
+                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0)} /></span>
                         </div>
                         <div className="flex justify-between">
                           <span>{t('quoteBuilder.step4.priceEntranceFees')}</span>
-                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0))}</span>
+                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0)} /></span>
                         </div>
                         <div className="flex justify-between">
                           <span>{t('quoteBuilder.step4.priceAddOns')}</span>
-                          <span>{formatEGP(totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0))}</span>
+                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0)} /></span>
                         </div>
                       </div>
 
                       {/* Total */}
                       <div className="flex justify-between items-center mb-4">
                         <span className="font-semibold">{t('quoteBuilder.step4.total')}</span>
-                        <span className="text-xl font-bold text-primary">{formatEGP(totalPricing?.totalAmount)}</span>
+                        <span className="text-xl font-bold text-primary"><TourPrice amount={totalPricing?.totalAmount} showNote /></span>
                       </div>
 
                       {/* Submit Button */}
@@ -1604,24 +1605,24 @@ export default function MultiCityPricingTool() {
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.services')}</span>
-                            <span className="font-mono">{formatEGP(city.routes)}</span>
+                            <span className="font-mono"><TourPrice amount={city.routes} /></span>
                           </div>
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.guide')}</span>
-                            <span className="font-mono">{formatEGP(city.guide)}</span>
+                            <span className="font-mono"><TourPrice amount={city.guide} /></span>
                           </div>
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.entranceFees')}</span>
-                            <span className="font-mono">{formatEGP(city.attractions)}</span>
+                            <span className="font-mono"><TourPrice amount={city.attractions} /></span>
                           </div>
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.addOns')}</span>
-                            <span className="font-mono">{formatEGP(city.addOns)}</span>
+                            <span className="font-mono"><TourPrice amount={city.addOns} /></span>
                           </div>
                           <Separator className="my-2" />
                           <div className="flex justify-between font-semibold">
                             <span>{t('quoteBuilder.breakdown.total')}</span>
-                            <span className="font-mono">{formatEGP(city.total)}</span>
+                            <span className="font-mono"><TourPrice amount={city.total} /></span>
                           </div>
                         </div>
                       </Card>

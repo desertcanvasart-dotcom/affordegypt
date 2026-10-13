@@ -3885,5 +3885,12 @@
     "perPerson": "/pp",
     "done": "Done",
     "doneWith": "Done ({{count}})"
+  },
+  "currency": {
+    "loading": "Loading currency estimates…",
+    "unavailable": "Currency estimates unavailable",
+    "rateDate": "Rate date:",
+    "stale": "Using the last available rates.",
+    "note": "Approximate conversions only. Bookings are priced in EGP; your bank’s rate and fees may differ."
   }
 }

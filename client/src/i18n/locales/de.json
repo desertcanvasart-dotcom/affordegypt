@@ -3885,5 +3885,12 @@
     "perPerson": "/Pers.",
     "done": "Fertig",
     "doneWith": "Fertig ({{count}})"
+  },
+  "currency": {
+    "loading": "Währungsumrechnung wird geladen…",
+    "unavailable": "Währungsumrechnung nicht verfügbar",
+    "rateDate": "Kursdatum:",
+    "stale": "Die zuletzt verfügbaren Kurse werden verwendet.",
+    "note": "Ungefähre Umrechnung. Buchungen werden in EGP berechnet; Wechselkurs und Gebühren Ihrer Bank können abweichen."
   }
 }
