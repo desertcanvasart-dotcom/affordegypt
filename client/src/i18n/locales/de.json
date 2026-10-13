@@ -3914,6 +3914,7 @@
     "inclusions": "Inklusive",
     "exclusions": "Nicht inklusive",
     "groupRates": "Gruppenpreise",
+    "bookingRatesExplanation": "Wählen Sie die Anzahl der Reisenden im Buchungsformular, um den Preis pro Person und den Gesamtpreis zu sehen. Preise für ungerade Gruppen sind der Durchschnitt der benachbarten geraden Gruppengrößen. Einzelzimmerzuschläge werden separat berechnet.",
     "rateExplanation": "Preise pro Reisendem für das gesamte Programm im Doppelzimmer. Ungerade Gruppen nutzen den Tarif der vorherigen geraden Gruppengröße: drei Reisende nutzen den Tarif für zwei, fünf den für vier usw. Einzelzimmerzuschläge werden separat hinzugefügt.",
     "travelers": "Reisende",
     "perPerson": "Preis pro Reisendem",

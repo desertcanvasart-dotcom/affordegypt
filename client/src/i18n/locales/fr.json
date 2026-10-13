@@ -3914,6 +3914,7 @@
     "inclusions": "Inclus",
     "exclusions": "Non inclus",
     "groupRates": "Tarifs de groupe",
+    "bookingRatesExplanation": "Choisissez le nombre de voyageurs dans le formulaire de réservation pour voir le prix par personne et le total. Les tarifs des groupes impairs correspondent à la moyenne des deux groupes pairs voisins. Les suppléments pour chambre individuelle sont ajoutés séparément.",
     "rateExplanation": "Tarifs par voyageur pour le programme complet, en chambre double. Les groupes impairs utilisent le tarif du groupe pair précédent : trois voyageurs utilisent le tarif pour deux, cinq celui pour quatre, et ainsi de suite. Les suppléments pour chambre individuelle sont ajoutés séparément.",
     "travelers": "Voyageurs",
     "perPerson": "Prix par voyageur",

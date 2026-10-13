@@ -3914,6 +3914,7 @@
     "inclusions": "Included",
     "exclusions": "Not included",
     "groupRates": "Group prices",
+    "bookingRatesExplanation": "Choose your traveler count in the booking form to see the price per traveler and your trip total. Odd-group rates are the average of the neighboring even-group rates. Single-room supplements are added separately.",
     "rateExplanation": "Rates are per traveler for the full program, sharing a twin/double room. Odd group sizes use the previous even tier: three travelers use the two-person rate, five use the four-person rate, and so on. Single-room supplements are added separately.",
     "travelers": "Travelers",
     "perPerson": "Price per traveler",

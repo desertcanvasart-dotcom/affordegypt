@@ -51,10 +51,15 @@
     "bookingTerms": "Availability\nTours are available throughout the year except from 24 December to 7 January, inclusive. All bookings are subject to availability and confirmation.\n\nPayment\nA deposit of 25% of the total tour price is required upon confirmation. The remaining balance must be paid 30 days before departure.\n\nCancellation\nCancellation charges are calculated as a percentage of the total tour price, based on the number of days before departure when cancellation is received:\n• 60 or more days: no cancellation charge; full refund.\n• 59–30 days: 25% of the total tour price.\n• 29–15 days: 50% of the total tour price.\n• 14–7 days: 75% of the total tour price.\n• 6 days or fewer: 100% of the total tour price.\nAny refund or outstanding cancellation charge is calculated against the amount already paid.\n\nChildren’s policy\nChildren under 2 years old: free of charge.\nChildren aged 2 to under 6: 25% of the applicable adult tour price.\nChildren aged 6 to under 12: 50% of the applicable adult tour price.\nTravelers aged 12 or older: full adult tour price.\nThese child rates apply when sharing a room with parents, with a maximum of one child sharing the parents’ room. If a tour includes airfare, additional child airfare charges may apply. Please contact us to confirm room arrangements and a family quote; the online group-rate calculator currently uses full adult rates.\n\nDate changes\nDate changes are available, subject to availability. Administration fees may apply depending on the travel period for which the tour is booked. Please contact us to confirm available dates and any applicable fees before a change is made.\n\nForce majeure\nWe offer a flexible cancellation approach when travel is affected by circumstances beyond the traveler's control, such as government restrictions, airline disruptions, official do-not-travel warnings, war or civil unrest. Each case is reviewed individually, taking into account the circumstances and applicable supplier arrangements. Please contact us promptly to discuss available cancellation or rescheduling options.",
     "perPersonRates": {
       "2": 51000,
+      "3": 47850,
       "4": 44700,
+      "5": 44350,
       "6": 44000,
+      "7": 43750,
       "8": 43500,
+      "9": 43225,
       "10": 42950,
+      "11": 41425,
       "12": 39900
     },
     "singleSupplement": 12600,

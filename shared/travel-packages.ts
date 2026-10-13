@@ -43,7 +43,7 @@ export const packageContentSchema = z
       z
         .string()
         .refine(
-          (k) => ["2", "4", "6", "8", "10", "12"].includes(k),
+          (k) => Array.from({ length: 11 }, (_, i) => String(i + 2)).includes(k),
           "Unknown group tier",
         ),
       money.refine((n) => n > 0, "A group rate must be positive"),
@@ -152,7 +152,9 @@ export function pricePackage(
     throw new Error(
       "Single rooms are unavailable for a package without overnight stays",
     );
-  const tier = travelers % 2 ? travelers - 1 : travelers;
+  const tier = pkg.perPersonRates[String(travelers)] !== undefined
+    ? travelers
+    : travelers % 2 ? travelers - 1 : travelers;
   const rate = pkg.perPersonRates[String(tier)];
   if (!Number.isFinite(rate) || rate <= 0)
     throw new Error("This group size is not priced");

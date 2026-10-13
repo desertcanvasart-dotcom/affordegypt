@@ -112,6 +112,12 @@ Children's terms: under 2 free, 2–under 6 at 25%, 6–under 12 at 50%, 12+ ful
 
 ## Release checklist
 
-Deploy and restart the server normally. `initializePackages()` applies the additive migration and validates/imports the three real programs as published before serving requests, under a transaction and advisory lock. Initialization is idempotent and never overwrites existing slots, slugs, prices, terms, status or versions. The deployment database user needs permission to create the two tables. A migration failure prevents startup instead of silently serving an empty package section.
+Deploy and restart the server normally. `initializePackages()` applies the additive migration and validates/imports the three real programs as published before serving requests, under a transaction and advisory lock. Initialization is idempotent and preserves existing admin edits. The operator-approved revision fills missing odd-group rates from neighboring even rates and adds the two missing Luxor temples to Program 3, incrementing the version only when content changes. Explicit odd-group prices are preserved. The deployment database user needs permission to create the two tables. A migration failure prevents startup instead of silently serving an empty package section.
 
 The repository must retain `migrations/0008_ready_made_packages.sql` and `content/packages/*.json` alongside the built server (standard Railway source builds do). Existing admin-edited programs remain under admin control, including deliberate unpublication. Confirm `/api/packages` returns the three programs, then check homepage images and booking pages after deployment. Existing bookings retain frozen snapshots.
+
+## Program three odd groups
+
+Program 3 has explicit full-trip per-traveler rates for every size 2–12. Odd sizes average neighboring even rates: 3 = 81,549.50; 5 = 74,650; 7 = 71,050; 9 = 69,990; 11 = 68,972.50 EGP. The 21,750 EGP single-room supplement remains separate. Its detail page omits the standalone rate table and displays rates in the traveler selector. All three real programs now use averaged odd-group rates. Admin supports optional explicit odd-group rates.
+
+All package detail pages now omit the standalone group-price table and show 2–12 travelers and per-person rates in the booking selector. Programs 1 and 2 use the same neighboring-even averages as Program 3. Single-room supplements remain separate. The deployment startup revision updates already imported programs without resetting any booking snapshots or other prices/terms.

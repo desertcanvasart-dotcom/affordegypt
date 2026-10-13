@@ -119,7 +119,7 @@ describe("package publishing and booking validation", () => {
   });
   it("rejects unknown rates, unsafe image sources, invalid precision, and extra fields", () => {
     for (const change of [
-      { perPersonRates: { "3": 1000 } },
+      { perPersonRates: { "13": 1000 } },
       { perPersonRates: { "2": 1.001 } },
       { imageUrl: "javascript:alert(1)" },
       { imageUrl: "//evil.test/image" },
@@ -158,3 +158,14 @@ describe("package publishing and booking validation", () => {
       ).toBe(false);
   });
 });
+
+ it("uses explicit averaged odd-group rates with separate single supplements", () => {
+  const rates = {"2":85699,"3":81549.5,"4":77400,"5":74650,"6":71900,"7":71050,"8":70200,"9":69990,"10":69780,"11":68972.5,"12":68165};
+  const pkg = {...program,perPersonRates:rates,singleSupplement:21750};
+  for(const count of [3,5,7,9,11]) {
+   const result=pricePackage(pkg,count,1);
+   expect(result.tier).toBe(count);
+   expect(result.basePerPerson).toBe(rates[String(count) as keyof typeof rates]);
+   expect(result.total).toBe(result.basePerPerson * count + 21750);
+  }
+ });

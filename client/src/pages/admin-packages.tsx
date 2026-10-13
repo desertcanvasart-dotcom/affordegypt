@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  PACKAGE_TIERS,
   publicationIssues,
   type PackageContent,
   type TravelPackage,
@@ -242,11 +241,11 @@ function Editor({ slot, saved }: { slot: number; saved?: TravelPackage }) {
             <h3 className="font-bold">Group rates · EGP per traveler</h3>
             <p className="text-sm text-muted-foreground mb-4">
               For the full program, sharing a twin/double room. Odd groups use
-              the previous even tier: 3 uses 2, 5 uses 4, and so on. The rate
+              their explicitly entered rate, or the previous even tier when no odd-group rate is entered. The rate
               applies to every traveler.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {PACKAGE_TIERS.map((tier) => (
+              {Array.from({ length: 11 }, (_, i) => i + 2).map((tier) => (
                 <div key={tier}>
                   <Label htmlFor={`${slot}-rate-${tier}`}>
                     {tier} travelers

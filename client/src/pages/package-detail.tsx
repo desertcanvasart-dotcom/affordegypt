@@ -205,38 +205,7 @@ export default function PackageDetail() {
                 </section>
               ))}
             </div>
-            <section>
-              <h2 className="text-2xl font-bold mb-4">
-                {t("packages.groupRates")}
-              </h2>
-              <p className="text-sm text-muted-foreground mb-4">
-                {t("packages.rateExplanation")}
-              </p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left p-3">
-                        {t("packages.travelers")}
-                      </th>
-                      <th className="text-left p-3">
-                        {t("packages.perPerson")}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.entries(pkg.perPersonRates).map(([count, rate]) => (
-                      <tr key={count} className="border-b">
-                        <td className="p-3">{count}</td>
-                        <td className="p-3">
-                          <TourPrice amount={rate} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+            <p className="text-sm text-muted-foreground">{t("packages.bookingRatesExplanation")}</p>
             <section id="package-terms">
               <h2 className="text-2xl font-bold mb-4">{t("packages.terms")}</h2>
               <p className="whitespace-pre-line text-muted-foreground">
@@ -268,7 +237,7 @@ export default function PackageDetail() {
                   >
                     {Array.from({ length: 11 }, (_, i) => i + 2).map((n) => (
                       <option key={n} value={n}>
-                        {n}
+                        {n}{` — EGP ${new Intl.NumberFormat().format(pkg.perPersonRates[String(n)] ?? pkg.perPersonRates[String(n % 2 ? n - 1 : n)])} (${t("packages.perPerson")})`}
                       </option>
                     ))}
                   </select>

@@ -3914,6 +3914,7 @@
     "inclusions": "Incluido",
     "exclusions": "No incluido",
     "groupRates": "Precios para grupos",
+    "bookingRatesExplanation": "Elige el número de viajeros en el formulario de reserva para ver el precio por viajero y el total. Las tarifas para grupos impares son el promedio de las tarifas de los grupos pares contiguos. Los suplementos por habitación individual se añaden por separado.",
     "rateExplanation": "Precios por viajero para el programa completo, compartiendo habitación doble. Los grupos impares usan la tarifa del grupo par anterior: tres viajeros usan la tarifa para dos, cinco la tarifa para cuatro, y así sucesivamente. Los suplementos de habitación individual se añaden por separado.",
     "travelers": "Viajeros",
     "perPerson": "Precio por viajero",
