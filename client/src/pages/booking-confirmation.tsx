@@ -1,3 +1,4 @@
+import { createPackageConfirmationPDF } from "@/lib/package-confirmation-pdf";
 import PackageBookingSummary from "@/components/package-booking-summary";
 import { TourPrice } from "@/components/currency-estimate";
 import { useEffect } from "react";
@@ -147,6 +148,10 @@ export default function BookingConfirmation() {
     if (!booking || !quote) return;
     
     try {
+      if (quote.jsonBlob.package) {
+        createPackageConfirmationPDF(booking, quote.jsonBlob, t).save(`AffordEgypt-Booking-${booking.bookingReference}.pdf`);
+        return;
+      }
       // Create a temporary container for PDF content
       const pdfContainer = document.createElement('div');
       pdfContainer.style.position = 'absolute';

@@ -127,3 +127,9 @@ All package detail pages now omit the standalone group-price table and show 2–
 The catalog displays all six operator-supplied examples; detail pages show the relevant overnight properties. Program 1 shows Cairo and Luxor hotels; Program 2 shows Cairo hotels and the Nile cruise (Aswan/Luxor are cruise stays); Program 3 shows Cairo, Aswan, Hurghada and the Nile cruise. The copy promises these properties or better as the minimum standard, subject to availability and final booking confirmation. No star categories, room views or extra hotel nights are implied.
 
 Property links were checked against Barceló (Occidental Cairo Grand Museum), Obelisk Hotels (Aswan), Aracan Hotels (Eatabe Luxor), Red Sea Hotels (Grand Hotel Hurghada) and Sunrise Resorts (SENTIDO M/S Nile Saray). Obelisk GEM Inn Museum links to a LateRooms listing, clearly labeled as a hotel listing because an official website was not verified. Interface copy is translated in all four locales.
+
+## Package confirmation PDFs
+
+Ready-made bookings use `createPackageConfirmationPDF` for searchable text and line-aware A4 pagination, instead of slicing a single tall canvas image across pages. It includes the frozen booking/program snapshot, customer details, room and price breakdown, every daily description, inclusions, exclusions and complete terms. The shared exporter applies to all three packages and existing package bookings; it does not change saved booking content. The custom planner retains its existing exporter. Headers and numbered footers repeat on each page; unsupported typographic punctuation is normalized for the standard Latin PDF fonts used by the four supported locales.
+
+Validated sample exports for all three programs with PDF text extraction against every full itinerary description, inclusion, exclusion and terms paragraph, page-bound checks and rendered-page inspection. Sample PDFs contain fictional customer details.
