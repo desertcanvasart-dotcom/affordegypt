@@ -1,6 +1,6 @@
 # Ready-made packages
 
-This feature provides three program slots, featured on the homepage after publication, a `/packages` catalog, `/packages/:slug` details and a booking request form. `/admin/packages` is linked from the existing admin dashboard. No real programs or prices are seeded: slots are empty until the operator saves them.
+This feature provides three program slots, featured on the homepage after publication, a `/packages` catalog, `/packages/:slug` details and a booking request form. `/admin/packages` is linked from the existing admin dashboard. Startup initializes the three completed operator-supplied programs in empty slots. Existing programs and admin edits are preserved.
 
 ## Pricing and rooms
 
@@ -44,7 +44,7 @@ Published detail URLs receive their own server HTML metadata and a clean applica
 
 ## Deployment
 
-Apply `migrations/0008_ready_made_packages.sql` to the intended database before enabling the feature. It creates two additive tables: `travel_packages` and `package_booking_requests`, with a database constraint limiting slots to 1–3. It does not alter existing booking records or populate sample programs. The migration is safe to run again. Use the project's existing reviewed migration procedure; do not use schema push against production.
+Startup automatically applies `migrations/0008_ready_made_packages.sql` and inserts the three validated, published launch programs into empty slots. It creates two additive tables: `travel_packages` and `package_booking_requests`, with a database constraint limiting slots to 1–3. It does not alter existing booking records or populate sample programs; only the three real operator-approved manifests are imported. The migration is safe to run again. Use the project's existing reviewed migration procedure; do not use schema push against production.
 
 No additional API key or environment variable is required. Existing database, authentication and email settings are reused. The migration has been tested on a disposable local PostgreSQL database, but has not been applied to production.
 
@@ -112,13 +112,6 @@ Children's terms: under 2 free, 2–under 6 at 25%, 6–under 12 at 50%, 12+ ful
 
 ## Release checklist
 
-Before starting the new server against production, apply the additive migration using the intended database connection:
+Deploy and restart the server normally. `initializePackages()` applies the additive migration and validates/imports the three real programs as published before serving requests, under a transaction and advisory lock. Initialization is idempotent and never overwrites existing slots, slugs, prices, terms, status or versions. The deployment database user needs permission to create the two tables. A migration failure prevents startup instead of silently serving an empty package section.
 
-```sh
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f migrations/0008_ready_made_packages.sql
-npx tsx scripts/import-package-program.ts content/packages/egypt-discovery-cairo-luxor-6-days.json
-npx tsx scripts/import-package-program.ts content/packages/egypt-discovery-8-days.json
-npx tsx scripts/import-package-program.ts content/packages/egypt-discovery-11-days.json
-```
-
-Use the application's existing database environment for the imports (including its PGSSL setting). Imports create drafts; existing same-slug programs are preserved rather than overwritten. Review and publish all three in `/admin/packages` to show them in the homepage section that replaces the former inclusions comparison. The isolated local preview is already published; this does not publish the production database. Verify the three images, detailed pages, prices and booking terms after deployment. Existing bookings retain frozen snapshots.
+The repository must retain `migrations/0008_ready_made_packages.sql` and `content/packages/*.json` alongside the built server (standard Railway source builds do). Existing admin-edited programs remain under admin control, including deliberate unpublication. Confirm `/api/packages` returns the three programs, then check homepage images and booking pages after deployment. Existing bookings retain frozen snapshots.
