@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from "vitest";
 
 vi.mock("../db", () => ({ db: {}, pool: {} }));
 
-import { runChatTool, priceOptions, smallestVehicleFor, type ChatToolDeps } from "./chat-tools";
+import { runChatTool, priceOptions, smallestVehicleFor, addOnLabel, type ChatToolDeps } from "./chat-tools";
 import type { BuiltMultiCityQuote, MultiCityCityInput } from "./quote-builder";
 
 const catalog = [
@@ -44,6 +44,11 @@ const packages = [
     version: 3,
   },
 ];
+const addOns = [
+  { id: 31, name: "Oriental", category: "Lunch", cityName: "Luxor", price: 550, unitType: "per_person" },
+  { id: 8, name: "Oriental", category: "Lunch", cityName: "Cairo", price: 550, unitType: "per_person" },
+  { id: 52, name: "Horse Carriage in Luxor ", category: "Horse Carriage", cityName: "Luxor", price: 400, unitType: "per_trip" },
+];
 const guides = [
   { cityId: 3, cityName: "Luxor", language: "English", dailyRate: 2400 },
   { cityId: 1, cityName: "Cairo", language: "English", dailyRate: 2400 },
@@ -74,6 +79,7 @@ function makeDeps() {
     loadEntranceFees: async () => fees,
     loadGuideRates: async () => guides,
     loadPackages: async () => packages,
+    loadAddOns: async () => addOns,
     buildQuote,
   };
   return { deps, buildQuote };
@@ -280,5 +286,39 @@ describe("packages", () => {
     const { deps } = makeDeps();
     expect((await runChatTool("price_package", { slug: "egypt-discovery-8-days", travelers: 1 }, deps)).isError).toBe(true);
     expect((await runChatTool("price_package", { slug: "nope", travelers: 2 }, deps)).isError).toBe(true);
+  });
+});
+
+describe("add-ons (meals, balloon, felucca, carriage)", () => {
+  it("labels add-ons by category and name", () => {
+    expect(addOnLabel({ name: "Oriental", category: "Lunch" })).toBe("Lunch: Oriental");
+    expect(addOnLabel({ name: "Horse Carriage in Luxor ", category: "Horse Carriage" })).toBe("Horse Carriage in Luxor");
+  });
+
+  it("lists a city's add-ons with per-person prices", async () => {
+    const { deps } = makeDeps();
+    const out = parse((await runChatTool("list_add_ons", { city: "luxor" }, deps)).content);
+    expect(out.results.map((r: { id: number }) => r.id)).toEqual([31, 52]);
+    expect(out.results[0]).toMatchObject({ name: "Lunch: Oriental", price_per_person: 550 });
+  });
+
+  it("adds a lunch to the right day through the builder", async () => {
+    const { deps, buildQuote } = makeDeps();
+    const r = await runChatTool(
+      "calculate_quote",
+      { travelers: 4, days: [{ city: "Luxor", guide_language: "English", add_ons: [{ id: 31 }] }] },
+      deps,
+    );
+    expect(r.isError).toBe(false);
+    expect(buildQuote.mock.calls[0][0][0].selectedAddOns).toEqual([{ id: 31, quantity: 1 }]);
+  });
+
+  it("refuses another city's lunch and unknown ids", async () => {
+    const { deps, buildQuote } = makeDeps();
+    const wrongCity = await runChatTool("calculate_quote", { travelers: 2, days: [{ city: "Luxor", add_ons: [{ id: 8 }] }] }, deps);
+    expect(parse(wrongCity.content).error).toMatch(/day 1: "Lunch: Oriental" \(id 8\) is offered in Cairo/);
+    const unknown = await runChatTool("calculate_quote", { travelers: 2, days: [{ city: "Luxor", add_ons: [{ id: 999 }] }] }, deps);
+    expect(unknown.isError).toBe(true);
+    expect(buildQuote).not.toHaveBeenCalled();
   });
 });

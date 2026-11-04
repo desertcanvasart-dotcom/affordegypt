@@ -45,6 +45,20 @@ export interface GuideRateRow {
   language: string;
   dailyRate: number;
 }
+/**
+ * A builder add-on (add_ons): meals, balloon rides, felucca, horse carriage.
+ * Priced the way the builder prices them: price × quantity × travelers, for
+ * EVERY unit type (PricingService.getAddOnPrice's business rule), so the chat
+ * matches the builder even where unit_type says per_trip.
+ */
+export interface AddOnRow {
+  id: number;
+  name: string;
+  category: string;
+  cityName: string | null; // null = every city
+  price: number;
+  unitType: string;
+}
 /** A published ready-made package (travel_packages, status = published). */
 export interface PackageRow {
   slug: string;
@@ -67,6 +81,7 @@ export interface ChatToolDeps {
   loadEntranceFees(): Promise<EntranceFeeRow[]>;
   loadGuideRates(): Promise<GuideRateRow[]>;
   loadPackages(): Promise<PackageRow[]>;
+  loadAddOns(): Promise<AddOnRow[]>;
   buildQuote(cities: MultiCityCityInput[], travelers: number): Promise<BuiltMultiCityQuote>;
 }
 
@@ -128,17 +143,31 @@ function fail(message: string): ToolOutcome {
   return { content: json({ error: message }), isError: true };
 }
 
+/** "Lunch: Oriental" — the name column alone ("Oriental") is ambiguous. */
+export function addOnLabel(a: Pick<AddOnRow, "name" | "category">): string {
+  const name = a.name.trim();
+  const category = a.category.trim();
+  return category && !name.toLowerCase().includes(category.toLowerCase()) ? `${category}: ${name}` : name;
+}
+
 /** Customer-facing label for a builder line item (builder descriptions are slug-based). */
 function labelFor(
   item: LineItem,
   catalogBySlug: Map<string, CatalogRow>,
   feeBySlug: Map<string, EntranceFeeRow>,
+  addOnById: Map<number, AddOnRow> = new Map(),
 ): string {
   const meta = (item.meta ?? {}) as Record<string, unknown>;
   if (typeof meta.serviceSlug === "string") {
     const row = catalogBySlug.get(meta.serviceSlug);
     const vehicle = String(meta.vehicleSlug ?? "");
     return `${row?.name ?? meta.serviceSlug} (${vehicle})`;
+  }
+  if (typeof meta.addOnId === "number") {
+    const a = addOnById.get(meta.addOnId);
+    const travelers = Number(meta.travelers) || 1;
+    const name = a ? addOnLabel(a) : `Add-on #${meta.addOnId}`;
+    return item.quantity > 1 ? `${name} × ${item.quantity} × ${travelers} people` : `${name} × ${travelers} people`;
   }
   if (typeof meta.entranceFeeSlug === "string") {
     const fee = feeBySlug.get(meta.entranceFeeSlug);
@@ -194,6 +223,18 @@ export const CHAT_TOOLS: Anthropic.Beta.BetaTool[] = [
       type: "object",
       properties: { city: { type: "string", description: "City name." } },
       required: ["city"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "list_add_ons",
+    description:
+      "List extras that can be added to a day of a custom trip: lunches and dinners (Oriental, grilled BBQ, seafood), hot-air balloon rides, felucca rides, horse carriages. " +
+      "Returns each add-on's id, name, city and price in EGP. Every add-on is charged per person (price × travellers), whatever its unit says. " +
+      "Call this whenever the customer asks for a meal, lunch, dinner, balloon, felucca or carriage.",
+    input_schema: {
+      type: "object",
+      properties: { city: { type: "string", description: "City name. Optional." } },
       additionalProperties: false,
     },
   },
@@ -256,6 +297,19 @@ export const CHAT_TOOLS: Anthropic.Beta.BetaTool[] = [
                 },
               },
               guide_language: { type: "string", description: "Optional, e.g. English." },
+              add_ons: {
+                type: "array",
+                description: "Extras from list_add_ons for that day (meals, balloon, felucca…). Optional.",
+                items: {
+                  type: "object",
+                  properties: {
+                    id: { type: "integer" },
+                    quantity: { type: "integer", minimum: 1, maximum: 10, description: "Defaults to 1." },
+                  },
+                  required: ["id"],
+                  additionalProperties: false,
+                },
+              },
               entrance_fees: {
                 type: "array",
                 items: { type: "string" },
@@ -360,6 +414,24 @@ export async function runChatTool(
     case "calculate_quote":
       return calculateQuote(args, deps);
 
+    case "list_add_ons": {
+      const city = str(args.city);
+      const rows = (await deps.loadAddOns()).filter((a) => !city || !a.cityName || sameCity(a.cityName, city));
+      return {
+        content: json({
+          results: rows.map((a) => ({
+            id: a.id,
+            name: addOnLabel(a),
+            city: a.cityName ?? "all cities",
+            price_per_person: a.price,
+          })),
+          currency: "EGP",
+          note: "Charged per person: price × travellers (× quantity). Add to a day with calculate_quote's add_ons.",
+        }),
+        isError: false,
+      };
+    }
+
     case "list_packages": {
       const packages = await deps.loadPackages();
       return {
@@ -459,13 +531,15 @@ async function calculateQuote(
     return fail(`custom quotes go up to ${MAX_DAYS} days; for longer trips suggest a ready-made package or WhatsApp`);
   }
 
-  const [catalog, fees, guides] = await Promise.all([
+  const [catalog, fees, guides, addOns] = await Promise.all([
     deps.loadCatalog(),
     deps.loadEntranceFees(),
     deps.loadGuideRates(),
+    deps.loadAddOns(),
   ]);
   const catalogBySlug = new Map(catalog.map((r) => [r.slug, r]));
   const feeBySlug = new Map(fees.map((f) => [f.slug, f]));
+  const addOnById = new Map(addOns.map((a) => [a.id, a]));
 
   const problems: string[] = [];
   const cityInputs: MultiCityCityInput[] = [];
@@ -533,6 +607,25 @@ async function calculateQuote(
       input.selectedEntranceFees!.push(fee.slug);
     }
 
+    for (const raw of Array.isArray(c.add_ons) ? c.add_ons : []) {
+      const sel = (raw ?? {}) as Record<string, unknown>;
+      const a = addOnById.get(Number(sel.id));
+      if (!a) {
+        problems.push(`${day}: unknown add-on id ${String(sel.id)} — look it up with list_add_ons`);
+        continue;
+      }
+      if (a.cityName && !sameCity(a.cityName, cityName)) {
+        problems.push(`${day}: "${addOnLabel(a)}" (id ${a.id}) is offered in ${a.cityName}, not ${cityName}`);
+        continue;
+      }
+      const quantity = sel.quantity === undefined ? 1 : Number(sel.quantity);
+      if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
+        problems.push(`${day}: add-on quantity must be 1 to 10`);
+        continue;
+      }
+      (input.selectedAddOns ??= []).push({ id: a.id, quantity });
+    }
+
     const lang = typeof c.guide_language === "string" ? c.guide_language.trim() : "";
     if (lang) {
       const guide = guides.find((g) => sameCity(g.cityName, cityName) && sameCity(g.language, lang));
@@ -545,7 +638,10 @@ async function calculateQuote(
     }
 
     const hasSomething =
-      input.selectedServices!.length > 0 || input.selectedEntranceFees!.length > 0 || input.selectedGuide;
+      input.selectedServices!.length > 0 ||
+      input.selectedEntranceFees!.length > 0 ||
+      (input.selectedAddOns?.length ?? 0) > 0 ||
+      input.selectedGuide;
     if (hasSomething) cityInputs.push(input);
   });
 
@@ -562,7 +658,7 @@ async function calculateQuote(
     total: built.total,
     perPerson: Math.round((built.total / built.travelers) * 100) / 100,
     lines: built.lineItems.map((li) => ({
-      label: labelFor(li, catalogBySlug, feeBySlug),
+      label: labelFor(li, catalogBySlug, feeBySlug, addOnById),
       city: String((li.meta as Record<string, unknown> | undefined)?.cityName ?? ""),
       amount: li.lineTotal,
     })),
