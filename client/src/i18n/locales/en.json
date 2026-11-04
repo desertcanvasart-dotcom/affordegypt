@@ -2913,13 +2913,13 @@
     "whatsappCta": "WhatsApp Us"
   },
   "chat": {
-    "launcher": "Ask for a price",
+    "launcher": "Get your price instantly",
     "open": "Open the price assistant",
     "close": "Close chat",
-    "title": "Price assistant",
-    "subtitle": "Live prices from our rate sheet",
+    "title": "Your price, instantly",
+    "subtitle": "Describe your trip — we do the math",
     "newChat": "New chat",
-    "greeting": "Hi! Tell me what you need — cities, number of travellers, transfers or sights — and I'll give you the live price.",
+    "greeting": "No need to build it yourself. Tell me your trip in your own words — where, how many people, what you'd like to see — and I'll give you the exact price straight away.",
     "example1": "Airport pickup in Cairo for 2 people",
     "example2": "Luxor day tour for 4 with an English guide",
     "example3": "Hurghada to Luxor and back, 6 people",

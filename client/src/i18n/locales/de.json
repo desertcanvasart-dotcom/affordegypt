@@ -2913,13 +2913,13 @@
     "whatsappCta": "Schreiben Sie uns"
   },
   "chat": {
-    "launcher": "Preis anfragen",
+    "launcher": "Sofort Ihren Preis",
     "open": "Preisassistent öffnen",
     "close": "Chat schließen",
-    "title": "Preisassistent",
-    "subtitle": "Live-Preise aus unserer Preisliste",
+    "title": "Ihr Preis, sofort",
+    "subtitle": "Reise beschreiben – wir rechnen",
     "newChat": "Neuer Chat",
-    "greeting": "Hallo! Sagen Sie mir, was Sie brauchen – Städte, Anzahl der Reisenden, Transfers oder Sehenswürdigkeiten – und ich nenne Ihnen den aktuellen Preis.",
+    "greeting": "Sie müssen nichts selbst zusammenstellen. Beschreiben Sie Ihre Reise in eigenen Worten – wohin, wie viele Personen, was Sie sehen möchten – und ich nenne Ihnen sofort den genauen Preis.",
     "example1": "Flughafenabholung in Kairo für 2 Personen",
     "example2": "Tagesausflug in Luxor für 4 mit deutschsprachigem Guide",
     "example3": "Hurghada nach Luxor und zurück, 6 Personen",

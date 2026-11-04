@@ -2913,13 +2913,13 @@
     "whatsappCta": "Écrivez-nous"
   },
   "chat": {
-    "launcher": "Demander un prix",
+    "launcher": "Votre prix immédiatement",
     "open": "Ouvrir l'assistant tarifaire",
     "close": "Fermer le chat",
-    "title": "Assistant tarifaire",
-    "subtitle": "Prix en direct de notre grille tarifaire",
+    "title": "Votre prix, immédiatement",
+    "subtitle": "Décrivez votre voyage — on s'occupe du calcul",
     "newChat": "Nouveau chat",
-    "greeting": "Bonjour ! Dites-moi ce dont vous avez besoin — villes, nombre de voyageurs, transferts ou visites — et je vous donne le prix en direct.",
+    "greeting": "Inutile de tout composer vous-même. Décrivez votre voyage avec vos mots — où, combien de personnes, ce que vous voulez voir — et je vous donne le prix exact tout de suite.",
     "example1": "Accueil à l'aéroport du Caire pour 2 personnes",
     "example2": "Excursion d'une journée à Louxor pour 4 avec un guide francophone",
     "example3": "Hurghada – Louxor aller-retour, 6 personnes",
