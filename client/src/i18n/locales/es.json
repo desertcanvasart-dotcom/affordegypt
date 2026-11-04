@@ -2913,13 +2913,13 @@
     "whatsappCta": "Escríbenos"
   },
   "chat": {
-    "launcher": "Pide un precio",
+    "launcher": "Tu precio al instante",
     "open": "Abrir el asistente de precios",
     "close": "Cerrar chat",
-    "title": "Asistente de precios",
-    "subtitle": "Precios en vivo de nuestra tarifa",
+    "title": "Tu precio, al instante",
+    "subtitle": "Describe tu viaje — nosotros hacemos las cuentas",
     "newChat": "Nuevo chat",
-    "greeting": "¡Hola! Dime qué necesitas —ciudades, número de viajeros, traslados o visitas— y te doy el precio en vivo.",
+    "greeting": "No hace falta que lo montes tú. Cuéntame tu viaje con tus palabras —adónde, cuántas personas, qué quieres ver— y te doy el precio exacto al momento.",
     "example1": "Recogida en el aeropuerto de El Cairo para 2 personas",
     "example2": "Excursión de un día en Luxor para 4 con guía en español",
     "example3": "Hurghada a Luxor ida y vuelta, 6 personas",
