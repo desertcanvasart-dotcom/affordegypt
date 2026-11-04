@@ -21,7 +21,10 @@ export function CurrencyEstimate({ amount, showNote = false }: {
     refetchInterval: 60 * 60 * 1000,
     retry: 1,
   });
-  if (convertEGP(amount, 1) === null) return null;
+  // No estimate for LE 0: "≈ USD 0.00" on every unpicked line was noise at
+  // the moment of decision.
+  const egp = convertEGP(amount, 1);
+  if (egp === null || egp === 0) return null;
   if (!data || isError) return <span className="block text-xs font-normal opacity-75">{t(isError ? "currency.unavailable" : "currency.loading")}</span>;
   const dates = Array.from(new Set(DISPLAY_CURRENCIES.map(currency => data.dates[currency])));
   const details = dates.length === 1 ? dates[0] : DISPLAY_CURRENCIES.map(currency => `${currency}: ${data.dates[currency]}`).join(" · ");
@@ -34,7 +37,9 @@ export function CurrencyEstimate({ amount, showNote = false }: {
           }).format(convertEGP(amount, data.rates[currency])!)}</span>
         ))}
       </span>
-      {data.stale && <span className="block">{t("currency.stale")}</span>}
+      {/* The stale-rates warning travels with the note, which is shown once per
+          screen (on the total), not repeated under every line price. */}
+      {showNote && data.stale && <span className="block">{t("currency.stale")}</span>}
       {showNote && <span className="block mt-1">{t("currency.note")} {t("currency.rateDate")} {details} · {data.source}</span>}
     </span>
   );

@@ -2912,6 +2912,30 @@
     "travellersServed": "{{travellers}} travellers across Egypt",
     "whatsappCta": "WhatsApp Us"
   },
+  "chat": {
+    "launcher": "Ask for a price",
+    "open": "Open the price assistant",
+    "close": "Close chat",
+    "title": "Price assistant",
+    "subtitle": "Live prices from our rate sheet",
+    "newChat": "New chat",
+    "greeting": "Hi! Tell me what you need — cities, number of travellers, transfers or sights — and I'll give you the live price.",
+    "example1": "Airport pickup in Cairo for 2 people",
+    "example2": "Luxor day tour for 4 with an English guide",
+    "example3": "Hurghada to Luxor and back, 6 people",
+    "placeholder": "Type your question…",
+    "send": "Send",
+    "thinking": "Checking prices…",
+    "error": "Something went wrong. Please try again, or message us on WhatsApp.",
+    "verifiedPrice": "Live price from our pricing system",
+    "total_one": "Total · {{count}} traveller",
+    "total_other": "Total · {{count}} travellers",
+    "perPerson": "Per person",
+    "depositNote": "To book: a 10% deposit ({{amount}}) by secure payment link once we confirm availability. The rest is paid on arrival.",
+    "bookOnWhatsapp": "Book this on WhatsApp",
+    "whatsappIntro": "Hi AffordEgypt, I'd like to book this quote from your website chat:",
+    "disclaimer": "Prices in EGP. The assistant can make mistakes; the price card is calculated by our booking system."
+  },
   "pageNames": {
     "home": "Home",
     "transfers": "Transfers",
@@ -2965,8 +2989,8 @@
       "itineraryDescription": "Days, transport & extras",
       "reviewTitle": "Review & Pricing",
       "reviewDescription": "Check your itinerary",
-      "checkoutTitle": "Checkout",
-      "checkoutDescription": "Complete booking"
+      "checkoutTitle": "Request booking",
+      "checkoutDescription": "No payment yet"
     },
     "step1": {
       "title": "Start Your Private Egypt Journey",
@@ -3038,8 +3062,8 @@
       "zeroTotal": "Your itinerary totals LE 0. Go back and add at least one service to check out."
     },
     "step4": {
-      "title": "Complete Your Booking",
-      "subtitle": "Enter your details to finalize your reservation",
+      "title": "Request your booking",
+      "subtitle": "Enter your details and we'll confirm availability",
       "contactInformation": "Contact Information",
       "fullName": "Full Name *",
       "namePlaceholder": "John Doe",
@@ -3061,6 +3085,7 @@
       "priceEntranceFees": "Entrance fees",
       "priceAddOns": "Add-ons",
       "total": "Total",
+      "nextStepNote": "No payment is taken now. Within 24 hours we confirm your driver and guide, then email you a secure link for the 10% deposit ({{amount}}). Your booking is confirmed when the deposit clears; the rest is paid on arrival.",
       "requestBooking": "Request Booking",
       "disclaimer": "By submitting, you agree to our terms and conditions",
       "back": "Back to Review"
@@ -3918,7 +3943,13 @@
     "accommodationIntro": "These hotels and cruise ship are examples of the minimum accommodation standard we use. Your program will use these properties or better, subject to availability. Final accommodation is confirmed with your booking.",
     "officialWebsite": "Official website",
     "hotelListing": "Hotel listing",
-    "stayPlaces": {"cairo": "Cairo", "aswan": "Aswan", "luxor": "Luxor", "hurghada": "Hurghada", "cruise": "Nile cruise"},
+    "stayPlaces": {
+      "cairo": "Cairo",
+      "aswan": "Aswan",
+      "luxor": "Luxor",
+      "hurghada": "Hurghada",
+      "cruise": "Nile cruise"
+    },
     "bookingRatesExplanation": "Choose your traveler count in the booking form to see the price per traveler and your trip total. Odd-group rates are the average of the neighboring even-group rates. Single-room supplements are added separately.",
     "rateExplanation": "Rates are per traveler for the full program, sharing a twin/double room. Odd group sizes use the previous even tier: three travelers use the two-person rate, five use the four-person rate, and so on. Single-room supplements are added separately.",
     "travelers": "Travelers",
