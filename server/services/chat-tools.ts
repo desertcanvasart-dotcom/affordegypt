@@ -15,6 +15,7 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import type { LineItem, VehicleSlug, CatalogTripType } from "./pricing";
 import type { BuiltMultiCityQuote, MultiCityCityInput } from "./quote-builder";
+import { pricePackage, singleRoomOptions } from "@shared/travel-packages";
 
 // The site sells three vehicle classes (see client/src/pages/transfers.tsx).
 // Catalog rows also carry hiace/coaster keys that nothing customer-facing
@@ -22,6 +23,7 @@ import type { BuiltMultiCityQuote, MultiCityCityInput } from "./quote-builder";
 export const CHAT_VEHICLES = ["sedan", "minivan", "van"] as const satisfies readonly VehicleSlug[];
 export const VEHICLE_CAPACITY: Record<VehicleSlug, number> = { sedan: 2, minivan: 8, van: 15 };
 export const MAX_TRAVELERS = 15;
+export const MAX_DAYS = 21;
 
 export interface CatalogRow {
   slug: string;
@@ -43,16 +45,37 @@ export interface GuideRateRow {
   language: string;
   dailyRate: number;
 }
+/** A published ready-made package (travel_packages, status = published). */
+export interface PackageRow {
+  slug: string;
+  title: string;
+  summary: string;
+  durationDays: number;
+  nights: number;
+  dayTitles: string[];
+  inclusions: string[];
+  exclusions: string[];
+  /** The package's own booking, payment and cancellation terms (they differ from custom trips). */
+  bookingTerms: string;
+  perPersonRates: Record<string, number>;
+  singleSupplement: number | null;
+  version: number;
+}
 
 export interface ChatToolDeps {
   loadCatalog(): Promise<CatalogRow[]>;
   loadEntranceFees(): Promise<EntranceFeeRow[]>;
   loadGuideRates(): Promise<GuideRateRow[]>;
+  loadPackages(): Promise<PackageRow[]>;
   buildQuote(cities: MultiCityCityInput[], travelers: number): Promise<BuiltMultiCityQuote>;
 }
 
-/** A quote the widget renders as a card, straight from the builder output. */
+/** A quote the widget renders as a card, straight from the pricing engine's output. */
 export interface VerifiedQuote {
+  kind: "custom" | "package";
+  /** Package quotes only: what it is and where to book it. */
+  title?: string;
+  bookUrl?: string;
   travelers: number;
   currency: "EGP";
   total: number;
@@ -175,22 +198,50 @@ export const CHAT_TOOLS: Anthropic.Beta.BetaTool[] = [
     },
   },
   {
+    name: "list_packages",
+    description:
+      "List AffordEgypt's ready-made multi-day packages (these include hotels, intercity trains/cruise and touring, unlike custom trips). " +
+      "Returns each package's slug, length, day-by-day outline, inclusions/exclusions, the price per person by group size (EGP, sharing a double/twin room) " +
+      "and the single-room supplement. Call this whenever a customer asks about a multi-day trip, a tour package, or a trip that needs hotels.",
+    input_schema: { type: "object", properties: {}, additionalProperties: false },
+  },
+  {
+    name: "price_package",
+    description:
+      "Exact price of one ready-made package for a group, from the same pricing the package pages use. " +
+      "Groups of 2 to 12. Travellers not in single rooms share doubles, so (travelers - single_rooms) must be even. " +
+      "The customer is shown this result as a verified price card with a link to book the package.",
+    input_schema: {
+      type: "object",
+      properties: {
+        slug: { type: "string" },
+        travelers: { type: "integer", minimum: 2, maximum: 12 },
+        single_rooms: { type: "integer", minimum: 0, maximum: 12, description: "Defaults to the fewest possible (0, or 1 for an odd group)." },
+      },
+      required: ["slug", "travelers"],
+      additionalProperties: false,
+    },
+  },
+  {
     name: "calculate_quote",
     description:
-      "Price a complete trip with the live pricing engine and return the exact total and per-person price in EGP. " +
-      "This is the ONLY source of totals: never add numbers up yourself. Use slugs exactly as returned by the other tools. " +
+      "Price a CUSTOM trip, day by day, with the live pricing engine and return the exact total and per-person price in EGP. " +
+      "List one entry per day, in order. A guide is charged per day, so add guide_language on every day the customer wants a guide. " +
+      "Custom trips cover transfers, tours, guides and entrance tickets only — no hotels, sleeper trains or cruises. " +
+      "This is the ONLY source of totals for custom trips: never add numbers up yourself. Use slugs exactly as returned by the other tools. " +
       "The customer is shown this result as a verified price card.",
     input_schema: {
       type: "object",
       properties: {
         travelers: { type: "integer", minimum: 1, maximum: MAX_TRAVELERS },
-        cities: {
+        days: {
           type: "array",
           minItems: 1,
+          maxItems: MAX_DAYS,
           items: {
             type: "object",
             properties: {
-              city: { type: "string" },
+              city: { type: "string", description: "Where the customer is that day." },
               services: {
                 type: "array",
                 items: {
@@ -216,7 +267,7 @@ export const CHAT_TOOLS: Anthropic.Beta.BetaTool[] = [
           },
         },
       },
-      required: ["travelers", "cities"],
+      required: ["travelers", "days"],
       additionalProperties: false,
     },
   },
@@ -309,6 +360,86 @@ export async function runChatTool(
     case "calculate_quote":
       return calculateQuote(args, deps);
 
+    case "list_packages": {
+      const packages = await deps.loadPackages();
+      return {
+        content: json({
+          packages: packages.map((p) => ({
+            slug: p.slug,
+            title: p.title,
+            days: p.durationDays,
+            nights: p.nights,
+            summary: p.summary,
+            itinerary: p.dayTitles.map((t, i) => `Day ${i + 1}: ${t}`),
+            inclusions: p.inclusions,
+            exclusions: p.exclusions,
+            booking_terms: p.bookingTerms,
+            price_per_person_by_group_size: p.perPersonRates,
+            single_room_supplement: p.singleSupplement,
+          })),
+          currency: "EGP",
+          note:
+            "Per-person prices assume sharing a double/twin room; groups of 2 to 12. " +
+            "For an exact total always call price_package — odd group sizes and single rooms change it.",
+        }),
+        isError: false,
+      };
+    }
+
+    case "price_package": {
+      const slug = str(args.slug);
+      const pkg = (await deps.loadPackages()).find((p) => p.slug === slug);
+      if (!pkg) return fail(`unknown package "${slug}" — use a slug from list_packages`);
+      const travelers = Number(args.travelers);
+      if (!Number.isInteger(travelers) || travelers < 2 || travelers > 12) {
+        return fail("ready-made packages are priced for groups of 2 to 12; smaller or larger groups need a custom quote on WhatsApp");
+      }
+      const options = pkg.nights ? singleRoomOptions(travelers) : [0];
+      const singleRooms = args.single_rooms === undefined ? options[0] : Number(args.single_rooms);
+      if (!options.includes(singleRooms)) {
+        return fail(
+          `with ${travelers} travellers the possible single-room counts are ${options.join(", ")} (everyone else shares a double)`,
+        );
+      }
+      let pricing;
+      try {
+        pricing = pricePackage(pkg, travelers, singleRooms);
+      } catch (err) {
+        return fail((err as Error).message);
+      }
+      const lines: VerifiedQuote["lines"] = [
+        { label: `${pkg.title} · ${travelers} × LE ${pricing.basePerPerson.toLocaleString("en-US")}`, city: "", amount: pricing.baseTotal },
+      ];
+      if (pricing.singleRooms > 0) {
+        lines.push({ label: `Single-room supplement × ${pricing.singleRooms}`, city: "", amount: pricing.supplementTotal });
+      }
+      const quote: VerifiedQuote = {
+        kind: "package",
+        title: `${pkg.title} (${pkg.durationDays} days)`,
+        bookUrl: `/packages/${pkg.slug}`,
+        travelers,
+        currency: "EGP",
+        total: pricing.total,
+        perPerson: Math.round((pricing.total / travelers) * 100) / 100,
+        lines,
+      };
+      return {
+        content: json({
+          package: pkg.title,
+          days: pkg.durationDays,
+          travelers,
+          double_rooms: pricing.doubleRooms,
+          single_rooms: pricing.singleRooms,
+          total: quote.total,
+          per_person: quote.perPerson,
+          currency: "EGP",
+          note: "The customer sees this as a price card with a button to book the package page. Summarize; do not restate every line.",
+        }),
+        isError: false,
+        quote,
+      };
+    }
+
     default:
       return fail(`Unknown tool: ${name}`);
   }
@@ -323,7 +454,10 @@ async function calculateQuote(
   if (travelers > MAX_TRAVELERS) {
     return fail(`Groups over ${MAX_TRAVELERS} need a custom quote. Tell the customer to message the team on WhatsApp.`);
   }
-  if (!Array.isArray(args.cities) || args.cities.length === 0) return fail("cities must list at least one city");
+  if (!Array.isArray(args.days) || args.days.length === 0) return fail("days must list at least one day");
+  if (args.days.length > MAX_DAYS) {
+    return fail(`custom quotes go up to ${MAX_DAYS} days; for longer trips suggest a ready-made package or WhatsApp`);
+  }
 
   const [catalog, fees, guides] = await Promise.all([
     deps.loadCatalog(),
@@ -336,14 +470,23 @@ async function calculateQuote(
   const problems: string[] = [];
   const cityInputs: MultiCityCityInput[] = [];
 
-  for (const raw of args.cities as unknown[]) {
+  (args.days as unknown[]).forEach((raw, dayIndex) => {
     const c = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
     const cityName = typeof c.city === "string" ? c.city.trim() : "";
+    const day = `day ${dayIndex + 1}`;
     if (!cityName) {
-      problems.push("every city entry needs a city name");
-      continue;
+      problems.push(`${day} needs a city`);
+      return;
     }
-    const input: MultiCityCityInput = { cityName, travelers, selectedServices: [], selectedEntranceFees: [] };
+    // One builder entry per day, so a guide is charged per day (the builder
+    // charges a guide once per entry). The day number rides in cityName,
+    // which the builder only uses for labels; the guide is matched by cityId.
+    const input: MultiCityCityInput = {
+      cityName: `Day ${dayIndex + 1} · ${cityName}`,
+      travelers,
+      selectedServices: [],
+      selectedEntranceFees: [],
+    };
 
     for (const s of Array.isArray(c.services) ? c.services : []) {
       const sel = (s ?? {}) as Record<string, unknown>;
@@ -352,21 +495,21 @@ async function calculateQuote(
       const tripType = String(sel.trip_type ?? "");
       const row = catalogBySlug.get(slug);
       if (!row) {
-        problems.push(`unknown service slug "${slug}" — look it up with search_services`);
+        problems.push(`${day}: unknown service slug "${slug}" — look it up with search_services`);
         continue;
       }
       if (!sameCity(row.city, cityName)) {
-        problems.push(`service "${slug}" belongs to ${row.city}, not ${cityName}`);
+        problems.push(`${day}: service "${slug}" belongs to ${row.city}, not ${cityName}`);
         continue;
       }
       if (!(CHAT_VEHICLES as readonly string[]).includes(vehicle)) {
-        problems.push(`vehicle must be one of ${CHAT_VEHICLES.join(", ")}`);
+        problems.push(`${day}: vehicle must be one of ${CHAT_VEHICLES.join(", ")}`);
         continue;
       }
       if (VEHICLE_CAPACITY[vehicle] < travelers) {
         const fits = smallestVehicleFor(travelers);
         problems.push(
-          `a ${vehicle} seats ${VEHICLE_CAPACITY[vehicle]}, but there are ${travelers} travelers` +
+          `${day}: a ${vehicle} seats ${VEHICLE_CAPACITY[vehicle]}, but there are ${travelers} travelers` +
             (fits ? ` — use ${fits} or larger` : ""),
         );
         continue;
@@ -375,7 +518,7 @@ async function calculateQuote(
         (o) => o.vehicle === vehicle && o.trip_type === tripType,
       );
       if (!priced) {
-        problems.push(`"${slug}" has no ${vehicle} price for trip type "${tripType}" — pick one of the options search_services returned`);
+        problems.push(`${day}: "${slug}" has no ${vehicle} price for trip type "${tripType}" — pick one of the options search_services returned`);
         continue;
       }
       input.selectedServices!.push({ slug, vehicleSlug: vehicle, tripType: tripType as CatalogTripType });
@@ -384,7 +527,7 @@ async function calculateQuote(
     for (const f of Array.isArray(c.entrance_fees) ? c.entrance_fees : []) {
       const fee = feeBySlug.get(String(f));
       if (!fee) {
-        problems.push(`unknown entrance fee "${String(f)}" — look it up with list_entrance_fees`);
+        problems.push(`${day}: unknown entrance fee "${String(f)}" — look it up with list_entrance_fees`);
         continue;
       }
       input.selectedEntranceFees!.push(fee.slug);
@@ -394,7 +537,7 @@ async function calculateQuote(
     if (lang) {
       const guide = guides.find((g) => sameCity(g.cityName, cityName) && sameCity(g.language, lang));
       if (!guide) {
-        problems.push(`no ${lang}-speaking guide is listed in ${cityName} — check list_guides`);
+        problems.push(`${day}: no ${lang}-speaking guide is listed in ${cityName} — check list_guides`);
       } else {
         input.cityId = guide.cityId;
         input.selectedGuide = { language: guide.language };
@@ -404,7 +547,7 @@ async function calculateQuote(
     const hasSomething =
       input.selectedServices!.length > 0 || input.selectedEntranceFees!.length > 0 || input.selectedGuide;
     if (hasSomething) cityInputs.push(input);
-  }
+  });
 
   // Refuse partial quotes: a total that silently dropped half the trip is
   // worse than no total.
@@ -413,6 +556,7 @@ async function calculateQuote(
 
   const built = await deps.buildQuote(cityInputs, travelers);
   const quote: VerifiedQuote = {
+    kind: "custom",
     travelers: built.travelers,
     currency: "EGP",
     total: built.total,
@@ -430,7 +574,10 @@ async function calculateQuote(
       travelers: quote.travelers,
       currency: "EGP",
       lines: quote.lines,
-      note: "The customer can already see this exact breakdown as a price card. Summarize it; do not restate every line.",
+      days: (args.days as unknown[]).length,
+      note:
+        "The customer can already see this exact breakdown as a price card. Summarize it; do not restate every line. " +
+        "Say clearly that hotels, sleeper trains and cruises are not included.",
     }),
     isError: false,
     quote,

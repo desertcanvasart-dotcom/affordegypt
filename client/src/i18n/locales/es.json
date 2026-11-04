@@ -2922,7 +2922,7 @@
     "greeting": "¡Hola! Dime qué necesitas —ciudades, número de viajeros, traslados o visitas— y te doy el precio en vivo.",
     "example1": "Recogida en el aeropuerto de El Cairo para 2 personas",
     "example2": "Excursión de un día en Luxor para 4 con guía en español",
-    "example3": "Hurghada a Luxor ida y vuelta, 6 personas",
+    "example3": "8 días en Egipto para 4 personas con hoteles",
     "placeholder": "Escribe tu pregunta…",
     "send": "Enviar",
     "thinking": "Consultando precios…",
@@ -2934,7 +2934,9 @@
     "depositNote": "Para reservar: un depósito del 10 % ({{amount}}) mediante un enlace de pago seguro cuando confirmemos la disponibilidad. El resto se paga a la llegada.",
     "bookOnWhatsapp": "Reservar por WhatsApp",
     "whatsappIntro": "Hola AffordEgypt, me gustaría reservar este presupuesto del chat de vuestra web:",
-    "disclaimer": "Precios en EGP. El asistente puede equivocarse; la tarjeta de precio la calcula nuestro sistema de reservas."
+    "disclaimer": "Precios en EGP. El asistente puede equivocarse; la tarjeta de precio la calcula nuestro sistema de reservas.",
+    "packageNote": "Hoteles, transporte y visitas según el programa. Las condiciones de depósito, pago y cancelación están en la página del paquete.",
+    "viewPackage": "Ver y reservar este paquete"
   },
   "pageNames": {
     "home": "Inicio",

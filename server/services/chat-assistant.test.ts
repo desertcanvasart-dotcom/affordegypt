@@ -21,6 +21,7 @@ const deps: ChatToolDeps = {
   ],
   loadEntranceFees: async () => [],
   loadGuideRates: async () => [],
+  loadPackages: async () => [],
   buildQuote: async (_c, travelers) => ({
     lineItems: [
       {
@@ -65,7 +66,7 @@ describe("runChatTurn", () => {
           type: "tool_use",
           id: "t2",
           name: "calculate_quote",
-          input: { travelers: 2, cities: [{ city: "Cairo", services: [{ slug: "cairo-airport-hotel", vehicle: "sedan", trip_type: "one_way" }] }] },
+          input: { travelers: 2, days: [{ city: "Cairo", services: [{ slug: "cairo-airport-hotel", vehicle: "sedan", trip_type: "one_way" }] }] },
         },
       ]),
       textTurn("Your airport pickup is LE 2,025."),
