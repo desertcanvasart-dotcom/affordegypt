@@ -1,4 +1,4 @@
-import { TourPrice } from "@/components/currency-estimate";
+import { CurrencyEstimate, TourPrice } from "@/components/currency-estimate";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Trans, useTranslation } from 'react-i18next';
@@ -33,11 +33,14 @@ import {
   hasSentLead,
   markConversionSent,
   markLeadSent,
+  trackEvent,
   trackPurchase,
   trackQualifiedLead,
 } from "@/lib/analytics";
+import { useLocation } from "wouter";
 import {
   blockersForStep as sharedBlockersForStep,
+  daysForDuration,
   type QuoteState,
 } from "@shared/quote-validation";
 
@@ -182,12 +185,17 @@ function LivePriceSummary({
                 </div>
               ))}
             </div>
-            <div className="flex justify-between items-baseline mt-3 pt-3 border-t">
-              <span className="text-sm text-muted-foreground">
+            {/* Label and EGP total share a row; the currency estimates and
+                their note get the full column width underneath. With the
+                note inside the right-hand cell, the 320px column squeezed
+                the label into the rate-date line. */}
+            <div className="flex justify-between items-baseline gap-3 mt-3 pt-3 border-t">
+              <span className="text-sm text-muted-foreground shrink-0">
                 {t('quoteBuilder.livePrice.totalWithTravelers', { count: totalPricing.travelers })}
               </span>
-              <span className="text-xl font-bold text-primary"><TourPrice amount={totalPricing.totalAmount} showNote /></span>
+              <span className="text-xl font-bold text-primary whitespace-nowrap">{formatEGP(totalPricing.totalAmount)}</span>
             </div>
+            <div className="mt-1 text-right text-primary"><CurrencyEstimate amount={totalPricing.totalAmount} showNote /></div>
             <p className="text-xs text-muted-foreground">{t('quoteBuilder.livePrice.perPerson', { price: formatEGP(totalPricing.perPersonAmount) })}</p>
           </>
         ) : (
@@ -236,6 +244,15 @@ export default function MultiCityPricingTool() {
   const [travelDate, setTravelDate] = useState<string | null>('');
   const [justExploring, setJustExploring] = useState<boolean>(false);
   const [tripDuration, setTripDuration] = useState<string>('');
+  const [, navigate] = useLocation();
+  // builder_start fires once, on the first real interaction, not on mount:
+  // the builder renders on the homepage for every visitor.
+  const builderStarted = useRef(false);
+  const markBuilderStart = () => {
+    if (builderStarted.current) return;
+    builderStarted.current = true;
+    trackEvent('builder_start', 'quote_builder');
+  };
   // Field-keyed validation messages for the step the user is trying to leave.
   const [stepErrors, setStepErrors] = useState<Record<string, string>>({});
   // Day the user asked to edit from the review step, so we can scroll to it and
@@ -489,6 +506,37 @@ export default function MultiCityPricingTool() {
       return;
     }
     setStepErrors({});
+    if (next === 2) {
+      // Open as many day cards as the trip length asked for (all in the
+      // step-1 city, dated from the travel date), so the review counts
+      // the days the visitor actually wants. Never removes days.
+      setCityServices(prev => {
+        const target = daysForDuration(tripDuration);
+        if (prev.length === 0 || prev.length >= target) return prev;
+        const last = prev[prev.length - 1];
+        const extra = Array.from({ length: target - prev.length }, (_, i) => {
+          const dayNumber = prev.length + i + 1;
+          return {
+            dayNumber,
+            cityId: last.cityId,
+            cityName: last.cityName,
+            date: travelDate
+              ? new Date(new Date(travelDate).getTime() + (dayNumber - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+              : '',
+            travelers: globalTravelers,
+            selectedServices: [],
+            attractions: '',
+            selectedAttractions: [],
+            selectedEntranceFees: [],
+            selectedAddOns: [],
+          };
+        });
+        return [...prev, ...extra];
+      });
+    }
+    // Funnel events (GA4). Step changes do not change the URL, so without
+    // these the builder is one opaque page_view.
+    trackEvent(next === 2 ? 'builder_step2' : next === 3 ? 'builder_review' : 'checkout_view', 'quote_builder', undefined, totalPricing?.totalAmount || undefined);
     setCurrentStep(next);
     // Scroll to step content area, not top of page
     setTimeout(() => {
@@ -613,6 +661,7 @@ export default function MultiCityPricingTool() {
                           value={step1DestinationId}
                           onValueChange={(value) => {
                             setStep1DestinationId(value);
+                            markBuilderStart();
                             setStepErrors(prev => ({ ...prev, destination: '' }));
                             const selectedCity = cities.find((c: any) => c.id === parseInt(value));
                             if (!selectedCity) return;
@@ -1391,23 +1440,23 @@ export default function MultiCityPricingTool() {
                       </div>
 
                       {/* Price Breakdown */}
+                      {/* Only the categories the traveller actually picked;
+                          LE 0 rows for unpicked ones read as noise here. */}
                       <div className="space-y-1.5 mb-3 pb-3 border-b text-sm">
-                        <div className="flex justify-between">
-                          <span>{t('quoteBuilder.step4.priceServices')}</span>
-                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.routes || 0), 0)} /></span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>{t('quoteBuilder.step4.priceGuides')}</span>
-                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.guide || 0), 0)} /></span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>{t('quoteBuilder.step4.priceEntranceFees')}</span>
-                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.attractions || 0), 0)} /></span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>{t('quoteBuilder.step4.priceAddOns')}</span>
-                          <span><TourPrice amount={totalPricing?.breakdown?.reduce((sum: number, city: any) => sum + (city.addOns || 0), 0)} /></span>
-                        </div>
+                        {([
+                          ['priceServices', 'routes'],
+                          ['priceGuides', 'guide'],
+                          ['priceEntranceFees', 'attractions'],
+                          ['priceAddOns', 'addOns'],
+                        ] as const).map(([labelKey, field]) => {
+                          const amount = (totalPricing?.breakdown ?? []).reduce((sum: number, city: any) => sum + (city[field] || 0), 0);
+                          return amount > 0 ? (
+                            <div key={field} className="flex justify-between">
+                              <span>{t(`quoteBuilder.step4.${labelKey}`)}</span>
+                              <span><TourPrice amount={amount} /></span>
+                            </div>
+                          ) : null;
+                        })}
                       </div>
 
                       {/* Total */}
@@ -1415,6 +1464,14 @@ export default function MultiCityPricingTool() {
                         <span className="font-semibold">{t('quoteBuilder.step4.total')}</span>
                         <span className="text-xl font-bold text-primary"><TourPrice amount={totalPricing?.totalAmount} showNote /></span>
                       </div>
+
+                      {/* What happens after the click, stated before it. The
+                          old step said "Checkout — Complete booking", took no
+                          payment, and explained the deposit only in a
+                          collapsed FAQ further down the homepage. */}
+                      <p className="mb-3 rounded-md bg-teal-50 p-3 text-xs text-teal-900">
+                        {t('quoteBuilder.step4.nextStepNote', { amount: formatEGP(Math.round((Number(totalPricing?.totalAmount) || 0) * 0.1)) })}
+                      </p>
 
                       {/* Submit Button */}
                       <Button
@@ -1505,12 +1562,10 @@ export default function MultiCityPricingTool() {
                             const booking = await bookingResponse.json();
 
                             // Report the purchase HERE, not only on
-                            // booking-confirmation.tsx. This flow never
-                            // navigates there — it alerts and resets to step 1
-                            // — so relying on that page alone would miss every
-                            // booking made through the main funnel, counting
-                            // only the customers who later open the link in
-                            // their email. markConversionSent keeps the
+                            // booking-confirmation.tsx. The builder now navigates
+                            // there on success, but reporting here first keeps the
+                            // conversion even if that page fails to load the
+                            // booking. markConversionSent keeps the
                             // confirmation page from reporting it a second time
                             // when they do.
                             if (booking?.bookingReference
@@ -1535,11 +1590,24 @@ export default function MultiCityPricingTool() {
                               markConversionSent(booking.bookingReference);
                             }
 
+                            trackEvent('booking_request', 'quote_builder', undefined, Number(totalPricing?.totalAmount) || undefined);
+
+                            // Send the traveller to the confirmation page, which
+                            // spells out what happens next (we confirm within 24h,
+                            // then send the 10% deposit link). This used to be a
+                            // browser alert() followed by a reset to step 1, so a
+                            // traveller who thought they had booked was left with
+                            // an empty form and no idea a payment link was coming.
+                            if (booking?.bookingReference) {
+                              navigate(`/booking-confirmation/${encodeURIComponent(booking.bookingReference)}`);
+                              window.scrollTo(0, 0);
+                              return;
+                            }
                             alert(t('quoteBuilder.validation.submitted', {
                               email: checkoutData.email,
                               reference: booking.bookingReference,
                             }));
-                            
+
                             // Reset form and go back to step 1
                             setCheckoutData({
                               name: '',
@@ -1599,26 +1667,34 @@ export default function MultiCityPricingTool() {
                   <Separator className="mb-4" />
                   <h3 className="text-lg font-semibold mb-4">{t('quoteBuilder.breakdown.title')}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {totalPricing.breakdown.map((city: any, index: number) => (
+                    {totalPricing.breakdown.filter((city: any) => city.total > 0).map((city: any, index: number) => (
                       <Card key={index} className="p-4">
                         <h4 className="font-medium mb-2">{city.city}</h4>
                         <div className="space-y-1 text-sm">
+                          {city.routes > 0 && (
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.services')}</span>
                             <span className="font-mono"><TourPrice amount={city.routes} /></span>
                           </div>
+                          )}
+                          {city.guide > 0 && (
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.guide')}</span>
                             <span className="font-mono"><TourPrice amount={city.guide} /></span>
                           </div>
+                          )}
+                          {city.attractions > 0 && (
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.entranceFees')}</span>
                             <span className="font-mono"><TourPrice amount={city.attractions} /></span>
                           </div>
+                          )}
+                          {city.addOns > 0 && (
                           <div className="flex justify-between">
                             <span>{t('quoteBuilder.breakdown.addOns')}</span>
                             <span className="font-mono"><TourPrice amount={city.addOns} /></span>
                           </div>
+                          )}
                           <Separator className="my-2" />
                           <div className="flex justify-between font-semibold">
                             <span>{t('quoteBuilder.breakdown.total')}</span>

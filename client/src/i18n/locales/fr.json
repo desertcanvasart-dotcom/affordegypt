@@ -2912,6 +2912,30 @@
     "travellersServed": "{{travellers}} voyageurs à travers l'Égypte",
     "whatsappCta": "Écrivez-nous"
   },
+  "chat": {
+    "launcher": "Demander un prix",
+    "open": "Ouvrir l'assistant tarifaire",
+    "close": "Fermer le chat",
+    "title": "Assistant tarifaire",
+    "subtitle": "Prix en direct de notre grille tarifaire",
+    "newChat": "Nouveau chat",
+    "greeting": "Bonjour ! Dites-moi ce dont vous avez besoin — villes, nombre de voyageurs, transferts ou visites — et je vous donne le prix en direct.",
+    "example1": "Accueil à l'aéroport du Caire pour 2 personnes",
+    "example2": "Excursion d'une journée à Louxor pour 4 avec un guide francophone",
+    "example3": "Hurghada – Louxor aller-retour, 6 personnes",
+    "placeholder": "Écrivez votre question…",
+    "send": "Envoyer",
+    "thinking": "Vérification des prix…",
+    "error": "Une erreur s'est produite. Réessayez ou écrivez-nous sur WhatsApp.",
+    "verifiedPrice": "Prix en direct de notre système tarifaire",
+    "total_one": "Total · {{count}} voyageur",
+    "total_other": "Total · {{count}} voyageurs",
+    "perPerson": "Par personne",
+    "depositNote": "Pour réserver : un acompte de 10 % ({{amount}}) par lien de paiement sécurisé une fois la disponibilité confirmée. Le solde se règle à l'arrivée.",
+    "bookOnWhatsapp": "Réserver sur WhatsApp",
+    "whatsappIntro": "Bonjour AffordEgypt, je souhaite réserver ce devis obtenu sur le chat de votre site :",
+    "disclaimer": "Prix en EGP. L'assistant peut se tromper ; la carte de prix est calculée par notre système de réservation."
+  },
   "pageNames": {
     "home": "Accueil",
     "transfers": "Transferts",
@@ -2965,8 +2989,8 @@
       "itineraryDescription": "Jours, transport et extras",
       "reviewTitle": "Récapitulatif et prix",
       "reviewDescription": "Vérifiez votre itinéraire",
-      "checkoutTitle": "Paiement",
-      "checkoutDescription": "Finalisez la réservation"
+      "checkoutTitle": "Demande de réservation",
+      "checkoutDescription": "Aucun paiement pour l'instant"
     },
     "step1": {
       "title": "Commencez votre voyage privé en Égypte",
@@ -3038,8 +3062,8 @@
       "zeroTotal": "Votre itinéraire totalise LE 0. Revenez en arrière et ajoutez au moins un service pour pouvoir payer."
     },
     "step4": {
-      "title": "Finalisez votre réservation",
-      "subtitle": "Saisissez vos coordonnées pour finaliser votre réservation",
+      "title": "Demandez votre réservation",
+      "subtitle": "Saisissez vos coordonnées et nous confirmerons la disponibilité",
       "contactInformation": "Coordonnées",
       "fullName": "Nom complet *",
       "namePlaceholder": "Jean Dupont",
@@ -3061,6 +3085,7 @@
       "priceEntranceFees": "Billets d'entrée",
       "priceAddOns": "Extras",
       "total": "Total",
+      "nextStepNote": "Aucun paiement n'est prélevé maintenant. Sous 24 heures, nous confirmons votre chauffeur et votre guide, puis vous envoyons par e-mail un lien sécurisé pour l'acompte de 10 % ({{amount}}). La réservation est confirmée à réception de l'acompte ; le solde se règle à l'arrivée.",
       "requestBooking": "Demander la réservation",
       "disclaimer": "En envoyant ce formulaire, vous acceptez nos conditions générales",
       "back": "Retour au récapitulatif"
@@ -3918,7 +3943,13 @@
     "accommodationIntro": "Ces hôtels et ce bateau illustrent notre standard minimum. Votre programme utilise ces établissements ou de meilleure qualité, sous réserve de disponibilité. Les hébergements définitifs sont confirmés lors de la réservation.",
     "officialWebsite": "Site officiel",
     "hotelListing": "Fiche de l’hôtel",
-    "stayPlaces": {"cairo": "Le Caire", "aswan": "Assouan", "luxor": "Louxor", "hurghada": "Hurghada", "cruise": "Croisière sur le Nil"},
+    "stayPlaces": {
+      "cairo": "Le Caire",
+      "aswan": "Assouan",
+      "luxor": "Louxor",
+      "hurghada": "Hurghada",
+      "cruise": "Croisière sur le Nil"
+    },
     "bookingRatesExplanation": "Choisissez le nombre de voyageurs dans le formulaire de réservation pour voir le prix par personne et le total. Les tarifs des groupes impairs correspondent à la moyenne des deux groupes pairs voisins. Les suppléments pour chambre individuelle sont ajoutés séparément.",
     "rateExplanation": "Tarifs par voyageur pour le programme complet, en chambre double. Les groupes impairs utilisent le tarif du groupe pair précédent : trois voyageurs utilisent le tarif pour deux, cinq celui pour quatre, et ainsi de suite. Les suppléments pour chambre individuelle sont ajoutés séparément.",
     "travelers": "Voyageurs",

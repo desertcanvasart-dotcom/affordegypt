@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   blockersForStep,
   canProceedToStep,
+  daysForDuration,
   hasPricedSelection,
   type QuoteState,
 } from "./quote-validation";
@@ -121,5 +122,19 @@ describe("canProceedToStep", () => {
 
   it("never blocks step 1", () => {
     expect(canProceedToStep(1, state({ destinationId: "", totalAmount: 0, days: [] }))).toBe(true);
+  });
+});
+
+describe("daysForDuration", () => {
+  it.each([
+    ["1-2", 2],
+    ["3-4", 4],
+    ["5-7", 7],
+    ["8-14", 8],
+    ["15+", 15],
+    ["exploring", 1],
+    ["", 1],
+  ])("%s → %i day cards", (duration, days) => {
+    expect(daysForDuration(duration)).toBe(days);
   });
 });

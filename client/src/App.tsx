@@ -5,6 +5,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsent from "@/components/cookie-consent";
+import ChatAssistant from "@/components/chat-assistant";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FaWhatsapp } from "react-icons/fa";
 import { AuthProvider } from "@/hooks/useAuth";
@@ -314,6 +315,13 @@ function App() {
               </ClientOnly>
               <ScrollToTop />
               <Router />
+
+              {/* Price assistant. Renders nothing unless /api/chat/config says
+                  the server has it switched on. Its launcher sits directly
+                  above the WhatsApp pill. */}
+              <ClientOnly>
+                <ChatAssistant />
+              </ClientOnly>
 
               {/* Floating WhatsApp button.
                   Sat at bottom-6 with a full label, which put it directly on

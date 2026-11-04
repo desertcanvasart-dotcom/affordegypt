@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { ChevronDown, Search, User, Clock, Globe, Star, X, Check } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { formatEGP } from "@/lib/utils";
 
 interface GuideOption {
   language: string;
@@ -62,6 +63,21 @@ export function GuideSearch({
     return Number.isFinite(n) ? n : null;
   };
 
+  // The full-day price for this language here, read from the same
+  // guide_rates row the quote is priced from (the column is named
+  // hourly_price but holds the daily rate; see PricingService.getGuideDailyRate).
+  // Without it the picker showed language and "Full Day" but no price
+  // until after the choice was made.
+  const priceFor = (language: string): number | null => {
+    const row = (guideRates as any[]).find(
+      (r: any) =>
+        r.language?.trim().toLowerCase() === language.trim().toLowerCase() &&
+        r.cityId === cityId,
+    );
+    const n = row?.hourlyPrice == null ? NaN : parseFloat(row.hourlyPrice);
+    return Number.isFinite(n) && n > 0 ? n : null;
+  };
+
   /**
    * The languages this city offers, with whatever the operator has actually
    * recorded about each.
@@ -79,6 +95,7 @@ export function GuideSearch({
       language,
       displayName: t(`guides.languages.${language.toLowerCase()}`),
       rating: ratingFor(language),
+      price: priceFor(language),
     }));
   }, [languages, t, guideRates, cityId]);
 
@@ -222,7 +239,7 @@ export function GuideSearch({
                 <p>{t('guides.noneFound')}</p>
               </div>
             ) : (
-              filteredLanguages.map(({ language, displayName, rating }) => (
+              filteredLanguages.map(({ language, displayName, rating, price }) => (
                 <div
                   key={language}
                   className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
@@ -249,6 +266,9 @@ export function GuideSearch({
                     </div>
                   </div>
                   <div className="text-right">
+                    {price !== null && (
+                      <div className="text-sm font-semibold text-gray-900">{formatEGP(price)}</div>
+                    )}
                     <div className="text-xs text-gray-500">
                       {getDurationLabel(selectedDuration)}
                     </div>

@@ -2912,6 +2912,30 @@
     "travellersServed": "{{travellers}} Reisende in ganz Ägypten",
     "whatsappCta": "Schreiben Sie uns"
   },
+  "chat": {
+    "launcher": "Preis anfragen",
+    "open": "Preisassistent öffnen",
+    "close": "Chat schließen",
+    "title": "Preisassistent",
+    "subtitle": "Live-Preise aus unserer Preisliste",
+    "newChat": "Neuer Chat",
+    "greeting": "Hallo! Sagen Sie mir, was Sie brauchen – Städte, Anzahl der Reisenden, Transfers oder Sehenswürdigkeiten – und ich nenne Ihnen den aktuellen Preis.",
+    "example1": "Flughafenabholung in Kairo für 2 Personen",
+    "example2": "Tagesausflug in Luxor für 4 mit deutschsprachigem Guide",
+    "example3": "Hurghada nach Luxor und zurück, 6 Personen",
+    "placeholder": "Ihre Frage…",
+    "send": "Senden",
+    "thinking": "Preise werden geprüft…",
+    "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns auf WhatsApp.",
+    "verifiedPrice": "Live-Preis aus unserem Preissystem",
+    "total_one": "Gesamt · {{count}} Reisender",
+    "total_other": "Gesamt · {{count}} Reisende",
+    "perPerson": "Pro Person",
+    "depositNote": "Zur Buchung: 10 % Anzahlung ({{amount}}) per sicherem Zahlungslink, sobald wir die Verfügbarkeit bestätigt haben. Der Rest wird bei Ankunft bezahlt.",
+    "bookOnWhatsapp": "Über WhatsApp buchen",
+    "whatsappIntro": "Hallo AffordEgypt, ich möchte dieses Angebot aus dem Chat auf Ihrer Website buchen:",
+    "disclaimer": "Preise in EGP. Der Assistent kann Fehler machen; die Preiskarte berechnet unser Buchungssystem."
+  },
   "pageNames": {
     "home": "Startseite",
     "transfers": "Transfers",
@@ -2965,8 +2989,8 @@
       "itineraryDescription": "Tage, Transport & Extras",
       "reviewTitle": "Prüfung & Preis",
       "reviewDescription": "Reiseplan prüfen",
-      "checkoutTitle": "Kasse",
-      "checkoutDescription": "Buchung abschließen"
+      "checkoutTitle": "Buchungsanfrage",
+      "checkoutDescription": "Noch keine Zahlung"
     },
     "step1": {
       "title": "Starten Sie Ihre private Ägypten-Reise",
@@ -3038,8 +3062,8 @@
       "zeroTotal": "Ihr Reiseplan beläuft sich auf LE 0. Gehen Sie zurück und fügen Sie mindestens eine Leistung hinzu, um zur Kasse zu gehen."
     },
     "step4": {
-      "title": "Buchung abschließen",
-      "subtitle": "Geben Sie Ihre Daten ein, um die Reservierung abzuschließen",
+      "title": "Buchung anfragen",
+      "subtitle": "Geben Sie Ihre Daten ein – wir bestätigen die Verfügbarkeit",
       "contactInformation": "Kontaktdaten",
       "fullName": "Vollständiger Name *",
       "namePlaceholder": "Max Mustermann",
@@ -3061,6 +3085,7 @@
       "priceEntranceFees": "Eintrittskarten",
       "priceAddOns": "Extras",
       "total": "Gesamt",
+      "nextStepNote": "Jetzt wird nichts abgebucht. Innerhalb von 24 Stunden bestätigen wir Fahrer und Guide und senden Ihnen per E-Mail einen sicheren Link für die Anzahlung von 10 % ({{amount}}). Die Buchung ist bestätigt, sobald die Anzahlung eingegangen ist; der Rest wird bei Ankunft bezahlt.",
       "requestBooking": "Buchung anfragen",
       "disclaimer": "Mit dem Absenden stimmen Sie unseren Geschäftsbedingungen zu",
       "back": "Zurück zur Prüfung"
@@ -3918,7 +3943,13 @@
     "accommodationIntro": "Diese Hotels und das Schiff sind Beispiele unseres Mindeststandards. Ihr Programm nutzt diese Unterkünfte oder bessere, je nach Verfügbarkeit. Die endgültigen Unterkünfte werden mit Ihrer Buchung bestätigt.",
     "officialWebsite": "Offizielle Website",
     "hotelListing": "Hoteleintrag",
-    "stayPlaces": {"cairo": "Kairo", "aswan": "Assuan", "luxor": "Luxor", "hurghada": "Hurghada", "cruise": "Nilkreuzfahrt"},
+    "stayPlaces": {
+      "cairo": "Kairo",
+      "aswan": "Assuan",
+      "luxor": "Luxor",
+      "hurghada": "Hurghada",
+      "cruise": "Nilkreuzfahrt"
+    },
     "bookingRatesExplanation": "Wählen Sie die Anzahl der Reisenden im Buchungsformular, um den Preis pro Person und den Gesamtpreis zu sehen. Preise für ungerade Gruppen sind der Durchschnitt der benachbarten geraden Gruppengrößen. Einzelzimmerzuschläge werden separat berechnet.",
     "rateExplanation": "Preise pro Reisendem für das gesamte Programm im Doppelzimmer. Ungerade Gruppen nutzen den Tarif der vorherigen geraden Gruppengröße: drei Reisende nutzen den Tarif für zwei, fünf den für vier usw. Einzelzimmerzuschläge werden separat hinzugefügt.",
     "travelers": "Reisende",

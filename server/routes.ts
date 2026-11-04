@@ -14,6 +14,7 @@ import { registerQuoteRoutes } from "./routes/quotes";
 import { registerBookingRoutes } from "./routes/bookings";
 import { registerRouteAdminRoutes } from "./routes/routes-admin";
 import { registerReferenceDataRoutes } from "./routes/reference-data";
+import { registerChatRoutes } from "./routes/chat";
 import { adminAuth } from "./routes/shared";
 import { ServicePriceNotSetError } from "./services/pricing";
 import { GUIDE_LANGUAGES } from "@shared/guide-pricing";
@@ -437,6 +438,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await registerPricingRoutes(app);
   registerAdminCatalogRoutes(app);
   registerPublicCatalogRoutes(app);
+
+  // Website chat assistant (./routes/chat.ts) — off unless CHAT_ENABLED=true.
+  registerChatRoutes(app);
 
   // (booking status / payment / email handlers moved to ./routes/bookings.ts)
 

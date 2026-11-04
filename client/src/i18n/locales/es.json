@@ -2912,6 +2912,30 @@
     "travellersServed": "{{travellers}} viajeros por todo Egipto",
     "whatsappCta": "Escríbenos"
   },
+  "chat": {
+    "launcher": "Pide un precio",
+    "open": "Abrir el asistente de precios",
+    "close": "Cerrar chat",
+    "title": "Asistente de precios",
+    "subtitle": "Precios en vivo de nuestra tarifa",
+    "newChat": "Nuevo chat",
+    "greeting": "¡Hola! Dime qué necesitas —ciudades, número de viajeros, traslados o visitas— y te doy el precio en vivo.",
+    "example1": "Recogida en el aeropuerto de El Cairo para 2 personas",
+    "example2": "Excursión de un día en Luxor para 4 con guía en español",
+    "example3": "Hurghada a Luxor ida y vuelta, 6 personas",
+    "placeholder": "Escribe tu pregunta…",
+    "send": "Enviar",
+    "thinking": "Consultando precios…",
+    "error": "Algo salió mal. Inténtalo de nuevo o escríbenos por WhatsApp.",
+    "verifiedPrice": "Precio en vivo de nuestro sistema de precios",
+    "total_one": "Total · {{count}} viajero",
+    "total_other": "Total · {{count}} viajeros",
+    "perPerson": "Por persona",
+    "depositNote": "Para reservar: un depósito del 10 % ({{amount}}) mediante un enlace de pago seguro cuando confirmemos la disponibilidad. El resto se paga a la llegada.",
+    "bookOnWhatsapp": "Reservar por WhatsApp",
+    "whatsappIntro": "Hola AffordEgypt, me gustaría reservar este presupuesto del chat de vuestra web:",
+    "disclaimer": "Precios en EGP. El asistente puede equivocarse; la tarjeta de precio la calcula nuestro sistema de reservas."
+  },
   "pageNames": {
     "home": "Inicio",
     "transfers": "Traslados",
@@ -2965,8 +2989,8 @@
       "itineraryDescription": "Días, transporte y extras",
       "reviewTitle": "Revisión y precio",
       "reviewDescription": "Revise su itinerario",
-      "checkoutTitle": "Pago",
-      "checkoutDescription": "Complete la reserva"
+      "checkoutTitle": "Solicitar reserva",
+      "checkoutDescription": "Sin pago todavía"
     },
     "step1": {
       "title": "Empiece su viaje privado por Egipto",
@@ -3038,8 +3062,8 @@
       "zeroTotal": "Su itinerario suma LE 0. Vuelva atrás y añada al menos un servicio para poder pagar."
     },
     "step4": {
-      "title": "Complete su reserva",
-      "subtitle": "Introduzca sus datos para finalizar la reserva",
+      "title": "Solicite su reserva",
+      "subtitle": "Introduzca sus datos y confirmaremos la disponibilidad",
       "contactInformation": "Datos de contacto",
       "fullName": "Nombre completo *",
       "namePlaceholder": "Juan Pérez",
@@ -3061,6 +3085,7 @@
       "priceEntranceFees": "Entradas",
       "priceAddOns": "Extras",
       "total": "Total",
+      "nextStepNote": "Ahora no se cobra nada. En un plazo de 24 horas confirmamos su conductor y su guía y le enviamos por correo un enlace seguro para el depósito del 10 % ({{amount}}). La reserva queda confirmada cuando se recibe el depósito; el resto se paga a la llegada.",
       "requestBooking": "Solicitar la reserva",
       "disclaimer": "Al enviar el formulario, acepta nuestros términos y condiciones",
       "back": "Volver a la revisión"
@@ -3918,7 +3943,13 @@
     "accommodationIntro": "Estos hoteles y barco son ejemplos del estándar mínimo de alojamiento. Tu programa utiliza estos establecimientos o mejores, sujetos a disponibilidad. El alojamiento final se confirma con la reserva.",
     "officialWebsite": "Sitio web oficial",
     "hotelListing": "Ficha del hotel",
-    "stayPlaces": {"cairo": "El Cairo", "aswan": "Asuán", "luxor": "Luxor", "hurghada": "Hurghada", "cruise": "Crucero por el Nilo"},
+    "stayPlaces": {
+      "cairo": "El Cairo",
+      "aswan": "Asuán",
+      "luxor": "Luxor",
+      "hurghada": "Hurghada",
+      "cruise": "Crucero por el Nilo"
+    },
     "bookingRatesExplanation": "Elige el número de viajeros en el formulario de reserva para ver el precio por viajero y el total. Las tarifas para grupos impares son el promedio de las tarifas de los grupos pares contiguos. Los suplementos por habitación individual se añaden por separado.",
     "rateExplanation": "Precios por viajero para el programa completo, compartiendo habitación doble. Los grupos impares usan la tarifa del grupo par anterior: tres viajeros usan la tarifa para dos, cinco la tarifa para cuatro, y así sucesivamente. Los suplementos de habitación individual se añaden por separado.",
     "travelers": "Viajeros",
