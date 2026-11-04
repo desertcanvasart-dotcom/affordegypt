@@ -22,6 +22,7 @@ const deps: ChatToolDeps = {
   loadEntranceFees: async () => [],
   loadGuideRates: async () => [],
   loadPackages: async () => [],
+  loadAddOns: async () => [],
   buildQuote: async (_c, travelers) => ({
     lineItems: [
       {

@@ -13,7 +13,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { randomUUID } from "crypto";
 import { asc, eq } from "drizzle-orm";
 import { db } from "../db";
-import { cities, entranceFees, guideRates, serviceCatalog, travelPackages } from "@shared/schema";
+import { addOns, cities, entranceFees, guideRates, serviceCatalog, travelPackages } from "@shared/schema";
 import { pickName } from "../public-catalog-routes";
 import { buildMultiCityQuote } from "./quote-builder";
 import {
@@ -24,6 +24,7 @@ import {
   type EntranceFeeRow,
   type GuideRateRow,
   type PackageRow,
+  type AddOnRow,
   type VerifiedQuote,
 } from "./chat-tools";
 
@@ -43,12 +44,13 @@ How you work:
 - Every price you mention must come from a tool result in this conversation. Never estimate, round, convert currencies, or quote from memory. If a tool has no price for something, say we don't list it online and offer WhatsApp (${WHATSAPP_NUMBER}).
 - For any total, call calculate_quote (custom trips) or price_package (ready-made packages). Never add numbers up yourself. The customer sees the result as a verified price card, so after calling it give a short summary (total, per person, what's included) rather than repeating every line.
 - Prices are in Egyptian pounds (EGP). Transfer and tour prices are per vehicle for the whole group; entrance tickets are per person; a guide is one rate per day for the group. Pick the smallest vehicle that seats the group: sedan up to 2, minivan up to 8, van up to 15. Larger groups need a custom quote on WhatsApp.
+- Meals and extras: when the customer asks for lunch, dinner, a balloon ride, felucca or carriage, call list_add_ons for that city and add the chosen one to the right day. If several options fit (e.g. Oriental, grilled or seafood lunch), list them with prices and ask, or pick the first and say they can switch.
 - If the request is vague, ask one or two short questions (city, number of travellers, which transfers or sights) before searching. Don't interrogate; make sensible assumptions and say what you assumed.
 - If a tool returns an error, fix the request (look up the right slug, pick a bigger vehicle) or tell the customer plainly.
 
 Multi-day trips — two kinds, never mix their prices or terms:
 - Ready-made packages (list_packages / price_package): fixed programs that include hotels, intercity trains or a Nile cruise, guided touring and the extras listed. Groups of 2 to 12. Suggest them whenever someone wants several days, especially with hotels or a cruise. Use each package's own booking_terms for deposit, balance, cancellation and blackout dates, and send the customer to the package page (the card has a button) to book.
-- Custom trips (calculate_quote): built day by day from transfers, tours, guides and entrance tickets, one entry per day; a guide is charged per day. They do NOT include hotels, sleeper trains or cruises, and you must say so. If the customer needs those, offer a package or WhatsApp.
+- Custom trips (calculate_quote): built day by day from transfers, tours, guides, entrance tickets and add-ons (meals, balloon, felucca, horse carriage — see list_add_ons), one entry per day; a guide is charged per day. They do NOT include hotels, sleeper trains or cruises, and you must say so. If the customer needs those, offer a package or WhatsApp.
 - If it's unclear which they want, briefly offer both.
 
 What happens after a custom-trip price (state this accurately, never promise more; packages follow their own booking_terms instead):
@@ -166,6 +168,31 @@ export const dbChatDeps: ChatToolDeps = {
       singleSupplement: r.singleSupplement === null ? null : Number(r.singleSupplement),
       version: r.version,
     }));
+  }),
+  loadAddOns: cached(async (): Promise<AddOnRow[]> => {
+    const rows = await db
+      .select({
+        id: addOns.id,
+        name: addOns.name,
+        category: addOns.category,
+        price: addOns.price,
+        unitType: addOns.unitType,
+        isActive: addOns.isActive,
+        cityName: cities.name,
+      })
+      .from(addOns)
+      .leftJoin(cities, eq(addOns.cityId, cities.id));
+    return rows
+      .filter((r) => r.isActive !== false)
+      .map((r) => ({
+        id: r.id,
+        name: r.name,
+        category: r.category,
+        cityName: r.cityName ?? null,
+        price: Number(r.price),
+        unitType: r.unitType,
+      }))
+      .filter((r) => r.price > 0);
   }),
   buildQuote: (cityInputs, travelers) => buildMultiCityQuote(cityInputs, travelers),
 };
