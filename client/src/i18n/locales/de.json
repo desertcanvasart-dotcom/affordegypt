@@ -2922,7 +2922,7 @@
     "greeting": "Sie müssen nichts selbst zusammenstellen. Beschreiben Sie Ihre Reise in eigenen Worten – wohin, wie viele Personen, was Sie sehen möchten – und ich nenne Ihnen sofort den genauen Preis.",
     "example1": "Flughafenabholung in Kairo für 2 Personen",
     "example2": "Tagesausflug in Luxor für 4 mit deutschsprachigem Guide",
-    "example3": "Hurghada nach Luxor und zurück, 6 Personen",
+    "example3": "8 Tage Ägypten für 4 Personen mit Hotels",
     "placeholder": "Ihre Frage…",
     "send": "Senden",
     "thinking": "Preise werden geprüft…",
@@ -2934,7 +2934,9 @@
     "depositNote": "Zur Buchung: 10 % Anzahlung ({{amount}}) per sicherem Zahlungslink, sobald wir die Verfügbarkeit bestätigt haben. Der Rest wird bei Ankunft bezahlt.",
     "bookOnWhatsapp": "Über WhatsApp buchen",
     "whatsappIntro": "Hallo AffordEgypt, ich möchte dieses Angebot aus dem Chat auf Ihrer Website buchen:",
-    "disclaimer": "Preise in EGP. Der Assistent kann Fehler machen; die Preiskarte berechnet unser Buchungssystem."
+    "disclaimer": "Preise in EGP. Der Assistent kann Fehler machen; die Preiskarte berechnet unser Buchungssystem.",
+    "packageNote": "Hotels, Transport und Besichtigungen laut Programm. Anzahlung, Restzahlung und Stornobedingungen stehen auf der Paketseite.",
+    "viewPackage": "Paket ansehen & buchen"
   },
   "pageNames": {
     "home": "Startseite",

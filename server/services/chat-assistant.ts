@@ -13,7 +13,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { randomUUID } from "crypto";
 import { asc, eq } from "drizzle-orm";
 import { db } from "../db";
-import { cities, entranceFees, guideRates, serviceCatalog } from "@shared/schema";
+import { cities, entranceFees, guideRates, serviceCatalog, travelPackages } from "@shared/schema";
 import { pickName } from "../public-catalog-routes";
 import { buildMultiCityQuote } from "./quote-builder";
 import {
@@ -23,6 +23,7 @@ import {
   type CatalogRow,
   type EntranceFeeRow,
   type GuideRateRow,
+  type PackageRow,
   type VerifiedQuote,
 } from "./chat-tools";
 
@@ -36,16 +37,21 @@ const MAX_SESSIONS = 2000;
 
 export const WHATSAPP_NUMBER = "+20 110 076 5283";
 
-const SYSTEM_PROMPT = `You are the booking assistant on affordegypt.com, the website of AffordEgypt (operated by Capital Travel Service, ETAA licence 2179). You help travellers price private transfers, day tours, guides and entrance tickets in Egypt.
+const SYSTEM_PROMPT = `You are the booking assistant on affordegypt.com, the website of AffordEgypt (operated by Capital Travel Service, ETAA licence 2179). You help travellers price private transfers, day tours, guides, entrance tickets and multi-day trips in Egypt.
 
 How you work:
 - Every price you mention must come from a tool result in this conversation. Never estimate, round, convert currencies, or quote from memory. If a tool has no price for something, say we don't list it online and offer WhatsApp (${WHATSAPP_NUMBER}).
-- For any total, call calculate_quote. Never add numbers up yourself. The customer sees calculate_quote's result as a verified price card, so after calling it give a short summary (total, per person, what's included) rather than repeating every line.
+- For any total, call calculate_quote (custom trips) or price_package (ready-made packages). Never add numbers up yourself. The customer sees the result as a verified price card, so after calling it give a short summary (total, per person, what's included) rather than repeating every line.
 - Prices are in Egyptian pounds (EGP). Transfer and tour prices are per vehicle for the whole group; entrance tickets are per person; a guide is one rate per day for the group. Pick the smallest vehicle that seats the group: sedan up to 2, minivan up to 8, van up to 15. Larger groups need a custom quote on WhatsApp.
 - If the request is vague, ask one or two short questions (city, number of travellers, which transfers or sights) before searching. Don't interrogate; make sensible assumptions and say what you assumed.
 - If a tool returns an error, fix the request (look up the right slug, pick a bigger vehicle) or tell the customer plainly.
 
-What happens after the price (state this accurately, never promise more):
+Multi-day trips — two kinds, never mix their prices or terms:
+- Ready-made packages (list_packages / price_package): fixed programs that include hotels, intercity trains or a Nile cruise, guided touring and the extras listed. Groups of 2 to 12. Suggest them whenever someone wants several days, especially with hotels or a cruise. Use each package's own booking_terms for deposit, balance, cancellation and blackout dates, and send the customer to the package page (the card has a button) to book.
+- Custom trips (calculate_quote): built day by day from transfers, tours, guides and entrance tickets, one entry per day; a guide is charged per day. They do NOT include hotels, sleeper trains or cruises, and you must say so. If the customer needs those, offer a package or WhatsApp.
+- If it's unclear which they want, briefly offer both.
+
+What happens after a custom-trip price (state this accurately, never promise more; packages follow their own booking_terms instead):
 - To book, the customer uses "Build Your Quote" on the site or messages the team on WhatsApp (${WHATSAPP_NUMBER}).
 - Booking needs a 10% deposit. After a booking request the team confirms availability and sends a secure payment link (usually Tab.travel, any major card). The booking is confirmed once the deposit clears. The other 90% is paid on arrival (cash in EGP, USD, EUR or GBP, a second payment link, or card).
 - Any foreign-currency figure is only approximate; the booking is priced in EGP.
@@ -139,6 +145,27 @@ export const dbChatDeps: ChatToolDeps = {
     return rows
       .map((r) => ({ cityId: r.cityId, cityName: r.cityName, language: r.language, dailyRate: Number(r.rate) }))
       .filter((r) => r.dailyRate > 0);
+  }),
+  loadPackages: cached(async (): Promise<PackageRow[]> => {
+    const rows = await db
+      .select()
+      .from(travelPackages)
+      .where(eq(travelPackages.status, "published"))
+      .orderBy(asc(travelPackages.slot));
+    return rows.map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      summary: r.summary,
+      durationDays: r.durationDays,
+      nights: r.nights,
+      dayTitles: (r.itinerary ?? []).map((d) => d.title),
+      inclusions: r.inclusions ?? [],
+      exclusions: r.exclusions ?? [],
+      bookingTerms: r.bookingTerms,
+      perPersonRates: toNumberRecord(r.perPersonRates),
+      singleSupplement: r.singleSupplement === null ? null : Number(r.singleSupplement),
+      version: r.version,
+    }));
   }),
   buildQuote: (cityInputs, travelers) => buildMultiCityQuote(cityInputs, travelers),
 };

@@ -16,8 +16,12 @@ import { MessageCircle, X, Send, Loader2, ShieldCheck } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { formatEGP } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
+import { Link } from "wouter";
 
 export interface ChatQuote {
+  kind?: "custom" | "package";
+  title?: string;
+  bookUrl?: string;
   travelers: number;
   currency: "EGP";
   total: number;
@@ -36,9 +40,11 @@ const WHATSAPP_URL = "https://wa.me/201100765283";
 
 /** WhatsApp message carrying the verified quote's own numbers. */
 export function whatsappQuoteText(q: ChatQuote, intro: string): string {
+  const head = q.title ? [q.title] : [];
   const lines = q.lines.map((l) => `- ${l.label}${l.city ? ` [${l.city}]` : ""}: ${formatEGP(l.amount)}`);
   return [
     intro,
+    ...head,
     ...lines,
     `Total: ${formatEGP(q.total)} (${q.travelers} × ${formatEGP(q.perPerson)})`,
   ].join("\n");
@@ -53,6 +59,7 @@ function QuoteCard({ quote }: { quote: ChatQuote }) {
         <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
         {t("chat.verifiedPrice")}
       </div>
+      {quote.title && <div className="mb-1.5 font-semibold">{quote.title}</div>}
       <ul className="space-y-1">
         {quote.lines.map((l, i) => (
           <li key={i} className="flex justify-between gap-3">
@@ -69,7 +76,22 @@ function QuoteCard({ quote }: { quote: ChatQuote }) {
         <span>{t("chat.perPerson")}</span>
         <span className="tabular-nums">{formatEGP(quote.perPerson)}</span>
       </div>
-      <p className="mt-2 text-xs text-gray-600">{t("chat.depositNote", { amount: formatEGP(Math.round(quote.total * 0.1)) })}</p>
+      {/* Packages carry their own deposit and cancellation terms (shown on
+          the package page), so the custom-trip 10% note must not appear. */}
+      <p className="mt-2 text-xs text-gray-600">
+        {quote.kind === "package"
+          ? t("chat.packageNote")
+          : t("chat.depositNote", { amount: formatEGP(Math.round(quote.total * 0.1)) })}
+      </p>
+      {quote.kind === "package" && quote.bookUrl && (
+        <Link
+          href={quote.bookUrl}
+          onClick={() => trackEvent("chat_quote_package", "chat", quote.bookUrl, quote.total)}
+          className="mt-2 flex min-h-10 items-center justify-center rounded-md bg-teal-600 px-3 py-2 text-sm font-medium text-white hover:bg-teal-700"
+        >
+          {t("chat.viewPackage")}
+        </Link>
+      )}
       <a
         href={href}
         target="_blank"

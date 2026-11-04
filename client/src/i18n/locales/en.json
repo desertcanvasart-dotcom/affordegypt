@@ -2922,7 +2922,7 @@
     "greeting": "No need to build it yourself. Tell me your trip in your own words — where, how many people, what you'd like to see — and I'll give you the exact price straight away.",
     "example1": "Airport pickup in Cairo for 2 people",
     "example2": "Luxor day tour for 4 with an English guide",
-    "example3": "Hurghada to Luxor and back, 6 people",
+    "example3": "8 days in Egypt for 4 people with hotels",
     "placeholder": "Type your question…",
     "send": "Send",
     "thinking": "Checking prices…",
@@ -2934,7 +2934,9 @@
     "depositNote": "To book: a 10% deposit ({{amount}}) by secure payment link once we confirm availability. The rest is paid on arrival.",
     "bookOnWhatsapp": "Book this on WhatsApp",
     "whatsappIntro": "Hi AffordEgypt, I'd like to book this quote from your website chat:",
-    "disclaimer": "Prices in EGP. The assistant can make mistakes; the price card is calculated by our booking system."
+    "disclaimer": "Prices in EGP. The assistant can make mistakes; the price card is calculated by our booking system.",
+    "packageNote": "Hotels, transport and touring as listed. Deposit, balance and cancellation terms are on the package page.",
+    "viewPackage": "View & book this package"
   },
   "pageNames": {
     "home": "Home",

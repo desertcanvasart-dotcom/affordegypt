@@ -2922,7 +2922,7 @@
     "greeting": "Inutile de tout composer vous-même. Décrivez votre voyage avec vos mots — où, combien de personnes, ce que vous voulez voir — et je vous donne le prix exact tout de suite.",
     "example1": "Accueil à l'aéroport du Caire pour 2 personnes",
     "example2": "Excursion d'une journée à Louxor pour 4 avec un guide francophone",
-    "example3": "Hurghada – Louxor aller-retour, 6 personnes",
+    "example3": "8 jours en Égypte pour 4 personnes avec hôtels",
     "placeholder": "Écrivez votre question…",
     "send": "Envoyer",
     "thinking": "Vérification des prix…",
@@ -2934,7 +2934,9 @@
     "depositNote": "Pour réserver : un acompte de 10 % ({{amount}}) par lien de paiement sécurisé une fois la disponibilité confirmée. Le solde se règle à l'arrivée.",
     "bookOnWhatsapp": "Réserver sur WhatsApp",
     "whatsappIntro": "Bonjour AffordEgypt, je souhaite réserver ce devis obtenu sur le chat de votre site :",
-    "disclaimer": "Prix en EGP. L'assistant peut se tromper ; la carte de prix est calculée par notre système de réservation."
+    "disclaimer": "Prix en EGP. L'assistant peut se tromper ; la carte de prix est calculée par notre système de réservation.",
+    "packageNote": "Hôtels, transport et visites selon le programme. Les conditions d'acompte, de solde et d'annulation figurent sur la page du forfait.",
+    "viewPackage": "Voir et réserver ce forfait"
   },
   "pageNames": {
     "home": "Accueil",
