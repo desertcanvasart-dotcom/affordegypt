@@ -46,16 +46,86 @@ export const initGA = () => {
     (window as any).gtag = gtag;
   }
 
-  // Add Google Ads tracking
-  const adsScript = document.createElement('script');
-  adsScript.async = true;
-  adsScript.src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
-  document.head.appendChild(adsScript);
-  
-  adsScript.onload = () => {
-    (window as any).gtag('config', googleAdsId);
-  };
+  // Configure Google Ads. gtag queues commands until the library loads, so the
+  // config can be pushed straight away instead of waiting for onload.
+  (window as any).gtag('config', googleAdsId);
+
+  // Load the Ads library only once. The prerender snapshot (Puppeteer) already
+  // serialises the <script> this function injected while it rendered, so on a
+  // real visit the tag is usually in the HTML before React mounts; appending a
+  // second copy loaded gtag.js twice.
+  const src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
+  if (!document.querySelector(`script[src="${src}"]`)) {
+    const adsScript = document.createElement('script');
+    adsScript.async = true;
+    adsScript.src = src;
+    document.head.appendChild(adsScript);
+  }
+
+  initContactLinkTracking();
 };
+
+/**
+ * Contact-link conversions: WhatsApp, email and phone.
+ *
+ * GA's enhanced measurement only records these as a generic outbound `click`,
+ * which cannot be marked as a key event on its own. One delegated listener
+ * (capture phase, so it runs before handlers that navigate away) covers every
+ * link on every page, including ones added later, without touching each
+ * component. Event names are stable join keys if they are ever imported into
+ * Google Ads; do not rename them.
+ */
+export type ContactLinkEvent = 'whatsapp_click' | 'email_click' | 'phone_click';
+
+export function classifyContactLink(
+  href: string,
+): { event: ContactLinkEvent; linkUrl: string } | null {
+  const raw = href.trim();
+  const lower = raw.toLowerCase();
+  if (lower.startsWith('mailto:')) return { event: 'email_click', linkUrl: raw.split('?')[0] };
+  if (lower.startsWith('tel:')) return { event: 'phone_click', linkUrl: raw };
+  if (lower.startsWith('whatsapp:')) return { event: 'whatsapp_click', linkUrl: 'whatsapp:' };
+  let url: URL;
+  try {
+    url = new URL(raw);
+  } catch {
+    return null;
+  }
+  const host = url.hostname.toLowerCase();
+  if (
+    host === 'wa.me' ||
+    host === 'api.whatsapp.com' ||
+    host === 'web.whatsapp.com' ||
+    (host === 'www.whatsapp.com' && url.pathname.startsWith('/send'))
+  ) {
+    // Drop ?text= — the prefilled message can carry quote details.
+    return { event: 'whatsapp_click', linkUrl: `${url.protocol}//${url.host}${url.pathname}` };
+  }
+  return null;
+}
+
+let contactTrackingInstalled = false;
+
+export function initContactLinkTracking(): void {
+  if (contactTrackingInstalled || typeof document === 'undefined') return;
+  contactTrackingInstalled = true;
+  document.addEventListener(
+    'click',
+    (e) => {
+      const target = e.target as Element | null;
+      const a = target?.closest?.('a[href]') as HTMLAnchorElement | null;
+      if (!a) return;
+      const hit = classifyContactLink(a.getAttribute('href') ?? '');
+      if (!hit || !window.gtag) return;
+      window.gtag('event', hit.event, {
+        link_url: hit.linkUrl,
+        link_text: (a.textContent ?? '').trim().slice(0, 100) || undefined,
+        page_path: window.location.pathname,
+      });
+    },
+    true,
+  );
+}
 
 // Track page views - useful for single-page applications
 export const trackPageView = (url: string) => {
