@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  classifyContactLink,
   hasSentConversion,
   hasSentLead,
   markConversionSent,
@@ -207,5 +208,31 @@ describe("trackPurchase", () => {
   it("is a no-op when gtag has not loaded", () => {
     delete (globalThis as any).gtag;
     expect(() => trackPurchase({ transactionId: "AE-1", value: 1 })).not.toThrow();
+  });
+});
+
+describe("classifyContactLink", () => {
+  it("classifies WhatsApp links and strips the prefilled text", () => {
+    expect(classifyContactLink("https://wa.me/201100765283?text=Quote%20AE-9")).toEqual({
+      event: "whatsapp_click",
+      linkUrl: "https://wa.me/201100765283",
+    });
+    expect(classifyContactLink("https://api.whatsapp.com/send?phone=20110")?.event).toBe("whatsapp_click");
+    expect(classifyContactLink("whatsapp://send?phone=20110")?.event).toBe("whatsapp_click");
+  });
+
+  it("classifies email and phone links", () => {
+    expect(classifyContactLink("mailto:info@affordegypt.com?subject=Hi")).toEqual({
+      event: "email_click",
+      linkUrl: "mailto:info@affordegypt.com",
+    });
+    expect(classifyContactLink("tel:+201100765283")?.event).toBe("phone_click");
+  });
+
+  it("ignores everything else", () => {
+    expect(classifyContactLink("/destinations")).toBeNull();
+    expect(classifyContactLink("https://www.whatsapp.com/")).toBeNull();
+    expect(classifyContactLink("https://affordegypt.com/book")).toBeNull();
+    expect(classifyContactLink("")).toBeNull();
   });
 });
