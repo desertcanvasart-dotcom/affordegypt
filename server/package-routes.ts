@@ -25,6 +25,7 @@ import {
 import { adminAuth } from "./routes/shared";
 import { emailService } from "./email-service";
 import { storage } from "./database-storage";
+import { bookingToAutouraLead, queueLeadToAutoura } from "./services/autoura-lead";
 
 const publicStatus = eq(travelPackages.status, "published");
 const present = (row: typeof travelPackages.$inferSelect): TravelPackage => ({
@@ -242,7 +243,7 @@ export function registerPackageRoutes(app: Express) {
             .select()
             .from(bookings)
             .where(eq(bookings.id, previous.bookingId));
-          return { booking, created: false };
+          return { booking, created: false, title: null as string | null };
         }
         const today = new Intl.DateTimeFormat("en-CA", {
           timeZone: "Africa/Cairo",
@@ -361,10 +362,16 @@ export function registerPackageRoutes(app: Express) {
           requestHash,
           bookingId: booking.id,
         });
-        return { booking, created: true };
+        return { booking, created: true, title: pkg.title as string | null };
       });
       // Email failure never rolls back a successfully recorded request.
       if (result.created) {
+        // Into Autoura as a lead (never awaited, never fails the booking).
+        queueLeadToAutoura(bookingToAutouraLead(result.booking, {
+          what: result.title ?? `Package: ${req.params.slug}`,
+          travelers: input.travelers,
+          notes: input.specialRequests ?? null,
+        }));
         try {
           const quote = await storage.getQuote(result.booking.quoteId!);
           if (

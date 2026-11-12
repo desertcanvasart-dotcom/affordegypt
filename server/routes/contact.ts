@@ -8,6 +8,7 @@ import {
   sendContactFormEmail,
   sendNewsletterSubscriptionEmail,
 } from "../email-service";
+import { contactReference, contactToAutouraLead, queueLeadToAutoura } from "../services/autoura-lead";
 
 // Contact form + newsletter subscription. Both forms existed on the client
 // long before these routes did — they used to POST into the SPA fallback,
@@ -22,6 +23,8 @@ export function registerContactRoutes(app: Express): void {
     async (req, res) => {
       try {
         const { name, email, phone, subject, message } = req.body;
+        // Into Autoura as a lead too — independent of the email, never awaited.
+        queueLeadToAutoura(contactToAutouraLead(contactReference(), { name, email, phone, subject, message }));
         const sent = await sendContactFormEmail({
           name,
           email,
