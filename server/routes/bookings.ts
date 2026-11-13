@@ -6,6 +6,7 @@ import { validateBody } from "../middleware/validate";
 import { bookingRequestSchema, routeBookingRequestSchema } from "../request-schemas";
 import { adminAuth, parseServiceSlugs } from "./shared";
 import { buildQuoteFromRequest, persistFrozenQuote } from "../services/quote-builder";
+import { bookingToAutouraLead, queueLeadToAutoura } from "../services/autoura-lead";
 import {
   pickVehicleSlugForPassengers,
   RoutePriceNotSetError,
@@ -84,6 +85,11 @@ export function registerBookingRoutes(app: Express): void {
 
       const validatedData = insertBookingSchema.parse(bookingData);
       const booking = await storage.createBooking(validatedData);
+      // Into Autoura as a lead (never awaited, never fails the booking).
+      queueLeadToAutoura(bookingToAutouraLead(booking, {
+        what: "Quote builder request",
+        travelers: Number(req.body.travelers ?? req.body.passengerCount) || null,
+      }));
 
       // Send confirmation email
       try {
@@ -340,6 +346,11 @@ export function registerBookingRoutes(app: Express): void {
         bookingStatus: "pending",
         module: "transfer_only",
       } as any);
+      queueLeadToAutoura(bookingToAutouraLead(booking, {
+        what: "Transfer booking request",
+        travelers: Number(travelers ?? passengers) || null,
+        notes: specialRequests ?? null,
+      }));
 
       // Send confirmation email
       try {
